@@ -1,0 +1,23 @@
+# LLMs Crawl Policy for https://yt1s.cx
+# Update contact and domain before release.
+
+User-agent: GPTBot
+Allow: /
+Crawl-Delay: 5
+
+User-agent: Claude-Web
+Allow: /
+Crawl-Delay: 5
+
+User-agent: PerplexityBot
+Allow: /
+Crawl-Delay: 5
+
+User-agent: Google-Extended
+Allow: /
+Crawl-Delay: 5
+
+User-agent: *
+Disallow: /build-output.log
+Disallow: /preview.log
+

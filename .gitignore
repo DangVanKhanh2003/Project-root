@@ -1,0 +1,147 @@
+# =========================================================
+# .gitignore for Vite + Node.js Project
+# =========================================================
+
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+.pnpm-store/
+
+# Build outputs
+dist/
+dist-ssr/
+build/
+out/
+*.local
+
+# Vite specific
+.vite/
+.vite/deps
+
+# Environment variables (security)
+.env
+.env.local
+.env.*.local
+.env.development
+.env.production
+.env.test
+
+# Testing & Coverage
+coverage/
+.nyc_output/
+*.lcov
+
+# Log files
+*.log
+build-output.log
+preview.log
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Claude Code (local IDE settings)
+.claude/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional stylelint cache
+.stylelintcache
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variable files
+.env.backup
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# Debug
+.vscode-test
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# parcel-bundler cache
+.cache
+.parcel-cache
+
+# Next.js build output (if migrating)
+.next
+out
+
+# Nuxt.js build / generate output (if migrating)
+.nuxt
+
+# Gatsby files (if migrating)
+.cache/
+
+# Serverless directories
+.serverless/
+
+# FuseBox cache
+.fusebox/
+
+# DynamoDB Local files
+.dynamodb/
+
+# TernJS port file
+.tern-port
+
+# Stores VSCode versions used for testing VSCode extensions
+.vscode-test
+
+# Temporary folders
+tmp/
+temp/

@@ -1,0 +1,705 @@
+/* =========================================================
+   Download Options CSS - Sample Project Structure
+   ---------------------------------------------------------
+   • Extra Small Mobile (0–350px)
+   • Small Mobile (351–599px)
+   • Medium (Tablet) – 600–839px
+   • Expanded (Desktop) – 840–1239px
+   • Large (Wide Desktop) – 1240–1919px
+   • Extra Large (2K) – 1920–2559px
+   • Ultra Large (4K) – 2560px+
+   ========================================================= */
+
+/* ======= Base Styles (0-350px) - Extra Small Mobile ======= */
+
+/* Main Video Info Card Container */
+.video-info-card {
+  background: var(--color-surface, #ffffff);
+  border: 1px solid var(--color-outline-variant, #e5e5e5);
+  border-radius: var(--border-radius-xl, 16px);
+  box-shadow: none;
+  max-width: 100%;
+  padding: var(--md-sys-spacing-3);
+  width: 100%;
+  margin: auto;
+  margin-bottom: 40px;
+}
+
+/* Two Column Layout */
+.video-layout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--md-sys-spacing-6);
+}
+
+/* Left Column: Video Info */
+.video-info-left {
+  width: 100%;
+}
+
+/* Download Header */
+.download-header {
+  margin-bottom: var(--md-sys-spacing-4);
+}
+
+.download-header-title {
+  font-size: var(--font-size-lg, 1.125rem);
+  font-weight: var(--font-weight-semibold, 600);
+  color: var(--md-sys-color-primary);
+  line-height: var(--leading-tight);
+}
+
+/* Video Thumbnail - Critical styles moved to critical/download-layout.css */
+
+.thumbnail-background {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(2px);
+  opacity: 0.7;
+  z-index: 1;
+}
+
+/* .thumbnail-image - Critical styles moved to critical/download-layout.css */
+
+/* Video Title */
+.video-title {
+  font-size: var(--font-size-lg, 1rem);
+  font-weight: var(--font-semibold, 600);
+  line-height: var(--leading-normal, 1.5);
+  color: black;
+  margin: 0;
+  text-align: center;
+  word-wrap: break-word;
+  hyphens: auto;
+  text-align: center;
+  /* Clamp to 2 lines by default - only show "see more" if overflow */
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2; /* Standard property for future compatibility */
+}
+
+/* When expanded, show all text */
+.video-title.expanded {
+  -webkit-line-clamp: unset;
+  line-clamp: unset;
+  max-height: none;
+  overflow: visible;
+}
+
+/* Right Column: Video Details */
+.video-details {
+  width: 100%;
+}
+
+/* Format Tabs */
+.format-tabs {
+  display: flex;
+  margin-bottom: var(--md-sys-spacing-5);
+}
+
+.format-tab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--md-sys-spacing-2);
+  padding: var(--md-sys-spacing-3) var(--md-sys-spacing-4);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid var(--color-outline-variant, #e5e5e5);
+  font-size: var(--font-base, 1rem);
+  font-weight: var(--font-medium, 500);
+  color: gray;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+  white-space: nowrap;
+  position: relative;
+}
+
+.format-tab.active {
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--primary-color);
+  font-weight: var(--font-semibold, 600);
+}
+
+.format-tab.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  color: var(--text-muted);
+}
+
+.format-tab svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2;
+}
+
+/* Quality List */
+.quality-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--md-sys-spacing-2);
+}
+
+.quality-empty {
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--color-text-muted, #999);
+  font-style: italic;
+  background: var(--color-surface-variant, #f5f5f5);
+  border-radius: var(--md-sys-shape-corner-small);
+}
+
+/* Quality Item */
+.quality-item {
+  background: var(--color-surface, #ffffff);
+  border: 1px solid var(--color-outline-variant, #e5e5e5);
+  border-radius: var(--md-sys-shape-corner-small);
+  padding: var(--md-sys-spacing-3);
+  transition: all 0.2s ease;
+  margin-bottom: var(--md-sys-spacing-2);
+  overflow: hidden;
+}
+
+
+
+.quality-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--md-sys-spacing-2);
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+
+/* Left Column: Format Name */
+.quality-col-left {
+  display: flex;
+  flex-direction: column;
+  gap: var(--md-sys-spacing-1);
+  min-width: 0;
+  flex-shrink: 0;
+  width: 100px;
+  align-items: center;
+}
+
+.quality-format {
+  font-size: var(--font-base, 1rem);
+  color: #000000;
+  word-wrap: break-word;
+  text-align: center;
+  overflow: hidden;
+  font-weight: 500;
+}
+
+/* Quality Badges */
+.quality-badge {
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-size: 10px;
+    font-weight: 1000;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: transparent;
+    border: 2px solid #5394FE;
+    color: #5394FE;
+    display: inline-block;
+    width: fit-content;
+}
+
+/* Center Column: File Size */
+.quality-col-center {
+  flex: 1;
+  text-align: center;
+}
+.quality-label{
+  font-weight: 500;
+}
+.quality-resolution-base {
+  font-size: var(--font-base, 1rem);
+  color: #000000;
+  font-weight: var(--font-medium, 500);
+  margin: 0;
+  white-space: nowrap;
+}
+
+/* Right Column: Download Button */
+.quality-col-right {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.btn-convert {
+  display: flex;
+  align-items: center;
+  gap: var(--md-sys-spacing-1);
+  padding: var(--md-sys-spacing-2) var(--md-sys-spacing-3);
+  background: #2c62e6;
+  color: #FFFFFF;
+  border-radius: 30px;
+  font-size: var(--font-base, 1rem);
+  font-weight: var(--font-medium, 500);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  justify-content: center;
+  white-space: nowrap;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-convert:hover:not(:disabled) {
+  box-shadow: var(--shadow-md, 0 4px 8px rgba(0, 0, 0, 0.15));
+  transform: scale(1.01);
+}
+
+.btn-convert:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0, 0, 0, 0.1));
+}
+
+.btn-convert:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Button States */
+.btn-convert.loading {
+  background: var(--secondary-color);
+  color: var(--md-sys-color-on-secondary);
+}
+
+.btn-convert.downloaded {
+  background: var(--accent-color);
+  color: var(--md-sys-color-on-tertiary);
+}
+
+.btn-convert.error {
+  background: var(--color-error, #dc3545);
+  color: var(--md-sys-color-on-error);
+}
+
+.btn-convert--success,
+.btn-convert--direct-download {
+  background: var(--md-sys-color-primary);
+  color: #ffffff;
+}
+
+.btn-convert--success:hover,
+.btn-convert--direct-download:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
+}
+
+.btn-convert--success:active,
+.btn-convert--direct-download:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(22, 163, 74, 0.2);
+}
+
+.btn-text {
+  font-size: inherit;
+}
+
+.btn-spinner {
+  width: var(--md-sys-spacing-3);
+  height: var(--md-sys-spacing-3);
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: btn-spin 1s linear infinite;
+}
+
+@keyframes btn-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.btn-icon {
+  width: var(--md-sys-spacing-4);
+  height: var(--md-sys-spacing-4);
+  stroke-width: 2;
+}
+
+/* ======= Small Mobile (351px-599px) ======= */
+@media (min-width: 351px) {
+  .video-info-card {
+    padding: var(--md-sys-spacing-4);
+    max-width: 540px;
+  }
+
+  .video-layout {
+    gap: var(--md-sys-spacing-8);
+  }
+
+
+
+  .format-tab {
+    padding: var(--md-sys-spacing-3) var(--md-sys-spacing-5);
+  }
+
+  .quality-item {
+    gap: var(--md-sys-spacing-4);
+  }
+
+  .btn-convert {
+    padding: var(--md-sys-spacing-2) var(--md-sys-spacing-4);
+  }
+}
+
+/* ======= Medium Tablet (600px-839px) ======= */
+@media (min-width: 600px) {
+  .video-info-card {
+    max-width: 800px;
+    padding: var(--md-sys-spacing-8);
+  }
+
+  .format-tabs {
+    margin-bottom: var(--md-sys-spacing-6);
+  }
+
+  .format-tab {
+    padding: var(--md-sys-spacing-4) var(--md-sys-spacing-6);
+  }
+
+  .quality-item {
+    padding: var(--md-sys-spacing-4);
+  }
+
+  .quality-row {
+    gap: var(--md-sys-spacing-3);
+  }
+
+
+
+  .quality-col-left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    width: 150px;
+  }
+
+  .quality-format {
+    text-align: left;
+  }
+
+  .quality-badge {
+    font-size: 8px;
+    padding: 2px 4px;
+  }
+}
+
+/* ======= Expanded Desktop (840px-1239px) - Keep 1 Column ======= */
+@media (min-width: 840px) and (max-width: 1239px) {
+  .video-info-card {
+    max-width: 1100px;
+    padding: var(--md-sys-spacing-10);
+  }
+
+  .video-layout {
+    flex-direction: column;
+    gap: var(--md-sys-spacing-8);
+    align-items: center;
+  }
+
+  .video-info-left {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .video-thumbnail {
+    max-width: 100%;
+  }
+
+  .video-title {
+    text-align: center;
+  }
+
+  .video-details {
+    width: 100%;
+  }
+
+  .quality-row {
+    gap: var(--md-sys-spacing-5);
+  }
+
+  .btn-convert {
+    padding: var(--md-sys-spacing-3) var(--md-sys-spacing-5);
+  }
+}
+
+
+/* ======= Large Wide Desktop (1240px-1919px) ======= */
+@media (min-width: 1240px) {
+  .video-info-card {
+    max-width: 1100px;
+    padding: var(--md-sys-spacing-12);
+  }
+
+  .video-layout {
+    flex-direction: row;
+    gap: calc(var(--md-sys-spacing-12) + var(--md-sys-spacing-2));
+    align-items: flex-start;
+  }
+
+  .video-info-left {
+    flex: 0 0 380px;
+    width: 380px;
+  }
+
+  .video-details {
+    flex: 1;
+    min-width: 0;
+  }
+
+
+
+
+  .quality-row {
+    gap: var(--md-sys-spacing-6);
+  }
+
+
+}
+
+/* ======= Extra Large 2K Display (1920px-2559px) ======= */
+@media (min-width: 1920px) {
+  .video-info-card {
+    max-width: 1100px;
+    padding: calc(var(--md-sys-spacing-12));
+  }
+
+  .video-layout {
+    flex-direction: row;
+    gap: var(--md-sys-spacing-16);
+    align-items: flex-start;
+  }
+
+  .video-info-left {
+    flex: 0 0 420px;
+    width: 420px;
+  }
+
+  .video-details {
+    flex: 1;
+    min-width: 0;
+  }
+
+ 
+
+  .quality-row {
+    gap: var(--md-sys-spacing-7);
+  }
+
+  .btn-convert {
+    padding: var(--md-sys-spacing-3) var(--md-sys-spacing-6);
+  }
+}
+
+/* ======= Ultra Large 4K+ Display (2560px+) ======= */
+@media (min-width: 2560px) {
+  .quality-col-left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    width: 200px;
+  }
+  .video-info-card {
+    max-width: 1600px;
+    padding: var(--md-sys-spacing-16);
+  }
+
+  .video-layout {
+    flex-direction: row;
+    gap: calc(var(--md-sys-spacing-16) + var(--md-sys-spacing-2));
+    align-items: flex-start;
+  }
+
+  .video-info-left {
+    flex: 0 0 500px;
+    width: 500px;
+  }
+
+  .video-details {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .format-tab {
+    padding: var(--md-sys-spacing-4) var(--md-sys-spacing-7);
+  }
+
+  .quality-row {
+    gap: var(--md-sys-spacing-8);
+  }
+
+  .btn-convert {
+    padding: var(--md-sys-spacing-4) var(--md-sys-spacing-7);
+  }
+
+  .quality-badge {
+    font-size: 0.75rem;
+        padding: 2px 4px;
+
+  }
+}
+
+/* ======= Error Display ======= */
+.dl-container--error {
+  background: var(--color-error-surface, #fef2f2);
+  border: 1px solid var(--color-error-border, #fecaca);
+}
+
+.dl-error {
+  display: flex;
+  align-items: center;
+  gap: var(--md-sys-spacing-2);
+  padding: var(--md-sys-spacing-4);
+  background: var(--color-error-surface, #fef2f2);
+  border-radius: var(--md-sys-shape-corner-small);
+  color: var(--color-error, #dc3545);
+}
+
+.dl-error__icon {
+  font-size: 1.2em;
+  flex-shrink: 0;
+}
+
+.dl-error__message {
+  font-size: var(--font-size-sm, 0.875rem);
+  font-weight: var(--font-weight-medium, 500);
+}
+
+/* ======= Accessibility & Interaction Enhancements ======= */
+
+/* Focus States */
+.format-tab:focus-visible,
+.btn-convert:focus-visible {
+  outline: 2px solid var(--color-focus, #2196f3);
+  outline-offset: 2px;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .format-tab,
+  .quality-item,
+  .btn-convert {
+    transition: none;
+  }
+
+  .btn-spinner {
+    animation: none;
+  }
+
+  
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .quality-item {
+    border-width: 2px;
+  }
+
+  .format-tab.active {
+    border-width: var(--md-sys-spacing-1);
+  }
+
+  .btn-convert {
+    border: 1px solid var(--color-outline, #d0d0d0);
+  }
+}
+
+/* Responsive Button Content */
+@media (max-width: 350px) {
+    .quality-badge {
+    font-size: 8px;
+    padding: 2px 4px;
+  }
+    .btn-convert {
+      border-radius: 8px;
+    }
+  
+}
+/* Mobile: Show only icon */
+@media (max-width: 599px) {
+  .quality-format {
+
+    font-size: 14px;
+  }
+  .btn-convert .btn-text {
+    
+    display: none;
+  }
+
+  .btn-convert .btn-icon {
+    display: block;
+  }
+
+  /* Make the button more square-like for an icon button */
+  .btn-convert {
+    min-width: 36px;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+      border-radius: 8px;
+    
+  }
+      .quality-badge {
+    font-size: 8px;
+    padding: 2px 4px;
+  }
+}
+
+/* Desktop: Show only text */
+@media (min-width: 600px) {
+  .btn-convert {
+    width: 150px;
+  }
+
+  .btn-convert .btn-icon {
+    display: none;
+  }
+
+  .btn-convert .btn-text {
+    display: inline;
+  }
+}
+
+/* =========================================================
+   QUALITY STATUS AREA - Simplified (Modal-based conversion)
+   ---------------------------------------------------------
+   Now only shows file size - conversion status in modal
+   ========================================================= */
+
+/* Quality Status Area - Simplified */
+.quality-status-area {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Size Info - Always visible */
+.size-info {
+  font-size: 14px;
+  color: black;
+  line-height: 1.4;
+  margin: 0;
+  padding: 0;
+}
+
+.video-title-wrapper {
+  min-height: 70px; /* 2 lines of title (16px * 1.5 * 2 = 48px) + see more button (24px) */
+}

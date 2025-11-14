@@ -1,0 +1,22 @@
+User-agent: *
+# Allow crawling of essential assets
+Allow: /
+Allow: /assets/
+Allow: /assest/
+Allow: /src/
+
+# Do not block CSS/JS/Images
+Allow: /*.css$
+Allow: /*.js$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.webp$
+Allow: /*.svg$
+
+# Disallow internal utility or preview logs if deployed
+Disallow: /preview.log
+Disallow: /build-output.log
+
+# Sitemap (update domain before release)
+Sitemap: https://yt1s.cx/sitemap.xml
