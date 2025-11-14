@@ -1,7 +1,7 @@
 import * as utils from './utils.js';
 import * as normalizers from './normalizers.js';
 import { createClient } from './httpClient.js';
-import { saveJwt } from '../../../utils/jwt.js';
+import { saveJwt } from '../../captcha-core/jwt.js';
 import { API_ENDPOINTS, MULTIFILE_ENDPOINTS, SEARCH_V2_CONFIG, QUEUE_ENDPOINTS } from './api-endpoints.js';
 import { getV2ApiUrl, getYouTubeStreamApiEndpoint, getQueueApiUrl } from '../../../environment.js';
 import { extractYouTubeVideoId } from './youtube-public-api.js';

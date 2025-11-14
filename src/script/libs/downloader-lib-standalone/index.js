@@ -1,8 +1,22 @@
-// Import core Backend services from remote package
-export { createService, createVerifiedService, DownloaderUtils } from './remote/index.js';
+/**
+ * Downloader Library - Main Entry Point
+ * Clean architecture with layered modules
+ */
 
-// Import UI components (not in remote package)
-export { ProgressBarManager } from './progressBar.js';
+// API Layer - Backend communication
+export { createService, createVerifiedService, createClient } from './api/index.js';
 
-// Import stream downloader (iOS stability fix)
-export { downloadStreamToRAM } from './stream-downloader-to-ram.js';
+// YouTube Integration
+export { createYouTubePublicApiService, extractYouTubeVideoId } from './api/youtube/index.js';
+
+// Transfer Layer - Data transfer mechanisms
+export { downloadStreamToRAM } from './transfer/index.js';
+
+// Orchestration Layer - Download flow coordination
+export { startSequentialDownload, createMultifileOrchestrator } from './orchestration/index.js';
+
+// UI Components (reusable)
+export { ProgressBarManager } from './components/progress-bar.js';
+
+// Utilities
+export * as DownloaderUtils from './utils/common.js';

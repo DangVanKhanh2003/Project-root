@@ -1062,7 +1062,7 @@ export function getMultifileSession() {
 // MULTIFILE REUSE MANAGEMENT (NEW)
 // ============================================================
 
-import { validateUrlArray, canReuseDownload } from '../../utils/multifile-utils.js';
+import { validateUrlArray, canReuseDownload } from '../../libs/downloader-lib-standalone/utils/multifile-utils.js';
 
 /**
  * Update currently selected URLs

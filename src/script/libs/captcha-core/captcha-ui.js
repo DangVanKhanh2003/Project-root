@@ -4,8 +4,8 @@
  * Uses captcha-core for business logic
  */
 
-import { getCaptchaToken } from '../../libs/captcha-core/index.js';
-import { getValidJwt, clearJwt } from '../../utils/jwt.js';
+import { getCaptchaToken } from './index.js';
+import { getValidJwt, clearJwt } from './jwt.js';
 import '../../../styles/features/captcha-modal.css';
 
 // --- State ---
