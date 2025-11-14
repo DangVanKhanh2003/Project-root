@@ -1,5 +1,5 @@
 
-import { openLinkInNewTab, triggerDownload, formatMBSize, isIOS, isWindows } from '../../utils.js';
+import { openLinkInNewTab, triggerDownload, formatMBSize, isIOS, isWindows } from '../../../utils.js';
 
 const DEFAULTS = {
   YOUTUBE_MAX_DURATION: 60,

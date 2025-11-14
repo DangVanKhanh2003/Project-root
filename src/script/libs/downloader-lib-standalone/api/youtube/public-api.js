@@ -1,4 +1,4 @@
-import * as utils from './utils.js';
+import * as utils from '../../utils/common.js';
 import { createClient } from './httpClient.js';
 
 const OEMBED_API_URL = 'https://www.youtube.com';

@@ -12,7 +12,7 @@ import {
     getMultifileState,
     cancelMultifileDownload
 } from './multifile-ui.js';
-import { MULTIFILE_STATES } from '../../libs/downloader-lib-standalone/remote/multifile-constants.js';
+import { MULTIFILE_STATES } from '../../libs/downloader-lib-standalone/orchestration/index.js';
 import {
     updateCurrentSelection,
     getRecentDownloadStatus,

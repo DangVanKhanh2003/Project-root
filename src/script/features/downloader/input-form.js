@@ -18,7 +18,7 @@ import {
     generateFakeVideoDetail,
     canGenerateFakeData,
     createTitleContext
-} from '../../libs/downloader-lib-standalone/fake-data-generator.js';
+} from '../../libs/downloader-lib-standalone/mock-data/fake-data-generator.js';
 
 // Import YouTube metadata enhancer for progressive metadata enhancement
 import { enhanceYouTubeMetadata } from './youtube-metadata.js';

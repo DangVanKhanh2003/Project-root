@@ -4,7 +4,7 @@
  * UI Layer - manages SSE connection and event callbacks
  */
 
-import { getApiBaseUrl } from '../../../environment.js';
+import { getApiBaseUrl } from '../../../../environment.js';
 import { SSE_EVENTS, MULTIFILE_TIMEOUTS, MULTIFILE_ENDPOINTS } from './multifile-constants.js';
 
 // ============================================================

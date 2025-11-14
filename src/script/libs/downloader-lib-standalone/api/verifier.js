@@ -4,7 +4,7 @@
  */
 
 import { createService } from './service.js';
-import { createYouTubePublicApiService } from './youtube-public-api.js';
+import { createYouTubePublicApiService } from './youtube/public-api.js';
 import { normalizeStreamResponse, normalizeYouTubeOembed } from './normalizers.js';
 
 /**

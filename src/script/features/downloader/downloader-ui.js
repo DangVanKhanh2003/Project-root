@@ -5,6 +5,9 @@ import { initInputForm } from './input-form.js';
 import { initContentRenderer, renderContent } from './content-renderer.js';
 import { initSuggestionRenderer, render as renderSuggestions } from '../../ui-components/suggestion-dropdown/suggestion-renderer.js';
 
+// Import conversion controller (wires modal events → business logic)
+import { initConversionController } from './conversion/conversion-controller.js';
+
 // Import centralized scroll manager
 import scrollManager from '../../libs/scroll-core/scroll-manager.js';
 
@@ -208,8 +211,8 @@ function prefetchFeatureModules() {
         import('./gallery-renderer.js'),
         import('./download-rendering.js'),
         import('./multifile-ui.js'),
-        import('./conversion-modal.js'),
-        import('./convert-logic.js')
+        import('../../ui-components/modal/conversion-modal.js'),
+        import('./conversion/convert-logic.js')
     ];
 
     // Log prefetch completion (background)
@@ -226,6 +229,9 @@ export async function init() {
         scrollManager.init();
     } catch (error) {
     }
+
+    // Wire conversion modal events to business logic (event-driven pattern)
+    initConversionController();
 
     setupSmoothScrolling();
     setupNavbar();

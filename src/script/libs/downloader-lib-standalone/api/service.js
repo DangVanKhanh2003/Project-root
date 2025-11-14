@@ -1,4 +1,4 @@
-import * as utils from './utils.js';
+import * as utils from '../utils/common.js';
 import * as normalizers from './normalizers.js';
 import { createClient } from './httpClient.js';
 import { saveJwt } from '../../captcha-core/jwt.js';

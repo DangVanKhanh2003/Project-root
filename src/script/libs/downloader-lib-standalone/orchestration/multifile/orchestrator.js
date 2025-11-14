@@ -5,7 +5,7 @@
  * NO direct state.js imports - state management via callbacks
  */
 
-import { createSSEManager } from './multifile-sse.js';
+import { createSSEManager } from './sse-manager.js';
 import {
     MULTIFILE_STATES,
     MULTIFILE_TIMEOUTS,

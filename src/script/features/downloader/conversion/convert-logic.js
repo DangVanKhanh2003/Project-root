@@ -1,14 +1,14 @@
-import { createVerifiedService } from '../../libs/downloader-lib-standalone/index.js';
-import { getApiBaseUrl, getTimeout, getExpiryTime, getIOSStreamMaxSize } from '../../environment.js';
-import { withCaptchaProtection } from '../../libs/captcha-core/captcha-ui.js';
-import { setConversionTask, updateConversionTask, getConversionTask, getState, setVideoDetail, setGalleryDetail, updateVideoDetailFormat } from './state.js';
-import { getPollingManager } from './concurrent-polling.js';
-import { isLinkExpired, DOWNLOAD_LINK_TTL } from '../../utils/link-validator.js';
-import { getConversionModal } from './conversion-modal.js';
-import { openLinkInNewTab, triggerDownload, isIOS, isWindows } from '../../utils.js';
-import { isYouTubeUrl } from '../../libs/downloader-lib-standalone/utils/youtube-validator.js';
-import { downloadStreamToRAM } from '../../libs/downloader-lib-standalone/stream-downloader-to-ram.js';
-import { PollingProgressMapper } from '../../libs/downloader-lib-standalone/utils/polling-progress-mapper.js';
+import { createVerifiedService } from '../../../libs/downloader-lib-standalone/index.js';
+import { getApiBaseUrl, getTimeout, getExpiryTime, getIOSStreamMaxSize } from '../../../environment.js';
+import { withCaptchaProtection } from '../../../libs/captcha-core/captcha-ui.js';
+import { setConversionTask, updateConversionTask, getConversionTask, getState, setVideoDetail, setGalleryDetail, updateVideoDetailFormat } from '../state.js';
+import { getPollingManager } from '../concurrent-polling.js';
+import { isLinkExpired, DOWNLOAD_LINK_TTL } from '../../../utils/link-validator.js';
+import { getConversionModal } from '../../../ui-components/modal/conversion-modal.js';
+import { openLinkInNewTab, triggerDownload, isIOS, isWindows } from '../../../utils.js';
+import { isYouTubeUrl } from '../../../libs/downloader-lib-standalone/api/youtube/validator.js';
+import { downloadStreamToRAM } from '../../../libs/downloader-lib-standalone/transfer/strategies/stream-to-ram.js';
+import { PollingProgressMapper } from '../../../libs/downloader-lib-standalone/utils/polling-progress-mapper.js';
 
 const service = createVerifiedService({
     apiBaseUrl: getApiBaseUrl(),
@@ -752,7 +752,7 @@ async function getFormatDataFromState(formatId) {
         }
 
         // Process formats using format-processor
-        const { processFormatArray } = await import('../../libs/downloader-lib-standalone/format-processor.js');
+        const { processFormatArray } = await import('../../libs/downloader-lib-standalone/processors/format-processor.js');
         const processedFormats = processFormatArray(formatArray, category);
 
         // Find matching format by ID
@@ -835,7 +835,7 @@ export async function handleYouTubeDownload(formatData, autoDownload = false) {
 
             // Look up in constants using cleaned ID
             try {
-                const { findFormatById } = await import('../../libs/downloader-lib-standalone/youtube-data-constants.js');
+                const { findFormatById } = await import('../../libs/downloader-lib-standalone/api/youtube/constants.js');
                 const fallbackFormat = findFormatById(cleanId, formatData.vid);
                 if (fallbackFormat?.extractV2Options) {
                     extractOptions = fallbackFormat.extractV2Options;

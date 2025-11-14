@@ -9,7 +9,7 @@ import { updateConversionTask, getConversionTask } from './state.js';
 import { createVerifiedService } from '../../libs/downloader-lib-standalone/index.js';
 import { getApiBaseUrl, getTimeout } from '../../environment.js';
 import { withCaptchaProtection } from '../../libs/captcha-core/captcha-ui.js';
-import { getConversionModal } from './conversion-modal.js';
+import { getConversionModal } from '../../ui-components/modal/conversion-modal.js';
 
 class ConcurrentPollingManager {
   constructor(config = {}) {

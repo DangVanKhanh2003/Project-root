@@ -4,7 +4,7 @@
  * Non-blocking background updates để improve UX without sacrificing performance
  */
 
-import { createYouTubePublicApiService } from '../../libs/downloader-lib-standalone/remote/youtube-public-api.js';
+import { createYouTubePublicApiService } from '../../libs/downloader-lib-standalone/api/youtube/public-api.js';
 import { getState, updateVideoDetailMetadata } from './state.js';
 
 // Create YouTube public API service instance

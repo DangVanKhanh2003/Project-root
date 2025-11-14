@@ -5,7 +5,7 @@
  * Renders 2-column layout với video info và format options.
  */
 
-import { mapFormat, extractFormat, buildQualityBadge, processFormatArray } from '../../libs/downloader-lib-standalone/format-processor.js';
+import { mapFormat, extractFormat, buildQualityBadge, processFormatArray } from '../../libs/downloader-lib-standalone/processors/format-processor.js';
 import { setActiveTab, updateTaskState, getTaskState, getState, getConversionTask } from './state.js';
 
 // Import utils
@@ -669,7 +669,7 @@ async function handleDownloadClick(event) {
         // - Stream status → Extract fresh
         // - Static + Valid → Open modal SUCCESS (ready to download)
         // - Static + Expired → Extract fresh
-        const { smartConvert } = await import('./convert-logic.js');
+        const { smartConvert } = await import('./conversion/convert-logic.js');
         await smartConvert(formatId);
 
     } catch (error) {

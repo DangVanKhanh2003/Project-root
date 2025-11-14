@@ -8,7 +8,7 @@
  */
 
 import { openLinkInNewTab, parseSizeToMB } from '../../utils.js';
-import { ProgressBarManager } from '../../libs/downloader-lib-standalone/progressBar.js';
+import { ProgressBarManager } from '../../libs/downloader-lib-standalone/components/progress-bar.js';
 import { loadConversionModalCSS, loadSmoothProgressCSS } from '../../utils/css-loader.js';
 // Dynamic imports for convert-logic - prefetched after critical load
 
@@ -80,9 +80,17 @@ export class ConversionModal {
         }
 
         this.#show();
+
+        // Dispatch modal opened event
+        this.#dispatchEvent('conversion:modal-opened', {
+            formatId: this.#state.formatId,
+            status: this.#state.status,
+            videoTitle: this.#state.videoTitle
+        });
     }
 
     async close() {
+        const formatId = this.#state?.formatId; // Save before cleanup
 
         // Cancel any ongoing conversion first
         await this.#cancelOngoingConversion();
@@ -92,17 +100,20 @@ export class ConversionModal {
         this.#state = null;
         this.#hide();
 
+        // Dispatch modal closed event
+        this.#dispatchEvent('conversion:modal-closed', {
+            formatId
+        });
     }
 
     async #cancelOngoingConversion() {
         // Only cancel if we're actively converting
         if (this.#state?.status === 'CONVERTING' && this.#state.formatId) {
-            try {
-                const { cancelConversion } = await import('./convert-logic.js');
-                cancelConversion(this.#state.formatId);
-            } catch (error) {
-            }
-        } else {
+            // Dispatch event instead of importing convert-logic
+            this.#dispatchEvent('conversion:cancel', {
+                formatId: this.#state.formatId,
+                status: this.#state.status
+            });
         }
     }
 
@@ -565,35 +576,29 @@ export class ConversionModal {
     async #handleDownload() {
         if (this.#state?.status !== 'SUCCESS') return;
 
-        try {
-            const { downloadConvertedFile } = await import('./convert-logic.js');
-            await downloadConvertedFile(this.#state.formatId);
+        // Dispatch event - let external handler manage download logic
+        this.#dispatchEvent('conversion:download', {
+            formatId: this.#state.formatId,
+            downloadUrl: this.#state.downloadUrl
+        });
 
-            // Note: Modal might transition to EXPIRED or close in downloadConvertedFile
-            // Don't close here - let convert-logic decide
-        } catch (error) {
-            this.transitionToError(error.message || 'Download failed');
-        }
+        // Note: Modal might transition to EXPIRED or close via external handler
+        // Don't close here - let handler decide
     }
 
     async #handleRetry() {
-
         if (!this.#state) {
             return;
         }
 
-
         // Transition back to converting
         this.transitionToConverting();
 
-        // Restart conversion
-        try {
-            const { reConvert } = await import('./convert-logic.js');
-            await reConvert(this.#state.formatId);
-
-        } catch (error) {
-            this.transitionToError(error.message || 'Retry failed');
-        }
+        // Dispatch event - let external handler manage retry logic
+        this.#dispatchEvent('conversion:retry', {
+            formatId: this.#state.formatId,
+            previousError: this.#state.errorMessage
+        });
     }
 
     async #handleCopyLink(button) {
@@ -740,6 +745,28 @@ export class ConversionModal {
         const div = document.createElement('div');
         div.textContent = text;
         return div.innerHTML;
+    }
+
+    /**
+     * Dispatch custom event for external listeners
+     * Makes component reusable - no coupling to specific features
+     * @param {string} eventName - Event name (e.g., 'conversion:cancel')
+     * @param {object} detail - Event payload data
+     */
+    #dispatchEvent(eventName, detail = {}) {
+        const event = new CustomEvent(eventName, {
+            detail,
+            bubbles: true,
+            cancelable: true
+        });
+
+        // Dispatch on wrapper element
+        if (this.#wrapper) {
+            this.#wrapper.dispatchEvent(event);
+        }
+
+        // Also dispatch globally for easy listening
+        window.dispatchEvent(event);
     }
 }
 

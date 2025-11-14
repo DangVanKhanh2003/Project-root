@@ -1,4 +1,4 @@
-import { parseErrorMessage, DEFAULT_ERROR_MESSAGE } from './utils.js';
+import { parseErrorMessage, DEFAULT_ERROR_MESSAGE } from '../utils/common.js';
 
 /**
  * Creates a modern HTTP client using the fetch API for API v2.

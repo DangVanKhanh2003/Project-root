@@ -4,7 +4,7 @@
  */
 
 // Import environment config for timeout
-import { getTimeout } from '../../environment.js';
+import { getTimeout } from '../../../../environment.js';
 
 /**
  * WHY: Download stream URL to RAM buffer before saving (iOS stability)

@@ -5,7 +5,7 @@
  */
 
 // Re-export endpoints from centralized location
-export { MULTIFILE_ENDPOINTS } from './api-endpoints.js';
+export { MULTIFILE_ENDPOINTS } from '../../api/endpoints.js';
 
 // ============================================================
 // TIMEOUTS & LIMITS
