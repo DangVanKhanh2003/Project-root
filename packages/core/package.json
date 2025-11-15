@@ -13,8 +13,5 @@
   "scripts": {
     "build": "tsc --build",
     "clean": "rm -rf dist tsconfig.tsbuildinfo"
-  },
-  "devDependencies": {
-    "typescript": "workspace:*"
-  }
+                                                                                                                                                                                                                                                                                                                                             }
 }
