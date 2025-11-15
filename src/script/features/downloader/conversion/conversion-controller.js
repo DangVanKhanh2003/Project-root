@@ -31,7 +31,6 @@ export function initConversionController() {
                 await ConvertLogic.downloadConvertedFile(formatId);
                 // Modal will be updated by convert-logic (transition to EXPIRED or close)
             } catch (error) {
-                console.error('Download failed:', error);
                 // Error handling is done inside convert-logic
             }
         }
@@ -46,7 +45,6 @@ export function initConversionController() {
                 await ConvertLogic.reConvert(formatId);
                 // Modal will be updated by convert-logic
             } catch (error) {
-                console.error('Retry failed:', error);
                 // Error handling is done inside convert-logic
             }
         }
@@ -55,11 +53,9 @@ export function initConversionController() {
     // Optional: Log modal lifecycle for debugging
     window.addEventListener('conversion:modal-opened', (event) => {
         const { formatId, status, videoTitle } = event.detail;
-        console.log(`[ConversionController] Modal opened: ${videoTitle} (${formatId}) - ${status}`);
     });
 
     window.addEventListener('conversion:modal-closed', (event) => {
         const { formatId } = event.detail;
-        console.log(`[ConversionController] Modal closed: ${formatId}`);
     });
 }

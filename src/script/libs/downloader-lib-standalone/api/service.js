@@ -471,11 +471,13 @@ export function createService(config = {}) {
     // No need for autoMerge param - backend auto-merges when frontend calls progressUrl
 
     // Make request to YouTube Stream API
+    // ✅ PHASE 2: Pass AbortSignal if provided
     const response = await youtubeStreamHttp.request({
       method: 'POST',
       url: getYouTubeStreamApiEndpoint(),
       data: requestBody,
       timeout: REQUEST_TIMEOUTS.extractV2_stream,
+      signal: options.signal, // ✅ Pass through external abort signal
     });
 
     return response;

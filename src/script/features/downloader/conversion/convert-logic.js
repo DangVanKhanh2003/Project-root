@@ -849,6 +849,11 @@ export async function handleYouTubeDownload(formatData, autoDownload = false) {
             throw new Error(`No extractV2Options found for format: ${formatData.id} (also tried fallback lookup)`);
         }
 
+        // ✅ PHASE 2: Get AbortSignal from modal
+        const abortSignal = conversionModal.getAbortSignal();
+        if (abortSignal) {
+            extractOptions.signal = abortSignal;
+        }
 
         const result = await service.extractV2_stream(videoUrl, extractOptions);
 
@@ -891,6 +896,12 @@ export async function handleYouTubeDownload(formatData, autoDownload = false) {
         }
 
     } catch (error) {
+
+        // ✅ PHASE 2: Handle AbortError specially (user cancelled)
+        if (error.reason === 'cancelled' || error.name === 'AbortError') {
+            // Don't update task or show error - modal is already closed
+            return { ok: false, message: 'Cancelled by user' };
+        }
 
         const errorMessage = error.message || 'Network error during extraction';
 

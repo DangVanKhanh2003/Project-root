@@ -17,15 +17,30 @@ export function createClient(config) {
    * Makes an HTTP request using fetch.
    * @param {object} options - Request options.
    * @param {string} options.url - The endpoint path (e.g., '/extract').
+   * @param {AbortSignal} [options.signal] - External AbortSignal to cancel request
    * @returns {Promise<any>} A promise that resolves with the response data.
    */
   async function request(options = {}) {
     const method = (options.method || 'POST').toUpperCase();
     const data = { ...(options.data || options.payload || {}) };
 
+    // ✅ PHASE 2: Support external AbortSignal
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), options.timeout || settings.timeout);
 
+    // If external signal provided, listen to it and abort our controller
+    if (options.signal) {
+
+      // Check if already aborted
+      if (options.signal.aborted) {
+        clearTimeout(timeoutId);
+        throw { status: 0, message: 'Request cancelled by user', reason: 'cancelled' };
+      }
+
+      options.signal.addEventListener('abort', () => {
+        controller.abort();
+      }, { once: true });
+    } 
     // Support both relative paths and full URLs
     let url = (options.url.startsWith('http://') || options.url.startsWith('https://'))
       ? options.url  // Full URL - use as-is
@@ -84,6 +99,14 @@ export function createClient(config) {
 
     } catch (error) {
       clearTimeout(timeoutId);
+
+      // ✅ PHASE 2: Handle AbortError specially
+      if (error.name === 'AbortError') {
+        const wasExternalAbort = options.signal && options.signal.aborted;
+        const message = wasExternalAbort ? 'Request cancelled by user' : 'Request timeout';
+        throw { status: 0, message, reason: wasExternalAbort ? 'cancelled' : 'timeout' };
+      }
+
       // Re-throw custom errors or create a new one for generic network errors
       if (error.status !== undefined) {
         throw error;

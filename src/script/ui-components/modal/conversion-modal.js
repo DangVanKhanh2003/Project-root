@@ -23,6 +23,7 @@ export class ConversionModal {
     #boundHandleClick = null;
     #boundHandleEscape = null;
     #boundHandleOverlayClick = null;
+    #abortController = null; // ✅ PHASE 2: AbortController for API calls
 
     constructor(wrapperSelector) {
         if (!wrapperSelector) {
@@ -57,6 +58,9 @@ export class ConversionModal {
         const initialStatus = options.initialStatus || 'CONVERTING';
         const skipProgressBar = initialStatus !== 'CONVERTING'; // Skip progress for all non-CONVERTING states
 
+        // ✅ PHASE 2: Create AbortController for this modal session
+        this.#abortController = new AbortController();
+
         // Create fresh state
         this.#state = {
             status: initialStatus,
@@ -90,7 +94,16 @@ export class ConversionModal {
     }
 
     async close() {
+
         const formatId = this.#state?.formatId; // Save before cleanup
+
+        // ✅ PHASE 2: Abort all API calls for this modal session
+        if (this.#abortController) {
+
+            this.#abortController.abort();
+
+            this.#abortController = null;
+        }
 
         // Cancel any ongoing conversion first
         await this.#cancelOngoingConversion();
@@ -104,6 +117,7 @@ export class ConversionModal {
         this.#dispatchEvent('conversion:modal-closed', {
             formatId
         });
+
     }
 
     async #cancelOngoingConversion() {
@@ -118,6 +132,8 @@ export class ConversionModal {
     }
 
     transitionToSuccess(downloadUrl) {
+
+        // ⚠️ ZOMBIE GUARD
         if (!this.#state) {
             return;
         }
@@ -125,14 +141,25 @@ export class ConversionModal {
         // Complete progress animation before transitioning
         if (this.#progressBarManager && this.#progressBarManager.isRunning()) {
             this.#progressBarManager.complete(() => {
+                // ⚠️ NESTED ZOMBIE GUARD - callback can execute after close
+                if (!this.#state) {
+                    return;
+                }
                 this.#finalizeSuccessTransition(downloadUrl);
             });
         } else {
             this.#finalizeSuccessTransition(downloadUrl);
         }
+
     }
 
     #finalizeSuccessTransition(downloadUrl) {
+
+        // ⚠️ ZOMBIE GUARD
+        if (!this.#state) {
+            return;
+        }
+
         this.#cleanupProgress(); // Only cleanup progress, keep event listeners
 
         this.#state = {
@@ -146,6 +173,8 @@ export class ConversionModal {
     }
 
     transitionToError(errorMessage) {
+
+        // ⚠️ ZOMBIE GUARD
         if (!this.#state) {
             return;
         }
@@ -162,6 +191,8 @@ export class ConversionModal {
     }
 
     transitionToExpired(videoTitle) {
+
+        // ⚠️ ZOMBIE GUARD
         if (!this.#state) {
             return;
         }
@@ -178,6 +209,8 @@ export class ConversionModal {
     }
 
     transitionToConverting() {
+
+        // ⚠️ ZOMBIE GUARD
         if (!this.#state) {
             return;
         }
@@ -205,6 +238,15 @@ export class ConversionModal {
     }
 
     /**
+     * Get AbortSignal for this modal session
+     * ✅ PHASE 2: External code can use this to make abortable API calls
+     * @returns {AbortSignal|null} AbortSignal or null if modal not open
+     */
+    getAbortSignal() {
+        return this.#abortController ? this.#abortController.signal : null;
+    }
+
+    /**
      * Get the progress bar manager instance for 2-phase system
      * @returns {ProgressBarManager} Progress bar manager instance
      */
@@ -218,6 +260,12 @@ export class ConversionModal {
      * @param {object} options - Options like buttonText
      */
     showDownloadButton(url, options = {}) {
+
+        // ⚠️ ZOMBIE GUARD - Prevent callback from closed modal
+        if (!this.#state) {
+            return;
+        }
+
         const buttonText = options.buttonText || 'Download';
 
         // Stop and hide progress bar
@@ -564,13 +612,9 @@ export class ConversionModal {
     }
 
     async #handleCancel() {
-        // Cancel any ongoing conversion first
-        await this.#cancelOngoingConversion();
-
-        // Close modal and destroy state
-        this.#cleanup();
-        this.#state = null;
-        this.#hide();
+        // Simply call close() - don't duplicate logic
+        // close() handles: abort API → cancelOngoing → cleanup → state=null → hide → dispatch event
+        await this.close();
     }
 
     async #handleDownload() {
@@ -639,7 +683,11 @@ export class ConversionModal {
     // ============= PRIVATE: PROGRESS ANIMATION =============
 
     #startProgress() {
-        if (!this.#state) return;
+
+        // ⚠️ ZOMBIE GUARD
+        if (!this.#state) {
+            return;
+        }
 
         // Initialize ProgressBarManager with the conversion progress container
         const progressSelector = `${this.#wrapperSelector} .conversion-progress`;
@@ -655,15 +703,12 @@ export class ConversionModal {
             totalSizeMB: totalSizeMB
         };
 
-
-        // DISABLED: Legacy progress start - now handled by setupExtractPhase() in convert-logic.js
-        // this.#progressBarManager.start(progressOptions);
-
         // Just show the progress bar container, extract phase will start automatically
         this.#progressBarManager.show();
 
         // Set up monitoring interval to sync progress with state
         this.#progressInterval = setInterval(() => {
+            // ⚠️ NESTED ZOMBIE GUARD - interval can tick after close
             if (!this.#state || this.#state.status !== 'CONVERTING') {
                 this.#cleanupProgress(); // Only cleanup progress, keep event listeners
                 return;
@@ -673,6 +718,7 @@ export class ConversionModal {
                 this.#state.progress = this.#progressBarManager.getCurrentProgress();
             }
         }, 500); // Check every 500ms to sync state
+
     }
 
     // ProgressBarManager handles all UI updates automatically
