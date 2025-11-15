@@ -67,7 +67,7 @@ import { renderMessage, renderData, clearContent, showLoading } from './content-
 import { initImmediateScroll } from '../../libs/scroll-core/scroll-behavior.js';
 
 // Import polling cleanup
-import { cleanupPollingManager } from '../../libs/polling-core/polling-manager.js';
+import { cleanupPollingManager } from './concurrent-polling.js';
 
 // Import view utilities
 import {

@@ -5,7 +5,7 @@
  */
 
 import { createVerifiedService } from '../../libs/downloader-lib-standalone/index.js';
-import { createMultifileOrchestrator } from '../../libs/downloader-lib-standalone/remote/multifile-orchestrator.js';
+import { createMultifileOrchestrator } from '../../libs/downloader-lib-standalone/orchestration/index.js';
 import { getApiBaseUrl, getTimeout } from '../../environment.js';
 import { triggerDownload } from '../../utils.js';
 import { withCaptchaProtection } from '../../libs/captcha-core/captcha-ui.js';

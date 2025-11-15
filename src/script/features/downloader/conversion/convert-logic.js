@@ -2,7 +2,7 @@ import { createVerifiedService } from '../../../libs/downloader-lib-standalone/i
 import { getApiBaseUrl, getTimeout, getExpiryTime, getIOSStreamMaxSize } from '../../../environment.js';
 import { withCaptchaProtection } from '../../../libs/captcha-core/captcha-ui.js';
 import { setConversionTask, updateConversionTask, getConversionTask, getState, setVideoDetail, setGalleryDetail, updateVideoDetailFormat } from '../state.js';
-import { startConversionPolling, cancelConversionPolling } from './conversion-polling.js';
+import { getPollingManager } from '../concurrent-polling.js';
 import { isLinkExpired, DOWNLOAD_LINK_TTL } from '../../../utils/link-validator.js';
 import { getConversionModal } from '../../../ui-components/modal/conversion-modal.js';
 import { openLinkInNewTab, triggerDownload, isIOS, isWindows } from '../../../utils.js';
@@ -14,6 +14,13 @@ const service = createVerifiedService({
     apiBaseUrl: getApiBaseUrl(),
     timeout: getTimeout('default')
 }, {}, withCaptchaProtection);
+
+// Initialize concurrent polling manager
+const pollingManager = getPollingManager({
+    maxConcurrent: 5,
+    pollInterval: 1000,
+    maxPollingDuration: 10 * 60 * 1000
+});
 
 // Get conversion modal singleton instance
 const conversionModal = getConversionModal();
@@ -436,6 +443,9 @@ async function startPollingFlow({ progressBar, formatId, extractResponse, format
  * Start rich progress polling using progressUrl (preferred method)
  */
 async function startRichProgressPolling(formatId, progressUrl, progressMapper) {
+
+    const pollingManager = getPollingManager();
+
     // Create custom polling task for progress URL
     const customPollData = {
         formatId: formatId,
@@ -446,8 +456,8 @@ async function startRichProgressPolling(formatId, progressUrl, progressMapper) {
         }
     };
 
-    // Start polling with conversion polling adapter
-    startConversionPolling(formatId, customPollData);
+    // Start polling with ConcurrentPollingManager
+    pollingManager.startPolling(formatId, customPollData);
 }
 
 // Removed obsolete checkTask polling - only progressUrl polling is used now
@@ -531,8 +541,8 @@ async function handleProgressUpdate(formatId, apiData, progressMapper) {
  */
 async function completePolling(formatId, downloadUrl) {
 
-    // Polling is already stopped automatically by polling manager's onComplete callback
-    // This function just handles legacy progress bar animation
+    const pollingManager = getPollingManager();
+    pollingManager.stopPolling(formatId);
 
     // Complete progress bar animation
     const conversionModal = getConversionModal();
@@ -975,7 +985,8 @@ export async function handleSocialDecode(formatData) {
 export function cancelConversion(formatId) {
 
     // Stop polling if active
-    cancelConversionPolling(formatId);
+    const pollingManager = getPollingManager();
+    pollingManager.stopPolling(formatId);
 
     // Update task state
     updateConversionTask(formatId, {
