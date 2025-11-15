@@ -4,5 +4,5 @@
  */
 
 export { createYouTubePublicApiService, extractYouTubeVideoId } from './public-api.js';
-export { isValidYouTubeUrl, isYouTubePlaylistUrl } from './validator.js';
+export { isYouTubeUrl, isYouTubeUrlStrict, checkYouTubeVideoExists } from './validator.js';
 export { getAllFormats, YOUTUBE_VIDEO_FORMATS, YOUTUBE_AUDIO_FORMATS } from './constants.js';

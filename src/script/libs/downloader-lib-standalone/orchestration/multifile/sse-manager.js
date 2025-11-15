@@ -5,7 +5,7 @@
  */
 
 import { getApiBaseUrl } from '../../../../environment.js';
-import { SSE_EVENTS, MULTIFILE_TIMEOUTS, MULTIFILE_ENDPOINTS } from './multifile-constants.js';
+import { SSE_EVENTS, MULTIFILE_TIMEOUTS, MULTIFILE_ENDPOINTS } from './constants.js';
 
 // ============================================================
 // SSE CONNECTION MANAGER

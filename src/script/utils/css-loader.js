@@ -57,7 +57,7 @@ export const loadSectionSharedCSS = () =>
     loadCSS('../../styles/features/section-shared.css', 'section-shared');
 
 export const loadCaptchaModalCSS = () =>
-    loadCSS('../../styles/features/captcha-modal.css', 'captcha-modal');
+    loadCSS('../../styles/reusable-packages/captcha-modal/captcha-modal.css', 'captcha-modal');
 
 export const loadConvertIndicatorCSS = () =>
     loadCSS('../../styles/features/convert-indicator.css', 'convert-indicator');

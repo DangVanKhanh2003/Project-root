@@ -15,7 +15,7 @@ async function loadModalCSS() {
         return;
     }
     try {
-        await import('../../../styles/features/expire-modal.css');
+        await import('../../../styles/reusable-packages/expire-modal/expire-modal.css');
         isCSSLoaded = true;
     } catch (error) {
     }

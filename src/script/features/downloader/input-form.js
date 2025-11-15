@@ -67,7 +67,7 @@ import { renderMessage, renderData, clearContent, showLoading } from './content-
 import { initImmediateScroll } from '../../libs/scroll-core/scroll-behavior.js';
 
 // Import polling cleanup
-import { cleanupPollingManager } from './concurrent-polling.js';
+import { cleanupPollingManager } from '../../libs/polling-core/polling-manager.js';
 
 // Import view utilities
 import {
@@ -95,13 +95,16 @@ const debouncedGetSuggestions = DownloaderUtils.debounce(async (query) => {
     try {
         setLoadingSuggestions(true);
 
+        console.log('[Suggestions] Fetching for query:', query);
         const result = await service.getSuggestions(query);
+        console.log('[Suggestions] Result:', result);
 
         // Update state with fetched suggestions - extract data array
         setSuggestions(result.data || []);
     } catch (error) {
-        // On failure, do not clear existing suggestions. Just log the error
+        // On failure, do not clear existing suggestions. Log the error
         // and ensure the loading indicator is turned off.
+        console.error('[Suggestions] Error fetching suggestions:', error);
         setLoadingSuggestions(false);
     }
 }, 150); // 150ms debounce for faster response
@@ -120,6 +123,7 @@ function cancelDebouncedSuggestions() {
  */
 function handleInput(event) {
     const inputValue = getInputValue();
+    console.log('[Input] handleInput called, value:', inputValue);
 
     // Clear error when user types
     clearError();
@@ -167,10 +171,12 @@ function handleInput(event) {
         const trimmedValue = inputValue.trim();
 
         if (trimmedValue.length >= 1) {
+            console.log('[Input] Triggering suggestions for:', trimmedValue);
             // Set original query when starting to fetch suggestions
             setOriginalQuery(trimmedValue);
             debouncedGetSuggestions(trimmedValue);
         } else {
+            console.log('[Input] Value too short, hiding suggestions');
             hideSuggestions();
         }
     }
@@ -416,6 +422,7 @@ function handleSuggestionClick(event) {
  * Handle form submission with 3-step detection logic
  */
 async function handleSubmit(event) {
+    debugger
     event.preventDefault();
 
     // Set submitting flag immediately to prevent suggestion interference
@@ -596,8 +603,9 @@ async function handleSubmit(event) {
             // --------------------------------------------------------
 
             // Use Search V2 API with pagination support
+            console.log('[Search] Searching for keyword:', inputValue);
             const r = await service.searchV2(inputValue, { limit: 12 });
-
+            console.log('[Search] Result:', r);
 
             if (r.status === 'success') {
                 // Save pagination data from response
@@ -628,6 +636,7 @@ async function handleSubmit(event) {
 
     } catch (error) {
         // Fallback error handling for unexpected errors (e.g., from DownloaderUtils)
+        console.error('[Submit] Unexpected error:', error);
         setError('An unexpected error occurred. Please try again.');
     } finally {
         // Always stop loading in finally block as required

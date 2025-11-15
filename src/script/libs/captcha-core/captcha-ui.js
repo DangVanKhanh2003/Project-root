@@ -6,7 +6,7 @@
 
 import { getCaptchaToken } from './index.js';
 import { getValidJwt, clearJwt } from './jwt.js';
-import '../../../styles/features/captcha-modal.css';
+import '../../../styles/reusable-packages/captcha-modal/captcha-modal.css';
 
 // --- State ---
 let modalOverlay = null;

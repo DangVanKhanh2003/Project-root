@@ -7,6 +7,8 @@ history.scrollRestoration = 'manual';
 // ========================================
 import '../styles/reset.css';
 import '../styles/base.css';
+import '../styles/reusable-packages/package-root.css';
+import '../styles/reusable-packages/skeleton/skeleton.css';
 import '../styles/common.css';
 import '../styles/critical/hero.css';
 import '../styles/critical/download-layout.css';

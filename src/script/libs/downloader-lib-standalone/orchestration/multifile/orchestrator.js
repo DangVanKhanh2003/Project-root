@@ -14,7 +14,7 @@ import {
     validateUrlCount,
     calculateOverallProgress,
     isExpired
-} from './multifile-constants.js';
+} from './constants.js';
 
 /**
  * Create multifile download orchestrator

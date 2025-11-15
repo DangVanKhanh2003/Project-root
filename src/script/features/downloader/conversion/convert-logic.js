@@ -2,7 +2,7 @@ import { createVerifiedService } from '../../../libs/downloader-lib-standalone/i
 import { getApiBaseUrl, getTimeout, getExpiryTime, getIOSStreamMaxSize } from '../../../environment.js';
 import { withCaptchaProtection } from '../../../libs/captcha-core/captcha-ui.js';
 import { setConversionTask, updateConversionTask, getConversionTask, getState, setVideoDetail, setGalleryDetail, updateVideoDetailFormat } from '../state.js';
-import { getPollingManager } from '../concurrent-polling.js';
+import { startConversionPolling, cancelConversionPolling } from './conversion-polling.js';
 import { isLinkExpired, DOWNLOAD_LINK_TTL } from '../../../utils/link-validator.js';
 import { getConversionModal } from '../../../ui-components/modal/conversion-modal.js';
 import { openLinkInNewTab, triggerDownload, isIOS, isWindows } from '../../../utils.js';
@@ -14,13 +14,6 @@ const service = createVerifiedService({
     apiBaseUrl: getApiBaseUrl(),
     timeout: getTimeout('default')
 }, {}, withCaptchaProtection);
-
-// Initialize concurrent polling manager
-const pollingManager = getPollingManager({
-    maxConcurrent: 5,
-    pollInterval: 1000,
-    maxPollingDuration: 10 * 60 * 1000
-});
 
 // Get conversion modal singleton instance
 const conversionModal = getConversionModal();
@@ -443,9 +436,6 @@ async function startPollingFlow({ progressBar, formatId, extractResponse, format
  * Start rich progress polling using progressUrl (preferred method)
  */
 async function startRichProgressPolling(formatId, progressUrl, progressMapper) {
-
-    const pollingManager = getPollingManager();
-
     // Create custom polling task for progress URL
     const customPollData = {
         formatId: formatId,
@@ -456,8 +446,8 @@ async function startRichProgressPolling(formatId, progressUrl, progressMapper) {
         }
     };
 
-    // Start polling with ConcurrentPollingManager
-    pollingManager.startPolling(formatId, customPollData);
+    // Start polling with conversion polling adapter
+    startConversionPolling(formatId, customPollData);
 }
 
 // Removed obsolete checkTask polling - only progressUrl polling is used now
@@ -541,8 +531,8 @@ async function handleProgressUpdate(formatId, apiData, progressMapper) {
  */
 async function completePolling(formatId, downloadUrl) {
 
-    const pollingManager = getPollingManager();
-    pollingManager.stopPolling(formatId);
+    // Polling is already stopped automatically by polling manager's onComplete callback
+    // This function just handles legacy progress bar animation
 
     // Complete progress bar animation
     const conversionModal = getConversionModal();
@@ -752,7 +742,7 @@ async function getFormatDataFromState(formatId) {
         }
 
         // Process formats using format-processor
-        const { processFormatArray } = await import('../../libs/downloader-lib-standalone/processors/format-processor.js');
+        const { processFormatArray } = await import('../../../libs/downloader-lib-standalone/processors/format-processor.js');
         const processedFormats = processFormatArray(formatArray, category);
 
         // Find matching format by ID
@@ -835,7 +825,7 @@ export async function handleYouTubeDownload(formatData, autoDownload = false) {
 
             // Look up in constants using cleaned ID
             try {
-                const { findFormatById } = await import('../../libs/downloader-lib-standalone/api/youtube/constants.js');
+                const { findFormatById } = await import('../../../libs/downloader-lib-standalone/api/youtube/constants.js');
                 const fallbackFormat = findFormatById(cleanId, formatData.vid);
                 if (fallbackFormat?.extractV2Options) {
                     extractOptions = fallbackFormat.extractV2Options;
@@ -985,7 +975,7 @@ export async function handleSocialDecode(formatData) {
 export function cancelConversion(formatId) {
 
     // Stop polling if active
-    pollingManager.cancelPolling(formatId);
+    cancelConversionPolling(formatId);
 
     // Update task state
     updateConversionTask(formatId, {
@@ -1076,7 +1066,7 @@ export async function downloadConvertedFile(formatId) {
     if (task.ramBlob && task.filename) {
 
         // Import triggerBlobDownload function
-        const { triggerBlobDownload } = await import('../../utils.js');
+        const { triggerBlobDownload } = await import('../../../utils.js');
 
         // Download from RAM blob
         triggerBlobDownload(task.ramBlob, task.filename);

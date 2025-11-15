@@ -4,9 +4,9 @@
  * Provides instant UI rendering while background API calls complete
  */
 
-import { extractYouTubeVideoId } from './remote/youtube-public-api.js';
-import { generateYoutubeThumbnail } from '../../utils.js';
-import { getAllFormats } from './youtube-data-constants.js';
+import { extractYouTubeVideoId } from '../api/youtube/public-api.js';
+import { generateYoutubeThumbnail } from '../../../utils.js';
+import { getAllFormats } from '../api/youtube/constants.js';
 
 /**
  * Generate fake video detail object for immediate UI rendering

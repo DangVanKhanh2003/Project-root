@@ -1,5 +1,5 @@
 import * as utils from '../../utils/common.js';
-import { createClient } from './httpClient.js';
+import { createClient } from '../client.js';
 
 const OEMBED_API_URL = 'https://www.youtube.com';
 const OEMBED_TIMEOUT = 7000;

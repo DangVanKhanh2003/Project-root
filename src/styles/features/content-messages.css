@@ -587,67 +587,8 @@
   }
 }
 
-/* ======= SKELETON LOADING ======= */
-.search-result-item.skeleton {
-  animation: skeleton-pulse 1.5s ease-in-out infinite;
-  cursor: default;
-}
-
-.search-result-item.skeleton:hover {
-  border-color: var(--color-border, #e5e5e5);
-  box-shadow: none;
-}
-
-.search-result-item.skeleton .result-thumbnail {
-  background: linear-gradient(90deg,
-    #e0e0e0 25%,
-    #f0f0f0,
-    #e0e0e0 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.0s linear infinite;
-}
-
-.search-result-item.skeleton .result-title {
-  background: linear-gradient(90deg,
-    #e0e0e0 25%,
-    #f0f0f0,
-    #e0e0e0 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.0s linear infinite;
-  color: transparent;
-  border-radius: 4px;
-  height: 1.2em;
-}
-
-@keyframes skeleton-pulse {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.8;
-  }
-}
-
-/* Note: @keyframes shimmer is defined in base.css */
-
-/* ======= SKELETON RESPONSIVE ======= */
-@media (min-width: 840px) {
-  .search-result-item.skeleton .result-title {
-    height: 1.3em;
-  }
-}
-
-@media (min-width: 1240px) {
-  .search-result-item.skeleton .result-title {
-    height: 1.4em;
-  }
-}
-
-@media (min-width: 1920px) {
-  .search-result-item.skeleton .result-title {
-    height: 1.5em;
-  }
-}
+/* ======= SKELETON STYLES MOVED TO skeleton.css ======= */
+/* See: src/styles/skeleton.css (imported from packages/skeleton/) */
 
 /* ======= HERO INTRO TYPOGRAPHY ======= */
 /* Readable heading and body within hero's content-area */

@@ -1,0 +1,422 @@
+/* =========================================================
+   SKELETON.CSS - Standalone Loading Skeleton System
+   ---------------------------------------------------------
+   Version: 1.0.0
+   License: MIT
+
+   A lightweight, responsive skeleton loading system with:
+   - Mobile-first design (350px → 4K+)
+   - Smooth shimmer animations
+   - Accessibility support (prefers-reduced-motion)
+   - Easy theming via CSS custom properties
+   - Zero dependencies
+
+   Responsive Breakpoints:
+   • Extra Small Mobile (0–350px)
+   • Small Mobile (351–599px)
+   • Medium (Tablet) – 600–839px
+   • Expanded (Desktop) – 840–1239px
+   • Large (Wide Desktop) – 1240–1919px
+   • Extra Large (2K) – 1920–2559px
+   • Ultra Large (4K) – 2560px+
+   ========================================================= */
+
+/* ========== CSS CUSTOM PROPERTIES ========== */
+:root {
+  /* Colors */
+  --skeleton-color-dark: #e0e0e0;
+  --skeleton-color-light: #f0f0f0;
+
+  /* Animation */
+  --skeleton-duration: 1.0s;
+  --skeleton-easing: linear;
+
+  /* Border Radius */
+  --skeleton-radius-sm: 4px;
+  --skeleton-radius-md: 6px;
+  --skeleton-radius-lg: 8px;
+  --skeleton-radius-xl: 20px;
+  --skeleton-radius-full: 50%;
+}
+
+/* ========== CORE SHIMMER ANIMATION ========== */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* ========== BASE SKELETON CLASS ========== */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--skeleton-color-dark) 25%,
+    var(--skeleton-color-light) 50%,
+    var(--skeleton-color-dark) 75%
+  );
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+  border-radius: var(--skeleton-radius-sm);
+  display: block;
+  line-height: 1;
+  width: 100%;
+  animation: shimmer var(--skeleton-duration) var(--skeleton-easing) infinite;
+  position: relative;
+  overflow: hidden;
+  will-change: background-position;
+}
+
+/* ========== SKELETON TEXT ========== */
+/* Base styles for all devices */
+.skeleton-text {
+  height: 0.75em;
+  margin: 0.4em 0;
+  border-radius: var(--skeleton-radius-sm);
+  background: linear-gradient(
+    90deg,
+    var(--skeleton-color-dark) 25%,
+    var(--skeleton-color-light) 50%,
+    var(--skeleton-color-dark) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer var(--skeleton-duration) var(--skeleton-easing) infinite;
+  will-change: background-position;
+}
+
+/* Small Mobile (351px+) */
+@media (min-width: 351px) {
+  .skeleton-text {
+    height: 0.8125em;
+  }
+}
+
+/* Desktop (840px+) */
+@media (min-width: 840px) {
+  .skeleton-text {
+    height: 0.875em;
+  }
+}
+
+/* 2K Display (1920px+) */
+@media (min-width: 1920px) {
+  .skeleton-text {
+    height: 0.9375em;
+  }
+}
+
+/* 4K Display (2560px+) */
+@media (min-width: 2560px) {
+  .skeleton-text {
+    height: 1em;
+  }
+}
+
+/* Text Width Modifiers */
+.skeleton-text--short {
+  width: 40%;
+}
+
+.skeleton-text--medium {
+  width: 60%;
+}
+
+.skeleton-text--long {
+  width: 85%;
+}
+
+.skeleton-text--full {
+  width: 100%;
+}
+
+/* Hide secondary skeleton text on mobile to prevent layout shift */
+@media (max-width: 599px) {
+  .skeleton-text--desktop-only {
+    display: none;
+  }
+}
+
+/* ========== SKELETON TITLE ========== */
+/* Base styles (Extra Small Mobile) */
+.skeleton-title {
+  height: 14px;
+  margin: 0.5em 0;
+  border-radius: var(--skeleton-radius-md);
+  background: linear-gradient(
+    90deg,
+    var(--skeleton-color-dark) 25%,
+    var(--skeleton-color-light) 50%,
+    var(--skeleton-color-dark) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer var(--skeleton-duration) var(--skeleton-easing) infinite;
+  will-change: background-position;
+}
+
+/* Small Mobile (351px+) */
+@media (min-width: 351px) {
+  .skeleton-title {
+    height: 16px;
+  }
+}
+
+/* Desktop (840px+) */
+@media (min-width: 840px) {
+  .skeleton-title {
+    height: 18px;
+  }
+}
+
+/* 2K Display (1920px+) */
+@media (min-width: 1920px) {
+  .skeleton-title {
+    height: 20px;
+  }
+}
+
+/* 4K Display (2560px+) */
+@media (min-width: 2560px) {
+  .skeleton-title {
+    height: 22px;
+  }
+}
+
+/* ========== SKELETON SUBTITLE ========== */
+.skeleton-subtitle {
+  height: 1em;
+  width: 70%;
+  margin: 0.5em 0;
+  border-radius: var(--skeleton-radius-sm);
+  background: linear-gradient(
+    90deg,
+    var(--skeleton-color-dark) 25%,
+    var(--skeleton-color-light) 50%,
+    var(--skeleton-color-dark) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer var(--skeleton-duration) var(--skeleton-easing) infinite;
+  will-change: background-position;
+}
+
+/* ========== SKELETON THUMBNAIL ========== */
+.skeleton-thumbnail {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--skeleton-radius-lg);
+  background: linear-gradient(
+    90deg,
+    var(--skeleton-color-dark) 25%,
+    var(--skeleton-color-light) 50%,
+    var(--skeleton-color-dark) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer var(--skeleton-duration) var(--skeleton-easing) infinite;
+  will-change: background-position;
+}
+
+/* ========== SKELETON IMAGE ========== */
+/* Base styles with fixed aspect ratio */
+.skeleton-img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--skeleton-radius-lg);
+  background: linear-gradient(
+    90deg,
+    var(--skeleton-color-dark) 25%,
+    var(--skeleton-color-light) 50%,
+    var(--skeleton-color-dark) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer var(--skeleton-duration) var(--skeleton-easing) infinite;
+  will-change: background-position;
+}
+
+/* ========== SKELETON BUTTON ========== */
+/* Base styles (Extra Small Mobile) */
+.skeleton-button {
+  width: 80px;
+  height: 36px;
+  border-radius: var(--skeleton-radius-xl);
+  background: linear-gradient(
+    90deg,
+    var(--skeleton-color-dark) 25%,
+    var(--skeleton-color-light) 50%,
+    var(--skeleton-color-dark) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer var(--skeleton-duration) var(--skeleton-easing) infinite;
+  will-change: background-position;
+}
+
+/* Small Mobile (351px+) */
+@media (min-width: 351px) {
+  .skeleton-button {
+    width: 90px;
+    height: 38px;
+  }
+}
+
+/* Desktop (840px+) */
+@media (min-width: 840px) {
+  .skeleton-button {
+    width: 100px;
+    height: 40px;
+  }
+}
+
+/* 2K Display (1920px+) */
+@media (min-width: 1920px) {
+  .skeleton-button {
+    width: 110px;
+    height: 44px;
+  }
+}
+
+/* 4K Display (2560px+) */
+@media (min-width: 2560px) {
+  .skeleton-button {
+    width: 120px;
+    height: 48px;
+  }
+}
+
+/* ========== SKELETON AVATAR ========== */
+/* Base styles (Extra Small Mobile) */
+.skeleton-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--skeleton-radius-full);
+  background: linear-gradient(
+    90deg,
+    var(--skeleton-color-dark) 25%,
+    var(--skeleton-color-light) 50%,
+    var(--skeleton-color-dark) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer var(--skeleton-duration) var(--skeleton-easing) infinite;
+  will-change: background-position;
+  flex-shrink: 0;
+}
+
+/* Small Mobile (351px+) */
+@media (min-width: 351px) {
+  .skeleton-avatar {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+/* Desktop (840px+) */
+@media (min-width: 840px) {
+  .skeleton-avatar {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Large Desktop (1240px+) */
+@media (min-width: 1240px) {
+  .skeleton-avatar {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* 2K Display (1920px+) */
+@media (min-width: 1920px) {
+  .skeleton-avatar {
+    width: 52px;
+    height: 52px;
+  }
+}
+
+/* 4K Display (2560px+) */
+@media (min-width: 2560px) {
+  .skeleton-avatar {
+    width: 56px;
+    height: 56px;
+  }
+}
+
+/* ========== UX PROTECTION ========== */
+/* Disable pointer events and transitions on skeleton elements */
+.skeleton,
+.skeleton *,
+.skeleton-text,
+.skeleton-title,
+.skeleton-subtitle,
+.skeleton-thumbnail,
+.skeleton-img,
+.skeleton-button,
+.skeleton-avatar {
+  pointer-events: none;
+  user-select: none;
+  cursor: default;
+}
+
+/* Remove hover effects on skeleton elements */
+.skeleton:hover,
+.skeleton-button:hover,
+.skeleton-avatar:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* ========== ACCESSIBILITY ========== */
+/* Disable animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .skeleton,
+  .skeleton-text,
+  .skeleton-title,
+  .skeleton-subtitle,
+  .skeleton-thumbnail,
+  .skeleton-img,
+  .skeleton-button,
+  .skeleton-avatar {
+    animation: none;
+    background: var(--skeleton-color-dark);
+  }
+}
+
+/* ========== UTILITY CLASSES ========== */
+/* Skeleton container for grouped skeletons */
+.skeleton-container {
+  width: 100%;
+  padding: 1rem;
+}
+
+/* Skeleton group with spacing */
+.skeleton-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+/* Skeleton inline group (horizontal) */
+.skeleton-group--inline {
+  flex-direction: row;
+  align-items: center;
+}
+
+/* ========== COMMON SKELETON PATTERNS ========== */
+/* Card skeleton pattern */
+.skeleton-card {
+  border: 1px solid #f0f0f0;
+  border-radius: var(--skeleton-radius-lg);
+  padding: 1rem;
+  background: #ffffff;
+}
+
+/* List item skeleton pattern */
+.skeleton-list-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+/* ========== END OF SKELETON.CSS ========== */
