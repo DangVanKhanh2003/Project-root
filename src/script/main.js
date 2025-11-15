@@ -71,9 +71,10 @@ async function loadFeatureCSS() {
         import('../styles/features/footer.css'),
         import('../styles/features/content-messages.css'),
         // download-options.css moved to TIER 1 critical CSS
-        import('../styles/features/search-results.css'),
-        import('../styles/features/suggestions.css'),
-        import('../styles/features/conversion-modal.css'),
+        // Updated: Use reusable packages for portability
+        import('../styles/reusable-packages/search-results/search-results.css'),
+        import('../styles/reusable-packages/suggestions/suggestions.css'),
+        import('../styles/reusable-packages/conversion-modal/conversion-modal.css'),
         import('../styles/features/mobile-download.css'),
         import('../styles/features/gallery.css'),
     ];

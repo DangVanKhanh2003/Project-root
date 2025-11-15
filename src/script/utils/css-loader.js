@@ -47,10 +47,10 @@ export const loadDownloadOptionsCSS = () =>
     loadCSS('../../styles/features/download-options.css', 'download-options');
 
 export const loadSearchResultsCSS = () =>
-    loadCSS('../../styles/features/search-results.css', 'search-results');
+    loadCSS('../../styles/reusable-packages/search-results/search-results.css', 'search-results');
 
 export const loadSuggestionsCSS = () =>
-    loadCSS('../../styles/features/suggestions.css', 'suggestions');
+    loadCSS('../../styles/reusable-packages/suggestions/suggestions.css', 'suggestions');
 
 // Additional feature CSS
 export const loadSectionSharedCSS = () =>
@@ -69,7 +69,7 @@ export const loadGalleryCSS = () =>
     loadCSS('../../styles/features/gallery.css', 'gallery');
 
 export const loadConversionModalCSS = () =>
-    loadCSS('../../styles/features/conversion-modal.css', 'conversion-modal');
+    loadCSS('../../styles/reusable-packages/conversion-modal/conversion-modal.css', 'conversion-modal');
 
 export const loadSmoothProgressCSS = () =>
     loadCSS('../../styles/features/smooth-progress.css', 'smooth-progress');

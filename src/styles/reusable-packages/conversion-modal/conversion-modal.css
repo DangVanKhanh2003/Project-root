@@ -1,6 +1,23 @@
 /* =========================================================
-   Conversion Modal CSS - Unified YouTube Conversion UI
+   REUSABLE PACKAGE: Conversion Modal
    ---------------------------------------------------------
+   Version: 1.0.0
+
+   Dependencies:
+   - package-root.css (MUST be loaded first for token definitions)
+
+   Features:
+   - Full-screen modal overlay with backdrop
+   - Video title header with close button
+   - Multi-state content area (loading, success, error, expired)
+   - Spinning circle loader with reduced motion support
+   - Action buttons (download, retry, cancel)
+   - Social sharing footer
+   - Pulse animation for overlay click feedback
+   - Mobile-first responsive design (350px to 4K+)
+   - Zero layout shift architecture
+
+   Breakpoints:
    • Extra Small Mobile (0–350px)
    • Small Mobile (351–599px)
    • Medium (Tablet) – 600–839px
@@ -16,14 +33,14 @@
 #progressBarWrapper {
     position: fixed;
     inset: 0;
-    z-index: var(--md-sys-z-modal);
-    background: rgba(0, 0, 0, 0.5);
+    z-index: var(--pkg-conversion-modal-z-index);
+    background: var(--pkg-conversion-modal-overlay-bg);
 
     /* Center the modal content */
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: var(--md-sys-spacing-4);
+    padding: var(--pkg-space-4);
 
     /* Hidden by default - NO transition for instant hide */
     visibility: hidden;
@@ -39,11 +56,11 @@
 
 /* Modal Content Box */
 .conversion-modal-content {
-    background: var(--color-surface, #ffffff);
-    border-radius: var(--md-sys-shape-corner-medium, 12px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    background: var(--pkg-conversion-modal-bg);
+    border-radius: var(--pkg-radius-md);
+    box-shadow: var(--pkg-conversion-modal-shadow);
     width: 100%;
-    max-width: 400px;
+    max-width: 400px; /* Mobile base - specific value for optimal UX */
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -85,7 +102,7 @@
     .conversion-modal-content.pulse {
         animation: none;
         /* Provide static feedback instead of animation */
-        border: 2px solid var(--md-sys-color-primary, #3b82f6);
+        border: 2px solid var(--pkg-color-primary);
         transition: border 100ms ease;
     }
 }
@@ -96,14 +113,14 @@
     align-items: center;
     justify-content: space-between;
     padding: 10px 16px;
-    border-bottom: 1px solid var(--color-border, #e0e0e0);
-    gap: var(--md-sys-spacing-3, 0.75rem);
+    border-bottom: 1px solid var(--pkg-conversion-modal-header-border);
+    gap: var(--pkg-space-3);
 }
 
 .modal-video-title {
     font-size: 0.9375rem;
     font-weight: 600;
-    color: var(--color-text-primary, #1a1a1a);
+    color: var(--pkg-conversion-title-color);
     margin: 0;
     line-height: 1.3;
     flex: 1;
@@ -122,16 +139,16 @@
     justify-content: center;
     background: transparent;
     border: none;
-    border-radius: var(--md-sys-shape-corner-small, 8px);
-    color: var(--color-text-secondary, #666666);
+    border-radius: var(--pkg-radius-sm);
+    color: var(--pkg-conversion-message-color);
     cursor: pointer;
     transition: all 0.2s ease;
     padding: 0;
 }
 
 .btn-close-modal:hover {
-    background: var(--color-surface-variant, #f5f5f5);
-    color: var(--color-text-primary, #1a1a1a);
+    background: var(--pkg-conversion-close-btn-hover-bg);
+    color: var(--pkg-conversion-title-color);
 }
 
 .btn-close-modal:active {
@@ -139,7 +156,7 @@
 }
 
 .btn-close-modal:focus-visible {
-    outline: 2px solid var(--color-primary, #3b82f6);
+    outline: 2px solid var(--pkg-color-primary);
     outline-offset: 2px;
 }
 
@@ -150,7 +167,7 @@
 
 /* ======= BODY - Content Area ======= */
 .conversion-modal-body {
-    padding: var(--md-sys-spacing-6, 1.5rem) var(--md-sys-spacing-5, 1.25rem);
+    padding: var(--pkg-space-6) var(--pkg-space-5);
     flex: 1;
     overflow-y: auto;
     min-height: 180px; /* Maximum buffer for mobile - prevents layout shift */
@@ -174,7 +191,7 @@
 
 /* ======= FOOTER - Share Icons ======= */
 .conversion-modal-footer {
-    border-top: 1px solid var(--color-border, #e0e0e0);
+    border-top: 1px solid var(--pkg-conversion-modal-header-border);
     padding: 12px 20px;
 }
 
@@ -185,7 +202,7 @@
 }
 
 .social-sharing-text span {
-    color: var(--color-text-secondary, #666666);
+    color: var(--pkg-conversion-message-color);
     font-size: 0.875rem;
 }
 
@@ -193,7 +210,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: var(--md-sys-spacing-3, 0.75rem);
+    gap: var(--pkg-space-3);
 }
 
 .share-icons a {
@@ -226,27 +243,27 @@
 /* ======= Icons ======= */
 .conversion-icon {
     font-size: 3rem;
-    margin-bottom: var(--md-sys-spacing-4, 1rem);
+    margin-bottom: var(--pkg-space-4);
     line-height: 1;
 }
 
 .conversion-icon--success {
-    color: var(--color-success, #16a34a);
+    color: var(--pkg-conversion-success-color);
 }
 
 .conversion-icon--error {
-    color: var(--color-error, #dc2626);
+    color: var(--pkg-conversion-error-color);
 }
 
 .conversion-icon--expired {
-    color: var(--color-warning, #f59e0b);
+    color: var(--pkg-conversion-warning-color);
 }
 
 /* ======= Title ======= */
 .conversion-title {
     font-size: 1.25rem; /* Increased for better visibility */
     font-weight: 600;
-    color: var(--color-text-primary, #1a1a1a);
+    color: var(--pkg-conversion-title-color);
     line-height: 1.3;
     margin: 0; /* Remove default margins - handled by flex gap */
 }
@@ -255,20 +272,20 @@
 .conversion-message {
     font-size: 0.875rem;
     line-height: 1.5;
-    color: var(--color-text-secondary, #666666);
+    color: var(--pkg-conversion-message-color);
     margin: 0; /* Remove default margins - handled by flex gap */
 }
 
 .conversion-message--error {
-    color: var(--color-error, #dc2626);
+    color: var(--pkg-conversion-error-color);
     font-weight: 500;
 }
 
 .conversion-hint {
     font-size: 0.8125rem;
     line-height: 1.4;
-    color: var(--color-text-secondary, #666666);
-    margin: var(--md-sys-spacing-2, 0.5rem) 0 var(--md-sys-spacing-4, 1rem) 0;
+    color: var(--pkg-conversion-message-color);
+    margin: var(--pkg-space-2) 0 var(--pkg-space-4) 0;
 }
 
 
@@ -302,8 +319,8 @@
 .spinning-circle {
     width: 32px;
     height: 32px;
-    border: 3px solid rgba(59, 130, 246, 0.1); /* Light background */
-    border-top: 3px solid var(--md-sys-color-primary, #3b82f6); /* Colored spinning part */
+    border: 3px solid var(--pkg-conversion-spinner-bg);
+    border-top: 3px solid var(--pkg-color-primary);
     border-radius: 50%;
     animation: spin 0.5s linear infinite; /* 1.5x faster: 0.8s -> 0.5s */
 }
@@ -347,7 +364,7 @@
 @media (min-width: 840px) {
     .loading-spinner-container {
         height: 60px;
-        margin-bottom: var(--md-sys-spacing-5, 1.25rem);
+        margin-bottom: var(--pkg-space-5);
     }
 
     .spinning-circle {
@@ -401,7 +418,7 @@
     .spinning-circle {
         animation: pulse 1.5s ease-in-out infinite;
         border-top-color: transparent;
-        border-color: var(--md-sys-color-primary, #3b82f6);
+        border-color: var(--pkg-color-primary);
     }
 
     @keyframes pulse {
@@ -419,7 +436,7 @@
 /* ======= Action Buttons ======= */
 .conversion-actions {
     display: flex;
-    gap: var(--md-sys-spacing-3, 0.75rem);
+    gap: var(--pkg-space-3);
     margin: 0; /* Remove margin - handled by parent flex gap */
     justify-content: center !important;
 }
@@ -428,20 +445,20 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: var(--md-sys-spacing-2) var(--md-sys-spacing-3);
+    padding: var(--pkg-space-2) var(--pkg-space-3);
     border: none;
-    border-radius: var(--md-sys-shape-corner-small);
+    border-radius: var(--pkg-radius-sm);
     font-size: 0.9375rem;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.2s ease;
     font-family: inherit;
     line-height: 1;
-    gap: var(--md-sys-spacing-1);
+    gap: var(--pkg-space-1);
 }
 
 .btn-conversion:focus-visible {
-    outline: 2px solid var(--color-primary, #3b82f6);
+    outline: 2px solid var(--pkg-color-primary);
     outline-offset: 2px;
 }
 
@@ -451,49 +468,49 @@
 
 /* Cancel button */
 .btn-conversion--cancel {
-    background: var(--color-surface-variant, #f5f5f5);
-    color: var(--color-text-primary, #1a1a1a);
+    background: var(--pkg-conversion-close-btn-hover-bg);
+    color: var(--pkg-conversion-title-color);
     width: fit-content;
 }
 
 .btn-conversion--cancel:hover {
-    background: var(--color-border, #e0e0e0);
+    background: var(--pkg-conversion-modal-header-border);
 }
 
 /* Download button (SUCCESS state) */
 .btn-conversion--download, .btn-convert--success, .btn-convert--direct-download {
-    background: var(--md-sys-color-primary);
+    background: var(--pkg-color-primary);
     color: #ffffff;
 }
 
 .btn-conversion--download:hover, .btn-convert--success:hover, .btn-convert--direct-download:hover {
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(22, 163, 74, 0.3);
+    box-shadow: var(--pkg-conversion-btn-success-hover-shadow);
 }
 
 .btn-conversion--download:active, .btn-convert--success:active, .btn-convert--direct-download:active {
     transform: translateY(0);
-    box-shadow: 0 2px 6px rgba(22, 163, 74, 0.2);
+    box-shadow: var(--pkg-conversion-btn-success-active-shadow);
 }
 
 /* Retry button (ERROR/EXPIRED state) - Warning color to emphasize action needed */
 .btn-conversion--retry {
-    background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+    background: var(--pkg-conversion-btn-retry-bg);
     color: #ffffff;
     min-width: 140px;
     font-weight: 600;
-    box-shadow: 0 2px 8px rgba(249, 115, 22, 0.25);
+    box-shadow: var(--pkg-conversion-btn-retry-shadow);
 }
 
 .btn-conversion--retry:hover {
-    background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+    background: var(--pkg-conversion-btn-retry-hover-bg);
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(249, 115, 22, 0.4);
+    box-shadow: var(--pkg-conversion-btn-retry-hover-shadow);
 }
 
 .btn-conversion--retry:active {
     transform: translateY(0);
-    box-shadow: 0 2px 8px rgba(249, 115, 22, 0.3);
+    box-shadow: var(--pkg-conversion-btn-retry-active-shadow);
 }
 
 /* Single button layout (SUCCESS state) */
@@ -502,7 +519,7 @@
 /* ======= Small Mobile (351px-599px) ======= */
 @media (min-width: 351px) {
     .conversion-modal-content {
-        max-width: 440px;
+        max-width: 440px; /* Small mobile optimization */
     }
 
 
@@ -511,7 +528,7 @@
     }
 
     .conversion-modal-body {
-        padding: var(--md-sys-spacing-7, 1.75rem) var(--md-sys-spacing-6, 1.5rem);
+        padding: var(--pkg-space-7) var(--pkg-space-6);
         min-height: 220px; /* Maximum buffer - prevents layout shift on small mobile */
     }
 
@@ -538,7 +555,7 @@
 /* ======= Medium Tablet (600px-839px) ======= */
 @media (min-width: 600px) {
     .conversion-modal-content {
-        max-width: 480px;
+        max-width: 480px; /* Tablet optimization */
     }
 
     .modal-video-title {
@@ -556,7 +573,7 @@
     }
 
     .conversion-modal-body {
-        padding: var(--md-sys-spacing-8, 2rem) var(--md-sys-spacing-7, 1.75rem);
+        padding: var(--pkg-space-8) var(--pkg-space-7);
         min-height: 250px; /* Maximum buffer - prevents layout shift on tablets */
     }
 
@@ -571,7 +588,7 @@
     }
 
     .btn-conversion {
-        padding: var(--md-sys-spacing-2) var(--md-sys-spacing-4);
+        padding: var(--pkg-space-2) var(--pkg-space-4);
     }
 
     .share-icon {
@@ -585,14 +602,14 @@
     }
 
     .share-icons {
-        gap: var(--md-sys-spacing-4, 1rem);
+        gap: var(--pkg-space-4);
     }
 }
 
 /* ======= Expanded Desktop (840px-1239px) ======= */
 @media (min-width: 840px) {
     .conversion-modal-content {
-        max-width: 500px;
+        max-width: 500px; /* Desktop optimization */
     }
 
 
@@ -601,7 +618,7 @@
     }
 
     .conversion-modal-body {
-        padding: var(--md-sys-spacing-10, 2.5rem) var(--md-sys-spacing-8, 2rem);
+        padding: var(--pkg-space-10) var(--pkg-space-8);
         min-height: 250px; /* Optimized buffer - prevents layout shift on desktop */
     }
 
@@ -615,7 +632,7 @@
 /* ======= Large Wide Desktop (1240px-1919px) ======= */
 @media (min-width: 1240px) {
     .conversion-modal-content {
-        max-width: 520px;
+        max-width: 520px; /* Wide desktop optimization */
     }
 
     .modal-video-title {
@@ -648,7 +665,7 @@
 /* ======= Extra Large 2K Display (1920px-2559px) ======= */
 @media (min-width: 1920px) {
     .conversion-modal-content {
-        max-width: 560px;
+        max-width: 560px; /* 2K display optimization */
     }
 
 
@@ -667,19 +684,19 @@
     }
 
     .conversion-modal-body {
-        padding: var(--md-sys-spacing-12, 3rem) var(--md-sys-spacing-10, 2.5rem);
+        padding: var(--pkg-space-12) var(--pkg-space-10);
         min-height: 280px; /* Optimized buffer - prevents layout shift on 2K displays */
     }
 
 
 
     .conversion-actions {
-        gap: var(--md-sys-spacing-4, 1rem);
-        margin-top: var(--md-sys-spacing-6, 1.5rem);
+        gap: var(--pkg-space-4);
+        margin-top: var(--pkg-space-6);
     }
 
     .btn-conversion {
-        padding: var(--md-sys-spacing-3) var(--md-sys-spacing-5);
+        padding: var(--pkg-space-3) var(--pkg-space-5);
         font-size: 1rem;
     }
 
@@ -694,14 +711,14 @@
     }
 
     .share-icons {
-        gap: var(--md-sys-spacing-5, 1.25rem);
+        gap: var(--pkg-space-5);
     }
 }
 
 /* ======= Ultra Large 4K+ Display (2560px+) ======= */
 @media (min-width: 2560px) {
     .conversion-modal-content {
-        max-width: 600px;
+        max-width: 600px; /* 4K+ display optimization */
     }
 
 
@@ -720,7 +737,7 @@
     }
 
     .conversion-modal-body {
-        padding: var(--md-sys-spacing-14, 3.5rem) var(--md-sys-spacing-12, 3rem);
+        padding: var(--pkg-space-14) var(--pkg-space-12);
         min-height: 280px; /* Optimized buffer - prevents layout shift on 4K+ displays */
     }
 
@@ -739,7 +756,7 @@
     }
 
     .btn-conversion {
-        padding: var(--md-sys-spacing-3) var(--md-sys-spacing-6);
+        padding: var(--pkg-space-3) var(--pkg-space-6);
         font-size: 1.0625rem;
     }
 
@@ -758,7 +775,7 @@
 
 /* Focus States */
 .btn-conversion:focus-visible {
-    outline: 2px solid var(--color-focus, #2196f3);
+    outline: 2px solid var(--pkg-color-primary);
     outline-offset: 2px;
 }
 

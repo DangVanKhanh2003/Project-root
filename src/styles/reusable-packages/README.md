@@ -2,10 +2,12 @@
 
 A collection of standalone, zero-dependency CSS packages built with Material Design 3 principles and mobile-first responsive design.
 
+**Package Count**: 7 packages (1 core + 6 components)
+
 ## 📦 Available Packages
 
 ### 1. **package-root.css** - Central Design Token System
-The foundation of all packages. Contains 169 design tokens organized into:
+The foundation of all packages. Contains 220+ design tokens organized into:
 - **Border Radius** (7 variants): MD3-compatible corner radii
 - **Spacing Scale** (15 variants): 4px-80px consistent spacing
 - **Typography** (33 variables): Body, label, and title variants with weights and line heights
@@ -127,6 +129,126 @@ A dark-themed modal for CAPTCHA verification flows.
 </div>
 ```
 
+### 5. **suggestions/** - Autocomplete Dropdown Component
+A lightweight autocomplete/suggestions dropdown with keyboard navigation support.
+
+**Features:**
+- ⌨️ Full keyboard navigation (Arrow keys, Enter, Escape)
+- 📱 Mobile-first responsive
+- ⚡ Smooth show/hide animations
+- ♿ WCAG compliant accessibility
+- 🎨 Custom scrollbar styling
+
+**Components:**
+- `.suggestion-container` - Main dropdown container
+- `.suggestion-list` - Scrollable list
+- `.suggestion-item` - Individual suggestion
+- `.suggestion-item--highlighted` - Keyboard highlight state
+- `.suggestion-item--original` - Original query styling
+
+**Usage:**
+```html
+<link rel="stylesheet" href="path/to/package-root.css">
+<link rel="stylesheet" href="path/to/suggestions/suggestions.css">
+
+<div style="position: relative;">
+  <input type="text" id="search" aria-autocomplete="list">
+  <div id="suggestion-container" class="suggestion-container">
+    <ul class="suggestion-list">
+      <li class="suggestion-item">Suggestion 1</li>
+      <li class="suggestion-item suggestion-item--highlighted">Suggestion 2</li>
+    </ul>
+  </div>
+</div>
+```
+
+**See:** `suggestions/README.md` for complete documentation
+
+### 6. **search-results/** - Responsive Video Grid Component
+A comprehensive video grid layout with skeleton loading states and infinite scroll support.
+
+**Features:**
+- 📱 Adaptive grid (2-4 columns based on screen size)
+- ✨ Professional skeleton loading states
+- ♾️ Infinite scroll ready with indicators
+- 🎯 CLS optimized with fixed aspect ratios
+- 🔄 Empty state and error handling
+
+**Grid Layout:**
+- Mobile (0-599px): 2 columns, 10px gap
+- Tablet (600-839px): 3 columns, 12px gap
+- Desktop (840px+): 4 columns, 12px gap
+- 4K (2560px+): 4 columns, max-width 1600px
+
+**Components:**
+- `.search-results-section` - Section container
+- `.search-results-grid` - Grid layout
+- `.search-result-card` - Video card
+- `.skeleton-card` - Loading state card
+- `.infinite-scroll-loader` - Loading indicator
+- `.btn-retry` - Retry button (error state)
+
+**Usage:**
+```html
+<link rel="stylesheet" href="path/to/package-root.css">
+<link rel="stylesheet" href="path/to/skeleton/skeleton.css">
+<link rel="stylesheet" href="path/to/search-results/search-results.css">
+
+<section class="search-results-section">
+  <div class="search-results">
+    <div class="search-results-grid">
+      <!-- Video cards here -->
+    </div>
+  </div>
+</section>
+```
+
+**See:** `search-results/README.md` for complete documentation
+
+### 7. **conversion-modal/** - Multi-State Modal Component
+A comprehensive modal for displaying conversion/download progress with multiple states.
+
+**Features:**
+- 🎭 Multi-state design (loading, success, error, expired)
+- 📱 Mobile-first responsive (350px → 4K+)
+- ⚡ Smooth animations with pulse feedback
+- 🔒 CLS prevention with fixed heights
+- ♿ WCAG compliant accessibility
+
+**States:**
+- **Loading**: Spinning loader with message
+- **Success**: Download button with success icon
+- **Error**: Error message with retry button
+- **Expired**: Link expiration with refresh option
+
+**Components:**
+- `#progressBarWrapper` - Full-screen overlay
+- `.conversion-modal-content` - Modal content box
+- `.conversion-state` - State container
+- `.loading-spinner-container` - Spinner
+- `.conversion-icon` - State icons (success/error/expired)
+- `.btn-conversion` - Action buttons
+
+**Usage:**
+```html
+<link rel="stylesheet" href="path/to/package-root.css">
+<link rel="stylesheet" href="path/to/conversion-modal/conversion-modal.css">
+
+<div id="progressBarWrapper" style="visibility: visible;">
+  <div class="conversion-modal-content">
+    <div class="conversion-modal-header">
+      <h3 class="modal-video-title">Video Title</h3>
+      <button class="btn-close-modal">×</button>
+    </div>
+    <div class="conversion-modal-body">
+      <!-- State content here -->
+    </div>
+  </div>
+</div>
+```
+
+**See:** `conversion-modal/README.md` for complete documentation
+
 ## 🚀 Quick Start
 
 ### Basic Integration
@@ -137,6 +259,9 @@ A dark-themed modal for CAPTCHA verification flows.
 
 <!-- 2. Import packages you need -->
 <link rel="stylesheet" href="path/to/skeleton/skeleton.css">
+<link rel="stylesheet" href="path/to/suggestions/suggestions.css">
+<link rel="stylesheet" href="path/to/search-results/search-results.css">
+<link rel="stylesheet" href="path/to/conversion-modal/conversion-modal.css">
 <link rel="stylesheet" href="path/to/expire-modal/expire-modal.css">
 <link rel="stylesheet" href="path/to/captcha-modal/captcha-modal.css">
 ```
@@ -149,6 +274,9 @@ import './styles/reusable-packages/package-root.css';
 
 // Import packages
 import './styles/reusable-packages/skeleton/skeleton.css';
+import './styles/reusable-packages/suggestions/suggestions.css';
+import './styles/reusable-packages/search-results/search-results.css';
+import './styles/reusable-packages/conversion-modal/conversion-modal.css';
 import './styles/reusable-packages/expire-modal/expire-modal.css';
 import './styles/reusable-packages/captcha-modal/captcha-modal.css';
 ```
