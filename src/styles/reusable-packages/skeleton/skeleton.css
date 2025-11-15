@@ -406,7 +406,6 @@
 .skeleton-card {
   border: 1px solid #f0f0f0;
   border-radius: var(--skeleton-radius-lg);
-  padding: 1rem;
   background: #ffffff;
 }
 

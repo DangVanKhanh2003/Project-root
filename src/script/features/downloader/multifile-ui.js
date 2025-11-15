@@ -24,9 +24,9 @@ import {
 import {
     MULTIFILE_STATES,
     UI_MESSAGES
-} from '../../libs/downloader-lib-standalone/remote/multifile-constants.js';
+} from '../../libs/downloader-lib-standalone/orchestration/multifile/constants.js';
 import { isMobileDevice } from '../../utils.js';
-import { startSequentialDownload } from '../../libs/downloader-lib-standalone/sequential-downloader.js';
+import { startSequentialDownload } from '../../libs/downloader-lib-standalone/orchestration/index.js';
 import { showExpireModal } from '../../ui-components/modal/expire-modal.js';
 
 // ============================================================
