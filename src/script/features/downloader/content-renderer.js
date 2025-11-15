@@ -7,6 +7,11 @@
 import { generateYoutubeThumbnail } from '../../utils.js';
 import { getState, getConversionTasks, setIsFromListItemClick, getSearchPagination } from './state.js';
 import { getElements, setInputValue } from './ui-renderer.js';
+
+// Import UI components
+import { createSkeletonCard } from '../../ui-components/search-result-card/skeleton-card.js';
+import { createSearchResultCard } from '../../ui-components/search-result-card/search-result-card.js';
+
 // Dynamic imports for feature modules - prefetched after critical load
 
 // Import centralized scroll manager for infinite scroll
@@ -211,7 +216,7 @@ function setupInfiniteScroll() {
                 // Step 2: Append skeleton cards to existing grid (instead of replacing entire container)
                 if (existingGrid) {
                     // Generate 12 skeleton cards to append
-                    const skeletonCardsHTML = Array(12).fill(null).map(() => generateSkeletonCard()).join('');
+                    const skeletonCardsHTML = Array(12).fill(null).map(() => createSkeletonCard()).join('');
                     existingGrid.insertAdjacentHTML('beforeend', skeletonCardsHTML);
                 } else {
                     // Fallback: If no existing grid, render complete skeleton
@@ -259,43 +264,8 @@ function setupInfiniteScroll() {
                         const newItems = r.data.items || r.data.videos || [];
                         const newVideos = newItems.filter(item => item.type === 'stream' || !item.type);
 
-                        // Generate HTML for new items only (using same logic as renderSearchResults)
-                        const newItemsHTML = newVideos.map(video => {
-                            // Format view count based on screen size (responsive display)
-                            const formatViewsForDisplay = (displayViews) => {
-                                if (!displayViews) return '';
-                                const isMobile = window.innerWidth <= 768;
-                                if (isMobile) {
-                                    return displayViews.replace(' views', '');
-                                }
-                                return displayViews;
-                            };
-
-                            const formattedViews = formatViewsForDisplay(video.displayViews);
-
-                            return `
-                                <article class="search-result-card"
-                                         data-video-id="${escapeHtml(video.id)}"
-                                         data-video-title="${escapeHtml(video.title)}">
-                                    <div class="card-thumbnail">
-                                        <img src="${escapeHtml(video.thumbnailUrl || generateYoutubeThumbnail(video.id))}"
-                                             loading="lazy"
-                                             alt="${escapeHtml(video.title)}"
-                                             onerror="this.src='${generateYoutubeThumbnail(video.id)}'">
-                                        ${video.displayDuration ? `<span class="duration-badge">${escapeHtml(video.displayDuration)}</span>` : ''}
-                                    </div>
-                                    <div class="card-content">
-                                        <h3 class="card-title">${escapeHtml(video.title)}</h3>
-                                        ${video.metadata?.uploaderName ? `<p class="card-channel">${escapeHtml(video.metadata.uploaderName)}</p>` : ''}
-                                        <div class="card-metadata">
-                                            ${formattedViews ? `<span>${escapeHtml(formattedViews)} </span>` : ''}
-                                            ${formattedViews && video.displayDate ? '<span>•</span>' : ''}
-                                            ${video.displayDate ? `<span>${escapeHtml(video.displayDate)}</span>` : ''}
-                                        </div>
-                                    </div>
-                                </article>
-                            `;
-                        }).join('');
+                        // Generate HTML for new items only (using reusable component)
+                        const newItemsHTML = newVideos.map(video => createSearchResultCard(video)).join('');
 
                         // Append new items to the grid
                         if (newItemsHTML) {
@@ -774,47 +744,7 @@ function renderSearchResults(data) {
         return renderEmptyState('No videos found for your search');
     }
 
-    const items = videos.map(video => {
-        // Format view count based on screen size (responsive display)
-        const formatViewsForDisplay = (displayViews) => {
-            if (!displayViews) return '';
-
-            // Mobile: Remove " views" suffix (e.g., "2.3M views" → "2.3M")
-            // Desktop: Keep full text (e.g., "2.3M views")
-            const isMobile = window.innerWidth <= 768;
-
-            if (isMobile) {
-                return displayViews.replace(' views', '');
-            }
-
-            return displayViews;
-        };
-
-        const formattedViews = formatViewsForDisplay(video.displayViews);
-
-        return `
-            <article class="search-result-card"
-                     data-video-id="${escapeHtml(video.id)}"
-                     data-video-title="${escapeHtml(video.title)}">
-                <div class="card-thumbnail">
-                    <img src="${escapeHtml(video.thumbnailUrl || generateYoutubeThumbnail(video.id))}"
-                         loading="lazy"
-                         alt="${escapeHtml(video.title)}"
-                         onerror="this.src='${generateYoutubeThumbnail(video.id)}'">
-                    ${video.displayDuration ? `<span class="duration-badge">${escapeHtml(video.displayDuration)}</span>` : ''}
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">${escapeHtml(video.title)}</h3>
-                    ${video.metadata?.uploaderName ? `<p class="card-channel">${escapeHtml(video.metadata.uploaderName)}</p>` : ''}
-                    <div class="card-metadata">
-                        ${formattedViews ? `<span>${escapeHtml(formattedViews)} </span>` : ''}
-                        ${formattedViews && video.displayDate ? '<span>•</span>' : ''}
-                        ${video.displayDate ? `<span>${escapeHtml(video.displayDate)}</span>` : ''}
-                    </div>
-                </div>
-            </article>
-        `;
-    }).join('');
+    const items = videos.map(video => createSearchResultCard(video)).join('');
 
     // Get skeleton cards and non-grid indicators separately
     const { skeletonCards, nonGridIndicator } = renderLoadingIndicator();
@@ -844,7 +774,7 @@ function renderLoadingIndicator() {
 
     // Show skeleton cards if currently loading more (12 cards) - INSIDE GRID
     if (pagination.isLoadingMore) {
-        const skeletonCards = Array(12).fill(null).map(() => generateSkeletonCard()).join('');
+        const skeletonCards = Array(12).fill(null).map(() => createSkeletonCard()).join('');
 
         return {
             skeletonCards: skeletonCards,
@@ -1024,38 +954,12 @@ function renderEmptyState(text) {
 }
 
 /**
- * Generate a single skeleton card HTML
- * Used by both initial load and load more
- * @returns {string} HTML string for one skeleton card
- */
-function generateSkeletonCard() {
-    return `
-        <article class="search-result-card skeleton-card">
-            <div class="card-thumbnail">
-                <span class="skeleton-thumbnail"></span>
-            </div>
-            <div class="card-content">
-                    <span class="skeleton-line skeleton-line--long"></span>
-                    <span class="skeleton-line skeleton-line--medium"></span>
-                <p class="card-channel skeleton-channel">
-                    <span class="skeleton-line skeleton-line--short"></span>
-                </p>
-                <div class="card-metadata skeleton-metadata">
-                    <span class="skeleton-segment"></span>
-                    <span class="skeleton-segment"></span>
-                </div>
-            </div>
-        </article>
-    `;
-}
-
-/**
  * Render LIST skeleton - for search results and playlists
  * @returns {string} HTML string for skeleton
  */
 function renderListSkeleton() {
     // Create 12 skeleton items for initial loading state
-    const skeletonItems = Array(12).fill(null).map(() => generateSkeletonCard()).join('');
+    const skeletonItems = Array(12).fill(null).map(() => createSkeletonCard()).join('');
 
     return `
         <div class="content-data search-results">
