@@ -7,12 +7,16 @@ import { createSearchResultCard, type VideoData } from '../../../ui-components/s
 import { createSkeletonCard } from '../../../ui-components/search-result-card/skeleton-card';
 
 let contentArea: HTMLElement | null = null;
+let searchResultsContainer: HTMLElement | null = null;
+let searchResultsSection: HTMLElement | null = null;
 
 /**
  * Initialize content renderer
  */
 export function initContentRenderer(): boolean {
-  contentArea = document.getElementById('contentArea');
+  contentArea = document.getElementById('content-area');
+  searchResultsContainer = document.getElementById('search-results-container');
+  searchResultsSection = document.getElementById('search-results-section');
 
   if (!contentArea) {
     console.error('Content area not found');
@@ -27,13 +31,20 @@ export function initContentRenderer(): boolean {
  * Render search results using TypeScript UI components
  */
 export function renderResults(results: VideoData[]): void {
-  if (!contentArea) return;
+  console.log('📋 renderResults called with:', results.length, 'videos');
 
   if (results.length === 0) {
     renderMessage('No results found');
+    hideSearchResultsSection();
     return;
   }
 
+  if (!searchResultsContainer) {
+    console.error('❌ searchResultsContainer is null!');
+    return;
+  }
+
+  // Render search results
   const html = `
     <div class="search-results">
       <h3>Search Results (${results.length})</h3>
@@ -43,7 +54,35 @@ export function renderResults(results: VideoData[]): void {
     </div>
   `;
 
-  contentArea.innerHTML = html;
+  console.log('📝 Setting innerHTML, html length:', html.length);
+  searchResultsContainer.innerHTML = html;
+
+  // Show search results section
+  if (searchResultsSection) {
+    searchResultsSection.style.display = 'block';
+    console.log('📍 Search section display:', searchResultsSection.style.display);
+  }
+
+  // Clear content area (used for messages/video detail)
+  if (contentArea) {
+    contentArea.innerHTML = '';
+  }
+
+  console.log('✅ Search results rendered successfully');
+  console.log('📊 Results container children:', searchResultsContainer.children.length);
+  console.log('📊 First card:', searchResultsContainer.querySelector('.search-result-card'));
+}
+
+/**
+ * Hide search results section
+ */
+function hideSearchResultsSection(): void {
+  if (searchResultsSection) {
+    searchResultsSection.style.display = 'none';
+  }
+  if (searchResultsContainer) {
+    searchResultsContainer.innerHTML = '';
+  }
 }
 
 /**
@@ -62,6 +101,9 @@ export function showLoading(): void {
       </div>
     </div>
   `;
+
+  // Hide search results section when showing loading
+  hideSearchResultsSection();
 }
 
 /**
@@ -75,6 +117,9 @@ export function renderMessage(message: string, type: 'info' | 'error' | 'success
       <p>${escapeHtml(message)}</p>
     </div>
   `;
+
+  // Hide search results section when showing message
+  hideSearchResultsSection();
 }
 
 /**
@@ -84,6 +129,9 @@ export function clearContent(): void {
   if (contentArea) {
     contentArea.innerHTML = '';
   }
+
+  // Also hide search results section
+  hideSearchResultsSection();
 }
 
 /**

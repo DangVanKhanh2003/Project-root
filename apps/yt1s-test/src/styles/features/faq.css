@@ -1,0 +1,184 @@
+/* =========================================================
+   Responsive Breakpoints (BẮT BUỘC CHO MỌI FILE)
+   ---------------------------------------------------------
+   • Extra Small Mobile (0–350px)
+   • Small Mobile (351–599px)
+   • Medium (Tablet) – 600–839px
+   • Expanded (Desktop) – 840–1239px
+   • Large (Wide Desktop) – 1240px+
+   ========================================================= */
+
+@media (min-width: 0px) and (max-width: 350px) {
+    .faq-accordion {
+        gap: var(--md-sys-spacing-2);
+    }
+
+    .faq-item {
+        border-radius: var(--md-sys-shape-corner-medium);
+    }
+
+    .faq-question {
+        padding: var(--md-sys-spacing-3) var(--md-sys-spacing-4);
+        font-size: var(--md-sys-typescale-body-large-size);
+        gap: var(--md-sys-spacing-2);
+    }
+
+    .faq-answer-content {
+        padding: 0 var(--md-sys-spacing-4) var(--md-sys-spacing-3);
+        font-size: var(--md-sys-typescale-body-small-size);
+    }
+
+    .faq-icon {
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 351px) and (max-width: 599px) {
+    .faq-accordion {
+        gap: var(--md-sys-spacing-2);
+    }
+
+    .faq-question {
+        padding: var(--md-sys-spacing-4) var(--md-sys-spacing-5);
+        gap: var(--md-sys-spacing-3);
+    }
+
+    .faq-answer-content {
+        padding: 0 var(--md-sys-spacing-5) var(--md-sys-spacing-4);
+    }
+}
+
+@media (min-width: 600px) and (max-width: 839px) {
+    .faq-accordion {
+        margin-inline: auto;
+        min-height: 800px;
+    }
+}
+
+@media (min-width: 840px) and (max-width: 1239px) {
+    .faq-accordion {
+        max-width: 750px;
+        margin-inline: auto;
+        min-height: 900px;
+    }
+}
+
+@media (min-width: 1240px) {
+    .faq-accordion {
+        max-width: 800px;
+        margin-inline: auto;
+        min-height: 1000px;
+    }
+}
+
+/* ======= Base Style (Common for all devices) ======= */
+
+/* FAQ SECTION */
+.faq-section {
+    padding-block: var(--md-sys-spacing-16);
+}
+
+.faq-accordion {
+    max-width: 1000px;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--md-sys-spacing-3);
+}
+
+.faq-item {
+    background: var(--md-sys-color-surface);
+    border-radius: var(--md-sys-shape-corner-large);
+    box-shadow: var(--md-sys-elevation-level0);
+    border: 1px solid var(--md-sys-color-outline-variant);
+    overflow: hidden;
+    transition: all var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-standard);
+}
+
+.faq-item.open {
+    border-color: #7fb0e5;
+}
+
+.faq-question {
+    background: none;
+    border: none;
+    width: 100%;
+    padding: var(--md-sys-spacing-4) var(--md-sys-spacing-6);
+    text-align: left;
+    cursor: pointer;
+    font-size: var(--md-sys-typescale-title-medium-size);
+    font-weight: var(--md-sys-typescale-title-medium-weight);
+    line-height: var(--md-sys-typescale-title-medium-line-height);
+    color: var(--md-sys-color-on-surface);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--md-sys-spacing-4);
+    transition: background-color var(--md-sys-motion-duration-short2) var(--md-sys-motion-easing-standard);
+}
+
+
+
+
+.faq-icon {
+    font-size: 1.25rem;
+    color: var(--md-sys-color-primary);
+    transition: transform var(--md-sys-motion-duration-short2) var(--md-sys-motion-easing-standard);
+    flex-shrink: 0;
+}
+
+.faq-item.open .faq-icon {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: all var(--md-sys-motion-duration-medium2) var(--md-sys-motion-easing-emphasized);
+}
+
+.faq-item.open .faq-answer {
+    max-height: 500px;
+}
+
+.faq-answer-content {
+    padding: 0 var(--md-sys-spacing-6) var(--md-sys-spacing-4);
+    font-size: var(--md-sys-typescale-body-medium-size);
+    line-height: var(--md-sys-typescale-body-medium-line-height);
+    color: var(--md-sys-color-on-surface-variant);
+}
+
+.faq-answer-content p {
+    margin: 0 0 var(--md-sys-spacing-3) 0;
+}
+
+.faq-answer-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* RIPPLE EFFECT FOR FAQ QUESTIONS */
+.faq-question {
+    position: relative;
+    overflow: hidden;
+}
+
+
+
+/* Staggered animation delays removed - scroll reveal animations disabled */
+
+/* ACCESSIBILITY */
+@media (prefers-reduced-motion: reduce) {
+    .faq-item,
+    .faq-answer {
+        transition: none;
+        animation: none;
+    }
+
+    .faq-icon {
+        transition: none;
+    }
+
+    .faq-question::before {
+        transition: none;
+    }
+}

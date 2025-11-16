@@ -13,6 +13,7 @@ import {
   setInputType,
   updateButtonVisibility,
   setResults,
+  setSuggestions,
   hideSuggestions,
 } from '../state';
 import { renderResults, renderMessage, showLoading, clearContent } from '../ui-render/content-renderer';
@@ -29,9 +30,9 @@ let clearBtn: HTMLButtonElement | null = null;
 export function initInputForm(): boolean {
   // Get DOM elements
   form = document.getElementById('downloadForm') as HTMLFormElement;
-  input = document.getElementById('urlInput') as HTMLInputElement;
-  pasteBtn = document.getElementById('pasteButton') as HTMLButtonElement;
-  clearBtn = document.getElementById('clearButton') as HTMLButtonElement;
+  input = document.getElementById('videoUrl') as HTMLInputElement;
+  pasteBtn = document.getElementById('input-action-button') as HTMLButtonElement;
+  clearBtn = null; // Not present in current HTML
 
   if (!form || !input) {
     console.error('Form elements not found');
@@ -54,6 +55,9 @@ export function initInputForm(): boolean {
   return true;
 }
 
+// Debounce timer for suggestions
+let suggestionTimer: number | null = null;
+
 /**
  * Handle input changes
  */
@@ -75,6 +79,45 @@ function handleInput(event: Event): void {
   // Hide suggestions when typing URL
   if (isUrl) {
     hideSuggestions();
+    return;
+  }
+
+  // Handle suggestions for keyword input
+  if (value.length >= 2) {
+    // Clear previous timer
+    if (suggestionTimer) {
+      clearTimeout(suggestionTimer);
+    }
+
+    // Debounce: wait 300ms after user stops typing
+    suggestionTimer = window.setTimeout(() => {
+      fetchSuggestions(value);
+    }, 300);
+  } else {
+    hideSuggestions();
+  }
+}
+
+/**
+ * Fetch suggestions from API
+ */
+async function fetchSuggestions(query: string): Promise<void> {
+  try {
+    const result = await api.getSuggestions({ q: query });
+
+    if (result.ok && result.data) {
+      // getSuggestions returns string[] directly
+      const suggestions = result.data as string[];
+
+      if (suggestions.length > 0) {
+        setSuggestions(suggestions);
+      } else {
+        hideSuggestions();
+      }
+    }
+  } catch (error) {
+    console.error('Failed to fetch suggestions:', error);
+    // Silently fail - don't disrupt user experience
   }
 }
 
@@ -96,9 +139,10 @@ async function handleSubmit(event: Event): Promise<void> {
   // Clear previous results
   setResults([]);
   clearError();
-  clearContent();
-  setLoading(true);
   hideSuggestions();
+  setLoading(true);
+
+  // Show loading state (this will also clear content and hide search section)
   showLoading();
 
   try {
@@ -157,17 +201,16 @@ async function handleSearch(keyword: string): Promise<void> {
   console.log('🔍 Searching for:', keyword);
 
   try {
-    const result = await api.searchTitle({
-      keyword,
-      from: 'youtube'
+    // Use Search V2 API for better results
+    const result = await api.searchV2(keyword, {
+      limit: 20
     });
 
     console.log('Search result:', result);
 
     if (result.ok && result.data) {
       // Success - show search results
-      const data = result.data as any;
-      const videos = data.videos || [];
+      const videos = result.data as any[];
       console.log('✅ Found videos:', videos.length);
       setResults(videos);
 

@@ -91,14 +91,14 @@ const environment: Environment = {
     // API Configuration
     api: {
         // PHP backend router endpoint
-        baseUrl: isDevelopment
-            ? 'https://api.yt1s.cx/api/v1'
-            : 'https://api.yt1s.cx/api/v1',
+        baseUrl: import.meta.env.VITE_API_BASE_URL || (isDevelopment
+            ? 'http://localhost:3000'
+            : 'https://api.yt1s.cx/api/v1'),
 
         // YouTube Stream API (new service endpoint)
-        youtubeStreamApiUrl: isDevelopment
-            ? 'https://api.yt1s.cx'
-            : 'https://api.yt1s.cx',
+        youtubeStreamApiUrl: import.meta.env.VITE_YOUTUBE_STREAM_API_URL || (isDevelopment
+            ? 'http://localhost:3000'
+            : 'https://api.yt1s.cx'),
 
         // YouTube Stream API endpoint path
         youtubeStreamApiEndpoint: '',

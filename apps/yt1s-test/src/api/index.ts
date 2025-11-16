@@ -28,9 +28,12 @@ import {
   DEFAULT_POLICIES,
 } from '@downloader/core';
 
-// API Configuration
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://api.example.com';
-const API_TIMEOUT = 30000;
+// Import centralized environment configuration
+import { getApiBaseUrl, getTimeout } from '../environment';
+
+// API Configuration from environment.ts
+const API_BASE_URL = getApiBaseUrl();
+const API_TIMEOUT = getTimeout('default');
 
 // 1. Create HTTP Client
 const httpClient = createHttpClient({

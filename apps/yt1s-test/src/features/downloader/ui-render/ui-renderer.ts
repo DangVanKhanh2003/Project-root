@@ -27,9 +27,9 @@ let elements: Elements = {
  */
 export function initRenderer(): boolean {
   elements.form = document.getElementById('downloadForm') as HTMLFormElement;
-  elements.input = document.getElementById('urlInput') as HTMLInputElement;
-  elements.pasteBtn = document.getElementById('pasteButton') as HTMLButtonElement;
-  elements.clearBtn = document.getElementById('clearButton') as HTMLButtonElement;
+  elements.input = document.getElementById('videoUrl') as HTMLInputElement;
+  elements.pasteBtn = document.getElementById('input-action-button') as HTMLButtonElement;
+  elements.clearBtn = null; // Not present in current HTML
   elements.submitBtn = elements.form?.querySelector('button[type="submit"]') as HTMLButtonElement;
 
   if (!elements.form || !elements.input || !elements.submitBtn) {
