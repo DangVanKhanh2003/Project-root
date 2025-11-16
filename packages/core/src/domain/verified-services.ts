@@ -19,6 +19,8 @@ import type { IFeedbackService } from '../services/v1/interfaces/feedback.interf
 import type { ISearchV2Service } from '../services/v2/interfaces/searchv2.interface';
 import type { IQueueService } from '../services/v2/interfaces/queue.interface';
 import type { IYouTubeDownloadService } from '../services/v2/interfaces/youtube-download.interface';
+import type { IMultifileService } from '../services/v1/interfaces/multifile.interface';
+import type { IYouTubePublicApiService } from '../services/public-api/interfaces/public-api.interface';
 
 /**
  * Core Services Collection
@@ -33,6 +35,8 @@ export interface CoreServices {
   searchV2: ISearchV2Service;
   queue: IQueueService;
   youtubeDownload: IYouTubeDownloadService;
+  multifile: IMultifileService;
+  youtubePublicApi: IYouTubePublicApiService;
 }
 
 /**
@@ -111,6 +115,16 @@ export function createVerifiedServices(
       services.youtubeDownload.downloadYouTube(params, signal),
     'getDownloadProgress': (params: any) =>
       services.youtubeDownload.getDownloadProgress(params),
+
+    // Multifile (with protection for start session)
+    'startMultifileSession': (params: any, payload?: ProtectionPayload) =>
+      services.multifile.startMultifileSession(params, payload),
+    'getMultifileStatus': (params: any) =>
+      services.multifile.getMultifileStatus(params),
+
+    // YouTube Public API
+    'getMetadataYoutube': (url: string) =>
+      services.youtubePublicApi.getMetadata(url),
   };
 
   /**
@@ -252,6 +266,28 @@ export function createVerifiedServices(
 
     getDownloadProgress: (params: Parameters<IYouTubeDownloadService['getDownloadProgress']>[0]) =>
       wrap('getDownloadProgress', params),
+
+    // ========================================
+    // Multifile
+    // ========================================
+
+    startMultifileSession: (
+      params: Parameters<IMultifileService['startMultifileSession']>[0],
+      protectionPayload?: ProtectionPayload
+    ) => {
+      const payload = getProtectionPayload(protectionPayload);
+      return wrap('startMultifileSession', params, payload);
+    },
+
+    getMultifileStatus: (params: Parameters<IMultifileService['getMultifileStatus']>[0]) =>
+      wrap('getMultifileStatus', params),
+
+    // ========================================
+    // YouTube Public API
+    // ========================================
+
+    getMetadataYoutube: (url: string) =>
+      wrap('getMetadataYoutube', url),
 
     // ========================================
     // Utility
