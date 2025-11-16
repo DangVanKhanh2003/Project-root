@@ -1,10 +1,11 @@
 /**
  * Media DTOs
- * Normalized media structures after mapper + verification
+ * Normalized media responses (after mapper + verification)
  */
 
 /**
- * Normalized media detail (after normalizeVideoDetail)
+ * Media Response DTO
+ * Returned from extractMedia() and extractMediaDirect() service methods
  */
 export interface MediaDto {
   meta: MediaMetaDto;

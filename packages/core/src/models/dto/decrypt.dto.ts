@@ -1,10 +1,11 @@
 /**
  * Decrypt DTOs
- * Normalized decrypt result after mapper + verification
+ * Normalized decrypt responses (after mapper + verification)
  */
 
 /**
- * Decode DTO (after normalizeDecodeResponse)
+ * Decode Response DTO
+ * Returned from decodeUrl() service method
  */
 export interface DecodeDto {
   success: boolean;

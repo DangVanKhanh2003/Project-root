@@ -1,10 +1,11 @@
 /**
  * Search DTOs
- * Normalized search results after mapper + verification
+ * Normalized search responses (after mapper + verification)
  */
 
 /**
- * Search v1 DTO (after normalizeSearchResults)
+ * Search V1 Response DTO
+ * Returned from searchTitle() service method
  */
 export interface SearchDto {
   total: number;
@@ -17,7 +18,8 @@ export interface SearchVideoDto {
 }
 
 /**
- * Search v2 DTO (after normalizeSearchV2Results)
+ * Search V2 Response DTO
+ * Returned from searchV2() service method with rich metadata
  */
 export interface SearchV2Dto {
   total: number;
@@ -29,27 +31,15 @@ export interface SearchV2Dto {
 }
 
 export interface SearchV2ItemDto {
-  // Backward compatibility fields
-  id: string | null;
+  // YouTube URL (e.g., "https://www.youtube.com/watch?v=dP6e17UlF8U" or "https://www.youtube.com/channel/...")
+  id: string;
   title: string;
-
-  // Enhanced v2 fields
   type: 'stream' | 'channel';
-  fullUrl: string;
   thumbnailUrl: string;
-
-  // Rich metadata
-  metadata: {
-    uploaderName: string;
-    duration: number | null;
-    viewCount: number | null;
-    uploadDate: string | null;
-  };
-
-  // UI-ready formatted data
-  displayDuration: string | null;
-  displayViews: string | null;
-  displayDate: string | null;
+  uploaderName: string;
+  duration: number | null; // Seconds
+  viewCount: number | null;
+  uploadDate: string | null; // ISO date string
 }
 
 export interface SearchPaginationDto {
@@ -58,7 +48,8 @@ export interface SearchPaginationDto {
 }
 
 /**
- * Playlist DTO (after normalizePlaylist)
+ * Playlist Response DTO
+ * Returned from extractPlaylist() service method
  */
 export interface PlaylistDto {
   title: string;

@@ -9,6 +9,7 @@
  * At least one field (title or description) must be provided
  */
 export interface FeedbackRequest {
-  title: string;
-  description: string;
+  star: number; // Rating from 1 to 5
+  title?: string;
+  description?: string;
 }

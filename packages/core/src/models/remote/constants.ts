@@ -4,10 +4,12 @@
  */
 
 // ============================================================
-// CAPTCHA PROVIDERS (v1 uses different providers than before)
+// CAPTCHA PROVIDERS
 // ============================================================
 export const CAPTCHA_PROVIDERS = {
-  RECAPTCHA_V2: 'recaptchav2',
+  RECAPTCHA: 'recaptcha',
+  TURNSTILE: 'turnstile',
+  CLOUDFLARE: 'cloudflare',
   HCAPTCHA: 'hcaptcha',
 } as const;
 

@@ -1,10 +1,11 @@
 /**
  * Conversion DTOs
- * Normalized conversion task after mapper + verification
+ * Normalized conversion task responses (after mapper + verification)
  */
 
 /**
- * Task DTO (after normalizeTaskResponse)
+ * Task Response DTO
+ * Returned from convert() and checkTask() service methods
  */
 export interface TaskDto {
   status: string; // "PENDING", "CONVERTING", "CONVERTED", "FAILED"

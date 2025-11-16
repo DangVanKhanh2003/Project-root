@@ -1,0 +1,78 @@
+/**
+ * Search V2 Service
+ * Handles YouTube search with rich metadata and pagination
+ */
+
+import type { IHttpClient } from '../../http/http-client.interface';
+import type { ApiConfig } from '../../config/api-config.interface';
+import type { SearchV2Dto } from '../../models/dto/search.dto';
+import type { SearchV2Response } from '../../models/remote/v2/responses/search.response';
+import type { SearchV2Options } from '../types/service-options.types';
+import { SEARCH_V2_ENDPOINTS } from '../constants/endpoints';
+import { getTimeout } from '../../config/api-config.interface';
+import { mapSearchV2Response } from '../../mappers/v2/searchv2.mapper';
+
+/**
+ * Normalize string value
+ */
+function normalizeText(value: unknown): string {
+  if (value === undefined || value === null) return '';
+  return String(value);
+}
+
+/**
+ * Search V2 service interface
+ */
+export interface ISearchV2Service {
+  searchV2(query: string, options?: SearchV2Options): Promise<SearchV2Dto>;
+}
+
+/**
+ * Create search v2 service
+ *
+ * @param httpClient - HTTP client instance for search v2 API
+ * @param config - API configuration
+ * @returns Search V2 service instance
+ */
+export function createSearchV2Service(
+  httpClient: IHttpClient,
+  config: ApiConfig
+): ISearchV2Service {
+  /**
+   * Search videos using YouTube Search v2 API with rich metadata
+   * Handles both fresh search and pagination
+   *
+   * @param query - Search keyword
+   * @param options - Optional pagination parameters
+   * @returns Search results with pagination support
+   */
+  async function searchV2(
+    query: string,
+    options: SearchV2Options = {}
+  ): Promise<SearchV2Dto> {
+    const { pageToken, limit } = options;
+
+    const params: Record<string, unknown> = { q: normalizeText(query) };
+
+    if (pageToken) {
+      params.page = pageToken;
+    }
+
+    if (limit && typeof limit === 'number' && limit > 0) {
+      params.limit = limit;
+    }
+
+    const response = await httpClient.request<SearchV2Response>({
+      method: 'GET',
+      url: SEARCH_V2_ENDPOINTS.SEARCH,
+      data: params,
+      timeout: getTimeout(config, 'searchV2'),
+    });
+
+    return mapSearchV2Response(response);
+  }
+
+  return {
+    searchV2,
+  };
+}

@@ -49,3 +49,21 @@ export interface MultifileProgress {
  * Returns text/event-stream, not JSON
  */
 export type MultifileStreamResponse = string; // SSE stream
+
+/**
+ * Multifile start response wrapper (from API)
+ */
+export interface MultifileStartResponse {
+  success: boolean;
+  data: MultifileStartResponseData;
+  jwt?: string; // JWT token for future requests
+}
+
+/**
+ * Multifile status response wrapper (from API)
+ */
+export interface MultifileStatusResponse {
+  success: boolean;
+  data: MultifileStatusResponseData;
+  jwt?: string; // JWT token for future requests
+}

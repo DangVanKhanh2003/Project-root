@@ -12,6 +12,22 @@ import { MediaFileType } from '../../constants';
 export type ExtractResponseData = YouTubeExtractData | DirectExtractData;
 
 /**
+ * Extract response wrapper (from API)
+ */
+export interface ExtractResponse {
+  success?: boolean;
+  status?: string;
+  data?: ExtractResponseData;
+  jwt?: string; // JWT token for future requests
+  // Allow direct unwrapped format
+  vid?: string;
+  title?: string;
+  convert_links?: any;
+  extractor?: string;
+  links?: any;
+}
+
+/**
  * YouTube extract data (2-step conversion required)
  */
 export interface YouTubeExtractData {

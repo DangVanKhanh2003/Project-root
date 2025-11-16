@@ -20,3 +20,15 @@ export interface SearchTitleVideo {
  * Note: This endpoint returns array directly, not wrapped in success/data structure
  */
 export type SuggestKeywordResponseData = string[];
+
+/**
+ * Search title response wrapper (from API)
+ */
+export interface SearchTitleResponse {
+  success?: boolean;
+  status?: string;
+  data?: SearchTitleResponseData;
+  // Allow direct unwrapped format
+  videos?: SearchTitleVideo[];
+  total?: number;
+}

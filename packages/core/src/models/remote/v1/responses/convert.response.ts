@@ -22,3 +22,19 @@ export interface ConvertResponseData {
  * Alias for check-task (same structure)
  */
 export type CheckTaskResponseData = ConvertResponseData;
+
+/**
+ * Convert response wrapper (from API)
+ */
+export interface ConvertResponse {
+  success?: boolean;
+  status?: string;
+  data?: ConvertResponseData;
+  jwt?: string; // JWT token for future requests
+  // Allow direct unwrapped format
+  c_status?: string;
+  mess?: string;
+  vid?: string;
+  dlink?: string;
+  b_id?: string;
+}
