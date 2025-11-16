@@ -102,21 +102,47 @@ function handleInput(event: Event): void {
  * Fetch suggestions from API
  */
 async function fetchSuggestions(query: string): Promise<void> {
+  console.log('🔍 Fetching suggestions for query:', query);
+
   try {
     const result = await api.getSuggestions({ q: query });
 
-    if (result.ok && result.data) {
-      // getSuggestions returns string[] directly
-      const suggestions = result.data as string[];
+    console.log('📥 Suggestions API result:', result);
 
-      if (suggestions.length > 0) {
+    if (result.ok && result.data) {
+      // API might return object instead of array - convert to array
+      let suggestions: string[];
+
+      if (Array.isArray(result.data)) {
+        // Already an array
+        suggestions = result.data;
+      } else if (typeof result.data === 'object' && result.data !== null) {
+        // Convert object to array (e.g., {0: 'a', 1: 'b'} → ['a', 'b'])
+        suggestions = Object.values(result.data);
+      } else {
+        suggestions = [];
+      }
+
+      console.log('✅ Got suggestions (converted to array):', suggestions);
+      console.log('📊 Array check:', {
+        isArray: Array.isArray(suggestions),
+        length: suggestions.length,
+        type: typeof suggestions
+      });
+
+      if (Array.isArray(suggestions) && suggestions.length > 0) {
+        console.log('📝 Setting suggestions in state');
         setSuggestions(suggestions);
       } else {
+        console.log('❌ No suggestions or invalid format, hiding dropdown');
         hideSuggestions();
       }
+    } else {
+      console.warn('⚠️ Suggestions API returned not ok:', result);
+      hideSuggestions();
     }
   } catch (error) {
-    console.error('Failed to fetch suggestions:', error);
+    console.error('❌ Failed to fetch suggestions:', error);
     // Silently fail - don't disrupt user experience
   }
 }
