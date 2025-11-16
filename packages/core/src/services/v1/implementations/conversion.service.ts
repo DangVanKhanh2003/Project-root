@@ -1,123 +1,92 @@
 /**
- * Conversion Service Implementation (V1)
- * Handles YouTube format conversion and task status checking
+ * Conversion Service Implementation (V1) - REFACTORED
+ * Extends BaseService for centralized request/response handling
  */
 
-import type { IHttpClient } from '../../../http/http-client.interface';
-import type { ApiConfig } from '../../../config/api-config.interface';
 import type { TaskDto } from '../../../models/dto/conversion.dto';
 import type { ConvertResponse, ConvertResponseData } from '../../../models/remote/v1/responses/convert.response';
 import type { ConvertRequest, CheckTaskRequest } from '../../../models/remote/v1/requests/convert.request';
 import type { ProtectionPayload } from '../../types/protection.types';
-import type { IConversionService, JwtSaveCallback } from '../interfaces/conversion.interface';
+import type { IConversionService } from '../interfaces/conversion.interface';
+import { BaseService } from '../../base/base-service';
 import { API_ENDPOINTS } from '../../constants/endpoints';
 import { getTimeout } from '../../../config/api-config.interface';
 import { mapConversionResponse } from '../../../mappers/v1/conversion.mapper';
 
 /**
- * Create conversion service
- *
- * @param httpClient - HTTP client instance
- * @param config - API configuration
- * @param onJwtReceived - Callback when JWT is received from API
- * @returns Conversion service instance
+ * Conversion Service Implementation
+ * Extends BaseService for automatic:
+ * - JWT extraction and storage
+ * - Protection payload handling (JWT/CAPTCHA)
+ * - Verification control from domain layer
  */
-export function createConversionService(
-  httpClient: IHttpClient,
-  config: ApiConfig,
-  onJwtReceived?: JwtSaveCallback
-): IConversionService {
-  let internalJwt: string | null = null;
-
-  /**
-   * Unwrap nested API response data
-   */
-  function unwrapResponse<T>(response: unknown): T {
-    const data = response as any;
-    return (data?.data || data) as T;
-  }
-
-  /**
-   * Save JWT if present in response
-   */
-  function handleJwt(response: any): void {
-    if (response?.jwt) {
-      internalJwt = response.jwt;
-      if (onJwtReceived) {
-        onJwtReceived(response.jwt);
-      }
-    }
-  }
-
+class ConversionServiceImpl extends BaseService implements IConversionService {
   /**
    * Convert video format (YouTube 2-step conversion)
    *
    * @param params - ConvertRequest with vid and key
-   * @param protectionPayload - JWT or CAPTCHA token
-   * @returns Task status DTO (response)
+   * @param protectionPayload - Optional JWT or CAPTCHA token
+   * @returns Task status DTO
    */
-  async function convert(
+  async convert(
     params: ConvertRequest,
-    protectionPayload: ProtectionPayload = {}
+    protectionPayload?: ProtectionPayload
   ): Promise<TaskDto> {
-    const headers: Record<string, string> = {};
-    const data: Record<string, unknown> = {
-      vid: params.vid,
-      key: params.key,
-    };
-
-    if (protectionPayload.jwt) {
-      headers['Authorization'] = `Bearer ${protectionPayload.jwt}`;
-    } else if (protectionPayload.captcha) {
-      data.captcha_token = protectionPayload.captcha.token;
-      data.provider = protectionPayload.captcha.provider || 'recaptcha';
-    }
-
-    const response = await httpClient.request<ConvertResponse>({
+    // ✅ Use base.makeRequest() instead of httpClient directly
+    // Base handles:
+    // - JWT headers: Bearer ${protectionPayload.jwt}
+    // - CAPTCHA data: captcha_token, provider
+    // - JWT extraction: auto-save to this.internalJwt
+    // - Verification: if enabled, verify through domain layer
+    const response = await this.makeRequest<ConvertResponse>({
       method: 'POST',
       url: API_ENDPOINTS.CONVERT,
-      data,
-      headers,
-      timeout: getTimeout(config, 'convert'),
-    });
+      data: {
+        vid: params.vid,
+        key: params.key,
+      },
+      timeout: getTimeout(this.config, 'convert'),
+    }, protectionPayload);
 
-    handleJwt(response);
-
-    const unwrapped = unwrapResponse<ConvertResponseData>(response);
+    // Unwrap and map response
+    const unwrapped = this.unwrapSimpleResponse<ConvertResponseData>(response);
     return mapConversionResponse(unwrapped);
   }
 
   /**
    * Check conversion task status
+   * Uses internal JWT from previous convert() call
    *
    * @param params - CheckTaskRequest with vid and b_id
-   * @returns Task status DTO (response)
+   * @returns Task status DTO
    */
-  async function checkTask(params: CheckTaskRequest): Promise<TaskDto> {
-    const headers: Record<string, string> = {};
-    if (internalJwt) {
-      headers['Authorization'] = `Bearer ${internalJwt}`;
-    }
-
-    const response = await httpClient.request<ConvertResponse>({
+  async checkTask(params: CheckTaskRequest): Promise<TaskDto> {
+    // ✅ Use base.makeRequestWithInternalJwt()
+    // Base automatically adds: Authorization: Bearer ${this.internalJwt}
+    const response = await this.makeRequestWithInternalJwt<ConvertResponse>({
       method: 'GET',
       url: API_ENDPOINTS.CHECK_TASK,
       data: {
         vid: params.vid,
         b_id: params.b_id,
       },
-      headers,
-      timeout: getTimeout(config, 'checkTask'),
+      timeout: getTimeout(this.config, 'checkTask'),
     });
 
-    handleJwt(response);
-
-    const unwrapped = unwrapResponse<ConvertResponseData>(response);
+    // Unwrap and map response
+    const unwrapped = this.unwrapSimpleResponse<ConvertResponseData>(response);
     return mapConversionResponse(unwrapped);
   }
+}
 
-  return {
-    convert,
-    checkTask,
-  };
+/**
+ * Factory function to create Conversion Service
+ * Maintains existing API for backward compatibility
+ */
+export function createConversionService(
+  httpClient: any,
+  config: any,
+  onJwtReceived?: (jwt: string) => void
+): IConversionService {
+  return new ConversionServiceImpl(httpClient, config, onJwtReceived);
 }

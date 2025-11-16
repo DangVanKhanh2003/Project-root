@@ -3,8 +3,6 @@
  * Handles YouTube video/audio downloads with progress tracking
  */
 
-import type { IHttpClient } from '../../../http/http-client.interface';
-import type { ApiConfig } from '../../../config/api-config.interface';
 import type { StreamDto } from '../../../models/dto/stream.dto';
 import type {
   StreamResponse,
@@ -13,6 +11,7 @@ import type {
 } from '../../../models/remote/v2/responses/download.response';
 import type { DownloadRequest, ProgressRequest } from '../../../models/remote/v2/requests/download.request';
 import type { IYouTubeDownloadService } from '../interfaces/youtube-download.interface';
+import { BaseService } from '../../base/base-service';
 import { YOUTUBE_DOWNLOAD_ENDPOINTS } from '../../constants/endpoints';
 import { getTimeout } from '../../../config/api-config.interface';
 import { mapStreamResponse, mapProgressResponse } from '../../../mappers/v2/stream.mapper';
@@ -37,16 +36,10 @@ function extractCacheId(progressUrl: string): string {
 }
 
 /**
- * Create YouTube download service
- *
- * @param httpClient - HTTP client instance for v2 API
- * @param config - API configuration
- * @returns YouTube download service instance
+ * YouTube Download Service Implementation
+ * Extends BaseService for centralized request handling
  */
-export function createYouTubeDownloadService(
-  httpClient: IHttpClient,
-  config: ApiConfig
-): IYouTubeDownloadService {
+class YouTubeDownloadServiceImpl extends BaseService implements IYouTubeDownloadService {
   /**
    * Download YouTube video or audio
    *
@@ -55,7 +48,7 @@ export function createYouTubeDownloadService(
    * @returns Stream DTO with download URL and progress URL
    * @throws ValidationError if params are invalid
    */
-  async function downloadYouTube(
+  async downloadYouTube(
     params: DownloadRequest,
     signal?: AbortSignal
   ): Promise<StreamDto> {
@@ -103,11 +96,11 @@ export function createYouTubeDownloadService(
     }
 
     // Make request to YouTube Download API (POST /)
-    const response = await httpClient.request<StreamResponse | StaticResponse>({
+    const response = await this.makeRequest<StreamResponse | StaticResponse>({
       method: 'POST',
       url: YOUTUBE_DOWNLOAD_ENDPOINTS.DOWNLOAD,
       data: requestBody,
-      timeout: getTimeout(config, 'extractV2Stream'),
+      timeout: getTimeout(this.config, 'extractV2Stream'),
       signal, // Pass through external abort signal
     });
 
@@ -127,25 +120,34 @@ export function createYouTubeDownloadService(
    * @returns Progress response with download status
    * @throws Error if cacheId is invalid
    */
-  async function getDownloadProgress(params: ProgressRequest): Promise<ProgressResponse> {
+  async getDownloadProgress(params: ProgressRequest): Promise<ProgressResponse> {
     if (!params.cacheId || typeof params.cacheId !== 'string') {
       throw new Error('Invalid cacheId: must be a non-empty string');
     }
 
     // GET /api/download/progress/{cacheId}
-    const response = await httpClient.request<ProgressResponse>({
+    const response = await this.makeRequest<ProgressResponse>({
       method: 'GET',
       url: `${YOUTUBE_DOWNLOAD_ENDPOINTS.PROGRESS}/${params.cacheId}`,
-      timeout: getTimeout(config, 'pollProgress'),
+      timeout: getTimeout(this.config, 'pollProgress'),
     });
 
     return mapProgressResponse(response);
   }
+}
 
-  return {
-    downloadYouTube,
-    getDownloadProgress,
-  };
+/**
+ * Create YouTube download service
+ *
+ * @param httpClient - HTTP client instance for v2 API
+ * @param config - API configuration
+ * @returns YouTube download service instance
+ */
+export function createYouTubeDownloadService(
+  httpClient: any,
+  config: any
+): IYouTubeDownloadService {
+  return new YouTubeDownloadServiceImpl(httpClient, config);
 }
 
 /**

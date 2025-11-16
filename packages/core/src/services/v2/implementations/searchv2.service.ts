@@ -3,27 +3,20 @@
  * Handles YouTube search with rich metadata and pagination
  */
 
-import type { IHttpClient } from '../../../http/http-client.interface';
-import type { ApiConfig } from '../../../config/api-config.interface';
 import type { SearchV2Dto } from '../../../models/dto/search.dto';
 import type { SearchV2Response } from '../../../models/remote/v2/responses/search.response';
 import type { SearchV2Options } from '../../types/service-options.types';
 import type { ISearchV2Service } from '../interfaces/searchv2.interface';
+import { BaseService } from '../../base/base-service';
 import { SEARCH_V2_ENDPOINTS } from '../../constants/endpoints';
 import { getTimeout } from '../../../config/api-config.interface';
 import { mapSearchV2Response } from '../../../mappers/v2/searchv2.mapper';
 
 /**
- * Create search v2 service
- *
- * @param httpClient - HTTP client instance for search v2 API
- * @param config - API configuration
- * @returns Search V2 service instance
+ * Search V2 Service Implementation
+ * Extends BaseService for centralized request handling
  */
-export function createSearchV2Service(
-  httpClient: IHttpClient,
-  config: ApiConfig
-): ISearchV2Service {
+class SearchV2ServiceImpl extends BaseService implements ISearchV2Service {
   /**
    * Search videos using YouTube Search v2 API with rich metadata
    * Handles both fresh search and pagination
@@ -32,7 +25,7 @@ export function createSearchV2Service(
    * @param options - Optional pagination parameters
    * @returns Search results with pagination support
    */
-  async function searchV2(
+  async searchV2(
     query: string,
     options: SearchV2Options = {}
   ): Promise<SearchV2Dto> {
@@ -48,17 +41,27 @@ export function createSearchV2Service(
       params.limit = limit;
     }
 
-    const response = await httpClient.request<SearchV2Response>({
+    const response = await this.makeRequest<SearchV2Response>({
       method: 'GET',
       url: SEARCH_V2_ENDPOINTS.SEARCH,
       data: params,
-      timeout: getTimeout(config, 'searchV2'),
+      timeout: getTimeout(this.config, 'searchV2'),
     });
 
     return mapSearchV2Response(response);
   }
+}
 
-  return {
-    searchV2,
-  };
+/**
+ * Create search v2 service
+ *
+ * @param httpClient - HTTP client instance for search v2 API
+ * @param config - API configuration
+ * @returns Search V2 service instance
+ */
+export function createSearchV2Service(
+  httpClient: any,
+  config: any
+): ISearchV2Service {
+  return new SearchV2ServiceImpl(httpClient, config);
 }

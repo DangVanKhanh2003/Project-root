@@ -3,8 +3,6 @@
  * Handles multifile download sessions
  */
 
-import type { IHttpClient } from '../../../http/http-client.interface';
-import type { ApiConfig } from '../../../config/api-config.interface';
 import type {
   MultifileStartResponse,
   MultifileStatusResponse,
@@ -15,8 +13,54 @@ import type {
 } from '../../../models/remote/v1/requests/multifile.request';
 import type { ProtectionPayload } from '../../types/protection.types';
 import type { IMultifileService, JwtSaveCallback } from '../interfaces/multifile.interface';
+import { BaseService } from '../../base/base-service';
 import { MULTIFILE_ENDPOINTS } from '../../constants/endpoints';
 import { getTimeout } from '../../../config/api-config.interface';
+
+/**
+ * Multifile Service Implementation
+ * Extends BaseService for centralized request handling with stateful JWT
+ */
+class MultifileServiceImpl extends BaseService implements IMultifileService {
+  /**
+   * Start multifile download session
+   *
+   * @param params - Multifile start request parameters
+   * @param protectionPayload - JWT or CAPTCHA token
+   * @returns Session start response with session_id and stream_url
+   */
+  async startMultifileSession(
+    params: MultifileNonEncodeStartRequest,
+    protectionPayload?: ProtectionPayload
+  ): Promise<MultifileStartResponse> {
+    const response = await this.makeRequest<MultifileStartResponse>({
+      method: 'POST',
+      url: MULTIFILE_ENDPOINTS.START,
+      data: { urls: params.urls },
+      timeout: getTimeout(this.config, 'multifileStart'),
+    }, protectionPayload);
+
+    return response;
+  }
+
+  /**
+   * Get multifile session status
+   * Uses internal JWT from previous startMultifileSession() call
+   *
+   * @param params - Multifile status request parameters
+   * @returns Session status response
+   */
+  async getMultifileStatus(params: MultifileStatusRequest): Promise<MultifileStatusResponse> {
+    const response = await this.makeRequestWithInternalJwt<MultifileStatusResponse>({
+      method: 'GET',
+      url: MULTIFILE_ENDPOINTS.STATUS,
+      data: { session_id: params.sessionId },
+      timeout: getTimeout(this.config, 'multifileStatus'),
+    });
+
+    return response;
+  }
+}
 
 /**
  * Create multifile service
@@ -27,86 +71,9 @@ import { getTimeout } from '../../../config/api-config.interface';
  * @returns Multifile service instance
  */
 export function createMultifileService(
-  httpClient: IHttpClient,
-  config: ApiConfig,
+  httpClient: any,
+  config: any,
   onJwtReceived?: JwtSaveCallback
 ): IMultifileService {
-  let internalJwt: string | null = null;
-
-  /**
-   * Save JWT if present in response
-   */
-  function handleJwt(response: any): void {
-    if (response?.jwt) {
-      internalJwt = response.jwt;
-      if (onJwtReceived) {
-        onJwtReceived(response.jwt);
-      }
-    }
-  }
-
-  /**
-   * Start multifile download session
-   *
-   * @param params - Multifile start request parameters
-   * @param protectionPayload - JWT or CAPTCHA token
-   * @returns Session start response with session_id and stream_url
-   */
-  async function startMultifileSession(
-    params: MultifileNonEncodeStartRequest,
-    protectionPayload: ProtectionPayload = {}
-  ): Promise<MultifileStartResponse> {
-    const headers: Record<string, string> = {};
-    const data: Record<string, unknown> = { urls: params.urls };
-
-    if (protectionPayload.jwt) {
-      headers['Authorization'] = `Bearer ${protectionPayload.jwt}`;
-    } else if (protectionPayload.captcha) {
-      data.captcha_token = protectionPayload.captcha.token;
-      data.provider = protectionPayload.captcha.provider || 'recaptcha';
-    }
-
-    const response = await httpClient.request<MultifileStartResponse>({
-      method: 'POST',
-      url: MULTIFILE_ENDPOINTS.START,
-      data,
-      headers,
-      timeout: getTimeout(config, 'multifileStart'),
-    });
-
-    handleJwt(response);
-
-    // Response format: { success: true, data: { status, session_id, stream_url, expires_at } }
-    return response;
-  }
-
-  /**
-   * Get multifile download session status
-   *
-   * @param params - Multifile status request parameters
-   * @returns Session status with progress and stats
-   */
-  async function getMultifileStatus(params: MultifileStatusRequest): Promise<MultifileStatusResponse> {
-    const headers: Record<string, string> = {};
-    if (internalJwt) {
-      headers['Authorization'] = `Bearer ${internalJwt}`;
-    }
-
-    const response = await httpClient.request<MultifileStatusResponse>({
-      method: 'GET',
-      url: `${MULTIFILE_ENDPOINTS.STATUS}/${params.sessionId}`,
-      headers,
-      timeout: getTimeout(config, 'multifileStatus'),
-    });
-
-    handleJwt(response);
-
-    // Response format: { success: true, data: { session_id, status, progress, stats, ... } }
-    return response;
-  }
-
-  return {
-    startMultifileSession,
-    getMultifileStatus,
-  };
+  return new MultifileServiceImpl(httpClient, config, onJwtReceived);
 }

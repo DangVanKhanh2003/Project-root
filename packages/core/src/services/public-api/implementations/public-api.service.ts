@@ -3,43 +3,36 @@
  * Uses YouTube oEmbed API (no authentication required)
  */
 
-import type { IHttpClient } from '../../../http/http-client.interface';
-import type { ApiConfig } from '../../../config/api-config.interface';
 import type { YouTubeMetadataDto } from '../../../models/dto/youtube.dto';
 import type { OEmbedResponse } from '../../../models/remote/public-api/oembed.response';
 import type { IYouTubePublicApiService } from '../interfaces/public-api.interface';
+import { BaseService } from '../../base/base-service';
 import { mapOEmbedResponse } from '../../../mappers/public-api/oembed.mapper';
 
 const OEMBED_API_URL = 'https://www.youtube.com';
 const OEMBED_TIMEOUT = 7000;
 
 /**
- * Create YouTube public API service
- * Uses oEmbed API for basic video metadata (no auth required)
- *
- * @param httpClient - HTTP client instance
- * @param config - API configuration (optional)
- * @returns YouTube public API service instance
+ * YouTube Public API Service Implementation
+ * Extends BaseService for centralized request handling
  */
-export function createYouTubePublicApiService(
-  httpClient: IHttpClient,
-  config?: ApiConfig
-): IYouTubePublicApiService {
+class YouTubePublicApiServiceImpl extends BaseService implements IYouTubePublicApiService {
   /**
    * Fetch basic YouTube video metadata from public oEmbed API
    * No authentication required
+   * Implements retry logic for network/server errors
    *
    * @param url - YouTube URL (any format)
    * @returns Video metadata DTO
    * @throws Error if URL is invalid or video not found
    */
-  async function getMetadata(url: string): Promise<YouTubeMetadataDto> {
+  async getMetadata(url: string): Promise<YouTubeMetadataDto> {
     let lastError: Error | null = null;
     const maxRetries = 2; // 1 initial + 1 retry
 
     for (let attempt = 0; attempt < maxRetries; attempt++) {
       try {
-        const response = await httpClient.request<OEmbedResponse>({
+        const response = await this.makeRequest<OEmbedResponse>({
           method: 'GET',
           url: `${OEMBED_API_URL}/oembed`,
           data: {
@@ -69,8 +62,19 @@ export function createYouTubePublicApiService(
     // All retries exhausted
     throw lastError;
   }
+}
 
-  return {
-    getMetadata,
-  };
+/**
+ * Create YouTube public API service
+ * Uses oEmbed API for basic video metadata (no auth required)
+ *
+ * @param httpClient - HTTP client instance
+ * @param config - API configuration (optional)
+ * @returns YouTube public API service instance
+ */
+export function createYouTubePublicApiService(
+  httpClient: any,
+  config?: any
+): IYouTubePublicApiService {
+  return new YouTubePublicApiServiceImpl(httpClient, config);
 }

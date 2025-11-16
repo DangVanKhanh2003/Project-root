@@ -3,8 +3,6 @@
  * Handles media extraction for YouTube and direct download platforms
  */
 
-import type { IHttpClient } from '../../../http/http-client.interface';
-import type { ApiConfig } from '../../../config/api-config.interface';
 import type { MediaDto } from '../../../models/dto/media.dto';
 import type {
   ExtractResponse,
@@ -14,6 +12,7 @@ import type {
 import type { ExtractRequest, ExtractNonEncodePostRequest } from '../../../models/remote/v1/requests/extract.request';
 import type { ProtectionPayload } from '../../types/protection.types';
 import type { IMediaService, JwtSaveCallback } from '../interfaces/media.interface';
+import { BaseService } from '../../base/base-service';
 import { API_ENDPOINTS } from '../../constants/endpoints';
 import { getTimeout } from '../../../config/api-config.interface';
 import { mapYouTubeExtractResponse } from '../../../mappers/v1/media/youtube.mapper';
@@ -21,46 +20,10 @@ import { mapDirectExtractResponse } from '../../../mappers/v1/media/direct.mappe
 import { mapInstagramResponse } from '../../../mappers/v1/media/instagram.mapper';
 
 /**
- * Create media service
- *
- * @param httpClient - HTTP client instance
- * @param config - API configuration
- * @param onJwtReceived - Callback when JWT is received from API
- * @returns Media service instance
+ * Media Service Implementation
+ * Extends BaseService for centralized request handling with JWT support
  */
-export function createMediaService(
-  httpClient: IHttpClient,
-  config: ApiConfig,
-  onJwtReceived?: JwtSaveCallback
-): IMediaService {
-  /**
-   * Unwrap nested API response data
-   */
-  function unwrapResponse<T>(response: unknown): T {
-    let data = response as any;
-
-    // Handle { success: true, data: {...} }
-    if (data && data.success && data.data) {
-      data = data.data;
-    }
-
-    // Handle double-nested { status: 'ok', data: {...} }
-    if (data && data.status === 'ok' && data.data) {
-      data = data.data;
-    }
-
-    return data as T;
-  }
-
-  /**
-   * Save JWT if present in response
-   */
-  function handleJwt(response: any): void {
-    if (response?.jwt && onJwtReceived) {
-      onJwtReceived(response.jwt);
-    }
-  }
-
+class MediaServiceImpl extends BaseService implements IMediaService {
   /**
    * Extract media information from a URL
    * For YouTube: returns encrypted URLs that need conversion
@@ -70,30 +33,21 @@ export function createMediaService(
    * @param protectionPayload - Optional JWT/CAPTCHA protection
    * @returns Normalized MediaDto
    */
-  async function extractMedia(
+  async extractMedia(
     params: ExtractRequest,
-    protectionPayload: ProtectionPayload = {}
+    protectionPayload?: ProtectionPayload
   ): Promise<MediaDto> {
-    const headers: Record<string, string> = {};
-
-    if (protectionPayload.jwt) {
-      headers['Authorization'] = `Bearer ${protectionPayload.jwt}`;
-    }
-
-    const response = await httpClient.request<ExtractResponse>({
+    const response = await this.makeRequest<ExtractResponse>({
       method: 'POST',
       url: API_ENDPOINTS.EXTRACT,
       data: {
         url: params.url,
         ...(params.from && { from: params.from }),
       },
-      headers,
-      timeout: getTimeout(config, 'extract'),
-    });
+      timeout: getTimeout(this.config, 'extract'),
+    }, protectionPayload);
 
-    handleJwt(response);
-
-    const unwrapped = unwrapResponse<YouTubeExtractData | DirectExtractData>(response);
+    const unwrapped = this.unwrapNestedResponse<YouTubeExtractData | DirectExtractData>(response);
 
     // Detect response type and use appropriate mapper
     if ('convert_links' in unwrapped) {
@@ -117,34 +71,21 @@ export function createMediaService(
    * @param protectionPayload - JWT or CAPTCHA token (required)
    * @returns Normalized MediaDto with direct URLs
    */
-  async function extractMediaDirect(
+  async extractMediaDirect(
     params: ExtractNonEncodePostRequest,
-    protectionPayload: ProtectionPayload = {}
+    protectionPayload?: ProtectionPayload
   ): Promise<MediaDto> {
-    const headers: Record<string, string> = {};
-    const data: Record<string, unknown> = {
-      url: params.url,
-      ...(params.from && { from: params.from }),
-    };
-
-    if (protectionPayload.jwt) {
-      headers['Authorization'] = `Bearer ${protectionPayload.jwt}`;
-    } else if (protectionPayload.captcha) {
-      data.captcha_token = protectionPayload.captcha.token;
-      data.provider = protectionPayload.captcha.type || protectionPayload.captcha.provider || 'recaptcha';
-    }
-
-    const response = await httpClient.request<ExtractResponse>({
+    const response = await this.makeRequest<ExtractResponse>({
       method: 'POST',
       url: API_ENDPOINTS.EXTRACT_NON_ENCODE,
-      data,
-      headers,
-      timeout: getTimeout(config, 'extractNonEncode'),
-    });
+      data: {
+        url: params.url,
+        ...(params.from && { from: params.from }),
+      },
+      timeout: getTimeout(this.config, 'extractNonEncode'),
+    }, protectionPayload);
 
-    handleJwt(response);
-
-    const unwrapped = unwrapResponse<DirectExtractData>(response);
+    const unwrapped = this.unwrapNestedResponse<DirectExtractData>(response);
 
     // Check if Instagram carousel
     if (unwrapped.extractor?.toLowerCase() === 'instagram' && unwrapped.gallery) {
@@ -153,9 +94,20 @@ export function createMediaService(
 
     return mapDirectExtractResponse(unwrapped);
   }
+}
 
-  return {
-    extractMedia,
-    extractMediaDirect,
-  };
+/**
+ * Create media service
+ *
+ * @param httpClient - HTTP client instance
+ * @param config - API configuration
+ * @param onJwtReceived - Callback when JWT is received from API
+ * @returns Media service instance
+ */
+export function createMediaService(
+  httpClient: any,
+  config: any,
+  onJwtReceived?: JwtSaveCallback
+): IMediaService {
+  return new MediaServiceImpl(httpClient, config, onJwtReceived);
 }
