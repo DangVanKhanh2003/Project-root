@@ -4,23 +4,23 @@
  * Direct URLs from extract are passed straight to download helpers.
  */
 
-import { triggerDownload, initExpandableText, openLinkInNewTab, isMobileDevice } from '../../utils.js';
+import { triggerDownload, initExpandableText, openLinkInNewTab, isMobileDevice } from '../../../utils.js';
 import {
     startMultifileDownload,
     retryMultifileDownload,
     downloadZipFile,
     getMultifileState,
     cancelMultifileDownload
-} from './multifile-ui.js';
+} from '../logic/multifile-ui.js';
 import { MULTIFILE_STATES } from '@downloader/core';
 import {
     updateCurrentSelection,
     getRecentDownloadStatus,
     clearRecentDownload,
     setState
-} from './state';
-import { loadGalleryCSS } from '../../utils/css-loader.js';
-import { showExpireModal } from '../../ui-components/modal/expire-modal.js';
+} from '../state';
+import { loadGalleryCSS } from '../../../utils/css-loader.js';
+import { showExpireModal } from '../../../ui-components/modal/expire-modal.js';
 
 // ==================== TYPES & INTERFACES ====================
 
@@ -180,7 +180,7 @@ export async function renderGallery(
 
     // Initialize expandable text for the gallery title
     if (galleryContainerEl) {
-        initExpandableText(galleryContainerEl, '.gallery-title');
+        initExpandableText(galleryContainerEl as HTMLElement, '.gallery-title');
     }
 }
 

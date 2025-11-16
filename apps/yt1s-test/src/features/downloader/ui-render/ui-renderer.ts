@@ -3,7 +3,7 @@
  * Responsible for updating DOM based on state
  */
 
-import type { AppState } from './state';
+import type { AppState } from '../state';
 
 // DOM Elements
 interface Elements {

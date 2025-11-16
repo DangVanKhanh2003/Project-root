@@ -3,8 +3,8 @@
  * Renders search results and messages in content area
  */
 
-import { createSearchResultCard, type VideoData } from '../../ui-components/search-result-card/search-result-card';
-import { createSkeletonCard } from '../../ui-components/search-result-card/skeleton-card';
+import { createSearchResultCard, type VideoData } from '../../../ui-components/search-result-card/search-result-card';
+import { createSkeletonCard } from '../../../ui-components/search-result-card/skeleton-card';
 
 let contentArea: HTMLElement | null = null;
 

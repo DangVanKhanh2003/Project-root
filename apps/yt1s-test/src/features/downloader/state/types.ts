@@ -174,6 +174,8 @@ export interface ConversionTask {
   pollingPhase?: string;
   pollingData?: any;
   streamMetadata?: any;
+  warningMessage?: string;
+  extractResponse?: any;
 }
 
 export interface ActiveConversion {

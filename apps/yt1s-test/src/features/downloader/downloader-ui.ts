@@ -4,9 +4,9 @@
  */
 
 import { setRenderCallback } from './state';
-import { initRenderer, render } from './ui-renderer';
-import { initInputForm } from './input-form';
-import { initContentRenderer } from './content-renderer';
+import { initRenderer, render } from './ui-render/ui-renderer';
+import { initInputForm } from './logic/input-form';
+import { initContentRenderer } from './ui-render/content-renderer';
 import type { AppState } from './state';
 
 /**

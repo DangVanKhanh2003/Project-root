@@ -9,8 +9,8 @@ import {
     MULTIFILE_STATES,
     UI_MESSAGES
 } from '@downloader/core';
-import { api } from '../../api';
-import { triggerDownload, isMobileDevice } from '../../utils';
+import { api } from '../../../api';
+import { triggerDownload, isMobileDevice } from '../../../utils';
 import {
     setMultifileSession,
     updateMultifileProgress,
@@ -22,8 +22,8 @@ import {
     getMultifileSession,
     saveRecentDownload,
     setState
-} from './state';
-import { showExpireModal } from '../../ui-components/modal/expire-modal.js';
+} from '../state';
+import { showExpireModal } from '../../../ui-components/modal/expire-modal.js';
 
 // Type definitions
 type StateChangeCallback = (data: {
@@ -120,7 +120,7 @@ async function handleDesktopFlow(encryptedUrls: string[]): Promise<void> {
     // Create orchestrator with callbacks
     orchestrator = createMultifileOrchestrator(
         {
-            service: multifileService,
+            service: multifileService as any,
             apiBaseUrl: window.location.origin,
             streamPath: '/api/v1/multifile/stream'
         },
@@ -133,13 +133,13 @@ async function handleDesktopFlow(encryptedUrls: string[]): Promise<void> {
                     expiresAt: session.expiresAt
                 });
             },
-            onProgressUpdate: (progress: number) => {
+            onProgressUpdate: ((progress: any) => {
                 // Update state.js with progress
-                updateMultifileProgress(progress);
-            },
+                updateMultifileProgress(progress as any);
+            }) as any,
             onStateChange: (data: StateChangeData) => {
                 // Update state.js
-                setMultifileState(data.state);
+                setMultifileState(data.state as any);
 
                 // Notify UI
                 notifyUI(data.state, {
@@ -241,10 +241,10 @@ export function getMultifileState(): {
 
     return {
         state: session.state,
-        message: UI_MESSAGES[session.state] || session.state,
-        canDownload: session.state === MULTIFILE_STATES.READY,
-        canRetry: session.state === MULTIFILE_STATES.ERROR || session.state === MULTIFILE_STATES.EXPIRED,
-        progress: session.progress
+        message: UI_MESSAGES[session.state as any] || session.state,
+        canDownload: (session.state as any) === MULTIFILE_STATES.READY,
+        canRetry: (session.state as any) === MULTIFILE_STATES.ERROR || (session.state as any) === MULTIFILE_STATES.EXPIRED,
+        progress: session.progress as any
     };
 }
 

@@ -34,12 +34,12 @@ const API_TIMEOUT = 30000;
 
 // 1. Create HTTP Client
 const httpClient = createHttpClient({
-  baseURL: API_BASE_URL,
+  baseUrl: API_BASE_URL,
   timeout: API_TIMEOUT,
 });
 
 const apiConfig = {
-  baseURL: API_BASE_URL,
+  baseUrl: API_BASE_URL,
   timeout: API_TIMEOUT,
 };
 

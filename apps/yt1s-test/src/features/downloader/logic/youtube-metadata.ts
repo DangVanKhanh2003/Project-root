@@ -4,8 +4,8 @@
  * Non-blocking background updates để improve UX without sacrificing performance
  */
 
-import { api } from '../../api';
-import { getState, updateVideoDetailMetadata } from './state';
+import { api } from '../../../api';
+import { getState, updateVideoDetailMetadata } from '../state';
 
 // Type definitions
 interface OEmbedData {

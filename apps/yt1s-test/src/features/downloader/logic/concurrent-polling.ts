@@ -5,9 +5,9 @@
  * with proper cleanup, rate limiting, and error isolation.
  */
 
-import { updateConversionTask, getConversionTask } from './state';
-import { api } from '../../api';
-import { getConversionModal } from '../../ui-components/modal/conversion-modal.js';
+import { updateConversionTask, getConversionTask } from '../state';
+import { api } from '../../../api';
+import { getConversionModal } from '../../../ui-components/modal/conversion-modal.js';
 
 // Type definitions
 interface PollingConfig {

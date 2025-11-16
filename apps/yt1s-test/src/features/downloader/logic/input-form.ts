@@ -3,7 +3,7 @@
  * Handles form submission and basic input logic
  */
 
-import { api } from '../../api';
+import { api } from '../../../api';
 import {
   getState,
   setState,
@@ -14,8 +14,8 @@ import {
   updateButtonVisibility,
   setResults,
   hideSuggestions,
-} from './state';
-import { renderResults, renderMessage, showLoading, clearContent } from './content-renderer';
+} from '../state';
+import { renderResults, renderMessage, showLoading, clearContent } from '../ui-render/content-renderer';
 
 // DOM Elements
 let form: HTMLFormElement | null = null;
@@ -134,8 +134,9 @@ async function handleExtractMedia(url: string): Promise<void> {
     if (result.ok && result.data) {
       // Success - show video info
       console.log('✅ Media extracted:', result.data);
-      const title = result.data.title || 'Video';
-      const meta = result.data.meta || {};
+      const data = result.data as any;
+      const title = data.title || 'Video';
+      const meta = data.meta || {};
       renderMessage(`✅ Video extracted: ${title}`, 'success');
     } else {
       // Error from API
@@ -165,7 +166,8 @@ async function handleSearch(keyword: string): Promise<void> {
 
     if (result.ok && result.data) {
       // Success - show search results
-      const videos = result.data.videos || [];
+      const data = result.data as any;
+      const videos = data.videos || [];
       console.log('✅ Found videos:', videos.length);
       setResults(videos);
 

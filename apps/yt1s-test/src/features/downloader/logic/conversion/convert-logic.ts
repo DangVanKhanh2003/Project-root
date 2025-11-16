@@ -1,10 +1,13 @@
-import { api } from '../../../api';
-import { getExpiryTime, getIOSStreamMaxSize } from '../../../environment';
-import { setConversionTask, updateConversionTask, getConversionTask, getState, setVideoDetail, setGalleryDetail, updateVideoDetailFormat } from '../state';
+import { api } from '../../../../api';
+import { getExpiryTime, getIOSStreamMaxSize } from '../../../../environment';
+import { setConversionTask, updateConversionTask, getConversionTask, getState, setVideoDetail, setGalleryDetail, updateVideoDetailFormat } from '../../state';
 import { getPollingManager } from '../concurrent-polling';
-import { isLinkExpired, DOWNLOAD_LINK_TTL } from '../../../utils/link-validator';
-import { getConversionModal } from '../../../ui-components/modal/conversion-modal';
-import { openLinkInNewTab, triggerDownload, isIOS, isWindows } from '../../../utils';
+import { isLinkExpired, DOWNLOAD_LINK_TTL } from '../../../../utils/link-validator';
+import { getConversionModal } from '../../../../ui-components/modal/conversion-modal';
+import { triggerDownload, isIOS, isWindows } from '../../../../utils';
+import { PollingProgressMapper } from '../../../../utils/polling-progress-mapper';
+import { downloadStreamToRAM } from '../../../../utils/download-stream';
+import { YOUTUBE_API_CONSTANTS } from '../../../../constants/youtube-constants';
 
 // Simple YouTube URL validator
 function isYouTubeUrl(url: string): boolean {
@@ -37,21 +40,21 @@ interface FormatData {
 }
 
 interface ConversionTask {
-    sourceId: string;
-    quality: string;
-    format: string;
-    state: 'Extracting' | 'Processing' | 'Polling' | 'Converting' | 'Success' | 'Failed' | 'Canceled';
-    statusText: string;
-    showProgressBar: boolean;
-    startedAt: number;
-    formatData: FormatData;
+    sourceId?: string;
+    quality?: string;
+    format?: string;
+    state?: 'Idle' | 'Extracting' | 'Processing' | 'Polling' | 'Converting' | 'Success' | 'Failed' | 'Canceled';
+    statusText?: string;
+    showProgressBar?: boolean;
+    startedAt?: number;
+    formatData?: FormatData;
     autoDownloadOnComplete?: boolean;
     completedAt?: number;
     downloadUrl?: string;
     error?: string;
     extractResponse?: ExtractResponse;
-    pollingPhase?: 'processing' | 'merging';
-    pollingData?: PollingData;
+    pollingPhase?: string;
+    pollingData?: any;
     warningMessage?: string | null;
     progressMapper?: PollingProgressMapper;
     ramBlob?: Blob;
@@ -83,6 +86,8 @@ interface VideoDetail {
 }
 
 interface GalleryDetail {
+    meta: any;
+    gallery: any[];
     completedAt?: number;
 }
 
@@ -269,7 +274,7 @@ async function setupExtractPhase({ formatId, formatData, videoTitle, videoUrl }:
     const conversionModal = getConversionModal();
 
     // Open modal if not already open
-    if (!conversionModal.isOpen()) {
+    if (!conversionModal.isOpen) {
         conversionModal.open({
             provider: 'youtube',
             formatId: formatId,
@@ -435,7 +440,9 @@ function handleIOSStreamRAM({ progressBar, formatId, url, filename, size }: Hand
         onProgress: async (onProgressCallback: (loaded: number, total: number) => void) => {
 
             try {
-                const blob = await downloadStreamToRAM(url, onProgressCallback);
+                const blob = await downloadStreamToRAM(url, {
+                    onProgress: ({ loaded, total }) => onProgressCallback(loaded, total)
+                });
 
 
                 updateConversionTask(formatId, {
@@ -574,14 +581,10 @@ async function startPollingFlow({ progressBar, formatId, extractResponse, format
         const format = formatData.format || formatData.type || 'mp4';
         const fileSizeMB = size ? Math.round(size / (1024 * 1024)) : 200;
 
-        // Initialize progress mapper
-        const progressMapper = new PollingProgressMapper(format, fileSizeMB);
-        const category = progressMapper.getSizeCategory();
-
         // Setup polling state in conversion task
         updateConversionTask(formatId, {
             state: 'Polling',
-            statusText: progressMapper.getStatusText('processing', 30),
+            statusText: PollingProgressMapper.getStatusText({ phase: 'processing' }, 30),
             showProgressBar: true,
             pollingPhase: 'processing',
             pollingData: {
@@ -590,8 +593,7 @@ async function startPollingFlow({ progressBar, formatId, extractResponse, format
                 status: 'in_progress',
                 mergedUrl: null
             },
-            warningMessage: warningMessage,
-            progressMapper: progressMapper // Store for updates
+            warningMessage: warningMessage
         });
 
         // Configure progress bar for polling mode
@@ -611,7 +613,7 @@ async function startPollingFlow({ progressBar, formatId, extractResponse, format
             throw new Error('No progressUrl in extract response - polling not supported for this request');
         }
 
-        await startRichProgressPolling(formatId, extractResponse.progressUrl, progressMapper);
+        await startRichProgressPolling(formatId, extractResponse.progressUrl);
 
     } catch (error: any) {
 
@@ -630,7 +632,7 @@ async function startPollingFlow({ progressBar, formatId, extractResponse, format
 /**
  * Start rich progress polling using progressUrl (preferred method)
  */
-async function startRichProgressPolling(formatId: string, progressUrl: string, progressMapper: PollingProgressMapper): Promise<void> {
+async function startRichProgressPolling(formatId: string, progressUrl: string): Promise<void> {
 
     const pollingManager = getPollingManager({
         maxConcurrent: 5,
@@ -644,7 +646,7 @@ async function startRichProgressPolling(formatId: string, progressUrl: string, p
         progressUrl: progressUrl,
         pollType: 'progress', // vs 'status' for simple polling
         onProgressUpdate: async (apiData: PollingData) => {
-            await handleProgressUpdate(formatId, apiData, progressMapper);
+            await handleProgressUpdate(formatId, apiData);
         }
     };
 
@@ -657,7 +659,7 @@ async function startRichProgressPolling(formatId: string, progressUrl: string, p
 /**
  * Handle progress update from rich progress polling
  */
-async function handleProgressUpdate(formatId: string, apiData: PollingData, progressMapper: PollingProgressMapper): Promise<void> {
+async function handleProgressUpdate(formatId: string, apiData: PollingData): Promise<void> {
     const { videoProgress, audioProgress, status, mergedUrl, filename } = apiData;
     const task = getConversionTask(formatId);
 
@@ -687,11 +689,11 @@ async function handleProgressUpdate(formatId: string, apiData: PollingData, prog
     if (isProcessingComplete && currentPhase === 'processing') {
         // Transition: Processing → Merging
 
-        progressMapper.startMergingPhase();
+        PollingProgressMapper.startMergingPhase();
 
         updateConversionTask(formatId, {
             pollingPhase: 'merging',
-            statusText: progressMapper.getStatusText('merging', progressMapper.lastProgress),
+            statusText: PollingProgressMapper.getStatusText({ phase: 'merging', status }, PollingProgressMapper.lastProgress),
             pollingData: { videoProgress, audioProgress, status, mergedUrl, filename }
         });
 
@@ -699,17 +701,17 @@ async function handleProgressUpdate(formatId: string, apiData: PollingData, prog
         const conversionModal = getConversionModal();
         const progressBarManager = conversionModal.getProgressBarManager();
         if (progressBarManager) {
-            const displayProgress = progressMapper.mapProgress('merging', apiData);
-            const statusText = progressMapper.getStatusText('merging', displayProgress);
+            const displayProgress = PollingProgressMapper.mapProgress({ phase: 'merging', ...apiData });
+            const statusText = PollingProgressMapper.getStatusText({ phase: 'merging', ...apiData }, displayProgress);
             progressBarManager.setPollingProgress(displayProgress, statusText);
         }
 
     } else {
         // Continue current phase (either still processing or merging in progress)
-        const displayProgress = progressMapper.mapProgress(currentPhase, apiData);
+        const displayProgress = PollingProgressMapper.mapProgress({ phase: currentPhase, ...apiData });
 
         updateConversionTask(formatId, {
-            statusText: progressMapper.getStatusText(currentPhase, displayProgress),
+            statusText: PollingProgressMapper.getStatusText({ phase: currentPhase, ...apiData }, displayProgress),
             pollingData: { videoProgress, audioProgress, status, mergedUrl, filename }
         });
 
@@ -717,10 +719,10 @@ async function handleProgressUpdate(formatId: string, apiData: PollingData, prog
         const conversionModal = getConversionModal();
         const progressBarManager = conversionModal.getProgressBarManager();
         if (progressBarManager) {
-            progressBarManager.updatePollingProgress(apiData, currentPhase);
-
             // Update visual progress with mapped percentage
-            const statusText = progressMapper.getStatusText(currentPhase, displayProgress);
+            const statusText = PollingProgressMapper.getStatusText({ phase: currentPhase, ...apiData }, displayProgress);
+
+            // Use setPollingProgress for polling updates
             progressBarManager.setPollingProgress(displayProgress, statusText);
         }
     }
@@ -916,7 +918,7 @@ export async function smartConvert(formatId: string): Promise<void> {
 
     } catch (error: any) {
         // Show error in modal if possible
-        if (conversionModal.isOpen()) {
+        if (conversionModal.isOpen) {
             conversionModal.transitionToError(error.message || 'Failed to start conversion');
         } else {
             // If modal not open, just log (UI should show error somewhere else)
@@ -956,7 +958,7 @@ async function getFormatDataFromState(formatId: string): Promise<FormatData | nu
         }
 
         // Process formats using format-processor
-        const { processFormatArray } = await import('../../../libs/downloader-lib-standalone/processors/format-processor.js');
+        const { processFormatArray } = await import('../../../../utils/format-utils');
         const processedFormats = processFormatArray(formatArray, category);
 
         // Find matching format by ID
@@ -972,8 +974,8 @@ async function getFormatDataFromState(formatId: string): Promise<FormatData | nu
             category: format.category,
             type: format.type,
             quality: format.quality,
-            size: format.size || null,
-            sizeText: format.sizeText,
+            size: typeof format.size === 'number' ? format.size : null,
+            sizeText: format.sizeText || format.size || '',
             url: format.url || null,
             vid: meta.vid || format.vid || null,
             key: format.key || null,
@@ -1045,8 +1047,9 @@ export async function handleYouTubeDownload(formatData: FormatData, autoDownload
 
             // Look up in constants using cleaned ID
             try {
-                const { findFormatById } = await import('../../../libs/downloader-lib-standalone/api/youtube/constants.js');
-                const fallbackFormat = findFormatById(cleanId, formatData.vid || '');
+                // TODO: Implement findFormatById in youtube-constants if needed
+                // For now, fallback format lookup is disabled
+                const fallbackFormat = null; // findFormatById(cleanId, formatData.vid || '');
                 if (fallbackFormat?.extractV2Options) {
                     extractOptions = fallbackFormat.extractV2Options;
                 } else {
@@ -1065,28 +1068,35 @@ export async function handleYouTubeDownload(formatData: FormatData, autoDownload
             extractOptions.signal = abortSignal;
         }
 
-        const result = await service.extractV2_stream(videoUrl, extractOptions);
+        // Use extractMedia from api (maps to media service)
+        const result = await api.extractMedia({
+            url: videoUrl,
+            ...extractOptions
+        });
 
 
         // ========================================
         // STEP 3: PROCESS EXTRACT RESPONSE & START DOWNLOAD PHASE
         // ========================================
 
-        if (result.ok && result.data && result.data.url) {
+        // Type assertion for extract response
+        const extractData = result.data as any;
+
+        if (result.ok && extractData && extractData.url) {
             // ========================================
             // STEP 3: ROUTE DOWNLOAD PHASE
             // ========================================
 
-            const routing = detectPlatformRouting(result.data, formatData);
+            const routing = detectPlatformRouting(extractData as ExtractResponse, formatData);
             routeDownloadPhase({
                 routing,
                 progressBar,
                 formatId,
-                extractResponse: result.data,
+                extractResponse: extractData as ExtractResponse,
                 formatData
             });
 
-            return { ok: true, data: result.data };
+            return { ok: true, data: extractData as ExtractResponse };
 
         } else {
             // Extract failed
@@ -1155,20 +1165,22 @@ export async function handleSocialDecode(formatData: FormatData): Promise<ApiRes
         });
 
         // Call decode URL service
-        const result = await service.decodeUrl(formatData.url);
+        const result = await api.decodeUrl({ encrypted_url: formatData.url });
 
+        // Type assertion for DecodeDto
+        const decodeData = result.data as { success: boolean; url?: string; error?: string; reason?: string };
 
-        if (result.ok && result.data && result.data.url) {
+        if (result.ok && decodeData && decodeData.url) {
             // Success - direct download available
             updateConversionTask(formatId, {
                 state: 'Success',
                 statusText: 'Ready ',
                 showProgressBar: false,
-                downloadUrl: result.data.url,
+                downloadUrl: decodeData.url,
                 completedAt: Date.now()
             });
 
-            return { ok: true, data: result.data };
+            return { ok: true, data: decodeData };
 
         } else {
             // Decode failed
@@ -1281,7 +1293,7 @@ export async function downloadConvertedFile(formatId: string): Promise<void> {
             // ✅ Open modal DIRECTLY in EXPIRED state
             // Prevents auto-retry and shows "Retry" button for user to click
             const conversionModal = getConversionModal();
-            if (!conversionModal.isOpen()) {
+            if (!conversionModal.isOpen) {
                 conversionModal.open({
                     provider: 'youtube',
                     formatId: formatId,
@@ -1302,7 +1314,7 @@ export async function downloadConvertedFile(formatId: string): Promise<void> {
     if (task.ramBlob && task.filename) {
 
         // Import triggerBlobDownload function
-        const { triggerBlobDownload } = await import('../../../utils');
+        const { triggerBlobDownload } = await import('../../../../utils');
 
         // Download from RAM blob
         triggerBlobDownload(task.ramBlob, task.filename);

@@ -5,11 +5,11 @@
  * Renders 2-column layout với video info và format options.
  */
 
-import { mapFormat, extractFormat, buildQualityBadge, processFormatArray } from '../../utils/format-utils';
-import { setActiveTab, updateTaskState, getTaskState, getState, getConversionTask } from './state';
+import { mapFormat, extractFormat, buildQualityBadge, processFormatArray } from '../../../utils/format-utils';
+import { setActiveTab, updateTaskState, getTaskState, getState, getConversionTask } from '../state';
 
 // Import utils
-import { initExpandableText, triggerDownload } from '../../utils.js';
+import { initExpandableText, triggerDownload } from '../../../utils.js';
 
 
 // CSS imports removed - all CSS now bundled in main.js
@@ -168,7 +168,7 @@ export function renderDownloadOptions(state: AppState): string {
                 <!-- Right Column: Download Options -->
                 <div class="video-details">
                     ${renderTabNavigation(activeTab, hasVideo, hasAudio)}
-                    ${renderFormatPanels(videoFormats, audioFormats, activeTab, downloadTasks)}
+                    ${renderFormatPanels(videoFormats as any, audioFormats as any, activeTab, downloadTasks)}
                 </div>
             </div>
         </div>
@@ -427,7 +427,7 @@ function renderConversionButton(format: ProcessedFormat, downloadTasks: Download
     const formatType = (format.type || 'Unknown').toUpperCase();
     const qualityBadge = buildQualityBadge(format, format.category) || '';
 
-    const buttonState = getButtonStateForTask(taskState, conversionTask);
+    const buttonState = getButtonStateForTask(taskState, conversionTask as any);
 
     return `
         <div class="quality-item" data-format-id="${escapeHtml(formatId)}" data-category="${escapeHtml(format.category)}">
@@ -765,7 +765,7 @@ async function handleDownloadClick(event: MouseEvent): Promise<void> {
             }
 
             // Direct download - trigger immediately
-            const filename = formatData.filename || `download.${formatData.format || 'mp4'}`;
+            const filename = formatData.filename || `download.${formatData.type || 'mp4'}`;
             triggerDownload(formatData.url, filename, true);
             return;
         }
@@ -775,7 +775,7 @@ async function handleDownloadClick(event: MouseEvent): Promise<void> {
         // - Stream status → Extract fresh
         // - Static + Valid → Open modal SUCCESS (ready to download)
         // - Static + Expired → Extract fresh
-        const { smartConvert } = await import('./conversion/convert-logic.js');
+        const { smartConvert } = await import('../logic/conversion/convert-logic.js');
         await smartConvert(formatId);
 
     } catch (error) {
@@ -829,11 +829,11 @@ function extractFormatDataFromState(formatId: string): FormatData | null {
         // Build complete format data for convert queue
         const formatData: FormatData = {
             id: format.id,
-            category: format.category,
+            category: format.category as 'video' | 'audio',
             type: format.type,
             quality: format.quality,
-            size: format.size || null,       // File size (for progress display)
-            sizeText: format.sizeText,
+            size: (typeof format.size === 'number' ? format.size : null),       // File size (for progress display)
+            sizeText: format.sizeText || (typeof format.size === 'string' ? format.size : ''),
 
             // Download URL (for direct download)
             url: format.url || null,     // Direct download URL or encrypted URL

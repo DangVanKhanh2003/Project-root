@@ -42,7 +42,7 @@ export {
 // Verified Services (MAIN API FOR SITE PROJECTS)
 // ========================================
 export {
-  VerifiedServices,
+  type VerifiedServices,
   createVerifiedServices,
   type CoreServices,
 } from './verified-services';
