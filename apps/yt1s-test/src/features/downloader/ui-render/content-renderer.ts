@@ -7,7 +7,7 @@ import { createSearchResultCard, type VideoData } from '../../../ui-components/s
 import { createSkeletonCard } from '../../../ui-components/search-result-card/skeleton-card';
 import { renderDownloadOptions } from './download-options-renderer';
 import { setInputValue } from './ui-renderer';
-import { setViewingItem } from '../state';
+import { setViewingItem, setIsFromListItemClick, getState } from '../state';
 
 let contentArea: HTMLElement | null = null;
 let searchResultsContainer: HTMLElement | null = null;
@@ -34,8 +34,15 @@ function handleSearchResultClick(event: MouseEvent): void {
 
   console.log('🎬 Search result card clicked:', { videoId, videoTitle });
 
+  // Set flag to indicate this is from list item click (DON'T clear search results)
+  setIsFromListItemClick(true);
+
   // Save viewing item to state (for context)
   setViewingItem({ id: videoId, title: videoTitle || '' });
+
+  // Show detail skeleton immediately (before form submission)
+  showLoading('detail');
+  console.log('💀 Detail skeleton shown for clicked card');
 
   // Construct YouTube URL
   const youtubeUrl = `https://www.youtube.com/watch?v=${videoId}`;
@@ -59,7 +66,7 @@ function handleSearchResultClick(event: MouseEvent): void {
     console.log('🔄 Input event dispatched - inputType should update to "url"');
   }
 
-  // Submit form to extract video
+  // Submit form to extract video (skeleton already shown)
   console.log('📝 Submitting form with URL:', youtubeUrl);
   form.requestSubmit();
 }
@@ -122,9 +129,10 @@ export function renderResults(results: VideoData[]): void {
     console.log('📍 Search section display:', searchResultsSection.style.display);
   }
 
-  // Clear content area (used for messages/video detail)
+  // Hide content area (used for URL results/video detail)
   if (contentArea) {
     contentArea.innerHTML = '';
+    contentArea.style.display = 'none';
   }
 
   console.log('✅ Search results rendered successfully');
@@ -134,8 +142,20 @@ export function renderResults(results: VideoData[]): void {
 
 /**
  * Hide search results section
+ * IMPORTANT: Only hide if NOT from list item click (preserve results when clicking card)
  */
 function hideSearchResultsSection(): void {
+  const state = getState();
+
+  // If click came from search result card, DON'T hide/clear results
+  if (state.isFromListItemClick) {
+    console.log('🔄 Keeping search results visible (clicked from list)');
+    // DON'T reset flag here - will be reset after full render completes
+    return;
+  }
+
+  // Normal hide behavior (direct URL submit)
+  console.log('🗑️ Hiding search results (direct URL submit)');
   if (searchResultsSection) {
     searchResultsSection.style.display = 'none';
   }
@@ -170,9 +190,10 @@ export function showLoading(type: 'list' | 'detail' = 'list', append: boolean = 
         searchResultsSection.style.display = 'block'; // Show section
       }
 
-      // Clear content area
+      // Hide content area (for URL results)
       if (contentArea) {
         contentArea.innerHTML = '';
+        contentArea.style.display = 'none';
       }
       break;
     }
@@ -189,6 +210,9 @@ export function showLoading(type: 'list' | 'detail' = 'list', append: boolean = 
         contentArea.innerHTML = content;
       }
       contentArea.classList.add('showing-loading');
+
+      // Show content area (may be hidden from search results)
+      contentArea.style.display = 'block';
 
       // Hide search section
       hideSearchResultsSection();
@@ -251,10 +275,10 @@ function renderDetailSkeleton(): string {
         <div class="video-details">
           <!-- Format Tabs -->
           <div class="format-tabs" role="tablist">
-            <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
+            <div class="format-tab">
               <div class="skeleton-title" style="width: 60px; height: 18px;"></div>
             </div>
-            <div style="flex: 1; display: flex; align-items: center; justify-content: center;">
+            <div class="format-tab">
               <div class="skeleton-title" style="width: 60px; height: 18px;"></div>
             </div>
           </div>

@@ -12,6 +12,6 @@
   },
   "scripts": {
     "build": "tsc --build",
-    "clean": "rm -rf dist tsconfig.tsbuildinfo"
+    "clean": "rm -rf dist .temp tsconfig.tsbuildinfo"
   }
 }

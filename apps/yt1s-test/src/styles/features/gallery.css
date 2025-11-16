@@ -57,17 +57,20 @@
     align-items: center;
     justify-content: space-between;
 }
-.gallery-container.mobile-multifile-disabled .gallery-bulk-controls,
-.gallery-container.mobile-multifile-disabled .bulk-status-message {
-    display: none !important;
-}
-.gallery-container.mobile-multifile-disabled .item-selection {
-    display: none !important;
+/* Mobile multifile disabled: Only hide on actual mobile devices (< 600px) */
+@media (max-width: 599px) {
+    .gallery-container.mobile-multifile-disabled .gallery-bulk-controls,
+    .gallery-container.mobile-multifile-disabled .bulk-status-message {
+        display: none !important;
+    }
+    .gallery-container.mobile-multifile-disabled .item-selection {
+        display: none !important;
+    }
 }
 
 /* Bulk Controls - Hidden on Mobile/Tablet by Default (Mobile-First) */
 .gallery-bulk-controls {
-    display: none; /* Hidden on mobile and tablet */
+    display: flex; /* Hidden on mobile and tablet */
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
@@ -499,6 +502,7 @@
     }
 
     .gallery-bulk-controls {
+        display: none !important;
         padding: var(--md-sys-spacing-1) var(--md-sys-spacing-2);
         gap: var(--md-sys-spacing-1);
         min-height: 28px;
@@ -562,6 +566,7 @@
 
     .gallery-bulk-controls {
         min-height: 30px;
+        display: none !important;
     }
 
     .bulk-selection {
@@ -611,6 +616,7 @@
     }
 
     .gallery-bulk-controls {
+        display: flex !important; /* Show bulk controls on tablet and up */
         padding: var(--md-sys-spacing-2) var(--md-sys-spacing-4);
         gap: var(--md-sys-spacing-2);
         min-height: 32px;
@@ -679,7 +685,7 @@
     }
 
     .gallery-bulk-controls {
-        display: flex; /* Show bulk controls on desktop */
+        display: flex !important; /* Show bulk controls on desktop */
         padding: var(--md-sys-spacing-3) var(--md-sys-spacing-4);
         gap: var(--md-sys-spacing-3);
         min-height: 36px;
@@ -754,7 +760,7 @@
     }
 
     .gallery-bulk-controls {
-        display: flex; /* Show bulk controls on wide desktop */
+        display: flex !important; /* Show bulk controls on wide desktop */
         margin-bottom: var(--md-sys-spacing-6);
         padding: var(--md-sys-spacing-3) var(--md-sys-spacing-5);
         gap: var(--md-sys-spacing-4);

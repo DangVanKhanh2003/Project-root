@@ -3,7 +3,7 @@
  * Handles form submission and basic input logic
  */
 
-import { api } from '../../../api';
+import { api, coreServices } from '../../../api';
 import {
   getState,
   setState,
@@ -20,6 +20,9 @@ import {
   setHighlightedIndex,
   getDisplaySuggestions,
   setSubmitting,
+  setIsFromListItemClick,
+  setVideoDetail,
+  setGalleryDetail,
 } from '../state';
 import { renderResults, renderMessage, renderVideoDownloadOptions, showLoading, clearContent } from '../ui-render/content-renderer';
 import { getInputValue as getInputValueFromRenderer, setInputValue as setInputValueInRenderer } from '../ui-render/ui-renderer';
@@ -127,6 +130,10 @@ let clearBtn: HTMLButtonElement | null = null;
 let userHasInteracted = false;
 const USER_INTERACTION_EVENTS = ['mousedown', 'keydown', 'touchstart'];
 
+// Mobile click-to-scroll throttling
+let lastClickTime = 0;
+const CLICK_THROTTLE_MS = 300;
+
 /**
  * Scroll to content area after form submission
  * Implements smart desktop/mobile logic like project cũ
@@ -180,6 +187,29 @@ function scrollToContentArea(searchType: 'url' | 'keyword'): void {
 }
 
 /**
+ * Handle mobile input click to trigger scroll behavior
+ * Matches old project behavior: scroll to input when clicked on mobile
+ */
+function handleInputClick(event: MouseEvent): void {
+  // Only apply on mobile viewports
+  if (window.innerWidth > 768) {
+    return;
+  }
+
+  // Throttle clicks to prevent scroll spam
+  const now = Date.now();
+  if (now - lastClickTime < CLICK_THROTTLE_MS) {
+    return;
+  }
+  lastClickTime = now;
+
+  console.log('📱 Mobile input clicked - scrolling to input');
+
+  // Scroll to input field
+  scrollToContentArea('keyword');
+}
+
+/**
  * Initialize input form
  */
 export function initInputForm(): boolean {
@@ -198,6 +228,7 @@ export function initInputForm(): boolean {
   form.addEventListener('submit', handleSubmit);
   input.addEventListener('input', handleInput);
   input.addEventListener('keydown', handleKeyDown); // Keyboard navigation
+  input.addEventListener('click', handleInputClick); // Mobile click-to-scroll
 
   // Action button handles both Paste and Clear based on data-action attribute
   if (pasteBtn) {
@@ -609,6 +640,17 @@ async function handleExtractMedia(url: string): Promise<void> {
       console.log('📺 YouTube URL detected, using fake data workflow');
       console.log('🎬 Video ID:', videoId);
 
+      // Fire-and-forget: Add video to queue API (analytics/preloading notification)
+      coreServices.queue.addVideoToQueue(videoId).then((success: boolean) => {
+        if (success) {
+          console.log('✅ Video added to queue:', videoId);
+        } else {
+          console.log('⚠️ Failed to add video to queue (silent)');
+        }
+      }).catch((error: Error) => {
+        console.log('⚠️ Queue API error (silent):', error);
+      });
+
       // Wait 300ms for skeleton animation (like old project)
       setTimeout(async () => {
         // 1. Generate fake data with pre-defined quality options
@@ -635,6 +677,13 @@ async function handleExtractMedia(url: string): Promise<void> {
         } else {
           console.warn('⚠️ Could not fetch real metadata, keeping fake data');
         }
+
+        // Reset isFromListItemClick flag after YouTube workflow completes
+        const state = getState();
+        if (state.isFromListItemClick) {
+          setIsFromListItemClick(false);
+          console.log('✅ Reset isFromListItemClick flag (YouTube workflow complete)');
+        }
       }, 300); // 300ms delay for skeleton animation
 
     } else {
@@ -651,10 +700,31 @@ async function handleExtractMedia(url: string): Promise<void> {
       if (result.ok && result.data) {
         console.log('✅ Media extracted:', result.data);
         const data = result.data as any;
-        const title = data.title || 'Video';
 
-        // TODO: Parse direct download links and render download options UI
-        renderMessage(`✅ Video extracted: ${title}`, 'success');
+        // Add original URL to meta for retry functionality
+        if (data.meta) {
+          data.meta.originalUrl = url;
+        }
+
+        // Check if this is gallery content or single video
+        if (data.gallery && Array.isArray(data.gallery) && data.gallery.length > 0) {
+          console.log('🖼️ Gallery content detected:', data.gallery.length, 'items');
+          setGalleryDetail(data);
+
+          // Dynamic import and render gallery
+          import('../ui-render/gallery-renderer').then(({ renderGallery }) => {
+            const contentArea = document.getElementById('content-area');
+            if (contentArea) {
+              renderGallery(data, contentArea);
+              console.log('✅ Gallery rendered');
+            }
+          });
+        } else {
+          console.log('🎬 Single video content detected');
+          setVideoDetail(data);
+          renderVideoDownloadOptions(data, 'video');
+          console.log('✅ Video download options rendered');
+        }
       } else {
         const errorMsg = result.message || 'Failed to extract media';
         setError(errorMsg);

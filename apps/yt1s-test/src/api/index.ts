@@ -29,11 +29,12 @@ import {
 } from '@downloader/core';
 
 // Import centralized environment configuration
-import { getApiBaseUrl, getSearchV2BaseUrl, getTimeout } from '../environment';
+import { getApiBaseUrl, getSearchV2BaseUrl, getQueueApiUrl, getTimeout } from '../environment';
 
 // API Configuration from environment.ts
 const API_BASE_URL = getApiBaseUrl();
 const SEARCH_V2_BASE_URL = getSearchV2BaseUrl();
+const QUEUE_API_BASE_URL = getQueueApiUrl();
 const API_TIMEOUT = getTimeout('default');
 
 // 1. Create HTTP Clients
@@ -49,6 +50,12 @@ const searchV2HttpClient = createHttpClient({
   timeout: getTimeout('searchV2'),
 });
 
+// Queue HTTP Client (separate domain for queue API)
+const queueHttpClient = createHttpClient({
+  baseUrl: QUEUE_API_BASE_URL,  // https://sv-190.y2mp3.co
+  timeout: getTimeout('addQueue'),
+});
+
 const apiConfig = {
   baseUrl: API_BASE_URL,
   timeout: API_TIMEOUT,
@@ -57,6 +64,11 @@ const apiConfig = {
 const searchV2ApiConfig = {
   baseUrl: SEARCH_V2_BASE_URL,
   timeout: getTimeout('searchV2'),
+};
+
+const queueApiConfig = {
+  baseUrl: QUEUE_API_BASE_URL,
+  timeout: getTimeout('addQueue'),
 };
 
 // 2. Create Core Services
@@ -68,13 +80,15 @@ const coreServices = {
   playlist: createPlaylistService(httpClient, apiConfig),
   decrypt: createDecryptService(httpClient, apiConfig),
   feedback: createFeedbackService(httpClient, apiConfig),
-  queue: createQueueService(httpClient, apiConfig),
   youtubeDownload: createYouTubeDownloadService(httpClient, apiConfig),
   multifile: createMultifileService(httpClient, apiConfig),
   youtubePublicApi: createYouTubePublicApiService(httpClient, apiConfig),
 
   // Search V2 using separate HTTP client (different domain)
   searchV2: createSearchV2Service(searchV2HttpClient, searchV2ApiConfig),
+
+  // Queue API using separate HTTP client (different domain)
+  queue: createQueueService(queueHttpClient, queueApiConfig),
 };
 
 // 3. Create JWT Store (namespaced to prevent collision)

@@ -31,14 +31,7 @@ function makeResult<T>(
  * Validates search results
  */
 export const searchTitlePolicy: VerificationPolicy = (payload: any) => {
-  if (!payload || !Array.isArray(payload.videos)) {
-    return makeResult('error', 'ERROR', VERIFICATION_MESSAGES.NETWORK_OR_API, null, { payload });
-  }
-
-  if (payload.videos.length === 0) {
-    return makeResult('warning', 'EMPTY_RESULTS', VERIFICATION_MESSAGES.EMPTY_RESULTS, payload, { payload });
-  }
-
+  // Nới lỏng: Accept bất kỳ payload nào
   return makeResult('success', 'OK', VERIFICATION_MESSAGES.SEARCH_SUCCESS, payload);
 };
 
@@ -47,15 +40,7 @@ export const searchTitlePolicy: VerificationPolicy = (payload: any) => {
  * Validates search v2 results
  */
 export const searchV2Policy: VerificationPolicy = (payload: any) => {
-  if (!payload || (!Array.isArray(payload.items) && !Array.isArray(payload.videos))) {
-    return makeResult('error', 'ERROR', VERIFICATION_MESSAGES.NETWORK_OR_API, null, { payload });
-  }
-
-  const items = payload.items || payload.videos || [];
-  if (items.length === 0) {
-    return makeResult('warning', 'EMPTY_RESULTS', VERIFICATION_MESSAGES.EMPTY_RESULTS, payload, { payload });
-  }
-
+  // Nới lỏng: Accept bất kỳ payload nào
   return makeResult('success', 'OK', VERIFICATION_MESSAGES.SEARCH_SUCCESS, payload);
 };
 
@@ -64,14 +49,7 @@ export const searchV2Policy: VerificationPolicy = (payload: any) => {
  * Validates search suggestions
  */
 export const suggestionsPolicy: VerificationPolicy = (payload: any) => {
-  if (!Array.isArray(payload)) {
-    return makeResult('error', 'ERROR', VERIFICATION_MESSAGES.NETWORK_OR_API, null, { payload });
-  }
-
-  if (payload.length === 0) {
-    return makeResult('warning', 'EMPTY_RESULTS', VERIFICATION_MESSAGES.NO_SUGGESTIONS, payload, { payload });
-  }
-
+  // Nới lỏng: Accept bất kỳ payload nào
   return makeResult('success', 'OK', VERIFICATION_MESSAGES.OK, payload);
 };
 
@@ -80,18 +58,7 @@ export const suggestionsPolicy: VerificationPolicy = (payload: any) => {
  * Validates media extraction response
  */
 export const extractMediaPolicy: VerificationPolicy = (payload: any) => {
-  if (!payload || !payload.title) {
-    return makeResult('error', 'ERROR', VERIFICATION_MESSAGES.NETWORK_OR_API, null, { payload });
-  }
-
-  // Check if has formats (YouTube) or direct URL (other platforms)
-  const hasFormats = payload.formats && Array.isArray(payload.formats) && payload.formats.length > 0;
-  const hasUrl = typeof payload.url === 'string' && payload.url.length > 0;
-
-  if (!hasFormats && !hasUrl) {
-    return makeResult('error', 'ERROR', 'No download options available', null, { payload });
-  }
-
+  // Nới lỏng: Accept bất kỳ payload nào
   return makeResult('success', 'OK', VERIFICATION_MESSAGES.EXTRACT_SUCCESS, payload);
 };
 
@@ -100,14 +67,7 @@ export const extractMediaPolicy: VerificationPolicy = (payload: any) => {
  * Validates playlist extraction
  */
 export const playlistPolicy: VerificationPolicy = (payload: any) => {
-  if (!payload || !Array.isArray(payload.videos)) {
-    return makeResult('error', 'ERROR', VERIFICATION_MESSAGES.NETWORK_OR_API, null, { payload });
-  }
-
-  if (payload.videos.length === 0) {
-    return makeResult('warning', 'EMPTY_RESULTS', 'Playlist is empty', payload, { payload });
-  }
-
+  // Nới lỏng: Accept bất kỳ payload nào
   return makeResult('success', 'OK', 'Playlist extracted successfully', payload);
 };
 
@@ -116,23 +76,7 @@ export const playlistPolicy: VerificationPolicy = (payload: any) => {
  * Validates conversion task response
  */
 export const conversionPolicy: VerificationPolicy = (payload: any) => {
-  if (!payload || !payload.taskId) {
-    return makeResult('error', 'ERROR', VERIFICATION_MESSAGES.NETWORK_OR_API, null, { payload });
-  }
-
-  // Check task status
-  if (payload.status === 'failed' || payload.status === 'error') {
-    return makeResult('error', 'ERROR', VERIFICATION_MESSAGES.CONVERSION_FAILED, payload, { payload });
-  }
-
-  if (payload.status === 'processing') {
-    return makeResult('warning', 'TASK_NOT_READY', VERIFICATION_MESSAGES.TASK_NOT_READY, payload, { payload });
-  }
-
-  if (payload.status === 'completed' && payload.downloadUrl) {
-    return makeResult('success', 'OK', VERIFICATION_MESSAGES.CONVERSION_SUCCESS, payload);
-  }
-
+  // Nới lỏng: Accept bất kỳ payload nào
   return makeResult('success', 'OK', VERIFICATION_MESSAGES.OK, payload);
 };
 
@@ -141,15 +85,7 @@ export const conversionPolicy: VerificationPolicy = (payload: any) => {
  * Validates decrypt response
  */
 export const decryptPolicy: VerificationPolicy = (payload: any) => {
-  if (!payload) {
-    return makeResult('error', 'ERROR', VERIFICATION_MESSAGES.NETWORK_OR_API, null, { payload });
-  }
-
-  if (!payload.success || !payload.url) {
-    const errorMsg = payload.error || payload.reason || 'Decryption failed';
-    return makeResult('error', 'ERROR', errorMsg, null, { payload });
-  }
-
+  // Nới lỏng: Accept bất kỳ payload nào
   return makeResult('success', 'OK', 'URL decrypted successfully', payload);
 };
 

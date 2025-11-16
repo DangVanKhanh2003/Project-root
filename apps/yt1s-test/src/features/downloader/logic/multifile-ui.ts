@@ -11,6 +11,7 @@ import {
 } from '@downloader/core';
 import { api } from '../../../api';
 import { triggerDownload, isMobileDevice } from '../../../utils';
+import { getApiBaseUrl } from '../../../environment';
 import {
     setMultifileSession,
     updateMultifileProgress,
@@ -76,7 +77,14 @@ let uiCallback: StateChangeCallback | null = null; // Callback to update gallery
 // Create multifile service wrapper from api
 const multifileService = {
     startMultifileSession: async (urls: string[]) => {
-        return await api.startMultifileSession({ urls });
+        console.log('🔍 [Multifile] Calling API with URLs:', urls);
+        const result = await api.startMultifileSession({ urls });
+        console.log('🔍 [Multifile] API Full Response:', result);
+        console.log('🔍 [Multifile] Response.ok:', result.ok);
+        console.log('🔍 [Multifile] Response.data:', result.data);
+        console.log('🔍 [Multifile] Session ID:', result.data?.session_id);
+        console.log('🔍 [Multifile] SessionId:', result.data?.sessionId);
+        return result;
     }
 };
 
@@ -121,11 +129,15 @@ async function handleDesktopFlow(encryptedUrls: string[]): Promise<void> {
     orchestrator = createMultifileOrchestrator(
         {
             service: multifileService as any,
-            apiBaseUrl: window.location.origin,
+            apiBaseUrl: getApiBaseUrl().replace(/\/api\/v1$/, ''), // Remove /api/v1 suffix
             streamPath: '/api/v1/multifile/stream'
         },
         {
             onSessionUpdate: (session: SessionData) => {
+                console.log('🔍 [Multifile] onSessionUpdate received:', session);
+                console.log('🔍 [Multifile] SessionId from callback:', session.sessionId);
+                console.log('🔍 [Multifile] StreamUrl from callback:', session.streamUrl);
+
                 // Update state.js with session data
                 setMultifileSession({
                     sessionId: session.sessionId,

@@ -23,6 +23,7 @@ interface TimeoutConfig {
     decode: number;
     multifileStart: number;
     streamDownload: number;
+    addQueue: number;
 }
 
 interface ExpiryConfig {
@@ -131,6 +132,7 @@ const environment: Environment = {
             decode: 60000, // 60 seconds for URL decryption
             multifileStart: 15000, // 15 seconds for multifile start request
             streamDownload: 30 * 60 * 1000, // 30 minutes for stream downloads to RAM
+            addQueue: 5000, // 5 seconds for queue API (fire-and-forget)
         },
 
         // Data expiry times (in milliseconds)
