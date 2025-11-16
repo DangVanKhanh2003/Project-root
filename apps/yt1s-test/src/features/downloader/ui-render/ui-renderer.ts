@@ -82,12 +82,25 @@ function updateLoadingState(isLoading: boolean): void {
 
 /**
  * Update paste/clear button visibility
+ * Note: In new design, we have a single action button that toggles between Paste/Clear
  */
 function updateButtonVisibility(showPaste: boolean, showClear: boolean): void {
+  // Update the single action button to show either Paste or Clear
   if (elements.pasteBtn) {
-    elements.pasteBtn.style.display = showPaste ? 'block' : 'none';
+    if (showClear) {
+      // Has content → show Clear
+      elements.pasteBtn.innerHTML = 'Clear';
+      elements.pasteBtn.dataset.action = 'clear';
+      console.log('🔘 Button changed to: Clear');
+    } else {
+      // No content → show Paste
+      elements.pasteBtn.innerHTML = ' Paste';
+      elements.pasteBtn.dataset.action = 'paste';
+      console.log('🔘 Button changed to: Paste');
+    }
   }
 
+  // clearBtn is not used (single button design)
   if (elements.clearBtn) {
     elements.clearBtn.style.display = showClear ? 'block' : 'none';
   }

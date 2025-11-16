@@ -15,6 +15,7 @@ interface TimeoutConfig {
     default: number;
     extract: number;
     searchTitle: number;
+    searchV2: number;
     playlist: number;
     convert: number;
     checkTask: number;
@@ -122,6 +123,7 @@ const environment: Environment = {
             default: 15000,
             extract: 20000,
             searchTitle: 20000,
+            searchV2: 20000, // 20 seconds for Search V2 API
             playlist: 25000,
             convert: 20000,
             checkTask: 30000,

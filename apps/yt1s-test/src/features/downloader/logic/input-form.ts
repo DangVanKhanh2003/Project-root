@@ -21,7 +21,7 @@ import {
   getDisplaySuggestions,
   setSubmitting,
 } from '../state';
-import { renderResults, renderMessage, showLoading, clearContent } from '../ui-render/content-renderer';
+import { renderResults, renderMessage, renderVideoDownloadOptions, showLoading, clearContent } from '../ui-render/content-renderer';
 import { getInputValue as getInputValueFromRenderer, setInputValue as setInputValueInRenderer } from '../ui-render/ui-renderer';
 import type { VideoData } from '../../../ui-components/search-result-card/search-result-card';
 
@@ -128,6 +128,58 @@ let userHasInteracted = false;
 const USER_INTERACTION_EVENTS = ['mousedown', 'keydown', 'touchstart'];
 
 /**
+ * Scroll to content area after form submission
+ * Implements smart desktop/mobile logic like project cũ
+ */
+function scrollToContentArea(searchType: 'url' | 'keyword'): void {
+  // Check for reduced motion preference
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const behavior = prefersReducedMotion ? 'auto' : 'smooth';
+
+  // Determine scroll target based on search type and viewport
+  let targetElement: HTMLElement | null = null;
+
+  if (searchType === 'keyword') {
+    // Keyword search → scroll to input (mobile only)
+    if (window.innerWidth <= 768) {
+      targetElement = document.querySelector('#videoUrl');
+    } else {
+      // Desktop: don't scroll for keyword searches
+      return;
+    }
+  } else {
+    // URL search → scroll to content area
+    if (window.innerWidth > 768) {
+      // Desktop: scroll to input container
+      targetElement = document.querySelector('.input-container') ||
+                     document.querySelector('#videoUrl') ||
+                     document.querySelector('#content-area');
+    } else {
+      // Mobile: scroll to content area
+      targetElement = document.querySelector('#content-area');
+    }
+  }
+
+  if (targetElement) {
+    console.log(`📜 Scrolling to ${searchType} content area`);
+
+    // Calculate offset (navbar height + padding)
+    const navbar = document.querySelector('.navbar') as HTMLElement;
+    const navbarHeight = navbar ? navbar.offsetHeight : 60;
+    const offset = navbarHeight + 20; // 20px padding
+
+    // Get target position
+    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - offset;
+
+    // Smooth scroll
+    window.scrollTo({
+      top: targetPosition,
+      behavior: behavior as ScrollBehavior
+    });
+  }
+}
+
+/**
  * Initialize input form
  */
 export function initInputForm(): boolean {
@@ -147,8 +199,9 @@ export function initInputForm(): boolean {
   input.addEventListener('input', handleInput);
   input.addEventListener('keydown', handleKeyDown); // Keyboard navigation
 
+  // Action button handles both Paste and Clear based on data-action attribute
   if (pasteBtn) {
-    pasteBtn.addEventListener('click', handlePaste);
+    pasteBtn.addEventListener('click', handleActionButton);
   }
 
   if (clearBtn) {
@@ -179,6 +232,8 @@ function handleInput(event: Event): void {
 
   const value = input.value.trim();
 
+  console.log('⌨️ handleInput - value:', value, 'length:', value.length);
+
   // Clear error when user types
   clearError();
 
@@ -186,7 +241,9 @@ function handleInput(event: Event): void {
   setQuery(value);
 
   // Update button visibility
-  updateButtonVisibility(value.length > 0);
+  const hasContent = value.length > 0;
+  console.log('🔘 Updating button visibility - hasContent:', hasContent);
+  updateButtonVisibility(hasContent);
 
   // Detect input type (simple version)
   const isUrl = value.startsWith('http://') || value.startsWith('https://');
@@ -496,10 +553,22 @@ async function handleSubmit(event: Event): Promise<void> {
     if (state.inputType === 'url') {
       // Show detail skeleton for video extraction
       showLoading('detail');
+
+      // Scroll to content area after skeleton renders (50ms delay)
+      setTimeout(() => {
+        scrollToContentArea('url');
+      }, 50);
+
       await handleExtractMedia(value);
     } else {
       // Show list skeleton (12 cards) for keyword search
       showLoading('list');
+
+      // Scroll to content area after skeleton renders (50ms delay)
+      setTimeout(() => {
+        scrollToContentArea('keyword');
+      }, 50);
+
       await handleSearch(value);
     }
   } catch (error) {
@@ -546,23 +615,8 @@ async function handleExtractMedia(url: string): Promise<void> {
         const fakeData = generateFakeYouTubeData(videoId, url);
         console.log('✨ Generated fake data:', fakeData);
 
-        // 2. Render fake data (temporary: show as formatted message)
-        // TODO: Replace with actual download options UI component
-        const fakeDataMessage = `
-📺 <strong>YouTube Video Detected</strong><br><br>
-
-<strong>Video ID:</strong> ${videoId}<br>
-<strong>Thumbnail:</strong> <a href="${fakeData.meta.thumbnail}" target="_blank">View</a><br>
-<strong>Status:</strong> ${fakeData.meta.title}<br><br>
-
-<strong>Available Formats:</strong><br>
-<strong>Video:</strong> ${fakeData.formats.video.map(f => f.quality).join(', ')}<br>
-<strong>Audio:</strong> ${fakeData.formats.audio.map(f => f.quality).join(', ')}<br><br>
-
-<em>ℹ️ Fetching real metadata in background...</em>
-        `.trim();
-
-        renderMessage(fakeDataMessage, 'success');
+        // 2. Render fake data with proper download options UI
+        renderVideoDownloadOptions(fakeData, 'video');
 
         // 3. Background: Enhance metadata using oEmbed API (non-blocking)
         console.log('🔄 Fetching real metadata from oEmbed...');
@@ -571,22 +625,13 @@ async function handleExtractMedia(url: string): Promise<void> {
         if (metadata) {
           console.log('✅ Real metadata fetched:', metadata);
 
-          // Update UI with real title & author
-          const updatedMessage = `
-📺 <strong>${metadata.title}</strong><br>
-<em>by ${metadata.author}</em><br><br>
+          // Update fake data with real title & author
+          fakeData.meta.title = metadata.title;
+          fakeData.meta.author = metadata.author;
+          fakeData.meta.isFakeData = false; // Mark as enhanced with real data
 
-<strong>Video ID:</strong> ${videoId}<br>
-<strong>Thumbnail:</strong> <a href="${fakeData.meta.thumbnail}" target="_blank">View</a><br><br>
-
-<strong>Available Formats:</strong><br>
-<strong>Video:</strong> ${fakeData.formats.video.map(f => f.quality).join(', ')}<br>
-<strong>Audio:</strong> ${fakeData.formats.audio.map(f => f.quality).join(', ')}<br><br>
-
-<em>✨ Click format to download</em>
-          `.trim();
-
-          renderMessage(updatedMessage, 'success');
+          // Re-render with updated metadata
+          renderVideoDownloadOptions(fakeData, 'video');
         } else {
           console.warn('⚠️ Could not fetch real metadata, keeping fake data');
         }
@@ -754,22 +799,50 @@ async function handleSearch(keyword: string): Promise<void> {
 }
 
 /**
+ * Handle action button click (Paste or Clear based on data-action)
+ */
+function handleActionButton(): void {
+  if (!pasteBtn) return;
+
+  const action = pasteBtn.dataset.action;
+  console.log('🔘 Action button clicked - action:', action);
+
+  if (action === 'clear') {
+    handleClear();
+  } else {
+    handlePaste();
+  }
+}
+
+/**
  * Handle paste button click
  */
 async function handlePaste(): Promise<void> {
   if (!input) return;
 
+  console.log('📋 Paste button clicked');
+
   try {
     const text = await navigator.clipboard.readText();
-    input.value = text;
+    const trimmedText = text.trim();
+
+    console.log('📋 Pasted text:', trimmedText);
+
+    // Set input value
+    input.value = trimmedText;
+
+    // Dispatch input event to trigger handleInput (updates button visibility)
     input.dispatchEvent(new Event('input', { bubbles: true }));
 
+    console.log('📋 Input event dispatched - should update button visibility');
+
     // Auto-submit if looks like URL
-    if (text.trim().startsWith('http')) {
+    if (trimmedText.startsWith('http')) {
+      console.log('🔗 URL detected - auto-submitting');
       form?.requestSubmit();
     }
   } catch (error) {
-    console.error('Paste failed:', error);
+    console.error('❌ Paste failed:', error);
   }
 }
 
