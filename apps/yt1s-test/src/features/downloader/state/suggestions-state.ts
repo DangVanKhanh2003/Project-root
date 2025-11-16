@@ -14,10 +14,18 @@ export function setSuggestions(suggestions: string[]): void {
 
   // Don't show suggestions if form is being submitted
   if (currentState.isSubmitting) {
+    console.log('🚫 setSuggestions blocked - form is submitting (isSubmitting=true)');
     return;
   }
 
   const suggestionArray = Array.isArray(suggestions) ? suggestions : [];
+
+  console.log('📝 setSuggestions - setting suggestions:', {
+    count: suggestionArray.length,
+    willShow: suggestionArray.length > 0,
+    isSubmitting: currentState.isSubmitting
+  });
+
   setState({
     suggestions: suggestionArray,
     showSuggestions: suggestionArray.length > 0,

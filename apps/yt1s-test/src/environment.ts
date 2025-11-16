@@ -31,6 +31,7 @@ interface ExpiryConfig {
 
 interface ApiConfig {
     baseUrl: string;
+    searchV2BaseUrl: string;
     youtubeStreamApiUrl: string;
     youtubeStreamApiEndpoint: string;
     v2ApiUrl: string;
@@ -90,28 +91,28 @@ const environment: Environment = {
 
     // API Configuration
     api: {
-        // PHP backend router endpoint
-        baseUrl: import.meta.env.VITE_API_BASE_URL || (isDevelopment
-            ? 'http://localhost:3000'
-            : 'https://api.yt1s.cx/api/v1'),
+        // Main API (media extraction, conversion) - with /api/v1 suffix
+        // Both dev and prod use production API (no local backend)
+        baseUrl: import.meta.env.VITE_API_BASE_URL || 'https://api.yt1s.cx/api/v1',
+
+        // Search V2 API (YouTube search) - separate domain
+        // Both dev and prod use production API (no local backend)
+        searchV2BaseUrl: import.meta.env.VITE_SEARCH_V2_BASE_URL || 'https://yt-extractor.y2mp3.co',
 
         // YouTube Stream API (new service endpoint)
-        youtubeStreamApiUrl: import.meta.env.VITE_YOUTUBE_STREAM_API_URL || (isDevelopment
-            ? 'http://localhost:3000'
-            : 'https://api.yt1s.cx'),
+        // Both dev and prod use production API (no local backend)
+        youtubeStreamApiUrl: import.meta.env.VITE_YOUTUBE_STREAM_API_URL || 'https://api.yt1s.cx',
 
         // YouTube Stream API endpoint path
         youtubeStreamApiEndpoint: '',
 
         // V2 API (extract, search)
-        v2ApiUrl: isDevelopment
-            ? 'https://sv-190.y2mp3.co'
-            : 'https://sv-190.y2mp3.co',
+        // Both dev and prod use production API (no local backend)
+        v2ApiUrl: 'https://sv-190.y2mp3.co',
 
         // Queue API (YouTube add queue)
-        queueApiUrl: isDevelopment
-            ? 'https://sv-190.y2mp3.co'
-            : 'https://sv-190.y2mp3.co',
+        // Both dev and prod use production API (no local backend)
+        queueApiUrl: 'https://sv-190.y2mp3.co',
 
         // Search endpoint (specific for search functionality)
         searchEndpoint: '/index.php',
@@ -187,6 +188,14 @@ const environment: Environment = {
  */
 export function getApiBaseUrl(): string {
     return environment.api.baseUrl;
+}
+
+/**
+ * Get Search V2 API base URL
+ * @returns Search V2 API base URL
+ */
+export function getSearchV2BaseUrl(): string {
+    return environment.api.searchV2BaseUrl;
 }
 
 /**

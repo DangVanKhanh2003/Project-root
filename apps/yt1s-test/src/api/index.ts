@@ -29,16 +29,24 @@ import {
 } from '@downloader/core';
 
 // Import centralized environment configuration
-import { getApiBaseUrl, getTimeout } from '../environment';
+import { getApiBaseUrl, getSearchV2BaseUrl, getTimeout } from '../environment';
 
 // API Configuration from environment.ts
 const API_BASE_URL = getApiBaseUrl();
+const SEARCH_V2_BASE_URL = getSearchV2BaseUrl();
 const API_TIMEOUT = getTimeout('default');
 
-// 1. Create HTTP Client
+// 1. Create HTTP Clients
+// Main API HTTP Client (media extraction, conversion)
 const httpClient = createHttpClient({
-  baseUrl: API_BASE_URL,
+  baseUrl: API_BASE_URL,  // https://api.yt1s.cx/api/v1
   timeout: API_TIMEOUT,
+});
+
+// Search V2 HTTP Client (separate domain for YouTube search)
+const searchV2HttpClient = createHttpClient({
+  baseUrl: SEARCH_V2_BASE_URL,  // https://yt-extractor.y2mp3.co
+  timeout: getTimeout('searchV2'),
 });
 
 const apiConfig = {
@@ -46,19 +54,27 @@ const apiConfig = {
   timeout: API_TIMEOUT,
 };
 
+const searchV2ApiConfig = {
+  baseUrl: SEARCH_V2_BASE_URL,
+  timeout: getTimeout('searchV2'),
+};
+
 // 2. Create Core Services
 const coreServices = {
+  // Services using Main API
   search: createSearchService(httpClient, apiConfig),
   media: createMediaService(httpClient, apiConfig),
   conversion: createConversionService(httpClient, apiConfig),
   playlist: createPlaylistService(httpClient, apiConfig),
   decrypt: createDecryptService(httpClient, apiConfig),
   feedback: createFeedbackService(httpClient, apiConfig),
-  searchV2: createSearchV2Service(httpClient, apiConfig),
   queue: createQueueService(httpClient, apiConfig),
   youtubeDownload: createYouTubeDownloadService(httpClient, apiConfig),
   multifile: createMultifileService(httpClient, apiConfig),
   youtubePublicApi: createYouTubePublicApiService(httpClient, apiConfig),
+
+  // Search V2 using separate HTTP client (different domain)
+  searchV2: createSearchV2Service(searchV2HttpClient, searchV2ApiConfig),
 };
 
 // 3. Create JWT Store (namespaced to prevent collision)

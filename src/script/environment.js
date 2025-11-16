@@ -19,7 +19,6 @@ const environment = {
 
     // API Configuration
     api: {
-        // PHP backend router endpoint
         baseUrl: isDevelopment
             ? 'https://api.yt1s.cx/api/v1'
             : 'https://api.yt1s.cx/api/v1',

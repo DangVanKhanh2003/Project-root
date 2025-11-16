@@ -47,8 +47,7 @@ export function renderResults(results: VideoData[]): void {
   // Render search results
   const html = `
     <div class="search-results">
-      <h3>Search Results (${results.length})</h3>
-      <div class="results-list">
+      <div class="search-results-grid">
         ${results.map(video => createSearchResultCard(video)).join('')}
       </div>
     </div>
@@ -87,23 +86,55 @@ function hideSearchResultsSection(): void {
 
 /**
  * Render loading state with skeleton cards
+ * @param type - Type of skeleton: 'list' for search results, 'detail' for video details
+ * @param append - Whether to append or replace content
  */
-export function showLoading(): void {
-  if (!contentArea) return;
+export function showLoading(type: 'list' | 'detail' = 'list', append: boolean = false): void {
+  let content = '';
 
-  const skeletonCards = Array(3).fill(null).map(() => createSkeletonCard()).join('');
+  switch (type) {
+    case 'list': {
+      // LIST skeleton - 12 cards for search results
+      const skeletonCards = Array(12).fill(null).map(() => createSkeletonCard()).join('');
+      content = `
+        <div class="content-data search-results">
+          <div class="search-results-grid">
+            ${skeletonCards}
+          </div>
+        </div>
+      `;
 
-  contentArea.innerHTML = `
-    <div class="search-results loading">
-      <h3>Loading...</h3>
-      <div class="results-list">
-        ${skeletonCards}
-      </div>
-    </div>
-  `;
+      // Route to search results container
+      if (searchResultsContainer && searchResultsSection) {
+        searchResultsContainer.innerHTML = content;
+        searchResultsSection.style.display = 'block'; // Show section
+      }
 
-  // Hide search results section when showing loading
-  hideSearchResultsSection();
+      // Clear content area
+      if (contentArea) {
+        contentArea.innerHTML = '';
+      }
+      break;
+    }
+
+    case 'detail': {
+      // DETAIL skeleton - for video details (future implementation)
+      content = `<div class="loading-detail">Loading video details...</div>`;
+
+      if (!contentArea) return;
+
+      if (append) {
+        contentArea.insertAdjacentHTML('afterbegin', content);
+      } else {
+        contentArea.innerHTML = content;
+      }
+      contentArea.classList.add('showing-loading');
+
+      // Hide search section
+      hideSearchResultsSection();
+      break;
+    }
+  }
 }
 
 /**
