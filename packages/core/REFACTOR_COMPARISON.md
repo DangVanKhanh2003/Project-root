@@ -301,16 +301,16 @@ await conversionService.convert(...);  // → Verified through domain layer
 
 ### Step 3: Repeat for All 11 Services
 - ✅ conversion.service.ts
-- ⏳ decrypt.service.ts
-- ⏳ feedback.service.ts
-- ⏳ media.service.ts
-- ⏳ multifile.service.ts
-- ⏳ playlist.service.ts
-- ⏳ search.service.ts
-- ⏳ queue.service.ts
-- ⏳ searchv2.service.ts
-- ⏳ youtube-download.service.ts
-- ⏳ public-api.service.ts
+- ✅ decrypt.service.ts
+- ✅ feedback.service.ts
+- ✅ media.service.ts
+- ✅ multifile.service.ts
+- ✅ playlist.service.ts
+- ✅ search.service.ts
+- ✅ queue.service.ts
+- ✅ searchv2.service.ts
+- ✅ youtube-download.service.ts
+- ✅ public-api.service.ts
 
 ---
 

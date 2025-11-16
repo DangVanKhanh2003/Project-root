@@ -42,6 +42,8 @@ import {
   createSearchV2Service,
   createQueueService,
   createYouTubeDownloadService,
+  createMultifileService,
+  createYouTubePublicApiService,
 
   // Domain Layer (MAIN API)
   createVerifier,
@@ -87,6 +89,8 @@ const coreServices = {
   searchV2: createSearchV2Service(httpClient, apiConfig),
   queue: createQueueService(httpClient, apiConfig),
   youtubeDownload: createYouTubeDownloadService(httpClient, apiConfig),
+  multifile: createMultifileService(httpClient, apiConfig),
+  youtubePublicApi: createYouTubePublicApiService(httpClient, apiConfig),
 };
 
 // 6. Create Verified Services (MAIN API)
@@ -140,7 +144,7 @@ Domain Layer (api.searchTitle, api.extractMedia, etc.)
 
 ## API Reference
 
-### Available Methods (14 total)
+### Available Methods (17 total)
 
 #### Search V1
 
@@ -246,6 +250,28 @@ api.downloadYouTube(
 // Get download progress
 api.getDownloadProgress(params: { taskId: string })
   → Promise<VerifiedResult<ProgressResponse>>
+```
+
+#### Multifile
+
+```typescript
+// Start multifile session (Auto JWT injection)
+api.startMultifileSession(
+  params: { url: string; /* additional params */ },
+  protectionPayload?: { jwt?: string; captcha?: { token: string; type: string } }
+) → Promise<VerifiedResult<MultifileStartResponse>>
+
+// Get multifile status
+api.getMultifileStatus(params: { sessionId: string })
+  → Promise<VerifiedResult<MultifileStatusResponse>>
+```
+
+#### YouTube Public API
+
+```typescript
+// Get YouTube metadata (no auth required)
+api.getMetadataYoutube(url: string)
+  → Promise<VerifiedResult<YouTubeMetadataDto>>
 ```
 
 #### Utility Methods

@@ -6,6 +6,110 @@
 
 ---
 
+## 🤖 FOR AI CLI - START HERE
+
+**If you're an AI CLI working on this project, read this first:**
+
+### Current Focus: Phase 2E ✅ COMPLETE | Phase 3 🎯 STARTED
+
+**Phase 2E Status:** ✅ Complete - All 17 API methods implemented
+**Phase 3 Status:** 🎯 Partial - ui-shared package created (scroll + captcha)
+
+**For current work:**
+```
+/Users/macos/Documents/work/downloader/Project-root/packages/ui-shared/README.md
+```
+
+**For core architecture:**
+```
+/Users/macos/Documents/work/downloader/Project-root/packages/core/AI_CLI_ONBOARDING.md
+/Users/macos/Documents/work/downloader/Project-root/packages/core/DOMAIN_LAYER_GUIDE.md
+```
+
+**For architecture and API reference:**
+```
+/Users/macos/Documents/work/downloader/Project-root/packages/core/DOMAIN_LAYER_GUIDE.md
+/Users/macos/Documents/work/downloader/Project-root/packages/core/REFACTOR_COMPARISON.md
+/Users/macos/Documents/work/downloader/Project-root/packages/core/VERIFIED_SERVICES_QUICKSTART.md
+```
+
+**Quick Context:**
+- **Phase 0:** ✅ DONE - Monorepo infrastructure setup
+- **Phase 1:** ✅ DONE - Model layer built (models/dto + models/remote)
+- **Phase 2A:** ✅ DONE - HTTP Client with axios
+- **Phase 2B:** ✅ DONE - BaseService (OOP inheritance pattern)
+- **Phase 2C:** ✅ DONE - Core Services (V1: 7 services, V2: 3 services)
+- **Phase 2D:** ✅ DONE - Domain Layer (VerifiedServices + DomainVerifier)
+- **Phase 2E:** ✅ DONE - All 17 API methods (Multifile + YouTubePublicApi added)
+- **Phase 3:** 🎯 PARTIAL - ui-shared package (scroll + captcha migrated)
+
+**Current Architecture (Actual Implementation):**
+```
+packages/
+├── core/src/            # ← Business Logic (DOM-independent)
+│   ├── domain/              # Domain Layer (Site projects use this)
+│   │   ├── verified-services.ts      # Main API (17 methods)
+│   │   ├── verification/
+│   │   │   ├── verifier.ts           # JWT extraction & verification
+│   │   │   ├── types.ts              # VerifiedResult<T>
+│   │   │   ├── messages.ts           # Error messages
+│   │   │   └── policies.ts           # Verification policies
+│   │   └── jwt/
+│   │       └── jwt-store.interface.ts # JWT storage abstractions
+│   │
+│   ├── services/            # Service Layer (Internal)
+│   │   ├── base/
+│   │   │   └── base-service.ts       # Abstract base (OOP pattern)
+│   │   ├── v1/
+│   │   │   ├── interfaces/           # Service contracts
+│   │   │   └── implementations/      # 7 services (Search, Media, etc.)
+│   │   ├── v2/
+│   │   │   ├── interfaces/
+│   │   │   └── implementations/      # 3 services (SearchV2, Queue, etc.)
+│   │   └── public-api/
+│   │       ├── interfaces/
+│   │       └── implementations/      # Public API service
+│   │
+│   ├── http/                # HTTP Layer
+│   │   └── http-client.ts            # Axios-based client
+│   │
+│   └── models/              # Data Models
+│       ├── dto/             # Domain Transfer Objects
+│       └── remote/          # Remote API types
+│
+└── ui-shared/src/       # ← 🆕 UI Utilities (Browser-only)
+    ├── scroll/              # Scroll management
+    │   ├── scroll-manager.ts         # Centralized scroll system
+    │   ├── scroll-behavior.ts        # Form scroll behaviors
+    │   └── index.ts
+    │
+    ├── captcha/             # CAPTCHA UI
+    │   ├── captcha-provider.ts       # Token acquisition (Turnstile + reCAPTCHA)
+    │   ├── captcha-modal.ts          # Modal UI component
+    │   └── index.ts
+    │
+    └── styles/              # CSS files
+        └── captcha-modal.css
+```
+
+**Your Task:**
+Continue Phase 3 - Migrate remaining UI components to ui-shared package.
+
+**DO NOT:**
+- ❌ Read this entire planning document (too long!)
+- ❌ Start coding immediately without reading package READMEs
+- ❌ Follow the old Phase 3 plan below (it's outdated!)
+
+**DO:**
+- ✅ Read `packages/ui-shared/README.md` for current UI utilities
+- ✅ Read `packages/core/DOMAIN_LAYER_GUIDE.md` for integration patterns
+- ✅ Check Phase 3 actual status below for what's already done
+- ✅ Identify remaining UI components to migrate
+
+**⚠️ IMPORTANT:** The Phase 2 section below is **OUTDATED** and kept for historical reference only. The actual implementation follows a **completely different architecture** (Domain Layer + BaseService OOP + Verification System). Always refer to the onboarding guide and current documentation files for accurate information.
+
+---
+
 ## MỤC LỤC
 
 - [I. TỔNG QUAN](#i-tổng-quan)
@@ -76,21 +180,92 @@ Research (hiểu vấn đề)
 
 ---
 
-## III. CẤU TRÚC SAU REFACTOR
+## III. CẤU TRÚC SAU REFACTOR (UPDATED - Reflects Actual Implementation)
 
 ### Package Structure
 
-**`packages/core/`** - Pure Business Logic
-- Nguồn: `/src/script/libs/`
-- Nội dung:
-  - `models/` - Type definitions (NEW - xây từ đầu)
-  - `services/` - API service, HTTP client
-  - `utils/` - Pure utilities
-  - `captcha/` - CAPTCHA logic
-  - `scroll/` - Scroll behavior
-- Đặc điểm: NO DOM, pure TypeScript, can run on Node.js
+**`packages/core/`** - Core Business Logic Package ✅ IMPLEMENTED
 
-**`packages/ui-shared/`** - Reusable UI Components
+**Actual Structure:**
+```
+packages/core/src/
+├── config/                    # API configuration
+├── domain/                    # 🆕 Domain Layer (MAIN API)
+│   ├── verified-services.ts   # Verified services wrapper (14 methods)
+│   ├── verification/          # JWT extraction & verification
+│   │   ├── verifier.ts
+│   │   ├── types.ts
+│   │   ├── messages.ts
+│   │   └── policies.ts
+│   └── jwt/                   # JWT storage abstractions
+│       └── jwt-store.interface.ts
+│
+├── http/                      # HTTP Client
+│   └── http-client.ts         # Axios-based client
+│
+├── mappers/                   # 🆕 Data Mappers/Normalizers
+│   ├── v1/                    # V1 API normalizers
+│   ├── v2/                    # V2 API normalizers
+│   └── public-api/            # Public API normalizers
+│
+├── models/                    # Type Definitions
+│   ├── dto/                   # Domain Transfer Objects (clean data)
+│   │   ├── search.dto.ts
+│   │   ├── media.dto.ts
+│   │   ├── conversion.dto.ts
+│   │   └── ...
+│   ├── remote/                # Remote API types
+│   │   ├── v1/                # V1 requests/responses
+│   │   ├── v2/                # V2 requests/responses
+│   │   └── public-api/        # Public API types
+│   └── application-models/    # Enums & shared types
+│
+├── services/                  # Service Layer
+│   ├── base/                  # BaseService abstract class
+│   ├── v1/                    # V1 API services
+│   │   ├── interfaces/
+│   │   └── implementations/
+│   ├── v2/                    # V2 API services
+│   │   ├── interfaces/
+│   │   └── implementations/
+│   ├── public-api/            # Public API services
+│   ├── types/                 # Service types
+│   └── constants/             # Service constants
+│
+└── utils/                     # Pure utilities
+```
+
+**Key Differences from Original Plan:**
+- ✅ **ADDED:** `domain/` layer - Main API for site projects (VerifiedServices)
+- ✅ **ADDED:** `mappers/` - Data normalization layer (replaced inline normalizers)
+- ✅ **CHANGED:** `models/` structure - Split into dto/, remote/, application-models/
+- ✅ **CHANGED:** `services/` - Now has v1/, v2/, public-api/ structure
+- ❌ **REMOVED:** `captcha/`, `scroll/` - Not needed in core (app-level concerns)
+- ✅ **FOCUS:** Domain-driven design with clear layers
+
+**Đặc điểm:**
+- NO DOM dependencies
+- Pure TypeScript
+- Can run on Node.js
+- Site projects ONLY use `domain/` layer
+
+**Current Status (as of 2025-11-16):**
+- ✅ Phase 0: Foundation Setup - COMPLETE
+- ✅ Phase 1: Model Layer - COMPLETE
+- ✅ Phase 2A: HTTP Client - COMPLETE
+- ✅ Phase 2B: Base Service - COMPLETE
+- ✅ Phase 2C: Core Services - COMPLETE
+- ✅ Phase 2D: Domain Layer (VerifiedServices) - COMPLETE
+- 🔄 Phase 2E: Add Multifile & YouTubePublicApi - IN PROGRESS (14/17 methods)
+- ⏸️ Phase 2F-6: Pending
+
+**For current task details:**
+See `/packages/core/AI_CLI_ONBOARDING.md`
+
+---
+
+**`packages/ui-shared/`** - Reusable UI Components ⏸️ NOT YET IMPLEMENTED
+- Status: Planned for Phase 3
 - Nguồn: `/src/script/ui-components/`
 - Nội dung:
   - `components/modal/`
@@ -98,14 +273,17 @@ Research (hiểu vấn đề)
   - `components/suggestion-dropdown/`
 - Đặc điểm: DOM-aware, TypeScript, reusable
 
-**`apps/yt1s-test-monorepo/`** - First Site
+---
+
+**`apps/yt1s-test-monorepo/`** - First Site ⏸️ NOT YET IMPLEMENTED
+- Status: Planned for Phase 4
 - Nguồn: `/src/script/features/` + `/src/pages/` + `/src/styles/`
 - Nội dung:
   - `src/main.ts` - Entry point
   - `src/features/` - App features
   - `src/styles/` - CSS
   - `index.html`
-- Đặc điểm: Import từ packages, app-specific logic
+- Đặc điểm: Import từ `@downloader/core` domain layer
 
 ---
 
@@ -2858,9 +3036,30 @@ function isVideoDetail(data: unknown): data is VideoDetail {
 
 ---
 
-## VI. PHASE 2: MIGRATE CORE PACKAGE
+## VI. PHASE 2: MIGRATE CORE PACKAGE ⚠️ OUTDATED - SEE ACTUAL IMPLEMENTATION
 
-### Mục Tiêu Phase
+**⚠️ WARNING: This section is OUTDATED and kept for historical reference only.**
+
+**The actual implementation is COMPLETELY DIFFERENT from this plan:**
+- ❌ **NOT USED:** Flat service structure (services/api.service.ts)
+- ❌ **NOT USED:** Direct JS→TS migration approach
+- ❌ **NOT USED:** Batch migration strategy described below
+
+**✅ ACTUAL IMPLEMENTATION (See REFACTOR_COMPARISON.md):**
+- **Domain Layer:** VerifiedServices as main API for site projects
+- **Service Layer:** V1, V2, Public-API organized services with OOP BaseService
+- **HTTP Layer:** Axios-based HTTP client with interceptors
+- **Verification System:** DomainVerifier with policies and JWT extraction
+- **JWT Storage:** Abstracted stores (LocalStorage, InMemory, Custom)
+
+**For accurate information, read:**
+- `/packages/core/AI_CLI_ONBOARDING.md` - Current task
+- `/packages/core/DOMAIN_LAYER_GUIDE.md` - API documentation
+- `/packages/core/REFACTOR_COMPARISON.md` - Architecture explanation
+
+---
+
+### Mục Tiêu Phase (ORIGINAL PLAN - OUTDATED)
 
 Migrate toàn bộ business logic từ `/src/script/libs/` sang `packages/core/` với TypeScript.
 
@@ -3317,6 +3516,299 @@ export * from './orchestration';
 
 ---
 
+## VI.B. PHASE 2 - ACTUAL IMPLEMENTATION (CURRENT)
+
+**This section documents what was ACTUALLY implemented (not the plan above).**
+
+### Architecture Overview
+
+**Clean Layered Architecture:**
+```
+Site Projects
+    ↓ imports
+Domain Layer (verified-services.ts)
+    ↓ uses
+Service Layer (base-service.ts + implementations)
+    ↓ uses
+HTTP Client Layer
+    ↓ calls
+Remote Backend API
+```
+
+### Phase 2 Sub-Phases (ACTUAL)
+
+#### Phase 2A: HTTP Client ✅ DONE
+**File:** `/packages/core/src/http/http-client.ts`
+
+**Implementation:**
+- Axios-based HTTP client
+- Request/response interceptors
+- TypeScript typed interfaces
+- AbortController support
+- Error handling with custom errors
+
+**Key Features:**
+```typescript
+interface HttpClientConfig {
+  baseURL: string;
+  timeout?: number;
+  headers?: Record<string, string>;
+}
+
+class HttpClient {
+  async request<T>(config: RequestConfig): Promise<T>
+  // Interceptor support
+  // Error transformation
+}
+```
+
+#### Phase 2B: BaseService (OOP Pattern) ✅ DONE
+**File:** `/packages/core/src/services/base/base-service.ts`
+
+**Pattern:** Abstract Class Inheritance (OOP)
+
+**Key Innovation:**
+- All services extend BaseService
+- **Centralized JWT handling** (auto-extract, auto-inject)
+- **Centralized CAPTCHA handling**
+- **Response cleaning** (remove JWT field before returning)
+- **makeRequest()** - all HTTP calls go through here
+- **makeRequestWithInternalJwt()** - auto-inject internal JWT
+
+**Benefits over old functional pattern:**
+- ✅ No duplicate JWT code across 11 services
+- ✅ No duplicate CAPTCHA code
+- ✅ Single source of truth for protection logic
+- ✅ TypeScript enforces correct patterns
+- ✅ 41% less code, 100% less duplication
+
+**See:** `REFACTOR_COMPARISON.md` for detailed comparison
+
+#### Phase 2C: Core Services ✅ DONE
+
+**V1 Services** (`/services/v1/`):
+1. **SearchService** - Search videos by keyword
+2. **MediaService** - Extract media info
+3. **ConversionService** - Convert media formats
+4. **PlaylistService** - Extract playlists
+5. **DecryptService** - Decode URLs
+6. **FeedbackService** - User feedback
+7. **MultifileService** - Multifile downloads
+
+**V2 Services** (`/services/v2/`):
+1. **SearchV2Service** - Paginated search
+2. **QueueService** - Video queue management
+3. **YouTubeDownloadService** - Direct downloads
+
+**Public API** (`/services/public-api/`):
+1. **YouTubePublicApiService** - Public metadata
+
+**Pattern:**
+```
+/services/{version}/
+  ├── interfaces/         # Service contracts (IServiceName)
+  └── implementations/    # Service classes + factory functions
+```
+
+**Each service:**
+- Extends `BaseService`
+- Implements interface contract
+- Exported via factory function: `createServiceName()`
+- Zero duplicate code (all in BaseService)
+
+#### Phase 2D: Domain Layer ✅ DONE
+
+**Files:**
+```
+/domain/
+├── verified-services.ts           # Main API
+├── verification/
+│   ├── verifier.ts                # DomainVerifier class
+│   ├── types.ts                   # VerifiedResult<T>
+│   ├── messages.ts                # Error messages
+│   └── policies.ts                # Verification policies
+└── jwt/
+    └── jwt-store.interface.ts     # Storage abstractions
+```
+
+**Key Components:**
+
+**1. DomainVerifier:**
+- **Extracts JWT** from service responses
+- **Saves JWT** to storage (localStorage/memory/custom)
+- **Verifies responses** with policies
+- **Returns standardized** `VerifiedResult<T>`
+
+**2. VerifiedServices:**
+- **Main API** for site projects
+- **14 methods** (Phase 2E adds 3 more → 17 total)
+- **Auto JWT injection** from storage
+- **Generic wrap function** for all methods
+- **Type-safe** with full TypeScript support
+
+**3. JWT Stores:**
+- `LocalStorageJwtStore` - Browser localStorage
+- `InMemoryJwtStore` - In-memory (SSR, testing)
+- `CustomJwtStore` - User-defined (Redux, Cookies, etc.)
+- **Namespaced keys** to prevent collisions
+
+**4. Verification Policies:**
+- Per-method policies
+- Custom validation logic
+- Standardized error codes
+- Human-readable messages
+
+**Flow Example:**
+```typescript
+// 1. Site project calls
+const result = await api.extractMedia({ url: '...' });
+
+// 2. VerifiedServices auto-injects JWT from storage
+// 3. Service layer calls backend
+// 4. Backend returns { data, jwt: 'new-token' }
+// 5. Verifier extracts JWT → saves to storage
+// 6. Verifier removes jwt field from response
+// 7. Verifier runs policy verification
+// 8. Returns VerifiedResult<T> to site project
+
+if (result.ok) {
+  console.log(result.data); // Clean, verified data
+}
+```
+
+**See:** `DOMAIN_LAYER_GUIDE.md` for full API documentation
+
+#### Phase 2E: Missing Services 🔄 IN PROGRESS
+
+**Goal:** Add remaining 3 methods to Domain Layer
+
+**Missing:**
+1. **IMultifileService** (2 methods)
+   - `startMultifileSession()` - WITH protection
+   - `getMultifileStatus()` - NO protection
+
+2. **IYouTubePublicApiService** (1 method)
+   - `getMetadata()` - NO protection
+
+**Current:** 14 methods → **Target:** 17 methods
+
+**See:** `AI_CLI_ONBOARDING.md` for implementation steps
+
+### Actual File Structure
+
+```
+packages/core/src/
+├── domain/
+│   ├── index.ts
+│   ├── verified-services.ts
+│   ├── verification/
+│   │   ├── verifier.ts
+│   │   ├── types.ts
+│   │   ├── messages.ts
+│   │   └── policies.ts
+│   └── jwt/
+│       └── jwt-store.interface.ts
+│
+├── services/
+│   ├── base/
+│   │   ├── base-service.ts
+│   │   └── index.ts
+│   ├── v1/
+│   │   ├── interfaces/
+│   │   │   ├── search.interface.ts
+│   │   │   ├── media.interface.ts
+│   │   │   ├── conversion.interface.ts
+│   │   │   ├── playlist.interface.ts
+│   │   │   ├── decrypt.interface.ts
+│   │   │   ├── feedback.interface.ts
+│   │   │   └── multifile.interface.ts
+│   │   ├── implementations/
+│   │   │   ├── search.service.ts
+│   │   │   ├── media.service.ts
+│   │   │   ├── conversion.service.ts
+│   │   │   ├── playlist.service.ts
+│   │   │   ├── decrypt.service.ts
+│   │   │   ├── feedback.service.ts
+│   │   │   └── multifile.service.ts
+│   │   └── index.ts
+│   ├── v2/
+│   │   ├── interfaces/
+│   │   │   ├── searchv2.interface.ts
+│   │   │   ├── queue.interface.ts
+│   │   │   └── youtube-download.interface.ts
+│   │   ├── implementations/
+│   │   │   ├── searchv2.service.ts
+│   │   │   ├── queue.service.ts
+│   │   │   └── youtube-download.service.ts
+│   │   └── index.ts
+│   ├── public-api/
+│   │   ├── interfaces/
+│   │   │   └── public-api.interface.ts
+│   │   ├── implementations/
+│   │   │   └── public-api.service.ts
+│   │   └── index.ts
+│   └── types/
+│       └── protection.types.ts
+│
+├── http/
+│   ├── http-client.ts
+│   └── index.ts
+│
+├── models/
+│   ├── dto/                    # Domain Transfer Objects
+│   │   ├── search.dto.ts
+│   │   ├── media.dto.ts
+│   │   └── ...
+│   └── remote/                 # Remote API types
+│       ├── v1/
+│       │   ├── requests/
+│       │   └── responses/
+│       └── v2/
+│           ├── requests/
+│           └── responses/
+│
+└── index.ts                    # Main barrel export
+```
+
+### Success Criteria (Actual)
+
+**✅ Completed:**
+- Full TypeScript with strict typing
+- Clean layered architecture
+- OOP BaseService pattern eliminates duplication
+- Domain Layer as single API for site projects
+- JWT auto-extraction and auto-injection
+- Verification system with policies
+- Flexible storage abstractions
+- 14 verified API methods functional
+
+**🔄 In Progress:**
+- Phase 2E: Add 3 remaining methods (Multifile + YouTubePublicApi)
+
+**📊 Metrics:**
+- Code reduction: 41% less code vs old pattern
+- Duplication: 0% (vs 100+ lines duplicated in old pattern)
+- Type coverage: 100%
+- Build success: ✅ `pnpm --filter @downloader/core build`
+
+### Key Learnings
+
+**Why Different from Original Plan?**
+
+1. **Domain Layer was not planned** - Added for better site project integration
+2. **OOP pattern was not planned** - Emerged as solution to duplication
+3. **Verification system was not planned** - Added for standardized error handling
+4. **JWT abstraction was not planned** - Added for flexibility
+
+**Advantages of Actual Implementation:**
+- ✅ Better separation of concerns
+- ✅ Easier to maintain (no duplication)
+- ✅ Easier for site projects to use
+- ✅ Type-safe throughout
+- ✅ Flexible and extensible
+
+---
+
 ## VII. PHASE 3: MIGRATE UI-SHARED PACKAGE
 
 ### Mục Tiêu Phase
@@ -3446,17 +3938,52 @@ GitHub Actions workflows for monorepo.
 
 ## XI. TIMELINE & MILESTONES
 
-| Phase | Duration | Key Milestone |
-|-------|----------|---------------|
-| 0: Foundation | 2-3 days | Monorepo structure ready |
-| 1: Model Layer | 10-12 days | Type system complete |
-| 2: Core Package | 8-9 days | Business logic migrated |
-| 3: UI-Shared | 3-4 days | UI components migrated |
-| 4: App | 7-8 days | First app functional |
-| 5: CI/CD | 1-2 days | Automation in place |
-| 6: Strict Mode | 3-4 days | Production ready |
+### Original Estimate vs Actual
 
-**Total Estimate**: 34-42 days (7-8 weeks)
+| Phase | Original Estimate | Status | Actual Time | Notes |
+|-------|------------------|--------|-------------|-------|
+| 0: Foundation | 2-3 days | ✅ DONE | ~2 days | Monorepo structure, pnpm workspace |
+| 1: Model Layer | 10-12 days | ✅ DONE | ~10 days | DTO, Remote types, Application models |
+| 2A: HTTP Client | Part of Phase 2 | ✅ DONE | ~1 day | Axios-based HTTP client |
+| 2B: Base Service | Part of Phase 2 | ✅ DONE | ~1 day | Abstract BaseService class |
+| 2C: Core Services | Part of Phase 2 | ✅ DONE | ~3 days | V1, V2, Public API services |
+| 2D: Domain Layer | Part of Phase 2 | ✅ DONE | ~2 days | VerifiedServices, Verifier, JWT stores |
+| 2E: Add Missing Services | Not planned | ✅ DONE | ~0.5 day | Multifile, YouTubePublicApi - 17/17 methods |
+| 3A: UI-Shared (Core) | Part of Phase 3 | ✅ DONE | ~1 day | scroll + captcha migrated to TypeScript |
+| 3B: UI-Shared (Components) | 3-4 days | ⏸️ PENDING | - | Remaining UI components |
+| 4: App | 7-8 days | ⏸️ PENDING | - | Planned |
+| 5: CI/CD | 1-2 days | ⏸️ PENDING | - | Planned |
+| 6: Strict Mode | 3-4 days | ⏸️ PENDING | - | Planned |
+
+**Progress Summary:**
+- **Completed:** Phase 0, 1, 2A-2E, 3A (~20 days actual vs 20-24 days estimate)
+- **In Progress:** None
+- **Remaining:** Phase 3B, 4-6 (~13-17 days estimate)
+
+**Total Original Estimate**: 34-42 days (7-8 weeks)
+**Total Actual + Remaining**: ~33-38 days
+
+### Key Achievements
+
+**Phase 0-3A Delivered:**
+- ✅ TypeScript monorepo infrastructure
+- ✅ Complete type system (DTO, Remote, Application models)
+- ✅ HTTP client with interceptors
+- ✅ BaseService with JWT/CAPTCHA support
+- ✅ 11 services implemented (V1, V2, Public API, Multifile, YouTubePublicApi)
+- ✅ **Domain Layer** - Main API with 17/17 methods
+- ✅ JWT storage abstractions (LocalStorage, InMemory, Custom)
+- ✅ Response verification with policies
+- ✅ **UI-Shared Package** - scroll + captcha utilities (TypeScript)
+- ✅ Removed JWT duplication (captcha-core/jwt.js)
+
+**Current Status:**
+- ✅ Phase 2E: Complete - All 17 API methods ready
+- ✅ Phase 3A: Complete - Core UI utilities migrated (scroll + captcha)
+
+**Next Steps:**
+- ⏸️ Phase 3B: Migrate remaining UI components (modals, cards, dropdowns)
+- ⏸️ Phase 4: Migrate first app to use packages
 
 ---
 

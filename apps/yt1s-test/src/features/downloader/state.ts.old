@@ -1,0 +1,135 @@
+/**
+ * State Management - TypeScript (Simplified for Phase 4B)
+ * Single source of truth for downloader UI state
+ */
+
+// State Interface
+export interface DownloaderState {
+  // Input state
+  inputType: 'url' | 'keyword';
+  isLoading: boolean;
+  error: string | null;
+
+  // Suggestions
+  suggestions: string[];
+  showSuggestions: boolean;
+
+  // Button visibility
+  showPasteButton: boolean;
+  showClearButton: boolean;
+
+  // Search results
+  results: any[];
+  resultsLoading: boolean;
+}
+
+// Initial state
+const initialState: DownloaderState = {
+  inputType: 'url',
+  isLoading: false,
+  error: null,
+  suggestions: [],
+  showSuggestions: false,
+  showPasteButton: true,
+  showClearButton: false,
+  results: [],
+  resultsLoading: false,
+};
+
+// Current state
+let currentState: DownloaderState = { ...initialState };
+
+// Render callback
+let renderCallback: ((state: DownloaderState, prevState: DownloaderState) => void) | null = null;
+
+/**
+ * Get current state (immutable copy)
+ */
+export function getState(): DownloaderState {
+  return { ...currentState };
+}
+
+/**
+ * Update state and trigger re-render
+ */
+export function setState(newState: Partial<DownloaderState>): void {
+  if (!newState || typeof newState !== 'object') {
+    return;
+  }
+
+  const prevState = { ...currentState };
+  currentState = { ...currentState, ...newState };
+
+  // Trigger render callback
+  if (renderCallback) {
+    try {
+      renderCallback(currentState, prevState);
+    } catch (error) {
+      console.error('Render callback error:', error);
+    }
+  }
+}
+
+/**
+ * Register render callback
+ */
+export function setRenderCallback(callback: (state: DownloaderState, prevState: DownloaderState) => void): void {
+  renderCallback = callback;
+}
+
+/**
+ * Reset state to initial
+ */
+export function resetState(): void {
+  setState(initialState);
+}
+
+// Convenience functions
+
+export function setLoading(loading: boolean): void {
+  setState({ isLoading: loading });
+}
+
+export function setError(errorMessage: string | null): void {
+  setState({
+    error: errorMessage,
+    isLoading: false
+  });
+}
+
+export function clearError(): void {
+  setState({ error: null });
+}
+
+export function setSuggestions(suggestions: string[]): void {
+  setState({
+    suggestions,
+    showSuggestions: suggestions.length > 0
+  });
+}
+
+export function hideSuggestions(): void {
+  setState({ showSuggestions: false });
+}
+
+export function updateButtonVisibility(hasContent: boolean): void {
+  setState({
+    showPasteButton: !hasContent,
+    showClearButton: hasContent
+  });
+}
+
+export function setResults(results: any[]): void {
+  setState({
+    results,
+    resultsLoading: false
+  });
+}
+
+export function setResultsLoading(loading: boolean): void {
+  setState({ resultsLoading: loading });
+}
+
+export function setInputType(type: 'url' | 'keyword'): void {
+  setState({ inputType: type });
+}

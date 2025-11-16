@@ -89,3 +89,10 @@ export { BaseService, type BaseRequestOptions, type ProtectionPayload } from './
 // Read DOMAIN_LAYER_GUIDE.md for usage instructions
 // Exports: DomainVerifier, VerifiedServices, JWT Store, Verification types
 export * from './domain';
+
+// ========================================
+// Orchestration Layer
+// ========================================
+// Download flow coordination and session management
+// Exports: Multifile orchestrator, SSE manager, constants
+export * from './orchestration';

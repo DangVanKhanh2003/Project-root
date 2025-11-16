@@ -17,6 +17,10 @@ import {
   createDecryptService,
   createFeedbackService,
   createSearchV2Service,
+  createQueueService,
+  createYouTubeDownloadService,
+  createMultifileService,
+  createYouTubePublicApiService,
 
   // Domain Layer
   createVerifier,
@@ -46,6 +50,10 @@ const coreServices = {
   decrypt: createDecryptService(httpClient, apiConfig),
   feedback: createFeedbackService(httpClient, apiConfig),
   searchV2: createSearchV2Service(httpClient, apiConfig),
+  queue: createQueueService(httpClient, apiConfig),
+  youtubeDownload: createYouTubeDownloadService(httpClient, apiConfig),
+  multifile: createMultifileService(httpClient, apiConfig),
+  youtubePublicApi: createYouTubePublicApiService(httpClient, apiConfig),
 };
 
 // 4. Create Domain Verifier with Namespaced JWT Store

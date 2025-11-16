@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online video downloader - TypeScript Test App">
+    <title>Yt1s Test - Video Downloader (TypeScript)</title>
+
+    <!-- Icons -->
+    <link rel="icon" href="/favicon.ico" sizes="any" type="image/x-icon">
+    <meta name="theme-color" content="#0b1220">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                <a href="/" class="navbar-logo">Yt1s Test</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section with Download Form -->
+        <section class="hero">
+            <div class="container">
+                <h1 class="hero-title">Video Downloader Test App</h1>
+                <p class="hero-subtitle">TypeScript Migration - Phase 4</p>
+
+                <!-- Download Form -->
+                <div class="download-section">
+                    <form id="downloadForm" class="download-form">
+                        <div class="input-wrapper">
+                            <input
+                                type="text"
+                                id="urlInput"
+                                class="url-input"
+                                placeholder="Paste video URL or search keywords..."
+                                autocomplete="off"
+                            >
+                            <button type="button" id="pasteButton" class="btn-paste" style="display: none;">
+                                Paste
+                            </button>
+                            <button type="button" id="clearButton" class="btn-clear" style="display: none;">
+                                Clear
+                            </button>
+                        </div>
+
+                        <!-- Suggestions Dropdown -->
+                        <div id="suggestionsDropdown" class="suggestions-dropdown" style="display: none;"></div>
+
+                        <button type="submit" class="btn-download-primary">
+                            Download
+                        </button>
+                    </form>
+
+                    <!-- Content Area (for results/loading/messages) -->
+                    <div id="contentArea" class="content-area"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Yt1s Test - TypeScript Migration</p>
+        </div>
+    </footer>
+
+    <!-- Global Progress Bar Wrapper (for conversion modal) -->
+    <div id="progressBarWrapper" style="visibility: hidden; opacity: 0;"></div>
+
+    <!-- TypeScript Entry Point -->
+    <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
