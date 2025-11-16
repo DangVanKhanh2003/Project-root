@@ -8,6 +8,9 @@ import type { IHttpClient } from '../../http/http-client.interface';
 import type { ApiConfig } from '../../config/api-config.interface';
 import type { ProtectionPayload } from '../types/protection.types';
 
+// Re-export ProtectionPayload for convenience
+export type { ProtectionPayload } from '../types/protection.types';
+
 /**
  * Base request options for all API calls
  */

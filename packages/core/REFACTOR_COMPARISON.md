@@ -328,9 +328,10 @@ await conversionService.convert(...);  // → Verified through domain layer
 │  ┌──────────────────────────────────────────────┐  │
 │  │         BaseService (abstract)               │  │
 │  │  - makeRequest() ← All requests go through   │  │
-│  │  - JWT extraction                            │  │
+│  │  - JWT extraction & cleaning                 │  │
 │  │  - Protection handling                       │  │
 │  │  - Verification control                      │  │
+│  │  - Response cleaning (remove jwt field)     │  │
 │  └─────────┬────────────────────────────────────┘  │
 │            │ extends                                │
 │  ┌─────────▼──────────┐  ┌────────────────────┐   │
@@ -353,3 +354,4 @@ await conversionService.convert(...);  // → Verified through domain layer
 3. ✅ Domain layer controls verification via `setVerification()`
 4. ✅ Single source of truth for protection logic
 5. ✅ TypeScript enforces correct patterns
+6. ✅ **NEW**: Response cleaning - JWT removed before returning to services

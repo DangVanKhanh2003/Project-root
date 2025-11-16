@@ -5,7 +5,87 @@
 
 export const VERSION = '1.0.0';
 
-// Re-export all models (clean separation: remote, dto, entities, state)
+// ========================================
+// Models (Remote, DTO, Entities, State)
+// ========================================
 export * from './models';
 
-// Services and mappers will be added in Phase 2
+// ========================================
+// HTTP Client
+// ========================================
+export {
+  createHttpClient,
+  type IHttpClient,
+  type HttpClientConfig,
+  type RequestOptions,
+  type HttpMethod,
+} from './http';
+
+// ========================================
+// Services - V1
+// ========================================
+export {
+  createSearchService,
+  createPlaylistService,
+  createFeedbackService,
+  createDecryptService,
+  createMediaService,
+  createMultifileService,
+  createConversionService,
+  type ISearchService,
+  type IPlaylistService,
+  type IFeedbackService,
+  type IDecryptService,
+  type IMediaService,
+  type IMultifileService,
+  type IConversionService,
+} from './services/v1';
+
+// ========================================
+// Services - V2
+// ========================================
+export {
+  createQueueService,
+  createSearchV2Service,
+  createYouTubeDownloadService,
+  type IQueueService,
+  type ISearchV2Service,
+  type IYouTubeDownloadService,
+} from './services/v2';
+
+// ========================================
+// Services - Public API
+// ========================================
+export {
+  createYouTubePublicApiService,
+  type IYouTubePublicApiService,
+} from './services/public-api';
+
+// ========================================
+// Mappers
+// ========================================
+export {
+  mapSearchResponse,
+  mapSearchV2Response,
+  mapPlaylistResponse,
+  mapConversionResponse,
+  mapDecryptResponse,
+  mapYouTubeExtractResponse,
+  mapDirectExtractResponse,
+  mapInstagramResponse,
+  normalizeFormat,
+  normalizeFormats,
+  normalizeFormatsFromObject,
+} from './mappers';
+
+// ========================================
+// Service Base (for custom services)
+// ========================================
+export { BaseService, type BaseRequestOptions, type ProtectionPayload } from './services/base/base-service';
+
+// ========================================
+// Domain Layer (RECOMMENDED FOR SITE PROJECTS)
+// ========================================
+// Read DOMAIN_LAYER_GUIDE.md for usage instructions
+// Exports: DomainVerifier, VerifiedServices, JWT Store, Verification types
+export * from './domain';
