@@ -1,20 +1,21 @@
 /**
- * YouTube Download Service (V2)
+ * YouTube Download Service Implementation (V2)
  * Handles YouTube video/audio downloads with progress tracking
  */
 
-import type { IHttpClient } from '../../http/http-client.interface';
-import type { ApiConfig } from '../../config/api-config.interface';
-import type { StreamDto } from '../../models/dto/stream.dto';
+import type { IHttpClient } from '../../../http/http-client.interface';
+import type { ApiConfig } from '../../../config/api-config.interface';
+import type { StreamDto } from '../../../models/dto/stream.dto';
 import type {
   StreamResponse,
   StaticResponse,
   ProgressResponse,
-} from '../../models/remote/v2/responses/download.response';
-import type { DownloadRequest, ProgressRequest } from '../../models/remote/v2/requests/download.request';
-import { YOUTUBE_DOWNLOAD_ENDPOINTS } from '../constants/endpoints';
-import { getTimeout } from '../../config/api-config.interface';
-import { mapStreamResponse, mapProgressResponse } from '../../mappers/v2/stream.mapper';
+} from '../../../models/remote/v2/responses/download.response';
+import type { DownloadRequest, ProgressRequest } from '../../../models/remote/v2/requests/download.request';
+import type { IYouTubeDownloadService } from '../interfaces/youtube-download.interface';
+import { YOUTUBE_DOWNLOAD_ENDPOINTS } from '../../constants/endpoints';
+import { getTimeout } from '../../../config/api-config.interface';
+import { mapStreamResponse, mapProgressResponse } from '../../../mappers/v2/stream.mapper';
 
 /**
  * Extract cache ID from progress URL
@@ -33,14 +34,6 @@ function extractCacheId(progressUrl: string): string {
   } catch (error) {
     throw new Error(`Invalid progress URL format: ${progressUrl}`);
   }
-}
-
-/**
- * YouTube download service interface
- */
-export interface IYouTubeDownloadService {
-  downloadYouTube(params: DownloadRequest, signal?: AbortSignal): Promise<StreamDto>;
-  getDownloadProgress(params: ProgressRequest): Promise<ProgressResponse>;
 }
 
 /**

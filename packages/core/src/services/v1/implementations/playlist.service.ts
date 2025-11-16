@@ -1,23 +1,17 @@
 /**
- * Playlist Service (V1)
+ * Playlist Service Implementation (V1)
  * Handles YouTube playlist extraction
  */
 
-import type { IHttpClient } from '../../http/http-client.interface';
-import type { ApiConfig } from '../../config/api-config.interface';
-import type { PlaylistDto } from '../../models/dto/search.dto';
-import type { PlaylistResponse, PlaylistResponseData } from '../../models/remote/v1/responses/playlist.response';
-import type { PlaylistRequest } from '../../models/remote/v1/requests/playlist.request';
-import { API_ENDPOINTS } from '../constants/endpoints';
-import { getTimeout } from '../../config/api-config.interface';
-import { mapPlaylistResponse } from '../../mappers/v1/playlist.mapper';
-
-/**
- * Playlist service interface
- */
-export interface IPlaylistService {
-  extractPlaylist(params: PlaylistRequest): Promise<PlaylistDto>;
-}
+import type { IHttpClient } from '../../../http/http-client.interface';
+import type { ApiConfig } from '../../../config/api-config.interface';
+import type { PlaylistDto } from '../../../models/dto/search.dto';
+import type { PlaylistResponse, PlaylistResponseData } from '../../../models/remote/v1/responses/playlist.response';
+import type { PlaylistRequest } from '../../../models/remote/v1/requests/playlist.request';
+import type { IPlaylistService } from '../interfaces/playlist.interface';
+import { API_ENDPOINTS } from '../../constants/endpoints';
+import { getTimeout } from '../../../config/api-config.interface';
+import { mapPlaylistResponse } from '../../../mappers/v1/playlist.mapper';
 
 /**
  * Create playlist service

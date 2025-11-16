@@ -1,30 +1,18 @@
 /**
- * Decrypt Service (V1)
+ * Decrypt Service Implementation (V1)
  * Handles decoding/decryption of encrypted URLs
  */
 
-import type { IHttpClient } from '../../http/http-client.interface';
-import type { ApiConfig } from '../../config/api-config.interface';
-import type { DecodeDto } from '../../models/dto/decrypt.dto';
-import type { DecryptResponse, DecryptListResponse } from '../../models/remote/v1/responses/decrypt.response';
-import type { DecryptRequest, DecryptListRequest } from '../../models/remote/v1/requests/decrypt.request';
-import type { ProtectionPayload } from '../types/protection.types';
-import { API_ENDPOINTS } from '../constants/endpoints';
-import { getTimeout } from '../../config/api-config.interface';
-import { mapDecryptResponse } from '../../mappers/v1/decrypt.mapper';
-
-/**
- * JWT save callback type
- */
-export type JwtSaveCallback = (jwt: string) => void;
-
-/**
- * Decrypt service interface
- */
-export interface IDecryptService {
-  decodeUrl(params: DecryptRequest, protectionPayload?: ProtectionPayload): Promise<DecodeDto>;
-  decodeList(params: DecryptListRequest, protectionPayload?: ProtectionPayload): Promise<DecryptListResponse>;
-}
+import type { IHttpClient } from '../../../http/http-client.interface';
+import type { ApiConfig } from '../../../config/api-config.interface';
+import type { DecodeDto } from '../../../models/dto/decrypt.dto';
+import type { DecryptResponse, DecryptListResponse } from '../../../models/remote/v1/responses/decrypt.response';
+import type { DecryptRequest, DecryptListRequest } from '../../../models/remote/v1/requests/decrypt.request';
+import type { ProtectionPayload } from '../../types/protection.types';
+import type { IDecryptService, JwtSaveCallback } from '../interfaces/decrypt.interface';
+import { API_ENDPOINTS } from '../../constants/endpoints';
+import { getTimeout } from '../../../config/api-config.interface';
+import { mapDecryptResponse } from '../../../mappers/v1/decrypt.mapper';
 
 /**
  * Create decrypt service

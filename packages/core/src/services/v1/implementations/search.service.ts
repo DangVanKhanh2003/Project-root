@@ -1,24 +1,17 @@
 /**
- * Search Service (V1)
+ * Search Service Implementation (V1)
  * Handles keyword search and search suggestions
  */
 
-import type { IHttpClient } from '../../http/http-client.interface';
-import type { ApiConfig } from '../../config/api-config.interface';
-import type { SearchDto } from '../../models/dto/search.dto';
-import type { SearchTitleResponse, SearchTitleResponseData } from '../../models/remote/v1/responses/search.response';
-import type { SearchTitleRequest, SuggestKeywordRequest } from '../../models/remote/v1/requests/search.request';
-import { API_ENDPOINTS } from '../constants/endpoints';
-import { getTimeout } from '../../config/api-config.interface';
-import { mapSearchResponse } from '../../mappers/v1/search.mapper';
-
-/**
- * Search service interface
- */
-export interface ISearchService {
-  searchTitle(params: SearchTitleRequest): Promise<SearchDto>;
-  getSuggestions(params: SuggestKeywordRequest): Promise<string[]>;
-}
+import type { IHttpClient } from '../../../http/http-client.interface';
+import type { ApiConfig } from '../../../config/api-config.interface';
+import type { SearchDto } from '../../../models/dto/search.dto';
+import type { SearchTitleResponse, SearchTitleResponseData } from '../../../models/remote/v1/responses/search.response';
+import type { SearchTitleRequest, SuggestKeywordRequest } from '../../../models/remote/v1/requests/search.request';
+import type { ISearchService } from '../interfaces/search.interface';
+import { API_ENDPOINTS } from '../../constants/endpoints';
+import { getTimeout } from '../../../config/api-config.interface';
+import { mapSearchResponse } from '../../../mappers/v1/search.mapper';
 
 /**
  * Create search service

@@ -1,23 +1,17 @@
 /**
- * YouTube Public API Service
+ * YouTube Public API Service Implementation
  * Uses YouTube oEmbed API (no authentication required)
  */
 
-import type { IHttpClient } from '../../http/http-client.interface';
-import type { ApiConfig } from '../../config/api-config.interface';
-import type { YouTubeMetadataDto } from '../../models/dto/youtube.dto';
-import type { OEmbedResponse } from '../../models/remote/public-api/oembed.response';
-import { mapOEmbedResponse } from '../../mappers/public-api/oembed.mapper';
+import type { IHttpClient } from '../../../http/http-client.interface';
+import type { ApiConfig } from '../../../config/api-config.interface';
+import type { YouTubeMetadataDto } from '../../../models/dto/youtube.dto';
+import type { OEmbedResponse } from '../../../models/remote/public-api/oembed.response';
+import type { IYouTubePublicApiService } from '../interfaces/public-api.interface';
+import { mapOEmbedResponse } from '../../../mappers/public-api/oembed.mapper';
 
 const OEMBED_API_URL = 'https://www.youtube.com';
 const OEMBED_TIMEOUT = 7000;
-
-/**
- * YouTube public API service interface
- */
-export interface IYouTubePublicApiService {
-  getMetadata(url: string): Promise<YouTubeMetadataDto>;
-}
 
 /**
  * Create YouTube public API service

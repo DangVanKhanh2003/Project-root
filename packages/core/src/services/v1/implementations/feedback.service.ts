@@ -1,21 +1,15 @@
 /**
- * Feedback Service (V1)
+ * Feedback Service Implementation (V1)
  * Handles user feedback submission
  */
 
-import type { IHttpClient } from '../../http/http-client.interface';
-import type { ApiConfig } from '../../config/api-config.interface';
-import type { FeedbackResponse } from '../../models/remote/v1/responses/feedback.response';
-import type { FeedbackRequest } from '../../models/remote/v1/requests/feedback.request';
-import { API_ENDPOINTS } from '../constants/endpoints';
-import { getTimeout } from '../../config/api-config.interface';
-
-/**
- * Feedback service interface
- */
-export interface IFeedbackService {
-  sendFeedback(params: FeedbackRequest): Promise<FeedbackResponse>;
-}
+import type { IHttpClient } from '../../../http/http-client.interface';
+import type { ApiConfig } from '../../../config/api-config.interface';
+import type { FeedbackResponse } from '../../../models/remote/v1/responses/feedback.response';
+import type { FeedbackRequest } from '../../../models/remote/v1/requests/feedback.request';
+import type { IFeedbackService } from '../interfaces/feedback.interface';
+import { API_ENDPOINTS } from '../../constants/endpoints';
+import { getTimeout } from '../../../config/api-config.interface';
 
 /**
  * Create feedback service

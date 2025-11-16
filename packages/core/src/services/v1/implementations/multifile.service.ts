@@ -1,34 +1,22 @@
 /**
- * Multifile Service (V1)
+ * Multifile Service Implementation (V1)
  * Handles multifile download sessions
  */
 
-import type { IHttpClient } from '../../http/http-client.interface';
-import type { ApiConfig } from '../../config/api-config.interface';
+import type { IHttpClient } from '../../../http/http-client.interface';
+import type { ApiConfig } from '../../../config/api-config.interface';
 import type {
   MultifileStartResponse,
   MultifileStatusResponse,
-} from '../../models/remote/v1/responses/multifile.response';
+} from '../../../models/remote/v1/responses/multifile.response';
 import type {
   MultifileNonEncodeStartRequest,
   MultifileStatusRequest,
-} from '../../models/remote/v1/requests/multifile.request';
-import type { ProtectionPayload } from '../types/protection.types';
-import { MULTIFILE_ENDPOINTS } from '../constants/endpoints';
-import { getTimeout } from '../../config/api-config.interface';
-
-/**
- * JWT save callback type
- */
-export type JwtSaveCallback = (jwt: string) => void;
-
-/**
- * Multifile service interface
- */
-export interface IMultifileService {
-  startMultifileSession(params: MultifileNonEncodeStartRequest, protectionPayload?: ProtectionPayload): Promise<MultifileStartResponse>;
-  getMultifileStatus(params: MultifileStatusRequest): Promise<MultifileStatusResponse>;
-}
+} from '../../../models/remote/v1/requests/multifile.request';
+import type { ProtectionPayload } from '../../types/protection.types';
+import type { IMultifileService, JwtSaveCallback } from '../interfaces/multifile.interface';
+import { MULTIFILE_ENDPOINTS } from '../../constants/endpoints';
+import { getTimeout } from '../../../config/api-config.interface';
 
 /**
  * Create multifile service

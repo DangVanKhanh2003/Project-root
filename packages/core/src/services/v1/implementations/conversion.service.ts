@@ -1,30 +1,18 @@
 /**
- * Conversion Service (V1)
+ * Conversion Service Implementation (V1)
  * Handles YouTube format conversion and task status checking
  */
 
-import type { IHttpClient } from '../../http/http-client.interface';
-import type { ApiConfig } from '../../config/api-config.interface';
-import type { TaskDto } from '../../models/dto/conversion.dto';
-import type { ConvertResponse, ConvertResponseData } from '../../models/remote/v1/responses/convert.response';
-import type { ConvertRequest, CheckTaskRequest } from '../../models/remote/v1/requests/convert.request';
-import type { ProtectionPayload } from '../types/protection.types';
-import { API_ENDPOINTS } from '../constants/endpoints';
-import { getTimeout } from '../../config/api-config.interface';
-import { mapConversionResponse } from '../../mappers/v1/conversion.mapper';
-
-/**
- * JWT save callback type
- */
-export type JwtSaveCallback = (jwt: string) => void;
-
-/**
- * Conversion service interface
- */
-export interface IConversionService {
-  convert(params: ConvertRequest, protectionPayload?: ProtectionPayload): Promise<TaskDto>;
-  checkTask(params: CheckTaskRequest): Promise<TaskDto>;
-}
+import type { IHttpClient } from '../../../http/http-client.interface';
+import type { ApiConfig } from '../../../config/api-config.interface';
+import type { TaskDto } from '../../../models/dto/conversion.dto';
+import type { ConvertResponse, ConvertResponseData } from '../../../models/remote/v1/responses/convert.response';
+import type { ConvertRequest, CheckTaskRequest } from '../../../models/remote/v1/requests/convert.request';
+import type { ProtectionPayload } from '../../types/protection.types';
+import type { IConversionService, JwtSaveCallback } from '../interfaces/conversion.interface';
+import { API_ENDPOINTS } from '../../constants/endpoints';
+import { getTimeout } from '../../../config/api-config.interface';
+import { mapConversionResponse } from '../../../mappers/v1/conversion.mapper';
 
 /**
  * Create conversion service

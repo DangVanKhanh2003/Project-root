@@ -1,31 +1,17 @@
 /**
- * Search V2 Service
+ * Search V2 Service Implementation
  * Handles YouTube search with rich metadata and pagination
  */
 
-import type { IHttpClient } from '../../http/http-client.interface';
-import type { ApiConfig } from '../../config/api-config.interface';
-import type { SearchV2Dto } from '../../models/dto/search.dto';
-import type { SearchV2Response } from '../../models/remote/v2/responses/search.response';
-import type { SearchV2Options } from '../types/service-options.types';
-import { SEARCH_V2_ENDPOINTS } from '../constants/endpoints';
-import { getTimeout } from '../../config/api-config.interface';
-import { mapSearchV2Response } from '../../mappers/v2/searchv2.mapper';
-
-/**
- * Normalize string value
- */
-function normalizeText(value: unknown): string {
-  if (value === undefined || value === null) return '';
-  return String(value);
-}
-
-/**
- * Search V2 service interface
- */
-export interface ISearchV2Service {
-  searchV2(query: string, options?: SearchV2Options): Promise<SearchV2Dto>;
-}
+import type { IHttpClient } from '../../../http/http-client.interface';
+import type { ApiConfig } from '../../../config/api-config.interface';
+import type { SearchV2Dto } from '../../../models/dto/search.dto';
+import type { SearchV2Response } from '../../../models/remote/v2/responses/search.response';
+import type { SearchV2Options } from '../../types/service-options.types';
+import type { ISearchV2Service } from '../interfaces/searchv2.interface';
+import { SEARCH_V2_ENDPOINTS } from '../../constants/endpoints';
+import { getTimeout } from '../../../config/api-config.interface';
+import { mapSearchV2Response } from '../../../mappers/v2/searchv2.mapper';
 
 /**
  * Create search v2 service
@@ -52,7 +38,7 @@ export function createSearchV2Service(
   ): Promise<SearchV2Dto> {
     const { pageToken, limit } = options;
 
-    const params: Record<string, unknown> = { q: normalizeText(query) };
+    const params: Record<string, unknown> = { q: query };
 
     if (pageToken) {
       params.page = pageToken;

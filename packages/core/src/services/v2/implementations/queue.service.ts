@@ -1,19 +1,13 @@
 /**
- * Queue Service (V2)
+ * Queue Service Implementation (V2)
  * Handles video queue operations (fire-and-forget analytics)
  */
 
-import type { IHttpClient } from '../../http/http-client.interface';
-import type { ApiConfig } from '../../config/api-config.interface';
-import { QUEUE_ENDPOINTS } from '../constants/endpoints';
-import { getTimeout } from '../../config/api-config.interface';
-
-/**
- * Queue service interface
- */
-export interface IQueueService {
-  addVideoToQueue(videoId: string): Promise<boolean>;
-}
+import type { IHttpClient } from '../../../http/http-client.interface';
+import type { ApiConfig } from '../../../config/api-config.interface';
+import type { IQueueService } from '../interfaces/queue.interface';
+import { QUEUE_ENDPOINTS } from '../../constants/endpoints';
+import { getTimeout } from '../../../config/api-config.interface';
 
 /**
  * Create queue service

@@ -1,36 +1,24 @@
 /**
- * Media Service (V1)
+ * Media Service Implementation (V1)
  * Handles media extraction for YouTube and direct download platforms
  */
 
-import type { IHttpClient } from '../../http/http-client.interface';
-import type { ApiConfig } from '../../config/api-config.interface';
-import type { MediaDto } from '../../models/dto/media.dto';
+import type { IHttpClient } from '../../../http/http-client.interface';
+import type { ApiConfig } from '../../../config/api-config.interface';
+import type { MediaDto } from '../../../models/dto/media.dto';
 import type {
   ExtractResponse,
   YouTubeExtractData,
   DirectExtractData,
-} from '../../models/remote/v1/responses/extract.response';
-import type { ExtractRequest, ExtractNonEncodePostRequest } from '../../models/remote/v1/requests/extract.request';
-import type { ProtectionPayload } from '../types/protection.types';
-import { API_ENDPOINTS } from '../constants/endpoints';
-import { getTimeout } from '../../config/api-config.interface';
-import { mapYouTubeExtractResponse } from '../../mappers/v1/media/youtube.mapper';
-import { mapDirectExtractResponse } from '../../mappers/v1/media/direct.mapper';
-import { mapInstagramResponse } from '../../mappers/v1/media/instagram.mapper';
-
-/**
- * JWT save callback type
- */
-export type JwtSaveCallback = (jwt: string) => void;
-
-/**
- * Media service interface
- */
-export interface IMediaService {
-  extractMedia(params: ExtractRequest, protectionPayload?: ProtectionPayload): Promise<MediaDto>;
-  extractMediaDirect(params: ExtractNonEncodePostRequest, protectionPayload?: ProtectionPayload): Promise<MediaDto>;
-}
+} from '../../../models/remote/v1/responses/extract.response';
+import type { ExtractRequest, ExtractNonEncodePostRequest } from '../../../models/remote/v1/requests/extract.request';
+import type { ProtectionPayload } from '../../types/protection.types';
+import type { IMediaService, JwtSaveCallback } from '../interfaces/media.interface';
+import { API_ENDPOINTS } from '../../constants/endpoints';
+import { getTimeout } from '../../../config/api-config.interface';
+import { mapYouTubeExtractResponse } from '../../../mappers/v1/media/youtube.mapper';
+import { mapDirectExtractResponse } from '../../../mappers/v1/media/direct.mapper';
+import { mapInstagramResponse } from '../../../mappers/v1/media/instagram.mapper';
 
 /**
  * Create media service
