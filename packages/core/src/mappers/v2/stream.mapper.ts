@@ -47,7 +47,7 @@ export function mapStreamResponse(
     format,
     downloadMode: options.downloadMode || 'video',
     progressUrl: isStream ? (response as StreamResponse).progressUrl || null : null,
-    size: null, // Size not provided in API response
+    size: response.size || null, // Extract size from response if available
   };
 }
 

@@ -216,7 +216,17 @@ function detectPlatformRouting(extractResponse: ExtractResponse, formatData: For
 
     // 🎯 CASE 2 & 3: iOS Stream Content
     if (isIOS() && status === 'stream') {
-        if (size && size > getIOSStreamMaxSize()) {
+        // If size is unknown, default to polling for safety
+        if (!size) {
+            return {
+                platform: 'iOS',
+                size, iosMaxSize: getIOSStreamMaxSize(),
+                status, routeType: 'ios-stream-polling',
+                description: 'iOS stream (unknown size) → polling (safe default)'
+            };
+        }
+
+        if (size > getIOSStreamMaxSize()) {
             // iOS Large Stream → Polling
             return {
                 platform: 'iOS',
@@ -230,7 +240,7 @@ function detectPlatformRouting(extractResponse: ExtractResponse, formatData: For
                 platform: 'iOS',
                 size, iosMaxSize: getIOSStreamMaxSize(),
                 status, routeType: 'ios-stream-ram',
-                description: 'iOS small stream (≤150MB) → RAM download'
+                description: `iOS small stream (${Math.round(size/1024/1024)}MB ≤150MB) → RAM download`
             };
             return result;
         }
@@ -1165,8 +1175,9 @@ export async function handleYouTubeDownload(formatData: FormatData, autoDownload
             result
         });
 
-        // YouTube Download API returns StreamDto directly (not wrapped in {ok, data})
-        const extractData = result as any;
+        // YouTube Download API V2 returns wrapped response: {ok, status, data: {status, url, filename}}
+        // Extract the actual data from the wrapper
+        const extractData = (result as any)?.data || result as any;
 
         console.log('[handleYouTubeDownload] 📦 Extract data:', {
             hasExtractData: !!extractData,

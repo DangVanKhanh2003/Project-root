@@ -101,9 +101,9 @@ const environment: Environment = {
         // V2 API Base URL (new API endpoint - current default)
         baseUrlV2: import.meta.env.VITE_API_BASE_URL_V2 || 'https://sv-190.y2mp3.co',
 
-        // Main API (currently uses V2)
+        // Main API (currently uses V1 - for extract, convert, playlist, etc.)
         // Both dev and prod use production API (no local backend)
-        baseUrl: import.meta.env.VITE_API_BASE_URL || 'https://api.yt1s.cx',
+        baseUrl: import.meta.env.VITE_API_BASE_URL || 'https://api.yt1s.cx/api/v1',
 
         // Search V2 API (YouTube search) - separate domain
         // Both dev and prod use production API (no local backend)

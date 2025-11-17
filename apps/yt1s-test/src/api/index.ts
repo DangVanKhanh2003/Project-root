@@ -29,7 +29,7 @@ import {
 } from '@downloader/core';
 
 // Import centralized environment configuration
-import { getApiBaseUrl, getSearchV2BaseUrl, getQueueApiUrl, getTimeout } from '../environment';
+import { getApiBaseUrl, getApiBaseUrlV2, getSearchV2BaseUrl, getQueueApiUrl, getTimeout } from '../environment';
 
 // Import CAPTCHA dependencies
 import { CaptchaModal } from '@downloader/ui-shared';
@@ -37,6 +37,7 @@ import { loadCaptchaModalCSS } from '../utils/css-loader';
 
 // API Configuration from environment.ts
 const API_BASE_URL = getApiBaseUrl();
+const API_V2_BASE_URL = getApiBaseUrlV2();
 const SEARCH_V2_BASE_URL = getSearchV2BaseUrl();
 const QUEUE_API_BASE_URL = getQueueApiUrl();
 const API_TIMEOUT = getTimeout('default');
@@ -48,9 +49,15 @@ const httpClient = createHttpClient({
   timeout: API_TIMEOUT,
 });
 
+// API V2 HTTP Client (YouTube download)
+const apiV2HttpClient = createHttpClient({
+  baseUrl: API_V2_BASE_URL,  // https://sv-190.y2mp3.co
+  timeout: API_TIMEOUT,
+});
+
 // Search V2 HTTP Client (separate domain for YouTube search)
 const searchV2HttpClient = createHttpClient({
-  baseUrl: SEARCH_V2_BASE_URL,  // https://yt-extractor.y2mp3.co
+  baseUrl: SEARCH_V2_BASE_URL,  // https://sv-190.y2mp3.co
   timeout: getTimeout('searchV2'),
 });
 
@@ -62,6 +69,11 @@ const queueHttpClient = createHttpClient({
 
 const apiConfig = {
   baseUrl: API_BASE_URL,
+  timeout: API_TIMEOUT,
+};
+
+const apiV2Config = {
+  baseUrl: API_V2_BASE_URL,
   timeout: API_TIMEOUT,
 };
 
@@ -82,16 +94,18 @@ const jwtStore = new LocalStorageJwtStore(
 
 // 3. Create Core Services (JWT handling moved to Domain Layer - Verifier)
 const coreServices = {
-  // Services using Main API
+  // Services using Main API (V1)
   search: createSearchService(httpClient, apiConfig),
   media: createMediaService(httpClient, apiConfig),
   conversion: createConversionService(httpClient, apiConfig),
   playlist: createPlaylistService(httpClient, apiConfig),
   decrypt: createDecryptService(httpClient, apiConfig),
   feedback: createFeedbackService(httpClient, apiConfig),
-  youtubeDownload: createYouTubeDownloadService(httpClient, apiConfig),
   multifile: createMultifileService(httpClient, apiConfig),
   youtubePublicApi: createYouTubePublicApiService(httpClient, apiConfig),
+
+  // YouTube Download using API V2
+  youtubeDownload: createYouTubeDownloadService(apiV2HttpClient, apiV2Config),
 
   // Search V2 using separate HTTP client (different domain)
   searchV2: createSearchV2Service(searchV2HttpClient, searchV2ApiConfig),

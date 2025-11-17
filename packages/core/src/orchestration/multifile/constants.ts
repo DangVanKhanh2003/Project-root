@@ -109,7 +109,7 @@ export const UI_MESSAGES: Record<MultifileState, string> = {
 export const ERROR_MESSAGES = {
   // Input validation errors
   EMPTY_URLS: 'Please select at least 1 file to download',
-  MAX_URLS_EXCEEDED: 'Maximum 100 files allowed per download',
+  MAX_URLS_EXCEEDED: 'Maximum 50 files allowed per download',
 
   // Session errors
   SESSION_NOT_FOUND: 'Session not found or has been removed',

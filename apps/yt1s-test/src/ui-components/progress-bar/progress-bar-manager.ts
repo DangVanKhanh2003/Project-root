@@ -73,6 +73,13 @@ export class ProgressBarManager {
   private renderProgressHTML(): void {
     if (!this.elements.wrapper) return;
 
+    // Find .progress-bar-content container (modal provides this)
+    const contentBox = this.elements.wrapper.querySelector('.progress-bar-content');
+    if (!contentBox) {
+      console.error('[ProgressBarManager] .progress-bar-content container not found - modal template missing it');
+      return;
+    }
+
     const html = `
       <div class="status-text-container">
         <div class="main-status-text">Processing… 0%</div>
@@ -80,7 +87,8 @@ export class ProgressBarManager {
       </div>
     `;
 
-    this.elements.wrapper.innerHTML = html;
+    // Inject into .progress-bar-content instead of overwriting wrapper
+    contentBox.innerHTML = html;
 
     // Re-query elements after render
     this.queryElements();
@@ -184,15 +192,14 @@ export class ProgressBarManager {
 
     this.renderProgressHTML();
 
-    if (this.elements.container) {
-      this.elements.container.style.display = 'block';
-    }
+    // Show the progress content (elements are already visible by default)
+    // No need to manipulate display - modal handles visibility
   }
 
   hide(): void {
-    if (this.elements.container) {
-      this.elements.container.style.display = 'none';
-    }
+    // Progress bar visibility is controlled by modal
+    // Just reset the progress
+    this.reset();
   }
 
   reset(): void {
@@ -239,9 +246,13 @@ export class ProgressBarManager {
     this.stopProgressAnimation();
 
     if (type === 'stream' && options.onProgress) {
-      // iOS RAM download - call onProgress callback
-      const onProgressCallback = (progress: number) => {
-        this.updateVisualProgress(this.currentProgress + progress * (100 - this.currentProgress) / 100);
+      // iOS RAM download - call onProgress callback with (loaded, total) signature
+      const onProgressCallback = (loaded: number, total: number) => {
+        const progressPercent = total > 0 ? (loaded / total) * 100 : 0;
+        // Map download progress (0-100%) to remaining progress bar space
+        const remainingSpace = 100 - this.currentProgress;
+        const newProgress = this.currentProgress + (progressPercent / 100) * remainingSpace;
+        this.updateVisualProgress(newProgress);
       };
 
       options.onProgress(onProgressCallback).then(() => {

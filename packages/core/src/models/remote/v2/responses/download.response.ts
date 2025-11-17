@@ -14,6 +14,7 @@ export interface StreamResponse {
   url: string; // Streaming URL
   filename: string; // Suggested filename
   progressUrl?: string; // Real-time progress tracking URL (full URL with domain)
+  size?: number; // File size in bytes (optional)
 }
 
 /**
@@ -24,6 +25,7 @@ export interface StaticResponse {
   status: 'static';
   url: string; // Direct download URL (cached, encrypted params)
   filename: string; // Suggested filename
+  size?: number; // File size in bytes (optional)
 }
 
 /**
