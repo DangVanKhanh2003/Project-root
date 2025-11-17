@@ -5,6 +5,8 @@
  * Replaces scattered scroll logic across multiple files with single source of truth.
  */
 
+import { BREAKPOINTS, INFINITE_SCROLL_THRESHOLDS } from './responsive-utils';
+
 export interface ScrollConfig {
   breakpoints?: {
     mobile?: number;
@@ -52,8 +54,8 @@ type InfiniteScrollCallback = (distanceFromBottom: number) => void;
 // Default configuration with mobile-first responsive design
 const DEFAULT_CONFIG: Required<ScrollConfig> = {
   breakpoints: {
-    mobile: 600,    // Match CSS breakpoint from base.css
-    desktop: 840,   // Match CSS breakpoint from base.css
+    mobile: BREAKPOINTS.MOBILE,    // From shared responsive-utils
+    desktop: BREAKPOINTS.DESKTOP,  // From shared responsive-utils
   },
   navbar: {
     selector: '.navbar',
@@ -67,8 +69,8 @@ const DEFAULT_CONFIG: Required<ScrollConfig> = {
   },
   infiniteScroll: {
     thresholds: {
-      mobile: 600,   // Distance from bottom to trigger load
-      desktop: 800,  // Distance from bottom to trigger load
+      mobile: INFINITE_SCROLL_THRESHOLDS.MOBILE,   // From shared responsive-utils
+      desktop: INFINITE_SCROLL_THRESHOLDS.DESKTOP, // From shared responsive-utils
     },
   },
   debug: false,

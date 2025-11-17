@@ -12,7 +12,14 @@
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true
+    "noEmit": true,
+    "paths": {
+      "@/*": ["./src/*"],
+      "@downloader/core": ["../../packages/core/src"],
+      "@downloader/core/*": ["../../packages/core/src/*"],
+      "@downloader/ui-shared": ["../../packages/ui-shared/src"],
+      "@downloader/ui-shared/*": ["../../packages/ui-shared/src/*"]
+    }
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]

@@ -9,12 +9,15 @@ import { initInputForm } from './logic/input-form';
 import { initContentRenderer } from './ui-render/content-renderer';
 import { initSuggestionRenderer, render as renderSuggestions } from '../../ui-components/suggestion-dropdown/suggestion-renderer';
 import { initConversionController } from './logic/conversion/conversion-controller';
+import { scrollManager } from '@downloader/ui-shared';
 import type { AppState } from './state';
 
 /**
  * Initialize downloader UI
  */
 export async function init(): Promise<void> {
+  // Step 0: Initialize shared services
+  scrollManager.init();
 
   // Step 1: Initialize renderers (views)
   const rendererInitialized = initRenderer();

@@ -20,7 +20,7 @@ import {
   decrementLoadMoreCount,
 } from '../state';
 import { transformSearchItemToVideoData } from '../logic/input-form';
-import { scrollManager } from '@downloader/ui-shared/scroll';
+import { getInfiniteScrollThreshold } from '@downloader/ui-shared/scroll';
 import { api } from '../../../api';
 
 let contentArea: HTMLElement | null = null;
@@ -125,7 +125,7 @@ function setupInfiniteScroll(): void {
 
     const gridRect = grid.getBoundingClientRect();
     const distanceToBottom = gridRect.bottom - window.innerHeight;
-    const threshold = scrollManager.getInfiniteScrollThreshold(); // Responsive: 600px mobile, 800px desktop
+    const threshold = getInfiniteScrollThreshold(); // Responsive: 600px mobile, 800px desktop (from shared utils)
 
     // Trigger load more when close to bottom
     if (distanceToBottom <= threshold) {
@@ -452,7 +452,6 @@ export function renderVideoDownloadOptions(data: any, activeTab: 'video' | 'audi
   if (!contentArea) {
     return;
   }
-  debugger
   // Generate HTML using download options renderer
   // Note: renderDownloadOptions gets state internally, no need to pass data
   // TypeScript: Cast to any to handle type mismatch between FormatDto[] and ProcessedFormat[]

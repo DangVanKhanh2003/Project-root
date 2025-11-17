@@ -421,7 +421,6 @@ export function renderFormatItem(format: ProcessedFormat, downloadTasks: Downloa
     const state = getState();
     const url = state.videoDetail?.meta?.originalUrl || '';
     const isYouTube = isYouTubeUrl(url);
-    debugger
     // Branch: YouTube conversion flow vs Direct download
     if (isYouTube) {
         return renderConversionButton(format, downloadTasks);
@@ -679,7 +678,6 @@ export function attachDownloadListeners(container: HTMLElement | null): void {
         // Handle download button clicks
         const downloadBtn = (event.target as HTMLElement).closest('.quality-item');
         if (downloadBtn) {
-            debugger
             handleDownloadClick(event);
             return;
         }

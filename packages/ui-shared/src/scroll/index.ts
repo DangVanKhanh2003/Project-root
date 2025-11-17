@@ -14,3 +14,11 @@ export {
   forceUpdateScrollCalculations,
 } from './scroll-behavior';
 export type { SearchType } from './scroll-behavior';
+
+export {
+  isMobile,
+  isDesktop,
+  getInfiniteScrollThreshold,
+  BREAKPOINTS,
+  INFINITE_SCROLL_THRESHOLDS,
+} from './responsive-utils';

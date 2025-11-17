@@ -4,6 +4,7 @@
  */
 
 import { api, coreServices } from '../../../api';
+import { scrollManager } from '@downloader/ui-shared';
 import {
   getState,
   setState,
@@ -269,57 +270,6 @@ let lastClickTime = 0;
 const CLICK_THROTTLE_MS = 300;
 
 /**
- * Scroll to content area after form submission
- * Implements smart desktop/mobile logic like project cũ
- */
-function scrollToContentArea(searchType: 'url' | 'keyword'): void {
-  // Check for reduced motion preference
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const behavior = prefersReducedMotion ? 'auto' : 'smooth';
-
-  // Determine scroll target based on search type and viewport
-  let targetElement: HTMLElement | null = null;
-
-  if (searchType === 'keyword') {
-    // Keyword search → scroll to input (mobile only)
-    if (window.innerWidth <= 768) {
-      targetElement = document.querySelector('#videoUrl');
-    } else {
-      // Desktop: don't scroll for keyword searches
-      return;
-    }
-  } else {
-    // URL search → scroll to content area
-    if (window.innerWidth > 768) {
-      // Desktop: scroll to input container
-      targetElement = document.querySelector('.input-container') ||
-                     document.querySelector('#videoUrl') ||
-                     document.querySelector('#content-area');
-    } else {
-      // Mobile: scroll to content area
-      targetElement = document.querySelector('#content-area');
-    }
-  }
-
-  if (targetElement) {
-
-    // Calculate offset (navbar height + padding)
-    const navbar = document.querySelector('.navbar') as HTMLElement;
-    const navbarHeight = navbar ? navbar.offsetHeight : 60;
-    const offset = navbarHeight + 20; // 20px padding
-
-    // Get target position
-    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - offset;
-
-    // Smooth scroll
-    window.scrollTo({
-      top: targetPosition,
-      behavior: behavior as ScrollBehavior
-    });
-  }
-}
-
-/**
  * Handle mobile input click to trigger scroll behavior
  * Matches old project behavior: scroll to input when clicked on mobile
  */
@@ -336,9 +286,8 @@ function handleInputClick(event: MouseEvent): void {
   }
   lastClickTime = now;
 
-
-  // Scroll to input field
-  scrollToContentArea('keyword');
+  // Scroll to input field using the centralized scroll manager
+  scrollManager.scrollToElement('#videoUrl');
 }
 
 /**
@@ -716,7 +665,8 @@ async function handleSubmit(event: Event): Promise<void> {
 
       // Scroll to content area after skeleton renders (50ms delay)
       setTimeout(() => {
-        scrollToContentArea('url');
+        const target = scrollManager.isDesktop() ? '.input-container' : '#content-area';
+        scrollManager.scrollToElement(target);
       }, 50);
 
       await handleExtractMedia(value);
@@ -726,7 +676,10 @@ async function handleSubmit(event: Event): Promise<void> {
 
       // Scroll to content area after skeleton renders (50ms delay)
       setTimeout(() => {
-        scrollToContentArea('keyword');
+        // Only scroll on mobile for keyword searches
+        if (scrollManager.isMobile()) {
+          scrollManager.scrollToElement('#videoUrl');
+        }
       }, 50);
 
       await handleSearch(value);
