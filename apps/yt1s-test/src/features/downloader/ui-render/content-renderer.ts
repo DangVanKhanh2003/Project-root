@@ -5,8 +5,7 @@
 
 import { createSearchResultCard, type VideoData } from '../../../ui-components/search-result-card/search-result-card';
 import { createSkeletonCard } from '../../../ui-components/search-result-card/skeleton-card';
-import { renderDownloadOptions } from './download-options-renderer';
-import { attachDownloadListeners } from './download-rendering';
+import { renderDownloadOptions, attachDownloadListeners } from './download-rendering';
 import { setInputValue } from './ui-renderer';
 import { initExpandableText } from '../../../utils';
 import {
@@ -453,9 +452,12 @@ export function renderVideoDownloadOptions(data: any, activeTab: 'video' | 'audi
   if (!contentArea) {
     return;
   }
-
+  debugger
   // Generate HTML using download options renderer
-  const html = renderDownloadOptions(data, activeTab);
+  // Note: renderDownloadOptions gets state internally, no need to pass data
+  // TypeScript: Cast to any to handle type mismatch between FormatDto[] and ProcessedFormat[]
+  // renderDownloadOptions internally calls processFormatArray to convert FormatDto[] → ProcessedFormat[]
+  const html = renderDownloadOptions(getState() as any);
 
   // Render to content area
   contentArea.innerHTML = html;

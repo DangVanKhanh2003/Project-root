@@ -182,6 +182,7 @@ class ConsoleLogRemover {
       removedCount++;
 
       if (this.options.verbose) {
+        console.log(`  Removed: ${statement.match.substring(0, 50)}${statement.match.length > 50 ? '...' : ''}`);
       }
     }
 
@@ -196,6 +197,7 @@ class ConsoleLogRemover {
 
     const backupPath = `${filePath}.backup.${Date.now()}`;
     fs.copyFileSync(filePath, backupPath);
+    console.log(`  Backup created: ${backupPath}`);
   }
 
   /**
@@ -207,11 +209,15 @@ class ConsoleLogRemover {
       const result = this.removeConsoleStatements(content);
 
       if (result.removedCount > 0) {
+        console.log(`\n📁 ${filePath}`);
+        console.log(`  Found ${result.removedCount} console statement(s)`);
 
         if (this.options.dryRun) {
+          console.log('  [DRY RUN] Would remove console statements');
         } else {
           this.createBackup(filePath);
           fs.writeFileSync(filePath, result.content, 'utf8');
+          console.log(`  ✅ Removed ${result.removedCount} console statement(s)`);
         }
 
         this.removedCount += result.removedCount;
@@ -220,6 +226,7 @@ class ConsoleLogRemover {
       this.processedFiles++;
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : String(error);
+      console.error(`❌ Error processing ${filePath}:`, errorMessage);
     }
   }
 
@@ -285,27 +292,41 @@ class ConsoleLogRemover {
    * Main execution
    */
   public async run(): Promise<void> {
+    console.log('🧹 Console.log Removal Tool');
+    console.log('================================');
 
     if (this.options.dryRun) {
+      console.log('🔍 DRY RUN MODE - No files will be modified');
     }
 
     if (this.options.backup && !this.options.dryRun) {
+      console.log('💾 BACKUP MODE - Original files will be backed up');
     }
 
+    console.log(`🎯 Target: console.${this.options.includeOtherMethods ? '* methods' : 'log only'}`);
+    console.log(`📂 Directories: ${this.options.directories.join(', ')}`);
+    console.log('');
 
     const files = await this.findFiles();
 
     if (files.length === 0) {
+      console.log('❌ No JavaScript/TypeScript files found');
       return;
     }
 
+    console.log(`📊 Found ${files.length} JavaScript/TypeScript files to process`);
 
     for (const file of files) {
       await this.processFile(file);
     }
 
+    console.log('\n📋 Summary');
+    console.log('===========');
+    console.log(`📁 Files processed: ${this.processedFiles}`);
+    console.log(`🧹 Total console statements removed: ${this.removedCount}`);
 
     if (this.options.dryRun) {
+      console.log('\n💡 Run without --dry-run to actually remove console statements');
     }
   }
 }
@@ -331,12 +352,54 @@ function parseArgs(): ConsoleLogRemoverOptions & { help?: boolean } {
 }
 
 function showHelp(): void {
+  console.log(`
+🧹 Console.log Removal Tool
+
+Usage: npx tsx remove-console-logs.ts [options]
+
+Options:
+  -d, --dry-run           Preview changes without modifying files
+  -b, --backup            Create backup files before modification
+  -a, --all-methods       Remove all console methods (log, warn, error, etc.)
+  -v, --verbose           Show detailed output
+  --dirs <patterns>       Comma-separated glob patterns (default: src/**/*.{js,ts,tsx})
+  -h, --help              Show this help
+
+Examples:
+  npx tsx remove-console-logs.ts --dry-run       # Preview mode
+  npx tsx remove-console-logs.ts --backup        # Safe mode with backups
+  npx tsx remove-console-logs.ts --all-methods   # Remove all console methods
+  npx tsx remove-console-logs.ts --dirs "src/**/*.ts,lib/**/*.ts"  # Custom paths
+
+The tool handles:
+  ✅ Single line console.log('hello')
+  ✅ Multi-line console.log(
+       'multi line',
+       object
+     )
+  ✅ Nested objects console.log({ a: { b: c } })
+  ✅ Complex expressions console.log(func(a, b), obj.prop)
+  ✅ TypeScript files (.ts, .tsx)
+  ✅ JavaScript files (.js)
+`);
+}
+
+// Main execution
+async function main(): Promise<void> {
+  const options = parseArgs();
+
+  if (options.help) {
+    showHelp();
+    return;
+  }
+
   const remover = new ConsoleLogRemover(options);
   await remover.run();
 }
 
 // Error handling
 process.on('unhandledRejection', (error) => {
+  console.error('❌ Unhandled error:', error);
   process.exit(1);
 });
 
