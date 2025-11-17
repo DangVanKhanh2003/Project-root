@@ -142,7 +142,6 @@ export function createSSEManager(
       // Start heartbeat monitoring
       resetHeartbeat();
     } catch (error) {
-      console.error('Error parsing connected event:', error);
     }
   }
 
@@ -160,7 +159,6 @@ export function createSSEManager(
 
       resetHeartbeat();
     } catch (error) {
-      console.error('Error parsing decrypt progress:', error);
     }
   }
 
@@ -178,7 +176,6 @@ export function createSSEManager(
 
       resetHeartbeat();
     } catch (error) {
-      console.error('Error parsing download progress:', error);
     }
   }
 
@@ -196,7 +193,6 @@ export function createSSEManager(
 
       resetHeartbeat();
     } catch (error) {
-      console.error('Error parsing zip progress:', error);
     }
   }
 
@@ -215,7 +211,6 @@ export function createSSEManager(
       // Close connection after completion
       setTimeout(() => close(), 1000);
     } catch (error) {
-      console.error('Error parsing complete event:', error);
     }
   }
 
@@ -338,22 +333,16 @@ export function createSSEManager(
 export function createDefaultCallbacks(): SSECallbacks {
   return {
     onConnected: (data) => {
-      console.log('[SSE] Connected:', data);
     },
     onDecryptProgress: (data) => {
-      console.log('[SSE] Decrypt progress:', data);
     },
     onDownloadProgress: (data) => {
-      console.log('[SSE] Download progress:', data);
     },
     onZipProgress: (data) => {
-      console.log('[SSE] ZIP progress:', data);
     },
     onComplete: (data) => {
-      console.log('[SSE] Complete:', data);
     },
     onError: (error) => {
-      console.error('[SSE] Error:', error);
     },
   };
 }

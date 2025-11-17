@@ -33,24 +33,25 @@ export function truncateString(str: string | null | undefined, maxLength: number
  * @param openInNewTab - Whether to open in new tab instead of download
  */
 export function triggerDownload(url: string, filename?: string, openInNewTab: boolean = false): void {
-    const anchor = document.createElement('a');
-    anchor.href = url;
+    try {
+        const anchor = document.createElement('a');
+        anchor.href = url;
 
-    if (filename) {
-        anchor.download = filename;
+        if (filename) {
+            anchor.download = filename;
+        }
+
+        if (openInNewTab) {
+            anchor.target = '_blank';
+        }
+
+        anchor.rel = 'noopener noreferrer';
+
+        document.body.appendChild(anchor);
+        anchor.click();
+        document.body.removeChild(anchor);
+    } catch (error) {
     }
-
-    if (openInNewTab) {
-        anchor.target = '_blank';
-    }
-
-    // The 'download' attribute suggests a download. 'noopener' is for security.
-    anchor.rel = 'noopener noreferrer';
-
-    // Append to the DOM, click, and then remove
-    document.body.appendChild(anchor);
-    anchor.click();
-    document.body.removeChild(anchor);
 }
 
 /**

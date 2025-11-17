@@ -117,10 +117,7 @@ export class HttpClient implements IHttpClient {
         ...fetchOptions.headers,
         'Content-Type': 'application/json',
       };
-      console.log('🌍 [HttpClient] Request URL:', url);
-      console.log('🌍 [HttpClient] Request data before stringify:', data);
       fetchOptions.body = JSON.stringify(data);
-      console.log('🌍 [HttpClient] Request body (stringified):', fetchOptions.body);
     } else {
       // For GET/HEAD requests, append data as URL search params
       const params = new URLSearchParams(

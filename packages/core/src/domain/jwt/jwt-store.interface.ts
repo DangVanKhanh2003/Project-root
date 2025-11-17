@@ -110,31 +110,21 @@ export class LocalStorageJwtStore implements IJwtStore {
   }
 
   save(jwt: string): void {
-    console.log('💾 [LocalStorageJwtStore.save] Key:', this.key);
-    console.log('💾 [LocalStorageJwtStore.save] JWT:', jwt.substring(0, 30) + '...');
-    console.log('💾 [LocalStorageJwtStore.save] localStorage available:', typeof localStorage !== 'undefined');
 
     if (typeof localStorage !== 'undefined') {
       localStorage.setItem(this.key, jwt);
-      console.log('💾 [LocalStorageJwtStore.save] JWT saved to localStorage');
-      console.log('💾 [LocalStorageJwtStore.save] Verify saved:', localStorage.getItem(this.key)?.substring(0, 30) + '...');
     } else {
-      console.error('💾 [LocalStorageJwtStore.save] localStorage not available!');
     }
   }
 
   get(): string | null {
     const jwt = typeof localStorage !== 'undefined' ? localStorage.getItem(this.key) : null;
-    console.log('💾 [LocalStorageJwtStore.get] Key:', this.key);
-    console.log('💾 [LocalStorageJwtStore.get] JWT:', jwt ? jwt.substring(0, 30) + '...' : 'null');
     return jwt;
   }
 
   clear(): void {
-    console.log('💾 [LocalStorageJwtStore.clear] Key:', this.key);
     if (typeof localStorage !== 'undefined') {
       localStorage.removeItem(this.key);
-      console.log('💾 [LocalStorageJwtStore.clear] JWT cleared from localStorage');
     }
   }
 

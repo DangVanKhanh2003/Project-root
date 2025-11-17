@@ -90,7 +90,6 @@ class MediaServiceImpl extends BaseService implements IMediaService {
       timeout: getTimeout(this.config, 'extractNonEncode'),
     }, protectionPayload);
 
-    console.log('📦 [MediaService.extractMediaDirect] Raw response from makeRequest:', response);
 
     // Domain layer will unwrap this, so just return raw response
     // The unwrapped data will be in format: DirectExtractData

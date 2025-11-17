@@ -22,7 +22,6 @@ export function showExpireModal(options: ExpireModalOptions | string): void {
         const result = options.onTryAgain();
         if (result instanceof Promise) {
           result.catch(err => {
-            console.error('Error retrying download:', err);
           });
         }
       }

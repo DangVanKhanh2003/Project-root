@@ -143,12 +143,9 @@ export abstract class BaseService {
     data: Record<string, unknown>,
     protectionPayload?: ProtectionPayload
   ): Record<string, unknown> {
-    console.log('🔧 [addProtectionToData] Input data:', data);
-    console.log('🔧 [addProtectionToData] Protection payload:', protectionPayload);
 
     // JWT takes precedence over CAPTCHA
     if (protectionPayload?.jwt) {
-      console.log('🔧 [addProtectionToData] JWT found, skipping CAPTCHA injection');
       return data;
     }
 
@@ -161,11 +158,9 @@ export abstract class BaseService {
           || protectionPayload.captcha.provider
           || 'recaptcha',
       };
-      console.log('🔧 [addProtectionToData] CAPTCHA injected, result:', result);
       return result;
     }
 
-    console.log('🔧 [addProtectionToData] No protection, returning original data');
     return data;
   }
 
@@ -264,9 +259,6 @@ export abstract class BaseService {
       signal,
     } = options;
 
-    console.log('🌐 [BaseService.makeRequest] URL:', url);
-    console.log('🌐 [BaseService.makeRequest] Original data:', data);
-    console.log('🌐 [BaseService.makeRequest] Protection payload:', protectionPayload);
 
     // Build headers with protection
     const protectionHeaders = this.buildProtectionHeaders(protectionPayload);
@@ -274,7 +266,6 @@ export abstract class BaseService {
 
     // Add CAPTCHA to data if needed
     const requestData = this.addProtectionToData(data, protectionPayload);
-    console.log('🌐 [BaseService.makeRequest] Request data AFTER addProtectionToData:', requestData);
 
     // Make HTTP request through httpClient
     const response = await this.httpClient.request<TResponse>({
@@ -286,7 +277,6 @@ export abstract class BaseService {
       signal,
     });
 
-    console.log('🌐 [BaseService.makeRequest] RAW HTTP Response:', response);
 
     // Return raw response - Domain Layer will handle:
     // - JWT extraction and storage

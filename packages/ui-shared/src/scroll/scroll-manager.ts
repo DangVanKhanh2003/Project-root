@@ -123,7 +123,6 @@ export class ScrollManager {
       this.isInitialized = true;
       this.log('ScrollManager successfully initialized');
     } catch (error) {
-      console.error('ScrollManager init error:', error);
     }
   }
 
@@ -269,7 +268,6 @@ export class ScrollManager {
 
       this.log('Centralized scroll handlers set up successfully');
     } catch (error) {
-      console.error('setupScrollHandlers error:', error);
     }
   }
 
@@ -289,7 +287,6 @@ export class ScrollManager {
         this.updateNavbarHeightCSS();
       }
     } catch (error) {
-      console.error('handleScroll error:', error);
     }
   }
 
@@ -316,7 +313,6 @@ export class ScrollManager {
         }
       }
     } catch (error) {
-      console.error('handleNavbarScrollEffects error:', error);
     }
   }
 
@@ -339,7 +335,6 @@ export class ScrollManager {
         }
       }
     } catch (error) {
-      console.error('handleInfiniteScrollDetection error:', error);
     }
   }
 
@@ -554,7 +549,6 @@ export class ScrollManager {
       this.updateNavbarHeightCSS(); // Update CSS
       this.log('Navbar height force updated');
     } catch (error) {
-      console.error('forceUpdateNavbarHeight error:', error);
     }
   }
 
@@ -570,7 +564,6 @@ export class ScrollManager {
         this.log(`Warning: Navbar element not found with selector: ${this.config.navbar.selector}`);
       }
     } catch (error) {
-      console.error('cacheNavbarElement error:', error);
     }
   }
 
@@ -586,7 +579,6 @@ export class ScrollManager {
       );
       this.log(`CSS variable ${this.config.navbar.cssVariable} set to ${height}px`);
     } catch (error) {
-      console.error('updateNavbarHeightCSS error:', error);
     }
   }
 
@@ -617,7 +609,6 @@ export class ScrollManager {
    */
   private log(...args: any[]): void {
     if (this.config.debug) {
-      console.log('[ScrollManager]', ...args);
     }
   }
 
@@ -643,7 +634,6 @@ export class ScrollManager {
       this.isInitialized = false;
       this.log('ScrollManager destroyed successfully');
     } catch (error) {
-      console.error('destroy error:', error);
     }
   }
 }

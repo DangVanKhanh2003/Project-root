@@ -6,6 +6,7 @@
 import { createSearchResultCard, type VideoData } from '../../../ui-components/search-result-card/search-result-card';
 import { createSkeletonCard } from '../../../ui-components/search-result-card/skeleton-card';
 import { renderDownloadOptions } from './download-options-renderer';
+import { attachDownloadListeners } from './download-rendering';
 import { setInputValue } from './ui-renderer';
 import { initExpandableText } from '../../../utils';
 import {
@@ -475,6 +476,8 @@ export function renderVideoDownloadOptions(data: any, activeTab: 'video' | 'audi
   const container = document.getElementById('downloadOptionsContainer');
   if (container) {
     initExpandableText(container, '.video-title');
+    // Attach listeners for download buttons
+    attachDownloadListeners(container);
   }
 }
 

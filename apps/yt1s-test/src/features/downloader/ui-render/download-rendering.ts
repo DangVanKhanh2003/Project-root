@@ -7,6 +7,7 @@
 
 import { mapFormat, extractFormat, buildQualityBadge, processFormatArray } from '../../../utils/format-utils';
 import { setActiveTab, updateTaskState, getTaskState, getState, getConversionTask } from '../state';
+import { isYouTubeUrl } from '../../../constants/youtube-constants';
 
 // Import utils
 import { initExpandableText, triggerDownload } from '../../../utils.js';
@@ -396,9 +397,9 @@ export function renderFormatPanel(
 export function renderFormatItem(format: ProcessedFormat, downloadTasks: DownloadTasks): string {
     // Get current state to check if YouTube video
     const state = getState();
-    const isYouTube = !!(state.videoDetail && state.videoDetail.meta && state.videoDetail.meta.vid);
-
-
+    const url = state.videoDetail?.meta?.originalUrl || '';
+    const isYouTube = isYouTubeUrl(url);
+    debugger
     // Branch: YouTube conversion flow vs Direct download
     if (isYouTube) {
         return renderConversionButton(format, downloadTasks);
@@ -656,6 +657,7 @@ export function attachDownloadListeners(container: HTMLElement | null): void {
         // Handle download button clicks
         const downloadBtn = (event.target as HTMLElement).closest('.quality-item');
         if (downloadBtn) {
+            debugger
             handleDownloadClick(event);
             return;
         }
@@ -747,43 +749,42 @@ function handleTabClick(tabElement: HTMLElement): void {
 
 async function handleDownloadClick(event: MouseEvent): Promise<void> {
     const button = (event.target as HTMLElement).closest('.btn-convert') as HTMLButtonElement | null;
-    if (!button) return;
+    if (!button) {
+        return;
+    }
 
     event.preventDefault();
-    if (button.disabled) return;
+    if (button.disabled) {
+        return;
+    }
 
     const formatId = button.dataset.formatId;
     if (!formatId) {
         return;
     }
 
+    // Determine if the link is a YouTube link directly
+    const state = getState();
+    const url = state.videoDetail?.meta?.originalUrl || '';
+    const isYouTube = isYouTubeUrl(url);
 
     try {
-        // Check if this is a direct download button (non-YouTube platforms like TikTok, Instagram)
-        if (button.classList.contains('btn-convert--direct-download')) {
-
+        // Use the more direct !isYouTube check
+        if (!isYouTube) {
             const formatData = extractFormatDataFromState(formatId);
-
             if (!formatData || !formatData.url) {
                 return;
             }
-
-            // Direct download - trigger immediately
             const filename = formatData.filename || `download.${formatData.type || 'mp4'}`;
             triggerDownload(formatData.url, filename, true);
             return;
         }
 
-        // YouTube conversion flow - Always use smartConvert()
-        // smartConvert will handle all routing logic internally:
-        // - Stream status → Extract fresh
-        // - Static + Valid → Open modal SUCCESS (ready to download)
-        // - Static + Expired → Extract fresh
         const { smartConvert } = await import('../logic/conversion/convert-logic.js');
         await smartConvert(formatId);
 
     } catch (error) {
-        // Error handling is done inside smartConvert via modal
+        // Handle errors appropriately
     }
 }
 
@@ -796,72 +797,50 @@ async function handleDownloadClick(event: MouseEvent): Promise<void> {
  */
 function extractFormatDataFromState(formatId: string): FormatData | null {
     try {
-
         const state = getState();
         const videoDetail = state.videoDetail;
-
 
         if (!videoDetail || !videoDetail.formats) {
             return null;
         }
 
         const { formats, meta } = videoDetail;
-
-        // Parse formatId to get category
         const parts = formatId.split('|');
         if (parts.length < 2) {
             return null;
         }
 
-        const category = parts[0] as 'video' | 'audio'; // 'video' or 'audio'
-
-        // Get format array based on category
+        const category = parts[0] as 'video' | 'audio';
         const formatArray = category === 'video' ? formats.video : formats.audio;
-
 
         if (!Array.isArray(formatArray)) {
             return null;
         }
 
-        // Process formats using format-processor
         const processedFormats = processFormatArray(formatArray, category);
-
-
-        // Find matching format by ID
         const format = processedFormats.find(f => f.id === formatId);
 
         if (!format) {
             return null;
         }
 
-
-        // Build complete format data for convert queue
         const formatData: FormatData = {
             id: format.id,
             category: format.category as 'video' | 'audio',
             type: format.type,
             quality: format.quality,
-            size: (typeof format.size === 'number' ? format.size : null),       // File size (for progress display)
+            size: (typeof format.size === 'number' ? format.size : null),
             sizeText: format.sizeText || (typeof format.size === 'string' ? format.size : ''),
-
-            // Download URL (for direct download)
-            url: format.url || null,     // Direct download URL or encrypted URL
-
-            // Conversion parameters
-            vid: meta.vid || format.vid || null, // YouTube video ID (prefer meta.vid, fallback to format.vid)
-            key: format.key || null,     // YouTube conversion key
-            encryptedUrl: format.url || null, // Social media encoded URL (same as url)
-
-            // Additional metadata
+            url: format.url || null,
+            vid: meta.vid || format.vid || null,
+            key: format.key || null,
+            encryptedUrl: format.url || null,
             isConverted: format.isConverted,
             q_text: format.q_text || null,
             fps: format.fps || null,
             bitrate: format.bitrate || null,
-
-            // ✅ CRITICAL: Preserve fake data flag for routing logic
-            isFakeData: format.isFakeData || false, // Route to extract v2 if true
+            isFakeData: format.isFakeData || false,
         };
-
 
         return formatData;
 

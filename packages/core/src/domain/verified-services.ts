@@ -218,10 +218,8 @@ export function createVerifiedServices(
 
         // Path 2: No JWT - get CAPTCHA first, then call API
         try {
-          console.log('🔐 [CAPTCHA] Path 2: No JWT - Getting CAPTCHA first');
           // Get CAPTCHA token BEFORE calling API
           const captchaResult = await captchaHandler();
-          console.log('🔐 [CAPTCHA] Got CAPTCHA token:', captchaResult.token.substring(0, 20) + '...');
 
           // Build args with CAPTCHA payload
           const captchaPayload: ProtectionPayload = {
@@ -230,15 +228,11 @@ export function createVerifiedServices(
               type: captchaResult.type,
             },
           };
-          console.log('🔐 [CAPTCHA] Built CAPTCHA payload:', captchaPayload);
 
-          console.log('🔐 [CAPTCHA] Original args:', args);
           const protectedArgs = replaceOrAppendProtectionPayload(args, captchaPayload);
-          console.log('🔐 [CAPTCHA] Protected args after merge:', protectedArgs);
 
           // Call API with CAPTCHA
           const rawResponse = await method(...protectedArgs);
-          console.log('🔐 [CAPTCHA] Raw response:', rawResponse);
           const result = await verifier.verifyResponse<any, T>(rawResponse, methodName);
 
           if (!result.ok && result.code === 'CAPTCHA_REQUIRED') {

@@ -129,9 +129,6 @@ export function createMultifileOrchestrator(
     try {
       const result = await service.startMultifileSession(encryptedUrls);
 
-      console.log('🔍 [Orchestrator] Service response:', result);
-      console.log('🔍 [Orchestrator] result.ok:', result.ok);
-      console.log('🔍 [Orchestrator] result.data:', result.data);
 
       if (!result.ok) {
         notifyError(result.message);
@@ -139,17 +136,12 @@ export function createMultifileOrchestrator(
       }
 
       // Store session data
-      console.log('🔍 [Orchestrator] Extracting fields from result.data:', result.data);
 
       // Handle nested API response: { success, data: { session_id, ... } }
       const responseData = result.data as any;
       const innerData = responseData.data || responseData; // Support both wrapped and unwrapped
       const { session_id, stream_url, expires_at } = innerData;
 
-      console.log('🔍 [Orchestrator] Inner data:', innerData);
-      console.log('🔍 [Orchestrator] Extracted - session_id:', session_id);
-      console.log('🔍 [Orchestrator] Extracted - stream_url:', stream_url);
-      console.log('🔍 [Orchestrator] Extracted - expires_at:', expires_at);
 
       sessionData = {
         sessionId: session_id,
@@ -158,7 +150,6 @@ export function createMultifileOrchestrator(
         state: MULTIFILE_STATES.PREPARING,
       };
 
-      console.log('🔍 [Orchestrator] Created sessionData:', sessionData);
 
       // Notify session created
       if (onSessionUpdate) {
