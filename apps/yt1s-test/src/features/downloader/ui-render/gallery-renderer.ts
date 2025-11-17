@@ -4,7 +4,7 @@
  * Direct URLs from extract are passed straight to download helpers.
  */
 
-import { triggerDownload, initExpandableText, openLinkInNewTab, isMobileDevice } from '../../../utils.js';
+import { triggerDownload, initExpandableText, openLinkInNewTab, isMobileDevice } from '../../../utils';
 import {
     startMultifileDownload,
     retryMultifileDownload,
@@ -19,7 +19,7 @@ import {
     clearRecentDownload,
     setState
 } from '../state';
-import { loadGalleryCSS } from '../../../utils/css-loader.js';
+import { loadGalleryCSS } from '../../../loaders/css-loader';
 import { showExpireModal } from '../../../ui-components/modal/expire-modal.js';
 
 // ==================== TYPES & INTERFACES ====================

@@ -6,6 +6,7 @@
  */
 
 import type { DomainVerifier } from './verification/verifier';
+import { POLICY_NAME } from './verification/constants';
 import type { VerifiedResult } from './verification/types';
 import type { ProtectionPayload } from '../services/base/base-service';
 
@@ -99,59 +100,59 @@ export function createVerifiedServices(
    */
   const methodRegistry: Record<string, (...args: any[]) => Promise<any>> = {
     // Search V1
-    'searchTitle': (params: any) =>
+    [POLICY_NAME.SEARCH_TITLE]: (params: any) =>
       services.search.searchTitle(params),
-    'getSuggestions': (params: any) =>
+    [POLICY_NAME.GET_SUGGESTIONS]: (params: any) =>
       services.search.getSuggestions(params),
 
     // Media (with protection)
-    'extractMedia': (params: any, payload?: ProtectionPayload) =>
+    [POLICY_NAME.EXTRACT_MEDIA]: (params: any, payload?: ProtectionPayload) =>
       services.media.extractMedia(params, payload),
-    'extractMediaDirect': (params: any, payload?: ProtectionPayload) =>
+    [POLICY_NAME.EXTRACT_MEDIA_DIRECT]: (params: any, payload?: ProtectionPayload) =>
       services.media.extractMediaDirect(params, payload),
 
     // Conversion
-    'convert': (params: any, payload?: ProtectionPayload) =>
+    [POLICY_NAME.CONVERT]: (params: any, payload?: ProtectionPayload) =>
       services.conversion.convert(params, payload),
-    'checkTask': (params: any) =>
+    [POLICY_NAME.CHECK_TASK]: (params: any) =>
       services.conversion.checkTask(params),
 
     // Playlist
-    'extractPlaylist': (params: any) =>
+    [POLICY_NAME.EXTRACT_PLAYLIST]: (params: any) =>
       services.playlist.extractPlaylist(params),
 
     // Decrypt (with protection)
-    'decodeUrl': (params: any, payload?: ProtectionPayload) =>
+    [POLICY_NAME.DECODE_URL]: (params: any, payload?: ProtectionPayload) =>
       services.decrypt.decodeUrl(params, payload),
-    'decodeList': (params: any, payload?: ProtectionPayload) =>
+    [POLICY_NAME.DECODE_LIST]: (params: any, payload?: ProtectionPayload) =>
       services.decrypt.decodeList(params, payload),
 
     // Feedback
-    'sendFeedback': (params: any) =>
+    [POLICY_NAME.SEND_FEEDBACK]: (params: any) =>
       services.feedback.sendFeedback(params),
 
     // Search V2
-    'searchV2': (query: string, options?: any) =>
+    [POLICY_NAME.SEARCH_V2]: (query: string, options?: any) =>
       services.searchV2.searchV2(query, options),
 
     // Queue
-    'addVideoToQueue': (videoId: string) =>
+    [POLICY_NAME.ADD_VIDEO_TO_QUEUE]: (videoId: string) =>
       services.queue.addVideoToQueue(videoId),
 
     // YouTube Download
-    'downloadYouTube': (params: any, signal?: AbortSignal) =>
+    [POLICY_NAME.DOWNLOAD_YOUTUBE]: (params: any, signal?: AbortSignal) =>
       services.youtubeDownload.downloadYouTube(params, signal),
-    'getDownloadProgress': (params: any) =>
+    [POLICY_NAME.GET_DOWNLOAD_PROGRESS]: (params: any) =>
       services.youtubeDownload.getDownloadProgress(params),
 
     // Multifile (with protection for start session)
-    'startMultifileSession': (params: any, payload?: ProtectionPayload) =>
+    [POLICY_NAME.START_MULTIFILE_SESSION]: (params: any, payload?: ProtectionPayload) =>
       services.multifile.startMultifileSession(params, payload),
-    'getMultifileStatus': (params: any) =>
+    [POLICY_NAME.GET_MULTIFILE_STATUS]: (params: any) =>
       services.multifile.getMultifileStatus(params),
 
     // YouTube Public API
-    'getMetadataYoutube': (url: string) =>
+    [POLICY_NAME.GET_METADATA_YOUTUBE]: (url: string) =>
       services.youtubePublicApi.getMetadata(url),
   };
 
@@ -333,10 +334,10 @@ export function createVerifiedServices(
     // ========================================
 
     searchTitle: (params: Parameters<ISearchService['searchTitle']>[0]) =>
-      wrap('searchTitle', params),
+      wrap(POLICY_NAME.SEARCH_TITLE, params),
 
     getSuggestions: (params: Parameters<ISearchService['getSuggestions']>[0]) =>
-      wrap('getSuggestions', params),
+      wrap(POLICY_NAME.GET_SUGGESTIONS, params),
 
     // ========================================
     // Media Extraction (WITH auto JWT injection)
@@ -347,7 +348,7 @@ export function createVerifiedServices(
       protectionPayload?: ProtectionPayload
     ) => {
       const payload = getProtectionPayload(protectionPayload);
-      return wrap('extractMedia', params, payload);
+      return wrap(POLICY_NAME.EXTRACT_MEDIA, params, payload);
     },
 
     extractMediaDirect: async (
@@ -355,7 +356,7 @@ export function createVerifiedServices(
       protectionPayload?: ProtectionPayload
     ) => {
       const payload = getProtectionPayload(protectionPayload);
-      const result = await wrap('extractMediaDirect', params, payload);
+      const result = await wrap(POLICY_NAME.EXTRACT_MEDIA_DIRECT, params, payload);
 
       // Apply mapping to verified result data
       if (result.ok && result.data) {
@@ -390,18 +391,18 @@ export function createVerifiedServices(
       protectionPayload?: ProtectionPayload
     ) => {
       const payload = getProtectionPayload(protectionPayload);
-      return wrap('convert', params, payload);
+      return wrap(POLICY_NAME.CONVERT, params, payload);
     },
 
     checkTask: (params: Parameters<IConversionService['checkTask']>[0]) =>
-      wrap('checkTask', params),
+      wrap(POLICY_NAME.CHECK_TASK, params),
 
     // ========================================
     // Playlist
     // ========================================
 
     extractPlaylist: (params: Parameters<IPlaylistService['extractPlaylist']>[0]) =>
-      wrap('extractPlaylist', params),
+      wrap(POLICY_NAME.EXTRACT_PLAYLIST, params),
 
     // ========================================
     // Decrypt (WITH auto JWT injection)
@@ -412,7 +413,7 @@ export function createVerifiedServices(
       protectionPayload?: ProtectionPayload
     ) => {
       const payload = getProtectionPayload(protectionPayload);
-      return wrap('decodeUrl', params, payload);
+      return wrap(POLICY_NAME.DECODE_URL, params, payload);
     },
 
     decodeList: (
@@ -420,7 +421,7 @@ export function createVerifiedServices(
       protectionPayload?: ProtectionPayload
     ) => {
       const payload = getProtectionPayload(protectionPayload);
-      return wrap('decodeList', params, payload);
+      return wrap(POLICY_NAME.DECODE_LIST, params, payload);
     },
 
     // ========================================
@@ -428,31 +429,31 @@ export function createVerifiedServices(
     // ========================================
 
     sendFeedback: (params: Parameters<IFeedbackService['sendFeedback']>[0]) =>
-      wrap('sendFeedback', params),
+      wrap(POLICY_NAME.SEND_FEEDBACK, params),
 
     // ========================================
     // Search V2
     // ========================================
 
     searchV2: (query: string, options?: Parameters<ISearchV2Service['searchV2']>[1]) =>
-      wrap('searchV2', query, options),
+      wrap(POLICY_NAME.SEARCH_V2, query, options),
 
     // ========================================
     // Queue
     // ========================================
 
     addVideoToQueue: (videoId: string) =>
-      wrap('addVideoToQueue', videoId),
+      wrap(POLICY_NAME.ADD_VIDEO_TO_QUEUE, videoId),
 
     // ========================================
     // YouTube Download
     // ========================================
 
     downloadYouTube: (params: Parameters<IYouTubeDownloadService['downloadYouTube']>[0], signal?: AbortSignal) =>
-      wrap('downloadYouTube', params, signal),
+      wrap(POLICY_NAME.DOWNLOAD_YOUTUBE, params, signal),
 
     getDownloadProgress: (params: Parameters<IYouTubeDownloadService['getDownloadProgress']>[0]) =>
-      wrap('getDownloadProgress', params),
+      wrap(POLICY_NAME.GET_DOWNLOAD_PROGRESS, params),
 
     // ========================================
     // Multifile
@@ -463,18 +464,18 @@ export function createVerifiedServices(
       protectionPayload?: ProtectionPayload
     ) => {
       const payload = getProtectionPayload(protectionPayload);
-      return wrap('startMultifileSession', params, payload);
+      return wrap(POLICY_NAME.START_MULTIFILE_SESSION, params, payload);
     },
 
     getMultifileStatus: (params: Parameters<IMultifileService['getMultifileStatus']>[0]) =>
-      wrap('getMultifileStatus', params),
+      wrap(POLICY_NAME.GET_MULTIFILE_STATUS, params),
 
     // ========================================
     // YouTube Public API
     // ========================================
 
     getMetadataYoutube: (url: string) =>
-      wrap('getMetadataYoutube', url),
+      wrap(POLICY_NAME.GET_METADATA_YOUTUBE, url),
 
     // ========================================
     // Utility

@@ -5,6 +5,11 @@
 
 import type { VerificationPolicy, VerifiedResult, VerificationCode } from './types';
 import { VERIFICATION_MESSAGES } from './messages';
+import {
+  VERIFICATION_CODE,
+  VERIFICATION_STATUS,
+  POLICY_NAME,
+} from './constants';
 
 /**
  * Helper to make result
@@ -17,7 +22,7 @@ function makeResult<T>(
   raw?: any
 ): VerifiedResult<T> {
   return {
-    ok: status === 'success',
+    ok: status === VERIFICATION_STATUS.SUCCESS,
     status,
     code,
     message,
@@ -32,7 +37,7 @@ function makeResult<T>(
  */
 export const searchTitlePolicy: VerificationPolicy = (payload: any) => {
   // Nới lỏng: Accept bất kỳ payload nào
-  return makeResult('success', 'OK', VERIFICATION_MESSAGES.SEARCH_SUCCESS, payload);
+  return makeResult(VERIFICATION_STATUS.SUCCESS, VERIFICATION_CODE.OK, VERIFICATION_MESSAGES.SEARCH_SUCCESS, payload);
 };
 
 /**
@@ -41,7 +46,7 @@ export const searchTitlePolicy: VerificationPolicy = (payload: any) => {
  */
 export const searchV2Policy: VerificationPolicy = (payload: any) => {
   // Nới lỏng: Accept bất kỳ payload nào
-  return makeResult('success', 'OK', VERIFICATION_MESSAGES.SEARCH_SUCCESS, payload);
+  return makeResult(VERIFICATION_STATUS.SUCCESS, VERIFICATION_CODE.OK, VERIFICATION_MESSAGES.SEARCH_SUCCESS, payload);
 };
 
 /**
@@ -50,7 +55,7 @@ export const searchV2Policy: VerificationPolicy = (payload: any) => {
  */
 export const suggestionsPolicy: VerificationPolicy = (payload: any) => {
   // Nới lỏng: Accept bất kỳ payload nào
-  return makeResult('success', 'OK', VERIFICATION_MESSAGES.OK, payload);
+  return makeResult(VERIFICATION_STATUS.SUCCESS, VERIFICATION_CODE.OK, VERIFICATION_MESSAGES.OK, payload);
 };
 
 /**
@@ -61,7 +66,7 @@ export const suggestionsPolicy: VerificationPolicy = (payload: any) => {
 export const extractMediaPolicy: VerificationPolicy = (payload: any) => {
   // Simple validation - accept any payload
   // Data mapping happens in verified-services wrapper
-  return makeResult('success', 'OK', VERIFICATION_MESSAGES.EXTRACT_SUCCESS, payload);
+  return makeResult(VERIFICATION_STATUS.SUCCESS, VERIFICATION_CODE.OK, VERIFICATION_MESSAGES.EXTRACT_SUCCESS, payload);
 };
 
 /**
@@ -70,7 +75,7 @@ export const extractMediaPolicy: VerificationPolicy = (payload: any) => {
  */
 export const playlistPolicy: VerificationPolicy = (payload: any) => {
   // Nới lỏng: Accept bất kỳ payload nào
-  return makeResult('success', 'OK', 'Playlist extracted successfully', payload);
+  return makeResult(VERIFICATION_STATUS.SUCCESS, VERIFICATION_CODE.OK, 'Playlist extracted successfully', payload);
 };
 
 /**
@@ -79,7 +84,7 @@ export const playlistPolicy: VerificationPolicy = (payload: any) => {
  */
 export const conversionPolicy: VerificationPolicy = (payload: any) => {
   // Nới lỏng: Accept bất kỳ payload nào
-  return makeResult('success', 'OK', VERIFICATION_MESSAGES.OK, payload);
+  return makeResult(VERIFICATION_STATUS.SUCCESS, VERIFICATION_CODE.OK, VERIFICATION_MESSAGES.OK, payload);
 };
 
 /**
@@ -88,7 +93,7 @@ export const conversionPolicy: VerificationPolicy = (payload: any) => {
  */
 export const decryptPolicy: VerificationPolicy = (payload: any) => {
   // Nới lỏng: Accept bất kỳ payload nào
-  return makeResult('success', 'OK', 'URL decrypted successfully', payload);
+  return makeResult(VERIFICATION_STATUS.SUCCESS, VERIFICATION_CODE.OK, 'URL decrypted successfully', payload);
 };
 
 /**
@@ -97,23 +102,23 @@ export const decryptPolicy: VerificationPolicy = (payload: any) => {
  */
 export const DEFAULT_POLICIES: Record<string, VerificationPolicy> = {
   // Search
-  searchTitle: searchTitlePolicy,
-  searchV2: searchV2Policy,
-  suggestions: suggestionsPolicy,
+  [POLICY_NAME.SEARCH_TITLE]: searchTitlePolicy,
+  [POLICY_NAME.SEARCH_V2]: searchV2Policy,
+  [POLICY_NAME.GET_SUGGESTIONS]: suggestionsPolicy,
 
   // Media
-  extractMedia: extractMediaPolicy,
-  extractMediaDirect: extractMediaPolicy,
-  playlist: playlistPolicy,
+  [POLICY_NAME.EXTRACT_MEDIA]: extractMediaPolicy,
+  [POLICY_NAME.EXTRACT_MEDIA_DIRECT]: extractMediaPolicy,
+  [POLICY_NAME.EXTRACT_PLAYLIST]: playlistPolicy,
 
   // Conversion
-  convert: conversionPolicy,
-  checkTask: conversionPolicy,
+  [POLICY_NAME.CONVERT]: conversionPolicy,
+  [POLICY_NAME.CHECK_TASK]: conversionPolicy,
 
   // Decrypt
-  decrypt: decryptPolicy,
-  decryptList: decryptPolicy,
+  [POLICY_NAME.DECODE_URL]: decryptPolicy,
+  [POLICY_NAME.DECODE_LIST]: decryptPolicy,
 
   // Generic success (no validation)
-  generic: (payload: any) => makeResult('success', 'OK', VERIFICATION_MESSAGES.OK, payload),
+  generic: (payload: any) => makeResult(VERIFICATION_STATUS.SUCCESS, VERIFICATION_CODE.OK, VERIFICATION_MESSAGES.OK, payload),
 };

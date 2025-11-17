@@ -11,7 +11,7 @@ import {
     loadFaqCSS,
     loadContentMessagesCSS,
     loadSectionSharedCSS
-} from './css-loader.js';
+} from './css-loader';
 
 /**
  * Type for CSS loader functions

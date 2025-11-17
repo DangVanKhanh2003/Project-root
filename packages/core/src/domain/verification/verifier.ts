@@ -4,6 +4,10 @@
  */
 
 import type { IJwtStore } from '../jwt/jwt-store.interface';
+import {
+  VERIFICATION_CODE,
+  VERIFICATION_STATUS,
+} from './constants';
 import type {
   VerifiedResult,
   VerificationStatus,
@@ -64,7 +68,7 @@ export class DomainVerifier {
     raw?: any
   ): VerifiedResult<T> {
     return {
-      ok: status === 'success',
+      ok: status === VERIFICATION_STATUS.SUCCESS,
       status,
       code,
       message,
@@ -270,8 +274,8 @@ export class DomainVerifier {
 
     // Return success with cleaned data
     return this.makeResult<T>(
-      'success',
-      'OK',
+      VERIFICATION_STATUS.SUCCESS,
+      VERIFICATION_CODE.OK,
       VERIFICATION_MESSAGES.OK,
       cleanedResponse,
       cleanedResponse

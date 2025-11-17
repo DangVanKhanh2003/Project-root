@@ -10,7 +10,7 @@ import { setActiveTab, updateTaskState, getTaskState, getState, getConversionTas
 import { isYouTubeUrl } from '../../../constants/youtube-constants';
 
 // Import utils
-import { initExpandableText, triggerDownload } from '../../../utils.js';
+import { initExpandableText, triggerDownload } from '../../../utils';
 
 
 // CSS imports removed - all CSS now bundled in main.js

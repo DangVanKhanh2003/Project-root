@@ -33,7 +33,7 @@ import { getApiBaseUrl, getApiBaseUrlV2, getSearchV2BaseUrl, getQueueApiUrl, get
 
 // Import CAPTCHA dependencies
 import { CaptchaModal } from '@downloader/ui-shared';
-import { loadCaptchaModalCSS } from '../utils/css-loader';
+import { loadCaptchaModalCSS } from '../loaders/css-loader';
 
 // API Configuration from environment.ts
 const API_BASE_URL = getApiBaseUrl();
