@@ -8,7 +8,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@downloader/core": "workspace:*"
+    "@downloader/core": "workspace:*",
+    "@downloader/ui-shared": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5.3.3",

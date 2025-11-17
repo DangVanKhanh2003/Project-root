@@ -23,6 +23,7 @@ import {
   setIsFromListItemClick,
   setVideoDetail,
   setGalleryDetail,
+  setSearchPagination,
 } from '../state';
 import { renderResults, renderMessage, renderVideoDownloadOptions, showLoading, clearContent } from '../ui-render/content-renderer';
 import { getInputValue as getInputValueFromRenderer, setInputValue as setInputValueInRenderer } from '../ui-render/ui-renderer';
@@ -741,7 +742,7 @@ async function handleExtractMedia(url: string): Promise<void> {
  * Transform SearchV2ItemDto to VideoData format
  * Formats duration, views, and date for display
  */
-function transformSearchItemToVideoData(item: any): VideoData {
+export function transformSearchItemToVideoData(item: any): VideoData {
   // Format duration (seconds → "MM:SS" or "HH:MM:SS")
   let displayDuration = '';
   if (item.duration !== null && item.duration !== undefined) {
@@ -848,6 +849,17 @@ async function handleSearch(keyword: string): Promise<void> {
 
       console.log('✅ Transformed videos:', transformedVideos.length);
       console.log('📊 First transformed video:', transformedVideos[0]);
+
+      // ✅ CRITICAL: Save pagination data for load more functionality
+      if (searchData.pagination) {
+        console.log('💾 Saving pagination data:', searchData.pagination);
+        setSearchPagination({
+          nextPageToken: searchData.pagination.nextPageToken || null,
+          hasNextPage: Boolean(searchData.pagination.hasMore || searchData.pagination.hasNextPage),
+        });
+      } else {
+        console.log('⚠️ No pagination data in response');
+      }
 
       setResults(transformedVideos as any);
 

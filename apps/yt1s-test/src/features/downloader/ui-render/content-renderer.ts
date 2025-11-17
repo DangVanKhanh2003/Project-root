@@ -7,7 +7,20 @@ import { createSearchResultCard, type VideoData } from '../../../ui-components/s
 import { createSkeletonCard } from '../../../ui-components/search-result-card/skeleton-card';
 import { renderDownloadOptions } from './download-options-renderer';
 import { setInputValue } from './ui-renderer';
-import { setViewingItem, setIsFromListItemClick, getState } from '../state';
+import {
+  setViewingItem,
+  setIsFromListItemClick,
+  getState,
+  setResults,
+  getSearchPagination,
+  setSearchPagination,
+  setLoadingMore,
+  incrementLoadMoreCount,
+  decrementLoadMoreCount,
+} from '../state';
+import { transformSearchItemToVideoData } from '../logic/input-form';
+import { scrollManager } from '@downloader/ui-shared/scroll';
+import { api } from '../../../api';
 
 let contentArea: HTMLElement | null = null;
 let searchResultsContainer: HTMLElement | null = null;
@@ -90,8 +103,164 @@ export function initContentRenderer(): boolean {
     console.log('✅ Search result click listener attached');
   }
 
+  // Setup infinite scroll for load more functionality
+  setupInfiniteScroll();
+
   console.log('✅ Content renderer initialized');
   return true;
+}
+
+/**
+ * Setup infinite scroll for automatic load more detection
+ * Uses scroll event with requestAnimationFrame throttling for optimal performance
+ */
+function setupInfiniteScroll(): void {
+  let isLoadingMore = false;
+
+  const checkGridScroll = (): void => {
+    if (!searchResultsContainer) return;
+
+    const pagination = getSearchPagination();
+
+    // Guards: Don't trigger if conditions not met
+    if (pagination.loadMoreCount >= 2) return; // Max 2 load more operations
+    if (!pagination.hasNextPage) return; // No more results available
+    if (pagination.isLoadingMore || isLoadingMore) return; // Already loading
+
+    // Calculate distance from viewport bottom to GRID bottom (not page bottom)
+    const grid = searchResultsContainer.querySelector('.search-results-grid');
+    if (!grid) return;
+
+    const gridRect = grid.getBoundingClientRect();
+    const distanceToBottom = gridRect.bottom - window.innerHeight;
+    const threshold = scrollManager.getInfiniteScrollThreshold(); // Responsive: 600px mobile, 800px desktop
+
+    // Trigger load more when close to bottom
+    if (distanceToBottom <= threshold) {
+      console.log(`🔄 Infinite scroll triggered - ${distanceToBottom}px from bottom (threshold: ${threshold}px)`);
+      isLoadingMore = true;
+      handleLoadMore().finally(() => {
+        isLoadingMore = false;
+      });
+    }
+  };
+
+  // Use requestAnimationFrame for optimal performance (no jank)
+  let rafPending = false;
+  const throttledCheck = (): void => {
+    if (rafPending) return;
+    rafPending = true;
+    requestAnimationFrame(() => {
+      checkGridScroll();
+      rafPending = false;
+    });
+  };
+
+  // Attach scroll listener with passive flag for better performance
+  window.addEventListener('scroll', throttledCheck, { passive: true });
+
+  console.log('✅ Infinite scroll setup complete');
+}
+
+/**
+ * Handle load more action - fetch next page and append results
+ * Includes skeleton loading, error handling, and state management
+ */
+async function handleLoadMore(): Promise<void> {
+  const pagination = getSearchPagination();
+  const state = getState();
+
+  // Double-check guards (defensive programming)
+  if (pagination.loadMoreCount >= 2) {
+    console.log('⚠️ Max load more limit reached (2)');
+    return;
+  }
+  if (!pagination.hasNextPage) {
+    console.log('⚠️ No more pages available');
+    return;
+  }
+  if (pagination.isLoadingMore) {
+    console.log('⚠️ Already loading more results');
+    return;
+  }
+
+  console.log('🔄 Loading more results...', {
+    currentCount: state.results?.length || 0,
+    loadMoreCount: pagination.loadMoreCount,
+    nextPageToken: pagination.nextPageToken,
+  });
+
+  try {
+    // Increment counter immediately to prevent race conditions
+    incrementLoadMoreCount();
+    setLoadingMore(true);
+
+    // Append skeleton cards to grid (visual feedback)
+    const grid = searchResultsContainer?.querySelector('.search-results-grid');
+    if (grid) {
+      const skeletonCards = Array(12)
+        .fill(null)
+        .map(() => createSkeletonCard())
+        .join('');
+      grid.insertAdjacentHTML('beforeend', skeletonCards);
+      console.log('💀 Appended 12 skeleton cards');
+    }
+
+    // Fetch next page from API
+    const result = await api.searchV2(state.query || '', {
+      pageToken: pagination.nextPageToken || undefined,
+      limit: 12,
+    });
+
+    if (result.ok && result.data) {
+      const searchData = result.data as any;
+      const rawVideos = searchData.videos || searchData.items || [];
+
+      console.log(`✅ Fetched ${rawVideos.length} more videos`);
+
+      // Update pagination state
+      if (searchData.pagination) {
+        setSearchPagination({
+          nextPageToken: searchData.pagination.nextPageToken || null,
+          hasNextPage: Boolean(searchData.pagination.hasMore || searchData.pagination.hasNextPage),
+        });
+        console.log('💾 Updated pagination:', searchData.pagination);
+      }
+
+      // Transform and merge results
+      const newVideos = rawVideos.map(transformSearchItemToVideoData);
+      const currentResults = state.results || [];
+      const mergedResults = [...currentResults, ...newVideos];
+      setResults(mergedResults as any);
+
+      // Remove skeleton cards
+      grid?.querySelectorAll('.skeleton-card').forEach((card) => card.remove());
+      console.log('🗑️ Removed skeleton cards');
+
+      // Append new result cards
+      const newItemsHTML = newVideos.map((video) => createSearchResultCard(video)).join('');
+      grid?.insertAdjacentHTML('beforeend', newItemsHTML);
+
+      console.log(`✅ Load more complete - total videos: ${mergedResults.length}`);
+    } else {
+      console.error('❌ Load more API error:', result.message);
+      // Rollback counter on error
+      decrementLoadMoreCount();
+      // Remove skeleton cards on error
+      grid?.querySelectorAll('.skeleton-card').forEach((card) => card.remove());
+      // Show error message (optional)
+      // Could add error UI here
+    }
+  } catch (error) {
+    console.error('❌ Load more failed:', error);
+    // Rollback counter on exception
+    decrementLoadMoreCount();
+    // Remove skeleton cards
+    const grid = searchResultsContainer?.querySelector('.search-results-grid');
+    grid?.querySelectorAll('.skeleton-card').forEach((card) => card.remove());
+  } finally {
+    setLoadingMore(false);
+  }
 }
 
 /**

@@ -62,6 +62,9 @@ importers:
       '@downloader/core':
         specifier: workspace:*
         version: link:../../packages/core
+      '@downloader/ui-shared':
+        specifier: workspace:*
+        version: link:../../packages/ui-shared
     devDependencies:
       typescript:
         specifier: ^5.3.3
