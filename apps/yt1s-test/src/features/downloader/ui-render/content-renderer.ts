@@ -7,6 +7,7 @@ import { createSearchResultCard, type VideoData } from '../../../ui-components/s
 import { createSkeletonCard } from '../../../ui-components/search-result-card/skeleton-card';
 import { renderDownloadOptions } from './download-options-renderer';
 import { setInputValue } from './ui-renderer';
+import { initExpandableText } from '../../../utils';
 import {
   setViewingItem,
   setIsFromListItemClick,
@@ -469,6 +470,12 @@ export function renderVideoDownloadOptions(data: any, activeTab: 'video' | 'audi
 
   // Setup tab switching event listeners
   setupDownloadOptionsTabs();
+
+  // Initialize expandable text for video title
+  const container = document.getElementById('downloadOptionsContainer');
+  if (container) {
+    initExpandableText(container, '.video-title');
+  }
 }
 
 /**

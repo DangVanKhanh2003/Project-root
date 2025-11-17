@@ -98,7 +98,7 @@ function renderVideoInfo(meta: VideoMeta): string {
            decoding="async">
     </div>
     <div class="video-title-wrapper">
-      <h3 id="videoTitle" class="video-title" title="${escapeHtml(displayTitle)}">
+      <h3 id="videoTitle" class="video-title expandable-text" title="${escapeHtml(displayTitle)}">
         ${escapeHtml(displayTitle)}
       </h3>
     </div>
