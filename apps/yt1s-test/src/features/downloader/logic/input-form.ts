@@ -104,7 +104,6 @@ async function enhanceYouTubeMetadata(videoId: string): Promise<{ title: string;
     const response = await fetch(oEmbedUrl);
 
     if (!response.ok) {
-      console.warn('⚠️ oEmbed API failed:', response.status);
       return null;
     }
 
@@ -114,7 +113,6 @@ async function enhanceYouTubeMetadata(videoId: string): Promise<{ title: string;
       author: data.author_name || 'Unknown Channel'
     };
   } catch (error) {
-    console.error('❌ oEmbed fetch error:', error);
     return null;
   }
 }
@@ -169,7 +167,6 @@ function scrollToContentArea(searchType: 'url' | 'keyword'): void {
   }
 
   if (targetElement) {
-    console.log(`📜 Scrolling to ${searchType} content area`);
 
     // Calculate offset (navbar height + padding)
     const navbar = document.querySelector('.navbar') as HTMLElement;
@@ -204,7 +201,6 @@ function handleInputClick(event: MouseEvent): void {
   }
   lastClickTime = now;
 
-  console.log('📱 Mobile input clicked - scrolling to input');
 
   // Scroll to input field
   scrollToContentArea('keyword');
@@ -222,7 +218,6 @@ function handlePasteAndSubmit(event: ClipboardEvent): void {
   // Use a short timeout to allow the input's value to update from the paste event
   setTimeout(() => {
     if (form && input && input.value.trim() !== '') {
-      console.log('📋 Paste event detected, auto-submitting form...');
       form.requestSubmit();
     }
   }, 0);
@@ -239,7 +234,6 @@ export function initInputForm(): boolean {
   clearBtn = null; // Not present in current HTML
 
   if (!form || !input) {
-    console.error('Form elements not found');
     return false;
   }
 
@@ -268,7 +262,6 @@ export function initInputForm(): boolean {
   // Enhanced auto-focus on desktop with accessibility safeguards
   enhancedAutoFocus();
 
-  console.log('✅ Input form initialized');
   return true;
 }
 
@@ -283,7 +276,6 @@ function handleInput(event: Event): void {
 
   const value = input.value.trim();
 
-  console.log('⌨️ handleInput - value:', value, 'length:', value.length);
 
   // Clear error when user types
   clearError();
@@ -293,7 +285,6 @@ function handleInput(event: Event): void {
 
   // Update button visibility
   const hasContent = value.length > 0;
-  console.log('🔘 Updating button visibility - hasContent:', hasContent);
   updateButtonVisibility(hasContent);
 
   // Detect input type (simple version)
@@ -332,12 +323,10 @@ function handleInput(event: Event): void {
  * Fetch suggestions from API
  */
 async function fetchSuggestions(query: string): Promise<void> {
-  console.log('🔍 Fetching suggestions for query:', query);
 
   try {
     const result = await api.getSuggestions({ q: query });
 
-    console.log('📥 Suggestions API result:', result);
 
     if (result.ok && result.data) {
       // API might return object instead of array - convert to array
@@ -353,26 +342,16 @@ async function fetchSuggestions(query: string): Promise<void> {
         suggestions = [];
       }
 
-      console.log('✅ Got suggestions (converted to array):', suggestions);
-      console.log('📊 Array check:', {
-        isArray: Array.isArray(suggestions),
-        length: suggestions.length,
-        type: typeof suggestions
-      });
 
       if (Array.isArray(suggestions) && suggestions.length > 0) {
-        console.log('📝 Setting suggestions in state');
         setSuggestions(suggestions);
       } else {
-        console.log('❌ No suggestions or invalid format, hiding dropdown');
         hideSuggestions();
       }
     } else {
-      console.warn('⚠️ Suggestions API returned not ok:', result);
       hideSuggestions();
     }
   } catch (error) {
-    console.error('❌ Failed to fetch suggestions:', error);
     // Silently fail - don't disrupt user experience
   }
 }
@@ -390,7 +369,6 @@ function handleKeyDown(event: KeyboardEvent): void {
 
   const displaySuggestions = getDisplaySuggestions(state);
 
-  console.log('⌨️ Key pressed:', event.key, 'Current highlightedIndex:', state.highlightedIndex);
 
   switch (event.key) {
     case 'ArrowDown':
@@ -436,7 +414,6 @@ function navigateDown(state: ReturnType<typeof getState>, displaySuggestions: st
     newIndex = state.highlightedIndex + 1;
   }
 
-  console.log('⬇️ Navigate down:', state.highlightedIndex, '→', newIndex);
 
   setHighlightedIndex(newIndex);
   setQuery(displaySuggestions[newIndex]);
@@ -456,7 +433,6 @@ function navigateUp(state: ReturnType<typeof getState>, displaySuggestions: stri
     newIndex = state.highlightedIndex - 1;
   }
 
-  console.log('⬆️ Navigate up:', state.highlightedIndex, '→', newIndex);
 
   setHighlightedIndex(newIndex);
   setQuery(displaySuggestions[newIndex]);
@@ -467,7 +443,6 @@ function navigateUp(state: ReturnType<typeof getState>, displaySuggestions: stri
  * Select current highlighted suggestion and submit
  */
 function selectCurrentSuggestion(state: ReturnType<typeof getState>): void {
-  console.log('✅ Selecting suggestion at index:', state.highlightedIndex);
 
   // Cancel any pending suggestion fetches
   if (suggestionTimer) {
@@ -487,7 +462,6 @@ function selectCurrentSuggestion(state: ReturnType<typeof getState>): void {
  * Return to original query and clear highlights
  */
 function returnToOriginal(state: ReturnType<typeof getState>): void {
-  console.log('🔙 Returning to original query:', state.originalQuery);
 
   // Cancel any pending suggestion fetches
   if (suggestionTimer) {
@@ -512,7 +486,6 @@ function handleSuggestionClick(event: MouseEvent): void {
   const suggestionText = suggestionItem.dataset.suggestionText;
   const suggestionIndex = parseInt(suggestionItem.dataset.suggestionIndex || '-1', 10);
 
-  console.log('🖱️ Suggestion clicked:', suggestionText, 'at index:', suggestionIndex);
 
   if (suggestionText) {
     // Set submitting flag to prevent suggestion interference
@@ -583,12 +556,10 @@ async function handleSubmit(event: Event): Promise<void> {
     return;
   }
 
-  console.log('📝 Form submitted with value:', value);
 
   // Blur input to hide keyboard on mobile
   if (input) {
     input.blur();
-    console.log('⌨️ Input blurred - keyboard hidden on mobile');
   }
 
   // Clear previous results
@@ -630,7 +601,6 @@ async function handleSubmit(event: Event): Promise<void> {
     setLoading(false);
     // 🚨 CRITICAL: Reset submitting flag to allow suggestions again
     setSubmitting(false);
-    console.log('✅ Form submission complete, isSubmitting reset to false');
   }
 }
 
@@ -639,7 +609,6 @@ async function handleSubmit(event: Event): Promise<void> {
  * Implements dual workflow: YouTube (fake data) vs Non-YouTube (API-first)
  */
 async function handleExtractMedia(url: string): Promise<void> {
-  console.log('🎬 Extracting media from URL:', url);
 
   try {
     // ═══════════════════════════════════════════════════════
@@ -657,34 +626,26 @@ async function handleExtractMedia(url: string): Promise<void> {
         throw new Error('Invalid YouTube URL - cannot extract video ID');
       }
 
-      console.log('📺 YouTube URL detected, using fake data workflow');
-      console.log('🎬 Video ID:', videoId);
       // Fire-and-forget: Add video to queue API (analytics/preloading notification)
       coreServices.queue.addVideoToQueue(videoId).then((success: boolean) => {
         if (success) {
-          console.log('✅ Video added to queue:', videoId);
         } else {
-          console.log('⚠️ Failed to add video to queue (silent)');
         }
       }).catch((error: Error) => {
-        console.log('⚠️ Queue API error (silent):', error);
       });
 
       // Wait 300ms for skeleton animation (like old project)
       setTimeout(async () => {
         // 1. Generate fake data with pre-defined quality options
         const fakeData = generateFakeYouTubeData(videoId, url);
-        console.log('✨ Generated fake data:', fakeData);
 
         // 2. Render fake data with proper download options UI
         renderVideoDownloadOptions(fakeData, 'video');
 
         // 3. Background: Enhance metadata using oEmbed API (non-blocking)
-        console.log('🔄 Fetching real metadata from oEmbed...');
         const metadata = await enhanceYouTubeMetadata(videoId);
 
         if (metadata) {
-          console.log('✅ Real metadata fetched:', metadata);
 
           // Update fake data with real title & author
           fakeData.meta.title = metadata.title;
@@ -694,14 +655,12 @@ async function handleExtractMedia(url: string): Promise<void> {
           // Re-render with updated metadata
           renderVideoDownloadOptions(fakeData, 'video');
         } else {
-          console.warn('⚠️ Could not fetch real metadata, keeping fake data');
         }
 
         // Reset isFromListItemClick flag after YouTube workflow completes
         const state = getState();
         if (state.isFromListItemClick) {
           setIsFromListItemClick(false);
-          console.log('✅ Reset isFromListItemClick flag (YouTube workflow complete)');
         }
       }, 300); // 300ms delay for skeleton animation
 
@@ -710,28 +669,13 @@ async function handleExtractMedia(url: string): Promise<void> {
       // │ NON-YOUTUBE WORKFLOW: Traditional API Call      │
       // └─────────────────────────────────────────────────┘
 
-      console.log('🌐 Non-YouTube URL, calling extract API...');
 
       const result = await api.extractMediaDirect({ url });
 
-      console.log('📡 Extract result:', result);
 
       if (result.ok && result.data) {
-        console.log('✅ Media extracted:', result.data);
         const data = result.data as any;
 
-        console.log('🔍 [Social Media Extract] Data structure:', {
-          hasMeta: !!data.meta,
-          hasFormats: !!data.formats,
-          hasGallery: !!data.gallery,
-          meta: data.meta,
-          formats: {
-            video: data.formats?.video?.length || 0,
-            audio: data.formats?.audio?.length || 0,
-            videoSample: data.formats?.video?.[0],
-            audioSample: data.formats?.audio?.[0]
-          }
-        });
 
         // Add original URL to meta for retry functionality
         if (data.meta) {
@@ -740,7 +684,6 @@ async function handleExtractMedia(url: string): Promise<void> {
 
         // Check if this is gallery content or single video
         if (data.gallery && Array.isArray(data.gallery) && data.gallery.length > 0) {
-          console.log('🖼️ Gallery content detected:', data.gallery.length, 'items');
           setGalleryDetail(data);
 
           // Dynamic import and render gallery
@@ -748,25 +691,15 @@ async function handleExtractMedia(url: string): Promise<void> {
             const contentArea = document.getElementById('content-area');
             if (contentArea) {
               renderGallery(data, contentArea);
-              console.log('✅ Gallery rendered');
             }
           });
         } else {
-          console.log('🎬 Single video content detected');
-          console.log('💾 [State] Setting video detail:', data);
           setVideoDetail(data);
 
-          console.log('🎨 [Render] Rendering download options...');
           renderVideoDownloadOptions(data, 'video');
-          console.log('✅ Video download options rendered');
 
           // Log state after render
           const state = getState();
-          console.log('📊 [State After Render]:', {
-            hasVideoDetail: !!state.videoDetail,
-            videoDetail: state.videoDetail,
-            formats: state.videoDetail?.formats
-          });
         }
       } else {
         const errorMsg = result.message || 'Failed to extract media';
@@ -775,7 +708,6 @@ async function handleExtractMedia(url: string): Promise<void> {
       }
     }
   } catch (error) {
-    console.error('❌ Extract error:', error);
     throw error;
   }
 }
@@ -837,7 +769,6 @@ export function transformSearchItemToVideoData(item: any): VideoData {
         displayDate = 'Today';
       }
     } catch (e) {
-      console.warn('Failed to parse upload date:', item.uploadDate);
     }
   }
 
@@ -867,7 +798,6 @@ export function transformSearchItemToVideoData(item: any): VideoData {
  * Handle search (keyword input)
  */
 async function handleSearch(keyword: string): Promise<void> {
-  console.log('🔍 Searching for:', keyword);
 
   try {
     // Use Search V2 API for better results
@@ -875,7 +805,6 @@ async function handleSearch(keyword: string): Promise<void> {
       limit: 20
     });
 
-    console.log('Search result:', result);
 
     if (result.ok && result.data) {
       // Success - show search results
@@ -883,24 +812,18 @@ async function handleSearch(keyword: string): Promise<void> {
       const searchData = result.data as any;
       const rawVideos = searchData.videos || searchData.items || [];
 
-      console.log('✅ Search data:', searchData);
-      console.log('✅ Found raw videos:', rawVideos.length);
 
       // Transform SearchV2ItemDto[] to VideoData[] for rendering
       const transformedVideos: VideoData[] = rawVideos.map(transformSearchItemToVideoData);
 
-      console.log('✅ Transformed videos:', transformedVideos.length);
-      console.log('📊 First transformed video:', transformedVideos[0]);
 
       // ✅ CRITICAL: Save pagination data for load more functionality
       if (searchData.pagination) {
-        console.log('💾 Saving pagination data:', searchData.pagination);
         setSearchPagination({
           nextPageToken: searchData.pagination.nextPageToken || null,
           hasNextPage: Boolean(searchData.pagination.hasMore || searchData.pagination.hasNextPage),
         });
       } else {
-        console.log('⚠️ No pagination data in response');
       }
 
       setResults(transformedVideos as any);
@@ -917,7 +840,6 @@ async function handleSearch(keyword: string): Promise<void> {
       renderMessage(errorMsg, 'info');
     }
   } catch (error) {
-    console.error('Search error:', error);
     throw error;
   }
 }
@@ -929,7 +851,6 @@ function handleActionButton(): void {
   if (!pasteBtn) return;
 
   const action = pasteBtn.dataset.action;
-  console.log('🔘 Action button clicked - action:', action);
 
   if (action === 'clear') {
     handleClear();
@@ -944,13 +865,11 @@ function handleActionButton(): void {
 async function handlePaste(): Promise<void> {
   if (!input) return;
 
-  console.log('📋 Paste button clicked');
 
   try {
     const text = await navigator.clipboard.readText();
     const trimmedText = text.trim();
 
-    console.log('📋 Pasted text:', trimmedText);
 
     // Set input value
     input.value = trimmedText;
@@ -958,15 +877,12 @@ async function handlePaste(): Promise<void> {
     // Dispatch input event to trigger handleInput (updates button visibility)
     input.dispatchEvent(new Event('input', { bubbles: true }));
 
-    console.log('📋 Input event dispatched - should update button visibility');
 
     // Auto-submit if looks like URL
     if (trimmedText.startsWith('http')) {
-      console.log('🔗 URL detected - auto-submitting');
       form?.requestSubmit();
     }
   } catch (error) {
-    console.error('❌ Paste failed:', error);
   }
 }
 
@@ -992,24 +908,20 @@ function handleClear(): void {
 function enhancedAutoFocus(): void {
   // Only apply on desktop viewports
   if (window.innerWidth <= 768) {
-    console.log('📱 Auto focus skipped - mobile viewport');
     return;
   }
 
   // Respect user accessibility preferences
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (prefersReducedMotion) {
-    console.log('♿ Auto focus skipped - user prefers reduced motion');
     return;
   }
 
   // Skip if user has already interacted with the page
   if (userHasInteracted) {
-    console.log('👆 Auto focus skipped - user already interacted');
     return;
   }
 
-  console.log('🎯 Auto focus enabled - will focus after 150ms delay');
 
   // Apply timing delay to prevent blocking page load
   setTimeout(() => {
@@ -1017,12 +929,9 @@ function enhancedAutoFocus(): void {
     if (!userHasInteracted && input) {
       try {
         input.focus();
-        console.log('✅ Input auto-focused');
       } catch (error) {
-        console.warn('⚠️ Auto focus failed:', error);
       }
     } else {
-      console.log('⏭️ Auto focus cancelled - user interacted during delay');
     }
   }, 150); // 150ms delay to prevent blocking page load
 }
@@ -1033,7 +942,6 @@ function enhancedAutoFocus(): void {
 function setupUserInteractionDetection(): void {
   function markUserInteraction(): void {
     userHasInteracted = true;
-    console.log('👆 User interaction detected - disabling auto focus');
 
     // Remove listeners after first interaction for performance
     USER_INTERACTION_EVENTS.forEach(eventType => {
@@ -1046,7 +954,6 @@ function setupUserInteractionDetection(): void {
     document.addEventListener(eventType, markUserInteraction, { capture: true, once: true });
   });
 
-  console.log('🎧 User interaction detection setup');
 }
 
 /**

@@ -37,7 +37,6 @@ import './styles/reusable-packages/conversion-modal/conversion-modal.css';
 import './styles/reusable-packages/captcha-modal/captcha-modal.css';
 import './styles/reusable-packages/expire-modal/expire-modal.css';
 
-console.log('🚀 Yt1s Test App loaded (TypeScript)');
 
 /**
  * Initialize downloader UI (lazy loaded)
@@ -46,9 +45,7 @@ async function initDownloaderUI() {
   try {
     const { init } = await import('./features/downloader/downloader-ui');
     await init();
-    console.log('✅ Downloader UI ready');
   } catch (err) {
-    console.error('❌ Failed to initialize downloader UI:', err);
   }
 }
 
@@ -56,7 +53,6 @@ async function initDownloaderUI() {
  * Initialize app
  */
 function loadFeatures() {
-  console.log('✅ DOM ready - initializing features');
   initDownloaderUI();
 }
 

@@ -77,22 +77,17 @@ let uiCallback: StateChangeCallback | null = null; // Callback to update gallery
 // Create multifile service wrapper from api
 const multifileService = {
     startMultifileSession: async (urls: string[]) => {
-        console.log('🔍 [Multifile] Calling API with URLs:', urls);
         const result = await api.startMultifileSession({ urls });
-        console.log('🔍 [Multifile] API Full Response:', result);
 
         // Proactive fix: Normalize session_id to sessionId in the nested data object
         const outerData = result.data as any;
         if (outerData && outerData.data) {
             const innerData = outerData.data as any;
             if (innerData.session_id && !innerData.sessionId) {
-                console.log('✅ [Multifile] Normalizing session_id to sessionId on inner data object.');
                 innerData.sessionId = innerData.session_id;
             }
         }
 
-        console.log('🔍 [Multifile] Response.ok:', result.ok);
-        console.log('🔍 [Multifile] Response.data:', result.data);
         return result;
     }
 };
@@ -143,9 +138,6 @@ async function handleDesktopFlow(encryptedUrls: string[]): Promise<void> {
         },
         {
             onSessionUpdate: (session: SessionData) => {
-                console.log('🔍 [Multifile] onSessionUpdate received:', session);
-                console.log('🔍 [Multifile] SessionId from callback:', session.sessionId);
-                console.log('🔍 [Multifile] StreamUrl from callback:', session.streamUrl);
 
                 // Update state.js with session data
                 setMultifileSession({

@@ -14,7 +14,6 @@ import type { AppState } from './state';
  * Initialize downloader UI
  */
 export async function init(): Promise<void> {
-  console.log('🚀 Initializing Downloader UI...');
 
   // Step 1: Initialize renderers (views)
   const rendererInitialized = initRenderer();
@@ -22,18 +21,15 @@ export async function init(): Promise<void> {
   const suggestionRendererInitialized = initSuggestionRenderer();
 
   if (!rendererInitialized || !contentRendererInitialized) {
-    console.error('❌ Failed to initialize renderers');
     return;
   }
 
   if (!suggestionRendererInitialized) {
-    console.warn('⚠️ Suggestion renderer failed to initialize (may be missing DOM elements)');
     // Don't return - continue without suggestions
   }
 
   // Step 2: Register render callback (state changes trigger view updates)
   setRenderCallback((state: AppState, prevState: AppState) => {
-    console.log('📊 State changed:', state);
 
     // Render main UI
     render(state, prevState);
@@ -48,7 +44,6 @@ export async function init(): Promise<void> {
   const formInitialized = initInputForm();
 
   if (!formInitialized) {
-    console.error('❌ Failed to initialize input form');
     return;
   }
 
@@ -59,5 +54,4 @@ export async function init(): Promise<void> {
     renderSuggestions(initialState);
   }
 
-  console.log('✅ Downloader UI initialized successfully');
 }

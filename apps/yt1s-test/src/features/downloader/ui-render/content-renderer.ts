@@ -41,11 +41,9 @@ function handleSearchResultClick(event: MouseEvent): void {
   const videoTitle = card.dataset.videoTitle;
 
   if (!videoId) {
-    console.warn('⚠️ Card clicked but no video ID found');
     return;
   }
 
-  console.log('🎬 Search result card clicked:', { videoId, videoTitle });
 
   // Set flag to indicate this is from list item click (DON'T clear search results)
   setIsFromListItemClick(true);
@@ -55,7 +53,6 @@ function handleSearchResultClick(event: MouseEvent): void {
 
   // Show detail skeleton immediately (before form submission)
   showLoading('detail');
-  console.log('💀 Detail skeleton shown for clicked card');
 
   // Construct YouTube URL
   const youtubeUrl = `https://www.youtube.com/watch?v=${videoId}`;
@@ -64,7 +61,6 @@ function handleSearchResultClick(event: MouseEvent): void {
   const form = document.getElementById('downloadForm') as HTMLFormElement;
 
   if (!form) {
-    console.error('❌ Form not found');
     return;
   }
 
@@ -76,11 +72,9 @@ function handleSearchResultClick(event: MouseEvent): void {
   if (input) {
     // Dispatch input event to trigger handleInput() → update inputType
     input.dispatchEvent(new Event('input', { bubbles: true }));
-    console.log('🔄 Input event dispatched - inputType should update to "url"');
   }
 
   // Submit form to extract video (skeleton already shown)
-  console.log('📝 Submitting form with URL:', youtubeUrl);
   form.requestSubmit();
 }
 
@@ -93,20 +87,17 @@ export function initContentRenderer(): boolean {
   searchResultsSection = document.getElementById('search-results-section');
 
   if (!contentArea) {
-    console.error('Content area not found');
     return false;
   }
 
   // Setup event delegation for search result card clicks
   if (searchResultsContainer) {
     searchResultsContainer.addEventListener('click', handleSearchResultClick);
-    console.log('✅ Search result click listener attached');
   }
 
   // Setup infinite scroll for load more functionality
   setupInfiniteScroll();
 
-  console.log('✅ Content renderer initialized');
   return true;
 }
 
@@ -137,7 +128,6 @@ function setupInfiniteScroll(): void {
 
     // Trigger load more when close to bottom
     if (distanceToBottom <= threshold) {
-      console.log(`🔄 Infinite scroll triggered - ${distanceToBottom}px from bottom (threshold: ${threshold}px)`);
       isLoadingMore = true;
       handleLoadMore().finally(() => {
         isLoadingMore = false;
@@ -159,7 +149,6 @@ function setupInfiniteScroll(): void {
   // Attach scroll listener with passive flag for better performance
   window.addEventListener('scroll', throttledCheck, { passive: true });
 
-  console.log('✅ Infinite scroll setup complete');
 }
 
 /**
@@ -172,23 +161,15 @@ async function handleLoadMore(): Promise<void> {
 
   // Double-check guards (defensive programming)
   if (pagination.loadMoreCount >= 2) {
-    console.log('⚠️ Max load more limit reached (2)');
     return;
   }
   if (!pagination.hasNextPage) {
-    console.log('⚠️ No more pages available');
     return;
   }
   if (pagination.isLoadingMore) {
-    console.log('⚠️ Already loading more results');
     return;
   }
 
-  console.log('🔄 Loading more results...', {
-    currentCount: state.results?.length || 0,
-    loadMoreCount: pagination.loadMoreCount,
-    nextPageToken: pagination.nextPageToken,
-  });
 
   try {
     // Increment counter immediately to prevent race conditions
@@ -203,7 +184,6 @@ async function handleLoadMore(): Promise<void> {
         .map(() => createSkeletonCard())
         .join('');
       grid.insertAdjacentHTML('beforeend', skeletonCards);
-      console.log('💀 Appended 12 skeleton cards');
     }
 
     // Fetch next page from API
@@ -216,7 +196,6 @@ async function handleLoadMore(): Promise<void> {
       const searchData = result.data as any;
       const rawVideos = searchData.videos || searchData.items || [];
 
-      console.log(`✅ Fetched ${rawVideos.length} more videos`);
 
       // Update pagination state
       if (searchData.pagination) {
@@ -224,7 +203,6 @@ async function handleLoadMore(): Promise<void> {
           nextPageToken: searchData.pagination.nextPageToken || null,
           hasNextPage: Boolean(searchData.pagination.hasMore || searchData.pagination.hasNextPage),
         });
-        console.log('💾 Updated pagination:', searchData.pagination);
       }
 
       // Transform and merge results
@@ -235,15 +213,12 @@ async function handleLoadMore(): Promise<void> {
 
       // Remove skeleton cards
       grid?.querySelectorAll('.skeleton-card').forEach((card) => card.remove());
-      console.log('🗑️ Removed skeleton cards');
 
       // Append new result cards
       const newItemsHTML = newVideos.map((video) => createSearchResultCard(video)).join('');
       grid?.insertAdjacentHTML('beforeend', newItemsHTML);
 
-      console.log(`✅ Load more complete - total videos: ${mergedResults.length}`);
     } else {
-      console.error('❌ Load more API error:', result.message);
       // Rollback counter on error
       decrementLoadMoreCount();
       // Remove skeleton cards on error
@@ -252,7 +227,6 @@ async function handleLoadMore(): Promise<void> {
       // Could add error UI here
     }
   } catch (error) {
-    console.error('❌ Load more failed:', error);
     // Rollback counter on exception
     decrementLoadMoreCount();
     // Remove skeleton cards
@@ -267,7 +241,6 @@ async function handleLoadMore(): Promise<void> {
  * Render search results using TypeScript UI components
  */
 export function renderResults(results: VideoData[]): void {
-  console.log('📋 renderResults called with:', results.length, 'videos');
 
   if (results.length === 0) {
     renderMessage('No results found');
@@ -276,7 +249,6 @@ export function renderResults(results: VideoData[]): void {
   }
 
   if (!searchResultsContainer) {
-    console.error('❌ searchResultsContainer is null!');
     return;
   }
 
@@ -289,13 +261,11 @@ export function renderResults(results: VideoData[]): void {
     </div>
   `;
 
-  console.log('📝 Setting innerHTML, html length:', html.length);
   searchResultsContainer.innerHTML = html;
 
   // Show search results section
   if (searchResultsSection) {
     searchResultsSection.style.display = 'block';
-    console.log('📍 Search section display:', searchResultsSection.style.display);
   }
 
   // Hide content area (used for URL results/video detail)
@@ -304,9 +274,6 @@ export function renderResults(results: VideoData[]): void {
     contentArea.style.display = 'none';
   }
 
-  console.log('✅ Search results rendered successfully');
-  console.log('📊 Results container children:', searchResultsContainer.children.length);
-  console.log('📊 First card:', searchResultsContainer.querySelector('.search-result-card'));
 }
 
 /**
@@ -318,13 +285,11 @@ function hideSearchResultsSection(): void {
 
   // If click came from search result card, DON'T hide/clear results
   if (state.isFromListItemClick) {
-    console.log('🔄 Keeping search results visible (clicked from list)');
     // DON'T reset flag here - will be reset after full render completes
     return;
   }
 
   // Normal hide behavior (direct URL submit)
-  console.log('🗑️ Hiding search results (direct URL submit)');
   if (searchResultsSection) {
     searchResultsSection.style.display = 'none';
   }
@@ -482,34 +447,28 @@ function renderDetailSkeleton(): string {
  * @param activeTab - Active format tab ('video' or 'audio')
  */
 export function renderVideoDownloadOptions(data: any, activeTab: 'video' | 'audio' = 'video'): void {
-  console.log('📺 renderVideoDownloadOptions called', { data, activeTab, contentArea });
 
   if (!contentArea) {
-    console.error('❌ contentArea is null!');
     return;
   }
 
   // Generate HTML using download options renderer
   const html = renderDownloadOptions(data, activeTab);
-  console.log('✅ Generated HTML, length:', html.length);
 
   // Render to content area
   contentArea.innerHTML = html;
-  console.log('✅ HTML rendered to contentArea');
 
   // Remove loading class
   contentArea.classList.remove('showing-loading');
 
   // Show content area (was hidden by default)
   contentArea.style.display = 'block';
-  console.log('✅ Content area display set to block');
 
   // Hide search results section
   hideSearchResultsSection();
 
   // Setup tab switching event listeners
   setupDownloadOptionsTabs();
-  console.log('✅ Download options UI setup complete');
 }
 
 /**

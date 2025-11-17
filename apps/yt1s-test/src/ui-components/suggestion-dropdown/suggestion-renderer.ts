@@ -15,25 +15,19 @@ let elements = {
  * Initialize suggestion renderer
  */
 export function initSuggestionRenderer(): boolean {
-  console.log('🔍 Initializing suggestion renderer...');
 
   elements.container = document.getElementById('suggestion-container');
   elements.input = document.getElementById('videoUrl') as HTMLInputElement;
 
-  console.log('📍 Suggestion container element:', elements.container);
-  console.log('📍 Input element:', elements.input);
 
   if (!elements.container) {
-    console.error('❌ Suggestion container not found!');
     return false;
   }
 
   if (!elements.input) {
-    console.error('❌ Input element not found!');
     return false;
   }
 
-  console.log('✅ Suggestion renderer initialized');
   return true;
 }
 
@@ -41,14 +35,8 @@ export function initSuggestionRenderer(): boolean {
  * Render suggestions based on state
  */
 export function render(state: AppState, prevState?: AppState): void {
-  console.log('🎨 Rendering suggestions - state:', {
-    showSuggestions: state.showSuggestions,
-    suggestions: state.suggestions,
-    highlightedIndex: state.highlightedIndex,
-  });
 
   if (!elements.container) {
-    console.warn('⚠️ Container not initialized');
     return;
   }
 
@@ -60,10 +48,8 @@ export function render(state: AppState, prevState?: AppState): void {
     state.originalQuery !== prevState?.originalQuery
   );
 
-  console.log('🔄 Suggestion state changed:', suggestionStateChanged);
 
   if (!suggestionStateChanged) {
-    console.log('⏭️ Skipping render - no suggestion state changes');
     return;
   }
 
@@ -72,10 +58,8 @@ export function render(state: AppState, prevState?: AppState): void {
 
   // Show or hide suggestions
   if (state.showSuggestions && state.suggestions.length > 0) {
-    console.log('✨ Showing suggestions');
     renderSuggestions(state);
   } else {
-    console.log('🚫 Hiding suggestions');
     hideSuggestions();
   }
 }
@@ -89,7 +73,6 @@ function renderSuggestions(state: AppState): void {
   const displaySuggestions = getDisplaySuggestions(state);
   const limitedSuggestions = displaySuggestions.slice(0, 10);
 
-  console.log('📝 Rendering suggestions:', limitedSuggestions);
 
   const suggestionItems = limitedSuggestions.map((suggestion, index) => {
     const isHighlighted = index === state.highlightedIndex;
@@ -117,7 +100,6 @@ function renderSuggestions(state: AppState): void {
 
   // Show container with fade-in animation
   elements.container.classList.add('suggestion-container--visible');
-  console.log('✅ Suggestions rendered and shown');
 
   // Scroll highlighted item into view
   if (state.highlightedIndex >= 0) {
@@ -132,13 +114,11 @@ function hideSuggestions(): void {
   if (!elements.container) return;
 
   elements.container.classList.remove('suggestion-container--visible');
-  console.log('🔽 Hiding suggestions (fade out)');
 
   // Clear content after animation
   setTimeout(() => {
     if (elements.container && !elements.container.classList.contains('suggestion-container--visible')) {
       elements.container.innerHTML = '';
-      console.log('🧹 Cleared suggestion content');
     }
   }, 150);
 }

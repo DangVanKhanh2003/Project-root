@@ -33,11 +33,9 @@ export function initRenderer(): boolean {
   elements.submitBtn = elements.form?.querySelector('button[type="submit"]') as HTMLButtonElement;
 
   if (!elements.form || !elements.input || !elements.submitBtn) {
-    console.error('Required elements not found');
     return false;
   }
 
-  console.log('✅ UI Renderer initialized');
   return true;
 }
 
@@ -91,12 +89,10 @@ function updateButtonVisibility(showPaste: boolean, showClear: boolean): void {
       // Has content → show Clear
       elements.pasteBtn.innerHTML = 'Clear';
       elements.pasteBtn.dataset.action = 'clear';
-      console.log('🔘 Button changed to: Clear');
     } else {
       // No content → show Paste
       elements.pasteBtn.innerHTML = ' Paste';
       elements.pasteBtn.dataset.action = 'paste';
-      console.log('🔘 Button changed to: Paste');
     }
   }
 
