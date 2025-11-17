@@ -8,6 +8,7 @@ import { initRenderer, render } from './ui-render/ui-renderer';
 import { initInputForm } from './logic/input-form';
 import { initContentRenderer } from './ui-render/content-renderer';
 import { initSuggestionRenderer, render as renderSuggestions } from '../../ui-components/suggestion-dropdown/suggestion-renderer';
+import { initConversionController } from './logic/conversion/conversion-controller';
 import type { AppState } from './state';
 
 /**
@@ -47,7 +48,10 @@ export async function init(): Promise<void> {
     return;
   }
 
-  // Step 4: Initial render
+  // Step 4: Initialize conversion controller (handles modal events)
+  initConversionController();
+
+  // Step 5: Initial render
   const initialState = getState();
   render(initialState);
   if (suggestionRendererInitialized) {

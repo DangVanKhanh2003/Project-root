@@ -33,6 +33,8 @@ interface ExpiryConfig {
 
 interface ApiConfig {
     baseUrl: string;
+    baseUrlV1: string;
+    baseUrlV2: string;
     searchV2BaseUrl: string;
     youtubeStreamApiUrl: string;
     youtubeStreamApiEndpoint: string;
@@ -93,13 +95,19 @@ const environment: Environment = {
 
     // API Configuration
     api: {
-        // Main API (media extraction, conversion) - with /api/v1 suffix
+        // V1 API Base URL (old API endpoint)
+        baseUrlV1: import.meta.env.VITE_API_BASE_URL_V1 || 'https://api.yt1s.cx/api/v1',
+
+        // V2 API Base URL (new API endpoint - current default)
+        baseUrlV2: import.meta.env.VITE_API_BASE_URL_V2 || 'https://sv-190.y2mp3.co',
+
+        // Main API (currently uses V2)
         // Both dev and prod use production API (no local backend)
-        baseUrl: import.meta.env.VITE_API_BASE_URL || 'https://api.yt1s.cx/api/v1',
+        baseUrl: import.meta.env.VITE_API_BASE_URL || 'https://api.yt1s.cx',
 
         // Search V2 API (YouTube search) - separate domain
         // Both dev and prod use production API (no local backend)
-        searchV2BaseUrl: import.meta.env.VITE_SEARCH_V2_BASE_URL || 'https://yt-extractor.y2mp3.co',
+        searchV2BaseUrl: import.meta.env.VITE_SEARCH_V2_BASE_URL || 'https://sv-190.y2mp3.co',
 
         // YouTube Stream API (new service endpoint)
         // Both dev and prod use production API (no local backend)
@@ -108,7 +116,7 @@ const environment: Environment = {
         // YouTube Stream API endpoint path
         youtubeStreamApiEndpoint: '',
 
-        // V2 API (extract, search)
+        // V2 API (extract, search) - same as baseUrlV2 but without /api/v2 suffix
         // Both dev and prod use production API (no local backend)
         v2ApiUrl: 'https://sv-190.y2mp3.co',
 
@@ -187,11 +195,27 @@ const environment: Environment = {
 };
 
 /**
- * Get API base URL with fallback
+ * Get API base URL with fallback (currently V2)
  * @returns API base URL
  */
 export function getApiBaseUrl(): string {
     return environment.api.baseUrl;
+}
+
+/**
+ * Get API V1 base URL
+ * @returns API V1 base URL
+ */
+export function getApiBaseUrlV1(): string {
+    return environment.api.baseUrlV1;
+}
+
+/**
+ * Get API V2 base URL
+ * @returns API V2 base URL
+ */
+export function getApiBaseUrlV2(): string {
+    return environment.api.baseUrlV2;
 }
 
 /**

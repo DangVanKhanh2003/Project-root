@@ -25,6 +25,9 @@ import {
   setGalleryDetail,
   setSearchPagination,
 } from '../state';
+import { clearDetailStates } from '../state/media-detail-state';
+import { clearConversionTasks } from '../state/conversion-state';
+import { clearDownloadStates } from '../state/download-state';
 import { renderResults, renderMessage, renderVideoDownloadOptions, showLoading, clearContent } from '../ui-render/content-renderer';
 import { getInputValue as getInputValueFromRenderer, setInputValue as setInputValueInRenderer } from '../ui-render/ui-renderer';
 import type { VideoData } from '../../../ui-components/search-result-card/search-result-card';
@@ -77,19 +80,151 @@ function generateFakeYouTubeData(videoId: string, url: string): any {
     },
     formats: {
       video: [
-        { quality: '2160p (4K)', format: 'mp4', videoId, type: 'video', size: '~500MB' },
-        { quality: '1440p (2K)', format: 'mp4', videoId, type: 'video', size: '~300MB' },
-        { quality: '1080p (Full HD)', format: 'mp4', videoId, type: 'video', size: '~150MB' },
-        { quality: '720p (HD)', format: 'mp4', videoId, type: 'video', size: '~80MB' },
-        { quality: '480p', format: 'mp4', videoId, type: 'video', size: '~40MB' },
-        { quality: '360p', format: 'mp4', videoId, type: 'video', size: '~20MB' },
+        {
+          quality: '2160p (4K)',
+          format: 'mp4',
+          vid: videoId,
+          type: 'VIDEO',  // Changed to uppercase to match API
+          size: 'Processing...',
+          isFakeData: true,
+          extractV2Options: {
+            downloadMode: 'video',
+            videoQuality: '2160',
+            youtubeVideoContainer: 'mp4'
+          }
+        },
+        {
+          quality: '1440p (2K)',
+          format: 'mp4',
+          vid: videoId,
+          type: 'VIDEO',
+          size: 'Processing...',
+          isFakeData: true,
+          extractV2Options: {
+            downloadMode: 'video',
+            videoQuality: '1440',
+            youtubeVideoContainer: 'mp4'
+          }
+        },
+        {
+          quality: '1080p (Full HD)',
+          format: 'mp4',
+          vid: videoId,
+          type: 'VIDEO',
+          size: 'Processing...',
+          isFakeData: true,
+          extractV2Options: {
+            downloadMode: 'video',
+            videoQuality: '1080',
+            youtubeVideoContainer: 'mp4'
+          }
+        },
+        {
+          quality: '720p (HD)',
+          format: 'mp4',
+          vid: videoId,
+          type: 'VIDEO',
+          size: 'Processing...',
+          isFakeData: true,
+          extractV2Options: {
+            downloadMode: 'video',
+            videoQuality: '720',
+            youtubeVideoContainer: 'mp4'
+          }
+        },
+        {
+          quality: '480p',
+          format: 'mp4',
+          vid: videoId,
+          type: 'VIDEO',
+          size: 'Processing...',
+          isFakeData: true,
+          extractV2Options: {
+            downloadMode: 'video',
+            videoQuality: '480',
+            youtubeVideoContainer: 'mp4'
+          }
+        },
+        {
+          quality: '360p',
+          format: 'mp4',
+          vid: videoId,
+          type: 'VIDEO',
+          size: 'Processing...',
+          isFakeData: true,
+          extractV2Options: {
+            downloadMode: 'video',
+            videoQuality: '360',
+            youtubeVideoContainer: 'mp4'
+          }
+        },
       ],
       audio: [
-        { quality: '320kbps', format: 'mp3', videoId, type: 'audio', size: '~8MB' },
-        { quality: '256kbps', format: 'mp3', videoId, type: 'audio', size: '~6MB' },
-        { quality: '192kbps', format: 'mp3', videoId, type: 'audio', size: '~5MB' },
-        { quality: '128kbps', format: 'mp3', videoId, type: 'audio', size: '~3MB' },
-        { quality: '64kbps', format: 'mp3', videoId, type: 'audio', size: '~2MB' },
+        {
+          quality: '320kbps',
+          format: 'mp3',
+          vid: videoId,
+          type: 'AUDIO',
+          size: 'Processing...',
+          isFakeData: true,
+          extractV2Options: {
+            downloadMode: 'audio',
+            audioQuality: '320',
+            youtubeAudioContainer: 'mp3'
+          }
+        },
+        {
+          quality: '256kbps',
+          format: 'mp3',
+          vid: videoId,
+          type: 'AUDIO',
+          size: 'Processing...',
+          isFakeData: true,
+          extractV2Options: {
+            downloadMode: 'audio',
+            audioQuality: '256',
+            youtubeAudioContainer: 'mp3'
+          }
+        },
+        {
+          quality: '192kbps',
+          format: 'mp3',
+          vid: videoId,
+          type: 'AUDIO',
+          size: 'Processing...',
+          isFakeData: true,
+          extractV2Options: {
+            downloadMode: 'audio',
+            audioQuality: '192',
+            youtubeAudioContainer: 'mp3'
+          }
+        },
+        {
+          quality: '128kbps',
+          format: 'mp3',
+          vid: videoId,
+          type: 'AUDIO',
+          size: 'Processing...',
+          isFakeData: true,
+          extractV2Options: {
+            downloadMode: 'audio',
+            audioQuality: '128',
+            youtubeAudioContainer: 'mp3'
+          }
+        },
+        {
+          quality: '64kbps',
+          format: 'mp3',
+          vid: videoId,
+          type: 'AUDIO',
+          size: 'Processing...',
+          isFakeData: true,
+          extractV2Options: {
+            downloadMode: 'audio',
+            audioQuality: '64',
+            youtubeAudioContainer: 'mp3'
+          }
+        },
       ]
     }
   };
@@ -562,10 +697,13 @@ async function handleSubmit(event: Event): Promise<void> {
     input.blur();
   }
 
-  // Clear previous results
-  setResults([]);
-  clearError();
-  hideSuggestions();
+  // Clear ALL previous state to prevent conflicts
+  setResults([]);              // Clear search results
+  clearError();                // Clear error messages
+  hideSuggestions();           // Hide suggestions dropdown
+  clearDetailStates();         // Clear videoDetail/galleryDetail
+  clearConversionTasks();      // Clear conversion tasks
+  clearDownloadStates();       // Clear download button states
   setLoading(true);
 
   // Get input type to show appropriate skeleton
@@ -639,7 +777,10 @@ async function handleExtractMedia(url: string): Promise<void> {
         // 1. Generate fake data with pre-defined quality options
         const fakeData = generateFakeYouTubeData(videoId, url);
 
-        // 2. Render fake data with proper download options UI
+        // 2. Set fake data to state before rendering
+        setVideoDetail(fakeData);
+
+        // 3. Render fake data with proper download options UI
         renderVideoDownloadOptions(fakeData, 'video');
 
         // 3. Background: Enhance metadata using oEmbed API (non-blocking)
@@ -651,6 +792,9 @@ async function handleExtractMedia(url: string): Promise<void> {
           fakeData.meta.title = metadata.title;
           fakeData.meta.author = metadata.author;
           fakeData.meta.isFakeData = false; // Mark as enhanced with real data
+
+          // Update state with enhanced metadata
+          setVideoDetail(fakeData);
 
           // Re-render with updated metadata
           renderVideoDownloadOptions(fakeData, 'video');
