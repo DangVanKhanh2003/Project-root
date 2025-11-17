@@ -67,13 +67,11 @@ class DecryptServiceImpl extends BaseService implements IDecryptService {
  *
  * @param httpClient - HTTP client instance
  * @param config - API configuration
- * @param onJwtReceived - Callback when JWT is received from API
  * @returns Decrypt service instance
  */
 export function createDecryptService(
   httpClient: any,
-  config: any,
-  onJwtReceived?: JwtSaveCallback
+  config: any
 ): IDecryptService {
-  return new DecryptServiceImpl(httpClient, config, onJwtReceived);
+  return new DecryptServiceImpl(httpClient, config);
 }

@@ -56,9 +56,11 @@ export const suggestionsPolicy: VerificationPolicy = (payload: any) => {
 /**
  * Extract Media Policy
  * Validates media extraction response
+ * NOTE: Mapping is now handled in verified-services.ts wrapper layer
  */
 export const extractMediaPolicy: VerificationPolicy = (payload: any) => {
-  // Nới lỏng: Accept bất kỳ payload nào
+  // Simple validation - accept any payload
+  // Data mapping happens in verified-services wrapper
   return makeResult('success', 'OK', VERIFICATION_MESSAGES.EXTRACT_SUCCESS, payload);
 };
 

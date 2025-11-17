@@ -31,6 +31,10 @@ import {
 // Import centralized environment configuration
 import { getApiBaseUrl, getSearchV2BaseUrl, getQueueApiUrl, getTimeout } from '../environment';
 
+// Import CAPTCHA dependencies
+import { CaptchaModal } from '@downloader/ui-shared';
+import { loadCaptchaModalCSS } from '../utils/css-loader';
+
 // API Configuration from environment.ts
 const API_BASE_URL = getApiBaseUrl();
 const SEARCH_V2_BASE_URL = getSearchV2BaseUrl();
@@ -71,7 +75,12 @@ const queueApiConfig = {
   timeout: getTimeout('addQueue'),
 };
 
-// 2. Create Core Services
+// 2. Create JWT Store (namespaced to prevent collision) - MUST be created before verifier
+const jwtStore = new LocalStorageJwtStore(
+  createNamespacedKey('yt1s-test', 'downloader')
+);
+
+// 3. Create Core Services (JWT handling moved to Domain Layer - Verifier)
 const coreServices = {
   // Services using Main API
   search: createSearchService(httpClient, apiConfig),
@@ -91,20 +100,31 @@ const coreServices = {
   queue: createQueueService(queueHttpClient, queueApiConfig),
 };
 
-// 3. Create JWT Store (namespaced to prevent collision)
-const jwtStore = new LocalStorageJwtStore(
-  createNamespacedKey('yt1s-test', 'downloader')
-);
-
-// 4. Create Verifier
+// 4. Create Verifier (handles JWT extraction and storage)
 const verifier = createVerifier({
   jwtStore,
   policies: DEFAULT_POLICIES,
   verbose: true, // Enable logging in development
 });
 
-// 5. Create Verified Services (Main API)
-export const api = createVerifiedServices(coreServices, verifier);
+// 5. Create CAPTCHA Handler (Dependency Injection)
+const captchaHandler = async () => {
+  // Lazy-load CAPTCHA modal CSS
+  await loadCaptchaModalCSS();
+
+  // Show CAPTCHA modal and get token
+  const captchaModal = new CaptchaModal();
+  const result = await captchaModal.getCaptchaToken();
+
+  return {
+    token: result.token,
+    type: result.type,
+  };
+};
+
+// 6. Create Verified Services with CAPTCHA handler
+// Domain Layer (Verifier) handles JWT extraction and storage automatically
+export const api = createVerifiedServices(coreServices, verifier, captchaHandler);
 
 // Export for debugging/advanced use
 export { coreServices, verifier, jwtStore };

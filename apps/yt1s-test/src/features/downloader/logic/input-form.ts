@@ -640,7 +640,6 @@ async function handleExtractMedia(url: string): Promise<void> {
 
       console.log('📺 YouTube URL detected, using fake data workflow');
       console.log('🎬 Video ID:', videoId);
-
       // Fire-and-forget: Add video to queue API (analytics/preloading notification)
       coreServices.queue.addVideoToQueue(videoId).then((success: boolean) => {
         if (success) {
@@ -694,13 +693,26 @@ async function handleExtractMedia(url: string): Promise<void> {
 
       console.log('🌐 Non-YouTube URL, calling extract API...');
 
-      const result = await api.extractMedia({ url });
+      const result = await api.extractMediaDirect({ url });
 
       console.log('📡 Extract result:', result);
 
       if (result.ok && result.data) {
         console.log('✅ Media extracted:', result.data);
         const data = result.data as any;
+
+        console.log('🔍 [Social Media Extract] Data structure:', {
+          hasMeta: !!data.meta,
+          hasFormats: !!data.formats,
+          hasGallery: !!data.gallery,
+          meta: data.meta,
+          formats: {
+            video: data.formats?.video?.length || 0,
+            audio: data.formats?.audio?.length || 0,
+            videoSample: data.formats?.video?.[0],
+            audioSample: data.formats?.audio?.[0]
+          }
+        });
 
         // Add original URL to meta for retry functionality
         if (data.meta) {
@@ -722,9 +734,20 @@ async function handleExtractMedia(url: string): Promise<void> {
           });
         } else {
           console.log('🎬 Single video content detected');
+          console.log('💾 [State] Setting video detail:', data);
           setVideoDetail(data);
+
+          console.log('🎨 [Render] Rendering download options...');
           renderVideoDownloadOptions(data, 'video');
           console.log('✅ Video download options rendered');
+
+          // Log state after render
+          const state = getState();
+          console.log('📊 [State After Render]:', {
+            hasVideoDetail: !!state.videoDetail,
+            videoDetail: state.videoDetail,
+            formats: state.videoDetail?.formats
+          });
         }
       } else {
         const errorMsg = result.message || 'Failed to extract media';

@@ -22,6 +22,10 @@ import type { IYouTubeDownloadService } from '../services/v2/interfaces/youtube-
 import type { IMultifileService } from '../services/v1/interfaces/multifile.interface';
 import type { IYouTubePublicApiService } from '../services/public-api/interfaces/public-api.interface';
 
+// Mappers for data transformation
+import { mapDirectExtractResponse } from '../mappers/v1/media/direct.mapper';
+import { mapInstagramResponse } from '../mappers/v1/media/instagram.mapper';
+
 /**
  * Core Services Collection
  */
@@ -40,17 +44,41 @@ export interface CoreServices {
 }
 
 /**
+ * CAPTCHA Handler Type
+ * Function that shows CAPTCHA UI and returns token
+ */
+export type CaptchaHandler = () => Promise<{
+  token: string;
+  type: string;
+}>;
+
+/**
  * Create verified services
  * Wraps core services with domain verification
  *
  * @param services - Core services collection
  * @param verifier - Domain verifier instance
+ * @param captchaHandler - Optional CAPTCHA handler for automatic retry
  * @returns Verified services API
  */
 export function createVerifiedServices(
   services: CoreServices,
-  verifier: DomainVerifier
+  verifier: DomainVerifier,
+  captchaHandler?: CaptchaHandler
 ) {
+  /**
+   * Protected methods that support ProtectionPayload
+   * These methods can accept CAPTCHA tokens for retry
+   */
+  const protectedMethods = new Set([
+    'extractMedia',
+    'extractMediaDirect',
+    'convert',
+    'decodeUrl',
+    'decodeList',
+    'startMultifileSession',
+  ]);
+
   /**
    * Auto-inject JWT helper
    */
@@ -143,10 +171,91 @@ export function createVerifiedServices(
         throw new Error(`Method not found in registry: ${methodName}`);
       }
 
-      // Call service method
-      const rawResponse = await method(...args);
+      // For protected methods, check JWT first and handle CAPTCHA flow
+      if (protectedMethods.has(methodName) && captchaHandler) {
+        const currentJwt = verifier.getCurrentJwt();
 
-      // Verify with policy (extracts JWT automatically)
+        // Path 1: Have JWT - try with JWT first
+        if (currentJwt) {
+          const rawResponse = await method(...args);
+          let result = await verifier.verifyResponse<any, T>(rawResponse, methodName);
+
+          // If JWT invalid/expired (CAPTCHA_REQUIRED), clear and get CAPTCHA
+          if (!result.ok && result.code === 'CAPTCHA_REQUIRED') {
+            verifier.clearJwt();
+
+            try {
+              // Get CAPTCHA token
+              const captchaResult = await captchaHandler();
+
+              // Build args with CAPTCHA payload
+              const captchaPayload: ProtectionPayload = {
+                captcha: {
+                  token: captchaResult.token,
+                  type: captchaResult.type,
+                },
+              };
+
+              const retryArgs = replaceOrAppendProtectionPayload(args, captchaPayload);
+
+              // Retry with CAPTCHA
+              const retryRawResponse = await method(...retryArgs);
+              result = await verifier.verifyResponse<any, T>(retryRawResponse, methodName);
+
+              if (!result.ok && result.code === 'CAPTCHA_REQUIRED') {
+                return {
+                  ...result,
+                  message: 'CAPTCHA verification failed. Please try again later.',
+                };
+              }
+            } catch (captchaError) {
+              return handleCaptchaError(captchaError);
+            }
+          }
+
+          return result;
+        }
+
+        // Path 2: No JWT - get CAPTCHA first, then call API
+        try {
+          console.log('🔐 [CAPTCHA] Path 2: No JWT - Getting CAPTCHA first');
+          // Get CAPTCHA token BEFORE calling API
+          const captchaResult = await captchaHandler();
+          console.log('🔐 [CAPTCHA] Got CAPTCHA token:', captchaResult.token.substring(0, 20) + '...');
+
+          // Build args with CAPTCHA payload
+          const captchaPayload: ProtectionPayload = {
+            captcha: {
+              token: captchaResult.token,
+              type: captchaResult.type,
+            },
+          };
+          console.log('🔐 [CAPTCHA] Built CAPTCHA payload:', captchaPayload);
+
+          console.log('🔐 [CAPTCHA] Original args:', args);
+          const protectedArgs = replaceOrAppendProtectionPayload(args, captchaPayload);
+          console.log('🔐 [CAPTCHA] Protected args after merge:', protectedArgs);
+
+          // Call API with CAPTCHA
+          const rawResponse = await method(...protectedArgs);
+          console.log('🔐 [CAPTCHA] Raw response:', rawResponse);
+          const result = await verifier.verifyResponse<any, T>(rawResponse, methodName);
+
+          if (!result.ok && result.code === 'CAPTCHA_REQUIRED') {
+            return {
+              ...result,
+              message: 'CAPTCHA verification failed. Please try again later.',
+            };
+          }
+
+          return result;
+        } catch (captchaError) {
+          return handleCaptchaError(captchaError);
+        }
+      }
+
+      // For non-protected methods, call normally
+      const rawResponse = await method(...args);
       return verifier.verifyResponse<any, T>(rawResponse, methodName);
     } catch (error) {
       // Handle errors - return error VerifiedResult
@@ -160,6 +269,67 @@ export function createVerifiedServices(
         raw: error,
       };
     }
+  }
+
+  /**
+   * Helper: Replace or append protection payload to args
+   */
+  function replaceOrAppendProtectionPayload(
+    args: any[],
+    payload: ProtectionPayload
+  ): any[] {
+    const mergedPayload = getProtectionPayload(payload);
+
+    // Check if last arg is protection payload (including undefined placeholders)
+    const lastArg = args[args.length - 1];
+    const lastArgIsProtection = args.length > 0 && (
+      // Explicit undefined (protection slot)
+      lastArg === undefined ||
+      // Protection payload object
+      (typeof lastArg === 'object' && lastArg !== null &&
+       (lastArg.jwt !== undefined || lastArg.captcha !== undefined))
+    );
+
+    if (lastArgIsProtection) {
+      // Replace last arg
+      return [...args.slice(0, -1), mergedPayload];
+    } else {
+      // Append as new arg
+      return [...args, mergedPayload];
+    }
+  }
+
+  /**
+   * Helper: Handle CAPTCHA errors
+   */
+  function handleCaptchaError(captchaError: unknown): VerifiedResult<any> {
+    const isCancelled =
+      captchaError instanceof Error &&
+      (captchaError.message.toLowerCase().includes('close') ||
+        captchaError.message.toLowerCase().includes('cancel'));
+
+    if (isCancelled) {
+      return {
+        ok: false,
+        status: 'error',
+        code: 'ERROR',
+        message: 'Verification cancelled',
+        data: null,
+        raw: captchaError,
+      };
+    }
+
+    return {
+      ok: false,
+      status: 'error',
+      code: 'ERROR',
+      message:
+        captchaError instanceof Error
+          ? captchaError.message
+          : 'CAPTCHA verification failed',
+      data: null,
+      raw: captchaError,
+    };
   }
 
   // Return verified services API
@@ -186,12 +356,35 @@ export function createVerifiedServices(
       return wrap('extractMedia', params, payload);
     },
 
-    extractMediaDirect: (
+    extractMediaDirect: async (
       params: Parameters<IMediaService['extractMediaDirect']>[0],
       protectionPayload?: ProtectionPayload
     ) => {
       const payload = getProtectionPayload(protectionPayload);
-      return wrap('extractMediaDirect', params, payload);
+      const result = await wrap('extractMediaDirect', params, payload);
+
+      // Apply mapping to verified result data
+      if (result.ok && result.data) {
+        const unwrappedData = result.data as any;
+
+        // Check if Instagram carousel
+        if (unwrappedData.extractor?.toLowerCase() === 'instagram' && unwrappedData.gallery) {
+          const mapped = mapInstagramResponse(unwrappedData);
+          return {
+            ...result,
+            data: mapped,
+          };
+        }
+
+        // Map direct extract response
+        const mapped = mapDirectExtractResponse(unwrappedData);
+        return {
+          ...result,
+          data: mapped,
+        };
+      }
+
+      return result;
     },
 
     // ========================================

@@ -85,8 +85,7 @@ class ConversionServiceImpl extends BaseService implements IConversionService {
  */
 export function createConversionService(
   httpClient: any,
-  config: any,
-  onJwtReceived?: (jwt: string) => void
+  config: any
 ): IConversionService {
-  return new ConversionServiceImpl(httpClient, config, onJwtReceived);
+  return new ConversionServiceImpl(httpClient, config);
 }

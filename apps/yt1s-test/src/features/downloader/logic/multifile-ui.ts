@@ -80,10 +80,19 @@ const multifileService = {
         console.log('🔍 [Multifile] Calling API with URLs:', urls);
         const result = await api.startMultifileSession({ urls });
         console.log('🔍 [Multifile] API Full Response:', result);
+
+        // Proactive fix: Normalize session_id to sessionId in the nested data object
+        const outerData = result.data as any;
+        if (outerData && outerData.data) {
+            const innerData = outerData.data as any;
+            if (innerData.session_id && !innerData.sessionId) {
+                console.log('✅ [Multifile] Normalizing session_id to sessionId on inner data object.');
+                innerData.sessionId = innerData.session_id;
+            }
+        }
+
         console.log('🔍 [Multifile] Response.ok:', result.ok);
         console.log('🔍 [Multifile] Response.data:', result.data);
-        console.log('🔍 [Multifile] Session ID:', result.data?.session_id);
-        console.log('🔍 [Multifile] SessionId:', result.data?.sessionId);
         return result;
     }
 };
@@ -130,7 +139,7 @@ async function handleDesktopFlow(encryptedUrls: string[]): Promise<void> {
         {
             service: multifileService as any,
             apiBaseUrl: getApiBaseUrl().replace(/\/api\/v1$/, ''), // Remove /api/v1 suffix
-            streamPath: '/api/v1/multifile/stream'
+            streamPath: '/api/v1/download/multifile/stream'
         },
         {
             onSessionUpdate: (session: SessionData) => {

@@ -398,10 +398,20 @@ export function renderFormatItem(format: ProcessedFormat, downloadTasks: Downloa
     const state = getState();
     const isYouTube = !!(state.videoDetail && state.videoDetail.meta && state.videoDetail.meta.vid);
 
+    console.log('🎨 [Render Format Item]:', {
+        formatId: format.id,
+        isYouTube,
+        hasVid: !!state.videoDetail?.meta?.vid,
+        hasUrl: !!format.url,
+        format
+    });
+
     // Branch: YouTube conversion flow vs Direct download
     if (isYouTube) {
+        console.log('  → Rendering YouTube conversion button');
         return renderConversionButton(format, downloadTasks);
     } else {
+        console.log('  → Rendering direct download button');
         return renderDirectDownloadButton(format);
     }
 }
@@ -753,23 +763,47 @@ async function handleDownloadClick(event: MouseEvent): Promise<void> {
 
     const formatId = button.dataset.formatId;
     if (!formatId) {
+        console.warn('⚠️ [Download Click] No formatId found in button dataset');
         return;
     }
+
+    console.log('🔵 [Download Click] Button clicked:', {
+        formatId,
+        buttonClasses: button.className,
+        hasDirectDownloadClass: button.classList.contains('btn-convert--direct-download'),
+        dataset: button.dataset
+    });
 
     try {
         // Check if this is a direct download button (non-YouTube platforms like TikTok, Instagram)
         if (button.classList.contains('btn-convert--direct-download')) {
+            console.log('✅ [Direct Download] Detected direct download button');
+
             const formatData = extractFormatDataFromState(formatId);
+            console.log('📦 [Direct Download] Format data extracted:', {
+                hasFormatData: !!formatData,
+                hasUrl: !!formatData?.url,
+                url: formatData?.url?.substring(0, 50) + '...',
+                formatData: formatData
+            });
+
             if (!formatData || !formatData.url) {
+                console.error('❌ [Direct Download] Missing format data or URL:', {
+                    hasFormatData: !!formatData,
+                    hasUrl: !!formatData?.url,
+                    formatData
+                });
                 return;
             }
 
             // Direct download - trigger immediately
             const filename = formatData.filename || `download.${formatData.type || 'mp4'}`;
+            console.log('⬇️ [Direct Download] Triggering download:', { url: formatData.url, filename });
             triggerDownload(formatData.url, filename, true);
             return;
         }
 
+        console.log('🎬 [YouTube Flow] Routing to smartConvert for formatId:', formatId);
         // YouTube conversion flow - Always use smartConvert()
         // smartConvert will handle all routing logic internally:
         // - Stream status → Extract fresh
@@ -779,6 +813,7 @@ async function handleDownloadClick(event: MouseEvent): Promise<void> {
         await smartConvert(formatId);
 
     } catch (error) {
+        console.error('❌ [Download Click] Error:', error);
         // Error handling is done inside smartConvert via modal
     }
 }
@@ -792,10 +827,19 @@ async function handleDownloadClick(event: MouseEvent): Promise<void> {
  */
 function extractFormatDataFromState(formatId: string): FormatData | null {
     try {
+        console.log('🔍 [Extract Format] Starting extraction for formatId:', formatId);
+
         const state = getState();
         const videoDetail = state.videoDetail;
 
+        console.log('📊 [Extract Format] State check:', {
+            hasVideoDetail: !!videoDetail,
+            hasFormats: !!videoDetail?.formats,
+            videoDetail: videoDetail
+        });
+
         if (!videoDetail || !videoDetail.formats) {
+            console.warn('⚠️ [Extract Format] No videoDetail or formats in state');
             return null;
         }
 
@@ -804,27 +848,49 @@ function extractFormatDataFromState(formatId: string): FormatData | null {
         // Parse formatId to get category
         const parts = formatId.split('|');
         if (parts.length < 2) {
+            console.warn('⚠️ [Extract Format] Invalid formatId format:', formatId);
             return null;
         }
 
         const category = parts[0] as 'video' | 'audio'; // 'video' or 'audio'
+        console.log('📂 [Extract Format] Parsed category:', category);
 
         // Get format array based on category
         const formatArray = category === 'video' ? formats.video : formats.audio;
 
+        console.log('📋 [Extract Format] Format array:', {
+            category,
+            isArray: Array.isArray(formatArray),
+            length: formatArray?.length,
+            firstItem: formatArray?.[0]
+        });
+
         if (!Array.isArray(formatArray)) {
+            console.warn('⚠️ [Extract Format] Format array is not an array');
             return null;
         }
 
         // Process formats using format-processor
         const processedFormats = processFormatArray(formatArray, category);
 
+        console.log('⚙️ [Extract Format] Processed formats:', {
+            count: processedFormats.length,
+            ids: processedFormats.map(f => f.id),
+            formats: processedFormats
+        });
+
         // Find matching format by ID
         const format = processedFormats.find(f => f.id === formatId);
 
         if (!format) {
+            console.error('❌ [Extract Format] Format not found:', {
+                formatId,
+                availableIds: processedFormats.map(f => f.id)
+            });
             return null;
         }
+
+        console.log('✅ [Extract Format] Found matching format:', format);
 
         // Build complete format data for convert queue
         const formatData: FormatData = {
@@ -853,9 +919,16 @@ function extractFormatDataFromState(formatId: string): FormatData | null {
             isFakeData: format.isFakeData || false, // Route to extract v2 if true
         };
 
+        console.log('📦 [Extract Format] Built format data:', {
+            hasUrl: !!formatData.url,
+            url: formatData.url?.substring(0, 80) + '...',
+            formatData
+        });
+
         return formatData;
 
     } catch (error) {
+        console.error('❌ [Extract Format] Exception:', error);
         return null;
     }
 }

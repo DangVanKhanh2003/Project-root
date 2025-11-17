@@ -74,7 +74,12 @@ class MediaServiceImpl extends BaseService implements IMediaService {
   async extractMediaDirect(
     params: ExtractNonEncodePostRequest,
     protectionPayload?: ProtectionPayload
-  ): Promise<MediaDto> {
+  ): Promise<any> {
+    // Return RAW response - Domain Layer will:
+    // 1. Extract JWT
+    // 2. Unwrap nested response
+    // 3. Pass unwrapped data to this service for mapping
+    // So we receive ALREADY UNWRAPPED data from domain layer
     const response = await this.makeRequest<ExtractResponse>({
       method: 'POST',
       url: API_ENDPOINTS.EXTRACT_NON_ENCODE,
@@ -85,14 +90,11 @@ class MediaServiceImpl extends BaseService implements IMediaService {
       timeout: getTimeout(this.config, 'extractNonEncode'),
     }, protectionPayload);
 
-    const unwrapped = this.unwrapNestedResponse<DirectExtractData>(response);
+    console.log('📦 [MediaService.extractMediaDirect] Raw response from makeRequest:', response);
 
-    // Check if Instagram carousel
-    if (unwrapped.extractor?.toLowerCase() === 'instagram' && unwrapped.gallery) {
-      return mapInstagramResponse(unwrapped);
-    }
-
-    return mapDirectExtractResponse(unwrapped);
+    // Domain layer will unwrap this, so just return raw response
+    // The unwrapped data will be in format: DirectExtractData
+    return response;
   }
 }
 
@@ -101,13 +103,11 @@ class MediaServiceImpl extends BaseService implements IMediaService {
  *
  * @param httpClient - HTTP client instance
  * @param config - API configuration
- * @param onJwtReceived - Callback when JWT is received from API
  * @returns Media service instance
  */
 export function createMediaService(
   httpClient: any,
-  config: any,
-  onJwtReceived?: JwtSaveCallback
+  config: any
 ): IMediaService {
-  return new MediaServiceImpl(httpClient, config, onJwtReceived);
+  return new MediaServiceImpl(httpClient, config);
 }

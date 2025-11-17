@@ -81,27 +81,81 @@ export class DomainVerifier {
    * @returns Extracted JWT or null
    */
   private extractJwt(response: any): string | null {
+    console.log('🔑 [DomainVerifier.extractJwt] Raw response:', response);
+    console.log('🔑 [DomainVerifier.extractJwt] Has jwtStore:', !!this.jwtStore);
+
+    // Try to find JWT at multiple levels
+    let jwt: string | null = null;
+
+    // Level 1: Direct response.jwt
     if (response?.jwt && typeof response.jwt === 'string') {
-      const jwt = response.jwt;
+      jwt = response.jwt;
+      console.log('🔑 [DomainVerifier.extractJwt] JWT found at response.jwt');
+    }
+    // Level 2: response.data.jwt (nested in data)
+    else if (response?.data?.jwt && typeof response.data.jwt === 'string') {
+      jwt = response.data.jwt;
+      console.log('🔑 [DomainVerifier.extractJwt] JWT found at response.data.jwt');
+    }
+    // Level 3: response.data.data.jwt (double nested)
+    else if (response?.data?.data?.jwt && typeof response.data.data.jwt === 'string') {
+      jwt = response.data.data.jwt;
+      console.log('🔑 [DomainVerifier.extractJwt] JWT found at response.data.data.jwt');
+    }
+
+    if (jwt) {
+      console.log('🔑 [DomainVerifier.extractJwt] JWT found:', jwt.substring(0, 30) + '...');
 
       // Save to JWT store if configured
       if (this.jwtStore) {
         this.jwtStore.save(jwt);
+        console.log('🔑 [DomainVerifier.extractJwt] JWT saved to store');
 
         if (this.verbose) {
           console.log('[DomainVerifier] JWT extracted and saved');
         }
+      } else {
+        console.warn('🔑 [DomainVerifier.extractJwt] No JWT store configured!');
       }
 
       return jwt;
     }
 
+    console.warn('🔑 [DomainVerifier.extractJwt] No JWT found in response (checked multiple levels)');
     return null;
   }
 
   /**
+   * Unwrap nested API response
+   * Handles multiple nesting levels:
+   * - { success: true, data: {...} } → data
+   * - { status: 'ok', data: {...} } → data
+   * - { data: { status: 'ok', data: {...} } } → data.data
+   *
+   * @param response - API response (may be nested)
+   * @returns Unwrapped data
+   */
+  private unwrapResponse<T>(response: any): T {
+    let data = response;
+
+    // Unwrap { success: true, data: {...} }
+    if (data && data.success && data.data) {
+      data = data.data;
+      console.log('🎁 [DomainVerifier.unwrapResponse] Unwrapped {success, data}');
+    }
+
+    // Unwrap { status: 'ok', data: {...} }
+    if (data && data.status === 'ok' && data.data) {
+      data = data.data;
+      console.log('🎁 [DomainVerifier.unwrapResponse] Unwrapped {status, data}');
+    }
+
+    return data as T;
+  }
+
+  /**
    * Clean response
-   * Removes JWT field from response
+   * Removes JWT field from response at all levels
    *
    * @param response - Raw response (may contain jwt)
    * @returns Cleaned response (without jwt)
@@ -112,10 +166,34 @@ export class DomainVerifier {
       return response as T;
     }
 
-    // Remove jwt field using destructuring
-    const { jwt, ...cleanedResponse } = response;
+    // Deep clone to avoid mutating original
+    const cleaned = { ...response };
 
-    return cleanedResponse as T;
+    // Remove JWT at top level
+    if ('jwt' in cleaned) {
+      delete cleaned.jwt;
+      console.log('🧹 [DomainVerifier.cleanResponse] Removed JWT from top level');
+    }
+
+    // Remove JWT from nested data object
+    if (cleaned.data && typeof cleaned.data === 'object') {
+      cleaned.data = { ...cleaned.data };
+      if ('jwt' in cleaned.data) {
+        delete cleaned.data.jwt;
+        console.log('🧹 [DomainVerifier.cleanResponse] Removed JWT from data level');
+      }
+
+      // Remove JWT from double-nested data.data object
+      if (cleaned.data.data && typeof cleaned.data.data === 'object') {
+        cleaned.data.data = { ...cleaned.data.data };
+        if ('jwt' in cleaned.data.data) {
+          delete cleaned.data.data.jwt;
+          console.log('🧹 [DomainVerifier.cleanResponse] Removed JWT from data.data level');
+        }
+      }
+    }
+
+    return cleaned as T;
   }
 
   /**
@@ -139,18 +217,28 @@ export class DomainVerifier {
     policyName: string,
     context?: VerificationContext
   ): Promise<VerifiedResult<TOutput>> {
+    console.log('✅ [DomainVerifier.verifyResponse] Policy:', policyName);
+    console.log('✅ [DomainVerifier.verifyResponse] Raw response:', rawResponse);
+
     try {
       // 1. Extract JWT (before cleaning!)
       this.extractJwt(rawResponse);
 
       // 2. Clean response - remove jwt field
       const cleanedResponse = this.cleanResponse<TInput>(rawResponse);
+      console.log('✅ [DomainVerifier.verifyResponse] Cleaned response:', cleanedResponse);
 
-      // 3. Get verification policy
+      // 3. Unwrap nested response BEFORE policy validation
+      // Response structure: { success: true, data: { status: 'ok', data: {...} } }
+      // We need to unwrap to get the actual data
+      const unwrappedResponse = this.unwrapResponse<any>(cleanedResponse);
+      console.log('✅ [DomainVerifier.verifyResponse] Unwrapped response:', unwrappedResponse);
+
+      // 4. Get verification policy
       const policy = this.policies[policyName];
 
       if (!policy) {
-        // No policy defined - return success with cleaned data
+        // No policy defined - return success with unwrapped data
         if (this.verbose) {
           console.warn(`[DomainVerifier] No policy found for: ${policyName}`);
         }
@@ -159,13 +247,13 @@ export class DomainVerifier {
           'success',
           'OK',
           VERIFICATION_MESSAGES.OK,
-          cleanedResponse as any,
-          cleanedResponse
+          unwrappedResponse as any,
+          unwrappedResponse
         );
       }
 
-      // 4. Execute policy verification
-      const verified = await policy(cleanedResponse, context);
+      // 5. Execute policy verification on unwrapped data
+      const verified = await policy(unwrappedResponse, context);
 
       if (this.verbose) {
         console.log(`[DomainVerifier] Verified with policy: ${policyName}`, {

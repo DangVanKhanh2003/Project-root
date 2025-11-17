@@ -67,13 +67,11 @@ class MultifileServiceImpl extends BaseService implements IMultifileService {
  *
  * @param httpClient - HTTP client instance
  * @param config - API configuration
- * @param onJwtReceived - Callback when JWT is received from API
  * @returns Multifile service instance
  */
 export function createMultifileService(
   httpClient: any,
-  config: any,
-  onJwtReceived?: JwtSaveCallback
+  config: any
 ): IMultifileService {
-  return new MultifileServiceImpl(httpClient, config, onJwtReceived);
+  return new MultifileServiceImpl(httpClient, config);
 }
