@@ -63,7 +63,7 @@ export class HttpClient implements IHttpClient {
 
   constructor(config: HttpClientConfig) {
     this.baseUrl = config.baseUrl;
-    this.defaultTimeout = config.timeout || 15000; // 15 seconds default
+    this.defaultTimeout = config.timeout || 30000; // 30 seconds default
     this.defaultHeaders = config.defaultHeaders || {};
   }
 
