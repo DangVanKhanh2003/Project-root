@@ -211,6 +211,24 @@ function handleInputClick(event: MouseEvent): void {
 }
 
 /**
+ * Handle paste event on the input field to auto-submit the form.
+ */
+function handlePasteAndSubmit(event: ClipboardEvent): void {
+  // Don't interfere if the form is already submitting
+  if (getState().isSubmitting) {
+    return;
+  }
+
+  // Use a short timeout to allow the input's value to update from the paste event
+  setTimeout(() => {
+    if (form && input && input.value.trim() !== '') {
+      console.log('📋 Paste event detected, auto-submitting form...');
+      form.requestSubmit();
+    }
+  }, 0);
+}
+
+/**
  * Initialize input form
  */
 export function initInputForm(): boolean {
@@ -230,6 +248,7 @@ export function initInputForm(): boolean {
   input.addEventListener('input', handleInput);
   input.addEventListener('keydown', handleKeyDown); // Keyboard navigation
   input.addEventListener('click', handleInputClick); // Mobile click-to-scroll
+  input.addEventListener('paste', handlePasteAndSubmit); // Auto-submit on paste
 
   // Action button handles both Paste and Clear based on data-action attribute
   if (pasteBtn) {
