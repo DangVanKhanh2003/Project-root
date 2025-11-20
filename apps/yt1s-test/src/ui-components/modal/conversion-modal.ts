@@ -31,13 +31,10 @@ export class ConversionModal {
   private boundHandleOverlayClick: ((e: MouseEvent) => void) | null = null;
 
   constructor(wrapperSelector: string) {
-    console.log('[ConversionModal] 🏗️  Constructor called with selector:', wrapperSelector);
     this.wrapperSelector = wrapperSelector;
     this.wrapper = document.querySelector(wrapperSelector);
-    console.log('[ConversionModal] 🔍 Wrapper element found?', !!this.wrapper, this.wrapper);
 
     if (!this.wrapper) {
-      console.error('[ConversionModal] ❌ Wrapper element not found!');
     }
 
     // Bind event handlers
@@ -54,10 +51,8 @@ export class ConversionModal {
   }
 
   async open(options: any = {}): Promise<void> {
-    console.log('[ConversionModal] 🚀 open() called with options:', options);
 
     if (!this.wrapper) {
-      console.error('[ConversionModal] ❌ Cannot open - wrapper element not found!');
       return;
     }
 
@@ -82,7 +77,6 @@ export class ConversionModal {
       videoUrl: options.videoUrl || null
     };
 
-    console.log('[ConversionModal] 📊 State created:', this.state);
 
     // Render modal HTML
     this.render();
@@ -102,17 +96,14 @@ export class ConversionModal {
       videoTitle: this.state.videoTitle
     });
 
-    console.log('[ConversionModal] ✅ Modal opened successfully');
   }
 
   async close(): Promise<void> {
-    console.log('[ConversionModal] 🚪 close() called');
 
     const formatId = this.state?.formatId;
 
     // Abort all API calls
     if (this.abortController) {
-      console.log('[ConversionModal] ⚠️  Aborting API calls...');
       this.abortController.abort();
       this.abortController = null;
     }
@@ -130,15 +121,12 @@ export class ConversionModal {
     // Dispatch modal closed event
     this.dispatchEvent('conversion:modal-closed', { formatId });
 
-    console.log('[ConversionModal] ✅ Modal closed');
   }
 
   transitionToSuccess(downloadUrl?: string): void {
-    console.log('[ConversionModal] ✅ transitionToSuccess called with URL:', downloadUrl);
 
     // Zombie guard
     if (!this.state) {
-      console.warn('[ConversionModal] ⚠️  Cannot transition - state is null (modal closed)');
       return;
     }
 
@@ -155,11 +143,9 @@ export class ConversionModal {
   }
 
   transitionToError(errorMessage: string): void {
-    console.log('[ConversionModal] ❌ transitionToError called with message:', errorMessage);
 
     // Zombie guard
     if (!this.state) {
-      console.warn('[ConversionModal] ⚠️  Cannot transition - state is null (modal closed)');
       return;
     }
 
@@ -175,11 +161,9 @@ export class ConversionModal {
   }
 
   transitionToExpired(videoTitle?: string): void {
-    console.log('[ConversionModal] ⏰ transitionToExpired called');
 
     // Zombie guard
     if (!this.state) {
-      console.warn('[ConversionModal] ⚠️  Cannot transition - state is null (modal closed)');
       return;
     }
 
@@ -203,11 +187,9 @@ export class ConversionModal {
   }
 
   showDownloadButton(url: string, options: any = {}): void {
-    console.log('[ConversionModal] 📥 showDownloadButton called with URL:', url);
 
     // Zombie guard
     if (!this.state) {
-      console.warn('[ConversionModal] ⚠️  Cannot show download button - state is null');
       return;
     }
 
@@ -226,11 +208,9 @@ export class ConversionModal {
 
   private render(): void {
     if (!this.state || !this.wrapper) {
-      console.error('[ConversionModal] ❌ Cannot render - state or wrapper is null');
       return;
     }
 
-    console.log('[ConversionModal] 🎨 render() - Rendering full modal');
 
     // Check if modal content already exists
     const existingContent = this.wrapper.querySelector('.conversion-modal-content');
@@ -247,7 +227,6 @@ export class ConversionModal {
   private renderFullModal(): void {
     if (!this.wrapper || !this.state) return;
 
-    console.log('[ConversionModal] 🎨 renderFullModal() - Creating full modal HTML');
 
     // Remove old event listeners before re-rendering
     this.removeEventListeners();
@@ -275,7 +254,6 @@ export class ConversionModal {
   private updateBodyContent(): void {
     if (!this.wrapper || !this.state) return;
 
-    console.log('[ConversionModal] 🔄 updateBodyContent() - Updating body to status:', this.state.status);
 
     const bodyContainer = this.wrapper.querySelector('.conversion-modal-body');
     if (bodyContainer) {
@@ -459,7 +437,6 @@ export class ConversionModal {
   private attachEventListeners(): void {
     if (!this.wrapper) return;
 
-    console.log('[ConversionModal] 🔗 Attaching event listeners');
 
     // Click delegation on wrapper content
     const content = this.wrapper.querySelector('.conversion-modal-content');
@@ -482,7 +459,6 @@ export class ConversionModal {
   private removeEventListeners(): void {
     if (!this.wrapper) return;
 
-    console.log('[ConversionModal] 🔓 Removing event listeners');
 
     const content = this.wrapper.querySelector('.conversion-modal-content');
     if (content && this.boundHandleClick) {
@@ -502,7 +478,6 @@ export class ConversionModal {
     const actionElement = (event.target as HTMLElement).closest('[data-action]');
     const action = actionElement?.getAttribute('data-action');
 
-    console.log('[ConversionModal] 🖱️  Click handler - action:', action);
 
     switch (action) {
       case 'cancel':
@@ -520,27 +495,23 @@ export class ConversionModal {
   private handleOverlayClick(event: MouseEvent): void {
     // Only handle click on wrapper itself (backdrop), not on content
     if (event.target === this.wrapper) {
-      console.log('[ConversionModal] 🖱️  Overlay clicked - triggering pulse effect');
       this.triggerPulseEffect();
     }
   }
 
   private handleEscape(event: KeyboardEvent): void {
     if (event.key === 'Escape') {
-      console.log('[ConversionModal] ⌨️  ESC key pressed - closing modal');
       this.handleCancel();
     }
   }
 
   private handleCancel(): void {
-    console.log('[ConversionModal] ❌ handleCancel - closing modal');
     this.close();
   }
 
   private handleDownload(): void {
     if (this.state?.status !== 'SUCCESS') return;
 
-    console.log('[ConversionModal] 📥 handleDownload - dispatching download event');
 
     // Dispatch event - let external handler manage download logic
     this.dispatchEvent('conversion:download', {
@@ -552,7 +523,6 @@ export class ConversionModal {
   private handleRetry(): void {
     if (!this.state) return;
 
-    console.log('[ConversionModal] 🔄 handleRetry - dispatching retry event');
 
     // Dispatch event - let external handler manage retry logic
     this.dispatchEvent('conversion:retry', {
@@ -564,7 +534,6 @@ export class ConversionModal {
   // ============= PRIVATE: LIFECYCLE =============
 
   private cleanup(): void {
-    console.log('[ConversionModal] 🧹 cleanup() - Cleaning up resources');
 
     // Clear all timers
     this.timers.forEach(timer => clearTimeout(timer));
@@ -578,7 +547,6 @@ export class ConversionModal {
   }
 
   private startProgress(): void {
-    console.log('[ConversionModal] 📊 startProgress() - Initializing progress bar');
 
     // Create progress bar manager
     const progressSelector = `${this.wrapperSelector} .conversion-progress`;
@@ -596,7 +564,6 @@ export class ConversionModal {
 
   private cleanupProgress(): void {
     if (this.progressBarManager) {
-      console.log('[ConversionModal] 🧹 cleanupProgress() - Stopping and resetting progress bar');
       this.progressBarManager.stop();
       this.progressBarManager.reset();
       this.progressBarManager = null;
@@ -606,7 +573,6 @@ export class ConversionModal {
   private show(): void {
     if (!this.wrapper) return;
 
-    console.log('[ConversionModal] 👁️  show() - Making modal visible');
 
     this.wrapper.style.visibility = 'visible';
     this.wrapper.style.opacity = '1';
@@ -618,7 +584,6 @@ export class ConversionModal {
   private hide(): void {
     if (!this.wrapper) return;
 
-    console.log('[ConversionModal] 🙈 hide() - Hiding modal');
 
     this.wrapper.style.visibility = 'hidden';
     this.wrapper.style.opacity = '0';
@@ -647,7 +612,6 @@ export class ConversionModal {
     // If the animation is already running, don't do anything
     if (content.classList.contains('pulse')) return;
 
-    console.log('[ConversionModal] 💓 Triggering pulse effect');
 
     // Add pulse class to trigger animation
     content.classList.add('pulse');
@@ -681,19 +645,14 @@ export class ConversionModal {
     // Also dispatch globally for easy listening
     window.dispatchEvent(event);
 
-    console.log('[ConversionModal] 📡 Event dispatched:', eventName, detail);
   }
 }
 
 let modalInstance: ConversionModal | null = null;
 
 export function getConversionModal(): ConversionModal {
-  console.log('[getConversionModal] 📞 Called, modalInstance exists?', !!modalInstance);
   if (!modalInstance) {
-    console.log('[getConversionModal] 🏗️  Creating new ConversionModal instance...');
     modalInstance = new ConversionModal('#progressBarWrapper');
-    console.log('[getConversionModal] ✅ Instance created:', modalInstance);
   }
-  console.log('[getConversionModal] 📤 Returning instance');
   return modalInstance;
 }

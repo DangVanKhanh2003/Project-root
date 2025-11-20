@@ -119,12 +119,10 @@ export function renderDownloadOptions(state: AppState): string {
     try {
         // Enhanced validation
         if (!state || typeof state !== 'object') {
-            console.error('[renderDownloadOptions] Invalid state:', state);
             return '';
         }
 
         if (!state.videoDetail || typeof state.videoDetail !== 'object') {
-            console.error('[renderDownloadOptions] Invalid videoDetail:', state.videoDetail);
             return '';
         }
 
@@ -133,27 +131,14 @@ export function renderDownloadOptions(state: AppState): string {
 
     // Validate formats
     if (!formats || (!formats.video && !formats.audio)) {
-        console.error('[renderDownloadOptions] No formats available:', formats);
         return renderErrorMessage('Không có tùy chọn tải xuống nào khả dụng.');
     }
 
-    console.log('[renderDownloadOptions] Processing formats:', {
-        videoCount: formats.video?.length || 0,
-        audioCount: formats.audio?.length || 0,
-        videoSample: formats.video?.[0],
-        audioSample: formats.audio?.[0]
-    });
 
     // Process formats với format-processor functions
     const videoFormats = processFormatArray(formats.video || [], 'video');
     const audioFormats = processFormatArray(formats.audio || [], 'audio');
 
-    console.log('[renderDownloadOptions] Processed formats:', {
-        videoProcessed: videoFormats.length,
-        audioProcessed: audioFormats.length,
-        videoFormatSample: videoFormats[0],
-        audioFormatSample: audioFormats[0]
-    });
 
 
     const hasVideo = videoFormats.length > 0;
@@ -205,21 +190,13 @@ function renderVideoInfoSmart(meta: VideoMeta): string {
     const existingThumbnail = document.querySelector('#videoThumbnail') as HTMLImageElement | null;
     const existingTitle = document.querySelector('#videoTitle') as HTMLElement | null;
 
-    console.log('[renderVideoInfoSmart]', {
-        hasExistingThumbnail: !!existingThumbnail,
-        hasExistingTitle: !!existingTitle,
-        hasMeta: !!meta,
-        metaThumbnail: meta?.thumbnail
-    });
 
     if (existingThumbnail && existingTitle && meta && meta.thumbnail) {
         const currentSrc = existingThumbnail.src;
         const newSrc = meta.thumbnail;
 
-        console.log('[renderVideoInfoSmart] Comparing thumbnails:', { currentSrc, newSrc });
 
         if (currentSrc === newSrc) {
-            console.log('[renderVideoInfoSmart] Same thumbnail - updating title only');
             // Same thumbnail - update title directly without re-rendering
 
             // Update title immediately (synchronous)
@@ -232,13 +209,11 @@ function renderVideoInfoSmart(meta: VideoMeta): string {
             // IMPORTANT: Return FULL video info HTML to prevent left column from being empty
             // Even though thumbnail is same, we need to maintain the HTML structure
             // The browser will reuse existing elements efficiently
-            console.log('[renderVideoInfoSmart] Returning full HTML to maintain structure');
             return renderVideoInfo(meta);
         }
     }
 
     // Full render for new content or different thumbnails
-    console.log('[renderVideoInfoSmart] Rendering full video info');
     return renderVideoInfo(meta);
 }
 
@@ -768,25 +743,20 @@ function handleTabClick(tabElement: HTMLElement): void {
  */
 
 async function handleDownloadClick(event: MouseEvent): Promise<void> {
-    console.log('[handleDownloadClick] 🎬 Button clicked', { event });
 
     const button = (event.target as HTMLElement).closest('.btn-convert') as HTMLButtonElement | null;
     if (!button) {
-        console.log('[handleDownloadClick] ❌ No button found');
         return;
     }
 
     event.preventDefault();
     if (button.disabled) {
-        console.log('[handleDownloadClick] ❌ Button disabled');
         return;
     }
 
     const formatId = button.dataset.formatId;
-    console.log('[handleDownloadClick] 📋 Format ID:', formatId);
 
     if (!formatId) {
-        console.log('[handleDownloadClick] ❌ No formatId in button dataset');
         return;
     }
 
@@ -795,40 +765,24 @@ async function handleDownloadClick(event: MouseEvent): Promise<void> {
     const url = state.videoDetail?.meta?.originalUrl || '';
     const isYouTube = isYouTubeUrl(url);
 
-    console.log('[handleDownloadClick] 🔍 Platform check:', {
-        url,
-        isYouTube,
-        hasVideoDetail: !!state.videoDetail,
-        meta: state.videoDetail?.meta
-    });
 
     try {
         // Use the more direct !isYouTube check
         if (!isYouTube) {
-            console.log('[handleDownloadClick] 📱 Social media - direct download path');
             const formatData = extractFormatDataFromState(formatId);
-            console.log('[handleDownloadClick] 📦 Format data:', formatData);
 
             if (!formatData || !formatData.url) {
-                console.error('[handleDownloadClick] ❌ No format data or URL');
                 return;
             }
             const filename = formatData.filename || `download.${formatData.type || 'mp4'}`;
-            console.log('[handleDownloadClick] ⬇️ Triggering download:', { filename, url: formatData.url });
             triggerDownload(formatData.url, filename, true);
             return;
         }
 
-        console.log('[handleDownloadClick] 🎥 YouTube - conversion path');
-        console.log('[handleDownloadClick] 📥 Importing smartConvert...');
         const { smartConvert } = await import('../logic/conversion/convert-logic.js');
-        console.log('[handleDownloadClick] ✅ smartConvert imported, calling with formatId:', formatId);
         await smartConvert(formatId);
-        console.log('[handleDownloadClick] ✅ smartConvert completed');
 
     } catch (error) {
-        console.error('[handleDownloadClick] ❌ Error:', error);
-        console.error('[handleDownloadClick] Error stack:', (error as Error).stack);
     }
 }
 

@@ -48,6 +48,7 @@ export {
   createQueueService,
   createSearchV2Service,
   createYouTubeDownloadService,
+  extractCacheId,
   type IQueueService,
   type ISearchV2Service,
   type IYouTubeDownloadService,

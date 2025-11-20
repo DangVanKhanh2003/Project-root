@@ -52,14 +52,12 @@ export class ProgressBarManager {
   private queryElements(): boolean {
     this.elements.wrapper = document.querySelector(this.wrapperSelector);
     if (!this.elements.wrapper) {
-      console.error('[ProgressBarManager] Wrapper element not found:', this.wrapperSelector);
       return false;
     }
 
     // Query elements within the content box
     const contentBox = this.elements.wrapper.querySelector('.progress-bar-content');
     if (!contentBox) {
-      console.warn('[ProgressBarManager] .progress-bar-content not found');
       return false;
     }
 
@@ -76,7 +74,6 @@ export class ProgressBarManager {
     // Find .progress-bar-content container (modal provides this)
     const contentBox = this.elements.wrapper.querySelector('.progress-bar-content');
     if (!contentBox) {
-      console.error('[ProgressBarManager] .progress-bar-content container not found - modal template missing it');
       return;
     }
 
@@ -186,7 +183,6 @@ export class ProgressBarManager {
 
   show(): void {
     if (!this.queryElements()) {
-      console.error('[ProgressBarManager] Failed to query elements');
       return;
     }
 
@@ -221,7 +217,6 @@ export class ProgressBarManager {
   }
 
   startExtractPhase(targetPercent: number = DEFAULTS.EXTRACT_TARGET_YOUTUBE, onComplete?: () => void): void {
-    console.log('[ProgressBarManager] startExtractPhase - target:', targetPercent);
 
     this.targetPercent = targetPercent;
     this.estimatedDuration = DEFAULTS.EXTRACT_DURATION / 1000; // Convert to seconds
@@ -231,7 +226,6 @@ export class ProgressBarManager {
   }
 
   completeExtractToFull(onCompleteCallback?: () => void): void {
-    console.log('[ProgressBarManager] completeExtractToFull - from', this.currentProgress, 'to 100');
 
     this.stopProgressAnimation();
 
@@ -241,7 +235,6 @@ export class ProgressBarManager {
   }
 
   resumeToDownloadPhase(type: string, options: any = {}): void {
-    console.log('[ProgressBarManager] resumeToDownloadPhase - type:', type, 'options:', options);
 
     this.stopProgressAnimation();
 
@@ -274,16 +267,17 @@ export class ProgressBarManager {
   }
 
   setPollingProgress(progress: number, statusText?: string): void {
-    console.log('[ProgressBarManager] setPollingProgress:', progress, statusText);
+
     this.updateVisualProgress(progress);
 
     if (statusText && this.elements.mainStatusText) {
-      this.elements.mainStatusText.textContent = `${statusText} ${Math.floor(progress)}%`;
+      const fullText = `${statusText} ${Math.floor(progress)}%`;
+      this.elements.mainStatusText.textContent = fullText;
+    } else {
     }
   }
 
   updatePollingProgress(apiData: any, phase: string): void {
-    console.log('[ProgressBarManager] updatePollingProgress - phase:', phase, 'apiData:', apiData);
 
     const { videoProgress, audioProgress, status } = apiData;
 
@@ -307,7 +301,6 @@ export class ProgressBarManager {
   }
 
   completePollingProgress(): void {
-    console.log('[ProgressBarManager] completePollingProgress');
     this.tweenToProgress(100, DEFAULTS.COMPLETE_DURATION, () => {
       this.onCompleteCallback?.();
     });

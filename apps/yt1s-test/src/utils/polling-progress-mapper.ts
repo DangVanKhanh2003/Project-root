@@ -18,23 +18,30 @@ export class PollingProgressMapper {
     videoProgress: number = 0,
     audioProgress: number = 0
   ): number {
+
     // Simple weighted calculation
     // Video: 0-50%, Audio: 50-75%, Merge: 75-100%
     switch (phase?.toLowerCase()) {
       case 'video':
       case 'downloading_video':
-        return Math.min(50, videoProgress * 0.5);
+        const result1 = Math.min(50, videoProgress * 0.5);
+        return result1;
 
       case 'audio':
       case 'downloading_audio':
-        return 50 + Math.min(25, audioProgress * 0.25);
+        const result2 = 50 + Math.min(25, audioProgress * 0.25);
+        return result2;
 
       case 'merge':
       case 'merging':
-        return 75 + Math.min(25, (videoProgress + audioProgress) * 0.125);
+        const avgProgress = (videoProgress + audioProgress) / 2;
+        const result3 = 75 + Math.min(25, avgProgress * 0.125);
+        return result3;
 
       default:
-        return Math.min(100, (videoProgress + audioProgress) / 2);
+        const avg = (videoProgress + audioProgress) / 2;
+        const result4 = Math.min(100, avg);
+        return result4;
     }
   }
 
@@ -44,8 +51,26 @@ export class PollingProgressMapper {
    * @returns Progress percentage
    */
   static mapProgress(pollingData: any): number {
-    const { phase = '', video_progress = 0, audio_progress = 0 } = pollingData || {};
-    const progress = this.calculateProgress(phase, video_progress, audio_progress);
+    const {
+      phase = '',
+      video_progress = 0,   // từ API cũ
+      audio_progress = 0,
+      videoProgress = 0,    // từ API mới
+      audioProgress = 0,
+      video_progress_percent = 0,  // thêm các trường có thể tồn tại
+      audio_progress_percent = 0
+    } = pollingData || {};
+
+    // Ưu tiên các trường mới nếu có, nếu không thì dùng các trường cũ
+    const videoProg = videoProgress !== undefined ? videoProgress :
+                     video_progress !== undefined ? video_progress :
+                     video_progress_percent;
+    const audioProg = audioProgress !== undefined ? audioProgress :
+                     audio_progress !== undefined ? audio_progress :
+                     audio_progress_percent;
+
+
+    const progress = this.calculateProgress(phase, videoProg, audioProg);
     this.lastProgressValue = progress;
     return progress;
   }
@@ -94,14 +119,48 @@ export class PollingProgressMapper {
    * @returns Status text
    */
   static getStatusText(pollingData: any, progress?: number): string {
-    const { phase = '', status = '' } = pollingData || {};
-    const progressText = progress !== undefined ? ` ${progress}%` : '';
 
-    if (status) {
-      return status + progressText;
+    const { phase = '', status = '', videoProgress, audioProgress, mergedUrl } = pollingData || {};
+
+
+    // Nếu có mergedUrl, có nghĩa là hoàn tất chuyển đổi
+    if (mergedUrl) {
+      return 'Ready'; // Không thêm phần trăm ở đây vì UI sẽ thêm
     }
 
-    return this.getPhaseMessage(phase) + progressText;
+    // Nếu có status cụ thể từ API và không có video/audio progress, sử dụng status
+    if (status && status !== 'downloading' && status !== 'processing') {
+      return status; // Không thêm phần trăm ở đây vì UI sẽ thêm
+    }
+
+    // Nếu có progress thực tế (video/audio), ưu tiên hiển thị trạng thái dựa trên tiến độ
+    if ((videoProgress !== undefined && videoProgress < 100) ||
+        (audioProgress !== undefined && audioProgress < 100)) {
+      const isAudioOnly = videoProgress === 0; // Nếu không có video progress
+      if (isAudioOnly) {
+        if (audioProgress >= 100) {
+          return 'Audio download complete';
+        } else {
+          return 'Downloading audio...';
+        }
+      } else {
+        if (videoProgress >= 100 && audioProgress < 100) {
+          return 'Processing audio...';
+        } else if (videoProgress < 100 && audioProgress < 100) {
+          return 'Downloading video...';
+        } else {
+          return 'Processing...';
+        }
+      }
+    }
+
+    // Nếu không có tiến độ cụ thể, sử dụng phase message
+    const phaseMessage = this.getPhaseMessage(phase);
+
+    // Không thêm phần trăm ở đây vì UI sẽ thêm
+    const result = phaseMessage;
+
+    return result;
   }
 
   /**

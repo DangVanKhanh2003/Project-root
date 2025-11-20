@@ -281,16 +281,12 @@ function detectPlatformRouting(extractResponse: ExtractResponse, formatData: For
  * @returns Progress bar manager instance
  */
 async function setupExtractPhase({ formatId, formatData, videoTitle, videoUrl }: SetupExtractPhaseParams): Promise<ProgressBarManager> {
-    console.log('[setupExtractPhase] 🚀 START', { formatId, videoTitle });
     const conversionModal = getConversionModal();
-    console.log('[setupExtractPhase] 📦 Got conversion modal:', conversionModal);
 
     // Open modal if not already open
     const isModalOpen = conversionModal.isOpen;  // ✅ FIX: Access property (getter), not function
-    console.log('[setupExtractPhase] 🔍 Modal open status:', isModalOpen);
 
     if (!isModalOpen) {
-        console.log('[setupExtractPhase] 🎬 Opening modal...');
         conversionModal.open({
             provider: 'youtube',
             formatId: formatId,
@@ -298,13 +294,10 @@ async function setupExtractPhase({ formatId, formatData, videoTitle, videoUrl }:
             videoTitle: videoTitle,
             videoUrl: videoUrl
         });
-        console.log('[setupExtractPhase] ✅ Modal opened');
     } else {
-        console.log('[setupExtractPhase] ℹ️ Modal already open, skipping');
     }
 
     // Create conversion task
-    console.log('[setupExtractPhase] 📝 Creating conversion task...');
     setConversionTask(formatId, {
         sourceId: formatData.vid || '',
         quality: formatData.quality || 'Unknown',
@@ -316,7 +309,6 @@ async function setupExtractPhase({ formatId, formatData, videoTitle, videoUrl }:
         formatData: formatData,
         autoDownloadOnComplete: false
     });
-    console.log('[setupExtractPhase] ✅ Conversion task created');
 
     // Determine extract target based platform/format
     let extractTarget: number;
@@ -326,7 +318,6 @@ async function setupExtractPhase({ formatId, formatData, videoTitle, videoUrl }:
     const isWindowsDevice = isWindows();
     const formatType = formatData.type;
 
-    console.log('[setupExtractPhase] 🖥️ Platform detection:', { isIOSDevice, isWindowsDevice, formatType });
 
     if (isIOSDevice) {
         extractTarget = 28; // iOS: 0% → 28% (gap before download phase at 30%)
@@ -336,10 +327,8 @@ async function setupExtractPhase({ formatId, formatData, videoTitle, videoUrl }:
         extractTarget = 95; // Others: 0% → 95%
     }
 
-    console.log('[setupExtractPhase] 🎯 Extract target:', extractTarget);
 
     // Wait for progress bar to be initialized (up to 1 second)
-    console.log('[setupExtractPhase] ⏳ Waiting for progress bar...');
     let progressBar: ProgressBarManager | null = null;
     let attempts = 0;
     const maxAttempts = 20; // 20 attempts * 50ms = 1 second max wait
@@ -349,21 +338,16 @@ async function setupExtractPhase({ formatId, formatData, videoTitle, videoUrl }:
         if (!progressBar) {
             await new Promise(resolve => setTimeout(resolve, 50)); // Wait 50ms
             attempts++;
-            console.log(`[setupExtractPhase] ⏳ Attempt ${attempts}/${maxAttempts}...`);
         }
     }
 
     if (!progressBar) {
-        console.error('[setupExtractPhase] ❌ Progress bar not initialized after 1 second');
         throw new Error('Progress bar not initialized after modal open');
     }
 
-    console.log('[setupExtractPhase] ✅ Progress bar obtained after', attempts, 'attempts');
 
     // Start extract phase with dynamic target
-    console.log('[setupExtractPhase] 🎬 Starting extract phase with target:', extractTarget);
     progressBar.startExtractPhase(extractTarget);
-    console.log('[setupExtractPhase] ✅ COMPLETE - returning progress bar');
     return progressBar;
 }
 
@@ -719,41 +703,52 @@ async function handleProgressUpdate(formatId: string, apiData: PollingData): Pro
     if (isProcessingComplete && currentPhase === 'processing') {
         // Transition: Processing → Merging
 
+        // Log raw API data being passed to the mapper
+
         PollingProgressMapper.startMergingPhase();
+
+        const statusTextForMerging = PollingProgressMapper.getStatusText({ phase: 'merging', status }, PollingProgressMapper.lastProgress);
 
         updateConversionTask(formatId, {
             pollingPhase: 'merging',
-            statusText: PollingProgressMapper.getStatusText({ phase: 'merging', status }, PollingProgressMapper.lastProgress),
+            statusText: statusTextForMerging,
             pollingData: { videoProgress, audioProgress, status, mergedUrl, filename }
         });
 
         // Update progress bar for merging phase
         const conversionModal = getConversionModal();
         const progressBarManager = conversionModal.getProgressBarManager();
+
         if (progressBarManager) {
             const displayProgress = PollingProgressMapper.mapProgress({ phase: 'merging', ...apiData });
             const statusText = PollingProgressMapper.getStatusText({ phase: 'merging', ...apiData }, displayProgress);
             progressBarManager.setPollingProgress(displayProgress, statusText);
+        } else {
         }
 
     } else {
         // Continue current phase (either still processing or merging in progress)
+
+        // Log raw API data being passed to the mapper
+
         const displayProgress = PollingProgressMapper.mapProgress({ phase: currentPhase, ...apiData });
+        const statusText = PollingProgressMapper.getStatusText({ phase: currentPhase, ...apiData }, displayProgress);
+
 
         updateConversionTask(formatId, {
-            statusText: PollingProgressMapper.getStatusText({ phase: currentPhase, ...apiData }, displayProgress),
+            statusText: statusText,
             pollingData: { videoProgress, audioProgress, status, mergedUrl, filename }
         });
 
         // Update progress bar with mapped progress
         const conversionModal = getConversionModal();
         const progressBarManager = conversionModal.getProgressBarManager();
+
         if (progressBarManager) {
             // Update visual progress with mapped percentage
-            const statusText = PollingProgressMapper.getStatusText({ phase: currentPhase, ...apiData }, displayProgress);
-
             // Use setPollingProgress for polling updates
             progressBarManager.setPollingProgress(displayProgress, statusText);
+        } else {
         }
     }
 }
@@ -854,32 +849,22 @@ function routeDownloadPhase({ routing, progressBar, formatId, extractResponse, f
  * USAGE: await smartConvert('video|720p|mp4');
  */
 export async function smartConvert(formatId: string): Promise<void> {
-    console.log('[smartConvert] 🚀 START - formatId:', formatId);
 
     try {
         // Get current state
         const state = getState() as AppState;
         const videoDetail = state.videoDetail;
 
-        console.log('[smartConvert] 📊 State check:', {
-            hasVideoDetail: !!videoDetail,
-            hasMeta: !!videoDetail?.meta,
-            videoDetail: videoDetail
-        });
 
         if (!videoDetail || !videoDetail.meta) {
-            console.error('[smartConvert] ❌ No video detail or meta');
             throw new Error('Video information not available. Please try searching again.');
         }
 
         // Get format data from state
-        console.log('[smartConvert] 📥 Getting format data from state...');
         const formatData = await getFormatDataFromState(formatId);
 
-        console.log('[smartConvert] 📦 Format data:', formatData);
 
         if (!formatData) {
-            console.error('[smartConvert] ❌ No format data found');
             throw new Error('Format data not found. Please try again.');
         }
 
@@ -910,18 +895,11 @@ export async function smartConvert(formatId: string): Promise<void> {
         const hasExistingUrl = hasTaskUrl || hasFormatUrl;
 
         if (hasExistingUrl && isDataValid) {
-            console.log('[smartConvert] ✅ CASE 1: Using existing URL (no API call needed)');
             const remainingMinutes = Math.round((staticExpireTime - (Date.now() - completedAt)) / 1000 / 60);
 
             // Priority: Task URL > Format URL (task URL is fresher)
             const downloadUrl = existingTask?.downloadUrl || formatData.url || formatData.encryptedUrl || '';
 
-            console.log('[smartConvert] 📋 URL info:', {
-                hasTaskUrl,
-                hasFormatUrl,
-                downloadUrl,
-                remainingMinutes
-            });
 
             // Create/update conversion task with existing URL
             setConversionTask(formatId, {
@@ -937,7 +915,6 @@ export async function smartConvert(formatId: string): Promise<void> {
                 formatData: formatData
             });
 
-            console.log('[smartConvert] 🎭 Opening modal in SUCCESS state...');
             // ✅ Open modal DIRECTLY in SUCCESS state
             // No progress bar, no conversion animation
             // Just show "Ready to Download" immediately
@@ -951,27 +928,17 @@ export async function smartConvert(formatId: string): Promise<void> {
                 downloadUrl: downloadUrl    // ← URL ready for download
             });
 
-            console.log('[smartConvert] ✅ Modal opened');
             return;
         }
 
         // CASE 2: Stream status OR No existing URL OR Data expired → Extract fresh
         if (status === 'stream' || !hasExistingUrl || !isDataValid) {
-            console.log('[smartConvert] 🔄 CASE 2: Need to extract/convert', {
-                status,
-                hasExistingUrl,
-                isDataValid,
-                reason: status === 'stream' ? 'stream status' : !hasExistingUrl ? 'no existing URL' : 'data expired'
-            });
 
-            console.log('[smartConvert] 📞 Calling handleYouTubeDownload...');
             await handleYouTubeDownload(formatData, false);
-            console.log('[smartConvert] ✅ handleYouTubeDownload completed');
             return;
         }
 
         // CASE 3: Fallback (shouldn't reach here)
-        console.log('[smartConvert] ⚠️ CASE 3: Fallback path');
         await handleYouTubeDownload(formatData, false);
 
     } catch (error: any) {
@@ -1069,7 +1036,6 @@ interface ApiResult {
  */
 export async function handleYouTubeDownload(formatData: FormatData, autoDownload: boolean = false): Promise<ApiResult> {
     const formatId = formatData.id;
-    console.log('[handleYouTubeDownload] 🚀 START', { formatId, formatData, autoDownload });
 
     try {
         // Get video info from state
@@ -1078,44 +1044,32 @@ export async function handleYouTubeDownload(formatData: FormatData, autoDownload
         const videoTitle = videoDetail?.meta?.title || 'Video';
         const videoUrl = videoDetail?.meta?.originalUrl || `https://www.youtube.com/watch?v=${formatData.vid}`;
 
-        console.log('[handleYouTubeDownload] 📊 State info:', {
-            hasVideoDetail: !!videoDetail,
-            videoTitle,
-            videoUrl,
-            metaStatus: videoDetail?.meta?.status
-        });
 
         // ========================================
         // STEP 1: SETUP EXTRACT PHASE
         // ========================================
 
-        console.log('[handleYouTubeDownload] 🔧 STEP 1: Setting up extract phase...');
         const progressBar = await setupExtractPhase({
             formatId,
             formatData,
             videoTitle,
             videoUrl
         });
-        console.log('[handleYouTubeDownload] ✅ STEP 1 COMPLETE: Extract phase setup done', { progressBar });
 
         // ========================================
         // STEP 2: CALL EXTRACT V2 API
         // ========================================
 
-        console.log('[handleYouTubeDownload] 🔧 STEP 2: Preparing extract options...');
         let extractOptions = formatData.extractV2Options;
-        console.log('[handleYouTubeDownload] 📦 Extract options from formatData:', extractOptions);
 
         // Handle format ID mismatch between constants and processed formats
         if (!extractOptions) {
-            console.log('[handleYouTubeDownload] ⚠️ No extractV2Options, trying fallback...');
 
             // Try to find matching format from constants by cleaning the ID
             const cleanId = formatData.id
                 .replace('|direct', '')     // Remove "|direct" suffix
                 .toLowerCase();             // Convert to lowercase to match constants
 
-            console.log('[handleYouTubeDownload] 🔍 Clean ID for lookup:', cleanId);
 
             // Look up in constants using cleaned ID
             try {
@@ -1124,25 +1078,19 @@ export async function handleYouTubeDownload(formatData: FormatData, autoDownload
                 const fallbackFormat = null; // findFormatById(cleanId, formatData.vid || '');
                 if (fallbackFormat?.extractV2Options) {
                     extractOptions = fallbackFormat.extractV2Options;
-                    console.log('[handleYouTubeDownload] ✅ Found fallback extract options');
                 } else {
-                    console.log('[handleYouTubeDownload] ❌ No fallback format found');
                 }
             } catch (error) {
-                console.log('[handleYouTubeDownload] ❌ Fallback lookup error:', error);
             }
         }
 
         if (!extractOptions) {
-            console.log('[handleYouTubeDownload] 🚫 NO EXTRACT OPTIONS - throwing error');
             throw new Error(`No extractV2Options found for format: ${formatData.id} (also tried fallback lookup)`);
         }
 
-        console.log('[handleYouTubeDownload] ✅ Extract options ready:', extractOptions);
 
         // ✅ PHASE 2: Get AbortSignal from modal
         const abortSignal = conversionModal.getAbortSignal();
-        console.log('[handleYouTubeDownload] 📡 AbortSignal:', abortSignal ? 'present' : 'null');
 
         // Prepare request body for YouTube Download API (V2)
         const downloadRequest = {
@@ -1155,44 +1103,28 @@ export async function handleYouTubeDownload(formatData: FormatData, autoDownload
             youtubeAudioContainer: extractOptions.youtubeAudioContainer,
         };
 
-        console.log('[handleYouTubeDownload] 📤 API Request:', downloadRequest);
-        console.log('[handleYouTubeDownload] 🌐 Calling api.youtubeDownload.downloadYouTube()...');
 
         // Call YouTube Download API V2 (sv-190.y2mp3.co)
         const result = await api.downloadYouTube(downloadRequest, abortSignal || undefined);
 
-        console.log('[handleYouTubeDownload] 📥 API Response:', result);
 
 
         // ========================================
         // STEP 3: PROCESS EXTRACT RESPONSE & START DOWNLOAD PHASE
         // ========================================
 
-        console.log('[handleYouTubeDownload] 🔍 Checking response validity...');
-        console.log('[handleYouTubeDownload] Response structure:', {
-            hasResult: !!result,
-            resultKeys: result ? Object.keys(result) : [],
-            result
-        });
 
         // YouTube Download API V2 returns wrapped response: {ok, status, data: {status, url, filename}}
         // Extract the actual data from the wrapper
         const extractData = (result as any)?.data || result as any;
 
-        console.log('[handleYouTubeDownload] 📦 Extract data:', {
-            hasExtractData: !!extractData,
-            hasUrl: !!extractData?.url,
-            extractData
-        });
 
         if (extractData && extractData.url) {
             // ========================================
             // STEP 3: ROUTE DOWNLOAD PHASE
             // ========================================
 
-            console.log('[handleYouTubeDownload] ✅ Valid response, routing download phase...');
             const routing = detectPlatformRouting(extractData as ExtractResponse, formatData);
-            console.log('[handleYouTubeDownload] 🎯 Routing decision:', routing);
 
             routeDownloadPhase({
                 routing,
@@ -1202,12 +1134,10 @@ export async function handleYouTubeDownload(formatData: FormatData, autoDownload
                 formatData
             });
 
-            console.log('[handleYouTubeDownload] ✅ COMPLETE - Success');
             return { ok: true, data: extractData as ExtractResponse };
 
         } else {
             // Extract failed
-            console.error('[handleYouTubeDownload] ❌ Invalid response - no URL');
             progressBar.stop();
 
             const errorMessage = 'Failed to extract download URL';

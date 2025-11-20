@@ -8,6 +8,7 @@
 import { updateConversionTask, getConversionTask } from '../state';
 import { api } from '../../../api';
 import { getConversionModal } from '../../../ui-components/modal/conversion-modal.js';
+import { extractCacheId, type ProgressResponse } from '@downloader/core';
 
 // Type definitions
 interface PollingConfig {
@@ -169,21 +170,27 @@ class ConcurrentPollingManager {
 
     /**
      * Handle rich progress polling with progressUrl
+     * Uses service layer instead of direct fetch for proper architecture
      * @private
      */
     private async _handleProgressPolling(formatId: string, taskData: TaskData): Promise<void> {
         try {
-            // Direct HTTP GET to progressUrl
-            const response = await fetch(taskData.progressUrl!);
+            // Extract cache ID from progressUrl using helper
+            const cacheId = extractCacheId(taskData.progressUrl!);
 
-            if (!response.ok) {
-                throw new Error(`Progress API error: ${response.status} ${response.statusText}`);
+            // Use service layer for progress polling (proper architecture)
+            const result = await api.getDownloadProgress({ cacheId });
+
+            // Check if request succeeded (VerifiedResult uses 'ok' instead of 'success')
+            if (!result.ok || !result.data) {
+                throw new Error(`Progress API error: ${result.message}`);
             }
 
-            const progressData = await response.json();
+            // Type assertion for ProgressResponse
+            const progressData = result.data as ProgressResponse;
 
-            // Expected format: { cacheId, videoProgress, audioProgress, status, mergedUrl, filename }
-            const { videoProgress, audioProgress, status, mergedUrl, filename } = progressData;
+            // Expected format: { cacheId, videoProgress, audioProgress, status, mergedUrl, error }
+            const { videoProgress, audioProgress, status, mergedUrl } = progressData;
 
             // Call progress update callback from convert logic
             if (taskData.onProgressUpdate) {
@@ -192,7 +199,7 @@ class ConcurrentPollingManager {
                     audioProgress: audioProgress || 0,
                     status: status,
                     mergedUrl: mergedUrl,
-                    filename: filename
+                    filename: undefined // filename not available in ProgressResponse
                 });
             }
 

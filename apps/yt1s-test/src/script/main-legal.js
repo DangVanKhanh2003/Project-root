@@ -1,6 +1,5 @@
 // Entry point for legal pages (404, privacy, terms)
 // Minimal functionality for static/legal pages
-console.log('Legal page loaded');
 
 // Initialize navbar toggler if present
 document.addEventListener('DOMContentLoaded', () => {
