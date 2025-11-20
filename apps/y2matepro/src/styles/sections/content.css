@@ -1,0 +1,66 @@
+/* =========================================================
+   Content Section - About
+   ---------------------------------------------------------
+   Main about/description section with text content
+   Mobile-first responsive design
+   ========================================================= */
+
+/* ===== CONTENT SECTION ===== */
+.y2mate-content-pro {
+    padding: 30px 0;
+    text-align: center;
+    position: relative;
+    display: flex;
+}
+
+.y2mate-content-pro::before {
+    background: rgba(0, 0, 0, 0) radial-gradient(ellipse at center center, rgba(0, 0, 0, 0.2) 0px, rgba(255, 255, 255, 0) 75%) repeat scroll 0 0;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 1px;
+    left: 50%;
+    margin-left: -40%;
+    position: absolute;
+    width: 80%;
+}
+
+.y2mate-content-pro h2 {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin: var(--space-md) 0;
+    line-height: var(--line-height-tight);
+}
+
+.y2mate-content-pro p {
+    font-size: var(--font-size-base);
+    color: var(--color-text-light);
+    line-height: var(--line-height-base);
+    margin: 0 0 var(--space-lg);
+    text-align: justify;
+}
+
+.y2mate-content-pro a {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+.y2mate-content-pro a:hover {
+    text-decoration: underline;
+}
+
+/* ===== MOBILE (max-width: 767px) ===== */
+@media (max-width: 767px) {
+    .y2mate-content-pro {
+        padding: 25px 0;
+    }
+}
+
+/* ===== SMALL MOBILE (max-width: 575px) ===== */
+@media (max-width: 575px) {
+    .y2mate-content-pro h2 {
+        font-size: var(--font-size-2xl);
+        margin: 0;
+    }
+}

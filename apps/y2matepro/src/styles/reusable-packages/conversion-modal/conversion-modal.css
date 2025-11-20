@@ -1,0 +1,786 @@
+/* =========================================================
+   REUSABLE PACKAGE: Conversion Modal
+   ---------------------------------------------------------
+   Version: 1.0.0
+
+   Dependencies:
+   - package-root.css (MUST be loaded first for token definitions)
+
+   Features:
+   - Full-screen modal overlay with backdrop
+   - Video title header with close button
+   - Multi-state content area (loading, success, error, expired)
+   - Spinning circle loader with reduced motion support
+   - Action buttons (download, retry, cancel)
+   - Social sharing footer
+   - Pulse animation for overlay click feedback
+   - Mobile-first responsive design (350px to 4K+)
+   - Zero layout shift architecture
+
+   Breakpoints:
+   • Extra Small Mobile (0–350px)
+   • Small Mobile (351–599px)
+   • Medium (Tablet) – 600–839px
+   • Expanded (Desktop) – 840–1239px
+   • Large (Wide Desktop) – 1240–1919px
+   • Extra Large (2K) – 1920–2559px
+   • Ultra Large (4K) – 2560px+
+   ========================================================= */
+
+/* ======= Base Styles (0-350px) - Extra Small Mobile ======= */
+
+/* Modal Wrapper - Full-screen backdrop */
+#progressBarWrapper {
+    position: fixed;
+    inset: 0;
+    z-index: var(--pkg-conversion-modal-z-index);
+    background: var(--pkg-conversion-modal-overlay-bg);
+
+    /* Center the modal content */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--pkg-space-4);
+
+    /* Hidden by default - NO transition for instant hide */
+    visibility: hidden;
+    opacity: 0;
+}
+
+#progressBarWrapper[style*="visible"] {
+    visibility: visible;
+    opacity: 1;
+    /* Only animate on show */
+    transition: opacity 0.2s ease-out;
+}
+
+/* Modal Content Box */
+.conversion-modal-content {
+    background: var(--pkg-conversion-modal-bg);
+    border-radius: var(--pkg-radius-md);
+    box-shadow: var(--pkg-conversion-modal-shadow);
+    width: 100%;
+    max-width: 400px; /* Mobile base - specific value for optimal UX */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    /* Default: normal scale, NO transition for instant hide */
+    transform: scale(1);
+}
+
+/* When wrapper is visible: smooth scale animation on show only */
+#progressBarWrapper[style*="visible"] .conversion-modal-content {
+    transform: scale(1);
+    transition: transform 0.2s ease-out;
+}
+
+
+/* ======= PULSE ANIMATION FOR OVERLAY CLICK ======= */
+
+/* Pulse keyframes animation - draws attention when user clicks outside modal */
+@keyframes modalPulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+    -webkit-transform: scale(1.01);
+    transform: scale(1.01)
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Pulse class - triggered by JavaScript on overlay click */
+.conversion-modal-content.pulse {
+    animation: modalPulse 280ms ease-in-out;
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .conversion-modal-content.pulse {
+        animation: none;
+        /* Provide static feedback instead of animation */
+        border: 2px solid var(--pkg-color-primary);
+        transition: border 100ms ease;
+    }
+}
+
+/* ======= HEADER - Video Title + Close Button ======= */
+.conversion-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--pkg-conversion-modal-header-border);
+    gap: var(--pkg-space-3);
+}
+
+.modal-video-title {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--pkg-conversion-title-color);
+    margin: 0;
+    line-height: 1.3;
+    flex: 1;
+    min-width: 0; /* Allow text truncation */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.btn-close-modal {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    border-radius: var(--pkg-radius-sm);
+    color: var(--pkg-conversion-message-color);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0;
+}
+
+.btn-close-modal:hover {
+    background: var(--pkg-conversion-close-btn-hover-bg);
+    color: var(--pkg-conversion-title-color);
+}
+
+.btn-close-modal:active {
+    transform: scale(0.95);
+}
+
+.btn-close-modal:focus-visible {
+    outline: 2px solid var(--pkg-color-primary);
+    outline-offset: 2px;
+}
+
+.btn-close-modal svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* ======= BODY - Content Area ======= */
+.conversion-modal-body {
+    padding: var(--pkg-space-6) var(--pkg-space-5);
+    flex: 1;
+    overflow-y: auto;
+    min-height: 180px; /* Maximum buffer for mobile - prevents layout shift */
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* ======= State Container ======= */
+.conversion-state {
+    text-align: center;
+    /* Consistent min-height prevents layout shift between states */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    height: fit-content;
+}
+
+/* ======= FOOTER - Share Icons ======= */
+.conversion-modal-footer {
+    border-top: 1px solid var(--pkg-conversion-modal-header-border);
+    padding: 12px 20px;
+}
+
+.social-sharing-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.social-sharing-text span {
+    color: var(--pkg-conversion-message-color);
+    font-size: 0.875rem;
+}
+
+.share-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--pkg-space-3);
+}
+
+.share-icons a {
+    display: inline-flex;
+    text-decoration: none;
+}
+
+
+/* Force icon images to 28x28 */
+.share-icons img {
+    width: 28px;
+    height: 28px;
+    display: block;
+}
+
+/* Specific share button colors */
+/* No background wrappers for icons per requirement */
+
+@media (max-width: 480px) {
+    .social-sharing-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .social-sharing-text {
+        text-align: center;
+        width: 100%;
+    }
+}
+
+/* ======= Icons ======= */
+.conversion-icon {
+    font-size: 3rem;
+    margin-bottom: var(--pkg-space-4);
+    line-height: 1;
+}
+
+.conversion-icon--success {
+    color: var(--pkg-conversion-success-color);
+}
+
+.conversion-icon--error {
+    color: var(--pkg-conversion-error-color);
+}
+
+.conversion-icon--expired {
+    color: var(--pkg-conversion-warning-color);
+}
+
+/* ======= Title ======= */
+.conversion-title {
+    font-size: 1.25rem; /* Increased for better visibility */
+    font-weight: 600;
+    color: var(--pkg-conversion-title-color);
+    line-height: 1.3;
+    margin: 0; /* Remove default margins - handled by flex gap */
+}
+
+/* ======= Message ======= */
+.conversion-message {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--pkg-conversion-message-color);
+    margin: 0; /* Remove default margins - handled by flex gap */
+}
+
+.conversion-message--error {
+    color: var(--pkg-conversion-error-color);
+    font-weight: 500;
+}
+
+.conversion-hint {
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    color: var(--pkg-conversion-message-color);
+    margin: var(--pkg-space-2) 0 var(--pkg-space-4) 0;
+}
+
+
+.conversion-progress .progress-bar.progress-bar-striped.progress-bar-subtle {
+    background-image: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.1) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.1) 50%,
+        rgba(255, 255, 255, 0.1) 75%,
+        transparent 75%,
+        transparent
+    );
+    background-size: 1rem 1rem;
+}
+
+/* Alternative striped pattern - bold */
+
+/* ======= SPINNING CIRCLE LOADER ======= */
+
+/* Base styles - Extra Small Mobile (0-350px) */
+.loading-spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0; /* Remove margin - handled by parent flex gap */
+    height: 48px; /* Fixed height prevents CLS */
+}
+
+.spinning-circle {
+    width: 32px;
+    height: 32px;
+    border: 3px solid var(--pkg-conversion-spinner-bg);
+    border-top: 3px solid var(--pkg-color-primary);
+    border-radius: 50%;
+    animation: spin 0.5s linear infinite; /* 1.5x faster: 0.8s -> 0.5s */
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Small Mobile (351px-599px) */
+@media (min-width: 351px) {
+    .loading-spinner-container {
+        height: 52px;
+    }
+
+    .spinning-circle {
+        width: 36px;
+        height: 36px;
+        border-width: 3px;
+    }
+}
+
+/* Medium Tablet (600px-839px) */
+@media (min-width: 600px) {
+    .loading-spinner-container {
+        height: 56px;
+    }
+
+    .spinning-circle {
+        width: 40px;
+        height: 40px;
+        border-width: 4px;
+    }
+}
+
+/* Expanded Desktop (840px-1239px) */
+@media (min-width: 840px) {
+    .loading-spinner-container {
+        height: 60px;
+        margin-bottom: var(--pkg-space-5);
+    }
+
+    .spinning-circle {
+        width: 44px;
+        height: 44px;
+        border-width: 4px;
+    }
+}
+
+/* Large Wide Desktop (1240px-1919px) */
+@media (min-width: 1240px) {
+    .loading-spinner-container {
+        height: 64px;
+    }
+
+    .spinning-circle {
+        width: 48px;
+        height: 48px;
+        border-width: 4px;
+    }
+}
+
+/* Extra Large 2K Display (1920px-2559px) */
+@media (min-width: 1920px) {
+    .loading-spinner-container {
+        height: 68px;
+    }
+
+    .spinning-circle {
+        width: 52px;
+        height: 52px;
+        border-width: 5px;
+    }
+}
+
+/* Ultra Large 4K+ Display (2560px+) */
+@media (min-width: 2560px) {
+    .loading-spinner-container {
+        height: 72px;
+    }
+
+    .spinning-circle {
+        width: 56px;
+        height: 56px;
+        border-width: 5px;
+    }
+}
+
+/* Accessibility - Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    .spinning-circle {
+        animation: pulse 1.5s ease-in-out infinite;
+        border-top-color: transparent;
+        border-color: var(--pkg-color-primary);
+    }
+
+    @keyframes pulse {
+        0%, 100% {
+            opacity: 0.4;
+            transform: scale(0.95);
+        }
+        50% {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+}
+
+/* ======= Action Buttons ======= */
+.conversion-actions {
+    display: flex;
+    gap: var(--pkg-space-3);
+    margin: 0; /* Remove margin - handled by parent flex gap */
+    justify-content: center !important;
+}
+
+.btn-conversion {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--pkg-space-2) var(--pkg-space-3);
+    border: none;
+    border-radius: var(--pkg-radius-sm);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    line-height: 1;
+    gap: var(--pkg-space-1);
+}
+
+.btn-conversion:focus-visible {
+    outline: 2px solid var(--pkg-color-primary);
+    outline-offset: 2px;
+}
+
+.btn-conversion:active {
+    transform: scale(0.98);
+}
+
+/* Cancel button */
+.btn-conversion--cancel {
+    background: var(--pkg-conversion-close-btn-hover-bg);
+    color: var(--pkg-conversion-title-color);
+    width: fit-content;
+}
+
+.btn-conversion--cancel:hover {
+    background: var(--pkg-conversion-modal-header-border);
+}
+
+/* Download button (SUCCESS state) */
+.btn-conversion--download, .btn-convert--success, .btn-convert--direct-download {
+    background: var(--pkg-color-primary);
+    color: #ffffff;
+}
+
+.btn-conversion--download:hover, .btn-convert--success:hover, .btn-convert--direct-download:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--pkg-conversion-btn-success-hover-shadow);
+}
+
+.btn-conversion--download:active, .btn-convert--success:active, .btn-convert--direct-download:active {
+    transform: translateY(0);
+    box-shadow: var(--pkg-conversion-btn-success-active-shadow);
+}
+
+/* Retry button (ERROR/EXPIRED state) - Warning color to emphasize action needed */
+.btn-conversion--retry {
+    background: var(--pkg-conversion-btn-retry-bg);
+    color: #ffffff;
+    min-width: 140px;
+    font-weight: 600;
+    box-shadow: var(--pkg-conversion-btn-retry-shadow);
+}
+
+.btn-conversion--retry:hover {
+    background: var(--pkg-conversion-btn-retry-hover-bg);
+    transform: translateY(-2px);
+    box-shadow: var(--pkg-conversion-btn-retry-hover-shadow);
+}
+
+.btn-conversion--retry:active {
+    transform: translateY(0);
+    box-shadow: var(--pkg-conversion-btn-retry-active-shadow);
+}
+
+/* Single button layout (SUCCESS state) */
+
+
+/* ======= Small Mobile (351px-599px) ======= */
+@media (min-width: 351px) {
+    .conversion-modal-content {
+        max-width: 440px; /* Small mobile optimization */
+    }
+
+
+    .modal-video-title {
+        font-size: 1rem;
+    }
+
+    .conversion-modal-body {
+        padding: var(--pkg-space-7) var(--pkg-space-6);
+        min-height: 220px; /* Maximum buffer - prevents layout shift on small mobile */
+    }
+
+
+    .conversion-title {
+        font-size: 1.375rem; /* Increased for better visibility */
+    }
+
+    .conversion-icon {
+        font-size: 3.5rem;
+    }
+
+    .share-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .share-icon svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* ======= Medium Tablet (600px-839px) ======= */
+@media (min-width: 600px) {
+    .conversion-modal-content {
+        max-width: 480px; /* Tablet optimization */
+    }
+
+    .modal-video-title {
+        font-size: 1.0625rem;
+    }
+
+    .btn-close-modal {
+        width: 36px;
+        height: 36px;
+    }
+
+    .btn-close-modal svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .conversion-modal-body {
+        padding: var(--pkg-space-8) var(--pkg-space-7);
+        min-height: 250px; /* Maximum buffer - prevents layout shift on tablets */
+    }
+
+
+
+    .conversion-title {
+        font-size: 1.5rem; /* Increased for better visibility */
+    }
+
+    .conversion-message {
+        font-size: 0.9375rem;
+    }
+
+    .btn-conversion {
+        padding: var(--pkg-space-2) var(--pkg-space-4);
+    }
+
+    .share-icon {
+        width: 44px;
+        height: 44px;
+    }
+
+    .share-icon svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .share-icons {
+        gap: var(--pkg-space-4);
+    }
+}
+
+/* ======= Expanded Desktop (840px-1239px) ======= */
+@media (min-width: 840px) {
+    .conversion-modal-content {
+        max-width: 500px; /* Desktop optimization */
+    }
+
+
+    .modal-video-title {
+        font-size: 1.125rem;
+    }
+
+    .conversion-modal-body {
+        padding: var(--pkg-space-10) var(--pkg-space-8);
+        min-height: 250px; /* Optimized buffer - prevents layout shift on desktop */
+    }
+
+
+
+    .conversion-icon {
+        font-size: 4rem;
+    }
+}
+
+/* ======= Large Wide Desktop (1240px-1919px) ======= */
+@media (min-width: 1240px) {
+    .conversion-modal-content {
+        max-width: 520px; /* Wide desktop optimization */
+    }
+
+    .modal-video-title {
+        font-size: 1.1875rem;
+    }
+
+    .conversion-modal-body {
+        min-height: 250px; /* Optimized buffer - prevents layout shift on wide desktop */
+    }
+
+    .conversion-title {
+        font-size: 1.625rem; /* Increased for better visibility */
+    }
+
+    .conversion-message {
+        font-size: 1rem;
+    }
+
+    .share-icon {
+        width: 48px;
+        height: 48px;
+    }
+
+    .share-icon svg {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+/* ======= Extra Large 2K Display (1920px-2559px) ======= */
+@media (min-width: 1920px) {
+    .conversion-modal-content {
+        max-width: 560px; /* 2K display optimization */
+    }
+
+
+    .modal-video-title {
+        font-size: 1.25rem;
+    }
+
+    .btn-close-modal {
+        width: 40px;
+        height: 40px;
+    }
+
+    .btn-close-modal svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .conversion-modal-body {
+        padding: var(--pkg-space-12) var(--pkg-space-10);
+        min-height: 280px; /* Optimized buffer - prevents layout shift on 2K displays */
+    }
+
+
+
+    .conversion-actions {
+        gap: var(--pkg-space-4);
+        margin-top: var(--pkg-space-6);
+    }
+
+    .btn-conversion {
+        padding: var(--pkg-space-3) var(--pkg-space-5);
+        font-size: 1rem;
+    }
+
+    .share-icon {
+        width: 52px;
+        height: 52px;
+    }
+
+    .share-icon svg {
+        width: 26px;
+        height: 26px;
+    }
+
+    .share-icons {
+        gap: var(--pkg-space-5);
+    }
+}
+
+/* ======= Ultra Large 4K+ Display (2560px+) ======= */
+@media (min-width: 2560px) {
+    .conversion-modal-content {
+        max-width: 600px; /* 4K+ display optimization */
+    }
+
+
+    .modal-video-title {
+        font-size: 1.375rem;
+    }
+
+    .btn-close-modal {
+        width: 44px;
+        height: 44px;
+    }
+
+    .btn-close-modal svg {
+        width: 26px;
+        height: 26px;
+    }
+
+    .conversion-modal-body {
+        padding: var(--pkg-space-14) var(--pkg-space-12);
+        min-height: 280px; /* Optimized buffer - prevents layout shift on 4K+ displays */
+    }
+
+
+
+    .conversion-title {
+        font-size: 1.75rem; /* Increased for better visibility */
+    }
+
+    .conversion-message {
+        font-size: 1.0625rem;
+    }
+
+    .conversion-icon {
+        font-size: 4.5rem;
+    }
+
+    .btn-conversion {
+        padding: var(--pkg-space-3) var(--pkg-space-6);
+        font-size: 1.0625rem;
+    }
+
+    .share-icon {
+        width: 56px;
+        height: 56px;
+    }
+
+    .share-icon svg {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+/* ======= Accessibility & Interaction Enhancements ======= */
+
+/* Focus States */
+.btn-conversion:focus-visible {
+    outline: 2px solid var(--pkg-color-primary);
+    outline-offset: 2px;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    /* All animations handled by smooth-progress.css */
+    /* No modal-specific reduced motion needed */
+}

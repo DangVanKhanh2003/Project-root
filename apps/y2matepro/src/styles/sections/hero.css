@@ -1,0 +1,188 @@
+/* =========================================================
+   Hero Section - Search Form
+   ---------------------------------------------------------
+   Main search form with input, button, suggestions
+   Mobile-first responsive design
+   ========================================================= */
+
+/* ===== HERO SECTION CONTAINER ===== */
+.y2mate-download-pro {
+    padding: 0;
+}
+
+.y2mate-search-form-pro {
+    text-align: center;
+    background-color: var(--color-bg-white);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    padding: var(--space-lg);
+}
+
+.form-wrap {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 30px 0;
+    border-bottom: 0;
+}
+
+/* ===== TITLE ===== */
+.y2mate_title-pro {
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-light);
+    color: var(--color-text-primary);
+    margin: 0 0 10px;
+    line-height: var(--line-height-tight);
+}
+
+/* ===== SEARCH FORM ===== */
+.search_form {
+    position: relative;
+    margin: 36px auto;
+}
+
+.y2mate_query-pro {
+    width: 100%;
+    max-width: 100%;
+    height: 60px;
+    border: 5px solid var(--color-primary-input-border);
+    border-radius: var(--radius-md);
+    padding: 0 130px 0 var(--space-xl);
+    font-size: var(--font-size-base);
+    color: var(--color-text-primary);
+    outline: none;
+}
+
+.y2mate_query-pro::placeholder {
+    color: var(--color-text-secondary);
+}
+
+.y2mate_query-pro:focus {
+    border-color: var(--color-primary-input-border);
+}
+
+/* ===== CONVERT BUTTON ===== */
+.convert-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 60px;
+    width: 120px;
+    background: var(--color-primary-button);
+    border: none;
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: var(--color-bg-white);
+    font-size: var(--font-size-sm);
+    transition: background-color 0.3s ease;
+}
+
+.convert-btn:hover {
+    background: var(--color-primary);
+}
+
+.converter-btn {
+    display: inline-block;
+    font-size: var(--font-size-sm);
+    color: var(--color-bg-white);
+    background: transparent;
+    font-weight: var(--font-weight-normal);
+    cursor: pointer;
+    border: none;
+}
+
+/* ===== SUGGESTIONS ===== */
+.suggesstion-box {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--color-bg-white);
+    border: 1px solid var(--color-border-light);
+    border-radius: var(--radius-md);
+    margin-top: var(--space-xs);
+    max-height: 300px;
+    overflow-y: auto;
+    box-shadow: var(--shadow-lg);
+    z-index: var(--z-dropdown);
+    display: none;
+}
+
+.suggesstion-box.active {
+    display: block;
+}
+
+/* ===== TERMS TEXT ===== */
+.y2mate-terms-pro {
+    margin-top: var(--space-lg);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-looser);
+}
+
+.y2mate-terms-pro a {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+.y2mate-terms-pro a:hover {
+    text-decoration: underline;
+}
+
+/* ===== SPINNER ===== */
+.spinner {
+    display: none;
+    text-align: center;
+    margin: var(--space-2xl) 0;
+}
+
+.spinner img {
+    width: 50px;
+    height: 50px;
+}
+
+/* ===== MOBILE (max-width: 767px) ===== */
+@media (max-width: 767px) {
+    .form-wrap {
+        padding: 26px 0 10px 0;
+    }
+
+    .search_form {
+        margin: 24px auto;
+    }
+
+    .y2mate_title-pro {
+        font-size: 30px;
+    }
+
+    .y2mate_query-pro {
+        padding: 0 60px 0 10px;
+    }
+
+    .convert-btn {
+        width: 60px;
+    }
+
+    .converter-btn {
+        visibility: hidden;
+    }
+
+    .convert-btn svg {
+        position: absolute;
+    }
+}
+
+/* ===== SMALL MOBILE (max-width: 575px) ===== */
+@media (max-width: 575px) {
+    .y2mate_title-pro {
+        font-size: var(--font-size-2xl);
+    }
+
+    .y2mate-terms-pro {
+        font-size: 11px;
+    }
+}

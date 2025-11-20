@@ -60,6 +60,28 @@ importers:
         specifier: ^3.1.4
         version: 3.1.4(vite@7.2.2(@types/node@20.19.25)(terser@5.44.1)(tsx@4.20.6))
 
+  apps/y2matepro:
+    dependencies:
+      '@downloader/core':
+        specifier: workspace:*
+        version: link:../../packages/core
+      '@downloader/ui-shared':
+        specifier: workspace:*
+        version: link:../../packages/ui-shared
+    devDependencies:
+      '@types/node':
+        specifier: ^20.19.25
+        version: 20.19.25
+      tsx:
+        specifier: ^4.20.6
+        version: 4.20.6
+      typescript:
+        specifier: ^5.3.3
+        version: 5.9.3
+      vite:
+        specifier: ^7.1.10
+        version: 7.2.2(@types/node@20.19.25)(terser@5.44.1)(tsx@4.20.6)
+
   apps/yt1s-test:
     dependencies:
       '@downloader/core':

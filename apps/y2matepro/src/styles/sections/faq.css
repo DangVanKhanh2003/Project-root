@@ -1,0 +1,72 @@
+/* =========================================================
+   FAQ Section - Questions and Answers
+   ---------------------------------------------------------
+   FAQ section with Q&A content
+   Mobile-first responsive design
+   ========================================================= */
+
+/* ===== FAQ SECTION ===== */
+.yt-content {
+    padding: var(--space-2xl) 0;
+}
+
+.yt-content h3 {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    margin: var(--space-md) 0 var(--space-xl);
+}
+
+.download-uses {
+    margin: 0 auto;
+}
+
+.download-uses > p {
+    margin-bottom: var(--space-lg);
+}
+
+/* ===== GUIDE DATA ===== */
+.guide-data h4 {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-light);
+    color: var(--color-text-primary);
+    margin: var(--space-xl) 0 var(--space-md);
+    line-height: var(--line-height-tight);
+}
+
+.guide-data h4:first-child {
+    margin-top: 0;
+}
+
+.guide-data h4 b {
+    font-weight: var(--font-weight-semibold);
+}
+
+.guide-data p {
+    font-size: var(--font-size-base);
+    color: var(--color-text-light);
+    line-height: var(--line-height-base);
+    margin: 0 0 var(--space-lg);
+    text-align: justify;
+}
+
+/* ===== MOBILE (max-width: 575px) ===== */
+@media (max-width: 575px) {
+    .yt-content {
+        padding: var(--space-lg) 0;
+    }
+
+    .yt-content h3 {
+        font-size: var(--font-size-lg);
+        margin: var(--space-sm) 0 var(--space-lg);
+    }
+
+    .guide-data h4 {
+        font-size: var(--font-size-md);
+        margin: var(--space-lg) 0 var(--space-sm);
+    }
+
+    .guide-data p {
+        font-size: var(--font-size-sm);
+    }
+}
