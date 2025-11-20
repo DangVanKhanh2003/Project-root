@@ -124,12 +124,14 @@ interface SetupExtractPhaseParams {
 }
 
 interface ProgressBarManager {
-    startExtractPhase(target: number): void;
-    completeExtractToFull(callback: () => void): void;
-    resumeToDownloadPhase(type: string, options: any): void;
-    setPollingProgress(progress: number, statusText: string): void;
-    updatePollingProgress(apiData: any, phase: string): void;
-    completePollingProgress(): void;
+    startDownloadingPhase(options: {
+        totalSize: number;
+        onProgress: (callback: (loaded: number, total: number) => void) => Promise<void>;
+        onComplete?: () => void;
+    }): void;
+    startPollingPhase(): void;
+    updatePollingProgress(displayProgress: number, statusText: string): void;
+    completePollingPhase(onComplete?: () => void): void;
     stop(): void;
 }
 
@@ -274,82 +276,9 @@ function detectPlatformRouting(extractResponse: ExtractResponse, formatData: For
     };
 }
 
-/**
- * Setup modal and start extract phase with dynamic target
- * iOS/Windows MP4: 0% → 30%, Others: 0% → 95%
- * @param params - Setup parameters
- * @returns Progress bar manager instance
- */
-async function setupExtractPhase({ formatId, formatData, videoTitle, videoUrl }: SetupExtractPhaseParams): Promise<ProgressBarManager> {
-    const conversionModal = getConversionModal();
-
-    // Open modal if not already open
-    const isModalOpen = conversionModal.isOpen;  // ✅ FIX: Access property (getter), not function
-
-    if (!isModalOpen) {
-        conversionModal.open({
-            provider: 'youtube',
-            formatId: formatId,
-            formatData: formatData,
-            videoTitle: videoTitle,
-            videoUrl: videoUrl
-        });
-    } else {
-    }
-
-    // Create conversion task
-    setConversionTask(formatId, {
-        sourceId: formatData.vid || '',
-        quality: formatData.quality || 'Unknown',
-        format: formatData.type || 'mp4',
-        state: 'Extracting',
-        statusText: 'Extracting...',
-        showProgressBar: true,
-        startedAt: Date.now(),
-        formatData: formatData,
-        autoDownloadOnComplete: false
-    });
-
-    // Determine extract target based platform/format
-    let extractTarget: number;
-
-    // 🔍 DEBUG: Platform detection details
-    const isIOSDevice = isIOS();
-    const isWindowsDevice = isWindows();
-    const formatType = formatData.type;
-
-
-    if (isIOSDevice) {
-        extractTarget = 28; // iOS: 0% → 28% (gap before download phase at 30%)
-    } else if (isWindowsDevice && formatType === 'mp4') {
-        extractTarget = 28; // Windows MP4: 0% → 28% (gap before download phase at 30%)
-    } else {
-        extractTarget = 95; // Others: 0% → 95%
-    }
-
-
-    // Wait for progress bar to be initialized (up to 1 second)
-    let progressBar: ProgressBarManager | null = null;
-    let attempts = 0;
-    const maxAttempts = 20; // 20 attempts * 50ms = 1 second max wait
-
-    while (!progressBar && attempts < maxAttempts) {
-        progressBar = conversionModal.getProgressBarManager();
-        if (!progressBar) {
-            await new Promise(resolve => setTimeout(resolve, 50)); // Wait 50ms
-            attempts++;
-        }
-    }
-
-    if (!progressBar) {
-        throw new Error('Progress bar not initialized after modal open');
-    }
-
-
-    // Start extract phase with dynamic target
-    progressBar.startExtractPhase(extractTarget);
-    return progressBar;
-}
+// ❌ REMOVED: setupExtractPhase() function
+// New architecture: Phase 1 (EXTRACTING) has no progress bar
+// Phase 2 (CONVERTING) is handled directly by routeDownloadPhase()
 
 /**
  * Helper: Update both conversionTask AND videoDetailFormat with extracted URL
@@ -406,7 +335,6 @@ function updateFormatWithExtractedUrl(formatId: string, url: string, formatData:
 }
 
 interface HandleStaticDirectDownloadParams {
-    progressBar: ProgressBarManager;
     formatId: string;
     url: string;
     formatData: FormatData;
@@ -414,21 +342,19 @@ interface HandleStaticDirectDownloadParams {
 }
 
 /**
- * Handle static direct download case (Case 1: Static → a.click)
- * Since this is direct download, skip download phase and complete at 100%
+ * Handle static direct download case (Case 1: Static → direct download ready)
+ * No progress bar animation needed - download URL is ready immediately
  */
-function handleStaticDirectDownload({ progressBar, formatId, url, formatData, extractResponse }: HandleStaticDirectDownloadParams): void {
-    // 🔍 DEBUG: Static direct download handler
+function handleStaticDirectDownload({ formatId, url, formatData, extractResponse }: HandleStaticDirectDownloadParams): void {
+    // Update format with extracted URL
+    updateFormatWithExtractedUrl(formatId, url, formatData, extractResponse);
 
-    // Skip download phase - complete extract to 100% directly
-    progressBar.completeExtractToFull(() => {
-        updateFormatWithExtractedUrl(formatId, url, formatData, extractResponse);
-        conversionModal.showDownloadButton(url);
-    });
+    // Show download button immediately (no progress animation)
+    const conversionModal = getConversionModal();
+    conversionModal.showDownloadButton(url);
 }
 
 interface HandleIOSStreamRAMParams {
-    progressBar: ProgressBarManager;
     formatId: string;
     url: string;
     filename?: string;
@@ -437,46 +363,48 @@ interface HandleIOSStreamRAMParams {
 
 /**
  * Handle iOS stream RAM download case (Case 2: iOS stream ≤150MB → RAM)
+ * Downloads stream to RAM with real-time progress (0% → 100%)
  */
-function handleIOSStreamRAM({ progressBar, formatId, url, filename, size }: HandleIOSStreamRAMParams): void {
+function handleIOSStreamRAM({ formatId, url, filename, size }: HandleIOSStreamRAMParams): void {
+    const conversionModal = getConversionModal();
+    const progressBarManager = conversionModal.getProgressBarManager();
 
-    progressBar.resumeToDownloadPhase('stream', {
-        isIOSRAM: true,
-        totalSize: size,
-        needsSpecialHandling: true, // ✅ Bypass direct jump to 100%
-        onComplete: () => {
-            // 🎯 Show download button only after progress bar reaches 100%
-            conversionModal.showDownloadButton(url, {
-                buttonText: 'Download from RAM',
-                downloadMode: 'ram'
-            });
-        },
+    if (!progressBarManager) {
+        throw new Error('Progress bar not initialized');
+    }
+
+    // Start downloading phase with real progress
+    progressBarManager.startDownloadingPhase({
+        totalSize: size || 0,
         onProgress: async (onProgressCallback: (loaded: number, total: number) => void) => {
-
             try {
                 const blob = await downloadStreamToRAM(url, {
                     onProgress: ({ loaded, total }) => onProgressCallback(loaded, total)
                 });
 
-
                 updateConversionTask(formatId, {
                     state: 'Success',
-                    downloadUrl: url, // Keep for fallback
+                    downloadUrl: url,
                     completedAt: Date.now(),
-                    ramBlob: blob,      // ✅ Store blob reference
-                    filename: filename  // ✅ Store filename for download
+                    ramBlob: blob,
+                    filename: filename
                 });
 
-                // Note: Download button will be shown by progress bar completion callback
             } catch (error: any) {
                 conversionModal.transitionToError(error.message || 'Download failed');
             }
+        },
+        onComplete: () => {
+            // Show download button after progress reaches 100%
+            conversionModal.showDownloadButton(url, {
+                buttonText: 'Download from RAM',
+                downloadMode: 'ram'
+            });
         }
     });
 }
 
 interface HandleIOSStreamPollingParams {
-    progressBar: ProgressBarManager;
     formatId: string;
     url: string;
     size?: number;
@@ -487,13 +415,11 @@ interface HandleIOSStreamPollingParams {
 /**
  * Handle iOS stream polling download case (Case 3: iOS stream >150MB → polling)
  */
-async function handleIOSStreamPolling({ progressBar, formatId, url, size, extractResponse, formatData }: HandleIOSStreamPollingParams): Promise<void> {
-
+async function handleIOSStreamPolling({ formatId, url, size, extractResponse, formatData }: HandleIOSStreamPollingParams): Promise<void> {
     const sizeMB = size ? Math.round(size / (1024 * 1024)) : 0;
 
     // Start real polling flow
     await startPollingFlow({
-        progressBar,
         formatId,
         extractResponse,
         formatData,
@@ -504,7 +430,6 @@ async function handleIOSStreamPolling({ progressBar, formatId, url, size, extrac
 }
 
 interface HandleWindowsMP4StreamParams {
-    progressBar: ProgressBarManager;
     formatId: string;
     url: string;
     filename?: string;
@@ -516,13 +441,11 @@ interface HandleWindowsMP4StreamParams {
 /**
  * Handle Windows MP4 stream download case (Case 4: Windows MP4 stream)
  */
-async function handleWindowsMP4Stream({ progressBar, formatId, url, filename, size, extractResponse, formatData }: HandleWindowsMP4StreamParams): Promise<void> {
+async function handleWindowsMP4Stream({ formatId, url, filename, size, extractResponse, formatData }: HandleWindowsMP4StreamParams): Promise<void> {
     const sizeMB = size ? Math.round(size / (1024 * 1024)) : 0;
-
 
     // Start real polling flow
     await startPollingFlow({
-        progressBar,
         formatId,
         extractResponse,
         formatData,
@@ -533,7 +456,6 @@ async function handleWindowsMP4Stream({ progressBar, formatId, url, filename, si
 }
 
 interface HandleOtherStreamParams {
-    progressBar: ProgressBarManager;
     formatId: string;
     url: string;
     filename?: string;
@@ -542,33 +464,31 @@ interface HandleOtherStreamParams {
 
 /**
  * Handle other stream download case (Case 5: Other platform streams)
- * Since this ends up as direct link, skip download phase and complete at 100%
+ * Direct download ready immediately (no progress animation)
  */
-function handleOtherStream({ progressBar, formatId, url, filename, size }: HandleOtherStreamParams): void {
+function handleOtherStream({ formatId, url, filename, size }: HandleOtherStreamParams): void {
+    // Update task state
+    updateConversionTask(formatId, {
+        state: 'Success',
+        downloadUrl: url,
+        completedAt: Date.now(),
+        streamMetadata: {
+            contentType: 'stream',
+            platform: 'Other',
+            filename: filename || ''
+        }
+    });
 
-    // Skip download phase - complete extract to 100% directly
-    progressBar.completeExtractToFull(() => {
-        updateConversionTask(formatId, {
-            state: 'Success',
-            downloadUrl: url,
-            completedAt: Date.now(),
-            streamMetadata: {
-                contentType: 'stream',
-                platform: 'Other',
-                filename: filename || ''
-            }
-        });
-
-        const sizeMB = size ? Math.round(size / (1024 * 1024)) : 0;
-        conversionModal.showDownloadButton(url, {
-            buttonText: sizeMB ? `Download Stream (${sizeMB}MB)` : 'Download Stream',
-            downloadMode: 'stream'
-        });
+    // Show download button immediately
+    const conversionModal = getConversionModal();
+    const sizeMB = size ? Math.round(size / (1024 * 1024)) : 0;
+    conversionModal.showDownloadButton(url, {
+        buttonText: sizeMB ? `Download Stream (${sizeMB}MB)` : 'Download Stream',
+        downloadMode: 'stream'
     });
 }
 
 interface StartPollingFlowParams {
-    progressBar: ProgressBarManager;
     formatId: string;
     extractResponse: ExtractResponse;
     formatData: FormatData;
@@ -587,18 +507,30 @@ interface StartPollingFlowParams {
  * EDGE: No progressUrl → fallback to checkTask polling; API errors → transition to error
  * USAGE: await startPollingFlow({ progressBar, formatId, extractResponse, formatData });
  */
-async function startPollingFlow({ progressBar, formatId, extractResponse, formatData, pollingReason, warningMessage, size }: StartPollingFlowParams): Promise<void> {
+async function startPollingFlow({ formatId, extractResponse, formatData, pollingReason, warningMessage, size }: StartPollingFlowParams): Promise<void> {
     try {
-
         // Get format and file size for progress mapping
-        // NOTE: Polling only for files >150MB, fallback 200 shouldn't happen in practice
         const format = formatData.format || formatData.type || 'mp4';
         const fileSizeMB = size ? Math.round(size / (1024 * 1024)) : 200;
 
-        // Setup polling state in conversion task
+        // Reset polling mapper with format and file size
+        PollingProgressMapper.reset(format, fileSizeMB);
+
+        // Get progress bar manager
+        const conversionModal = getConversionModal();
+        const progressBarManager = conversionModal.getProgressBarManager();
+
+        if (!progressBarManager) {
+            throw new Error('Progress bar not initialized');
+        }
+
+        // Start polling phase (0%)
+        progressBarManager.startPollingPhase();
+
+        // Setup polling state
         updateConversionTask(formatId, {
             state: 'Polling',
-            statusText: PollingProgressMapper.getStatusText({ phase: 'processing' }, 30),
+            statusText: 'Processing...',
             showProgressBar: true,
             pollingPhase: 'processing',
             pollingData: {
@@ -610,18 +542,6 @@ async function startPollingFlow({ progressBar, formatId, extractResponse, format
             warningMessage: warningMessage
         });
 
-        // Configure progress bar for polling mode
-        // 🔍 DEBUG: Polling phase transition
-
-        progressBar.resumeToDownloadPhase('polling', {
-            onProgress: (displayProgress: number, phase: string) => {
-            },
-            onPhaseTransition: (fromPhase: string, toPhase: string) => {
-            },
-            onComplete: (downloadUrl: string) => {
-            }
-        });
-
         // ONLY use progressUrl polling - no fallbacks
         if (!extractResponse.progressUrl) {
             throw new Error('No progressUrl in extract response - polling not supported for this request');
@@ -630,7 +550,6 @@ async function startPollingFlow({ progressBar, formatId, extractResponse, format
         await startRichProgressPolling(formatId, extractResponse.progressUrl);
 
     } catch (error: any) {
-
         updateConversionTask(formatId, {
             state: 'Failed',
             statusText: 'Polling failed',
@@ -639,6 +558,7 @@ async function startPollingFlow({ progressBar, formatId, extractResponse, format
             completedAt: Date.now()
         });
 
+        const conversionModal = getConversionModal();
         conversionModal.transitionToError(error.message || 'Polling failed');
     }
 }
@@ -702,16 +622,11 @@ async function handleProgressUpdate(formatId: string, apiData: PollingData): Pro
 
     if (isProcessingComplete && currentPhase === 'processing') {
         // Transition: Processing → Merging
-
-        // Log raw API data being passed to the mapper
-
         PollingProgressMapper.startMergingPhase();
-
-        const statusTextForMerging = PollingProgressMapper.getStatusText({ phase: 'merging', status }, PollingProgressMapper.lastProgress);
 
         updateConversionTask(formatId, {
             pollingPhase: 'merging',
-            statusText: statusTextForMerging,
+            statusText: 'Merging files...',
             pollingData: { videoProgress, audioProgress, status, mergedUrl, filename }
         });
 
@@ -720,20 +635,15 @@ async function handleProgressUpdate(formatId: string, apiData: PollingData): Pro
         const progressBarManager = conversionModal.getProgressBarManager();
 
         if (progressBarManager) {
-            const displayProgress = PollingProgressMapper.mapProgress({ phase: 'merging', ...apiData });
-            const statusText = PollingProgressMapper.getStatusText({ phase: 'merging', ...apiData }, displayProgress);
-            progressBarManager.setPollingProgress(displayProgress, statusText);
-        } else {
+            const displayProgress = PollingProgressMapper.mapProgress(apiData);
+            const statusText = PollingProgressMapper.getStatusText(apiData);
+            progressBarManager.updatePollingProgress(displayProgress, statusText);
         }
 
     } else {
         // Continue current phase (either still processing or merging in progress)
-
-        // Log raw API data being passed to the mapper
-
-        const displayProgress = PollingProgressMapper.mapProgress({ phase: currentPhase, ...apiData });
-        const statusText = PollingProgressMapper.getStatusText({ phase: currentPhase, ...apiData }, displayProgress);
-
+        const displayProgress = PollingProgressMapper.mapProgress(apiData);
+        const statusText = PollingProgressMapper.getStatusText(apiData);
 
         updateConversionTask(formatId, {
             statusText: statusText,
@@ -746,9 +656,7 @@ async function handleProgressUpdate(formatId: string, apiData: PollingData): Pro
 
         if (progressBarManager) {
             // Update visual progress with mapped percentage
-            // Use setPollingProgress for polling updates
-            progressBarManager.setPollingProgress(displayProgress, statusText);
-        } else {
+            progressBarManager.updatePollingProgress(displayProgress, statusText);
         }
     }
 }
@@ -771,7 +679,13 @@ async function completePolling(formatId: string, downloadUrl: string): Promise<v
     const conversionModal = getConversionModal();
     const progressBarManager = conversionModal.getProgressBarManager();
     if (progressBarManager) {
-        progressBarManager.completePollingProgress();
+        progressBarManager.completePollingPhase(() => {
+            // Transition to success after animation completes
+            conversionModal.transitionToSuccess(downloadUrl);
+        });
+    } else {
+        // Fallback if no progress bar
+        conversionModal.transitionToSuccess(downloadUrl);
     }
 
     // Update task state
@@ -782,14 +696,10 @@ async function completePolling(formatId: string, downloadUrl: string): Promise<v
         downloadUrl: downloadUrl,
         completedAt: Date.now()
     });
-
-    // Show success in modal
-    conversionModal.transitionToSuccess(downloadUrl);
 }
 
 interface RouteDownloadPhaseParams {
     routing: PlatformRouting;
-    progressBar: ProgressBarManager;
     formatId: string;
     extractResponse: ExtractResponse;
     formatData: FormatData;
@@ -798,7 +708,7 @@ interface RouteDownloadPhaseParams {
 /**
  * Route download phase to appropriate handler - 5 distinct cases
  */
-function routeDownloadPhase({ routing, progressBar, formatId, extractResponse, formatData }: RouteDownloadPhaseParams): void {
+function routeDownloadPhase({ routing, formatId, extractResponse, formatData }: RouteDownloadPhaseParams): void {
     const { url, filename, size } = extractResponse;
 
 
@@ -806,34 +716,35 @@ function routeDownloadPhase({ routing, progressBar, formatId, extractResponse, f
     updateConversionTask(formatId, {
         state: 'Processing',
         statusText: 'Processing...',
-        extractResponse: extractResponse
+        extractResponse: extractResponse,
+        showProgressBar: true // Enable progress bar for phase 2
     });
 
 
     // Route to appropriate handler based on 5 distinct cases
     switch (routing.routeType) {
         case 'static-direct':
-            handleStaticDirectDownload({ progressBar, formatId, url, formatData, extractResponse });
+            handleStaticDirectDownload({ formatId, url, formatData, extractResponse });
             break;
 
         case 'ios-stream-ram':
-            handleIOSStreamRAM({ progressBar, formatId, url, filename, size });
+            handleIOSStreamRAM({ formatId, url, filename, size });
             break;
 
         case 'ios-stream-polling':
-            handleIOSStreamPolling({ progressBar, formatId, url, size, extractResponse, formatData });
+            handleIOSStreamPolling({ formatId, url, size, extractResponse, formatData });
             break;
 
         case 'windows-mp4-stream':
-            handleWindowsMP4Stream({ progressBar, formatId, url, filename, size, extractResponse, formatData });
+            handleWindowsMP4Stream({ formatId, url, filename, size, extractResponse, formatData });
             break;
 
         case 'other-stream':
-            handleOtherStream({ progressBar, formatId, url, filename, size });
+            handleOtherStream({ formatId, url, filename, size });
             break;
 
         default:
-            handleStaticDirectDownload({ progressBar, formatId, url, formatData, extractResponse }); // Fallback to static
+            handleStaticDirectDownload({ formatId, url, formatData, extractResponse }); // Fallback to static
     }
 }
 
@@ -1046,14 +957,35 @@ export async function handleYouTubeDownload(formatData: FormatData, autoDownload
 
 
         // ========================================
-        // STEP 1: SETUP EXTRACT PHASE
+        // PHASE 1: EXTRACTING (No progress bar)
         // ========================================
 
-        const progressBar = await setupExtractPhase({
-            formatId,
-            formatData,
-            videoTitle,
-            videoUrl
+        // Open modal in EXTRACTING state
+        const conversionModal = getConversionModal();
+        const isModalOpen = conversionModal.isOpen;
+
+        if (!isModalOpen) {
+            conversionModal.open({
+                provider: 'youtube',
+                formatId: formatId,
+                formatData: formatData,
+                videoTitle: videoTitle,
+                videoUrl: videoUrl,
+                initialStatus: 'EXTRACTING' // Open in EXTRACTING state (no progress bar)
+            });
+        }
+
+        // Create conversion task
+        setConversionTask(formatId, {
+            sourceId: formatData.vid || '',
+            quality: formatData.quality || 'Unknown',
+            format: formatData.type || 'mp4',
+            state: 'Extracting',
+            statusText: 'Extracting...',
+            showProgressBar: false, // No progress bar in extract phase
+            startedAt: Date.now(),
+            formatData: formatData,
+            autoDownloadOnComplete: false
         });
 
         // ========================================
@@ -1121,14 +1053,16 @@ export async function handleYouTubeDownload(formatData: FormatData, autoDownload
 
         if (extractData && extractData.url) {
             // ========================================
-            // STEP 3: ROUTE DOWNLOAD PHASE
+            // PHASE 2: CONVERTING (Transition from EXTRACTING)
             // ========================================
+
+            // Transition modal: EXTRACTING → CONVERTING
+            conversionModal.transitionToConverting();
 
             const routing = detectPlatformRouting(extractData as ExtractResponse, formatData);
 
-            routeDownloadPhase({
+            await routeDownloadPhase({
                 routing,
-                progressBar,
                 formatId,
                 extractResponse: extractData as ExtractResponse,
                 formatData
@@ -1138,8 +1072,6 @@ export async function handleYouTubeDownload(formatData: FormatData, autoDownload
 
         } else {
             // Extract failed
-            progressBar.stop();
-
             const errorMessage = 'Failed to extract download URL';
             updateConversionTask(formatId, {
                 state: 'Failed',
@@ -1261,6 +1193,7 @@ export function cancelConversion(formatId: string): void {
         pollInterval: 1000,
         maxPollingDuration: 10 * 60 * 1000
     });
+
     pollingManager.stopPolling(formatId);
 
     // Update task state

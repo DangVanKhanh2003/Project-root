@@ -52,12 +52,12 @@ export async function downloadStreamToRAM(
       chunks.push(value);
       loaded += value.length;
 
-      // Call progress callback
-      if (onProgress && total > 0) {
+      // Call progress callback (even if total is unknown)
+      if (onProgress) {
         onProgress({
           loaded,
           total,
-          percentage: Math.round((loaded / total) * 100)
+          percentage: total > 0 ? Math.round((loaded / total) * 100) : 0
         });
       }
     }

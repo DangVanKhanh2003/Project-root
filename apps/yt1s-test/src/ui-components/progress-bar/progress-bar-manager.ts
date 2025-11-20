@@ -1,13 +1,12 @@
 /**
  * Progress Bar Manager - TypeScript
- * Simplified version for conversion modal progress tracking
+ * New 2-Phase Architecture for conversion modal progress tracking
+ * Phase 1: EXTRACTING (no progress bar - handled by modal spinner)
+ * Phase 2: DOWNLOADING (RAM) or POLLING (with real/estimated progress)
  */
 
 const DEFAULTS = {
   UPDATE_INTERVAL: 500,
-  EXTRACT_TARGET_YOUTUBE: 28,
-  EXTRACT_TARGET_SOCIAL: 95,
-  EXTRACT_DURATION: 3000,
   COMPLETE_DURATION: 800,
   TWEEN_DURATION: 350,
 };
@@ -36,11 +35,7 @@ export class ProgressBarManager {
   private isRunningFlag: boolean = false;
   private intervalId: number | null = null;
   private animationFrameId: number | null = null;
-  private targetPercent: number = 100;
-  private startTime: number = 0;
-  private estimatedDuration: number = 0;
   private onCompleteCallback: (() => void) | null = null;
-  private extractCompleteCallback: (() => void) | null = null;
 
   constructor(options: { wrapper: string }) {
     if (!options || !options.wrapper) {
@@ -91,49 +86,17 @@ export class ProgressBarManager {
     this.queryElements();
   }
 
-  private updateVisualProgress(percent: number): void {
+  private updateVisualProgress(percent: number, statusText?: string): void {
     const clampedPercent = Math.min(Math.max(percent, 0), 100);
     const roundedPercent = Math.round(clampedPercent);
 
     this.currentProgress = roundedPercent;
 
-    if (this.elements.mainStatusText) {
-      const percentText = roundedPercent + '%';
-      this.elements.mainStatusText.textContent = `Processing… ${percentText}`;
+    // Only update status text if explicitly provided
+    // This allows different phases to set their own status messages
+    if (statusText && this.elements.mainStatusText) {
+      this.elements.mainStatusText.textContent = statusText;
     }
-  }
-
-  private calculateEaseOutProgress(elapsedMs: number): number {
-    const totalDuration = this.estimatedDuration * 1000;
-    const progress = Math.min(elapsedMs / totalDuration, 1);
-    return Easing.easeOutCubic(progress) * this.targetPercent;
-  }
-
-  private startProgressAnimation(): void {
-    if (this.intervalId) {
-      clearInterval(this.intervalId);
-    }
-
-    this.isRunningFlag = true;
-    this.startTime = Date.now();
-    this.currentProgress = 0;
-    this.updateVisualProgress(0);
-
-    this.intervalId = window.setInterval(() => {
-      if (!this.isRunningFlag) return;
-
-      const elapsedMs = Date.now() - this.startTime;
-      const newProgress = this.calculateEaseOutProgress(elapsedMs);
-
-      if (newProgress >= this.targetPercent) {
-        this.currentProgress = this.targetPercent;
-        this.updateVisualProgress(this.currentProgress);
-        this.stopProgressAnimation();
-        return;
-      }
-
-      this.updateVisualProgress(newProgress);
-    }, DEFAULTS.UPDATE_INTERVAL);
   }
 
   private stopProgressAnimation(): void {
@@ -152,7 +115,6 @@ export class ProgressBarManager {
     }
 
     this.onCompleteCallback = null;
-    this.extractCompleteCallback = null;
   }
 
   private tweenToProgress(targetProgress: number, duration: number, callback?: () => void): void {
@@ -165,13 +127,23 @@ export class ProgressBarManager {
       const progress = Math.min(elapsed / duration, 1);
       const easedProgress = Easing.easeOutCubic(progress);
       this.currentProgress = startProgress + delta * easedProgress;
-      this.updateVisualProgress(this.currentProgress);
+
+      // Update visual without changing status text (preserve existing text)
+      if (this.elements.mainStatusText) {
+        const currentText = this.elements.mainStatusText.textContent || '';
+        const baseText = currentText.replace(/\s+\d+%$/, ''); // Remove existing percentage
+        this.elements.mainStatusText.textContent = `${baseText} ${Math.round(this.currentProgress)}%`;
+      }
 
       if (progress < 1) {
         this.animationFrameId = requestAnimationFrame(animate);
       } else {
         this.currentProgress = targetProgress;
-        this.updateVisualProgress(this.currentProgress);
+        if (this.elements.mainStatusText) {
+          const currentText = this.elements.mainStatusText.textContent || '';
+          const baseText = currentText.replace(/\s+\d+%$/, '');
+          this.elements.mainStatusText.textContent = `${baseText} ${Math.round(targetProgress)}%`;
+        }
         callback?.();
       }
     };
@@ -187,21 +159,15 @@ export class ProgressBarManager {
     }
 
     this.renderProgressHTML();
-
-    // Show the progress content (elements are already visible by default)
-    // No need to manipulate display - modal handles visibility
   }
 
   hide(): void {
-    // Progress bar visibility is controlled by modal
-    // Just reset the progress
     this.reset();
   }
 
   reset(): void {
     this.clearAllTimers();
     this.currentProgress = 0;
-    this.targetPercent = 100;
     this.updateVisualProgress(0);
   }
 
@@ -216,93 +182,171 @@ export class ProgressBarManager {
     });
   }
 
-  startExtractPhase(targetPercent: number = DEFAULTS.EXTRACT_TARGET_YOUTUBE, onComplete?: () => void): void {
+  /**
+   * Start downloading phase with real progress (RAM download)
+   * Progress: 0% → 100% with real-time size updates
+   *
+   * WHY: RAM download shows actual download progress with MB/GB display
+   * CONTRACT: (options:object) → void - starts download phase with progress callback
+   * PRE: Valid totalSize, onProgress callback returns Promise
+   * POST: Progress bar animates from 0% to 100% with real-time updates
+   * EDGE: totalSize = 0 → show indeterminate progress
+   * USAGE: progressBar.startDownloadingPhase({ totalSize, onProgress, onComplete });
+   */
+  startDownloadingPhase(options: {
+    totalSize: number;
+    onProgress: (callback: (loaded: number, total: number) => void) => Promise<void>;
+    onComplete?: () => void;
+  }): void {
+    // Reset to 0%
+    this.currentProgress = 0;
 
-    this.targetPercent = targetPercent;
-    this.estimatedDuration = DEFAULTS.EXTRACT_DURATION / 1000; // Convert to seconds
-    this.extractCompleteCallback = onComplete || null;
+    // Display initial state with total size
+    const totalMB = Math.max(1, Math.ceil(options.totalSize / (1024 * 1024)));
+    const totalDisplay = options.totalSize >= 1024 * 1024 * 1024
+      ? `${Math.max(1, Math.ceil(options.totalSize / (1024 * 1024 * 1024)))} GB`
+      : `${totalMB} MB`;
 
-    this.startProgressAnimation();
-  }
+    this.updateVisualProgress(0, `Downloading... 0 MB / ${totalDisplay}`);
 
-  completeExtractToFull(onCompleteCallback?: () => void): void {
+    // Start real download progress
+    const onProgressCallback = (loaded: number, total: number) => {
+      // Use options.totalSize as fallback if fetch doesn't provide content-length
+      const actualTotal = total > 0 ? total : options.totalSize;
+      const progressPercent = actualTotal > 0 ? (loaded / actualTotal) * 100 : 0;
+      this.currentProgress = progressPercent;
 
-    this.stopProgressAnimation();
+      // Format loaded size
+      const loadedMB = Math.ceil(loaded / (1024 * 1024));
+      const loadedSize = loaded >= 1024 * 1024 * 1024
+        ? `${Math.ceil(loaded / (1024 * 1024 * 1024))} GB`
+        : `${loadedMB} MB`;
 
-    this.tweenToProgress(100, DEFAULTS.COMPLETE_DURATION, () => {
-      onCompleteCallback?.();
+      // Handle unknown total size (no content-length header AND no size from extract)
+      if (actualTotal === 0) {
+        // Indeterminate progress - show only loaded size
+        this.updateVisualProgress(0, `Downloading... ${loadedSize}`);
+        return;
+      }
+
+      // Known total size - show progress without percentage
+      const totalMB = Math.max(1, Math.ceil(actualTotal / (1024 * 1024)));
+      const totalSize = actualTotal >= 1024 * 1024 * 1024
+        ? `${Math.max(1, Math.ceil(actualTotal / (1024 * 1024 * 1024)))} GB`
+        : `${totalMB} MB`;
+
+      this.updateVisualProgress(progressPercent, `Downloading... ${loadedSize} / ${totalSize}`);
+    };
+
+    options.onProgress(onProgressCallback).then(() => {
+      this.currentProgress = 100;
+      this.updateVisualProgress(100, 'Download complete 100%');
+      options.onComplete?.();
+    }).catch((error) => {
+      // Error handling is done by caller
     });
   }
 
-  resumeToDownloadPhase(type: string, options: any = {}): void {
+  /**
+   * Start polling phase with 2 sub-phases
+   * Sub-phase 1 (Processing): 0% → 60% (real API progress)
+   * Sub-phase 2 (Merging): 60% → 100% (estimated)
+   *
+   * WHY: Initialize polling phase with clean 0% state
+   * CONTRACT: () → void - resets progress and prepares for polling updates
+   * PRE: None
+   * POST: Progress at 0%, status text set to 'Processing...'
+   * EDGE: Can be called multiple times (resets each time)
+   * USAGE: progressBar.startPollingPhase();
+   */
+  startPollingPhase(): void {
+    // Reset to 0%
+    this.currentProgress = 0;
+    this.updateVisualProgress(0, 'Processing... 0%');
+  }
 
-    this.stopProgressAnimation();
+  /**
+   * Update polling progress (called from convert-logic when API data arrives)
+   * Uses PollingProgressMapper to calculate display progress
+   *
+   * WHY: Update progress bar with polling data from API with smooth animation
+   * CONTRACT: (displayProgress:number, statusText:string) → void
+   * PRE: displayProgress in range [0, 100], statusText is non-empty
+   * POST: Progress bar smoothly animates to displayProgress with statusText
+   * EDGE: displayProgress > 100 → clamped to 100; animates from current to target
+   * USAGE: progressBar.updatePollingProgress(45, 'Processing');
+   */
+  updatePollingProgress(displayProgress: number, statusText: string): void {
+    const targetProgress = Math.min(Math.max(displayProgress, 0), 100);
 
-    if (type === 'stream' && options.onProgress) {
-      // iOS RAM download - call onProgress callback with (loaded, total) signature
-      const onProgressCallback = (loaded: number, total: number) => {
-        const progressPercent = total > 0 ? (loaded / total) * 100 : 0;
-        // Map download progress (0-100%) to remaining progress bar space
-        const remainingSpace = 100 - this.currentProgress;
-        const newProgress = this.currentProgress + (progressPercent / 100) * remainingSpace;
-        this.updateVisualProgress(newProgress);
-      };
+    // Cancel any existing animation
+    if (this.animationFrameId) {
+      cancelAnimationFrame(this.animationFrameId);
+      this.animationFrameId = null;
+    }
 
-      options.onProgress(onProgressCallback).then(() => {
-        options.onComplete?.();
-      });
-    } else if (type === 'polling') {
-      // Polling - progress will be updated via updatePollingProgress
-      // Just store callbacks
-      if (options.onProgress) {
-        // Polling progress callback (not used directly, updated via updatePollingProgress)
+    // Only animate if progress is moving forward
+    if (targetProgress <= this.currentProgress) {
+      // No animation for backward/same progress
+      const roundedProgress = Math.round(targetProgress);
+      this.updateVisualProgress(targetProgress, `${statusText} ${roundedProgress}%`);
+      return;
+    }
+
+    // Smooth animation from current to target (duration based on distance)
+    const progressDelta = targetProgress - this.currentProgress;
+    const duration = Math.min(progressDelta * 30, 1000); // Max 1s animation
+
+    this.tweenToProgressWithStatus(targetProgress, duration, statusText);
+  }
+
+  private tweenToProgressWithStatus(targetProgress: number, duration: number, statusText: string): void {
+    const startProgress = this.currentProgress;
+    const startTime = Date.now();
+    const delta = targetProgress - startProgress;
+
+    const animate = () => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const easedProgress = Easing.easeOutCubic(progress);
+      this.currentProgress = startProgress + delta * easedProgress;
+
+      // Update visual with current progress
+      const roundedProgress = Math.round(this.currentProgress);
+      if (this.elements.mainStatusText) {
+        this.elements.mainStatusText.textContent = `${statusText} ${roundedProgress}%`;
       }
-      if (options.onComplete) {
-        this.onCompleteCallback = options.onComplete;
+
+      if (progress < 1) {
+        this.animationFrameId = requestAnimationFrame(animate);
+      } else {
+        this.currentProgress = targetProgress;
+        const finalRounded = Math.round(targetProgress);
+        if (this.elements.mainStatusText) {
+          this.elements.mainStatusText.textContent = `${statusText} ${finalRounded}%`;
+        }
       }
-    } else {
-      // Default - complete to 100%
-      this.tweenToProgress(100, DEFAULTS.TWEEN_DURATION, options.onComplete);
-    }
+    };
+
+    animate();
   }
 
-  setPollingProgress(progress: number, statusText?: string): void {
-
-    this.updateVisualProgress(progress);
-
-    if (statusText && this.elements.mainStatusText) {
-      const fullText = `${statusText} ${Math.floor(progress)}%`;
-      this.elements.mainStatusText.textContent = fullText;
-    } else {
-    }
-  }
-
-  updatePollingProgress(apiData: any, phase: string): void {
-
-    const { videoProgress, audioProgress, status } = apiData;
-
-    // Calculate display progress based on phase
-    let displayProgress = 0;
-    let statusText = 'Processing…';
-
-    if (phase === 'processing') {
-      // Processing phase: 0-50% based on video/audio progress
-      const avgProgress = (videoProgress + audioProgress) / 2;
-      displayProgress = avgProgress * 0.5; // Map 0-100% to 0-50%
-      statusText = 'Processing video…';
-    } else if (phase === 'merging') {
-      // Merging phase: 50-100%
-      const avgProgress = (videoProgress + audioProgress) / 2;
-      displayProgress = 50 + avgProgress * 0.5; // Map 0-100% to 50-100%
-      statusText = 'Merging files…';
-    }
-
-    this.setPollingProgress(displayProgress, statusText);
-  }
-
-  completePollingProgress(): void {
+  /**
+   * Complete polling to 100% (when mergedUrl received)
+   *
+   * WHY: Animate final completion of polling phase
+   * CONTRACT: (onComplete?:function) → void - tweens to 100% and calls callback
+   * PRE: None
+   * POST: Progress animated to 100%, callback invoked
+   * EDGE: Already at 100% → still animates and calls callback
+   * USAGE: progressBar.completePollingPhase(() => showDownloadButton());
+   */
+  completePollingPhase(onComplete?: () => void): void {
     this.tweenToProgress(100, DEFAULTS.COMPLETE_DURATION, () => {
-      this.onCompleteCallback?.();
+      if (this.elements.mainStatusText) {
+        this.elements.mainStatusText.textContent = 'Ready 100%';
+      }
+      onComplete?.();
     });
   }
 
@@ -314,11 +358,7 @@ export class ProgressBarManager {
     return this.isRunningFlag;
   }
 
-  // Stub methods for compatibility
-  updateProgress(videoProgress: number, audioProgress: number, message?: string): void {
-    // Not used in current implementation
-  }
-
+  // Legacy method for compatibility
   setText(message: string): void {
     if (this.elements.mainStatusText) {
       this.elements.mainStatusText.textContent = message;

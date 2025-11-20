@@ -149,6 +149,7 @@ class ConcurrentPollingManager {
         try {
             const task = getConversionTask(formatId);
 
+
             // Check if task was canceled
             if (!task || task.abortController.signal.aborted) {
                 this.stopPolling(formatId);
@@ -178,8 +179,12 @@ class ConcurrentPollingManager {
             // Extract cache ID from progressUrl using helper
             const cacheId = extractCacheId(taskData.progressUrl!);
 
+            const callTime = Date.now();
+
             // Use service layer for progress polling (proper architecture)
             const result = await api.getDownloadProgress({ cacheId });
+
+            const responseTime = Date.now() - callTime;
 
             // Check if request succeeded (VerifiedResult uses 'ok' instead of 'success')
             if (!result.ok || !result.data) {
@@ -191,6 +196,7 @@ class ConcurrentPollingManager {
 
             // Expected format: { cacheId, videoProgress, audioProgress, status, mergedUrl, error }
             const { videoProgress, audioProgress, status, mergedUrl } = progressData;
+
 
             // Call progress update callback from convert logic
             if (taskData.onProgressUpdate) {
@@ -246,6 +252,7 @@ class ConcurrentPollingManager {
      * @param formatId - Format identifier
      */
     stopPolling(formatId: string): void {
+
         const poll = this.activePolls.get(formatId);
         if (!poll) {
             // Check global registry for leaked intervals
@@ -256,6 +263,7 @@ class ConcurrentPollingManager {
             this._forceCleanupAllTimers();
             return;
         }
+
 
         // Clear interval and timeout
         clearInterval(poll.intervalId);
@@ -270,6 +278,7 @@ class ConcurrentPollingManager {
 
         // Remove from active polls
         this.activePolls.delete(formatId);
+
     }
 
     /**

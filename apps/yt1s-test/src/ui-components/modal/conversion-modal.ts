@@ -6,7 +6,7 @@
 import { ProgressBarManager } from '../progress-bar/progress-bar-manager';
 
 interface ModalState {
-  status: 'CONVERTING' | 'SUCCESS' | 'ERROR' | 'EXPIRED';
+  status: 'EXTRACTING' | 'CONVERTING' | 'SUCCESS' | 'ERROR' | 'EXPIRED';
   provider: string;
   startTime: number;
   progress: number;
@@ -56,9 +56,9 @@ export class ConversionModal {
       return;
     }
 
-    // Support opening directly in specific states (SUCCESS, EXPIRED, etc.)
+    // Support opening directly in specific states (SUCCESS, EXPIRED, EXTRACTING, etc.)
     const initialStatus = options.initialStatus || 'CONVERTING';
-    const skipProgressBar = initialStatus !== 'CONVERTING';
+    const skipProgressBar = initialStatus !== 'CONVERTING' && initialStatus !== 'EXTRACTING';
 
     this.isOpenFlag = true;
     this.abortController = new AbortController();
@@ -81,9 +81,14 @@ export class ConversionModal {
     // Render modal HTML
     this.render();
 
-    // Initialize progress bar if in CONVERTING state
+    // Initialize progress bar if in CONVERTING state (Phase 2)
+    // Note: EXTRACTING state (Phase 1) has no progress bar
     if (this.state.status === 'CONVERTING' && !skipProgressBar) {
-      this.startProgress();
+      const progressSelector = `${this.wrapperSelector} .conversion-progress`;
+      this.progressBarManager = new ProgressBarManager({ wrapper: progressSelector });
+      this.progressBarManager.show();
+      // Note: We don't auto-start any animation here
+      // The convert-logic will call startDownloadingPhase() or startPollingPhase()
     }
 
     // Show modal
@@ -121,6 +126,32 @@ export class ConversionModal {
     // Dispatch modal closed event
     this.dispatchEvent('conversion:modal-closed', { formatId });
 
+  }
+
+  transitionToConverting(): void {
+    // Zombie guard
+    if (!this.state) {
+      return;
+    }
+
+    // Update state
+    this.state = {
+      ...this.state,
+      status: 'CONVERTING',
+      progress: 0 // Reset progress to 0% for phase 2
+    };
+
+    // Re-render body content to show progress bar
+    this.updateBodyContent();
+
+    // Initialize progress bar for phase 2
+    // Note: We don't auto-start any animation here
+    // The convert-logic will call startDownloadingPhase() or startPollingPhase()
+    if (!this.progressBarManager) {
+      const progressSelector = `${this.wrapperSelector} .conversion-progress`;
+      this.progressBarManager = new ProgressBarManager({ wrapper: progressSelector });
+      this.progressBarManager.show();
+    }
   }
 
   transitionToSuccess(downloadUrl?: string): void {
@@ -259,6 +290,9 @@ export class ConversionModal {
     if (bodyContainer) {
       let bodyContent = '';
       switch (this.state.status) {
+        case 'EXTRACTING':
+          bodyContent = this.renderExtracting();
+          break;
         case 'CONVERTING':
           bodyContent = this.renderConverting();
           break;
@@ -305,6 +339,9 @@ export class ConversionModal {
     let bodyContent = '';
 
     switch (this.state.status) {
+      case 'EXTRACTING':
+        bodyContent = this.renderExtracting();
+        break;
       case 'CONVERTING':
         bodyContent = this.renderConverting();
         break;
@@ -368,13 +405,24 @@ export class ConversionModal {
     `;
   }
 
-  private renderConverting(): string {
+  private renderExtracting(): string {
     return `
-      <div class="conversion-state conversion-state--converting">
+      <div class="conversion-state conversion-state--extracting">
         <div class="loading-spinner-container" aria-hidden="true">
           <div class="spinning-circle"></div>
         </div>
 
+        <h3 class="conversion-title">Extracting...</h3>
+        <p class="conversion-message">Preparing your download</p>
+
+        <!-- NO PROGRESS BAR - just spinner -->
+      </div>
+    `;
+  }
+
+  private renderConverting(): string {
+    return `
+      <div class="conversion-state conversion-state--converting">
         <h3 class="conversion-title">Converting Video...</h3>
 
         <div class="conversion-progress">
@@ -506,6 +554,12 @@ export class ConversionModal {
   }
 
   private handleCancel(): void {
+    // Dispatch cancel event BEFORE closing to allow cleanup
+    if (this.state?.formatId) {
+      this.dispatchEvent('conversion:cancel', {
+        formatId: this.state.formatId
+      });
+    }
     this.close();
   }
 
@@ -546,21 +600,6 @@ export class ConversionModal {
     this.removeEventListeners();
   }
 
-  private startProgress(): void {
-
-    // Create progress bar manager
-    const progressSelector = `${this.wrapperSelector} .conversion-progress`;
-    this.progressBarManager = new ProgressBarManager({ wrapper: progressSelector });
-
-    // Show progress bar
-    this.progressBarManager.show();
-
-    // Start extract phase (target 28% for YouTube, 95% for social media)
-    const isYouTube = this.state?.provider === 'youtube';
-    const targetPercent = isYouTube ? 28 : 95;
-
-    this.progressBarManager.startExtractPhase(targetPercent);
-  }
 
   private cleanupProgress(): void {
     if (this.progressBarManager) {
@@ -631,18 +670,15 @@ export class ConversionModal {
   }
 
   private dispatchEvent(eventName: string, detail: any = {}): void {
+
     const event = new CustomEvent(eventName, {
       detail,
       bubbles: true,
       cancelable: true
     });
 
-    // Dispatch on wrapper element
-    if (this.wrapper) {
-      this.wrapper.dispatchEvent(event);
-    }
-
-    // Also dispatch globally for easy listening
+    // ONLY dispatch on window (not on wrapper to avoid duplicate)
+    // Event listeners are on window, so this is sufficient
     window.dispatchEvent(event);
 
   }

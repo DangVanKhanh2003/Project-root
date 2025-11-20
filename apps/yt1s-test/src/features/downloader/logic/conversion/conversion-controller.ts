@@ -41,47 +41,71 @@ declare global {
     }
 }
 
+// Named event handlers to prevent duplicates
+const handleCancelEvent = async (event: CustomEvent<ConversionCancelEventDetail>) => {
+    const { formatId } = event.detail;
+
+    if (formatId) {
+        ConvertLogic.cancelConversion(formatId);
+    }
+};
+
+const handleDownloadEvent = async (event: CustomEvent<ConversionDownloadEventDetail>) => {
+    const { formatId } = event.detail;
+
+    if (formatId) {
+        try {
+            await ConvertLogic.downloadConvertedFile(formatId);
+            // Modal will be updated by convert-logic (transition to EXPIRED or close)
+        } catch (error) {
+            // Error handling is done inside convert-logic
+        }
+    }
+};
+
+const handleRetryEvent = async (event: CustomEvent<ConversionRetryEventDetail>) => {
+    const { formatId } = event.detail;
+
+    if (formatId) {
+        try {
+            await ConvertLogic.reConvert(formatId);
+            // Modal will be updated by convert-logic
+        } catch (error) {
+            // Error handling is done inside convert-logic
+        }
+    }
+};
+
+// Guard to prevent duplicate initialization
+let isInitialized = false;
+
 /**
  * Initialize conversion controller
  * Sets up event listeners to wire modal events → business logic
+ *
+ * WHY: Prevent duplicate event listeners that cause multiple API calls
+ * CONTRACT: () → void - idempotent, safe to call multiple times
+ * PRE: None
+ * POST: Event listeners attached exactly once, isInitialized = true
+ * EDGE: Called multiple times → only first call has effect
+ * USAGE: initConversionController(); // Safe to call in module init
  */
 export function initConversionController(): void {
-    // Listen to cancel events
-    window.addEventListener('conversion:cancel', async (event) => {
-        const { formatId } = event.detail;
+    // Prevent duplicate initialization
+    if (isInitialized) {
+        return;
+    }
+    isInitialized = true;
 
-        if (formatId) {
-            ConvertLogic.cancelConversion(formatId);
-        }
-    });
+    // Remove existing listeners first (defensive)
+    window.removeEventListener('conversion:cancel', handleCancelEvent as EventListener);
+    window.removeEventListener('conversion:download', handleDownloadEvent as EventListener);
+    window.removeEventListener('conversion:retry', handleRetryEvent as EventListener);
 
-    // Listen to download events
-    window.addEventListener('conversion:download', async (event) => {
-        const { formatId } = event.detail;
-
-        if (formatId) {
-            try {
-                await ConvertLogic.downloadConvertedFile(formatId);
-                // Modal will be updated by convert-logic (transition to EXPIRED or close)
-            } catch (error) {
-                // Error handling is done inside convert-logic
-            }
-        }
-    });
-
-    // Listen to retry events
-    window.addEventListener('conversion:retry', async (event) => {
-        const { formatId } = event.detail;
-
-        if (formatId) {
-            try {
-                await ConvertLogic.reConvert(formatId);
-                // Modal will be updated by convert-logic
-            } catch (error) {
-                // Error handling is done inside convert-logic
-            }
-        }
-    });
+    // Add fresh listeners
+    window.addEventListener('conversion:cancel', handleCancelEvent as EventListener);
+    window.addEventListener('conversion:download', handleDownloadEvent as EventListener);
+    window.addEventListener('conversion:retry', handleRetryEvent as EventListener);
 
     // Optional: Log modal lifecycle for debugging
     window.addEventListener('conversion:modal-opened', (event) => {
