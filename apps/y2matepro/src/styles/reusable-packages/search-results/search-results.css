@@ -30,7 +30,6 @@
     padding: var(--pkg-space-6) 0;
     padding-top: 40px !important;
     padding-bottom: 40px !important;
-    background: var(--pkg-search-results-section-bg);
     min-height: 0; /* Allow section to collapse when empty */
 }
 
@@ -94,7 +93,6 @@
     .search-results-grid {
         grid-template-columns: repeat(4, 1fr) !important;
         gap: var(--pkg-search-results-gap-tablet);
-        max-width: 1100px;
         margin: 0 auto;
     }
 
@@ -108,21 +106,21 @@
 /* Wide Desktop (1240px+) */
 @media (min-width: 1240px) {
     .search-results-grid {
-        max-width: 1100px;
+        /* Full width - no max-width restriction */
     }
 }
 
 /* 2K Display (1920px+) - 4 columns */
 @media (min-width: 1920px) {
     .search-results-grid {
-        max-width: 1100px;
+        /* Full width - no max-width restriction */
     }
 }
 
 /* 4K Display (2560px+) - 4 columns */
 @media (min-width: 2560px) {
     .search-results-grid {
-        max-width: 1600px;
+        /* Full width - no max-width restriction */
     }
 }
 
@@ -147,9 +145,8 @@
     border-radius: var(--pkg-search-results-card-radius);
     overflow: hidden;
     cursor: pointer;
-    transition: transform var(--pkg-search-results-transition-duration) var(--pkg-search-results-transition-easing),
-                box-shadow var(--pkg-search-results-transition-duration) var(--pkg-search-results-transition-easing);
-    box-shadow: var(--pkg-search-results-card-shadow);
+    transition: transform var(--pkg-search-results-transition-duration) var(--pkg-search-results-transition-easing);
+    /* No shadow - removed as per design requirements */
 }
 
 /* Card Thumbnail Container */
@@ -248,7 +245,7 @@
 /* ======= Hover Effects ======= */
 .search-result-card:hover {
     transform: translateY(-4px);
-    box-shadow: var(--pkg-search-results-card-shadow-hover);
+    /* No shadow on hover - removed as per design requirements */
 }
 
 

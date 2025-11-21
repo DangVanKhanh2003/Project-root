@@ -154,16 +154,6 @@ export function renderDownloadOptions(state: AppState): string {
             <div class="video-layout">
                 <!-- Left Column: Video Info -->
                 <div class="video-info-left">
-                 <div class="format-tabs" role="tablist" aria-label="Format selection">
-                    <button type="button"
-                            class="format-tab active "
-                            role="tab"
-                            aria-controls="videoFormats"
-                            data-tab="video"
-                            id="tab-video">
-                        <span>Download</span>
-                    </button>
-                </div>
                     ${renderVideoInfoSmart(meta)}
                 </div>
 

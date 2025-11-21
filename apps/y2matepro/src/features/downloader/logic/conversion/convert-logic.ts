@@ -1036,7 +1036,7 @@ export async function handleYouTubeDownload(formatData: FormatData, autoDownload
         };
 
 
-        // Call YouTube Download API V2 (sv-190.y2mp3.co)
+        // Call YouTube Download API V2 (yt-extractor.y2mp3.co)
         const result = await api.downloadYouTube(downloadRequest, abortSignal || undefined);
 
 

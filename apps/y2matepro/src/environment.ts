@@ -99,7 +99,7 @@ const environment: Environment = {
         baseUrlV1: import.meta.env.VITE_API_BASE_URL_V1 || 'https://api.yt1s.cx/api/v1',
 
         // V2 API Base URL (new API endpoint - current default)
-        baseUrlV2: import.meta.env.VITE_API_BASE_URL_V2 || 'https://sv-190.y2mp3.co',
+        baseUrlV2: import.meta.env.VITE_API_BASE_URL_V2 || 'https://yt-extractor.y2mp3.co',
 
         // Main API (currently uses V1 - for extract, convert, playlist, etc.)
         // Both dev and prod use production API (no local backend)
@@ -107,7 +107,7 @@ const environment: Environment = {
 
         // Search V2 API (YouTube search) - separate domain
         // Both dev and prod use production API (no local backend)
-        searchV2BaseUrl: import.meta.env.VITE_SEARCH_V2_BASE_URL || 'https://sv-190.y2mp3.co',
+        searchV2BaseUrl: import.meta.env.VITE_SEARCH_V2_BASE_URL || 'https://yt-extractor.y2mp3.co',
 
         // YouTube Stream API (new service endpoint)
         // Both dev and prod use production API (no local backend)
@@ -118,11 +118,11 @@ const environment: Environment = {
 
         // V2 API (extract, search) - same as baseUrlV2 but without /api/v2 suffix
         // Both dev and prod use production API (no local backend)
-        v2ApiUrl: 'https://sv-190.y2mp3.co',
+        v2ApiUrl: 'https://yt-extractor.y2mp3.co',
 
         // Queue API (YouTube add queue)
         // Both dev and prod use production API (no local backend)
-        queueApiUrl: 'https://sv-190.y2mp3.co',
+        queueApiUrl: 'https://yt-extractor.y2mp3.co',
 
         // Search endpoint (specific for search functionality)
         searchEndpoint: '/index.php',
