@@ -186,3 +186,169 @@
         font-size: 11px;
     }
 }
+
+/* =========================================================
+   INPUT ACTION BUTTON (Copy/Paste)
+   ---------------------------------------------------------
+   Mobile-first responsive design with 7 breakpoints
+   Toggle button for paste/clear functionality
+   ========================================================= */
+
+/* ===== INPUT WRAPPER ===== */
+.input-wrapper {
+    position: relative;
+    display: flex;
+    flex: 1;
+    align-items: center;
+}
+
+/* ===== BUTTON BASE STYLES ===== */
+.input-action-btn {
+    position: absolute;
+    right: 130px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: var(--color-primary);
+    cursor: pointer;
+    padding: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    transition: opacity 0.2s ease;
+    /* Touch target minimum 44x44px */
+    min-width: 44px;
+    min-height: 44px;
+}
+
+.input-action-btn:hover {
+    opacity: 0.8;
+}
+
+.input-action-btn:active {
+    opacity: 0.6;
+}
+
+.input-action-btn:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* ===== ICON VISIBILITY CONTROL ===== */
+.input-action-btn[data-action="paste"] .paste-icon {
+    display: block;
+}
+
+.input-action-btn[data-action="paste"] .clear-icon {
+    display: none;
+}
+
+.input-action-btn[data-action="clear"] .paste-icon {
+    display: none;
+}
+
+.input-action-btn[data-action="clear"] .clear-icon {
+    display: block;
+}
+
+/* ===== ICON SIZING ===== */
+.input-action-btn svg {
+    width: 14px;
+    height: 14px;
+}
+
+/* =========================================================
+   Responsive Breakpoints (Mobile-First)
+   ---------------------------------------------------------
+   • Extra Small Mobile (0–350px)
+   • Small Mobile (351–599px)
+   • Medium (Tablet) – 600–839px
+   • Expanded (Desktop) – 840–1239px
+   • Large (Wide Desktop) – 1240–1919px
+   • Extra Large (2K) – 1920–2559px
+   • Ultra Large (4K) – 2560px+
+   ========================================================= */
+
+/* Extra Small Mobile: 0-350px (base styles above) */
+
+/* Small Mobile: 351-599px */
+@media (min-width: 351px) {
+    .input-action-btn {
+        right: 132px;
+        padding: 8px;
+    }
+
+    .input-action-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+/* Medium (Tablet): 600-839px */
+@media (min-width: 600px) {
+    .input-action-btn {
+        right: 135px;
+        padding: 10px;
+    }
+
+    .input-action-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+/* Expanded (Desktop): 840-1239px */
+@media (min-width: 840px) {
+    .input-action-btn {
+        right: 138px;
+    }
+
+    .input-action-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+/* Large (Wide Desktop): 1240-1919px */
+@media (min-width: 1240px) {
+    .input-action-btn {
+        right: 140px;
+    }
+}
+
+/* Extra Large (2K): 1920-2559px */
+@media (min-width: 1920px) {
+    .input-action-btn {
+        padding: 12px;
+    }
+
+    .input-action-btn svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* Ultra Large (4K): 2560px+ */
+@media (min-width: 2560px) {
+    .input-action-btn svg {
+        width: 22px;
+        height: 22px;
+    }
+}
+
+/* ===== MOBILE ADJUSTMENTS (to work with existing max-width queries) ===== */
+@media (max-width: 767px) {
+    .input-action-btn {
+        right: 70px;
+        padding: 8px;
+        min-width: 40px;
+        min-height: 40px;
+    }
+
+    .input-action-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+}

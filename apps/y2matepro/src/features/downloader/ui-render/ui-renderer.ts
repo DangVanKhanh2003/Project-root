@@ -81,18 +81,19 @@ function updateLoadingState(isLoading: boolean): void {
 /**
  * Update paste/clear button visibility
  * Note: In new design, we have a single action button that toggles between Paste/Clear
+ * Icon-only design - CSS handles icon visibility based on data-action attribute
  */
 function updateButtonVisibility(showPaste: boolean, showClear: boolean): void {
-  // Update the single action button to show either Paste or Clear
+  // Update the single action button to show either Paste or Clear icon
   if (elements.pasteBtn) {
     if (showClear) {
-      // Has content → show Clear
-      elements.pasteBtn.innerHTML = 'Clear';
+      // Has content → show Clear icon
       elements.pasteBtn.dataset.action = 'clear';
+      elements.pasteBtn.setAttribute('aria-label', 'Clear input');
     } else {
-      // No content → show Paste
-      elements.pasteBtn.innerHTML = ' Paste';
+      // No content → show Paste icon
       elements.pasteBtn.dataset.action = 'paste';
+      elements.pasteBtn.setAttribute('aria-label', 'Paste from clipboard');
     }
   }
 
