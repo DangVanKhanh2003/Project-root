@@ -399,10 +399,13 @@ function renderDetailSkeleton(): string {
             <div class="skeleton-img"></div>
           </div>
 
-          <!-- Title -->
+          <!-- Title - MUST match .video-title + see-more height to prevent CLS -->
           <div class="video-title-wrapper">
-            <div class="skeleton-title" style="width: 85%; margin-bottom: 8px; height: 14px"></div>
-            <div class="skeleton-title" style="width: 65%; height: 14px"></div>
+            <div class="video-title-skeleton">
+              <div class="skeleton-line"></div>
+              <div class="skeleton-line"></div>
+              <div class="skeleton-see-more"></div>
+            </div>
           </div>
         </div>
 
@@ -411,26 +414,23 @@ function renderDetailSkeleton(): string {
           <!-- Format Tabs -->
           <div class="format-tabs" role="tablist">
             <div class="format-tab">
-              <div class="skeleton-title" style="width: 60px; height: 18px;"></div>
+              <div class="skeleton-tab-text"></div>
             </div>
             <div class="format-tab">
-              <div class="skeleton-title" style="width: 60px; height: 18px;"></div>
+              <div class="skeleton-tab-text"></div>
             </div>
           </div>
 
-          <!-- Quality List -->
+          <!-- Quality List - 2 columns only (left + right) -->
           <div class="quality-list">
             ${Array(6).fill(null).map(() => `
               <div class="quality-item">
                 <div class="quality-row">
                   <div class="quality-col-left">
-                    <div class="skeleton-text" style="width: 60px;"></div>
-                  </div>
-                  <div class="quality-col-center">
-                    <div class="skeleton-text" style="width: 100px;"></div>
+                    <div class="skeleton-text" style="width: 80px;"></div>
                   </div>
                   <div class="quality-col-right">
-                    <div class="skeleton-button"></div>
+                    <div class="skeleton-convert-btn"></div>
                   </div>
                 </div>
               </div>

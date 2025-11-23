@@ -750,6 +750,13 @@ async function handleExtractMedia(url: string): Promise<void> {
           // Only update title - no need to re-render thumbnail
           updateVideoTitle(fakeData.meta);
         } else {
+          // API failed - fallback to showing the URL instead of "Loading..."
+          fakeData.meta.title = url;
+          fakeData.meta.author = '';
+
+          // Update state and UI with URL as title
+          setVideoDetail(fakeData);
+          updateVideoTitle(fakeData.meta);
         }
 
         // Reset isFromListItemClick flag after YouTube workflow completes
