@@ -142,6 +142,60 @@ export function updateVideoDetailFormat(formatId: string, formatUpdate: any): vo
 }
 
 /**
+ * Clear URL cache for a specific format in videoDetail
+ * Used when modal closes for social media formats
+ * @param formatId - Format identifier (e.g., "video|720p|mp4")
+ */
+export function clearVideoDetailFormat(formatId: string): void {
+  const currentState = getState();
+
+  if (!currentState.videoDetail || !currentState.videoDetail.formats) {
+    return;
+  }
+
+  // Parse formatId to get category
+  const parts = formatId.split('|');
+  if (parts.length < 2) {
+    return;
+  }
+
+  const category = parts[0] as 'video' | 'audio';
+  const formatArray = currentState.videoDetail.formats[category];
+
+  if (!Array.isArray(formatArray)) {
+    return;
+  }
+
+  // Clear url and related fields from matching format
+  const updatedFormats = formatArray.map(format => {
+    const quality = parts[1];
+    const formatType = parts[2];
+
+    if (format.quality === quality && format.format === formatType) {
+      return {
+        ...format,
+        url: null,
+        completedAt: undefined,
+        updatedAt: undefined
+      };
+    }
+    return format;
+  });
+
+  const updatedVideoDetail: VideoDetail = {
+    ...currentState.videoDetail,
+    formats: {
+      ...currentState.videoDetail.formats,
+      [category]: updatedFormats
+    }
+  };
+
+  setState({
+    videoDetail: updatedVideoDetail
+  });
+}
+
+/**
  * Get current detail type
  * @returns 'video', 'gallery', or null
  */

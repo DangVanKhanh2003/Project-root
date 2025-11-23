@@ -332,6 +332,30 @@ export class ProgressBarManager {
   }
 
   /**
+   * Update download progress for RAM download (iOS audio)
+   * Shows: "Downloading... X MB / Y MB" without appending %
+   *
+   * WHY: RAM download shows bytes progress, not percentage
+   * CONTRACT: (percent, statusText) → void
+   * PRE: Valid percent (0-100), statusText with MB info
+   * POST: Progress bar updated, statusText shown as-is (no % appended)
+   * USAGE: progressBar.updateDownloadProgress(44, 'Downloading... 12 MB / 26 MB');
+   */
+  updateDownloadProgress(displayProgress: number, statusText: string): void {
+    const targetProgress = Math.min(Math.max(displayProgress, 0), 100);
+
+    // Cancel any existing animation
+    if (this.animationFrameId) {
+      cancelAnimationFrame(this.animationFrameId);
+      this.animationFrameId = null;
+    }
+
+    // Update visual directly (no % appended)
+    this.currentProgress = targetProgress;
+    this.updateVisualProgress(targetProgress, statusText);
+  }
+
+  /**
    * Complete polling to 100% (when mergedUrl received)
    *
    * WHY: Animate final completion of polling phase

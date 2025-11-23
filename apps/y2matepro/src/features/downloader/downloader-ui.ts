@@ -17,6 +17,8 @@ import type { AppState } from './state';
  */
 export async function init(): Promise<void> {
   // Step 0: Initialize shared services
+  // Configure scroll manager for y2matepro (header is not fixed)
+  scrollManager.setHeaderConfig({ isFixed: false, height: 0 });
   scrollManager.init();
 
   // Step 1: Initialize renderers (views)

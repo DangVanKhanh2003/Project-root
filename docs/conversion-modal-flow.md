@@ -347,23 +347,20 @@ Phase 3 (80→95%): Chậm - 50% thời gian
 **Fake 10% đầu là BASE, real progress CỘNG thêm vào:**
 
 ```
-Với MP4 (range 10-90%):
+Với cả MP4 và MP3 (range 10-95%):
 API report: 0%   → Display: 10% (base)
-API report: 10%  → Display: 18% (10 + 10%*80%)
-API report: 50%  → Display: 50% (10 + 50%*80%)
-API report: 100% → Display: 90% (10 + 100%*80%)
-
-Với MP3 (range 10-60%):
-API report: 0%   → Display: 10% (base)
-API report: 100% → Display: 60% (10 + 100%*50%)
+API report: 50%  → Display: 52.5% (10 + 50%*85%)
+API report: 100% → Display: 95% (10 + 100%*85%)
 ```
+
+**Công thức:** `displayPercent = 10 + (apiPercent / 100) * 85`
 
 **Quan trọng:** 10% fake KHÔNG bị replace, mà là base để cộng thêm!
 
 ### Video + Audio Progress
 
 **MP4 (có cả video và audio):**
-- Overall = (video * 80%) + (audio * 20%)
+- Overall = (video * 60%) + (audio * 40%)
 - Video chiếm tỷ trọng lớn hơn
 
 **MP3 (chỉ audio):**
@@ -372,8 +369,8 @@ API report: 100% → Display: 60% (10 + 100%*50%)
 
 **Ví dụ MP4:**
 ```
-video=50%, audio=40% → overall = 50*0.8 + 40*0.2 = 48%
-                    → display = 10 + 48*0.8 = 48.4%
+video=50%, audio=40% → overall = 50*0.6 + 40*0.4 = 46%
+                    → display = 10 + 46*0.8 = 46.8%
 ```
 
 ### Quy Tắc Never Backwards

@@ -35,14 +35,15 @@
 }
 
 .y2mate-features-pro svg {
-    color: var(--color-primary);
-    margin-bottom: var(--space-lg);
+    display: block;
+    margin: 0 auto var(--space-lg);
+    color: var(--color-text-dark, #333);
 }
 
 .y2mate-features-pro h3 {
     font-size: var(--font-size-2xl);
     font-weight: var(--font-weight-bold);
-    color: var(--color-primary);
+    color: #c10841;
     margin: 0 0 8px;
     line-height: var(--line-height-tight);
 }

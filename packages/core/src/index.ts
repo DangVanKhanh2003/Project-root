@@ -97,3 +97,17 @@ export * from './domain';
 // Download flow coordination and session management
 // Exports: Multifile orchestrator, SSE manager, constants
 export * from './orchestration';
+
+// ========================================
+// Utils
+// ========================================
+// YouTube URL validation utilities
+export {
+  isYouTubeUrl,
+  isYouTubeUrlStrict,
+  isValidVideoId,
+  extractVideoId,
+  extractPlaylistId,
+  checkVideoExists,
+  type VideoExistsResult,
+} from './utils/youtube-url-validator';

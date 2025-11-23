@@ -17,6 +17,10 @@ export interface ScrollConfig {
     offsetPadding?: number;
     cssVariable?: string;
   };
+  header?: {
+    isFixed?: boolean;       // Whether header is fixed/sticky position
+    height?: number | null;  // Custom header height (null = auto-detect from navbar)
+  };
   timing?: {
     smoothScrollDuration?: number;
     throttleDelay?: number;
@@ -61,6 +65,10 @@ const DEFAULT_CONFIG: Required<ScrollConfig> = {
     selector: '.navbar',
     offsetPadding: 20, // Base padding value for calculations
     cssVariable: '--navbar-height',
+  },
+  header: {
+    isFixed: true,    // Default: header is fixed position
+    height: null,     // Default: auto-detect from navbar element
   },
   timing: {
     smoothScrollDuration: 500,
@@ -129,11 +137,25 @@ export class ScrollManager {
   }
 
   /**
-   * Get current navbar height dynamically
+   * Get current navbar/header height dynamically
    * Handles responsive design changes automatically
+   * Respects isHeaderFixed and custom headerHeight config
    */
   getNavbarHeight(): number {
     try {
+      // If header is not fixed, no offset needed for scroll calculations
+      if (!this.config.header.isFixed) {
+        this.log('Header is not fixed, returning 0 offset');
+        return 0;
+      }
+
+      // If custom header height is set, use it
+      if (this.config.header.height !== null) {
+        this.log(`Using custom header height: ${this.config.header.height}px`);
+        return this.config.header.height;
+      }
+
+      // Auto-detect from navbar element
       if (!this.cache.navbar) {
         this.cacheNavbarElement();
       }
@@ -152,6 +174,33 @@ export class ScrollManager {
     } catch (error) {
       return 80; // Safe fallback
     }
+  }
+
+  /**
+   * Check if header is fixed/sticky
+   */
+  isHeaderFixed(): boolean {
+    return this.config.header.isFixed;
+  }
+
+  /**
+   * Get configured header height (or null if auto-detect)
+   */
+  getHeaderHeight(): number | null {
+    return this.config.header.height;
+  }
+
+  /**
+   * Update header config at runtime
+   */
+  setHeaderConfig(config: { isFixed?: boolean; height?: number | null }): void {
+    if (config.isFixed !== undefined) {
+      this.config.header.isFixed = config.isFixed;
+    }
+    if (config.height !== undefined) {
+      this.config.header.height = config.height;
+    }
+    this.log('Header config updated:', this.config.header);
   }
 
   /**

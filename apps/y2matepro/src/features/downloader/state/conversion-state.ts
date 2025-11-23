@@ -147,6 +147,26 @@ export function clearConversionTasks(): void {
   setState({ conversionTasks: {} });
 }
 
+/**
+ * Clear a single conversion task by formatId
+ * @param formatId - Format identifier to clear
+ */
+export function clearConversionTask(formatId: string): void {
+  if (!formatId) return;
+
+  const currentState = getState();
+  const task = currentState.conversionTasks[formatId];
+
+  // Abort if active
+  if (task?.abortController && !task.abortController.signal.aborted) {
+    task.abortController.abort();
+  }
+
+  // Remove from tasks
+  const { [formatId]: _, ...remainingTasks } = currentState.conversionTasks;
+  setState({ conversionTasks: remainingTasks });
+}
+
 // ==========================================
 // Legacy Active Conversion Management
 // ==========================================

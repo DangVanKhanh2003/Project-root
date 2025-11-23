@@ -56,7 +56,8 @@ export function render(state: AppState, prevState?: AppState): void {
 }
 
 /**
- * Update loading state (disable/enable form)
+ * Update loading state (disable/enable form elements)
+ * Keeps button text unchanged, only disables input, submit btn, and action btn
  */
 function updateLoadingState(isLoading: boolean): void {
   if (!elements.input || !elements.submitBtn) return;
@@ -64,17 +65,13 @@ function updateLoadingState(isLoading: boolean): void {
   if (isLoading) {
     elements.input.disabled = true;
     elements.submitBtn.disabled = true;
+    elements.pasteBtn && (elements.pasteBtn.disabled = true);
     elements.form?.classList.add('loading');
-
-    // Update submit button text
-    elements.submitBtn.textContent = 'Loading...';
   } else {
     elements.input.disabled = false;
     elements.submitBtn.disabled = false;
+    elements.pasteBtn && (elements.pasteBtn.disabled = false);
     elements.form?.classList.remove('loading');
-
-    // Reset submit button text
-    elements.submitBtn.textContent = 'Download';
   }
 }
 

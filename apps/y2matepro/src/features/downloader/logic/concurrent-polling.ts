@@ -113,7 +113,10 @@ class ConcurrentPollingManager {
     private _startPollingImmediate(formatId: string, taskData: TaskData): void {
         const startTime = Date.now();
 
-        // Create polling interval
+        // Call IMMEDIATELY on start (don't wait for first interval)
+        this._checkTaskStatus(formatId, taskData);
+
+        // Create polling interval for subsequent checks
         const jitter = Math.floor(Math.random() * 500); // 0-500ms jitter to avoid sync spikes
         const intervalId = window.setInterval(() => {
             this._checkTaskStatus(formatId, taskData);

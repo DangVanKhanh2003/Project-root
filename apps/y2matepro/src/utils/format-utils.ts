@@ -21,6 +21,13 @@ export interface ProcessedFormat {
   bitrate?: number | null;
   isFakeData?: boolean;
   vid?: string | null;
+  extractV2Options?: {
+    downloadMode?: string;
+    videoQuality?: string;
+    youtubeVideoContainer?: string;
+    audioQuality?: string;
+    youtubeAudioContainer?: string;
+  } | null;
   [key: string]: any;
 }
 
@@ -116,6 +123,7 @@ export function mapFormat(item: any, category: string): ProcessedFormat | null {
     // Fake data workflow support (preserve from input)
     isFakeData: item.isFakeData || false, // Preserve fake data flag
     vid: item.vid || null,                // Preserve video ID for extract v2
+    extractV2Options: item.extractV2Options || null, // Preserve extract v2 options for YouTube
 
     // Spread remaining properties (but not 'id')
     ...restItem

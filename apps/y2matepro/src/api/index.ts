@@ -51,19 +51,19 @@ const httpClient = createHttpClient({
 
 // API V2 HTTP Client (YouTube download)
 const apiV2HttpClient = createHttpClient({
-  baseUrl: API_V2_BASE_URL,  // https://yt-extractor.y2mp3.co
+  baseUrl: API_V2_BASE_URL,  
   timeout: API_TIMEOUT,
 });
 
 // Search V2 HTTP Client (separate domain for YouTube search)
 const searchV2HttpClient = createHttpClient({
-  baseUrl: SEARCH_V2_BASE_URL,  // https://yt-extractor.y2mp3.co
+  baseUrl: SEARCH_V2_BASE_URL,  
   timeout: getTimeout('searchV2'),
 });
 
 // Queue HTTP Client (separate domain for queue API)
 const queueHttpClient = createHttpClient({
-  baseUrl: QUEUE_API_BASE_URL,  // https://yt-extractor.y2mp3.co
+  baseUrl: QUEUE_API_BASE_URL,  
   timeout: getTimeout('addQueue'),
 });
 

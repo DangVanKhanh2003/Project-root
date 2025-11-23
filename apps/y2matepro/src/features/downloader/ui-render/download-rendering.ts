@@ -101,6 +101,13 @@ interface FormatData {
     bitrate: number | null;
     isFakeData: boolean;
     filename?: string;
+    extractV2Options?: {
+        downloadMode?: string;
+        videoQuality?: string;
+        youtubeVideoContainer?: string;
+        audioQuality?: string;
+        youtubeAudioContainer?: string;
+    } | null;
 }
 
 // ============================================================
@@ -226,13 +233,9 @@ export function renderVideoInfo(meta: VideoMeta): string {
         <div class="video-thumbnail aspect-16-9">
             <img id="videoThumbnail"
                  alt="Video thumbnail"
-                 class="thumbnail-image"
-                 width="480"
-                 height="360"
-                 loading="eager"
-                 decoding="async"
-                 data-src="${escapeHtml(thumbnail || '')}"
-                 style="opacity: 0;">
+                 class="thumbnail-image thumbnail-hidden"
+                
+                 data-src="${escapeHtml(thumbnail || '')}">
             <div class="thumbnail-skeleton">
                 <div class="skeleton-img skeleton-placeholder"></div>
             </div>
@@ -411,9 +414,8 @@ function renderConversionButton(format: ProcessedFormat, downloadTasks: Download
     // Get legacy task state for button (backward compatibility)
     const taskState = downloadTasks[formatId] || { status: 'idle' as const };
 
-    // Format display with quality badge
-    const formatType = (format.type || 'Unknown').toUpperCase();
-    const qualityBadge = buildQualityBadge(format, format.category) || '';
+    // Build simple format display: "MP4-1080p" or "MP3-256kbps"
+    const formatDisplay = buildSimpleFormatDisplay(format);
 
     const buttonState = getButtonStateForTask(taskState, conversionTask as any);
 
@@ -421,17 +423,13 @@ function renderConversionButton(format: ProcessedFormat, downloadTasks: Download
         <div class="quality-item" data-format-id="${escapeHtml(formatId)}" data-category="${escapeHtml(format.category)}">
             <div class="quality-row">
                 <div class="quality-col-left">
-                    <span class="quality-format">${escapeHtml(formatType)}</span>
-                    ${qualityBadge}
-                </div>
-                <div class="quality-col-center">
-                    <span class="quality-label">${escapeHtml(format.quality || '')}</span>
+                    <span class="quality-format">${escapeHtml(formatDisplay)}</span>
                 </div>
                 <div class="quality-col-right">
                     <button type="button"
                             class="btn-convert ${buttonState.class}"
                             data-format-id="${escapeHtml(formatId)}"
-                            aria-label="Convert ${formatType} ${format.quality || 'video'}"
+                            aria-label="Convert ${formatDisplay}"
                             ${buttonState.disabled ? 'disabled' : ''}>
                         <span class="btn-text">${buttonState.text}</span>
                         ${buttonState.loading ? '<span class="btn-spinner"></span>' : ''}
@@ -452,26 +450,21 @@ function renderConversionButton(format: ProcessedFormat, downloadTasks: Download
  */
 function renderDirectDownloadButton(format: ProcessedFormat): string {
     const formatId = format.id;
-    const displayText = extractFormat(format);
-    const qualityBadge = buildQualityBadge(format, format.category) || '';
+
+    // Build simple format display: "MP4-1080p" or "MP3-256kbps"
+    const formatDisplay = buildSimpleFormatDisplay(format);
 
     return `
         <div class="quality-item" data-format-id="${escapeHtml(formatId)}" data-category="${escapeHtml(format.category)}">
             <div class="quality-row">
                 <div class="quality-col-left">
-                    <span class="quality-format">${escapeHtml(displayText)}</span>
-                    ${qualityBadge}
-                </div>
-                <div class="quality-col-center">
-                    <div class="quality-status-area">
-                        <div class="size-info">${escapeHtml(format.sizeText)}</div>
-                    </div>
+                    <span class="quality-format">${escapeHtml(formatDisplay)}</span>
                 </div>
                 <div class="quality-col-right">
                     <button type="button"
                             class="btn-convert btn-convert--direct-download"
                             data-format-id="${escapeHtml(formatId)}"
-                            aria-label="Download">
+                            aria-label="Download ${formatDisplay}">
                         <span class="btn-text">Download</span>
                         ${renderButtonIcon('btn-convert--success')}
                     </button>
@@ -685,28 +678,33 @@ function setupImageLoader(container: HTMLElement): void {
 
     preloader.onload = () => {
         // Image loaded successfully - show it smoothly
+        // Step 1: Set src (image already cached from preload)
         img.src = thumbnailUrl;
-        img.style.transition = 'opacity 0.2s ease-in';
-        img.style.opacity = '1';
 
-        // Hide skeleton
-        if (skeleton) {
-            skeleton.style.transition = 'opacity 0.2s ease-out';
-            skeleton.style.opacity = '0';
-            setTimeout(() => {
-                skeleton.style.display = 'none';
-            }, 200);
-        }
+        // Step 2: Wait for browser to paint, then fade in
+        // Using double rAF to ensure layout is complete before transition
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                img.classList.remove('thumbnail-hidden');
+                img.classList.add('thumbnail-visible');
+
+                // Hide skeleton
+                if (skeleton) {
+                    skeleton.classList.add('skeleton-hidden');
+                }
+            });
+        });
     };
 
     preloader.onerror = () => {
         // Image failed to load - show broken image state
         img.src = thumbnailUrl;  // Still set src to show broken image icon
-        img.style.opacity = '0.3';
+        img.classList.remove('thumbnail-hidden');
+        img.classList.add('thumbnail-error');
 
         // Hide skeleton
         if (skeleton) {
-            skeleton.style.display = 'none';
+            skeleton.classList.add('skeleton-hidden');
         }
     };
 
@@ -757,22 +755,34 @@ async function handleDownloadClick(event: MouseEvent): Promise<void> {
 
 
     try {
-        // Use the more direct !isYouTube check
-        if (!isYouTube) {
-            const formatData = extractFormatDataFromState(formatId);
+        // Extract format data from state
+        const formatData = extractFormatDataFromState(formatId);
 
-            if (!formatData || !formatData.url) {
-                return;
-            }
+        if (!formatData) {
+            return;
+        }
+
+        // For non-YouTube with direct URL, download immediately
+        if (!isYouTube && formatData.url) {
             const filename = formatData.filename || `download.${formatData.type || 'mp4'}`;
             triggerDownload(formatData.url, filename, true);
             return;
         }
 
-        const { smartConvert } = await import('../logic/conversion/convert-logic.js');
-        await smartConvert(formatId);
+        // For YouTube or formats without direct URL, use conversion flow
+        const { startConversion } = await import('../logic/conversion/convert-logic-v2.js');
+        const videoTitle = state.videoDetail?.meta?.title || 'Video';
+        const videoUrl = state.videoDetail?.meta?.originalUrl || '';
+
+        await startConversion({
+            formatId,
+            formatData,
+            videoTitle,
+            videoUrl
+        });
 
     } catch (error) {
+        console.error('Download error:', error);
     }
 }
 
@@ -828,6 +838,7 @@ function extractFormatDataFromState(formatId: string): FormatData | null {
             fps: format.fps || null,
             bitrate: format.bitrate || null,
             isFakeData: format.isFakeData || false,
+            extractV2Options: format.extractV2Options || null,
         };
 
         return formatData;
@@ -840,6 +851,29 @@ function extractFormatDataFromState(formatId: string): FormatData | null {
 // ============================================================
 // UTILITY FUNCTIONS
 // ============================================================
+
+/**
+ * Build simple format display string: "MP4-1080p" or "MP3-256kbps"
+ * @param {Object} format - Processed format object
+ * @returns {string} Simple format string
+ */
+function buildSimpleFormatDisplay(format: ProcessedFormat): string {
+    const type = (format.type || 'Unknown').toUpperCase();
+
+    // For video: "MP4-1080p", "WEBM-720p"
+    if (format.category === 'video') {
+        const quality = format.quality || format.q_text || '';
+        return quality ? `${type}-${quality}` : type;
+    }
+
+    // For audio: "MP3-256kbps", "M4A-128kbps"
+    if (format.category === 'audio') {
+        const bitrate = format.bitrate ? `${format.bitrate}kbps` : (format.quality || '');
+        return bitrate ? `${type}-${bitrate}` : type;
+    }
+
+    return type;
+}
 
 /**
  * Escapes HTML characters để prevent XSS

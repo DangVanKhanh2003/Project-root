@@ -350,4 +350,68 @@ Parent removed → Child mất reference
 
 - [MDN: aspect-ratio](https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio)
 - [Web.dev: Cumulative Layout Shift](https://web.dev/cls/)
-- [CSS Tricks: Aspect Ratio Boxes](https://css-tricks.com/aspect-ratio-boxes/) 
+- [CSS Tricks: Aspect Ratio Boxes](https://css-tricks.com/aspect-ratio-boxes/)
+
+---
+
+## Webkit Tap Highlight: Hiệu ứng mờ đè lên button khi click
+
+**Date**: 2025-11-23
+
+### Mô tả vấn đề
+
+Khi click vào button (đặc biệt trên mobile/touch devices), xuất hiện một lớp highlight mờ màu xanh/xám đè lên toàn bộ button, làm xấu UI.
+
+### Nguyên nhân gốc rễ
+
+**Webkit Tap Highlight** - đây là default behavior của WebKit browsers (Safari, Chrome mobile) khi user touch/click vào interactive elements. Browser tự động thêm một overlay màu để indicate tap feedback.
+
+### Giải pháp
+
+Thêm 3 CSS properties vào button:
+
+```css
+.btn-download,
+.btn-retry,
+.btn-convert {
+    -webkit-tap-highlight-color: transparent;  /* Bỏ highlight màu khi tap */
+    -webkit-touch-callout: none;               /* Bỏ context menu trên iOS */
+    user-select: none;                         /* Không cho select text */
+}
+```
+
+### Giải thích từng property
+
+| Property | Mục đích |
+|----------|----------|
+| `-webkit-tap-highlight-color: transparent` | Loại bỏ màu highlight overlay khi tap trên touch devices |
+| `-webkit-touch-callout: none` | Ngăn iOS hiện context menu khi long-press |
+| `user-select: none` | Ngăn user select text trong button |
+
+### Bài học chính
+
+**❌ KHÔNG quên** thêm tap highlight reset cho interactive elements (buttons, links, cards) khi design cho mobile.
+
+**✅ LUÔN LUÔN** thêm các properties này vào base button styles:
+```css
+button,
+.btn,
+[role="button"] {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    user-select: none;
+}
+```
+
+### Files Modified
+
+- `src/styles/reusable-packages/conversion-modal/conversion-modal.css`
+  - `.btn-download`: Added tap highlight reset
+  - `.btn-retry`: Added tap highlight reset
+- `apps/y2matepro/src/styles/sections/hero.css`
+  - `.input-action-btn`: Added tap highlight reset
+
+### References
+
+- [MDN: -webkit-tap-highlight-color](https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-tap-highlight-color)
+- [CSS Tricks: Finger-friendly buttons](https://css-tricks.com/finger-friendly-numerical-inputs-with-inputmode/) 

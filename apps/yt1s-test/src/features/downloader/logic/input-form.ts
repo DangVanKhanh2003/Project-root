@@ -73,7 +73,7 @@ function generateFakeYouTubeData(videoId: string, url: string): any {
       vid: videoId,
       title: `Loading video information...`,
       author: 'Please wait...',
-      thumbnail: `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`,
+      thumbnail: `https://i.ytimg.com/vi/${videoId}/0.jpg`,
       duration: '--:--',
       source: 'YouTube',
       originalUrl: url,

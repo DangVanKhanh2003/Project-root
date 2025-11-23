@@ -57,7 +57,8 @@ export class ConversionModal {
     }
 
     // Support opening directly in specific states (SUCCESS, EXPIRED, EXTRACTING, etc.)
-    const initialStatus = options.initialStatus || 'CONVERTING';
+    // Default to EXTRACTING as this is the first phase of conversion flow
+    const initialStatus = options.initialStatus || 'EXTRACTING';
     const skipProgressBar = initialStatus !== 'CONVERTING' && initialStatus !== 'EXTRACTING';
 
     this.isOpenFlag = true;

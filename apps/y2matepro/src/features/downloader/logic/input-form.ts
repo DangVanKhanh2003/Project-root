@@ -30,6 +30,7 @@ import { clearDetailStates } from '../state/media-detail-state';
 import { clearConversionTasks } from '../state/conversion-state';
 import { clearDownloadStates } from '../state/download-state';
 import { renderResults, renderMessage, renderVideoDownloadOptions, showLoading, clearContent } from '../ui-render/content-renderer';
+import { updateVideoTitle } from '../ui-render/download-rendering';
 import { getInputValue as getInputValueFromRenderer, setInputValue as setInputValueInRenderer } from '../ui-render/ui-renderer';
 import type { VideoData } from '../../../ui-components/search-result-card/search-result-card';
 
@@ -73,7 +74,7 @@ function generateFakeYouTubeData(videoId: string, url: string): any {
       vid: videoId,
       title: `Loading video information...`,
       author: 'Please wait...',
-      thumbnail: `https://i.ytimg.com/vi/${videoId}/maxresdefault.jpg`,
+      thumbnail: `https://i.ytimg.com/vi/${videoId}/0.jpg`,
       duration: '--:--',
       source: 'YouTube',
       originalUrl: url,
@@ -82,33 +83,7 @@ function generateFakeYouTubeData(videoId: string, url: string): any {
     formats: {
       video: [
         {
-          quality: '2160p (4K)',
-          format: 'mp4',
-          vid: videoId,
-          type: 'VIDEO',  // Changed to uppercase to match API
-          size: 'Processing...',
-          isFakeData: true,
-          extractV2Options: {
-            downloadMode: 'video',
-            videoQuality: '2160',
-            youtubeVideoContainer: 'mp4'
-          }
-        },
-        {
-          quality: '1440p (2K)',
-          format: 'mp4',
-          vid: videoId,
-          type: 'VIDEO',
-          size: 'Processing...',
-          isFakeData: true,
-          extractV2Options: {
-            downloadMode: 'video',
-            videoQuality: '1440',
-            youtubeVideoContainer: 'mp4'
-          }
-        },
-        {
-          quality: '1080p (Full HD)',
+          quality: '1080p',
           format: 'mp4',
           vid: videoId,
           type: 'VIDEO',
@@ -121,7 +96,7 @@ function generateFakeYouTubeData(videoId: string, url: string): any {
           }
         },
         {
-          quality: '720p (HD)',
+          quality: '720p',
           format: 'mp4',
           vid: videoId,
           type: 'VIDEO',
@@ -159,21 +134,34 @@ function generateFakeYouTubeData(videoId: string, url: string): any {
             youtubeVideoContainer: 'mp4'
           }
         },
-      ],
-      audio: [
         {
-          quality: '320kbps',
-          format: 'mp3',
+          quality: '240p',
+          format: 'mp4',
           vid: videoId,
-          type: 'AUDIO',
+          type: 'VIDEO',
           size: 'Processing...',
           isFakeData: true,
           extractV2Options: {
-            downloadMode: 'audio',
-            audioQuality: '320',
-            youtubeAudioContainer: 'mp3'
+            downloadMode: 'video',
+            videoQuality: '240',
+            youtubeVideoContainer: 'mp4'
           }
         },
+        {
+          quality: '144p',
+          format: 'mp4',
+          vid: videoId,
+          type: 'VIDEO',
+          size: 'Processing...',
+          isFakeData: true,
+          extractV2Options: {
+            downloadMode: 'video',
+            videoQuality: '144',
+            youtubeVideoContainer: 'mp4'
+          }
+        },
+      ],
+      audio: [
         {
           quality: '256kbps',
           format: 'mp3',
@@ -184,19 +172,6 @@ function generateFakeYouTubeData(videoId: string, url: string): any {
           extractV2Options: {
             downloadMode: 'audio',
             audioQuality: '256',
-            youtubeAudioContainer: 'mp3'
-          }
-        },
-        {
-          quality: '192kbps',
-          format: 'mp3',
-          vid: videoId,
-          type: 'AUDIO',
-          size: 'Processing...',
-          isFakeData: true,
-          extractV2Options: {
-            downloadMode: 'audio',
-            audioQuality: '192',
             youtubeAudioContainer: 'mp3'
           }
         },
@@ -214,16 +189,39 @@ function generateFakeYouTubeData(videoId: string, url: string): any {
           }
         },
         {
-          quality: '64kbps',
-          format: 'mp3',
+          quality: 'OGG',
+          format: 'ogg',
           vid: videoId,
           type: 'AUDIO',
           size: 'Processing...',
           isFakeData: true,
           extractV2Options: {
             downloadMode: 'audio',
-            audioQuality: '64',
-            youtubeAudioContainer: 'mp3'
+            youtubeAudioContainer: 'ogg'
+          }
+        },
+        {
+          quality: 'WAV',
+          format: 'wav',
+          vid: videoId,
+          type: 'AUDIO',
+          size: 'Processing...',
+          isFakeData: true,
+          extractV2Options: {
+            downloadMode: 'audio',
+            youtubeAudioContainer: 'wav'
+          }
+        },
+        {
+          quality: 'Opus',
+          format: 'opus',
+          vid: videoId,
+          type: 'AUDIO',
+          size: 'Processing...',
+          isFakeData: true,
+          extractV2Options: {
+            downloadMode: 'audio',
+            youtubeAudioContainer: 'opus'
           }
         },
       ]
@@ -749,8 +747,8 @@ async function handleExtractMedia(url: string): Promise<void> {
           // Update state with enhanced metadata
           setVideoDetail(fakeData);
 
-          // Re-render with updated metadata
-          renderVideoDownloadOptions(fakeData, 'video');
+          // Only update title - no need to re-render thumbnail
+          updateVideoTitle(fakeData.meta);
         } else {
         }
 
