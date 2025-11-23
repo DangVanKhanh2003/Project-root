@@ -219,11 +219,11 @@ async function extractFormat(
     const downloadRequest = {
       url: videoUrl,
       downloadMode: extractOptions.downloadMode,
-      brandName: 'yt1s.cx',
+      brandName: 'y2matepro',
       videoQuality: extractOptions.videoQuality,
       youtubeVideoContainer: extractOptions.youtubeVideoContainer,
-      audioQuality: extractOptions.audioQuality,
-      youtubeAudioContainer: extractOptions.youtubeAudioContainer,
+      audioBitrate: extractOptions.audioBitrate,
+      audioFormat: extractOptions.audioFormat,
     };
 
     log('downloadRequest:', JSON.stringify(downloadRequest, null, 2));

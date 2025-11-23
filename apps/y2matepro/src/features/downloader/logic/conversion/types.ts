@@ -70,8 +70,8 @@ export interface FormatData {
     downloadMode?: string;
     videoQuality?: string;
     youtubeVideoContainer?: string;
-    audioQuality?: string;
-    youtubeAudioContainer?: string;
+    audioBitrate?: string;
+    audioFormat?: string;
   } | null;
 }
 

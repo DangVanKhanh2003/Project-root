@@ -171,8 +171,8 @@ function generateFakeYouTubeData(videoId: string, url: string): any {
           isFakeData: true,
           extractV2Options: {
             downloadMode: 'audio',
-            audioQuality: '256',
-            youtubeAudioContainer: 'mp3'
+            audioBitrate: '256',
+            audioFormat: 'mp3'
           }
         },
         {
@@ -184,8 +184,8 @@ function generateFakeYouTubeData(videoId: string, url: string): any {
           isFakeData: true,
           extractV2Options: {
             downloadMode: 'audio',
-            audioQuality: '128',
-            youtubeAudioContainer: 'mp3'
+            audioBitrate: '128',
+            audioFormat: 'mp3'
           }
         },
         {
@@ -197,7 +197,7 @@ function generateFakeYouTubeData(videoId: string, url: string): any {
           isFakeData: true,
           extractV2Options: {
             downloadMode: 'audio',
-            youtubeAudioContainer: 'ogg'
+            audioFormat: 'ogg'
           }
         },
         {
@@ -209,7 +209,7 @@ function generateFakeYouTubeData(videoId: string, url: string): any {
           isFakeData: true,
           extractV2Options: {
             downloadMode: 'audio',
-            youtubeAudioContainer: 'wav'
+            audioFormat: 'wav'
           }
         },
         {
@@ -221,7 +221,7 @@ function generateFakeYouTubeData(videoId: string, url: string): any {
           isFakeData: true,
           extractV2Options: {
             downloadMode: 'audio',
-            youtubeAudioContainer: 'opus'
+            audioFormat: 'opus'
           }
         },
       ]
