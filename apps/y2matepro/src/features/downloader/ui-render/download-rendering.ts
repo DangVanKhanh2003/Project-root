@@ -858,21 +858,27 @@ function extractFormatDataFromState(formatId: string): FormatData | null {
  * @returns {string} Simple format string
  */
 function buildSimpleFormatDisplay(format: ProcessedFormat): string {
-    const type = (format.type || 'Unknown').toUpperCase();
+    // Use format field (mp4, mp3) instead of type field (VIDEO, AUDIO)
+    const container = (format.format || format.type || 'Unknown').toUpperCase();
 
     // For video: "MP4-1080p", "WEBM-720p"
     if (format.category === 'video') {
         const quality = format.quality || format.q_text || '';
-        return quality ? `${type}-${quality}` : type;
+        return quality ? `${container}-${quality}` : container;
     }
 
-    // For audio: "MP3-256kbps", "M4A-128kbps"
+    // For audio: Show just container for non-bitrate formats (OGG, WAV, Opus)
     if (format.category === 'audio') {
-        const bitrate = format.bitrate ? `${format.bitrate}kbps` : (format.quality || '');
-        return bitrate ? `${type}-${bitrate}` : type;
+        // If quality contains 'kbps', show "MP3-256kbps"
+        const quality = format.quality || '';
+        if (quality.toLowerCase().includes('kbps')) {
+            return `${container}-${quality}`;
+        }
+        // For OGG, WAV, Opus - just show container name
+        return container;
     }
 
-    return type;
+    return container;
 }
 
 /**

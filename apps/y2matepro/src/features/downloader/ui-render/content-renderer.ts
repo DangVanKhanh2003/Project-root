@@ -368,6 +368,9 @@ export function renderMessage(message: string, type: 'info' | 'error' | 'success
     </div>
   `;
 
+  // Show content area (may be hidden from previous operations)
+  contentArea.style.display = 'block';
+
   // Hide search results section when showing message
   hideSearchResultsSection();
 }

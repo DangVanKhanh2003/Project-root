@@ -347,8 +347,36 @@ export function initInputForm(): boolean {
   return true;
 }
 
-// Debounce timer for suggestions
+// Throttle timer and state for suggestion API calls
 let suggestionTimer: number | null = null;
+let lastSuggestionCallTime = 0;
+const SUGGESTION_THROTTLE_MS = 300;
+
+/**
+ * Throttled fetch suggestions - calls immediately on first input,
+ * then at most once every 300ms while typing continues
+ */
+function throttledFetchSuggestions(query: string): void {
+  const now = Date.now();
+  const timeSinceLastCall = now - lastSuggestionCallTime;
+
+  if (timeSinceLastCall >= SUGGESTION_THROTTLE_MS) {
+    // Enough time passed → call immediately
+    lastSuggestionCallTime = now;
+    fetchSuggestions(query);
+  } else {
+    // Not enough time → schedule call for remaining time
+    if (suggestionTimer) {
+      clearTimeout(suggestionTimer);
+    }
+
+    const remainingTime = SUGGESTION_THROTTLE_MS - timeSinceLastCall;
+    suggestionTimer = window.setTimeout(() => {
+      lastSuggestionCallTime = Date.now();
+      fetchSuggestions(query);
+    }, remainingTime);
+  }
+}
 
 /**
  * Handle input changes
@@ -378,7 +406,9 @@ function handleInput(event: Event): void {
     hideSuggestions();
     if (suggestionTimer) {
       clearTimeout(suggestionTimer);
+      suggestionTimer = null;
     }
+    lastSuggestionCallTime = 0; // Reset throttle state
     return;
   }
 
@@ -387,15 +417,8 @@ function handleInput(event: Event): void {
     // Set original query when starting to fetch suggestions
     setOriginalQuery(value);
 
-    // Clear previous timer
-    if (suggestionTimer) {
-      clearTimeout(suggestionTimer);
-    }
-
-    // Debounce: wait 300ms after user stops typing
-    suggestionTimer = window.setTimeout(() => {
-      fetchSuggestions(value);
-    }, 300);
+    // Throttle: call immediately on first input, then every 300ms
+    throttledFetchSuggestions(value);
   } else {
     hideSuggestions();
   }
@@ -529,7 +552,9 @@ function selectCurrentSuggestion(state: ReturnType<typeof getState>): void {
   // Cancel any pending suggestion fetches
   if (suggestionTimer) {
     clearTimeout(suggestionTimer);
+    suggestionTimer = null;
   }
+  lastSuggestionCallTime = 0; // Reset throttle state
 
   hideSuggestions();
   setHighlightedIndex(-1);
@@ -548,7 +573,9 @@ function returnToOriginal(state: ReturnType<typeof getState>): void {
   // Cancel any pending suggestion fetches
   if (suggestionTimer) {
     clearTimeout(suggestionTimer);
+    suggestionTimer = null;
   }
+  lastSuggestionCallTime = 0; // Reset throttle state
 
   setQuery(state.originalQuery);
   setInputValueInRenderer(state.originalQuery);
@@ -576,7 +603,9 @@ function handleSuggestionClick(event: MouseEvent): void {
     // Cancel any pending suggestion fetches
     if (suggestionTimer) {
       clearTimeout(suggestionTimer);
+      suggestionTimer = null;
     }
+    lastSuggestionCallTime = 0; // Reset throttle state
 
     // Update input value + submit immediately
     setQuery(suggestionText);
