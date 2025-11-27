@@ -370,7 +370,7 @@ export class ConversionModal {
     const canonicalEl = document.querySelector('link[rel="canonical"]');
     const shareUrlRaw = canonicalEl?.getAttribute('href')
       ? canonicalEl.getAttribute('href')
-      : `https://yt1s.cx${loc.pathname}${loc.search}${loc.hash}`;
+      : `https://y2matepro.com${loc.pathname}${loc.search}${loc.hash}`;
     const encodedUrl = encodeURIComponent(shareUrlRaw || '');
     const title = encodeURIComponent(this.state.videoTitle || document.title || 'Check this out!');
 

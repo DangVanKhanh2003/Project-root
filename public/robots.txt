@@ -18,5 +18,5 @@ Allow: /*.svg$
 Disallow: /preview.log
 Disallow: /build-output.log
 
-# Sitemap (update domain before release)
-Sitemap: https://yt1s.cx/sitemap.xml
+# Sitemap
+Sitemap: https://y2matepro.com/sitemap.xml
