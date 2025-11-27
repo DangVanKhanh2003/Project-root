@@ -33,6 +33,8 @@ import { renderResults, renderMessage, renderVideoDownloadOptions, showLoading, 
 import { updateVideoTitle } from '../ui-render/download-rendering';
 import { getInputValue as getInputValueFromRenderer, setInputValue as setInputValueInRenderer } from '../ui-render/ui-renderer';
 import type { VideoData } from '../../../ui-components/search-result-card/search-result-card';
+import { navigateToVideo } from '../routing/url-manager';
+import { setVideoPageSEO } from '../routing/seo-manager';
 
 // ============================================
 // YOUTUBE HELPERS
@@ -413,7 +415,7 @@ function handleInput(event: Event): void {
   }
 
   // Handle suggestions for keyword input
-  if (value.length >= 2) {
+  if (value.length >= 1) {
     // Set original query when starting to fetch suggestions
     setOriginalQuery(value);
 
@@ -743,6 +745,12 @@ async function handleExtractMedia(url: string): Promise<void> {
       if (!videoId) {
         throw new Error('Invalid YouTube URL - cannot extract video ID');
       }
+
+      // ✅ NEW: Push URL to browser history (enables back navigation)
+      navigateToVideo(videoId);
+
+      // ✅ NEW: Update SEO meta tags (noindex for result pages)
+      setVideoPageSEO();
 
       // Fire-and-forget: Add video to queue API (analytics/preloading notification)
       coreServices.queue.addVideoToQueue(videoId).then((success: boolean) => {
