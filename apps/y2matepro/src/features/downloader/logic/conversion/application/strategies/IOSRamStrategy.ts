@@ -87,21 +87,20 @@ export class IOSRamStrategy extends BaseStrategy {
     }
   }
 
-  private handleProgress(loaded: number, total: number): void {
+  private async handleProgress(loaded: number, total: number): Promise<void> {
     if (this.checkAborted()) return;
 
     const modal = this.getModal();
-    const progressBar = modal.getProgressBarManager();
 
     // Double EXTRACTING trick: chỉ transition khi có data
     if (!this.hasStartedDownload && loaded > 0) {
-      log('First chunk received, transitioning to CONVERTING (Double EXTRACTING trick)');
+      log('First chunk received, transitioning to CONVERTING with spiral-in (Double EXTRACTING trick)');
       this.hasStartedDownload = true;
-      modal.transitionToConverting();
+      await modal.transitionToConvertingWithAnimation(); // 600ms spiral-in animation
     }
 
-    // Update progress (using updateDownloadProgress - no % appended)
-    if (progressBar && this.hasStartedDownload) {
+    // Update progress (both circular and text)
+    if (this.hasStartedDownload) {
       const loadedMB = Math.ceil(loaded / (1024 * 1024));
       const totalMB = Math.ceil(total / (1024 * 1024));
       const statusText = total > 0
@@ -109,7 +108,9 @@ export class IOSRamStrategy extends BaseStrategy {
         : `Downloading... ${loadedMB} MB`;
 
       const percent = total > 0 ? Math.round((loaded / total) * 100) : 0;
-      progressBar.updateDownloadProgress(percent, statusText);
+
+      // Update both circular progress and text display
+      modal.updateConversionProgress(percent, statusText, true, loaded, total);
     }
   }
 }

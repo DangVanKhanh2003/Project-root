@@ -282,11 +282,11 @@ export class PollingStrategy extends BaseStrategy {
   }
 
   /**
-   * Update progress UI
+   * Update progress UI (both circular and text)
    */
   private updateProgress(percent: number, statusText: string): void {
-    const progressBar = this.getModal().getProgressBarManager();
-    progressBar?.updatePollingProgress(percent, statusText);
+    // Use new unified progress update method (updates both circular + text)
+    this.getModal().updateConversionProgress(percent, statusText);
   }
 
   /**

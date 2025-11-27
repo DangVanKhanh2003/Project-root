@@ -305,131 +305,153 @@
 
 /* Alternative striped pattern - bold */
 
-/* ======= SPINNING CIRCLE LOADER ======= */
+/* ======= CIRCULAR PROGRESS (Unified Spinner & Progress) ======= */
 
 /* Base styles - Extra Small Mobile (0-350px) */
 .loading-spinner-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0; /* Remove margin - handled by parent flex gap */
-    height: 48px; /* Fixed height prevents CLS */
+    margin: 0;
+    height: 55px; /* Match circular size - prevents CLS */
 }
 
-.spinning-circle {
-    width: 32px;
-    height: 32px;
-    border: 3px solid var(--pkg-conversion-spinner-bg);
-    border-top: 3px solid var(--pkg-color-primary);
-    border-radius: 50%;
-    animation: spin 0.5s linear infinite; /* 1.5x faster: 0.8s -> 0.5s */
+.circular-progress-wrapper {
+    position: relative;
+    width: 55px;
+    height: 55px;
 }
 
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+/* SVG container - rotated -90deg to start from 12h position */
+.spinner-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+    opacity: 1;
+    overflow: visible;
+}
+
+.spinner-svg.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Background circle - always visible */
+.spinner-bg {
+    fill: none;
+    stroke: rgba(25, 118, 210, 0.15);
+    stroke-width: 8;
+}
+
+/* Main progress bar - spinner 25% → progress 100% */
+.spinner-bar {
+    fill: none;
+    stroke: var(--pkg-color-primary);
+    stroke-width: 8;
+    stroke-linecap: round;
+    stroke-dasharray: 73.83 221.48; /* 25% visible, 75% gap */
+    stroke-dashoffset: 0;
+    transform-origin: center;
+    transition: none;
+}
+
+/* Spinning animation for EXTRACTING mode */
+.spinner-bar.spinning {
+    animation: spinBar 0.6s linear infinite;
+}
+
+@keyframes spinBar {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* PROGRESS mode - full circle with dashoffset control */
+.spinner-bar.progress-mode {
+    stroke-dasharray: 295.31; /* Full circle */
+    stroke-dashoffset: 295.31; /* Start at 0% */
+    transition: stroke-dashoffset 0.35s ease-out;
+    animation: none;
+}
+
+/* Center percentage text - visible in PROGRESS mode only */
+.progress-percentage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.875rem; /* Responsive - mobile base */
+    font-weight: 700;
+    color: var(--pkg-color-primary);
+    letter-spacing: -0.5px;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.3s ease-in;
+}
+
+.progress-percentage.visible {
+    opacity: 1;
 }
 
 /* Small Mobile (351px-599px) */
 @media (min-width: 351px) {
     .loading-spinner-container {
-        height: 52px;
+        height: 60px;
     }
 
-    .spinning-circle {
-        width: 36px;
-        height: 36px;
-        border-width: 3px;
+    .circular-progress-wrapper {
+        width: 60px;
+        height: 60px;
+    }
+
+    .progress-percentage {
+        font-size: 0.9375rem;
     }
 }
 
 /* Medium Tablet (600px-839px) */
 @media (min-width: 600px) {
     .loading-spinner-container {
-        height: 56px;
+        height: 60px;
     }
 
-    .spinning-circle {
-        width: 40px;
-        height: 40px;
-        border-width: 4px;
+    .circular-progress-wrapper {
+        width: 60px;
+        height: 60px;
+    }
+
+    .progress-percentage {
+        font-size: 1rem;
     }
 }
 
 /* Expanded Desktop (840px-1239px) */
 @media (min-width: 840px) {
     .loading-spinner-container {
-        height: 60px;
+        height: 70px;
         margin-bottom: var(--pkg-space-5);
     }
 
-    .spinning-circle {
-        width: 44px;
-        height: 44px;
-        border-width: 4px;
-    }
-}
-
-/* Large Wide Desktop (1240px-1919px) */
-@media (min-width: 1240px) {
-    .loading-spinner-container {
-        height: 64px;
+    .circular-progress-wrapper {
+        width: 70px;
+        height: 70px;
     }
 
-    .spinning-circle {
-        width: 48px;
-        height: 48px;
-        border-width: 4px;
-    }
-}
-
-/* Extra Large 2K Display (1920px-2559px) */
-@media (min-width: 1920px) {
-    .loading-spinner-container {
-        height: 68px;
-    }
-
-    .spinning-circle {
-        width: 52px;
-        height: 52px;
-        border-width: 5px;
-    }
-}
-
-/* Ultra Large 4K+ Display (2560px+) */
-@media (min-width: 2560px) {
-    .loading-spinner-container {
-        height: 72px;
-    }
-
-    .spinning-circle {
-        width: 56px;
-        height: 56px;
-        border-width: 5px;
+    .progress-percentage {
+        font-size: 1.125rem;
     }
 }
 
 /* Accessibility - Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
-    .spinning-circle {
-        animation: pulse 1.5s ease-in-out infinite;
-        border-top-color: transparent;
-        border-color: var(--pkg-color-primary);
+    .spinner-bar.spinning {
+        animation: none;
     }
 
-    @keyframes pulse {
-        0%, 100% {
-            opacity: 0.4;
-            transform: scale(0.95);
-        }
-        50% {
-            opacity: 1;
-            transform: scale(1);
-        }
+    .spinner-bar.progress-mode {
+        transition: none;
     }
 }
 
