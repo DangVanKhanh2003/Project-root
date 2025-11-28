@@ -1,21 +1,21 @@
-name: Deploy y2matepro (Vite, CI → Server)
+name: Build and Deploy y2matepro (Vite, CI → Server)
 
-# ✏️ THAY ĐỔI 1: Thêm paths filter để chỉ trigger khi y2matepro thay đổi
 on:
   push:
     branches: [ main, test-production ]
     paths:
       - 'apps/y2matepro/**'
+      - 'packages/**'
+      - 'modify-robots-meta.js'
       - '.github/workflows/deploy-y2matepro.yml'
   workflow_dispatch:
 
-# ✏️ THAY ĐỔI 2: Thêm APP_DIR để quản lý working directory
 env:
-  APP_DIR: apps/y2matepro
   PROJECT_NAME: ${{ github.ref_name == 'test-production' && format('{0}-test', vars.Y2MATEPRO_PROJECT_NAME || 'y2matepro.com') || vars.Y2MATEPRO_PROJECT_NAME || 'y2matepro.com' }}
   PROJECT_ROOT: ${{ vars.PROJECT_ROOT || '/var/www/KhanhHAUI/CICD' }}
   RUN_DIR:      ${{ vars.RUN_DIR || format('/var/www/KhanhHAUI/CICD/run/{0}', github.ref_name == 'test-production' && format('{0}-test', vars.Y2MATEPRO_PROJECT_NAME || 'y2matepro.com') || vars.Y2MATEPRO_PROJECT_NAME || 'y2matepro.com') }}
   DEPLOY_USER:  ${{ vars.DEPLOY_USER  || 'gitdeploy' }}
+  DEPLOY_GROUP: ${{ vars.DEPLOY_GROUP || 'nginx' }}
 
 concurrency:
   group: deploy-${{ github.repository }}-${{ github.ref }}-y2matepro
@@ -40,18 +40,19 @@ jobs:
           node-version: 20
           cache: 'pnpm'
 
-      # ✏️ THAY ĐỔI 3: Install từ root với pnpm workspaces
+      # Cần devDependencies để có Vite
       - name: Install deps (with devDependencies)
         run: |
           set -euo pipefail
           pnpm install --frozen-lockfile
 
       - name: Verify Vite exists
+        working-directory: ./apps/y2matepro
         run: |
           set -euo pipefail
-          pnpm --filter y2matepro exec vite --version
+          npx vite --version
+          node -e "const p=require('./package.json'); if(!((p.devDependencies&&p.devDependencies.vite)||(p.dependencies&&p.dependencies.vite))){console.error('❌ Vite chưa có trong package.json'); process.exit(1)}"
 
-      # ✏️ THAY ĐỔI 4: Build với pnpm filter
       - name: Build (Vite)
         env:
           NODE_ENV: ${{ github.ref_name == 'test-production' && 'test' || 'production' }}
@@ -60,7 +61,7 @@ jobs:
           if [[ "${{ github.ref_name }}" == "test-production" ]]; then
             echo "🔧 Building for test environment with noindex meta tags..."
             echo "NODE_ENV=$NODE_ENV"
-            pnpm --filter y2matepro run build
+            pnpm --filter y2matepro run build:test
           else
             echo "🏗️ Building for production environment with normal indexing..."
             echo "NODE_ENV=$NODE_ENV"
@@ -68,7 +69,16 @@ jobs:
           fi
           test -d apps/y2matepro/dist
 
-      # ✏️ THAY ĐỔI 5: Đường dẫn dist trong app directory
+      - name: Modify robots meta tags for test environment
+        if: github.ref_name == 'test-production'
+        env:
+          NODE_ENV: test
+          TARGET_DIR: apps/y2matepro/dist
+        run: |
+          set -euo pipefail
+          echo "🔄 Running modify-robots-meta.js script..."
+          node modify-robots-meta.js
+
       - name: Replace robots.txt for test environment
         if: github.ref_name == 'test-production'
         run: |
@@ -84,8 +94,8 @@ jobs:
           find apps/y2matepro/dist -name "*.html" -exec grep 'meta name="robots"' {} \; | head -5 || true
           if [[ "${{ github.ref_name }}" == "test-production" ]]; then
             echo "Expected: noindex for test environment"
-            # Match both "noindex" and "noindex, nofollow"
-            if grep -rE 'content="noindex' apps/y2matepro/dist/ > /dev/null; then
+            # Verify noindex is present
+            if grep -r 'content="noindex"' apps/y2matepro/dist/ > /dev/null; then
               echo "✅ SUCCESS: Found noindex meta tags for test environment"
             else
               echo "❌ ERROR: noindex meta tags not found in test environment"
@@ -93,25 +103,27 @@ jobs:
             fi
           else
             echo "Expected: index, follow for production"
-            if grep -rE 'content="index,?\s*follow"' apps/y2matepro/dist/ > /dev/null; then
+            # Verify index,follow is present
+            if grep -r 'content="index, follow"' apps/y2matepro/dist/ > /dev/null; then
               echo "✅ SUCCESS: Found index,follow meta tags for production"
             else
               echo "⚠️  WARNING: index,follow meta tags not found in production"
             fi
           fi
 
-      # ✏️ THAY ĐỔI 6: Archive từ app/dist directory
       - name: Archive dist (tar.gz)
         run: |
           set -euo pipefail
           tar -C apps/y2matepro/dist -czf dist.tar.gz .
 
+      # Upload đúng vào THƯ MỤC /tmp
       - name: Upload artifact to server
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          username: ${{ secrets.SSH_USERNAME }}      # ví dụ: gitdeploy
+          key: ${{ secrets.SSH_PRIVATE_KEY }}        # private key ed25519
+          # port: ${{ secrets.SSH_PORT }}            # bỏ nếu dùng 22
           source: "dist.tar.gz"
           target: "/tmp"
           overwrite: true
@@ -122,6 +134,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          # port: ${{ secrets.SSH_PORT }}
           envs: PROJECT_NAME,PROJECT_ROOT,RUN_DIR,DEPLOY_USER,DEPLOY_GROUP
           script: |
             set -euo pipefail
@@ -180,3 +193,7 @@ jobs:
 
             # Xoá artifact tạm
             rm -f "$TMP_TAR" || true
+
+            # (tuỳ chọn) reload/restart dịch vụ
+            # systemctl --user restart myapp.service || true
+            # sudo systemctl reload nginx || true
