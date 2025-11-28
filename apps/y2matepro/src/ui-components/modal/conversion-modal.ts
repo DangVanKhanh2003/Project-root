@@ -174,14 +174,13 @@ export class ConversionModal {
   }
 
   /**
-   * Transition to CONVERTING with spiral-in animation
+   * Transition to CONVERTING directly (no animation)
    * Used for cases 2, 3, 4 (iOS RAM, iOS Polling, Windows Polling)
    *
-   * WHY: Smooth visual transition from extract spinner to progress display
-   * CONTRACT: () → Promise<void> - returns promise that resolves after 600ms spiral-in
+   * WHY: Direct transition from extract spinner to progress display
+   * CONTRACT: () → Promise<void> - instantly updates to CONVERTING
    * PRE: Must be in EXTRACTING state
    * POST: Modal in CONVERTING state, circular in progress mode, ProgressBarManager ready
-   * EDGE: Aborts if modal closed during animation
    * USAGE: await modal.transitionToConvertingWithAnimation();
    */
   async transitionToConvertingWithAnimation(): Promise<void> {
@@ -190,40 +189,27 @@ export class ConversionModal {
       return;
     }
 
-    return new Promise((resolve) => {
-      // Start spiral-in animation (600ms)
-      this.circularProgress?.startSpiralInTransition(() => {
-        // Check if modal was closed during animation
-        if (!this.state) {
-          resolve();
-          return;
-        }
+    // Update state to CONVERTING
+    this.state = {
+      ...this.state,
+      status: 'CONVERTING',
+      progress: 0
+    };
 
-        // Update state to CONVERTING
-        this.state = {
-          ...this.state,
-          status: 'CONVERTING',
-          progress: 0
-        };
+    // Re-render body content to show progress section
+    this.updateBodyContent();
 
-        // Re-render body content to show progress section
-        this.updateBodyContent();
+    // Recreate circular progress (container is new after updateBodyContent)
+    this.circularProgress?.destroy();
+    this.circularProgress = new CircularProgress('#circular-progress-container');
+    this.circularProgress.startProgressMode(); // Start in progress mode with 0%
 
-        // Recreate circular progress (container is new after updateBodyContent)
-        this.circularProgress?.destroy();
-        this.circularProgress = new CircularProgress('#circular-progress-container');
-        this.circularProgress.startProgressMode(); // Start in progress mode with 0%
-
-        // Initialize progress bar for text display
-        if (!this.progressBarManager) {
-          const progressSelector = `${this.wrapperSelector} .conversion-progress`;
-          this.progressBarManager = new ProgressBarManager({ wrapper: progressSelector });
-          this.progressBarManager.show();
-        }
-
-        resolve();
-      });
-    });
+    // Initialize progress bar for text display
+    if (!this.progressBarManager) {
+      const progressSelector = `${this.wrapperSelector} .conversion-progress`;
+      this.progressBarManager = new ProgressBarManager({ wrapper: progressSelector });
+      this.progressBarManager.show();
+    }
   }
 
   transitionToSuccess(downloadUrl?: string): void {
@@ -289,7 +275,7 @@ export class ConversionModal {
     return this.progressBarManager;
   }
 
-  showDownloadButton(url: string, options: any = {}): void {
+  showDownloadButton(url: string, _options: any = {}): void {
 
     // Zombie guard
     if (!this.state) {

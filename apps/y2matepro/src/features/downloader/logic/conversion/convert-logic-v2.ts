@@ -108,16 +108,16 @@ export async function startConversion(params: ConversionParams): Promise<void> {
     // Transition modal to converting phase
     // Only for cases that need CONVERTING phase (Polling cases)
     // - Static Direct: Skip CONVERTING → SUCCESS
-    // - iOS RAM: Double EXTRACTING trick (strategy handles transition with spiral-in)
+    // - iOS RAM: Double EXTRACTING trick (strategy handles transition)
     // - Other Stream: Skip CONVERTING → SUCCESS
-    // - Polling cases: Need CONVERTING phase with spiral-in animation
+    // - Polling cases: Need CONVERTING phase (direct transition)
     const needsConvertingPhase =
       routing.routeType === RouteType.IOS_POLLING ||
       routing.routeType === RouteType.WINDOWS_MP4_POLLING;
 
     if (needsConvertingPhase) {
-      log('Transitioning modal to CONVERTING phase with spiral-in animation...');
-      await modal.transitionToConvertingWithAnimation(); // 600ms spiral-in transition
+      log('Transitioning modal to CONVERTING phase...');
+      await modal.transitionToConvertingWithAnimation(); // Direct transition
     } else {
       log('Skipping CONVERTING phase for routeType:', routing.routeType);
     }
