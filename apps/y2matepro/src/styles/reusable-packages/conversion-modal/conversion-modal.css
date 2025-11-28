@@ -301,7 +301,14 @@
 
 /* Alternative striped pattern - bold */
 
-/* ======= CIRCULAR PROGRESS (Unified Spinner & Progress) ======= */
+/* ======= CIRCULAR PROGRESS (CSS Conic-Gradient) ======= */
+
+/* Register custom property for smooth animation */
+@property --progress-deg {
+    syntax: '<number>';
+    initial-value: 0;
+    inherits: false;
+}
 
 /* Base styles - Extra Small Mobile (0-350px) */
 .loading-spinner-container {
@@ -318,57 +325,46 @@
     height: 55px;
 }
 
-/* SVG container - rotated -90deg to start from 12h position */
-.spinner-svg {
+/* Progress circle using conic-gradient */
+.progress-circle {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    transform: rotate(-90deg);
-    opacity: 1;
-    overflow: visible;
+    border-radius: 50%;
+    --progress-deg: 0;
+    background: conic-gradient(
+        from 0deg,
+        var(--pkg-color-primary) 0deg,
+        var(--pkg-color-primary) calc(var(--progress-deg) * 1deg),
+        rgba(25, 118, 210, 0.15) calc(var(--progress-deg) * 1deg),
+        rgba(25, 118, 210, 0.15) 360deg
+    );
+    transition: --progress-deg 0.35s ease-out;
 }
 
-.spinner-svg.hidden {
-    opacity: 0;
-    pointer-events: none;
+/* Inner circle to create donut shape */
+.progress-circle::before {
+    content: '';
+    position: absolute;
+    inset: 6px; /* stroke width */
+    background: white;
+    border-radius: 50%;
 }
 
-/* Background circle - always visible */
-.spinner-bg {
-    fill: none;
-    stroke: rgba(25, 118, 210, 0.15);
-    stroke-width: 8;
+/* EXTRACTING mode - 25% arc with rotation */
+.progress-circle[data-mode="extracting"] {
+    animation: spinCircle 0.6s linear infinite;
 }
 
-/* Main progress bar - spinner 25% → progress 100% */
-.spinner-bar {
-    fill: none;
-    stroke: var(--pkg-color-primary);
-    stroke-width: 8;
-    stroke-linecap: round;
-    stroke-dasharray: 73.83 221.48; /* 25% visible, 75% gap */
-    stroke-dashoffset: 0;
-    transform-origin: center;
-    transition: none;
+@keyframes spinCircle {
+    0% { transform: rotate(-90deg); }
+    100% { transform: rotate(270deg); }
 }
 
-/* Spinning animation for EXTRACTING mode */
-.spinner-bar.spinning {
-    animation: spinBar 0.6s linear infinite;
-}
-
-@keyframes spinBar {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* PROGRESS mode - full circle with dashoffset control */
-.spinner-bar.progress-mode {
-    stroke-dasharray: 295.31; /* Full circle */
-    stroke-dashoffset: 295.31; /* Start at 0% */
-    transition: stroke-dashoffset 0.35s ease-out;
+/* PROGRESS mode - smooth percentage updates */
+.progress-circle[data-mode="progress"] {
     animation: none;
 }
 
@@ -442,20 +438,34 @@
 
 /* Accessibility - Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
-    .spinner-bar.spinning {
+    .progress-circle[data-mode="extracting"] {
         animation: none;
     }
 
-    .spinner-bar.progress-mode {
+    .progress-circle {
         transition: none;
     }
 
-    .success-circle {
-        transition: none; /* Instant fill for reduced motion */
+    .success-circle-css {
+        animation: none;
+        --success-deg: 360; /* Instant show at 100% */
+    }
+
+    .success-checkmark {
+        animation: none;
+        stroke-dashoffset: 0;
+        opacity: 1;
     }
 }
 
 /* ======= SUCCESS INDICATOR (Green Circle + Tick Icon) ======= */
+
+/* Register custom property for success animation */
+@property --success-deg {
+    syntax: '<number>';
+    initial-value: 0;
+    inherits: false;
+}
 
 /* Base styles - Extra Small Mobile (0-350px) */
 /* IMPORTANT: Success indicator MUST match circular-progress-wrapper sizes exactly to prevent CLS */
@@ -465,17 +475,47 @@
     height: 55px;
 }
 
-/* Success circle - draws from 0% to 100% in 0.8s */
-.success-circle {
-    stroke-dasharray: 295.31; /* 2π × 47 (circle circumference) */
-    stroke-dashoffset: 295.31; /* Start at 0% */
-    animation: drawCircle 0.8s ease-out forwards;
+/* CSS circle - animates from 0 to 360deg */
+.success-circle-css {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    --success-deg: 0;
+    background: conic-gradient(
+        from 0deg,
+        #1BC012 0deg,
+        #1BC012 calc(var(--success-deg) * 1deg),
+        transparent calc(var(--success-deg) * 1deg),
+        transparent 360deg
+    );
+    animation: fillSuccess 0.8s ease-out forwards;
 }
 
-@keyframes drawCircle {
+/* Inner circle to create donut shape */
+.success-circle-css::before {
+    content: '';
+    position: absolute;
+    inset: 5px; /* stroke width - thinner */
+    background: white;
+    border-radius: 50%;
+}
+
+@keyframes fillSuccess {
     to {
-        stroke-dashoffset: 0; /* End at 100% */
+        --success-deg: 360;
     }
+}
+
+/* SVG checkmark container */
+.checkmark-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
 /* Checkmark - appears after circle completes (0.8s delay) */
@@ -605,7 +645,6 @@
     align-items: center;
     justify-content: center;
     gap: var(--pkg-space-2);
-    min-width: 160px;
     padding: 12px 24px;
     background: var(--pkg-color-primary);
     color: #ffffff;
@@ -691,12 +730,10 @@
     }
 
     .btn-download {
-        min-width: 180px;
         padding: 14px 28px;
     }
 
     .btn-retry {
-        min-width: 160px;
         padding: 14px 28px;
     }
 
@@ -753,7 +790,6 @@
     }
 
     .btn-download {
-        min-width: 200px;
         padding: 14px 32px;
         font-size: 1.0625rem;
     }
@@ -803,7 +839,6 @@
     }
 
     .btn-download {
-        min-width: 220px;
         padding: 16px 36px;
         font-size: 1.125rem;
         border-radius: var(--pkg-radius-lg);
@@ -840,7 +875,6 @@
     }
 
     .btn-download {
-        min-width: 240px;
         padding: 16px 40px;
     }
 
@@ -896,7 +930,6 @@
     }
 
     .btn-download {
-        min-width: 260px;
         padding: 18px 44px;
         font-size: 1.1875rem;
     }
@@ -965,7 +998,6 @@
     }
 
     .btn-download {
-        min-width: 280px;
         padding: 20px 48px;
         font-size: 1.25rem;
     }
