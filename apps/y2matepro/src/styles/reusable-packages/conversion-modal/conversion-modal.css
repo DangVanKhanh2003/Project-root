@@ -645,7 +645,7 @@
     align-items: center;
     justify-content: center;
     gap: var(--pkg-space-2);
-    padding: 12px 24px;
+    padding: 8px 16px;
     background: var(--pkg-color-primary);
     color: #ffffff;
     font-size: 1rem;
@@ -730,7 +730,7 @@
     }
 
     .btn-download {
-        padding: 14px 28px;
+        padding: 10px 20px;
     }
 
     .btn-retry {
@@ -790,7 +790,7 @@
     }
 
     .btn-download {
-        padding: 14px 32px;
+        padding: 10px 24px;
         font-size: 1.0625rem;
     }
 
@@ -839,7 +839,7 @@
     }
 
     .btn-download {
-        padding: 16px 36px;
+        padding: 12px 28px;
         font-size: 1.125rem;
         border-radius: var(--pkg-radius-lg);
     }
@@ -875,7 +875,7 @@
     }
 
     .btn-download {
-        padding: 16px 40px;
+        padding: 12px 32px;
     }
 
     .btn-retry {
@@ -919,10 +919,7 @@
         min-height: 280px; /* Optimized buffer - prevents layout shift on 2K displays */
     }
 
-    .conversion-actions {
-        gap: var(--pkg-space-4);
-        margin-top: var(--pkg-space-6);
-    }
+
 
     .btn-conversion {
         padding: var(--pkg-space-3) var(--pkg-space-5);
@@ -930,7 +927,7 @@
     }
 
     .btn-download {
-        padding: 18px 44px;
+        padding: 14px 36px;
         font-size: 1.1875rem;
     }
 
@@ -998,7 +995,7 @@
     }
 
     .btn-download {
-        padding: 20px 48px;
+        padding: 16px 40px;
         font-size: 1.25rem;
     }
 
