@@ -171,22 +171,18 @@
     flex: 1;
     overflow-y: auto;
     min-height: 180px; /* Maximum buffer for mobile - prevents layout shift */
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
 }
 
 /* ======= State Container ======= */
 .conversion-state {
     text-align: center;
-    /* Consistent min-height prevents layout shift between states */
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    gap: 10px;
-    height: fit-content;
+    gap: 5px;
+
+    /* Fixed margin-top - prevents layout shift, no flex centering */
+    margin-top: 24px; /* Mobile base */
 }
 
 /* ======= FOOTER - Share Icons ======= */
@@ -453,6 +449,72 @@
     .spinner-bar.progress-mode {
         transition: none;
     }
+
+    .success-circle {
+        transition: none; /* Instant fill for reduced motion */
+    }
+}
+
+/* ======= SUCCESS INDICATOR (Green Circle + Tick Icon) ======= */
+
+/* Base styles - Extra Small Mobile (0-350px) */
+/* IMPORTANT: Success indicator MUST match circular-progress-wrapper sizes exactly to prevent CLS */
+.success-indicator {
+    position: relative;
+    width: 55px;
+    height: 55px;
+}
+
+/* Success circle - draws from 0% to 100% in 0.8s */
+.success-circle {
+    stroke-dasharray: 295.31; /* 2π × 47 (circle circumference) */
+    stroke-dashoffset: 295.31; /* Start at 0% */
+    animation: drawCircle 0.8s ease-out forwards;
+}
+
+@keyframes drawCircle {
+    to {
+        stroke-dashoffset: 0; /* End at 100% */
+    }
+}
+
+/* Checkmark - appears after circle completes (0.8s delay) */
+.success-checkmark {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    opacity: 0;
+    animation: drawCheckmark 0.5s ease-out 0.8s forwards;
+}
+
+@keyframes drawCheckmark {
+    to {
+        stroke-dashoffset: 0;
+        opacity: 1;
+    }
+}
+
+/* Small Mobile (351px-599px) */
+@media (min-width: 351px) {
+    .success-indicator {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+/* Medium Tablet (600px-839px) */
+@media (min-width: 600px) {
+    .success-indicator {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+/* Expanded Desktop (840px+) - MATCH circular-progress-wrapper */
+@media (min-width: 840px) {
+    .success-indicator {
+        width: 70px;
+        height: 70px;
+    }
 }
 
 /* ======= Action Buttons ======= */
@@ -674,6 +736,10 @@
         min-height: 250px; /* Maximum buffer - prevents layout shift on tablets */
     }
 
+    .conversion-state {
+        margin-top: 10px; /* Reduced margin on tablet */
+    }
+
     .conversion-title {
         font-size: 1.5rem; /* Increased for better visibility */
     }
@@ -726,6 +792,10 @@
     .conversion-modal-body {
         padding: var(--pkg-space-10) var(--pkg-space-8);
         min-height: 250px; /* Optimized buffer - prevents layout shift on desktop */
+    }
+
+    .conversion-state {
+        margin-top: 5px; /* Minimal margin on desktop */
     }
 
     .conversion-icon {

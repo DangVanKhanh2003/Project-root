@@ -305,6 +305,13 @@ export class ConversionModal {
 
     // Re-render body content
     this.updateBodyContent();
+
+    // Recreate circular progress (container is new after updateBodyContent)
+    this.circularProgress?.destroy();
+    this.circularProgress = new CircularProgress('#circular-progress-container');
+
+    // Render success indicator (green circle + tick)
+    this.circularProgress.renderSuccessState();
   }
 
   /**
@@ -556,12 +563,15 @@ export class ConversionModal {
   private renderSuccess(): string {
     return `
       <div class="conversion-state conversion-state--success">
-        <h3 class="conversion-title">Ready to Download</h3>
-        <p class="conversion-message">Your file is ready to download.</p>
+        <div class="loading-spinner-container" aria-hidden="true">
+          <div id="circular-progress-container"></div>
+        </div>
+
+        <p class="conversion-message">Ready to Download</p>
 
         <div class="conversion-actions">
           <button type="button" class="btn-download" data-action="download">
-            Download Now
+            Download
           </button>
         </div>
       </div>

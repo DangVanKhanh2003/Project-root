@@ -168,8 +168,11 @@ export class CircularProgress {
       if (progress < 1) {
         this.animationFrameId = requestAnimationFrame(animate);
       } else {
-        this.transitionToProgressMode();
-        callback();
+        // Wait one more frame to ensure spiral-in animation fully renders
+        requestAnimationFrame(() => {
+          this.transitionToProgressMode();
+          callback();
+        });
       }
     };
 
@@ -297,6 +300,50 @@ export class CircularProgress {
     this.currentProgress = 0;
     this.isAborted = false;
     this.startExtractingMode();
+  }
+
+  /**
+   * Render SUCCESS state - green circle with tick icon
+   *
+   * WHY: Visual confirmation when download is ready
+   * CONTRACT: () → void - replaces progress with success indicator
+   * PRE: Component must be rendered
+   * POST: Green stroke circle animates from 0% → 100%, tick gif displayed
+   * EDGE: Safe to call from any state
+   * USAGE: circularProgress.renderSuccessState();
+   */
+  renderSuccessState(): void {
+    if (!this.container) return;
+
+    this.cleanupAnimation();
+    this.currentMode = 'progress'; // Reuse progress mode state
+
+    const html = `
+      <div class="circular-progress-wrapper success-indicator">
+        <svg class="spinner-svg success-svg" viewBox="0 0 100 100">
+          <!-- Circle draws from 0% to 100% -->
+          <circle class="success-circle" cx="50" cy="50" r="47"
+                  fill="none" stroke="#1BC012" stroke-width="8"/>
+
+          <!-- Checkmark appears after circle completes -->
+          <path class="success-checkmark"
+                d="M 36 54 L 45 65 L 70 35"
+                fill="none" stroke="#1BC012" stroke-width="8"
+                stroke-linecap="round" stroke-linejoin="round"
+                transform="rotate(90 50 50)"/>
+        </svg>
+      </div>
+    `;
+
+    this.container.innerHTML = html;
+
+    // Clear references since we replaced the DOM
+    this.wrapper = null;
+    this.svg = null;
+    this.spinnerBar = null;
+    this.spinnerGroup = null;
+    this.wipePath = null;
+    this.percentageText = null;
   }
 
   /**

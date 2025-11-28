@@ -442,7 +442,7 @@ export class ConversionModal {
 
         <div class="conversion-actions">
           <button type="button" class="btn-download" data-action="download">
-            Download Now
+            Download
           </button>
         </div>
       </div>
