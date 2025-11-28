@@ -69,16 +69,6 @@ jobs:
           fi
           test -d apps/y2matepro/dist
 
-      - name: Modify robots meta tags for test environment
-        if: github.ref_name == 'test-production'
-        env:
-          NODE_ENV: test
-          TARGET_DIR: apps/y2matepro/dist
-        run: |
-          set -euo pipefail
-          echo "🔄 Running modify-robots-meta.js script..."
-          node modify-robots-meta.js
-
       - name: Replace robots.txt for test environment
         if: github.ref_name == 'test-production'
         run: |

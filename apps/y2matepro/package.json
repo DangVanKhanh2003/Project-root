@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "build:test": "NODE_ENV=test tsc && vite build",
+    "build:test": "NODE_ENV=test tsc && NODE_ENV=test vite build && NODE_ENV=test TARGET_DIR=dist node ../../modify-robots-meta.js",
     "preview": "vite preview",
     "remove-logs": "tsx remove-console-logs.ts",
     "remove-logs:preview": "tsx remove-console-logs.ts --dry-run",
