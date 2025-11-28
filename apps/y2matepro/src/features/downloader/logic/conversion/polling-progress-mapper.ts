@@ -54,21 +54,23 @@ export class PollingProgressMapper {
     const audioProg = audioProgress ?? 0;
 
     // Check if should transition to merging phase
-    // Condition: Both video and audio reach 100%
-    const isProcessingComplete = videoProg >= 100 && audioProg >= 100;
+    // Condition: Audio-only needs only audioProgress; Video needs both
+    const isProcessingComplete = this.isAudioFormat(this.currentFormat)
+      ? audioProg >= 100
+      : videoProg >= 100 && audioProg >= 100;
 
     if (isProcessingComplete && this.currentPhase === 'processing') {
       // Transition: Processing → Merging
       this.currentPhase = 'merging';
       this.mergingStartTime = Date.now();
-      const processingEnd = this.processingWeight * 100;
+      const processingEnd = this.calculateProcessingEnd();
       this.lastProgressValue = processingEnd;
       return processingEnd;
     }
 
     if (this.currentPhase === 'merging') {
       // Merging phase - estimated progress
-      const processingEnd = this.processingWeight * 100;
+      const processingEnd = this.calculateProcessingEnd();
       const mergingRange = this.mergingWeight * 100;
 
       const elapsed = Date.now() - this.mergingStartTime;
@@ -86,11 +88,21 @@ export class PollingProgressMapper {
     }
 
     // Processing phase - real API progress
-    // Weighted average: 80% video + 20% audio
-    const weightedProgress = (videoProg * this.VIDEO_WEIGHT) + (audioProg * this.AUDIO_WEIGHT);
+    // Calculate weighted progress based on format
+    let displayProgress: number;
 
-    // Map 0-100% API progress → 0-processingWeight% UI progress
-    const displayProgress = (weightedProgress / 100) * (this.processingWeight * 100);
+    if (this.isAudioFormat(this.currentFormat)) {
+      // Audio-only: 10 + (60 - 10) * (audioProgress / 100)
+      const audioRange = 50; // 60 - 10
+      displayProgress = 10 + (audioRange * (audioProg / 100));
+    } else {
+      // Video: weightedProgress = audioProgress * 0.4 + videoProgress * 0.6
+      const weightedProgress = (audioProg * 0.4) + (videoProg * 0.6);
+      // Then: 10 + (90 - 10) * (weightedProgress / 100)
+      const videoRange = 80; // 90 - 10
+      displayProgress = 10 + (videoRange * (weightedProgress / 100));
+    }
+
     this.lastProgressValue = displayProgress;
     return displayProgress;
   }
@@ -190,6 +202,25 @@ export class PollingProgressMapper {
 
     // Calculate merge duration based on format and file size
     this.mergingDuration = this.calculateMergeDuration(format, fileSizeMB);
+  }
+
+  /**
+   * Helper method to determine if format is audio
+   */
+  private static isAudioFormat(format: string): boolean {
+    const audioFormats = ['mp3', 'wav', 'opus', 'ogg', 'm4a', 'audio'];
+    return audioFormats.includes(format.toLowerCase());
+  }
+
+  /**
+   * Helper method to calculate processing end based on format
+   */
+  private static calculateProcessingEnd(): number {
+    if (this.isAudioFormat(this.currentFormat)) {
+      return 60; // Audio processing ends at 60%
+    } else {
+      return 90; // Video processing ends at 90%
+    }
   }
 
   /**

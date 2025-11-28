@@ -2,12 +2,7 @@
  * PollingStrategy - Case 3 & 4: Polling-based Download
  *
  * iOS large streams + Windows MP4: Server-side processing với polling.
- *
- * Progress 4 Layers:
- * - Layer 1: 0→5% (200ms) - Initial animation, instant feedback
- * - Layer 2: 5→10% - no_download handling, +1%/poll
- * - Layer 3: 10→95% - Real progress từ API
- * - Layer 4: →100% - Final animation khi có mergedUrl
+ * Uses PollingProgressMapper for sophisticated progress calculation.
  */
 
 import { BaseStrategy } from './BaseStrategy';
@@ -15,9 +10,9 @@ import type { StrategyContext, StrategyResult } from './IConversionStrategy';
 import {
   TaskState,
   createApiProgressData,
-  calculateDisplayProgress,
   isAudioFormat
 } from '../../types';
+import { PollingProgressMapper } from '../../polling-progress-mapper';
 
 // Direct imports
 import { getPollingManager } from '../../../concurrent-polling';
@@ -30,21 +25,21 @@ const log = (...args: unknown[]) => console.log(LOG_PREFIX, ...args);
 const INITIAL_ANIMATION_TARGET = 5;
 const INITIAL_ANIMATION_DURATION = 200; // ms
 const NO_DOWNLOAD_MAX = 10;
-const MERGING_START_PERCENT = 95;
-const MP3_MERGING_DURATION = 60000; // 60s estimate for MP3 merging
 
 export class PollingStrategy extends BaseStrategy {
   private resolvePromise: ((result: StrategyResult) => void) | null = null;
   private lastPercent: number = 0;
   private format: string;
   private isAudio: boolean;
-  private isMergingPhase: boolean = false;
-  private mergingIntervalId: ReturnType<typeof setInterval> | null = null;
 
   constructor(context: StrategyContext) {
     super(context);
     this.format = context.formatData.format || context.formatData.type || 'mp4';
     this.isAudio = isAudioFormat(this.format);
+
+    // Initialize PollingProgressMapper with format and size
+    const sizeMB = context.extractResult.size ? Math.round(context.extractResult.size / (1024 * 1024)) : 200;
+    PollingProgressMapper.reset(this.format, sizeMB);
   }
 
   getName(): string {
@@ -106,7 +101,6 @@ export class PollingStrategy extends BaseStrategy {
 
   cancel(): void {
     super.cancel();
-    this.stopMergingAnimation();
     getPollingManager().stopPolling(this.ctx.formatId);
 
     if (this.resolvePromise) {
@@ -148,22 +142,8 @@ export class PollingStrategy extends BaseStrategy {
       return;
     }
 
-    // Check if entering merging phase (both video and audio at 100%)
-    const isProcessingComplete = rawData.videoProgress >= 100 && rawData.audioProgress >= 100;
-    if (isProcessingComplete && !rawData.mergedUrl && !this.isMergingPhase) {
-      log('Entering merging phase');
-      this.startMergingPhase();
-      return;
-    }
-
-    // If already in merging phase, let it continue until mergedUrl arrives
-    if (this.isMergingPhase && !rawData.mergedUrl) {
-      log('In merging phase, waiting for mergedUrl');
-      return;
-    }
-
-    // Layer 3: Real progress từ API
-    log('Layer 3: Real progress from API');
+    // Layer 3: Real progress từ API (using PollingProgressMapper)
+    log('Layer 3: Real progress from API using PollingProgressMapper');
     const apiData = createApiProgressData({
       videoProgress: rawData.videoProgress,
       audioProgress: rawData.audioProgress,
@@ -171,15 +151,41 @@ export class PollingStrategy extends BaseStrategy {
       mergedUrl: rawData.mergedUrl ?? null
     });
 
-    const display = calculateDisplayProgress(apiData, this.format, this.lastPercent);
-    log('Calculated display:', display, 'lastPercent:', this.lastPercent);
+    // Debug logging to understand the issue
+    log('Raw API data:', {
+      videoProgress: rawData.videoProgress,
+      audioProgress: rawData.audioProgress,
+      status: rawData.status,
+      mergedUrl: rawData.mergedUrl
+    });
+
+    // Use PollingProgressMapper for sophisticated progress calculation
+    const displayProgress = PollingProgressMapper.mapProgress(apiData);
+    const statusText = PollingProgressMapper.getStatusText(apiData);
+
+    log('PollingProgressMapper result:', {
+      displayProgress,
+      statusText,
+      lastPercent: this.lastPercent,
+      format: this.format,
+      isAudio: this.isAudio,
+      currentPhase: PollingProgressMapper.getCurrentPhase()
+    });
 
     // Never backwards rule
-    if (display.percent > this.lastPercent) {
-      this.lastPercent = display.percent;
+    if (displayProgress > this.lastPercent) {
+      this.lastPercent = displayProgress;
       // Note: Progress bar manager appends "X%" automatically
-      this.updateProgress(display.percent, 'Converting...');
-      log('Updated progress to:', display.percent);
+      this.updateProgress(displayProgress, statusText);
+      log('Updated progress to:', displayProgress, 'with status:', statusText);
+    } else if (displayProgress < this.lastPercent) {
+      log('WARNING: Progress went backwards!', {
+        previous: this.lastPercent,
+        current: displayProgress,
+        rawData: apiData
+      });
+    } else {
+      log('Progress unchanged at:', displayProgress);
     }
 
     // Check completion
@@ -201,53 +207,6 @@ export class PollingStrategy extends BaseStrategy {
   }
 
   /**
-   * Start MP3 merging phase with time-based progress
-   * MP3 encoding is slow (60-150s), so we fake progress
-   */
-  private startMergingPhase(): void {
-    this.isMergingPhase = true;
-
-    // For MP4, merging is instant - just set to 95% and wait
-    if (!this.isAudio) {
-      this.lastPercent = MERGING_START_PERCENT;
-      this.updateProgress(MERGING_START_PERCENT, 'Converting...');
-      return;
-    }
-
-    // For MP3, animate progress over estimated time
-    const startPercent = Math.max(this.lastPercent, 60);
-    const targetPercent = MERGING_START_PERCENT;
-    const range = targetPercent - startPercent;
-    const steps = range;
-    const stepInterval = MP3_MERGING_DURATION / steps;
-
-    let currentStep = 0;
-    this.mergingIntervalId = setInterval(() => {
-      if (this.checkAborted() || currentStep >= steps) {
-        this.stopMergingAnimation();
-        return;
-      }
-
-      currentStep++;
-      const newPercent = startPercent + currentStep;
-      if (newPercent > this.lastPercent) {
-        this.lastPercent = newPercent;
-        this.updateProgress(newPercent, 'Converting...');
-      }
-    }, stepInterval);
-  }
-
-  /**
-   * Stop merging animation
-   */
-  private stopMergingAnimation(): void {
-    if (this.mergingIntervalId) {
-      clearInterval(this.mergingIntervalId);
-      this.mergingIntervalId = null;
-    }
-  }
-
-  /**
    * Layer 4: Complete - animate to 100%
    */
   private handleComplete(mergedUrl: string): void {
@@ -259,12 +218,11 @@ export class PollingStrategy extends BaseStrategy {
       return;
     }
 
-    this.stopMergingAnimation();
     getPollingManager().stopPolling(this.ctx.formatId);
 
     // Final animation to 100%
     log('Setting progress to 100%');
-    this.updateProgress(100, 'Converting...');
+    this.updateProgress(100, 'Ready');
 
     // Mark success
     log('Marking success in state');
