@@ -17,3 +17,22 @@ Dự án sử dụng công nghệ web chuẩn với kiến trúc hiện đại:
 - **JavaScript (ES6+)**: Vanilla JavaScript với ES modules, dynamic imports, và modern syntax
 
 **Không sử dụng frameworks** - dự án được xây dựng hoàn toàn bằng vanilla web technologies để đảm bảo hiệu suất tối ưu và kiểm soát hoàn toàn code base.
+
+## Monorepo Structure
+
+Dự án sử dụng kiến trúc monorepo với các apps trong `apps/`:
+
+- **`apps/y2matepro/`**: Site chính cần deploy lên production
+- **`apps/yt1s-test/`**: Project mẫu để test/development locally - **KHÔNG DEPLOY**
+
+## Deployment & CI/CD
+
+### Sites cần deploy:
+- ✅ `y2matepro` - Deploy qua GitHub Actions (main → production, test-production → test environment)
+
+### Sites không deploy:
+- ❌ `yt1s-test` - Chỉ dùng local development, không cần CI/CD workflow
+
+### Environment Strategy:
+- **`main` branch** → Production environment (với SEO indexing bình thường)
+- **`test-production` branch** → Test environment (với noindex meta tags & robots.txt block)
