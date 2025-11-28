@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "build:test": "NODE_ENV=test tsc && vite build",
     "preview": "vite preview",
     "remove-logs": "tsx remove-console-logs.ts",
     "remove-logs:preview": "tsx remove-console-logs.ts --dry-run",

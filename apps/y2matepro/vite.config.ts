@@ -3,6 +3,7 @@ import { resolve } from 'path';
 import { readdirSync } from 'fs';
 import { htmlRewritePlugin } from './vite-plugin-html-rewrite';
 import { movePagesPlugin } from './vite-plugin-move-pages';
+import type { Plugin } from 'vite';
 
 // Auto-detect all HTML pages in src/page
 const pageDir = resolve(__dirname, 'src/page');
@@ -15,8 +16,25 @@ const pageEntries = pageFiles.reduce((entries, file) => {
   return entries;
 }, {} as Record<string, string>);
 
+// Plugin to inject robots meta tag based on NODE_ENV
+function robotsMetaPlugin(): Plugin {
+  return {
+    name: 'inject-robots-meta',
+    transformIndexHtml(html) {
+      if (process.env.NODE_ENV === 'test') {
+        // Replace index,follow with noindex for test environment
+        return html.replace(
+          /<meta\s+name="robots"\s+content="index,\s*follow">/gi,
+          '<meta name="robots" content="noindex, nofollow">'
+        );
+      }
+      return html;
+    }
+  };
+}
+
 export default defineConfig({
-  plugins: [htmlRewritePlugin(), movePagesPlugin()],
+  plugins: [htmlRewritePlugin(), movePagesPlugin(), robotsMetaPlugin()],
   build: {
     outDir: 'dist',
     rollupOptions: {
