@@ -1,13 +1,15 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
-import { readdirSync } from 'fs';
+import { readdirSync, existsSync } from 'fs';
 import { htmlRewritePlugin } from './vite-plugin-html-rewrite';
 import { movePagesPlugin } from './vite-plugin-move-pages';
 import type { Plugin } from 'vite';
 
-// Auto-detect all HTML pages in src/page
+// Auto-detect all HTML pages in src/page (if directory exists)
 const pageDir = resolve(__dirname, 'src/page');
-const pageFiles = readdirSync(pageDir).filter(file => file.endsWith('.html'));
+const pageFiles = existsSync(pageDir)
+  ? readdirSync(pageDir).filter(file => file.endsWith('.html'))
+  : [];
 
 // Generate input entries for all pages
 const pageEntries = pageFiles.reduce((entries, file) => {
