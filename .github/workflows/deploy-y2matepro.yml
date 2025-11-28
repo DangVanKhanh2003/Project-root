@@ -84,7 +84,8 @@ jobs:
           find apps/y2matepro/dist -name "*.html" -exec grep 'meta name="robots"' {} \; | head -5 || true
           if [[ "${{ github.ref_name }}" == "test-production" ]]; then
             echo "Expected: noindex for test environment"
-            if grep -r 'content="noindex"' apps/y2matepro/dist/ > /dev/null; then
+            # Match both "noindex" and "noindex, nofollow"
+            if grep -rE 'content="noindex' apps/y2matepro/dist/ > /dev/null; then
               echo "✅ SUCCESS: Found noindex meta tags for test environment"
             else
               echo "❌ ERROR: noindex meta tags not found in test environment"
@@ -92,7 +93,7 @@ jobs:
             fi
           else
             echo "Expected: index, follow for production"
-            if grep -r 'content="index, follow"' apps/y2matepro/dist/ > /dev/null; then
+            if grep -rE 'content="index,?\s*follow"' apps/y2matepro/dist/ > /dev/null; then
               echo "✅ SUCCESS: Found index,follow meta tags for production"
             else
               echo "⚠️  WARNING: index,follow meta tags not found in production"
