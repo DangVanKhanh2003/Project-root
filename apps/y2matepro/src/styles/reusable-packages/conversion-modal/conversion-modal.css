@@ -491,7 +491,7 @@
         transparent calc(var(--success-deg) * 1deg),
         transparent 360deg
     );
-    animation: fillSuccess 0.8s ease-out forwards;
+    animation: fillSuccess 0.4s ease-out forwards;
 }
 
 /* Inner circle to create donut shape */
@@ -518,12 +518,12 @@
     height: 100%;
 }
 
-/* Checkmark - appears after circle completes (0.8s delay) */
+/* Checkmark - appears after circle completes (0.4s delay) */
 .success-checkmark {
     stroke-dasharray: 100;
     stroke-dashoffset: 100;
     opacity: 0;
-    animation: drawCheckmark 0.5s ease-out 0.8s forwards;
+    animation: drawCheckmark 0.3s ease-out 0.4s forwards;
 }
 
 @keyframes drawCheckmark {
