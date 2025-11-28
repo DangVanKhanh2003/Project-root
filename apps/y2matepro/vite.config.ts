@@ -4,14 +4,25 @@ import { readdirSync, existsSync } from 'fs';
 import { htmlRewritePlugin } from './vite-plugin-html-rewrite';
 import { movePagesPlugin } from './vite-plugin-move-pages';
 
+// Auto-detect all HTML pages in root directory
+const rootDir = resolve(__dirname);
+const rootHtmlFiles = readdirSync(rootDir).filter(file => file.endsWith('.html') && file !== 'index.html');
+
+// Generate input entries for root HTML pages
+const rootPageEntries = rootHtmlFiles.reduce((entries, file) => {
+  const name = file.replace('.html', '');
+  entries[name] = resolve(rootDir, file);
+  return entries;
+}, {} as Record<string, string>);
+
 // Auto-detect all HTML pages in src/page (if directory exists)
 const pageDir = resolve(__dirname, 'src/page');
 const pageFiles = existsSync(pageDir)
   ? readdirSync(pageDir).filter(file => file.endsWith('.html'))
   : [];
 
-// Generate input entries for all pages
-const pageEntries = pageFiles.reduce((entries, file) => {
+// Generate input entries for src/page pages
+const srcPageEntries = pageFiles.reduce((entries, file) => {
   const name = file.replace('.html', '');
   entries[name] = resolve(pageDir, file);
   return entries;
@@ -24,7 +35,8 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
-        ...pageEntries
+        ...rootPageEntries,
+        ...srcPageEntries
       },
       output: {
         entryFileNames: 'assets/[name]-[hash].js',
