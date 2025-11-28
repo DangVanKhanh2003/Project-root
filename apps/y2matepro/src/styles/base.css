@@ -136,6 +136,13 @@ h2 {
     margin: var(--space-md) 0;
 }
 
+h3 {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-tight);
+    margin: var(--space-md) 0;
+}
+
 h4 {
     font-size: var(--font-size-lg);
     font-weight: var(--font-weight-light);
@@ -151,7 +158,12 @@ h5 {
 /* ===== MOBILE-FIRST RESPONSIVE TYPOGRAPHY ===== */
 @media (max-width: 575px) {
     h2 {
-        font-size: var(--font-size-2xl);
+        font-size: var(--font-size-xl);
+        margin: 0;
+    }
+
+    h3 {
+        font-size: var(--font-size-lg);
         margin: 0;
     }
 }

@@ -26,20 +26,16 @@
 }
 
 /* ===== GUIDE DATA ===== */
-.guide-data h4 {
+.guide-data h3 {
     font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-light);
+    font-weight: var(--font-weight-semibold);
     color: var(--color-text-primary);
     margin: var(--space-xl) 0 var(--space-md);
     line-height: var(--line-height-tight);
 }
 
-.guide-data h4:first-child {
+.guide-data h3:first-child {
     margin-top: 0;
-}
-
-.guide-data h4 b {
-    font-weight: var(--font-weight-semibold);
 }
 
 .guide-data p {
@@ -61,7 +57,7 @@
         margin: var(--space-sm) 0 var(--space-lg);
     }
 
-    .guide-data h4 {
+    .guide-data h3 {
         font-size: var(--font-size-md);
         margin: var(--space-lg) 0 var(--space-sm);
     }

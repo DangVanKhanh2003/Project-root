@@ -25,12 +25,24 @@
     width: 80%;
 }
 
-.y2mate-content-pro h2 {
+h1 {
     font-size: var(--font-size-3xl);
     font-weight: var(--font-weight-bold);
     color: var(--color-text-primary);
     margin: var(--space-md) 0;
     line-height: var(--line-height-tight);
+    width: 100%;
+    text-align: center;
+}
+
+h2 {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin: var(--space-md) 0;
+    line-height: var(--line-height-tight);
+    width: 100%;
+    text-align: center;
 }
 
 .y2mate-content-pro p {
@@ -60,7 +72,7 @@
 /* ===== SMALL MOBILE (max-width: 575px) ===== */
 @media (max-width: 575px) {
     .y2mate-content-pro h2 {
-        font-size: var(--font-size-2xl);
+        font-size: var(--font-size-xl);
         margin: 0;
     }
 }
