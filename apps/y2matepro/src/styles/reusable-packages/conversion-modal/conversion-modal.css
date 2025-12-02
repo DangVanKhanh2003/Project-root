@@ -341,7 +341,7 @@
         rgba(25, 118, 210, 0.15) calc(var(--progress-deg) * 1deg + 1.5deg),
         rgba(25, 118, 210, 0.15) 360deg
     );
-    transition: --progress-deg 0.35s ease-out;
+    transition: --progress-deg 0.45s ease-out;
 }
 
 /* Inner circle to create donut shape */
@@ -366,6 +366,11 @@
 /* PROGRESS mode - smooth percentage updates */
 .progress-circle[data-mode="progress"] {
     animation: none;
+}
+
+/* COMPLETING FINAL - faster transition for final 100% animation */
+.progress-circle.completing-final {
+    transition: --progress-deg 0.05s ease-out !important;
 }
 
 /* Center percentage text - visible in PROGRESS mode only */

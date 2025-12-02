@@ -60,13 +60,41 @@ export class IOSRamStrategy extends BaseStrategy {
 
       log('Download complete, blob size:', blob.size);
 
+      // CRITICAL FIX: Force progress to 100% before showing success
+      const modal = this.getModal();
+      log('⚠️ FORCE: Updating progress to 100% at timestamp:', performance.now().toFixed(2) + 'ms');
+      modal.updateConversionProgress(100, 'Download complete', true, totalBytes, totalBytes);
+
+      // Wait for 100% to paint (double RAF + 150ms delay for CSS transition)
+      // CSS transition for final 100% is 50ms (0.05s with .completing-final class)
+      log('⚠️ WAIT: Starting double RAF + 150ms delay to ensure CSS transition completes');
+      await new Promise<void>(resolve => {
+        requestAnimationFrame(() => {
+          log('⚠️ RAF #1 callback at timestamp:', performance.now().toFixed(2) + 'ms');
+          requestAnimationFrame(() => {
+            log('⚠️ RAF #2 callback at timestamp:', performance.now().toFixed(2) + 'ms');
+            // Add 150ms delay to ensure CSS transition completes (50ms transition + safety buffer)
+            setTimeout(() => {
+              log('⚠️ Delay 150ms complete at timestamp:', performance.now().toFixed(2) + 'ms');
+              log('✅ 100% ANIMATION COMPLETE - safe to show success now');
+              resolve();
+            }, 150);
+          });
+        });
+      });
+
+      if (this.checkAborted()) {
+        log('Aborted during RAF wait');
+        return this.cancelledResult();
+      }
+
       // Save blob to state
       log('Marking success with ramBlob');
       this.markSuccess(url, { ramBlob: blob, filename });
 
       // Show download button
       log('Showing download button');
-      this.getModal().showDownloadButton(url, { buttonText: 'Download' });
+      modal.showDownloadButton(url, { buttonText: 'Download' });
 
       log('=== EXECUTE COMPLETE ===');
       return this.successResult(url, { blob, filename: filename ?? undefined });

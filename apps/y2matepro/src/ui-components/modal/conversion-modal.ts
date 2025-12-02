@@ -275,12 +275,17 @@ export class ConversionModal {
     return this.progressBarManager;
   }
 
+  getCircularProgress(): CircularProgress | null {
+    return this.circularProgress;
+  }
+
   showDownloadButton(url: string, _options: any = {}): void {
 
     // Zombie guard
     if (!this.state) {
       return;
     }
+
 
     // Update state to SUCCESS with download URL
     this.state = {

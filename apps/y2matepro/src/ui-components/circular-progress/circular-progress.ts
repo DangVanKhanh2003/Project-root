@@ -136,11 +136,17 @@ export class CircularProgress {
 
     // Convert percent to degrees (0-100% = 0-360deg)
     const degrees = (newProgress / 100) * 360;
-    console.log(`Rounded degrees: ${Math.round(degrees)}`);
+    const roundedPercent = Math.round(newProgress);
+
+
+    // Add faster transition class when reaching 100%
+    if (roundedPercent === 100) {
+      this.progressCircle.classList.add('completing-final');
+    }
+
     this.progressCircle.style.setProperty('--progress-deg', `${Math.round(degrees)}`);
 
     // Update text
-    const roundedPercent = Math.round(newProgress);
     this.percentageText.textContent = `${roundedPercent}%`;
   }
 
@@ -237,6 +243,7 @@ export class CircularProgress {
    * USAGE: circularProgress.destroy();
    */
   destroy(): void {
+
     if (this.container) {
       this.container.innerHTML = '';
     }

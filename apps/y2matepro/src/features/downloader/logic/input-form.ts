@@ -45,7 +45,7 @@ import { setVideoPageSEO } from '../routing/seo-manager';
  * Check if URL is YouTube
  */
 function isYouTubeUrl(url: string): boolean {
-  return /(?:youtube\.com|youtu\.be|youtube-nocookie\.com)/i.test(url);
+  return /(?:youtube\.com|youtu\.be|youtube-nocookie\.com|youtubekids\.com)/i.test(url);
 }
 
 /**

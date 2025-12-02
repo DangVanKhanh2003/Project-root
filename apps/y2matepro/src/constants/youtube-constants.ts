@@ -5,7 +5,7 @@
 
 export const YOUTUBE_API_CONSTANTS = {
   // URL patterns
-  YOUTUBE_DOMAINS: ['youtube.com', 'youtu.be', 'm.youtube.com'],
+  YOUTUBE_DOMAINS: ['youtube.com', 'youtu.be', 'm.youtube.com', 'youtubekids.com'],
 
   // Video ID regex
   VIDEO_ID_REGEX: /(?:v=|\/)([\w-]{11})(?:\?|&|$)/,

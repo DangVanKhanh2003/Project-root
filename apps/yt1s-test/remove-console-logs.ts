@@ -74,6 +74,58 @@ class ConsoleLogRemover {
   }
 
   /**
+   * Check if console statement is part of a function definition/wrapper
+   * Returns true if it should be SKIPPED (not removed)
+   */
+  private isPartOfFunctionDefinition(content: string, startPos: number): boolean {
+    // Get more context before the console statement
+    const beforeContent = content.substring(Math.max(0, startPos - 300), startPos);
+
+    // Split into lines and get current line
+    const lines = beforeContent.split('\n');
+    const currentLineStart = lines[lines.length - 1] || '';
+
+    // Also check if there's an arrow function on the previous line
+    const previousLine = lines.length > 1 ? lines[lines.length - 2] : '';
+    const combinedLines = previousLine + ' ' + currentLineStart;
+
+    // Check if console.log is part of an arrow function assignment
+    // Pattern: const/let/var name = (...) => console.log(...)
+    // This can be on same line or split across lines
+    const arrowFunctionPattern = /(const|let|var)\s+\w+\s*=\s*\([^)]*\)\s*=>\s*$/;
+    if (arrowFunctionPattern.test(currentLineStart) || arrowFunctionPattern.test(combinedLines)) {
+      return true;
+    }
+
+    // Also check if the arrow function is directly before console.log (within a few characters)
+    const directArrowPattern = /(const|let|var)\s+\w+\s*=\s*\([^)]*\)\s*=>\s*$/;
+    if (directArrowPattern.test(beforeContent.trim())) {
+      return true;
+    }
+
+    // Check if console.log is in a function body that's being assigned
+    // Pattern: const/let/var name = function(...) { ... console.log
+    const functionAssignmentPattern = /(const|let|var)\s+\w+\s*=\s*(async\s+)?function\s*\([^)]*\)/;
+    if (functionAssignmentPattern.test(beforeContent)) {
+      // Check if we're still in the function body (before the closing })
+      const afterFunction = beforeContent;
+      const openBraces = (afterFunction.match(/\{/g) || []).length;
+      const closeBraces = (afterFunction.match(/\}/g) || []).length;
+      if (openBraces > closeBraces) {
+        return true;
+      }
+    }
+
+    // Check if this is a return statement with console.log
+    // Pattern: return console.log(...)
+    if (/return\s+$/.test(currentLineStart.trim())) {
+      return true;
+    }
+
+    return false;
+  }
+
+  /**
    * Improved regex để handle nested parentheses trong console.log
    */
   private findConsoleStatements(content: string): ConsoleStatement[] {
@@ -87,6 +139,12 @@ class ConsoleLogRemover {
 
     while ((match = regex.exec(content)) !== null) {
       const startPos = match.index;
+
+      // Skip if this console statement is part of a function definition
+      if (this.isPartOfFunctionDefinition(content, startPos)) {
+        continue;
+      }
+
       const openParenPos = content.indexOf('(', startPos + match[0].length - 1);
 
       // Tìm matching closing parenthesis

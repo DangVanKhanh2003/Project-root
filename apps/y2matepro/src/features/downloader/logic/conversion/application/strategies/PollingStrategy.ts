@@ -209,9 +209,10 @@ export class PollingStrategy extends BaseStrategy {
   /**
    * Layer 4: Complete - animate to 100%
    */
-  private handleComplete(mergedUrl: string): void {
+  private async handleComplete(mergedUrl: string): Promise<void> {
     log('=== HANDLE COMPLETE ===');
     log('mergedUrl:', mergedUrl);
+    log('timestamp:', performance.now().toFixed(2) + 'ms');
 
     if (this.checkAborted()) {
       log('Aborted in handleComplete');
@@ -221,8 +222,31 @@ export class PollingStrategy extends BaseStrategy {
     getPollingManager().stopPolling(this.ctx.formatId);
 
     // Final animation to 100%
-    log('Setting progress to 100%');
+    log('⚠️ FORCE: Setting progress to 100% at timestamp:', performance.now().toFixed(2) + 'ms');
     this.updateProgress(100, 'Ready');
+
+    // Wait for 100% to paint (double RAF + 150ms delay for CSS transition)
+    // CSS transition for final 100% is 50ms (0.05s with .completing-final class)
+    log('⚠️ WAIT: Starting double RAF + 150ms delay to ensure CSS transition completes');
+    await new Promise<void>(resolve => {
+      requestAnimationFrame(() => {
+        log('⚠️ RAF #1 callback at timestamp:', performance.now().toFixed(2) + 'ms');
+        requestAnimationFrame(() => {
+          log('⚠️ RAF #2 callback at timestamp:', performance.now().toFixed(2) + 'ms');
+          // Add 150ms delay to ensure CSS transition completes (50ms transition + safety buffer)
+          setTimeout(() => {
+            log('⚠️ Delay 150ms complete at timestamp:', performance.now().toFixed(2) + 'ms');
+            log('✅ 100% ANIMATION COMPLETE - safe to show success now');
+            resolve();
+          }, 150);
+        });
+      });
+    });
+
+    if (this.checkAborted()) {
+      log('Aborted during RAF wait');
+      return;
+    }
 
     // Mark success
     log('Marking success in state');
