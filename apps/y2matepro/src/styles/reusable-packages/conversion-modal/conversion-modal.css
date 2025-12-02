@@ -338,7 +338,7 @@
         from 0deg,
         var(--pkg-color-primary) 0deg,
         var(--pkg-color-primary) calc(var(--progress-deg) * 1deg),
-        rgba(25, 118, 210, 0.15) calc(var(--progress-deg) * 1deg),
+        rgba(25, 118, 210, 0.15) calc(var(--progress-deg) * 1deg + 1.5deg),
         rgba(25, 118, 210, 0.15) 360deg
     );
     transition: --progress-deg 0.35s ease-out;
