@@ -1,38 +1,34 @@
 /**
- * Polling Progress Mapper - New Architecture
+ * Polling Progress Mapper - Phase 3 Architecture
  *
  * Maps polling API data to UI progress with 2-phase architecture:
- * Format-specific allocation:
- * - MP4: Processing 90% + Merging 10% (fast merge <500ms)
- * - MP3: Processing 60% + Merging 40% (slow merge 60-150s)
- * Max progress without mergedUrl: 98%
+ * - Processing: 0% → 100% based on real API progress
+ * - Merging: 100% constant (UI shows spinner instead of progress bar)
+ * - Success: mergedUrl received → show checkmark
  */
 
 export class PollingProgressMapper {
-  // Constants for video/audio weight in processing phase
+  // Phase 3: Processing reaches 100%, then merging spinner
   private static readonly VIDEO_WEIGHT = 0.8;       // 80% weight for video in processing
   private static readonly AUDIO_WEIGHT = 0.2;       // 20% weight for audio in processing
-  private static readonly MAX_PROGRESS_WITHOUT_URL = 98; // Cap at 98% until mergedUrl received
 
   private static currentPhase: 'processing' | 'merging' = 'processing';
   private static mergingStartTime: number = 0;
-  private static mergingDuration: number = 3000; // Default 3 seconds, calculated dynamically
   private static lastProgressValue: number = 0;
-  private static currentFormat: string = 'mp4'; // Track current format for merge estimation
-  private static currentFileSizeMB: number = 200; // Track file size for merge estimation
-
-  // Format-specific weights (set during reset)
-  private static processingWeight: number = 0.9;  // MP4: 90%, MP3: 60%
-  private static mergingWeight: number = 0.1;     // MP4: 10%, MP3: 40%
+  private static currentFormat: string = 'mp4'; // Track current format
 
   /**
    * Map API polling data to UI progress (0-100%)
    *
-   * WHY: Unified progress mapping for 2-phase polling architecture
+   * Phase 3 Architecture:
+   * - Processing: 0% → 100% based on real API progress
+   * - Merging: Return 100% constant (UI shows spinner)
+   * - mergedUrl received: Return 100% (ready for success)
+   *
    * CONTRACT: (apiData:object) → number - returns display progress 0-100
    * PRE: Valid apiData with videoProgress/audioProgress (nullable)
-   * POST: Returns progress in range [0, 98] or 100 if mergedUrl exists
-   * EDGE: Null progress values → treat as 0; mergedUrl → instant 100%; max 98% without URL
+   * POST: Returns progress in range [0, 100]
+   * EDGE: Null progress values → treat as 0; mergedUrl → instant 100%
    * USAGE: const displayProg = PollingProgressMapper.mapProgress(apiData);
    */
   static mapProgress(apiData: {
@@ -41,11 +37,21 @@ export class PollingProgressMapper {
     status: string;
     mergedUrl?: string | null;
   }): number {
-    const { videoProgress, audioProgress, status, mergedUrl } = apiData;
+    const { videoProgress, audioProgress, mergedUrl } = apiData;
+
+    console.log('[PollingProgressMapper] 📊 mapProgress INPUT:', {
+      videoProgress,
+      audioProgress,
+      status: apiData.status,
+      mergedUrl: mergedUrl ? 'EXISTS' : 'null',
+      currentPhase: this.currentPhase,
+      format: this.currentFormat
+    });
 
     // If mergedUrl exists → conversion completed (100%)
     if (mergedUrl) {
       this.lastProgressValue = 100;
+      console.log('[PollingProgressMapper] ✅ OUTPUT: 100% (mergedUrl exists)');
       return 100;
     }
 
@@ -59,62 +65,55 @@ export class PollingProgressMapper {
       ? audioProg >= 100
       : videoProg >= 100 && audioProg >= 100;
 
+    console.log('[PollingProgressMapper] Checking phase transition:', {
+      videoProg,
+      audioProg,
+      isProcessingComplete,
+      currentPhase: this.currentPhase
+    });
+
     if (isProcessingComplete && this.currentPhase === 'processing') {
-      // Transition: Processing → Merging
+      // Phase 3: Transition: Processing (100%) → Merging (100% + spinner)
       this.currentPhase = 'merging';
       this.mergingStartTime = Date.now();
-      const processingEnd = this.calculateProcessingEnd();
-      this.lastProgressValue = processingEnd;
-      return processingEnd;
+      this.lastProgressValue = 100;
+      console.log('[PollingProgressMapper] 🔄 PHASE TRANSITION: processing → merging');
+      console.log('[PollingProgressMapper] ✅ OUTPUT: 100% (transitioning to merging)');
+      return 100;
     }
 
     if (this.currentPhase === 'merging') {
-      // Merging phase - estimated progress
-      const processingEnd = this.calculateProcessingEnd();
-      const mergingRange = this.mergingWeight * 100;
-
-      const elapsed = Date.now() - this.mergingStartTime;
-      const progress = Math.min(elapsed / this.mergingDuration, 1);
-
-      // Ease out cubic for smooth animation: f(t) = 1 - (1-t)³
-      const easedProgress = 1 - Math.pow(1 - progress, 3);
-
-      const displayProgress = processingEnd + (easedProgress * mergingRange);
-
-      // Cap at 98% until mergedUrl received
-      const cappedProgress = Math.min(displayProgress, this.MAX_PROGRESS_WITHOUT_URL);
-      this.lastProgressValue = cappedProgress;
-      return cappedProgress;
+      // Phase 3: Merging phase - stay at 100% (UI will show spinner)
+      this.lastProgressValue = 100;
+      console.log('[PollingProgressMapper] ✅ OUTPUT: 100% (in merging phase)');
+      return 100;
     }
 
-    // Processing phase - real API progress
-    // Calculate weighted progress based on format
+    // Processing phase - real API progress mapped to 0-100%
+    // Phase 3: Full range 0-100% for processing
     let displayProgress: number;
 
     if (this.isAudioFormat(this.currentFormat)) {
-      // Audio-only: 10 + (60 - 10) * (audioProgress / 100)
-      const audioRange = 50; // 60 - 10
-      displayProgress = 10 + (audioRange * (audioProg / 100));
+      // Audio-only: Map audioProgress 0-100 → display 0-100
+      displayProgress = audioProg;
     } else {
-      // Video: weightedProgress = audioProgress * 0.4 + videoProgress * 0.6
-      const weightedProgress = (audioProg * 0.4) + (videoProg * 0.6);
-      // Then: 10 + (90 - 10) * (weightedProgress / 100)
-      const videoRange = 80; // 90 - 10
-      displayProgress = 10 + (videoRange * (weightedProgress / 100));
+      // Video: Weighted average of audio (40%) and video (60%)
+      displayProgress = (audioProg * 0.4) + (videoProg * 0.6);
     }
 
     this.lastProgressValue = displayProgress;
+    console.log('[PollingProgressMapper] ✅ OUTPUT:', Math.round(displayProgress) + '% (processing phase)');
     return displayProgress;
   }
 
   /**
    * Get status text for current phase
    *
-   * WHY: Provide simple status text matching current polling phase
+   * Phase 3: Simple status for processing, merging handled by spinner UI
    * CONTRACT: (apiData:object) → string - returns status text
    * PRE: Valid apiData with progress values and status
    * POST: Returns appropriate status message for current phase
-   * EDGE: mergedUrl present → 'Ready'; merging phase → 'Merging files...'
+   * EDGE: mergedUrl present → 'Ready'; merging phase → 'Merging...'
    * USAGE: const status = PollingProgressMapper.getStatusText(apiData);
    */
   static getStatusText(apiData: {
@@ -125,83 +124,45 @@ export class PollingProgressMapper {
   }): string {
     const { mergedUrl } = apiData;
 
+    let statusText: string;
+
     // Completed
     if (mergedUrl) {
-      return 'Ready';
+      statusText = 'Ready';
+    } else if (this.currentPhase === 'merging') {
+      // Phase 3: Merging phase - text will be shown with spinner
+      statusText = 'Merging...';
+    } else {
+      // Processing phase - simple status without detailed progress
+      statusText = 'Processing...';
     }
 
-    // Merging phase
-    if (this.currentPhase === 'merging') {
-      return 'Merging...';
-    }
+    console.log('[PollingProgressMapper] 📝 getStatusText OUTPUT:', {
+      statusText,
+      currentPhase: this.currentPhase,
+      mergedUrl: mergedUrl ? 'EXISTS' : 'null'
+    });
 
-    // Processing phase - simple status without detailed progress
-    return 'Processing...';
+    return statusText;
   }
 
-  /**
-   * Calculate merge duration based on file size and format
-   *
-   * WHY: MP3 merging is slow (60-150s), MP4 is instant (<500ms)
-   * CONTRACT: (format:string, fileSizeMB:number) → number - returns duration in milliseconds
-   * PRE: Valid format (mp3/mp4), fileSizeMB > 0
-   * POST: Returns estimated merge duration in milliseconds
-   * EDGE: MP4 → instant (500ms); unknown format → use MP3 estimates
-   * USAGE: const duration = PollingProgressMapper.calculateMergeDuration('mp3', 300);
-   */
-  private static calculateMergeDuration(format: string, fileSizeMB: number): number {
-    const formatLower = format.toLowerCase();
-
-    // MP4: Instant container muxing (<500ms)
-    if (formatLower === 'mp4') {
-      return 500;
-    }
-
-    // MP3: Slow audio encoding (60-150s based on file size)
-    // NOTE: Polling only triggers for files >150MB
-    if (formatLower === 'mp3' || formatLower === 'audio') {
-      if (fileSizeMB < 250) return 60 * 1000;    // 150-250MB: 60s
-      if (fileSizeMB < 450) return 100 * 1000;   // 250-450MB: 100s
-      return 150 * 1000;                         // 450MB+: 150s
-    }
-
-    // Default fallback (treat as MP3)
-    if (fileSizeMB < 250) return 60 * 1000;
-    if (fileSizeMB < 450) return 100 * 1000;
-    return 150 * 1000;
-  }
 
   /**
    * Reset phase state (call when starting new conversion)
    *
-   * WHY: Ensure clean state for each new conversion task
-   * CONTRACT: (format?:string, fileSizeMB?:number) → void - resets state and calculates merge duration
-   * PRE: None (format and size optional, use defaults if not provided)
-   * POST: Phase reset to 'processing', timers cleared, progress reset to 0, merge duration calculated, weights set
+   * Phase 3: Simple reset for processing → merging flow
+   * CONTRACT: (format?:string, fileSizeMB?:number) → void - resets state
+   * PRE: None (format optional, use default if not provided)
+   * POST: Phase reset to 'processing', timers cleared, progress reset to 0
    * EDGE: Can be called multiple times safely; no format → default MP4
-   * USAGE: PollingProgressMapper.reset('mp3', 300); // Before starting new polling
+   * USAGE: PollingProgressMapper.reset('mp3'); // Before starting new polling
    */
   static reset(format: string = 'mp4', fileSizeMB: number = 200): void {
     this.currentPhase = 'processing';
     this.mergingStartTime = 0;
     this.lastProgressValue = 0;
     this.currentFormat = format;
-    this.currentFileSizeMB = fileSizeMB;
-
-    // Set format-specific weights
-    const formatLower = format.toLowerCase();
-    if (formatLower === 'mp3' || formatLower === 'audio') {
-      // MP3: Processing 60% + Merging 40% (slow merge 60-150s)
-      this.processingWeight = 0.6;
-      this.mergingWeight = 0.4;
-    } else {
-      // MP4: Processing 90% + Merging 10% (fast merge <500ms)
-      this.processingWeight = 0.9;
-      this.mergingWeight = 0.1;
-    }
-
-    // Calculate merge duration based on format and file size
-    this.mergingDuration = this.calculateMergeDuration(format, fileSizeMB);
+    console.log('[PollingProgressMapper] Phase 3: Reset for format:', format);
   }
 
   /**
@@ -210,17 +171,6 @@ export class PollingProgressMapper {
   private static isAudioFormat(format: string): boolean {
     const audioFormats = ['mp3', 'wav', 'opus', 'ogg', 'm4a', 'audio'];
     return audioFormats.includes(format.toLowerCase());
-  }
-
-  /**
-   * Helper method to calculate processing end based on format
-   */
-  private static calculateProcessingEnd(): number {
-    if (this.isAudioFormat(this.currentFormat)) {
-      return 60; // Audio processing ends at 60%
-    } else {
-      return 90; // Video processing ends at 90%
-    }
   }
 
   /**
@@ -254,17 +204,18 @@ export class PollingProgressMapper {
   /**
    * Manually start merging phase (for testing or manual control)
    *
-   * WHY: Allow manual phase transition without waiting for API progress
-   * CONTRACT: () → number - returns starting progress of merge phase (60)
+   * Phase 3: Transition to merging at 100%
+   * CONTRACT: () → number - returns starting progress of merge phase (100)
    * PRE: None
-   * POST: Phase set to 'merging', timer started, returns 60
+   * POST: Phase set to 'merging', timer started, returns 100
    * EDGE: Can override current phase state
    * USAGE: const startProgress = PollingProgressMapper.startMergingPhase();
    */
   static startMergingPhase(): number {
     this.currentPhase = 'merging';
     this.mergingStartTime = Date.now();
-    this.lastProgressValue = 60;
-    return 60;
+    this.lastProgressValue = 100;
+    console.log('[PollingProgressMapper] Phase 3: Manually started merging at 100%');
+    return 100;
   }
 }

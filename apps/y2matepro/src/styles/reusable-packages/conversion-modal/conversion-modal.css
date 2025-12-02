@@ -373,6 +373,31 @@
     transition: --progress-deg 0.05s ease-out !important;
 }
 
+/* Phase 3: MERGING mode - 2 quarter arcs (25% each) rotating spinner */
+/* Same UI style as extracting mode, but with 2 symmetric arcs instead of 1 */
+.progress-circle[data-mode="merging"] {
+    /* 2 symmetric quarter arcs (90deg each) with light gray background */
+    background: conic-gradient(
+        from 0deg,
+        var(--pkg-color-primary) 0deg 90deg,           /* First 25% arc */
+        rgba(25, 118, 210, 0.15) 90deg 180deg,        /* Gap with light gray */
+        var(--pkg-color-primary) 180deg 270deg,        /* Second 25% arc (symmetric) */
+        rgba(25, 118, 210, 0.15) 270deg 360deg        /* Gap with light gray */
+    );
+
+    /* Continuous rotation - slightly faster than extracting for visual distinction */
+    animation: merging-spin 1.2s linear infinite;
+}
+
+/* Merging mode uses same stroke width as base (inset: 6px from ::before) */
+/* No need to override ::before - it already creates the donut shape */
+
+/* Merging spinner rotation animation */
+@keyframes merging-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 /* Center percentage text - visible in PROGRESS mode only */
 .progress-percentage {
     position: absolute;
@@ -682,8 +707,8 @@
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
     user-select: none;
-    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-    color: #ffffff;
+    background:  #FFCC00;
+    color: black;
     font-size: 1rem;
     font-weight: 600;
     font-family: inherit;
@@ -692,7 +717,6 @@
     border-radius: var(--pkg-radius-md);
     cursor: pointer;
     transition: all 0.2s ease;
-    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
 }
 
 .btn-retry:hover {

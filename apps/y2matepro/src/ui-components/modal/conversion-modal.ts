@@ -310,41 +310,97 @@ export class ConversionModal {
    * Called by strategies to update both visual components
    *
    * WHY: Single method to sync circular progress and text progress display
-   * CONTRACT: (percent, statusText, isDownload?, loadedBytes?, totalBytes?) → void
+   * CONTRACT: (percent, statusText, isDownload?, loadedBytes?, totalBytes?, appendPercent?) → void
    * PRE: Must be in CONVERTING state, valid percent (0-100)
    * POST: Both circular and text progress updated
    * EDGE: Handles both polling (%) and download (MB) modes
    * USAGE:
    *   Polling: modal.updateConversionProgress(45, 'Converting...');
    *   Download: modal.updateConversionProgress(0, 'Downloading...', true, 12*1024*1024, 26*1024*1024);
+   *   Merging: modal.updateConversionProgress(100, 'Merging files…', false, undefined, undefined, false);
    */
   updateConversionProgress(
     percent: number,
     statusText: string,
     isDownload: boolean = false,
     loadedBytes?: number,
-    totalBytes?: number
+    totalBytes?: number,
+    appendPercent: boolean = true // Phase 3: Control % suffix
   ): void {
+    console.log('[ConversionModal] 🖥️ updateConversionProgress() RECEIVED:', {
+      percent: Math.round(percent) + '%',
+      statusText,
+      isDownload,
+      appendPercent,
+      state: this.state?.status
+    });
+
     if (!this.state || this.state.status !== 'CONVERTING') {
+      console.log('[ConversionModal] ❌ Skipping update - not in CONVERTING state');
       return;
     }
 
     // Update circular progress
     if (isDownload && loadedBytes !== undefined && totalBytes !== undefined) {
       // Download mode: calculate % from bytes
+      console.log('[ConversionModal] 📊 Updating circular progress from bytes');
       this.circularProgress?.updateProgressFromBytes(loadedBytes, totalBytes);
     } else {
       // Polling mode: use % directly
+      console.log('[ConversionModal] 📊 Updating circular progress to', Math.round(percent) + '%');
       this.circularProgress?.updateProgress(percent);
     }
 
     // Update text progress below
     if (isDownload) {
       // Download mode: statusText already contains MB info, no % appended
+      console.log('[ConversionModal] 📝 Calling updateDownloadProgress() - NO % suffix');
+      console.log('[ConversionModal] 📝 Final display will be:', statusText);
       this.progressBarManager?.updateDownloadProgress(percent, statusText);
     } else {
-      // Polling mode: % will be appended by manager
-      this.progressBarManager?.updatePollingProgress(percent, statusText);
+      // Polling mode: % will be appended by manager (unless appendPercent = false)
+      if (appendPercent) {
+        console.log('[ConversionModal] 📝 Calling updatePollingProgress() - WILL append %');
+        console.log('[ConversionModal] 📝 Final display will be:', statusText + ' ' + Math.round(percent) + '%');
+        this.progressBarManager?.updatePollingProgress(percent, statusText);
+      } else {
+        // Phase 3: Merging phase - show statusText without % suffix
+        console.log('[ConversionModal] 📝 Calling updateDownloadProgress() (merging) - NO % suffix');
+        console.log('[ConversionModal] 📝 Final display will be:', statusText);
+        this.progressBarManager?.updateDownloadProgress(percent, statusText);
+      }
+    }
+
+    console.log('[ConversionModal] ✅ UI update complete');
+  }
+
+  /**
+   * Update conversion title (main heading)
+   *
+   * Phase 3: Allow strategies to update title text for different phases
+   * WHY: Provide clear feedback about current conversion phase
+   * CONTRACT: (titleText:string) → void - updates title element
+   * PRE: Must be in CONVERTING state, title element must exist
+   * POST: Title text updated
+   * EDGE: Safe to call even if element doesn't exist (no-op)
+   * USAGE:
+   *   Processing: modal.updateConversionTitle('Converting Video...');
+   *   Merging: modal.updateConversionTitle('Almost Ready...');
+   */
+  updateConversionTitle(titleText: string): void {
+    console.log('[ConversionModal] 🏷️ updateConversionTitle() RECEIVED:', titleText);
+
+    if (!this.state || this.state.status !== 'CONVERTING') {
+      console.log('[ConversionModal] ❌ Skipping title update - not in CONVERTING state');
+      return;
+    }
+
+    const titleElement = this.wrapper?.querySelector('#conversion-title-text');
+    if (titleElement) {
+      titleElement.textContent = titleText;
+      console.log('[ConversionModal] ✅ Title updated to:', titleText);
+    } else {
+      console.log('[ConversionModal] ⚠️ Title element not found');
     }
   }
 
@@ -540,7 +596,7 @@ export class ConversionModal {
           <div id="circular-progress-container"></div>
         </div>
 
-        <h3 class="conversion-title">Converting Video...</h3>
+        <h3 class="conversion-title" id="conversion-title-text">Converting Video...</h3>
 
         <div class="conversion-progress">
           <div class="progress-bar-content">

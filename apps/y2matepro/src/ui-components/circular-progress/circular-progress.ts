@@ -15,7 +15,7 @@ export class CircularProgress {
   private progressCircle: HTMLElement | null = null;
   private percentageText: HTMLElement | null = null;
 
-  private currentMode: 'extracting' | 'progress' = 'extracting';
+  private currentMode: 'extracting' | 'progress' | 'merging' = 'extracting';
   private currentProgress: number = 0;
 
   constructor(containerSelector: string) {
@@ -113,6 +113,30 @@ export class CircularProgress {
     // Show percentage text
     this.percentageText.classList.add('visible');
     this.percentageText.textContent = '0%';
+  }
+
+  /**
+   * Start MERGING mode - 2 quarter circles rotating spinner
+   *
+   * Phase 3: Show merging spinner when processing reaches 100%
+   * WHY: Visual feedback during server-side file merging
+   * CONTRACT: () → void - transition to merging spinner
+   * PRE: Component rendered, processing complete at 100%
+   * POST: Shows 2 rotating quarter circles (90deg arcs), no text
+   * EDGE: Safe to call from any state
+   * USAGE: circularProgress.startMergingMode();
+   */
+  startMergingMode(): void {
+    if (!this.progressCircle || !this.percentageText) return;
+
+    console.log('[CircularProgress] Phase 3: Starting merging mode');
+    this.currentMode = 'merging';
+
+    // Switch to merging mode with 2 quarter circles (90deg each)
+    this.progressCircle.setAttribute('data-mode', 'merging');
+
+    // Hide percentage text during merging
+    this.percentageText.classList.remove('visible');
   }
 
   /**
