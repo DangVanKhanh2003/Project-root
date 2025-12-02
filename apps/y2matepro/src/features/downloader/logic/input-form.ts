@@ -16,6 +16,7 @@ import {
   setResults,
   setSuggestions,
   hideSuggestions,
+  clearSuggestions,
   setQuery,
   setOriginalQuery,
   setHighlightedIndex,
@@ -403,14 +404,17 @@ function handleInput(event: Event): void {
   const isUrl = value.startsWith('http://') || value.startsWith('https://');
   setInputType(isUrl ? 'url' : 'keyword');
 
-  // Hide suggestions when typing URL
+  // Clear suggestions completely when typing URL
   if (isUrl) {
-    hideSuggestions();
+    // Cancel any pending suggestion fetches
     if (suggestionTimer) {
       clearTimeout(suggestionTimer);
       suggestionTimer = null;
     }
     lastSuggestionCallTime = 0; // Reset throttle state
+
+    // Clear suggestions completely (not just hide)
+    clearSuggestions();
     return;
   }
 
@@ -422,7 +426,8 @@ function handleInput(event: Event): void {
     // Throttle: call immediately on first input, then every 300ms
     throttledFetchSuggestions(value);
   } else {
-    hideSuggestions();
+    // Clear suggestions when input is empty
+    clearSuggestions();
   }
 }
 
@@ -430,10 +435,20 @@ function handleInput(event: Event): void {
  * Fetch suggestions from API
  */
 async function fetchSuggestions(query: string): Promise<void> {
+  // Check if form is being submitted or loading before making API call
+  const stateBefore = getState();
+  if (stateBefore.isSubmitting || stateBefore.isLoading) {
+    return;
+  }
 
   try {
     const result = await api.getSuggestions({ q: query });
 
+    // Check again after API call completes (might have submitted during fetch)
+    const stateAfter = getState();
+    if (stateAfter.isSubmitting || stateAfter.isLoading) {
+      return;
+    }
 
     if (result.ok && result.data) {
       // API might return object instead of array - convert to array
@@ -675,10 +690,17 @@ async function handleSubmit(event: Event): Promise<void> {
     input.blur();
   }
 
+  // Cancel any pending suggestion fetches
+  if (suggestionTimer) {
+    clearTimeout(suggestionTimer);
+    suggestionTimer = null;
+  }
+  lastSuggestionCallTime = 0; // Reset throttle state
+
   // Clear ALL previous state to prevent conflicts
   setResults([]);              // Clear search results
   clearError();                // Clear error messages
-  hideSuggestions();           // Hide suggestions dropdown
+  clearSuggestions();          // Clear suggestions completely (array + state + flags)
   clearDetailStates();         // Clear videoDetail/galleryDetail
   clearConversionTasks();      // Clear conversion tasks
   clearDownloadStates();       // Clear download button states
@@ -1038,7 +1060,7 @@ function handleClear(): void {
   // Clear state
   clearError();
   setResults([]);
-  hideSuggestions();
+  clearSuggestions();
 }
 
 /**
