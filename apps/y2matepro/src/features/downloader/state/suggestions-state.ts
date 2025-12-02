@@ -12,8 +12,8 @@ import { getState, setState } from './state-manager';
 export function setSuggestions(suggestions: string[]): void {
   const currentState = getState();
 
-  // Don't show suggestions if form is being submitted
-  if (currentState.isSubmitting) {
+  // Don't show suggestions if form is being submitted or loading results
+  if (currentState.isSubmitting || currentState.isLoading) {
     return;
   }
 

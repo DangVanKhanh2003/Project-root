@@ -16,6 +16,7 @@ import {
   setResults,
   setSuggestions,
   hideSuggestions,
+  clearSuggestions,
   setQuery,
   setOriginalQuery,
   setHighlightedIndex,
@@ -675,10 +676,17 @@ async function handleSubmit(event: Event): Promise<void> {
     input.blur();
   }
 
+  // Cancel any pending suggestion fetches
+  if (suggestionTimer) {
+    clearTimeout(suggestionTimer);
+    suggestionTimer = null;
+  }
+  lastSuggestionCallTime = 0; // Reset throttle state
+
   // Clear ALL previous state to prevent conflicts
   setResults([]);              // Clear search results
   clearError();                // Clear error messages
-  hideSuggestions();           // Hide suggestions dropdown
+  clearSuggestions();          // Clear suggestions completely (array + state + flags)
   clearDetailStates();         // Clear videoDetail/galleryDetail
   clearConversionTasks();      // Clear conversion tasks
   clearDownloadStates();       // Clear download button states
