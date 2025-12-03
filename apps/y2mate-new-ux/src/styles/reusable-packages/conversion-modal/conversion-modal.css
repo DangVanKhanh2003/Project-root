@@ -1,0 +1,1060 @@
+/* =========================================================
+   REUSABLE PACKAGE: Conversion Modal
+   ---------------------------------------------------------
+   Version: 1.0.0
+
+   Dependencies:
+   - package-root.css (MUST be loaded first for token definitions)
+
+   Features:
+   - Full-screen modal overlay with backdrop
+   - Video title header with close button
+   - Multi-state content area (loading, success, error, expired)
+   - Spinning circle loader with reduced motion support
+   - Action buttons (download, retry, cancel)
+   - Social sharing footer
+   - Pulse animation for overlay click feedback
+   - Mobile-first responsive design (350px to 4K+)
+   - Zero layout shift architecture
+
+   Breakpoints:
+   • Extra Small Mobile (0–350px)
+   • Small Mobile (351–599px)
+   • Medium (Tablet) – 600–839px
+   • Expanded (Desktop) – 840–1239px
+   • Large (Wide Desktop) – 1240–1919px
+   • Extra Large (2K) – 1920–2559px
+   • Ultra Large (4K) – 2560px+
+   ========================================================= */
+
+/* ======= Base Styles (0-350px) - Extra Small Mobile ======= */
+
+/* Modal Wrapper - Full-screen backdrop */
+#progressBarWrapper {
+    position: fixed;
+    inset: 0;
+    z-index: var(--pkg-conversion-modal-z-index);
+    background: var(--pkg-conversion-modal-overlay-bg);
+
+    /* Center the modal content */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--pkg-space-4);
+
+    /* Hidden by default - NO transition for instant hide */
+    visibility: hidden;
+    opacity: 0;
+}
+
+#progressBarWrapper[style*="visible"] {
+    visibility: visible;
+    opacity: 1;
+    /* Only animate on show */
+    transition: opacity 0.2s ease-out;
+}
+
+/* Modal Content Box */
+.conversion-modal-content {
+    background: var(--pkg-conversion-modal-bg);
+    border-radius: var(--pkg-radius-md);
+    box-shadow: var(--pkg-conversion-modal-shadow);
+    width: 100%;
+    max-width: 400px; /* Mobile base - specific value for optimal UX */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    /* Default: normal scale, NO transition for instant hide */
+    transform: scale(1);
+}
+
+/* When wrapper is visible: smooth scale animation on show only */
+#progressBarWrapper[style*="visible"] .conversion-modal-content {
+    transform: scale(1);
+    transition: transform 0.2s ease-out;
+}
+
+
+/* ======= PULSE ANIMATION FOR OVERLAY CLICK ======= */
+
+/* Pulse keyframes animation - draws attention when user clicks outside modal */
+@keyframes modalPulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+    -webkit-transform: scale(1.01);
+    transform: scale(1.01)
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Pulse class - triggered by JavaScript on overlay click */
+.conversion-modal-content.pulse {
+    animation: modalPulse 280ms ease-in-out;
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .conversion-modal-content.pulse {
+        animation: none;
+        /* Provide static feedback instead of animation */
+        border: 2px solid var(--pkg-color-primary);
+        transition: border 100ms ease;
+    }
+}
+
+/* ======= HEADER - Video Title + Close Button ======= */
+.conversion-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--pkg-conversion-modal-header-border);
+    gap: var(--pkg-space-3);
+}
+
+.modal-video-title {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--pkg-conversion-title-color);
+    margin: 0;
+    line-height: 1.3;
+    flex: 1;
+    min-width: 0; /* Allow text truncation */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.btn-close-modal {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    border-radius: var(--pkg-radius-sm);
+    color: var(--pkg-conversion-message-color);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0;
+}
+
+.btn-close-modal:hover {
+    background: var(--pkg-conversion-close-btn-hover-bg);
+    color: var(--pkg-conversion-title-color);
+}
+
+.btn-close-modal:active {
+    transform: scale(0.95);
+}
+
+.btn-close-modal:focus-visible {
+    outline: 2px solid var(--pkg-color-primary);
+    outline-offset: 2px;
+}
+
+.btn-close-modal svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* ======= BODY - Content Area ======= */
+.conversion-modal-body {
+    padding: var(--pkg-space-6) var(--pkg-space-5);
+    flex: 1;
+    overflow-y: auto;
+    min-height: 180px; /* Maximum buffer for mobile - prevents layout shift */
+}
+
+/* ======= State Container ======= */
+.conversion-state {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+
+    /* Fixed margin-top - prevents layout shift, no flex centering */
+    margin-top: 24px; /* Mobile base */
+}
+
+/* ======= FOOTER - Share Icons ======= */
+.conversion-modal-footer {
+    border-top: 1px solid var(--pkg-conversion-modal-header-border);
+    padding: 12px 20px;
+}
+
+.social-sharing-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.social-sharing-text span {
+    color: var(--pkg-conversion-message-color);
+    font-size: 0.875rem;
+}
+
+.share-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--pkg-space-3);
+}
+
+.share-icons a {
+    display: inline-flex;
+    text-decoration: none;
+}
+
+
+/* Force icon images to 28x28 */
+.share-icons img {
+    width: 28px;
+    height: 28px;
+    display: block;
+}
+
+/* Specific share button colors */
+/* No background wrappers for icons per requirement */
+
+@media (max-width: 480px) {
+    .social-sharing-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .social-sharing-text {
+        text-align: center;
+        width: 100%;
+    }
+}
+
+/* ======= Icons ======= */
+.conversion-icon {
+    font-size: 3rem;
+    margin-bottom: var(--pkg-space-4);
+    line-height: 1;
+}
+
+.conversion-icon--success {
+    color: var(--pkg-conversion-success-color);
+}
+
+.conversion-icon--error {
+    color: var(--pkg-conversion-error-color);
+}
+
+.conversion-icon--expired {
+    color: var(--pkg-conversion-warning-color);
+}
+
+/* ======= Title ======= */
+.conversion-title {
+    font-size: 1.25rem; /* Increased for better visibility */
+    font-weight: 600;
+    color: var(--pkg-conversion-title-color);
+    line-height: 1.3;
+    margin: 0; /* Remove default margins - handled by flex gap */
+}
+
+/* ======= Message ======= */
+.conversion-message {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--pkg-conversion-message-color);
+    margin: 0; /* Remove default margins - handled by flex gap */
+}
+
+.conversion-message--error {
+    color: var(--pkg-conversion-error-color);
+    font-weight: 500;
+}
+
+.conversion-hint {
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    color: var(--pkg-conversion-message-color);
+    margin: var(--pkg-space-2) 0 var(--pkg-space-4) 0;
+}
+
+
+.conversion-progress .progress-bar.progress-bar-striped.progress-bar-subtle {
+    background-image: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.1) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.1) 50%,
+        rgba(255, 255, 255, 0.1) 75%,
+        transparent 75%,
+        transparent
+    );
+    background-size: 1rem 1rem;
+}
+
+/* Alternative striped pattern - bold */
+
+/* ======= CIRCULAR PROGRESS (CSS Conic-Gradient) ======= */
+
+/* Register custom property for smooth animation */
+@property --progress-deg {
+    syntax: '<number>';
+    initial-value: 0;
+    inherits: false;
+}
+
+/* Base styles - Extra Small Mobile (0-350px) */
+.loading-spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    height: 55px; /* Match circular size - prevents CLS */
+}
+
+.circular-progress-wrapper {
+    position: relative;
+    width: 55px;
+    height: 55px;
+}
+
+/* Progress circle using conic-gradient */
+.progress-circle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    --progress-deg: 0;
+    background: conic-gradient(
+        from 0deg,
+        var(--pkg-color-primary) 0deg,
+        var(--pkg-color-primary) calc(var(--progress-deg) * 1deg),
+        rgba(25, 118, 210, 0.15) calc(var(--progress-deg) * 1deg + 1.5deg),
+        rgba(25, 118, 210, 0.15) 360deg
+    );
+    transition: --progress-deg 0.45s ease-out;
+}
+
+/* Inner circle to create donut shape */
+.progress-circle::before {
+    content: '';
+    position: absolute;
+    inset: 6px; /* stroke width */
+    background: white;
+    border-radius: 50%;
+}
+
+/* EXTRACTING mode - 25% arc with rotation */
+.progress-circle[data-mode="extracting"] {
+    animation: spinCircle 0.6s linear infinite;
+}
+
+@keyframes spinCircle {
+    0% { transform: rotate(-90deg); }
+    100% { transform: rotate(270deg); }
+}
+
+/* PROGRESS mode - smooth percentage updates */
+.progress-circle[data-mode="progress"] {
+    animation: none;
+}
+
+/* COMPLETING FINAL - faster transition for final 100% animation */
+.progress-circle.completing-final {
+    transition: --progress-deg 0.05s ease-out !important;
+}
+
+/* Phase 3: MERGING mode - 2 quarter arcs (25% each) rotating spinner */
+/* Same UI style as extracting mode, but with 2 symmetric arcs instead of 1 */
+.progress-circle[data-mode="merging"] {
+    /* 2 symmetric quarter arcs (90deg each) with light gray background */
+    background: conic-gradient(
+        from 0deg,
+        var(--pkg-color-primary) 0deg 90deg,           /* First 25% arc */
+        rgba(25, 118, 210, 0.15) 90deg 180deg,        /* Gap with light gray */
+        var(--pkg-color-primary) 180deg 270deg,        /* Second 25% arc (symmetric) */
+        rgba(25, 118, 210, 0.15) 270deg 360deg        /* Gap with light gray */
+    );
+
+    /* Continuous rotation - slightly faster than extracting for visual distinction */
+    animation: merging-spin 1.2s linear infinite;
+}
+
+/* Merging mode uses same stroke width as base (inset: 6px from ::before) */
+/* No need to override ::before - it already creates the donut shape */
+
+/* Merging spinner rotation animation */
+@keyframes merging-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Center percentage text - visible in PROGRESS mode only */
+.progress-percentage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.875rem; /* Responsive - mobile base */
+    font-weight: 700;
+    color: var(--pkg-color-primary);
+    letter-spacing: -0.5px;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.3s ease-in;
+}
+
+.progress-percentage.visible {
+    opacity: 1;
+}
+
+/* Small Mobile (351px-599px) */
+@media (min-width: 351px) {
+    .loading-spinner-container {
+        height: 60px;
+    }
+
+    .circular-progress-wrapper {
+        width: 60px;
+        height: 60px;
+    }
+
+    .progress-percentage {
+        font-size: 0.9375rem;
+    }
+}
+
+/* Medium Tablet (600px-839px) */
+@media (min-width: 600px) {
+    .loading-spinner-container {
+        height: 60px;
+    }
+
+    .circular-progress-wrapper {
+        width: 60px;
+        height: 60px;
+    }
+
+    .progress-percentage {
+        font-size: 1rem;
+    }
+}
+
+/* Expanded Desktop (840px-1239px) */
+@media (min-width: 840px) {
+    .loading-spinner-container {
+        height: 70px;
+        margin-bottom: var(--pkg-space-5);
+    }
+
+    .circular-progress-wrapper {
+        width: 70px;
+        height: 70px;
+    }
+
+    .progress-percentage {
+        font-size: 1.125rem;
+    }
+}
+
+/* Accessibility - Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    .progress-circle[data-mode="extracting"] {
+        animation: none;
+    }
+
+    .progress-circle {
+        transition: none;
+    }
+
+    .success-circle-css {
+        animation: none;
+        --success-deg: 360; /* Instant show at 100% */
+    }
+
+    .success-checkmark {
+        animation: none;
+        stroke-dashoffset: 0;
+        opacity: 1;
+    }
+}
+
+/* ======= SUCCESS INDICATOR (Green Circle + Tick Icon) ======= */
+
+/* Register custom property for success animation */
+@property --success-deg {
+    syntax: '<number>';
+    initial-value: 0;
+    inherits: false;
+}
+
+/* Base styles - Extra Small Mobile (0-350px) */
+/* IMPORTANT: Success indicator MUST match circular-progress-wrapper sizes exactly to prevent CLS */
+.success-indicator {
+    position: relative;
+    width: 55px;
+    height: 55px;
+}
+
+/* CSS circle - animates from 0 to 360deg */
+.success-circle-css {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    --success-deg: 0;
+    background: conic-gradient(
+        from 0deg,
+        #1BC012 0deg,
+        #1BC012 calc(var(--success-deg) * 1deg),
+        transparent calc(var(--success-deg) * 1deg),
+        transparent 360deg
+    );
+    animation: fillSuccess 0.4s ease-out forwards;
+}
+
+/* Inner circle to create donut shape */
+.success-circle-css::before {
+    content: '';
+    position: absolute;
+    inset: 5px; /* stroke width - thinner */
+    background: white;
+    border-radius: 50%;
+}
+
+@keyframes fillSuccess {
+    to {
+        --success-deg: 360;
+    }
+}
+
+/* SVG checkmark container */
+.checkmark-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Checkmark - appears after circle completes (0.4s delay) */
+.success-checkmark {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    opacity: 0;
+    animation: drawCheckmark 0.3s ease-out 0.4s forwards;
+}
+
+@keyframes drawCheckmark {
+    to {
+        stroke-dashoffset: 0;
+        opacity: 1;
+    }
+}
+
+/* Small Mobile (351px-599px) */
+@media (min-width: 351px) {
+    .success-indicator {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+/* Medium Tablet (600px-839px) */
+@media (min-width: 600px) {
+    .success-indicator {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+/* Expanded Desktop (840px+) - MATCH circular-progress-wrapper */
+@media (min-width: 840px) {
+    .success-indicator {
+        width: 70px;
+        height: 70px;
+    }
+}
+
+/* ======= Action Buttons ======= */
+.conversion-actions {
+    display: flex;
+    gap: var(--pkg-space-3);
+    margin: 0; /* Remove margin - handled by parent flex gap */
+    justify-content: center !important;
+}
+
+.btn-conversion {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--pkg-space-2) var(--pkg-space-3);
+    border: none;
+    border-radius: var(--pkg-radius-sm);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    line-height: 1;
+    gap: var(--pkg-space-1);
+}
+
+.btn-conversion:focus-visible {
+    outline: 2px solid var(--pkg-color-primary);
+    outline-offset: 2px;
+}
+
+.btn-conversion:active {
+    transform: scale(0.98);
+}
+
+/* Cancel button */
+.btn-conversion--cancel {
+    background: var(--pkg-conversion-close-btn-hover-bg);
+    color: var(--pkg-conversion-title-color);
+    width: fit-content;
+}
+
+.btn-conversion--cancel:hover {
+    background: var(--pkg-conversion-modal-header-border);
+}
+
+/* Download button (SUCCESS state) */
+.btn-conversion--download, .btn-convert--success, .btn-convert--direct-download {
+    background: var(--pkg-color-primary);
+    color: #ffffff;
+}
+
+.btn-conversion--download:hover, .btn-convert--success:hover, .btn-convert--direct-download:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--pkg-conversion-btn-success-hover-shadow);
+}
+
+.btn-conversion--download:active, .btn-convert--success:active, .btn-convert--direct-download:active {
+    transform: translateY(0);
+    box-shadow: var(--pkg-conversion-btn-success-active-shadow);
+}
+
+/* Retry button (ERROR/EXPIRED state) - Warning color to emphasize action needed */
+.btn-conversion--retry {
+    background: var(--pkg-conversion-btn-retry-bg);
+    color: #ffffff;
+    min-width: 140px;
+    font-weight: 600;
+    box-shadow: var(--pkg-conversion-btn-retry-shadow);
+}
+
+.btn-conversion--retry:hover {
+    background: var(--pkg-conversion-btn-retry-hover-bg);
+    transform: translateY(-2px);
+    box-shadow: var(--pkg-conversion-btn-retry-hover-shadow);
+}
+
+.btn-conversion--retry:active {
+    transform: translateY(0);
+    box-shadow: var(--pkg-conversion-btn-retry-active-shadow);
+}
+
+/* Single button layout (SUCCESS state) */
+
+/* ======= Download Button (SUCCESS state) ======= */
+.btn-download {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--pkg-space-2);
+    padding: 8px 16px;
+    background: var(--pkg-color-primary);
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    line-height: 1;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    user-select: none;
+}
+
+
+
+
+
+
+/* ======= Retry Button (ERROR/EXPIRED state) ======= */
+.btn-retry {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--pkg-space-2);
+    min-width: 140px;
+    padding: 12px 24px;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    user-select: none;
+    background:  #FFCC00;
+    color: black;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    line-height: 1;
+    border: none;
+    border-radius: var(--pkg-radius-md);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-retry:hover {
+    background: linear-gradient(135deg, #fbbf24 0%, #b45309 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+}
+
+.btn-retry:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+}
+
+.btn-retry:focus-visible {
+    outline: 2px solid #f59e0b;
+    outline-offset: 3px;
+}
+
+/* ======= Small Mobile (351px-599px) ======= */
+@media (min-width: 351px) {
+    .conversion-modal-content {
+        max-width: 440px; /* Small mobile optimization */
+    }
+
+    .modal-video-title {
+        font-size: 1rem;
+    }
+
+    .conversion-modal-body {
+        padding: var(--pkg-space-7) var(--pkg-space-6);
+        min-height: 220px; /* Maximum buffer - prevents layout shift on small mobile */
+    }
+
+    .conversion-title {
+        font-size: 1.375rem; /* Increased for better visibility */
+    }
+
+    .conversion-icon {
+        font-size: 3.5rem;
+    }
+
+    .btn-download {
+        padding: 10px 20px;
+    }
+
+    .btn-retry {
+        padding: 14px 28px;
+    }
+
+    .share-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .share-icon svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* ======= Medium Tablet (600px-839px) ======= */
+@media (min-width: 600px) {
+    .conversion-modal-content {
+        max-width: 480px; /* Tablet optimization */
+    }
+
+    .modal-video-title {
+        font-size: 1.0625rem;
+    }
+
+    .btn-close-modal {
+        width: 36px;
+        height: 36px;
+    }
+
+    .btn-close-modal svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .conversion-modal-body {
+        padding: var(--pkg-space-8) var(--pkg-space-7);
+        min-height: 250px; /* Maximum buffer - prevents layout shift on tablets */
+    }
+
+    .conversion-state {
+        margin-top: 10px; /* Reduced margin on tablet */
+    }
+
+    .conversion-title {
+        font-size: 1.5rem; /* Increased for better visibility */
+    }
+
+    .conversion-message {
+        font-size: 0.9375rem;
+    }
+
+    .btn-conversion {
+        padding: var(--pkg-space-2) var(--pkg-space-4);
+    }
+
+    .btn-download {
+        padding: 10px 24px;
+        font-size: 1.0625rem;
+    }
+
+    .btn-retry {
+        min-width: 180px;
+        padding: 14px 32px;
+        font-size: 1.0625rem;
+    }
+
+    .share-icon {
+        width: 44px;
+        height: 44px;
+    }
+
+    .share-icon svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .share-icons {
+        gap: var(--pkg-space-4);
+    }
+}
+
+/* ======= Expanded Desktop (840px-1239px) ======= */
+@media (min-width: 840px) {
+    .conversion-modal-content {
+        max-width: 500px; /* Desktop optimization */
+    }
+
+    .modal-video-title {
+        font-size: 1.125rem;
+    }
+
+    .conversion-modal-body {
+        padding: var(--pkg-space-10) var(--pkg-space-8);
+        min-height: 250px; /* Optimized buffer - prevents layout shift on desktop */
+    }
+
+    .conversion-state {
+        margin-top: 5px; /* Minimal margin on desktop */
+    }
+
+    .conversion-icon {
+        font-size: 4rem;
+    }
+
+    .btn-download {
+        padding: 12px 28px;
+        font-size: 1.125rem;
+        border-radius: var(--pkg-radius-lg);
+    }
+
+    .btn-retry {
+        min-width: 200px;
+        padding: 16px 36px;
+        font-size: 1.125rem;
+        border-radius: var(--pkg-radius-lg);
+    }
+}
+
+/* ======= Large Wide Desktop (1240px-1919px) ======= */
+@media (min-width: 1240px) {
+    .conversion-modal-content {
+        max-width: 520px; /* Wide desktop optimization */
+    }
+
+    .modal-video-title {
+        font-size: 1.1875rem;
+    }
+
+    .conversion-modal-body {
+        min-height: 250px; /* Optimized buffer - prevents layout shift on wide desktop */
+    }
+
+    .conversion-title {
+        font-size: 1.625rem; /* Increased for better visibility */
+    }
+
+    .conversion-message {
+        font-size: 1rem;
+    }
+
+    .btn-download {
+        padding: 12px 32px;
+    }
+
+    .btn-retry {
+        min-width: 220px;
+        padding: 16px 40px;
+    }
+
+    .share-icon {
+        width: 48px;
+        height: 48px;
+    }
+
+    .share-icon svg {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+/* ======= Extra Large 2K Display (1920px-2559px) ======= */
+@media (min-width: 1920px) {
+    .conversion-modal-content {
+        max-width: 560px; /* 2K display optimization */
+    }
+
+    .modal-video-title {
+        font-size: 1.25rem;
+    }
+
+    .btn-close-modal {
+        width: 40px;
+        height: 40px;
+    }
+
+    .btn-close-modal svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .conversion-modal-body {
+        padding: var(--pkg-space-12) var(--pkg-space-10);
+        min-height: 280px; /* Optimized buffer - prevents layout shift on 2K displays */
+    }
+
+
+
+    .btn-conversion {
+        padding: var(--pkg-space-3) var(--pkg-space-5);
+        font-size: 1rem;
+    }
+
+    .btn-download {
+        padding: 14px 36px;
+        font-size: 1.1875rem;
+    }
+
+    .btn-retry {
+        min-width: 240px;
+        padding: 18px 44px;
+        font-size: 1.1875rem;
+    }
+
+    .share-icon {
+        width: 52px;
+        height: 52px;
+    }
+
+    .share-icon svg {
+        width: 26px;
+        height: 26px;
+    }
+
+    .share-icons {
+        gap: var(--pkg-space-5);
+    }
+}
+
+/* ======= Ultra Large 4K+ Display (2560px+) ======= */
+@media (min-width: 2560px) {
+    .conversion-modal-content {
+        max-width: 600px; /* 4K+ display optimization */
+    }
+
+    .modal-video-title {
+        font-size: 1.375rem;
+    }
+
+    .btn-close-modal {
+        width: 44px;
+        height: 44px;
+    }
+
+    .btn-close-modal svg {
+        width: 26px;
+        height: 26px;
+    }
+
+    .conversion-modal-body {
+        padding: var(--pkg-space-14) var(--pkg-space-12);
+        min-height: 280px; /* Optimized buffer - prevents layout shift on 4K+ displays */
+    }
+
+    .conversion-title {
+        font-size: 1.75rem; /* Increased for better visibility */
+    }
+
+    .conversion-message {
+        font-size: 1.0625rem;
+    }
+
+    .conversion-icon {
+        font-size: 4.5rem;
+    }
+
+    .btn-conversion {
+        padding: var(--pkg-space-3) var(--pkg-space-6);
+        font-size: 1.0625rem;
+    }
+
+    .btn-download {
+        padding: 16px 40px;
+        font-size: 1.25rem;
+    }
+
+    .btn-retry {
+        min-width: 260px;
+        padding: 20px 48px;
+        font-size: 1.25rem;
+    }
+
+    .share-icon {
+        width: 56px;
+        height: 56px;
+    }
+
+    .share-icon svg {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+/* ======= Accessibility & Interaction Enhancements ======= */
+
+/* Focus States */
+.btn-conversion:focus-visible {
+    outline: 2px solid var(--pkg-color-primary);
+    outline-offset: 2px;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    /* All animations handled by smooth-progress.css */
+    /* No modal-specific reduced motion needed */
+}
