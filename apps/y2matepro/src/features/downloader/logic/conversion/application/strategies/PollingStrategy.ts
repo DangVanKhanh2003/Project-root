@@ -250,6 +250,7 @@ export class PollingStrategy extends BaseStrategy {
         log('═══════════════════════════════════════════════════════');
         log('[Phase3] displayProgress:', displayProgress + '%');
         log('[Phase3] previousPercent:', previousPercent + '%');
+        log('[Phase3] previousPercent:', previousPercent + '%');
         log('[Phase3] Setting hasTransitionedToMerging = true');
         this.hasTransitionedToMerging = true;
 
@@ -257,8 +258,9 @@ export class PollingStrategy extends BaseStrategy {
         // Check if JUST reached 100% (need delay) vs already at 100% (no delay)
         // IMPORTANT: Use previousPercent (before update), not this.lastPercent (after update)
         const justReached100 = displayProgress >= 100 && previousPercent < 100;
-        const animationDelay = justReached100 ? 300 : 0; // 300ms for UI to display 100%
+        const animationDelay = justReached100 ? 500 : 0; // 500ms for UI to display 100%
         log('[Phase3] ⏱️ Animation delay:', animationDelay + 'ms');
+        log('[Phase3] Reason:', justReached100 ? 'Just reached 100%, waiting for UI to show completion' : 'Already at 100%, no delay');
         log('[Phase3] Reason:', justReached100 ? 'Just reached 100%, waiting for UI to show completion' : 'Already at 100%, no delay');
 
         setTimeout(async () => {
