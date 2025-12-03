@@ -266,30 +266,30 @@ let clearBtn: HTMLButtonElement | null = null;
 let userHasInteracted = false;
 const USER_INTERACTION_EVENTS = ['mousedown', 'keydown', 'touchstart'];
 
-// Mobile click-to-scroll throttling
-let lastClickTime = 0;
-const CLICK_THROTTLE_MS = 300;
+// Mobile click-to-scroll throttling (DISABLED)
+// let lastClickTime = 0;
+// const CLICK_THROTTLE_MS = 300;
 
 /**
  * Handle mobile input click to trigger scroll behavior
- * Matches old project behavior: scroll to input when clicked on mobile
+ * DISABLED - No longer scrolls to input on mobile click
  */
-function handleInputClick(event: MouseEvent): void {
-  // Only apply on mobile viewports
-  if (window.innerWidth > 768) {
-    return;
-  }
-
-  // Throttle clicks to prevent scroll spam
-  const now = Date.now();
-  if (now - lastClickTime < CLICK_THROTTLE_MS) {
-    return;
-  }
-  lastClickTime = now;
-
-  // Scroll to input field using the centralized scroll manager
-  scrollManager.scrollToElement('#videoUrl');
-}
+// function handleInputClick(event: MouseEvent): void {
+//   // Only apply on mobile viewports
+//   if (window.innerWidth > 768) {
+//     return;
+//   }
+//
+//   // Throttle clicks to prevent scroll spam
+//   const now = Date.now();
+//   if (now - lastClickTime < CLICK_THROTTLE_MS) {
+//     return;
+//   }
+//   lastClickTime = now;
+//
+//   // Scroll to input field using the centralized scroll manager
+//   scrollManager.scrollToElement('#videoUrl');
+// }
 
 /**
  * Handle paste event on the input field to auto-submit the form.
@@ -326,7 +326,7 @@ export function initInputForm(): boolean {
   form.addEventListener('submit', handleSubmit);
   input.addEventListener('input', handleInput);
   input.addEventListener('keydown', handleKeyDown); // Keyboard navigation
-  input.addEventListener('click', handleInputClick); // Mobile click-to-scroll
+  // input.addEventListener('click', handleInputClick); // Mobile click-to-scroll (DISABLED)
   input.addEventListener('paste', handlePasteAndSubmit); // Auto-submit on paste
 
   // Action button handles both Paste and Clear based on data-action attribute
