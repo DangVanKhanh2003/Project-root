@@ -218,6 +218,9 @@ export class PollingStrategy extends BaseStrategy {
       log('Progress:', this.lastPercent + '% → ' + Math.round(displayProgress) + '%');
       log('Status:', statusText);
 
+      // Save previous percent BEFORE updating (needed for transition check)
+      const previousPercent = this.lastPercent;
+
       // ✅ REAL PROGRESS: Update UI and reset timers
       this.lastPercent = displayProgress;
       this.lastDisplayProgressUpdateTime = Date.now(); // Phase 2: Reset timer
@@ -246,15 +249,17 @@ export class PollingStrategy extends BaseStrategy {
         log('🔄 MERGING PHASE TRANSITION DETECTED');
         log('═══════════════════════════════════════════════════════');
         log('[Phase3] displayProgress:', displayProgress + '%');
-        log('[Phase3] lastPercent:', this.lastPercent + '%');
+        log('[Phase3] previousPercent:', previousPercent + '%');
         log('[Phase3] Setting hasTransitionedToMerging = true');
         this.hasTransitionedToMerging = true;
 
         // Delay showing merging spinner to allow progress bar animation to complete
-        // CSS transition is 0.4s, add buffer for safety
-        const animationDelay = displayProgress < 100 ? 450 : 0; // Only delay if not already at 100%
+        // Check if JUST reached 100% (need delay) vs already at 100% (no delay)
+        // IMPORTANT: Use previousPercent (before update), not this.lastPercent (after update)
+        const justReached100 = displayProgress >= 100 && previousPercent < 100;
+        const animationDelay = justReached100 ? 300 : 0; // 300ms for UI to display 100%
         log('[Phase3] ⏱️ Animation delay:', animationDelay + 'ms');
-        log('[Phase3] Reason:', displayProgress < 100 ? 'Progress < 100%, waiting for animation' : 'Already at 100%, no delay');
+        log('[Phase3] Reason:', justReached100 ? 'Just reached 100%, waiting for UI to show completion' : 'Already at 100%, no delay');
 
         setTimeout(async () => {
           if (this.checkAborted()) {
