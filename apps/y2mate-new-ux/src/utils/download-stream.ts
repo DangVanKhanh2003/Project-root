@@ -64,7 +64,6 @@ export async function downloadStreamToRAM(
         // Check if download was aborted before reading next chunk
         if (aborted || signal?.aborted) {
           console.log('[StreamDownload] 🛑 Stream aborted in while loop - stopping download');
-          debugger;
           const abortError = new Error('Download was canceled');
           abortError.name = 'AbortError';
           throw abortError;

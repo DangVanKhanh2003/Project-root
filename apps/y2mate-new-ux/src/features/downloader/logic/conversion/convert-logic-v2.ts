@@ -73,7 +73,8 @@ export async function startConversion(params: ConversionParams): Promise<void> {
     statusText: 'Extracting video data...',
     showProgressBar: false,
     startedAt: Date.now(),
-    formatData
+    formatData,
+    abortController  // ← CRITICAL: Pass the SAME AbortController to task
   });
 
   log('Starting extraction phase...');
