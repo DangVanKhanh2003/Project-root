@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "build:test": "NODE_ENV=test tsc && NODE_ENV=test vite build && NODE_ENV=test TARGET_DIR=dist node ../../modify-robots-meta.js",
-    "preview": "vite preview",
+    "dev": "vite --config vite.config.ts",
+    "build": "tsc && vite build --config vite.config.ts",
+    "build:test": "NODE_ENV=test tsc && NODE_ENV=test vite build --config vite.config.ts && NODE_ENV=test TARGET_DIR=dist node ../../modify-robots-meta.js",
+    "preview": "vite preview --config vite.config.ts",
     "remove-logs": "tsx remove-console-logs.ts",
     "remove-logs:preview": "tsx remove-console-logs.ts --dry-run",
     "remove-logs:all": "tsx remove-console-logs.ts --all-methods"

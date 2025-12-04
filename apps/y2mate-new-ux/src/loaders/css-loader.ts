@@ -68,9 +68,6 @@ export const loadConvertSidebarCSS = (): Promise<void> =>
 export const loadGalleryCSS = (): Promise<void> =>
     loadCSS('../../styles/features/gallery.css', 'gallery');
 
-export const loadConversionModalCSS = (): Promise<void> =>
-    loadCSS('../../styles/reusable-packages/conversion-modal/conversion-modal.css', 'conversion-modal');
-
 export const loadSmoothProgressCSS = (): Promise<void> =>
     loadCSS('../../styles/features/smooth-progress.css', 'smooth-progress');
 

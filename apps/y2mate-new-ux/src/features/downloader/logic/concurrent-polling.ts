@@ -7,7 +7,6 @@
 
 import { updateConversionTask, getConversionTask } from '../state';
 import { api } from '../../../api';
-import { getConversionModal } from '../../../ui-components/modal/conversion-modal.js';
 import { extractCacheId, type ProgressResponse } from '@downloader/core';
 
 // Type definitions
@@ -324,10 +323,9 @@ class ConcurrentPollingManager {
             completedAt: Date.now()
         });
 
-        // Transition modal to error state (unless it's user cancellation)
+        // Error handling - TODO: Show error in inline progress UI
         if (error.name !== 'AbortError') {
-            const conversionModal = getConversionModal();
-            conversionModal.transitionToError(errorMessage);
+            console.error('Conversion error:', errorMessage);
         }
 
         this._processQueue();

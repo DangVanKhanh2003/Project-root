@@ -11,7 +11,6 @@ import { IConversionStrategy, StrategyContext, StrategyResult } from './IConvers
 import { TaskState } from '../../types';
 
 // Direct imports from existing infrastructure
-import { getConversionModal } from '../../../../../../ui-components/modal/conversion-modal';
 import { updateConversionTask } from '../../../../state/conversion-state';
 
 /**
@@ -41,10 +40,6 @@ export abstract class BaseStrategy implements IConversionStrategy {
 
   protected checkAborted(): boolean {
     return this.isAborted || this.ctx.abortSignal?.aborted === true;
-  }
-
-  protected getModal() {
-    return getConversionModal();
   }
 
   protected updateTask(update: Record<string, unknown>): void {

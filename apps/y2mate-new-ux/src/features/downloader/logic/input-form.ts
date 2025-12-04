@@ -26,11 +26,14 @@ import {
   setVideoDetail,
   setGalleryDetail,
   setSearchPagination,
+  setYouTubePreview,
+  updateYouTubePreviewMetadata,
+  clearYouTubePreview,
 } from '../state';
 import { clearDetailStates } from '../state/media-detail-state';
 import { clearConversionTasks } from '../state/conversion-state';
 import { clearDownloadStates } from '../state/download-state';
-import { renderResults, renderMessage, renderVideoDownloadOptions, showLoading, clearContent } from '../ui-render/content-renderer';
+import { renderResults, renderMessage, renderPreviewCard, showLoading, clearContent } from '../ui-render/content-renderer';
 import { updateVideoTitle } from '../ui-render/download-rendering';
 import { getInputValue as getInputValueFromRenderer, setInputValue as setInputValueInRenderer } from '../ui-render/ui-renderer';
 import type { VideoData } from '../../../ui-components/search-result-card/search-result-card';
@@ -704,6 +707,7 @@ async function handleSubmit(event: Event): Promise<void> {
   clearDetailStates();         // Clear videoDetail/galleryDetail
   clearConversionTasks();      // Clear conversion tasks
   clearDownloadStates();       // Clear download button states
+  clearYouTubePreview();       // Clear YouTube preview data
   setLoading(true);
 
   // Get input type to show appropriate skeleton
@@ -759,7 +763,7 @@ async function handleExtractMedia(url: string): Promise<void> {
 
     if (isYouTubeUrl(url)) {
       // ┌─────────────────────────────────────────────────┐
-      // │ YOUTUBE WORKFLOW: Fake Data → Instant UI        │
+      // │ YOUTUBE WORKFLOW: Simple Preview with Metadata  │
       // └─────────────────────────────────────────────────┘
 
       const videoId = extractYouTubeVideoId(url);
@@ -768,54 +772,61 @@ async function handleExtractMedia(url: string): Promise<void> {
         throw new Error('Invalid YouTube URL - cannot extract video ID');
       }
 
-      // ✅ NEW: Push URL to browser history (enables back navigation)
+      // ✅ Push URL to browser history (enables back navigation)
       navigateToVideo(videoId);
 
-      // ✅ NEW: Update SEO meta tags (noindex for result pages)
+      // ✅ Update SEO meta tags (noindex for result pages)
       setVideoPageSEO();
 
       // Fire-and-forget: Add video to queue API (analytics/preloading notification)
       coreServices.queue.addVideoToQueue(videoId).then((success: boolean) => {
-        if (success) {
-        } else {
-        }
+        // Queue notification sent
       }).catch((error: Error) => {
+        // Ignore queue errors - not critical
       });
 
-      // Wait 300ms for skeleton animation (like old project)
+      // Wait 300ms for skeleton animation
       setTimeout(async () => {
-        // 1. Generate fake data with pre-defined quality options
-        const fakeData = generateFakeYouTubeData(videoId, url);
+        // 1. Create thumbnail URL from video ID
+        const thumbnail = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
 
-        // 2. Set fake data to state before rendering
-        setVideoDetail(fakeData);
+        // 2. Set initial preview with loading state (no author yet)
+        setYouTubePreview({
+          videoId,
+          title: 'Loading video information...',
+          author: '',  // Empty initially - will be filled if API succeeds
+          thumbnail,
+          url,
+          isLoading: true
+        });
 
-        // 3. Render fake data with proper download options UI
-        renderVideoDownloadOptions(fakeData, 'video');
+        // 3. Render preview immediately with loading state
+        renderPreviewCard(null);
 
-        // 3. Background: Enhance metadata using oEmbed API (non-blocking)
-        const metadata = await enhanceYouTubeMetadata(videoId);
+        // 4. Fetch metadata from YouTube Public API (uses coreServices, not api)
+        try {
+          console.log('[YouTube Metadata] Fetching metadata for:', url);
 
-        if (metadata) {
+          const metadata = await coreServices.youtubePublicApi.getMetadata(url);
+          console.log('[YouTube Metadata] Response:', metadata);
 
-          // Update fake data with real title & author
-          fakeData.meta.title = metadata.title;
-          fakeData.meta.author = metadata.author;
-          fakeData.meta.isFakeData = false; // Mark as enhanced with real data
-
-          // Update state with enhanced metadata
-          setVideoDetail(fakeData);
-
-          // Only update title - no need to re-render thumbnail
-          updateVideoTitle(fakeData.meta);
-        } else {
-          // API failed - fallback to showing the URL instead of "Loading..."
-          fakeData.meta.title = url;
-          fakeData.meta.author = '';
-
-          // Update state and UI with URL as title
-          setVideoDetail(fakeData);
-          updateVideoTitle(fakeData.meta);
+          if (metadata && metadata.title) {
+            // Success: Update preview with real metadata
+            console.log('[YouTube Metadata] Success - Title:', metadata.title, 'Author:', metadata.authorName);
+            updateYouTubePreviewMetadata(metadata.title, metadata.authorName || '');
+            // Re-render with updated data
+            renderPreviewCard(null);
+          } else {
+            // API returned but no data - fallback to URL as title, no author
+            console.log('[YouTube Metadata] No data returned');
+            updateYouTubePreviewMetadata(url, '');
+            renderPreviewCard(null);
+          }
+        } catch (error) {
+          // API failed - fallback to URL as title, no author
+          console.error('[YouTube Metadata] Error:', error);
+          updateYouTubePreviewMetadata(url, '');
+          renderPreviewCard(null);
         }
 
         // Reset isFromListItemClick flag after YouTube workflow completes
@@ -857,7 +868,7 @@ async function handleExtractMedia(url: string): Promise<void> {
         } else {
           setVideoDetail(data);
 
-          renderVideoDownloadOptions(data, 'video');
+          renderPreviewCard(data);
 
           // Log state after render
           const state = getState();

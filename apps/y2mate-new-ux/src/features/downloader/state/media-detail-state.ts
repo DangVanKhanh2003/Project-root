@@ -22,7 +22,6 @@ export function setVideoDetail(data: Omit<VideoDetail, 'completedAt'>): void {
     galleryDetail: null, // Ensure mutual exclusion
     results: [], // Clear search results when viewing detail
     viewingItem: null, // Clear any viewing item
-    activeTab: 'video', // Reset to video tab
     downloadTasks: {} // Clear download states
   });
 }

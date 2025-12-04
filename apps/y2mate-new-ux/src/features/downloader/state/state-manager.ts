@@ -17,6 +17,20 @@ const initialState: AppState = {
   showPasteButton: true,
   showClearButton: false,
 
+  // Format Selector (NEW FLOW)
+  selectedFormat: 'mp4',
+  selectedQuality: '720p', // Deprecated - kept for backward compatibility
+  qualityPreferences: {
+    mp3: '128kbps',
+    mp4: '720p'
+  },
+
+  // NEW: Separate quality tracking
+  videoQuality: '720p',       // Default to 720p for mp4
+  audioFormat: 'mp3',         // Default audio format
+  audioBitrate: '128',        // Default to 128 for mp3
+  hasUserSelectedFormat: false, // Track if user has made a selection
+
   // Suggestions
   suggestions: [],
   showSuggestions: false,
@@ -42,7 +56,6 @@ const initialState: AppState = {
   galleryDetail: null,
 
   // Download Options
-  activeTab: 'video',
   downloadTasks: {},
 
   // Conversion Tasks
@@ -54,7 +67,10 @@ const initialState: AppState = {
 
   // Multifile Reuse
   listCurrentUrl: [],
-  recentDownload: null
+  recentDownload: null,
+
+  // YouTube Preview (NEW FLOW)
+  youtubePreview: null
 };
 
 // ==========================================

@@ -92,7 +92,6 @@ export class PollingStrategy extends BaseStrategy {
       const error = 'No progressUrl - polling not supported';
       log('ERROR:', error);
       this.markFailed(error);
-      this.getModal().transitionToError(error);
       return this.failureResult(error);
     }
 
@@ -278,15 +277,8 @@ export class PollingStrategy extends BaseStrategy {
 
           // Update title to indicate final phase - preparing for download
           log('[Phase3] 🏷️ Updating title to "Preparing Your Download..."');
-          this.getModal().updateConversionTitle('Preparing Your Download...');
 
           // Show merging spinner (2 quarter circles, no text)
-          const circularProgress = this.getModal().getCircularProgress();
-          if (circularProgress) {
-            log('[Phase3] 🔄 Calling circularProgress.startMergingMode()...');
-            circularProgress.startMergingMode();
-            log('[Phase3] ✅ Merging spinner activated');
-          }
 
           // Show first merging status
           log('[Phase3] 📝 Getting first merging status text...');
@@ -438,7 +430,6 @@ export class PollingStrategy extends BaseStrategy {
 
     // Show download button
     log('Showing download button');
-    this.getModal().showDownloadButton(mergedUrl);
 
     if (this.resolvePromise) {
       log('Resolving promise with success');
@@ -606,7 +597,6 @@ export class PollingStrategy extends BaseStrategy {
     });
 
     // Use new unified progress update method (updates both circular + text)
-    this.getModal().updateConversionProgress(percent, statusText, false, undefined, undefined, appendPercent);
 
     log('✅ updateConversionProgress() called with appendPercent =', appendPercent);
   }

@@ -1,21 +1,10 @@
 /**
  * Download State Functions
- * Manages download task states, active tab, and download status tracking
+ * Manages download task states and download status tracking
  */
 
-import type { DownloadTask, DownloadTaskStatus, ActiveTab, DownloadCounts } from './types';
+import type { DownloadTask, DownloadTaskStatus, DownloadCounts } from './types';
 import { getState, setState } from './state-manager';
-
-/**
- * Set active tab in download options
- * @param tab - 'video' or 'audio'
- */
-export function setActiveTab(tab: ActiveTab): void {
-  if (tab !== 'video' && tab !== 'audio') {
-    return;
-  }
-  setState({ activeTab: tab });
-}
 
 /**
  * Update download task state for a specific format
@@ -85,11 +74,10 @@ export function getDownloadCounts(): DownloadCounts {
 }
 
 /**
- * Clear all download states (reset download tasks and active tab)
+ * Clear all download states (reset download tasks)
  */
 export function clearDownloadStates(): void {
   setState({
-    activeTab: 'video',
     downloadTasks: {}
   });
 }

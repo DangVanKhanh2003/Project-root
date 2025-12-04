@@ -11,7 +11,8 @@ import {
   handleDownloadClick,
   clearSocialMediaCache
 } from './convert-logic-v2';
-import { getConversionTask } from '../../state';
+import { getConversionTask, getState } from '../../state';
+import { showExpireModal } from '../../../../ui-components/modal/expire-modal';
 
 // Type definitions for custom events
 interface ConversionCancelEventDetail {
@@ -57,7 +58,21 @@ const handleCancelEvent = (event: CustomEvent<ConversionCancelEventDetail>) => {
 const handleDownloadEvent = (event: CustomEvent<ConversionDownloadEventDetail>) => {
   const { formatId } = event.detail;
   if (formatId) {
-    handleDownloadClick(formatId);
+    const result = handleDownloadClick(formatId);
+
+    // Handle expired case (YouTube links expire after ~6 hours)
+    if (result === 'expired') {
+      const state = getState();
+      const videoTitle = state.videoDetail?.meta?.title || 'Video';
+
+      showExpireModal({
+        videoTitle,
+        onTryAgain: () => {
+          // Reload page to get fresh download link
+          window.location.reload();
+        }
+      });
+    }
   }
 };
 

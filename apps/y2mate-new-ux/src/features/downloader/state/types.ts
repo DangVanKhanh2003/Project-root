@@ -25,6 +25,31 @@ export interface CoreUIState {
 }
 
 // ==========================================
+// Format Selector State Types (NEW FLOW)
+// ==========================================
+export type FormatType = 'mp3' | 'mp4';
+export type AudioFormatType = 'mp3' | 'wav' | 'm4a' | 'opus' | 'ogg';
+
+export interface QualityPreferences {
+  mp3: string;  // e.g., '320kbps'
+  mp4: string;  // e.g., '1080p'
+}
+
+export interface FormatSelectorState {
+  selectedFormat: FormatType;
+  selectedQuality: string; // Deprecated - kept for backward compatibility
+  qualityPreferences: QualityPreferences;
+
+  // NEW: Separate quality tracking for each format
+  videoQuality: string;      // For mp4: '1080p', '720p', '480p', '360p', etc.
+  audioFormat: AudioFormatType;  // For mp3 mode: 'mp3', 'wav', 'aac', etc.
+  audioBitrate: string;      // For mp3 mode: '320', '256', '192', '128', '64', etc.
+
+  // Track if user has made a selection (for auto-fill logic)
+  hasUserSelectedFormat: boolean;
+}
+
+// ==========================================
 // Suggestions State Types
 // ==========================================
 export interface SuggestionsState {
@@ -114,7 +139,6 @@ export interface MediaDetailState {
 // Download State Types
 // ==========================================
 export type DownloadTaskStatus = 'idle' | 'loading' | 'downloaded' | 'error';
-export type ActiveTab = 'video' | 'audio';
 
 export interface DownloadTask {
   status: DownloadTaskStatus;
@@ -123,7 +147,6 @@ export interface DownloadTask {
 }
 
 export interface DownloadState {
-  activeTab: ActiveTab;
   downloadTasks: Record<string, DownloadTask>; // formatId -> task
 }
 
@@ -265,17 +288,35 @@ export interface ReuseStatus {
 }
 
 // ==========================================
+// YouTube Preview State Types (NEW FLOW)
+// ==========================================
+export interface YouTubePreview {
+  videoId: string;
+  title: string;
+  author: string;
+  thumbnail: string;
+  url: string;
+  isLoading: boolean;
+}
+
+export interface YouTubePreviewState {
+  youtubePreview: YouTubePreview | null;
+}
+
+// ==========================================
 // Complete Application State
 // ==========================================
 export interface AppState
   extends CoreUIState,
+          FormatSelectorState,
           SuggestionsState,
           SearchResultsState,
           MediaDetailState,
           DownloadState,
           ConversionState,
           MultifileState,
-          MultifileReuseState {}
+          MultifileReuseState,
+          YouTubePreviewState {}
 
 // ==========================================
 // State Manager Types

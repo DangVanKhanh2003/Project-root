@@ -61,9 +61,7 @@ export class IOSRamStrategy extends BaseStrategy {
       log('Download complete, blob size:', blob.size);
 
       // CRITICAL FIX: Force progress to 100% before showing success
-      const modal = this.getModal();
       log('⚠️ FORCE: Updating progress to 100% at timestamp:', performance.now().toFixed(2) + 'ms');
-      modal.updateConversionProgress(100, 'Download complete', true, totalBytes, totalBytes);
 
       // Wait for 100% to paint (double RAF + 150ms delay for CSS transition)
       // CSS transition for final 100% is 50ms (0.05s with .completing-final class)
@@ -94,7 +92,6 @@ export class IOSRamStrategy extends BaseStrategy {
 
       // Show download button
       log('Showing download button');
-      modal.showDownloadButton(url, { buttonText: 'Download' });
 
       log('=== EXECUTE COMPLETE ===');
       return this.successResult(url, { blob, filename: filename ?? undefined });
@@ -109,7 +106,6 @@ export class IOSRamStrategy extends BaseStrategy {
       log('ERROR:', errorMessage);
       log('Full error:', error);
       this.markFailed(errorMessage);
-      this.getModal().transitionToError(errorMessage);
 
       return this.failureResult(errorMessage);
     }
@@ -118,13 +114,11 @@ export class IOSRamStrategy extends BaseStrategy {
   private async handleProgress(loaded: number, total: number): Promise<void> {
     if (this.checkAborted()) return;
 
-    const modal = this.getModal();
 
     // Double EXTRACTING trick: chỉ transition khi có data
     if (!this.hasStartedDownload && loaded > 0) {
       log('First chunk received, transitioning to CONVERTING with spiral-in (Double EXTRACTING trick)');
       this.hasStartedDownload = true;
-      await modal.transitionToConvertingWithAnimation(); // 600ms spiral-in animation
     }
 
     // Update progress (both circular and text)
@@ -138,7 +132,6 @@ export class IOSRamStrategy extends BaseStrategy {
       const percent = total > 0 ? Math.round((loaded / total) * 100) : 0;
 
       // Update both circular progress and text display
-      modal.updateConversionProgress(percent, statusText, true, loaded, total);
     }
   }
 }

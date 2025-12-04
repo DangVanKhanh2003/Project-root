@@ -39,7 +39,6 @@ export class StaticDirectStrategy extends BaseStrategy {
 
     // Show download button
     log('Showing download button');
-    this.getModal().showDownloadButton(url);
 
     log('=== EXECUTE COMPLETE ===');
     return this.successResult(url, { filename: filename ?? undefined });

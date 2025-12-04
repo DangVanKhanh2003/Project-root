@@ -23,6 +23,10 @@ export type {
   PartialState,
   InputType,
   CoreUIState,
+  FormatType,
+  AudioFormatType,
+  FormatSelectorState,
+  QualityPreferences,
   SuggestionsState,
   SearchResultsState,
   SearchPagination,
@@ -38,7 +42,6 @@ export type {
   DownloadTask,
   DownloadTaskStatus,
   DownloadCounts,
-  ActiveTab,
   ConversionState,
   ConversionTask,
   ConversionTaskState,
@@ -50,13 +53,16 @@ export type {
   MultifileProgress,
   MultifileReuseState,
   RecentDownload,
-  ReuseStatus
+  ReuseStatus,
+  YouTubePreviewState,
+  YouTubePreview
 } from './types';
 
 // ==========================================
 // Core State Functions
 // ==========================================
 export * from './core-state';
+export * from './format-selector-state';
 export * from './suggestions-state';
 export * from './search-results-state';
 export * from './media-detail-state';
@@ -64,3 +70,4 @@ export * from './download-state';
 export * from './conversion-state';
 export * from './multifile-state';
 export * from './multifile-reuse-state';
+export * from './youtube-preview-state';

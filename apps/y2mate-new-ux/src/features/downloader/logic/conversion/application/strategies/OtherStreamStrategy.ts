@@ -43,7 +43,6 @@ export class OtherStreamStrategy extends BaseStrategy {
     // Show download button with size info
     const buttonText = sizeMB > 0 ? `Download Stream (${sizeMB}MB)` : 'Download Stream';
     log('Showing download button with text:', buttonText);
-    this.getModal().showDownloadButton(url, { buttonText });
 
     log('=== EXECUTE COMPLETE ===');
     return this.successResult(url, { filename: filename ?? undefined });

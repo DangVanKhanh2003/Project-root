@@ -5,7 +5,6 @@
 
 import { createSearchResultCard, type VideoData } from '../../../ui-components/search-result-card/search-result-card';
 import { createSkeletonCard } from '../../../ui-components/search-result-card/skeleton-card';
-import { renderDownloadOptions, attachDownloadListeners } from './download-rendering';
 import { setInputValue } from './ui-renderer';
 import { initExpandableText } from '../../../utils';
 import {
@@ -334,8 +333,8 @@ export function showLoading(type: 'list' | 'detail' = 'list', append: boolean = 
     }
 
     case 'detail': {
-      // DETAIL skeleton - for video details
-      content = renderDetailSkeleton();
+      // PREVIEW CARD skeleton - shows video info preview
+      content = renderPreviewCardSkeleton();
 
       if (!contentArea) return;
 
@@ -388,78 +387,79 @@ export function clearContent(): void {
 }
 
 /**
- * Render detail skeleton for video info page
- * IMPORTANT: Structure MUST match renderDownloadOptions() to prevent CLS
+ * Render preview card skeleton
+ * IMPORTANT: Structure MUST match renderPreviewCard() to prevent CLS
  */
-function renderDetailSkeleton(): string {
+function renderPreviewCardSkeleton(): string {
   return `
-    <div id="downloadOptionsContainer" class="video-info-card">
-      <div class="video-layout">
-        <!-- Left Column: Video Info Skeleton -->
-        <div class="video-info-left">
-          <!-- Thumbnail -->
-          <div class="video-thumbnail aspect-16-9">
-            <div class="skeleton-img"></div>
-          </div>
-
-          <!-- Title - MUST match .video-title + see-more height to prevent CLS -->
-          <div class="video-title-wrapper">
-            <div class="video-title-skeleton">
-              <div class="skeleton-line"></div>
-              <div class="skeleton-line"></div>
-              <div class="skeleton-see-more"></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Right Column: Format Options Skeleton -->
-        <div class="video-details">
-          <!-- Format Tabs -->
-          <div class="format-tabs" role="tablist">
-            <div class="format-tab">
-              <div class="skeleton-tab-text"></div>
-            </div>
-            <div class="format-tab">
-              <div class="skeleton-tab-text"></div>
-            </div>
-          </div>
-
-          <!-- Quality List - 2 columns only (left + right) -->
-          <div class="quality-list">
-            ${Array(6).fill(null).map(() => `
-              <div class="quality-item">
-                <div class="quality-row">
-                  <div class="quality-col-left">
-                    <div class="skeleton-text" style="width: 80px;"></div>
-                  </div>
-                  <div class="quality-col-right">
-                    <div class="skeleton-convert-btn"></div>
-                  </div>
-                </div>
-              </div>
-            `).join('')}
-          </div>
-        </div>
+    <div class="yt-preview-card skeleton">
+      <div class="yt-preview-thumbnail">
+        <div class="skeleton-img"></div>
+      </div>
+      <div class="yt-preview-details">
+        <div class="skeleton-line" style="width: 80%; height: 24px; margin-bottom: 12px;"></div>
+        <div class="skeleton-line" style="width: 60%; height: 16px; margin-bottom: 8px;"></div>
+        <div class="skeleton-line" style="width: 40%; height: 16px;"></div>
       </div>
     </div>
   `;
 }
 
 /**
- * Render video download options (2-column layout)
- * @param data - Video data with meta and formats
- * @param activeTab - Active format tab ('video' or 'audio')
+ * Render preview card with video info
+ * Shows simple video preview with format and quality info from YouTube preview state
+ * @param _data - Unused parameter (kept for backward compatibility)
  */
-export function renderVideoDownloadOptions(data: any, activeTab: 'video' | 'audio' = 'video'): void {
-
+export function renderPreviewCard(_data: any): void {
   if (!contentArea) {
     return;
   }
-  // Generate HTML using download options renderer
-  // Note: renderDownloadOptions gets state internally, no need to pass data
-  // TypeScript: Cast to any to handle type mismatch between FormatDto[] and ProcessedFormat[]
-  // renderDownloadOptions internally calls processFormatArray to convert FormatDto[] → ProcessedFormat[]
-  const html = renderDownloadOptions(getState() as any);
+
+  const state = getState();
+  const youtubePreview = state.youtubePreview;
+
+  // If no YouTube preview data, don't render
+  if (!youtubePreview) {
+    return;
+  }
+
+  const { title, thumbnail, author } = youtubePreview;
+  const selectedFormat = state.selectedFormat; // 'mp3' or 'mp4'
+
+  // Get quality info based on selected format
+  let qualityInfo = '';
+  if (selectedFormat === 'mp4') {
+    qualityInfo = state.videoQuality || '720p';
+  } else {
+    // MP3 or other audio formats
+    const format = state.audioFormat.toUpperCase();
+    const bitrate = state.audioBitrate || '128';
+    qualityInfo = `${format} ${bitrate}kbps`;
+  }
+
+  const formatBadge = selectedFormat.toUpperCase(); // "MP4" or "MP3"
+
+  const html = `
+    <div class="yt-preview-card">
+      <div class="yt-preview-thumbnail">
+        <img src="${escapeHtml(thumbnail)}"
+             alt="${escapeHtml(title)}"
+             width="480"
+             height="360"
+             loading="lazy">
+      </div>
+      <div class="yt-preview-details">
+        <h3 class="yt-preview-title">${escapeHtml(title)}</h3>
+        <div class="yt-preview-meta">
+          <div class="yt-preview-format">
+            <span class="format-badge">${formatBadge}</span>
+            <span class="quality-info">${escapeHtml(qualityInfo)}</span>
+          </div>
+          ${author ? `<p class="yt-preview-author">${escapeHtml(author)}</p>` : ''}
+        </div>
+      </div>
+    </div>
+  `;
 
   // Render to content area
   contentArea.innerHTML = html;
@@ -467,60 +467,185 @@ export function renderVideoDownloadOptions(data: any, activeTab: 'video' | 'audi
   // Remove loading class
   contentArea.classList.remove('showing-loading');
 
-  // Show content area (was hidden by default)
+  // Show content area
   contentArea.style.display = 'block';
 
   // Hide search results section
   hideSearchResultsSection();
-
-  // Setup tab switching event listeners
-  setupDownloadOptionsTabs();
-
-  // Initialize expandable text for video title
-  const container = document.getElementById('downloadOptionsContainer');
-  if (container) {
-    initExpandableText(container, '.video-title');
-    // Attach listeners for download buttons
-    attachDownloadListeners(container);
-  }
 }
 
 /**
- * Setup event listeners for format tabs (Video/Audio switching)
+ * Setup image loading with preload to prevent flicker
+ * @param container - Preview card container
  */
-function setupDownloadOptionsTabs(): void {
-  const tabs = document.querySelectorAll('.format-tab');
+function setupImageLoader(container: HTMLElement): void {
+  const img = container.querySelector('#videoThumbnail') as HTMLImageElement | null;
+  const skeleton = container.querySelector('.thumbnail-skeleton') as HTMLElement | null;
 
-  tabs.forEach(tab => {
-    tab.addEventListener('click', handleTabClick);
-  });
+  if (!img || !skeleton) {
+    return;
+  }
+
+  const thumbnailUrl = img.dataset.src;
+  if (!thumbnailUrl) {
+    return;
+  }
+
+  // Preload image in memory
+  const preloader = new Image();
+
+  preloader.onload = () => {
+    // Image loaded successfully - show it smoothly
+    img.src = thumbnailUrl;
+
+    // Wait for browser to paint, then fade in
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        img.classList.remove('thumbnail-hidden');
+        img.classList.add('thumbnail-visible');
+
+        if (skeleton) {
+          skeleton.classList.add('skeleton-hidden');
+        }
+      });
+    });
+  };
+
+  preloader.onerror = () => {
+    // Image failed to load
+    img.src = thumbnailUrl;
+    img.classList.remove('thumbnail-hidden');
+    img.classList.add('thumbnail-error');
+
+    if (skeleton) {
+      skeleton.classList.add('skeleton-hidden');
+    }
+  };
+
+  // Start preloading
+  preloader.src = thumbnailUrl;
 }
 
 /**
- * Handle tab click (switch between Video/Audio)
+ * Escape HTML to prevent XSS
  */
-function handleTabClick(event: Event): void {
-  const button = event.currentTarget as HTMLButtonElement;
-  const targetTab = button.dataset.tab as 'video' | 'audio';
+function escapeHtml(text: string | undefined): string {
+  if (typeof text !== 'string') return '';
 
-  if (!targetTab || button.disabled) return;
-
-  // Update active tab UI
-  document.querySelectorAll('.format-tab').forEach(t => t.classList.remove('active'));
-  button.classList.add('active');
-
-  // Show/hide corresponding panels
-  const videoPanel = document.getElementById('videoFormats');
-  const audioPanel = document.getElementById('audioFormats');
-
-  if (targetTab === 'video') {
-    if (videoPanel) videoPanel.style.display = 'block';
-    if (audioPanel) audioPanel.style.display = 'none';
-  } else {
-    if (videoPanel) videoPanel.style.display = 'none';
-    if (audioPanel) audioPanel.style.display = 'block';
-  }
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
 }
+
+/**
+ * Format duration from seconds or HH:MM:SS string
+ */
+function formatDuration(duration: string | number | undefined): string {
+  if (!duration) return '';
+
+  // If already formatted (e.g., "04:20"), return as is
+  if (typeof duration === 'string' && duration.includes(':')) {
+    return duration;
+  }
+
+  // Convert seconds to MM:SS or HH:MM:SS
+  const seconds = typeof duration === 'string' ? parseInt(duration, 10) : duration;
+  if (isNaN(seconds)) return '';
+
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+  const secs = seconds % 60;
+
+  if (hours > 0) {
+    return `${hours}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+  }
+  return `${minutes}:${String(secs).padStart(2, '0')}`;
+}
+
+/**
+ * Get quality badge text (Full-HD, 4K, etc.)
+ */
+function getBadgeForQuality(quality: string, qText?: string | null): string {
+  if (qText) return qText;
+
+  // Auto-detect badge from quality string
+  const qualityLower = quality.toLowerCase();
+  if (qualityLower.includes('2160') || qualityLower.includes('4k')) return '4K';
+  if (qualityLower.includes('1440') || qualityLower.includes('2k')) return '2K';
+  if (qualityLower.includes('1080')) return 'Full-HD';
+  if (qualityLower.includes('720')) return 'HD';
+  if (qualityLower.includes('320')) return 'High';
+  if (qualityLower.includes('256')) return 'Good';
+  if (qualityLower.includes('128')) return 'Standard';
+  return '';
+}
+
+/**
+ * Render download options list for selected format
+ */
+function renderDownloadOptionsList(formats: any[], selectedFormat: string): string {
+  if (!formats || formats.length === 0) {
+    return `
+      <div class="quality-list">
+        <div class="quality-empty">
+          No ${selectedFormat.toUpperCase()} options available for this video
+        </div>
+      </div>
+    `;
+  }
+
+  const formatTypeLabel = selectedFormat.toUpperCase();
+
+  const optionsHTML = formats.map(formatData => {
+    const { quality, format, size, q_text, key, url } = formatData;
+    const badge = getBadgeForQuality(quality, q_text);
+    const formatId = `${format}-${quality}`.replace(/[^a-zA-Z0-9-]/g, '-');
+
+    return `
+      <div class="quality-item" data-format-id="${formatId}">
+        <div class="quality-row">
+          <!-- Left Column: Format Type -->
+          <div class="quality-col-left">
+            <div class="format-type">${formatTypeLabel}</div>
+          </div>
+
+          <!-- Middle Column: Quality + Badge + Size -->
+          <div class="quality-col-middle">
+            <div class="quality-main">
+              <span class="quality-text">${escapeHtml(quality)}</span>
+              ${badge ? `<span class="quality-badge">${escapeHtml(badge)}</span>` : ''}
+            </div>
+            ${size ? `<div class="quality-size">${escapeHtml(size)}</div>` : ''}
+          </div>
+
+          <!-- Right Column: Download Button -->
+          <div class="quality-col-right">
+            <button
+              type="button"
+              class="btn-convert"
+              data-format-id="${formatId}"
+              data-quality="${escapeHtml(quality)}"
+              data-format="${escapeHtml(format)}"
+            >
+              <span class="btn-text">Download</span>
+              <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 12v7H5v-7H3v7c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zm-6 .67l2.59-2.58L17 11.5l-5 5-5-5 1.41-1.41L11 12.67V3h2z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  return `
+    <div class="quality-list">
+      ${optionsHTML}
+    </div>
+  `;
+}
+
+// TODO: setupDownloadOptionsTabs() and handleTabClick() removed - tabs no longer needed in new flow
 
 /**
  * Render HTML content (NOT escaped - for internal use only)
@@ -539,15 +664,4 @@ export function renderHtmlContent(htmlContent: string, type: 'info' | 'error' | 
 
   // Hide search results section when showing content
   hideSearchResultsSection();
-}
-
-/**
- * Escape HTML to prevent XSS
- */
-function escapeHtml(text: string): string {
-  if (typeof text !== 'string') return '';
-
-  const div = document.createElement('div');
-  div.textContent = text;
-  return div.innerHTML;
 }

@@ -14,7 +14,6 @@ import {
   clearVideoDetailFormat,
   getState
 } from '../../state';
-import { getConversionModal } from '../../../../ui-components/modal/conversion-modal';
 import { triggerDownload } from '../../../../utils';
 import { isLinkExpired } from '../../../../utils/link-validator';
 import { isYouTubeUrl } from '@downloader/core';
@@ -52,7 +51,6 @@ const logError = (...args: unknown[]) => console.error(LOG_PREFIX, ...args);
  */
 export async function startConversion(params: ConversionParams): Promise<void> {
   const { formatId, formatData, videoTitle, videoUrl } = params;
-  const modal = getConversionModal();
 
   log('=== START CONVERSION ===');
   log('formatId:', formatId);
@@ -76,19 +74,8 @@ export async function startConversion(params: ConversionParams): Promise<void> {
     formatData
   });
 
-  // Open modal in extracting phase
-  log('Opening modal in EXTRACTING phase...');
-  modal.open({
-    videoTitle,
-    formatId,
-    quality: formatData.quality,
-    format: formatData.type,
-    onCancel: () => {
-      log('Cancel triggered by user');
-      abortController.abort();
-      currentStrategy?.cancel();
-    }
-  });
+  // TODO: Show inline progress UI in EXTRACTING phase
+  log('Starting extraction phase...');
 
   try {
     // Phase 1: Extract - get download URL from API
@@ -116,8 +103,8 @@ export async function startConversion(params: ConversionParams): Promise<void> {
       routing.routeType === RouteType.WINDOWS_MP4_POLLING;
 
     if (needsConvertingPhase) {
-      log('Transitioning modal to CONVERTING phase...');
-      await modal.transitionToConvertingWithAnimation(); // Direct transition
+      log('Starting CONVERTING phase...');
+      // TODO: Show inline progress UI transition
     } else {
       log('Skipping CONVERTING phase for routeType:', routing.routeType);
     }
@@ -159,7 +146,6 @@ export async function startConversion(params: ConversionParams): Promise<void> {
     const errorMessage = (error as Error).message || 'Conversion failed';
     logError('Error in conversion:', errorMessage);
     logError('Full error:', error);
-    modal.transitionToError(errorMessage);
   } finally {
     log('=== END CONVERSION ===');
     currentStrategy = null;
@@ -288,7 +274,6 @@ function updateFormatCache(
  */
 export function handleDownloadClick(formatId: string): 'success' | 'expired' | 'error' {
   const task = getConversionTask(formatId);
-  const modal = getConversionModal();
 
   if (!task?.downloadUrl) {
     console.error('No download URL available');
@@ -302,7 +287,6 @@ export function handleDownloadClick(formatId: string): 'success' | 'expired' | '
       // Get video title for expired modal
       const state = getState();
       const videoTitle = state.videoDetail?.meta?.title || 'Video';
-      modal.transitionToExpired(videoTitle);
       return 'expired';
     }
   }

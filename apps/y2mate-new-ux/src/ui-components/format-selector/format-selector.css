@@ -1,0 +1,235 @@
+/**
+ * Format Selector Component Styles
+ * Mobile-first responsive design
+ */
+
+/* Wrapper in input form */
+.format-selector-wrapper {
+  margin-top: 16px;
+  margin-bottom: 8px;
+  min-height: 48px; /* Reserve space to prevent layout shift */
+  display: block; /* Always visible */
+}
+
+.format-selector {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 44px; /* Fixed height to prevent layout shift */
+}
+
+/* ==========================================
+   Format Toggle Button (Single button: MP4 | MP3)
+   ========================================== */
+
+.format-toggle-btn {
+  display: flex;
+  align-items: center;
+  background: #f5f5f5;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 0;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+  flex-shrink: 0;
+  width: 140px; /* Fixed width to prevent layout shift */
+  height: 44px; /* Fixed height to prevent layout shift */
+}
+
+
+
+
+
+.toggle-side {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 14px;
+  color: #666;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  flex: 1;
+  min-width: 0;
+  margin: 0px 3px;
+  height: 90%;
+}
+
+
+
+.toggle-side.active {
+  background: #f20a51;
+  color: white;
+  border-radius: 6px;
+}
+
+.toggle-divider {
+  width: 1px;
+  height: 24px;
+  background: #e0e0e0;
+  flex-shrink: 0;
+}
+
+.format-icon {
+  font-size: 18px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.format-label {
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ==========================================
+   Quality Select Dropdown
+   ========================================== */
+
+.quality-selector {
+  min-width: 0;
+}
+
+.quality-dropdown-wrapper {
+  width: 100%;
+}
+
+.quality-select {
+  width: 100%;
+  height: 44px; /* Fixed height to match toggle button */
+  padding: 10px 14px;
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 36px;
+  box-sizing: border-box; /* Include border in height calculation */
+}
+
+.quality-select:hover {
+  border-color: #f20a51;
+  background-color: #f8f9fa;
+}
+
+.quality-select:focus {
+  outline: 2px solid #f20a51;
+  outline-offset: 2px;
+  border-color: #f20a51;
+}
+
+.quality-select option {
+  padding: 8px;
+  font-size: 14px;
+}
+
+/* ==========================================
+   Responsive Design
+   ========================================== */
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .format-selector-wrapper {
+    min-height: 42px;
+  }
+
+  .format-selector {
+    gap: 8px;
+    min-height: 40px;
+  }
+
+  .format-toggle-btn {
+    width: 120px;
+    height: 40px;
+  }
+
+  .toggle-side {
+    padding: 8px 10px;
+    gap: 4px;
+  }
+
+  .format-icon {
+    font-size: 16px;
+  }
+
+  .format-label {
+    font-size: 13px;
+  }
+
+  .quality-select {
+    height: 40px;
+    padding: 8px 12px;
+    font-size: 13px;
+    padding-right: 32px;
+  }
+}
+
+/* Very small devices - stack vertically */
+@media (max-width: 360px) {
+  .format-selector-wrapper {
+    min-height: 88px; /* 40px + 40px + 8px gap */
+  }
+
+  .format-selector {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    min-height: 88px;
+  }
+
+  .format-toggle-btn {
+    width: 100%;
+    height: 40px;
+  }
+
+  .quality-select {
+    height: 40px;
+  }
+}
+
+/* ==========================================
+   Accessibility
+   ========================================== */
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .format-toggle-btn {
+    border-width: 3px;
+  }
+
+  .toggle-side.active {
+    border: 2px solid white;
+  }
+
+  .quality-select {
+    border-width: 3px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .format-toggle-btn,
+  .toggle-side,
+  .quality-select {
+    transition: none;
+  }
+}
+
+/* Focus visible (keyboard navigation) */
+.format-toggle-btn:focus-visible {
+  outline: 3px solid #f20a51;
+  outline-offset: 3px;
+}
+
+.quality-select:focus-visible {
+  outline: 3px solid #f20a51;
+  outline-offset: 3px;
+}

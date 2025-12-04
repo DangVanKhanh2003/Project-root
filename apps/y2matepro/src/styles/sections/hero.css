@@ -78,7 +78,6 @@
     gap: 8px;
     color: var(--color-bg-white);
     font-size: var(--font-size-sm);
-    transition: background-color 0.3s ease;
 }
 
 .submit-btn:hover {
