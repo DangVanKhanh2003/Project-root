@@ -42,11 +42,26 @@ export class IOSRamStrategy extends BaseStrategy {
     log('filename:', filename);
     log('totalBytes:', totalBytes);
 
-    // Update state
-    log('Updating task state to DOWNLOADING');
+    // Delay 1s while keeping EXTRACTING state (smooth UX transition)
+    log('Waiting 1s before starting download (keeping EXTRACTING state)...');
+    await new Promise(resolve => setTimeout(resolve, 1000));
+
+    if (this.checkAborted()) {
+      log('Aborted during 1s delay');
+      return this.cancelledResult();
+    }
+
+    // Build initial status text with size info
+    const totalMB = totalBytes > 0 ? Math.ceil(totalBytes / (1024 * 1024)) : 0;
+    const initialStatusText = totalMB > 0
+      ? `Downloading... 0 MB / ${totalMB} MB`
+      : 'Downloading...';
+
+    // Update state to DOWNLOADING after delay
+    log('Updating task state to DOWNLOADING with initial status:', initialStatusText);
     this.updateTask({
       state: TaskState.DOWNLOADING,
-      statusText: 'Downloading...'
+      statusText: initialStatusText
     });
 
     try {
@@ -121,20 +136,12 @@ export class IOSRamStrategy extends BaseStrategy {
     const loadedMB = Math.ceil(loaded / (1024 * 1024));
     const totalMB = total > 0 ? Math.ceil(total / (1024 * 1024)) : 0;
 
-    // Build status text based on available info
-    let statusText: string;
-    if (loadedMB === 0) {
-      // Starting download, no data yet
-      statusText = 'Starting download...';
-    } else if (totalMB > 0) {
-      // Have both loaded and total size
-      statusText = `Downloading... ${loadedMB} MB / ${totalMB} MB`;
-    } else {
-      // Have loaded but no total size
-      statusText = `Downloading... ${loadedMB} MB`;
-    }
+    // Build status text
+    const statusText = totalMB > 0
+      ? `Downloading... ${loadedMB} MB / ${totalMB} MB`
+      : `Downloading... ${loadedMB} MB`;
 
-    const percent = total > 0 && loaded > 0 ? Math.round((loaded / total) * 100) : 0;
+    const percent = total > 0 ? Math.round((loaded / total) * 100) : 0;
 
     // Double EXTRACTING trick: chỉ transition khi có data
     if (!this.hasStartedDownload && loaded > 0) {
