@@ -1073,6 +1073,8 @@ async function handleSearch(keyword: string): Promise<void> {
 
 /**
  * Handle action button click (Paste or Clear based on data-action)
+ * CRITICAL: For iOS Safari compatibility, clipboard.readText() MUST be called
+ * directly in this synchronous click handler to preserve "user gesture context"
  */
 function handleActionButton(): void {
   if (!pasteBtn) return;
@@ -1082,58 +1084,73 @@ function handleActionButton(): void {
   if (action === 'clear') {
     handleClear();
   } else {
-    handlePaste();
+    // ✅ Read clipboard IMMEDIATELY in click handler (iOS Safari requirement)
+    // Do NOT delegate to async function - it breaks the gesture context
+    if (navigator.clipboard && navigator.clipboard.readText) {
+      navigator.clipboard.readText()
+        .then(text => {
+          processPastedText(text);
+        })
+        .catch(error => {
+          handlePasteError(error);
+        });
+    } else {
+      // Fallback for browsers without Clipboard API
+      const errorMsg = 'Clipboard API not supported in this browser';
+      setError(errorMsg);
+      renderMessage(errorMsg, 'error');
+    }
   }
 }
 
 /**
- * Handle paste button click
- * CRITICAL: Clipboard read MUST happen directly in click handler for iOS Safari
- * to maintain "user gesture context" required for clipboard access
+ * Process pasted text from clipboard
+ * Called after clipboard.readText() succeeds in click handler
  */
-async function handlePaste(): Promise<void> {
+function processPastedText(text: string): void {
   if (!input) return;
 
-  try {
-    // Read clipboard immediately to preserve user gesture context (iOS requirement)
-    const text = await navigator.clipboard.readText();
-    const trimmedText = text.trim();
+  const trimmedText = text.trim();
 
-    // ❌ Check if clipboard is empty
-    if (!text || !trimmedText) {
-      const errorMsg = 'Clipboard is empty. Please copy a YouTube URL first.';
-      setError(errorMsg);
-      renderMessage(errorMsg, 'error');
-      return;
-    }
-
-    // Set input value
-    input.value = trimmedText;
-
-    // Dispatch input event to trigger handleInput (updates button visibility)
-    input.dispatchEvent(new Event('input', { bubbles: true }));
-
-    // Auto-submit if auto-submit is enabled (for both URL and keyword)
-    const state = getState();
-    if (state.autoSubmit && trimmedText) {
-      form?.requestSubmit();
-    }
-  } catch (error) {
-    // Handle clipboard errors
-    let errorMsg = 'Failed to read clipboard';
-
-    if (error instanceof DOMException) {
-      if (error.name === 'NotAllowedError') {
-        errorMsg = 'Clipboard permission denied. Please allow clipboard access in your browser settings.';
-      } else if (error.name === 'NotFoundError') {
-        errorMsg = 'No clipboard data available. Please copy something first.';
-      }
-    }
-
-    console.error('[Paste Error]:', error);
+  // ❌ Check if clipboard is empty
+  if (!text || !trimmedText) {
+    const errorMsg = 'Clipboard is empty. Please copy a YouTube URL first.';
     setError(errorMsg);
     renderMessage(errorMsg, 'error');
+    return;
   }
+
+  // Set input value
+  input.value = trimmedText;
+
+  // Dispatch input event to trigger handleInput (updates button visibility)
+  input.dispatchEvent(new Event('input', { bubbles: true }));
+
+  // Auto-submit if auto-submit is enabled (for both URL and keyword)
+  const state = getState();
+  if (state.autoSubmit && trimmedText) {
+    form?.requestSubmit();
+  }
+}
+
+/**
+ * Handle clipboard read errors
+ * Provides user-friendly error messages for different error types
+ */
+function handlePasteError(error: unknown): void {
+  let errorMsg = 'Failed to read clipboard';
+
+  if (error instanceof DOMException) {
+    if (error.name === 'NotAllowedError') {
+      errorMsg = 'Clipboard permission denied. Please allow clipboard access in your browser settings.';
+    } else if (error.name === 'NotFoundError') {
+      errorMsg = 'No clipboard data available. Please copy something first.';
+    }
+  }
+
+  console.error('[Paste Error]:', error);
+  setError(errorMsg);
+  renderMessage(errorMsg, 'error');
 }
 
 /**
