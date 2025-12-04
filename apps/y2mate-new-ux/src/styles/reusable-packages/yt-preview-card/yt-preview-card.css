@@ -50,17 +50,22 @@
   flex-direction: column;
   gap: 12px;
   min-width: 0; /* Allow text truncation */
+  min-height: 82px; /* Match skeleton: 22 + 12 + 22 + 8 + 18 = 82px */
+}
+.yt-preview-details.skeleton-line {
+  padding: 0px !important;
+  margin: 0px !important;
 }
 
 .yt-preview-title {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   color: #333;
   margin: 0;
   line-height: 1.4;
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
   text-align: start;
@@ -144,6 +149,28 @@
   border-radius: 4px;
 }
 
+/* Skeleton line types - match real element heights */
+.skeleton-line.skeleton-title {
+  width: 80%;
+  height: 22px;
+    padding: 0px !important;
+  margin: 0px !important;
+}
+
+.skeleton-line.skeleton-format {
+  width: 50%;
+  height: 26px;
+    padding: 0px !important;
+  margin: 0px !important;
+}
+
+.skeleton-line.skeleton-author {
+  width: 40%;
+  height: 18px;
+    padding: 0px !important;
+  margin: 0px !important;
+}
+
 @keyframes skeleton-loading {
   0% {
     background-position: 200% 0;
@@ -171,15 +198,32 @@
     aspect-ratio: 16 / 9;
   }
 
-  .yt-preview-title {
-    font-size: 16px;
+  .yt-preview-details {
+    align-items: center; /* Center content on mobile */
+    text-align: center;
   }
 
+  .yt-preview-format {
+    justify-content: center;
+  }
 
-
+  .yt-preview-title {
+    font-size: 14px;
+    text-align: center;
+  }
 
   .yt-preview-author {
     font-size: 13px;
+    text-align: center;
+  }
+
+  /* Skeleton adjustments for mobile */
+  .skeleton-line.skeleton-title {
+    height: 21px; /* Match 14px font */
+  }
+
+  .skeleton-line.skeleton-author {
+    height: 21px; /* Match 13px font */
   }
 }
 
@@ -189,15 +233,32 @@
     padding: 10px;
   }
 
-  .yt-preview-title {
-    font-size: 15px;
+  .yt-preview-details {
+    align-items: center;
+    text-align: center;
   }
 
+  .yt-preview-format {
+    justify-content: center;
+  }
 
-
+  .yt-preview-title {
+    font-size: 13px;
+    text-align: center;
+  }
 
   .yt-preview-author {
     font-size: 12px;
+    text-align: center;
+  }
+
+  /* Skeleton adjustments for small mobile */
+  .skeleton-line.skeleton-title {
+    height: 18px; /* Match 13px font */
+  }
+
+  .skeleton-line.skeleton-author {
+    height: 20px; /* Match 12px font */
   }
 }
 
@@ -209,7 +270,7 @@
   }
 
   .yt-preview-title {
-    font-size: 20px;
+    font-size: 18px;
   }
 
   .yt-preview-author {

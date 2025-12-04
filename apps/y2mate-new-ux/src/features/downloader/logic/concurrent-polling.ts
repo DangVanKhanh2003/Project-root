@@ -6,8 +6,8 @@
  */
 
 import { updateConversionTask, getConversionTask } from '../state';
-import { api } from '../../../api';
-import { extractCacheId, type ProgressResponse } from '@downloader/core';
+import { type ProgressResponse } from '@downloader/core';
+import { getTimeout } from '../../../environment';
 
 // Type definitions
 interface PollingConfig {
@@ -70,7 +70,7 @@ class ConcurrentPollingManager {
     private allTimeouts: Set<number>;
 
     constructor(config: PollingConfig = {}) {
-        this.maxConcurrent = config.maxConcurrent || 5;
+        this.maxConcurrent = config.maxConcurrent || 1;
         // Base poll interval; a small jitter will be added per tick
         this.pollInterval = config.pollInterval || 1000; // 1 second polling as requested
         // Maximum total time to poll a task before timing out (separate from HTTP timeouts)
@@ -173,28 +173,47 @@ class ConcurrentPollingManager {
 
     /**
      * Handle rich progress polling with progressUrl
-     * Uses service layer instead of direct fetch for proper architecture
+     * Fetch directly from progressUrl (full URL from API response)
      * @private
      */
     private async _handleProgressPolling(formatId: string, taskData: TaskData): Promise<void> {
         try {
-            // Extract cache ID from progressUrl using helper
-            const cacheId = extractCacheId(taskData.progressUrl!);
-
             const callTime = Date.now();
 
-            // Use service layer for progress polling (proper architecture)
-            const result = await api.getDownloadProgress({ cacheId });
+            // Setup timeout for fetch request
+            const timeoutMs = getTimeout('checkTask'); // 30s default
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
 
-            const responseTime = Date.now() - callTime;
+            let progressData: ProgressResponse;
 
-            // Check if request succeeded (VerifiedResult uses 'ok' instead of 'success')
-            if (!result.ok || !result.data) {
-                throw new Error(`Progress API error: ${result.message}`);
+            try {
+                // Fetch directly from progressUrl (full URL)
+                const response = await fetch(taskData.progressUrl!, {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                    },
+                    signal: controller.signal
+                });
+
+                clearTimeout(timeoutId);
+
+                const responseTime = Date.now() - callTime;
+
+                if (!response.ok) {
+                    throw new Error(`Progress API error: ${response.status} ${response.statusText}`);
+                }
+
+                progressData = await response.json() as ProgressResponse;
+
+            } catch (fetchError: any) {
+                clearTimeout(timeoutId);
+                if (fetchError.name === 'AbortError') {
+                    throw new Error('Progress check timeout');
+                }
+                throw fetchError;
             }
-
-            // Type assertion for ProgressResponse
-            const progressData = result.data as ProgressResponse;
 
             // Expected format: { cacheId, videoProgress, audioProgress, status, mergedUrl, error }
             const { videoProgress, audioProgress, status, mergedUrl } = progressData;

@@ -26,6 +26,7 @@ import './styles/reusable-packages/yt-preview-card/yt-preview-card.css';
 import './styles/reusable-packages/suggestions/suggestions.css';
 import './styles/reusable-packages/captcha-modal/captcha-modal.css';
 import './styles/reusable-packages/expire-modal/expire-modal.css';
+import './styles/reusable-packages/conversion-status/conversion-status.css';
 
 // Import UI components CSS
 import './ui-components/format-selector/format-selector.css';

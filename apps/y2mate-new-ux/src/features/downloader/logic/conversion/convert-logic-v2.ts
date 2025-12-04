@@ -10,6 +10,7 @@ import {
   setConversionTask,
   getConversionTask,
   clearConversionTask,
+  updateConversionTask,
   updateVideoDetailFormat,
   clearVideoDetailFormat,
   getState
@@ -68,13 +69,12 @@ export async function startConversion(params: ConversionParams): Promise<void> {
     quality: formatData.quality,
     format: formatData.type,
     state: 'Extracting',
-    statusText: 'Extracting...',
+    statusText: 'Extracting video data...',
     showProgressBar: false,
     startedAt: Date.now(),
     formatData
   });
 
-  // TODO: Show inline progress UI in EXTRACTING phase
   log('Starting extraction phase...');
 
   try {
@@ -92,19 +92,23 @@ export async function startConversion(params: ConversionParams): Promise<void> {
     const routing = determineRoute(extractResult, formatData);
     log('Routing decision:', JSON.stringify(routing, null, 2));
 
-    // Transition modal to converting phase
+    // Transition to converting phase
     // Only for cases that need CONVERTING phase (Polling cases)
-    // - Static Direct: Skip CONVERTING → SUCCESS
+    // - Static Direct: Skip CONVERTING → SUCCESS (strategy handles)
     // - iOS RAM: Double EXTRACTING trick (strategy handles transition)
-    // - Other Stream: Skip CONVERTING → SUCCESS
-    // - Polling cases: Need CONVERTING phase (direct transition)
+    // - Other Stream: Skip CONVERTING → SUCCESS (strategy handles)
+    // - Polling cases: Need CONVERTING phase (update state here)
     const needsConvertingPhase =
       routing.routeType === RouteType.IOS_POLLING ||
       routing.routeType === RouteType.WINDOWS_MP4_POLLING;
 
     if (needsConvertingPhase) {
-      log('Starting CONVERTING phase...');
-      // TODO: Show inline progress UI transition
+      log('Transitioning to CONVERTING phase...');
+      updateConversionTask(formatId, {
+        state: 'Converting',
+        statusText: 'Converting...',
+        showProgressBar: false
+      });
     } else {
       log('Skipping CONVERTING phase for routeType:', routing.routeType);
     }
@@ -146,6 +150,14 @@ export async function startConversion(params: ConversionParams): Promise<void> {
     const errorMessage = (error as Error).message || 'Conversion failed';
     logError('Error in conversion:', errorMessage);
     logError('Full error:', error);
+
+    // Update state to show error
+    updateConversionTask(formatId, {
+      state: 'Failed',
+      statusText: `Error: ${errorMessage}`,
+      error: errorMessage,
+      completedAt: Date.now()
+    });
   } finally {
     log('=== END CONVERSION ===');
     currentStrategy = null;

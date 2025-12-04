@@ -11,6 +11,7 @@ import type { FormatType, AudioFormatType } from './types';
 // ==========================================
 
 const STORAGE_KEY = 'y2mate_format_preferences';
+const AUTO_SUBMIT_STORAGE_KEY = 'y2mate_auto_submit';
 
 /**
  * Available quality options for each format
@@ -157,6 +158,7 @@ export function clearFormatPreferences(): void {
 export function initializeFormatSelector(): void {
   const stored = loadFormatPreferences();
   const pageDefaults = getPageDefaults();
+  const autoSubmit = loadAutoSubmitPreference();
 
   if (stored) {
     // Use stored preferences (user has used the app before)
@@ -165,7 +167,8 @@ export function initializeFormatSelector(): void {
       videoQuality: stored.videoQuality,
       audioFormat: stored.audioFormat,
       audioBitrate: stored.audioBitrate,
-      hasUserSelectedFormat: true
+      hasUserSelectedFormat: true,
+      autoSubmit
     });
   } else {
     // Use page-specific defaults (first time or cleared)
@@ -174,7 +177,8 @@ export function initializeFormatSelector(): void {
       videoQuality: pageDefaults.videoQuality,
       audioFormat: pageDefaults.audioFormat,
       audioBitrate: pageDefaults.audioBitrate,
-      hasUserSelectedFormat: false
+      hasUserSelectedFormat: false,
+      autoSubmit
     });
   }
 }
@@ -342,4 +346,49 @@ export function getAvailableQualities(): readonly string[] | { formats: readonly
   } else {
     return QUALITY_OPTIONS.mp3;
   }
+}
+
+// ==========================================
+// Auto-Submit Preference Management
+// ==========================================
+
+/**
+ * Load auto-submit preference from localStorage
+ * @returns Auto-submit preference (default: true)
+ */
+function loadAutoSubmitPreference(): boolean {
+  try {
+    const stored = localStorage.getItem(AUTO_SUBMIT_STORAGE_KEY);
+    if (stored === null) return true; // Default: enabled
+    return stored === 'true';
+  } catch (err) {
+    console.warn('Failed to load auto-submit preference:', err);
+    return true; // Default: enabled
+  }
+}
+
+/**
+ * Save auto-submit preference to localStorage
+ */
+function saveAutoSubmitPreference(enabled: boolean): void {
+  try {
+    localStorage.setItem(AUTO_SUBMIT_STORAGE_KEY, String(enabled));
+  } catch (err) {
+    console.warn('Failed to save auto-submit preference:', err);
+  }
+}
+
+/**
+ * Set auto-submit preference
+ */
+export function setAutoSubmit(enabled: boolean): void {
+  setState({ autoSubmit: enabled });
+  saveAutoSubmitPreference(enabled);
+}
+
+/**
+ * Get current auto-submit preference
+ */
+export function getAutoSubmit(): boolean {
+  return getState().autoSubmit;
 }

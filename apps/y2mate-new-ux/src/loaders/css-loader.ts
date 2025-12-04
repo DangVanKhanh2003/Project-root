@@ -74,6 +74,9 @@ export const loadSmoothProgressCSS = (): Promise<void> =>
 export const loadMobileDownloadCSS = (): Promise<void> =>
     loadCSS('../../styles/features/mobile-download.css', 'mobile-download');
 
+export const loadConversionStatusCSS = (): Promise<void> =>
+    loadCSS('../../styles/reusable-packages/conversion-status/conversion-status.css', 'conversion-status');
+
 /**
  * Utility function to check if CSS is already loaded
  * @param identifier - CSS identifier

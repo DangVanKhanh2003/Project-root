@@ -9,6 +9,7 @@ import {
   setVideoQuality,
   setAudioFormat,
   setAudioBitrate,
+  setAutoSubmit,
   QUALITY_OPTIONS,
   type FormatType,
   type AudioFormatType
@@ -51,7 +52,7 @@ export function renderFormatSelectorToForm(): void {
  */
 function renderFormatSelector(): string {
   const state = getState();
-  const { selectedFormat, videoQuality, audioFormat, audioBitrate } = state;
+  const { selectedFormat, videoQuality, audioFormat, audioBitrate, autoSubmit } = state;
 
   // Generate quality dropdown HTML based on selected format
   const qualityDropdownHTML = selectedFormat === 'mp4'
@@ -60,20 +61,34 @@ function renderFormatSelector(): string {
 
   return `
     <div class="format-selector">
-      <!-- Format Toggle (Single button: MP4 | MP3) -->
-      <button type="button" class="format-toggle-btn" data-toggle-format>
-        <span class="toggle-side ${selectedFormat === 'mp4' ? 'active' : ''}" data-format="mp4">
-          <span class="format-label">MP4</span>
-        </span>
-        <span class="toggle-divider"></span>
-        <span class="toggle-side ${selectedFormat === 'mp3' ? 'active' : ''}" data-format="mp3">
-          <span class="format-label">MP3</span>
-        </span>
-      </button>
+      <!-- Group 1: Format + Quality -->
+      <div class="format-quality-group">
+        <!-- Format Toggle (Single button: MP4 | MP3) -->
+        <button type="button" class="format-toggle-btn" data-toggle-format>
+          <span class="toggle-side ${selectedFormat === 'mp4' ? 'active' : ''}" data-format="mp4">
+            <span class="format-label">MP4</span>
+          </span>
+          <span class="toggle-side ${selectedFormat === 'mp3' ? 'active' : ''}" data-format="mp3">
+            <span class="format-label">MP3</span>
+          </span>
+        </button>
 
-      <!-- Quality Dropdown (Dynamic based on format) -->
-      <div class="quality-selector">
-        ${qualityDropdownHTML}
+        <!-- Quality Dropdown (Dynamic based on format) -->
+        <div class="quality-selector">
+          ${qualityDropdownHTML}
+        </div>
+      </div>
+
+      <!-- Group 2: Auto Submit Toggle -->
+      <div class="auto-submit-toggle" data-tooltip="Automatically submit when pasting URL or keyword">
+        <strong class="toggle-label">
+          Auto submit
+        </strong>
+        <label class="toggle-switch">
+          <input type="checkbox" id="auto-submit-checkbox" ${autoSubmit ? 'checked' : ''} data-auto-submit-toggle />
+          <span class="toggle-slider"></span>
+        </label>
+        <span class="custom-tooltip"></span>
       </div>
     </div>
   `;
@@ -149,6 +164,12 @@ export function initFormatSelector(containerSelector: string = '#previewCard'): 
 
   // Listen for quality select changes
   container.addEventListener('change', handleQualityChange);
+
+  // Listen for auto-submit toggle changes
+  container.addEventListener('change', handleAutoSubmitToggle);
+
+  // Initialize custom tooltips
+  initCustomTooltips(container);
 }
 
 /**
@@ -197,6 +218,20 @@ function handleQualityChange(event: Event): void {
 }
 
 /**
+ * Handle auto-submit toggle change
+ */
+function handleAutoSubmitToggle(event: Event): void {
+  const target = event.target as HTMLInputElement;
+
+  // Only handle auto-submit toggle changes
+  if (!target.matches('[data-auto-submit-toggle]')) {
+    return;
+  }
+
+  setAutoSubmit(target.checked);
+}
+
+/**
  * Handle format change (MP3 ↔ MP4)
  * Triggers dropdown re-render
  */
@@ -220,6 +255,41 @@ function refreshFormatSelector(): void {
 // ==========================================
 // Cleanup
 // ==========================================
+
+/**
+ * Initialize custom tooltips with 0.5s delay
+ */
+function initCustomTooltips(container: Element): void {
+  const tooltipElements = container.querySelectorAll('[data-tooltip]');
+
+  tooltipElements.forEach((element) => {
+    let tooltipTimer: number | null = null;
+
+    // Set tooltip text content
+    const tooltipText = element.getAttribute('data-tooltip');
+    const tooltipElement = element.querySelector('.custom-tooltip');
+
+    if (tooltipElement && tooltipText) {
+      tooltipElement.textContent = tooltipText;
+    }
+
+    // Show tooltip on mouse enter (with 0.5s delay)
+    element.addEventListener('mouseenter', () => {
+      tooltipTimer = window.setTimeout(() => {
+        element.classList.add('show-tooltip');
+      }, 500); // 0.5s delay
+    });
+
+    // Hide tooltip on mouse leave
+    element.addEventListener('mouseleave', () => {
+      if (tooltipTimer) {
+        clearTimeout(tooltipTimer);
+        tooltipTimer = null;
+      }
+      element.classList.remove('show-tooltip');
+    });
+  });
+}
 
 /**
  * Cleanup format selector (remove event listeners)

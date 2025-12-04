@@ -44,7 +44,10 @@ export class IOSRamStrategy extends BaseStrategy {
 
     // Update state
     log('Updating task state to DOWNLOADING');
-    this.updateTask({ state: TaskState.DOWNLOADING });
+    this.updateTask({
+      state: TaskState.DOWNLOADING,
+      statusText: 'Downloading...'
+    });
 
     try {
       log('Starting downloadStreamToRAM...');

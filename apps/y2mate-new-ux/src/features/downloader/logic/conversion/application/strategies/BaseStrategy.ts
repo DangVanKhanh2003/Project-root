@@ -49,8 +49,10 @@ export abstract class BaseStrategy implements IConversionStrategy {
   protected markSuccess(downloadUrl: string, extras?: Record<string, unknown>): void {
     this.updateTask({
       state: TaskState.SUCCESS,
+      statusText: 'Conversion successful!',
       downloadUrl,
       completedAt: Date.now(),
+      showProgressBar: false,
       ...extras
     });
   }
@@ -58,8 +60,10 @@ export abstract class BaseStrategy implements IConversionStrategy {
   protected markFailed(error: string): void {
     this.updateTask({
       state: TaskState.FAILED,
+      statusText: `Error: ${error}`,
       error,
-      completedAt: Date.now()
+      completedAt: Date.now(),
+      showProgressBar: false
     });
   }
 

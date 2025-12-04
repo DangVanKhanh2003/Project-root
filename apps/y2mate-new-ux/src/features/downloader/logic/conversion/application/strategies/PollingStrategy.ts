@@ -99,6 +99,7 @@ export class PollingStrategy extends BaseStrategy {
     log('Updating task state to POLLING');
     this.updateTask({
       state: TaskState.POLLING,
+      statusText: 'Converting...',
       showProgressBar: true
     });
 
@@ -596,9 +597,23 @@ export class PollingStrategy extends BaseStrategy {
       willShowPercentSuffix: appendPercent ? 'YES (will append %)' : 'NO (text only)'
     });
 
-    // Use new unified progress update method (updates both circular + text)
+    // Build final status text with percent (if needed)
+    const finalStatusText = appendPercent
+      ? `${statusText} ${Math.round(percent)}%`
+      : statusText;
 
-    log('✅ updateConversionProgress() called with appendPercent =', appendPercent);
+    // Update conversion task state (this will trigger UI update via subscription)
+    this.updateTask({
+      progress: percent,
+      statusText: finalStatusText,
+      showProgressBar: true
+    });
+
+    log('✅ updateConversionTask() called with:', {
+      progress: percent,
+      statusText: finalStatusText,
+      showProgressBar: true
+    });
   }
 
   /**

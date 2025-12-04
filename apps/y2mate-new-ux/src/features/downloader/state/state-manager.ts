@@ -30,6 +30,7 @@ const initialState: AppState = {
   audioFormat: 'mp3',         // Default audio format
   audioBitrate: '128',        // Default to 128 for mp3
   hasUserSelectedFormat: false, // Track if user has made a selection
+  autoSubmit: true,           // Auto-submit toggle (default: enabled)
 
   // Suggestions
   suggestions: [],
