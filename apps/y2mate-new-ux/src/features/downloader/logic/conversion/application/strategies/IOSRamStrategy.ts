@@ -134,7 +134,11 @@ export class IOSRamStrategy extends BaseStrategy {
 
       const percent = total > 0 ? Math.round((loaded / total) * 100) : 0;
 
-      // Update both circular progress and text display
+      // Update task with progress info
+      this.updateTask({
+        statusText: statusText,
+        progress: percent
+      });
     }
   }
 }
