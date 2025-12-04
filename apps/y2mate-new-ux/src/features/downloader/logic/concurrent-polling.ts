@@ -8,6 +8,7 @@
 import { updateConversionTask, getConversionTask } from '../state';
 import { type ProgressResponse } from '@downloader/core';
 import { getTimeout } from '../../../environment';
+import { TaskState } from './conversion/types';
 
 // Type definitions
 interface PollingConfig {
@@ -310,7 +311,7 @@ class ConcurrentPollingManager {
         this.stopPolling(formatId);
 
         updateConversionTask(formatId, {
-            state: 'Failed',
+            state: TaskState.FAILED,
             statusText: 'Conversion timeout',
             showProgressBar: false,
             error: 'Conversion took too long',
@@ -335,7 +336,7 @@ class ConcurrentPollingManager {
         }
 
         updateConversionTask(formatId, {
-            state: 'Failed',
+            state: TaskState.FAILED,
             statusText: errorMessage,
             showProgressBar: false,
             error: errorMessage,
@@ -361,9 +362,9 @@ class ConcurrentPollingManager {
 
             const { formatId, taskData } = item;
 
-            // Check if task still exists and is valid
+            // Check if task still exists and is valid (not completed or failed)
             const task = getConversionTask(formatId);
-            if (task && task.state === 'Converting') {
+            if (task && task.state === TaskState.POLLING) {
                 this._startPollingImmediate(formatId, taskData);
             }
         }

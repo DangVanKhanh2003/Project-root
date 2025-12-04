@@ -4,6 +4,7 @@
  */
 
 import type { AppState } from '../state';
+import { renderConversionStatus } from './download-rendering';
 
 // DOM Elements
 interface Elements {
@@ -53,6 +54,11 @@ export function render(state: AppState, prevState?: AppState): void {
 
   // Update form based on input type (optional visual feedback)
   updateFormClass(state.inputType);
+
+  // Update conversion status bar when conversionTasks change
+  if (state.conversionTasks !== prevState?.conversionTasks) {
+    renderConversionStatus(state, prevState);
+  }
 }
 
 /**

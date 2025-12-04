@@ -7,7 +7,6 @@ import { createSearchResultCard, type VideoData } from '../../../ui-components/s
 import { createSkeletonCard } from '../../../ui-components/search-result-card/skeleton-card';
 import { setInputValue } from './ui-renderer';
 import { initExpandableText } from '../../../utils';
-import { addRippleEffect } from '../../../utils/ripple-effect';
 import {
   setViewingItem,
   setIsFromListItemClick,
@@ -22,7 +21,6 @@ import {
 import { transformSearchItemToVideoData } from '../logic/input-form';
 import { getInfiniteScrollThreshold } from '@downloader/ui-shared/scroll';
 import { api } from '../../../api';
-import { TaskState } from '../logic/conversion/types';
 
 let contentArea: HTMLElement | null = null;
 let searchResultsContainer: HTMLElement | null = null;
@@ -490,9 +488,6 @@ export function renderPreviewCard(_data: any): void {
 
   // Hide search results section
   hideSearchResultsSection();
-
-  // Setup status bar subscription and handlers
-  setupConversionStatusBar(youtubePreview.videoId);
 }
 
 /**
@@ -547,251 +542,7 @@ function setupImageLoader(container: HTMLElement): void {
   preloader.src = thumbnailUrl;
 }
 
-/**
- * Setup conversion status bar - subscribe to state and handle user actions
- * @param videoId - YouTube video ID
- */
-function setupConversionStatusBar(videoId: string): void {
-  // Reset module-level state tracking for new conversion
-  previousState = null;
-  previousStatusText = null;
 
-  // Get DOM references
-  const wrapper = document.getElementById('conversion-status-wrapper');
-  const statusElement = wrapper?.querySelector('.status');
-  const statusTextElement = wrapper?.querySelector('.status-text');
-  const iconElement = wrapper?.querySelector('.icon');
-  const actionContainer = wrapper?.querySelector('.action-container') as HTMLElement | null;
-  const downloadBtn = document.getElementById('conversion-download-btn');
-  const retryBtn = document.getElementById('conversion-retry-btn');
-
-  if (!wrapper || !statusElement || !statusTextElement || !iconElement || !actionContainer) {
-    console.error('[StatusBar] Required elements not found');
-    return;
-  }
-
-  // Cleanup old interval if exists (prevent multiple intervals)
-  const oldIntervalId = (wrapper as any).__intervalId;
-  if (oldIntervalId) {
-    clearInterval(oldIntervalId);
-    console.log('[StatusBar] Cleaned up old interval');
-  }
-
-  // Build formatId (same as in handleAutoDownload)
-  const state = getState();
-  const selectedFormat = state.selectedFormat;
-  const formatId = selectedFormat === 'mp4'
-    ? `video|mp4-${state.videoQuality}`
-    : (state.audioFormat === 'mp3'
-      ? `audio|mp3-${state.audioBitrate}kbps`
-      : `audio|${state.audioFormat}`);
-
-  console.log('[StatusBar] Setup for formatId:', formatId);
-
-  // Previous state for comparison (optimization)
-  let previousTaskState: string | null = null;
-
-  // Subscribe to state changes via polling
-  const intervalId = setInterval(() => {
-    const currentState = getState();
-    const task = currentState.conversionTasks[formatId];
-
-    if (!task) {
-      // No active conversion - hide status bar
-      wrapper.classList.remove('active');
-      return;
-    }
-
-    // Show status bar when task exists
-    wrapper.classList.add('active');
-
-    // Check if state changed (optimization)
-    const taskStateJSON = JSON.stringify(task);
-    if (taskStateJSON === previousTaskState) {
-      return; // No changes, skip update
-    }
-    previousTaskState = taskStateJSON;
-
-    console.log('[StatusBar] Task state update:', task);
-
-    // Update status bar UI
-    updateStatusBarUI(task, {
-      statusElement,
-      statusTextElement,
-      iconElement,
-      actionContainer,
-      downloadBtn,
-      retryBtn
-    });
-  }, 100); // Poll every 100ms
-
-  // Setup button click handlers
-  if (downloadBtn) {
-    downloadBtn.addEventListener('click', () => handleDownloadButtonClick(formatId));
-    addRippleEffect(downloadBtn);
-  }
-
-  if (retryBtn) {
-    retryBtn.addEventListener('click', () => handleRetryButtonClick(formatId));
-    addRippleEffect(retryBtn);
-  }
-
-  // Store interval ID for cleanup
-  (wrapper as any).__intervalId = intervalId;
-}
-
-// Track previous state to avoid unnecessary updates
-let previousState: string | null = null;
-let previousStatusText: string | null = null;
-
-/**
- * Update status bar UI based on conversion task state
- * Note: Only updates changed elements - no full rebuilds
- */
-function updateStatusBarUI(
-  task: any,
-  elements: {
-    statusElement: Element;
-    statusTextElement: Element;
-    iconElement: Element;
-    actionContainer: HTMLElement | null;
-    downloadBtn: HTMLElement | null;
-    retryBtn: HTMLElement | null;
-  }
-): void {
-  const { state, statusText } = task;
-  const {
-    statusElement,
-    statusTextElement,
-    iconElement,
-    actionContainer,
-    downloadBtn,
-    retryBtn
-  } = elements;
-
-  // Only update status text if changed
-  if (statusText !== previousStatusText) {
-    statusTextElement.textContent = statusText || 'Processing...';
-    previousStatusText = statusText;
-  }
-
-  // Only update classes if state changed
-  if (state !== previousState) {
-    console.log('[StatusBar] State changed:', previousState, '→', state);
-
-    // Remove all state classes first
-    statusElement.classList.remove('status--extracting', 'status--processing', 'status--success', 'status--error');
-    iconElement.classList.remove('spinner', 'checkmark', 'error');
-
-    // Add appropriate state class
-    switch (state) {
-      case TaskState.EXTRACTING:
-        statusElement.classList.add('status--extracting');
-        iconElement.classList.add('spinner');
-        break;
-      case TaskState.PROCESSING:
-      case TaskState.POLLING:
-        statusElement.classList.add('status--processing');
-        iconElement.classList.add('spinner');
-        break;
-      case TaskState.SUCCESS:
-        statusElement.classList.add('status--success');
-        iconElement.classList.add('checkmark');
-        iconElement.textContent = '✓';
-        break;
-      case TaskState.FAILED:
-        statusElement.classList.add('status--error');
-        iconElement.classList.add('error');
-        iconElement.textContent = '✕';
-        break;
-      default:
-        console.warn('[StatusBar] Unknown state:', state);
-    }
-
-    // Update action buttons based on state
-    if (downloadBtn && retryBtn) {
-      if (state === TaskState.SUCCESS) {
-        downloadBtn.classList.add('active');
-        retryBtn.classList.remove('active');
-      } else if (state === TaskState.FAILED) {
-        downloadBtn.classList.remove('active');
-        retryBtn.classList.add('active');
-      } else {
-        downloadBtn.classList.remove('active');
-        retryBtn.classList.remove('active');
-      }
-    }
-
-    // Update action-container visibility
-    if (actionContainer) {
-      if (state === TaskState.SUCCESS || state === TaskState.FAILED) {
-        actionContainer.classList.add('active');
-      } else {
-        actionContainer.classList.remove('active');
-      }
-    }
-
-    previousState = state;
-  }
-}
-
-/**
- * Handle download button click
- */
-async function handleDownloadButtonClick(formatId: string): Promise<void> {
-  console.log('[StatusBar] Download button clicked for:', formatId);
-
-  const { handleDownloadClick } = await import('../logic/conversion/convert-logic-v2');
-  const result = handleDownloadClick(formatId);
-
-  if (result === 'expired') {
-    // Link expired - show message to user
-    alert('Download link has expired. Please refresh the page and try again.');
-  } else if (result === 'error') {
-    alert('Download failed. Please try again.');
-  }
-  // 'success' - download triggered, no action needed
-}
-
-/**
- * Handle retry button click
- */
-async function handleRetryButtonClick(formatId: string): Promise<void> {
-  console.log('[StatusBar] Retry button clicked for:', formatId);
-
-  const state = getState();
-  const task = state.conversionTasks[formatId];
-
-  if (!task?.formatData) {
-    console.error('[StatusBar] No formatData found for retry');
-    return;
-  }
-
-  // Re-import to avoid circular dependency
-  const { startConversion } = await import('../logic/conversion/convert-logic-v2');
-  const videoTitle = state.youtubePreview?.title || 'Video';
-  const videoUrl = state.youtubePreview?.url || '';
-
-  // Restart conversion
-  await startConversion({
-    formatId,
-    formatData: task.formatData,
-    videoTitle,
-    videoUrl
-  });
-}
-
-/**
- * Cleanup status bar subscriptions
- * Call this when user submits new URL or navigates away
- */
-export function cleanupStatusBarSubscriptions(): void {
-  const wrapper = document.getElementById('conversion-status-wrapper');
-  if (wrapper && (wrapper as any).__intervalId) {
-    clearInterval((wrapper as any).__intervalId);
-    delete (wrapper as any).__intervalId;
-  }
-}
 
 /**
  * Escape HTML to prevent XSS

@@ -22,6 +22,7 @@ import { getState, setState } from './state-manager';
  */
 export function setConversionTask(formatId: string, taskData: Partial<ConversionTask>): void {
   if (!formatId || !taskData) {
+    console.warn('[ConversionState] setConversionTask called with invalid params', { formatId, taskData });
     return;
   }
 
@@ -30,7 +31,7 @@ export function setConversionTask(formatId: string, taskData: Partial<Conversion
     ...currentState.conversionTasks,
     [formatId]: {
       id: formatId,
-      state: 'Idle',
+      state: 'idle',
       statusText: 'Ready to convert',
       showProgressBar: false,
       downloadUrl: null,
@@ -40,6 +41,8 @@ export function setConversionTask(formatId: string, taskData: Partial<Conversion
       ...taskData
     } as ConversionTask
   };
+
+  console.log('[ConversionState] ✅ Creating task:', formatId, 'Initial state:', taskData.state || 'idle', 'All tasks:', Object.keys(updatedTasks));
 
   setState({ conversionTasks: updatedTasks });
 }
@@ -51,6 +54,7 @@ export function setConversionTask(formatId: string, taskData: Partial<Conversion
  */
 export function updateConversionTask(formatId: string, updates: Partial<ConversionTask>): void {
   if (!formatId || !updates) {
+    console.warn('[ConversionState] updateConversionTask called with invalid params', { formatId, updates });
     return;
   }
 
@@ -58,6 +62,7 @@ export function updateConversionTask(formatId: string, updates: Partial<Conversi
   const existingTask = currentState.conversionTasks[formatId];
 
   if (!existingTask) {
+    console.warn('[ConversionState] Task not found for formatId:', formatId, 'Available tasks:', Object.keys(currentState.conversionTasks));
     return;
   }
 
@@ -66,6 +71,8 @@ export function updateConversionTask(formatId: string, updates: Partial<Conversi
     ...currentState.conversionTasks,
     [formatId]: updatedTask
   };
+
+  console.log('[ConversionState] ✅ Updating task:', formatId, 'Updates:', updates, 'New state:', updatedTask.state);
 
   setState({ conversionTasks: updatedTasks });
 }
@@ -120,13 +127,16 @@ export function getConversionStatus(): ConversionStatus {
   const currentState = getState();
   const tasks = Object.values(currentState.conversionTasks);
 
+  // Count tasks in active conversion states as "converting"
+  const convertingStates: ConversionTaskState[] = ['extracting', 'processing', 'polling', 'downloading'];
+
   return {
     total: tasks.length,
-    idle: tasks.filter(task => task.state === 'Idle').length,
-    converting: tasks.filter(task => task.state === 'Converting').length,
-    success: tasks.filter(task => task.state === 'Success').length,
-    failed: tasks.filter(task => task.state === 'Failed').length,
-    canceled: tasks.filter(task => task.state === 'Canceled').length
+    idle: tasks.filter(task => task.state === 'idle').length,
+    converting: tasks.filter(task => convertingStates.includes(task.state)).length,
+    success: tasks.filter(task => task.state === 'success').length,
+    failed: tasks.filter(task => task.state === 'failed').length,
+    canceled: tasks.filter(task => task.state === 'canceled').length
   };
 }
 

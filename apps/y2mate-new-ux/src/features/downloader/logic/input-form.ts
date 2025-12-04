@@ -33,7 +33,7 @@ import {
 import { clearDetailStates } from '../state/media-detail-state';
 import { clearConversionTasks } from '../state/conversion-state';
 import { clearDownloadStates } from '../state/download-state';
-import { renderResults, renderMessage, renderPreviewCard, showLoading, clearContent, cleanupStatusBarSubscriptions } from '../ui-render/content-renderer';
+import { renderResults, renderMessage, renderPreviewCard, showLoading, clearContent } from '../ui-render/content-renderer';
 import { updateVideoTitle } from '../ui-render/download-rendering';
 import { getInputValue as getInputValueFromRenderer, setInputValue as setInputValueInRenderer } from '../ui-render/ui-renderer';
 import type { VideoData } from '../../../ui-components/search-result-card/search-result-card';
@@ -787,7 +787,6 @@ async function handleSubmit(event: Event): Promise<void> {
   clearConversionTasks();      // Clear conversion tasks
   clearDownloadStates();       // Clear download button states
   clearYouTubePreview();       // Clear YouTube preview data
-  cleanupStatusBarSubscriptions(); // Cleanup status bar subscriptions (NEW)
   setLoading(true);
 
   // Get input type to show appropriate skeleton
