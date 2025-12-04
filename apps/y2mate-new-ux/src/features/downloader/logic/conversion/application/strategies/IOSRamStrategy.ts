@@ -43,10 +43,20 @@ export class IOSRamStrategy extends BaseStrategy {
     log('totalBytes:', totalBytes);
 
     // Delay 1s while keeping EXTRACTING state (smooth UX transition)
+    // Delay can be interrupted by abort signal for responsive cancellation
     log('Waiting 1s before starting download (keeping EXTRACTING state)...');
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    try {
+      await new Promise<void>((resolve, reject) => {
+        const timeoutId = setTimeout(resolve, 1000);
 
-    if (this.checkAborted()) {
+        // Listen for abort to break delay immediately
+        this.ctx.abortSignal?.addEventListener('abort', () => {
+          clearTimeout(timeoutId);
+          reject(new Error('Aborted'));
+        }, { once: true });
+      });
+    } catch {
+      // Aborted during delay - return immediately without waiting
       log('Aborted during 1s delay');
       return this.cancelledResult();
     }
