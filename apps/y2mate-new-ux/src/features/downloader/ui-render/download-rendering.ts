@@ -102,6 +102,7 @@ function getCurrentFormatId(state: AppState): string | null {
  */
 function updateStatusBarUI(wrapper: HTMLElement, task: ConversionTask): void {
   // Get DOM elements
+  const statusContainer = wrapper.querySelector('.status-container') as HTMLElement | null;
   const statusElement = wrapper.querySelector('.status');
   const statusTextElement = wrapper.querySelector('.status-text');
   const iconElement = wrapper.querySelector('.icon');
@@ -109,13 +110,17 @@ function updateStatusBarUI(wrapper: HTMLElement, task: ConversionTask): void {
   const downloadBtn = wrapper.querySelector('#conversion-download-btn') as HTMLElement | null;
   const retryBtn = wrapper.querySelector('#conversion-retry-btn') as HTMLElement | null;
 
-  if (!statusElement || !statusTextElement || !iconElement || !actionContainer) {
+  if (!statusContainer || !statusElement || !statusTextElement || !iconElement || !actionContainer) {
     console.warn('[renderConversionStatus] Required DOM elements not found');
     return;
   }
 
   // Update status text
   statusTextElement.textContent = task.statusText || 'Processing...';
+
+  // Update progress fill background
+  const progress = task.progress ?? 0;
+  statusContainer.style.setProperty('--progress', `${progress}%`);
 
   // Remove all state classes
   statusElement.classList.remove('status--extracting', 'status--processing', 'status--success', 'status--error');

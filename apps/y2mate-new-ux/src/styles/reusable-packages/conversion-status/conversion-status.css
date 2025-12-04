@@ -43,7 +43,14 @@
 
 /* ===== STATUS BAR ===== */
 .status-container {
-  background: transparent; /* NO background */
+  /* Progress fill background - fills from left to right based on --progress variable */
+  --progress: 0%; /* Default 0% */
+  background: linear-gradient(
+    to right,
+    rgba(52, 152, 219, 0.15) 0%,
+    rgba(52, 152, 219, 0.15) var(--progress),
+    transparent var(--progress)
+  );
   border: 1px solid var(--status-primary); /* Default blue border */
   transition: border-color var(--status-transition-fast);
 
