@@ -47,6 +47,7 @@ export async function downloadStreamToRAM(
 
     // Listen for abort event to cancel reader immediately
     const abortHandler = () => {
+      console.log('[StreamDownload] 🛑 ABORT SIGNAL RECEIVED - Canceling stream reader');
       aborted = true;
       reader.cancel().catch(() => {
         // Ignore cancel errors
@@ -55,12 +56,15 @@ export async function downloadStreamToRAM(
 
     if (signal) {
       signal.addEventListener('abort', abortHandler);
+      console.log('[StreamDownload] 📡 Listening for abort signal');
     }
 
     try {
       while (true) {
         // Check if download was aborted before reading next chunk
         if (aborted || signal?.aborted) {
+          console.log('[StreamDownload] 🛑 Stream aborted in while loop - stopping download');
+          debugger;
           const abortError = new Error('Download was canceled');
           abortError.name = 'AbortError';
           throw abortError;

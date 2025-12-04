@@ -147,12 +147,19 @@ export function clearConversionTasks(): void {
   const currentState = getState();
   const tasks = Object.values(currentState.conversionTasks);
 
+  console.log('[ConversionState] 🧹 Clearing', tasks.length, 'conversion tasks');
+
   // Abort all active conversions to stop polling
+  let abortedCount = 0;
   tasks.forEach(task => {
     if (task.abortController && !task.abortController.signal.aborted) {
+      console.log('[ConversionState] 🛑 Aborting task:', task.id, 'State:', task.state);
       task.abortController.abort();
+      abortedCount++;
     }
   });
+
+  console.log('[ConversionState] ✅ Aborted', abortedCount, 'tasks');
 
   setState({ conversionTasks: {} });
 }
