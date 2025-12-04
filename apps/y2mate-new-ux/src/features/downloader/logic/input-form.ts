@@ -28,11 +28,8 @@ import {
   setSearchPagination,
   setYouTubePreview,
   updateYouTubePreviewMetadata,
-  clearYouTubePreview,
 } from '../state';
-import { clearDetailStates } from '../state/media-detail-state';
-import { clearConversionTasks } from '../state/conversion-state';
-import { clearDownloadStates } from '../state/download-state';
+import { destroyOldProcesses } from './cleanup';
 import { renderResults, renderMessage, renderPreviewCard, showLoading, clearContent } from '../ui-render/content-renderer';
 import { updateVideoTitle } from '../ui-render/download-rendering';
 import { getInputValue as getInputValueFromRenderer, setInputValue as setInputValueInRenderer } from '../ui-render/ui-renderer';
@@ -767,6 +764,10 @@ async function handleSubmit(event: Event): Promise<void> {
   }
 
 
+  // 🧹 CRITICAL: Destroy ALL old processes first (polling, conversions, API calls)
+  // This prevents race conditions and memory leaks when user submits new URL
+  destroyOldProcesses();
+
   // Blur input to hide keyboard on mobile
   if (input) {
     input.blur();
@@ -779,14 +780,10 @@ async function handleSubmit(event: Event): Promise<void> {
   }
   lastSuggestionCallTime = 0; // Reset throttle state
 
-  // Clear ALL previous state to prevent conflicts
+  // Clear remaining UI state
   setResults([]);              // Clear search results
   clearError();                // Clear error messages
   clearSuggestions();          // Clear suggestions completely (array + state + flags)
-  clearDetailStates();         // Clear videoDetail/galleryDetail
-  clearConversionTasks();      // Clear conversion tasks
-  clearDownloadStates();       // Clear download button states
-  clearYouTubePreview();       // Clear YouTube preview data
   setLoading(true);
 
   // Get input type to show appropriate skeleton
