@@ -48,19 +48,11 @@ export function clearResultsData(): void {
  * @param item - Item to view
  */
 export function setViewingItem(item: ViewingItem): void {
-  const state = getState();
-
-  // If from list item click, keep results; otherwise clear
-  if (state.isFromListItemClick) {
-    // Keep results when clicking from list
-    setState({ viewingItem: item });
-  } else {
-    // Clear results when viewing item directly
-    setState({
-      viewingItem: item,
-      results: []
-    });
-  }
+  // Always clear results when setting viewing item
+  setState({
+    viewingItem: item,
+    results: []
+  });
 }
 
 /**

@@ -184,6 +184,7 @@
     transform: translateY(0);
     background-color: var(--pkg-suggestions-bg);
     top: 60px;
+    overflow: hidden;
 }
 
 /* Suggestion list - semantic list styling */

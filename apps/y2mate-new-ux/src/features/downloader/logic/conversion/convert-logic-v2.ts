@@ -24,6 +24,7 @@ import {
   FormatData,
   ExtractResult,
   RouteType,
+  TaskState,
   createExtractResult,
   determineRoute
 } from './types';
@@ -68,7 +69,7 @@ export async function startConversion(params: ConversionParams): Promise<void> {
     sourceId: formatData.vid || formatId,
     quality: formatData.quality,
     format: formatData.type,
-    state: 'Extracting',
+    state: TaskState.EXTRACTING,
     statusText: 'Extracting video data...',
     showProgressBar: false,
     startedAt: Date.now(),
@@ -105,7 +106,7 @@ export async function startConversion(params: ConversionParams): Promise<void> {
     if (needsConvertingPhase) {
       log('Transitioning to CONVERTING phase...');
       updateConversionTask(formatId, {
-        state: 'Converting',
+        state: TaskState.PROCESSING,
         statusText: 'Converting...',
         showProgressBar: false
       });
@@ -153,7 +154,7 @@ export async function startConversion(params: ConversionParams): Promise<void> {
 
     // Update state to show error
     updateConversionTask(formatId, {
-      state: 'Failed',
+      state: TaskState.FAILED,
       statusText: `Error: ${errorMessage}`,
       error: errorMessage,
       completedAt: Date.now()

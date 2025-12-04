@@ -163,15 +163,16 @@ export interface DownloadCounts {
 // ==========================================
 // Conversion State Types
 // ==========================================
+// Use lowercase to match TaskState enum from logic/conversion/types.ts
 export type ConversionTaskState =
-  | 'Idle'
-  | 'Converting'
-  | 'Success'
-  | 'Failed'
-  | 'Canceled'
-  | 'Extracting'
-  | 'Processing'
-  | 'Polling';
+  | 'idle'
+  | 'extracting'
+  | 'processing'
+  | 'polling'
+  | 'downloading'
+  | 'success'
+  | 'failed'
+  | 'canceled';
 
 export interface ConversionTask {
   id: string;

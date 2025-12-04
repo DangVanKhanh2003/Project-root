@@ -241,16 +241,10 @@ function generateFakeYouTubeData(videoId: string, url: string): any {
  */
 async function handleAutoDownload(url: string, videoId: string): Promise<void> {
   try {
+    console.log('[Auto-Download] Starting auto-download for:', videoId);
+
     // Get current format/quality selection from state
     const state = getState();
-
-    // Check if auto-submit is enabled
-    if (!state.autoSubmit) {
-      console.log('[Auto-Download] Auto-submit is disabled, skipping auto-download');
-      return;
-    }
-
-    console.log('[Auto-Download] Starting auto-download for:', videoId);
 
     const selectedFormat = state.selectedFormat; // 'mp4' or 'mp3'
     const videoQuality = state.videoQuality; // e.g., '720p'
@@ -838,21 +832,26 @@ async function handleSubmit(event: Event): Promise<void> {
 
 /**
  * Handle media extraction (URL input)
- * Implements dual workflow: YouTube (fake data) vs Non-YouTube (API-first)
+ * Only supports YouTube URLs - validates before extraction
+ * Rejects non-YouTube URLs with error message
  */
 async function handleExtractMedia(url: string): Promise<void> {
 
   try {
     // ═══════════════════════════════════════════════════════
-    // FORK: YouTube vs Non-YouTube Workflow
+    // VALIDATION: YouTube URLs Only
     // ═══════════════════════════════════════════════════════
 
-    if (isYouTubeUrl(url)) {
-      // ┌─────────────────────────────────────────────────┐
-      // │ YOUTUBE WORKFLOW: Simple Preview with Metadata  │
-      // └─────────────────────────────────────────────────┘
+    // ❌ Reject if not a YouTube URL
+    if (!isYouTubeUrl(url)) {
+      throw new Error('Only YouTube URLs are supported. Please enter a valid YouTube link.');
+    }
 
-      const videoId = extractYouTubeVideoId(url);
+    // ═══════════════════════════════════════════════════════
+    // YOUTUBE WORKFLOW: Simple Preview with Metadata
+    // ═══════════════════════════════════════════════════════
+
+    const videoId = extractYouTubeVideoId(url);
 
       if (!videoId) {
         throw new Error('Invalid YouTube URL - cannot extract video ID');
@@ -935,46 +934,6 @@ async function handleExtractMedia(url: string): Promise<void> {
 
       // Return immediately to enable input (don't wait for conversion)
 
-    } else {
-      // ┌─────────────────────────────────────────────────┐
-      // │ NON-YOUTUBE WORKFLOW: Traditional API Call      │
-      // └─────────────────────────────────────────────────┘
-
-
-      const result = await api.extractMediaDirect({ url });
-
-
-      if (result.ok && result.data) {
-        const data = result.data as any;
-
-
-        // Add original URL to meta for retry functionality
-        if (data.meta) {
-          data.meta.originalUrl = url;
-        }
-
-        // Check if this is gallery content or single video
-        if (data.gallery && Array.isArray(data.gallery) && data.gallery.length > 0) {
-          setGalleryDetail(data);
-
-          // Dynamic import and render gallery
-          import('../ui-render/gallery-renderer').then(({ renderGallery }) => {
-            const contentArea = document.getElementById('content-area');
-            if (contentArea) {
-              renderGallery(data, contentArea);
-            }
-          });
-        } else {
-          setVideoDetail(data);
-
-          renderPreviewCard(data);
-        }
-      } else {
-        const errorMsg = result.message || 'Failed to extract media';
-        setError(errorMsg);
-        renderMessage(errorMsg, 'error');
-      }
-    }
   } catch (error) {
     throw error;
   }
@@ -1129,15 +1088,24 @@ function handleActionButton(): void {
 
 /**
  * Handle paste button click
+ * CRITICAL: Clipboard read MUST happen directly in click handler for iOS Safari
+ * to maintain "user gesture context" required for clipboard access
  */
 async function handlePaste(): Promise<void> {
   if (!input) return;
 
-
   try {
+    // Read clipboard immediately to preserve user gesture context (iOS requirement)
     const text = await navigator.clipboard.readText();
     const trimmedText = text.trim();
 
+    // ❌ Check if clipboard is empty
+    if (!text || !trimmedText) {
+      const errorMsg = 'Clipboard is empty. Please copy a YouTube URL first.';
+      setError(errorMsg);
+      renderMessage(errorMsg, 'error');
+      return;
+    }
 
     // Set input value
     input.value = trimmedText;
@@ -1145,13 +1113,26 @@ async function handlePaste(): Promise<void> {
     // Dispatch input event to trigger handleInput (updates button visibility)
     input.dispatchEvent(new Event('input', { bubbles: true }));
 
-
     // Auto-submit if auto-submit is enabled (for both URL and keyword)
     const state = getState();
     if (state.autoSubmit && trimmedText) {
       form?.requestSubmit();
     }
   } catch (error) {
+    // Handle clipboard errors
+    let errorMsg = 'Failed to read clipboard';
+
+    if (error instanceof DOMException) {
+      if (error.name === 'NotAllowedError') {
+        errorMsg = 'Clipboard permission denied. Please allow clipboard access in your browser settings.';
+      } else if (error.name === 'NotFoundError') {
+        errorMsg = 'No clipboard data available. Please copy something first.';
+      }
+    }
+
+    console.error('[Paste Error]:', error);
+    setError(errorMsg);
+    renderMessage(errorMsg, 'error');
   }
 }
 

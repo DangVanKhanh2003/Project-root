@@ -21,6 +21,7 @@ import {
 import { transformSearchItemToVideoData } from '../logic/input-form';
 import { getInfiniteScrollThreshold } from '@downloader/ui-shared/scroll';
 import { api } from '../../../api';
+import { TaskState } from '../logic/conversion/types';
 
 let contentArea: HTMLElement | null = null;
 let searchResultsContainer: HTMLElement | null = null;
@@ -278,18 +279,10 @@ export function renderResults(results: VideoData[]): void {
 
 /**
  * Hide search results section
- * IMPORTANT: Only hide if NOT from list item click (preserve results when clicking card)
+ * Always hide/clear results on any submit
  */
 function hideSearchResultsSection(): void {
-  const state = getState();
-
-  // If click came from search result card, DON'T hide/clear results
-  if (state.isFromListItemClick) {
-    // DON'T reset flag here - will be reset after full render completes
-    return;
-  }
-
-  // Normal hide behavior (direct URL submit)
+  // Always hide and clear search results section
   if (searchResultsSection) {
     searchResultsSection.style.display = 'none';
   }
@@ -558,6 +551,10 @@ function setupImageLoader(container: HTMLElement): void {
  * @param videoId - YouTube video ID
  */
 function setupConversionStatusBar(videoId: string): void {
+  // Reset module-level state tracking for new conversion
+  previousState = null;
+  previousStatusText = null;
+
   // Get DOM references
   const wrapper = document.getElementById('conversion-status-wrapper');
   const statusElement = wrapper?.querySelector('.status');
@@ -570,6 +567,13 @@ function setupConversionStatusBar(videoId: string): void {
   if (!wrapper || !statusElement || !statusTextElement || !iconElement || !actionContainer) {
     console.error('[StatusBar] Required elements not found');
     return;
+  }
+
+  // Cleanup old interval if exists (prevent multiple intervals)
+  const oldIntervalId = (wrapper as any).__intervalId;
+  if (oldIntervalId) {
+    clearInterval(oldIntervalId);
+    console.log('[StatusBar] Cleaned up old interval');
   }
 
   // Build formatId (same as in handleAutoDownload)
@@ -678,21 +682,21 @@ function updateStatusBarUI(
 
     // Add appropriate state class
     switch (state) {
-      case 'extracting':
+      case TaskState.EXTRACTING:
         statusElement.classList.add('status--extracting');
         iconElement.classList.add('spinner');
         break;
-      case 'converting':
-      case 'polling':
+      case TaskState.PROCESSING:
+      case TaskState.POLLING:
         statusElement.classList.add('status--processing');
         iconElement.classList.add('spinner');
         break;
-      case 'success':
+      case TaskState.SUCCESS:
         statusElement.classList.add('status--success');
         iconElement.classList.add('checkmark');
         iconElement.textContent = '✓';
         break;
-      case 'failed':
+      case TaskState.FAILED:
         statusElement.classList.add('status--error');
         iconElement.classList.add('error');
         iconElement.textContent = '✕';
@@ -703,10 +707,10 @@ function updateStatusBarUI(
 
     // Update action buttons based on state
     if (downloadBtn && retryBtn) {
-      if (state === 'success') {
+      if (state === TaskState.SUCCESS) {
         downloadBtn.classList.add('active');
         retryBtn.classList.remove('active');
-      } else if (state === 'failed') {
+      } else if (state === TaskState.FAILED) {
         downloadBtn.classList.remove('active');
         retryBtn.classList.add('active');
       } else {
@@ -717,7 +721,7 @@ function updateStatusBarUI(
 
     // Update action-container visibility
     if (actionContainer) {
-      if (state === 'success' || state === 'failed') {
+      if (state === TaskState.SUCCESS || state === TaskState.FAILED) {
         actionContainer.classList.add('active');
       } else {
         actionContainer.classList.remove('active');
