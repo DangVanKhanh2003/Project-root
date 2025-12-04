@@ -24,7 +24,7 @@
 /* ===== CONTAINER ===== */
 .conversion-status-wrapper {
   margin-top: 16px;
-  height: 60px;
+  min-height: 60px;
 }
 
 .conversion-status-wrapper.active {
