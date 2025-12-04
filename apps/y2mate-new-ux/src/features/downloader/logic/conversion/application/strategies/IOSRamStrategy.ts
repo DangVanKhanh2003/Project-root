@@ -117,6 +117,24 @@ export class IOSRamStrategy extends BaseStrategy {
   private async handleProgress(loaded: number, total: number): Promise<void> {
     if (this.checkAborted()) return;
 
+    // Calculate MB values
+    const loadedMB = Math.ceil(loaded / (1024 * 1024));
+    const totalMB = total > 0 ? Math.ceil(total / (1024 * 1024)) : 0;
+
+    // Build status text based on available info
+    let statusText: string;
+    if (loadedMB === 0) {
+      // Starting download, no data yet
+      statusText = 'Starting download...';
+    } else if (totalMB > 0) {
+      // Have both loaded and total size
+      statusText = `Downloading... ${loadedMB} MB / ${totalMB} MB`;
+    } else {
+      // Have loaded but no total size
+      statusText = `Downloading... ${loadedMB} MB`;
+    }
+
+    const percent = total > 0 && loaded > 0 ? Math.round((loaded / total) * 100) : 0;
 
     // Double EXTRACTING trick: chỉ transition khi có data
     if (!this.hasStartedDownload && loaded > 0) {
@@ -124,21 +142,10 @@ export class IOSRamStrategy extends BaseStrategy {
       this.hasStartedDownload = true;
     }
 
-    // Update progress (both circular and text)
-    if (this.hasStartedDownload) {
-      const loadedMB = Math.ceil(loaded / (1024 * 1024));
-      const totalMB = Math.ceil(total / (1024 * 1024));
-      const statusText = total > 0
-        ? `Downloading... ${loadedMB} MB / ${totalMB} MB`
-        : `Downloading... ${loadedMB} MB`;
-
-      const percent = total > 0 ? Math.round((loaded / total) * 100) : 0;
-
-      // Update task with progress info
-      this.updateTask({
-        statusText: statusText,
-        progress: percent
-      });
-    }
+    // Update task with progress info
+    this.updateTask({
+      statusText: statusText,
+      progress: percent
+    });
   }
 }
