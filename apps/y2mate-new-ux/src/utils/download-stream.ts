@@ -43,22 +43,53 @@ export async function downloadStreamToRAM(
     const reader = response.body.getReader();
     const chunks: Uint8Array[] = [];
     let loaded = 0;
+    let aborted = false;
 
-    while (true) {
-      const { done, value } = await reader.read();
+    // Listen for abort event to cancel reader immediately
+    const abortHandler = () => {
+      aborted = true;
+      reader.cancel().catch(() => {
+        // Ignore cancel errors
+      });
+    };
 
-      if (done) break;
+    if (signal) {
+      signal.addEventListener('abort', abortHandler);
+    }
 
-      chunks.push(value);
-      loaded += value.length;
+    try {
+      while (true) {
+        // Check if download was aborted before reading next chunk
+        if (aborted || signal?.aborted) {
+          const abortError = new Error('Download was canceled');
+          abortError.name = 'AbortError';
+          throw abortError;
+        }
 
-      // Call progress callback (even if total is unknown)
-      if (onProgress) {
-        onProgress({
-          loaded,
-          total,
-          percentage: total > 0 ? Math.round((loaded / total) * 100) : 0
-        });
+        const { done, value } = await reader.read();
+
+        if (done) break;
+
+        chunks.push(value);
+        loaded += value.length;
+
+        // Call progress callback (even if total is unknown)
+        if (onProgress) {
+          onProgress({
+            loaded,
+            total,
+            percentage: total > 0 ? Math.round((loaded / total) * 100) : 0
+          });
+        }
+      }
+    } catch (error: any) {
+      // Cleanup reader on error
+      await reader.cancel();
+      throw error;
+    } finally {
+      // Cleanup abort event listener
+      if (signal) {
+        signal.removeEventListener('abort', abortHandler);
       }
     }
 
