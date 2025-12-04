@@ -52,7 +52,11 @@
     transparent var(--progress)
   );
   border: 1px solid var(--status-primary); /* Default blue border */
-  transition: border-color var(--status-transition-fast);
+
+  /* Smooth transitions */
+  transition:
+    border-color var(--status-transition-fast),
+    --progress 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
 
   /* Performance optimization */
   contain: layout style;
