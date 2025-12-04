@@ -7,6 +7,7 @@ import { createSearchResultCard, type VideoData } from '../../../ui-components/s
 import { createSkeletonCard } from '../../../ui-components/search-result-card/skeleton-card';
 import { setInputValue } from './ui-renderer';
 import { initExpandableText } from '../../../utils';
+import { addRippleEffect } from '../../../utils/ripple-effect';
 import {
   setViewingItem,
   setIsFromListItemClick,
@@ -627,10 +628,12 @@ function setupConversionStatusBar(videoId: string): void {
   // Setup button click handlers
   if (downloadBtn) {
     downloadBtn.addEventListener('click', () => handleDownloadButtonClick(formatId));
+    addRippleEffect(downloadBtn);
   }
 
   if (retryBtn) {
     retryBtn.addEventListener('click', () => handleRetryButtonClick(formatId));
+    addRippleEffect(retryBtn);
   }
 
   // Store interval ID for cleanup

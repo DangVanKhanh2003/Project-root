@@ -325,3 +325,8 @@ export function triggerBlobDownload(blob: Blob | null, filename?: string): void 
   // This prevents blob URL from keeping blob in memory
   URL.revokeObjectURL(url);
 }
+
+/**
+ * Export ripple effect utility
+ */
+export { addRippleEffect } from './ripple-effect';
