@@ -64,9 +64,17 @@ export function renderConversionStatus(state: AppState, _prevState?: AppState): 
   // Setup button handlers if not already set up
   setupButtonHandlers(wrapper, formatId);
 
-  // Update status bar UI
-  updateStatusBarUI(wrapper, task);
+  // Update status bar UI (with throttling)
+  updateStatusBarUI(wrapper, task, formatId);
 }
+
+// ============================================================
+// THROTTLE STATE
+// ============================================================
+
+// Track last update time per format ID to throttle UI updates
+const lastUpdateTimes = new Map<string, number>();
+const UPDATE_THROTTLE_MS = 1000; // Update UI max every 1 second
 
 // ============================================================
 // HELPER FUNCTIONS
@@ -98,9 +106,29 @@ function getCurrentFormatId(state: AppState): string | null {
 
 /**
  * Update status bar UI based on conversion task state
- * Only updates changed elements to avoid unnecessary DOM manipulation
+ * Throttled to update max every 1 second to avoid excessive DOM updates
+ *
+ * @param wrapper - Status bar wrapper element
+ * @param task - Conversion task with state
+ * @param formatId - Format ID for throttle tracking
  */
-function updateStatusBarUI(wrapper: HTMLElement, task: ConversionTask): void {
+function updateStatusBarUI(wrapper: HTMLElement, task: ConversionTask, formatId: string): void {
+  const now = Date.now();
+  const lastUpdate = lastUpdateTimes.get(formatId) || 0;
+  const timeSinceLastUpdate = now - lastUpdate;
+
+  // Check if we should throttle (skip this update)
+  const isCompleted = task.state === TaskState.SUCCESS || task.state === TaskState.FAILED;
+  const shouldThrottle = !isCompleted && timeSinceLastUpdate < UPDATE_THROTTLE_MS;
+
+  if (shouldThrottle) {
+    // Skip update - too soon since last update
+    return;
+  }
+
+  // Update last update time
+  lastUpdateTimes.set(formatId, now);
+
   // Get DOM elements
   const statusContainer = wrapper.querySelector('.status-container') as HTMLElement | null;
   const statusElement = wrapper.querySelector('.status');
@@ -174,6 +202,9 @@ function updateStatusBarUI(wrapper: HTMLElement, task: ConversionTask): void {
   // Update action-container visibility
   if (task.state === TaskState.SUCCESS || task.state === TaskState.FAILED) {
     actionContainer.classList.add('active');
+
+    // Cleanup throttle map when task completes (prevent memory leak)
+    lastUpdateTimes.delete(formatId);
   } else {
     actionContainer.classList.remove('active');
   }
