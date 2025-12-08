@@ -118,8 +118,10 @@ function updateStatusBarUI(wrapper: HTMLElement, task: ConversionTask, formatId:
   const timeSinceLastUpdate = now - lastUpdate;
 
   // Check if we should throttle (skip this update)
+  // Skip throttle for: completed states OR progress at 100%
   const isCompleted = task.state === TaskState.SUCCESS || task.state === TaskState.FAILED;
-  const shouldThrottle = !isCompleted && timeSinceLastUpdate < UPDATE_THROTTLE_MS;
+  const isAtFull = (task.progress ?? 0) >= 100;
+  const shouldThrottle = !isCompleted && !isAtFull && timeSinceLastUpdate < UPDATE_THROTTLE_MS;
 
   if (shouldThrottle) {
     // Skip update - too soon since last update

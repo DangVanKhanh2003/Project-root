@@ -56,9 +56,10 @@
   /* Smooth transitions */
   transition:
     border-color var(--status-transition-fast),
-    --progress 0.6s cubic-bezier(0.4, 0.0, 0.2, 1);
+    --progress 0.3s ease-out; /* Faster transition to prevent jank */
 
   /* Performance optimization */
+  will-change: background; /* Hint browser to optimize background animation */
   contain: layout style;
   transform: translateZ(0);
   backface-visibility: hidden;

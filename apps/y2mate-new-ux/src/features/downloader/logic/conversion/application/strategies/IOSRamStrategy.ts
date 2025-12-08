@@ -91,17 +91,27 @@ export class IOSRamStrategy extends BaseStrategy {
       // CRITICAL FIX: Force progress to 100% before showing success
       log('⚠️ FORCE: Updating progress to 100% at timestamp:', performance.now().toFixed(2) + 'ms');
 
-      // Wait for 100% to paint (double RAF + 150ms delay for CSS transition)
+      // Calculate final status text with size info
+      const finalMB = Math.ceil(blob.size / (1024 * 1024));
+      const finalStatusText = finalMB > 0
+        ? `Downloaded ${finalMB} MB / ${finalMB} MB`
+        : 'Download complete';
+      // Force update progress to 100% BEFORE delay
+      this.updateTask({
+        progress: 100,
+        statusText: finalStatusText
+      });
+      // Wait for 100% to paint (double RAF + 300ms delay for CSS transition)
       // CSS transition for final 100% is 50ms (0.05s with .completing-final class)
-      log('⚠️ WAIT: Starting double RAF + 150ms delay to ensure CSS transition completes');
+      log('⚠️ WAIT: Starting double RAF + 300ms delay to ensure CSS transition completes');
       await new Promise<void>(resolve => {
         requestAnimationFrame(() => {
           log('⚠️ RAF #1 callback at timestamp:', performance.now().toFixed(2) + 'ms');
           requestAnimationFrame(() => {
             log('⚠️ RAF #2 callback at timestamp:', performance.now().toFixed(2) + 'ms');
-            // Add 150ms delay to ensure CSS transition completes (50ms transition + safety buffer)
+            // Add 300ms delay to ensure CSS transition completes (50ms transition + safety buffer)
             setTimeout(() => {
-              log('⚠️ Delay 150ms complete at timestamp:', performance.now().toFixed(2) + 'ms');
+              log('⚠️ Delay 300ms complete at timestamp:', performance.now().toFixed(2) + 'ms');
               log('✅ 100% ANIMATION COMPLETE - safe to show success now');
               resolve();
             }, 150);

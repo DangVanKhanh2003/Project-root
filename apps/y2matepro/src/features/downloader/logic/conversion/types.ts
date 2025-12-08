@@ -196,7 +196,6 @@ export function determineRoute(
       description: `iOS stream (${sizeMB}MB) - server polling`
     };
   }
-  debugger
   // Case 4: Windows MP4 stream
   if (isWindows() && ( format.toLocaleLowerCase() === 'mp4' || format.toLocaleLowerCase() === 'video')) {
     log('→ Case 4: WINDOWS_MP4_POLLING');
