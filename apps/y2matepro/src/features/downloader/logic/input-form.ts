@@ -778,14 +778,6 @@ async function handleExtractMedia(url: string): Promise<void> {
       // ✅ NEW: Update SEO meta tags (noindex for result pages)
       setVideoPageSEO();
 
-      // Fire-and-forget: Add video to queue API (analytics/preloading notification)
-      coreServices.queue.addVideoToQueue(videoId).then((success: boolean) => {
-        if (success) {
-        } else {
-        }
-      }).catch((error: Error) => {
-      });
-
       // Wait 300ms for skeleton animation (like old project)
       setTimeout(async () => {
         // 1. Generate fake data with pre-defined quality options

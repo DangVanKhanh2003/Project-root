@@ -863,13 +863,6 @@ async function handleExtractMedia(url: string): Promise<void> {
       // ✅ Update SEO meta tags (noindex for result pages)
       setVideoPageSEO();
 
-      // Fire-and-forget: Add video to queue API (analytics/preloading notification)
-      coreServices.queue.addVideoToQueue(videoId).then((success: boolean) => {
-        // Queue notification sent
-      }).catch((error: Error) => {
-        // Ignore queue errors - not critical
-      });
-
       // 1. Create thumbnail URL from video ID
       const thumbnail = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
 
