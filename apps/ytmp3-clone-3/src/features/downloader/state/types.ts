@@ -47,9 +47,6 @@ export interface FormatSelectorState {
 
   // Track if user has made a selection (for auto-fill logic)
   hasUserSelectedFormat: boolean;
-
-  // Auto-submit toggle preference
-  autoSubmit: boolean; // Default: true
 }
 
 // ==========================================

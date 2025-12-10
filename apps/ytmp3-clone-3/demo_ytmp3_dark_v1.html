@@ -5,15 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <title>YTMP3 – Premium Converter</title>
     <meta name="description" content="Fast, secure, and futuristic YouTube to MP3 converter.">
-
+    
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
-
-    <!-- TypeScript Module -->
-    <script type="module" src="/src/main.ts"></script>
-
+    
     <style>
         /* --- CSS Variables --- */
         :root {
@@ -28,7 +25,7 @@
             --bg-step: rgba(255, 255, 255, 0.02);
             --bg-step-hover: rgba(255, 255, 255, 0.05);
             --bg-badge: rgba(139, 92, 246, 0.1);
-
+            
             /* Text */
             --text-main: #ffffff;
             --text-muted: #94a3b8;
@@ -96,7 +93,7 @@
             --border-glass: 1px solid rgba(0, 0, 0, 0.08);
             --border-input: 1px solid #cbd5e1;
             --border-input-hover: #94a3b8;
-
+            
             /* Effects */
             --shadow-glass: 0 10px 40px -10px rgba(0, 0, 0, 0.1);
             --glow-input: 0 0 0 4px rgba(139, 92, 246, 0.2);
@@ -105,7 +102,7 @@
 
         /* --- Reset & Base --- */
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-
+        
         body {
             font-family: var(--font-main);
             background-color: var(--bg-body);
@@ -126,7 +123,7 @@
             left: 0;
             width: 100%;
             height: 100vh;
-            background:
+            background: 
                 radial-gradient(circle at 15% 50%, rgba(76, 29, 149, 0.15), transparent 25%),
                 radial-gradient(circle at 85% 30%, rgba(59, 130, 246, 0.15), transparent 25%);
             pointer-events: none;
@@ -252,7 +249,7 @@
             align-items: center;
             justify-content: center;
         }
-
+        
         [data-theme="light"] .icon-btn {
             background: #fff;
             border-color: #cbd5e1;
@@ -277,7 +274,7 @@
             gap: 8px;
             font-weight: 600;
         }
-
+        
         [data-theme="light"] .lang-btn {
             background: #fff;
             border-color: #cbd5e1;
@@ -337,7 +334,7 @@
             box-shadow: var(--shadow-glass);
             transition: transform 0.3s ease, background 0.3s, border-color 0.3s;
         }
-
+        
         @media (min-width: 768px) {
             .hero-card { padding: 50px; }
         }
@@ -431,7 +428,7 @@
             font-size: 1.1rem;
             padding: 0 120px 0 24px;
         }
-
+        
         .video-input::placeholder {
             color: var(--text-muted);
             opacity: 0.6;
@@ -462,7 +459,7 @@
     background: rgb(71 71 71 / 81%);
     color: #fff;
         }
-
+        
         .btn-paste:hover {
             transform: translateY(-1px);
             filter: brightness(1.1);
@@ -480,27 +477,6 @@
             border-radius: 50%;
         }
         .btn-clear:hover { color: var(--text-main); background: rgba(150,150,150,0.1); }
-
-        /* Paste/Clear button toggle states */
-        /* Show paste icon and text when data-action="paste" */
-        [data-action="paste"] .paste-icon,
-        [data-action="paste"] .btn-state--paste {
-            display: inline-flex;
-        }
-        [data-action="paste"] .clear-icon,
-        [data-action="paste"] .btn-state--clear {
-            display: none;
-        }
-
-        /* Show clear icon and text when data-action="clear" */
-        [data-action="clear"] .paste-icon,
-        [data-action="clear"] .btn-state--paste {
-            display: none;
-        }
-        [data-action="clear"] .clear-icon,
-        [data-action="clear"] .btn-state--clear {
-            display: inline-flex;
-        }
 
         /* Form Controls */
         .controls {
@@ -583,7 +559,7 @@
         .quality-select:hover, .quality-select:focus {
             border-color: rgba(139, 92, 246, 0.3);
         }
-
+        
         .quality-select option {
             background: #0f172a;
             color: #fff;
@@ -952,7 +928,7 @@
             margin-bottom: 8px;
             line-height: 1;
         }
-
+        
         .step:hover .step-number {
             background: var(--gradient-text);
             -webkit-background-clip: text;
@@ -964,7 +940,7 @@
             font-size: 0.95rem;
             color: var(--text-muted);
         }
-
+        
         .step-title {
             color: var(--text-main);
             margin-bottom: 8px;
@@ -1002,7 +978,7 @@
             color: var(--text-main);
             margin-bottom: 6px;
         }
-
+        
         .feature-text {
             font-size: 0.9rem;
             color: var(--text-muted);
@@ -1158,7 +1134,7 @@
                 <a href="/" class="nav-link active">Converter</a>
                 <a href="#" class="nav-link">How it works</a>
                 <a href="#" class="nav-link">FAQ</a>
-
+                
                 <button class="icon-btn" id="theme-toggle" aria-label="Toggle Theme">
                     <!-- Sun Icon (for light mode) -->
                     <svg class="sun-icon hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
@@ -1172,18 +1148,18 @@
                 </button>
             </nav>
 
-            <button class="mobile-toggle" id="mobileMenuToggle" aria-label="Menu">
+            <button class="mobile-toggle" id="menu-btn" aria-label="Menu">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
             </button>
         </div>
     </header>
 
     <!-- Drawer -->
-    <div class="drawer-overlay" id="mobileMenuOverlay"></div>
+    <div class="drawer-overlay" id="drawer-overlay"></div>
     <div class="drawer" id="drawer">
         <div class="drawer-header">
             <span>Menu</span>
-            <button class="mobile-toggle" id="mobileCloseBtn" style="padding:0;">
+            <button class="mobile-toggle" id="close-btn" style="padding:0;">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
             </button>
         </div>
@@ -1204,7 +1180,7 @@
             <div class="hero-glow"></div>
             <div class="container" style="display: flex; justify-content: center;">
                 <div class="hero-card">
-
+                    
                     <!-- Search View -->
                     <div id="search-view" class="fade-in">
                         <div class="hero-header">
@@ -1216,26 +1192,43 @@
                             <p class="hero-subtitle">Experience the fastest, ad-free YouTube downloader. Supports 4K Video, 320kbps Audio, and works on all devices.</p>
                         </div>
 
-                        <form id="downloadForm" class="form-container">
+                        <form id="convert-form" class="form-container">
                             <div class="input-group">
                                 <div class="input-wrapper" id="input-wrapper">
-                                    <input type="text" id="videoUrl" class="video-input" placeholder="Paste YouTube link here..." autocomplete="off">
+                                    <input type="text" id="video-url" class="video-input" placeholder="Paste YouTube link here..." autocomplete="off">
                                     <div class="input-actions">
-                                        <button type="button" id="input-action-button" class="btn-paste" data-action="paste">
-                                            <svg class="paste-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                                            <span class="btn-state--paste">Paste</span>
-                                            <svg class="clear-icon hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                                            <span class="btn-state--clear hidden">Clear</span>
+                                        <button type="button" id="btn-paste" class="btn-paste">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                                            <span>Paste</span>
+                                        </button>
+                                        <button type="button" id="btn-clear" class="btn-clear hidden">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
                                         </button>
                                     </div>
                                 </div>
-                                <div id="suggestion-container" class="suggesstion-list suggestions-box"></div>
+                                <div id="suggestion-container" class="suggestions-box"></div>
                             </div>
 
-                            <!-- Format Selector Container (TypeScript will render here) -->
-                            <div id="format-selector-container"></div>
-
                             <div class="controls">
+                                <!-- Format -->
+                                <div class="format-toggle">
+                                    <button type="button" class="format-btn active" data-format="mp3">MP3</button>
+                                    <button type="button" class="format-btn" data-format="mp4">MP4</button>
+                                </div>
+
+                                <!-- Quality -->
+                                <div class="quality-wrapper">
+                                    <select id="quality-select" class="quality-select">
+                                        <option value="mp3-320">High Quality (320kbps)</option>
+                                        <option value="mp3-128">Standard (128kbps)</option>
+                                        <option value="mp4-1080">Full HD (1080p)</option>
+                                        <option value="mp4-720">HD (720p)</option>
+                                    </select>
+                                    <div class="select-arrow">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                                    </div>
+                                </div>
+
                                 <!-- Action -->
                                 <button type="submit" class="btn-convert">
                                     <span>Convert</span>
@@ -1253,11 +1246,34 @@
                             <h1 class="hero-title" style="font-size: 1.8rem;">YouTube to <span>MP3 Converter</span></h1>
                         </div>
 
-                        <!-- Content Area - TypeScript will render preview here -->
-                        <div id="content-area"></div>
+                        <!-- Preview Card (Details Only) -->
+                        <div class="result-card-container">
+                            <img src="https://i.ytimg.com/vi/XQ4mrFmfhAI/hqdefault.jpg" alt="Video Thumbnail" class="result-thumb" id="result-thumb">
+                            <div class="result-details">
+                                <h3 class="result-title" id="result-title">Female Sexual Arousal Disorder and Veterans Disability | All You Need To Know</h3>
+                                <div class="result-meta">
+                                    <span class="meta-badge" id="result-badge">MP3</span>
+                                    <span>320kbps</span>
+                                    <span>•</span>
+                                    <span id="result-author">Prestige Veteran Medical Consulting</span>
+                                </div>
+                            </div>
+                        </div>
 
-                        <!-- New Convert Button -->
-                        <div class="result-actions-bar">
+                        <!-- Processing Status (Visible during loading) -->
+                        <div id="processing-status" class="status status--processing hidden" style="--progress-width: 0%;">
+                            <span>
+                                <span id="status-text">Processing...</span>
+                                <div class="spinner"></div>
+                            </span>
+                        </div>
+
+                        <!-- Separate Action Buttons Below (Hidden during processing) -->
+                        <div class="result-actions-bar hidden" id="result-actions">
+                            <button class="btn-download" id="btn-download">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                Download
+                            </button>
                             <button class="btn-secondary" id="btn-new-convert">
                                 New Convert
                             </button>
@@ -1266,13 +1282,6 @@
                     <!-- End Result View -->
 
                 </div>
-            </div>
-        </section>
-
-        <!-- Search Results Section -->
-        <section id="search-results-section" class="content-section" style="display: none;">
-            <div class="container">
-                <div id="search-results-container"></div>
             </div>
         </section>
 
@@ -1374,5 +1383,169 @@
         </div>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Header Scroll
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 20) {
+                    header.style.boxShadow = 'var(--shadow-glass)';
+                    header.style.background = 'var(--bg-header-scroll)';
+                } else {
+                    header.style.boxShadow = 'none';
+                    header.style.background = 'var(--bg-header)';
+                }
+            });
+
+            // Theme Toggle Logic
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const mobileThemeBtn = document.getElementById('mobile-theme-toggle');
+            const htmlEl = document.documentElement;
+            const sunIcon = document.querySelector('.sun-icon');
+            const moonIcon = document.querySelector('.moon-icon');
+
+            // Check saved preference
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            setTheme(savedTheme);
+
+            function setTheme(theme) {
+                htmlEl.setAttribute('data-theme', theme);
+                localStorage.setItem('theme', theme);
+                
+                if (theme === 'light') {
+                    sunIcon.classList.remove('hidden');
+                    moonIcon.classList.add('hidden');
+                } else {
+                    sunIcon.classList.add('hidden');
+                    moonIcon.classList.remove('hidden');
+                }
+            }
+
+            function toggleTheme() {
+                const current = htmlEl.getAttribute('data-theme');
+                const next = current === 'dark' ? 'light' : 'dark';
+                setTheme(next);
+            }
+
+            if(themeToggleBtn) themeToggleBtn.addEventListener('click', toggleTheme);
+            if(mobileThemeBtn) mobileThemeBtn.addEventListener('click', toggleTheme);
+
+
+            // Mobile Menu
+            const menuBtn = document.getElementById('menu-btn');
+            const closeBtn = document.getElementById('close-btn');
+            const drawer = document.getElementById('drawer');
+            const overlay = document.getElementById('drawer-overlay');
+            const body = document.body;
+
+            function toggleMenu() {
+                body.classList.toggle('drawer-open');
+            }
+
+            menuBtn.addEventListener('click', toggleMenu);
+            closeBtn.addEventListener('click', toggleMenu);
+            overlay.addEventListener('click', toggleMenu);
+
+            // Input interactions
+            const inputWrapper = document.getElementById('input-wrapper');
+            const videoInput = document.getElementById('video-url');
+            const btnPaste = document.getElementById('btn-paste');
+            const btnClear = document.getElementById('btn-clear');
+
+            videoInput.addEventListener('focus', () => inputWrapper.classList.add('focused'));
+            videoInput.addEventListener('blur', () => inputWrapper.classList.remove('focused'));
+
+            function updateState() {
+                if(videoInput.value.trim().length > 0) {
+                    btnPaste.classList.add('hidden');
+                    btnClear.classList.remove('hidden');
+                } else {
+                    btnPaste.classList.remove('hidden');
+                    btnClear.classList.add('hidden');
+                }
+            }
+            videoInput.addEventListener('input', updateState);
+
+            btnPaste.addEventListener('click', async () => {
+                try {
+                    const text = await navigator.clipboard.readText();
+                    videoInput.value = text;
+                    updateState();
+                    videoInput.focus();
+                } catch(e) { console.log(e); }
+            });
+
+            btnClear.addEventListener('click', () => {
+                videoInput.value = '';
+                updateState();
+                videoInput.focus();
+            });
+
+            // Format toggles
+            const formatBtns = document.querySelectorAll('.format-btn');
+            formatBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    formatBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                });
+            });
+
+            // View Switching Logic with Processing Simulation
+            const form = document.getElementById('convert-form');
+            const searchView = document.getElementById('search-view');
+            const resultView = document.getElementById('result-view');
+            const btnNewConvert = document.getElementById('btn-new-convert');
+            const processingStatus = document.getElementById('processing-status');
+            const resultActions = document.getElementById('result-actions');
+            const statusText = document.getElementById('status-text');
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                // Hide search, show result container
+                searchView.classList.add('hidden');
+                resultView.classList.remove('hidden');
+
+                // Initial state for result view
+                resultActions.classList.add('hidden');
+                processingStatus.classList.remove('hidden');
+                processingStatus.style.setProperty('--progress-width', '0%');
+                statusText.innerText = 'Initializing...';
+
+                // Simulate processing
+                let progress = 0;
+                const interval = setInterval(() => {
+                    progress += Math.random() * 5; // Random increment
+                    if (progress > 100) progress = 100;
+                    
+                    processingStatus.style.setProperty('--progress-width', `${progress}%`);
+
+                    if (progress > 20 && progress < 50) statusText.innerText = 'Analyzing video...';
+                    if (progress > 50 && progress < 80) statusText.innerText = 'Converting...';
+                    if (progress > 80) statusText.innerText = 'Finalizing...';
+
+                    if (progress >= 100) {
+                        clearInterval(interval);
+                        setTimeout(() => {
+                            // Complete
+                            processingStatus.classList.add('hidden');
+                            resultActions.classList.remove('hidden');
+                            resultActions.classList.add('fade-in');
+                        }, 400); // Slight delay at 100%
+                    }
+                }, 80); // Speed of simulation
+            });
+
+            btnNewConvert.addEventListener('click', () => {
+                // Hide result, show search
+                resultView.classList.add('hidden');
+                searchView.classList.remove('hidden');
+                
+                // Reset input
+                videoInput.value = '';
+                updateState();
+            });
+        });
+    </script>
 </body>
 </html>

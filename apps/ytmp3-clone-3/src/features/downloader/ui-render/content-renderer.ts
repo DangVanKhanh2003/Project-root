@@ -21,6 +21,7 @@ import {
 import { transformSearchItemToVideoData } from '../logic/input-form';
 import { getInfiniteScrollThreshold } from '@downloader/ui-shared/scroll';
 import { api } from '../../../api';
+import { showResultView } from './view-switcher';
 
 let contentArea: HTMLElement | null = null;
 let searchResultsContainer: HTMLElement | null = null;
@@ -488,6 +489,9 @@ export function renderPreviewCard(_data: any): void {
 
   // Hide search results section
   hideSearchResultsSection();
+
+  // Switch to result view (show result, hide search)
+  showResultView();
 }
 
 /**

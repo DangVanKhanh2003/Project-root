@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "vite",
+    "dev:ytmp3": "pnpm --filter ytmp3-clone-3 dev",
     "build": "vite build",
     "build:no-critical": "vite build",
     "preview": "vite preview",

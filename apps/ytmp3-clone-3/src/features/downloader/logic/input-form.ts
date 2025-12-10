@@ -367,29 +367,6 @@ function handleInputClick(event: MouseEvent): void {
   scrollManager.scrollToElement('#videoUrl');
 }
 
-/**
- * Handle paste event on the input field to auto-submit the form.
- */
-function handlePasteAndSubmit(event: ClipboardEvent): void {
-  const state = getState();
-
-  // Don't interfere if the form is already submitting
-  if (state.isSubmitting) {
-    return;
-  }
-
-  // Check if auto-submit is enabled
-  if (!state.autoSubmit) {
-    return;
-  }
-
-  // Use a short timeout to allow the input's value to update from the paste event
-  setTimeout(() => {
-    if (form && input && input.value.trim() !== '') {
-      form.requestSubmit();
-    }
-  }, 0);
-}
 
 /**
  * Initialize input form
@@ -410,7 +387,6 @@ export function initInputForm(): boolean {
   input.addEventListener('input', handleInput);
   input.addEventListener('keydown', handleKeyDown); // Keyboard navigation
   input.addEventListener('click', handleInputClick); // Mobile click-to-scroll
-  input.addEventListener('paste', handlePasteAndSubmit); // Auto-submit on paste
 
   // Action button handles both Paste and Clear based on data-action attribute
   if (pasteBtn) {
@@ -1118,12 +1094,6 @@ function processPastedText(text: string): void {
 
   // Dispatch input event to trigger handleInput (updates button visibility)
   input.dispatchEvent(new Event('input', { bubbles: true }));
-
-  // Auto-submit if auto-submit is enabled (for both URL and keyword)
-  const state = getState();
-  if (state.autoSubmit && trimmedText) {
-    form?.requestSubmit();
-  }
 }
 
 /**

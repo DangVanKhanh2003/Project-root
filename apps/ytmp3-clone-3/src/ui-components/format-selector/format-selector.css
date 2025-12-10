@@ -30,225 +30,102 @@
 }
 
 /* ==========================================
-   Format Toggle Button (Single button: MP4 | MP3)
+   Format Toggle (Two separate buttons)
    ========================================== */
 
-.format-toggle-btn {
+.format-toggle {
+  background: var(--bg-card, #f5f5f5);
+  padding: 4px;
+  border-radius: var(--radius-md, 12px);
   display: flex;
+  border: var(--border-glass, 1px solid rgba(255, 255, 255, 0.08));
+  height: 56px;
   align-items: center;
-  background: #f5f5f5;
-  border: 2px solid #e0e0e0;
-  border-radius: 8px;
-  padding: 3px;
-  cursor: pointer;
-  transition: border-color 0.2s ease;
   flex-shrink: 0;
-  width: 140px; /* Fixed width to prevent layout shift */
-  height: 44px; /* Fixed height to prevent layout shift */
 }
 
+[data-theme="light"] .format-toggle {
+  background: #fff;
+  border: 1px solid #cbd5e1;
+}
 
-
-
-
-.toggle-side {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  padding: 10px 14px;
-  color: #666;
-  transition: all 0.2s ease;
-  cursor: pointer;
+.format-btn {
   flex: 1;
-  min-width: 0;
+  background: transparent;
+  border: none;
+  color: var(--text-muted, #666);
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0 20px;
   height: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
 }
 
-
-
-.toggle-side.active {
-  background: #f20a51;
-  color: white;
-  border-radius: 6px;
+.format-btn.active {
+  background: rgb(104 93 185);
+  color: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
-
-
-.format-icon {
-  font-size: 18px;
-  line-height: 1;
-  flex-shrink: 0;
-}
-
-.format-label {
-  font-size: 14px;
-  font-weight: 600;
-  white-space: nowrap;
+[data-theme="light"] .format-btn.active {
+  background: #f1f5f9;
+  color: #0f172a;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 /* ==========================================
    Quality Select Dropdown
    ========================================== */
 
-.quality-selector {
-  min-width: 0;
-}
-
-.quality-dropdown-wrapper {
-  width: 100%;
+.quality-wrapper {
+  position: relative;
+  flex-grow: 1;
 }
 
 .quality-select {
   width: 100%;
-  height: 44px; /* Fixed height to match toggle button */
-  padding: 10px 14px;
-  background: white;
-  border: 2px solid #e0e0e0;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 500;
-  color: #333;
-  cursor: pointer;
-  transition: all 0.2s ease;
+  height: 56px;
+  background: var(--bg-card, white);
+  border: var(--border-glass, 1px solid rgba(255, 255, 255, 0.08));
+  border-radius: var(--radius-md, 12px);
+  color: var(--text-main, #333);
+  padding: 0 20px;
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 12px center;
-  padding-right: 36px;
-  box-sizing: border-box; /* Include border in height calculation */
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s;
+  box-sizing: border-box;
 }
 
-.quality-select:hover {
-  border-color: #f20a51;
-  background-color: #f8f9fa;
+[data-theme="light"] .quality-select {
+  background: #fff;
+  border: 1px solid #cbd5e1;
 }
 
+.quality-select:hover,
 .quality-select:focus {
-  outline: 2px solid #f20a51;
-  outline-offset: 2px;
-  border-color: #f20a51;
+  border-color: rgba(139, 92, 246, 0.3);
 }
 
 .quality-select option {
-  padding: 8px;
-  font-size: 14px;
+  background: #0f172a;
+  color: #fff;
 }
 
-/* ==========================================
-   Auto Submit Toggle
-   ========================================== */
-
-.auto-submit-toggle {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-shrink: 0;
-  position: relative; /* For tooltip positioning */
+[data-theme="light"] .quality-select option {
+  background: #fff;
+  color: #0f172a;
 }
 
-.toggle-label {
-  font-size: 14px;
-  font-weight: 500;
-  color: #666;
-  white-space: nowrap;
-}
-
-/* iOS-style Toggle Switch */
-.toggle-switch {
-  position: relative;
-  display: inline-block;
-  width: 48px;
-  height: 26px;
-}
-
-.toggle-switch input[type="checkbox"] {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.toggle-slider {
+.select-arrow {
   position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  transition: 0.3s;
-  border-radius: 26px;
-}
-
-.toggle-slider:before {
-  position: absolute;
-  content: "";
-  height: 20px;
-  width: 20px;
-  left: 3px;
-  bottom: 3px;
-  background-color: white;
-  transition: 0.3s;
-  border-radius: 50%;
-}
-
-/* Active state - primary color */
-input[type="checkbox"]:checked + .toggle-slider {
-  background-color: var(--color-primary-button, #f20a51);
-}
-
-input[type="checkbox"]:checked + .toggle-slider:before {
-  transform: translateX(22px);
-}
-
-/* Focus state */
-input[type="checkbox"]:focus-visible + .toggle-slider {
-  outline: 3px solid var(--color-primary-button, #f20a51);
-  outline-offset: 2px;
-}
-
-/* Hover state */
-.toggle-switch:hover .toggle-slider {
-  opacity: 0.9;
-}
-
-/* Custom Tooltip */
-.custom-tooltip {
-  position: absolute;
-  top: calc(100% + 8px);
-  left: 50%;
-  transform: translateX(-50%);
-  background: #333;
-  color: white;
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-size: 12px;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
   pointer-events: none;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.2s ease, visibility 0.2s ease;
-  z-index: 1000;
-  width: 200px;
-  white-space: normal;
-  text-align: center;
-  line-height: 1.4;
-}
-
-/* Tooltip arrow */
-.custom-tooltip::after {
-  content: '';
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  border: 5px solid transparent;
-  border-bottom-color: #333;
-}
-
-/* Show tooltip with delay */
-.auto-submit-toggle.show-tooltip .custom-tooltip {
-  opacity: 1;
-  visibility: visible;
+  color: var(--text-muted, #666);
 }
 
 /* ==========================================
@@ -268,36 +145,19 @@ input[type="checkbox"]:focus-visible + .toggle-slider {
     justify-content: space-between;
   }
 
-  /* Flatten the group container for mobile layout */
-  .format-quality-group {
-    display: contents;
-  }
-
-  .format-toggle-btn {
+  .format-toggle {
     width: 120px;
     height: 40px;
     order: 1;
   }
 
-  .auto-submit-toggle {
+  .quality-wrapper {
+    width: 100%;
     order: 2;
   }
 
-  .quality-selector {
-    width: 100%;
-    order: 3;
-  }
-
-  .toggle-side {
+  .format-btn {
     padding: 8px 10px;
-    gap: 4px;
-  }
-
-  .format-icon {
-    font-size: 16px;
-  }
-
-  .format-label {
     font-size: 13px;
   }
 
@@ -306,30 +166,6 @@ input[type="checkbox"]:focus-visible + .toggle-slider {
     padding: 8px 12px;
     font-size: 13px;
     padding-right: 32px;
-  }
-
-  .toggle-label {
-    font-size: 13px;
-  }
-
-  .toggle-switch {
-    width: 44px;
-    height: 24px;
-  }
-
-  .toggle-slider:before {
-    height: 18px;
-    width: 18px;
-  }
-
-  input[type="checkbox"]:checked + .toggle-slider:before {
-    transform: translateX(20px);
-  }
-
-  .custom-tooltip {
-    font-size: 10px;
-    padding: 6px 10px;
-    width: 130px;
   }
 }
 
@@ -346,21 +182,13 @@ input[type="checkbox"]:focus-visible + .toggle-slider {
     min-height: 88px;
   }
 
-  .format-quality-group {
-    width: 100%;
-  }
-
-  .format-toggle-btn {
+  .format-toggle {
     width: 100%;
     height: 40px;
   }
 
   .quality-select {
     height: 40px;
-  }
-
-  .auto-submit-toggle {
-    align-self: flex-end;
   }
 }
 
@@ -370,11 +198,11 @@ input[type="checkbox"]:focus-visible + .toggle-slider {
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {
-  .format-toggle-btn {
+  .format-toggle {
     border-width: 3px;
   }
 
-  .toggle-side.active {
+  .format-btn.active {
     border: 2px solid white;
   }
 
@@ -385,15 +213,15 @@ input[type="checkbox"]:focus-visible + .toggle-slider {
 
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
-  .format-toggle-btn,
-  .toggle-side,
+  .format-toggle,
+  .format-btn,
   .quality-select {
     transition: none;
   }
 }
 
 /* Focus visible (keyboard navigation) */
-.format-toggle-btn:focus-visible {
+.format-btn:focus-visible {
   outline: 3px solid #f20a51;
   outline-offset: 3px;
 }

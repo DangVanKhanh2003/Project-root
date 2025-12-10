@@ -9,7 +9,6 @@ import {
   setVideoQuality,
   setAudioFormat,
   setAudioBitrate,
-  setAutoSubmit,
   QUALITY_OPTIONS,
   type FormatType,
   type AudioFormatType
@@ -52,7 +51,7 @@ export function renderFormatSelectorToForm(): void {
  */
 function renderFormatSelector(): string {
   const state = getState();
-  const { selectedFormat, videoQuality, audioFormat, audioBitrate, autoSubmit } = state;
+  const { selectedFormat, videoQuality, audioFormat, audioBitrate } = state;
 
   // Generate quality dropdown HTML based on selected format
   const qualityDropdownHTML = selectedFormat === 'mp4'
@@ -61,34 +60,18 @@ function renderFormatSelector(): string {
 
   return `
     <div class="format-selector">
-      <!-- Group 1: Format + Quality -->
-      <div class="format-quality-group">
-        <!-- Format Toggle (Single button: MP4 | MP3) -->
-        <button type="button" class="format-toggle-btn" data-toggle-format>
-          <span class="toggle-side ${selectedFormat === 'mp4' ? 'active' : ''}" data-format="mp4">
-            <span class="format-label">MP4</span>
-          </span>
-          <span class="toggle-side ${selectedFormat === 'mp3' ? 'active' : ''}" data-format="mp3">
-            <span class="format-label">MP3</span>
-          </span>
-        </button>
-
-        <!-- Quality Dropdown (Dynamic based on format) -->
-        <div class="quality-selector">
-          ${qualityDropdownHTML}
-        </div>
+      <!-- Format Toggle (Two separate buttons) -->
+      <div class="format-toggle">
+        <button type="button" class="format-btn ${selectedFormat === 'mp3' ? 'active' : ''}" data-format="mp3">MP3</button>
+        <button type="button" class="format-btn ${selectedFormat === 'mp4' ? 'active' : ''}" data-format="mp4">MP4</button>
       </div>
 
-      <!-- Group 2: Auto Submit Toggle -->
-      <div class="auto-submit-toggle" data-tooltip="Automatically submit when pasting URL or keyword">
-        <strong class="toggle-label">
-          Auto submit
-        </strong>
-        <label class="toggle-switch">
-          <input type="checkbox" id="auto-submit-checkbox" ${autoSubmit ? 'checked' : ''} data-auto-submit-toggle />
-          <span class="toggle-slider"></span>
-        </label>
-        <span class="custom-tooltip"></span>
+      <!-- Quality Dropdown (Dynamic based on format) -->
+      <div class="quality-wrapper">
+        ${qualityDropdownHTML}
+        <div class="select-arrow">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
       </div>
     </div>
   `;
@@ -165,9 +148,6 @@ export function initFormatSelector(containerSelector: string = '#previewCard'): 
   // Listen for quality select changes
   container.addEventListener('change', handleQualityChange);
 
-  // Listen for auto-submit toggle changes
-  container.addEventListener('change', handleAutoSubmitToggle);
-
   // Initialize custom tooltips
   initCustomTooltips(container);
 }
@@ -178,10 +158,10 @@ export function initFormatSelector(containerSelector: string = '#previewCard'): 
 function handleFormatSelectorClick(event: Event): void {
   const target = event.target as HTMLElement;
 
-  // Handle format toggle (Single button with two sides)
-  const toggleSide = target.closest('.toggle-side') as HTMLElement;
-  if (toggleSide) {
-    const format = toggleSide.dataset.format as FormatType;
+  // Handle format button clicks (Two separate buttons)
+  const formatBtn = target.closest('.format-btn') as HTMLElement;
+  if (formatBtn) {
+    const format = formatBtn.dataset.format as FormatType;
     if (format) {
       handleFormatChange(format);
     }
@@ -215,20 +195,6 @@ function handleQualityChange(event: Event): void {
       setAudioBitrate(bitrate);
     }
   }
-}
-
-/**
- * Handle auto-submit toggle change
- */
-function handleAutoSubmitToggle(event: Event): void {
-  const target = event.target as HTMLInputElement;
-
-  // Only handle auto-submit toggle changes
-  if (!target.matches('[data-auto-submit-toggle]')) {
-    return;
-  }
-
-  setAutoSubmit(target.checked);
 }
 
 /**

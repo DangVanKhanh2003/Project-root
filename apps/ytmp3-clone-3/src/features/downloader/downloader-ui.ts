@@ -4,7 +4,7 @@
  */
 
 import { setRenderCallback, getState, initializeFormatSelector } from './state';
-import { initRenderer, render } from './ui-render/ui-renderer';
+import { initRenderer, render, setInputValue, focusInput } from './ui-render/ui-renderer';
 import { initInputForm } from './logic/input-form';
 import { initContentRenderer } from './ui-render/content-renderer';
 import { initSuggestionRenderer, render as renderSuggestions } from '../../ui-components/suggestion-dropdown/suggestion-renderer';
@@ -14,6 +14,7 @@ import type { AppState } from './state';
 import { getRouteFromUrl, initRouting, cleanUrl } from './routing/url-manager';
 import { setVideoPageSEO } from './routing/seo-manager';
 import { renderFormatSelectorToForm } from '../../ui-components/format-selector/format-selector';
+import { initViewSwitcher, showSearchView } from './ui-render/view-switcher';
 
 /**
  * Initialize downloader UI
@@ -38,9 +39,14 @@ export async function init(): Promise<void> {
   const rendererInitialized = initRenderer();
   const contentRendererInitialized = initContentRenderer();
   const suggestionRendererInitialized = initSuggestionRenderer();
+  const viewSwitcherInitialized = initViewSwitcher();
 
   if (!rendererInitialized || !contentRendererInitialized) {
     return;
+  }
+
+  if (!viewSwitcherInitialized) {
+    console.warn('View switcher failed to initialize - 2-view structure may not work');
   }
 
   if (!suggestionRendererInitialized) {
@@ -111,4 +117,31 @@ export async function init(): Promise<void> {
   // Setup popstate listener (back/forward button handling)
   initRouting();
 
+  // Setup "New Convert" button to return to search view
+  setupNewConvertButton();
+
+}
+
+/**
+ * Setup "New Convert" button event handler
+ * Switches back to search view and clears input
+ */
+function setupNewConvertButton(): void {
+  const newConvertBtn = document.getElementById('btn-new-convert');
+
+  if (!newConvertBtn) {
+    console.warn('New Convert button not found');
+    return;
+  }
+
+  newConvertBtn.addEventListener('click', () => {
+    // Switch to search view
+    showSearchView();
+
+    // Clear input
+    setInputValue('');
+
+    // Focus input for better UX
+    focusInput();
+  });
 }
