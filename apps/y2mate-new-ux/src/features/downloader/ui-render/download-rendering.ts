@@ -63,7 +63,6 @@ export function renderConversionStatus(state: AppState, _prevState?: AppState): 
 
   // Setup button handlers if not already set up
   setupButtonHandlers(wrapper, formatId);
-
   // Update status bar UI (with throttling)
   updateStatusBarUI(wrapper, task, formatId);
 }

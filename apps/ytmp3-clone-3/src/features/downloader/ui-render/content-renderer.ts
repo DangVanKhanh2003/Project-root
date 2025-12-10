@@ -395,16 +395,18 @@ function renderPreviewCardSkeleton(): string {
         <div class="skeleton-line skeleton-author"></div>
       </div>
     </div>
-    <div class="status-container" id="status-container">
-      <div class="status status--extracting">
-        <span class="status-text">Extracting the video</span>
-        <div class="icon spinner"></div>
+    <div class="conversion-state-wrapper">
+      <div class="status-container" id="status-container">
+        <div class="status status--extracting">
+          <span class="status-text">Extracting the video</span>
+          <div class="icon spinner"></div>
+        </div>
       </div>
-    </div>
-    <div class="action-container" id="action-container">
-      <button class="download-btn" id="conversion-download-btn">Download</button>
-      <button class="retry-btn" id="conversion-retry-btn">Retry</button>
-      <button class="btn-new-convert" id="btn-new-convert">Next</button>
+      <div class="action-container" id="action-container">
+        <button class="download-btn" id="conversion-download-btn">Download</button>
+        <button class="retry-btn" id="conversion-retry-btn">Retry</button>
+        <button class="btn-new-convert" id="btn-new-convert">Next</button>
+      </div>
     </div>
   `;
 }
@@ -463,16 +465,18 @@ export function renderPreviewCard(_data: any): void {
         </div>
       </div>
     </div>
-    <div class="status-container" id="status-container">
-      <div class="status status--extracting">
-        <span class="status-text">Extracting the video</span>
-        <div class="icon spinner"></div>
+    <div class="conversion-state-wrapper">
+      <div class="status-container" id="status-container">
+        <div class="status status--extracting">
+          <span class="status-text">Extracting the video</span>
+          <div class="icon spinner"></div>
+        </div>
       </div>
-    </div>
-    <div class="action-container" id="action-container">
-      <button class="download-btn" id="conversion-download-btn">Download</button>
-      <button class="retry-btn" id="conversion-retry-btn">Retry</button>
-      <button class="btn-new-convert" id="btn-new-convert">Next</button>
+      <div class="action-container" id="action-container">
+        <button class="download-btn" id="conversion-download-btn">Download</button>
+        <button class="retry-btn" id="conversion-retry-btn">Retry</button>
+        <button class="btn-new-convert" id="btn-new-convert">Next</button>
+      </div>
     </div>
   `;
 

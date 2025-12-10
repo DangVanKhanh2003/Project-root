@@ -106,6 +106,7 @@ export async function startConversion(params: ConversionParams): Promise<void> {
 
     if (needsConvertingPhase) {
       log('Transitioning to CONVERTING phase...');
+      console.log(`%c[DEBUG] Updating state for ${formatId} to PROCESSING`, 'color: orange; font-weight: bold;');
       updateConversionTask(formatId, {
         state: TaskState.PROCESSING,
         statusText: 'Converting...',

@@ -4,6 +4,17 @@
  * Based on demo .status--processing design
  */
 
+/* ===== WRAPPER TO PREVENT LAYOUT SHIFT ===== */
+.conversion-state-wrapper {
+  min-height: 52px; /* Reserve space for status OR action container (mobile: 40px + 12px margin) */
+}
+
+@media (min-width: 768px) {
+  .conversion-state-wrapper {
+    min-height: 64px; /* Desktop: 52px + 12px margin */
+  }
+}
+
 /* ===== SHARED DIMENSIONS ===== */
 .status-container,
 .action-container {

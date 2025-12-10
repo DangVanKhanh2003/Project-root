@@ -51,7 +51,6 @@ export function renderConversionStatus(state: AppState, _prevState?: AppState): 
 
   // Get conversion task for current format
   const task = state.conversionTasks[formatId];
-
   if (!task) {
     // No active conversion - hide status bar
     statusContainer.style.display = 'none';
@@ -64,7 +63,6 @@ export function renderConversionStatus(state: AppState, _prevState?: AppState): 
   // Check if SUCCESS or FAILED - hide status bar, show action buttons only
   if (task.state === TaskState.SUCCESS || task.state === TaskState.FAILED) {
     statusContainer.style.display = 'none';
-
     // Update action buttons (download for SUCCESS, retry for FAILED)
     updateStatusBarUI(statusContainer, task, formatId);
     return;
@@ -72,7 +70,6 @@ export function renderConversionStatus(state: AppState, _prevState?: AppState): 
 
   // Show status bar for other states (processing, extracting, polling)
   statusContainer.style.display = 'flex';
-
   // Update status bar UI (with throttling)
   updateStatusBarUI(statusContainer, task, formatId);
 }
@@ -122,6 +119,7 @@ function getCurrentFormatId(state: AppState): string | null {
  * @param formatId - Format ID for throttle tracking
  */
 function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, formatId: string): void {
+  console.log(`%c[DEBUG] updateStatusBarUI called for ${formatId}`, 'color: cyan; font-weight: bold;', { task: JSON.parse(JSON.stringify(task)) });
   const now = Date.now();
   const lastUpdate = lastUpdateTimes.get(formatId) || 0;
   const timeSinceLastUpdate = now - lastUpdate;
@@ -161,12 +159,13 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
   statusContainer.style.setProperty('--progress-width', `${progress}%`);
 
   // Remove all state classes
+  console.log(`%c[DEBUG] Removing classes. Current icon classes: ${Array.from(iconElement.classList).join(' ')}`, 'color: yellow;');
   statusElement.classList.remove('status--extracting', 'status--processing', 'status--success', 'status--error');
   iconElement.classList.remove('spinner', 'checkmark', 'error', 'active');
   iconElement.textContent = ''; // Clear icon content
+  console.log(`%c[DEBUG] Applying new state: ${task.state}`, 'color: yellow;');
 
-  // Detect merging phase from status text
-  const isMergingPhase = (task.statusText || '').toLowerCase().includes('merging');
+  const isMergingPhase = task.state === 'polling' && progress >= 100;
 
   // Add appropriate state class based on task state
   switch (task.state) {
