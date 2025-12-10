@@ -84,19 +84,35 @@ function updateLoadingState(isLoading: boolean): void {
 /**
  * Update paste/clear button visibility
  * Note: In new design, we have a single action button that toggles between Paste/Clear
- * Icon-only design - CSS handles icon visibility based on data-action attribute
+ * JS controls icon/text visibility by toggling .hidden class
  */
 function updateButtonVisibility(showPaste: boolean, showClear: boolean): void {
   // Update the single action button to show either Paste or Clear icon
   if (elements.pasteBtn) {
+    // Get icon and text elements
+    const pasteIcon = elements.pasteBtn.querySelector('.paste-icon');
+    const pasteText = elements.pasteBtn.querySelector('.btn-state--paste');
+    const clearIcon = elements.pasteBtn.querySelector('.clear-icon');
+    const clearText = elements.pasteBtn.querySelector('.btn-state--clear');
+
     if (showClear) {
-      // Has content → show Clear icon
+      // Has content → show Clear icon/text, hide Paste icon/text
       elements.pasteBtn.dataset.action = 'clear';
       elements.pasteBtn.setAttribute('aria-label', 'Clear input');
+
+      pasteIcon?.classList.add('hidden');
+      pasteText?.classList.add('hidden');
+      clearIcon?.classList.remove('hidden');
+      clearText?.classList.remove('hidden');
     } else {
-      // No content → show Paste icon
+      // No content → show Paste icon/text, hide Clear icon/text
       elements.pasteBtn.dataset.action = 'paste';
       elements.pasteBtn.setAttribute('aria-label', 'Paste from clipboard');
+
+      pasteIcon?.classList.remove('hidden');
+      pasteText?.classList.remove('hidden');
+      clearIcon?.classList.add('hidden');
+      clearText?.classList.add('hidden');
     }
   }
 

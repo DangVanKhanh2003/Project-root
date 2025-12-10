@@ -42,7 +42,7 @@
 - Tạo `src/features/downloader/ui-render/view-switcher.ts`
 - Functions: `initViewSwitcher()`, `showSearchView()`, `showResultView()`
 - Integrate vào `ui-renderer.ts` (call khi render preview)
-- Wire up vào `downloader-ui.ts` (init + "New Convert" button)
+- Wire up vào `downloader-ui.ts` (init + "Next" button)
 
 **Đảm bảo:**
 - Toggle class `hidden` trên `#search-view` và `#result-view`

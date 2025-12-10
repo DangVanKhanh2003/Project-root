@@ -18,6 +18,22 @@
   gap: 12px;
   width: 100%;
   min-height: 44px; /* Fixed height to prevent layout shift */
+  flex-wrap: wrap; /* Allow wrapping on mobile */
+}
+
+/* Convert button in format selector */
+
+/* This breakpoint is now handled in the quality-wrapper section below */
+
+/* Desktop: all 3 items in one row */
+@media (min-width: 600px) {
+  .format-selector {
+    flex-wrap: nowrap; /* No wrapping on desktop */
+    justify-content: flex-start; /* Align items to left */
+    gap: 12px; /* Gap between format and quality */
+  }
+
+
 }
 
 /* Group 1: Format + Quality */
@@ -70,8 +86,8 @@
 }
 
 [data-theme="light"] .format-btn.active {
-  background: #f1f5f9;
-  color: #0f172a;
+  background: rgb(104 93 185);
+  color: white;
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
@@ -82,6 +98,45 @@
 .quality-wrapper {
   position: relative;
   flex-grow: 1;
+}
+
+/* Mobile: quality dropdown full width on line 1, format+convert on line 2 */
+@media (max-width: 599px) {
+  .quality-wrapper {
+    width: 100%;
+    order: 1;
+  }
+
+  .format-toggle {
+    order: 2;
+    flex: 1;
+  }
+
+  .format-selector .btn-convert {
+    order: 2;
+    flex: 0 0 auto; /* Don't grow, fit content */
+    width: fit-content;
+  }
+}
+
+/* Desktop: quality dropdown fixed 250px width, aligned left with format */
+@media (min-width: 600px) {
+  .quality-wrapper {
+    width: 250px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    margin-right: 0; /* No margin, let convert button use margin-left: auto */
+  }
+
+  .format-toggle {
+    flex-shrink: 0; /* Don't shrink format toggle */
+  }
+
+  .format-selector .btn-convert {
+    flex: 0 0 auto; /* Don't grow or shrink */
+    width: fit-content;
+    margin-left: auto; /* Push to the right */
+  }
 }
 
 .quality-select {
@@ -146,14 +201,11 @@
   }
 
   .format-toggle {
-    width: 120px;
     height: 40px;
-    order: 1;
   }
 
-  .quality-wrapper {
-    width: 100%;
-    order: 2;
+  .format-selector .btn-convert {
+    height: 40px; /* Match format-toggle height */
   }
 
   .format-btn {
@@ -172,22 +224,25 @@
 /* Very small devices - stack vertically */
 @media (max-width: 360px) {
   .format-selector-wrapper {
-    min-height: 88px; /* 40px + 40px + 8px gap */
+    min-height: 136px; /* 40px + 40px + 48px + gaps */
   }
 
   .format-selector {
     flex-direction: column;
     align-items: stretch;
     gap: 8px;
-    min-height: 88px;
+    min-height: 136px;
   }
 
   .format-toggle {
-    width: 100%;
     height: 40px;
   }
 
   .quality-select {
+    height: 40px;
+  }
+
+  .format-selector .btn-convert {
     height: 40px;
   }
 }
@@ -222,11 +277,9 @@
 
 /* Focus visible (keyboard navigation) */
 .format-btn:focus-visible {
-  outline: 3px solid #f20a51;
   outline-offset: 3px;
 }
 
 .quality-select:focus-visible {
-  outline: 3px solid #f20a51;
   outline-offset: 3px;
 }

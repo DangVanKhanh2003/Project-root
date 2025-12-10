@@ -1,68 +1,34 @@
 /* =========================================================
-   FAQ Section - Questions and Answers
+   Section - FAQ
    ---------------------------------------------------------
-   FAQ section with Q&A content
-   Mobile-first responsive design
+   FAQ list styles
+   Extracted from index.html - Phase 2
    ========================================================= */
 
-/* ===== FAQ SECTION ===== */
-.yt-content {
-    padding: var(--space-2xl) 0;
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
-.yt-content h3 {
-    font-size: var(--font-size-xl);
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-text-primary);
-    margin: var(--space-md) 0 var(--space-xl);
+.faq-item {
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding-bottom: 16px;
 }
 
-.download-uses {
-    margin: 0 auto;
+[data-theme="light"] .faq-item {
+    border-bottom: 1px solid #e2e8f0;
 }
 
-.download-uses > p {
-    margin-bottom: var(--space-lg);
+.faq-q {
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 8px;
+    font-size: 1.1rem;
 }
 
-/* ===== GUIDE DATA ===== */
-.guide-data h3 {
-    font-size: var(--font-size-lg);
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-text-primary);
-    margin: var(--space-xl) 0 var(--space-md);
-    line-height: var(--line-height-tight);
-}
-
-.guide-data h3:first-child {
-    margin-top: 0;
-}
-
-.guide-data p {
-    font-size: var(--font-size-base);
-    color: var(--color-text-light);
-    line-height: var(--line-height-base);
-    margin: 0 0 var(--space-lg);
-    text-align: justify;
-}
-
-/* ===== MOBILE (max-width: 575px) ===== */
-@media (max-width: 575px) {
-    .yt-content {
-        padding: var(--space-lg) 0;
-    }
-
-    .yt-content h3 {
-        font-size: var(--font-size-lg);
-        margin: var(--space-sm) 0 var(--space-lg);
-    }
-
-    .guide-data h3 {
-        font-size: var(--font-size-md);
-        margin: var(--space-lg) 0 var(--space-sm);
-    }
-
-    .guide-data p {
-        font-size: var(--font-size-sm);
-    }
+.faq-a {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
 }

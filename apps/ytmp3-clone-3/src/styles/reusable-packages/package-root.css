@@ -135,54 +135,54 @@
   --pkg-shadow-lg: var(--pkg-elevation-4);
   --pkg-shadow-xl: var(--pkg-elevation-5);
 
-  /* ----- Colors - Base Palette (MD3-compatible) ----- */
+  /* ----- Colors - Base Palette (Dark Nebula Theme) ----- */
 
-  /* Grayscale */
+  /* Grayscale - Dark Theme Adjusted */
   --pkg-color-white: #ffffff;
   --pkg-color-black: #000000;
-  --pkg-color-gray-50: #fafafa;
-  --pkg-color-gray-100: #f0f0f0;
-  --pkg-color-gray-200: #e0e0e0;
-  --pkg-color-gray-300: #d0d0d0;
-  --pkg-color-gray-400: #cccccc;
-  --pkg-color-gray-500: #aaaaaa;
-  --pkg-color-gray-600: #666666;
-  --pkg-color-gray-700: #444444;
-  --pkg-color-gray-800: #333333;
-  --pkg-color-gray-900: #2c2c2e;
+  --pkg-color-gray-50: #f1f5f9;    /* Slate-100 (light theme bg) */
+  --pkg-color-gray-100: #e2e8f0;   /* Slate-200 */
+  --pkg-color-gray-200: #cbd5e1;   /* Slate-300 */
+  --pkg-color-gray-300: #94a3b8;   /* Slate-400 */
+  --pkg-color-gray-400: #64748b;   /* Slate-500 */
+  --pkg-color-gray-500: #475569;   /* Slate-600 */
+  --pkg-color-gray-600: #334155;   /* Slate-700 */
+  --pkg-color-gray-700: #1e293b;   /* Slate-800 */
+  --pkg-color-gray-800: #0f172a;   /* Slate-900 */
+  --pkg-color-gray-900: #030014;   /* Dark Nebula bg */
 
-  /* Primary Color System (MD3 compatible) - Y2mate Pro Theme */
-  --pkg-color-primary: #c10841;                    /* Deep Red/Magenta - Y2mate brand color */
-  --pkg-color-on-primary: #ffffff;                 /* = md-sys-color-on-primary */
-  --pkg-color-primary-container: #ffd5e5;          /* Light pink container */
-  --pkg-color-on-primary-container: #8a0029;       /* Dark red for text on container */
+  /* Primary Color System - Purple/Blue Gradient Theme */
+  --pkg-color-primary: #8b5cf6;                    /* Purple-500 - Primary brand color */
+  --pkg-color-on-primary: #ffffff;                 /* White text on primary */
+  --pkg-color-primary-container: rgba(139, 92, 246, 0.1);  /* Purple tint container */
+  --pkg-color-on-primary-container: #c4b5fd;       /* Light purple for text on container */
 
-  /* Y2mate Accent Colors */
-  --pkg-color-accent: #ff0068;                     /* Hot pink for borders/accents */
-  --pkg-color-accent-bright: #f20a51;              /* Bright pink for convert button */
+  /* Accent Colors - Purple/Blue Gradient */
+  --pkg-color-accent: #7c3aed;                     /* Purple-600 for accents */
+  --pkg-color-accent-bright: #3b82f6;              /* Blue-500 for highlights */
 
-  /* Surface Color System (MD3 compatible) - Y2mate Theme */
-  --pkg-color-surface: #ffffff;                    /* = md-sys-color-surface */
-  --pkg-color-surface-variant: #f9f9f9;            /* Y2mate page background */
-  --pkg-color-surface-container: #f9f9f9;          /* = md-sys-color-surface-container */
-  --pkg-color-surface-container-low: #eee;         /* Y2mate hover background */
-  --pkg-color-on-surface: #293a46;                 /* Y2mate primary text color */
-  --pkg-color-on-surface-variant: #666666;         /* Y2mate secondary text */
+  /* Surface Color System - Dark Glassmorphism */
+  --pkg-color-surface: var(--bg-card, rgba(255, 255, 255, 0.03));          /* Dark glass surface */
+  --pkg-color-surface-variant: var(--bg-body, #030014);                    /* Dark nebula background */
+  --pkg-color-surface-container: rgba(255, 255, 255, 0.05);                /* Hover glass surface */
+  --pkg-color-surface-container-low: rgba(255, 255, 255, 0.02);            /* Subtle glass surface */
+  --pkg-color-on-surface: var(--text-main, #ffffff);                       /* White text */
+  --pkg-color-on-surface-variant: var(--text-muted, #94a3b8);              /* Muted text */
 
-  /* Outline Colors (MD3 compatible) */
-  --pkg-color-outline: #cccccc;                    /* = md-sys-color-outline */
-  --pkg-color-outline-variant: #e0e0e0;            /* = md-sys-color-outline-variant */
+  /* Outline Colors - Dark Theme */
+  --pkg-color-outline: rgba(255, 255, 255, 0.08);                          /* Glass border */
+  --pkg-color-outline-variant: rgba(255, 255, 255, 0.05);                  /* Subtle border */
 
-  /* Semantic Colors - Y2mate Theme */
-  --pkg-color-error: #a94442;                      /* Y2mate error red */
+  /* Semantic Colors - Dark Theme Compatible */
+  --pkg-color-error: #ef4444;                      /* Red-500 error */
   --pkg-color-on-error: #ffffff;
-  --pkg-color-warning: #ffc107;
-  --pkg-color-success: #5cb85c;                    /* Y2mate success green */
-  --pkg-color-success-border: #4cae4c;             /* Success green border */
+  --pkg-color-warning: #f59e0b;                    /* Amber-500 warning */
+  --pkg-color-success: #10b981;                    /* Emerald-500 success */
+  --pkg-color-success-border: #059669;             /* Emerald-600 border */
 
-  /* Overlay backgrounds */
+  /* Overlay backgrounds - Dark Theme */
   --pkg-color-overlay-light: rgba(0, 0, 0, 0.6);
-  --pkg-color-overlay-dark: rgba(0, 0, 0, 0.75);
+  --pkg-color-overlay-dark: rgba(0, 0, 0, 0.8);
 
   /* ----- Animation & Transitions (MD3-compatible) ----- */
   --pkg-duration-instant: 0s;
@@ -212,9 +212,9 @@
      SKELETON PACKAGE
      ======================================================== */
 
-  /* Skeleton Colors */
-  --pkg-skeleton-color-dark: var(--pkg-color-gray-200);
-  --pkg-skeleton-color-light: var(--pkg-color-gray-100);
+  /* Skeleton Colors - Dark Theme */
+  --pkg-skeleton-color-dark: rgba(255, 255, 255, 0.08);
+  --pkg-skeleton-color-light: rgba(255, 255, 255, 0.04);
 
   /* Skeleton Animation */
   --pkg-skeleton-duration: var(--pkg-duration-slow);
@@ -232,18 +232,18 @@
      ======================================================== */
 
   /* Expire Modal Overlay */
-  --pkg-expire-modal-overlay-bg: var(--pkg-color-overlay-light);
+  --pkg-expire-modal-overlay-bg: var(--pkg-color-overlay-dark);
 
-  /* Expire Modal Container */
-  --pkg-expire-modal-bg: var(--pkg-color-white);
-  --pkg-expire-modal-shadow: var(--pkg-shadow-md);
-  --pkg-expire-modal-radius: var(--pkg-radius-md);
-  --pkg-expire-modal-padding: var(--pkg-space-5);
+  /* Expire Modal Container - Dark Glass */
+  --pkg-expire-modal-bg: var(--pkg-color-gray-800);
+  --pkg-expire-modal-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --pkg-expire-modal-radius: var(--pkg-radius-lg);
+  --pkg-expire-modal-padding: var(--pkg-space-6);
   --pkg-expire-modal-z-index: var(--pkg-z-modal);
 
-  /* Expire Modal Colors */
+  /* Expire Modal Colors - Dark Theme */
   --pkg-expire-modal-warning-color: var(--pkg-color-warning);
-  --pkg-expire-modal-text-color: var(--pkg-color-gray-800);
+  --pkg-expire-modal-text-color: var(--pkg-color-white);
   --pkg-expire-modal-button-bg: var(--pkg-color-primary);
   --pkg-expire-modal-button-color: var(--pkg-color-white);
 
@@ -296,18 +296,18 @@
      SUGGESTIONS PACKAGE
      ======================================================== */
 
-  /* Suggestions Container */
+  /* Suggestions Container - Dark Glass */
   --pkg-suggestions-z-index: var(--pkg-z-popover);
-  --pkg-suggestions-bg: var(--pkg-color-white);
-  --pkg-suggestions-shadow: -8px 10px 10px rgba(0, 0, 0, 0.1);
+  --pkg-suggestions-bg: var(--pkg-color-gray-800);
+  --pkg-suggestions-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
   --pkg-suggestions-radius: var(--pkg-radius-md);
 
   /* Suggestions Positioning */
   --pkg-suggestions-offset-top: 55px;  /* Position below input field */
 
-  /* Suggestions Colors */
-  --pkg-suggestions-text-color: var(--pkg-color-on-surface);
-  --pkg-suggestions-hover-bg: var(--pkg-color-surface-container-low);
+  /* Suggestions Colors - Dark Theme */
+  --pkg-suggestions-text-color: var(--pkg-color-white);
+  --pkg-suggestions-hover-bg: rgba(255, 255, 255, 0.1);
   --pkg-suggestions-highlight-bg: var(--pkg-color-primary-container);
   --pkg-suggestions-highlight-color: var(--pkg-color-on-primary-container);
 
@@ -319,30 +319,30 @@
      SEARCH RESULTS PACKAGE
      ======================================================== */
 
-  /* Search Results Section */
-  --pkg-search-results-section-bg: #f2f2f2;
-  --pkg-search-results-card-bg: var(--pkg-color-white);
+  /* Search Results Section - Dark Theme */
+  --pkg-search-results-section-bg: var(--pkg-color-gray-900);
+  --pkg-search-results-card-bg: var(--pkg-color-surface);
   --pkg-search-results-card-shadow: var(--pkg-elevation-0);
-  --pkg-search-results-card-shadow-hover: var(--pkg-elevation-2);
+  --pkg-search-results-card-shadow-hover: 0 4px 20px rgba(139, 92, 246, 0.2);
   --pkg-search-results-card-radius: var(--pkg-radius-md);
 
   /* Search Results Grid */
-  --pkg-search-results-gap-mobile: 10px;
-  --pkg-search-results-gap-tablet: var(--pkg-space-3);
+  --pkg-search-results-gap-mobile: 12px;
+  --pkg-search-results-gap-tablet: var(--pkg-space-4);
 
-  /* Search Results Typography */
-  --pkg-search-results-title-color: var(--pkg-color-on-surface);
-  --pkg-search-results-channel-color: var(--pkg-color-on-surface-variant);
-  --pkg-search-results-metadata-color: var(--pkg-color-on-surface-variant);
+  /* Search Results Typography - Dark Theme */
+  --pkg-search-results-title-color: var(--pkg-color-white);
+  --pkg-search-results-channel-color: var(--pkg-color-gray-300);
+  --pkg-search-results-metadata-color: var(--pkg-color-gray-400);
 
   /* Search Results Duration Badge */
-  --pkg-search-results-duration-bg: rgba(0, 0, 0, 0.65);
-  --pkg-search-results-duration-color: var(--pkg-color-surface);
+  --pkg-search-results-duration-bg: rgba(0, 0, 0, 0.75);
+  --pkg-search-results-duration-color: var(--pkg-color-white);
 
   /* Search Results Retry Button */
-  --pkg-search-results-retry-bg: #ffb01e;
-  --pkg-search-results-retry-color: var(--pkg-color-black);
-  --pkg-search-results-retry-hover-bg: var(--pkg-color-primary);
+  --pkg-search-results-retry-bg: var(--pkg-color-primary);
+  --pkg-search-results-retry-color: var(--pkg-color-white);
+  --pkg-search-results-retry-hover-bg: var(--pkg-color-accent);
 
   /* Search Results Animation */
   --pkg-search-results-transition-duration: var(--pkg-duration-short4);

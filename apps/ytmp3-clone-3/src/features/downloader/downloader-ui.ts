@@ -21,8 +21,8 @@ import { initViewSwitcher, showSearchView } from './ui-render/view-switcher';
  */
 export async function init(): Promise<void> {
   // Step 0: Initialize shared services
-  // Configure scroll manager for y2matepro (header is not fixed)
-  scrollManager.setHeaderConfig({ isFixed: false, height: 0 });
+  // Configure scroll manager for ytmp3-clone-3 (header is fixed at 80px)
+  scrollManager.setHeaderConfig({ isFixed: true, height: 80 });
   scrollManager.init();
 
   // ==========================================
@@ -117,31 +117,4 @@ export async function init(): Promise<void> {
   // Setup popstate listener (back/forward button handling)
   initRouting();
 
-  // Setup "New Convert" button to return to search view
-  setupNewConvertButton();
-
-}
-
-/**
- * Setup "New Convert" button event handler
- * Switches back to search view and clears input
- */
-function setupNewConvertButton(): void {
-  const newConvertBtn = document.getElementById('btn-new-convert');
-
-  if (!newConvertBtn) {
-    console.warn('New Convert button not found');
-    return;
-  }
-
-  newConvertBtn.addEventListener('click', () => {
-    // Switch to search view
-    showSearchView();
-
-    // Clear input
-    setInputValue('');
-
-    // Focus input for better UX
-    focusInput();
-  });
 }

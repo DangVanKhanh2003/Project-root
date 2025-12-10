@@ -96,7 +96,7 @@ Changes:
 - Trong `renderYouTubePreview()`: Call `showResultView()` trước khi render
 - Existing render logic vào `#content-area` giữ nguyên
 
-**2.3 Wire up New Convert button**
+**2.3 Wire up Next button**
 
 File: `src/features/downloader/downloader-ui.ts`
 
@@ -191,7 +191,7 @@ CSS rules cần thêm:
 **4.6 Test View Switching**
 - [ ] Default: Search view visible, result view hidden
 - [ ] Submit URL → Smooth switch to result view
-- [ ] "New Convert" button → Switch back to search view
+- [ ] "Next" button → Switch back to search view
 - [ ] Input cleared when returning to search
 - [ ] No flash/flicker during transition
 

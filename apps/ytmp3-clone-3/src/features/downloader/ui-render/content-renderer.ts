@@ -395,17 +395,16 @@ function renderPreviewCardSkeleton(): string {
         <div class="skeleton-line skeleton-author"></div>
       </div>
     </div>
-    <div class="conversion-status-wrapper" id="conversion-status-wrapper">
-      <div class="status-container">
-        <div class="status status--extracting">
-          <span class="status-text">Extracting...</span>
-          <div class="icon spinner"></div>
-        </div>
+    <div class="status-container" id="status-container">
+      <div class="status status--extracting">
+        <span class="status-text">Extracting...</span>
+        <div class="icon spinner"></div>
       </div>
-      <div class="action-container">
-        <button class="download-btn" id="conversion-download-btn">Download</button>
-        <button class="retry-btn" id="conversion-retry-btn">Retry</button>
-      </div>
+    </div>
+    <div class="action-container" id="action-container">
+      <button class="download-btn" id="conversion-download-btn">Download</button>
+      <button class="retry-btn" id="conversion-retry-btn">Retry</button>
+      <button class="btn-new-convert" id="btn-new-convert">Next</button>
     </div>
   `;
 }
@@ -464,17 +463,16 @@ export function renderPreviewCard(_data: any): void {
         </div>
       </div>
     </div>
-    <div class="conversion-status-wrapper" id="conversion-status-wrapper">
-      <div class="status-container">
-        <div class="status status--extracting">
-          <span class="status-text">Extracting...</span>
-          <div class="icon spinner"></div>
-        </div>
+    <div class="status-container" id="status-container">
+      <div class="status status--extracting">
+        <span class="status-text">Extracting...</span>
+        <div class="icon spinner"></div>
       </div>
-      <div class="action-container">
-        <button class="download-btn" id="conversion-download-btn">Download</button>
-        <button class="retry-btn" id="conversion-retry-btn">Retry</button>
-      </div>
+    </div>
+    <div class="action-container" id="action-container">
+      <button class="download-btn" id="conversion-download-btn">Download</button>
+      <button class="retry-btn" id="conversion-retry-btn">Retry</button>
+      <button class="btn-new-convert" id="btn-new-convert">Next</button>
     </div>
   `;
 

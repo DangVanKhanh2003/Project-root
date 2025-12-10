@@ -1,91 +1,80 @@
 /**
  * Conversion Status Bar Component
- * Displays conversion progress and actions below YouTube preview card
+ * Updated with glassmorphism design and purple progress bar - Phase 2.5
+ * Based on demo .status--processing design
  */
 
-/* ===== CSS VARIABLES ===== */
-:root {
-  /* Colors */
-  --status-primary: #3498db;
-  --status-success: #2ecc71;
-  --status-error: #e74c3c;
-  --status-border: #e0e0e0;
-  --status-text: #333;
-  --status-white: #fff;
-
-  /* Spacing */
-  --status-gap: 12px;
-  --status-border-radius: 8px;
-
-  /* Animation */
-  --status-transition-fast: 0.2s ease;
-}
-
-/* ===== CONTAINER ===== */
-.conversion-status-wrapper {
-  margin-top: 16px;
-  min-height: 60px;
-}
-
-.conversion-status-wrapper.active {
-  display: block;
-}
-
-/* ===== SHARED DIMENSIONS (both containers must match to prevent layout shift) ===== */
+/* ===== SHARED DIMENSIONS ===== */
 .status-container,
 .action-container {
-  padding: 8px 12px; /* Thin padding */
-  margin-bottom: var(--status-gap);
-  border-radius: var(--status-border-radius);
-  min-height: 44px; /* Touch-friendly */
+  padding: 0px !important;
+  margin: 0px !important;
+  border-radius: var(--radius-md, 12px);
+  min-height: 52px;
+}
+
+.status-container {
   margin: 0px;
+}
+
+.action-container {
+  margin: 12px 0 0 0;
 }
 
 /* ===== STATUS BAR ===== */
 .status-container {
-  /* Progress fill background - fills from left to right based on --progress variable */
-  --progress: 0%; /* Default 0% */
-  background: linear-gradient(
-    to right,
-    rgba(52, 152, 219, 0.15) 0%,
-    rgba(52, 152, 219, 0.15) var(--progress),
-    transparent var(--progress)
-  );
-  border: 1px solid var(--status-primary); /* Default blue border */
+  position: relative;
+  width: 100%;
+  background: var(--bg-input);
+  border: var(--border-glass);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: background 0.3s, border-color 0.3s;
+}
 
-  /* Smooth transitions */
-  transition:
-    border-color var(--status-transition-fast),
-    --progress 0.3s ease-out; /* Faster transition to prevent jank */
-
-  /* Performance optimization */
-  will-change: background; /* Hint browser to optimize background animation */
-  contain: layout style;
-  transform: translateZ(0);
-  backface-visibility: hidden;
+/* Processing state - purple progress bar */
+.status-container.processing::before,
+.status-container:has(.status--processing)::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: var(--progress, 0%);
+  background: rgba(139, 92, 246, 0.15); /* Purple tint */
+  border-right: 1px solid rgba(139, 92, 246, 0.4);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
+  transition: width 0.2s linear;
+  z-index: 1;
 }
 
 /* Hide status bar on success */
 .status-container:has(.status--success) {
-  display: none; /* Hide status bar on success - only show download button */
+  display: none;
 }
 
-/* Override to red border on error */
+/* Error state - keep border visible */
 .status-container:has(.status--error) {
-  border-color: var(--status-error); /* Red */
+  border-color: var(--status-error, #e74c3c);
 }
 
 .status {
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--status-gap);
+  gap: 10px;
 }
 
 .status-text {
   font-size: 14px;
-  font-weight: 500;
-  color: var(--status-primary); /* Default blue text */
+  font-weight: 600;
+  color: var(--text-main);
+  text-transform: capitalize;
 }
 
 /* ===== ICON STATES ===== */
@@ -96,102 +85,106 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  transition: opacity var(--status-transition-fast);
+  transition: opacity 0.2s ease;
 }
 
-/* Spinner (extracting, processing) */
+/* Spinner (extracting, processing) - Purple theme */
 .icon.spinner {
-  border: 3px solid var(--status-border);
-  border-top: 3px solid var(--status-primary);
+  border: 2px solid rgba(139, 92, 246, 0.3);
+  border-top: 2px solid #8b5cf6;
   border-radius: 50%;
-  animation: spin 0.35s linear infinite;
+  animation: spin 1s linear infinite;
   margin: 0px;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Checkmark (success) - Hidden */
 .icon.checkmark {
-  display: none; /* Hide checkmark on success */
+  display: none;
 }
 
 /* Error icon - Hidden */
 .icon.error {
-  display: none; /* Hide error icon on failed */
+  display: none;
 }
 
 /* ===== STATUS STATES ===== */
-/* Default text is blue (primary), only override for success and error */
-
 .status--success .status-text {
-  color: var(--status-success); /* Green for success */
+  color: var(--status-success, #2ecc71);
 }
 
 .status--error .status-text {
-  color: var(--status-error); /* Red for error */
+  color: var(--status-error, #e74c3c);
 }
 
 /* ===== PROGRESS BAR ===== */
-/* Progress bar is completely hidden - only show % in text */
+/* Progress bar is hidden - only show background gradient */
 .progress-bar {
-  display: none !important; /* Always hidden */
+  display: none !important;
 }
 
 /* ===== ACTION CONTAINER ===== */
 .action-container {
-  display: none; /* Hide by default */
+  display: none;
 }
 
 .action-container.active {
-  display: block; /* Show when success or failed */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 12px;
   margin: 0px;
 }
 
 .download-btn,
 .retry-btn {
-  margin: auto;
+  margin: 0;
   padding: 5px 24px;
   font-size: 16px;
   font-weight: 600;
-  border-radius: 8px;
+  border-radius: var(--radius-md, 8px);
   border: none;
   cursor: pointer;
   transition: all 0.2s ease;
-  display: none; /* Hide buttons by default */
-
-  /* Touch-friendly */
+  display: none;
   min-height: 44px;
-
-  /* Ripple effect support */
   position: relative;
   overflow: hidden;
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
   user-select: none;
+  width: fit-content;
 }
 
 .download-btn.active,
 .retry-btn.active {
-  display: block; /* Show button when active */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .download-btn {
-  background: var(--color-primary-button);
-  color: var(--status-white);
+  background: var(--gradient-primary);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
 }
 
-
+.download-btn:hover {
+  transform: translateY(-2px);
+}
 
 .download-btn:active {
   transform: translateY(0);
 }
 
 .retry-btn {
-  background: var(--status-error);
-  color: var(--status-white);
+  background: var(--status-error, #e74c3c);
+  color: #fff;
 }
 
 .retry-btn:hover {
@@ -200,6 +193,51 @@
 }
 
 .retry-btn:active {
+  transform: translateY(0);
+}
+
+.btn-new-convert {
+  margin: 0;
+  padding: 5px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: var(--radius-md, 8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  position: relative;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
+  width: fit-content;
+}
+
+[data-theme="light"] .btn-new-convert {
+  border: 1px solid #cbd5e1;
+  color: var(--text-muted);
+}
+
+.btn-new-convert:hover {
+  border-color: #fff;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-1px);
+}
+
+[data-theme="light"] .btn-new-convert:hover {
+  background: #f1f5f9;
+  color: var(--text-main);
+  border-color: #94a3b8;
+}
+
+.btn-new-convert:active {
   transform: translateY(0);
 }
 
@@ -222,8 +260,17 @@
 }
 
 /* ===== RESPONSIVE ===== */
+
+/* Hide Next button on small screens (< 1200px) */
+@media (max-width: 1199px) {
+  .btn-new-convert {
+  }
+}
+
 @media (min-width: 768px) {
-  .status-container,
+  .status-container {
+    min-height: 52px;
+  }
 
   .status-text {
     font-size: 15px;

@@ -32,10 +32,10 @@ interface VideoMeta {
  * @param _prevState - Previous application state (unused, kept for consistency with render pattern)
  */
 export function renderConversionStatus(state: AppState, _prevState?: AppState): void {
-  // Get status bar wrapper
-  const wrapper = document.getElementById('conversion-status-wrapper');
+  // Get status bar container
+  const statusContainer = document.getElementById('status-container');
 
-  if (!wrapper) {
+  if (!statusContainer) {
     // Status bar not present on page - skip
     return;
   }
@@ -45,7 +45,7 @@ export function renderConversionStatus(state: AppState, _prevState?: AppState): 
 
   if (!formatId) {
     // No format selected - hide status bar
-    wrapper.classList.remove('active');
+    statusContainer.style.display = 'none';
     return;
   }
 
@@ -54,18 +54,18 @@ export function renderConversionStatus(state: AppState, _prevState?: AppState): 
 
   if (!task) {
     // No active conversion - hide status bar
-    wrapper.classList.remove('active');
+    statusContainer.style.display = 'none';
     return;
   }
 
   // Show status bar
-  wrapper.classList.add('active');
+  statusContainer.style.display = 'flex';
 
   // Setup button handlers if not already set up
-  setupButtonHandlers(wrapper, formatId);
+  setupButtonHandlers(formatId);
 
   // Update status bar UI (with throttling)
-  updateStatusBarUI(wrapper, task, formatId);
+  updateStatusBarUI(statusContainer, task, formatId);
 }
 
 // ============================================================
@@ -108,11 +108,11 @@ function getCurrentFormatId(state: AppState): string | null {
  * Update status bar UI based on conversion task state
  * Throttled to update max every 1 second to avoid excessive DOM updates
  *
- * @param wrapper - Status bar wrapper element
+ * @param statusContainer - Status bar container element
  * @param task - Conversion task with state
  * @param formatId - Format ID for throttle tracking
  */
-function updateStatusBarUI(wrapper: HTMLElement, task: ConversionTask, formatId: string): void {
+function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, formatId: string): void {
   const now = Date.now();
   const lastUpdate = lastUpdateTimes.get(formatId) || 0;
   const timeSinceLastUpdate = now - lastUpdate;
@@ -132,15 +132,14 @@ function updateStatusBarUI(wrapper: HTMLElement, task: ConversionTask, formatId:
   lastUpdateTimes.set(formatId, now);
 
   // Get DOM elements
-  const statusContainer = wrapper.querySelector('.status-container') as HTMLElement | null;
-  const statusElement = wrapper.querySelector('.status');
-  const statusTextElement = wrapper.querySelector('.status-text');
-  const iconElement = wrapper.querySelector('.icon');
-  const actionContainer = wrapper.querySelector('.action-container') as HTMLElement | null;
-  const downloadBtn = wrapper.querySelector('#conversion-download-btn') as HTMLElement | null;
-  const retryBtn = wrapper.querySelector('#conversion-retry-btn') as HTMLElement | null;
+  const statusElement = statusContainer.querySelector('.status');
+  const statusTextElement = statusContainer.querySelector('.status-text');
+  const iconElement = statusContainer.querySelector('.icon');
+  const actionContainer = document.getElementById('action-container') as HTMLElement | null;
+  const downloadBtn = document.getElementById('conversion-download-btn') as HTMLElement | null;
+  const retryBtn = document.getElementById('conversion-retry-btn') as HTMLElement | null;
 
-  if (!statusContainer || !statusElement || !statusTextElement || !iconElement || !actionContainer) {
+  if (!statusElement || !statusTextElement || !iconElement || !actionContainer) {
     console.warn('[renderConversionStatus] Required DOM elements not found');
     return;
   }
@@ -215,14 +214,21 @@ function updateStatusBarUI(wrapper: HTMLElement, task: ConversionTask, formatId:
 /**
  * Setup button click handlers (idempotent - safe to call multiple times)
  */
-function setupButtonHandlers(wrapper: HTMLElement, formatId: string): void {
-  // Use a flag to prevent duplicate setup
-  if (wrapper.dataset.handlersAttached === 'true') {
+function setupButtonHandlers(formatId: string): void {
+  const actionContainer = document.getElementById('action-container');
+
+  if (!actionContainer) {
     return;
   }
 
-  const downloadBtn = wrapper.querySelector('#conversion-download-btn');
-  const retryBtn = wrapper.querySelector('#conversion-retry-btn');
+  // Use a flag to prevent duplicate setup
+  if (actionContainer.dataset.handlersAttached === 'true') {
+    return;
+  }
+
+  const downloadBtn = document.getElementById('conversion-download-btn');
+  const retryBtn = document.getElementById('conversion-retry-btn');
+  const newConvertBtn = document.getElementById('btn-new-convert');
 
   if (downloadBtn) {
     downloadBtn.addEventListener('click', () => handleDownloadButtonClick(formatId));
@@ -234,7 +240,12 @@ function setupButtonHandlers(wrapper: HTMLElement, formatId: string): void {
     addRippleEffect(retryBtn as HTMLElement);
   }
 
-  wrapper.dataset.handlersAttached = 'true';
+  if (newConvertBtn) {
+    newConvertBtn.addEventListener('click', handleNewConvertButtonClick);
+    addRippleEffect(newConvertBtn as HTMLElement);
+  }
+
+  actionContainer.dataset.handlersAttached = 'true';
 }
 
 /**
@@ -278,6 +289,26 @@ async function handleRetryButtonClick(formatId: string): Promise<void> {
     videoTitle,
     videoUrl
   });
+}
+
+/**
+ * Handle Next button click
+ * Switches back to search view and clears input
+ */
+async function handleNewConvertButtonClick(): Promise<void> {
+  console.log('[renderConversionStatus] Next button clicked');
+
+  const { showSearchView } = await import('./view-switcher');
+  const { setInputValue, focusInput } = await import('./ui-renderer');
+
+  // Switch to search view
+  showSearchView();
+
+  // Clear input
+  setInputValue('');
+
+  // Focus input for better UX
+  focusInput();
 }
 
 // ============================================================

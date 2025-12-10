@@ -27,7 +27,6 @@
 /* Section Container - Mobile First (0-599px) */
 .search-results-section {
     width: 100%;
-    padding: var(--pkg-space-6) 0;
     padding-top: 40px !important;
     padding-bottom: 40px !important;
     min-height: 0; /* Allow section to collapse when empty */
@@ -37,37 +36,27 @@
 
 /* Tablet (600px+) - Section padding */
 @media (min-width: 600px) {
-    .search-results-section {
-        padding: var(--pkg-space-8) 0;
-    }
+
 }
 
 /* Desktop (840px+) - Section padding */
 @media (min-width: 840px) {
-    .search-results-section {
-        padding: var(--pkg-space-10) 0;
-    }
+
 }
 
 /* Wide Desktop (1240px+) - Section padding */
 @media (min-width: 1240px) {
-    .search-results-section {
-        padding: var(--pkg-space-12) 0;
-    }
+
 }
 
 /* 2K Display (1920px+) - Section padding */
 @media (min-width: 1920px) {
-    .search-results-section {
-        padding: var(--pkg-space-14) 0;
-    }
+
 }
 
 /* 4K Display (2560px+) - Section padding */
 @media (min-width: 2560px) {
-    .search-results-section {
-        padding: var(--pkg-space-16) 0;
-    }
+
 }
 
 /* Tablet (600px+) - 3 columns */
@@ -374,12 +363,11 @@
     position: absolute;
     top: 0;
     left: 0;
-    background: linear-gradient(90deg,
-        var(--pkg-skeleton-color-dark) 25%,
-        var(--pkg-skeleton-color-light),
-        var(--pkg-skeleton-color-dark) 75%);
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
     background-size: 200% 100%;
-    animation: shimmer 1.0s linear infinite;
+    animation: shimmer 1.5s linear infinite;
+    border-radius: 8px;
+    aspect-ratio: 16 / 9;
 }
 
 /* Skeleton Title - Match h3.card-title */
@@ -413,12 +401,9 @@
     display: block;
     height: 1em;
     height: 13px;
-    background: linear-gradient(90deg,
-        var(--pkg-skeleton-color-dark) 25%,
-        var(--pkg-skeleton-color-light),
-        var(--pkg-skeleton-color-dark) 75%);
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
     background-size: 200% 100%;
-    animation: shimmer 1.0s linear infinite;
+    animation: shimmer 1.5s linear infinite;
     border-radius: var(--pkg-radius-xs);
     margin-bottom: 6px;
     color: transparent;
@@ -453,12 +438,9 @@
 .skeleton-segment {
     height: 0.75em;
     width: 50px;
-    background: linear-gradient(90deg,
-        var(--pkg-skeleton-color-dark) 25%,
-        var(--pkg-skeleton-color-light),
-        var(--pkg-skeleton-color-dark) 75%);
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
     background-size: 200% 100%;
-    animation: shimmer 1.0s linear infinite;
+    animation: shimmer 1.5s linear infinite;
     border-radius: var(--pkg-radius-xs);
 }
 

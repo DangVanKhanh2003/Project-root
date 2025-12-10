@@ -1,69 +1,44 @@
 /* =========================================================
-   Features Section - Features Grid
+   Section - Features
    ---------------------------------------------------------
-   Features cards with icons, titles, and descriptions
-   Mobile-first responsive design with 3-column grid
+   Features grid layout
+   Extracted from index.html - Phase 2
    ========================================================= */
 
-/* ===== FEATURES WRAPPER ===== */
-.y2mate-features-wrap-pro {
-    padding: 30px 0;
-    position: relative;
+.features-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-top: 40px;
+}
+
+@media (min-width: 768px) {
+    .features-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.feature-item {
     display: flex;
+    gap: 16px;
 }
 
-.y2mate-features-wrap-pro::before {
-    background: rgba(0, 0, 0, 0) radial-gradient(ellipse at center center, rgba(0, 0, 0, 0.2) 0px, rgba(255, 255, 255, 0) 75%) repeat scroll 0 0;
-    bottom: 0;
-    content: "";
-    display: block;
-    height: 1px;
-    left: 50%;
-    margin-left: -40%;
-    position: absolute;
-    width: 80%;
+.feature-icon {
+    color: #60a5fa;
+    flex-shrink: 0;
 }
 
-.y2mate-features-wrap-pro.first::before {
-    background: inherit;
+[data-theme="light"] .feature-icon {
+    color: #3b82f6;
 }
 
-/* ===== FEATURES CARD ===== */
-.y2mate-features-pro {
-    text-align: center;
-    padding: var(--space-xl);
+.feature-title {
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 6px;
 }
 
-.y2mate-features-pro svg {
-    display: block;
-    margin: 0 auto var(--space-lg);
-    color: var(--color-text-dark, #333);
-}
-
-.y2mate-features-pro h3 {
-    font-size: var(--font-size-2xl);
-    font-weight: var(--font-weight-bold);
-    color: #c10841;
-    margin: 0 0 8px;
-    line-height: var(--line-height-tight);
-}
-
-.y2mate-features-pro p {
-    font-size: var(--font-size-sm);
-    color: var(--color-text-light);
-    line-height: var(--line-height-base);
-    margin: 0;
-}
-
-/* ===== MOBILE (max-width: 767px) ===== */
-@media (max-width: 767px) {
-    .y2mate-features-wrap-pro {
-        padding: 25px 0;
-        display: block;
-    }
-
-    .y2mate-features-pro h3 {
-        width: 100%;
-        margin: 8px 0 0 0;
-    }
+.feature-text {
+    font-size: 0.9rem;
+    color: var(--text-muted);
 }

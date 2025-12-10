@@ -1,0 +1,75 @@
+/* =========================================================
+   Component - Hero Card
+   ---------------------------------------------------------
+   Main hero card with glassmorphism effect
+   Extracted from index.html - Phase 2
+   ========================================================= */
+
+.hero-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: var(--border-glass);
+    border-radius: var(--radius-lg);
+    padding: 30px 24px;
+    width: 100%;
+    max-width: 850px;
+    position: relative;
+    z-index: 10;
+    box-shadow: var(--shadow-glass);
+    transition: transform 0.3s ease, background 0.3s, border-color 0.3s;
+}
+
+@media (min-width: 768px) {
+    .hero-card {
+        padding: 50px;
+    }
+}
+
+.hero-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 16px;
+}
+
+[data-theme="dark"] .hero-title {
+    color: white;
+}
+
+[data-theme="light"] .hero-title {
+    color: black;
+}
+
+.hero-title span {
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.hero-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    max-width: 500px;
+    margin: 0 auto;
+    opacity: 0.7;
+}
+
+.hero-subtitle p {
+    font-size: 1rem; /* 14px on mobile base */
+}
+
+[data-theme="dark"] .hero-subtitle {
+    color: #999;
+}
+
+[data-theme="light"] .hero-subtitle {
+    color: #666;
+}

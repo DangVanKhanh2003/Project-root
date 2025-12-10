@@ -306,10 +306,10 @@ Nếu bạn muốn dùng **2-view structure** như demo (search view ↔ result 
       <!-- Preview card will be injected into #content-area -->
       <div id="content-area"></div>
 
-      <!-- Action buttons (download, new convert) -->
+      <!-- Action buttons (download, Next) -->
       <div id="result-actions" class="hidden">
         <button id="btn-download">Download</button>
-        <button id="btn-new-convert">New Convert</button>
+        <button id="btn-new-convert">Next</button>
       </div>
     </div>
 
@@ -354,7 +354,7 @@ export function renderYouTubePreview(data) {
 }
 ```
 
-**Wire up "New Convert" button in `downloader-ui.ts`:**
+**Wire up "Next" button in `downloader-ui.ts`:**
 
 ```typescript
 import { showSearchView } from './ui-render/view-switcher';
@@ -362,7 +362,7 @@ import { showSearchView } from './ui-render/view-switcher';
 export async function init() {
   // ... existing init code ...
 
-  // Wire up new convert button
+  // Wire up Next button
   const btnNewConvert = document.getElementById('btn-new-convert');
   btnNewConvert?.addEventListener('click', () => {
     showSearchView();

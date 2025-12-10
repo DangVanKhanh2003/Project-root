@@ -1,53 +1,49 @@
 /* =========================================================
-   Footer Section
+   Section - Footer
    ---------------------------------------------------------
-   Copyright notice and footer navigation
-   Mobile-first responsive design
+   Footer with glassmorphism design
+   Extracted from index.html - Phase 2
    ========================================================= */
 
-/* ===== FOOTER ===== */
 .footer {
-    padding: var(--space-2xl) 0;
+    margin-top: auto;
+    border-top: var(--border-glass);
+    background: var(--bg-footer);
+    padding: 40px 0;
+}
+
+[data-theme="light"] .footer {
+    background: #f8fafc;
+    border-top: 1px solid #e2e8f0;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    background: var(--color-bg-white);
-    border-top: 1px solid var(--color-border-separator);
+    gap: 24px;
 }
 
-.footer p {
-    font-size: var(--font-size-sm);
-    color: var(--color-text-secondary);
-    margin: 0 0 var(--space-lg);
-}
-
-/* ===== FOOTER NAVIGATION ===== */
-.footer_nav {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.footer-links {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: var(--space-lg);
+    gap: 20px;
 }
 
-.fnav-menu {
-    display: inline-block;
+.footer-link {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    transition: color 0.2s;
 }
 
-.fnav-menu a {
-    font-size: var(--font-size-sm);
-    color: var(--color-text-light);
-    text-decoration: none;
+.footer-link:hover {
+    color: var(--text-main);
 }
 
-.fnav-menu a:hover {
-    color: var(--color-primary);
-    text-decoration: underline;
-}
-
-/* ===== MOBILE (max-width: 767px) ===== */
-@media (max-width: 767px) {
-    .footer {
-        padding: var(--space-xl) 0;
-    }
+.copyright {
+    color: var(--text-muted);
+    opacity: 0.7;
+    font-size: 0.85rem;
 }

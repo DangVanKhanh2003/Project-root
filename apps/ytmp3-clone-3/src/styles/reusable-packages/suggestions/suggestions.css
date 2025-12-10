@@ -25,7 +25,7 @@
 @media (min-width: 0px) and (max-width: 350px) {
     /* Extra Small Mobile - Compact suggestion display */
     .suggestion-container {
-        font-size: var(--pkg-body-small-size); /* 12px */
+        font-size: 14px !important;
         max-height: 200px !important; /* Compact for tiny screens */
         max-width: 150px;
         border-radius: var(--pkg-radius-sm); /* 8px */
@@ -33,7 +33,7 @@
 
     .suggestion-item {
         padding: 4px var(--pkg-space-3); /* 4px 12px */
-        font-size: var(--pkg-body-small-size); /* 12px */
+        font-size: 14px !important;
     }
 
     }
@@ -41,7 +41,7 @@
 @media (min-width: 351px) and (max-width: 599px) {
     /* Small Mobile - Standard mobile experience */
     .suggestion-container {
-        font-size: var(--pkg-body-medium-size); /* 14px */
+        font-size: 14px !important;
         max-height: 280px !important;
         max-width: 200px;
         border-radius: var(--pkg-radius-md); /* 12px */
@@ -49,19 +49,21 @@
 
     .suggestion-item {
         padding: var(--pkg-space-2) var(--pkg-space-4); /* 8px 16px */
-        font-size: var(--pkg-body-medium-size); /* 14px */
+        font-size: 14px !important;
     }
 }
 
 @media (min-width: 600px) and (max-width: 839px) {
     /* Medium Tablet - More spacious suggestions */
     .suggestion-container {
+        font-size: 14px !important;
         max-height: 320px;
         box-shadow: var(--pkg-elevation-2); /* Subtle shadow for tablets */
     }
 
     .suggestion-item {
         padding: var(--pkg-space-2) var(--pkg-space-5); /* 8px 20px */
+        font-size: 14px !important;
     }
 }
 

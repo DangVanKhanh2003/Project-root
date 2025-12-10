@@ -344,10 +344,10 @@
   justify-content: center;
   gap: var(--space-xs, 4px);
   padding: var(--space-sm, 6px) var(--space-xl, 20px);
-  background: var(--color-primary-button, #f20a51);
+  background: var(--gradient-primary, linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%));
   color: #ffffff;
   border: none;
-  border-radius: 3px;
+  border-radius: var(--radius-md, 12px);
   font-size: 13px;
   font-weight: var(--font-weight-semibold, 600);
   cursor: pointer;
@@ -355,6 +355,7 @@
   white-space: nowrap;
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
+  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);
 }
 
 
@@ -457,7 +458,6 @@
   .btn-convert {
     padding: var(--space-sm, 6px) var(--space-2xl, 24px);
     font-size: var(--font-size-sm, 14px);
-    border-radius: 3px;
   }
 
   .btn-icon {
@@ -504,7 +504,6 @@
   .btn-convert {
     padding: var(--space-md, 8px) var(--space-2xl, 28px);
     font-size: var(--font-size-base, 15px);
-    border-radius: 3px;
   }
 
   .skeleton-convert-btn {
