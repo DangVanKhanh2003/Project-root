@@ -256,7 +256,7 @@ Format data đi qua nhiều layers và có thể biến đổi:
 - Hiển thị progress dạng MB
 - Khi xong, show "Download from RAM" button
 
-**Progress:** "Downloading... 45.3 / 150.0 MB"
+**Progress:** "Converting... 45.3 / 150.0 MB"
 
 **Trick quan trọng:** Double EXTRACTING
 - Giữ spinner trong khi đợi stream connect
@@ -330,7 +330,7 @@ Format data đi qua nhiều layers và có thể biến đổi:
 
 **MB-based (RAM Download):**
 - Dùng cho iOS RAM download
-- Hiển thị: "Downloading... X / Y MB"
+- Hiển thị: "Converting... X / Y MB"
 - Real-time từ fetch chunks
 
 **Percentage-based (Polling):**

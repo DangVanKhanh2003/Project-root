@@ -140,7 +140,7 @@ Hệ thống tự động phát hiện platform và file type để quyết đ�
 5. Stream bắt đầu download (chunk đầu tiên đến)
    ↓
 6. Modal chuyển sang CONVERTING phase
-   - Text: "Downloading... X MB / Y MB"
+   - Text: "Converting... X MB / Y MB"
    - Progress tăng từ 0 MB → file size
    - Tất cả đều là REAL progress (không fake)
    ↓
@@ -156,7 +156,7 @@ Hệ thống tự động phát hiện platform và file type để quyết đ�
 
 **Vấn đề gốc:**
 - Sau extract API xong, nếu chuyển ngay sang CONVERTING
-- Hiển thị "Downloading... 0 MB / 50 MB"
+- Hiển thị "Converting... 0 MB / 50 MB"
 - Stream mất 1-2 giây để connect
 - User thấy progress stuck ở "0 MB" → Bad UX
 
@@ -177,7 +177,7 @@ T+0-1s:   Stream đang connect (background)
           User không thấy "0 MB" stuck
 
 T+1s:     First chunk arrives!
-          Modal chuyển: "Downloading... 0 MB / 50 MB"
+          Modal chuyển: "Converting... 0 MB / 50 MB"
           Progress tăng ngay: 0 → 5 → 10 → ...
 ```
 
@@ -600,7 +600,7 @@ Total: Vài phút (tùy file size, MP3 chậm nhất)
 - "Finalizing video... 95%"
 
 **RAM download:**
-- "Downloading... 10 MB / 50 MB"
+- "Converting... 10 MB / 50 MB"
 
 ### 6. Polling Interval
 

@@ -207,7 +207,7 @@ export class ProgressBarManager {
       ? `${Math.max(1, Math.ceil(options.totalSize / (1024 * 1024 * 1024)))} GB`
       : `${totalMB} MB`;
 
-    this.updateVisualProgress(0, `Downloading... 0 MB / ${totalDisplay}`);
+    this.updateVisualProgress(0, `Converting... 0 MB / ${totalDisplay}`);
 
     // Start real download progress
     const onProgressCallback = (loaded: number, total: number) => {
@@ -225,7 +225,7 @@ export class ProgressBarManager {
       // Handle unknown total size (no content-length header AND no size from extract)
       if (actualTotal === 0) {
         // Indeterminate progress - show only loaded size
-        this.updateVisualProgress(0, `Downloading... ${loadedSize}`);
+        this.updateVisualProgress(0, `Converting... ${loadedSize}`);
         return;
       }
 
@@ -235,7 +235,7 @@ export class ProgressBarManager {
         ? `${Math.max(1, Math.ceil(actualTotal / (1024 * 1024 * 1024)))} GB`
         : `${totalMB} MB`;
 
-      this.updateVisualProgress(progressPercent, `Downloading... ${loadedSize} / ${totalSize}`);
+      this.updateVisualProgress(progressPercent, `Converting... ${loadedSize} / ${totalSize}`);
     };
 
     options.onProgress(onProgressCallback).then(() => {
@@ -333,13 +333,13 @@ export class ProgressBarManager {
 
   /**
    * Update download progress for RAM download (iOS audio)
-   * Shows: "Downloading... X MB / Y MB" without appending %
+   * Shows: "Converting... X MB / Y MB" without appending %
    *
    * WHY: RAM download shows bytes progress, not percentage
    * CONTRACT: (percent, statusText) → void
    * PRE: Valid percent (0-100), statusText with MB info
    * POST: Progress bar updated, statusText shown as-is (no % appended)
-   * USAGE: progressBar.updateDownloadProgress(44, 'Downloading... 12 MB / 26 MB');
+   * USAGE: progressBar.updateDownloadProgress(44, 'Converting... 12 MB / 26 MB');
    */
   updateDownloadProgress(displayProgress: number, statusText: string): void {
     const targetProgress = Math.min(Math.max(displayProgress, 0), 100);

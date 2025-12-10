@@ -407,7 +407,6 @@ function renderDetailSkeleton(): string {
             <div class="video-title-skeleton">
               <div class="skeleton-line"></div>
               <div class="skeleton-line"></div>
-              <div class="skeleton-see-more"></div>
             </div>
           </div>
         </div>

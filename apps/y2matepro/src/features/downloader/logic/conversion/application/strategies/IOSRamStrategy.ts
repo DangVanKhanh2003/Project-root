@@ -132,8 +132,8 @@ export class IOSRamStrategy extends BaseStrategy {
       const loadedMB = Math.ceil(loaded / (1024 * 1024));
       const totalMB = Math.ceil(total / (1024 * 1024));
       const statusText = total > 0
-        ? `Downloading... ${loadedMB} MB / ${totalMB} MB`
-        : `Downloading... ${loadedMB} MB`;
+        ? `Converting... ${loadedMB} MB / ${totalMB} MB`
+        : `Converting... ${loadedMB} MB`;
 
       const percent = total > 0 ? Math.round((loaded / total) * 100) : 0;
 

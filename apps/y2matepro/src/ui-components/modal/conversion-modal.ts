@@ -316,7 +316,7 @@ export class ConversionModal {
    * EDGE: Handles both polling (%) and download (MB) modes
    * USAGE:
    *   Polling: modal.updateConversionProgress(45, 'Converting...');
-   *   Download: modal.updateConversionProgress(0, 'Downloading...', true, 12*1024*1024, 26*1024*1024);
+   *   Download: modal.updateConversionProgress(0, 'Converting...', true, 12*1024*1024, 26*1024*1024);
    *   Merging: modal.updateConversionProgress(100, 'Merging files…', false, undefined, undefined, false);
    */
   updateConversionProgress(

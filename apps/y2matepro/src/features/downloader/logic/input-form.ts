@@ -170,7 +170,7 @@ function generateFakeYouTubeData(videoId: string, url: string): any {
       ],
       audio: [
         {
-          quality: '256kbps',
+          quality: '320kbps',
           format: 'mp3',
           vid: videoId,
           type: 'AUDIO',
@@ -178,7 +178,20 @@ function generateFakeYouTubeData(videoId: string, url: string): any {
           isFakeData: true,
           extractV2Options: {
             downloadMode: 'audio',
-            audioBitrate: '256',
+            audioBitrate: '320',
+            audioFormat: 'mp3'
+          }
+        },
+        {
+          quality: '192kbps',
+          format: 'mp3',
+          vid: videoId,
+          type: 'AUDIO',
+          size: 'Processing...',
+          isFakeData: true,
+          extractV2Options: {
+            downloadMode: 'audio',
+            audioBitrate: '192',
             audioFormat: 'mp3'
           }
         },

@@ -64,8 +64,8 @@ export class IOSRamStrategy extends BaseStrategy {
     // Build initial status text with size info
     const totalMB = totalBytes > 0 ? Math.ceil(totalBytes / (1024 * 1024)) : 0;
     const initialStatusText = totalMB > 0
-      ? `Downloading... 0 MB / ${totalMB} MB`
-      : 'Downloading...';
+      ? `Converting... 0 MB / ${totalMB} MB`
+      : 'Converting...';
 
     // Update state to DOWNLOADING after delay
     log('Updating task state to DOWNLOADING with initial status:', initialStatusText);
@@ -158,8 +158,8 @@ export class IOSRamStrategy extends BaseStrategy {
 
     // Build status text
     const statusText = totalMB > 0
-      ? `Downloading... ${loadedMB} MB / ${totalMB} MB`
-      : `Downloading... ${loadedMB} MB`;
+      ? `Converting... ${loadedMB} MB / ${totalMB} MB`
+      : `Converting... ${loadedMB} MB`;
 
     const percent = total > 0 ? Math.round((loaded / total) * 100) : 0;
 

@@ -107,7 +107,6 @@
    Height: title(48px) + see-more(26px) = 74px */
 .video-title-wrapper {
   margin-bottom: var(--space-sm, 6px);
-  min-height: 74px;
 }
 
 /* Video Title Skeleton - MUST match .video-title + see-more height to prevent CLS
