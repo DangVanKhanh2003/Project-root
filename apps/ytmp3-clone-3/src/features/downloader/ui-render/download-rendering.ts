@@ -58,11 +58,20 @@ export function renderConversionStatus(state: AppState, _prevState?: AppState): 
     return;
   }
 
-  // Show status bar
-  statusContainer.style.display = 'flex';
-
   // Setup button handlers if not already set up
   setupButtonHandlers(formatId);
+
+  // Check if SUCCESS or FAILED - hide status bar, show action buttons only
+  if (task.state === TaskState.SUCCESS || task.state === TaskState.FAILED) {
+    statusContainer.style.display = 'none';
+
+    // Update action buttons (download for SUCCESS, retry for FAILED)
+    updateStatusBarUI(statusContainer, task, formatId);
+    return;
+  }
+
+  // Show status bar for other states (processing, extracting, polling)
+  statusContainer.style.display = 'flex';
 
   // Update status bar UI (with throttling)
   updateStatusBarUI(statusContainer, task, formatId);

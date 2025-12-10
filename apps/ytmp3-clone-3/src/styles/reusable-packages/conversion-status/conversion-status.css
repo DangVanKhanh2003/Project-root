@@ -10,7 +10,7 @@
   padding: 0px !important;
   margin: 0px !important;
   border-radius: var(--radius-md, 12px);
-  min-height: 52px;
+  min-height: 40px; /* Mobile-first: 40px height */
 }
 
 .status-container {
@@ -26,7 +26,7 @@
   position: relative;
   width: 100%;
   background: var(--bg-input);
-  border: var(--border-glass);
+  border: 1px solid rgba(128, 128, 128, 0.496);
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
@@ -57,14 +57,14 @@
   border: 2px solid rgba(139, 92, 246, 0.5) !important; /* Visual indicator that class is applied */
 }
 
-/* Hide status bar on success */
+/* Hide status bar on success and error - controlled by JavaScript */
+/* Note: JavaScript now handles hiding for both SUCCESS and FAILED states */
 .status-container:has(.status--success) {
   display: none;
 }
 
-/* Error state - keep border visible */
 .status-container:has(.status--error) {
-  border-color: var(--status-error, #e74c3c);
+  display: none;
 }
 
 .status {
@@ -81,25 +81,34 @@
   font-weight: 600;
   color: var(--text-main);
   text-transform: capitalize;
+  height: 18px; /* Match icon height to prevent layout shift */
+  line-height: 18px; /* Center text vertically */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* ===== ICON STATES ===== */
 .icon {
   width: 18px;
   height: 18px;
-  display: inline-flex;
+  flex-shrink: 0; /* Prevent icon from shrinking */
+  display: inline-flex; /* Always reserve space (visibility will be controlled by opacity/content) */
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
   transition: opacity 0.2s ease;
+  opacity: 0; /* Default: invisible but reserves space */
+  visibility: hidden; /* Hide from screen readers */
 }
 
 /* Spinner (extracting, processing) - Purple theme */
 .icon.spinner {
+  opacity: 1; /* Make visible */
+  visibility: visible; /* Show to screen readers */
   border: 2px solid rgba(139, 92, 246, 0.3);
   border-top: 2px solid #8b5cf6;
   border-radius: 50%;
-  animation: spin 1s linear infinite;
+  animation: spin 0.4s linear infinite; /* 1.5x faster: 1s ÷ 1.5 = 0.67s */
   margin: 0px;
 }
 
@@ -109,14 +118,12 @@
   }
 }
 
-/* Checkmark (success) - Hidden */
-.icon.checkmark {
-  display: none;
-}
-
-/* Error icon - Hidden */
+/* Checkmark & Error icons - Keep hidden (opacity: 0, space still reserved) */
+/* Status bar is hidden for SUCCESS/FAILED anyway, so these don't render */
+.icon.checkmark,
 .icon.error {
-  display: none;
+  opacity: 0;
+  visibility: hidden;
 }
 
 /* ===== STATUS STATES ===== */
@@ -158,7 +165,7 @@
   cursor: pointer;
   transition: all 0.2s ease;
   display: none;
-  min-height: 44px;
+  min-height: 40px; /* Mobile: 40px height to match status-container */
   position: relative;
   overflow: hidden;
   -webkit-tap-highlight-color: transparent;
@@ -216,7 +223,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 44px;
+  min-height: 40px; /* Mobile: 40px height to match status-container */
   position: relative;
   overflow: hidden;
   -webkit-tap-highlight-color: transparent;
@@ -274,8 +281,9 @@
 }
 
 @media (min-width: 768px) {
-  .status-container {
-    min-height: 52px;
+  .status-container,
+  .action-container {
+    min-height: 52px; /* Desktop: 52px height */
   }
 
   .status-text {
@@ -283,7 +291,9 @@
   }
 
   .download-btn,
-  .retry-btn {
+  .retry-btn,
+  .btn-new-convert {
     font-size: 17px;
+    min-height: 52px; /* Desktop: 52px height */
   }
 }

@@ -58,3 +58,10 @@
     font-size: 1.5rem;
     color: var(--text-main);
 }
+
+@media (max-width: 600px) {
+    .content-section {
+    padding: 50px 0 80px;
+}
+
+}

@@ -352,19 +352,9 @@ const CLICK_THROTTLE_MS = 300;
  */
 function handleInputClick(event: MouseEvent): void {
   // Only apply on mobile viewports
-  if (window.innerWidth > 768) {
-    return;
-  }
-
-  // Throttle clicks to prevent scroll spam
-  const now = Date.now();
-  if (now - lastClickTime < CLICK_THROTTLE_MS) {
-    return;
-  }
-  lastClickTime = now;
-
-  // Scroll to input field using the centralized scroll manager
-  scrollManager.scrollToElement('#videoUrl');
+  // Disabled: No scroll on input click
+  // User experience improvement - avoid unexpected scroll behavior
+  return;
 }
 
 
@@ -774,10 +764,9 @@ async function handleSubmit(event: Event): Promise<void> {
       // Show detail skeleton for video extraction
       showLoading('detail');
 
-      // Scroll to content area after skeleton renders (50ms delay)
+      // Scroll to hero-card after skeleton renders (50ms delay)
       setTimeout(() => {
-        const target = scrollManager.isDesktop() ? '.input-container' : '#content-area';
-        scrollManager.scrollToElement(target);
+        scrollManager.scrollToElement('.hero-card');
       }, 50);
 
       await handleExtractMedia(value);
