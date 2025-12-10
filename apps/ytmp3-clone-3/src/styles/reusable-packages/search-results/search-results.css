@@ -363,10 +363,10 @@
     position: absolute;
     top: 0;
     left: 0;
-    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background: linear-gradient(90deg, #d7d7d7 25%, #c7c7c7 50%, #d7d7d7 75%);
     background-size: 200% 100%;
     animation: shimmer 1.5s linear infinite;
-    border-radius: 8px;
+    border-radius: 0px;
     aspect-ratio: 16 / 9;
 }
 
@@ -401,7 +401,7 @@
     display: block;
     height: 1em;
     height: 13px;
-    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background: linear-gradient(90deg, #d7d7d7 25%, #c7c7c7 50%, #d7d7d7 75%);
     background-size: 200% 100%;
     animation: shimmer 1.5s linear infinite;
     border-radius: var(--pkg-radius-xs);
@@ -438,7 +438,7 @@
 .skeleton-segment {
     height: 0.75em;
     width: 50px;
-    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background: linear-gradient(90deg, #d7d7d7 25%, #c7c7c7 50%, #d7d7d7 75%);
     background-size: 200% 100%;
     animation: shimmer 1.5s linear infinite;
     border-radius: var(--pkg-radius-xs);

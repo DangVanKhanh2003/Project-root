@@ -51,7 +51,7 @@
 
 /* ========== BASE SKELETON CLASS ========== */
 .skeleton {
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background: linear-gradient(90deg, #d7d7d7 25%, #c7c7c7 50%, #d7d7d7 75%);
   background-size: 200% 100%;
   background-repeat: no-repeat;
   border-radius: var(--skeleton-radius-sm);
@@ -70,7 +70,7 @@
   height: 0.75em;
   margin: 0.4em 0;
   border-radius: var(--skeleton-radius-sm);
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background: linear-gradient(90deg, #d7d7d7 25%, #c7c7c7 50%, #d7d7d7 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s linear infinite;
   will-change: background-position;
@@ -134,7 +134,7 @@
   height: 14px;
   margin: 0.5em 0;
   border-radius: var(--skeleton-radius-md);
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background: linear-gradient(90deg, #d7d7d7 25%, #c7c7c7 50%, #d7d7d7 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s linear infinite;
   will-change: background-position;
@@ -174,7 +174,7 @@
   width: 70%;
   margin: 0.5em 0;
   border-radius: var(--skeleton-radius-sm);
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background: linear-gradient(90deg, #d7d7d7 25%, #c7c7c7 50%, #d7d7d7 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s linear infinite;
   will-change: background-position;
@@ -185,7 +185,7 @@
   width: 100%;
   height: 100%;
   border-radius: var(--skeleton-radius-lg);
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background: linear-gradient(90deg, #d7d7d7 25%, #c7c7c7 50%, #d7d7d7 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s linear infinite;
   will-change: background-position;
@@ -197,7 +197,7 @@
   width: 100%;
   aspect-ratio: 16 / 9;
   border-radius: var(--skeleton-radius-lg);
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background: linear-gradient(90deg, #d7d7d7 25%, #c7c7c7 50%, #d7d7d7 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s linear infinite;
   will-change: background-position;
@@ -209,7 +209,7 @@
   width: 80px;
   height: 36px;
   border-radius: var(--skeleton-radius-xl);
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background: linear-gradient(90deg, #d7d7d7 25%, #c7c7c7 50%, #d7d7d7 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s linear infinite;
   will-change: background-position;
@@ -253,7 +253,7 @@
   width: 32px;
   height: 32px;
   border-radius: var(--skeleton-radius-full);
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background: linear-gradient(90deg, #d7d7d7 25%, #c7c7c7 50%, #d7d7d7 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s linear infinite;
   will-change: background-position;
@@ -336,7 +336,7 @@
   .skeleton-button,
   .skeleton-avatar {
     animation: none;
-    background: #e0e0e0;
+    background: #c7c7c7;
   }
 }
 

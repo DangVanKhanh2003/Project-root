@@ -44,11 +44,17 @@
   left: 0;
   height: 100%;
   width: var(--progress, 0%);
-  background: rgba(139, 92, 246, 0.15); /* Purple tint */
-  border-right: 1px solid rgba(139, 92, 246, 0.4);
-  box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
-  transition: width 0.2s linear;
+  background: rgba(139, 92, 246, 0.35); /* Purple tint - INCREASED opacity for better visibility */
+  border-right: 2px solid rgba(139, 92, 246, 0.7); /* Stronger border */
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+  transition: width 0.3s ease-out; /* Smoother easing */
   z-index: 1;
+  pointer-events: none; /* Don't block clicks */
+}
+
+/* Debug: Force visible progress bar for testing (remove after confirming it works) */
+.status-container.processing {
+  border: 2px solid rgba(139, 92, 246, 0.5) !important; /* Visual indicator that class is applied */
 }
 
 /* Hide status bar on success */

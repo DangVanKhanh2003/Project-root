@@ -155,25 +155,15 @@
    ========================================== */
 
 .yt-preview-card.skeleton .yt-preview-thumbnail {
-  background: linear-gradient(
-    90deg,
-    rgba(139, 92, 246, 0.05) 25%,
-    rgba(139, 92, 246, 0.1) 50%,
-    rgba(139, 92, 246, 0.05) 75%
-  );
+  background: linear-gradient(90deg, #d7d7d7 25%, #c7c7c7 50%, #d7d7d7 75%);
   background-size: 200% 100%;
-  animation: skeleton-loading 1.5s ease-in-out infinite;
+  animation: skeleton-loading 1.5s linear infinite;
 }
 
 .skeleton-line {
-  background: linear-gradient(
-    90deg,
-    rgba(139, 92, 246, 0.05) 25%,
-    rgba(139, 92, 246, 0.1) 50%,
-    rgba(139, 92, 246, 0.05) 75%
-  );
+  background: linear-gradient(90deg, #d7d7d7 25%, #c7c7c7 50%, #d7d7d7 75%);
   background-size: 200% 100%;
-  animation: skeleton-loading 1.5s ease-in-out infinite;
+  animation: skeleton-loading 1.5s linear infinite;
   border-radius: 4px;
 }
 
