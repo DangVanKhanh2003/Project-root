@@ -18,6 +18,13 @@
     transition: background 0.3s, box-shadow 0.3s;
 }
 
+/* Auto-hide header on mobile when scrolling down */
+@media (max-width: 899px) {
+    .header.header-hidden {
+        display: none;
+    }
+}
+
 .nav-wrapper {
     display: flex;
     justify-content: space-between;

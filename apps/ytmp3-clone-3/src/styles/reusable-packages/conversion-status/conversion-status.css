@@ -36,21 +36,7 @@
 }
 
 /* Processing state - purple progress bar */
-.status-container.processing::before,
-.status-container:has(.status--processing)::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: var(--progress, 0%);
-  background: rgba(139, 92, 246, 0.35); /* Purple tint - INCREASED opacity for better visibility */
-  border-right: 2px solid rgba(139, 92, 246, 0.7); /* Stronger border */
-  box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
-  transition: width 0.3s ease-out; /* Smoother easing */
-  z-index: 1;
-  pointer-events: none; /* Don't block clicks */
-}
+
 
 /* Debug: Force visible progress bar for testing (remove after confirming it works) */
 .status-container.processing {
