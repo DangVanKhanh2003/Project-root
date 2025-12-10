@@ -158,24 +158,34 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
 
   // Update progress fill background
   const progress = task.progress ?? 0;
-  statusContainer.style.setProperty('--progress', `${progress}%`);
+  statusContainer.style.setProperty('--progress-width', `${progress}%`);
 
   // Remove all state classes
   statusElement.classList.remove('status--extracting', 'status--processing', 'status--success', 'status--error');
-  iconElement.classList.remove('spinner', 'checkmark', 'error');
+  iconElement.classList.remove('spinner', 'checkmark', 'error', 'active');
   iconElement.textContent = ''; // Clear icon content
+
+  // Detect merging phase from status text
+  const isMergingPhase = (task.statusText || '').toLowerCase().includes('merging');
 
   // Add appropriate state class based on task state
   switch (task.state) {
     case TaskState.EXTRACTING:
       statusElement.classList.add('status--extracting');
-      iconElement.classList.add('spinner');
+      iconElement.classList.add('spinner', 'active');
       break;
 
     case TaskState.PROCESSING:
+      statusElement.classList.add('status--processing');
+      iconElement.classList.add('spinner');
+      break;
+
     case TaskState.POLLING:
       statusElement.classList.add('status--processing');
       iconElement.classList.add('spinner');
+      if (isMergingPhase) {
+        iconElement.classList.add('active');
+      }
       break;
 
     case TaskState.SUCCESS:

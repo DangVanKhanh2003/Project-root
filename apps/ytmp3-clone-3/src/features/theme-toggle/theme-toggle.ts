@@ -45,22 +45,30 @@ function updateThemeIcons(theme: Theme): void {
   const desktopSunIcon = document.querySelector('#theme-toggle .sun-icon');
   const desktopMoonIcon = document.querySelector('#theme-toggle .moon-icon');
 
-  // Mobile icons
-  const mobileSunIcon = document.querySelector('#mobile-theme-toggle .sun-icon');
-  const mobileMoonIcon = document.querySelector('#mobile-theme-toggle .moon-icon');
+  // Mobile header icons
+  const mobileHeaderSunIcon = document.querySelector('#mobile-header-theme-toggle .sun-icon');
+  const mobileHeaderMoonIcon = document.querySelector('#mobile-header-theme-toggle .moon-icon');
+
+  // Mobile drawer icons
+  const mobileDrawerSunIcon = document.querySelector('#mobile-theme-toggle .sun-icon');
+  const mobileDrawerMoonIcon = document.querySelector('#mobile-theme-toggle .moon-icon');
 
   if (theme === 'light') {
     // Light theme → Show sun icon (currently in light mode)
     desktopSunIcon?.classList.remove('hidden');
     desktopMoonIcon?.classList.add('hidden');
-    mobileSunIcon?.classList.remove('hidden');
-    mobileMoonIcon?.classList.add('hidden');
+    mobileHeaderSunIcon?.classList.remove('hidden');
+    mobileHeaderMoonIcon?.classList.add('hidden');
+    mobileDrawerSunIcon?.classList.remove('hidden');
+    mobileDrawerMoonIcon?.classList.add('hidden');
   } else {
     // Dark theme → Show moon icon (currently in dark mode)
     desktopSunIcon?.classList.add('hidden');
     desktopMoonIcon?.classList.remove('hidden');
-    mobileSunIcon?.classList.add('hidden');
-    mobileMoonIcon?.classList.remove('hidden');
+    mobileHeaderSunIcon?.classList.add('hidden');
+    mobileHeaderMoonIcon?.classList.remove('hidden');
+    mobileDrawerSunIcon?.classList.add('hidden');
+    mobileDrawerMoonIcon?.classList.remove('hidden');
   }
 }
 
@@ -91,10 +99,16 @@ export function initThemeToggle(): void {
     desktopToggle.addEventListener('click', toggleTheme);
   }
 
-  // Setup mobile toggle button
-  const mobileToggle = document.getElementById('mobile-theme-toggle');
-  if (mobileToggle) {
-    mobileToggle.addEventListener('click', toggleTheme);
+  // Setup mobile header toggle button
+  const mobileHeaderToggle = document.getElementById('mobile-header-theme-toggle');
+  if (mobileHeaderToggle) {
+    mobileHeaderToggle.addEventListener('click', toggleTheme);
+  }
+
+  // Setup mobile drawer toggle button
+  const mobileDrawerToggle = document.getElementById('mobile-theme-toggle');
+  if (mobileDrawerToggle) {
+    mobileDrawerToggle.addEventListener('click', toggleTheme);
   }
 
   console.log('Theme toggle initialized. Current theme:', savedTheme);

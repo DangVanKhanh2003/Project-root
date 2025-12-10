@@ -135,16 +135,23 @@
     background: #f8fafc;
 }
 
+/* Mobile nav container (theme toggle + hamburger menu) */
+.mobile-nav {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+@media (min-width: 900px) {
+    .mobile-nav {
+        display: none;
+    }
+}
+
 .mobile-toggle {
     background: none;
     border: none;
     color: var(--text-main);
     cursor: pointer;
     padding: 8px;
-}
-
-@media (min-width: 900px) {
-    .mobile-toggle {
-        display: none;
-    }
 }

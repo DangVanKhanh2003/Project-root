@@ -70,7 +70,7 @@ export async function startConversion(params: ConversionParams): Promise<void> {
     quality: formatData.quality,
     format: formatData.type,
     state: TaskState.EXTRACTING,
-    statusText: 'Extracting...',
+    statusText: 'Extracting the video',
     showProgressBar: false,
     startedAt: Date.now(),
     formatData,

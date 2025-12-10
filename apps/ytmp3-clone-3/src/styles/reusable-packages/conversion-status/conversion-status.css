@@ -86,6 +86,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  min-width: 160px;
 }
 
 /* ===== ICON STATES ===== */
@@ -97,19 +98,25 @@
   align-items: center;
   justify-content: center;
   transition: opacity 0.2s ease;
-  opacity: 0; /* Default: invisible but reserves space */
   visibility: hidden; /* Hide from screen readers */
 }
 
 /* Spinner (extracting, processing) - Purple theme */
 .icon.spinner {
-  opacity: 1; /* Make visible */
-  visibility: visible; /* Show to screen readers */
+  /* Always reserve space, but hidden by default */
+  visibility: hidden;
   border: 2px solid rgba(139, 92, 246, 0.3);
   border-top: 2px solid #8b5cf6;
   border-radius: 50%;
-  animation: spin 0.4s linear infinite; /* 1.5x faster: 1s ÷ 1.5 = 0.67s */
   margin: 0px;
+  display: none;
+}
+
+/* Show spinner only when active */
+.icon.spinner.active {
+  display: inline-flex;
+  visibility: visible;
+  animation: spin 0.4s linear infinite;
 }
 
 @keyframes spin {
@@ -273,12 +280,6 @@
 }
 
 /* ===== RESPONSIVE ===== */
-
-/* Hide Next button on small screens (< 1200px) */
-@media (max-width: 1199px) {
-  .btn-new-convert {
-  }
-}
 
 @media (min-width: 768px) {
   .status-container,

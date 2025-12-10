@@ -214,12 +214,22 @@
     width: 100%;
   }
 
+  .yt-preview-details {
+    align-items: center;
+  }
+
   .yt-preview-title {
     font-size: 1rem;
+    text-align: center;
+  }
+
+  .yt-preview-meta {
+    align-items: center;
   }
 
   .yt-preview-author {
     font-size: 0.85rem;
+    text-align: center;
   }
 
   /* Skeleton adjustments for mobile */

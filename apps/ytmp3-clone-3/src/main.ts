@@ -48,14 +48,14 @@ function initMobileMenu() {
     // Toggle mobile menu when hamburger icon is clicked
     mobileMenuToggle.addEventListener('click', function(e) {
       e.preventDefault();
-      mobileMenuOverlay.classList.add('active');
+      document.body.classList.add('drawer-open');
       document.body.style.overflow = 'hidden'; // Prevent background scrolling
     });
 
     // Close mobile menu when close button is clicked (if element exists)
     if (mobileCloseBtn) {
       mobileCloseBtn.addEventListener('click', function() {
-        mobileMenuOverlay.classList.remove('active');
+        document.body.classList.remove('drawer-open');
         document.body.style.overflow = ''; // Restore scrolling
       });
     }
@@ -63,24 +63,24 @@ function initMobileMenu() {
     // Close mobile menu when clicking outside the menu content
     mobileMenuOverlay.addEventListener('click', function(e) {
       if (e.target === mobileMenuOverlay) {
-        mobileMenuOverlay.classList.remove('active');
+        document.body.classList.remove('drawer-open');
         document.body.style.overflow = ''; // Restore scrolling
       }
     });
 
     // Close mobile menu when clicking on menu links (for better UX)
-    const mobileMenuLinks = document.querySelectorAll('.mobile-menu a');
+    const mobileMenuLinks = document.querySelectorAll('.drawer-link');
     mobileMenuLinks.forEach(link => {
       link.addEventListener('click', function() {
-        mobileMenuOverlay.classList.remove('active');
+        document.body.classList.remove('drawer-open');
         document.body.style.overflow = ''; // Restore scrolling
       });
     });
 
     // Add keyboard support - close menu with Escape key
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && mobileMenuOverlay.classList.contains('active')) {
-        mobileMenuOverlay.classList.remove('active');
+      if (e.key === 'Escape' && document.body.classList.contains('drawer-open')) {
+        document.body.classList.remove('drawer-open');
         document.body.style.overflow = '';
       }
     });

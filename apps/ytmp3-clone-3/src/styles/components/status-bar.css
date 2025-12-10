@@ -50,4 +50,5 @@
     border-top-color: #8b5cf6;
     border-radius: 50%;
     animation: spin 1s linear infinite;
+    display: none;
 }

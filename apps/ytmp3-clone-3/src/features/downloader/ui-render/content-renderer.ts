@@ -397,7 +397,7 @@ function renderPreviewCardSkeleton(): string {
     </div>
     <div class="status-container" id="status-container">
       <div class="status status--extracting">
-        <span class="status-text">Extracting...</span>
+        <span class="status-text">Extracting the video</span>
         <div class="icon spinner"></div>
       </div>
     </div>
@@ -465,7 +465,7 @@ export function renderPreviewCard(_data: any): void {
     </div>
     <div class="status-container" id="status-container">
       <div class="status status--extracting">
-        <span class="status-text">Extracting...</span>
+        <span class="status-text">Extracting the video</span>
         <div class="icon spinner"></div>
       </div>
     </div>
