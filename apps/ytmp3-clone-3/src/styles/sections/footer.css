@@ -1,0 +1,53 @@
+/* =========================================================
+   Footer Section
+   ---------------------------------------------------------
+   Copyright notice and footer navigation
+   Mobile-first responsive design
+   ========================================================= */
+
+/* ===== FOOTER ===== */
+.footer {
+    padding: var(--space-2xl) 0;
+    text-align: center;
+    background: var(--color-bg-white);
+    border-top: 1px solid var(--color-border-separator);
+}
+
+.footer p {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    margin: 0 0 var(--space-lg);
+}
+
+/* ===== FOOTER NAVIGATION ===== */
+.footer_nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-lg);
+}
+
+.fnav-menu {
+    display: inline-block;
+}
+
+.fnav-menu a {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-light);
+    text-decoration: none;
+}
+
+.fnav-menu a:hover {
+    color: var(--color-primary);
+    text-decoration: underline;
+}
+
+/* ===== MOBILE (max-width: 767px) ===== */
+@media (max-width: 767px) {
+    .footer {
+        padding: var(--space-xl) 0;
+    }
+}

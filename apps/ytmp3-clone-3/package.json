@@ -1,0 +1,24 @@
+{
+  "name": "y2mate-new-ux",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --config vite.config.ts",
+    "build": "tsc && vite build --config vite.config.ts",
+    "build:test": "NODE_ENV=test tsc && NODE_ENV=test vite build --config vite.config.ts && NODE_ENV=test TARGET_DIR=dist node ../../modify-robots-meta.js",
+    "preview": "vite preview --config vite.config.ts",
+    "remove-logs": "tsx remove-console-logs.ts",
+    "remove-logs:preview": "tsx remove-console-logs.ts --dry-run",
+    "remove-logs:all": "tsx remove-console-logs.ts --all-methods"
+  },
+  "dependencies": {
+    "@downloader/core": "workspace:*",
+    "@downloader/ui-shared": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.25",
+    "tsx": "^4.20.6",
+    "typescript": "^5.3.3",
+    "vite": "^7.1.10"
+  }
+}

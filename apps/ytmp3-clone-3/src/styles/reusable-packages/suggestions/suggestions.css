@@ -1,0 +1,305 @@
+/* =========================================================
+   SUGGESTIONS.CSS - Autocomplete Dropdown Component
+   ---------------------------------------------------------
+   Version: 1.0.0
+   License: MIT
+   Dependencies: package-root.css (required)
+
+   A lightweight, accessible autocomplete dropdown with:
+   - Mobile-first responsive design (350px → 4K+)
+   - Keyboard navigation support
+   - Smooth animations with accessibility support
+   - Custom scrollbar styling
+   - Zero JavaScript dependencies (CSS only)
+
+   Responsive Breakpoints:
+   • Extra Small Mobile (0–350px)
+   • Small Mobile (351–599px)
+   • Medium (Tablet) – 600–839px
+   • Expanded (Desktop) – 840–1239px
+   • Large (Wide Desktop) – 1240–1919px
+   • Extra Large (2K) – 1920–2559px
+   • Ultra Large (4K) – 2560px+
+   ========================================================= */
+
+@media (min-width: 0px) and (max-width: 350px) {
+    /* Extra Small Mobile - Compact suggestion display */
+    .suggestion-container {
+        font-size: var(--pkg-body-small-size); /* 12px */
+        max-height: 200px !important; /* Compact for tiny screens */
+        max-width: 150px;
+        border-radius: var(--pkg-radius-sm); /* 8px */
+    }
+
+    .suggestion-item {
+        padding: 4px var(--pkg-space-3); /* 4px 12px */
+        font-size: var(--pkg-body-small-size); /* 12px */
+    }
+
+    }
+
+@media (min-width: 351px) and (max-width: 599px) {
+    /* Small Mobile - Standard mobile experience */
+    .suggestion-container {
+        font-size: var(--pkg-body-medium-size); /* 14px */
+        max-height: 280px !important;
+        max-width: 200px;
+        border-radius: var(--pkg-radius-md); /* 12px */
+    }
+
+    .suggestion-item {
+        padding: var(--pkg-space-2) var(--pkg-space-4); /* 8px 16px */
+        font-size: var(--pkg-body-medium-size); /* 14px */
+    }
+}
+
+@media (min-width: 600px) and (max-width: 839px) {
+    /* Medium Tablet - More spacious suggestions */
+    .suggestion-container {
+        max-height: 320px;
+        box-shadow: var(--pkg-elevation-2); /* Subtle shadow for tablets */
+    }
+
+    .suggestion-item {
+        padding: var(--pkg-space-2) var(--pkg-space-5); /* 8px 20px */
+    }
+}
+
+@media (min-width: 840px) and (max-width: 1239px) {
+    /* Expanded Desktop - Add hover effects */
+    .suggestion-container {
+        max-height: 360px;
+        box-shadow: var(--pkg-elevation-3); /* Enhanced shadow */
+    }
+
+    .suggestion-item {
+        padding: var(--pkg-space-3) var(--pkg-space-5); /* 12px 20px */
+        transition: background-color var(--pkg-duration-short1) var(--pkg-easing-standard);
+    }
+
+    /* Mouse hover effects (desktop only) */
+    .suggestion-item:hover {
+        background-color: var(--pkg-suggestions-hover-bg);
+        cursor: pointer;
+    }
+}
+
+@media (min-width: 1240px) and (max-width: 1919px) {
+    /* Large Wide Desktop - Enhanced spacing */
+    .suggestion-item {
+        padding: var(--pkg-space-3) var(--pkg-space-6); /* 12px 24px */
+        font-size: var(--pkg-body-large-size); /* 16px */
+        transition: background-color var(--pkg-duration-short1) var(--pkg-easing-standard);
+    }
+
+    .suggestion-item:hover {
+        background-color: var(--pkg-suggestions-hover-bg);
+        cursor: pointer;
+    }
+
+    .suggestion-container {
+        max-height: 400px; /* More items visible on large screens */
+    }
+}
+
+@media (min-width: 1920px) and (max-width: 2559px) {
+    /* Extra Large 2K Display - Optimized for large screens */
+    .suggestion-container {
+        font-size: var(--pkg-body-large-size); /* 16px */
+        max-height: 450px;
+        border-radius: var(--pkg-radius-lg); /* 16px */
+    }
+
+    .suggestion-item {
+        padding: var(--pkg-space-4) var(--pkg-space-6); /* 16px 24px */
+        font-size: var(--pkg-body-large-size); /* 16px */
+        transition: background-color var(--pkg-duration-short1) var(--pkg-easing-standard);
+    }
+
+    .suggestion-item:hover {
+        background-color: var(--pkg-suggestions-hover-bg);
+        cursor: pointer;
+    }
+}
+
+@media (min-width: 2560px) {
+    /* Ultra Large 4K+ Display - Premium experience */
+    .suggestion-container {
+        font-size: var(--pkg-title-medium-size); /* 18px */
+        max-height: 500px;
+        border-radius: var(--pkg-radius-lg); /* 16px */
+    }
+
+    .suggestion-item {
+        padding: var(--pkg-space-5) var(--pkg-space-7); /* 20px 28px */
+        font-size: var(--pkg-title-medium-size); /* 18px */
+        transition: background-color var(--pkg-duration-short1) var(--pkg-easing-standard);
+    }
+
+    .suggestion-item:hover {
+        background-color: var(--pkg-suggestions-hover-bg);
+        cursor: pointer;
+    }
+}
+
+/* ======= Base Styles (Common for all devices) ======= */
+
+/* Suggestion container - absolute positioned overlay */
+.suggestion-container {
+    position: absolute;
+    top: var(--pkg-suggestions-offset-top);
+    left: 0;
+    right: 0;
+    z-index: var(--pkg-suggestions-z-index);
+    display: none;
+    /* Visual styling */
+    background-color: var(--pkg-suggestions-bg);
+    border-radius: var(--pkg-suggestions-radius);
+    overflow: hidden;
+    box-shadow: var(--pkg-suggestions-shadow);
+
+    /* Animation properties */
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: opacity var(--pkg-suggestions-duration) var(--pkg-suggestions-easing),
+                transform var(--pkg-suggestions-duration) var(--pkg-suggestions-easing);
+
+    /* CLS Prevention */
+    contain: layout style paint;
+
+    /* Performance optimization */
+    will-change: opacity, transform;
+
+    /* Typography */
+    color: var(--pkg-suggestions-text-color);
+    font-family: var(--pkg-body-medium-font);
+    font-weight: var(--pkg-body-medium-weight);
+    line-height: var(--pkg-body-medium-line-height);
+}
+
+/* Visible state - triggered by JavaScript */
+#suggestion-container.suggestion-container--visible {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    background-color: var(--pkg-suggestions-bg);
+    top: 60px;
+    overflow: hidden;
+}
+
+/* Suggestion list - semantic list styling */
+.suggestion-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: inherit;
+    overflow-y: auto;
+
+    /* Smooth scrolling for mobile */
+    -webkit-overflow-scrolling: touch;
+
+    /* Custom scrollbar styling */
+    scrollbar-width: thin;
+    scrollbar-color: var(--pkg-color-outline-variant) transparent;
+}
+
+/* Webkit scrollbar styling (Chrome, Safari) */
+.suggestion-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.suggestion-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.suggestion-list::-webkit-scrollbar-thumb {
+    background-color: var(--pkg-color-outline-variant);
+    border-radius: var(--pkg-radius-sm);
+}
+
+.suggestion-list::-webkit-scrollbar-thumb:hover {
+    background-color: var(--pkg-color-outline);
+}
+
+/* Individual suggestion item */
+.suggestion-item {
+    color: var(--pkg-suggestions-text-color);
+    background-color: var(--pkg-suggestions-bg);
+    cursor: pointer;
+    /* Text handling */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+
+    /* Interaction feedback */
+    transition: background-color var(--pkg-duration-short1) var(--pkg-easing-standard);
+
+    /* Typography inheritance */
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+}
+
+/* Remove border from last item */
+.suggestion-item:last-child {
+    border-bottom: none;
+}
+
+/* Keyboard highlight state (highest priority) */
+.suggestion-item--highlighted {
+    background-color: var(--pkg-suggestions-highlight-bg) !important;
+    color: var(--pkg-suggestions-highlight-color) !important;
+
+    /* Ensure visibility for keyboard users */
+}
+
+/* Original query visual distinction */
+.suggestion-item--original {
+    font-weight: var(--pkg-body-medium-weight-prominent);
+    color: var(--pkg-color-primary);
+
+    /* Optional: Add subtle background tint */
+    background-color: color-mix(in srgb, var(--pkg-color-primary-container) 20%, transparent);
+}
+
+/* Accessibility: Motion reduction support */
+@media (prefers-reduced-motion: reduce) {
+    .suggestion-container {
+        transition: none;
+        transform: none;
+    }
+
+    .suggestion-item {
+        transition: none;
+    }
+}
+
+/* Accessibility: High contrast mode */
+@media (prefers-contrast: high) {
+    .suggestion-container {
+        border-width: 2px;
+        border-color: var(--pkg-color-outline);
+    }
+
+    .suggestion-item--highlighted {
+        outline-width: 3px;
+    }
+}
+
+/* Print styles - hide suggestions when printing */
+@media print {
+    .suggestion-container {
+        display: none !important;
+    }
+}
+
+/* Touch target size for mobile accessibility */
+@media (pointer: coarse) {
+    .suggestion-item {
+        min-height: var(--pkg-space-10); /* WCAG touch target minimum */
+        display: flex;
+        align-items: center;
+    }
+}
