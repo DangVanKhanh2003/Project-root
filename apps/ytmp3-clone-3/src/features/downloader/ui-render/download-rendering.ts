@@ -157,7 +157,6 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
   // Update progress fill background
   const progress = task.progress ?? 0;
   statusContainer.style.setProperty('--progress-width', `${progress}%`);
-
   // Remove all state classes
   console.log(`%c[DEBUG] Removing classes. Current icon classes: ${Array.from(iconElement.classList).join(' ')}`, 'color: yellow;');
   statusElement.classList.remove('status--extracting', 'status--processing', 'status--success', 'status--error');
@@ -310,6 +309,22 @@ async function handleRetryButtonClick(formatId: string): Promise<void> {
 }
 
 /**
+ * Clear URL - remove /search path and query params, keep everything before /search
+ * Example: /vi/search?v=... → /vi/ or /search?v=... → /
+ */
+function clearSearchUrl(): void {
+  const url = new URL(window.location.href);
+  let newPath = url.pathname.replace(/\/search\/?$/, '') || '/';
+
+  // Ensure path ends with / (except for root /)
+  if (newPath !== '/' && !newPath.endsWith('/')) {
+    newPath += '/';
+  }
+
+  window.history.replaceState({}, '', newPath);
+}
+
+/**
  * Handle Next button click
  * Switches back to search view and clears input
  */
@@ -325,14 +340,8 @@ async function handleNewConvertButtonClick(): Promise<void> {
   // Clear input
   setInputValue('');
 
-  // Clear URL (remove /search and query params, preserve locale if exists)
-  // Example: /vi/search?v=... → /vi/ or /search?v=... → /
-  const url = new URL(window.location.href);
-  const pathParts = url.pathname.split('/').filter(Boolean);
-
-  // If first part is locale (2-letter code), keep it. Otherwise go to root.
-  const locale = pathParts.length > 0 && pathParts[0].length === 2 ? `/${pathParts[0]}/` : '/';
-  window.history.replaceState({}, '', locale);
+  // Clear URL
+  clearSearchUrl();
 
   // Focus input for better UX
   focusInput();

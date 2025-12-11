@@ -327,7 +327,7 @@ export function showLoading(type: 'list' | 'detail' = 'list', append: boolean = 
 
     case 'detail': {
       // PREVIEW CARD skeleton - shows video info preview
-      content = renderPreviewCardSkeleton();
+      content = renderPreviewCardSkeleton() + createConversionStateWrapper();
 
       if (!contentArea) return;
 
@@ -380,6 +380,28 @@ export function clearContent(): void {
 }
 
 /**
+ * Create conversion state wrapper HTML (created once, updated by download-rendering.ts)
+ * This container is managed by renderConversionStatus() and should NOT be re-rendered
+ */
+function createConversionStateWrapper(): string {
+  return `
+    <div class="conversion-state-wrapper">
+      <div class="status-container" id="status-container" style="display: none;">
+        <div class="status">
+          <span class="status-text"></span>
+          <div class="icon"></div>
+        </div>
+      </div>
+      <div class="action-container" id="action-container">
+        <button class="download-btn" id="conversion-download-btn">Download</button>
+        <button class="retry-btn" id="conversion-retry-btn">Retry</button>
+        <button class="btn-new-convert" id="btn-new-convert">Next</button>
+      </div>
+    </div>
+  `;
+}
+
+/**
  * Render preview card skeleton
  * IMPORTANT: Structure MUST match renderPreviewCard() to prevent CLS
  */
@@ -395,25 +417,13 @@ function renderPreviewCardSkeleton(): string {
         <div class="skeleton-line skeleton-author"></div>
       </div>
     </div>
-    <div class="conversion-state-wrapper">
-      <div class="status-container" id="status-container">
-        <div class="status status--extracting">
-          <span class="status-text">Extracting the video</span>
-          <div class="icon spinner"></div>
-        </div>
-      </div>
-      <div class="action-container" id="action-container">
-        <button class="download-btn" id="conversion-download-btn">Download</button>
-        <button class="retry-btn" id="conversion-retry-btn">Retry</button>
-        <button class="btn-new-convert" id="btn-new-convert">Next</button>
-      </div>
-    </div>
   `;
 }
 
 /**
  * Render preview card with video info
  * Shows simple video preview with format and quality info from YouTube preview state
+ * NOTE: Only updates preview card content, does NOT touch conversion-state-wrapper
  * @param _data - Unused parameter (kept for backward compatibility)
  */
 export function renderPreviewCard(_data: any): void {
@@ -445,7 +455,7 @@ export function renderPreviewCard(_data: any): void {
 
   const formatBadge = selectedFormat.toUpperCase(); // "MP4" or "MP3"
 
-  const html = `
+  const previewCardHtml = `
     <div class="yt-preview-card">
       <div class="yt-preview-thumbnail">
         <img src="${escapeHtml(thumbnail)}"
@@ -465,23 +475,24 @@ export function renderPreviewCard(_data: any): void {
         </div>
       </div>
     </div>
-    <div class="conversion-state-wrapper">
-      <div class="status-container" id="status-container">
-        <div class="status status--extracting">
-          <span class="status-text">Extracting the video</span>
-          <div class="icon spinner"></div>
-        </div>
-      </div>
-      <div class="action-container" id="action-container">
-        <button class="download-btn" id="conversion-download-btn">Download</button>
-        <button class="retry-btn" id="conversion-retry-btn">Retry</button>
-        <button class="btn-new-convert" id="btn-new-convert">Next</button>
-      </div>
-    </div>
   `;
 
-  // Render to content area (preview card + status bar in one go)
-  contentArea.innerHTML = html;
+  // Check if conversion-state-wrapper already exists
+  const existingWrapper = contentArea.querySelector('.conversion-state-wrapper');
+
+  if (existingWrapper) {
+    // Wrapper exists - only update preview card (preserve conversion state)
+    const existingPreviewCard = contentArea.querySelector('.yt-preview-card');
+    if (existingPreviewCard) {
+      existingPreviewCard.outerHTML = previewCardHtml;
+    } else {
+      // Preview card doesn't exist - insert before wrapper
+      existingWrapper.insertAdjacentHTML('beforebegin', previewCardHtml);
+    }
+  } else {
+    // First render - create both preview card AND conversion-state-wrapper
+    contentArea.innerHTML = previewCardHtml + createConversionStateWrapper();
+  }
 
   // Remove loading class
   contentArea.classList.remove('showing-loading');

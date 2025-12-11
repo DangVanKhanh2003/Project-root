@@ -45,7 +45,6 @@ export function initRenderer(): boolean {
  */
 export function render(state: AppState, prevState?: AppState): void {
   if (!elements.form) return;
-
   // Update loading state
   updateLoadingState(state.isLoading);
 
