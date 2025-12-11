@@ -348,3 +348,12 @@
   --pkg-search-results-transition-duration: var(--pkg-duration-short4);
   --pkg-search-results-transition-easing: var(--pkg-easing-standard);
 }
+
+/* ========================================================
+   LIGHT THEME OVERRIDES
+   ======================================================== */
+
+[data-theme="light"] {
+  /* Search Results Typography - Light Theme */
+  --pkg-search-results-title-color: #000000;
+}

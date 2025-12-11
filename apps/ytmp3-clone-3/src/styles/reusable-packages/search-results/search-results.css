@@ -90,6 +90,10 @@
         -webkit-line-clamp: 2 !important;
         line-clamp: 2 !important;
     }
+
+    .card-metadata {
+        font-size: 14px; /* Desktop: 14px */
+    }
 }
 
 /* Wide Desktop (1240px+) */
@@ -217,7 +221,7 @@
     align-items: center;
     flex-wrap: nowrap;
     gap: var(--pkg-space-1);
-    font-size: var(--pkg-label-medium-size);
+    font-size: 12px; /* Mobile: 12px */
     font-weight: var(--pkg-label-medium-weight);
     color: var(--pkg-search-results-metadata-color);
     line-height: 1;

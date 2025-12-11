@@ -325,6 +325,15 @@ async function handleNewConvertButtonClick(): Promise<void> {
   // Clear input
   setInputValue('');
 
+  // Clear URL (remove /search and query params, preserve locale if exists)
+  // Example: /vi/search?v=... → /vi/ or /search?v=... → /
+  const url = new URL(window.location.href);
+  const pathParts = url.pathname.split('/').filter(Boolean);
+
+  // If first part is locale (2-letter code), keep it. Otherwise go to root.
+  const locale = pathParts.length > 0 && pathParts[0].length === 2 ? `/${pathParts[0]}/` : '/';
+  window.history.replaceState({}, '', locale);
+
   // Focus input for better UX
   focusInput();
 }
