@@ -32,6 +32,9 @@ import {
 // Strategy
 import { createStrategy, StrategyContext } from './application';
 
+// Retry helper
+import { retryWithBackoff, RETRY_CONFIGS } from './retry-helper';
+
 // Params interface
 interface ConversionParams {
   formatId: string;
@@ -70,7 +73,7 @@ export async function startConversion(params: ConversionParams): Promise<void> {
     quality: formatData.quality,
     format: formatData.type,
     state: TaskState.EXTRACTING,
-    statusText: 'Extracting video data...',
+    statusText: 'Extracting the video',
     showProgressBar: false,
     startedAt: Date.now(),
     formatData,
@@ -80,9 +83,12 @@ export async function startConversion(params: ConversionParams): Promise<void> {
   log('Starting extraction phase...');
 
   try {
-    // Phase 1: Extract - get download URL from API
-    log('Phase 1: Calling extractFormat API...');
-    const extractResult = await extractFormat(formatData, abortController.signal, videoUrl);
+    // Phase 1: Extract - get download URL from API (with auto retry)
+    log('Phase 1: Calling extractFormat API (with retry)...');
+    const extractResult = await retryWithBackoff(
+      () => extractFormat(formatData, abortController.signal, videoUrl),
+      RETRY_CONFIGS.extracting
+    );
     log('Extract result:', JSON.stringify(extractResult, null, 2));
 
     if (abortController.signal.aborted) {
@@ -106,6 +112,7 @@ export async function startConversion(params: ConversionParams): Promise<void> {
 
     if (needsConvertingPhase) {
       log('Transitioning to CONVERTING phase...');
+      console.log(`%c[DEBUG] Updating state for ${formatId} to PROCESSING`, 'color: orange; font-weight: bold;');
       updateConversionTask(formatId, {
         state: TaskState.PROCESSING,
         statusText: 'Converting...',
@@ -231,6 +238,13 @@ async function extractFormat(
     const result = await api.downloadYouTube(downloadRequest as Parameters<typeof api.downloadYouTube>[0], signal);
     log('downloadYouTube result:', JSON.stringify(result, null, 2));
 
+    // Check if API returned error response (ok: false)
+    if ('ok' in result && result.ok === false) {
+      const errorMsg = (result as any).message || 'API request failed';
+      log('API returned error response, throwing error for retry...');
+      throw new Error(errorMsg);
+    }
+
     const extractData = (result as { data?: unknown })?.data || result;
     return createExtractResult(extractData as { url: string; filename?: string; size?: number; status: string; progressUrl?: string });
   }
@@ -239,6 +253,14 @@ async function extractFormat(
   if (formatData.encryptedUrl) {
     log('Using decodeUrl API for encrypted URL');
     const result = await api.decodeUrl({ encrypted_url: formatData.encryptedUrl });
+
+    // Check if API returned error response (ok: false)
+    if ('ok' in result && result.ok === false) {
+      const errorMsg = (result as any).message || 'Decode URL failed';
+      log('decodeUrl returned error response, throwing error for retry...');
+      throw new Error(errorMsg);
+    }
+
     const extractData = (result as { data?: unknown })?.data || result;
     return createExtractResult(extractData as { url: string; filename?: string; size?: number; status: string; progressUrl?: string });
   }

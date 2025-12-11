@@ -19,6 +19,7 @@ interface TimeoutConfig {
     playlist: number;
     convert: number;
     checkTask: number;
+    pollingV2: number;
     suggest: number;
     decode: number;
     multifileStart: number;
@@ -136,6 +137,7 @@ const environment: Environment = {
             playlist: 25000,
             convert: 20000,
             checkTask: 30000,
+            pollingV2: 950, // 950ms for V2 polling progress checks
             suggest: 7000,
             decode: 60000, // 60 seconds for URL decryption
             multifileStart: 15000, // 15 seconds for multifile start request

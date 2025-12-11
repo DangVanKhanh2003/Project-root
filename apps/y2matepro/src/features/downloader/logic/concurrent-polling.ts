@@ -9,6 +9,8 @@ import { updateConversionTask, getConversionTask } from '../state';
 import { api } from '../../../api';
 import { getConversionModal } from '../../../ui-components/modal/conversion-modal.js';
 import { extractCacheId, type ProgressResponse } from '@downloader/core';
+import { getTimeout } from '../../../environment';
+import { isTimeoutError, RETRY_CONFIGS } from './conversion/retry-helper';
 
 // Type definitions
 interface PollingConfig {
@@ -184,10 +186,28 @@ class ConcurrentPollingManager {
 
             const callTime = Date.now();
 
-            // Use service layer for progress polling (proper architecture)
-            const result = await api.getDownloadProgress({ cacheId });
+            // Setup timeout for API request
+            const timeoutMs = getTimeout('pollingV2'); // 950ms for V2 polling
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
 
-            const responseTime = Date.now() - callTime;
+            let result;
+
+            try {
+                // Use service layer for progress polling (proper architecture)
+                result = await api.getDownloadProgress({ cacheId });
+
+                clearTimeout(timeoutId);
+
+                const responseTime = Date.now() - callTime;
+
+            } catch (fetchError: any) {
+                clearTimeout(timeoutId);
+                if (fetchError.name === 'AbortError') {
+                    throw new Error('Progress check timeout');
+                }
+                throw fetchError;
+            }
 
             // Check if request succeeded (VerifiedResult uses 'ok' instead of 'success')
             if (!result.ok || !result.data) {
@@ -210,6 +230,12 @@ class ConcurrentPollingManager {
                     mergedUrl: mergedUrl,
                     filename: undefined // filename not available in ProgressResponse
                 });
+            }
+
+            // Success - reset error counter
+            const poll = this.activePolls.get(formatId);
+            if (poll) {
+                poll.errorCount = 0;
             }
 
             // Check completion based on mergedUrl availability
@@ -303,10 +329,42 @@ class ConcurrentPollingManager {
     }
 
     /**
-     * Handle polling error
+     * Handle polling error with retry logic
+     * Based on ytmp3.gg pattern:
+     * - Timeout errors: NOT counted as errors, continue polling
+     * - Network errors: Retry up to MAX_CONSECUTIVE_ERRORS times
+     * - Other errors: Fail immediately
      * @private
      */
     private async _handlePollingError(formatId: string, error: any): Promise<void> {
+        const poll = this.activePolls.get(formatId);
+        if (!poll) {
+            // Poll already stopped
+            return;
+        }
+
+        // Check if this is a timeout error (server responding slowly)
+        // Timeout is NOT an error - just continue polling
+        if (isTimeoutError(error)) {
+            console.log(`[Polling] Timeout for ${formatId} - server is slow, continuing...`);
+            // Don't increment errorCount, just continue polling
+            return;
+        }
+
+        // Real error (network error, API error, etc.)
+        poll.errorCount++;
+        console.warn(`[Polling] Error ${poll.errorCount}/${RETRY_CONFIGS.polling.maxConsecutiveErrors} for ${formatId}:`, error);
+
+        // Auto-retry if not exceeded max consecutive errors
+        if (poll.errorCount <= RETRY_CONFIGS.polling.maxConsecutiveErrors) {
+            console.log(`[Polling] Will retry after ${RETRY_CONFIGS.polling.retryDelay}ms...`);
+            // Don't stop polling - let the interval continue
+            // Error count will be reset on next successful poll
+            return;
+        }
+
+        // Max retries exceeded - stop polling and fail
+        console.error(`[Polling] Max consecutive errors exceeded for ${formatId}`);
         this.stopPolling(formatId);
 
         let errorMessage = 'Conversion failed';

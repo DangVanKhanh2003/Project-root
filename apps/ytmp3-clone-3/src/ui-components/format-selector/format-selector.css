@@ -110,6 +110,7 @@
   .format-toggle {
     order: 2;
     flex: 1;
+    max-width: 150px; /* Limit width on mobile */
   }
 
   .format-selector .btn-convert {
