@@ -38,6 +38,7 @@ async function parseErrorMessage(
       return (
         json?.message ||
         json?.error?.message ||
+        json?.error?.code ||
         json?.data?.message ||
         json?.data?.reason ||
         fallback
@@ -164,7 +165,11 @@ export class HttpClient implements IHttpClient {
 
       // ✅ Handle standard API-level errors
       if (responseData.status === 'error') {
-        const message = responseData.message || 'An unknown API error occurred.';
+        const message =
+          responseData.message ||
+          responseData.error?.message ||
+          responseData.error?.code ||
+          'An unknown API error occurred.';
         throw new ApiError(
           message,
           0,
