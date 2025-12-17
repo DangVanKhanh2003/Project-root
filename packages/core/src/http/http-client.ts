@@ -135,9 +135,20 @@ export class HttpClient implements IHttpClient {
       const response = await fetch(url, fetchOptions);
       clearTimeout(timeoutId);
 
+      // Debug logging
+      console.log('[HttpClient] Response received:', {
+        url,
+        status: response.status,
+        statusText: response.statusText,
+        ok: response.ok,
+        headers: Object.fromEntries(response.headers.entries())
+      });
+
       // Handle HTTP errors
       if (!response.ok) {
+        console.log('[HttpClient] HTTP error detected (response.ok = false), parsing error message...');
         const message = await parseErrorMessage(response, DEFAULT_ERROR_MESSAGE);
+        console.log('[HttpClient] Error message extracted:', message);
         throw new ApiError(
           message,
           response.status,
@@ -148,6 +159,7 @@ export class HttpClient implements IHttpClient {
 
       // Parse response
       const responseData = await response.json();
+      console.log('[HttpClient] Response body parsed:', JSON.stringify(responseData, null, 2));
 
       // ✅ Handle API "hidden failures" (HTTP 200 but operation failed)
       const isHiddenFailure =
@@ -156,6 +168,7 @@ export class HttpClient implements IHttpClient {
         responseData.c_status === 'FAILED';
 
       if (isHiddenFailure) {
+        console.log('[HttpClient] Hidden failure detected:', responseData);
         const message =
           responseData.mess ||
           (responseData.data && responseData.data.reason) ||
@@ -165,11 +178,13 @@ export class HttpClient implements IHttpClient {
 
       // ✅ Handle standard API-level errors
       if (responseData.status === 'error') {
+        console.log('[HttpClient] API-level error detected (status === "error"):', responseData);
         const message =
           responseData.message ||
           responseData.error?.message ||
           responseData.error?.code ||
           'An unknown API error occurred.';
+        console.log('[HttpClient] Error message extracted:', message);
         throw new ApiError(
           message,
           0,
@@ -177,6 +192,8 @@ export class HttpClient implements IHttpClient {
           responseData
         );
       }
+
+      console.log('[HttpClient] Success response, returning data');
 
       // Return successful response
       return responseData as T;

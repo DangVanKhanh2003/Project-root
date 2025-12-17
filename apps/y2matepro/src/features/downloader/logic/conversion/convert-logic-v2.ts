@@ -165,7 +165,10 @@ export async function startConversion(params: ConversionParams): Promise<void> {
     const errorMessage = (error as Error).message || 'Conversion failed';
     logError('Error in conversion:', errorMessage);
     logError('Full error:', error);
+
+    log('⚠️ Calling modal.transitionToError() with message:', errorMessage);
     modal.transitionToError(errorMessage);
+    log('⚠️ modal.transitionToError() call completed');
   } finally {
     log('=== END CONVERSION ===');
     currentStrategy = null;

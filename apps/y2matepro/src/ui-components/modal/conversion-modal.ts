@@ -213,11 +213,17 @@ export class ConversionModal {
   }
 
   transitionToSuccess(downloadUrl?: string): void {
+    console.log('[ConversionModal] 🟢 transitionToSuccess() called with URL:', downloadUrl);
+    console.trace('[ConversionModal] Stack trace for transitionToSuccess call:');
 
     // Zombie guard
     if (!this.state) {
+      console.log('[ConversionModal] ❌ ZOMBIE GUARD: state is null, skipping transitionToSuccess');
       return;
     }
+
+    console.log('[ConversionModal] ✅ Current state before transition:', this.state.status);
+    console.log('[ConversionModal] ✅ Transitioning to SUCCESS state...');
 
     // Update state
     this.state = {
@@ -227,16 +233,24 @@ export class ConversionModal {
       progress: 100
     };
 
+    console.log('[ConversionModal] 📝 SUCCESS state set, re-rendering body...');
+
     // Re-render body content
     this.updateBodyContent();
+
+    console.log('[ConversionModal] ✅ SUCCESS UI rendered');
   }
 
   transitionToError(errorMessage: string): void {
+    console.log('[ConversionModal] 🔴 transitionToError() called with message:', errorMessage);
 
     // Zombie guard
     if (!this.state) {
+      console.log('[ConversionModal] ❌ ZOMBIE GUARD: state is null, skipping transitionToError');
       return;
     }
+
+    console.log('[ConversionModal] ✅ Transitioning to ERROR state...');
 
     // Update state
     this.state = {
@@ -245,8 +259,12 @@ export class ConversionModal {
       errorMessage: errorMessage || 'An unknown error occurred'
     };
 
+    console.log('[ConversionModal] 📝 ERROR state set, re-rendering body...');
+
     // Re-render body content
     this.updateBodyContent();
+
+    console.log('[ConversionModal] ✅ ERROR UI rendered successfully');
   }
 
   transitionToExpired(videoTitle?: string): void {
