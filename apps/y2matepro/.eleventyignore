@@ -1,0 +1,15 @@
+# Ignore all files in root except _templates
+index.html
+youtube-*.html
+about-us.html
+contact.html
+privacy-policy.html
+terms-condition.html
+404.html
+*.ts
+*.js
+*.json
+src/
+public/
+dist/
+node_modules/

@@ -1,0 +1,539 @@
+<h1>Y2matePro Architecture - Quick Reference Guide</h1>
+<h2>Architecture Diagram</h2>
+<pre><code>┌─────────────────────────────────────────────────────────────┐
+│                        Browser                              │
+│  ┌─────────────────────────────────────────────────────┐    │
+│  │  HTML Pages (14 files)                              │    │
+│  │  • index.html (main downloader)                     │    │
+│  │  • youtube-to-mp3.html, youtube-to-mp4.html         │    │
+│  │  • privacy-policy.html, terms-condition.html        │    │
+│  │  • Plus 10 more converter pages                     │    │
+│  └─────────────────────────────────────────────────────┘    │
+│                         │                                    │
+│                         ▼                                    │
+│  ┌─────────────────────────────────────────────────────┐    │
+│  │  src/main.ts (Single Entry Point)                  │    │
+│  │  • Loads all CSS (reset→base→common→sections)      │    │
+│  │  • Initializes mobile menu                         │    │
+│  │  • Lazy loads downloader UI                        │    │
+│  └─────────────────────────────────────────────────────┘    │
+│                         │                                    │
+│        ┌────────────────┴────────────────┐                  │
+│        ▼                                 ▼                  │
+│  ┌──────────────┐        ┌───────────────────────────┐    │
+│  │ CSS (19 files)        │ Features (TypeScript)     │    │
+│  ├──────────────┤        ├───────────────────────────┤    │
+│  │ reset.css    │        │ downloader-ui.ts (MVC)    │    │
+│  │ base.css     │        │ ├─ state/ (Model)        │    │
+│  │ common.css   │        │ ├─ logic/ (Controller)    │    │
+│  │ sections/    │        │ ├─ ui-render/ (View)      │    │
+│  │ reusable-    │        │ ├─ routing/               │    │
+│  │ packages/    │        │ └─ ui-components/         │    │
+│  └──────────────┘        └───────────────────────────┘    │
+│                                     │                      │
+│                          ┌──────────┴──────────┐           │
+│                          ▼                     ▼           │
+│                   ┌──────────────┐    ┌──────────────┐    │
+│                   │ State Change │    │ API Calls    │    │
+│                   │ Triggers     │    │              │    │
+│                   │ Renderer     │    │ @downloader/ │    │
+│                   │              │    │ core (HTTP)  │    │
+│                   └──────────────┘    └──────────────┘    │
+│                          │                     │           │
+│                          └─────────┬───────────┘           │
+│                                    ▼                      │
+│                         ┌──────────────────┐              │
+│                         │ DOM Update       │              │
+│                         │ Search results   │              │
+│                         │ Progress bars    │              │
+│                         │ Modals           │              │
+│                         └──────────────────┘              │
+└─────────────────────────────────────────────────────────────┘
+                         │
+        ┌────────────────┴────────────────┐
+        ▼                                 ▼
+   External APIs                   Shared Packages
+   • YouTube Stream API         • @downloader/core
+   • Video Convert API          • @downloader/ui-shared
+   • Search API
+</code></pre>
+<hr>
+<h2>Data Flow: Downloading a Video</h2>
+<pre><code>1. USER INPUT
+   └─&gt; &lt;input id=&quot;videoUrl&quot;&gt; → User types/pastes URL
+   
+2. FORM SUBMISSION
+   └─&gt; initInputForm() (input-form.ts)
+       └─&gt; Validates input
+       └─&gt; setState({ isLoading: true })
+   
+3. STATE CHANGE
+   └─&gt; AppState updated (core-state.ts)
+   └─&gt; Triggers: render(state, prevState)
+   
+4. VIEW UPDATED
+   └─&gt; ui-renderer.ts → updateLoadingState()
+   └─&gt; DOM elements disabled/enabled
+   
+5. API CALL
+   └─&gt; API service from @downloader/core
+   └─&gt; Fetches YouTube metadata
+   └─&gt; Returns: video info, available formats
+   
+6. STATE UPDATED WITH RESULTS
+   └─&gt; setState({ 
+           searchResults: [...],
+           selectedVideo: {...},
+           isLoading: false 
+       })
+   
+7. VIEW RE-RENDERED
+   └─&gt; content-renderer.ts renders results
+   └─&gt; gallery-renderer.ts displays thumbnails
+   
+8. USER SELECTS FORMAT
+   └─&gt; Conversion modal opens (conversion-modal.ts)
+   └─&gt; User chooses MP3 320kbps or MP4 720p
+   
+9. CONVERSION INITIATED
+   └─&gt; conversion-controller.ts
+   └─&gt; StrategyFactory selects strategy
+   └─&gt; Execution: PollingStrategy vs StaticDirectStrategy
+   
+10. PROGRESS TRACKING
+    └─&gt; polling-progress-mapper.ts maps API progress
+    └─&gt; UI updates: circular-progress.ts or progress-bar.ts
+    
+11. COMPLETION
+    └─&gt; Download link generated
+    └─&gt; Triggers: Browser download or stream to RAM
+    └─&gt; UI shows success state
+</code></pre>
+<hr>
+<h2>File Size Distribution</h2>
+<pre><code>HTML Pages:        ~6,500 lines total (14 files)
+├─ Main pages:      ~430 lines avg (8 pages)
+└─ Static pages:    ~270 lines avg (6 pages)
+
+CSS Files:        ~3,500 lines total (19 files)
+├─ Reset/Base:     ~200 lines
+├─ Sections:       ~1,200 lines
+└─ Components:     ~2,100 lines
+
+TypeScript Files:  ~15,000+ lines (63 files)
+├─ Features:       ~8,000 lines (downloader logic)
+├─ UI Components:  ~3,000 lines
+├─ State/Logic:    ~2,500 lines
+└─ Utils/Config:   ~1,500 lines
+
+Total:            ~25,000+ lines of code
+</code></pre>
+<hr>
+<h2>Technology Stack Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Technology</th>
+<th>Count</th>
+<th>Key Files</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>HTML</strong></td>
+<td>HTML5 (Semantic)</td>
+<td>14 files</td>
+<td>index.html, youtube-to-mp*.html</td>
+</tr>
+<tr>
+<td><strong>CSS</strong></td>
+<td>CSS3 + CSS Variables</td>
+<td>19 files</td>
+<td>base.css (design tokens)</td>
+</tr>
+<tr>
+<td><strong>JS/TS</strong></td>
+<td>TypeScript + ES6+</td>
+<td>63 files</td>
+<td>main.ts, downloader-ui.ts</td>
+</tr>
+<tr>
+<td><strong>Bundler</strong></td>
+<td>Vite 7.1.10</td>
+<td>1 config</td>
+<td>vite.config.ts</td>
+</tr>
+<tr>
+<td><strong>Build</strong></td>
+<td>GitHub Actions</td>
+<td>1 workflow</td>
+<td>deploy-y2matepro.yml</td>
+</tr>
+<tr>
+<td><strong>Shared Code</strong></td>
+<td>Monorepo packages</td>
+<td>2 pkgs</td>
+<td>@downloader/core, @downloader/ui-shared</td>
+</tr>
+<tr>
+<td><strong>Type Checking</strong></td>
+<td>TypeScript</td>
+<td>-</td>
+<td>tsconfig.json</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>Key Design Decisions</h2>
+<h3>1. No Frameworks</h3>
+<p><strong>Why:</strong> Performance, minimal dependencies, full control
+<strong>Tradeoff:</strong> More DOM manipulation code vs cleaner components</p>
+<h3>2. State Management Pattern (Vanilla)</h3>
+<p><strong>Why:</strong> Lightweight, no Redux overhead
+<strong>How:</strong> Callbacks trigger renders on state changes
+<strong>Pattern:</strong> Model → View → Controller (MVC)</p>
+<h3>3. CSS Architecture (No Tailwind)</h3>
+<p><strong>Why:</strong> Smaller bundle, better semantics, full design control
+<strong>How:</strong> CSS variables for theming, organized by sections
+<strong>Result:</strong> Mobile-first, responsive, maintainable</p>
+<h3>4. Multiple HTML Pages</h3>
+<p><strong>Why:</strong> Better for SEO, independent page metadata
+<strong>Cost:</strong> Code duplication in headers/footers
+<strong>Future:</strong> Eleventy could solve this</p>
+<h3>5. Lazy Loading Features</h3>
+<p><strong>Why:</strong> Initial page load performance
+<strong>How:</strong> Dynamic imports in main.ts
+<strong>Result:</strong> Critical code loads first, downloader UI loads after</p>
+<h3>6. Custom Vite Plugins</h3>
+<p><strong>Why:</strong> Clean URL routing without server-side logic
+<strong>How:</strong> HTML rewrite + page moving plugins
+<strong>Result:</strong> URLs like <code>/youtube-to-mp3</code> instead of <code>/youtube-to-mp3.html</code></p>
+<hr>
+<h2>Component Hierarchy</h2>
+<pre><code>App (Browser Page)
+├─ Header
+│  ├─ Logo
+│  ├─ Navigation Menu
+│  └─ Mobile Menu Overlay
+│      ├─ Mobile Logo
+│      ├─ Mobile Nav Links
+│      └─ Close Button
+│
+├─ Main Content
+│  ├─ Hero Section
+│  ├─ Search Form
+│  │  ├─ Input Field (id=&quot;videoUrl&quot;)
+│  │  ├─ Action Button (paste/clear)
+│  │  └─ Submit Button
+│  │
+│  ├─ Search Results (Dynamic)
+│  │  ├─ Search Result Cards (vanilla components)
+│  │  │  ├─ Thumbnail
+│  │  │  ├─ Title
+│  │  │  └─ Duration
+│  │  └─ Skeleton Cards (loading state)
+│  │
+│  ├─ Suggestions Dropdown (Dynamic)
+│  │  └─ Suggestion Items
+│  │
+│  ├─ Conversion Modal (Dynamic)
+│  │  ├─ Format Options
+│  │  ├─ Quality Selector
+│  │  └─ Download Button
+│  │
+│  ├─ Progress Indicators (Dynamic)
+│  │  ├─ Circular Progress
+│  │  └─ Progress Bar
+│  │
+│  ├─ FAQ Section
+│  ├─ Features Section
+│  ├─ Instructions Section
+│  └─ Tips Section
+│
+└─ Footer
+   ├─ Links
+   ├─ Copyright
+   └─ Social Links
+</code></pre>
+<hr>
+<h2>State Tree (Redux-style)</h2>
+<pre><code>AppState {
+  // Form Input
+  inputValue: string
+  inputType: 'url' | 'search' | 'empty'
+  isLoading: boolean
+  showPasteButton: boolean
+  showClearButton: boolean
+  
+  // Search Results
+  searchResults: SearchResult[]
+  searchError: string | null
+  
+  // Selected Video
+  selectedVideo: VideoDetail | null
+  videoMetadata: VideoMetadata | null
+  
+  // Download Options
+  availableFormats: Format[]
+  selectedFormat: Format | null
+  
+  // Conversion State
+  isConverting: boolean
+  conversionProgress: number (0-100)
+  conversionError: string | null
+  downloadLink: string | null
+  
+  // UI State
+  mobileMenuOpen: boolean
+  modalOpen: boolean
+  suggestionsFocused: boolean
+}
+</code></pre>
+<hr>
+<h2>CSS Custom Properties (Design Tokens)</h2>
+<pre><code class="language-css">:root {
+  /* Primary Colors */
+  --color-primary: #f20a51;
+  --color-primary-hover: #8a0029;
+  
+  /* Text Colors */
+  --color-text-primary: #293a46;
+  --color-text-secondary: #666;
+  --color-text-dark: #333;
+  
+  /* Background Colors */
+  --color-bg-page: #f9f9f9;
+  --color-bg-white: #fff;
+  --color-bg-hover: #eee;
+  
+  /* Border Colors */
+  --color-border-light: #ddd;
+  --color-border-medium: #d3e0e9;
+  
+  /* Status Colors */
+  --color-success: #5cb85c;
+  --color-error: #e71111;
+  
+  /* Typography */
+  --font-family-base: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, sans-serif;
+  --font-size-base: 1rem;
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-md: 17px;
+  --font-size-lg: 18px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 22px;
+  --font-size-3xl: 26px;
+}
+
+/* Used throughout all CSS files for consistency */
+.button { color: var(--color-primary); }
+.text { color: var(--color-text-primary); }
+.card { background: var(--color-bg-white); }
+</code></pre>
+<hr>
+<h2>Build Process Flow</h2>
+<pre><code>Source Code
+    ↓
+TypeScript Compilation (tsc)
+    ├─ Type check all .ts files
+    ├─ Generate no output (noEmit: true)
+    └─ Errors stop build
+    ↓
+Vite Build (vite build)
+    ├─ Resolve imports/exports
+    ├─ Bundle JavaScript
+    │  ├─ main.ts → main-[hash].js
+    │  ├─ Split chunks for each page
+    │  └─ Apply tree-shaking
+    ├─ Process CSS
+    │  └─ Combine &amp; hash
+    ├─ Copy assets (images, fonts)
+    ├─ Custom Plugins:
+    │  ├─ htmlRewritePlugin (dev routing)
+    │  └─ movePagesPlugin (move pages to dist/)
+    └─ Output to dist/
+    ↓
+Post-Build (for test environment)
+    ├─ Run: modify-robots-meta.js
+    ├─ Add: noindex meta tags
+    ├─ Create: robots.txt (disallow all)
+    └─ Create: dist.tar.gz
+    ↓
+Deploy (GitHub Actions)
+    ├─ SCP upload to server
+    ├─ Extract tar.gz
+    ├─ Set permissions (755/644)
+    ├─ Update group (nginx)
+    └─ Ready to serve
+</code></pre>
+<hr>
+<h2>Common File Patterns</h2>
+<h3>Adding a New Converter Page</h3>
+<ol>
+<li>
+<p><strong>Create HTML file:</strong></p>
+<pre><code>youtube-to-flac-converter.html
+(Copy from youtube-to-mp3.html, update meta tags)
+</code></pre>
+</li>
+<li>
+<p><strong>Update navigation:</strong></p>
+<pre><code class="language-html">&lt;!-- Add to all HTML files' navigation --&gt;
+&lt;li&gt;&lt;a href=&quot;youtube-to-flac-converter&quot;&gt;YouTube to FLAC&lt;/a&gt;&lt;/li&gt;
+</code></pre>
+</li>
+<li>
+<p><strong>Update JavaScript (if needed):</strong></p>
+<pre><code class="language-typescript">// src/features/downloader/logic/conversion/application/strategies/StrategyFactory.ts
+// Add new format handling
+</code></pre>
+</li>
+<li>
+<p><strong>Build and deploy:</strong></p>
+<pre><code class="language-bash">pnpm build
+git push main  # or test-production
+# Automatically deployed via GitHub Actions
+</code></pre>
+</li>
+</ol>
+<hr>
+<h2>Performance Metrics</h2>
+<p><strong>Current:</strong></p>
+<ul>
+<li>Pages: ~14 HTML files (474 lines max)</li>
+<li>CSS: ~3,500 lines across 19 files</li>
+<li>JS/TS: ~15,000+ lines across 63 files</li>
+<li>Dependencies: Only 2 workspace packages</li>
+<li>Bundle size: ~50-100KB (estimate, varies by page)</li>
+</ul>
+<p><strong>Opportunities:</strong></p>
+<ul>
+<li>Eleventy: Reduce HTML duplication (~30% reduction possible)</li>
+<li>CSS: Minification &amp; compression reduces ~70%</li>
+<li>JS: Code splitting per page reduces initial load</li>
+<li>Assets: Image optimization, WebP format support</li>
+</ul>
+<hr>
+<h2>Environment Configuration</h2>
+<p><strong>File:</strong> <code>src/environment.ts</code> (600+ lines)</p>
+<pre><code class="language-typescript">// Environment Detection
+isDevelopment = localhost / 127.0.0.1
+isProduction = anything else
+
+// API Endpoints
+baseUrl: https://api.yt1s.cx/api/v1
+baseUrlV2: https://sv-190.y2mp3.co
+searchV2BaseUrl: https://yt-extractor.y2mp3.co
+
+// Timeouts (milliseconds)
+default: 15000
+extract: 20000
+convert: 20000
+polling: 950
+decode: 60000
+streamDownload: 30 * 60 * 1000
+
+// CAPTCHA
+provider: 'cloudflare'
+siteKey: '1x00000000000000000000AA'
+
+// Feature Flags
+enableSuggestions: true
+enablePlaylistSupport: true
+enableCaptcha: true
+enableDebugLogging: isDevelopment
+</code></pre>
+<hr>
+<h2>Mobile-First Breakpoints (Implied)</h2>
+<pre><code class="language-css">/* Base: Mobile first (max 575px) */
+.container { padding: 12px; }
+.grid { grid-template-columns: 1fr; }
+
+/* Tablet: 576px and up */
+@media (min-width: 576px) {
+  .container { padding: 20px; }
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Desktop: 992px and up */
+@media (min-width: 992px) {
+  .container { padding: 40px; }
+  .grid { grid-template-columns: repeat(3, 1fr); }
+}
+</code></pre>
+<hr>
+<h2>Quick Troubleshooting Guide</h2>
+<table>
+<thead>
+<tr>
+<th>Issue</th>
+<th>Cause</th>
+<th>Solution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Styles not updating</td>
+<td>CSS import order</td>
+<td>Check src/main.ts import sequence</td>
+</tr>
+<tr>
+<td>Mobile menu stuck</td>
+<td>Missing element</td>
+<td>Ensure id=&quot;mobileMenuOverlay&quot; exists</td>
+</tr>
+<tr>
+<td>Page doesn't load</td>
+<td>HTML not in build</td>
+<td>Check vite.config.ts input entries</td>
+</tr>
+<tr>
+<td>API calls failing</td>
+<td>Wrong endpoint</td>
+<td>Verify environment.ts baseUrl</td>
+</tr>
+<tr>
+<td>TypeScript errors</td>
+<td>Type mismatch</td>
+<td>Run <code>tsc</code> to check errors</td>
+</tr>
+<tr>
+<td>Build fails</td>
+<td>Missing deps</td>
+<td>Run <code>pnpm install</code></td>
+</tr>
+<tr>
+<td>Routes broken</td>
+<td>Missing plugin</td>
+<td>Verify vite-plugin-html-rewrite</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2>Future Improvements (Eleventy Integration)</h2>
+<h3>Phase 1: Template Extraction</h3>
+<pre><code>Create: src/_includes/layouts/
+├─ base.njk (main wrapper)
+├─ converter.njk (converter pages)
+└─ static.njk (about, contact, etc.)
+</code></pre>
+<h3>Phase 2: Data-Driven</h3>
+<pre><code>Create: src/_data/
+├─ pages.json (metadata)
+├─ navigation.json (menu)
+└─ i18n.json (translations)
+</code></pre>
+<h3>Phase 3: Build Integration</h3>
+<pre><code>.eleventy.js config
+├─ Input: src/pages/
+├─ Output: dist/ (same as Vite)
+└─ Preserve: Vite assets handling
+</code></pre>
+<h3>Phase 4: i18n Support</h3>
+<pre><code>/pages/en/index.md
+/pages/vi/index.md
+/pages/es/index.md
+</code></pre>
+<p><strong>Result:</strong> Single HTML template change updates all 14 pages automatically</p>
