@@ -16,21 +16,43 @@ module.exports = function(eleventyConfig) {
 
 
   // ============================================
-  // 3. LOAD i18n DATA
+  // 3. LOAD i18n DATA (MODULAR STRUCTURE)
   // ============================================
-  // Load all JSON files from _data/i18n/ folder
-  const i18nData = {};
-  const i18nDir = path.join(__dirname, '_templates/_data/i18n');
+  // Load base i18n data (nav, footer, hero - shared across all pages)
+  const i18nBaseDir = path.join(__dirname, '_templates/_data/i18n');
+  const baseData = {};
 
-  if (fs.existsSync(i18nDir)) {
-    const i18nFiles = fs.readdirSync(i18nDir);
+  if (fs.existsSync(i18nBaseDir)) {
+    const baseFile = path.join(i18nBaseDir, 'base.json');
+    if (fs.existsSync(baseFile)) {
+      baseData.base = JSON.parse(fs.readFileSync(baseFile, 'utf-8'));
+    }
+  }
 
-    i18nFiles.forEach(file => {
-      if (file.endsWith('.json')) {
-        const lang = file.replace('.json', '');
-        const filePath = path.join(i18nDir, file);
-        i18nData[lang] = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
-      }
+  // Load page-specific i18n data
+  const pagesData = {};
+  const pagesDir = path.join(__dirname, '_templates/_data/pages');
+
+  if (fs.existsSync(pagesDir)) {
+    const pageFolders = fs.readdirSync(pagesDir);
+
+    pageFolders.forEach(pageFolder => {
+      const pagePath = path.join(pagesDir, pageFolder);
+
+      // Skip if not a directory
+      if (!fs.statSync(pagePath).isDirectory()) return;
+
+      pagesData[pageFolder] = {};
+
+      // Load all language files for this page (en.json, vi.json, etc.)
+      const pageFiles = fs.readdirSync(pagePath);
+      pageFiles.forEach(file => {
+        if (file.endsWith('.json')) {
+          const lang = file.replace('.json', '');
+          const filePath = path.join(pagePath, file);
+          pagesData[pageFolder][lang] = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+        }
+      });
     });
   }
 
@@ -47,7 +69,11 @@ module.exports = function(eleventyConfig) {
     ]
   });
 
-  eleventyConfig.addGlobalData('i18nData', i18nData);
+  // Expose base i18n data (nav, footer, hero)
+  eleventyConfig.addGlobalData('i18nBase', baseData.base || {});
+
+  // Expose page-specific i18n data
+  eleventyConfig.addGlobalData('i18nPages', pagesData);
 
 
   // ============================================

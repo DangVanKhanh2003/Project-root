@@ -2,9 +2,9 @@
     <div class="container">
         <div class="nav_head">
             <div class="navbar-logo">
-                <a href="{% if lang == 'en' %}/{% else %}/{{ lang }}/{% endif %}">
+                <a href="/">
                     <img height="46px" width="46px" src="/logo.png" alt="Y2MatePro logo">
-                    <span class="logo-name">{{ i18n.meta.siteName }}</span>
+                    <span class="logo-name">Y2mate</span>
                 </a>
             </div>
             <button type="button" class="navbar-toggler" id="mobileMenuToggle">
@@ -16,17 +16,17 @@
         <div class="header-menu">
             <ul class="menu-navbar">
                 <li class="navbar">
-                    <a href="{% if lang == 'en' %}/{% else %}/{{ lang }}/{% endif %}">{{ i18n.nav.home }}</a>
+                    <a href="/">{{ base.nav.home }}</a>
                 </li>
                 <li class="navbar">
-                    <a href="{% if lang == 'en' %}/youtube-to-mp4{% else %}/{{ lang }}/youtube-to-mp4{% endif %}">{{ i18n.nav.youtubeToMp4 }}</a>
+                    <a href="/youtube-to-mp4">{{ base.nav.youtubeToMp4 }}</a>
                 </li>
                 <li class="navbar">
-                    <a href="{% if lang == 'en' %}/youtube-to-mp3{% else %}/{{ lang }}/youtube-to-mp3{% endif %}">{{ i18n.nav.youtubeToMp3 }}</a>
+                    <a href="/youtube-to-mp3">{{ base.nav.youtubeToMp3 }}</a>
                 </li>
                 <li class="navbar language">
                     <a href="javascript:void(0);">
-                        {{ i18n.nav.language }}<span class="shape"></span>
+                        {{ base.nav.language }}<span class="shape"></span>
                     </a>
                     <div class="dropdown-menu">
                         <ul class="lang-menu">
@@ -43,7 +43,7 @@
         <div class="mobile-menu-overlay" id="mobileMenuOverlay">
             <div class="mobile-menu-content">
                 <div class="mobile-header-top">
-                    <a href="{% if lang == 'en' %}/{% else %}/{{ lang }}/{% endif %}">
+                    <a href="/">
                         <div class="mobile-logo">
                             <img height="36px" width="36px" src="/logo.png" alt="Y2MatePro logo">
                             <span class="logo-name">Y2matePro</span>
@@ -57,15 +57,15 @@
                 </div>
                 <nav class="mobile-nav">
                     <ul class="mobile-menu">
-                        <li><a href="{% if lang == 'en' %}/{% else %}/{{ lang }}/{% endif %}">{{ i18n.nav.home }}</a></li>
-                        <li><a href="{% if lang == 'en' %}/youtube-to-mp4{% else %}/{{ lang }}/youtube-to-mp4{% endif %}">{{ i18n.nav.youtubeToMp4 }}</a></li>
-                        <li><a href="{% if lang == 'en' %}/youtube-to-mp3{% else %}/{{ lang }}/youtube-to-mp3{% endif %}">{{ i18n.nav.youtubeToMp3 }}</a></li>
-                        <li><a href="{% if lang == 'en' %}/youtube-music-downloader{% else %}/{{ lang }}/youtube-music-downloader{% endif %}">{{ i18n.nav.youtubeMusicDownloader }}</a></li>
-                        <li><a href="{% if lang == 'en' %}/youtube-to-mp3-320kbps-converter{% else %}/{{ lang }}/youtube-to-mp3-320kbps-converter{% endif %}">{{ i18n.nav.youtubeMp3320 }}</a></li>
-                        <li><a href="{% if lang == 'en' %}/youtube-to-wav-converter{% else %}/{{ lang }}/youtube-to-wav-converter{% endif %}">{{ i18n.nav.youtubeToWav }}</a></li>
-                        <li><a href="{% if lang == 'en' %}/youtube-to-ogg-converter{% else %}/{{ lang }}/youtube-to-ogg-converter{% endif %}">{{ i18n.nav.youtubeToOgg }}</a></li>
-                        <li><a href="{% if lang == 'en' %}/youtube-to-opus-converter{% else %}/{{ lang }}/youtube-to-opus-converter{% endif %}">{{ i18n.nav.youtubeToOpus }}</a></li>
-                        <li><a href="{% if lang == 'en' %}/youtube-short-downloader{% else %}/{{ lang }}/youtube-short-downloader{% endif %}">{{ i18n.nav.youtubeShorts }}</a></li>
+                        <li><a href="/">{{ base.nav.home }}</a></li>
+                        <li><a href="/youtube-to-mp4">{{ base.nav.youtubeToMp4 }}</a></li>
+                        <li><a href="/youtube-to-mp3">{{ base.nav.youtubeToMp3 }}</a></li>
+                        <li><a href="/youtube-music-downloader">{{ base.nav.youtubeMusicDownloader }}</a></li>
+                        <li><a href="/youtube-to-mp3-320kbps-converter">{{ base.nav.youtubeMp3320 }}</a></li>
+                        <li><a href="/youtube-to-wav-converter">{{ base.nav.youtubeToWav }}</a></li>
+                        <li><a href="/youtube-to-ogg-converter">{{ base.nav.youtubeToOgg }}</a></li>
+                        <li><a href="/youtube-to-opus-converter">{{ base.nav.youtubeToOpus }}</a></li>
+                        <li><a href="/youtube-short-downloader">{{ base.nav.youtubeShorts }}</a></li>
                     </ul>
                 </nav>
             </div>

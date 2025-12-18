@@ -1,10 +1,22 @@
-{% set i18n = i18nData[lang or 'en'] %}
-{% set seo = i18n.seo[seoKey or 'homepage'] %}
+{%- set base = i18nBase -%}
+{%- set pageData = i18nPages[pageKey or 'index'][lang or 'en'] -%}
+{%- set seo = pageData.seo -%}
+{#- Language-specific configs for multilingual SEO -#}
+{%- set localeMap = {
+  en: 'en_US',
+  vi: 'vi_VN',
+  es: 'es_ES',
+  fr: 'fr_FR',
+  de: 'de_DE',
+  ja: 'ja_JP',
+  ar: 'ar_SA',
+  he: 'he_IL'
+} -%}
+{%- set locale = localeMap[lang] or 'en_US' -%}
 <!DOCTYPE html>
-<html lang="{{ i18n.meta.lang }}" dir="{{ i18n.meta.dir }}">
+<html lang="{{ lang or 'en' }}"{% if lang == 'ar' or lang == 'he' %} dir="rtl"{% endif %}>
 
 <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta charset="UTF-8">
@@ -12,23 +24,26 @@
     <!-- SEO Metadata -->
     <title>{{ seo.title }}</title>
     <meta name="description" content="{{ seo.description }}">
-    <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+    <link rel="canonical" href="{{ site.url }}{{ page.url | replace('.html', '') | replace('/index', '/') }}">
+
+    <!-- hreflang tags for multilingual SEO -->
+    <link rel="alternate" hreflang="en" href="{{ site.url }}{{ page.url | replace('.html', '') | replace('/index', '/') }}" />
+    <link rel="alternate" hreflang="x-default" href="{{ site.url }}{{ page.url | replace('.html', '') | replace('/index', '/') }}" />
 
     <!-- Schema.org markup -->
     <meta itemprop="name" content="{{ seo.schemaName }}" />
     <meta itemprop="description" content="{{ seo.schemaDescription }}">
+    <meta itemprop="inLanguage" content="{{ lang or 'en' }}" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Y2MatePro" />
-    <meta property="og:locale" content="{{ i18n.meta.locale }}" />
+    <meta property="og:locale" content="{{ locale }}" />
     <meta property="og:title" content="{{ seo.ogTitle }}" />
     <meta property="og:description" content="{{ seo.ogDescription }}" />
     <meta property="og:image" content="{{ site.url }}/logo.png" />
-    <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
+    <meta property="og:url" content="{{ site.url }}{{ page.url | replace('.html', '') | replace('/index', '/') }}" />
 
-    <!-- Security -->
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
     <!-- Favicons -->
     <link rel="icon" href="/favicon.png">
@@ -40,17 +55,6 @@
     <!-- Theme Color -->
     <meta name="theme-color" content="#c10841">
     <meta name="color-scheme" content="light">
-
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZWPL9SR6P6"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-        gtag('config', 'G-ZWPL9SR6P6');
-    </script>
 
     <!-- Critical CSS imported via Vite -->
     <script type="module" src="/src/main.ts"></script>

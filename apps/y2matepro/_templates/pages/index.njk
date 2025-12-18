@@ -2,22 +2,22 @@
 layout: base.njk
 permalink: /index.html
 lang: en
-seoKey: homepage
+pageKey: index
 ---
-{% set i18n = i18nData.en %}
-
+{%- set base = i18nBase -%}
+{%- set page = i18nPages.index.en -%}
 <div class="container">
     <section class="y2mate-download-pro">
         <div class="y2mate-search-form-pro d-flex">
             <div class="form-wrap">
-                <h1 class="y2mate_title-pro">{{ i18n.hero.title }}</h1>
+                <h1 class="y2mate_title-pro">{{ page.hero.title }}</h1>
                 <form id="downloadForm" class="search_form" method="POST" action="/search/">
                     <div class="input-container">
                         <div class=" input-wrapper">
                             <input id="videoUrl" class="y2mate_query-pro keyword" type="text" name="q"
-                                placeholder="{{ i18n.hero.placeholder }}" autocomplete="off" autofocus="">
+                                placeholder="{{ base.hero.placeholder }}" autocomplete="off" autofocus="">
                             <button id="input-action-button" type="button" class="input-action-btn" data-action="paste"
-                                aria-label="{{ i18n.hero.pasteLabel }}">
+                                aria-label="{{ base.hero.pasteLabel }}">
                                 <svg class="paste-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                                     viewBox="0 0 24 24">
                                     <path fill="currentColor"
@@ -32,7 +32,7 @@ seoKey: homepage
                         </div>
                     </div>
                     <button id="submit" type="submit" name="form_submit" class="submit-btn" aria-label="Search">
-                        <div class="converter-btn">{{ i18n.hero.submitButton }}</div>
+                        <div class="converter-btn">{{ base.hero.submitButton }}</div>
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                             width="14px" height="14px" fill="#fff" id="Layer_1"
                             style="enable-background:new 0 0 16 16;" version="1.1" viewBox="0 0 16 16"
@@ -44,7 +44,7 @@ seoKey: homepage
                     </button>
                     <div id="suggestion-container" class="suggesstion-list suggesstion-box"></div>
                     <p class="y2mate-terms-pro">
-                        {{ i18n.hero.termsText }} <a href="terms-condition">{{ i18n.hero.termsLink }}</a>.
+                        {{ base.hero.termsText }} <a href="/terms-condition">{{ base.hero.termsLink }}</a>.
                     </p>
                 </form>
                 <div class="spinner" style="display: none;">
@@ -67,33 +67,33 @@ seoKey: homepage
 
     <section class="y2mate-content-pro d-flex">
         <div class="col-sm-12">
-            <h2>{{ i18n.content.mainTitle }}</h2>
-            <p>{{ i18n.content.intro1 }}</p>
-            <p>{{ i18n.content.intro2 }}</p>
+            <h2>{{ page.content.mainTitle }}</h2>
+            <p>{{ page.content.intro1 }}</p>
+            <p>{{ page.content.intro2 }}</p>
         </div>
     </section>
     <section class="y2mate-instruction-pro">
         <div class="y2mate-in-ad-pro">
-            <h3>{{ i18n.instructions.title }}</h3>
+            <h3>{{ page.instructions.title }}</h3>
             <ol>
-                {% for step in i18n.instructions.steps %}
+                {% for step in page.instructions.steps %}
                 <li>{{ step }}</li>
                 {% endfor %}
             </ol>
         </div>
         <div class="y2mate-in-ad-pro">
-            <h3>{{ i18n.whyChoose.title }}</h3>
+            <h3>{{ page.whyChoose.title }}</h3>
             <ul>
-                {% for reason in i18n.whyChoose.reasons %}
+                {% for reason in page.whyChoose.reasons %}
                 <li>{{ reason }}</li>
                 {% endfor %}
             </ul>
         </div>
     </section>
     <section class="y2mate-features-wrap">
-        <h2>{{ i18n.features.title }}</h2>
+        <h2>{{ page.features.title }}</h2>
         <div class="y2mate-features-wrap-pro first">
-            {% for feature in i18n.features.items %}
+            {% for feature in page.features.items %}
             <div class="col-sm-4 d-flex">
                 <div class="y2mate-features-pro">
                     {% if loop.index == 1 %}
@@ -155,11 +155,11 @@ seoKey: homepage
         </div>
     </section>
     <section class="yt-content">
-        <h2 >{{ i18n.faqs.title }}</h2>
+        <h2 >{{ page.faqs.title }}</h2>
         <div class="download-uses">
             <p></p>
             <div class="guide-data">
-                {% for faq in i18n.faqs.items %}
+                {% for faq in page.faqs.items %}
                 <h3>{{ faq.question }}</h3>
                 <p>{{ faq.answer }}</p>
                 {% endfor %}

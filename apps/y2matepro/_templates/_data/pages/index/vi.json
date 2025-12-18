@@ -1,0 +1,108 @@
+{
+  "seo": {
+    "title": "Y2mate - Tải Video YouTube Miễn Phí – Download YouTube Video",
+    "description": "Y2mate YouTube Downloader: tải video miễn phí sang MP3 128–320kbps hoặc MP4 360p–1080p. Nhanh, không giới hạn.",
+    "ogTitle": "Y2mate - Tải Video YouTube Miễn Phí",
+    "ogDescription": "Y2mate YouTube Downloader – chuyển đổi MP3/MP4 miễn phí (128–320kbps, 360p–1080p). Nhanh, không giới hạn.",
+    "schemaName": "Y2mate - Tải Video Youtube",
+    "schemaDescription": "Y2mate YouTube Downloader – chuyển đổi sang MP3 128–320kbps hoặc MP4 360p–1080p nhanh chóng."
+  },
+
+  "hero": {
+    "title": "Y2mate - Tải Video Youtube"
+  },
+
+  "content": {
+    "mainTitle": "Download YouTube to MP3/MP4 fast",
+    "intro1": "If you search for \"y2mate\", you want a simple and fast way to save YouTube audio or video. This Y2mate downloader focuses on YouTube only, with a clean paste‑and‑download flow that works on iPhone, Android, and desktop browsers. No app. No account.",
+    "intro2": "Choose the quality you need: MP4 at 360p/720p/1080p or MP3 at 128/192/320kbps . There's no file size limit and we provide market‑leading download speed to keep things smooth even for long videos."
+  },
+
+  "instructions": {
+    "title": "How to use the Y2mate downloader",
+    "steps": [
+      "Paste a YouTube link (or enter a keyword) into the box.",
+      "Click Start to analyze the video.",
+      "Pick MP4 or MP3 quality (e.g., 1080p, 320kbps) and download."
+    ]
+  },
+
+  "whyChoose": {
+    "title": "Why choose this Y2mate downloader",
+    "reasons": [
+      "Unlimited use and no file size limits.",
+      "Fastest download speed in the market.",
+      "No registration or software installation.",
+      "MP4 (360p/720p/1080p) and MP3 (128/192/320kbps).",
+      "Works on iPhone, Android, and desktop browsers."
+    ]
+  },
+
+  "features": {
+    "title": "Key Features of Y2mate",
+    "items": [
+      {
+        "title": "Unlimited downloads",
+        "description": "Use Y2mate as much as you want. There is no file size limit and no daily cap."
+      },
+      {
+        "title": "Simple and reliable",
+        "description": "Paste a YouTube link, click Start, choose quality, and download. The interface stays lightweight and consistent across major browsers."
+      },
+      {
+        "title": "Quality you choose",
+        "description": "Pick MP4 at 360p/720p/1080p or MP3 at 128/192/320kbps  to fit your needs. Higher options may appear when available from the source."
+      },
+      {
+        "title": "High-Speed Downloads",
+        "description": "Experience industry-leading download speeds for both video and audio. Our optimized infrastructure ensures fast processing whether you're downloading MP3 music or MP4 videos—no lengthy queues or delays."
+      },
+      {
+        "title": "100% Online Tool",
+        "description": "Use Y2mate directly in your web browser without installing any software or extensions. No account registration, no email verification, no personal information required. Just visit, paste, and download."
+      },
+      {
+        "title": "Cross-Platform Support",
+        "description": "Y2mate works flawlessly on all operating systems and devices: Windows PCs, Macs, Linux machines, iPhones, iPads, Android smartphones and tablets. Compatible with Chrome, Firefox, Safari, Edge, and Opera browsers."
+      }
+    ]
+  },
+
+  "faqs": {
+    "title": "FAQs",
+    "items": [
+      {
+        "question": "What does Y2mate do?",
+        "answer": "Y2mate lets you save YouTube videos and audio directly in your browser. Convert to MP4 (360p/720p/1080p — up to 2K/4K when available) or MP3 (128/192/320kbps). No app, no account."
+      },
+      {
+        "question": "Do I have to pay to use Y2mate?",
+        "answer": "No. Y2mate is free to use — no sign‑up, no trial, and no hidden fees."
+      },
+      {
+        "question": "Are there limits on downloads or file size?",
+        "answer": "There are no daily caps and no fixed file‑size limit. Very long videos may take longer depending on your connection and device storage."
+      },
+      {
+        "question": "Why don't I see 2k/4K on some videos?",
+        "answer": "Available qualities depend on the original upload. If a video was published without certain resolutions or uses separate audio/video streams, some options may not appear."
+      },
+      {
+        "question": "How do I save files on iPhone or Android?",
+        "answer": "On iPhone (Safari), choose Download and find files in the Files app; optionally move to Photos. On Android (Chrome), check the Downloads folder or Gallery."
+      },
+      {
+        "question": "Does the site store my downloads or links?",
+        "answer": "No. We don't require accounts and don't keep your downloaded files. Basic server logs may be kept for security and reliability."
+      },
+      {
+        "question": "Are there limits for file size or length?",
+        "answer": "We don't impose a hard size limit. Extremely long videos may be constrained by your connection or device storage and can take longer to process."
+      },
+      {
+        "question": "What should I try if analysis fails?",
+        "answer": "Make sure the YouTube link is valid and public, retry after a moment, and check your connection. Age‑restricted or region‑blocked videos may require additional steps."
+      }
+    ]
+  }
+}
