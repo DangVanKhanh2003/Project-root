@@ -123,6 +123,7 @@ export function getSizeMB(result: ExtractResult): number {
 // ============================================================
 
 const IOS_RAM_MAX_SIZE_MB = 150;
+const MAX_STREAM_SIZE_MB = 500; // Force polling for files > 500MB
 const LOG_PREFIX = '[Routing]';
 const log = (...args: unknown[]) => console.log(LOG_PREFIX, ...args);
 
@@ -165,6 +166,9 @@ export function determineRoute(
   if (isIOS()) {
     // iOS RAM: Audio ≤150MB (direct stream download to RAM, ignore progressUrl)
     // iOS Polling: Video or large audio (server-side processing)
+    // Note: No need to check 500MB here - iOS already uses polling for:
+    //   - All videos (any size)
+    //   - Audio >150MB
     const hasProgressUrl = !!extractResult.progressUrl;
 
     log('iOS routing check:', {
@@ -208,7 +212,19 @@ export function determineRoute(
     };
   }
 
-  // Case 5: Other platforms - direct stream
+  // Case 5: Other platforms - check size before deciding
+  // Force polling if file > 500MB to avoid memory issues
+  if (sizeMB > MAX_STREAM_SIZE_MB) {
+    log('→ Case 4: WINDOWS_MP4_POLLING (file > 500MB - forced polling for any platform)');
+    return {
+      routeType: RouteType.WINDOWS_MP4_POLLING,
+      platform: 'other',
+      format,
+      sizeMB,
+      description: `Large file (${sizeMB}MB > 500MB) - forced server polling`
+    };
+  }
+
   log('→ Case 5: OTHER_STREAM (default fallback)');
   return {
     routeType: RouteType.OTHER_STREAM,
