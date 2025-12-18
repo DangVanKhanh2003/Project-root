@@ -22,24 +22,17 @@ module.exports = function(eleventyConfig) {
   const i18nData = {};
   const i18nDir = path.join(__dirname, '_templates/_data/i18n');
 
-  console.log('[.eleventy.cjs] i18nDir:', i18nDir);
-  console.log('[.eleventy.cjs] Directory exists?', fs.existsSync(i18nDir));
-
   if (fs.existsSync(i18nDir)) {
     const i18nFiles = fs.readdirSync(i18nDir);
-    console.log('[.eleventy.cjs] Files found:', i18nFiles);
 
     i18nFiles.forEach(file => {
       if (file.endsWith('.json')) {
         const lang = file.replace('.json', '');
         const filePath = path.join(i18nDir, file);
-        console.log(`[.eleventy.cjs] Loading ${lang} from ${filePath}`);
         i18nData[lang] = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
       }
     });
   }
-
-  console.log('[.eleventy.cjs] i18nData loaded with keys:', Object.keys(i18nData));
 
 
   // ============================================

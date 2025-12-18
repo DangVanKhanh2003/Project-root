@@ -1,5 +1,7 @@
+{% set i18n = i18nData[lang or 'en'] %}
+{% set seo = i18n.seo[seoKey or 'homepage'] %}
 <!DOCTYPE html>
-<html lang="{{ i18n.meta.lang }}">
+<html lang="{{ i18n.meta.lang }}" dir="{{ i18n.meta.dir }}">
 
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,29 +10,22 @@
     <meta charset="UTF-8">
 
     <!-- SEO Metadata -->
-    <title>{{ pageTitle }}</title>
-    <meta name="description" content="{{ pageDescription }}">
-    <link rel="canonical" href="{{ canonicalUrl }}">
+    <title>{{ seo.title }}</title>
+    <meta name="description" content="{{ seo.description }}">
+    <link rel="canonical" href="{{ site.url }}{{ page.url }}">
 
     <!-- Schema.org markup -->
-    <meta itemprop="name" content="{{ pageTitle }}" />
-    <meta itemprop="description" content="{{ pageDescription }}">
+    <meta itemprop="name" content="{{ seo.schemaName }}" />
+    <meta itemprop="description" content="{{ seo.schemaDescription }}">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Y2MatePro" />
     <meta property="og:locale" content="{{ i18n.meta.locale }}" />
-    <meta property="og:title" content="{{ pageOgTitle }}" />
-    <meta property="og:description" content="{{ pageOgDescription }}" />
+    <meta property="og:title" content="{{ seo.ogTitle }}" />
+    <meta property="og:description" content="{{ seo.ogDescription }}" />
     <meta property="og:image" content="{{ site.url }}/logo.png" />
-    <meta property="og:url" content="{{ canonicalUrl }}" />
-
-    <!-- Alternate language URLs (hreflang) -->
-    {% for language in site.languages %}
-    <link rel="alternate"
-          hreflang="{{ language.code }}"
-          href="{{ site.url }}{{ page.url | getAlternateUrl(language.code) }}">
-    {% endfor %}
+    <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
 
     <!-- Security -->
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
@@ -57,135 +52,19 @@
         gtag('config', 'G-ZWPL9SR6P6');
     </script>
 
-    <!-- Inline i18n data for runtime JS -->
-    <script id="i18n-data" type="application/json">
-        {{ i18n.runtime | dump | safe }}
-    </script>
-
     <!-- Critical CSS imported via Vite -->
     <script type="module" src="/src/main.ts"></script>
 </head>
 
 <body>
-    <header class="nav-header">
-        <div class="container">
-            <div class="nav_head">
-                <div class="navbar-logo">
-                    <a href="{% if lang.code == 'en' %}/{% else %}/{{ lang.code }}/{% endif %}">
-                        <img height="46px" width="46px" src="/logo.png" alt="Y2MatePro logo">
-                        <span class="logo-name">{{ i18n.meta.siteName }}</span>
-                    </a>
-                </div>
-                <button type="button" class="navbar-toggler" id="mobileMenuToggle">
-                    <span class="toggle-icon"></span>
-                    <span class="toggle-icon"></span>
-                    <span class="toggle-icon"></span>
-                </button>
-            </div>
-            <div class="header-menu">
-                <ul class="menu-navbar">
-                    <li class="navbar">
-                        <a href="{% if lang.code == 'en' %}/{% else %}/{{ lang.code }}/{% endif %}">{{ i18n.nav.home }}</a>
-                    </li>
-                    <li class="navbar">
-                        <a href="{% if lang.code == 'en' %}/youtube-to-mp4{% else %}/{{ lang.code }}/youtube-to-mp4{% endif %}">{{ i18n.nav.youtubeToMp4 }}</a>
-                    </li>
-                    <li class="navbar">
-                        <a href="{% if lang.code == 'en' %}/youtube-to-mp3{% else %}/{{ lang.code }}/youtube-to-mp3{% endif %}">{{ i18n.nav.youtubeToMp3 }}</a>
-                    </li>
-                    <li class="navbar language">
-                        <a href="javascript:void(0);">
-                            {{ i18n.nav.language }}<span class="shape"></span>
-                        </a>
-                        <div class="dropdown-menu">
-                            <ul class="lang-menu">
-                                {% for language in site.languages %}
-                                <li>
-                                    <a data-lang="{{ language.code }}"
-                                       href="{{ site.url }}{{ page.url | getAlternateUrl(language.code) }}"
-                                       {% if language.code == lang.code %}aria-current="page"{% endif %}>
-                                        {{ language.name }}
-                                    </a>
-                                </li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Mobile Menu Overlay -->
-            <div class="mobile-menu-overlay" id="mobileMenuOverlay">
-                <div class="mobile-menu-content">
-                    <div class="mobile-header-top">
-                        <a href="{% if lang.code == 'en' %}/{% else %}/{{ lang.code }}/{% endif %}">
-                            <div class="mobile-logo">
-                                <img height="36px" width="36px" src="/logo.png" alt="Y2MatePro logo">
-                                <span class="logo-name">Y2matePro</span>
-                            </div>
-                        </a>
-                        <button type="button" class="mobile-close-btn" id="mobileCloseBtn">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                            </svg>
-                        </button>
-                    </div>
-                    <nav class="mobile-nav">
-                        <ul class="mobile-menu">
-                            <li><a href="{% if lang.code == 'en' %}/{% else %}/{{ lang.code }}/{% endif %}">{{ i18n.nav.home }}</a></li>
-                            <li><a href="{% if lang.code == 'en' %}/youtube-to-mp4{% else %}/{{ lang.code }}/youtube-to-mp4{% endif %}">{{ i18n.nav.youtubeToMp4 }}</a></li>
-                            <li><a href="{% if lang.code == 'en' %}/youtube-to-mp3{% else %}/{{ lang.code }}/youtube-to-mp3{% endif %}">{{ i18n.nav.youtubeToMp3 }}</a></li>
-                            <li><a href="{% if lang.code == 'en' %}/youtube-music-downloader{% else %}/{{ lang.code }}/youtube-music-downloader{% endif %}">{{ i18n.nav.youtubeMusicDownloader }}</a></li>
-                            <li><a href="{% if lang.code == 'en' %}/youtube-to-mp3-320kbps-converter{% else %}/{{ lang.code }}/youtube-to-mp3-320kbps-converter{% endif %}">{{ i18n.nav.youtubeMp3320 }}</a></li>
-                            <li><a href="{% if lang.code == 'en' %}/youtube-to-wav-converter{% else %}/{{ lang.code }}/youtube-to-wav-converter{% endif %}">{{ i18n.nav.youtubeToWav }}</a></li>
-                            <li><a href="{% if lang.code == 'en' %}/youtube-to-ogg-converter{% else %}/{{ lang.code }}/youtube-to-ogg-converter{% endif %}">{{ i18n.nav.youtubeToOgg }}</a></li>
-                            <li><a href="{% if lang.code == 'en' %}/youtube-to-opus-converter{% else %}/{{ lang.code }}/youtube-to-opus-converter{% endif %}">{{ i18n.nav.youtubeToOpus }}</a></li>
-                            <li><a href="{% if lang.code == 'en' %}/youtube-short-downloader{% else %}/{{ lang.code }}/youtube-short-downloader{% endif %}">{{ i18n.nav.youtubeShorts }}</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-            <!-- End Mobile Menu Overlay -->
-        </div>
-    </header>
+    {% include "header.njk" %}
 
     {{ content | safe }}
 
-    <footer class="footer">
-        <p>{{ i18n.footer.copyright }}</p>
-        <ul class="footer_nav">
-            <li class="fnav-menu">
-                <a href="{% if lang.code == 'en' %}/about-us{% else %}/{{ lang.code }}/about-us{% endif %}">{{ i18n.footer.about }}</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="{% if lang.code == 'en' %}/contact{% else %}/{{ lang.code }}/contact{% endif %}">{{ i18n.footer.contact }}</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="{% if lang.code == 'en' %}/terms-condition{% else %}/{{ lang.code }}/terms-condition{% endif %}">{{ i18n.footer.terms }}</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="{% if lang.code == 'en' %}/privacy-policy{% else %}/{{ lang.code }}/privacy-policy{% endif %}">{{ i18n.footer.privacy }}</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="{% if lang.code == 'en' %}/youtube-short-downloader{% else %}/{{ lang.code }}/youtube-short-downloader{% endif %}">{{ i18n.nav.youtubeShorts }}</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="{% if lang.code == 'en' %}/youtube-music-downloader{% else %}/{{ lang.code }}/youtube-music-downloader{% endif %}">{{ i18n.nav.youtubeMusicDownloader }}</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="{% if lang.code == 'en' %}/youtube-to-mp3-320kbps-converter{% else %}/{{ lang.code }}/youtube-to-mp3-320kbps-converter{% endif %}">{{ i18n.nav.youtubeMp3320 }}</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="{% if lang.code == 'en' %}/youtube-to-wav-converter{% else %}/{{ lang.code }}/youtube-to-wav-converter{% endif %}">{{ i18n.nav.youtubeToWav }}</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="{% if lang.code == 'en' %}/youtube-to-ogg-converter{% else %}/{{ lang.code }}/youtube-to-ogg-converter{% endif %}">{{ i18n.nav.youtubeToOgg }}</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="{% if lang.code == 'en' %}/youtube-to-opus-converter{% else %}/{{ lang.code }}/youtube-to-opus-converter{% endif %}">{{ i18n.nav.youtubeToOpus }}</a>
-            </li>
-        </ul>
-    </footer>
+    {% include "footer.njk" %}
+
+    <!-- Conversion Modal Wrapper -->
+    <div id="progressBarWrapper"></div>
 </body>
 
 </html>

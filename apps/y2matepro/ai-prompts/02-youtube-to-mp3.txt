@@ -1,0 +1,66 @@
+Tôi cần bạn convert 1 HTML file sang Eleventy template với i18n support.
+
+**File cần convert:** youtube-to-mp3.html
+
+**BƯỚC 1: Đọc file gốc**
+Đọc file từ: `/Users/macos/Documents/work/downloader/Project-root/apps/y2matepro/backup-html-originals/youtube-to-mp3.html`
+
+**BƯỚC 2: Extract content và thêm vào i18n**
+
+Từ HTML file, extract:
+1. SEO metadata (title, description, og:title, og:description, schema name, schema description)
+2. Hero title (h1)
+3. Content section (main title, intro paragraphs)
+4. Instructions section (title + steps array)
+5. Why Choose section (title + reasons array)  
+6. Features section (title + 6 items với title & description)
+7. FAQs section (title + Q&A items)
+
+Thêm vào file: `/Users/macos/Documents/work/downloader/Project-root/apps/y2matepro/_templates/_data/i18n/en.json`
+
+Thêm 2 sections mới:
+- `seo.youtubeToMp3`
+- `pages.youtubeToMp3`
+
+**BƯỚC 3: Tạo template**
+
+Tạo file: `/Users/macos/Documents/work/downloader/Project-root/apps/y2matepro/_templates/pages/youtube-to-mp3.njk`
+
+Front matter:
+```
+---
+layout: base.njk
+permalink: /youtube-to-mp3.html
+lang: en
+seoKey: youtubeToMp3
+---
+{% set page = i18nData.en.pages.youtubeToMp3 %}
+```
+
+Sử dụng cấu trúc từ: `/Users/macos/Documents/work/downloader/Project-root/apps/y2matepro/_templates/pages/index.njk`
+
+**QUAN TRỌNG:**
+- ❌ KHÔNG thêm JSON-LD scripts
+- ✅ Copy TOÀN BỘ form từ index.njk (giữ nguyên 100%)
+- ✅ Copy SVG icons từ backup HTML theo thứ tự
+- ✅ Chỉ thay text thành {{ page.xxx }} variables
+
+**BƯỚC 4: Build và verify**
+
+```bash
+npm run 11ty:build
+grep "{{ " _11ty-output/youtube-to-mp3.html
+cp _11ty-output/youtube-to-mp3.html ./youtube-to-mp3.html
+```
+
+**OUTPUT:**
+Show cho tôi:
+1. ✅ Đã update en.json
+2. ✅ Đã tạo youtube-to-mp3.njk
+3. ✅ Build success
+4. ✅ No empty variables
+5. ✅ File copied to root
+
+Reference: `/Users/macos/Documents/work/downloader/Project-root/apps/y2matepro/AI-SIMPLE-GUIDE.md`
+
+Bắt đầu!
