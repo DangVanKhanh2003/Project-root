@@ -1,0 +1,54 @@
+/* =========================================================
+   Component - Status Bar
+   ---------------------------------------------------------
+   Processing status bar with progress indicator
+   Extracted from index.html - Phase 2
+   ========================================================= */
+
+.status {
+    position: relative;
+    width: 100%;
+    height: 52px;
+    background: var(--bg-input);
+    border: 0px !important;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.status--processing::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: var(--progress-width, 0%);
+    background: rgba(139, 92, 246, 0.15); /* Purple tint */
+    border-right: 1px solid rgba(139, 92, 246, 0.4);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
+    transition: width 0.2s linear;
+    z-index: 1;
+}
+
+.status span {
+    position: relative;
+    z-index: 2;
+    font-weight: 600;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-transform: capitalize;
+}
+
+.spinner {
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(139, 92, 246, 0.3);
+    border-top-color: #8b5cf6;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    display: none;
+}

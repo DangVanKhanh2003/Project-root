@@ -1,0 +1,34 @@
+/* =========================================================
+   Section - FAQ
+   ---------------------------------------------------------
+   FAQ list styles
+   Extracted from index.html - Phase 2
+   ========================================================= */
+
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.faq-item {
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    padding-bottom: 16px;
+}
+
+[data-theme="light"] .faq-item {
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.faq-q {
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+
+.faq-a {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}

@@ -1,0 +1,43 @@
+/* =========================================================
+   Light Theme Override
+   ---------------------------------------------------------
+   Light mode color palette overrides
+   Triggered by [data-theme="light"] attribute
+   Extracted from index.html - Phase 2
+   ========================================================= */
+
+[data-theme="light"] {
+    --bg-body: #f1f5f9; /* Slate-100 */
+    --bg-card: rgba(255, 255, 255, 0.7); /* Frosted White */
+    --bg-card-hover: rgba(255, 255, 255, 0.9);
+    --bg-input: #ffffff;
+    --bg-header: rgba(255, 255, 255, 0.8);
+    --bg-header-scroll: rgba(255, 255, 255, 0.95);
+    --bg-footer: #e2e8f0;
+    --bg-step: rgba(255, 255, 255, 0.6);
+    --bg-step-hover: #fff;
+    --bg-badge: rgba(139, 92, 246, 0.15);
+
+    /* Text */
+    --text-main: #0f172a; /* Slate-900 */
+    --text-muted: #64748b; /* Slate-500 */
+    --text-accent: #7c3aed;
+    --text-logo: #0f172a;
+    --text-step-num: rgba(0, 0, 0, 0.05);
+
+    /* Gradients */
+    --gradient-glow: radial-gradient(circle at 50% -20%, rgba(139, 92, 246, 0.4) 0%, rgba(241, 245, 249, 0) 50%);
+    --gradient-text: linear-gradient(to right, #7c3aed, #2563eb);
+    --gradient-title: linear-gradient(to bottom, #0f172a, #475569);
+    --overlay-grid: linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+
+    /* Borders */
+    --border-glass: 1px solid rgba(0, 0, 0, 0.08);
+    --border-input: 1px solid #cbd5e1;
+    --border-input-hover: #94a3b8;
+
+    /* Effects */
+    --shadow-glass: 0 10px 40px -10px rgba(0, 0, 0, 0.1);
+    --glow-input: 0 0 0 4px rgba(139, 92, 246, 0.2);
+    --thumb-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}

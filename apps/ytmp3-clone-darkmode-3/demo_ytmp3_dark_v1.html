@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YTMP3 – Premium Converter</title>
+    <meta name="description" content="Free YouTube to MP3 & MP4 converter. Fast, ad-free, secure.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['"Space Grotesk"', 'sans-serif'],
+                    },
+                    colors: {
+                        accent: '#D4FF00', // Acid Lime
+                        surface: '#09090B', // Zinc 950
+                        black: '#000000',
+                    },
+                    boxShadow: {
+                        'sharp': '4px 4px 0 0 rgba(255,255,255,0.15)',
+                        'glow': '0 0 40px rgba(212, 255, 0, 0.15)',
+                    },
+                    animation: {
+                        'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #000000;
+            color: #FFFFFF;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* Technical Grid Pattern */
+        .bg-tech-grid {
+            background-image: 
+                linear-gradient(to right, rgba(255,255,255,0.07) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.07) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        /* Utilities */
+        .hidden-view {
+            display: none !important;
+        }
+        
+        .opacity-0-pointer-events-none {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Select Styling Override */
+        select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+    </style>
+</head>
+<body class="bg-tech-grid min-h-screen selection:bg-accent selection:text-black flex flex-col">
+
+    <!-- HEADER -->
+    <header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4 bg-transparent">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl flex items-center justify-between">
+            <!-- Logo -->
+            <a href="/" class="group flex items-center gap-2 no-underline">
+                <div class="font-display font-bold text-2xl tracking-tighter text-white group-hover:text-accent transition-colors">
+                    ytmp3<span class="text-zinc-500">.gg</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex items-center gap-6">
+                <nav class="flex gap-2">
+                    <a href="#" class="text-sm font-bold px-4 py-2 rounded-lg transition-all duration-200 border border-white bg-white text-black">Home</a>
+                    <a href="#faq" class="text-sm font-bold px-4 py-2 rounded-lg transition-all duration-200 border border-transparent text-zinc-400 hover:text-white hover:border-zinc-700 hover:bg-zinc-900">FAQ</a>
+                    <a href="#about" class="text-sm font-bold px-4 py-2 rounded-lg transition-all duration-200 border border-transparent text-zinc-400 hover:text-white hover:border-zinc-700 hover:bg-zinc-900">About</a>
+                </nav>
+
+                <div class="w-px h-5 bg-zinc-800 mx-1"></div>
+
+                <!-- Language Selector -->
+                <div class="relative group">
+                    <button class="flex items-center gap-2 text-xs font-bold uppercase tracking-wider bg-black hover:bg-zinc-900 text-white px-3 py-2 rounded-lg border border-zinc-800 transition-all hover:border-zinc-500">
+                        <!-- Globe Icon -->
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-400"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                        <span>EN</span>
+                        <!-- Chevron Icon -->
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-zinc-400 group-hover:rotate-180 transition-transform"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <!-- Dropdown (CSS Hover) -->
+                    <div class="absolute top-full right-0 mt-2 w-48 bg-black rounded-lg shadow-sharp border border-zinc-800 overflow-hidden z-20 py-2 hidden group-hover:block">
+                        <a href="#" class="block px-5 py-2.5 text-sm text-zinc-400 hover:bg-white hover:text-black transition-colors font-medium">English</a>
+                        <a href="#" class="block px-5 py-2.5 text-sm text-zinc-400 hover:bg-white hover:text-black transition-colors font-medium">Español</a>
+                        <a href="#" class="block px-5 py-2.5 text-sm text-zinc-400 hover:bg-white hover:text-black transition-colors font-medium">Tiếng Việt</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden p-2 text-white hover:bg-zinc-900 rounded transition-colors" aria-label="Open menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- MOBILE DRAWER -->
+    <div id="mobile-drawer" class="fixed inset-0 z-[60] bg-zinc-900/90 backdrop-blur-sm transition-opacity duration-300 opacity-0 pointer-events-none md:hidden">
+        <div id="mobile-drawer-content" class="absolute top-0 right-0 bottom-0 w-[280px] bg-black border-l border-zinc-800 shadow-2xl transition-transform duration-300 ease-out transform translate-x-full flex flex-col">
+            <div class="p-5 border-b border-zinc-800 flex items-center justify-between">
+                <span class="font-display font-bold text-2xl text-white tracking-tighter">ytmp3.gg</span>
+                <button id="close-drawer-btn" class="p-2 text-zinc-500 hover:text-white rounded transition-colors">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+            <div class="flex-1 overflow-y-auto py-6 px-6 flex flex-col gap-2">
+                <a href="#" class="text-xl font-display font-bold py-2 block text-accent">Home</a>
+                <a href="#faq" class="text-xl font-display font-bold py-2 block text-zinc-500 hover:text-white">FAQ</a>
+                <a href="#about" class="text-xl font-display font-bold py-2 block text-zinc-500 hover:text-white">About</a>
+                <div class="h-px bg-zinc-800 my-4"></div>
+                <a href="#" class="text-sm font-medium text-zinc-400 py-2 hover:text-white transition-colors">YouTube to MP4</a>
+                <a href="#" class="text-sm font-medium text-zinc-400 py-2 hover:text-white transition-colors">YouTube Shorts</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow">
+        <!-- HERO SECTION -->
+        <section class="relative pt-32 pb-16 md:pt-40 md:pb-24 px-4 sm:px-6 overflow-hidden min-h-[600px]">
+            <!-- Decorative Glow -->
+            <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/5 opacity-20 blur-[80px] pointer-events-none rounded-full"></div>
+
+            <div class="container mx-auto max-w-5xl relative z-10 flex flex-col items-center">
+                
+                <!-- Main Card -->
+                <div class="w-full max-w-4xl bg-black rounded-[20px] shadow-sharp border-2 border-zinc-800 p-6 md:p-12 transition-all relative overflow-hidden">
+                    
+                    <!-- Header Text (Fades out in result view) -->
+                    <div id="hero-header" class="flex flex-col items-center mb-10 transition-all duration-500">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-700 text-[11px] font-bold uppercase tracking-widest text-white mb-6">
+                            <!-- Zap Icon -->
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" class="text-accent"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                            <span>V2.0 High Performance</span>
+                        </div>
+                        <h1 class="text-4xl md:text-6xl font-display font-bold text-center text-white tracking-tight leading-[0.9]">
+                            YouTube to <span class="text-accent" id="title-format">MP3</span>
+                        </h1>
+                        <p class="mt-4 text-zinc-400 text-center font-medium max-w-md">
+                            Fast conversion at lightning speed. No ads, no limits.
+                        </p>
+                    </div>
+
+                    <!-- VIEW CONTAINER -->
+                    <div class="relative w-full">
+                        
+                        <!-- VIEW 1: INPUT FORM -->
+                        <div id="view-input" class="transition-all duration-500 transform translate-x-0 opacity-100">
+                            <form id="convert-form" class="flex flex-col gap-6 md:gap-8" autocomplete="off">
+                                <!-- Input Field -->
+                                <div class="relative group">
+                                    <input type="text" id="video-url" placeholder="Paste YouTube link here..." 
+                                        class="w-full h-16 md:h-20 pl-8 pr-32 rounded-xl bg-black border-2 border-zinc-700 focus:border-white text-white placeholder-zinc-500 font-medium text-lg md:text-xl focus:outline-none transition-all duration-200">
+                                    
+                                    <div class="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-2">
+                                        <!-- Clear Btn (Hidden by default) -->
+                                        <button type="button" id="btn-clear" class="hidden p-2 text-zinc-400 hover:text-white transition-colors">
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                                        </button>
+                                        <!-- Paste Btn -->
+                                        <button type="button" id="btn-paste" class="flex items-center gap-2 px-4 py-2 bg-zinc-900 hover:bg-zinc-800 rounded-lg text-xs font-bold text-white transition-colors uppercase tracking-wider border border-zinc-700">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>
+                                            <span class="hidden sm:inline">Paste</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Controls -->
+                                <div class="flex flex-col md:flex-row gap-4 items-stretch md:items-center justify-between p-1">
+                                     <div class="flex bg-black border-2 border-zinc-800 p-1 rounded-xl order-1self-center md:self-auto w-full md:w-auto">
+                                        <button type="button" class="format-btn flex-1 md:flex-none px-8 py-2.5 rounded-lg text-sm font-bold transition-all duration-200 uppercase tracking-wide bg-white text-black" data-format="mp3">MP3</button>
+                                        <button type="button" class="format-btn flex-1 md:flex-none px-8 py-2.5 rounded-lg text-sm font-bold transition-all duration-200 uppercase tracking-wide text-zinc-500 hover:text-white hover:bg-zinc-900" data-format="mp4">MP4</button>
+                                    </div>
+                                    <!-- Quality -->
+                                    <div class="w-full md:w-72 order-2 relative">
+                                        <select id="quality-select" class="w-full h-[52px] bg-black border-2 border-zinc-700 text-white text-sm rounded-xl focus:outline-none focus:border-white block px-4 transition-all duration-200 cursor-pointer font-bold hover:border-zinc-500">
+                                            <option value="" disabled selected>Select Quality</option>
+                                            <option value="mp3-320">MP3 - 320kbps (High)</option>
+                                            <option value="mp3-192">MP3 - 192kbps (Medium)</option>
+                                            <option value="mp3-128">MP3 - 128kbps (Low)</option>
+                                            <option value="wav">WAV (Lossless)</option>
+                                        </select>
+                                        <div class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-white">
+                                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                                        </div>
+                                    </div>
+
+                                    <!-- Format Toggle -->
+                                   
+
+                                    <!-- Submit Button -->
+                                    <button type="submit" class="h-14 md:h-[52px] px-8 bg-accent hover:bg-lime-400 text-black rounded-xl font-bold text-base transition-all duration-200 transform active:scale-[0.98] flex items-center justify-center gap-3 shadow-[0_0_20px_rgba(212,255,0,0.3)] hover:shadow-[0_0_30px_rgba(212,255,0,0.5)] order-3 group border-2 border-transparent min-w-[140px]">
+                                        <span>Convert</span>
+                                        <div class="bg-black/10 p-1 rounded-full group-hover:bg-black group-hover:text-accent transition-colors">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                                        </div>
+                                    </button>
+                                </div>
+                                <div id="error-msg" class="hidden p-4 bg-red-950 border border-red-500 rounded-xl flex items-center gap-3 text-red-200 text-sm font-medium">
+                                    <div class="w-2 h-2 bg-red-500 rounded-full"></div>
+                                    <span>Please enter a valid YouTube URL</span>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- VIEW 2: PROCESSING / RESULT -->
+                        <div id="view-result" class="transition-all duration-500 transform translate-x-full opacity-0 absolute top-0 left-0 w-full pointer-events-none">
+                            <div class="flex flex-col items-center w-full">
+                                
+                                <!-- Result Header -->
+                                <div class="text-center mb-8">
+                                    <h2 class="text-3xl md:text-4xl font-display font-bold text-white mb-2 leading-none">
+                                        YouTube to <span class="text-accent">MP3 Converter</span>
+                                    </h2>
+                                </div>
+
+                                <!-- Video Card -->
+                                <div class="w-full bg-zinc-900/50 border border-zinc-700 rounded-xl p-4 md:p-6 flex flex-col md:flex-row gap-6 items-center md:items-start mb-8 group hover:border-zinc-500 transition-colors">
+                                    <!-- Thumbnail -->
+                                    <div class="relative w-full md:w-64 aspect-video rounded-lg overflow-hidden border border-zinc-800 flex-shrink-0 shadow-lg group-hover:border-zinc-600 transition-colors">
+                                        <img src="https://i.ytimg.com/vi/XQ4mrFmfhAI/hqdefault.jpg" alt="Video Thumbnail" class="w-full h-full object-cover">
+                                        <div class="absolute bottom-2 right-2 bg-black/80 px-2 py-1 rounded text-xs font-bold text-white">12:45</div>
+                                    </div>
+
+                                    <!-- Details -->
+                                    <div class="flex-1 text-center md:text-left w-full">
+                                        <h3 class="text-xl md:text-2xl font-display font-bold text-white mb-2 line-clamp-2 leading-tight">
+                                            Female Sexual Arousal Disorder and Veterans Disability | All You Need To Know
+                                        </h3>
+                                        <p class="text-zinc-400 font-medium mb-4 flex items-center justify-center md:justify-start gap-2">
+                                            <span>Prestige Veteran Medical Consulting</span>
+                                        </p>
+                                        
+                                        <div class="flex items-center justify-center md:justify-start gap-3">
+                                            <div class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-zinc-950 border border-zinc-800 rounded-md">
+                                                <span class="text-xs font-bold text-zinc-500 uppercase">Format</span>
+                                                <span id="res-format" class="text-sm font-bold text-white uppercase">MP3</span>
+                                            </div>
+                                            <div class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-zinc-950 border border-zinc-800 rounded-md">
+                                                <span class="text-xs font-bold text-zinc-500 uppercase">Quality</span>
+                                                <span class="text-sm font-bold text-accent">320kbps</span>
+                                            </div>
+                                            <!-- NO SIZE TAG AS REQUESTED -->
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- STATE SWITCHER: PROCESSING -> BUTTONS -->
+                                <div id="action-area" class="w-full transition-all duration-300">
+                                    
+                                    <!-- PROCESSING BAR -->
+                                    <div id="status-bar" class="w-full h-14 bg-zinc-950 border border-zinc-800 rounded-xl relative overflow-hidden flex items-center justify-between px-6 shadow-inner">
+                                        <div id="progress-fill" class="absolute left-0 top-0 bottom-0 bg-white/10 border-r border-white/20 transition-all duration-300 ease-linear" style="width: 0%"></div>
+                                        <span class="relative z-10 font-bold text-white uppercase tracking-widest text-xs sm:text-sm animate-pulse">
+                                            processing... <span id="progress-text">0%</span>
+                                        </span>
+                                        <div class="relative z-10">
+                                            <svg class="animate-spin text-accent" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
+                                        </div>
+                                    </div>
+
+                                    <!-- DOWNLOAD BUTTONS (Hidden initially) -->
+                                    <div id="download-buttons" class="hidden flex-col sm:flex-row gap-4 w-full md:w-auto animate-in fade-in zoom-in-95 duration-300">
+                                        <button class="h-14 px-8 bg-accent hover:bg-lime-400 text-black rounded-xl font-bold text-lg transition-all duration-200 flex items-center justify-center gap-3 shadow-[0_0_20px_rgba(212,255,0,0.3)] hover:shadow-[0_0_30px_rgba(212,255,0,0.5)] min-w-[200px]">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                                            <span>Download</span>
+                                        </button>
+                                        
+                                        <button id="btn-reset" class="h-14 px-8 bg-black hover:bg-zinc-900 border-2 border-zinc-700 hover:border-white text-white rounded-xl font-bold text-lg transition-all duration-200 flex items-center justify-center gap-3">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
+                                            <span>Convert Next</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEO / TEXT CONTENT -->
+        <section class="py-12 px-4 sm:px-6 flex justify-center">
+            <div class="w-full max-w-5xl bg-black rounded-[20px] border-2 border-zinc-900 p-6 md:p-16">
+                <article class="prose prose-invert prose-lg max-w-none prose-headings:font-display prose-headings:font-bold prose-headings:tracking-tight prose-headings:text-white prose-p:text-zinc-300 prose-p:leading-relaxed prose-a:text-accent prose-a:font-bold prose-a:no-underline hover:prose-a:underline transition-colors prose-li:text-zinc-300 prose-strong:text-white">
+                    <h2>The Premium YouTube to MP3 Converter</h2>
+                    <p>ytmp3.gg converts YouTube to high-quality audio in MP3, WAV, OGG, and Opus — plus stunning 4K, 2K, and 1080p video — in a simple, ad-free way. We focus on a minimalist, premium experience that gets out of your way.</p>
+                    <p>Just paste your link, choose the format and quality, and let YTMP3 do the work. No pop-ups, no registration, no distractions.</p>
+
+                    <h3>How to Convert YouTube to MP3 or MP4</h3>
+                    <ol class="list-decimal pl-5 space-y-2 marker:text-accent marker:font-bold marker:font-display">
+                        <li>Copy your YouTube link from the browser address bar or share button.</li>
+                        <li>Paste it into the field above, pick either MP3 for audio or MP4 for video.</li>
+                        <li>Click the <strong>Convert</strong> button. Your download will be ready in seconds.</li>
+                    </ol>
+
+                    <div id="faq" class="my-16 scroll-mt-24">
+                        <h3 class="mb-8 flex items-center gap-3 text-white">
+                            <span class="w-8 h-8 rounded bg-white flex items-center justify-center text-black font-bold text-lg">?</span>
+                            Frequently Asked Questions
+                        </h3>
+                        <div class="grid md:grid-cols-2 gap-8 not-prose">
+                            <div class="bg-zinc-950 rounded-xl p-6 border border-zinc-800 hover:border-white transition-colors">
+                                <h4 class="font-display font-bold text-white text-lg mb-3">Is YTMP3 free to use?</h4>
+                                <p class="text-zinc-400 leading-relaxed text-sm">Yes - YTMP3 is completely free. No ads, no limits, purely online.</p>
+                            </div>
+                            <div class="bg-zinc-950 rounded-xl p-6 border border-zinc-800 hover:border-white transition-colors">
+                                <h4 class="font-display font-bold text-white text-lg mb-3">Can I convert Shorts?</h4>
+                                <p class="text-zinc-400 leading-relaxed text-sm">Yes - We support YouTube Shorts and videos up to 3 hours long.</p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-black border-t border-white/5 py-16 mt-auto">
+        <div class="container mx-auto px-4 text-center">
+            <div class="font-display font-bold text-xl tracking-tight mb-8 opacity-40 text-white">ytmp3.gg</div>
+            <div class="flex flex-wrap justify-center gap-x-8 gap-y-4 max-w-3xl mx-auto mb-8">
+                <a href="#" class="text-sm text-zinc-500 hover:text-white transition-colors font-medium">YouTube Video Downloader</a>
+                <a href="#" class="text-sm text-zinc-500 hover:text-white transition-colors font-medium">Contact</a>
+                <a href="#" class="text-sm text-zinc-500 hover:text-white transition-colors font-medium">Terms of Use</a>
+            </div>
+            <p class="text-xs text-zinc-600 font-medium">© 2025 YTMP3.gg | Premium YouTube Converter</p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- Elements ---
+            const header = document.getElementById('main-header');
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const closeDrawerBtn = document.getElementById('close-drawer-btn');
+            const mobileDrawer = document.getElementById('mobile-drawer');
+            const drawerContent = document.getElementById('mobile-drawer-content');
+            
+            const form = document.getElementById('convert-form');
+            const input = document.getElementById('video-url');
+            const btnClear = document.getElementById('btn-clear');
+            const btnPaste = document.getElementById('btn-paste');
+            const errorMsg = document.getElementById('error-msg');
+            const formatBtns = document.querySelectorAll('.format-btn');
+            const titleFormat = document.getElementById('title-format');
+            const resFormat = document.getElementById('res-format');
+            
+            const viewInput = document.getElementById('view-input');
+            const viewResult = document.getElementById('view-result');
+            const heroHeader = document.getElementById('hero-header');
+            
+            const statusBar = document.getElementById('status-bar');
+            const progressFill = document.getElementById('progress-fill');
+            const progressText = document.getElementById('progress-text');
+            const downloadButtons = document.getElementById('download-buttons');
+            const btnReset = document.getElementById('btn-reset');
+
+            let currentFormat = 'mp3';
+
+            // --- Header Scroll ---
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 10) {
+                    header.classList.remove('bg-transparent', 'py-4');
+                    header.classList.add('bg-black', 'border-b', 'border-zinc-800', 'py-3');
+                } else {
+                    header.classList.add('bg-transparent', 'py-4');
+                    header.classList.remove('bg-black', 'border-b', 'border-zinc-800', 'py-3');
+                }
+            });
+
+            // --- Mobile Menu ---
+            function openMenu() {
+                mobileDrawer.classList.remove('opacity-0', 'pointer-events-none');
+                setTimeout(() => {
+                    drawerContent.classList.remove('translate-x-full');
+                }, 10);
+            }
+            function closeMenu() {
+                drawerContent.classList.add('translate-x-full');
+                setTimeout(() => {
+                    mobileDrawer.classList.add('opacity-0', 'pointer-events-none');
+                }, 300);
+            }
+            mobileMenuBtn.addEventListener('click', openMenu);
+            closeDrawerBtn.addEventListener('click', closeMenu);
+            mobileDrawer.addEventListener('click', (e) => {
+                if(e.target === mobileDrawer) closeMenu();
+            });
+
+            // --- Input Logic ---
+            function updateInputState() {
+                if (input.value.trim() !== '') {
+                    btnPaste.parentElement.classList.add('hidden');
+                    btnClear.classList.remove('hidden');
+                } else {
+                    btnPaste.parentElement.classList.remove('hidden');
+                    btnClear.classList.add('hidden');
+                    errorMsg.classList.add('hidden');
+                }
+            }
+            
+            input.addEventListener('input', updateInputState);
+            
+            btnClear.addEventListener('click', () => {
+                input.value = '';
+                updateInputState();
+                input.focus();
+            });
+
+            btnPaste.addEventListener('click', async () => {
+                try {
+                    const text = await navigator.clipboard.readText();
+                    input.value = text;
+                    updateInputState();
+                } catch (err) {
+                    console.error('Failed to paste', err);
+                }
+            });
+
+            // --- Format Toggle ---
+            formatBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    formatBtns.forEach(b => {
+                        b.classList.remove('bg-white', 'text-black');
+                        b.classList.add('text-zinc-500', 'hover:text-white', 'hover:bg-zinc-900');
+                    });
+                    btn.classList.remove('text-zinc-500', 'hover:text-white', 'hover:bg-zinc-900');
+                    btn.classList.add('bg-white', 'text-black');
+                    
+                    currentFormat = btn.dataset.format;
+                    titleFormat.textContent = currentFormat.toUpperCase();
+                    resFormat.textContent = currentFormat.toUpperCase();
+                });
+            });
+
+            // --- Form Submission & Flow ---
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                if (!input.value.trim()) {
+                    errorMsg.classList.remove('hidden');
+                    return;
+                }
+
+                // 1. Transition Input -> Processing
+                // Hide Input View
+                viewInput.classList.remove('translate-x-0', 'opacity-100');
+                viewInput.classList.add('-translate-x-full', 'opacity-0', 'absolute', 'pointer-events-none');
+                
+                // Show Result View Container (but starts with status bar)
+                viewResult.classList.remove('translate-x-full', 'opacity-0', 'absolute', 'pointer-events-none');
+                viewResult.classList.add('translate-x-0', 'opacity-100');
+                
+                // Hide Header Text
+                heroHeader.classList.add('opacity-0', 'h-0', 'overflow-hidden', 'mb-0');
+                heroHeader.classList.remove('mb-10');
+
+                // Reset Status Bar
+                statusBar.classList.remove('hidden');
+                downloadButtons.classList.add('hidden');
+                downloadButtons.classList.remove('flex');
+                progressFill.style.width = '0%';
+                progressText.textContent = '0%';
+
+                // 2. Simulate Processing
+                let progress = 0;
+                const interval = setInterval(() => {
+                    progress += Math.random() * 15;
+                    if (progress > 100) progress = 100;
+                    
+                    progressFill.style.width = `${progress}%`;
+                    progressText.textContent = `${Math.round(progress)}%`;
+
+                    if (progress === 100) {
+                        clearInterval(interval);
+                        // 3. Show Result Buttons
+                        setTimeout(() => {
+                            statusBar.classList.add('hidden');
+                            downloadButtons.classList.remove('hidden');
+                            downloadButtons.classList.add('flex');
+                        }, 500);
+                    }
+                }, 300);
+            });
+
+            // --- Reset / Convert Next ---
+            btnReset.addEventListener('click', () => {
+                // Reset Fields
+                input.value = '';
+                updateInputState();
+                
+                // Show Header
+                heroHeader.classList.remove('opacity-0', 'h-0', 'overflow-hidden', 'mb-0');
+                heroHeader.classList.add('mb-10');
+
+                // Show Input View
+                viewInput.classList.add('translate-x-0', 'opacity-100');
+                viewInput.classList.remove('-translate-x-full', 'opacity-0', 'absolute', 'pointer-events-none');
+                
+                // Hide Result View
+                viewResult.classList.add('translate-x-full', 'opacity-0', 'absolute', 'pointer-events-none');
+                viewResult.classList.remove('translate-x-0', 'opacity-100');
+            });
+
+        });
+    </script>
+</body>
+</html>

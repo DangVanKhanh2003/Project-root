@@ -1,0 +1,119 @@
+/* =========================================================
+   Component - Form Input
+   ---------------------------------------------------------
+   Form container, input wrapper, video input, error message
+   Extracted from index.html - Phase 2
+   ========================================================= */
+
+/* Form Container */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+@media (min-width: 600px) {
+    .form-container {
+        gap: 15px;
+    }
+}
+
+.input-group {
+    position: relative;
+}
+
+/* Input Wrapper */
+.input-wrapper {
+    position: relative;
+    background: var(--bg-input);
+    border: var(--border-input);
+    border-radius: 12px;
+
+    height: 50px;
+    border-color: #8a5cf6c0;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+}
+
+
+
+@media (min-width: 600px) {
+    .input-wrapper {
+        height: 64px;
+        border-radius: var(--radius-lg);
+        
+    }
+}
+
+.input-wrapper.focused {
+    border-color: #8b5cf6;
+    box-shadow: var(--glow-input), inset 0 2px 4px rgba(0,0,0,0.05);
+}
+
+[data-theme="dark"] .input-wrapper.focused {
+    background: rgba(0,0,0,0.4);
+}
+
+/* Video Input */
+.video-input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    font-size: 14px;
+    padding: 0 60px 0 24px;
+}
+
+@media (min-width: 600px) {
+    .video-input {
+        font-size: 1.1rem;
+        padding: 0 120px 0 24px;
+    }
+}
+
+.video-input::placeholder {
+    color: var(--text-muted);
+    opacity: 0.6;
+}
+
+/* Input Actions (Paste/Clear button container) */
+.input-actions {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+@media (min-width: 600px) {
+    .input-actions {
+        right: 12px;
+    }
+}
+
+/* Form Controls */
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+@media (min-width: 600px) {
+    .controls {
+        flex-direction: row;
+        align-items: stretch;
+    }
+}
+
+/* Error Message */
+.error-message {
+    margin-top: 20px;
+    padding: 16px;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+    border-radius: var(--radius-md);
+    font-size: 0.9rem;
+    display: none;
+    text-align: center;
+}
