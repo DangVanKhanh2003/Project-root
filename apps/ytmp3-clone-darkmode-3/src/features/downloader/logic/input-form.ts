@@ -1035,12 +1035,16 @@ async function handleSearch(keyword: string): Promise<void> {
  * directly in this synchronous click handler to preserve "user gesture context"
  */
 function handleActionButton(): void {
-  if (!pasteBtn) return;
+  if (!pasteBtn || !input) return;
 
   const action = pasteBtn.dataset.action;
 
+  // Always shift focus back to the text input so keyboard ENTER submits the form
+  input.focus();
+
   if (action === 'clear') {
     handleClear();
+    return;
   } else {
     // ✅ Read clipboard IMMEDIATELY in click handler (iOS Safari requirement)
     // Do NOT delegate to async function - it breaks the gesture context

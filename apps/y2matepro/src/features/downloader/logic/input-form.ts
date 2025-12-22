@@ -1018,12 +1018,15 @@ async function handleSearch(keyword: string): Promise<void> {
  * Handle action button click (Paste or Clear based on data-action)
  */
 function handleActionButton(): void {
-  if (!pasteBtn) return;
+  if (!pasteBtn || !input) return;
 
   const action = pasteBtn.dataset.action;
 
+  input.focus();
+
   if (action === 'clear') {
     handleClear();
+    return;
   } else {
     handlePaste();
   }
