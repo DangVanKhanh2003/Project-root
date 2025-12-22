@@ -1,28 +1,21 @@
 /* ===== SEO SECTION ===== */
 .seo-section {
-    padding: 3rem 1rem;
     display: flex;
     justify-content: center;
-}
-
-@media (min-width: 640px) {
-    .seo-section {
-        padding: 3rem 1.5rem;
-    }
+    padding-bottom: 50px;
 }
 
 .seo-container {
     width: 100%;
-    max-width: 64rem;
+    max-width: var(--container-width);
     background-color: var(--bg-card);
     border-radius: 20px;
     border: 2px solid var(--border-primary);
-    padding: 1.5rem;
 }
 
 @media (min-width: 768px) {
     .seo-container {
-        padding: 4rem;
+        padding: 4rem 20px;
     }
 }
 
