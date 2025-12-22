@@ -9,6 +9,7 @@
 import { initExpandableText } from '../../../utils';
 import { addRippleEffect } from '../../../utils/ripple-effect';
 import { TaskState } from '../logic/conversion/types';
+import { updateButtonVisibility, setQuery, setOriginalQuery } from '../state';
 import type { AppState, ConversionTask } from '../state/types';
 
 // ============================================================
@@ -174,6 +175,7 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
       break;
 
     case TaskState.PROCESSING:
+    case TaskState.DOWNLOADING:
       statusElement.classList.add('status--processing');
       iconElement.classList.add('spinner');
       break;

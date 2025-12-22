@@ -174,6 +174,7 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
       break;
 
     case TaskState.PROCESSING:
+    case TaskState.DOWNLOADING:
       statusElement.classList.add('status--processing');
       iconElement.classList.add('spinner');
       break;

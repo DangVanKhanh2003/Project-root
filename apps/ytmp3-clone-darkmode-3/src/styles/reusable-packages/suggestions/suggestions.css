@@ -252,7 +252,7 @@
 /* Keyboard highlight state (highest priority) */
 .suggestion-item--highlighted {
     background-color: var(--pkg-suggestions-highlight-bg) !important;
-    color: var(--pkg-suggestions-highlight-color) !important;
+    color: var(--pkg-color-primary) !important;
 
     /* Ensure visibility for keyboard users */
 }
@@ -260,7 +260,6 @@
 /* Original query visual distinction */
 .suggestion-item--original {
     font-weight: var(--pkg-body-medium-weight-prominent);
-    color: var(--pkg-color-primary);
 
     /* Optional: Add subtle background tint */
     background-color: color-mix(in srgb, var(--pkg-color-primary-container) 20%, transparent);
