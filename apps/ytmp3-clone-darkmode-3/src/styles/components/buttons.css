@@ -7,21 +7,21 @@
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem 1rem;
-    background-color: #18181B;
+    background-color: var(--bg-button);
     border-radius: 0.5rem;
     font-size: 0.75rem;
     font-weight: 700;
-    color: white;
+    color: var(--text-main);
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    border: 1px solid #3F3F46;
+    border: 1px solid var(--border-secondary);
     transition: background-color 0.2s ease;
     cursor: pointer;
 }
 
 .btn-paste:hover,
 .btn-clear:hover {
-    background-color: #27272A;
+    background-color: var(--bg-button-hover);
 }
 
 .btn-paste span,
@@ -39,8 +39,8 @@
 /* Format Toggle Buttons */
 .format-toggle {
     display: flex;
-    background-color: #000000;
-    border: 2px solid #27272A;
+    background-color: var(--bg-body);
+    border: 2px solid var(--border-primary);
     padding: 0.25rem;
     border-radius: 0.75rem;
     width: 100%;
@@ -73,17 +73,16 @@
 }
 
 .format-btn.active {
-    background-color: white;
-    color: black;
+    background-color: var(--bg-white);
 }
 
 .format-btn:not(.active) {
-    color: #71717A;
+    color: var(--text-secondary);
 }
 
 .format-btn:not(.active):hover {
-    color: white;
-    background-color: #18181B;
+    color: var(--text-main);
+    background-color: var(--bg-button);
 }
 
 /* Convert/Submit Button */
@@ -92,8 +91,8 @@
 .convert-button {
     height: 3.5rem;
     padding: 0 2rem;
-    background-color: #D4FF00;
-    color: black;
+    background-color: var(--color-accent);
+    color: var(--color-black);
     border-radius: 0.75rem;
     font-weight: 700;
     font-size: 1rem;
@@ -103,8 +102,8 @@
     align-items: center;
     justify-content: center;
     gap: 0.75rem;
-    box-shadow: 0 0 20px rgba(212, 255, 0, 0.3);
-    border: 2px solid transparent;
+    box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);
+    border: none;
     min-width: 140px;
     cursor: pointer;
 }
@@ -120,8 +119,8 @@
 .btn-submit:hover,
 .btn-convert:hover,
 .convert-button:hover {
-    background-color: #BEF000;
-    box-shadow: 0 0 30px rgba(212, 255, 0, 0.5);
+    background-color: var(--color-accent-hover);
+    box-shadow: 0 0 30px var(--glow-accent);
 }
 
 .btn-submit:active,
@@ -131,7 +130,7 @@
 }
 
 .btn-icon {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: transparent;
     padding: 0.25rem;
     border-radius: 9999px;
     transition: all 0.2s ease;
@@ -140,15 +139,15 @@
 .btn-submit:hover .btn-icon,
 .btn-convert:hover .btn-icon,
 .convert-button:hover .btn-icon {
-    background-color: black;
-    color: #D4FF00;
+    background-color: var(--color-black);
+    color: var(--color-accent);
 }
 
 /* Download Button */
 .btn-download {
     flex: 2;
-    background-color: #D4FF00;
-    color: black;
+    background-color: var(--color-accent);
+    color: var(--color-black);
     border: none;
     height: 52px;
     border-radius: 0.75rem;
@@ -158,21 +157,21 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    box-shadow: 0 0 20px rgba(212, 255, 0, 0.3);
+    box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);
     transition: all 0.2s ease;
 }
 
 .btn-download:hover {
-    background-color: #BEF000;
-    box-shadow: 0 0 30px rgba(212, 255, 0, 0.5);
+    background-color: var(--color-accent-hover);
+    box-shadow: 0 0 30px var(--glow-accent);
 }
 
 /* Secondary Button */
 .btn-secondary {
     flex: 1;
     background: transparent;
-    border: 2px solid #3F3F46;
-    color: #A1A1AA;
+    border: 2px solid var(--border-secondary);
+    color: var(--text-muted);
     height: 52px;
     border-radius: 0.75rem;
     font-weight: 600;
@@ -181,7 +180,7 @@
 }
 
 .btn-secondary:hover {
-    border-color: white;
-    color: white;
-    background: #27272A;
+    border-color: var(--text-main);
+    color: var(--text-main);
+    background: var(--bg-button-hover);
 }

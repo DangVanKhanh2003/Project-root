@@ -12,8 +12,8 @@
 }
 
 #main-header.scrolled {
-    background-color: #000000;
-    border-bottom: 1px solid #27272A;
+    background-color: var(--bg-header-scroll);
+    border-bottom: 1px solid var(--border-primary);
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
 }
@@ -36,16 +36,16 @@
     font-weight: 700;
     font-size: 1.5rem;
     letter-spacing: -0.05em;
-    color: white;
+    color: var(--text-logo);
     transition: color 0.2s;
 }
 
 .logo:hover .logo-text {
-    color: #D4FF00;
+    color: var(--color-accent);
 }
 
 .logo-text .domain {
-    color: #71717A;
+    color: var(--text-secondary);
 }
 
 /* Desktop Navigation */
@@ -77,25 +77,25 @@
 }
 
 .nav-link.active {
-    border-color: white;
-    background-color: white;
-    color: black;
+    border-color: var(--border-active);
+    background-color: var(--bg-white);
+    color: var(--color-black);
 }
 
 .nav-link:not(.active) {
-    color: #A1A1AA;
+    color: var(--text-muted);
 }
 
 .nav-link:not(.active):hover {
-    color: white;
-    border-color: #3F3F46;
-    background-color: #18181B;
+    color: var(--text-main);
+    border-color: var(--border-secondary);
+    background-color: var(--bg-button);
 }
 
 .nav-divider {
     width: 1px;
     height: 1.25rem;
-    background-color: #27272A;
+    background-color: var(--border-primary);
     margin: 0 0.25rem;
 }
 
@@ -112,22 +112,22 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    background-color: #000000;
-    color: white;
+    background-color: var(--bg-header);
+    color: var(--text-main);
     padding: 0.5rem 0.75rem;
     border-radius: 0.5rem;
-    border: 1px solid #27272A;
+    border: 1px solid var(--border-primary);
     transition: all 0.2s;
     cursor: pointer;
 }
 
 .lang-button:hover {
-    background-color: #18181B;
-    border-color: #71717A;
+    background-color: var(--bg-button-hover);
+    border-color: var(--border-hover);
 }
 
 .lang-button svg {
-    color: #A1A1AA;
+    color: var(--text-muted);
 }
 
 .lang-button .chevron {
@@ -144,10 +144,10 @@
     right: 0;
     margin-top: 0.5rem;
     width: 12rem;
-    background-color: #000000;
+    background-color: var(--bg-header);
     border-radius: 0.5rem;
-    box-shadow: 4px 4px 0 0 rgba(255,255,255,0.15);
-    border: 1px solid #27272A;
+    box-shadow: var(--shadow-dropdown);
+    border: 1px solid var(--border-primary);
     overflow: hidden;
     z-index: 20;
     padding: 0.5rem 0;
@@ -162,22 +162,22 @@
     display: block;
     padding: 0.625rem 1.25rem;
     font-size: 0.875rem;
-    color: #A1A1AA;
+    color: var(--text-muted);
     text-decoration: none;
     transition: all 0.2s;
     font-weight: 500;
 }
 
 .lang-option:hover {
-    background-color: white;
-    color: black;
+    background-color: var(--bg-white);
+    color: var(--color-black);
 }
 
 /* Mobile Menu Button */
 .mobile-menu-btn {
     display: block;
     padding: 0.5rem;
-    color: white;
+    color: var(--text-main);
     background-color: transparent;
     border: none;
     border-radius: 0.25rem;
@@ -192,5 +192,5 @@
 }
 
 .mobile-menu-btn:hover {
-    background-color: #18181B;
+    background-color: var(--bg-button);
 }

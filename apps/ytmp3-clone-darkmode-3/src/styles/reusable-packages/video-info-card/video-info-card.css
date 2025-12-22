@@ -334,8 +334,8 @@
   justify-content: center;
   gap: var(--space-xs, 4px);
   padding: var(--space-sm, 6px) var(--space-xl, 20px);
-  background: var(--gradient-primary, linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%));
-  color: #ffffff;
+  background: var(--color-accent);
+  color: var(--color-black);
   border: none;
   border-radius: var(--radius-md, 12px);
   font-size: 13px;
@@ -346,6 +346,10 @@
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
   box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);
+}
+
+.btn-convert:hover {
+    background: var(--color-accent-hover);
 }
 
 

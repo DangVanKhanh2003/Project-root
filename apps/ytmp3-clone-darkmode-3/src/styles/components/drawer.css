@@ -3,7 +3,7 @@
     position: fixed;
     inset: 0;
     z-index: 60;
-    background-color: rgba(24, 24, 27, 0.9);
+    background-color: var(--backdrop-drawer);
     backdrop-filter: blur(4px);
     transition: opacity 0.3s;
     opacity: 0;
@@ -27,8 +27,8 @@
     right: 0;
     bottom: 0;
     width: 280px;
-    background-color: #000000;
-    border-left: 1px solid #27272A;
+    background-color: var(--bg-body);
+    border-left: 1px solid var(--border-primary);
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
     transition: transform 0.3s ease-out;
     transform: translateX(100%);
@@ -42,7 +42,7 @@
 
 .drawer-header {
     padding: 1.25rem;
-    border-bottom: 1px solid #27272A;
+    border-bottom: 1px solid var(--border-primary);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -52,13 +52,13 @@
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
     font-size: 1.5rem;
-    color: white;
+    color: var(--text-main);
     letter-spacing: -0.05em;
 }
 
 .close-drawer-btn {
     padding: 0.5rem;
-    color: #71717A;
+    color: var(--text-secondary);
     background-color: transparent;
     border: none;
     border-radius: 0.25rem;
@@ -67,7 +67,7 @@
 }
 
 .close-drawer-btn:hover {
-    color: white;
+    color: var(--text-main);
 }
 
 .drawer-menu {
@@ -86,28 +86,28 @@
     padding: 0.5rem 0;
     display: block;
     text-decoration: none;
-    color: #71717A;
+    color: var(--text-secondary);
     transition: color 0.2s;
 }
 
 .drawer-link.active {
-    color: #D4FF00;
+    color: var(--color-accent);
 }
 
 .drawer-link:not(.active):hover {
-    color: white;
+    color: var(--text-main);
 }
 
 .drawer-divider {
     height: 1px;
-    background-color: #27272A;
+    background-color: var(--border-primary);
     margin: 1rem 0;
 }
 
 .drawer-sublink {
     font-size: 0.875rem;
     font-weight: 500;
-    color: #A1A1AA;
+    color: var(--text-muted);
     padding: 0.5rem 0;
     display: block;
     text-decoration: none;
@@ -115,5 +115,5 @@
 }
 
 .drawer-sublink:hover {
-    color: white;
+    color: var(--text-main);
 }

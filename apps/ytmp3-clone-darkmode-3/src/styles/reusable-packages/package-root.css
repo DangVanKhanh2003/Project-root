@@ -152,7 +152,7 @@
   --pkg-color-gray-900: #030014;   /* Dark Nebula bg */
 
   /* Primary Color System - Purple/Blue Gradient Theme */
-  --pkg-color-primary: #8b5cf6;                    /* Purple-500 - Primary brand color */
+  --pkg-color-primary: #D4FF00;                    /* Purple-500 - Primary brand color */
   --pkg-color-on-primary: #ffffff;                 /* White text on primary */
   --pkg-color-primary-container: rgba(139, 92, 246, 0.1);  /* Purple tint container */
   --pkg-color-on-primary-container: #c4b5fd;       /* Light purple for text on container */

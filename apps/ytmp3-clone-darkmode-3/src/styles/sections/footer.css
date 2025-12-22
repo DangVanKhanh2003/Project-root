@@ -1,8 +1,8 @@
 /* ===== FOOTER ===== */
 footer,
 .footer {
-    background-color: var(--bg-body);
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    background-color: var(--bg-footer);
+    border-top: 1px solid var(--border-primary);
     padding: 4rem 1rem;
     margin-top: auto;
 }
@@ -53,6 +53,6 @@ footer,
 .footer-copyright,
 .copyright {
     font-size: 0.75rem;
-    color: #52525B;
+    color: var(--text-tertiary);
     font-weight: 500;
 }

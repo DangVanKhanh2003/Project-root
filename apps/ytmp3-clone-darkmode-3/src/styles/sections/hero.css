@@ -34,7 +34,7 @@
     right: 0;
     width: 500px;
     height: 500px;
-    background-color: rgba(212, 255, 0, 0.05);
+    background-color: var(--glow-accent);
     opacity: 0.2;
     filter: blur(80px);
     pointer-events: none;
