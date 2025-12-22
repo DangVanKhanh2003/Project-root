@@ -188,7 +188,6 @@
 .download-btn {
   background: var(--gradient-primary);
   color: #fff;
-  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
 }
 
 .download-btn:hover {
