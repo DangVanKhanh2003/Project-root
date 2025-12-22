@@ -21,11 +21,12 @@ import {
 import { transformSearchItemToVideoData } from '../logic/input-form';
 import { getInfiniteScrollThreshold } from '@downloader/ui-shared/scroll';
 import { api } from '../../../api';
-import { showResultView } from './view-switcher';
+import { showResultView, showSearchView, isResultViewVisible } from './view-switcher';
 
 let contentArea: HTMLElement | null = null;
 let searchResultsContainer: HTMLElement | null = null;
 let searchResultsSection: HTMLElement | null = null;
+let heroMessageContainer: HTMLElement | null = null;
 
 /**
  * Handle click on search result card (event delegation)
@@ -150,6 +151,60 @@ function setupInfiniteScroll(): void {
   // Attach scroll listener with passive flag for better performance
   window.addEventListener('scroll', throttledCheck, { passive: true });
 
+}
+
+/**
+ * Show inline message below the form (hero card)
+ */
+function ensureHeroMessageContainer(): HTMLElement | null {
+  if (heroMessageContainer && heroMessageContainer.isConnected) {
+    return heroMessageContainer;
+  }
+
+  const heroSection = document.querySelector('section.hero');
+  if (!heroSection || !heroSection.parentElement) {
+    return null;
+  }
+
+  const existing = document.getElementById('hero-inline-message');
+  if (existing) {
+    heroMessageContainer = existing as HTMLElement;
+    return heroMessageContainer;
+  }
+
+  heroMessageContainer = document.createElement('div');
+  heroMessageContainer.id = 'hero-inline-message';
+  heroMessageContainer.className = 'hero-inline-message';
+  heroSection.insertAdjacentElement('afterend', heroMessageContainer);
+  return heroMessageContainer;
+}
+
+function showFormMessage(message: string, type: 'info' | 'error' | 'success'): boolean {
+  const container = ensureHeroMessageContainer();
+  if (!container) {
+    return false;
+  }
+
+  container.innerHTML = `
+    <div class="inline-message inline-message--${type}">
+      <p>${escapeHtml(message)}</p>
+    </div>
+  `;
+
+  container.style.display = 'block';
+  return true;
+}
+
+/**
+ * Clear inline form message
+ */
+export function clearFormMessage(): void {
+  const container = ensureHeroMessageContainer();
+  if (!container) {
+    return;
+  }
+  container.innerHTML = '';
+  container.style.display = 'none';
 }
 
 /**
@@ -354,16 +409,25 @@ export function showLoading(type: 'list' | 'detail' = 'list', append: boolean = 
 export function renderMessage(message: string, type: 'info' | 'error' | 'success' = 'info'): void {
   if (!contentArea) return;
 
+  // Prefer showing message under the search form when result view is hidden
+  if (!isResultViewVisible() && showFormMessage(message, type)) {
+    showSearchView();
+    // Hide search results section when showing message
+    hideSearchResultsSection();
+    return;
+  }
+
+  // Fallback: show inside result view
+  clearFormMessage();
+  contentArea.classList.remove('showing-loading');
   contentArea.innerHTML = `
-    <div class="message message-${type}">
+    <div class="content-message content-message--${type}">
       <p>${escapeHtml(message)}</p>
     </div>
   `;
 
-  // Show content area (may be hidden from previous operations)
   contentArea.style.display = 'block';
-
-  // Hide search results section when showing message
+  showResultView();
   hideSearchResultsSection();
 }
 
@@ -430,6 +494,8 @@ export function renderPreviewCard(_data: any): void {
   if (!contentArea) {
     return;
   }
+
+  clearFormMessage();
 
   const state = getState();
   const youtubePreview = state.youtubePreview;

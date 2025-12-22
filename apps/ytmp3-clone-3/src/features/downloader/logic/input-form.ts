@@ -30,7 +30,7 @@ import {
   updateYouTubePreviewMetadata,
 } from '../state';
 import { destroyOldProcesses } from './cleanup';
-import { renderResults, renderMessage, renderPreviewCard, showLoading, clearContent } from '../ui-render/content-renderer';
+import { renderResults, renderMessage, renderPreviewCard, showLoading, clearContent, clearFormMessage } from '../ui-render/content-renderer';
 import { updateVideoTitle } from '../ui-render/download-rendering';
 import { getInputValue as getInputValueFromRenderer, setInputValue as setInputValueInRenderer } from '../ui-render/ui-renderer';
 import type { VideoData } from '../../../ui-components/search-result-card/search-result-card';
@@ -441,6 +441,7 @@ function handleInput(event: Event): void {
 
   // Clear error when user types
   clearError();
+  clearFormMessage();
 
   // Update current query state
   setQuery(value);
@@ -753,6 +754,7 @@ async function handleSubmit(event: Event): Promise<void> {
   // Clear remaining UI state
   setResults([]);              // Clear search results
   clearError();                // Clear error messages
+  clearFormMessage();          // Hide inline message
   clearSuggestions();          // Clear suggestions completely (array + state + flags)
   setLoading(true);
 
@@ -809,7 +811,10 @@ async function handleExtractMedia(url: string): Promise<void> {
 
     // ❌ Reject if not a YouTube URL
     if (!isYouTubeUrl(url)) {
-      throw new Error('Only YouTube URLs are supported. Please enter a valid YouTube link.');
+      console.warn('[Downloader] Rejected non-YouTube URL:', url);
+      const error = new Error('Only YouTube URLs are supported. Please enter a valid YouTube link.');
+      console.error('[Downloader] Non-YouTube error thrown:', error);
+      throw error;
     }
 
     // ═══════════════════════════════════════════════════════
@@ -1120,6 +1125,7 @@ function handleClear(): void {
 
   // Clear state
   clearError();
+  clearFormMessage();
   setResults([]);
   clearSuggestions();
 }
