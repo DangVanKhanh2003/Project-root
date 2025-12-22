@@ -30,7 +30,7 @@ import {
   updateYouTubePreviewMetadata,
 } from '../state';
 import { destroyOldProcesses } from './cleanup';
-import { renderResults, renderMessage, renderPreviewCard, showLoading, clearContent } from '../ui-render/content-renderer';
+import { renderResults, renderMessage, renderPreviewCard, showLoading, clearContent, clearHeroMessage } from '../ui-render/content-renderer';
 import { updateVideoTitle } from '../ui-render/download-rendering';
 import { getInputValue as getInputValueFromRenderer, setInputValue as setInputValueInRenderer } from '../ui-render/ui-renderer';
 import type { VideoData } from '../../../ui-components/search-result-card/search-result-card';
@@ -441,6 +441,7 @@ function handleInput(event: Event): void {
 
   // Clear error when user types
   clearError();
+  clearHeroMessage();
 
   // Update current query state
   setQuery(value);
@@ -753,6 +754,7 @@ async function handleSubmit(event: Event): Promise<void> {
   // Clear remaining UI state
   setResults([]);              // Clear search results
   clearError();                // Clear error messages
+  clearHeroMessage();          // Hide inline messages
   clearSuggestions();          // Clear suggestions completely (array + state + flags)
   setLoading(true);
 
@@ -1121,6 +1123,7 @@ function handleClear(): void {
 
   // Clear state
   clearError();
+  clearHeroMessage();
   setResults([]);
   clearSuggestions();
 }

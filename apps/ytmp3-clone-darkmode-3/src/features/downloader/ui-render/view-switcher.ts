@@ -7,6 +7,7 @@
 let searchView: HTMLElement | null = null;
 let resultView: HTMLElement | null = null;
 let isInitialized = false;
+let currentView: 'search' | 'result' = 'search';
 
 /**
  * Initialize view switcher
@@ -26,6 +27,7 @@ export function initViewSwitcher(): boolean {
   // Set default state: search visible, result hidden
   searchView.classList.remove('hidden');
   resultView.classList.add('hidden');
+  currentView = 'search';
 
   isInitialized = true;
   return true;
@@ -42,6 +44,7 @@ export function showSearchView(): void {
 
   searchView.classList.remove('hidden');
   resultView.classList.add('hidden');
+  currentView = 'search';
 }
 
 /**
@@ -55,4 +58,12 @@ export function showResultView(): void {
 
   searchView.classList.add('hidden');
   resultView.classList.remove('hidden');
+  currentView = 'result';
+}
+
+/**
+ * Check if result view is visible
+ */
+export function isResultViewVisible(): boolean {
+  return currentView === 'result';
 }

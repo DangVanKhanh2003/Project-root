@@ -173,3 +173,43 @@
     background-color: var(--color-error-dot);
     border-radius: 9999px;
 }
+
+.hero-card #error-message {
+    display: none !important;
+}
+
+/* Inline hero message (outside hero card) */
+.hero-inline-message {
+    width: 100%;
+    max-width: 960px;
+    margin: 24px auto 32px;
+    padding: 0 24px;
+    display: none;
+}
+
+.inline-message {
+    padding: 18px 24px;
+    border-radius: 16px;
+    border: 1px solid transparent;
+    backdrop-filter: blur(6px);
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+.inline-message--error {
+    background: rgba(239, 68, 68, 0.12);
+    border-color: rgba(239, 68, 68, 0.3);
+    color: #ff6b81;
+}
+
+.inline-message--info {
+    background: rgba(59, 130, 246, 0.12);
+    border-color: rgba(59, 130, 246, 0.3);
+    color: #7dd3fc;
+}
+
+.inline-message--success {
+    background: rgba(16, 185, 129, 0.12);
+    border-color: rgba(16, 185, 129, 0.3);
+    color: #6ee7b7;
+}
