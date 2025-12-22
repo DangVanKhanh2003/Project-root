@@ -19,8 +19,8 @@
 }
 
 [data-theme="light"] .info-card {
-    background: #fff;
-    border: 1px solid #e2e8f0;
+    background: var(--color-white);
+    border: 1px solid var(--pkg-color-gray-100);
     box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
 }
 
@@ -40,17 +40,17 @@
 .section-icon {
     width: 40px;
     height: 40px;
-    background: rgba(255,255,255,0.05);
+    background: var(--text-step-num);
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #c4b5fd;
+    color: var(--pkg-color-on-primary-container);
 }
 
 [data-theme="light"] .section-icon {
-    background: #f1f5f9;
-    color: #7c3aed;
+    background: var(--pkg-color-gray-50);
+    color: var(--pkg-color-accent);
 }
 
 .section-title {

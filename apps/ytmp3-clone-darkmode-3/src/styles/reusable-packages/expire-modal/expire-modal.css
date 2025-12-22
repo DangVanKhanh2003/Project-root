@@ -63,14 +63,14 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 16px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--color-gray-200);
     padding-bottom: 12px;
 }
 
 .expire-modal-title {
     font-size: 1.25rem; /* Adjusted size */
     font-weight: 600;
-    color: #333;
+    color: var(--color-gray-850);
 }
 
 .expire-modal-close-btn {
@@ -79,20 +79,20 @@
     font-size: 1.8rem;
     font-weight: 300;
     line-height: 1;
-    color: #555;
+    color: var(--color-gray-600);
     cursor: pointer;
     padding: 0 4px;
     transition: color 0.2s ease;
 }
 
 .expire-modal-close-btn:hover {
-    color: #000;
+    color: var(--color-black);
 }
 
 .expire-modal-body {
     margin-bottom: 24px;
     font-size: 1.1rem; /* Increased font size */
-    color: #555; /* Slightly darker text */
+    color: var(--color-gray-600); /* Slightly darker text */
     line-height: 1.6;
     display: flex;
     align-items: center;
@@ -101,7 +101,7 @@
 
 .expire-modal-icon {
     font-size: 2.5rem;
-    color: var(--pkg-warning-color, #ffc107);
+    color: var(--color-warning-yellow);
     flex-shrink: 0;
 }
 
@@ -122,12 +122,12 @@
 }
 
 .expire-modal-btn-primary {
-    background-color: #ff9800; /* New orange color */
-    color: white;
+    background-color: var(--color-orange); /* New orange color */
+    color: var(--color-white);
 }
 
 .expire-modal-btn-primary:hover {
-    background-color: #f57c00; /* Darker orange on hover */
+    background-color: var(--color-orange-dark); /* Darker orange on hover */
 }
 
 /* Responsive */

@@ -24,12 +24,12 @@
 }
 
 .feature-icon {
-    color: #60a5fa;
+    color: var(--color-sky-blue);
     flex-shrink: 0;
 }
 
 [data-theme="light"] .feature-icon {
-    color: #3b82f6;
+    color: var(--color-accent-secondary);
 }
 
 .feature-title {

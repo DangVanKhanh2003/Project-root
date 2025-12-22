@@ -45,7 +45,7 @@
 .captcha-modal-content {
     position: relative;
     background-color: var(--pkg-captcha-modal-bg);
-    color: #fff;
+    color: var(--color-white);
     border-radius: var(--pkg-captcha-modal-radius);
     padding: var(--pkg-captcha-modal-padding);
     width: 90%;
@@ -66,7 +66,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #444;
+    border-bottom: 1px solid var(--color-gray-700);
     padding-bottom: 16px;
     margin-bottom: 16px;
 }
@@ -80,7 +80,7 @@
 .captcha-modal-close-btn {
     background: none;
     border: none;
-    color: #aaa;
+    color: var(--color-gray-400);
     font-size: 2rem;
     font-weight: 300;
     cursor: pointer;
@@ -90,12 +90,12 @@
 }
 
 .captcha-modal-close-btn:hover {
-    color: #fff;
+    color: var(--color-white);
 }
 
 .captcha-modal-body p {
     margin: 0 0 16px;
-    color: #ccc;
+    color: var(--color-gray-300);
     font-size: 0.95rem;
     line-height: 1.5;
 }
