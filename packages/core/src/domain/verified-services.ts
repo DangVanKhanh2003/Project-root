@@ -175,7 +175,7 @@ export function createVerifiedServices(
       // For protected methods, check JWT first and handle CAPTCHA flow
       if (protectedMethods.has(methodName) && captchaHandler) {
         const currentJwt = verifier.getCurrentJwt();
-
+        debugger
         // Path 1: Have JWT - try with JWT first
         if (currentJwt) {
           const rawResponse = await method(...args);
@@ -313,7 +313,7 @@ export function createVerifiedServices(
         raw: captchaError,
       };
     }
-
+    debugger
     return {
       ok: false,
       status: 'error',
