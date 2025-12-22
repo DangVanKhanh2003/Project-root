@@ -1,49 +1,58 @@
-/* =========================================================
-   Section - Footer
-   ---------------------------------------------------------
-   Footer with glassmorphism design
-   Extracted from index.html - Phase 2
-   ========================================================= */
-
+/* ===== FOOTER ===== */
+footer,
 .footer {
+    background-color: var(--bg-body);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 4rem 1rem;
     margin-top: auto;
-    border-top: var(--border-glass);
-    background: var(--bg-footer);
-    padding: 40px 0;
 }
 
-[data-theme="light"] .footer {
-    background: #f8fafc;
-    border-top: 1px solid #e2e8f0;
-}
-
+.footer-container,
 .footer-content {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 1rem;
+    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
-    gap: 24px;
+    gap: 1.5rem;
+}
+
+.footer-logo {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: -0.025em;
+    margin-bottom: 2rem;
+    opacity: 0.4;
+    color: var(--text-main);
 }
 
 .footer-links {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
+    gap: 2rem;
+    max-width: 48rem;
+    margin: 0 auto 2rem;
 }
 
 .footer-link {
-    font-size: 0.9rem;
-    color: var(--text-muted);
-    transition: color 0.2s;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    font-weight: 500;
 }
 
 .footer-link:hover {
     color: var(--text-main);
 }
 
+.footer-copyright,
 .copyright {
-    color: var(--text-muted);
-    opacity: 0.7;
-    font-size: 0.85rem;
+    font-size: 0.75rem;
+    color: #52525B;
+    font-weight: 500;
 }

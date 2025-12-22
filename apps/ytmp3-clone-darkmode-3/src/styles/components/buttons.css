@@ -1,167 +1,187 @@
-/* =========================================================
-   Component - Buttons
-   ---------------------------------------------------------
-   All button styles (paste, clear, convert, download, secondary)
-   Extracted from index.html - Phase 2
-   ========================================================= */
+/* ===== BUTTONS ===== */
 
 /* Paste/Clear Button (Toggle Button) */
-.btn-paste {
-    background: rgba(139, 92, 246, 0.15);
-    color: #8b5cf6;
-    border: none;
-    padding: 8px 16px;
-    border-radius: var(--radius-md);
-    font-size: 0.85rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s;
+.btn-paste,
+.btn-clear {
     display: flex;
     align-items: center;
-    gap: 8px;
-    height: 40px;
-    min-width: 40px; /* Ensure square on mobile when text hidden */
-}
-
-[data-theme="dark"] .btn-paste {
-    background: rgb(71 71 71 / 81%);
-    color: #fff;
-}
-
-.btn-paste:hover {
-    transform: translateY(-1px);
-    filter: brightness(1.1);
-}
-
-[data-theme="dark"] .btn-paste:hover {
-    background: rgba(255, 255, 255, 0.2);
-}
-
-.btn-clear {
-    background: none;
-    border: none;
-    color: var(--text-muted);
-    cursor: pointer;
-    padding: 8px;
-    border-radius: 50%;
-}
-
-.btn-clear:hover {
-    color: var(--text-main);
-    background: rgba(150,150,150,0.1);
-}
-
-/* Paste/Clear button toggle states controlled by JS with .hidden class */
-
-/* Mobile: Hide text, show only icons */
-@media (max-width: 599px) {
-    .btn-state--paste,
-    .btn-state--clear {
-        display: none !important;
-    }
-
-    .btn-paste, .btn-clear{
-        padding: 8px;
-        justify-content: center;
-        gap: 0; /* Remove gap when text is hidden */
-        width: 32px;
-        height: 32px;
-        border-radius: 8px;
-    }
-
-    /* Make icons slightly larger on mobile for better touch target */
-    .btn-paste .paste-icon,
-    .btn-paste .clear-icon {
-        width: 18px;
-        height: 18px;
-    }
-}
-
-/* Convert Button */
-.btn-convert {
-    background: var(--gradient-primary);
-    color: #fff;
-    border: none;
-    height: 56px;
-    padding: 0 40px;
-    border-radius: var(--radius-md);
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #18181B;
+    border-radius: 0.5rem;
+    font-size: 0.75rem;
     font-weight: 700;
-    font-size: 1.05rem;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: 1px solid #3F3F46;
+    transition: background-color 0.2s ease;
     cursor: pointer;
-    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
-    transition: all 0.3s;
+}
+
+.btn-paste:hover,
+.btn-clear:hover {
+    background-color: #27272A;
+}
+
+.btn-paste span,
+.btn-clear span {
+    display: none;
+}
+
+@media (min-width: 640px) {
+    .btn-paste span,
+    .btn-clear span {
+        display: inline;
+    }
+}
+
+/* Format Toggle Buttons */
+.format-toggle {
+    display: flex;
+    background-color: #000000;
+    border: 2px solid #27272A;
+    padding: 0.25rem;
+    border-radius: 0.75rem;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .format-toggle {
+        width: auto;
+    }
+}
+
+.format-btn {
+    flex: 1;
+    padding: 0.625rem 2rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+@media (min-width: 768px) {
+    .format-btn {
+        flex: none;
+    }
+}
+
+.format-btn.active {
+    background-color: white;
+    color: black;
+}
+
+.format-btn:not(.active) {
+    color: #71717A;
+}
+
+.format-btn:not(.active):hover {
+    color: white;
+    background-color: #18181B;
+}
+
+/* Convert/Submit Button */
+.btn-submit,
+.btn-convert,
+.convert-button {
+    height: 3.5rem;
+    padding: 0 2rem;
+    background-color: #D4FF00;
+    color: black;
+    border-radius: 0.75rem;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    transform: scale(1);
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    position: relative;
-    overflow: hidden;
-    width: fit-content;
+    gap: 0.75rem;
+    box-shadow: 0 0 20px rgba(212, 255, 0, 0.3);
+    border: 2px solid transparent;
+    min-width: 140px;
+    cursor: pointer;
 }
 
-
-
-.btn-convert:hover {
-    transform: translateY(-2px);
-}
-
-
-/* Hide icon on mobile */
-@media (max-width: 599px) {
-    .btn-convert svg {
-        display: none;
+@media (min-width: 768px) {
+    .btn-submit,
+    .btn-convert,
+    .convert-button {
+        height: 52px;
     }
+}
+
+.btn-submit:hover,
+.btn-convert:hover,
+.convert-button:hover {
+    background-color: #BEF000;
+    box-shadow: 0 0 30px rgba(212, 255, 0, 0.5);
+}
+
+.btn-submit:active,
+.btn-convert:active,
+.convert-button:active {
+    transform: scale(0.98);
+}
+
+.btn-icon {
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 0.25rem;
+    border-radius: 9999px;
+    transition: all 0.2s ease;
+}
+
+.btn-submit:hover .btn-icon,
+.btn-convert:hover .btn-icon,
+.convert-button:hover .btn-icon {
+    background-color: black;
+    color: #D4FF00;
 }
 
 /* Download Button */
 .btn-download {
     flex: 2;
-    background: var(--gradient-primary);
-    color: #fff;
+    background-color: #D4FF00;
+    color: black;
     border: none;
     height: 52px;
-    border-radius: var(--radius-md);
+    border-radius: 0.75rem;
     font-weight: 700;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
-    transition: all 0.3s;
+    gap: 0.5rem;
+    box-shadow: 0 0 20px rgba(212, 255, 0, 0.3);
+    transition: all 0.2s ease;
 }
 
 .btn-download:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(139, 92, 246, 0.6);
+    background-color: #BEF000;
+    box-shadow: 0 0 30px rgba(212, 255, 0, 0.5);
 }
 
 /* Secondary Button */
 .btn-secondary {
     flex: 1;
     background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: var(--text-muted);
+    border: 2px solid #3F3F46;
+    color: #A1A1AA;
     height: 52px;
-    border-radius: var(--radius-md);
+    border-radius: 0.75rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s;
-}
-
-[data-theme="light"] .btn-secondary {
-    border: 1px solid #cbd5e1;
-    color: var(--text-muted);
+    transition: all 0.2s ease;
 }
 
 .btn-secondary:hover {
-    border-color: #fff;
-    color: #fff;
-    background: rgba(255,255,255,0.05);
-}
-
-[data-theme="light"] .btn-secondary:hover {
-    background: #f1f5f9;
-    color: var(--text-main);
-    border-color: #94a3b8;
+    border-color: white;
+    color: white;
+    background: #27272A;
 }

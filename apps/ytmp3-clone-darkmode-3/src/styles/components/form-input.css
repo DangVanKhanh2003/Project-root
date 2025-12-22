@@ -1,119 +1,175 @@
-/* =========================================================
-   Component - Form Input
-   ---------------------------------------------------------
-   Form container, input wrapper, video input, error message
-   Extracted from index.html - Phase 2
-   ========================================================= */
+/* ===== FORM INPUT ===== */
 
 /* Form Container */
+.convert-form,
 .form-container {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 1.5rem;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 768px) {
+    .convert-form,
     .form-container {
-        gap: 15px;
+        gap: 2rem;
     }
 }
 
-.input-group {
+/* View Container */
+.view-container {
     position: relative;
+    width: 100%;
+}
+
+/* View Input */
+.view-input {
+    transition: all 0.5s ease;
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.view-input.hidden-state {
+    transform: translateX(-100%);
+    opacity: 0;
+    position: absolute;
+    pointer-events: none;
 }
 
 /* Input Wrapper */
 .input-wrapper {
     position: relative;
-    background: var(--bg-input);
-    border: var(--border-input);
-    border-radius: 12px;
-
-    height: 50px;
-    border-color: #8a5cf6c0;
-    transition: all 0.3s ease;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
-}
-
-
-
-@media (min-width: 600px) {
-    .input-wrapper {
-        height: 64px;
-        border-radius: var(--radius-lg);
-        
-    }
-}
-
-.input-wrapper.focused {
-    border-color: #8b5cf6;
-    box-shadow: var(--glow-input), inset 0 2px 4px rgba(0,0,0,0.05);
-}
-
-[data-theme="dark"] .input-wrapper.focused {
-    background: rgba(0,0,0,0.4);
 }
 
 /* Video Input */
 .video-input {
     width: 100%;
-    height: 100%;
-    background: transparent;
-    border: none;
-    color: var(--text-main);
-    font-size: 14px;
-    padding: 0 60px 0 24px;
+    height: 4rem;
+    padding-left: 2rem;
+    padding-right: 8rem;
+    border-radius: 0.75rem;
+    background-color: #000000;
+    border: 2px solid #3F3F46;
+    color: white;
+    font-weight: 500;
+    font-size: 1.125rem;
+    outline: none;
+    transition: all 0.2s ease;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 768px) {
     .video-input {
-        font-size: 1.1rem;
-        padding: 0 120px 0 24px;
+        height: 5rem;
+        font-size: 1.25rem;
     }
+}
+
+.video-input:focus {
+    border-color: white;
 }
 
 .video-input::placeholder {
-    color: var(--text-muted);
-    opacity: 0.6;
+    color: #71717A;
 }
 
-/* Input Actions (Paste/Clear button container) */
+/* Input Actions */
 .input-actions {
     position: absolute;
-    right: 8px;
+    right: 1rem;
     top: 50%;
     transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-@media (min-width: 600px) {
-    .input-actions {
-        right: 12px;
-    }
-}
-
-/* Form Controls */
+/* Controls (Format + Quality) */
 .controls {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 1rem;
+    align-items: stretch;
+    justify-content: space-between;
+    padding: 0.25rem;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 768px) {
     .controls {
         flex-direction: row;
-        align-items: stretch;
+        align-items: center;
     }
 }
 
+/* Quality Selector */
+.quality-wrapper {
+    width: 100%;
+    position: relative;
+}
+
+@media (min-width: 768px) {
+    .quality-wrapper {
+        width: 18rem;
+    }
+}
+
+.quality-select {
+    width: 100%;
+    height: 52px;
+    background-color: #000000;
+    border: 2px solid #3F3F46;
+    color: white;
+    font-size: 0.875rem;
+    border-radius: 0.75rem;
+    outline: none;
+    display: block;
+    padding: 0 1rem;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.quality-select:focus {
+    border-color: white;
+}
+
+.quality-select:hover {
+    border-color: #71717A;
+}
+
+.quality-icon {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 1rem;
+    pointer-events: none;
+    color: white;
+}
+
 /* Error Message */
+.error-msg,
 .error-message {
-    margin-top: 20px;
-    padding: 16px;
-    background: rgba(239, 68, 68, 0.1);
-    border: 1px solid rgba(239, 68, 68, 0.2);
-    color: #ef4444;
-    border-radius: var(--radius-md);
-    font-size: 0.9rem;
     display: none;
-    text-align: center;
+    padding: 1rem;
+    background-color: #450A0A;
+    border: 1px solid #DC2626;
+    border-radius: 0.75rem;
+    align-items: center;
+    gap: 0.75rem;
+    color: #FECACA;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.error-msg.show,
+.error-message.show {
+    display: flex;
+}
+
+.error-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: #DC2626;
+    border-radius: 9999px;
 }

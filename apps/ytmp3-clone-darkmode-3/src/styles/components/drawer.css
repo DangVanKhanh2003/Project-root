@@ -1,73 +1,119 @@
-/* =========================================================
-   Component - Mobile Drawer
-   ---------------------------------------------------------
-   Mobile navigation drawer menu
-   Extracted from index.html - Phase 2
-   ========================================================= */
-
-.drawer-overlay {
+/* ===== MOBILE DRAWER ===== */
+.mobile-drawer {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.6);
-    backdrop-filter: blur(5px);
-    z-index: 199;
-    display: none; /* Hidden by default */
+    z-index: 60;
+    background-color: rgba(24, 24, 27, 0.9);
+    backdrop-filter: blur(4px);
+    transition: opacity 0.3s;
+    opacity: 0;
+    pointer-events: none;
 }
 
-.drawer {
-    position: fixed;
+@media (min-width: 768px) {
+    .mobile-drawer {
+        display: none;
+    }
+}
+
+.mobile-drawer.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.drawer-content {
+    position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     width: 280px;
-    background: #0f172a;
-    border-left: var(--border-glass);
-    z-index: 200;
-    padding: 24px;
-    display: none; /* Hidden by default */
+    background-color: #000000;
+    border-left: 1px solid #27272A;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease-out;
+    transform: translateX(100%);
+    display: flex;
     flex-direction: column;
-    gap: 20px;
 }
 
-[data-theme="light"] .drawer {
-    background: #fff;
-    border-left: 1px solid #e2e8f0;
-}
-
-.drawer-open .drawer-overlay {
-    display: block; /* Shown when open */
-    pointer-events: auto;
-}
-
-.drawer-open .drawer {
-    display: flex; /* Shown when open */
+.mobile-drawer.open .drawer-content {
+    transform: translateX(0);
 }
 
 .drawer-header {
+    padding: 1.25rem;
+    border-bottom: 1px solid #27272A;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
-    color: var(--text-main);
+    justify-content: space-between;
+}
+
+.drawer-logo {
+    font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
-    font-family: var(--font-display);
-    font-size: 1.25rem;
+    font-size: 1.5rem;
+    color: white;
+    letter-spacing: -0.05em;
+}
+
+.close-drawer-btn {
+    padding: 0.5rem;
+    color: #71717A;
+    background-color: transparent;
+    border: none;
+    border-radius: 0.25rem;
+    transition: color 0.2s;
+    cursor: pointer;
+}
+
+.close-drawer-btn:hover {
+    color: white;
+}
+
+.drawer-menu {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
 .drawer-link {
-    padding: 12px;
-    border-radius: var(--radius-md);
-    color: var(--text-muted);
+    font-size: 1.25rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    padding: 0.5rem 0;
+    display: block;
+    text-decoration: none;
+    color: #71717A;
+    transition: color 0.2s;
+}
+
+.drawer-link.active {
+    color: #D4FF00;
+}
+
+.drawer-link:not(.active):hover {
+    color: white;
+}
+
+.drawer-divider {
+    height: 1px;
+    background-color: #27272A;
+    margin: 1rem 0;
+}
+
+.drawer-sublink {
+    font-size: 0.875rem;
     font-weight: 500;
-    transition: all 0.2s;
+    color: #A1A1AA;
+    padding: 0.5rem 0;
+    display: block;
+    text-decoration: none;
+    transition: color 0.2s;
 }
 
-.drawer-link:hover, .drawer-link.active {
-    background: rgba(255,255,255,0.05);
-    color: #fff;
-}
-
-[data-theme="light"] .drawer-link:hover, [data-theme="light"] .drawer-link.active {
-    background: #f1f5f9;
-    color: #0f172a;
+.drawer-sublink:hover {
+    color: white;
 }

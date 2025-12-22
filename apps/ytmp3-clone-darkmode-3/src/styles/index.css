@@ -21,11 +21,12 @@
 /* 4. Layout */
 @import './layout/grid.css';
 @import './layout/container.css';
+@import './layout/header.css';
 
 /* 5. Sections */
-@import './sections/header.css';
 @import './sections/hero.css';
 @import './sections/content.css';
+@import './sections/content-prose.css';
 @import './sections/features.css';
 @import './sections/faq.css';
 @import './sections/footer.css';
