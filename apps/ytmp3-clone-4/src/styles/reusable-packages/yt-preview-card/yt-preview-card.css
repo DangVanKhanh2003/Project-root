@@ -42,7 +42,7 @@
   flex-shrink: 0;
   width: 100%;
   aspect-ratio: 16 / 9;
-  border-radius: var(--radius-md);
+  border-radius: 12px;
   overflow: hidden;
   background: var(--bg-input);
   display: flex;

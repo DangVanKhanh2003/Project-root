@@ -88,15 +88,16 @@ body {
 }
 
 .logo-img {
-  width: 200px;
-  height: 200px;
+  padding-top: 30px;
+  width: 120px;
+  height: 120px;
   object-fit: contain;
 }
 
 @media (max-width: 640px) {
   .logo-img {
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
   }
 }
 
@@ -108,9 +109,19 @@ body {
   letter-spacing: -0.02em;
 }
 
+.logo-text-svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 @media (max-width: 640px) {
   .logo-text {
     font-size: 2rem;
+  }
+
+  .logo-text-svg {
+    width: 150px;
   }
 }
 
@@ -636,6 +647,50 @@ button[type="submit"]:disabled {
   }
 }
 
+/* Inline Message */
+.hero-inline-message {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.inline-message {
+  padding: 0.875rem 1rem;
+  border-radius: var(--radius-xl);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-align: center;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.inline-message--info {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  color: #1e40af;
+}
+
+.inline-message--error {
+  background: #fef2f2;
+  border: 1px solid #fee2e2;
+  color: #991b1b;
+}
+
+.inline-message--success {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #15803d;
+}
+
+.inline-message--warning {
+  background: #fffbeb;
+  border: 1px solid #fed7aa;
+  color: #92400e;
+}
+
+.inline-message p {
+  margin: 0;
+  line-height: 1.5;
+}
+
 /* ===== ICONS ===== */
 .icon-sm {
   width: 1.125rem;
@@ -738,13 +793,10 @@ button[type="submit"]:disabled {
   width: 100%;
   background-color: var(--color-bg-card);
   border-radius: 20px;
-  padding: 1.5rem 0;
 }
 
 @media (min-width: 768px) {
-  .hero-card {
-    padding: 3rem 0;
-  }
+
 }
 
 /* Search View & Result View */
