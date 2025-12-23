@@ -37,7 +37,7 @@
   position: relative;
   width: 100%;
   background: var(--bg-input);
-  border: 1px solid var(--border-secondary);
+  border: 1px solid rgba(128, 128, 128, 0.496);
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
@@ -51,7 +51,7 @@
 
 /* Debug: Force visible progress bar for testing (remove after confirming it works) */
 .status-container.processing {
-  border: 2px solid var(--color-accent-dark) !important; /* Visual indicator that class is applied */
+  border: 2px solid rgba(139, 92, 246, 0.5) !important; /* Visual indicator that class is applied */
 }
 
 /* Hide status bar on success and error - controlled by JavaScript */
@@ -102,8 +102,8 @@
 .icon.spinner {
   /* Always reserve space, but hidden by default */
   visibility: hidden;
-  border: 2px solid var(--color-accent-dark);
-  border-top: 2px solid var(--color-accent);
+  border: 2px solid rgba(139, 92, 246, 0.3);
+  border-top: 2px solid #8b5cf6;
   border-radius: 50%;
   margin: 0px;
   display: none;
@@ -132,11 +132,11 @@
 
 /* ===== STATUS STATES ===== */
 .status--success .status-text {
-  color: var(--color-status-success);
+  color: var(--status-success, #2ecc71);
 }
 
 .status--error .status-text {
-  color: var(--color-status-error);
+  color: var(--status-error, #e74c3c);
 }
 
 /* ===== PROGRESS BAR ===== */
@@ -186,12 +186,11 @@
 }
 
 .download-btn {
-  background-color: var(--color-accent);
-  color: var(--color-black);
+  background: var(--gradient-primary);
+  color: #fff;
 }
 
 .download-btn:hover {
-  background-color: var(--color-accent-hover);
   transform: translateY(-2px);
 }
 
@@ -200,8 +199,8 @@
 }
 
 .retry-btn {
-  background: var(--color-status-error);
-  color: var(--color-white);
+  background: var(--status-error, #e74c3c);
+  color: #fff;
 }
 
 .retry-btn:hover {
@@ -219,7 +218,7 @@
   font-size: 16px;
   font-weight: 600;
   border-radius: var(--radius-md, 8px);
-  border: 1px solid var(--border-secondary);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   background: transparent;
   color: var(--text-muted);
   cursor: pointer;
@@ -237,21 +236,21 @@
 }
 
 [data-theme="light"] .btn-new-convert {
-  border: 1px solid var(--pkg-color-gray-200);
+  border: 1px solid #cbd5e1;
   color: var(--text-muted);
 }
 
 .btn-new-convert:hover {
-  border-color: var(--color-white);
-  color: var(--color-white);
-  background: var(--color-accent-dark);
+  border-color: #fff;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
   transform: translateY(-1px);
 }
 
 [data-theme="light"] .btn-new-convert:hover {
-  background: var(--pkg-color-gray-50);
+  background: #f1f5f9;
   color: var(--text-main);
-  border-color: var(--pkg-color-gray-300);
+  border-color: #94a3b8;
 }
 
 .btn-new-convert:active {
