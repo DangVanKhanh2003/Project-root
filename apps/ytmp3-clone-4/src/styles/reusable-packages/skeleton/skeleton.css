@@ -76,6 +76,7 @@
   will-change: background-position;
 }
 
+
 /* Small Mobile (351px+) */
 @media (min-width: 351px) {
   .skeleton-text {

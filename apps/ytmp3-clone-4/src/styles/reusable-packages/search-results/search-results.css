@@ -25,7 +25,7 @@
 /* ======= Search Results Section (Dedicated Section Below Hero) ======= */
 
 /* Section Container - Mobile First (0-599px) */
-.search-results-section {
+#search-results-section {
     width: 100%;
     padding-top: 40px !important;
     padding-bottom: 40px !important;

@@ -738,12 +738,12 @@ button[type="submit"]:disabled {
   width: 100%;
   background-color: var(--color-bg-card);
   border-radius: 20px;
-  padding: 1.5rem;
+  padding: 1.5rem 0;
 }
 
 @media (min-width: 768px) {
   .hero-card {
-    padding: 3rem;
+    padding: 3rem 0;
   }
 }
 
