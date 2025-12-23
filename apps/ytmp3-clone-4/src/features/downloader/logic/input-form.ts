@@ -586,10 +586,8 @@ function navigateDown(state: ReturnType<typeof getState>, displaySuggestions: st
     newIndex = state.highlightedIndex + 1;
   }
 
-
+  // Only update highlight, don't change input value
   setHighlightedIndex(newIndex);
-  setQuery(displaySuggestions[newIndex]);
-  setInputValueInRenderer(displaySuggestions[newIndex]);
 }
 
 /**
@@ -605,23 +603,28 @@ function navigateUp(state: ReturnType<typeof getState>, displaySuggestions: stri
     newIndex = state.highlightedIndex - 1;
   }
 
-
+  // Only update highlight, don't change input value
   setHighlightedIndex(newIndex);
-  setQuery(displaySuggestions[newIndex]);
-  setInputValueInRenderer(displaySuggestions[newIndex]);
 }
 
 /**
  * Select current highlighted suggestion and submit
  */
 function selectCurrentSuggestion(state: ReturnType<typeof getState>): void {
-
   // Cancel any pending suggestion fetches
   if (suggestionTimer) {
     clearTimeout(suggestionTimer);
     suggestionTimer = null;
   }
   lastSuggestionCallTime = 0; // Reset throttle state
+
+  // Get highlighted suggestion and fill into input
+  const displaySuggestions = getDisplaySuggestions(state);
+  if (state.highlightedIndex >= 0 && state.highlightedIndex < displaySuggestions.length) {
+    const selectedText = displaySuggestions[state.highlightedIndex];
+    setQuery(selectedText);
+    setInputValueInRenderer(selectedText);
+  }
 
   hideSuggestions();
   setHighlightedIndex(-1);

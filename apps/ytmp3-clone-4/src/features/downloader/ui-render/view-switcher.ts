@@ -56,9 +56,15 @@ export function showResultView(): void {
     return;
   }
 
+  console.log('[View Switcher] Switching to result view');
+  console.log('[View Switcher] searchView:', searchView);
+  console.log('[View Switcher] resultView:', resultView);
+
   searchView.classList.add('hidden');
   resultView.classList.remove('hidden');
   currentView = 'result';
+
+  console.log('[View Switcher] Result view should now be visible');
 }
 
 /**

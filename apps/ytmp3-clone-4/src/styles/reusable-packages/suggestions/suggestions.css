@@ -185,7 +185,7 @@
     opacity: 1;
     transform: translateY(0);
     background-color: var(--pkg-suggestions-bg);
-    top: 60px;
+    top: 105px;
     overflow: hidden;
 }
 
@@ -200,27 +200,28 @@
     /* Smooth scrolling for mobile */
     -webkit-overflow-scrolling: touch;
 
-    /* Custom scrollbar styling */
+    /* Custom scrollbar styling (Firefox) */
     scrollbar-width: thin;
-    scrollbar-color: var(--pkg-color-outline-variant) transparent;
+    scrollbar-color: #d1d5db #f3f4f6; /* thumb track */
 }
 
 /* Webkit scrollbar styling (Chrome, Safari) */
 .suggestion-list::-webkit-scrollbar {
-    width: 6px;
+    width: 8px;
 }
 
 .suggestion-list::-webkit-scrollbar-track {
-    background: transparent;
+    background: #f3f4f6;
+    border-radius: var(--pkg-radius-sm);
 }
 
 .suggestion-list::-webkit-scrollbar-thumb {
-    background-color: var(--pkg-color-outline-variant);
+    background-color: #d1d5db;
     border-radius: var(--pkg-radius-sm);
 }
 
 .suggestion-list::-webkit-scrollbar-thumb:hover {
-    background-color: var(--pkg-color-outline);
+    background-color: #9ca3af;
 }
 
 /* Individual suggestion item */
@@ -259,9 +260,6 @@
 
 /* Original query visual distinction */
 .suggestion-item--original {
-    font-weight: var(--pkg-body-medium-weight-prominent);
-    color: var(--pkg-color-primary);
-
     /* Optional: Add subtle background tint */
     background-color: color-mix(in srgb, var(--pkg-color-primary-container) 20%, transparent);
 }
