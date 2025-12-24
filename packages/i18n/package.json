@@ -1,0 +1,30 @@
+{
+  "name": "@downloader/i18n",
+  "version": "1.0.0",
+  "description": "Internationalization system for downloader apps - supports 19 languages with SSR and CSR",
+  "type": "module",
+  "main": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./locales/*": "./src/locales/*.json",
+    "./engine": "./src/engine.ts",
+    "./types": "./src/types.ts"
+  },
+  "scripts": {
+    "check": "node tools/translation-checker.js"
+  },
+  "keywords": [
+    "i18n",
+    "internationalization",
+    "translation",
+    "localization",
+    "ssr",
+    "csr"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}

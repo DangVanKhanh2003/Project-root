@@ -1,0 +1,112 @@
+{
+  "common": {
+    "buttons": {
+      "convert": "Convert",
+      "download": "Download",
+      "cancel": "Cancel",
+      "retry": "Retry",
+      "start": "Start",
+      "tryAgain": "Try Again",
+      "startOver": "Start Over",
+      "paste": "Paste",
+      "clear": "Clear",
+      "search": "Search"
+    },
+    "labels": {
+      "videoQuality": "Video quality",
+      "audioQuality": "Audio quality",
+      "searchPlaceholder": "Search or paste link here...",
+      "pasteLabel": "Paste from clipboard",
+      "clearLabel": "Clear input"
+    },
+    "actions": {
+      "downloading": "Downloading",
+      "processing": "Processing",
+      "converting": "Converting",
+      "extracting": "Extracting"
+    }
+  },
+  "status": {
+    "idle": "Ready to convert",
+    "starting": "Starting…",
+    "extracting": "Extracting",
+    "extractingProgress": "Extracting {progress}%",
+    "processing": "Processing",
+    "processingProgress": "Processing… {progress}%",
+    "converting": "Converting",
+    "convertingProgress": "Converting... {loaded} / {total}",
+    "convertingSize": "Converting... {size}",
+    "downloading": "Downloading",
+    "downloadProgress": "Converting... {loaded} MB / {total} MB",
+    "downloadComplete": "Download complete 100%",
+    "polling": "Processing",
+    "pollingProgress": "Processing {progress}%",
+    "completed": "Completed",
+    "success": "Conversion successful",
+    "failed": "Conversion failed",
+    "canceled": "Canceled",
+    "error": "Error occurred"
+  },
+  "formats": {
+    "mp3": "MP3",
+    "mp4": "MP4",
+    "ogg": "OGG",
+    "wav": "WAV",
+    "opus": "Opus",
+    "m4a": "M4A",
+    "quality": {
+      "mp3_128": "MP3 - 128kbps",
+      "mp3_256": "MP3 - 256kbps",
+      "mp3_320": "MP3 - 320kbps",
+      "ogg_128": "OGG",
+      "wav_lossless": "WAV - Lossless",
+      "opus_128": "Opus",
+      "m4a_192": "M4A",
+      "video_360p": "MP4 - 360p",
+      "video_480p": "MP4 - 480p",
+      "video_720p": "MP4 - 720p",
+      "video_1080p": "MP4 - 1080p",
+      "video_2k": "MP4 - 2K",
+      "video_4k": "MP4 - 4K"
+    }
+  },
+  "errors": {
+    "downloadExpired": "Download link expired for: {title}",
+    "downloadExpiredGeneric": "Download link has expired",
+    "confirmRetry": "Would you like to try again?",
+    "noGalleryItems": "No gallery items to display",
+    "conversionFailed": "Conversion failed",
+    "networkError": "Network error occurred",
+    "invalidUrl": "Invalid URL",
+    "unsupportedFormat": "Unsupported format",
+    "timeout": "Request timed out",
+    "unknown": "An unknown error occurred"
+  },
+  "features": {
+    "downloader": {
+      "title": "Download YouTube Videos",
+      "description": "Fast and easy YouTube video downloader"
+    },
+    "search": {
+      "placeholder": "Search or paste YouTube link",
+      "suggestions": "Suggestions",
+      "noResults": "No results found"
+    },
+    "gallery": {
+      "title": "Gallery",
+      "empty": "No items to display",
+      "downloadItem": "Download this item"
+    }
+  },
+  "aria": {
+    "downloadButton": "Download this item",
+    "retryButton": "Retry conversion",
+    "cancelButton": "Cancel conversion",
+    "pasteButton": "Paste from clipboard",
+    "clearButton": "Clear input field",
+    "searchButton": "Search",
+    "languageSelector": "Select language",
+    "formatSelector": "Select format",
+    "qualitySelector": "Select quality"
+  }
+}
