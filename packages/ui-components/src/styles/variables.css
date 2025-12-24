@@ -1,0 +1,34 @@
+/**
+ * UI Components - CSS Custom Properties
+ *
+ * Override these variables in your app to customize component appearance
+ *
+ * Usage:
+ * :root {
+ *   --expire-modal-primary-color: #your-color;
+ * }
+ */
+
+:root {
+  /* ========== ExpireModal ========== */
+  --expire-modal-overlay-bg: rgba(0, 0, 0, 0.5);
+  --expire-modal-bg: #ffffff;
+  --expire-modal-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+  --expire-modal-radius: 12px;
+  --expire-modal-padding: 24px;
+  --expire-modal-z-index: 10000;
+  --expire-modal-warning-color: #ffc107;
+  --expire-modal-primary-color: #ff9800;
+  --expire-modal-primary-hover: #f57c00;
+
+  /* ========== Skeleton ========== */
+  --skeleton-color-dark: #e0e0e0;
+  --skeleton-color-light: #f0f0f0;
+  --skeleton-duration: 1.5s;
+  --skeleton-easing: linear;
+  --skeleton-radius-sm: 4px;
+  --skeleton-radius-md: 6px;
+  --skeleton-radius-lg: 8px;
+  --skeleton-radius-xl: 20px;
+  --skeleton-radius-full: 50%;
+}

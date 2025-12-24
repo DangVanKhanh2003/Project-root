@@ -1,6 +1,8 @@
 /**
- * Search Result Card Component - TypeScript
+ * Search Result Card Component
  * Reusable video card for search results, playlists, and recommendations
+ *
+ * @module @downloader/ui-components/SearchResultCard
  */
 
 import { formatViewsForDisplay, generateYoutubeThumbnail, escapeHtml } from './card-utils';
@@ -33,6 +35,13 @@ export interface CardOptions {
 
 /**
  * Create search result card HTML
+ *
+ * WHY: Render video card with thumbnail, title, and metadata
+ * CONTRACT: (video:VideoData, options?:CardOptions) → string - returns HTML
+ * PRE: video.id and video.title required
+ * POST: Returns fully formed HTML card
+ * EDGE: Missing thumbnailUrl → uses YouTube default, missing metadata → hides sections
+ * USAGE: container.innerHTML = createSearchResultCard(videoData);
  */
 export function createSearchResultCard(video: VideoData, options: CardOptions = {}): string {
   const {

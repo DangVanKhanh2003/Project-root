@@ -1,0 +1,33 @@
+{
+  "name": "@downloader/ui-components",
+  "version": "1.0.0",
+  "description": "Shared UI components for downloader applications",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./ExpireModal": "./src/ExpireModal/index.ts",
+    "./SkeletonCard": "./src/SkeletonCard/index.ts",
+    "./SearchResultCard": "./src/SearchResultCard/index.ts",
+    "./SuggestionDropdown": "./src/SuggestionDropdown/index.ts",
+    "./ExpireModal/expire-modal.css": "./src/ExpireModal/expire-modal.css",
+    "./SkeletonCard/skeleton.css": "./src/SkeletonCard/skeleton.css",
+    "./SearchResultCard/search-result-card.css": "./src/SearchResultCard/search-result-card.css",
+    "./SuggestionDropdown/suggestion-dropdown.css": "./src/SuggestionDropdown/suggestion-dropdown.css",
+    "./styles/*": "./src/styles/*"
+  },
+  "scripts": {
+    "test": "vitest",
+    "test:coverage": "vitest --coverage"
+  },
+  "dependencies": {
+    "@downloader/i18n": "workspace:*"
+  },
+  "devDependencies": {
+    "@vitest/ui": "^2.1.8",
+    "vitest": "^2.1.8",
+    "jsdom": "^25.0.1",
+    "typescript": "^5.3.3"
+  }
+}
