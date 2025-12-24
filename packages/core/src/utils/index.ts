@@ -17,3 +17,6 @@ export * from './ripple-effect';
 
 // YouTube utilities
 export * from './youtube';
+
+// Platform detection utilities
+export * from './platform-detection';

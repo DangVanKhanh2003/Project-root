@@ -13,10 +13,20 @@
     "./utils/youtube": "./src/utils/youtube/index.ts",
     "./constants": "./src/constants/config.ts",
     "./styles": "./src/styles/index.css",
-    "./styles/ripple-effect.css": "./src/styles/ripple-effect.css"
+    "./styles/ripple-effect.css": "./src/styles/ripple-effect.css",
+    "./conversion": "./src/conversion/index.ts"
   },
   "scripts": {
     "build": "tsc --build",
-    "clean": "rm -rf dist .temp tsconfig.tsbuildinfo"
+    "clean": "rm -rf dist .temp tsconfig.tsbuildinfo",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest run --coverage"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "^1.6.1",
+    "@vitest/ui": "^1.6.1",
+    "vitest": "^1.6.1"
   }
 }
