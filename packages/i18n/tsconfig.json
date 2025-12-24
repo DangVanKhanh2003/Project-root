@@ -9,6 +9,7 @@
     "declaration": true,
     "declarationMap": true,
     "resolveJsonModule": true,
+    "noEmit": true,
     "allowImportingTsExtensions": true,
     "strict": true,
     "noUnusedLocals": true,
