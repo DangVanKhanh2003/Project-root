@@ -14,7 +14,8 @@
   "dependencies": {
     "@downloader/core": "workspace:*",
     "@downloader/i18n": "workspace:*",
-    "@downloader/ui-shared": "workspace:*"
+    "@downloader/ui-shared": "workspace:*",
+    "@downloader/ui-components": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^20.19.25",

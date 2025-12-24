@@ -68,6 +68,9 @@ importers:
       '@downloader/i18n':
         specifier: workspace:*
         version: link:../../packages/i18n
+      '@downloader/ui-components':
+        specifier: workspace:*
+        version: link:../../packages/ui-components
       '@downloader/ui-shared':
         specifier: workspace:*
         version: link:../../packages/ui-shared
@@ -118,6 +121,9 @@ importers:
       '@downloader/i18n':
         specifier: workspace:*
         version: link:../../packages/i18n
+      '@downloader/ui-components':
+        specifier: workspace:*
+        version: link:../../packages/ui-components
       '@downloader/ui-shared':
         specifier: workspace:*
         version: link:../../packages/ui-shared
@@ -171,6 +177,9 @@ importers:
       '@downloader/i18n':
         specifier: workspace:*
         version: link:../../packages/i18n
+      '@downloader/ui-components':
+        specifier: workspace:*
+        version: link:../../packages/ui-components
       '@downloader/ui-shared':
         specifier: workspace:*
         version: link:../../packages/ui-shared

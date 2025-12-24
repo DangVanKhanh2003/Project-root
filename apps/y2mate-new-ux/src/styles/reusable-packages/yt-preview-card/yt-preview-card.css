@@ -137,7 +137,8 @@
   animation: skeleton-loading 1.5s ease-in-out infinite;
 }
 
-.skeleton-line {
+/* Namespace skeleton lines specifically for YT preview card */
+.yt-preview-card.skeleton .skeleton-line {
   background: linear-gradient(
     90deg,
     #f0f0f0 25%,
@@ -150,21 +151,21 @@
 }
 
 /* Skeleton line types - match real element heights */
-.skeleton-line.skeleton-title {
+.yt-preview-card.skeleton .skeleton-line.skeleton-title {
   width: 80%;
   height: 22px;
     padding: 0px !important;
   margin: 0px !important;
 }
 
-.skeleton-line.skeleton-format {
+.yt-preview-card.skeleton .skeleton-line.skeleton-format {
   width: 50%;
   height: 26px;
     padding: 0px !important;
   margin: 0px !important;
 }
 
-.skeleton-line.skeleton-author {
+.yt-preview-card.skeleton .skeleton-line.skeleton-author {
   width: 40%;
   height: 18px;
     padding: 0px !important;
@@ -218,11 +219,11 @@
   }
 
   /* Skeleton adjustments for mobile */
-  .skeleton-line.skeleton-title {
+  .yt-preview-card.skeleton .skeleton-line.skeleton-title {
     height: 21px; /* Match 14px font */
   }
 
-  .skeleton-line.skeleton-author {
+  .yt-preview-card.skeleton .skeleton-line.skeleton-author {
     height: 21px; /* Match 13px font */
   }
 }
@@ -253,11 +254,11 @@
   }
 
   /* Skeleton adjustments for small mobile */
-  .skeleton-line.skeleton-title {
+  .yt-preview-card.skeleton .skeleton-line.skeleton-title {
     height: 18px; /* Match 13px font */
   }
 
-  .skeleton-line.skeleton-author {
+  .yt-preview-card.skeleton .skeleton-line.skeleton-author {
     height: 20px; /* Match 12px font */
   }
 }

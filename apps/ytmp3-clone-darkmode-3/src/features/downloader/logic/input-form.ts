@@ -33,7 +33,7 @@ import { destroyOldProcesses } from './cleanup';
 import { renderResults, renderMessage, renderPreviewCard, showLoading, clearContent, clearHeroMessage } from '../ui-render/content-renderer';
 import { updateVideoTitle } from '../ui-render/download-rendering';
 import { getInputValue as getInputValueFromRenderer, setInputValue as setInputValueInRenderer } from '../ui-render/ui-renderer';
-import type { VideoData } from '../../../ui-components/search-result-card/search-result-card';
+import type { VideoData } from '@downloader/ui-components';
 import { navigateToVideo } from '../routing/url-manager';
 import { setVideoPageSEO } from '../routing/seo-manager';
 

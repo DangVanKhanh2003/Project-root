@@ -147,7 +147,7 @@
     position: relative;
     width: 100%;
     aspect-ratio: 16 / 9;
-    background: var(--pkg-color-surface-container);
+    background: #d7d7d7; /* Match skeleton background color */
     overflow: hidden;
 }
 

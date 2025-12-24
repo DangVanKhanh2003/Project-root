@@ -7,7 +7,7 @@ import { setRenderCallback, getState, initializeFormatSelector } from './state';
 import { initRenderer, render, setInputValue, focusInput } from './ui-render/ui-renderer';
 import { initInputForm } from './logic/input-form';
 import { initContentRenderer } from './ui-render/content-renderer';
-import { initSuggestionRenderer, render as renderSuggestions } from '../../ui-components/suggestion-dropdown/suggestion-renderer';
+import { SuggestionDropdown } from '@downloader/ui-components';
 import { initConversionController } from './logic/conversion/conversion-controller';
 import { scrollManager } from '@downloader/ui-shared';
 import type { AppState } from './state';
@@ -38,8 +38,14 @@ export async function init(): Promise<void> {
   // Step 1: Initialize renderers (views)
   const rendererInitialized = initRenderer();
   const contentRendererInitialized = initContentRenderer();
-  const suggestionRendererInitialized = initSuggestionRenderer();
   const viewSwitcherInitialized = initViewSwitcher();
+
+  // Initialize SuggestionDropdown
+  const suggestionDropdown = new SuggestionDropdown({
+    containerId: 'suggestion-container',
+    inputId: 'videoUrl'
+  });
+  const suggestionRendererInitialized = suggestionDropdown.init();
 
   if (!rendererInitialized || !contentRendererInitialized) {
     return;
@@ -61,7 +67,7 @@ export async function init(): Promise<void> {
 
     // Render suggestions if initialized
     if (suggestionRendererInitialized) {
-      renderSuggestions(state, prevState);
+      suggestionDropdown.render(state);
     }
   });
 
@@ -79,7 +85,7 @@ export async function init(): Promise<void> {
   const initialState = getState();
   render(initialState);
   if (suggestionRendererInitialized) {
-    renderSuggestions(initialState);
+    suggestionDropdown.render(initialState);
   }
 
   // Step 6: Setup routing (check URL on page load)

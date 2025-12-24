@@ -9,6 +9,12 @@ import { initI18n, loadTranslations, locales } from '@downloader/i18n';
 // Import Core Styles (From @downloader/core)
 import '@downloader/core/styles/ripple-effect.css';
 
+// Import UI Components CSS (From @downloader/ui-components)
+import '@downloader/ui-components/ExpireModal/expire-modal.css';
+import '@downloader/ui-components/SkeletonCard/skeleton.css';
+import '@downloader/ui-components/SearchResultCard/search-result-card.css';
+import '@downloader/ui-components/SuggestionDropdown/suggestion-dropdown.css';
+
 // Import CSS - Proper order: reset -> base -> common -> sections -> packages
 import './styles/reset.css';
 import './styles/base.css';
@@ -26,12 +32,8 @@ import './styles/sections/footer.css';
 
 // Import reusable packages CSS (for downloader functionality)
 import './styles/reusable-packages/package-root.css';
-import './styles/reusable-packages/skeleton/skeleton.css';
-import './styles/reusable-packages/search-results/search-results.css';
 import './styles/reusable-packages/yt-preview-card/yt-preview-card.css';
-import './styles/reusable-packages/suggestions/suggestions.css';
 import './styles/reusable-packages/captcha-modal/captcha-modal.css';
-import './styles/reusable-packages/expire-modal/expire-modal.css';
 import './styles/reusable-packages/conversion-status/conversion-status.css';
 
 // Import UI components CSS

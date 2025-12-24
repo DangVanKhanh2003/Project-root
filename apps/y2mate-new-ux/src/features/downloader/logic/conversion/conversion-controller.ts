@@ -12,7 +12,7 @@ import {
   clearSocialMediaCache
 } from './convert-logic-v2';
 import { getConversionTask, getState } from '../../state';
-import { showExpireModal } from '../../../../ui-components/modal/expire-modal';
+import { showExpireModal } from '@downloader/ui-components';
 
 // Type definitions for custom events
 interface ConversionCancelEventDetail {
