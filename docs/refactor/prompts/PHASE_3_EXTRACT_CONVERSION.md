@@ -1,7 +1,7 @@
 # PHASE 3: EXTRACT CONVERSION LOGIC - AI IMPLEMENTATION PROMPT
 
 > **Phase:** Extract Conversion Logic (Week 5-8)
-> **Objective:** Extract platform conversion strategies to @downloader/core
+> **Objective:** Extract YouTube conversion strategies to @downloader/core
 > **Risk Level:** 🔴 HIGH - This is CRITICAL business logic
 > **Prerequisites:** Phase 1 (utilities) and Phase 2 (i18n) complete
 
@@ -27,7 +27,7 @@
 ## 🚨 CRITICAL WARNING
 
 **Phase 3 is the MOST CRITICAL phase:**
-- Contains core business logic (conversion)
+- Contains core business logic (YouTube conversion)
 - Most complex code to extract (~5,000-8,000 lines)
 - High risk of breaking functionality
 - Requires deep understanding of state management
@@ -57,24 +57,56 @@ Read `/docs/refactor/MASTER_REFACTOR_DOC.md` section on:
 
 ### **Code Files to Read and Analyze:**
 
+**Conversion Strategy Interface:**
+- `/apps/ytmp3-clone-3/src/features/downloader/logic/conversion/application/strategies/IConversionStrategy.ts`
+  - Understand interface contract
+  - See StrategyContext structure
+  - See StrategyResult structure
+
 **Base Strategy (READ THIS FIRST):**
 - `/apps/ytmp3-clone-3/src/features/downloader/logic/conversion/application/strategies/BaseStrategy.ts`
   - Understand base class structure
-  - Identify state dependencies
+  - Identify state dependencies (imports from state/)
   - Find where state is used
-  - See how to decouple
+  - See updateConversionTask calls
+  - Understand how to decouple
 
-**Platform Strategies (READ ALL):**
-- `/apps/ytmp3-clone-3/src/features/downloader/logic/conversion/application/strategies/YouTubeStrategy.ts`
-- `/apps/ytmp3-clone-3/src/features/downloader/logic/conversion/application/strategies/FacebookStrategy.ts`
-- `/apps/ytmp3-clone-3/src/features/downloader/logic/conversion/application/strategies/TikTokStrategy.ts`
-- `/apps/ytmp3-clone-3/src/features/downloader/logic/conversion/application/strategies/InstagramStrategy.ts`
-- `/apps/ytmp3-clone-3/src/features/downloader/logic/conversion/application/strategies/TwitterStrategy.ts`
+**YouTube Conversion Strategies (READ ALL):**
+- `/apps/ytmp3-clone-3/src/features/downloader/logic/conversion/application/strategies/PollingStrategy.ts`
+  - Complex polling-based conversion
+  - Progress mapping logic
+  - Multiple phases (initial, processing, merging)
+
+- `/apps/ytmp3-clone-3/src/features/downloader/logic/conversion/application/strategies/StaticDirectStrategy.ts`
+  - Direct download strategy
+  - Simpler flow
+
+- `/apps/ytmp3-clone-3/src/features/downloader/logic/conversion/application/strategies/OtherStreamStrategy.ts`
+  - Alternative stream handling
+
+- `/apps/ytmp3-clone-3/src/features/downloader/logic/conversion/application/strategies/IOSRamStrategy.ts`
+  - iOS-specific handling
+  - RAM-based conversion
 
 **Strategy Factory:**
-- `/apps/ytmp3-clone-3/src/features/downloader/logic/conversion/application/StrategyFactory.ts`
-  - How strategies are instantiated
-  - Platform detection logic
+- `/apps/ytmp3-clone-3/src/features/downloader/logic/conversion/application/strategies/StrategyFactory.ts`
+  - How strategies are selected
+  - Platform/format detection logic
+
+**Supporting Components:**
+- `/apps/ytmp3-clone-3/src/features/downloader/logic/conversion/polling-progress-mapper.ts`
+  - Progress calculation logic
+  - Phase detection
+
+- `/apps/ytmp3-clone-3/src/features/downloader/logic/conversion/types.ts`
+  - Type definitions
+  - TaskState enum
+  - Format types
+
+**Concurrent Polling Manager:**
+- `/apps/ytmp3-clone-3/src/features/downloader/logic/concurrent-polling.ts`
+  - Polling orchestration
+  - May need extraction
 
 **Compare with other apps:**
 - `/apps/y2matepro/src/features/downloader/logic/conversion/` (if exists)
@@ -83,14 +115,9 @@ Read `/docs/refactor/MASTER_REFACTOR_DOC.md` section on:
 
 **State Management (to understand what to AVOID):**
 - `/apps/ytmp3-clone-3/src/state/` (entire directory)
-- Understand how state is currently used
+- Find `conversion-state.ts`
+- Understand updateConversionTask function
 - Identify state update calls in strategies
-- Find state read calls in strategies
-
-**API Client/Service:**
-- `/apps/ytmp3-clone-3/src/services/api-client.ts` (if exists)
-- How conversion API is called
-- Request/response formats
 
 ---
 
@@ -99,14 +126,15 @@ Read `/docs/refactor/MASTER_REFACTOR_DOC.md` section on:
 ### **Primary Goals:**
 
 1. **Extract conversion strategies to packages/core/conversion:**
+   - IConversionStrategy (interface)
    - BaseStrategy (abstract base class)
-   - YouTubeStrategy
-   - FacebookStrategy
-   - TikTokStrategy
-   - InstagramStrategy
-   - TwitterStrategy
+   - PollingStrategy
+   - StaticDirectStrategy
+   - OtherStreamStrategy
+   - IOSRamStrategy
    - StrategyFactory
    - Types/interfaces
+   - Supporting utilities (PollingProgressMapper, etc.)
 
 2. **Implement Dependency Injection:**
    - Strategies accept StateUpdater as parameter
@@ -115,15 +143,15 @@ Read `/docs/refactor/MASTER_REFACTOR_DOC.md` section on:
    - Flexible for different apps
 
 3. **Extract shared conversion logic:**
+   - Progress calculation (PollingProgressMapper)
+   - Concurrent polling manager
    - Format validation
-   - Link parsing
    - Error handling patterns
-   - Response transformation
 
 4. **Write comprehensive tests:**
    - Unit tests for each strategy
    - Mock state updates
-   - Mock API calls
+   - Mock polling API
    - Test error cases
    - Target: 80%+ coverage
 
@@ -138,7 +166,7 @@ Read `/docs/refactor/MASTER_REFACTOR_DOC.md` section on:
 - [ ] Dependency Injection implemented correctly
 - [ ] NO state/ imports in package code
 - [ ] 80%+ test coverage
-- [ ] All platforms' conversions tested
+- [ ] All conversion types tested (polling, static, iOS)
 - [ ] ytmp3-clone-4 conversion flow works identically
 - [ ] No breaking changes to behavior
 
@@ -151,7 +179,7 @@ Read `/docs/refactor/MASTER_REFACTOR_DOC.md` section on:
 - ❌ Hard-code state dependencies
 - ❌ Change conversion logic during extraction
 - ❌ Break existing conversion flow
-- ❌ Change API request/response handling
+- ❌ Change progress calculation logic
 - ❌ Skip Dependency Injection pattern
 - ❌ Copy code from this document (there is no code here)
 
@@ -161,7 +189,7 @@ Read `/docs/refactor/MASTER_REFACTOR_DOC.md` section on:
 - ✅ Copy code exactly as-is (only change state coupling)
 - ✅ Write tests with mocked state
 - ✅ Verify behavior unchanged
-- ✅ Test ALL platforms (YouTube, Facebook, TikTok, Instagram, Twitter)
+- ✅ Test ALL conversion strategies
 - ✅ Discuss architecture EXTENSIVELY before coding
 
 ---
@@ -172,7 +200,7 @@ Read `/docs/refactor/MASTER_REFACTOR_DOC.md` section on:
 
 Current code (in apps):
 ```
-Strategy → directly imports state → hard-coded coupling
+Strategy → directly imports updateConversionTask from state/ → hard-coded coupling
 ```
 
 This prevents strategies from being in packages/core.
@@ -191,15 +219,15 @@ Apps provide the StateUpdater implementation.
 Read the Dependency Injection section in MASTER_REFACTOR_DOC.md carefully.
 
 **Before coding, you must:**
-1. Identify ALL state update calls in current strategies
-2. Identify ALL state read calls in current strategies
+1. Identify ALL updateConversionTask calls in current strategies
+2. Identify ALL state reads in current strategies (if any)
 3. Design StateUpdater interface that covers all needs
 4. Propose how strategies will receive StateUpdater
 5. Show example of how app will provide StateUpdater
 
 **In discussion phase, you must explain:**
-- Where state is currently used in strategies
-- What state updates are needed
+- Where updateConversionTask is currently called
+- What parameters are passed
 - Your proposed StateUpdater interface
 - How this maintains flexibility
 
@@ -212,16 +240,19 @@ Read the Dependency Injection section in MASTER_REFACTOR_DOC.md carefully.
 **What to do:**
 
 1. **Read ALL strategy files completely:**
+   - IConversionStrategy.ts
    - BaseStrategy.ts
-   - All 5 platform strategies
+   - All 4 conversion strategies
    - StrategyFactory.ts
+   - PollingProgressMapper.ts
+   - concurrent-polling.ts
 
 2. **Document for EACH strategy:**
-   - What state does it read?
-   - What state does it update?
+   - What state does it update? (find updateConversionTask calls)
+   - What parameters are passed to updateConversionTask?
    - What external dependencies exist?
-   - What API calls are made?
-   - What error handling exists?
+   - What polling/API logic exists?
+   - What progress calculation logic exists?
 
 3. **Compare strategies across apps:**
    - Are they identical?
@@ -230,13 +261,13 @@ Read the Dependency Injection section in MASTER_REFACTOR_DOC.md carefully.
 
 4. **Identify patterns:**
    - Common conversion flow
-   - Common error patterns
-   - Common state updates
-   - Common API interactions
+   - Common state update patterns
+   - Common progress handling
+   - Common error handling
 
 **Output required:**
 - Detailed analysis document
-- List of all state dependencies per strategy
+- List of all updateConversionTask calls per strategy
 - Proposed StateUpdater interface design
 - List of any differences found
 - Risk assessment
@@ -253,10 +284,10 @@ Read the Dependency Injection section in MASTER_REFACTOR_DOC.md carefully.
 
 1. **StateUpdater interface:**
    - What methods are needed?
-   - What parameters for each method?
-   - How to handle errors?
+   - Based on updateConversionTask parameters
    - How to handle progress updates?
-   - How to handle conversion results?
+   - How to handle state changes (POLLING, SUCCESS, FAILED)?
+   - How to handle status text updates?
 
 2. **State independence:**
    - Ensure strategies don't need to know state structure
@@ -267,6 +298,11 @@ Read the Dependency Injection section in MASTER_REFACTOR_DOC.md carefully.
    - Must work for apps with different state management
    - Must work for y2matepro (no state layer)
    - Must support future apps
+
+**Example questions to answer:**
+- Does updateConversionTask accept formatId + update object?
+- What fields are in the update object?
+- Should StateUpdater have one method or multiple?
 
 **Output required:**
 - Proposed interface design
@@ -288,29 +324,29 @@ Read the Dependency Injection section in MASTER_REFACTOR_DOC.md carefully.
 
 1. **Read BaseStrategy carefully:**
    - Abstract base class structure
-   - Common methods
+   - Helper methods (markSuccess, markFailed, etc.)
    - State dependencies (FIND THEM ALL)
-   - Utility methods
+   - updateConversionTask calls
 
 2. **Refactor for Dependency Injection:**
-   - Remove state imports
-   - Accept StateUpdater in constructor or methods
-   - Update state access to use StateUpdater
+   - Remove import from 'state/conversion-state'
+   - Accept StateUpdater in constructor
+   - Update updateTask method to use StateUpdater
    - Preserve all logic unchanged
 
 3. **Preserve:**
    - All abstract methods
-   - All common logic
-   - All error handling
    - All helper methods
+   - All error handling
+   - All abort handling
 
 **Test file:** `/packages/core/src/conversion/strategies/BaseStrategy.test.ts`
 
 **Test requirements:**
-- Test common methods
+- Test helper methods
 - Mock StateUpdater
 - Verify state updates called correctly
-- Test error handling
+- Test abort handling
 
 **Validation:**
 - No imports from state/
@@ -319,88 +355,111 @@ Read the Dependency Injection section in MASTER_REFACTOR_DOC.md carefully.
 
 ---
 
-### **Task 4: Extract Platform Strategies**
+### **Task 4: Extract Conversion Strategies**
 
-**For EACH platform (YouTube, Facebook, TikTok, Instagram, Twitter):**
+**For EACH strategy:**
 
-**Input:** `/apps/ytmp3-clone-3/src/features/downloader/logic/conversion/application/strategies/[Platform]Strategy.ts`
+#### **Task 4.1: PollingStrategy** (MOST COMPLEX)
 
-**Output location:** `/packages/core/src/conversion/strategies/[Platform]Strategy.ts`
+**Input:** `/apps/ytmp3-clone-3/src/features/downloader/logic/conversion/application/strategies/PollingStrategy.ts`
+
+**Output location:** `/packages/core/src/conversion/strategies/PollingStrategy.ts`
+
+**Special considerations:**
+- This is the MOST COMPLEX strategy
+- Has multi-phase progress (initial animation, processing, merging)
+- Uses PollingProgressMapper
+- Uses concurrent polling manager
+- Many updateConversionTask calls
 
 **What to extract:**
+1. Read entire file (600+ lines)
+2. Identify ALL updateConversionTask calls
+3. Refactor for Dependency Injection
+4. Preserve progress calculation logic EXACTLY
+5. Preserve phase transitions EXACTLY
+6. Preserve fake progress logic
 
-1. **Read strategy file completely**
-2. **Identify state dependencies**
-3. **Refactor for Dependency Injection**
-4. **Preserve conversion logic EXACTLY**
-5. **Write comprehensive tests**
+**Dependencies:**
+- Needs PollingProgressMapper (Task 6)
+- Needs concurrent polling manager (Task 7)
 
-**Per-platform test requirements:**
+**Test requirements:**
+- [ ] Test initial animation (0→5%)
+- [ ] Test no_download handling
+- [ ] Test real progress updates
+- [ ] Test fake progress when stuck
+- [ ] Test merging phase transition
+- [ ] Test status rotation
+- [ ] Test completion handling
+- [ ] Test abort handling
+- [ ] Mock StateUpdater
+- [ ] Mock polling manager
 
-**YouTubeStrategy:**
-- [ ] Test URL validation
-- [ ] Test video ID extraction
-- [ ] Test conversion request
-- [ ] Test format selection
+**Validation:**
+- No state/ imports
+- Progress logic unchanged
+- Phase transitions unchanged
+- Tests pass
+- 80%+ coverage
+
+---
+
+#### **Task 4.2: StaticDirectStrategy**
+
+**Input:** `/apps/ytmp3-clone-3/src/features/downloader/logic/conversion/application/strategies/StaticDirectStrategy.ts`
+
+**Output location:** `/packages/core/src/conversion/strategies/StaticDirectStrategy.ts`
+
+**Test requirements:**
+- [ ] Test direct conversion flow
 - [ ] Test progress updates
-- [ ] Test error handling (invalid URL, API error, timeout)
-
-**FacebookStrategy:**
-- [ ] Test URL validation
-- [ ] Test video/reel detection
-- [ ] Test conversion request
-- [ ] Test quality selection
 - [ ] Test error handling
+- [ ] Mock StateUpdater
 
-**TikTokStrategy:**
-- [ ] Test URL validation
-- [ ] Test video ID extraction
-- [ ] Test watermark/no-watermark options
-- [ ] Test conversion request
+---
+
+#### **Task 4.3: OtherStreamStrategy**
+
+**Input:** `/apps/ytmp3-clone-3/src/features/downloader/logic/conversion/application/strategies/OtherStreamStrategy.ts`
+
+**Output location:** `/packages/core/src/conversion/strategies/OtherStreamStrategy.ts`
+
+**Test requirements:**
+- [ ] Test stream handling
 - [ ] Test error handling
+- [ ] Mock StateUpdater
 
-**InstagramStrategy:**
-- [ ] Test URL validation
-- [ ] Test post/reel/story detection
-- [ ] Test conversion request
-- [ ] Test multiple media handling
+---
+
+#### **Task 4.4: IOSRamStrategy**
+
+**Input:** `/apps/ytmp3-clone-3/src/features/downloader/logic/conversion/application/strategies/IOSRamStrategy.ts`
+
+**Output location:** `/packages/core/src/conversion/strategies/IOSRamStrategy.ts`
+
+**Test requirements:**
+- [ ] Test iOS-specific handling
+- [ ] Test RAM conversion
 - [ ] Test error handling
-
-**TwitterStrategy:**
-- [ ] Test URL validation
-- [ ] Test tweet ID extraction
-- [ ] Test video detection
-- [ ] Test conversion request
-- [ ] Test error handling
-
-**Validation for each:**
-- [ ] No state/ imports
-- [ ] Logic unchanged
-- [ ] Tests pass
-- [ ] 80%+ coverage
-- [ ] StateUpdater used correctly
+- [ ] Mock StateUpdater
 
 ---
 
 ### **Task 5: Extract StrategyFactory**
 
-**Input:** `/apps/ytmp3-clone-3/src/features/downloader/logic/conversion/application/StrategyFactory.ts`
+**Input:** `/apps/ytmp3-clone-3/src/features/downloader/logic/conversion/application/strategies/StrategyFactory.ts`
 
 **Output location:** `/packages/core/src/conversion/StrategyFactory.ts`
 
 **What to extract:**
 
-1. **Platform detection logic:**
-   - URL pattern matching
-   - Platform identification
-   - Error handling for unknown platforms
-
-2. **Strategy instantiation:**
-   - Factory method pattern
-   - Strategy registration
+1. **Strategy selection logic:**
+   - Format/platform detection
+   - Strategy instantiation
    - Dependency injection to strategies
 
-3. **Refactor for DI:**
+2. **Refactor for DI:**
    - Factory accepts StateUpdater
    - Passes StateUpdater to strategies
    - No state imports
@@ -408,140 +467,84 @@ Read the Dependency Injection section in MASTER_REFACTOR_DOC.md carefully.
 **Test file:** `/packages/core/src/conversion/StrategyFactory.test.ts`
 
 **Test requirements:**
-- Test platform detection for each platform
+- Test strategy selection for each format/case
 - Test strategy instantiation
-- Test unknown platform handling
 - Test StateUpdater passed to strategies
 - Mock each strategy
 
-**Validation:**
-- Correctly detects all platforms
-- Returns correct strategy instances
-- StateUpdater injected properly
-- Tests pass
+---
+
+### **Task 6: Extract PollingProgressMapper**
+
+**Input:** `/apps/ytmp3-clone-3/src/features/downloader/logic/conversion/polling-progress-mapper.ts`
+
+**Output location:** `/packages/core/src/conversion/utils/PollingProgressMapper.ts`
+
+**What to extract:**
+- Progress calculation logic
+- Phase detection (processing, merging)
+- Status text generation
+- Format-specific calculations
+
+**Test requirements:**
+- Test progress mapping for different scenarios
+- Test phase detection
+- Test status text generation
+- Edge cases (0%, 100%, etc.)
 
 ---
 
-### **Task 6: Extract Conversion Types**
+### **Task 7: Extract Concurrent Polling Manager**
 
-**Input:** Find type definitions across strategy files
+**Input:** `/apps/ytmp3-clone-3/src/features/downloader/logic/concurrent-polling.ts`
+
+**Output location:** `/packages/core/src/conversion/utils/concurrent-polling.ts` (or keep in app?)
+
+**Decision needed:**
+- Should this be in core package?
+- Or stay app-specific?
+- Discuss in planning phase
+
+**If extracting:**
+- Remove any state dependencies
+- Test polling orchestration
+- Test multiple concurrent polls
+
+---
+
+### **Task 8: Extract Conversion Types**
+
+**Input:** `/apps/ytmp3-clone-3/src/features/downloader/logic/conversion/types.ts`
 
 **Output location:** `/packages/core/src/conversion/types/`
 
 **What to extract:**
 
-1. **Conversion request types:**
-   - ConversionRequest
-   - Format types
-   - Quality types
-   - Platform-specific options
+1. **Strategy types:**
+   - IConversionStrategy
+   - StrategyContext
+   - StrategyResult
 
-2. **Conversion response types:**
-   - ConversionResult
-   - DownloadLink
-   - Error types
-   - Progress types
+2. **Task types:**
+   - TaskState enum
+   - ConversionTask (if needed)
 
-3. **StateUpdater interface:**
+3. **Format types:**
+   - FormatData
+   - ExtractResult
+
+4. **StateUpdater interface:**
    - From Task 2 design
-
-4. **Strategy interfaces:**
-   - IStrategy
-   - IStrategyFactory
 
 **File organization:**
 ```
 types/
-├── conversion.types.ts
 ├── strategy.types.ts
+├── task.types.ts
+├── format.types.ts
 ├── state-updater.types.ts
 └── index.ts (barrel export)
 ```
-
-**Validation:**
-- All types exported
-- TypeScript compiles
-- No circular dependencies
-
----
-
-### **Task 7: Extract Shared Conversion Logic**
-
-**What to find and extract:**
-
-1. **Format validation:**
-   - Valid formats per platform
-   - Quality level validation
-   - Format compatibility checks
-
-2. **Link parsing:**
-   - URL normalization
-   - Parameter extraction
-   - Validation utilities
-
-3. **Error handling:**
-   - Error classification
-   - Error message formatting
-   - Retry logic (if exists)
-
-4. **Response transformation:**
-   - API response parsing
-   - Data normalization
-   - Link expiry handling
-
-**Output location:** `/packages/core/src/conversion/utils/`
-
-**Validation:**
-- Utilities tested
-- No state dependencies
-- Reusable across strategies
-
----
-
-### **Task 8: Write Comprehensive Tests**
-
-**Test structure:**
-
-```
-tests/
-├── strategies/
-│   ├── BaseStrategy.test.ts
-│   ├── YouTubeStrategy.test.ts
-│   ├── FacebookStrategy.test.ts
-│   ├── TikTokStrategy.test.ts
-│   ├── InstagramStrategy.test.ts
-│   └── TwitterStrategy.test.ts
-├── StrategyFactory.test.ts
-└── utils/
-    └── [utility tests]
-```
-
-**Mock requirements:**
-
-1. **Mock StateUpdater:**
-   - Track all update calls
-   - Verify correct parameters
-   - Allow state read mocking
-
-2. **Mock API calls:**
-   - Mock conversion API
-   - Mock success responses
-   - Mock error responses
-   - Mock timeouts
-
-3. **Mock utilities:**
-   - Mock from @downloader/core/utils
-   - Focus on testing strategy logic
-
-**Coverage requirements:**
-- Overall: 80%+
-- Each strategy: 80%+
-- StrategyFactory: 90%+
-- Utils: 80%+
-
-**Run:**
-- `pnpm test`
-- `pnpm test:coverage`
 
 ---
 
@@ -553,23 +556,16 @@ tests/
    - Export all strategies
    - Export StrategyFactory
    - Export types
-   - Export utils
+   - Export utils (PollingProgressMapper, etc.)
 
 2. `/packages/core/package.json`
    - Update exports field
    - Add conversion entry point
-   - Ensure proper tree-shaking
 
 3. `/packages/core/README.md`
    - Update with conversion usage
    - Document StateUpdater pattern
    - Reference actual code files
-
-**Verify exports:**
-- Can import strategies from `@downloader/core/conversion`
-- Can import factory from `@downloader/core/conversion`
-- Can import types from `@downloader/core/conversion/types`
-- TypeScript autocomplete works
 
 ---
 
@@ -577,53 +573,41 @@ tests/
 
 **This is the CRITICAL validation step.**
 
-**Why ytmp3-clone-4:**
-- Test app (safe)
-- Has full conversion flow
-- Can verify behavior unchanged
-
 **Steps:**
 
-1. **Add dependency:**
-   - Update `apps/ytmp3-clone-4/package.json`
-   - Add `@downloader/core` dependency (already added in Phase 1, but verify)
-   - Run `pnpm install`
-
-2. **Create StateUpdater implementation:**
+1. **Create StateUpdater implementation:**
    - Implement StateUpdater interface
-   - Use app's state management
+   - Use app's updateConversionTask from state/
    - Provide all required methods
 
-3. **Update conversion initialization:**
+2. **Update conversion initialization:**
    - Import StrategyFactory from package
    - Instantiate with StateUpdater
    - Replace old factory usage
 
-4. **Update imports:**
+3. **Update imports:**
    - Remove local strategy imports
    - Import from `@downloader/core/conversion`
 
-5. **Delete old files:**
-   - Delete `apps/ytmp3-clone-4/src/features/downloader/logic/conversion/`
-   - Delete all strategy files
+4. **Delete old files:**
+   - Delete `apps/ytmp3-clone-4/src/features/downloader/logic/conversion/application/strategies/`
+   - Delete polling-progress-mapper (if extracted)
    - Keep app-specific state management
 
-6. **Test EVERY platform:**
-   - YouTube conversion
-   - Facebook conversion
-   - TikTok conversion
-   - Instagram conversion
-   - Twitter conversion
+5. **Test ALL conversion flows:**
+   - Polling strategy (most common)
+   - Static direct strategy
+   - Other stream strategy
+   - iOS RAM strategy
 
 **Validation checklist:**
 - [ ] App builds without errors
-- [ ] YouTube conversion works
-- [ ] Facebook conversion works
-- [ ] TikTok conversion works
-- [ ] Instagram conversion works
-- [ ] Twitter conversion works
+- [ ] Polling conversion works
+- [ ] Static direct conversion works
+- [ ] Other stream conversion works
+- [ ] iOS RAM conversion works
 - [ ] State updates correctly
-- [ ] Progress updates shown
+- [ ] Progress updates shown correctly
 - [ ] Error handling works
 - [ ] Download links valid
 - [ ] Behavior identical to before
@@ -642,7 +626,7 @@ Send message to human:
 ```
 I'm starting Phase 3: Extract Conversion Logic
 
-⚠️ THIS IS THE CRITICAL PHASE - Contains core business logic
+⚠️ THIS IS THE CRITICAL PHASE - Contains core YouTube conversion logic
 
 Documents read:
 - ✅ MASTER_REFACTOR_DOC.md (including Dependency Injection section)
@@ -650,112 +634,134 @@ Documents read:
 - ✅ PHASE_3_EXTRACT_CONVERSION.md
 
 Code files analyzed:
+- ✅ IConversionStrategy.ts ([X] lines)
 - ✅ BaseStrategy.ts ([X] lines)
-- ✅ YouTubeStrategy.ts ([X] lines)
-- ✅ FacebookStrategy.ts ([X] lines)
-- ✅ TikTokStrategy.ts ([X] lines)
-- ✅ InstagramStrategy.ts ([X] lines)
-- ✅ TwitterStrategy.ts ([X] lines)
+- ✅ PollingStrategy.ts ([X] lines) - MOST COMPLEX
+- ✅ StaticDirectStrategy.ts ([X] lines)
+- ✅ OtherStreamStrategy.ts ([X] lines)
+- ✅ IOSRamStrategy.ts ([X] lines)
 - ✅ StrategyFactory.ts ([X] lines)
+- ✅ PollingProgressMapper.ts ([X] lines)
+- ✅ concurrent-polling.ts ([X] lines)
 - ✅ State management files (to understand coupling)
+
+PROJECT CLARIFICATION:
+- This is a YouTube downloader (not multi-platform social media)
+- Strategies handle different YouTube conversion methods
+- PollingStrategy is the most complex (multi-phase progress)
 
 DEPENDENCY ANALYSIS (CRITICAL):
 
 Current state dependencies found:
+
 1. BaseStrategy:
-   - Imports: [list imports from state/]
-   - State reads: [list where state is read]
-   - State updates: [list where state is updated]
+   - Imports: `import { updateConversionTask } from '../../../../state/conversion-state'`
+   - updateTask() method calls updateConversionTask(formatId, update)
+   - Helper methods: markSuccess(), markFailed() use updateTask()
 
-2. YouTubeStrategy:
-   - State updates: [list]
-   - [repeat for each strategy]
+2. PollingStrategy:
+   - Inherits from BaseStrategy
+   - Calls this.updateTask() in [X] places:
+     - Initial state update
+     - Progress updates
+     - Status text updates
+     - Success/failure states
+   - Parameters passed: { state, statusText, progress, downloadUrl, showProgressBar, ... }
 
-3. [Continue for all strategies...]
+3. [Continue for other strategies...]
+
+4. PollingProgressMapper:
+   - NO state dependencies ✅
+   - Pure utility for progress calculation
+
+5. concurrent-polling.ts:
+   - [Analyze dependencies]
+   - Decision: Extract to core or keep in app?
 
 PROPOSED DEPENDENCY INJECTION DESIGN:
 
-StateUpdater interface needed:
-```typescript
-interface StateUpdater {
-  // Method 1: [purpose]
-  // Method 2: [purpose]
-  // ... (describe in plain text, NO code)
-}
-```
+StateUpdater interface analysis:
+
+Current usage pattern:
+- updateConversionTask(formatId, updateObject)
+- updateObject has fields: state, statusText, progress, downloadUrl, etc.
+
+Proposed StateUpdater interface (describe in words):
+- Method to update task with formatId and update fields
+- [Describe your proposed design]
 
 How strategies will use it:
-- Constructor injection: Strategy receives StateUpdater
-- Method calls: Use StateUpdater.methodName() instead of state.update()
+- Constructor injection: BaseStrategy receives StateUpdater
+- Subclasses inherit access through this.updateTask()
 - [Explain your approach]
 
 How apps will provide it:
-- Clone-4: Implement using existing state management
-- y2matepro: Implement differently (explain how)
+- Clone-4: Wrapper around existing updateConversionTask
+- y2matepro: Different implementation for SSR
 - [Explain implementation]
 
 COMPARISON RESULTS:
 
 Strategy files across apps:
-- BaseStrategy: [Identical/Different across apps]
-- YouTubeStrategy: [Identical/Different]
+- BaseStrategy: [Identical/Different]
+- PollingStrategy: [Identical/Different]
 - [etc for each]
 
-[If different, explain differences and which version to use]
+[If different, explain differences]
 
-CONVERSION FLOW ANALYSIS:
+COMPLEXITY ASSESSMENT:
 
-Current flow:
-1. User enters URL
-2. [Describe current flow step by step]
-3. Strategy processes
-4. [Continue...]
+1. PollingStrategy: ⚠️ VERY COMPLEX
+   - 600+ lines
+   - Multi-phase progress logic
+   - Fake progress when stuck
+   - Merging phase with progressive timing
+   - Must preserve EXACT behavior
 
-After extraction:
-1. [Describe how flow will work]
-2. [Show StateUpdater is injected]
-3. [Continue...]
+2. Other strategies: Simpler
+   - [Assessment of each]
 
 RISKS IDENTIFIED:
 
 1. **State coupling risk:**
-   - Current: [X] state update calls across strategies
-   - Risk: Missing any state dependency breaks app
+   - [X] updateConversionTask calls across all strategies
+   - Risk: Missing any call breaks app
    - Mitigation: [Your plan]
 
-2. **Conversion logic risk:**
-   - Risk: Accidentally changing logic during extraction
-   - Mitigation: [Your plan]
+2. **PollingStrategy complexity:**
+   - Complex multi-phase logic
+   - Risk: Breaking progress calculation or phase transitions
+   - Mitigation: Extensive testing, careful extraction
 
-3. **Platform-specific risk:**
-   - Each platform has unique logic
-   - Risk: Breaking any platform conversion
-   - Mitigation: [Your plan]
-
-4. [Other risks you identified]
+3. **Concurrent polling manager:**
+   - Decision: Extract or keep in app?
+   - [Your analysis]
 
 QUESTIONS BEFORE PROCEEDING:
 
 1. StateUpdater interface design - Is my proposal correct?
-2. Should StateUpdater be passed in constructor or methods?
-3. [Your other questions]
+2. Should concurrent-polling.ts be extracted to core?
+3. Should I extract PollingStrategy first or last (due to complexity)?
+4. [Your other questions]
 
 PROPOSED IMPLEMENTATION ORDER:
 
 1. Design and approve StateUpdater interface
-2. Extract BaseStrategy with DI
-3. Extract YouTubeStrategy (test DI pattern)
-4. Extract remaining strategies
-5. Extract StrategyFactory
-6. Migrate clone-4 and test EXTENSIVELY
-7. Verify all platforms work
+2. Extract types (IConversionStrategy, etc.)
+3. Extract BaseStrategy with DI
+4. Extract PollingProgressMapper (no DI needed)
+5. Decide on concurrent-polling.ts
+6. Extract simpler strategies first (StaticDirect, OtherStream, IOSRam)
+7. Extract PollingStrategy last (most complex, learn from others)
+8. Extract StrategyFactory
+9. Migrate clone-4 and test EXTENSIVELY
 
 ESTIMATED EFFORT:
 
 This is the largest phase:
 - ~5,000-8,000 lines to extract
-- 6 strategy files + factory
-- Complex state decoupling
+- 4 strategies + base + factory
+- Complex progress logic
 - Extensive testing needed
 
 ETA: [Your estimate - likely 2-3 weeks]
@@ -763,8 +769,9 @@ ETA: [Your estimate - likely 2-3 weeks]
 ⚠️ I will NOT proceed until you approve:
 1. StateUpdater interface design
 2. Dependency Injection approach
-3. Implementation plan
-4. Risk mitigation strategy
+3. concurrent-polling.ts decision
+4. Implementation order
+5. Risk mitigation strategy
 
 Awaiting your approval.
 ```
@@ -779,194 +786,55 @@ Only after approval:
 
 1. Create branch: `refactor/phase-3-extract-conversion`
 
-2. Implement tasks in order:
-   - Task 1: Analysis ✓ (done in discussion)
-   - Task 2: Design StateUpdater ✓ (approved)
-   - Task 3: Extract BaseStrategy
-   - Task 4: Extract platform strategies (one by one)
-   - Task 5: Extract StrategyFactory
-   - Task 6: Extract types
-   - Task 7: Extract utils
-   - Task 8: Write tests
-   - Task 9: Package exports
-   - Task 10: Migrate clone-4
+2. Implement tasks in order (per approved plan)
 
-3. For each strategy:
-   - Extract code
-   - Refactor for DI
-   - Write tests
-   - Verify tests pass
-   - Check coverage
-
-4. **Progress updates:**
-   Send updates after each strategy is complete.
+3. Progress updates after each major component
 
 ---
 
 ### **Step 3: EXTENSIVE VERIFICATION PHASE**
 
-**⚠️ This phase requires thorough testing - DO NOT rush.**
+**Test EVERY conversion type in ytmp3-clone-4:**
 
-**Automated tests:**
-- `pnpm test` - All tests passing
-- `pnpm test:coverage` - 80%+ coverage
-- `pnpm test:watch` - Run during development
+**Polling Strategy (most common):**
+- [ ] MP4 large file (triggers polling)
+- [ ] MP3 conversion
+- [ ] Progress animates correctly
+- [ ] Phase transitions work (processing → merging)
+- [ ] Fake progress when stuck
+- [ ] Status text rotates correctly
+- [ ] Completion works
 
-**Manual testing (CRITICAL):**
+**Static Direct Strategy:**
+- [ ] Small file direct download
+- [ ] Progress updates
+- [ ] Completion works
 
-Test EVERY platform in ytmp3-clone-4:
+**Other Stream Strategy:**
+- [ ] Alternative stream format
+- [ ] Conversion works
 
-**YouTube:**
-- [ ] Standard video URL
-- [ ] Short URL (youtu.be)
-- [ ] Playlist URL
-- [ ] Video with age restriction
-- [ ] Long video (> 1 hour)
-- [ ] Different formats (mp4, mp3, webm)
-- [ ] Different qualities (1080p, 720p, 480p, audio)
-
-**Facebook:**
-- [ ] Public video URL
-- [ ] Reel URL
-- [ ] Different qualities
-
-**TikTok:**
-- [ ] Standard video URL
-- [ ] With watermark
-- [ ] Without watermark
-
-**Instagram:**
-- [ ] Post with video
-- [ ] Reel URL
-- [ ] Story URL (if supported)
-
-**Twitter:**
-- [ ] Tweet with video
-- [ ] Different qualities
-
-**For each test:**
-- [ ] Conversion starts
-- [ ] Progress updates shown
-- [ ] Conversion completes
-- [ ] Download link valid
-- [ ] Download works
-- [ ] No console errors
-- [ ] State updates correctly
-
-**Comparison testing:**
-- [ ] Test same URLs in clone-3 (original)
-- [ ] Test same URLs in clone-4 (migrated)
-- [ ] Verify identical behavior
-- [ ] Verify same error messages
-- [ ] Verify same success flow
+**iOS RAM Strategy:**
+- [ ] iOS device simulation (if possible)
+- [ ] RAM conversion works
 
 **Error testing:**
 - [ ] Invalid URL
-- [ ] Unsupported platform
-- [ ] Network error (disconnect during conversion)
-- [ ] API timeout
-- [ ] Rate limit error
+- [ ] Network error
+- [ ] Timeout
 - [ ] Verify error messages correct
-- [ ] Verify state updates on error
+
+**Comparison with clone-3:**
+- [ ] Same URLs in both apps
+- [ ] Identical behavior
+- [ ] Same progress updates
+- [ ] Same phase transitions
 
 ---
 
 ### **Step 4: REVIEW PHASE**
 
-**Create PR with:**
-
-Title: `[Phase 3] Extract conversion strategies with Dependency Injection`
-
-Description:
-```markdown
-## Phase 3: Extract Conversion Logic
-
-⚠️ **CRITICAL PHASE - Core business logic**
-
-### Summary
-Extracted all conversion strategies to packages/core/conversion/ with Dependency Injection pattern for state independence.
-
-### Changes
-- ✅ Created packages/core/src/conversion/ package
-- ✅ Implemented Dependency Injection pattern (StateUpdater)
-- ✅ Extracted BaseStrategy with DI
-- ✅ Extracted YouTubeStrategy
-- ✅ Extracted FacebookStrategy
-- ✅ Extracted TikTokStrategy
-- ✅ Extracted InstagramStrategy
-- ✅ Extracted TwitterStrategy
-- ✅ Extracted StrategyFactory
-- ✅ Extracted types and utils
-- ✅ Migrated ytmp3-clone-4
-- ✅ Written [X] unit tests
-- ✅ Achieved [X]% test coverage
-
-### Dependency Injection Pattern
-
-**StateUpdater interface:**
-[Describe the interface and its purpose]
-
-**Why:**
-- Strategies no longer import from state/
-- Works with any state management
-- Enables use in packages/core
-- Flexible for different apps
-
-**Implementation:**
-- Apps implement StateUpdater interface
-- Pass to StrategyFactory
-- Factory injects into strategies
-- Strategies use interface to update state
-
-### Test Results
-- Unit tests: [X] passing
-- Coverage: [X]%
-- Manual testing: ✅ All platforms working
-
-### Platform Testing Results
-
-| Platform | Tested | Working | Notes |
-|----------|--------|---------|-------|
-| YouTube | ✅ | ✅ | All formats tested |
-| Facebook | ✅ | ✅ | Video & Reel tested |
-| TikTok | ✅ | ✅ | With/without watermark |
-| Instagram | ✅ | ✅ | Post & Reel tested |
-| Twitter | ✅ | ✅ | Video tested |
-
-### Verification
-- clone-3 (original): ✅ Working
-- clone-4 (migrated): ✅ Working identically
-- All platforms: ✅ Tested thoroughly
-- State updates: ✅ Correct
-- Error handling: ✅ Preserved
-
-### Files Changed
-
-**Added:**
-- packages/core/src/conversion/strategies/ (6 files, ~[X] lines)
-- packages/core/src/conversion/StrategyFactory.ts
-- packages/core/src/conversion/types/
-- packages/core/src/conversion/utils/
-- packages/core/src/conversion/tests/ ([X] tests)
-
-**Modified:**
-- apps/ytmp3-clone-4/src/ (StateUpdater implementation)
-- apps/ytmp3-clone-4/src/ (updated imports)
-
-**Deleted:**
-- apps/ytmp3-clone-4/src/features/downloader/logic/conversion/ (entire directory)
-
-### Lines Extracted
-- Total: ~[X] lines
-- Strategies: ~[X] lines
-- Tests: ~[X] lines
-- Types/Utils: ~[X] lines
-
-### Next Steps
-Ready for Phase 4: UI Components
-```
-
-Submit for review (AI Reviewer + Human)
+**Create PR with comprehensive description of all strategies tested.**
 
 ---
 
@@ -974,16 +842,17 @@ Submit for review (AI Reviewer + Human)
 
 Phase 3 is complete when:
 
-- [ ] All 6 strategies extracted to packages/core/conversion/
+- [ ] All strategies extracted to packages/core/conversion/
 - [ ] Dependency Injection implemented correctly
 - [ ] StateUpdater interface defined and used
 - [ ] NO imports from state/ in package code
 - [ ] StrategyFactory extracted
-- [ ] Types and utils extracted
+- [ ] PollingProgressMapper extracted
+- [ ] Types extracted
 - [ ] 80%+ test coverage achieved
 - [ ] All tests passing
 - [ ] ytmp3-clone-4 migrated successfully
-- [ ] All 5 platforms tested and working in clone-4
+- [ ] All 4 conversion strategies tested and working in clone-4
 - [ ] Behavior identical to original (clone-3)
 - [ ] No console errors
 - [ ] No TypeScript errors
@@ -994,190 +863,15 @@ Phase 3 is complete when:
 
 ---
 
-## 🆘 TROUBLESHOOTING
-
-### **If Dependency Injection is confusing:**
-
-**DO NOT proceed blindly.**
-
-1. Re-read MASTER_REFACTOR_DOC.md DI section
-2. Ask human for clarification
-3. Show your understanding with examples
-4. Get approval before coding
-
-### **If state dependencies are complex:**
-
-1. Document ALL state usages
-2. Map each to StateUpdater method
-3. Verify nothing is missed
-4. Test with mocks extensively
-
-### **If conversion breaks after extraction:**
-
-**This is CRITICAL - debug immediately:**
-
-1. Compare old vs new strategy side-by-side
-2. Check if logic was accidentally changed
-3. Verify StateUpdater calls are correct
-4. Check API requests unchanged
-5. Test with console.log to trace flow
-
-### **If a platform stops working:**
-
-1. Test that platform in clone-3 (original)
-2. Compare behavior in clone-4 (migrated)
-3. Check strategy logic unchanged
-4. Verify API calls identical
-5. Check error handling
-
-### **If tests are hard to write:**
-
-1. Start with simple happy path
-2. Mock StateUpdater
-3. Mock API responses
-4. Gradually add edge cases
-5. Aim for coverage, not perfection
-
----
-
-## 📞 COMMUNICATION TEMPLATES
-
-### **At Start:**
-Use extended template from Step 1 above.
-
-### **Progress Update (send after EACH strategy):**
-```
-Phase 3 Progress Update:
-
-Completed:
-- ✅ Task 1: Analysis and DI design approved
-- ✅ Task 3: BaseStrategy extracted ([X] lines, [Y] tests, [Z]% coverage)
-- ✅ Task 4.1: YouTubeStrategy extracted ([X] lines, [Y] tests, [Z]% coverage)
-- ✅ Task 4.2: FacebookStrategy extracted ([X] lines, [Y] tests, [Z]% coverage)
-
-In Progress:
-- 🟡 Task 4.3: TikTokStrategy (writing tests)
-
-Pending:
-- ⏳ Task 4.4: InstagramStrategy
-- ⏳ Task 4.5: TwitterStrategy
-- ⏳ Task 5: StrategyFactory
-- ⏳ Tasks 6-10
-
-Status:
-- Tests passing: [X]/[total]
-- Coverage: [X]%
-- Issues found: [None / List issues]
-
-ETA for completion: [Date]
-```
-
-### **When stuck:**
-```
-Phase 3 - Need Guidance:
-
-I'm stuck on: [Specific issue]
-
-What I've tried:
-1. [Attempt 1]
-2. [Attempt 2]
-
-Current understanding:
-[Explain your understanding]
-
-Question:
-[Specific question]
-
-Should I:
-A. [Option A]
-B. [Option B]
-C. Something else?
-```
-
-### **At Completion:**
-```
-Phase 3 Complete! 🎉
-
-⚠️ This was the CRITICAL phase - please review carefully.
-
-Summary:
-- Extracted all 6 strategies (~[X] lines)
-- Implemented Dependency Injection
-- NO state/ imports in package
-- Written [Y] tests
-- Achieved [Z]% coverage
-- All tests passing
-- All 5 platforms tested and working
-
-Dependency Injection Implementation:
-- StateUpdater interface: [X] methods
-- Apps provide implementation
-- Strategies remain state-independent
-
-Platform Testing:
-- YouTube: ✅ [X] test cases
-- Facebook: ✅ [X] test cases
-- TikTok: ✅ [X] test cases
-- Instagram: ✅ [X] test cases
-- Twitter: ✅ [X] test cases
-
-Verification:
-- Clone-3 vs Clone-4: ✅ Identical behavior
-- All conversions: ✅ Working
-- Error handling: ✅ Preserved
-- State updates: ✅ Correct
-
-PR: [link]
-Ready for thorough review.
-```
-
----
-
-## 🎓 TIPS FOR SUCCESS
-
-### **Understanding Dependency Injection:**
-- Read the pattern explanation carefully
-- Think about "what" not "how"
-- Strategies should not know about state structure
-- StateUpdater is a contract, not implementation
-
-### **When extracting strategies:**
-- Extract ONE strategy at a time
-- Test each before moving to next
-- Don't batch - validate incrementally
-- Compare with original frequently
-
-### **When writing tests:**
-- Mock StateUpdater thoroughly
-- Verify all update calls
-- Test with different platforms
-- Test error cases
-- Use descriptive test names
-
-### **When migrating clone-4:**
-- Implement StateUpdater carefully
-- Test EVERY platform manually
-- Compare with clone-3 behavior
-- Don't assume it works - verify!
-
-### **Avoiding mistakes:**
-- ❌ Don't change logic "while you're at it"
-- ❌ Don't add features during extraction
-- ❌ Don't skip testing any platform
-- ❌ Don't ignore small behavioral differences
-- ✅ Extract exactly, test thoroughly
-
----
-
 ## 📊 EXPECTED METRICS
 
 **After Phase 3:**
 - Lines extracted: ~5,000-8,000 lines
-- Strategy files: 6 strategies + factory
+- Strategy files: 4 strategies + base + factory
 - Tests written: ~80-100 tests
 - Coverage: 80-90%
 - Apps migrated: 1 (ytmp3-clone-4)
-- Platforms tested: 5 (YouTube, Facebook, TikTok, Instagram, Twitter)
+- Conversion types tested: 4 (Polling, StaticDirect, OtherStream, IOSRam)
 - State dependencies removed: 100%
 
 ---

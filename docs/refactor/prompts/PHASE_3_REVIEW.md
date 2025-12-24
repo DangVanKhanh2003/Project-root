@@ -21,14 +21,15 @@
 
 ### **What Phase 3 Should Achieve:**
 
-1. ✅ Extract 6 conversion strategies to `packages/core/conversion/`:
+1. ✅ Extract YouTube conversion strategies to `packages/core/conversion/`:
+   - IConversionStrategy (interface)
    - BaseStrategy (abstract base)
-   - YouTubeStrategy
-   - FacebookStrategy
-   - TikTokStrategy
-   - InstagramStrategy
-   - TwitterStrategy
+   - PollingStrategy
+   - StaticDirectStrategy
+   - OtherStreamStrategy
+   - IOSRamStrategy
    - StrategyFactory
+   - PollingProgressMapper
 
 2. ✅ Implement Dependency Injection:
    - StateUpdater interface defined
@@ -38,13 +39,13 @@
 
 3. ✅ Write comprehensive tests:
    - 80%+ coverage
-   - All platforms tested
+   - All conversion strategies tested
    - Mocked StateUpdater
-   - Mocked API calls
+   - Mocked polling API
 
 4. ✅ Migrate ytmp3-clone-4:
    - StateUpdater implemented
-   - All platforms working
+   - All conversion types working
    - Behavior unchanged
 
 5. ✅ No changes to other apps (yet)
@@ -123,15 +124,16 @@ Check factory implementation:
 #### **2.1 All Strategy Files Exist**
 
 Check these files exist in packages/core/src/conversion/:
+- [ ] `strategies/IConversionStrategy.ts`
 - [ ] `strategies/BaseStrategy.ts`
-- [ ] `strategies/YouTubeStrategy.ts`
-- [ ] `strategies/FacebookStrategy.ts`
-- [ ] `strategies/TikTokStrategy.ts`
-- [ ] `strategies/InstagramStrategy.ts`
-- [ ] `strategies/TwitterStrategy.ts`
+- [ ] `strategies/PollingStrategy.ts`
+- [ ] `strategies/StaticDirectStrategy.ts`
+- [ ] `strategies/OtherStreamStrategy.ts`
+- [ ] `strategies/IOSRamStrategy.ts`
 - [ ] `StrategyFactory.ts`
+- [ ] `utils/PollingProgressMapper.ts`
+- [ ] `utils/concurrent-polling.ts` (if extracted)
 - [ ] `types/` directory
-- [ ] `utils/` directory (if extracted)
 - [ ] `index.ts` (barrel export)
 
 #### **2.2 Code Extraction Quality**
@@ -178,35 +180,29 @@ Verify BaseStrategy:
 - [ ] No direct state imports
 - [ ] Properly typed
 
-#### **2.4 Platform-Specific Logic Preserved**
+#### **2.4 Strategy-Specific Logic Preserved**
 
-For each platform strategy:
+For each YouTube conversion strategy:
 
-**YouTubeStrategy:**
-- [ ] Video ID extraction logic unchanged
-- [ ] Format selection logic unchanged
-- [ ] Quality mapping unchanged
-- [ ] Playlist handling (if exists) unchanged
+**PollingStrategy (MOST COMPLEX):**
+- [ ] Multi-phase progress logic unchanged (initial, processing, merging)
+- [ ] Fake progress logic preserved
+- [ ] Status rotation logic preserved
+- [ ] Phase transitions preserved
+- [ ] PollingProgressMapper integration unchanged
+- [ ] Concurrent polling integration unchanged
 
-**FacebookStrategy:**
-- [ ] URL parsing unchanged
-- [ ] Video/Reel detection unchanged
-- [ ] Quality selection unchanged
+**StaticDirectStrategy:**
+- [ ] Direct download flow unchanged
+- [ ] Progress handling unchanged
 
-**TikTokStrategy:**
-- [ ] Watermark handling unchanged
-- [ ] URL parsing unchanged
-- [ ] Video ID extraction unchanged
+**OtherStreamStrategy:**
+- [ ] Stream handling logic unchanged
+- [ ] Format detection unchanged
 
-**InstagramStrategy:**
-- [ ] Post/Reel/Story detection unchanged
-- [ ] Multiple media handling unchanged
-- [ ] URL parsing unchanged
-
-**TwitterStrategy:**
-- [ ] Tweet ID extraction unchanged
-- [ ] Video detection unchanged
-- [ ] Quality selection unchanged
+**IOSRamStrategy:**
+- [ ] iOS-specific logic unchanged
+- [ ] RAM conversion flow unchanged
 
 ---
 
@@ -217,12 +213,12 @@ For each platform strategy:
 Check coverage report:
 - [ ] Overall coverage ≥ 80%
 - [ ] BaseStrategy coverage ≥ 80%
-- [ ] YouTubeStrategy coverage ≥ 80%
-- [ ] FacebookStrategy coverage ≥ 80%
-- [ ] TikTokStrategy coverage ≥ 80%
-- [ ] InstagramStrategy coverage ≥ 80%
-- [ ] TwitterStrategy coverage ≥ 80%
+- [ ] PollingStrategy coverage ≥ 80%
+- [ ] StaticDirectStrategy coverage ≥ 80%
+- [ ] OtherStreamStrategy coverage ≥ 80%
+- [ ] IOSRamStrategy coverage ≥ 80%
 - [ ] StrategyFactory coverage ≥ 90%
+- [ ] PollingProgressMapper coverage ≥ 80%
 
 **Run:** `pnpm test:coverage` in packages/core
 
@@ -240,55 +236,55 @@ Critical - tests must properly mock StateUpdater:
 - Verify expectations on mock calls
 - Ensure state is fully decoupled
 
-#### **3.3 API Mocking**
+#### **3.3 Polling API Mocking**
 
-Tests must mock conversion API:
-- [ ] API calls are mocked (no real network)
-- [ ] Success responses mocked
+Tests must mock polling/conversion API:
+- [ ] Polling API calls mocked (no real network)
+- [ ] Progress responses mocked
+- [ ] Status responses mocked
+- [ ] Completion responses mocked
 - [ ] Error responses mocked
 - [ ] Timeout scenarios mocked
-- [ ] Different response formats mocked
 
-#### **3.4 Per-Platform Test Comprehensiveness**
+#### **3.4 Per-Strategy Test Comprehensiveness**
 
-**YouTubeStrategy tests:**
-- [ ] Valid URL conversion
-- [ ] Invalid URL handling
-- [ ] Multiple format support
-- [ ] Quality selection
-- [ ] Progress updates (via StateUpdater)
-- [ ] Error handling
-- [ ] API timeout handling
+**PollingStrategy tests (MOST IMPORTANT):**
+- [ ] Initial animation (0→5%)
+- [ ] no_download status handling
+- [ ] Real progress updates from API
+- [ ] Fake progress when stuck (<90%)
+- [ ] Status rotation when stuck (≥90%)
+- [ ] Merging phase transition
+- [ ] Merging status rotation (progressive timing)
+- [ ] Completion handling
+- [ ] Abort handling
+- [ ] StateUpdater calls verified
+- [ ] PollingProgressMapper integration tested
 
-**FacebookStrategy tests:**
-- [ ] Video URL conversion
-- [ ] Reel URL conversion
-- [ ] Invalid URL handling
-- [ ] Error handling
-
-**TikTokStrategy tests:**
-- [ ] Standard URL conversion
-- [ ] Watermark option handling
-- [ ] Invalid URL handling
+**StaticDirectStrategy tests:**
+- [ ] Direct conversion flow
+- [ ] Progress updates
+- [ ] Completion handling
 - [ ] Error handling
 
-**InstagramStrategy tests:**
-- [ ] Post with video
-- [ ] Reel conversion
-- [ ] Multiple media handling
+**OtherStreamStrategy tests:**
+- [ ] Stream handling
+- [ ] Format detection
 - [ ] Error handling
 
-**TwitterStrategy tests:**
-- [ ] Tweet with video
-- [ ] Video detection
-- [ ] Invalid URL handling
+**IOSRamStrategy tests:**
+- [ ] iOS-specific logic
+- [ ] RAM conversion flow
 - [ ] Error handling
 
 #### **3.5 StrategyFactory Tests**
 
-- [ ] Platform detection tested for all platforms
-- [ ] Correct strategy returned per platform
-- [ ] Unknown platform handling
+- [ ] Strategy selection tested for all cases
+- [ ] Correct strategy returned per format/scenario
+- [ ] PollingStrategy selected correctly
+- [ ] StaticDirectStrategy selected correctly
+- [ ] OtherStreamStrategy selected correctly
+- [ ] IOSRamStrategy selected correctly
 - [ ] StateUpdater injection verified
 - [ ] Factory creation tested
 
@@ -357,25 +353,23 @@ Ask implementer for evidence:
 
 **Required testing evidence:**
 
-**YouTube:**
-- [ ] Video conversion tested
-- [ ] Different formats tested
+**PollingStrategy (most common):**
+- [ ] MP4 large file conversion tested
+- [ ] MP3 conversion tested
+- [ ] Progress animation working
+- [ ] Phase transitions working
 - [ ] Download works
 
-**Facebook:**
-- [ ] Video conversion tested
+**StaticDirectStrategy:**
+- [ ] Small file direct download tested
 - [ ] Download works
 
-**TikTok:**
-- [ ] Video conversion tested
+**OtherStreamStrategy:**
+- [ ] Alternative stream tested
 - [ ] Download works
 
-**Instagram:**
-- [ ] Post/Reel conversion tested
-- [ ] Download works
-
-**Twitter:**
-- [ ] Tweet video conversion tested
+**IOSRamStrategy:**
+- [ ] iOS RAM conversion tested (if applicable)
 - [ ] Download works
 
 #### **5.2 Behavior Unchanged**
@@ -580,30 +574,43 @@ If you find ANY of these, REQUEST CHANGES immediately:
    - Still coupled to specific state
 
 3. **Conversion Logic Changed**
-   - Platform logic modified during extraction
+   - Strategy logic modified during extraction
+   - Progress calculation changed
+   - Phase transitions changed
    - API calls changed
-   - Validation rules changed
    - Bug fixes mixed with extraction
 
-4. **Platform Broken**
-   - ANY platform not working in clone-4
-   - Conversion fails
+4. **Strategy Broken**
+   - ANY strategy not working in clone-4
+   - Polling conversion fails
+   - StaticDirect conversion fails
+   - Progress not updating
    - Download fails
    - State doesn't update
 
-5. **Tests Insufficient**
-   - Coverage < 80%
-   - Platforms not tested
-   - StateUpdater not properly mocked
-   - API not mocked
+5. **PollingStrategy Regression**
+   - Multi-phase progress broken
+   - Fake progress not working
+   - Merging phase not triggering
+   - Status rotation broken
+   - CRITICAL - this is most used strategy
 
-6. **Behavior Changed**
+6. **Tests Insufficient**
+   - Coverage < 80%
+   - Strategies not tested
+   - StateUpdater not properly mocked
+   - Polling API not mocked
+   - PollingStrategy tests incomplete
+
+7. **Behavior Changed**
    - Clone-4 behaves differently than clone-3
+   - Different progress updates
+   - Different phase transitions
    - Different error messages
    - Different flow
    - Features broken
 
-7. **Other Apps Modified**
+8. **Other Apps Modified**
    - Changes beyond clone-4
    - Breaking changes
 
@@ -678,16 +685,18 @@ Use this template for your review:
 - Factory injects StateUpdater: [✅/❌]
 
 **Strategy Extraction (✅/❌):**
-- All 6 strategies extracted: [✅/❌] ([X]/6 found)
+- All 4 strategies extracted: [✅/❌] ([X]/4 found)
 - Logic unchanged: [✅/❌]
 - BaseStrategy proper: [✅/❌]
-- Platform logic preserved: [✅/❌]
+- PollingStrategy complexity preserved: [✅/❌]
+- PollingProgressMapper extracted: [✅/❌]
 
 **Tests (✅/❌):**
 - Coverage: [X]% (target: 80%)
 - StateUpdater mocked: [✅/❌]
-- API mocked: [✅/❌]
-- All platforms tested: [✅/❌] ([X]/5 platforms)
+- Polling API mocked: [✅/❌]
+- All strategies tested: [✅/❌] ([X]/4 strategies)
+- PollingStrategy comprehensive: [✅/❌]
 
 **Migration (✅/❌):**
 - StateUpdater implemented: [✅/❌]
@@ -696,11 +705,12 @@ Use this template for your review:
 - All platforms working: [✅/❌]
 
 **Behavior Verification (✅/❌):**
-- YouTube working: [✅/❌]
-- Facebook working: [✅/❌]
-- TikTok working: [✅/❌]
-- Instagram working: [✅/❌]
-- Twitter working: [✅/❌]
+- PollingStrategy working: [✅/❌]
+- StaticDirectStrategy working: [✅/❌]
+- OtherStreamStrategy working: [✅/❌]
+- IOSRamStrategy working: [✅/❌]
+- Progress updates correct: [✅/❌]
+- Phase transitions correct: [✅/❌]
 - Behavior unchanged: [✅/❌]
 
 **Code Quality (✅/❌):**
@@ -734,15 +744,14 @@ Use this template for your review:
 
 ---
 
-### Platform Testing Results
+### Strategy Testing Results
 
-| Platform | Tests Pass | Manual Test | Working | Notes |
+| Strategy | Tests Pass | Manual Test | Working | Notes |
 |----------|-----------|-------------|---------|-------|
-| YouTube | ✅/❌ | ✅/❌ | ✅/❌ | [Notes] |
-| Facebook | ✅/❌ | ✅/❌ | ✅/❌ | [Notes] |
-| TikTok | ✅/❌ | ✅/❌ | ✅/❌ | [Notes] |
-| Instagram | ✅/❌ | ✅/❌ | ✅/❌ | [Notes] |
-| Twitter | ✅/❌ | ✅/❌ | ✅/❌ | [Notes] |
+| PollingStrategy | ✅/❌ | ✅/❌ | ✅/❌ | [Progress phases, transitions] |
+| StaticDirectStrategy | ✅/❌ | ✅/❌ | ✅/❌ | [Notes] |
+| OtherStreamStrategy | ✅/❌ | ✅/❌ | ✅/❌ | [Notes] |
+| IOSRamStrategy | ✅/❌ | ✅/❌ | ✅/❌ | [Notes] |
 
 ---
 
@@ -808,11 +817,11 @@ Use this template for your review:
 - [ ] Reviewed test comprehensiveness
 
 **Clone-4 testing:**
-- [ ] Tested YouTube conversion
-- [ ] Tested Facebook conversion
-- [ ] Tested TikTok conversion
-- [ ] Tested Instagram conversion
-- [ ] Tested Twitter conversion
+- [ ] Tested PollingStrategy (MP4, MP3)
+- [ ] Tested StaticDirectStrategy
+- [ ] Tested OtherStreamStrategy
+- [ ] Tested IOSRamStrategy (if applicable)
+- [ ] Verified progress updates and phase transitions
 - [ ] Verified error handling
 - [ ] Compared with clone-3 behavior
 

@@ -1,51 +1,51 @@
 {
   "common": {
     "buttons": {
-      "convert": "Convert",
-      "download": "Download",
-      "cancel": "Cancel",
-      "retry": "Retry",
-      "start": "Start",
-      "tryAgain": "Try Again",
-      "startOver": "Start Over",
-      "paste": "Paste",
-      "clear": "Clear",
-      "search": "Search"
+      "convert": "রূপান্তর",
+      "download": "ডাউনলোড",
+      "cancel": "বাতিল",
+      "retry": "আবার চেষ্টা করুন",
+      "start": "শুরু",
+      "tryAgain": "আবার চেষ্টা করুন",
+      "startOver": "নতুন করে শুরু করুন",
+      "paste": "পেস্ট",
+      "clear": "মুছে ফেলুন",
+      "search": "অনুসন্ধান"
     },
     "labels": {
-      "videoQuality": "Video quality",
-      "audioQuality": "Audio quality",
-      "searchPlaceholder": "Search or paste link here...",
-      "pasteLabel": "Paste from clipboard",
-      "clearLabel": "Clear input"
+      "videoQuality": "ভিডিওর গুণমান",
+      "audioQuality": "অডিওর গুণমান",
+      "searchPlaceholder": "এখানে অনুসন্ধান করুন বা লিংক পেস্ট করুন...",
+      "pasteLabel": "ক্লিপবোর্ড থেকে পেস্ট করুন",
+      "clearLabel": "ইনপুট মুছে ফেলুন"
     },
     "actions": {
-      "downloading": "Downloading",
-      "processing": "Processing",
-      "converting": "Converting",
-      "extracting": "Extracting"
+      "downloading": "ডাউনলোড হচ্ছে",
+      "processing": "প্রক্রিয়াকরণ হচ্ছে",
+      "converting": "রূপান্তর করা হচ্ছে",
+      "extracting": "এক্সট্র্যাক্ট করা হচ্ছে"
     }
   },
   "status": {
-    "idle": "Ready to convert",
-    "starting": "Starting…",
-    "extracting": "Extracting",
-    "extractingProgress": "Extracting {progress}%",
-    "processing": "Processing",
-    "processingProgress": "Processing… {progress}%",
-    "converting": "Converting",
-    "convertingProgress": "Converting... {loaded} / {total}",
-    "convertingSize": "Converting... {size}",
-    "downloading": "Downloading",
-    "downloadProgress": "Converting... {loaded} MB / {total} MB",
-    "downloadComplete": "Download complete 100%",
-    "polling": "Processing",
-    "pollingProgress": "Processing {progress}%",
-    "completed": "Completed",
-    "success": "Conversion successful",
-    "failed": "Conversion failed",
-    "canceled": "Canceled",
-    "error": "Error occurred"
+    "idle": "রূপান্তরের জন্য প্রস্তুত",
+    "starting": "শুরু হচ্ছে…",
+    "extracting": "এক্সট্র্যাক্ট করা হচ্ছে",
+    "extractingProgress": "এক্সট্র্যাক্ট করা হচ্ছে {progress}%",
+    "processing": "প্রক্রিয়াকরণ হচ্ছে",
+    "processingProgress": "প্রক্রিয়াকরণ হচ্ছে… {progress}%",
+    "converting": "রূপান্তর করা হচ্ছে",
+    "convertingProgress": "রূপান্তর করা হচ্ছে... {loaded} / {total}",
+    "convertingSize": "রূপান্তর করা হচ্ছে... {size}",
+    "downloading": "ডাউনলোড হচ্ছে",
+    "downloadProgress": "ডাউনলোড হচ্ছে... {loaded} এমবি / {total} এমবি",
+    "downloadComplete": "ডাউনলোড সম্পূর্ণ 100%",
+    "polling": "প্রক্রিয়াকরণ হচ্ছে",
+    "pollingProgress": "প্রক্রিয়াকরণ {progress}%",
+    "completed": "সম্পন্ন",
+    "success": "রূপান্তর সফল হয়েছে",
+    "failed": "রূপান্তর ব্যর্থ হয়েছে",
+    "canceled": "বাতিল করা হয়েছে",
+    "error": "একটি ত্রুটি ঘটেছে"
   },
   "formats": {
     "mp3": "MP3",
@@ -59,7 +59,7 @@
       "mp3_256": "MP3 - 256kbps",
       "mp3_320": "MP3 - 320kbps",
       "ogg_128": "OGG",
-      "wav_lossless": "WAV - Lossless",
+      "wav_lossless": "WAV - লসলেস",
       "opus_128": "Opus",
       "m4a_192": "M4A",
       "video_360p": "MP4 - 360p",
@@ -71,42 +71,42 @@
     }
   },
   "errors": {
-    "downloadExpired": "Download link expired for: {title}",
-    "downloadExpiredGeneric": "Download link has expired",
-    "confirmRetry": "Would you like to try again?",
-    "noGalleryItems": "No gallery items to display",
-    "conversionFailed": "Conversion failed",
-    "networkError": "Network error occurred",
-    "invalidUrl": "Invalid URL",
-    "unsupportedFormat": "Unsupported format",
-    "timeout": "Request timed out",
-    "unknown": "An unknown error occurred"
+    "downloadExpired": "ডাউনলোড লিংকের মেয়াদ শেষ হয়েছে: {title}",
+    "downloadExpiredGeneric": "ডাউনলোড লিংকের মেয়াদ শেষ হয়েছে",
+    "confirmRetry": "আপনি কি আবার চেষ্টা করতে চান?",
+    "noGalleryItems": "প্রদর্শনের জন্য কোনো গ্যালারি আইটেম নেই",
+    "conversionFailed": "রূপান্তর ব্যর্থ হয়েছে",
+    "networkError": "নেটওয়ার্ক ত্রুটি ঘটেছে",
+    "invalidUrl": "অবৈধ URL",
+    "unsupportedFormat": "অসমর্থিত ফরম্যাট",
+    "timeout": "অনুরোধের সময় শেষ",
+    "unknown": "একটি অজানা ত্রুটি ঘটেছে"
   },
   "features": {
     "downloader": {
-      "title": "Download YouTube Videos",
-      "description": "Fast and easy YouTube video downloader"
+      "title": "YouTube ভিডিও ডাউনলোড করুন",
+      "description": "দ্রুত ও সহজ YouTube ভিডিও ডাউনলোডার"
     },
     "search": {
-      "placeholder": "Search or paste YouTube link",
-      "suggestions": "Suggestions",
-      "noResults": "No results found"
+      "placeholder": "YouTube লিংক অনুসন্ধান করুন বা পেস্ট করুন",
+      "suggestions": "প্রস্তাবনা",
+      "noResults": "কোনো ফলাফল পাওয়া যায়নি"
     },
     "gallery": {
-      "title": "Gallery",
-      "empty": "No items to display",
-      "downloadItem": "Download this item"
+      "title": "গ্যালারি",
+      "empty": "প্রদর্শনের জন্য কোনো আইটেম নেই",
+      "downloadItem": "এই আইটেমটি ডাউনলোড করুন"
     }
   },
   "aria": {
-    "downloadButton": "Download this item",
-    "retryButton": "Retry conversion",
-    "cancelButton": "Cancel conversion",
-    "pasteButton": "Paste from clipboard",
-    "clearButton": "Clear input field",
-    "searchButton": "Search",
-    "languageSelector": "Select language",
-    "formatSelector": "Select format",
-    "qualitySelector": "Select quality"
+    "downloadButton": "এই আইটেমটি ডাউনলোড করুন",
+    "retryButton": "রূপান্তর পুনরায় চেষ্টা করুন",
+    "cancelButton": "রূপান্তর বাতিল করুন",
+    "pasteButton": "ক্লিপবোর্ড থেকে পেস্ট করুন",
+    "clearButton": "ইনপুট ক্ষেত্র মুছে ফেলুন",
+    "searchButton": "অনুসন্ধান",
+    "languageSelector": "ভাষা নির্বাচন করুন",
+    "formatSelector": "ফরম্যাট নির্বাচন করুন",
+    "qualitySelector": "গুণমান নির্বাচন করুন"
   }
 }

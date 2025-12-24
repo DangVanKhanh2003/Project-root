@@ -1,51 +1,51 @@
 {
   "common": {
     "buttons": {
-      "convert": "Convert",
-      "download": "Download",
-      "cancel": "Cancel",
-      "retry": "Retry",
-      "start": "Start",
-      "tryAgain": "Try Again",
-      "startOver": "Start Over",
-      "paste": "Paste",
-      "clear": "Clear",
-      "search": "Search"
+      "convert": "ပြောင်းရန်",
+      "download": "ဒေါင်းလုဒ်",
+      "cancel": "ပယ်ဖျက်",
+      "retry": "ပြန်လည်ကြိုးစားရန်",
+      "start": "စတင်မည်",
+      "tryAgain": "နောက်တစ်ကြိမ် ထပ်ကြိုးစားရန်",
+      "startOver": "ပြန်လည် စတင်ရန်",
+      "paste": "ပွားထည့်ရန်",
+      "clear": "ရှင်းလင်းရန်",
+      "search": "ရှာဖွေရန်"
     },
     "labels": {
-      "videoQuality": "Video quality",
-      "audioQuality": "Audio quality",
-      "searchPlaceholder": "Search or paste link here...",
-      "pasteLabel": "Paste from clipboard",
-      "clearLabel": "Clear input"
+      "videoQuality": "ရုပ်သံ အရည်အသွေး",
+      "audioQuality": "အသံ အရည်အသွေး",
+      "searchPlaceholder": "ဤနေရာတွင် ရှာဖွေပါ သို့မဟုတ် လင့်ခ်ကို ပွားထည့်ပါ...",
+      "pasteLabel": "ကလစ်ဘုတ်မှ ပွားထည့်ရန်",
+      "clearLabel": "စာရိုက်သွင်းမှု ရှင်းလင်းရန်"
     },
     "actions": {
-      "downloading": "Downloading",
-      "processing": "Processing",
-      "converting": "Converting",
-      "extracting": "Extracting"
+      "downloading": "ဒေါင်းလုဒ်လုပ်ဆောင်နေသည်",
+      "processing": "လုပ်ငန်းဆောင်ရွက်နေသည်",
+      "converting": "ပြောင်းလဲနေသည်",
+      "extracting": "ထုတ်ယူနေသည်"
     }
   },
   "status": {
-    "idle": "Ready to convert",
-    "starting": "Starting…",
-    "extracting": "Extracting",
-    "extractingProgress": "Extracting {progress}%",
-    "processing": "Processing",
-    "processingProgress": "Processing… {progress}%",
-    "converting": "Converting",
-    "convertingProgress": "Converting... {loaded} / {total}",
-    "convertingSize": "Converting... {size}",
-    "downloading": "Downloading",
-    "downloadProgress": "Converting... {loaded} MB / {total} MB",
-    "downloadComplete": "Download complete 100%",
-    "polling": "Processing",
-    "pollingProgress": "Processing {progress}%",
-    "completed": "Completed",
-    "success": "Conversion successful",
-    "failed": "Conversion failed",
-    "canceled": "Canceled",
-    "error": "Error occurred"
+    "idle": "ပြောင်းလဲရန် ပြင်ဆင်ပြီး",
+    "starting": "စတင်နေသည်…",
+    "extracting": "ထုတ်ယူနေသည်",
+    "extractingProgress": "ထုတ်ယူနေသည် {progress}%",
+    "processing": "လုပ်ငန်းဆောင်ရွက်နေသည်",
+    "processingProgress": "လုပ်ငန်းဆောင်ရွက်နေသည်… {progress}%",
+    "converting": "ပြောင်းလဲနေသည်",
+    "convertingProgress": "ပြောင်းလဲနေသည်... {loaded} / {total}",
+    "convertingSize": "ပြောင်းလဲနေသည်... {size}",
+    "downloading": "ဒေါင်းလုဒ်လုပ်နေသည်",
+    "downloadProgress": "ဒေါင်းလုဒ်လုပ်နေသည်... {loaded} MB / {total} MB",
+    "downloadComplete": "ဒေါင်းလုဒ် ပြီးဆုံး 100%",
+    "polling": "လုပ်ငန်းဆောင်ရွက်နေသည်",
+    "pollingProgress": "လုပ်ငန်းဆောင်ရွက်မှု {progress}%",
+    "completed": "ပြီးဆုံးပြီး",
+    "success": "ပြောင်းလဲမှု အောင်မြင်ပါသည်",
+    "failed": "ပြောင်းလဲမှု မအောင်မြင်ပါ",
+    "canceled": "ရပ်စဲခဲ့သည်",
+    "error": "အမှား ဖြစ်ပွားခဲ့သည်"
   },
   "formats": {
     "mp3": "MP3",
@@ -71,42 +71,42 @@
     }
   },
   "errors": {
-    "downloadExpired": "Download link expired for: {title}",
-    "downloadExpiredGeneric": "Download link has expired",
-    "confirmRetry": "Would you like to try again?",
-    "noGalleryItems": "No gallery items to display",
-    "conversionFailed": "Conversion failed",
-    "networkError": "Network error occurred",
-    "invalidUrl": "Invalid URL",
-    "unsupportedFormat": "Unsupported format",
-    "timeout": "Request timed out",
-    "unknown": "An unknown error occurred"
+    "downloadExpired": "ဒေါင်းလုဒ်လင့်ခ် ကုန်ဆုံးသွားပြီ: {title}",
+    "downloadExpiredGeneric": "ဒေါင်းလုဒ်လင့်ခ် ကုန်ဆုံးသွားပါပြီ",
+    "confirmRetry": "နောက်တစ်ကြိမ် ထပ်စမ်းကြည့်မလား?",
+    "noGalleryItems": "ပြသရန် ဂယ်လရီအိုင်တမ် မရှိပါ",
+    "conversionFailed": "ပြောင်းလဲမှု မအောင်မြင်ပါ",
+    "networkError": "ကွန်ယက် အမှား ဖြစ်ပွားခဲ့သည်",
+    "invalidUrl": "မမှန်ကန်သော URL",
+    "unsupportedFormat": "မပံ့ပိုးထားသော ဖော်မက်",
+    "timeout": "တောင်းဆိုမှု အချိန်ကုန်ဆုံး",
+    "unknown": "အမည်မသိ အမှား ဖြစ်ပွားခဲ့သည်"
   },
   "features": {
     "downloader": {
-      "title": "Download YouTube Videos",
-      "description": "Fast and easy YouTube video downloader"
+      "title": "YouTube ဗီဒီယိုများ ဒေါင်းလုဒ်ရန်",
+      "description": "လျင်မြန်၍ လွယ်ကူသော YouTube ဗီဒီယို ဒေါင်းလုဒ်ရေးလုပ်ဆောင်ချက်"
     },
     "search": {
-      "placeholder": "Search or paste YouTube link",
-      "suggestions": "Suggestions",
-      "noResults": "No results found"
+      "placeholder": "YouTube လင့်ခ်ကို ရှာဖွေပါ သို့မဟုတ် ပွားထည့်ပါ",
+      "suggestions": "အကြံပြုချက်များ",
+      "noResults": "ရလဒ် မတွေ့ရှိပါ"
     },
     "gallery": {
-      "title": "Gallery",
-      "empty": "No items to display",
-      "downloadItem": "Download this item"
+      "title": "ပြခန်း",
+      "empty": "ပြသရန် အိုင်တမ် မရှိပါ",
+      "downloadItem": "ဤအိုင်တမ်ကို ဒေါင်းလုဒ်ရန်"
     }
   },
   "aria": {
-    "downloadButton": "Download this item",
-    "retryButton": "Retry conversion",
-    "cancelButton": "Cancel conversion",
-    "pasteButton": "Paste from clipboard",
-    "clearButton": "Clear input field",
-    "searchButton": "Search",
-    "languageSelector": "Select language",
-    "formatSelector": "Select format",
-    "qualitySelector": "Select quality"
+    "downloadButton": "ဤအိုင်တမ်ကို ဒေါင်းလုဒ်ရန်",
+    "retryButton": "ပြောင်းလဲမှုကို ပြန်လည်ကြိုးစားရန်",
+    "cancelButton": "ပြောင်းလဲမှုကို ပယ်ဖျက်ရန်",
+    "pasteButton": "ကလစ်ဘုတ်မှ ပွားထည့်ရန်",
+    "clearButton": "စာရိုက်သွင်းကွက် ရှင်းလင်းရန်",
+    "searchButton": "ရှာဖွေရန်",
+    "languageSelector": "ဘာသာစကား ရွေးချယ်ရန်",
+    "formatSelector": "ဖော်မက် ရွေးချယ်ရန်",
+    "qualitySelector": "အရည်အသွေး ရွေးချယ်ရန်"
   }
 }
