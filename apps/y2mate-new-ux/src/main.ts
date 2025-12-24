@@ -3,6 +3,9 @@
  * Y2matePro - Rebuilt from webclone.html
  */
 
+// Import Core Styles (From @downloader/core)
+import '@downloader/core/styles/ripple-effect.css';
+
 // Import CSS - Proper order: reset -> base -> common -> sections -> packages
 import './styles/reset.css';
 import './styles/base.css';

@@ -11,7 +11,9 @@
     "./mappers": "./src/mappers/index.ts",
     "./utils": "./src/utils/index.ts",
     "./utils/youtube": "./src/utils/youtube/index.ts",
-    "./constants": "./src/constants/config.ts"
+    "./constants": "./src/constants/config.ts",
+    "./styles": "./src/styles/index.css",
+    "./styles/ripple-effect.css": "./src/styles/ripple-effect.css"
   },
   "scripts": {
     "build": "tsc --build",

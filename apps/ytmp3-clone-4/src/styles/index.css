@@ -5,6 +5,9 @@
    Mobile-first, simple white design
    ========================================================= */
 
+/* ===== CORE STYLES (From @downloader/core) ===== */
+@import '@downloader/core/styles/ripple-effect.css';
+
 /* ===== REUSABLE PACKAGES IMPORTS (Must be first) ===== */
 @import './reusable-packages/package-root.css';
 @import './reusable-packages/suggestions/suggestions.css';
