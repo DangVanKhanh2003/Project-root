@@ -1,51 +1,51 @@
 {
   "common": {
     "buttons": {
-      "convert": "Convert",
-      "download": "Download",
-      "cancel": "Cancel",
-      "retry": "Retry",
-      "start": "Start",
-      "tryAgain": "Try Again",
-      "startOver": "Start Over",
-      "paste": "Paste",
-      "clear": "Clear",
-      "search": "Search"
+      "convert": "Converti",
+      "download": "Scarica",
+      "cancel": "Annulla",
+      "retry": "Riprova",
+      "start": "Avvia",
+      "tryAgain": "Riprova",
+      "startOver": "Ricomincia",
+      "paste": "Incolla",
+      "clear": "Cancella",
+      "search": "Cerca"
     },
     "labels": {
-      "videoQuality": "Video quality",
-      "audioQuality": "Audio quality",
-      "searchPlaceholder": "Search or paste link here...",
-      "pasteLabel": "Paste from clipboard",
-      "clearLabel": "Clear input"
+      "videoQuality": "Qualità video",
+      "audioQuality": "Qualità audio",
+      "searchPlaceholder": "Cerca o incolla un link qui...",
+      "pasteLabel": "Incolla dagli appunti",
+      "clearLabel": "Cancella input"
     },
     "actions": {
-      "downloading": "Downloading",
-      "processing": "Processing",
-      "converting": "Converting",
-      "extracting": "Extracting"
+      "downloading": "Download in corso",
+      "processing": "Elaborazione in corso",
+      "converting": "Conversione in corso",
+      "extracting": "Estrazione in corso"
     }
   },
   "status": {
-    "idle": "Ready to convert",
-    "starting": "Starting…",
-    "extracting": "Extracting",
-    "extractingProgress": "Extracting {progress}%",
-    "processing": "Processing",
-    "processingProgress": "Processing… {progress}%",
-    "converting": "Converting",
-    "convertingProgress": "Converting... {loaded} / {total}",
-    "convertingSize": "Converting... {size}",
-    "downloading": "Downloading",
-    "downloadProgress": "Converting... {loaded} MB / {total} MB",
-    "downloadComplete": "Download complete 100%",
-    "polling": "Processing",
-    "pollingProgress": "Processing {progress}%",
-    "completed": "Completed",
-    "success": "Conversion successful",
-    "failed": "Conversion failed",
-    "canceled": "Canceled",
-    "error": "Error occurred"
+    "idle": "Pronto per la conversione",
+    "starting": "Avvio…",
+    "extracting": "Estrazione in corso",
+    "extractingProgress": "Estrazione {progress}%",
+    "processing": "Elaborazione in corso",
+    "processingProgress": "Elaborazione… {progress}%",
+    "converting": "Conversione in corso",
+    "convertingProgress": "Conversione... {loaded} / {total}",
+    "convertingSize": "Conversione... {size}",
+    "downloading": "Download in corso",
+    "downloadProgress": "Download... {loaded} MB / {total} MB",
+    "downloadComplete": "Download completato 100%",
+    "polling": "Elaborazione in corso",
+    "pollingProgress": "Elaborazione {progress}%",
+    "completed": "Completato",
+    "success": "Conversione riuscita",
+    "failed": "Conversione non riuscita",
+    "canceled": "Annullato",
+    "error": "Si è verificato un errore"
   },
   "formats": {
     "mp3": "MP3",
@@ -59,7 +59,7 @@
       "mp3_256": "MP3 - 256kbps",
       "mp3_320": "MP3 - 320kbps",
       "ogg_128": "OGG",
-      "wav_lossless": "WAV - Lossless",
+      "wav_lossless": "WAV - Senza perdita",
       "opus_128": "Opus",
       "m4a_192": "M4A",
       "video_360p": "MP4 - 360p",
@@ -71,42 +71,42 @@
     }
   },
   "errors": {
-    "downloadExpired": "Download link expired for: {title}",
-    "downloadExpiredGeneric": "Download link has expired",
-    "confirmRetry": "Would you like to try again?",
-    "noGalleryItems": "No gallery items to display",
-    "conversionFailed": "Conversion failed",
-    "networkError": "Network error occurred",
-    "invalidUrl": "Invalid URL",
-    "unsupportedFormat": "Unsupported format",
-    "timeout": "Request timed out",
-    "unknown": "An unknown error occurred"
+    "downloadExpired": "Il link per il download è scaduto per: {title}",
+    "downloadExpiredGeneric": "Il link per il download è scaduto",
+    "confirmRetry": "Vuoi riprovare?",
+    "noGalleryItems": "Nessun elemento della galleria da mostrare",
+    "conversionFailed": "Conversione non riuscita",
+    "networkError": "Si è verificato un errore di rete",
+    "invalidUrl": "URL non valido",
+    "unsupportedFormat": "Formato non supportato",
+    "timeout": "Tempo della richiesta scaduto",
+    "unknown": "Si è verificato un errore sconosciuto"
   },
   "features": {
     "downloader": {
-      "title": "Download YouTube Videos",
-      "description": "Fast and easy YouTube video downloader"
+      "title": "Scarica video di YouTube",
+      "description": "Downloader di YouTube veloce e facile"
     },
     "search": {
-      "placeholder": "Search or paste YouTube link",
-      "suggestions": "Suggestions",
-      "noResults": "No results found"
+      "placeholder": "Cerca o incolla un link YouTube",
+      "suggestions": "Suggerimenti",
+      "noResults": "Nessun risultato trovato"
     },
     "gallery": {
-      "title": "Gallery",
-      "empty": "No items to display",
-      "downloadItem": "Download this item"
+      "title": "Galleria",
+      "empty": "Nessun elemento da mostrare",
+      "downloadItem": "Scarica questo elemento"
     }
   },
   "aria": {
-    "downloadButton": "Download this item",
-    "retryButton": "Retry conversion",
-    "cancelButton": "Cancel conversion",
-    "pasteButton": "Paste from clipboard",
-    "clearButton": "Clear input field",
-    "searchButton": "Search",
-    "languageSelector": "Select language",
-    "formatSelector": "Select format",
-    "qualitySelector": "Select quality"
+    "downloadButton": "Scarica questo elemento",
+    "retryButton": "Riprova la conversione",
+    "cancelButton": "Annulla conversione",
+    "pasteButton": "Incolla dagli appunti",
+    "clearButton": "Cancella campo di input",
+    "searchButton": "Cerca",
+    "languageSelector": "Seleziona lingua",
+    "formatSelector": "Seleziona formato",
+    "qualitySelector": "Seleziona qualità"
   }
 }

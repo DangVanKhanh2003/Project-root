@@ -12,6 +12,7 @@ import './styles/index.css';
 
 // Import UI components CSS
 import './ui-components/format-selector/format-selector.css';
+import './ui-components/language-switcher/language-switcher.css';
 
 // ==========================================
 // Initialize I18n System
@@ -141,11 +142,24 @@ function initHeaderScroll() {
 }
 
 /**
+ * Initialize language switcher
+ */
+async function initLanguageSwitcher() {
+  try {
+    const { renderLanguageSwitcher } = await import('./ui-components/language-switcher/language-switcher');
+    renderLanguageSwitcher('language-switcher-container');
+  } catch (err) {
+    console.error('[App] Failed to initialize language switcher:', err);
+  }
+}
+
+/**
  * Initialize app
  */
 function loadFeatures() {
   initHeaderScroll(); // Initialize header scroll effect
   initMobileMenu(); // Initialize mobile menu
+  initLanguageSwitcher(); // Initialize language switcher
   initDownloaderUI();
   initLogoClickHandler(); // Prevent logo reload issue
 }

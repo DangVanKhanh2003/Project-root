@@ -1,51 +1,51 @@
 {
   "common": {
     "buttons": {
-      "convert": "Convert",
-      "download": "Download",
-      "cancel": "Cancel",
-      "retry": "Retry",
-      "start": "Start",
-      "tryAgain": "Try Again",
-      "startOver": "Start Over",
-      "paste": "Paste",
-      "clear": "Clear",
-      "search": "Search"
+      "convert": "Dönüştür",
+      "download": "İndir",
+      "cancel": "İptal",
+      "retry": "Yeniden dene",
+      "start": "Başlat",
+      "tryAgain": "Tekrar dene",
+      "startOver": "Baştan başla",
+      "paste": "Yapıştır",
+      "clear": "Temizle",
+      "search": "Ara"
     },
     "labels": {
-      "videoQuality": "Video quality",
-      "audioQuality": "Audio quality",
-      "searchPlaceholder": "Search or paste link here...",
-      "pasteLabel": "Paste from clipboard",
-      "clearLabel": "Clear input"
+      "videoQuality": "Video kalitesi",
+      "audioQuality": "Ses kalitesi",
+      "searchPlaceholder": "Burada arayın veya bağlantıyı yapıştırın...",
+      "pasteLabel": "Pano'dan yapıştır",
+      "clearLabel": "Girişi temizle"
     },
     "actions": {
-      "downloading": "Downloading",
-      "processing": "Processing",
-      "converting": "Converting",
-      "extracting": "Extracting"
+      "downloading": "İndiriliyor",
+      "processing": "İşleniyor",
+      "converting": "Dönüştürülüyor",
+      "extracting": "Çıkarılıyor"
     }
   },
   "status": {
-    "idle": "Ready to convert",
-    "starting": "Starting…",
-    "extracting": "Extracting",
-    "extractingProgress": "Extracting {progress}%",
-    "processing": "Processing",
-    "processingProgress": "Processing… {progress}%",
-    "converting": "Converting",
-    "convertingProgress": "Converting... {loaded} / {total}",
-    "convertingSize": "Converting... {size}",
-    "downloading": "Downloading",
-    "downloadProgress": "Converting... {loaded} MB / {total} MB",
-    "downloadComplete": "Download complete 100%",
-    "polling": "Processing",
-    "pollingProgress": "Processing {progress}%",
-    "completed": "Completed",
-    "success": "Conversion successful",
-    "failed": "Conversion failed",
-    "canceled": "Canceled",
-    "error": "Error occurred"
+    "idle": "Dönüştürmeye hazır",
+    "starting": "Başlatılıyor…",
+    "extracting": "Çıkarılıyor",
+    "extractingProgress": "Çıkarılıyor {progress}%",
+    "processing": "İşleniyor",
+    "processingProgress": "İşleniyor… {progress}%",
+    "converting": "Dönüştürülüyor",
+    "convertingProgress": "Dönüştürülüyor... {loaded} / {total}",
+    "convertingSize": "Dönüştürülüyor... {size}",
+    "downloading": "İndiriliyor",
+    "downloadProgress": "İndiriliyor... {loaded} MB / {total} MB",
+    "downloadComplete": "İndirme tamamlandı %100",
+    "polling": "İşleniyor",
+    "pollingProgress": "İşleniyor {progress}%",
+    "completed": "Tamamlandı",
+    "success": "Dönüştürme başarılı",
+    "failed": "Dönüştürme başarısız",
+    "canceled": "İptal edildi",
+    "error": "Bir hata oluştu"
   },
   "formats": {
     "mp3": "MP3",
@@ -59,7 +59,7 @@
       "mp3_256": "MP3 - 256kbps",
       "mp3_320": "MP3 - 320kbps",
       "ogg_128": "OGG",
-      "wav_lossless": "WAV - Lossless",
+      "wav_lossless": "WAV - Kayıpsız",
       "opus_128": "Opus",
       "m4a_192": "M4A",
       "video_360p": "MP4 - 360p",
@@ -71,42 +71,42 @@
     }
   },
   "errors": {
-    "downloadExpired": "Download link expired for: {title}",
-    "downloadExpiredGeneric": "Download link has expired",
-    "confirmRetry": "Would you like to try again?",
-    "noGalleryItems": "No gallery items to display",
-    "conversionFailed": "Conversion failed",
-    "networkError": "Network error occurred",
-    "invalidUrl": "Invalid URL",
-    "unsupportedFormat": "Unsupported format",
-    "timeout": "Request timed out",
-    "unknown": "An unknown error occurred"
+    "downloadExpired": "İndirme bağlantısının süresi doldu: {title}",
+    "downloadExpiredGeneric": "İndirme bağlantısının süresi doldu",
+    "confirmRetry": "Tekrar denemek ister misiniz?",
+    "noGalleryItems": "Gösterilecek galeri öğesi yok",
+    "conversionFailed": "Dönüştürme başarısız oldu",
+    "networkError": "Ağ hatası oluştu",
+    "invalidUrl": "Geçersiz URL",
+    "unsupportedFormat": "Desteklenmeyen format",
+    "timeout": "İstek zaman aşımına uğradı",
+    "unknown": "Bilinmeyen bir hata oluştu"
   },
   "features": {
     "downloader": {
-      "title": "Download YouTube Videos",
-      "description": "Fast and easy YouTube video downloader"
+      "title": "YouTube Videolarını İndir",
+      "description": "Hızlı ve kolay YouTube video indirici"
     },
     "search": {
-      "placeholder": "Search or paste YouTube link",
-      "suggestions": "Suggestions",
-      "noResults": "No results found"
+      "placeholder": "YouTube bağlantısını arayın veya yapıştırın",
+      "suggestions": "Öneriler",
+      "noResults": "Sonuç bulunamadı"
     },
     "gallery": {
-      "title": "Gallery",
-      "empty": "No items to display",
-      "downloadItem": "Download this item"
+      "title": "Galeri",
+      "empty": "Gösterilecek öğe yok",
+      "downloadItem": "Bu öğeyi indir"
     }
   },
   "aria": {
-    "downloadButton": "Download this item",
-    "retryButton": "Retry conversion",
-    "cancelButton": "Cancel conversion",
-    "pasteButton": "Paste from clipboard",
-    "clearButton": "Clear input field",
-    "searchButton": "Search",
-    "languageSelector": "Select language",
-    "formatSelector": "Select format",
-    "qualitySelector": "Select quality"
+    "downloadButton": "Bu öğeyi indir",
+    "retryButton": "Dönüştürmeyi yeniden dene",
+    "cancelButton": "Dönüştürmeyi iptal et",
+    "pasteButton": "Panodan yapıştır",
+    "clearButton": "Giriş alanını temizle",
+    "searchButton": "Ara",
+    "languageSelector": "Dil seç",
+    "formatSelector": "Format seç",
+    "qualitySelector": "Kalite seç"
   }
 }

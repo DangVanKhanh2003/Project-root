@@ -1,51 +1,51 @@
 {
   "common": {
     "buttons": {
-      "convert": "Convert",
-      "download": "Download",
-      "cancel": "Cancel",
-      "retry": "Retry",
-      "start": "Start",
-      "tryAgain": "Try Again",
-      "startOver": "Start Over",
-      "paste": "Paste",
-      "clear": "Clear",
-      "search": "Search"
+      "convert": "Convertir",
+      "download": "Télécharger",
+      "cancel": "Annuler",
+      "retry": "Réessayer",
+      "start": "Démarrer",
+      "tryAgain": "Réessayer",
+      "startOver": "Recommencer",
+      "paste": "Coller",
+      "clear": "Effacer",
+      "search": "Rechercher"
     },
     "labels": {
-      "videoQuality": "Video quality",
-      "audioQuality": "Audio quality",
-      "searchPlaceholder": "Search or paste link here...",
-      "pasteLabel": "Paste from clipboard",
-      "clearLabel": "Clear input"
+      "videoQuality": "Qualité vidéo",
+      "audioQuality": "Qualité audio",
+      "searchPlaceholder": "Rechercher ou coller un lien ici...",
+      "pasteLabel": "Coller depuis le presse-papiers",
+      "clearLabel": "Effacer le champ"
     },
     "actions": {
-      "downloading": "Downloading",
-      "processing": "Processing",
-      "converting": "Converting",
-      "extracting": "Extracting"
+      "downloading": "Téléchargement en cours",
+      "processing": "Traitement en cours",
+      "converting": "Conversion en cours",
+      "extracting": "Extraction en cours"
     }
   },
   "status": {
-    "idle": "Ready to convert",
-    "starting": "Starting…",
-    "extracting": "Extracting",
-    "extractingProgress": "Extracting {progress}%",
-    "processing": "Processing",
-    "processingProgress": "Processing… {progress}%",
-    "converting": "Converting",
-    "convertingProgress": "Converting... {loaded} / {total}",
-    "convertingSize": "Converting... {size}",
-    "downloading": "Downloading",
-    "downloadProgress": "Converting... {loaded} MB / {total} MB",
-    "downloadComplete": "Download complete 100%",
-    "polling": "Processing",
-    "pollingProgress": "Processing {progress}%",
-    "completed": "Completed",
-    "success": "Conversion successful",
-    "failed": "Conversion failed",
-    "canceled": "Canceled",
-    "error": "Error occurred"
+    "idle": "Prêt à convertir",
+    "starting": "Démarrage…",
+    "extracting": "Extraction en cours",
+    "extractingProgress": "Extraction {progress}%",
+    "processing": "Traitement en cours",
+    "processingProgress": "Traitement… {progress}%",
+    "converting": "Conversion en cours",
+    "convertingProgress": "Conversion... {loaded} / {total}",
+    "convertingSize": "Conversion... {size}",
+    "downloading": "Téléchargement en cours",
+    "downloadProgress": "Téléchargement... {loaded} Mo / {total} Mo",
+    "downloadComplete": "Téléchargement terminé 100%",
+    "polling": "Traitement en cours",
+    "pollingProgress": "Traitement {progress}%",
+    "completed": "Terminé",
+    "success": "Conversion réussie",
+    "failed": "Échec de la conversion",
+    "canceled": "Annulé",
+    "error": "Une erreur s'est produite"
   },
   "formats": {
     "mp3": "MP3",
@@ -59,7 +59,7 @@
       "mp3_256": "MP3 - 256kbps",
       "mp3_320": "MP3 - 320kbps",
       "ogg_128": "OGG",
-      "wav_lossless": "WAV - Lossless",
+      "wav_lossless": "WAV - Sans perte",
       "opus_128": "Opus",
       "m4a_192": "M4A",
       "video_360p": "MP4 - 360p",
@@ -71,42 +71,42 @@
     }
   },
   "errors": {
-    "downloadExpired": "Download link expired for: {title}",
-    "downloadExpiredGeneric": "Download link has expired",
-    "confirmRetry": "Would you like to try again?",
-    "noGalleryItems": "No gallery items to display",
-    "conversionFailed": "Conversion failed",
-    "networkError": "Network error occurred",
-    "invalidUrl": "Invalid URL",
-    "unsupportedFormat": "Unsupported format",
-    "timeout": "Request timed out",
-    "unknown": "An unknown error occurred"
+    "downloadExpired": "Le lien de téléchargement a expiré pour : {title}",
+    "downloadExpiredGeneric": "Le lien de téléchargement a expiré",
+    "confirmRetry": "Voulez-vous réessayer ?",
+    "noGalleryItems": "Aucun élément de la galerie à afficher",
+    "conversionFailed": "Échec de la conversion",
+    "networkError": "Une erreur réseau s'est produite",
+    "invalidUrl": "URL invalide",
+    "unsupportedFormat": "Format non pris en charge",
+    "timeout": "Délai d'attente dépassé",
+    "unknown": "Une erreur inconnue s'est produite"
   },
   "features": {
     "downloader": {
-      "title": "Download YouTube Videos",
-      "description": "Fast and easy YouTube video downloader"
+      "title": "Télécharger des vidéos YouTube",
+      "description": "Téléchargeur de vidéos YouTube rapide et simple"
     },
     "search": {
-      "placeholder": "Search or paste YouTube link",
+      "placeholder": "Rechercher ou coller un lien YouTube",
       "suggestions": "Suggestions",
-      "noResults": "No results found"
+      "noResults": "Aucun résultat trouvé"
     },
     "gallery": {
-      "title": "Gallery",
-      "empty": "No items to display",
-      "downloadItem": "Download this item"
+      "title": "Galerie",
+      "empty": "Aucun élément à afficher",
+      "downloadItem": "Télécharger cet élément"
     }
   },
   "aria": {
-    "downloadButton": "Download this item",
-    "retryButton": "Retry conversion",
-    "cancelButton": "Cancel conversion",
-    "pasteButton": "Paste from clipboard",
-    "clearButton": "Clear input field",
-    "searchButton": "Search",
-    "languageSelector": "Select language",
-    "formatSelector": "Select format",
-    "qualitySelector": "Select quality"
+    "downloadButton": "Télécharger cet élément",
+    "retryButton": "Réessayer la conversion",
+    "cancelButton": "Annuler la conversion",
+    "pasteButton": "Coller depuis le presse-papiers",
+    "clearButton": "Effacer le champ de saisie",
+    "searchButton": "Rechercher",
+    "languageSelector": "Sélectionner la langue",
+    "formatSelector": "Sélectionner le format",
+    "qualitySelector": "Sélectionner la qualité"
   }
 }

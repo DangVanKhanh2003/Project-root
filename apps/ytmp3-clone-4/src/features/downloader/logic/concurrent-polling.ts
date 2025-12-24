@@ -8,6 +8,7 @@
 import { updateConversionTask, getConversionTask } from '../state';
 import { type ProgressResponse } from '@downloader/core';
 import { getTimeout } from '../../../environment';
+import { t } from '@downloader/i18n';
 import { TaskState } from './conversion/types';
 import { isTimeoutError, RETRY_CONFIGS } from './conversion/retry-helper';
 
@@ -260,15 +261,15 @@ class ConcurrentPollingManager {
      */
     private _getRotatingStatusText(formatId: string): string {
         const poll = this.activePolls.get(formatId);
-        if (!poll) return 'Converting...';
+        if (!poll) return t('status.converting');
 
         const elapsedTime = Date.now() - poll.startTime;
         const statusMessages = [
-            'Preparing...',
-            'Converting...',
-            'Processing...',
-            'Optimizing...',
-            'Finalizing...'
+            t('status.starting'),
+            t('status.converting'),
+            t('status.processing'),
+            t('status.converting'),
+            t('status.completed')
         ];
 
         // Rotate every 3 seconds

@@ -1,51 +1,51 @@
 {
   "common": {
     "buttons": {
-      "convert": "Convert",
-      "download": "Download",
-      "cancel": "Cancel",
-      "retry": "Retry",
-      "start": "Start",
-      "tryAgain": "Try Again",
-      "startOver": "Start Over",
-      "paste": "Paste",
-      "clear": "Clear",
-      "search": "Search"
+      "convert": "Chuyển đổi",
+      "download": "Tải xuống",
+      "cancel": "Hủy",
+      "retry": "Thử lại",
+      "start": "Bắt đầu",
+      "tryAgain": "Thử lại",
+      "startOver": "Làm lại từ đầu",
+      "paste": "Dán",
+      "clear": "Xóa",
+      "search": "Tìm kiếm"
     },
     "labels": {
-      "videoQuality": "Video quality",
-      "audioQuality": "Audio quality",
-      "searchPlaceholder": "Search or paste link here...",
-      "pasteLabel": "Paste from clipboard",
-      "clearLabel": "Clear input"
+      "videoQuality": "Chất lượng video",
+      "audioQuality": "Chất lượng âm thanh",
+      "searchPlaceholder": "Tìm kiếm hoặc dán liên kết tại đây...",
+      "pasteLabel": "Dán từ bộ nhớ tạm",
+      "clearLabel": "Xóa ô nhập"
     },
     "actions": {
-      "downloading": "Downloading",
-      "processing": "Processing",
-      "converting": "Converting",
-      "extracting": "Extracting"
+      "downloading": "Đang tải xuống",
+      "processing": "Đang xử lý",
+      "converting": "Đang chuyển đổi",
+      "extracting": "Đang trích xuất"
     }
   },
   "status": {
-    "idle": "Ready to convert",
-    "starting": "Starting…",
-    "extracting": "Extracting",
-    "extractingProgress": "Extracting {progress}%",
-    "processing": "Processing",
-    "processingProgress": "Processing… {progress}%",
-    "converting": "Converting",
-    "convertingProgress": "Converting... {loaded} / {total}",
-    "convertingSize": "Converting... {size}",
-    "downloading": "Downloading",
-    "downloadProgress": "Converting... {loaded} MB / {total} MB",
-    "downloadComplete": "Download complete 100%",
-    "polling": "Processing",
-    "pollingProgress": "Processing {progress}%",
-    "completed": "Completed",
-    "success": "Conversion successful",
-    "failed": "Conversion failed",
-    "canceled": "Canceled",
-    "error": "Error occurred"
+    "idle": "Sẵn sàng chuyển đổi",
+    "starting": "Đang bắt đầu…",
+    "extracting": "Đang trích xuất",
+    "extractingProgress": "Đang trích xuất {progress}%",
+    "processing": "Đang xử lý",
+    "processingProgress": "Đang xử lý… {progress}%",
+    "converting": "Đang chuyển đổi",
+    "convertingProgress": "Đang chuyển đổi... {loaded} / {total}",
+    "convertingSize": "Đang chuyển đổi... {size}",
+    "downloading": "Đang tải xuống",
+    "downloadProgress": "Đang tải xuống... {loaded} MB / {total} MB",
+    "downloadComplete": "Tải xuống hoàn tất 100%",
+    "polling": "Đang xử lý",
+    "pollingProgress": "Đang xử lý {progress}%",
+    "completed": "Hoàn tất",
+    "success": "Chuyển đổi thành công",
+    "failed": "Chuyển đổi thất bại",
+    "canceled": "Đã hủy",
+    "error": "Đã xảy ra lỗi"
   },
   "formats": {
     "mp3": "MP3",
@@ -59,7 +59,7 @@
       "mp3_256": "MP3 - 256kbps",
       "mp3_320": "MP3 - 320kbps",
       "ogg_128": "OGG",
-      "wav_lossless": "WAV - Lossless",
+      "wav_lossless": "WAV - Không mất dữ liệu",
       "opus_128": "Opus",
       "m4a_192": "M4A",
       "video_360p": "MP4 - 360p",
@@ -71,42 +71,42 @@
     }
   },
   "errors": {
-    "downloadExpired": "Download link expired for: {title}",
-    "downloadExpiredGeneric": "Download link has expired",
-    "confirmRetry": "Would you like to try again?",
-    "noGalleryItems": "No gallery items to display",
-    "conversionFailed": "Conversion failed",
-    "networkError": "Network error occurred",
-    "invalidUrl": "Invalid URL",
-    "unsupportedFormat": "Unsupported format",
-    "timeout": "Request timed out",
-    "unknown": "An unknown error occurred"
+    "downloadExpired": "Liên kết tải xuống đã hết hạn cho: {title}",
+    "downloadExpiredGeneric": "Liên kết tải xuống đã hết hạn",
+    "confirmRetry": "Bạn có muốn thử lại không?",
+    "noGalleryItems": "Không có mục nào để hiển thị",
+    "conversionFailed": "Chuyển đổi thất bại",
+    "networkError": "Lỗi mạng",
+    "invalidUrl": "URL không hợp lệ",
+    "unsupportedFormat": "Định dạng không được hỗ trợ",
+    "timeout": "Yêu cầu đã hết thời gian",
+    "unknown": "Đã xảy ra lỗi không xác định"
   },
   "features": {
     "downloader": {
-      "title": "Download YouTube Videos",
-      "description": "Fast and easy YouTube video downloader"
+      "title": "Tải video YouTube",
+      "description": "Trình tải video YouTube nhanh và dễ dùng"
     },
     "search": {
-      "placeholder": "Search or paste YouTube link",
-      "suggestions": "Suggestions",
-      "noResults": "No results found"
+      "placeholder": "Tìm kiếm hoặc dán liên kết YouTube",
+      "suggestions": "Gợi ý",
+      "noResults": "Không tìm thấy kết quả"
     },
     "gallery": {
-      "title": "Gallery",
-      "empty": "No items to display",
-      "downloadItem": "Download this item"
+      "title": "Thư viện",
+      "empty": "Không có mục để hiển thị",
+      "downloadItem": "Tải mục này"
     }
   },
   "aria": {
-    "downloadButton": "Download this item",
-    "retryButton": "Retry conversion",
-    "cancelButton": "Cancel conversion",
-    "pasteButton": "Paste from clipboard",
-    "clearButton": "Clear input field",
-    "searchButton": "Search",
-    "languageSelector": "Select language",
-    "formatSelector": "Select format",
-    "qualitySelector": "Select quality"
+    "downloadButton": "Tải mục này",
+    "retryButton": "Thử chuyển đổi lại",
+    "cancelButton": "Hủy chuyển đổi",
+    "pasteButton": "Dán từ bộ nhớ tạm",
+    "clearButton": "Xóa trường nhập",
+    "searchButton": "Tìm kiếm",
+    "languageSelector": "Chọn ngôn ngữ",
+    "formatSelector": "Chọn định dạng",
+    "qualitySelector": "Chọn chất lượng"
   }
 }

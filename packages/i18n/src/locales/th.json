@@ -1,51 +1,51 @@
 {
   "common": {
     "buttons": {
-      "convert": "Convert",
-      "download": "Download",
-      "cancel": "Cancel",
-      "retry": "Retry",
-      "start": "Start",
-      "tryAgain": "Try Again",
-      "startOver": "Start Over",
-      "paste": "Paste",
-      "clear": "Clear",
-      "search": "Search"
+      "convert": "แปลง",
+      "download": "ดาวน์โหลด",
+      "cancel": "ยกเลิก",
+      "retry": "ลองอีกครั้ง",
+      "start": "เริ่มต้น",
+      "tryAgain": "ลองอีกครั้ง",
+      "startOver": "เริ่มใหม่",
+      "paste": "วาง",
+      "clear": "ล้าง",
+      "search": "ค้นหา"
     },
     "labels": {
-      "videoQuality": "Video quality",
-      "audioQuality": "Audio quality",
-      "searchPlaceholder": "Search or paste link here...",
-      "pasteLabel": "Paste from clipboard",
-      "clearLabel": "Clear input"
+      "videoQuality": "คุณภาพวิดีโอ",
+      "audioQuality": "คุณภาพเสียง",
+      "searchPlaceholder": "ค้นหาหรือวางลิงก์ที่นี่...",
+      "pasteLabel": "วางจากคลิปบอร์ด",
+      "clearLabel": "ล้างข้อมูล"
     },
     "actions": {
-      "downloading": "Downloading",
-      "processing": "Processing",
-      "converting": "Converting",
-      "extracting": "Extracting"
+      "downloading": "กำลังดาวน์โหลด",
+      "processing": "กำลังประมวลผล",
+      "converting": "กำลังแปลง",
+      "extracting": "กำลังแยกไฟล์"
     }
   },
   "status": {
-    "idle": "Ready to convert",
-    "starting": "Starting…",
-    "extracting": "Extracting",
-    "extractingProgress": "Extracting {progress}%",
-    "processing": "Processing",
-    "processingProgress": "Processing… {progress}%",
-    "converting": "Converting",
-    "convertingProgress": "Converting... {loaded} / {total}",
-    "convertingSize": "Converting... {size}",
-    "downloading": "Downloading",
-    "downloadProgress": "Converting... {loaded} MB / {total} MB",
-    "downloadComplete": "Download complete 100%",
-    "polling": "Processing",
-    "pollingProgress": "Processing {progress}%",
-    "completed": "Completed",
-    "success": "Conversion successful",
-    "failed": "Conversion failed",
-    "canceled": "Canceled",
-    "error": "Error occurred"
+    "idle": "พร้อมสำหรับการแปลง",
+    "starting": "กำลังเริ่ม…",
+    "extracting": "กำลังแยกไฟล์",
+    "extractingProgress": "กำลังแยก {progress}%",
+    "processing": "กำลังประมวลผล",
+    "processingProgress": "กำลังประมวลผล… {progress}%",
+    "converting": "กำลังแปลง",
+    "convertingProgress": "กำลังแปลง... {loaded} / {total}",
+    "convertingSize": "กำลังแปลง... {size}",
+    "downloading": "กำลังดาวน์โหลด",
+    "downloadProgress": "กำลังดาวน์โหลด... {loaded} MB / {total} MB",
+    "downloadComplete": "ดาวน์โหลดเสร็จสิ้น 100%",
+    "polling": "กำลังประมวลผล",
+    "pollingProgress": "ประมวลผล {progress}%",
+    "completed": "เสร็จสิ้น",
+    "success": "แปลงสำเร็จ",
+    "failed": "แปลงล้มเหลว",
+    "canceled": "ยกเลิกแล้ว",
+    "error": "เกิดข้อผิดพลาด"
   },
   "formats": {
     "mp3": "MP3",
@@ -59,7 +59,7 @@
       "mp3_256": "MP3 - 256kbps",
       "mp3_320": "MP3 - 320kbps",
       "ogg_128": "OGG",
-      "wav_lossless": "WAV - Lossless",
+      "wav_lossless": "WAV - ไม่สูญเสียคุณภาพ",
       "opus_128": "Opus",
       "m4a_192": "M4A",
       "video_360p": "MP4 - 360p",
@@ -71,42 +71,42 @@
     }
   },
   "errors": {
-    "downloadExpired": "Download link expired for: {title}",
-    "downloadExpiredGeneric": "Download link has expired",
-    "confirmRetry": "Would you like to try again?",
-    "noGalleryItems": "No gallery items to display",
-    "conversionFailed": "Conversion failed",
-    "networkError": "Network error occurred",
-    "invalidUrl": "Invalid URL",
-    "unsupportedFormat": "Unsupported format",
-    "timeout": "Request timed out",
-    "unknown": "An unknown error occurred"
+    "downloadExpired": "ลิงก์ดาวน์โหลดหมดอายุสำหรับ: {title}",
+    "downloadExpiredGeneric": "ลิงก์ดาวน์โหลดหมดอายุแล้ว",
+    "confirmRetry": "คุณต้องการลองอีกครั้งหรือไม่?",
+    "noGalleryItems": "ไม่มีรายการในแกลเลอรีให้แสดง",
+    "conversionFailed": "การแปลงล้มเหลว",
+    "networkError": "เกิดข้อผิดพลาดของเครือข่าย",
+    "invalidUrl": "URL ไม่ถูกต้อง",
+    "unsupportedFormat": "รูปแบบไม่รองรับ",
+    "timeout": "คำขอหมดเวลา",
+    "unknown": "เกิดข้อผิดพลาดที่ไม่ทราบสาเหตุ"
   },
   "features": {
     "downloader": {
-      "title": "Download YouTube Videos",
-      "description": "Fast and easy YouTube video downloader"
+      "title": "ดาวน์โหลดวิดีโอ YouTube",
+      "description": "เครื่องมือดาวน์โหลดวิดีโอ YouTube ที่รวดเร็วและใช้งานง่าย"
     },
     "search": {
-      "placeholder": "Search or paste YouTube link",
-      "suggestions": "Suggestions",
-      "noResults": "No results found"
+      "placeholder": "ค้นหาหรือวางลิงก์ YouTube",
+      "suggestions": "คำแนะนำ",
+      "noResults": "ไม่พบผลลัพธ์"
     },
     "gallery": {
-      "title": "Gallery",
-      "empty": "No items to display",
-      "downloadItem": "Download this item"
+      "title": "แกลเลอรี",
+      "empty": "ไม่มีรายการให้แสดง",
+      "downloadItem": "ดาวน์โหลดรายการนี้"
     }
   },
   "aria": {
-    "downloadButton": "Download this item",
-    "retryButton": "Retry conversion",
-    "cancelButton": "Cancel conversion",
-    "pasteButton": "Paste from clipboard",
-    "clearButton": "Clear input field",
-    "searchButton": "Search",
-    "languageSelector": "Select language",
-    "formatSelector": "Select format",
-    "qualitySelector": "Select quality"
+    "downloadButton": "ดาวน์โหลดรายการนี้",
+    "retryButton": "ลองแปลงอีกครั้ง",
+    "cancelButton": "ยกเลิกการแปลง",
+    "pasteButton": "วางจากคลิปบอร์ด",
+    "clearButton": "ล้างช่องป้อนข้อมูล",
+    "searchButton": "ค้นหา",
+    "languageSelector": "เลือกภาษา",
+    "formatSelector": "เลือกรูปแบบ",
+    "qualitySelector": "เลือกคุณภาพ"
   }
 }

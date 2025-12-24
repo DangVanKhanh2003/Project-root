@@ -1,51 +1,51 @@
 {
   "common": {
     "buttons": {
-      "convert": "Convert",
-      "download": "Download",
-      "cancel": "Cancel",
-      "retry": "Retry",
-      "start": "Start",
-      "tryAgain": "Try Again",
-      "startOver": "Start Over",
-      "paste": "Paste",
-      "clear": "Clear",
-      "search": "Search"
+      "convert": "Конвертировать",
+      "download": "Скачать",
+      "cancel": "Отменить",
+      "retry": "Повторить",
+      "start": "Начать",
+      "tryAgain": "Попробовать снова",
+      "startOver": "Начать заново",
+      "paste": "Вставить",
+      "clear": "Очистить",
+      "search": "Поиск"
     },
     "labels": {
-      "videoQuality": "Video quality",
-      "audioQuality": "Audio quality",
-      "searchPlaceholder": "Search or paste link here...",
-      "pasteLabel": "Paste from clipboard",
-      "clearLabel": "Clear input"
+      "videoQuality": "Качество видео",
+      "audioQuality": "Качество звука",
+      "searchPlaceholder": "Найдите или вставьте ссылку здесь...",
+      "pasteLabel": "Вставить из буфера обмена",
+      "clearLabel": "Очистить поле ввода"
     },
     "actions": {
-      "downloading": "Downloading",
-      "processing": "Processing",
-      "converting": "Converting",
-      "extracting": "Extracting"
+      "downloading": "Загрузка",
+      "processing": "Обработка",
+      "converting": "Конвертация",
+      "extracting": "Извлечение"
     }
   },
   "status": {
-    "idle": "Ready to convert",
-    "starting": "Starting…",
-    "extracting": "Extracting",
-    "extractingProgress": "Extracting {progress}%",
-    "processing": "Processing",
-    "processingProgress": "Processing… {progress}%",
-    "converting": "Converting",
-    "convertingProgress": "Converting... {loaded} / {total}",
-    "convertingSize": "Converting... {size}",
-    "downloading": "Downloading",
-    "downloadProgress": "Converting... {loaded} MB / {total} MB",
-    "downloadComplete": "Download complete 100%",
-    "polling": "Processing",
-    "pollingProgress": "Processing {progress}%",
-    "completed": "Completed",
-    "success": "Conversion successful",
-    "failed": "Conversion failed",
-    "canceled": "Canceled",
-    "error": "Error occurred"
+    "idle": "Готово к конвертации",
+    "starting": "Запуск…",
+    "extracting": "Извлечение",
+    "extractingProgress": "Извлечение {progress}%",
+    "processing": "Обработка",
+    "processingProgress": "Обработка… {progress}%",
+    "converting": "Конвертация",
+    "convertingProgress": "Конвертация... {loaded} / {total}",
+    "convertingSize": "Конвертация... {size}",
+    "downloading": "Загрузка",
+    "downloadProgress": "Загрузка... {loaded} МБ / {total} МБ",
+    "downloadComplete": "Загрузка завершена 100%",
+    "polling": "Обработка",
+    "pollingProgress": "Обработка {progress}%",
+    "completed": "Завершено",
+    "success": "Конвертация успешно завершена",
+    "failed": "Ошибка конвертации",
+    "canceled": "Отменено",
+    "error": "Произошла ошибка"
   },
   "formats": {
     "mp3": "MP3",
@@ -59,7 +59,7 @@
       "mp3_256": "MP3 - 256kbps",
       "mp3_320": "MP3 - 320kbps",
       "ogg_128": "OGG",
-      "wav_lossless": "WAV - Lossless",
+      "wav_lossless": "WAV - Без потерь",
       "opus_128": "Opus",
       "m4a_192": "M4A",
       "video_360p": "MP4 - 360p",
@@ -71,42 +71,42 @@
     }
   },
   "errors": {
-    "downloadExpired": "Download link expired for: {title}",
-    "downloadExpiredGeneric": "Download link has expired",
-    "confirmRetry": "Would you like to try again?",
-    "noGalleryItems": "No gallery items to display",
-    "conversionFailed": "Conversion failed",
-    "networkError": "Network error occurred",
-    "invalidUrl": "Invalid URL",
-    "unsupportedFormat": "Unsupported format",
-    "timeout": "Request timed out",
-    "unknown": "An unknown error occurred"
+    "downloadExpired": "Срок действия ссылки для скачивания истек: {title}",
+    "downloadExpiredGeneric": "Срок действия ссылки для скачивания истек",
+    "confirmRetry": "Хотите попробовать еще раз?",
+    "noGalleryItems": "Нет элементов галереи для отображения",
+    "conversionFailed": "Конвертация не удалась",
+    "networkError": "Произошла ошибка сети",
+    "invalidUrl": "Недействительный URL",
+    "unsupportedFormat": "Неподдерживаемый формат",
+    "timeout": "Время ожидания запроса истекло",
+    "unknown": "Произошла неизвестная ошибка"
   },
   "features": {
     "downloader": {
-      "title": "Download YouTube Videos",
-      "description": "Fast and easy YouTube video downloader"
+      "title": "Скачать видео с YouTube",
+      "description": "Быстрый и простой загрузчик видео YouTube"
     },
     "search": {
-      "placeholder": "Search or paste YouTube link",
-      "suggestions": "Suggestions",
-      "noResults": "No results found"
+      "placeholder": "Найдите или вставьте ссылку на YouTube",
+      "suggestions": "Предложения",
+      "noResults": "Результатов не найдено"
     },
     "gallery": {
-      "title": "Gallery",
-      "empty": "No items to display",
-      "downloadItem": "Download this item"
+      "title": "Галерея",
+      "empty": "Нет элементов для отображения",
+      "downloadItem": "Скачать этот элемент"
     }
   },
   "aria": {
-    "downloadButton": "Download this item",
-    "retryButton": "Retry conversion",
-    "cancelButton": "Cancel conversion",
-    "pasteButton": "Paste from clipboard",
-    "clearButton": "Clear input field",
-    "searchButton": "Search",
-    "languageSelector": "Select language",
-    "formatSelector": "Select format",
-    "qualitySelector": "Select quality"
+    "downloadButton": "Скачать этот элемент",
+    "retryButton": "Повторить конвертацию",
+    "cancelButton": "Отменить конвертацию",
+    "pasteButton": "Вставить из буфера обмена",
+    "clearButton": "Очистить поле ввода",
+    "searchButton": "Поиск",
+    "languageSelector": "Выбрать язык",
+    "formatSelector": "Выбрать формат",
+    "qualitySelector": "Выбрать качество"
   }
 }

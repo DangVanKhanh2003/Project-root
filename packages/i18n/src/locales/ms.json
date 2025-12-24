@@ -1,51 +1,51 @@
 {
   "common": {
     "buttons": {
-      "convert": "Convert",
-      "download": "Download",
-      "cancel": "Cancel",
-      "retry": "Retry",
-      "start": "Start",
-      "tryAgain": "Try Again",
-      "startOver": "Start Over",
-      "paste": "Paste",
-      "clear": "Clear",
-      "search": "Search"
+      "convert": "Tukar",
+      "download": "Muat turun",
+      "cancel": "Batal",
+      "retry": "Cuba lagi",
+      "start": "Mula",
+      "tryAgain": "Cuba lagi",
+      "startOver": "Mulakan semula",
+      "paste": "Tampal",
+      "clear": "Kosongkan",
+      "search": "Cari"
     },
     "labels": {
-      "videoQuality": "Video quality",
-      "audioQuality": "Audio quality",
-      "searchPlaceholder": "Search or paste link here...",
-      "pasteLabel": "Paste from clipboard",
-      "clearLabel": "Clear input"
+      "videoQuality": "Kualiti video",
+      "audioQuality": "Kualiti audio",
+      "searchPlaceholder": "Cari atau tampal pautan di sini...",
+      "pasteLabel": "Tampal dari papan klip",
+      "clearLabel": "Kosongkan input"
     },
     "actions": {
-      "downloading": "Downloading",
-      "processing": "Processing",
-      "converting": "Converting",
-      "extracting": "Extracting"
+      "downloading": "Sedang muat turun",
+      "processing": "Sedang memproses",
+      "converting": "Sedang menukar",
+      "extracting": "Sedang mengekstrak"
     }
   },
-  "status": {
-    "idle": "Ready to convert",
-    "starting": "Starting…",
-    "extracting": "Extracting",
-    "extractingProgress": "Extracting {progress}%",
-    "processing": "Processing",
-    "processingProgress": "Processing… {progress}%",
-    "converting": "Converting",
-    "convertingProgress": "Converting... {loaded} / {total}",
-    "convertingSize": "Converting... {size}",
-    "downloading": "Downloading",
-    "downloadProgress": "Converting... {loaded} MB / {total} MB",
-    "downloadComplete": "Download complete 100%",
-    "polling": "Processing",
-    "pollingProgress": "Processing {progress}%",
-    "completed": "Completed",
-    "success": "Conversion successful",
-    "failed": "Conversion failed",
-    "canceled": "Canceled",
-    "error": "Error occurred"
+    "status": {
+    "idle": "Sedia untuk menukar",
+    "starting": "Memulakan…",
+    "extracting": "Sedang mengekstrak",
+    "extractingProgress": "Mengekstrak {progress}%",
+    "processing": "Sedang memproses",
+    "processingProgress": "Memproses… {progress}%",
+    "converting": "Sedang menukar",
+    "convertingProgress": "Menukar... {loaded} / {total}",
+    "convertingSize": "Menukar... {size}",
+    "downloading": "Sedang muat turun",
+    "downloadProgress": "Muat turun... {loaded} MB / {total} MB",
+    "downloadComplete": "Muat turun selesai 100%",
+    "polling": "Sedang memproses",
+    "pollingProgress": "Memproses {progress}%",
+    "completed": "Selesai",
+    "success": "Penukaran berjaya",
+    "failed": "Penukaran gagal",
+    "canceled": "Dibatalkan",
+    "error": "Ralat berlaku"
   },
   "formats": {
     "mp3": "MP3",
@@ -59,7 +59,7 @@
       "mp3_256": "MP3 - 256kbps",
       "mp3_320": "MP3 - 320kbps",
       "ogg_128": "OGG",
-      "wav_lossless": "WAV - Lossless",
+      "wav_lossless": "WAV - Tanpa kehilangan",
       "opus_128": "Opus",
       "m4a_192": "M4A",
       "video_360p": "MP4 - 360p",
@@ -71,42 +71,42 @@
     }
   },
   "errors": {
-    "downloadExpired": "Download link expired for: {title}",
-    "downloadExpiredGeneric": "Download link has expired",
-    "confirmRetry": "Would you like to try again?",
-    "noGalleryItems": "No gallery items to display",
-    "conversionFailed": "Conversion failed",
-    "networkError": "Network error occurred",
-    "invalidUrl": "Invalid URL",
-    "unsupportedFormat": "Unsupported format",
-    "timeout": "Request timed out",
-    "unknown": "An unknown error occurred"
+    "downloadExpired": "Pautan muat turun tamat tempoh untuk: {title}",
+    "downloadExpiredGeneric": "Pautan muat turun telah tamat tempoh",
+    "confirmRetry": "Anda mahu cuba lagi?",
+    "noGalleryItems": "Tiada item galeri untuk dipaparkan",
+    "conversionFailed": "Penukaran gagal",
+    "networkError": "Ralat rangkaian berlaku",
+    "invalidUrl": "URL tidak sah",
+    "unsupportedFormat": "Format tidak disokong",
+    "timeout": "Permintaan tamat masa",
+    "unknown": "Ralat tidak diketahui berlaku"
   },
   "features": {
     "downloader": {
-      "title": "Download YouTube Videos",
-      "description": "Fast and easy YouTube video downloader"
+      "title": "Muat turun Video YouTube",
+      "description": "Pemuat turun video YouTube yang pantas dan mudah"
     },
     "search": {
-      "placeholder": "Search or paste YouTube link",
-      "suggestions": "Suggestions",
-      "noResults": "No results found"
+      "placeholder": "Cari atau tampal pautan YouTube",
+      "suggestions": "Cadangan",
+      "noResults": "Tiada keputusan ditemui"
     },
     "gallery": {
-      "title": "Gallery",
-      "empty": "No items to display",
-      "downloadItem": "Download this item"
+      "title": "Galeri",
+      "empty": "Tiada item untuk dipaparkan",
+      "downloadItem": "Muat turun item ini"
     }
   },
   "aria": {
-    "downloadButton": "Download this item",
-    "retryButton": "Retry conversion",
-    "cancelButton": "Cancel conversion",
-    "pasteButton": "Paste from clipboard",
-    "clearButton": "Clear input field",
-    "searchButton": "Search",
-    "languageSelector": "Select language",
-    "formatSelector": "Select format",
-    "qualitySelector": "Select quality"
+    "downloadButton": "Muat turun item ini",
+    "retryButton": "Cuba lagi penukaran",
+    "cancelButton": "Batalkan penukaran",
+    "pasteButton": "Tampal dari papan klip",
+    "clearButton": "Kosongkan medan input",
+    "searchButton": "Cari",
+    "languageSelector": "Pilih bahasa",
+    "formatSelector": "Pilih format",
+    "qualitySelector": "Pilih kualiti"
   }
 }
