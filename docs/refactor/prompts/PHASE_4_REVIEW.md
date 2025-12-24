@@ -1,6 +1,6 @@
-# PHASE 4 REVIEW PROMPT - CHO AI CODE REVIEWER
+# GIAI ĐOẠN 4 - MẪU REVIEW CHO AI CODE REVIEWER
 
-> **Phase:** Phase 4 - UI Components
+> **Giai đoạn:** Giai đoạn 4 - Thành phần giao diện
 > **Loại Review:** Code Review
 > **Vai trò:** AI Code Reviewer
 
@@ -560,28 +560,28 @@ Approve PR khi:
 Sử dụng template này cho review:
 
 ```markdown
-## Phase 4 Code Review
+## Đánh giá mã Giai đoạn 4
 
 ### Tóm tắt
 [Đánh giá ngắn gọn - Approve/Request Changes/Comment]
 
-**Verdict:** ✅ Approve | ⚠️ Approve with Comments | ❌ Request Changes
+**Kết luận:** ✅ Approve | ⚠️ Approve with Comments | ❌ Request Changes
 
 ---
 
 ### Kết quả Checklist
 
-**Package Structure (✅/❌):**
+**Cấu trúc Package (✅/❌):**
 - Components extracted: [✅/❌] ([X] components)
 - File organization: [✅/❌]
 - Package config: [✅/❌]
 
-**Customization System (✅/❌):**
+**Hệ thống tuỳ biến (✅/❌):**
 - CSS Custom Properties: [✅/❌] ([X] variables defined)
 - Props-based customization: [✅/❌]
 - Override capability: [✅/❌]
 
-**Components (✅/❌):**
+**Thành phần (✅/❌):**
 - Button: [✅/❌]
 - Progress: [✅/❌]
 - Input: [✅/❌]
@@ -592,17 +592,17 @@ Sử dụng template này cho review:
 - Components use i18n: [✅/❌]
 - RTL support: [✅/❌]
 
-**Tests (✅/❌):**
+**Kiểm thử (✅/❌):**
 - Coverage: [X]% (target: 70%)
 - Component tests: [assessment]
 - Visual tests: [✅/❌]
 
-**Migration (✅/❌):**
+**Di trú (✅/❌):**
 - clone-4 migrated: [✅/❌]
 - UI identical: [✅/❌]
 - Old components deleted: [✅/❌]
 
-**Code Quality (✅/❌):**
+**Chất lượng mã (✅/❌):**
 - TypeScript: [✅/❌]
 - CSS quality: [✅/❌]
 - Documentation: [✅/❌]
@@ -610,7 +610,7 @@ Sử dụng template này cho review:
 
 ---
 
-### Critical Issues (Must Fix)
+### Vấn đề nghiêm trọng (Phải sửa)
 
 [List issues hoặc viết "None"]
 
@@ -619,7 +619,7 @@ Sử dụng template này cho review:
 
 ---
 
-### Warnings (Should Fix)
+### Cảnh báo (Nên sửa)
 
 [List warnings hoặc viết "None"]
 
@@ -628,7 +628,7 @@ Sử dụng template này cho review:
 
 ---
 
-### Positive Highlights
+### Điểm tích cực
 
 [Điều làm tốt]
 
@@ -637,7 +637,7 @@ Sử dụng template này cho review:
 
 ---
 
-### Questions
+### Câu hỏi
 
 [Câu hỏi cho implementer]
 
@@ -646,21 +646,21 @@ Sử dụng template này cho review:
 
 ---
 
-### Verification Performed
+### Xác minh đã thực hiện
 
-**Tests run:**
+**Các kiểm thử đã chạy:**
 - [ ] `pnpm test` - [X] tests passing
 - [ ] `pnpm test:coverage` - [Y]% coverage
 - [ ] Visual comparison - [✅/❌]
 
-**Manual testing:**
+**Kiểm thử thủ công:**
 - [ ] Tested clone-4 UI
 - [ ] Compared với clone-3
 - [ ] Tested customization
 - [ ] Tested i18n (multiple languages)
 - [ ] Tested RTL (Arabic)
 
-**Code analysis:**
+**Phân tích mã:**
 - [ ] Reviewed component design
 - [ ] Checked customization system
 - [ ] Verified i18n integration
@@ -668,36 +668,36 @@ Sử dụng template này cho review:
 
 ---
 
-### Visual Comparison
+### So sánh thị giác
 
-**Screenshots:**
+**Ảnh chụp màn hình:**
 [Include hoặc reference screenshots]
 
-**Changes noted:**
+**Thay đổi ghi nhận:**
 - [List any visual differences]
 - [Explain if intentional]
 
 ---
 
-### Recommendations
+### Khuyến nghị
 
-**Must fix before merge:**
+**Phải sửa trước khi merge:**
 - [ ] [Critical issue 1]
 - [ ] [Critical issue 2]
 
-**Should fix (recommended):**
+**Nên sửa (khuyến nghị):**
 - [ ] [Warning 1]
 - [ ] [Warning 2]
 
-**Nice to have:**
+**Nên có (tuỳ chọn):**
 - [ ] [Suggestion 1]
 - [ ] [Suggestion 2]
 
 ---
 
-### Conclusion
+### Kết luận
 
-[Final assessment và recommendation]
+[Đánh giá và khuyến nghị cuối]
 
 **Ready to merge:** [Yes/No/After fixes]
 

@@ -1,9 +1,9 @@
-# PHASE 5: PILOT MIGRATION - HƯỚNG DẪN CHO AI
+# GIAI ĐOẠN 5: DI TRÚ THỬ NGHIỆM - HƯỚNG DẪN CHO AI
 
-> **Phase:** Pilot Migration (Tuần 11-12)
+> **Giai đoạn:** Di trú thử nghiệm (Tuần 11-12)
 > **Mục tiêu:** Migrate hoàn chỉnh 1 app để verify toàn bộ refactor
 > **Mức độ rủi ro:** 🟡 Trung bình - Cao
-> **Yêu cầu:** Phase 1-4 đã hoàn thành
+> **Yêu cầu:** Giai đoạn 1-4 đã hoàn thành
 
 ---
 
@@ -626,7 +626,7 @@ After migration:
 - Bundle size: [Z] KB
 - Reduction: [%]
 
-## Next Steps
+## Bước tiếp theo
 [Preparation for Phase 6]
 ```
 
@@ -759,25 +759,25 @@ Sau khi approved:
 
 ### **Bước 4: REVIEW & MERGE**
 
-**Create PR:**
+**Tạo PR:**
 
-Title: `[Phase 5] Complete pilot migration - ytmp3-clone-4`
+Tiêu đề: `[Phase 5] Hoàn tất di trú thử nghiệm - ytmp3-clone-4`
 
-Description: Include migration playbook, metrics, testing results
+Mô tả: Đính kèm playbook di trú, số liệu và kết quả kiểm thử
 
 ---
 
-## ✅ DEFINITION OF DONE
+## ✅ ĐỊNH NGHĨA HOÀN THÀNH
 
 Phase 5 hoàn thành khi:
 
-- [ ] ytmp3-clone-4 migrated 100%
-- [ ] 0% code duplication với packages
-- [ ] All features working perfectly
-- [ ] UI identical với ytmp3-clone-3
-- [ ] Performance same hoặc better
-- [ ] I18n works (19 languages tested)
-- [ ] RTL works (Arabic, Urdu tested)
+- [ ] ytmp3-clone-4 di trú 100%
+- [ ] 0% mã trùng với packages
+- [ ] Tất cả tính năng hoạt động hoàn hảo
+- [ ] UI giống hệt ytmp3-clone-3
+- [ ] Hiệu năng tương đương hoặc tốt hơn
+- [ ] I18n hoạt động (đã test 19 ngôn ngữ)
+- [ ] RTL hoạt động (đã test Arabic, Urdu)
 - [ ] No console errors
 - [ ] No TypeScript errors
 - [ ] All tests passing

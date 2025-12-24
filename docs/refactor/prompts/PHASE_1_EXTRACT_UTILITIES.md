@@ -1,593 +1,594 @@
-# PHASE 1: EXTRACT UTILITIES - AI IMPLEMENTATION PROMPT
+# GIAI ĐOẠN 1: TRÍCH XUẤT UTILITIES - HƯỚNG DẪN CHO AI THỰC THI
 
-> **Phase:** Extract Utilities (Week 1-2)
-> **Objective:** Extract utility functions to @downloader/core package
-> **Risk Level:** 🟢 Low
-> **Prerequisites:** None (first phase)
-
----
-
-## ⚠️ CRITICAL: NO CODE IN THIS DOCUMENT
-
-**This document contains:**
-- ✅ File paths to read
-- ✅ Instructions on WHAT to do
-- ✅ Requirements and constraints
-- ❌ NO CODE EXAMPLES
-
-**You MUST:**
-- Read actual code from project files
-- Analyze and understand the code yourself
-- Propose your own approach
-- Discuss before implementing
+> Giai đoạn: Trích xuất Utilities (Tuần 1-2)
+> Mục tiêu: Trích xuất các hàm tiện ích sang package @downloader/core
+> Mức độ rủi ro: 🟢 Thấp
+> Tiền đề: Không (giai đoạn đầu tiên)
 
 ---
 
-## 📚 REQUIRED READING (MUST READ BEFORE DISCUSSION)
+## ⚠️ QUAN TRỌNG: KHÔNG CÓ MÃ TRONG TÀI LIỆU NÀY
 
-### **Critical Documents:**
-1. `/docs/refactor/MASTER_REFACTOR_DOC.md` - Full project context
-2. `/docs/refactor/README.md` - How to use this system
-3. `/CLAUDE.md` - Project guidelines
+Tài liệu này bao gồm:
+- ✅ Đường dẫn file cần đọc
+- ✅ Hướng dẫn LÀM GÌ
+- ✅ Yêu cầu và ràng buộc
+- ❌ KHÔNG có ví dụ mã nguồn
 
-### **Code Files to Read and Analyze:**
+Bạn PHẢI:
+- Đọc mã thật trong các file của dự án
+- Tự phân tích và hiểu mã
+- Đề xuất cách tiếp cận của riêng bạn
+- Trao đổi trước khi triển khai
 
-**Source of truth (ytmp3-clone-3):**
+---
+
+## 📚 TÀI LIỆU BẮT BUỘC (ĐỌC TRƯỚC KHI THẢO LUẬN)
+
+Tài liệu quan trọng:
+1. `/docs/refactor/MASTER_REFACTOR_DOC.md` - Bối cảnh đầy đủ của dự án
+2. `/docs/refactor/README.md` - Cách sử dụng hệ thống này
+3. `/CLAUDE.md` - Nguyên tắc dự án
+
+Các file mã cần đọc và phân tích:
+
+Nguồn chuẩn (ytmp3-clone-3):
 - `/apps/ytmp3-clone-3/src/utils/format-utils.ts`
 - `/apps/ytmp3-clone-3/src/utils/link-validator.ts`
 - `/apps/ytmp3-clone-3/src/utils/download-stream.ts`
 - `/apps/ytmp3-clone-3/src/constants/youtube-constants.ts`
 
-**Compare with other apps:**
-- `/apps/y2matepro/src/utils/` (same files)
-- `/apps/ytmp3-clone-4/src/utils/` (same files)
-- `/apps/ytmp3-clone-darkmode-3/src/utils/` (same files)
-- `/apps/y2mate-new-ux/src/utils/` (same files)
+So sánh với các app khác:
+- `/apps/y2matepro/src/utils/` (các file tương tự)
+- `/apps/ytmp3-clone-4/src/utils/` (các file tương tự)
+- `/apps/ytmp3-clone-darkmode-3/src/utils/` (các file tương tự)
+- `/apps/y2mate-new-ux/src/utils/` (các file tương tự)
 
-**Purpose:** Verify files are truly identical across apps.
+Mục đích: Xác nhận các file thực sự giống hệt nhau giữa các app.
 
-### **YouTube helpers (embedded in input-form.ts):**
+Trợ giúp YouTube (nhúng trong input-form.ts):
 - `/apps/ytmp3-clone-3/src/features/downloader/logic/input-form.ts`
-  - Find: `isYouTubeUrl` function
-  - Find: `extractYouTubeVideoId` function
-  - Find: `generateFakeYouTubeData` function
-  - Find: `extractPlaylistId` function
+  - Tìm: hàm `isYouTubeUrl`
+  - Tìm: hàm `extractYouTubeVideoId`
+  - Tìm: hàm `generateFakeYouTubeData`
+  - Tìm: hàm `extractPlaylistId`
 
 ---
 
-## 🎯 PHASE OBJECTIVES
+## 🎯 MỤC TIÊU GIAI ĐOẠN
 
-### **Primary Goals:**
+Mục tiêu chính:
 
-1. **Extract utilities to packages/core/utils:**
+1. Trích xuất utilities sang `packages/core/utils`:
    - format-utils.ts → packages/core/src/utils/format-utils.ts
    - link-validator.ts → packages/core/src/utils/link-validator.ts
    - download-stream.ts → packages/core/src/utils/download-stream.ts
-   - youtube helpers → packages/core/src/utils/youtube/
+   - các helper YouTube → packages/core/src/utils/youtube/
 
-2. **Write comprehensive tests:**
-   - Target: 80%+ coverage
-   - Unit tests for each utility
-   - Mock browser APIs where needed
+2. Viết bộ kiểm thử đầy đủ:
+   - Mục tiêu: độ bao phủ 80%+
+   - Unit test cho từng utility
+   - Mock API trình duyệt khi cần
 
-3. **Migrate one app:**
-   - Target: ytmp3-clone-4
-   - Update imports to use @downloader/core
-   - Delete duplicate files
-   - Verify behavior unchanged
+3. Di trú một app:
+   - Mục tiêu: ytmp3-clone-4
+   - Cập nhật import để dùng @downloader/core
+   - Xoá file trùng lặp
+   - Xác minh hành vi không đổi
 
-### **Success Criteria:**
-- [ ] All 4 utility modules extracted
-- [ ] 80%+ test coverage achieved
-- [ ] All unit tests passing
-- [ ] ytmp3-clone-4 migrated successfully
-- [ ] ytmp3-clone-4 behavior identical to before
-- [ ] Duplicate files deleted from clone-4
-
----
-
-## 🚫 CRITICAL CONSTRAINTS
-
-### **MUST NOT:**
-- ❌ Change utility logic during extraction
-- ❌ Add new features to utilities
-- ❌ Break existing apps
-- ❌ Change function signatures
-- ❌ Copy code from this document (there is no code here)
-
-### **MUST:**
-- ✅ Copy code exactly as-is from source files
-- ✅ Write tests before migration
-- ✅ Verify tests pass on original code first
-- ✅ Compare behavior before/after migration
-- ✅ Discuss approach before coding
+Tiêu chí hoàn thành:
+- [ ] Trích xuất đủ 4 module utility
+- [ ] Đạt độ bao phủ 80%+
+- [ ] Tất cả unit test pass
+- [ ] Di trú ytmp3-clone-4 thành công
+- [ ] Hành vi của ytmp3-clone-4 giống hệt trước đây
+- [ ] Đã xoá các file trùng trong clone-4
 
 ---
 
-## 📋 DETAILED TASKS
+## 🚫 CÁC RÀNG BUỘC QUAN TRỌNG
 
-### **Task 1: Analyze and Compare Files**
+KHÔNG ĐƯỢC:
+- ❌ Thay đổi logic utilities trong lúc trích xuất
+- ❌ Thêm tính năng mới cho utilities
+- ❌ Làm hỏng các app hiện có
+- ❌ Thay đổi chữ ký hàm
+- ❌ Sao chép mã từ tài liệu này (tài liệu không có mã)
 
-**What to do:**
-1. Read all 4 utility files from ytmp3-clone-3
-2. Compare with same files in other 4 apps
-3. Document any differences found
-4. Identify which version is most complete
-
-**Files to compare:**
-- `format-utils.ts` across 5 apps
-- `link-validator.ts` across 5 apps
-- `download-stream.ts` across 5 apps
-- `youtube-constants.ts` across 5 apps
-
-**Expected findings:**
-- Files should be identical or nearly identical
-- If differences exist, document them
-- Choose canonical version (usually ytmp3-clone-3)
-
-**Output:**
-- Comparison report
-- List of any differences
-- Decision on which version to use
+PHẢI:
+- ✅ Sao chép nguyên vẹn mã từ file nguồn
+- ✅ Viết test trước khi di trú
+- ✅ Xác minh test pass trên mã gốc trước
+- ✅ So sánh hành vi trước/sau khi di trú
+- ✅ Trao đổi cách làm trước khi code
 
 ---
 
-### **Task 2: Extract format-utils.ts**
+## 📋 NHIỆM VỤ CHI TIẾT
 
-**Input:** `/apps/ytmp3-clone-3/src/utils/format-utils.ts`
+Nhiệm vụ 1: Phân tích và so sánh file
 
-**Output location:** `/packages/core/src/utils/format-utils.ts`
+Việc cần làm:
+1. Đọc cả 4 file utility từ ytmp3-clone-3
+2. So sánh với các file tương ứng ở 4 app khác
+3. Ghi lại mọi khác biệt tìm thấy
+4. Xác định phiên bản đầy đủ nhất
 
-**Functions in this file (find by reading the file):**
-- Check file for all exported functions
-- Understand what each function does
-- Note any dependencies
+Các file cần so sánh:
+- `format-utils.ts` trên 5 app
+- `link-validator.ts` trên 5 app
+- `download-stream.ts` trên 5 app
+- `youtube-constants.ts` trên 5 app
 
-**Test file:** `/packages/core/src/utils/format-utils.test.ts`
+Kết quả kỳ vọng:
+- Các file giống hệt hoặc gần như giống hệt
+- Nếu có khác biệt, hãy ghi lại
+- Chọn phiên bản chuẩn (thường là ytmp3-clone-3)
 
-**Test requirements:**
-- Test all exported functions
-- Test edge cases (null, undefined, empty strings)
-- Test different input types
-- Achieve 80%+ coverage
-
-**Validation:**
-- Run: `pnpm test format-utils.test.ts`
-- Check coverage: `pnpm test:coverage`
-- All tests must pass
+Đầu ra:
+- Báo cáo so sánh
+- Danh sách khác biệt (nếu có)
+- Quyết định chọn phiên bản nào
 
 ---
 
-### **Task 3: Extract link-validator.ts**
+Nhiệm vụ 2: Trích xuất format-utils.ts
 
-**Input:** `/apps/ytmp3-clone-3/src/utils/link-validator.ts`
+Đầu vào: `/apps/ytmp3-clone-3/src/utils/format-utils.ts`
 
-**Output location:** `/packages/core/src/utils/link-validator.ts`
+Vị trí đầu ra: `/packages/core/src/utils/format-utils.ts`
 
-**What to extract:**
-- Read the file to find all exports
-- Constants (TTL values)
-- Validation functions
-- Time formatting functions
+Các hàm trong file (tự đọc file để xác định):
+- Kiểm tra tất cả các hàm export
+- Hiểu chức năng của từng hàm
+- Ghi chú mọi phụ thuộc
 
-**Test file:** `/packages/core/src/utils/link-validator.test.ts`
+File test: `/packages/core/src/utils/format-utils.test.ts`
 
-**Special test cases:**
-- Test with recent timestamps
-- Test with expired timestamps
-- Test at exact TTL boundary
-- Test time formatting for different durations
+Yêu cầu test:
+- Test tất cả hàm export
+- Test các biên (null, undefined, chuỗi rỗng)
+- Test các loại input khác nhau
+- Đạt độ bao phủ 80%+
 
-**Validation:**
-- Tests pass
+Xác minh:
+- Chạy: `pnpm test format-utils.test.ts`
+- Kiểm tra coverage: `pnpm test:coverage`
+- Tất cả test phải pass
+
+---
+
+Nhiệm vụ 3: Trích xuất link-validator.ts
+
+Đầu vào: `/apps/ytmp3-clone-3/src/utils/link-validator.ts`
+
+Vị trí đầu ra: `/packages/core/src/utils/link-validator.ts`
+
+Nội dung cần trích:
+- Đọc file để tìm tất cả export
+- Các hằng số (TTL)
+- Các hàm kiểm tra hợp lệ
+- Hàm định dạng thời gian
+
+File test: `/packages/core/src/utils/link-validator.test.ts`
+
+Trường hợp test đặc biệt:
+- Test với mốc thời gian gần (chưa hết hạn)
+- Test với mốc thời gian đã hết hạn
+- Test ngay tại ngưỡng TTL
+- Test định dạng thời gian cho nhiều khoảng
+
+Xác minh:
+- Test pass
 - Coverage ≥ 80%
 
 ---
 
-### **Task 4: Extract download-stream.ts**
+Nhiệm vụ 4: Trích xuất download-stream.ts
 
-**Input:** `/apps/ytmp3-clone-3/src/utils/download-stream.ts`
+Đầu vào: `/apps/ytmp3-clone-3/src/utils/download-stream.ts`
 
-**Output location:** `/packages/core/src/utils/download-stream.ts`
+Vị trí đầu ra: `/packages/core/src/utils/download-stream.ts`
 
-**Special considerations:**
-- This file uses browser APIs (fetch, Blob, URL.createObjectURL)
-- Tests will need to mock these APIs
-- Use Vitest's `vi.mock()` for mocking
+Lưu ý đặc biệt:
+- File này dùng API trình duyệt (fetch, Blob, URL.createObjectURL)
+- Test cần mock các API này
+- Dùng `vi.mock()` của Vitest để mock
 
-**Test file:** `/packages/core/src/utils/download-stream.test.ts`
+File test: `/packages/core/src/utils/download-stream.test.ts`
 
-**Mock requirements:**
+Yêu cầu mock:
 - Mock `global.fetch`
 - Mock `global.URL.createObjectURL`
 - Mock `global.URL.revokeObjectURL`
-- Test success and error cases
+- Test cả tình huống thành công và lỗi
 
-**Validation:**
-- Tests pass with mocks
+Xác minh:
+- Test pass với mocks
 - Coverage ≥ 80%
 
 ---
 
-### **Task 5: Extract YouTube Helpers**
+Nhiệm vụ 5: Trích xuất các helper YouTube
 
-**Input:**
-- Constants: `/apps/ytmp3-clone-3/src/constants/youtube-constants.ts`
-- Functions: `/apps/ytmp3-clone-3/src/features/downloader/logic/input-form.ts`
+Đầu vào:
+- Hằng số: `/apps/ytmp3-clone-3/src/constants/youtube-constants.ts`
+- Hàm: `/apps/ytmp3-clone-3/src/features/downloader/logic/input-form.ts`
 
-**Output structure:**
+Cấu trúc đầu ra:
 ```
 packages/core/src/utils/youtube/
-├── constants.ts           # YouTube API constants
-├── url-parser.ts          # Extract video ID, playlist ID
-├── validator.ts           # isYouTubeUrl function
+├── constants.ts           # Hằng số cho YouTube API
+├── url-parser.ts          # Tách video ID, playlist ID
+├── validator.ts           # Hàm isYouTubeUrl
 ├── fake-data-generator.ts # generateFakeYouTubeData
 ├── index.ts               # Barrel export
-└── [test files for each]
+└── [các file test tương ứng]
 ```
 
-**What to extract from input-form.ts:**
-- Find `isYouTubeUrl` function (read code to understand logic)
-- Find `extractYouTubeVideoId` function
-- Find `generateFakeYouTubeData` function
-- Find `extractPlaylistId` function
-- Extract ONLY these functions, not the entire file
+Nội dung cần trích từ input-form.ts:
+- Tìm hàm `isYouTubeUrl` (đọc mã để hiểu logic)
+- Tìm hàm `extractYouTubeVideoId`
+- Tìm hàm `generateFakeYouTubeData`
+- Tìm hàm `extractPlaylistId`
+- CHỈ trích các hàm này, không lấy cả file
 
-**Test requirements:**
-- Test URL parsing with various YouTube URL formats:
-  - Standard: youtube.com/watch?v=...
-  - Short: youtu.be/...
-  - Embed: youtube.com/embed/...
+Yêu cầu test:
+- Test parse URL với nhiều định dạng YouTube:
+  - Chuẩn: youtube.com/watch?v=...
+  - Ngắn: youtu.be/...
+  - Nhúng: youtube.com/embed/...
   - Mobile: m.youtube.com/...
-  - With timestamps
-  - Invalid URLs
-- Test playlist ID extraction
-- Test fake data generation
+  - Có timestamp
+  - URL không hợp lệ
+- Test trích playlist ID
+- Test sinh dữ liệu giả
 
-**Validation:**
-- All URL formats handled correctly
-- Tests comprehensive
+Xác minh:
+- Tất cả định dạng URL được xử lý đúng
+- Test bao quát
 - Coverage ≥ 80%
 
 ---
 
-### **Task 6: Update Package Exports**
+Nhiệm vụ 6: Cập nhật export của package
 
-**Files to create/update:**
+File cần tạo/cập nhật:
 
 1. `/packages/core/src/utils/index.ts`
-   - Export all utilities
-   - Barrel export pattern
+   - Export tất cả utilities
+   - Theo mẫu barrel export
 
 2. `/packages/core/src/utils/youtube/index.ts`
-   - Export all YouTube helpers
-   - Barrel export pattern
+   - Export toàn bộ helper YouTube
+   - Theo mẫu barrel export
 
 3. `/packages/core/package.json`
-   - Update exports field
-   - Add new entry points
+   - Cập nhật trường exports
+   - Thêm entry points mới
 
-**Verify exports work:**
-- Test importing from package
-- Check TypeScript types available
+Xác minh export hoạt động:
+- Thử import từ package
+- Kiểm tra TypeScript types được xuất ra
 
 ---
 
-### **Task 7: Migrate ytmp3-clone-4**
+Nhiệm vụ 7: Di trú ytmp3-clone-4
 
-**Why ytmp3-clone-4:**
-- Not production (safe to test)
-- Has full architecture
-- Similar to clone-3 (easy to verify)
+Vì sao chọn ytmp3-clone-4:
+- Không phải production (an toàn để thử nghiệm)
+- Có đầy đủ kiến trúc
+- Tương tự clone-3 (dễ đối chiếu)
 
-**Steps:**
+Các bước:
 
-1. **Add dependency:**
-   - Update `apps/ytmp3-clone-4/package.json`
-   - Add `"@downloader/core": "workspace:*"`
-   - Run `pnpm install`
+1. Thêm phụ thuộc:
+   - Cập nhật `apps/ytmp3-clone-4/package.json`
+   - Thêm `"@downloader/core": "workspace:*"`
+   - Chạy `pnpm install`
 
-2. **Update imports:**
-   - Find all files importing from local utils
-   - Change to import from `@downloader/core/utils`
-   - Change YouTube constants to `@downloader/core/utils/youtube`
+2. Cập nhật import:
+   - Tìm tất cả file đang import từ utils cục bộ
+   - Chuyển sang import từ `@downloader/core/utils`
+   - Chuyển constants YouTube sang `@downloader/core/utils/youtube`
 
-3. **Delete old files:**
-   - Delete `apps/ytmp3-clone-4/src/utils/format-utils.ts`
-   - Delete `apps/ytmp3-clone-4/src/utils/link-validator.ts`
-   - Delete `apps/ytmp3-clone-4/src/utils/download-stream.ts`
-   - Delete `apps/ytmp3-clone-4/src/constants/youtube-constants.ts`
+3. Xoá file cũ:
+   - Xoá `apps/ytmp3-clone-4/src/utils/format-utils.ts`
+   - Xoá `apps/ytmp3-clone-4/src/utils/link-validator.ts`
+   - Xoá `apps/ytmp3-clone-4/src/utils/download-stream.ts`
+   - Xoá `apps/ytmp3-clone-4/src/constants/youtube-constants.ts`
 
-4. **Test:**
+4. Kiểm tra:
    - Build: `cd apps/ytmp3-clone-4 && pnpm run build`
-   - Run dev: `pnpm run dev`
-   - Manual test: Enter URL, convert, download
-   - Compare with clone-3 (should behave identically)
+   - Chạy dev: `pnpm run dev`
+   - Test thủ công: Nhập URL, convert, download
+   - So sánh với clone-3 (hành vi phải giống hệt)
 
-**Validation:**
-- [ ] App builds without errors
-- [ ] App runs without console errors
-- [ ] All features work
-- [ ] Behavior identical to before migration
+Xác minh:
+- [ ] App build không lỗi
+- [ ] App chạy không có lỗi console
+- [ ] Mọi tính năng hoạt động
+- [ ] Hành vi giống hệt trước khi di trú
 
 ---
 
-## 🔄 WORKFLOW FOR THIS PHASE
+## 🔄 QUY TRÌNH LÀM VIỆC CHO GIAI ĐOẠN NÀY
 
-### **Step 1: DISCUSSION PHASE (MANDATORY)**
+Bước 1: GIAI ĐOẠN THẢO LUẬN (BẮT BUỘC)
 
-**Before writing ANY code, you must discuss:**
+Trước khi viết BẤT KỲ mã nào, cần thảo luận:
 
-Send message to human:
+Gửi tin nhắn cho người phụ trách:
 
 ```
-I'm starting Phase 1: Extract Utilities
+Tôi bắt đầu Giai đoạn 1: Trích xuất Utilities
 
-Documents read:
+Tài liệu đã đọc:
 - ✅ MASTER_REFACTOR_DOC.md
 - ✅ README.md
 - ✅ PHASE_1_EXTRACT_UTILITIES.md
 
-Code files analyzed:
-- ✅ apps/ytmp3-clone-3/src/utils/format-utils.ts ([X] lines)
-- ✅ apps/ytmp3-clone-3/src/utils/link-validator.ts ([X] lines)
-- ✅ apps/ytmp3-clone-3/src/utils/download-stream.ts ([X] lines)
-- ✅ apps/ytmp3-clone-3/src/constants/youtube-constants.ts ([X] lines)
-- ✅ apps/ytmp3-clone-3/src/features/downloader/logic/input-form.ts (YouTube helpers)
+Các file mã đã phân tích:
+- ✅ apps/ytmp3-clone-3/src/utils/format-utils.ts ([X] dòng)
+- ✅ apps/ytmp3-clone-3/src/utils/link-validator.ts ([X] dòng)
+- ✅ apps/ytmp3-clone-3/src/utils/download-stream.ts ([X] dòng)
+- ✅ apps/ytmp3-clone-3/src/constants/youtube-constants.ts ([X] dòng)
+- ✅ apps/ytmp3-clone-3/src/features/downloader/logic/input-form.ts (các helper YouTube)
 
-Comparison results:
-- format-utils.ts: [Identical/Different] across apps
-- link-validator.ts: [Identical/Different] across apps
-- download-stream.ts: [Found differences - detail below]
-- youtube-constants.ts: [Identical/Different] across apps
+Kết quả so sánh:
+- format-utils.ts: [Giống hệt/Khác] giữa các app
+- link-validator.ts: [Giống hệt/Khác] giữa các app
+- download-stream.ts: [Có khác biệt - chi tiết bên dưới]
+- youtube-constants.ts: [Giống hệt/Khác] giữa các app
 
-[If differences found, list them here]
+[Nếu có khác biệt, liệt kê tại đây]
 
-Questions before proceeding:
-1. [Your questions]
-2. [Your questions]
+Câu hỏi trước khi triển khai:
+1. [Câu hỏi của bạn]
+2. [Câu hỏi của bạn]
 
-Proposed approach:
-1. Use ytmp3-clone-3 as source of truth
-2. Extract in this order: [your order]
-3. Create tests with [strategy]
-4. Migrate clone-4 using [approach]
+Đề xuất cách làm:
+1. Dùng ytmp3-clone-3 làm nguồn chuẩn
+2. Trích xuất theo thứ tự: [thứ tự bạn đề xuất]
+3. Viết test với [chiến lược]
+4. Di trú clone-4 theo [cách tiếp cận]
 
-Risks identified:
-- [Risk 1]
-- [Risk 2]
+Rủi ro đã nhận diện:
+- [Rủi ro 1]
+- [Rủi ro 2]
 
-Awaiting your approval to proceed.
+Chờ bạn phê duyệt để tiếp tục.
 ```
 
-**⚠️ WAIT FOR APPROVAL BEFORE CODING**
+⚠️ CHỜ PHÊ DUYỆT TRƯỚC KHI CODE
 
 ---
 
-### **Step 2: IMPLEMENTATION PHASE**
+Bước 2: GIAI ĐOẠN TRIỂN KHAI
 
-Only after approval:
+Chỉ sau khi được duyệt:
 
-1. Create branch: `refactor/phase-1-extract-utilities`
+1. Tạo nhánh: `refactor/phase-1-extract-utilities`
 
-2. Implement tasks in order:
-   - Task 1: Analysis ✓
-   - Task 2: format-utils
-   - Task 3: link-validator
-   - Task 4: download-stream
-   - Task 5: YouTube helpers
-   - Task 6: Package exports
-   - Task 7: Migrate app
+2. Thực hiện theo thứ tự:
+   - Nhiệm vụ 1: Phân tích ✓
+   - Nhiệm vụ 2: format-utils
+   - Nhiệm vụ 3: link-validator
+   - Nhiệm vụ 4: download-stream
+   - Nhiệm vụ 5: helper YouTube
+   - Nhiệm vụ 6: Export package
+   - Nhiệm vụ 7: Di trú app
 
-3. For each task:
-   - Extract code
-   - Write tests
-   - Verify tests pass
-   - Check coverage
-
----
-
-### **Step 3: VERIFICATION PHASE**
-
-**Run all tests:**
-- `pnpm test` - Unit tests
-- `pnpm test:coverage` - Check 80%+ coverage
-
-**Manual testing:**
-- Run ytmp3-clone-4: `cd apps/ytmp3-clone-4 && pnpm run dev`
-- Test conversion flow
-- Compare with clone-3 behavior
-
-**Comparison checklist:**
-- [ ] Same format options appear
-- [ ] Same conversion behavior
-- [ ] Same error handling
-- [ ] Same download flow
-- [ ] No console errors
-- [ ] No TypeScript errors
+3. Với mỗi nhiệm vụ:
+   - Trích mã
+   - Viết test
+   - Xác minh test pass
+   - Kiểm tra coverage
 
 ---
 
-### **Step 4: REVIEW PHASE**
+Bước 3: GIAI ĐOẠN XÁC MINH
 
-**Create PR with:**
+Chạy toàn bộ test:
+- `pnpm test` - Unit test
+- `pnpm test:coverage` - Kiểm tra 80%+ coverage
 
-Title: `[Phase 1] Extract utilities to @downloader/core`
+Kiểm thử thủ công:
+- Chạy ytmp3-clone-4: `cd apps/ytmp3-clone-4 && pnpm run dev`
+- Test flow chuyển đổi
+- So sánh hành vi với clone-3
 
-Description:
+Danh sách đối chiếu:
+- [ ] Tuỳ chọn định dạng giống nhau
+- [ ] Hành vi chuyển đổi giống nhau
+- [ ] Xử lý lỗi giống nhau
+- [ ] Quy trình tải xuống giống nhau
+- [ ] Không có lỗi console
+- [ ] Không có lỗi TypeScript
+
+---
+
+Bước 4: GIAI ĐOẠN REVIEW
+
+Tạo PR với:
+
+Tiêu đề: `[Phase 1] Extract utilities to @downloader/core`
+
+Mô tả:
 ```markdown
 ## Phase 1: Extract Utilities
 
-### Summary
-Extracted 4 utility modules to packages/core/src/utils/
+### Tóm tắt
+Trích xuất 4 module utility sang packages/core/src/utils/
 
-### Changes
-- ✅ Created packages/core/src/utils/format-utils.ts
-- ✅ Created packages/core/src/utils/link-validator.ts
-- ✅ Created packages/core/src/utils/download-stream.ts
-- ✅ Created packages/core/src/utils/youtube/
-- ✅ Written [X] unit tests
-- ✅ Achieved [X]% test coverage
-- ✅ Migrated ytmp3-clone-4
-- ✅ Deleted duplicate files from clone-4
+### Thay đổi
+- ✅ Tạo packages/core/src/utils/format-utils.ts
+- ✅ Tạo packages/core/src/utils/link-validator.ts
+- ✅ Tạo packages/core/src/utils/download-stream.ts
+- ✅ Tạo packages/core/src/utils/youtube/
+- ✅ Viết [X] unit test
+- ✅ Đạt [X]% coverage
+- ✅ Di trú ytmp3-clone-4
+- ✅ Xoá file trùng lặp khỏi clone-4
 
-### Test Results
-- Unit tests: [X] passing
+### Kết quả kiểm thử
+- Unit test: [X] test pass
 - Coverage: [X]%
-- Manual testing: ✅ All flows working
+- Kiểm thử thủ công: ✅ Tất cả luồng hoạt động tốt
 
-### Verification
-- clone-3 (original): ✅ Working
-- clone-4 (migrated): ✅ Working identically
+### Xác minh
+- clone-3 (gốc): ✅ Hoạt động
+- clone-4 (đã di trú): ✅ Hoạt động giống hệt
 
-### Files Changed
-**Added:**
-- packages/core/src/utils/format-utils.ts ([X] lines)
-- packages/core/src/utils/format-utils.test.ts ([X] lines)
-- [list all new files]
+### File thay đổi
+**Thêm:**
+- packages/core/src/utils/format-utils.ts ([X] dòng)
+- packages/core/src/utils/format-utils.test.ts ([X] dòng)
+- [liệt kê các file mới]
 
-**Deleted:**
+**Xoá:**
 - apps/ytmp3-clone-4/src/utils/format-utils.ts
-- [list all deleted files]
+- [liệt kê các file đã xoá]
 
-**Modified:**
-- apps/ytmp3-clone-4/package.json (added dependency)
-- [list modified files with import changes]
+**Sửa:**
+- apps/ytmp3-clone-4/package.json (thêm dependency)
+- [liệt kê các file sửa phần import]
 
-### Next Steps
-Ready for Phase 2: I18n System
+### Bước tiếp theo
+Sẵn sàng cho Giai đoạn 2: Hệ thống I18n
 ```
 
-Submit for review (AI Reviewer + Human)
+Gửi để review (AI Reviewer + Human)
 
 ---
 
-## ✅ DEFINITION OF DONE
+## ✅ ĐỊNH NGHĨA HOÀN THÀNH
 
-Phase 1 is complete when:
+Giai đoạn 1 hoàn tất khi:
 
-- [ ] All 4 utility modules extracted to packages/core/src/utils/
-- [ ] 80%+ test coverage achieved
-- [ ] All unit tests passing
-- [ ] ytmp3-clone-4 migrated successfully
-- [ ] ytmp3-clone-4 behavior verified identical
-- [ ] Duplicate files deleted from clone-4
-- [ ] PR created with complete description
-- [ ] PR approved by reviewers
-- [ ] Code merged to main branch
-- [ ] Progress updated in MASTER_REFACTOR_DOC.md
-
----
-
-## 🆘 TROUBLESHOOTING
-
-### **If files are not identical across apps:**
-
-**Do NOT proceed blindly.**
-
-1. Document all differences
-2. Analyze which version is correct
-3. Ask human for decision
-4. Wait for approval
-
-### **If tests fail after extraction:**
-
-1. Verify code was copied exactly
-2. Check imports are correct
-3. Verify no logic was accidentally changed
-4. Compare with original file
-
-### **If app won't build after migration:**
-
-1. Check package.json has dependency
-2. Run `pnpm install`
-3. Verify import paths correct
-4. Check TypeScript can resolve imports
-
-### **If behavior changed after migration:**
-
-**This is CRITICAL - DO NOT IGNORE**
-
-1. Compare exact function calls
-2. Verify same inputs produce same outputs
-3. Check if any logic was modified
-4. Revert and analyze what went wrong
+- [ ] Đã trích xuất đủ 4 module utility vào packages/core/src/utils/
+- [ ] Đạt độ bao phủ 80%+
+- [ ] Tất cả unit test pass
+- [ ] Di trú ytmp3-clone-4 thành công
+- [ ] Xác minh hành vi ytmp3-clone-4 giống hệt
+- [ ] Xoá file trùng lặp khỏi clone-4
+- [ ] PR có mô tả đầy đủ
+- [ ] PR được duyệt
+- [ ] Code được merge vào main
+- [ ] Cập nhật tiến độ trong MASTER_REFACTOR_DOC.md
 
 ---
 
-## 📞 COMMUNICATION TEMPLATES
+## 🆘 XỬ LÝ SỰ CỐ
 
-### **At Start:**
-Use template from Step 1 above.
+Nếu file không giống hệt giữa các app:
 
-### **Progress Update:**
+KHÔNG được tiếp tục một cách mù quáng.
+
+1. Ghi lại toàn bộ khác biệt
+2. Phân tích xem phiên bản nào đúng
+3. Hỏi ý kiến người phụ trách
+4. Đợi phê duyệt
+
+Nếu test fail sau khi trích xuất:
+
+1. Xác minh sao chép mã chính xác
+2. Kiểm tra import đúng đắn
+3. Đảm bảo không vô tình đổi logic
+4. So sánh với file gốc
+
+Nếu app không build được sau khi di trú:
+
+1. Kiểm tra package.json đã có dependency
+2. Chạy `pnpm install`
+3. Xác minh đường dẫn import chính xác
+4. Kiểm tra TypeScript resolve import
+
+Nếu hành vi thay đổi sau khi di trú:
+
+ĐIỀU NÀY RẤT QUAN TRỌNG - KHÔNG ĐƯỢC BỎ QUA
+
+1. So sánh chính xác lời gọi hàm
+2. Xác minh cùng input cho cùng output
+3. Kiểm tra xem có chỉnh sửa logic nào không
+4. Hoàn tác và phân tích nguyên nhân
+
+---
+
+## 📞 MẪU GIAO TIẾP
+
+Khi bắt đầu:
+Dùng mẫu ở Bước 1 phía trên.
+
+Cập nhật tiến độ:
 ```
-Phase 1 Progress Update:
+Cập nhật tiến độ Giai đoạn 1:
 
-Completed:
-- ✅ Task 1: Analysis complete
-- ✅ Task 2: format-utils extracted ([X] tests, [Y]% coverage)
-- ✅ Task 3: link-validator extracted ([X] tests, [Y]% coverage)
+Đã hoàn thành:
+- ✅ Nhiệm vụ 1: Phân tích xong
+- ✅ Nhiệm vụ 2: Trích xuất format-utils ([X] test, [Y]% coverage)
+- ✅ Nhiệm vụ 3: Trích xuất link-validator ([X] test, [Y]% coverage)
 
-In Progress:
-- 🟡 Task 4: download-stream (writing tests)
+Đang thực hiện:
+- 🟡 Nhiệm vụ 4: download-stream (đang viết test)
 
-Pending:
-- ⏳ Task 5: YouTube helpers
-- ⏳ Task 6: Package exports
-- ⏳ Task 7: Migration
+Chờ xử lý:
+- ⏳ Nhiệm vụ 5: Helper YouTube
+- ⏳ Nhiệm vụ 6: Export package
+- ⏳ Nhiệm vụ 7: Di trú
 
-Blockers: [None / List blockers]
-ETA for completion: [Date]
+Vướng mắc: [Không / Liệt kê vướng mắc]
+Thời gian dự kiến hoàn thành: [Ngày]
 ```
 
-### **At Completion:**
+Khi hoàn tất:
 ```
-Phase 1 Complete! 🎉
+Giai đoạn 1 Hoàn Thành! 🎉
 
-Summary:
-- Extracted 4 utility modules
-- Written [X] tests
-- Achieved [Y]% coverage
-- Migrated ytmp3-clone-4
-- All tests passing
+Tóm tắt:
+- Trích xuất 4 module utility
+- Viết [X] test
+- Đạt [Y]% coverage
+- Di trú ytmp3-clone-4
+- Tất cả test pass
 
 PR: [link]
-Ready for review.
+Sẵn sàng review.
 ```
 
 ---
 
-## 🎓 TIPS FOR SUCCESS
+## 🎓 MẸO THÀNH CÔNG
 
-### **Before extracting:**
-- Read code carefully to understand what it does
-- Check for dependencies
-- Look for any app-specific logic (should be rare in utils)
+Trước khi trích xuất:
+- Đọc mã kỹ để hiểu chức năng
+- Kiểm tra phụ thuộc
+- Tìm logic đặc thù app (hiếm gặp trong utils)
 
-### **When writing tests:**
-- Test happy path first
-- Then test edge cases
-- Then test error cases
-- Use descriptive test names
+Khi viết test:
+- Test happy path trước
+- Sau đó test biên
+- Rồi test trường hợp lỗi
+- Đặt tên test mô tả rõ
 
-### **When migrating app:**
-- Test build first
-- Then test runtime
-- Compare behavior carefully
-- Don't assume it works - verify!
+Khi di trú app:
+- Test build trước
+- Rồi test runtime
+- So sánh hành vi cẩn thận
+- Không giả định là đúng — phải xác minh!
 
 ---
 
-## 📊 EXPECTED METRICS
+## 📊 CHỈ SỐ KỲ VỌNG
 
-**After Phase 1:**
-- Lines extracted: ~500 lines core utils
-- Tests written: ~40-50 tests
+Sau Giai đoạn 1:
+- Dòng mã trích xuất: ~500 dòng core utils
+- Số test: ~40-50 test
 - Coverage: 80-90%
-- Apps migrated: 1 (ytmp3-clone-4)
-- Duplicate code reduced: ~2,000 lines (across 5 apps)
+- Số app di trú: 1 (ytmp3-clone-4)
+- Giảm mã trùng lặp: ~2.000 dòng (trên 5 app)
 
 ---
 
-**Ready to start Phase 1! Remember: READ → ANALYZE → DISCUSS → APPROVE → CODE** 🚀
+Sẵn sàng bắt đầu Giai đoạn 1! Nhớ: ĐỌC → PHÂN TÍCH → THẢO LUẬN → DUYỆT → CODE 🚀
+

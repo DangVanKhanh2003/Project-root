@@ -1,9 +1,9 @@
-# PHASE 7: REMAINING APPS MIGRATION - HƯỚNG DẪN CHO AI
+# GIAI ĐOẠN 7: DI TRÚ CÁC ỨNG DỤNG CÒN LẠI - HƯỚNG DẪN CHO AI
 
-> **Phase:** Remaining Apps (Tuần 16-17)
+> **Giai đoạn:** Ứng dụng còn lại (Tuần 16-17)
 > **Mục tiêu:** Migrate 3 apps còn lại
 > **Mức độ rủi ro:** 🟡 Trung bình (non-production)
-> **Yêu cầu:** Phase 1-6 hoàn thành
+> **Yêu cầu:** Giai đoạn 1-6 hoàn thành
 
 ---
 

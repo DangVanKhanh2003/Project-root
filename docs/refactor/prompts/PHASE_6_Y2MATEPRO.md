@@ -1,9 +1,9 @@
-# PHASE 6: Y2MATEPRO MIGRATION - HƯỚNG DẪN CHO AI
+# GIAI ĐOẠN 6: DI TRÚ Y2MATEPRO - HƯỚNG DẪN CHO AI
 
 > **Phase:** Y2matepro Migration (Tuần 13-15)
 > **Mục tiêu:** Migrate PRODUCTION app lên refactored architecture
-> **Mức độ rủi ro:** 🔴 **VERY HIGH - PRODUCTION SITE**
-> **Yêu cầu:** Phase 1-5 đã hoàn thành PERFECTLY
+> **Mức độ rủi ro:** 🔴 **RẤT CAO - TRANG SẢN XUẤT**
+> **Yêu cầu:** Giai đoạn 1-5 đã hoàn thành HOÀN HẢO
 
 ---
 

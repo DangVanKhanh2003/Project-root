@@ -1,9 +1,9 @@
-# PHASE 5 REVIEW PROMPT - CHO AI CODE REVIEWER
+# GIAI ĐOẠN 5 - MẪU REVIEW CHO AI CODE REVIEWER
 
-> **Phase:** Phase 5 - Pilot Migration
+> **Giai đoạn:** Giai đoạn 5 - Di trú thử nghiệm
 > **Loại Review:** Code Review
 > **Vai trò:** AI Code Reviewer
-> **⚠️ CRITICAL:** Đây là full integration review - QUAN TRỌNG NHẤT
+> **⚠️ QUAN TRỌNG:** Đây là review tích hợp toàn bộ - CỰC KỲ QUAN TRỌNG
 
 ---
 
@@ -534,14 +534,14 @@ Approve PR khi:
 ## 📝 REVIEW TEMPLATE
 
 ```markdown
-## Phase 5 Code Review - Pilot Migration
+## Đánh giá mã Giai đoạn 5 - Di trú thử nghiệm
 
 ### Tóm tắt
 ⚠️ **FULL INTEGRATION REVIEW - Most Critical**
 
 [Assessment]
 
-**Verdict:** ✅ Approve | ⚠️ Approve with Comments | ❌ Request Changes
+**Kết luận:** ✅ Approve | ⚠️ Approve with Comments | ❌ Request Changes
 
 ---
 

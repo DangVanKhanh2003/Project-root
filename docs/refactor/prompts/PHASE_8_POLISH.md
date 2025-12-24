@@ -1,9 +1,9 @@
-# PHASE 8: POLISH & FINALIZATION - HƯỚNG DẪN CHO AI
+# GIAI ĐOẠN 8: HOÀN THIỆN & KẾT THÚC - HƯỚNG DẪN CHO AI
 
-> **Phase:** Polish & Optimization (Tuần 18)
+> **Giai đoạn:** Hoàn thiện & tối ưu (Tuần 18)
 > **Mục tiêu:** Hoàn thiện, optimize, document
 > **Mức độ rủi ro:** 🟢 Thấp
-> **Yêu cầu:** Phase 1-7 hoàn thành
+> **Yêu cầu:** Giai đoạn 1-7 hoàn thành
 
 ---
 
@@ -459,7 +459,7 @@ App Performance:
 ## Lessons Learned
 [Key learnings]
 
-## Next Steps
+## Bước tiếp theo
 [Future improvements]
 ```
 

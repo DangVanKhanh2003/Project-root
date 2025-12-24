@@ -1,6 +1,6 @@
-# PHASE 7 REVIEW PROMPT - CHO AI CODE REVIEWER
+# GIAI ĐOẠN 7 - MẪU REVIEW CHO AI CODE REVIEWER
 
-> **Phase:** Phase 7 - Remaining Apps Migration
+> **Giai đoạn:** Giai đoạn 7 - Di trú các ứng dụng còn lại
 > **Loại Review:** Multi-app Migration Review
 > **Vai trò:** AI Code Reviewer
 > **Yêu cầu:** Phase 1-6 đã hoàn thành
@@ -530,7 +530,7 @@ Test coverage:
 
 ---
 
-### Next Steps
+### Bước tiếp theo
 
 1. [Action]
 2. [Action]

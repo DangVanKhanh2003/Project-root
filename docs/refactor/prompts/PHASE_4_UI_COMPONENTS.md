@@ -1,9 +1,9 @@
-# PHASE 4: EXTRACT UI COMPONENTS - HƯỚNG DẪN CHO AI
+# GIAI ĐOẠN 4: TRÍCH XUẤT THÀNH PHẦN GIAO DIỆN - HƯỚNG DẪN CHO AI
 
-> **Phase:** UI Components (Tuần 9-10)
-> **Mục tiêu:** Extract các UI components có thể tái sử dụng
+> Giai đoạn: Thành phần giao diện (Tuần 9-10)
+> Mục tiêu: Trích xuất các thành phần giao diện có thể tái sử dụng
 > **Mức độ rủi ro:** 🟡 Trung bình
-> **Yêu cầu:** Phase 1, 2, 3 đã hoàn thành
+> **Yêu cầu:** Giai đoạn 1, 2, 3 đã hoàn thành
 
 ---
 
@@ -674,71 +674,71 @@ Sau khi được approve:
 
 ### **Bước 4: REVIEW**
 
-**Create PR:**
+**Tạo PR:**
 
-Title: `[Phase 4] Extract UI components với customization system`
+Tiêu đề: `[Phase 4] Trích xuất UI components với hệ thống tuỳ biến`
 
-Description:
+Mô tả:
 ```markdown
-## Phase 4: UI Components
+## Giai đoạn 4: Thành phần giao diện
 
 ### Tóm tắt
-Extracted reusable UI components với flexible customization system.
+Trích xuất các thành phần giao diện có thể tái sử dụng với hệ thống tuỳ biến linh hoạt.
 
-### Changes
-- ✅ Created packages/ui-components/
-- ✅ Extracted Button components
-- ✅ Extracted Progress components
-- ✅ Extracted Input components
-- ✅ Extracted Display components
-- ✅ CSS Custom Properties theming system
-- ✅ I18n integration
-- ✅ Migrated ytmp3-clone-4
-- ✅ Written [X] component tests
-- ✅ Achieved [X]% coverage
+### Thay đổi
+- ✅ Tạo packages/ui-components/
+- ✅ Trích xuất Button components
+- ✅ Trích xuất Progress components
+- ✅ Trích xuất Input components
+- ✅ Trích xuất Display components
+- ✅ Hệ thống CSS Custom Properties cho theme
+- ✅ Tích hợp i18n
+- ✅ Di trú ytmp3-clone-4
+- ✅ Viết [X] bài kiểm thử component
+- ✅ Đạt [X]% coverage
 
-### Components Extracted
-1. Button ([X] variants)
-2. Progress (circular, linear, spinner)
-3. Input (text, format selector)
-4. Display (result card, error, success)
+### Thành phần đã trích xuất
+1. Button ([X] biến thể)
+2. Progress (tròn, tuyến tính, spinner)
+3. Input (text, chọn định dạng)
+4. Display (thẻ kết quả, lỗi, thành công)
 
-### Customization System
-- CSS Custom Properties: [X] variables
-- Props-based customization
-- Class name override
-- Complete override capability
+### Hệ thống tuỳ biến
+- CSS Custom Properties: [X] biến
+- Tuỳ biến qua props
+- Ghi đè class name
+- Cho phép override hoàn toàn
 
-### I18n Integration
-- [X] translation keys added
-- All component text translatable
-- RTL support verified
+### Tích hợp i18n
+- Thêm [X] key dịch
+- Tất cả văn bản trong component có thể dịch
+- Xác minh hỗ trợ RTL
 
-### Test Results
-- Component tests: [X] passing
+### Kết quả kiểm thử
+- Bài kiểm thử component: [X] pass
 - Coverage: [X]%
-- Visual testing: ✅ UI identical
+- Kiểm thử thị giác: ✅ UI giống hệt
 
-### Verification
-- clone-3 (original): ✅ Working
-- clone-4 (migrated): ✅ UI identical
-- Customization: ✅ Tested with overrides
+### Xác minh
+- clone-3 (gốc): ✅ Hoạt động
+- clone-4 (đã di trú): ✅ UI giống hệt
+- Tuỳ biến: ✅ Đã kiểm với overrides
 
-### Files Changed
-**Added:**
+### File thay đổi
+**Thêm:**
 - packages/ui-components/src/ ([X] components)
 - packages/ui-components/src/theme/variables.css
 - packages/ui-components/tests/ ([X] tests)
 
-**Modified:**
-- apps/ytmp3-clone-4/src/ (using base components)
-- packages/i18n/src/locales/ (component translation keys)
+**Sửa:**
+- apps/ytmp3-clone-4/src/ (sử dụng base components)
+- packages/i18n/src/locales/ (thêm key dịch cho component)
 
-**Deleted:**
-- apps/ytmp3-clone-4/src/ui-components/ (old components)
+**Xoá:**
+- apps/ytmp3-clone-4/src/ui-components/ (components cũ)
 
-### Next Steps
-Ready for Phase 5: Pilot Migration
+### Bước tiếp theo
+Sẵn sàng Giai đoạn 5: Di trú thử nghiệm
 ```
 
 ---

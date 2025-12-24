@@ -1,6 +1,6 @@
-# PHASE 6 REVIEW PROMPT - CHO AI CODE REVIEWER
+# GIAI ĐOẠN 6 - MẪU REVIEW CHO AI CODE REVIEWER
 
-> **Phase:** Phase 6 - Y2matepro Migration
+> **Giai đoạn:** Giai đoạn 6 - Di trú y2matepro
 > **Loại Review:** Production Code Review
 > **Vai trò:** AI Code Reviewer
 > **⚠️⚠️⚠️ CRITICAL:** PRODUCTION SITE - ZERO TOLERANCE
@@ -386,7 +386,7 @@ Check deployment plan:
 ## 📝 REVIEW TEMPLATE (STRICT)
 
 ```markdown
-## Phase 6 Production Review - Y2matepro
+## Đánh giá sản phẩm Giai đoạn 6 - y2matepro
 
 ⚠️⚠️⚠️ **PRODUCTION SITE - ZERO TOLERANCE** ⚠️⚠️⚠️
 
@@ -579,7 +579,7 @@ Check deployment plan:
 
 ---
 
-### Next Steps
+### Bước tiếp theo
 
 1. [Action]
 2. [Action]

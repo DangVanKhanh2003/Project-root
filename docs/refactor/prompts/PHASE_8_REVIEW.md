@@ -1,58 +1,58 @@
-# PHASE 8 REVIEW PROMPT - CHO AI CODE REVIEWER
+# GIAI ĐOẠN 8 - MẪU REVIEW CHO AI CODE REVIEWER
 
-> **Phase:** Phase 8 - Polish & Finalization
-> **Loại Review:** Final Quality Review
+> **Giai đoạn:** Giai đoạn 8 - Hoàn thiện & Kết thúc
+> **Loại Review:** Đánh giá chất lượng cuối cùng
 > **Vai trò:** AI Code Reviewer
-> **Yêu cầu:** Phase 1-7 hoàn thành
-> **Mức độ:** 🎯 Excellence Required
+> **Yêu cầu:** Giai đoạn 1-7 hoàn thành
+> **Mức độ:** 🎯 Yêu cầu mức độ xuất sắc
 
 ---
 
-## 🎯 TỔNG QUAN PHASE 8 REVIEW
+## 🎯 TỔNG QUAN GIAI ĐOẠN 8
 
 ### **Mục đích Phase 8:**
 
-Phase 8 = Final polish, không phải major changes:
-- ✅ Performance optimization
-- ✅ Code quality polish
-- ✅ Documentation completion
-- ✅ Final testing
-- ✅ Success metrics
+Giai đoạn 8 = Hoàn thiện cuối, không phải thay đổi lớn:
+- ✅ Tối ưu hiệu năng
+- ✅ Chỉnh sửa/chà nhẵn chất lượng mã
+- ✅ Hoàn tất tài liệu
+- ✅ Kiểm thử cuối cùng
+- ✅ Chỉ số thành công
 
-### **Review Standard:**
+### **Tiêu chuẩn đánh giá:**
 
-Phase 8 review khác các phase trước:
-- ✅ Tập trung vào **EXCELLENCE**, không phải completion
-- ✅ Holistic view của entire refactor
-- ✅ Production-ready quality across all apps
-- ✅ Long-term maintainability
+Đánh giá Giai đoạn 8 khác các giai đoạn trước:
+- ✅ Tập trung vào mức độ **XUẤT SẮC**, không chỉ hoàn thành
+- ✅ Nhìn tổng thể toàn bộ quá trình refactor
+- ✅ Chất lượng sẵn sàng production cho tất cả apps
+- ✅ Khả năng bảo trì dài hạn
 
-**Không chỉ check "works" mà check "works EXCELLENT".**
+**Không chỉ kiểm tra "chạy được" mà phải "chạy thật xuất sắc".**
 
 ---
 
 ## 📚 PHẢI ĐỌC TRƯỚC KHI REVIEW
 
 **BẮT BUỘC (theo thứ tự):**
-1. `/docs/refactor/MASTER_REFACTOR_DOC.md` - Full picture
-2. All Phase 1-7 prompts - Context
-3. `/docs/refactor/prompts/PHASE_8_POLISH.md` - Requirements
-4. Success metrics document
-5. Performance reports
-6. Final documentation
-7. Test coverage reports
+1. `/docs/refactor/MASTER_REFACTOR_DOC.md` - Toàn cảnh
+2. Tất cả tài liệu Giai đoạn 1-7 - Bối cảnh
+3. `/docs/refactor/prompts/PHASE_8_POLISH.md` - Yêu cầu
+4. Tài liệu chỉ số thành công
+5. Báo cáo hiệu năng
+6. Tài liệu cuối cùng
+7. Báo cáo độ bao phủ kiểm thử
 
 ---
 
-## ✅ PHASE 8 REVIEW CHECKLIST
+## ✅ DANH SÁCH KIỂM TRA GIAI ĐOẠN 8
 
-### **1. PERFORMANCE OPTIMIZATION**
+### **1. TỐI ƯU HIỆU NĂNG**
 
-#### **1.1 Bundle Size**
+#### **1.1 Kích thước bundle**
 
-**Check bundles cho MỖI app:**
+**Kiểm tra bundle cho MỖI app:**
 
-| App | Before (KB) | After (KB) | Change | Target | Status |
+| App | Trước (KB) | Sau (KB) | Thay đổi | Mục tiêu | Trạng thái |
 |-----|-------------|------------|--------|--------|--------|
 | y2matepro | [X] | [Y] | [Z] | Smaller/Same | [✅/❌] |
 | clone-4 | [X] | [Y] | [Z] | Smaller/Same | [✅/❌] |
@@ -485,7 +485,7 @@ App Performance:
 ## Lessons Learned
 [List]
 
-## Next Steps
+## Bước tiếp theo
 [Future improvements]
 ```
 
@@ -873,7 +873,7 @@ Performance:
 
 **Ready for Celebration:** [YES/NO]
 
-**Next Steps:** [List]
+**Bước tiếp theo:** [Danh sách]
 
 ---
 
