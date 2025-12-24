@@ -3,7 +3,7 @@
  * Renders search results and messages in content area
  */
 
-import { createSearchResultCard, createSkeletonCard, type VideoData } from '@downloader/ui-components';
+import { createSearchResultCard, createSkeletonCard, createPreviewCardSkeleton, type VideoData } from '@downloader/ui-components';
 import { setInputValue } from './ui-renderer';
 import { initExpandableText } from '../../../utils';
 import {
@@ -459,20 +459,10 @@ function createConversionStateWrapper(): string {
 /**
  * Render preview card skeleton
  * IMPORTANT: Structure MUST match renderPreviewCard() to prevent CLS
+ * @deprecated Use createPreviewCardSkeleton from @downloader/ui-components instead
  */
 function renderPreviewCardSkeleton(): string {
-  return `
-    <div class="yt-preview-card skeleton">
-      <div class="yt-preview-thumbnail">
-        <div class="skeleton-img"></div>
-      </div>
-      <div class="yt-preview-details">
-        <div class="skeleton-line skeleton-title"></div>
-        <div class="skeleton-line skeleton-format"></div>
-        <div class="skeleton-line skeleton-author"></div>
-      </div>
-    </div>
-  `;
+  return createPreviewCardSkeleton();
 }
 
 /**

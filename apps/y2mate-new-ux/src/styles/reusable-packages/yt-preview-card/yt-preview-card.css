@@ -126,60 +126,8 @@
    Skeleton Loading State
    ========================================== */
 
-.yt-preview-card.skeleton .yt-preview-thumbnail {
-  background: linear-gradient(
-    90deg,
-    #f0f0f0 25%,
-    #e0e0e0 50%,
-    #f0f0f0 75%
-  );
-  background-size: 200% 100%;
-  animation: skeleton-loading 1.5s ease-in-out infinite;
-}
-
-/* Namespace skeleton lines specifically for YT preview card */
-.yt-preview-card.skeleton .skeleton-line {
-  background: linear-gradient(
-    90deg,
-    #f0f0f0 25%,
-    #e0e0e0 50%,
-    #f0f0f0 75%
-  );
-  background-size: 200% 100%;
-  animation: skeleton-loading 1.5s ease-in-out infinite;
-  border-radius: 4px;
-}
-
-/* Skeleton line types - match real element heights */
-.yt-preview-card.skeleton .skeleton-line.skeleton-title {
-  width: 80%;
-  height: 22px;
-    padding: 0px !important;
-  margin: 0px !important;
-}
-
-.yt-preview-card.skeleton .skeleton-line.skeleton-format {
-  width: 50%;
-  height: 26px;
-    padding: 0px !important;
-  margin: 0px !important;
-}
-
-.yt-preview-card.skeleton .skeleton-line.skeleton-author {
-  width: 40%;
-  height: 18px;
-    padding: 0px !important;
-  margin: 0px !important;
-}
-
-@keyframes skeleton-loading {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: -200% 0;
-  }
-}
+/* Skeleton styles moved to @downloader/ui-components/PreviewCardSkeleton */
+/* Import via: import { createPreviewCardSkeleton } from '@downloader/ui-components' */
 
 /* ==========================================
    Responsive Design
