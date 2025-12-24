@@ -65,6 +65,9 @@ importers:
       '@downloader/core':
         specifier: workspace:*
         version: link:../../packages/core
+      '@downloader/i18n':
+        specifier: workspace:*
+        version: link:../../packages/i18n
       '@downloader/ui-shared':
         specifier: workspace:*
         version: link:../../packages/ui-shared
@@ -112,6 +115,9 @@ importers:
       '@downloader/core':
         specifier: workspace:*
         version: link:../../packages/core
+      '@downloader/i18n':
+        specifier: workspace:*
+        version: link:../../packages/i18n
       '@downloader/ui-shared':
         specifier: workspace:*
         version: link:../../packages/ui-shared
@@ -159,6 +165,9 @@ importers:
       '@downloader/core':
         specifier: workspace:*
         version: link:../../packages/core
+      '@downloader/i18n':
+        specifier: workspace:*
+        version: link:../../packages/i18n
       '@downloader/ui-shared':
         specifier: workspace:*
         version: link:../../packages/ui-shared

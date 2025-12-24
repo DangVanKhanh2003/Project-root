@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@downloader/core": "workspace:*",
+    "@downloader/i18n": "workspace:*",
     "@downloader/ui-shared": "workspace:*"
   },
   "devDependencies": {

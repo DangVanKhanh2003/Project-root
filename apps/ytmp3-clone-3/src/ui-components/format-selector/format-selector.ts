@@ -13,6 +13,7 @@ import {
   type FormatType,
   type AudioFormatType
 } from '../../features/downloader/state';
+import { t } from '@downloader/i18n';
 
 // ==========================================
 // Render Functions
@@ -76,7 +77,7 @@ function renderFormatSelector(): string {
 
       <!-- Convert Button -->
       <button type="submit" class="btn-convert">
-        <span>Convert</span>
+        <span>${t('common.buttons.convert')}</span>
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
       </button>
     </div>
@@ -91,7 +92,7 @@ function renderVideoQualityDropdown(selectedQuality: string): string {
   const defaultQuality = selectedQuality || '720p';
 
   return `
-    <select id="quality-select" class="quality-select" aria-label="Video quality" data-quality-select>
+    <select id="quality-select" class="quality-select" aria-label="${t('aria.qualitySelector')}" data-quality-select>
       ${qualities.map(quality => {
         const resolution = quality.replace('p', '');
         const isSelected = quality === defaultQuality;
@@ -123,7 +124,7 @@ function renderAudioQualityDropdown(selectedAudioFormat: AudioFormatType, select
 
   return `
     <div class="quality-dropdown-wrapper">
-      <select id="quality-select" class="quality-select" aria-label="Audio quality" data-quality-select>
+      <select id="quality-select" class="quality-select" aria-label="${t('aria.qualitySelector')}" data-quality-select>
         ${audioOptions.map(option => {
           const isSelected = option.value === selectedValue;
           return `<option value="${option.value}"${isSelected ? ' selected' : ''}> ${option.label} </option>`;
