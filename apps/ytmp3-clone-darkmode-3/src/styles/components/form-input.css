@@ -181,7 +181,7 @@
 /* Inline hero message (outside hero card) */
 .hero-inline-message {
     width: 100%;
-    max-width: 960px;
+    max-width: 900px;
     margin: 24px auto 32px;
     padding: 0 24px;
     display: none;

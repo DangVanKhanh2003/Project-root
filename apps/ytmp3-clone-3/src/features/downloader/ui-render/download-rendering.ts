@@ -7,7 +7,7 @@
  */
 
 import { initExpandableText } from '../../../utils';
-import { addRippleEffect } from '../../../utils/ripple-effect';
+import { addRippleEffect } from '@downloader/core/utils';
 import { TaskState } from '../logic/conversion/types';
 import { updateButtonVisibility, setQuery, setOriginalQuery } from '../state';
 import type { AppState, ConversionTask } from '../state/types';

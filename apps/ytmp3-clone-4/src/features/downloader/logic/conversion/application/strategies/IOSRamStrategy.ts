@@ -9,8 +9,8 @@ import { BaseStrategy } from './BaseStrategy';
 import type { StrategyContext, StrategyResult } from './IConversionStrategy';
 import { TaskState } from '../../types';
 
-// Direct import
-import { downloadStreamToRAM } from '../../../../../../utils/download-stream';
+// Import from @downloader/core
+import { downloadStreamToRAM } from '@downloader/core/utils';
 
 // Debug logger
 const LOG_PREFIX = '[IOSRamStrategy]';

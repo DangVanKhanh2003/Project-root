@@ -16,8 +16,8 @@ import {
   getState
 } from '../../state';
 import { triggerDownload } from '../../../../utils';
-import { isLinkExpired } from '../../../../utils/link-validator';
-import { isYouTubeUrl } from '@downloader/core';
+import { isLinkExpired } from '@downloader/core/utils';
+import { isYouTubeUrl } from '@downloader/core/utils/youtube';
 
 // Types
 import {

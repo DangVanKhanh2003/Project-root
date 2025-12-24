@@ -3,7 +3,7 @@
  * Handles download link TTL (Time-To-Live) validation
  */
 
-import { getExpiryTime } from '../environment';
+import { getExpiryTime } from '../constants/config';
 
 // Type definitions
 export type LinkStatus = 'valid' | 'warning' | 'expired';

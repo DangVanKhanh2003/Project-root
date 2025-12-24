@@ -37,204 +37,12 @@ import type { VideoData } from '../../../ui-components/search-result-card/search
 import { navigateToVideo } from '../routing/url-manager';
 import { setVideoPageSEO } from '../routing/seo-manager';
 
-// ============================================
-// YOUTUBE HELPERS
-// ============================================
-
-/**
- * Check if URL is YouTube
- */
-function isYouTubeUrl(url: string): boolean {
-  return /(?:youtube\.com|youtu\.be|youtube-nocookie\.com|youtubekids\.com)/i.test(url);
-}
-
-/**
- * Extract YouTube video ID from URL
- */
-function extractYouTubeVideoId(url: string): string | null {
-  // youtu.be/VIDEO_ID
-  const shortMatch = url.match(/youtu\.be\/([a-zA-Z0-9_-]{11})/);
-  if (shortMatch) return shortMatch[1];
-
-  // youtube.com/shorts/VIDEO_ID
-  const shortsMatch = url.match(/\/shorts\/([a-zA-Z0-9_-]{11})/);
-  if (shortsMatch) return shortsMatch[1];
-
-  // youtube.com/watch?v=VIDEO_ID
-  const longMatch = url.match(/[?&]v=([a-zA-Z0-9_-]{11})/);
-  if (longMatch) return longMatch[1];
-
-  // youtube.com/embed/VIDEO_ID
-  const embedMatch = url.match(/\/embed\/([a-zA-Z0-9_-]{11})/);
-  if (embedMatch) return embedMatch[1];
-
-  return null;
-}
-
-/**
- * Generate fake YouTube data for instant UI
- * Returns pre-defined quality options before API call
- */
-function generateFakeYouTubeData(videoId: string, url: string): any {
-  return {
-    meta: {
-      vid: videoId,
-      title: `Loading video information...`,
-      author: 'Please wait...',
-      thumbnail: `https://i.ytimg.com/vi/${videoId}/0.jpg`,
-      duration: '--:--',
-      source: 'YouTube',
-      originalUrl: url,
-      isFakeData: true
-    },
-    formats: {
-      video: [
-        {
-          quality: '1080p',
-          format: 'mp4',
-          vid: videoId,
-          type: 'VIDEO',
-          size: 'Processing...',
-          isFakeData: true,
-          extractV2Options: {
-            downloadMode: 'video',
-            videoQuality: '1080',
-            youtubeVideoContainer: 'mp4'
-          }
-        },
-        {
-          quality: '720p',
-          format: 'mp4',
-          vid: videoId,
-          type: 'VIDEO',
-          size: 'Processing...',
-          isFakeData: true,
-          extractV2Options: {
-            downloadMode: 'video',
-            videoQuality: '720',
-            youtubeVideoContainer: 'mp4'
-          }
-        },
-        {
-          quality: '480p',
-          format: 'mp4',
-          vid: videoId,
-          type: 'VIDEO',
-          size: 'Processing...',
-          isFakeData: true,
-          extractV2Options: {
-            downloadMode: 'video',
-            videoQuality: '480',
-            youtubeVideoContainer: 'mp4'
-          }
-        },
-        {
-          quality: '360p',
-          format: 'mp4',
-          vid: videoId,
-          type: 'VIDEO',
-          size: 'Processing...',
-          isFakeData: true,
-          extractV2Options: {
-            downloadMode: 'video',
-            videoQuality: '360',
-            youtubeVideoContainer: 'mp4'
-          }
-        },
-        {
-          quality: '240p',
-          format: 'mp4',
-          vid: videoId,
-          type: 'VIDEO',
-          size: 'Processing...',
-          isFakeData: true,
-          extractV2Options: {
-            downloadMode: 'video',
-            videoQuality: '240',
-            youtubeVideoContainer: 'mp4'
-          }
-        },
-        {
-          quality: '144p',
-          format: 'mp4',
-          vid: videoId,
-          type: 'VIDEO',
-          size: 'Processing...',
-          isFakeData: true,
-          extractV2Options: {
-            downloadMode: 'video',
-            videoQuality: '144',
-            youtubeVideoContainer: 'mp4'
-          }
-        },
-      ],
-      audio: [
-        {
-          quality: '256kbps',
-          format: 'mp3',
-          vid: videoId,
-          type: 'AUDIO',
-          size: 'Processing...',
-          isFakeData: true,
-          extractV2Options: {
-            downloadMode: 'audio',
-            audioBitrate: '256',
-            audioFormat: 'mp3'
-          }
-        },
-        {
-          quality: '128kbps',
-          format: 'mp3',
-          vid: videoId,
-          type: 'AUDIO',
-          size: 'Processing...',
-          isFakeData: true,
-          extractV2Options: {
-            downloadMode: 'audio',
-            audioBitrate: '128',
-            audioFormat: 'mp3'
-          }
-        },
-        {
-          quality: 'OGG',
-          format: 'ogg',
-          vid: videoId,
-          type: 'AUDIO',
-          size: 'Processing...',
-          isFakeData: true,
-          extractV2Options: {
-            downloadMode: 'audio',
-            audioFormat: 'ogg'
-          }
-        },
-        {
-          quality: 'WAV',
-          format: 'wav',
-          vid: videoId,
-          type: 'AUDIO',
-          size: 'Processing...',
-          isFakeData: true,
-          extractV2Options: {
-            downloadMode: 'audio',
-            audioFormat: 'wav'
-          }
-        },
-        {
-          quality: 'Opus',
-          format: 'opus',
-          vid: videoId,
-          type: 'AUDIO',
-          size: 'Processing...',
-          isFakeData: true,
-          extractV2Options: {
-            downloadMode: 'audio',
-            audioFormat: 'opus'
-          }
-        },
-      ]
-    }
-  };
-}
+// Import YouTube helpers from @downloader/core (TODO: remove local duplicates)
+import {
+  isYouTubeUrl as isYouTubeUrlFromCore,
+  extractYouTubeVideoId as extractYouTubeVideoIdFromCore,
+  generateFakeYouTubeData as generateFakeYouTubeDataFromCore
+} from '@downloader/core/utils/youtube';
 
 /**
  * Handle auto-download after preview is shown
@@ -813,7 +621,7 @@ async function handleExtractMedia(url: string): Promise<void> {
     // ═══════════════════════════════════════════════════════
 
     // ❌ Reject if not a YouTube URL
-    if (!isYouTubeUrl(url)) {
+    if (!isYouTubeUrlFromCore(url)) {
       throw new Error('Only YouTube URLs are supported. Please enter a valid YouTube link.');
     }
 
@@ -821,7 +629,7 @@ async function handleExtractMedia(url: string): Promise<void> {
     // YOUTUBE WORKFLOW: Simple Preview with Metadata
     // ═══════════════════════════════════════════════════════
 
-    const videoId = extractYouTubeVideoId(url);
+    const videoId = extractYouTubeVideoIdFromCore(url);
 
       if (!videoId) {
         throw new Error('Invalid YouTube URL - cannot extract video ID');
