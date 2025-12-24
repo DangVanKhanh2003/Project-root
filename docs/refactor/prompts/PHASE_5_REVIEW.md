@@ -1,3 +1,7 @@
+
+không áp dụng cho apps/y2matepro
+chỉ áp dụng cho các site còn lại thôi
+
 # GIAI ĐOẠN 5 - MẪU REVIEW CHO AI CODE REVIEWER
 
 > **Giai đoạn:** Giai đoạn 5 - Di trú thử nghiệm

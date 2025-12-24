@@ -1,3 +1,6 @@
+không áp dụng cho apps/y2matepro
+chỉ áp dụng cho các site còn lại thôi
+
 # GIAI ĐOẠN 5: DI TRÚ THỬ NGHIỆM - HƯỚNG DẪN CHO AI
 
 > **Giai đoạn:** Di trú thử nghiệm (Tuần 11-12)

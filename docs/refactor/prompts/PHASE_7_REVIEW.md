@@ -1,3 +1,6 @@
+không áp dụng cho apps/y2matepro
+chỉ áp dụng cho các site còn lại thôi
+
 # GIAI ĐOẠN 7 - MẪU REVIEW CHO AI CODE REVIEWER
 
 > **Giai đoạn:** Giai đoạn 7 - Di trú các ứng dụng còn lại

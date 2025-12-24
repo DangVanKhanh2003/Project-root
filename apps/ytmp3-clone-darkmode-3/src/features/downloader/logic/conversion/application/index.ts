@@ -1,9 +1,9 @@
 /**
  * Application Layer - Barrel Export
  *
- * Contains:
- * - Strategies: Strategy pattern implementations (call infrastructure directly)
+ * Phase 3A Integration: Now uses strategies from @downloader/core
+ * Only exports StrategyFactory (strategies themselves are in core)
  */
 
-// Strategies
-export * from './strategies';
+// Strategy Factory (uses core strategies)
+export * from './strategies/StrategyFactory';

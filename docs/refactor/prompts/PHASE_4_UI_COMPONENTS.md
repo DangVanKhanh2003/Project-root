@@ -1,3 +1,6 @@
+không áp dụng cho apps/y2matepro
+chỉ áp dụng cho các site còn lại thôi
+
 # GIAI ĐOẠN 4: TRÍCH XUẤT THÀNH PHẦN GIAO DIỆN - HƯỚNG DẪN CHO AI
 
 > Giai đoạn: Thành phần giao diện (Tuần 9-10)
@@ -42,7 +45,6 @@
   - Components nào có thể share
 
 **Cụ thể cần đọc:**
-- Progress bar components
 - Button components
 - Input/form components
 - Format selector components
@@ -68,7 +70,6 @@
 ### **Mục tiêu chính:**
 
 1. **Extract base UI components:**
-   - Progress bar component (circular/linear)
    - Button components
    - Input components
    - Format selector

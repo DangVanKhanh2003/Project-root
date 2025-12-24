@@ -1,3 +1,6 @@
+
+không áp dụng cho apps/y2matepro
+chỉ áp dụng cho các site còn lại thôi
 # GIAI ĐOẠN 7: DI TRÚ CÁC ỨNG DỤNG CÒN LẠI - HƯỚNG DẪN CHO AI
 
 > **Giai đoạn:** Ứng dụng còn lại (Tuần 16-17)

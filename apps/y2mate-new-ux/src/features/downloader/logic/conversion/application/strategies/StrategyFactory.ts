@@ -1,40 +1,50 @@
 /**
  * StrategyFactory - Factory for creating conversion strategies
  *
- * Selects and instantiates the correct strategy based on routing decision.
- * Simple factory - no dependencies injection, strategies call infrastructure directly.
+ * Phase 3A Integration: Uses strategies from @downloader/core with adapters.
+ * Strategies receive injected dependencies via adapters.
  */
 
-import type { IConversionStrategy, StrategyContext } from './IConversionStrategy';
-import { StaticDirectStrategy } from './StaticDirectStrategy';
-import { IOSRamStrategy } from './IOSRamStrategy';
-import { PollingStrategy } from './PollingStrategy';
-import { OtherStreamStrategy } from './OtherStreamStrategy';
-import { RouteType } from '../../types';
+import type { IConversionStrategy } from '@downloader/core/conversion';
+import {
+  StaticDirectStrategy,
+  IOSRamStrategy,
+  PollingStrategy,
+  OtherStreamStrategy,
+  RouteType,
+  type StrategyContext
+} from '@downloader/core/conversion';
+import { CoreStateAdapter, CorePollingAdapter } from '../../../../../../adapters';
+
+// Create singleton adapters (shared across all strategies)
+const stateAdapter = new CoreStateAdapter();
+const pollingAdapter = new CorePollingAdapter();
 
 /**
  * Create strategy based on routing decision
+ *
+ * Uses strategies from @downloader/core with DI adapters.
  */
 export function createStrategy(context: StrategyContext): IConversionStrategy {
   const { routeType } = context.routing;
 
   switch (routeType) {
     case RouteType.STATIC_DIRECT:
-      return new StaticDirectStrategy(context);
+      return new StaticDirectStrategy(context, stateAdapter);
 
     case RouteType.IOS_RAM:
-      return new IOSRamStrategy(context);
+      return new IOSRamStrategy(context, stateAdapter);
 
     case RouteType.IOS_POLLING:
     case RouteType.WINDOWS_MP4_POLLING:
-      return new PollingStrategy(context);
+      return new PollingStrategy(context, stateAdapter, pollingAdapter);
 
     case RouteType.OTHER_STREAM:
-      return new OtherStreamStrategy(context);
+      return new OtherStreamStrategy(context, stateAdapter);
 
     default:
       // Fallback to static direct
-      return new StaticDirectStrategy(context);
+      return new StaticDirectStrategy(context, stateAdapter);
   }
 }
 

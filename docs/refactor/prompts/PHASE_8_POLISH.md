@@ -1,3 +1,7 @@
+không áp dụng cho apps/y2matepro
+chỉ áp dụng cho các site còn lại thôi
+
+
 # GIAI ĐOẠN 8: HOÀN THIỆN & KẾT THÚC - HƯỚNG DẪN CHO AI
 
 > **Giai đoạn:** Hoàn thiện & tối ưu (Tuần 18)
