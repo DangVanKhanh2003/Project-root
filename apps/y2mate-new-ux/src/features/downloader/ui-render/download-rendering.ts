@@ -202,7 +202,10 @@ function updateStatusBarUI(wrapper: HTMLElement, task: ConversionTask, formatId:
 
   // Update action-container visibility
   if (task.state === TaskState.SUCCESS || task.state === TaskState.FAILED) {
-    actionContainer.classList.add('active');
+    // Delay showing buttons to let progress bar fill animation complete (200ms transition + 50ms buffer)
+    setTimeout(() => {
+      actionContainer.classList.add('active');
+    }, 250);
 
     // Cleanup throttle map when task completes (prevent memory leak)
     lastUpdateTimes.delete(formatId);
