@@ -3,7 +3,13 @@
  * Renders search results and messages in content area
  */
 
-import { createSearchResultCard, createSkeletonCard, createPreviewCardSkeleton, type VideoData } from '@downloader/ui-components';
+import {
+  createSearchResultCard,
+  createSkeletonCard,
+  createPreviewCardSkeleton,
+  createPreviewCardSkeletonWithWrapper,
+  type VideoData
+} from '@downloader/ui-components';
 import { setInputValue } from './ui-renderer';
 import { initExpandableText } from '../../../utils';
 import {
@@ -491,6 +497,27 @@ export function renderPreviewCard(_data: any): void {
 
   // If no YouTube preview data, don't render
   if (!youtubePreview) {
+    return;
+  }
+
+  // If still loading, render skeleton instead of real content
+  if (youtubePreview.isLoading) {
+    const conversionStatusWrapper = `
+      <div class="conversion-status-wrapper" id="conversion-status-wrapper">
+        <div class="status-container">
+          <div class="status status--extracting">
+            <span class="status-text">Extracting...</span>
+            <div class="icon spinner"></div>
+          </div>
+        </div>
+        <div class="action-container">
+          <button class="download-btn" id="conversion-download-btn">Download</button>
+          <button class="retry-btn" id="conversion-retry-btn">Retry</button>
+        </div>
+      </div>
+    `;
+    contentArea.innerHTML = createPreviewCardSkeletonWithWrapper(conversionStatusWrapper);
+    showResultView();
     return;
   }
 
