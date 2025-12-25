@@ -80,6 +80,7 @@
   position: relative;
   z-index: 2;
   width: 100%; /* Fill full width of status-container */
+  height: 40px; /* Mobile: match status-container min-height */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -268,6 +269,10 @@
   .status-container,
   .action-container {
     min-height: 52px; /* Desktop: 52px height */
+  }
+
+  .status {
+    height: 52px; /* Desktop: match status-container min-height */
   }
 
   .status-text {
