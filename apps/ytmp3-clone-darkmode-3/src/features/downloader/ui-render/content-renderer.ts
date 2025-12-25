@@ -495,27 +495,6 @@ export function renderPreviewCard(_data: any): void {
     return;
   }
 
-  // If still loading, render skeleton instead of real content
-  if (youtubePreview.isLoading) {
-    // Use same wrapper class as real content (conversion-state-wrapper) to avoid re-render
-    const conversionStatusWrapper = `
-      <div class="conversion-state-wrapper">
-        <div class="status-container" id="status-container" style="display: block;">
-          <div class="status status--extracting">
-            <span class="status-text">Extracting...</span>
-            <div class="icon spinner"></div>
-          </div>
-        </div>
-        <div class="action-container" style="display: none;">
-          <button class="download-btn" id="conversion-download-btn">Download</button>
-          <button class="retry-btn" id="conversion-retry-btn">Retry</button>
-        </div>
-      </div>
-    `;
-    contentArea.innerHTML = createPreviewCardSkeletonWithWrapper(conversionStatusWrapper);
-    return;
-  }
-
   const { title, thumbnail, author } = youtubePreview;
   const selectedFormat = state.selectedFormat; // 'mp3' or 'mp4'
 
