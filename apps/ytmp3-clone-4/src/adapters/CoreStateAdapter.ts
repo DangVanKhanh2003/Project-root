@@ -31,8 +31,14 @@ export class CoreStateAdapter implements IStateUpdater {
     // Core uses lowercase: 'idle', 'success', 'failed'
     // App uses lowercase too, so no conversion needed
 
+    // Only include state if it's explicitly provided (not undefined)
+    // This prevents overwriting existing state during progress updates
+    const stateUpdate = updates.state !== undefined
+      ? { state: updates.state as any } // Type cast for compatibility
+      : {};
+
     updateConversionTask(formatId, {
-      state: updates.state as any, // Type cast for compatibility
+      ...stateUpdate,
       statusText: updates.statusText,
       progress: updates.progress,
       downloadUrl: updates.downloadUrl,

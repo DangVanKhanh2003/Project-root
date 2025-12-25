@@ -156,7 +156,7 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
 
   // Update progress fill background
   const progress = task.progress ?? 0;
-  statusContainer.style.setProperty('--progress-percent', `${progress}%`);
+  statusContainer.style.setProperty('--progress-width', `${progress}%`);
   // Remove all state classes
   console.log(`%c[DEBUG] Removing classes. Current icon classes: ${Array.from(iconElement.classList).join(' ')}`, 'color: yellow;');
   statusElement.classList.remove('status--extracting', 'status--processing', 'status--success', 'status--error');

@@ -149,7 +149,7 @@ function updateStatusBarUI(wrapper: HTMLElement, task: ConversionTask, formatId:
 
   // Update progress fill background
   const progress = task.progress ?? 0;
-  statusContainer.style.setProperty('--progress', `${progress}%`);
+  statusContainer.style.setProperty('--progress-width', `${progress}%`);
 
   // Remove all state classes
   statusElement.classList.remove('status--extracting', 'status--processing', 'status--success', 'status--error');
