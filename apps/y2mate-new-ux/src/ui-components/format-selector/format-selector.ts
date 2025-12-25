@@ -54,6 +54,9 @@ function renderFormatSelector(): string {
   const state = getState();
   const { selectedFormat, videoQuality, audioFormat, audioBitrate } = state;
 
+  // Load auto-submit state from localStorage
+  const autoSubmitEnabled = localStorage.getItem('autoSubmit') === 'true';
+
   // Generate quality dropdown HTML based on selected format
   const qualityDropdownHTML = selectedFormat === 'mp4'
     ? renderVideoQualityDropdown(videoQuality)
@@ -61,25 +64,33 @@ function renderFormatSelector(): string {
 
   return `
     <div class="format-selector">
-      <!-- Format Toggle (Two separate buttons) -->
-      <div class="format-toggle">
-        <button type="button" class="format-btn ${selectedFormat === 'mp3' ? 'active' : ''}" data-format="mp3">MP3</button>
-        <button type="button" class="format-btn ${selectedFormat === 'mp4' ? 'active' : ''}" data-format="mp4">MP4</button>
-      </div>
+      <!-- Format + Quality Group -->
+      <div class="format-quality-group">
+        <!-- Format Toggle Button (Single button with two sides) -->
+        <div class="format-toggle-btn">
+          <div class="toggle-side ${selectedFormat === 'mp3' ? 'active' : ''}" data-format="mp3">
+            <span class="format-label">MP3</span>
+          </div>
+          <div class="toggle-side ${selectedFormat === 'mp4' ? 'active' : ''}" data-format="mp4">
+            <span class="format-label">MP4</span>
+          </div>
+        </div>
 
-      <!-- Quality Dropdown (Dynamic based on format) -->
-      <div class="quality-wrapper">
-        ${qualityDropdownHTML}
-        <div class="select-arrow">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        <!-- Quality Dropdown -->
+        <div class="quality-selector">
+          ${qualityDropdownHTML}
         </div>
       </div>
 
-      <!-- Convert Button -->
-      <button type="submit" class="btn-convert">
-        <span>${t('common.buttons.convert')}</span>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-      </button>
+      <!-- Auto Submit Toggle -->
+      <div class="auto-submit-toggle" data-tooltip="${t('formatSelector.autoSubmitTooltip')}">
+        <label class="toggle-switch">
+          <input type="checkbox" id="auto-submit-checkbox" data-auto-submit-toggle${autoSubmitEnabled ? ' checked' : ''}>
+          <span class="toggle-slider"></span>
+        </label>
+        <span class="toggle-label">${t('formatSelector.autoSubmit')}</span>
+        <div class="custom-tooltip"></div>
+      </div>
     </div>
   `;
 }
@@ -165,13 +176,20 @@ export function initFormatSelector(containerSelector: string = '#previewCard'): 
 function handleFormatSelectorClick(event: Event): void {
   const target = event.target as HTMLElement;
 
-  // Handle format button clicks (Two separate buttons)
-  const formatBtn = target.closest('.format-btn') as HTMLElement;
-  if (formatBtn) {
-    const format = formatBtn.dataset.format as FormatType;
+  // Handle format toggle clicks (toggle-side div)
+  const toggleSide = target.closest('.toggle-side') as HTMLElement;
+  if (toggleSide) {
+    const format = toggleSide.dataset.format as FormatType;
     if (format) {
       handleFormatChange(format);
     }
+    return;
+  }
+
+  // Handle auto-submit toggle clicks
+  const autoSubmitCheckbox = target.closest('[data-auto-submit-toggle]') as HTMLInputElement;
+  if (autoSubmitCheckbox && autoSubmitCheckbox.type === 'checkbox') {
+    handleAutoSubmitToggle(autoSubmitCheckbox.checked);
     return;
   }
 }
@@ -211,6 +229,18 @@ function handleQualityChange(event: Event): void {
 function handleFormatChange(format: FormatType): void {
   setSelectedFormat(format);
   refreshFormatSelector();
+}
+
+/**
+ * Handle auto-submit toggle change
+ */
+function handleAutoSubmitToggle(isEnabled: boolean): void {
+  // Save to localStorage
+  localStorage.setItem('autoSubmit', isEnabled ? 'true' : 'false');
+  console.log('[FormatSelector] Auto-submit:', isEnabled);
+
+  // TODO: Implement auto-submit functionality
+  // This will be used to automatically submit the form when quality is changed
 }
 
 /**

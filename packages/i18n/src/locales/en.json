@@ -98,6 +98,10 @@
       "downloadItem": "Download this item"
     }
   },
+  "formatSelector": {
+    "autoSubmit": "Auto",
+    "autoSubmitTooltip": "Automatically start conversion when quality is changed"
+  },
   "aria": {
     "downloadButton": "Download this item",
     "retryButton": "Retry conversion",
