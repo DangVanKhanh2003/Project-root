@@ -12,6 +12,7 @@ import '@downloader/core/styles/ripple-effect.css';
 // Import UI Components CSS (From @downloader/ui-components)
 import '@downloader/ui-components/ExpireModal/expire-modal.css';
 import '@downloader/ui-components/SkeletonCard/skeleton.css';
+import '@downloader/ui-components/PreviewCardSkeleton/preview-card-skeleton.css';
 import '@downloader/ui-components/SearchResultCard/search-result-card.css';
 import '@downloader/ui-components/SuggestionDropdown/suggestion-dropdown.css';
 

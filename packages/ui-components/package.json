@@ -9,10 +9,12 @@
     ".": "./src/index.ts",
     "./ExpireModal": "./src/ExpireModal/index.ts",
     "./SkeletonCard": "./src/SkeletonCard/index.ts",
+    "./PreviewCardSkeleton": "./src/PreviewCardSkeleton/index.ts",
     "./SearchResultCard": "./src/SearchResultCard/index.ts",
     "./SuggestionDropdown": "./src/SuggestionDropdown/index.ts",
     "./ExpireModal/expire-modal.css": "./src/ExpireModal/expire-modal.css",
     "./SkeletonCard/skeleton.css": "./src/SkeletonCard/skeleton.css",
+    "./PreviewCardSkeleton/preview-card-skeleton.css": "./src/PreviewCardSkeleton/preview-card-skeleton.css",
     "./SearchResultCard/search-result-card.css": "./src/SearchResultCard/search-result-card.css",
     "./SuggestionDropdown/suggestion-dropdown.css": "./src/SuggestionDropdown/suggestion-dropdown.css",
     "./styles/*": "./src/styles/*"

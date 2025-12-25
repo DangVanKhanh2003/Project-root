@@ -869,7 +869,7 @@ async function handleExtractMedia(url: string): Promise<void> {
       // 2. Set initial preview with loading state (show skeleton)
       setYouTubePreview({
         videoId,
-        title: 'Loading video information...',
+        title: '',
         author: '',  // Empty initially - will be filled if API succeeds
         thumbnail,
         url,

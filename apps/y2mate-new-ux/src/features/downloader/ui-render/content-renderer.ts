@@ -3,7 +3,12 @@
  * Renders search results and messages in content area
  */
 
-import { createSearchResultCard, createSkeletonCard, type VideoData } from '@downloader/ui-components';
+import {
+  createSearchResultCard,
+  createSkeletonCard,
+  createPreviewCardSkeletonWithWrapper,
+  type VideoData
+} from '@downloader/ui-components';
 import { setInputValue } from './ui-renderer';
 import { initExpandableText } from '../../../utils';
 import {
@@ -324,8 +329,22 @@ export function showLoading(type: 'list' | 'detail' = 'list', append: boolean = 
     }
 
     case 'detail': {
-      // PREVIEW CARD skeleton - shows video info preview
-      content = renderPreviewCardSkeleton();
+      // PREVIEW CARD skeleton - shows video info preview (from @downloader/ui-components)
+      const conversionStatusWrapper = `
+        <div class="conversion-status-wrapper" id="conversion-status-wrapper">
+          <div class="status-container">
+            <div class="status status--extracting">
+              <span class="status-text">Extracting...</span>
+              <div class="icon spinner"></div>
+            </div>
+          </div>
+          <div class="action-container">
+            <button class="download-btn" id="conversion-download-btn">Download</button>
+            <button class="retry-btn" id="conversion-retry-btn">Retry</button>
+          </div>
+        </div>
+      `;
+      content = createPreviewCardSkeletonWithWrapper(conversionStatusWrapper);
 
       if (!contentArea) return;
 
@@ -379,34 +398,9 @@ export function clearContent(): void {
 
 /**
  * Render preview card skeleton
- * IMPORTANT: Structure MUST match renderPreviewCard() to prevent CLS
+ * REMOVED: Now using createPreviewCardSkeletonWithWrapper() from @downloader/ui-components
+ * See: showLoading('detail') case for implementation
  */
-function renderPreviewCardSkeleton(): string {
-  return `
-    <div class="yt-preview-card skeleton">
-      <div class="yt-preview-thumbnail">
-        <div class="skeleton-img"></div>
-      </div>
-      <div class="yt-preview-details">
-        <div class="skeleton-line skeleton-title"></div>
-        <div class="skeleton-line skeleton-format"></div>
-        <div class="skeleton-line skeleton-author"></div>
-      </div>
-    </div>
-    <div class="conversion-status-wrapper" id="conversion-status-wrapper">
-      <div class="status-container">
-        <div class="status status--extracting">
-          <span class="status-text">Extracting...</span>
-          <div class="icon spinner"></div>
-        </div>
-      </div>
-      <div class="action-container">
-        <button class="download-btn" id="conversion-download-btn">Download</button>
-        <button class="retry-btn" id="conversion-retry-btn">Retry</button>
-      </div>
-    </div>
-  `;
-}
 
 /**
  * Render preview card with video info
@@ -423,6 +417,28 @@ export function renderPreviewCard(_data: any): void {
 
   // If no YouTube preview data, don't render
   if (!youtubePreview) {
+    return;
+  }
+
+  // If still loading, render skeleton instead of real content
+  if (youtubePreview.isLoading) {
+    const conversionStatusWrapper = `
+      <div class="conversion-status-wrapper" id="conversion-status-wrapper">
+        <div class="status-container">
+          <div class="status status--extracting">
+            <span class="status-text">Extracting...</span>
+            <div class="icon spinner"></div>
+          </div>
+        </div>
+        <div class="action-container">
+          <button class="download-btn" id="conversion-download-btn">Download</button>
+          <button class="retry-btn" id="conversion-retry-btn">Retry</button>
+        </div>
+      </div>
+    `;
+    contentArea.innerHTML = createPreviewCardSkeletonWithWrapper(conversionStatusWrapper);
+    contentArea.style.display = 'block';
+    hideSearchResultsSection();
     return;
   }
 
