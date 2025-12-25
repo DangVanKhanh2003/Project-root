@@ -287,15 +287,15 @@ export class PollingStrategy extends BaseStrategy implements IConversionStrategy
     // Final animation to 100%
     this.updateProgress(100, 'Ready');
 
-    // Wait for 100% to paint (double RAF + 150ms delay for CSS transition)
-    // CSS transition for final 100% is 50ms (0.05s with .completing-final class)
+    // Wait for 100% to paint (double RAF + 250ms delay for CSS transition)
+    // CSS transition is 200ms (0.2s linear) in conversion-status.css
     await new Promise<void>(resolve => {
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-          // Add 150ms delay to ensure CSS transition completes (50ms transition + safety buffer)
+          // Add 250ms delay to ensure CSS transition completes (200ms transition + 50ms buffer)
           setTimeout(() => {
             resolve();
-          }, 150);
+          }, 250);
         });
       });
     });
