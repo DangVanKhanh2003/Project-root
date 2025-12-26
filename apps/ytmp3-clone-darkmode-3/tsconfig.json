@@ -18,7 +18,9 @@
       "@downloader/core": ["../../packages/core/src"],
       "@downloader/core/*": ["../../packages/core/src/*"],
       "@downloader/ui-shared": ["../../packages/ui-shared/src"],
-      "@downloader/ui-shared/*": ["../../packages/ui-shared/src/*"]
+      "@downloader/ui-shared/*": ["../../packages/ui-shared/src/*"],
+      "@downloader/i18n": ["../../packages/i18n/src"],
+      "@downloader/i18n/*": ["../../packages/i18n/src/*"]
     }
   },
   "include": ["src/**/*"],
