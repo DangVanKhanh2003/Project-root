@@ -18,6 +18,9 @@ build/
 out/
 *.local
 
+# Eleventy temporary output
+_11ty-output/
+
 # Vite specific
 .vite/
 .vite/deps

@@ -6,6 +6,15 @@
    Phase 2: Extracted from index.html inline styles
    ========================================================= */
 
+/* 0. Core Styles (From @downloader/core) */
+@import '@downloader/core/styles/ripple-effect.css';
+
+/* 0.5. UI Components Styles (From @downloader/ui-components) */
+@import '@downloader/ui-components/ExpireModal/expire-modal.css';
+@import '@downloader/ui-components/SkeletonCard/skeleton.css';
+@import '@downloader/ui-components/SearchResultCard/search-result-card.css';
+@import '@downloader/ui-components/SuggestionDropdown/suggestion-dropdown.css';
+
 /* 1. Variables (MUST be first) */
 @import './variables.css';
 
@@ -44,14 +53,10 @@
 
 /* 7. Reusable Packages (TypeScript features) */
 @import './reusable-packages/package-root.css';
-@import './reusable-packages/suggestions/suggestions.css';
-@import './reusable-packages/search-results/search-results.css';
 @import './reusable-packages/yt-preview-card/yt-preview-card.css';
 @import './reusable-packages/video-info-card/video-info-card.css';
 @import './reusable-packages/conversion-status/conversion-status.css';
-@import './reusable-packages/skeleton/skeleton.css';
 @import './reusable-packages/captcha-modal/captcha-modal.css';
-@import './reusable-packages/expire-modal/expire-modal.css';
 
 /* 8. Utilities (MUST be last) */
 @import './utilities/animations.css';

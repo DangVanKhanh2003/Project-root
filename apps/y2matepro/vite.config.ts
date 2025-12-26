@@ -4,14 +4,16 @@ import { readdirSync, existsSync } from 'fs';
 import { htmlRewritePlugin } from './vite-plugin-html-rewrite';
 import { movePagesPlugin } from './vite-plugin-move-pages';
 
-// Auto-detect all HTML pages in root directory
-const rootDir = resolve(__dirname);
-const rootHtmlFiles = readdirSync(rootDir).filter(file => file.endsWith('.html') && file !== 'index.html');
+// Auto-detect all HTML pages from Eleventy output directory
+const eleventyOutputDir = resolve(__dirname, '_11ty-output');
+const eleventyHtmlFiles = existsSync(eleventyOutputDir)
+  ? readdirSync(eleventyOutputDir).filter(file => file.endsWith('.html') && file !== 'index.html')
+  : [];
 
-// Generate input entries for root HTML pages
-const rootPageEntries = rootHtmlFiles.reduce((entries, file) => {
+// Generate input entries for Eleventy-generated pages
+const eleventyPageEntries = eleventyHtmlFiles.reduce((entries, file) => {
   const name = file.replace('.html', '');
-  entries[name] = resolve(rootDir, file);
+  entries[name] = resolve(eleventyOutputDir, file);
   return entries;
 }, {} as Record<string, string>);
 
@@ -34,8 +36,8 @@ export default defineConfig({
     outDir: 'dist',
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'index.html'),
-        ...rootPageEntries,
+        main: resolve(__dirname, '_11ty-output/index.html'),
+        ...eleventyPageEntries,
         ...srcPageEntries
       },
       output: {

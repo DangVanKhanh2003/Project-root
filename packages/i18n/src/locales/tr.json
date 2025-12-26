@@ -1,0 +1,112 @@
+{
+  "common": {
+    "buttons": {
+      "convert": "Dönüştür",
+      "download": "İndir",
+      "cancel": "İptal",
+      "retry": "Yeniden dene",
+      "start": "Başlat",
+      "tryAgain": "Tekrar dene",
+      "startOver": "Baştan başla",
+      "paste": "Yapıştır",
+      "clear": "Temizle",
+      "search": "Ara"
+    },
+    "labels": {
+      "videoQuality": "Video kalitesi",
+      "audioQuality": "Ses kalitesi",
+      "searchPlaceholder": "Burada arayın veya bağlantıyı yapıştırın...",
+      "pasteLabel": "Pano'dan yapıştır",
+      "clearLabel": "Girişi temizle"
+    },
+    "actions": {
+      "downloading": "İndiriliyor",
+      "processing": "İşleniyor",
+      "converting": "Dönüştürülüyor",
+      "extracting": "Çıkarılıyor"
+    }
+  },
+  "status": {
+    "idle": "Dönüştürmeye hazır",
+    "starting": "Başlatılıyor…",
+    "extracting": "Çıkarılıyor",
+    "extractingProgress": "Çıkarılıyor {progress}%",
+    "processing": "İşleniyor",
+    "processingProgress": "İşleniyor… {progress}%",
+    "converting": "Dönüştürülüyor",
+    "convertingProgress": "Dönüştürülüyor... {loaded} / {total}",
+    "convertingSize": "Dönüştürülüyor... {size}",
+    "downloading": "İndiriliyor",
+    "downloadProgress": "İndiriliyor... {loaded} MB / {total} MB",
+    "downloadComplete": "İndirme tamamlandı %100",
+    "polling": "İşleniyor",
+    "pollingProgress": "İşleniyor {progress}%",
+    "completed": "Tamamlandı",
+    "success": "Dönüştürme başarılı",
+    "failed": "Dönüştürme başarısız",
+    "canceled": "İptal edildi",
+    "error": "Bir hata oluştu"
+  },
+  "formats": {
+    "mp3": "MP3",
+    "mp4": "MP4",
+    "ogg": "OGG",
+    "wav": "WAV",
+    "opus": "Opus",
+    "m4a": "M4A",
+    "quality": {
+      "mp3_128": "MP3 - 128kbps",
+      "mp3_256": "MP3 - 256kbps",
+      "mp3_320": "MP3 - 320kbps",
+      "ogg_128": "OGG",
+      "wav_lossless": "WAV - Kayıpsız",
+      "opus_128": "Opus",
+      "m4a_192": "M4A",
+      "video_360p": "MP4 - 360p",
+      "video_480p": "MP4 - 480p",
+      "video_720p": "MP4 - 720p",
+      "video_1080p": "MP4 - 1080p",
+      "video_2k": "MP4 - 2K",
+      "video_4k": "MP4 - 4K"
+    }
+  },
+  "errors": {
+    "downloadExpired": "İndirme bağlantısının süresi doldu: {title}",
+    "downloadExpiredGeneric": "İndirme bağlantısının süresi doldu",
+    "confirmRetry": "Tekrar denemek ister misiniz?",
+    "noGalleryItems": "Gösterilecek galeri öğesi yok",
+    "conversionFailed": "Dönüştürme başarısız oldu",
+    "networkError": "Ağ hatası oluştu",
+    "invalidUrl": "Geçersiz URL",
+    "unsupportedFormat": "Desteklenmeyen format",
+    "timeout": "İstek zaman aşımına uğradı",
+    "unknown": "Bilinmeyen bir hata oluştu"
+  },
+  "features": {
+    "downloader": {
+      "title": "YouTube Videolarını İndir",
+      "description": "Hızlı ve kolay YouTube video indirici"
+    },
+    "search": {
+      "placeholder": "YouTube bağlantısını arayın veya yapıştırın",
+      "suggestions": "Öneriler",
+      "noResults": "Sonuç bulunamadı"
+    },
+    "gallery": {
+      "title": "Galeri",
+      "empty": "Gösterilecek öğe yok",
+      "downloadItem": "Bu öğeyi indir"
+    }
+  },
+  "aria": {
+    "downloadButton": "Bu öğeyi indir",
+    "retryButton": "Dönüştürmeyi yeniden dene",
+    "cancelButton": "Dönüştürmeyi iptal et",
+    "pasteButton": "Panodan yapıştır",
+    "clearButton": "Giriş alanını temizle",
+    "searchButton": "Ara",
+    "languageSelector": "Dil seç",
+    "formatSelector": "Format seç",
+    "qualitySelector": "Kalite seç"
+  }
+}

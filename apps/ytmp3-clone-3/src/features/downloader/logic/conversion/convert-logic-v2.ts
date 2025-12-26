@@ -16,8 +16,8 @@ import {
   getState
 } from '../../state';
 import { triggerDownload } from '../../../../utils';
-import { isLinkExpired } from '../../../../utils/link-validator';
-import { isYouTubeUrl } from '@downloader/core';
+import { isLinkExpired } from '@downloader/core/utils';
+import { isYouTubeUrl } from '@downloader/core/utils/youtube';
 
 // Types
 import {
@@ -29,8 +29,11 @@ import {
   determineRoute
 } from './types';
 
-// Strategy
-import { createStrategy, StrategyContext } from './application';
+// StrategyContext from core
+import type { StrategyContext } from '@downloader/core/conversion';
+
+// Strategy Factory
+import { createStrategy } from './application';
 
 // Retry helper
 import { retryWithBackoff, RETRY_CONFIGS } from './retry-helper';

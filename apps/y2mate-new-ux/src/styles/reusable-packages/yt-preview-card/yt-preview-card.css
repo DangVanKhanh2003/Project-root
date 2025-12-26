@@ -126,59 +126,8 @@
    Skeleton Loading State
    ========================================== */
 
-.yt-preview-card.skeleton .yt-preview-thumbnail {
-  background: linear-gradient(
-    90deg,
-    #f0f0f0 25%,
-    #e0e0e0 50%,
-    #f0f0f0 75%
-  );
-  background-size: 200% 100%;
-  animation: skeleton-loading 1.5s ease-in-out infinite;
-}
-
-.skeleton-line {
-  background: linear-gradient(
-    90deg,
-    #f0f0f0 25%,
-    #e0e0e0 50%,
-    #f0f0f0 75%
-  );
-  background-size: 200% 100%;
-  animation: skeleton-loading 1.5s ease-in-out infinite;
-  border-radius: 4px;
-}
-
-/* Skeleton line types - match real element heights */
-.skeleton-line.skeleton-title {
-  width: 80%;
-  height: 22px;
-    padding: 0px !important;
-  margin: 0px !important;
-}
-
-.skeleton-line.skeleton-format {
-  width: 50%;
-  height: 26px;
-    padding: 0px !important;
-  margin: 0px !important;
-}
-
-.skeleton-line.skeleton-author {
-  width: 40%;
-  height: 18px;
-    padding: 0px !important;
-  margin: 0px !important;
-}
-
-@keyframes skeleton-loading {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: -200% 0;
-  }
-}
+/* Skeleton styles moved to @downloader/ui-components/PreviewCardSkeleton */
+/* Import via: import { createPreviewCardSkeleton } from '@downloader/ui-components' */
 
 /* ==========================================
    Responsive Design
@@ -218,11 +167,11 @@
   }
 
   /* Skeleton adjustments for mobile */
-  .skeleton-line.skeleton-title {
+  .yt-preview-card.skeleton .skeleton-line.skeleton-title {
     height: 21px; /* Match 14px font */
   }
 
-  .skeleton-line.skeleton-author {
+  .yt-preview-card.skeleton .skeleton-line.skeleton-author {
     height: 21px; /* Match 13px font */
   }
 }
@@ -253,11 +202,11 @@
   }
 
   /* Skeleton adjustments for small mobile */
-  .skeleton-line.skeleton-title {
+  .yt-preview-card.skeleton .skeleton-line.skeleton-title {
     height: 18px; /* Match 13px font */
   }
 
-  .skeleton-line.skeleton-author {
+  .yt-preview-card.skeleton .skeleton-line.skeleton-author {
     height: 20px; /* Match 12px font */
   }
 }

@@ -43,26 +43,31 @@
 
 /* ===== STATUS BAR ===== */
 .status-container {
-  /* Progress fill background - fills from left to right based on --progress variable */
-  --progress: 0%; /* Default 0% */
-  background: linear-gradient(
-    to right,
-    rgba(52, 152, 219, 0.15) 0%,
-    rgba(52, 152, 219, 0.15) var(--progress),
-    transparent var(--progress)
-  );
-  border: 1px solid var(--status-primary); /* Default blue border */
+  position: relative;
+  width: 100%;
+  background: var(--bg-input);
+  border: 1px solid var(--status-primary);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: background 0.3s, border-color 0.3s;
+}
 
-  /* Smooth transitions */
-  transition:
-    border-color var(--status-transition-fast),
-    --progress 0.3s ease-out; /* Faster transition to prevent jank */
-
-  /* Performance optimization */
-  will-change: background; /* Hint browser to optimize background animation */
-  contain: layout style;
-  transform: translateZ(0);
-  backface-visibility: hidden;
+/* Processing state - blue progress bar fill */
+.status--processing::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: var(--progress-width, 0%);
+  background: rgba(52, 152, 219, 0.35); /* Blue tint - 35% opacity for visibility */
+  border-right: 1px solid rgba(52, 152, 219, 0.6);
+  box-shadow: 0 0 20px rgba(52, 152, 219, 0.3);
+  transition: width 0.2s linear;
+  z-index: 1;
 }
 
 /* Hide status bar on success */
@@ -76,6 +81,7 @@
 }
 
 .status {
+  width: 100%; /* Fill full width of status-container */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -201,24 +207,6 @@
 
 .retry-btn:active {
   transform: translateY(0);
-}
-
-/* ===== RIPPLE EFFECT ===== */
-.ripple {
-  position: absolute;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.6);
-  transform: scale(0);
-  animation: ripple-animation 0.4s linear;
-  pointer-events: none;
-  z-index: 0;
-}
-
-@keyframes ripple-animation {
-  to {
-    transform: scale(4);
-    opacity: 0;
-  }
 }
 
 /* ===== RESPONSIVE ===== */

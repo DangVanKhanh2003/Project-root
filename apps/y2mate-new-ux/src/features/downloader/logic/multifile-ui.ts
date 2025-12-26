@@ -24,7 +24,7 @@ import {
     saveRecentDownload,
     setState
 } from '../state';
-import { showExpireModal } from '../../../ui-components/modal/expire-modal.js';
+import { showExpireModal } from '@downloader/ui-components';
 
 // Type definitions
 type StateChangeCallback = (data: {

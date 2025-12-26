@@ -1,0 +1,112 @@
+{
+  "common": {
+    "buttons": {
+      "convert": "Tukar",
+      "download": "Muat turun",
+      "cancel": "Batal",
+      "retry": "Cuba lagi",
+      "start": "Mula",
+      "tryAgain": "Cuba lagi",
+      "startOver": "Mulakan semula",
+      "paste": "Tampal",
+      "clear": "Kosongkan",
+      "search": "Cari"
+    },
+    "labels": {
+      "videoQuality": "Kualiti video",
+      "audioQuality": "Kualiti audio",
+      "searchPlaceholder": "Cari atau tampal pautan di sini...",
+      "pasteLabel": "Tampal dari papan klip",
+      "clearLabel": "Kosongkan input"
+    },
+    "actions": {
+      "downloading": "Sedang muat turun",
+      "processing": "Sedang memproses",
+      "converting": "Sedang menukar",
+      "extracting": "Sedang mengekstrak"
+    }
+  },
+    "status": {
+    "idle": "Sedia untuk menukar",
+    "starting": "Memulakan…",
+    "extracting": "Sedang mengekstrak",
+    "extractingProgress": "Mengekstrak {progress}%",
+    "processing": "Sedang memproses",
+    "processingProgress": "Memproses… {progress}%",
+    "converting": "Sedang menukar",
+    "convertingProgress": "Menukar... {loaded} / {total}",
+    "convertingSize": "Menukar... {size}",
+    "downloading": "Sedang muat turun",
+    "downloadProgress": "Muat turun... {loaded} MB / {total} MB",
+    "downloadComplete": "Muat turun selesai 100%",
+    "polling": "Sedang memproses",
+    "pollingProgress": "Memproses {progress}%",
+    "completed": "Selesai",
+    "success": "Penukaran berjaya",
+    "failed": "Penukaran gagal",
+    "canceled": "Dibatalkan",
+    "error": "Ralat berlaku"
+  },
+  "formats": {
+    "mp3": "MP3",
+    "mp4": "MP4",
+    "ogg": "OGG",
+    "wav": "WAV",
+    "opus": "Opus",
+    "m4a": "M4A",
+    "quality": {
+      "mp3_128": "MP3 - 128kbps",
+      "mp3_256": "MP3 - 256kbps",
+      "mp3_320": "MP3 - 320kbps",
+      "ogg_128": "OGG",
+      "wav_lossless": "WAV - Tanpa kehilangan",
+      "opus_128": "Opus",
+      "m4a_192": "M4A",
+      "video_360p": "MP4 - 360p",
+      "video_480p": "MP4 - 480p",
+      "video_720p": "MP4 - 720p",
+      "video_1080p": "MP4 - 1080p",
+      "video_2k": "MP4 - 2K",
+      "video_4k": "MP4 - 4K"
+    }
+  },
+  "errors": {
+    "downloadExpired": "Pautan muat turun tamat tempoh untuk: {title}",
+    "downloadExpiredGeneric": "Pautan muat turun telah tamat tempoh",
+    "confirmRetry": "Anda mahu cuba lagi?",
+    "noGalleryItems": "Tiada item galeri untuk dipaparkan",
+    "conversionFailed": "Penukaran gagal",
+    "networkError": "Ralat rangkaian berlaku",
+    "invalidUrl": "URL tidak sah",
+    "unsupportedFormat": "Format tidak disokong",
+    "timeout": "Permintaan tamat masa",
+    "unknown": "Ralat tidak diketahui berlaku"
+  },
+  "features": {
+    "downloader": {
+      "title": "Muat turun Video YouTube",
+      "description": "Pemuat turun video YouTube yang pantas dan mudah"
+    },
+    "search": {
+      "placeholder": "Cari atau tampal pautan YouTube",
+      "suggestions": "Cadangan",
+      "noResults": "Tiada keputusan ditemui"
+    },
+    "gallery": {
+      "title": "Galeri",
+      "empty": "Tiada item untuk dipaparkan",
+      "downloadItem": "Muat turun item ini"
+    }
+  },
+  "aria": {
+    "downloadButton": "Muat turun item ini",
+    "retryButton": "Cuba lagi penukaran",
+    "cancelButton": "Batalkan penukaran",
+    "pasteButton": "Tampal dari papan klip",
+    "clearButton": "Kosongkan medan input",
+    "searchButton": "Cari",
+    "languageSelector": "Pilih bahasa",
+    "formatSelector": "Pilih format",
+    "qualitySelector": "Pilih kualiti"
+  }
+}

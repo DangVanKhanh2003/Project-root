@@ -363,7 +363,7 @@ export function renderMessage(message: string, type: 'info' | 'error' | 'success
   if (!contentArea) return;
 
   contentArea.innerHTML = `
-    <div class="message message-${type}">
+    <div class="content-message content-message--${type}">
       <p>${escapeHtml(message)}</p>
     </div>
   `;

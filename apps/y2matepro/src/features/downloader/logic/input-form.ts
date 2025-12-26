@@ -24,7 +24,6 @@ import {
   setSubmitting,
   setIsFromListItemClick,
   setVideoDetail,
-  setGalleryDetail,
   setSearchPagination,
 } from '../state';
 import { clearDetailStates } from '../state/media-detail-state';
@@ -835,47 +834,9 @@ async function handleExtractMedia(url: string): Promise<void> {
       }, 300); // 300ms delay for skeleton animation
 
     } else {
-      // ┌─────────────────────────────────────────────────┐
-      // │ NON-YOUTUBE WORKFLOW: Traditional API Call      │
-      // └─────────────────────────────────────────────────┘
-
-
-      const result = await api.extractMediaDirect({ url });
-
-
-      if (result.ok && result.data) {
-        const data = result.data as any;
-
-
-        // Add original URL to meta for retry functionality
-        if (data.meta) {
-          data.meta.originalUrl = url;
-        }
-
-        // Check if this is gallery content or single video
-        if (data.gallery && Array.isArray(data.gallery) && data.gallery.length > 0) {
-          setGalleryDetail(data);
-
-          // Dynamic import and render gallery
-          import('../ui-render/gallery-renderer').then(({ renderGallery }) => {
-            const contentArea = document.getElementById('content-area');
-            if (contentArea) {
-              renderGallery(data, contentArea);
-            }
-          });
-        } else {
-          setVideoDetail(data);
-
-          renderVideoDownloadOptions(data, 'video');
-
-          // Log state after render
-          const state = getState();
-        }
-      } else {
-        const errorMsg = result.message || 'Failed to extract media';
-        setError(errorMsg);
-        renderMessage(errorMsg, 'error');
-      }
+      // Non-YouTube links are not supported - log for debugging and throw
+      console.warn('[Downloader] Rejected non-YouTube URL:', url);
+      throw new Error('Only YouTube URLs are supported at the moment.');
     }
   } catch (error) {
     throw error;
@@ -1018,12 +979,15 @@ async function handleSearch(keyword: string): Promise<void> {
  * Handle action button click (Paste or Clear based on data-action)
  */
 function handleActionButton(): void {
-  if (!pasteBtn) return;
+  if (!pasteBtn || !input) return;
 
   const action = pasteBtn.dataset.action;
 
+  input.focus();
+
   if (action === 'clear') {
     handleClear();
+    return;
   } else {
     handlePaste();
   }

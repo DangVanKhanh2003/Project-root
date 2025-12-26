@@ -105,15 +105,41 @@
     }
 }
 
-/* Error Message */
-.error-message {
-    margin-top: 20px;
-    padding: 16px;
-    background: rgba(239, 68, 68, 0.1);
-    border: 1px solid rgba(239, 68, 68, 0.2);
-    color: #ef4444;
-    border-radius: var(--radius-md);
-    font-size: 0.9rem;
+.hero-card #error-message {
+    display: none !important;
+}
+
+.hero-inline-message {
+    width: 100%;
+    max-width: 900px;
+    margin: 24px auto 0;
     display: none;
+    padding: 0 24px;
+}
+
+.inline-message {
+    padding: 18px 24px;
+    border-radius: var(--radius-md);
     text-align: center;
+    font-size: 0.95rem;
+    border: 1px solid transparent;
+    backdrop-filter: blur(4px);
+}
+
+.inline-message--error {
+    background: rgba(239, 68, 68, 0.12);
+    border-color: rgba(239, 68, 68, 0.3);
+    color: #ef4444;
+}
+
+.inline-message--info {
+    background: rgba(59, 130, 246, 0.12);
+    border-color: rgba(59, 130, 246, 0.3);
+    color: #60a5fa;
+}
+
+.inline-message--success {
+    background: rgba(34, 197, 94, 0.12);
+    border-color: rgba(34, 197, 94, 0.3);
+    color: #34d399;
 }

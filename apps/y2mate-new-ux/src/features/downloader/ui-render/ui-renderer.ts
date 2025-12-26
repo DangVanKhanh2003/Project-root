@@ -127,9 +127,12 @@ export function getInputValue(): string {
  * Set input value
  */
 export function setInputValue(value: string): void {
-  if (elements.input) {
-    elements.input.value = value;
+  if (!elements.input) {
+    return;
   }
+
+  elements.input.value = value;
+  elements.input.dispatchEvent(new Event('input', { bubbles: true }));
 }
 
 /**

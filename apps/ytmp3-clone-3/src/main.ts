@@ -3,6 +3,9 @@
  * Y2matePro - Rebuilt from webclone.html
  */
 
+// === I18n Import ===
+import { initI18n, loadTranslations, locales } from '@downloader/i18n';
+
 // === CSS Import ===
 // Single entry point for all styles (Phase 2: CSS Refactor)
 import './styles/index.css';
@@ -12,6 +15,24 @@ import './ui-components/format-selector/format-selector.css';
 
 // Import theme toggle
 import { initThemeToggle } from './features/theme-toggle/theme-toggle';
+
+// ==========================================
+// Initialize I18n System
+// ==========================================
+
+// Initialize i18n with default language
+initI18n({
+  defaultLanguage: 'en',
+  fallbackLanguage: 'en',
+  debug: true // Enable debug mode for development
+});
+
+// Load all locale data
+Object.entries(locales).forEach(([lang, data]) => {
+  loadTranslations(lang as any, data as any);
+});
+
+console.log('[App] I18n initialized with 19 languages');
 
 /**
  * Initialize downloader UI (lazy loaded)

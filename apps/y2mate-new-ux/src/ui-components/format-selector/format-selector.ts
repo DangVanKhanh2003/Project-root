@@ -9,11 +9,11 @@ import {
   setVideoQuality,
   setAudioFormat,
   setAudioBitrate,
-  setAutoSubmit,
   QUALITY_OPTIONS,
   type FormatType,
   type AudioFormatType
 } from '../../features/downloader/state';
+import { t } from '@downloader/i18n';
 
 // ==========================================
 // Render Functions
@@ -52,7 +52,10 @@ export function renderFormatSelectorToForm(): void {
  */
 function renderFormatSelector(): string {
   const state = getState();
-  const { selectedFormat, videoQuality, audioFormat, audioBitrate, autoSubmit } = state;
+  const { selectedFormat, videoQuality, audioFormat, audioBitrate } = state;
+
+  // Load auto-submit state from localStorage
+  const autoSubmitEnabled = localStorage.getItem('autoSubmit') === 'true';
 
   // Generate quality dropdown HTML based on selected format
   const qualityDropdownHTML = selectedFormat === 'mp4'
@@ -61,34 +64,32 @@ function renderFormatSelector(): string {
 
   return `
     <div class="format-selector">
-      <!-- Group 1: Format + Quality -->
+      <!-- Format + Quality Group -->
       <div class="format-quality-group">
-        <!-- Format Toggle (Single button: MP4 | MP3) -->
-        <button type="button" class="format-toggle-btn" data-toggle-format>
-          <span class="toggle-side ${selectedFormat === 'mp4' ? 'active' : ''}" data-format="mp4">
-            <span class="format-label">MP4</span>
-          </span>
-          <span class="toggle-side ${selectedFormat === 'mp3' ? 'active' : ''}" data-format="mp3">
+        <!-- Format Toggle Button (Single button with two sides) -->
+        <div class="format-toggle-btn">
+          <div class="toggle-side ${selectedFormat === 'mp3' ? 'active' : ''}" data-format="mp3">
             <span class="format-label">MP3</span>
-          </span>
-        </button>
+          </div>
+          <div class="toggle-side ${selectedFormat === 'mp4' ? 'active' : ''}" data-format="mp4">
+            <span class="format-label">MP4</span>
+          </div>
+        </div>
 
-        <!-- Quality Dropdown (Dynamic based on format) -->
+        <!-- Quality Dropdown -->
         <div class="quality-selector">
           ${qualityDropdownHTML}
         </div>
       </div>
 
-      <!-- Group 2: Auto Submit Toggle -->
-      <div class="auto-submit-toggle" data-tooltip="Automatically submit when pasting URL or keyword">
-        <strong class="toggle-label">
-          Auto submit
-        </strong>
+      <!-- Auto Submit Toggle -->
+      <div class="auto-submit-toggle" data-tooltip="${t('formatSelector.autoSubmitTooltip')}">
         <label class="toggle-switch">
-          <input type="checkbox" id="auto-submit-checkbox" ${autoSubmit ? 'checked' : ''} data-auto-submit-toggle />
+          <input type="checkbox" id="auto-submit-checkbox" data-auto-submit-toggle${autoSubmitEnabled ? ' checked' : ''}>
           <span class="toggle-slider"></span>
         </label>
-        <span class="custom-tooltip"></span>
+        <span class="toggle-label">${t('formatSelector.autoSubmit')}</span>
+        <div class="custom-tooltip"></div>
       </div>
     </div>
   `;
@@ -102,7 +103,7 @@ function renderVideoQualityDropdown(selectedQuality: string): string {
   const defaultQuality = selectedQuality || '720p';
 
   return `
-    <select id="quality-select" class="quality-select" aria-label="Video quality" data-quality-select>
+    <select id="quality-select" class="quality-select" aria-label="${t('aria.qualitySelector')}" data-quality-select>
       ${qualities.map(quality => {
         const resolution = quality.replace('p', '');
         const isSelected = quality === defaultQuality;
@@ -134,7 +135,7 @@ function renderAudioQualityDropdown(selectedAudioFormat: AudioFormatType, select
 
   return `
     <div class="quality-dropdown-wrapper">
-      <select id="quality-select" class="quality-select" aria-label="Audio quality" data-quality-select>
+      <select id="quality-select" class="quality-select" aria-label="${t('aria.qualitySelector')}" data-quality-select>
         ${audioOptions.map(option => {
           const isSelected = option.value === selectedValue;
           return `<option value="${option.value}"${isSelected ? ' selected' : ''}> ${option.label} </option>`;
@@ -165,9 +166,6 @@ export function initFormatSelector(containerSelector: string = '#previewCard'): 
   // Listen for quality select changes
   container.addEventListener('change', handleQualityChange);
 
-  // Listen for auto-submit toggle changes
-  container.addEventListener('change', handleAutoSubmitToggle);
-
   // Initialize custom tooltips
   initCustomTooltips(container);
 }
@@ -178,13 +176,20 @@ export function initFormatSelector(containerSelector: string = '#previewCard'): 
 function handleFormatSelectorClick(event: Event): void {
   const target = event.target as HTMLElement;
 
-  // Handle format toggle (Single button with two sides)
+  // Handle format toggle clicks (toggle-side div)
   const toggleSide = target.closest('.toggle-side') as HTMLElement;
   if (toggleSide) {
     const format = toggleSide.dataset.format as FormatType;
     if (format) {
       handleFormatChange(format);
     }
+    return;
+  }
+
+  // Handle auto-submit toggle clicks
+  const autoSubmitCheckbox = target.closest('[data-auto-submit-toggle]') as HTMLInputElement;
+  if (autoSubmitCheckbox && autoSubmitCheckbox.type === 'checkbox') {
+    handleAutoSubmitToggle(autoSubmitCheckbox.checked);
     return;
   }
 }
@@ -218,26 +223,24 @@ function handleQualityChange(event: Event): void {
 }
 
 /**
- * Handle auto-submit toggle change
- */
-function handleAutoSubmitToggle(event: Event): void {
-  const target = event.target as HTMLInputElement;
-
-  // Only handle auto-submit toggle changes
-  if (!target.matches('[data-auto-submit-toggle]')) {
-    return;
-  }
-
-  setAutoSubmit(target.checked);
-}
-
-/**
  * Handle format change (MP3 ↔ MP4)
  * Triggers dropdown re-render
  */
 function handleFormatChange(format: FormatType): void {
   setSelectedFormat(format);
   refreshFormatSelector();
+}
+
+/**
+ * Handle auto-submit toggle change
+ */
+function handleAutoSubmitToggle(isEnabled: boolean): void {
+  // Save to localStorage
+  localStorage.setItem('autoSubmit', isEnabled ? 'true' : 'false');
+  console.log('[FormatSelector] Auto-submit:', isEnabled);
+
+  // TODO: Implement auto-submit functionality
+  // This will be used to automatically submit the form when quality is changed
 }
 
 /**

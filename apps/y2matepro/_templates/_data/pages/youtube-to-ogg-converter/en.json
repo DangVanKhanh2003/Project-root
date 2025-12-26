@@ -1,0 +1,105 @@
+{
+  "seo": {
+    "title": "Y2mate - YouTube to OGG Converter (Free, Open Source)",
+    "description": "Convert YouTube to OGG Vorbis audio. Open-source, patent-free format. Free OGG converter for web streaming and gaming.",
+    "ogTitle": "Y2mate - YouTube to OGG Converter (Free, Open Source)",
+    "ogDescription": "Convert YouTube to OGG Vorbis audio. Open-source, patent-free format.",
+    "schemaName": "Y2mate - YouTube to OGG Converter",
+    "schemaDescription": "Convert YouTube to OGG Vorbis—open-source, patent-free audio format."
+  },
+
+  "hero": {
+    "title": "Y2mate - YouTube to OGG Converter"
+  },
+
+  "content": {
+    "mainTitle": "Free YouTube to OGG Converter - Open Source Audio Format",
+    "intro1": "Y2mate OGG converter extracts YouTube audio using the Vorbis codec—a completely free, open-source audio format with no patent restrictions. OGG Vorbis delivers high-quality compression at lower bitrates than MP3, making it ideal for web streaming and gaming.",
+    "intro2": "OGG files use <strong>Vorbis compression</strong>, an open-source alternative to proprietary formats. Perfect for <strong>web applications</strong>, HTML5 audio, game development, and projects requiring patent-free audio. Download unlimited OGG files for free—no licensing fees ever."
+  },
+
+  "instructions": {
+    "title": "How to convert YouTube to OGG",
+    "steps": [
+      "Copy the YouTube video URL you want to convert to OGG Vorbis format.",
+      "Paste the link into Y2mate and click Start to process the audio.",
+      "Select \"OGG\" format from available options—this uses the open-source Vorbis codec.",
+      "Download your OGG file, ready for web streaming, games, or open-source projects."
+    ]
+  },
+
+  "whyChoose": {
+    "title": "Why choose OGG Vorbis",
+    "reasons": [
+      "100% patent-free and open source—no licensing fees or legal restrictions for commercial use.",
+      "Better compression than MP3—OGG achieves similar quality at 15-20% smaller file sizes.",
+      "Native HTML5 support—modern browsers play OGG natively in audio/video elements.",
+      "Gaming industry standard—Unity, Unreal Engine, and Godot prefer OGG for game audio.",
+      "Free from proprietary control—community-driven development ensures long-term compatibility."
+    ]
+  },
+
+  "features": {
+    "title": "Key Features of Y2mate OGG Converter",
+    "items": [
+      {
+        "title": "Patent-Free Format",
+        "description": "OGG Vorbis is completely free from patents and licensing fees. Use commercially without royalties—perfect for apps, websites, and games without legal concerns."
+      },
+      {
+        "title": "Open Source Codec",
+        "description": "Vorbis codec is fully open source—transparent algorithms, community-audited code. Unlike proprietary MP3/AAC, anyone can inspect and improve the technology."
+      },
+      {
+        "title": "Superior Compression",
+        "description": "Vorbis achieves better audio quality than MP3 at equivalent bitrates. A 160kbps OGG file sounds as good as a 192kbps MP3—smaller files, same quality."
+      },
+      {
+        "title": "HTML5 Audio Standard",
+        "description": "OGG is natively supported in modern browsers for HTML5 audio/video elements. Firefox, Chrome, and Edge play OGG without plugins—perfect for web apps."
+      },
+      {
+        "title": "Gaming Industry Choice",
+        "description": "Game engines like Unity and Unreal use OGG for background music and sound effects. Smaller files mean faster loading and less storage—critical for mobile games."
+      },
+      {
+        "title": "Web Streaming Optimized",
+        "description": "OGG's efficient compression reduces bandwidth costs for streaming. Lower bitrates without quality loss make it ideal for web radio, podcasts, and audio streaming services."
+      }
+    ]
+  },
+
+  "faqs": {
+    "title": "FAQs",
+    "items": [
+      {
+        "question": "What is OGG Vorbis format?",
+        "answer": "OGG is a container format, and Vorbis is the audio codec inside it. Together, OGG Vorbis is a completely free, open-source audio compression format with no patents or licensing fees. It achieves better compression than MP3 at similar quality levels."
+      },
+      {
+        "question": "Is OGG conversion free?",
+        "answer": "Yes, Y2mate offers completely free YouTube to OGG conversion. Download unlimited OGG Vorbis files with no subscription, no hidden costs, and no file size limits. The OGG format itself is also patent-free for commercial use."
+      },
+      {
+        "question": "OGG vs MP3—which is better?",
+        "answer": "OGG Vorbis achieves better audio quality than MP3 at the same bitrate, or equal quality at 15-20% smaller file size. OGG is patent-free and open source. MP3 has wider device support but uses licensed technology. For web/gaming, OGG is superior."
+      },
+      {
+        "question": "Why isn't OGG supported on all devices?",
+        "answer": "Apple devices (iPhone, iPad, Mac) historically excluded OGG to promote their own AAC format. Modern web browsers support OGG natively. For maximum compatibility, convert OGG to MP3 for playback on Apple devices."
+      },
+      {
+        "question": "Can I use OGG in my game or app?",
+        "answer": "Yes! OGG is completely patent-free and royalty-free. Unity, Unreal Engine, Godot, and HTML5 games all support OGG natively. No licensing fees ever—perfect for commercial projects and indie developers."
+      },
+      {
+        "question": "What bitrate should I use for OGG?",
+        "answer": "For music, 160-192kbps OGG equals 192-256kbps MP3 quality. For voice/podcasts, 96-128kbps OGG is sufficient. OGG's superior compression means you can use lower bitrates without sacrificing perceived audio quality."
+      },
+      {
+        "question": "Does OGG support metadata and tags?",
+        "answer": "Yes, OGG Vorbis supports Vorbis Comments for metadata—artist, album, track number, artwork, and more. Tagging works similarly to MP3 ID3 tags and is supported by most music players and library managers."
+      }
+    ]
+  }
+}

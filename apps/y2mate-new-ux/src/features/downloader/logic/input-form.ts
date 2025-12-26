@@ -33,7 +33,7 @@ import { destroyOldProcesses } from './cleanup';
 import { renderResults, renderMessage, renderPreviewCard, showLoading, clearContent } from '../ui-render/content-renderer';
 import { updateVideoTitle } from '../ui-render/download-rendering';
 import { getInputValue as getInputValueFromRenderer, setInputValue as setInputValueInRenderer } from '../ui-render/ui-renderer';
-import type { VideoData } from '../../../ui-components/search-result-card/search-result-card';
+import type { VideoData } from '@downloader/ui-components';
 import { navigateToVideo } from '../routing/url-manager';
 import { setVideoPageSEO } from '../routing/seo-manager';
 
@@ -869,7 +869,7 @@ async function handleExtractMedia(url: string): Promise<void> {
       // 2. Set initial preview with loading state (show skeleton)
       setYouTubePreview({
         videoId,
-        title: 'Loading video information...',
+        title: '',
         author: '',  // Empty initially - will be filled if API succeeds
         thumbnail,
         url,
@@ -1070,12 +1070,15 @@ async function handleSearch(keyword: string): Promise<void> {
  * directly in this synchronous click handler to preserve "user gesture context"
  */
 function handleActionButton(): void {
-  if (!pasteBtn) return;
+  if (!pasteBtn || !input) return;
 
   const action = pasteBtn.dataset.action;
 
+  input.focus();
+
   if (action === 'clear') {
     handleClear();
+    return;
   } else {
     // ✅ Read clipboard IMMEDIATELY in click handler (iOS Safari requirement)
     // Do NOT delegate to async function - it breaks the gesture context

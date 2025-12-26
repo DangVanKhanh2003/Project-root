@@ -20,7 +20,7 @@ import {
     setState
 } from '../state';
 import { loadGalleryCSS } from '../../../loaders/css-loader';
-import { showExpireModal } from '../../../ui-components/modal/expire-modal.js';
+import { showExpireModal } from '@downloader/ui-components';
 
 // ==================== TYPES & INTERFACES ====================
 

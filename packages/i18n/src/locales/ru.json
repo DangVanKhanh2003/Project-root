@@ -1,0 +1,112 @@
+{
+  "common": {
+    "buttons": {
+      "convert": "Конвертировать",
+      "download": "Скачать",
+      "cancel": "Отменить",
+      "retry": "Повторить",
+      "start": "Начать",
+      "tryAgain": "Попробовать снова",
+      "startOver": "Начать заново",
+      "paste": "Вставить",
+      "clear": "Очистить",
+      "search": "Поиск"
+    },
+    "labels": {
+      "videoQuality": "Качество видео",
+      "audioQuality": "Качество звука",
+      "searchPlaceholder": "Найдите или вставьте ссылку здесь...",
+      "pasteLabel": "Вставить из буфера обмена",
+      "clearLabel": "Очистить поле ввода"
+    },
+    "actions": {
+      "downloading": "Загрузка",
+      "processing": "Обработка",
+      "converting": "Конвертация",
+      "extracting": "Извлечение"
+    }
+  },
+  "status": {
+    "idle": "Готово к конвертации",
+    "starting": "Запуск…",
+    "extracting": "Извлечение",
+    "extractingProgress": "Извлечение {progress}%",
+    "processing": "Обработка",
+    "processingProgress": "Обработка… {progress}%",
+    "converting": "Конвертация",
+    "convertingProgress": "Конвертация... {loaded} / {total}",
+    "convertingSize": "Конвертация... {size}",
+    "downloading": "Загрузка",
+    "downloadProgress": "Загрузка... {loaded} МБ / {total} МБ",
+    "downloadComplete": "Загрузка завершена 100%",
+    "polling": "Обработка",
+    "pollingProgress": "Обработка {progress}%",
+    "completed": "Завершено",
+    "success": "Конвертация успешно завершена",
+    "failed": "Ошибка конвертации",
+    "canceled": "Отменено",
+    "error": "Произошла ошибка"
+  },
+  "formats": {
+    "mp3": "MP3",
+    "mp4": "MP4",
+    "ogg": "OGG",
+    "wav": "WAV",
+    "opus": "Opus",
+    "m4a": "M4A",
+    "quality": {
+      "mp3_128": "MP3 - 128kbps",
+      "mp3_256": "MP3 - 256kbps",
+      "mp3_320": "MP3 - 320kbps",
+      "ogg_128": "OGG",
+      "wav_lossless": "WAV - Без потерь",
+      "opus_128": "Opus",
+      "m4a_192": "M4A",
+      "video_360p": "MP4 - 360p",
+      "video_480p": "MP4 - 480p",
+      "video_720p": "MP4 - 720p",
+      "video_1080p": "MP4 - 1080p",
+      "video_2k": "MP4 - 2K",
+      "video_4k": "MP4 - 4K"
+    }
+  },
+  "errors": {
+    "downloadExpired": "Срок действия ссылки для скачивания истек: {title}",
+    "downloadExpiredGeneric": "Срок действия ссылки для скачивания истек",
+    "confirmRetry": "Хотите попробовать еще раз?",
+    "noGalleryItems": "Нет элементов галереи для отображения",
+    "conversionFailed": "Конвертация не удалась",
+    "networkError": "Произошла ошибка сети",
+    "invalidUrl": "Недействительный URL",
+    "unsupportedFormat": "Неподдерживаемый формат",
+    "timeout": "Время ожидания запроса истекло",
+    "unknown": "Произошла неизвестная ошибка"
+  },
+  "features": {
+    "downloader": {
+      "title": "Скачать видео с YouTube",
+      "description": "Быстрый и простой загрузчик видео YouTube"
+    },
+    "search": {
+      "placeholder": "Найдите или вставьте ссылку на YouTube",
+      "suggestions": "Предложения",
+      "noResults": "Результатов не найдено"
+    },
+    "gallery": {
+      "title": "Галерея",
+      "empty": "Нет элементов для отображения",
+      "downloadItem": "Скачать этот элемент"
+    }
+  },
+  "aria": {
+    "downloadButton": "Скачать этот элемент",
+    "retryButton": "Повторить конвертацию",
+    "cancelButton": "Отменить конвертацию",
+    "pasteButton": "Вставить из буфера обмена",
+    "clearButton": "Очистить поле ввода",
+    "searchButton": "Поиск",
+    "languageSelector": "Выбрать язык",
+    "formatSelector": "Выбрать формат",
+    "qualitySelector": "Выбрать качество"
+  }
+}

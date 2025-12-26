@@ -46,12 +46,19 @@
   transition: background 0.3s, border-color 0.3s;
 }
 
-/* Processing state - purple progress bar */
-
-
-/* Debug: Force visible progress bar for testing (remove after confirming it works) */
-.status-container.processing {
-  border: 2px solid rgba(139, 92, 246, 0.5) !important; /* Visual indicator that class is applied */
+/* Processing state - purple progress bar fill */
+.status--processing::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: var(--progress-width, 0%);
+  background: rgba(139, 92, 246, 0.35); /* Purple tint - 35% opacity for visibility */
+  border-right: 1px solid rgba(139, 92, 246, 0.6);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+  transition: width 0.2s linear;
+  z-index: 1;
 }
 
 /* Hide status bar on success and error - controlled by JavaScript */
@@ -67,6 +74,7 @@
 .status {
   position: relative;
   z-index: 2;
+  width: 100%; /* Fill full width of status-container */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -188,7 +196,6 @@
 .download-btn {
   background: var(--gradient-primary);
   color: #fff;
-  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
 }
 
 .download-btn:hover {
@@ -256,24 +263,6 @@
 
 .btn-new-convert:active {
   transform: translateY(0);
-}
-
-/* ===== RIPPLE EFFECT ===== */
-.ripple {
-  position: absolute;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.6);
-  transform: scale(0);
-  animation: ripple-animation 0.4s linear;
-  pointer-events: none;
-  z-index: 0;
-}
-
-@keyframes ripple-animation {
-  to {
-    transform: scale(4);
-    opacity: 0;
-  }
 }
 
 /* ===== RESPONSIVE ===== */

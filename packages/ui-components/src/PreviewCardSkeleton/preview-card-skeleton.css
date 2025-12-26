@@ -1,0 +1,93 @@
+/**
+ * Preview Card Skeleton Styles
+ * Shared skeleton loading styles for YT Preview Card component
+ *
+ * @package @downloader/ui-components
+ */
+
+/* ==========================================
+   Skeleton Loading State
+   ========================================== */
+
+.yt-preview-card.skeleton .yt-preview-thumbnail {
+  background: linear-gradient(
+    90deg,
+    var(--skeleton-base, #d7d7d7) 25%,
+    var(--skeleton-shimmer, #c7c7c7) 50%,
+    var(--skeleton-base, #d7d7d7) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s linear infinite;
+}
+
+/* Namespace skeleton lines specifically for YT preview card */
+.yt-preview-card.skeleton .skeleton-line {
+  background: linear-gradient(
+    90deg,
+    var(--skeleton-base, #d7d7d7) 25%,
+    var(--skeleton-shimmer, #c7c7c7) 50%,
+    var(--skeleton-base, #d7d7d7) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s linear infinite;
+  border-radius: 4px;
+}
+
+/* Skeleton line types - match real element heights */
+.yt-preview-card.skeleton .skeleton-line.skeleton-title {
+  width: 80%;
+  height: var(--skeleton-title-height, 26px);
+  padding: 0px !important;
+  margin: 0px !important;
+}
+
+.yt-preview-card.skeleton .skeleton-line.skeleton-format {
+  width: 50%;
+  height: var(--skeleton-format-height, 24px);
+  padding: 0px !important;
+  margin: 0px !important;
+}
+
+.yt-preview-card.skeleton .skeleton-line.skeleton-author {
+  width: 40%;
+  height: var(--skeleton-author-height, 18px);
+  padding: 0px !important;
+  margin: 0px !important;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ==========================================
+   Responsive Design - Mobile
+   ========================================== */
+
+/* Mobile devices */
+@media (max-width: 600px) {
+  /* Skeleton adjustments for mobile */
+  .yt-preview-card.skeleton .skeleton-line.skeleton-title {
+    height: 21px;
+  }
+
+  .yt-preview-card.skeleton .skeleton-line.skeleton-author {
+    height: 17px;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 400px) {
+  /* Skeleton adjustments for small mobile */
+  .yt-preview-card.skeleton .skeleton-line.skeleton-title {
+    height: 19px;
+  }
+
+  .yt-preview-card.skeleton .skeleton-line.skeleton-author {
+    height: 16px;
+  }
+}

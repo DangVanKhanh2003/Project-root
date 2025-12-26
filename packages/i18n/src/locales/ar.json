@@ -1,0 +1,112 @@
+{
+  "common": {
+    "buttons": {
+      "convert": "تحويل",
+      "download": "تنزيل",
+      "cancel": "إلغاء",
+      "retry": "إعادة المحاولة",
+      "start": "ابدأ",
+      "tryAgain": "حاول مرة أخرى",
+      "startOver": "ابدأ من جديد",
+      "paste": "لصق",
+      "clear": "مسح",
+      "search": "بحث"
+    },
+    "labels": {
+      "videoQuality": "جودة الفيديو",
+      "audioQuality": "جودة الصوت",
+      "searchPlaceholder": "ابحث أو الصق الرابط هنا...",
+      "pasteLabel": "لصق من الحافظة",
+      "clearLabel": "مسح الإدخال"
+    },
+    "actions": {
+      "downloading": "جارٍ التنزيل",
+      "processing": "جارٍ المعالجة",
+      "converting": "جارٍ التحويل",
+      "extracting": "جارٍ الاستخراج"
+    }
+  },
+  "status": {
+    "idle": "جاهز للتحويل",
+    "starting": "جارٍ البدء…",
+    "extracting": "جارٍ الاستخراج",
+    "extractingProgress": "جارٍ الاستخراج {progress}%",
+    "processing": "جارٍ المعالجة",
+    "processingProgress": "جارٍ المعالجة… {progress}%",
+    "converting": "جارٍ التحويل",
+    "convertingProgress": "جارٍ التحويل... {loaded} / {total}",
+    "convertingSize": "جارٍ التحويل... {size}",
+    "downloading": "جارٍ التنزيل",
+    "downloadProgress": "جارٍ التنزيل... {loaded} ميغابايت / {total} ميغابايت",
+    "downloadComplete": "اكتمل التنزيل 100%",
+    "polling": "جارٍ المعالجة",
+    "pollingProgress": "جارٍ المعالجة {progress}%",
+    "completed": "مكتمل",
+    "success": "تم التحويل بنجاح",
+    "failed": "فشل التحويل",
+    "canceled": "أُلغي",
+    "error": "حدث خطأ"
+  },
+  "formats": {
+    "mp3": "MP3",
+    "mp4": "MP4",
+    "ogg": "OGG",
+    "wav": "WAV",
+    "opus": "Opus",
+    "m4a": "M4A",
+    "quality": {
+      "mp3_128": "MP3 - 128kbps",
+      "mp3_256": "MP3 - 256kbps",
+      "mp3_320": "MP3 - 320kbps",
+      "ogg_128": "OGG",
+      "wav_lossless": "WAV - بدون فقدان",
+      "opus_128": "Opus",
+      "m4a_192": "M4A",
+      "video_360p": "MP4 - 360p",
+      "video_480p": "MP4 - 480p",
+      "video_720p": "MP4 - 720p",
+      "video_1080p": "MP4 - 1080p",
+      "video_2k": "MP4 - 2K",
+      "video_4k": "MP4 - 4K"
+    }
+  },
+  "errors": {
+    "downloadExpired": "انتهت صلاحية رابط التنزيل لـ: {title}",
+    "downloadExpiredGeneric": "انتهت صلاحية رابط التنزيل",
+    "confirmRetry": "هل ترغب في المحاولة مرة أخرى؟",
+    "noGalleryItems": "لا توجد عناصر للعرض",
+    "conversionFailed": "فشل التحويل",
+    "networkError": "حدث خطأ في الشبكة",
+    "invalidUrl": "عنوان URL غير صالح",
+    "unsupportedFormat": "تنسيق غير مدعوم",
+    "timeout": "انتهت مهلة الطلب",
+    "unknown": "حدث خطأ غير معروف"
+  },
+  "features": {
+    "downloader": {
+      "title": "تنزيل فيديوهات يوتيوب",
+      "description": "أداة سريعة وسهلة لتنزيل فيديوهات يوتيوب"
+    },
+    "search": {
+      "placeholder": "ابحث أو الصق رابط يوتيوب",
+      "suggestions": "اقتراحات",
+      "noResults": "لا توجد نتائج"
+    },
+    "gallery": {
+      "title": "المعرض",
+      "empty": "لا توجد عناصر للعرض",
+      "downloadItem": "تنزيل هذا العنصر"
+    }
+  },
+  "aria": {
+    "downloadButton": "تنزيل هذا العنصر",
+    "retryButton": "إعادة محاولة التحويل",
+    "cancelButton": "إلغاء التحويل",
+    "pasteButton": "لصق من الحافظة",
+    "clearButton": "مسح حقل الإدخال",
+    "searchButton": "بحث",
+    "languageSelector": "اختر اللغة",
+    "formatSelector": "اختر التنسيق",
+    "qualitySelector": "اختر الجودة"
+  }
+}

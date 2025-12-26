@@ -27,7 +27,6 @@
 
 .hero-header {
     text-align: center;
-    margin-bottom: 40px;
 }
 
 .hero-title {
@@ -59,6 +58,7 @@
     max-width: 500px;
     margin: 0 auto;
     opacity: 0.7;
+    margin-bottom: 40px;
 }
 
 .hero-subtitle p {

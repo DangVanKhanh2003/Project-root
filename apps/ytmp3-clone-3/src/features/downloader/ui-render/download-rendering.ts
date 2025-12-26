@@ -7,8 +7,9 @@
  */
 
 import { initExpandableText } from '../../../utils';
-import { addRippleEffect } from '../../../utils/ripple-effect';
+import { addRippleEffect } from '@downloader/core/utils';
 import { TaskState } from '../logic/conversion/types';
+import { updateButtonVisibility, setQuery, setOriginalQuery } from '../state';
 import type { AppState, ConversionTask } from '../state/types';
 
 // ============================================================
@@ -174,6 +175,7 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
       break;
 
     case TaskState.PROCESSING:
+    case TaskState.DOWNLOADING:
       statusElement.classList.add('status--processing');
       iconElement.classList.add('spinner');
       break;
@@ -219,7 +221,10 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
 
   // Update action-container visibility
   if (task.state === TaskState.SUCCESS || task.state === TaskState.FAILED) {
-    actionContainer.classList.add('active');
+    // Delay showing buttons to let progress bar fill animation complete (200ms transition + 50ms buffer)
+    setTimeout(() => {
+      actionContainer.classList.add('active');
+    }, 250);
 
     // Cleanup throttle map when task completes (prevent memory leak)
     lastUpdateTimes.delete(formatId);

@@ -7,7 +7,7 @@
  */
 
 import { initExpandableText } from '../../../utils';
-import { addRippleEffect } from '../../../utils/ripple-effect';
+import { addRippleEffect } from '@downloader/core/utils';
 import { TaskState } from '../logic/conversion/types';
 import type { AppState, ConversionTask } from '../state/types';
 
@@ -149,7 +149,7 @@ function updateStatusBarUI(wrapper: HTMLElement, task: ConversionTask, formatId:
 
   // Update progress fill background
   const progress = task.progress ?? 0;
-  statusContainer.style.setProperty('--progress', `${progress}%`);
+  statusContainer.style.setProperty('--progress-width', `${progress}%`);
 
   // Remove all state classes
   statusElement.classList.remove('status--extracting', 'status--processing', 'status--success', 'status--error');
@@ -202,7 +202,10 @@ function updateStatusBarUI(wrapper: HTMLElement, task: ConversionTask, formatId:
 
   // Update action-container visibility
   if (task.state === TaskState.SUCCESS || task.state === TaskState.FAILED) {
-    actionContainer.classList.add('active');
+    // Delay showing buttons to let progress bar fill animation complete (200ms transition + 50ms buffer)
+    setTimeout(() => {
+      actionContainer.classList.add('active');
+    }, 250);
 
     // Cleanup throttle map when task completes (prevent memory leak)
     lastUpdateTimes.delete(formatId);
