@@ -7,7 +7,7 @@
 export {
   initI18n,
   loadTranslations,
-  setLanguage,
+  navigateToLanguage,
   getLanguage,
   t,
   getDirection,

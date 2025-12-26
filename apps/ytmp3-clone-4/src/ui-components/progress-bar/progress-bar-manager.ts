@@ -74,9 +74,18 @@ export class ProgressBarManager {
       return;
     }
 
+    // Debug: Check language at render time
+    const htmlLang = document.documentElement.getAttribute('lang');
+    const translatedText = t('status.processingProgress', { progress: 0 });
+    console.log('[ProgressBar] Rendering:', {
+      htmlLang,
+      translatedText,
+      timestamp: new Date().toISOString()
+    });
+
     const html = `
       <div class="status-text-container">
-        <div class="main-status-text">${t('status.processingProgress', { progress: 0 })}</div>
+        <div class="main-status-text">${translatedText}</div>
         <div class="progress-detail-text"></div>
       </div>
     `;

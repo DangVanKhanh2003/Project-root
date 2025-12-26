@@ -1,9 +1,9 @@
 /**
  * Language Switcher Component
- * Allows users to switch between 19 supported languages
+ * Redirects users to language-specific pages (no dynamic language change)
  */
 
-import { setLanguage, getLanguage, getSupportedLanguages, onLanguageChange } from '@downloader/i18n';
+import { navigateToLanguage, getLanguage, getSupportedLanguages } from '@downloader/i18n';
 
 /**
  * Render language switcher dropdown
@@ -37,20 +37,12 @@ export function renderLanguageSwitcher(containerId: string): void {
 
   container.innerHTML = html;
 
-  // Add event listener
+  // Add event listener - navigates to different language page
   const select = document.getElementById('language-select') as HTMLSelectElement;
   if (select) {
     select.addEventListener('change', (e) => {
       const newLang = (e.target as HTMLSelectElement).value;
-      setLanguage(newLang as any);
-      console.log('[LanguageSwitcher] Language changed to:', newLang);
+      navigateToLanguage(newLang as any);
     });
   }
-
-  // Subscribe to language changes to update UI
-  onLanguageChange((lang) => {
-    console.log('[LanguageSwitcher] Language changed event:', lang);
-    // Optionally reload page or update all UI
-    // For now, just log
-  });
 }

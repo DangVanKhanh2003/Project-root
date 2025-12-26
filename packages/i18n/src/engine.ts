@@ -75,10 +75,15 @@ export function initI18n(options: I18nConfig = {}): void {
   config = { ...config, ...options };
   currentLanguage = config.defaultLanguage || 'en';
 
-  // Detect language from: localStorage → URL → browser → default
+  // Detect language from HTML lang attribute only
   const detectedLang = detectLanguage();
   if (detectedLang) {
     currentLanguage = detectedLang;
+  }
+
+  // Update HTML dir attribute based on detected language
+  if (typeof document !== 'undefined') {
+    document.documentElement.setAttribute('dir', getDirection(currentLanguage));
   }
 
   if (config.debug) {
@@ -101,34 +106,39 @@ export function loadTranslations(lang: LanguageCode, data: TranslationObject): v
 }
 
 /**
- * Set current language (CSR)
- * @param lang Language code
+ * Navigate to a different language page
+ * This does NOT change language dynamically - it redirects to the language-specific page
+ * @param lang Language code to navigate to
  */
-export function setLanguage(lang: LanguageCode): void {
+export function navigateToLanguage(lang: LanguageCode): void {
   if (!LANGUAGES[lang]) {
     console.warn(`[i18n] Unknown language code: ${lang}. Falling back to ${config.fallbackLanguage}`);
     lang = config.fallbackLanguage as LanguageCode;
   }
 
-  currentLanguage = lang;
-
-  // Save to localStorage (CSR only)
-  if (typeof localStorage !== 'undefined') {
-    localStorage.setItem('i18n-language', lang);
+  if (typeof window === 'undefined') {
+    return; // SSR - do nothing
   }
 
-  // Update HTML attributes
-  if (typeof document !== 'undefined') {
-    document.documentElement.setAttribute('lang', lang);
-    document.documentElement.setAttribute('dir', getDirection(lang));
+  // Build target URL based on language
+  const currentPath = window.location.pathname;
+  const currentSearch = window.location.search;
+
+  // Remove existing language prefix if present
+  const pathWithoutLang = currentPath.replace(/^\/[a-z]{2}\//, '/');
+
+  // Build new URL
+  let newPath: string;
+  if (lang === config.defaultLanguage) {
+    // Default language - no prefix
+    newPath = pathWithoutLang;
+  } else {
+    // Non-default language - add prefix
+    newPath = `/${lang}${pathWithoutLang === '/' ? '' : pathWithoutLang}`;
   }
 
-  // Notify listeners
-  notifyLanguageChange(lang);
-
-  if (config.debug) {
-    console.log('[i18n] Language changed to:', lang);
-  }
+  // Redirect to new URL
+  window.location.href = newPath + currentSearch;
 }
 
 /**
@@ -275,32 +285,16 @@ function interpolate(template: string, variables: TranslationVariables): string 
 }
 
 /**
- * Detect user's preferred language
- * Priority: localStorage → URL param → browser language → default
+ * Detect language from HTML lang attribute
+ * This is the ONLY source of truth for language detection
+ * Priority: <html lang> attribute only
  */
 function detectLanguage(): LanguageCode | null {
-  // 1. Check localStorage (CSR only)
-  if (typeof localStorage !== 'undefined') {
-    const saved = localStorage.getItem('i18n-language');
-    if (saved && LANGUAGES[saved as LanguageCode]) {
-      return saved as LanguageCode;
-    }
-  }
-
-  // 2. Check URL parameter (?lang=vi)
-  if (typeof window !== 'undefined') {
-    const urlParams = new URLSearchParams(window.location.search);
-    const urlLang = urlParams.get('lang');
-    if (urlLang && LANGUAGES[urlLang as LanguageCode]) {
-      return urlLang as LanguageCode;
-    }
-  }
-
-  // 3. Check browser language
-  if (typeof navigator !== 'undefined') {
-    const browserLang = navigator.language.split('-')[0]; // 'en-US' → 'en'
-    if (LANGUAGES[browserLang as LanguageCode]) {
-      return browserLang as LanguageCode;
+  // Read from <html lang="vi"> attribute
+  if (typeof document !== 'undefined') {
+    const htmlLang = document.documentElement.getAttribute('lang');
+    if (htmlLang && LANGUAGES[htmlLang as LanguageCode]) {
+      return htmlLang as LanguageCode;
     }
   }
 
