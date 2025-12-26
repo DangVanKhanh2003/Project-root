@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YTMP3 – Premium Converter</title>
+    <meta name="description" content="Free YouTube to MP3 & MP4 converter. Fast, ad-free, secure.">
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="/public/assest/fonts/fonts.css">
+
+    <!-- TypeScript Module -->
+    <script type="module" src="/src/main.ts"></script>
+</head>
+<body class="bg-tech-grid">
+
+    <!-- HEADER -->
+    <header id="main-header">
+        <div class="container max-w-5xl header-container">
+            <!-- Logo -->
+            <a href="/vi/" class="logo">
+                <div class="logo-text">
+                    ytmp3<span class="domain">.gg</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav -->
+            <div class="desktop-nav">
+                <nav class="nav-links">
+                    <a href="#" class="nav-link active">Home</a>
+                    <a href="#faq" class="nav-link">FAQ</a>
+                    <a href="#about" class="nav-link">About</a>
+                </nav>
+
+                <div class="nav-divider"></div>
+
+                <!-- Language Selector -->
+                <div class="lang-selector">
+                    <button class="lang-button">
+                        <!-- Globe Icon -->
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                        <span>VI</span>
+                        <!-- Chevron Icon -->
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="chevron"><polyline points="6 9 12 15 18 9"/></svg>
+                    </button>
+                    <!-- Dropdown -->
+                    <div class="lang-dropdown">
+                        <a href="#" class="lang-option">English</a>
+                        <a href="#" class="lang-option">Español</a>
+                        <a href="#" class="lang-option">Tiếng Việt</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Open menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- MOBILE DRAWER -->
+    <div id="mobile-drawer" class="mobile-drawer">
+        <div id="mobile-drawer-content" class="drawer-content">
+            <div class="drawer-header">
+                <span class="drawer-logo">ytmp3.gg</span>
+                <button id="close-drawer-btn" class="close-drawer-btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+            </div>
+            <div class="drawer-menu">
+                <a href="#" class="drawer-link active">Home</a>
+                <a href="#faq" class="drawer-link">FAQ</a>
+                <a href="#about" class="drawer-link">About</a>
+                <div class="drawer-divider"></div>
+                <a href="#" class="drawer-sublink">YouTube to MP4</a>
+                <a href="#" class="drawer-sublink">YouTube Shorts</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero-section">
+            <!-- Decorative Glow -->
+            <div class="decorative-glow"></div>
+
+            <div class="hero-container">
+
+                <!-- Main Card -->
+                <div class="hero-card">
+
+                    <!-- Header Text (Fades out in result view) -->
+                    <div id="hero-header" class="hero-header">
+
+                        <h1>
+                            YouTube to <span class="title-accent" id="title-format">MP3</span>
+                        </h1>
+
+                    </div>
+
+                     <!-- Search View -->
+                    <div id="search-view" class="fade-in">
+                        <p class="hero-subtitle">
+                            Fast conversion at lightning speed. No ads, no limits.
+                        </p>
+
+                        <form id="downloadForm" class="form-container">
+                            <div class="input-group">
+                                <div class="input-wrapper" id="input-wrapper">
+                                    <input type="text" id="videoUrl" class="video-input" placeholder="Paste YouTube link here..." autocomplete="off">
+                                    <div class="input-actions">
+                                        <button type="button" id="input-action-button" class="btn-paste" data-action="paste">
+                                            <svg class="paste-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                                            <span class="btn-state--paste">Paste</span>
+                                            <svg class="clear-icon hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                            <span class="btn-state--clear hidden">Clear</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div id="suggestion-container" class="suggestion-container"></div>
+                            </div>
+
+                            <!-- Format Selector Container (TypeScript will render here) -->
+                            <div id="format-selector-container">
+                                <!-- Initial skeleton to prevent layout shift - will be replaced by JS -->
+                                <div class="format-selector-wrapper">
+                                    <div class="format-selector">
+                                        <!-- Format Toggle -->
+                                        <div class="format-toggle">
+                                            <button type="button" class="format-btn active" data-format="mp3">MP3</button>
+                                            <button type="button" class="format-btn" data-format="mp4">MP4</button>
+                                        </div>
+
+                                        <!-- Quality Dropdown -->
+                                        <div class="quality-wrapper">
+                                            <div class="quality-dropdown-wrapper">
+                                                <select id="quality-select" class="quality-select" aria-label="Audio quality">
+                                                    <option value="mp3-128" selected> MP3 - 128kbps </option>
+                                                    <option value="mp3-256"> MP3 - 256kbps </option>
+                                                </select>
+                                            </div>
+                                            <div class="select-arrow">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                                            </div>
+                                        </div>
+
+                                        <!-- Convert Button -->
+                                        <button type="submit" class="btn-convert">
+                                            <span>Convert</span>
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <div id="error-message" class="error-message"></div>
+                    </div>
+                    <!-- End Search View -->
+
+                    <!-- Result View (Hidden by default) -->
+                    <div id="result-view" class="hidden fade-in">
+                        <!-- Content Area - TypeScript will render preview here -->
+                        <div id="content-area"></div>
+                    </div>
+                    <!-- End Result View -->
+
+                </div>
+
+
+            </div>
+        </section>
+
+        <!-- Search Results Section (TypeScript) -->
+        <section id="search-results-section" style="display: none;">
+            <div class="container">
+                <div id="search-results-container"></div>
+            </div>
+        </section>
+
+        <!-- SEO / TEXT CONTENT -->
+        <section class="seo-section container">
+            <div class="seo-container">
+                <article class="prose">
+                    <h2>The Premium YouTube to MP3 Converter</h2>
+                    <p>ytmp3.gg converts YouTube to high-quality audio in MP3, WAV, OGG, and Opus — plus stunning 4K, 2K, and 1080p video — in a simple, ad-free way. We focus on a minimalist, premium experience that gets out of your way.</p>
+                    <p>Just paste your link, choose the format and quality, and let YTMP3 do the work. No pop-ups, no registration, no distractions.</p>
+
+                    <h3>How to Convert YouTube to MP3 or MP4</h3>
+                    <ol>
+                        <li>Copy your YouTube link from the browser address bar or share button.</li>
+                        <li>Paste it into the field above, pick either MP3 for audio or MP4 for video.</li>
+                        <li>Click the <strong>Convert</strong> button. Your download will be ready in seconds.</li>
+                    </ol>
+
+                    <div id="faq" class="faq-section">
+                        <h3 class="faq-title">
+                            <span class="faq-icon">?</span>
+                            Frequently Asked Questions
+                        </h3>
+                        <div class="faq-grid">
+                            <div class="faq-item">
+                                <h4 class="faq-question">Is YTMP3 free to use?</h4>
+                                <p class="faq-answer">Yes - YTMP3 is completely free. No ads, no limits, purely online.</p>
+                            </div>
+                            <div class="faq-item">
+                                <h4 class="faq-question">Can I convert Shorts?</h4>
+                                <p class="faq-answer">Yes - We support YouTube Shorts and videos up to 3 hours long.</p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">ytmp3.gg</div>
+            <div class="footer-links">
+                <a href="#" class="footer-link">YouTube Video Downloader</a>
+                <a href="#" class="footer-link">Contact</a>
+                <a href="#" class="footer-link">Terms of Use</a>
+            </div>
+            <p class="footer-copyright">© 2025 YTMP3.gg | Premium YouTube Converter</p>
+        </div>
+    </footer>
+
+</body>
+</html>

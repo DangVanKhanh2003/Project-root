@@ -74,9 +74,18 @@ export class ProgressBarManager {
       return;
     }
 
+    // Debug: Check language at render time
+    const htmlLang = document.documentElement.getAttribute('lang');
+    const translatedText = t('status.processingProgress', { progress: 0 });
+    console.log('[ProgressBar] Rendering:', {
+      htmlLang,
+      translatedText,
+      timestamp: new Date().toISOString()
+    });
+
     const html = `
       <div class="status-text-container">
-        <div class="main-status-text">${t('status.processingProgress', { progress: 0 })}</div>
+        <div class="main-status-text">${translatedText}</div>
         <div class="progress-detail-text"></div>
       </div>
     `;
@@ -242,7 +251,7 @@ export class ProgressBarManager {
 
     options.onProgress(onProgressCallback).then(() => {
       this.currentProgress = 100;
-      this.updateVisualProgress(100, t('status.downloadComplete'));
+      this.updateVisualProgress(100, 'Download complete 100%');
       options.onComplete?.();
     }).catch((error) => {
       // Error handling is done by caller

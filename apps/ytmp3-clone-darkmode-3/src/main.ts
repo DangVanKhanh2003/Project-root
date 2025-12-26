@@ -4,7 +4,7 @@
  */
 
 // === I18n Import ===
-import { initI18n, loadTranslations, locales } from '@downloader/i18n';
+import { initI18n, loadTranslations, locales, getLanguage, t } from '@downloader/i18n';
 
 // === CSS Import ===
 // Single entry point for all styles (Phase 2: CSS Refactor)
@@ -30,6 +30,18 @@ Object.entries(locales).forEach(([lang, data]) => {
 });
 
 console.log('[App] I18n initialized with 19 languages');
+
+console.log('[App] HTML lang attribute:', document.documentElement.getAttribute('lang'));
+console.log('[App] Detected language:', getLanguage());
+
+// Debug: Expose i18n to window for testing
+if (typeof window !== 'undefined') {
+  (window as any).__i18n__ = {
+    getLanguage,
+    t
+  };
+  console.log('[App] i18n exposed to window.__i18n__ for debugging');
+}
 
 /**
  * Initialize downloader UI (lazy loaded)

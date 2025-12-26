@@ -339,8 +339,8 @@ export function showLoading(type: 'list' | 'detail' = 'list', append: boolean = 
             </div>
           </div>
           <div class="action-container">
-            <button class="download-btn" id="conversion-download-btn">Download</button>
-            <button class="retry-btn" id="conversion-retry-btn">Retry</button>
+            <button class="download-btn" id="conversion-download-btn">${t('common.buttons.download')}</button>
+            <button class="retry-btn" id="conversion-retry-btn">${t('common.buttons.retry')}</button>
           </div>
         </div>
       `;
@@ -431,8 +431,8 @@ export function renderPreviewCard(_data: any): void {
           </div>
         </div>
         <div class="action-container">
-          <button class="download-btn" id="conversion-download-btn">Download</button>
-          <button class="retry-btn" id="conversion-retry-btn">Retry</button>
+          <button class="download-btn" id="conversion-download-btn">${t('common.buttons.download')}</button>
+          <button class="retry-btn" id="conversion-retry-btn">${t('common.buttons.retry')}</button>
         </div>
       </div>
     `;
@@ -486,8 +486,8 @@ export function renderPreviewCard(_data: any): void {
         </div>
       </div>
       <div class="action-container">
-        <button class="download-btn" id="conversion-download-btn">Download</button>
-        <button class="retry-btn" id="conversion-retry-btn">Retry</button>
+        <button class="download-btn" id="conversion-download-btn">${t('common.buttons.download')}</button>
+        <button class="retry-btn" id="conversion-retry-btn">${t('common.buttons.retry')}</button>
       </div>
     </div>
   `;

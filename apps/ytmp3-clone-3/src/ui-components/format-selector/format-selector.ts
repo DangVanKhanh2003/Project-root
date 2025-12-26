@@ -59,6 +59,15 @@ function renderFormatSelector(): string {
     ? renderVideoQualityDropdown(videoQuality)
     : renderAudioQualityDropdown(audioFormat, audioBitrate);
 
+  // Debug: Check language at render time
+  const htmlLang = document.documentElement.getAttribute('lang');
+  const convertText = t('common.buttons.convert');
+  console.log('[FormatSelector] Rendering:', {
+    htmlLang,
+    convertText,
+    timestamp: new Date().toISOString()
+  });
+
   return `
     <div class="format-selector">
       <!-- Format Toggle (Two separate buttons) -->
@@ -77,7 +86,7 @@ function renderFormatSelector(): string {
 
       <!-- Convert Button -->
       <button type="submit" class="btn-convert">
-        <span>${t('common.buttons.convert')}</span>
+        <span>${convertText}</span>
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
       </button>
     </div>

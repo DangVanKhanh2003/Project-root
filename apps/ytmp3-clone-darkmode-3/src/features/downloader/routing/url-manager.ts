@@ -27,6 +27,16 @@ export type RouteChangeHandler = (route: Route) => void;
 // ==========================================
 
 /**
+ * Get language prefix from current URL
+ * @returns Language prefix (e.g., '/vi', '/ar') or empty string for default language
+ */
+function getLanguagePrefix(): string {
+  const pathname = window.location.pathname;
+  const match = pathname.match(/^\/([a-z]{2})\//);
+  return match ? `/${match[1]}` : '';
+}
+
+/**
  * Parse current URL and return route information
  *
  * @returns Route object with type and videoId (if applicable)
@@ -81,12 +91,14 @@ export function getCurrentVideoId(): string | null {
  * Navigate to video result page
  * Uses replaceState if already on video page (prevents history pollution)
  * Uses pushState if coming from home page
+ * Preserves language prefix from current URL
  *
  * @param videoId - YouTube video ID
  */
 export function navigateToVideo(videoId: string): void {
   const currentRoute = getRouteFromUrl();
-  const newUrl = `/search?v=${videoId}`;
+  const langPrefix = getLanguagePrefix(); // e.g., '/vi' or ''
+  const newUrl = `${langPrefix}/search?v=${videoId}`;
   const state = { type: 'video', videoId };
 
   if (currentRoute.type === 'video') {
@@ -100,31 +112,36 @@ export function navigateToVideo(videoId: string): void {
 
 /**
  * Navigate to home page
+ * Preserves language prefix from current URL
  *
  * @param replace - Use replaceState instead of pushState (optional)
  */
 export function navigateToHome(replace: boolean = false): void {
+  const langPrefix = getLanguagePrefix(); // e.g., '/vi' or ''
+  const homeUrl = langPrefix ? `${langPrefix}/` : '/';
   const state = { type: 'home' };
 
   if (replace) {
-    history.replaceState(state, '', '/');
+    history.replaceState(state, '', homeUrl);
   } else {
-    history.pushState(state, '', '/');
+    history.pushState(state, '', homeUrl);
   }
 }
 
 /**
  * Replace current URL without adding history entry
  * Useful for URL cleanup (removing extra params)
+ * Preserves language prefix from current URL
  *
  * @param route - Route to set
  */
 export function replaceUrl(route: Route): void {
-  let url = '/';
+  const langPrefix = getLanguagePrefix(); // e.g., '/vi' or ''
+  let url = langPrefix ? `${langPrefix}/` : '/';
   const state = { type: route.type };
 
   if (route.type === 'video' && route.videoId) {
-    url = `/search?v=${route.videoId}`;
+    url = `${langPrefix}/search?v=${route.videoId}`;
   }
 
   history.replaceState(state, '', url);
