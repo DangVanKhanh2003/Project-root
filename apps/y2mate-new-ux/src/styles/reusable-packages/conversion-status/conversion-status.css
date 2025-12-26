@@ -47,7 +47,7 @@
   width: 100%;
   background: var(--bg-input);
   border: 1px solid var(--status-primary);
-  border-radius: var(--status-radius);
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
