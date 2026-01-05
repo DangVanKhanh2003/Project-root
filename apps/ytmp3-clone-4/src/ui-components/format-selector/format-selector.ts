@@ -78,6 +78,10 @@ function renderFormatSelector(): string {
 
       <!-- Quality Dropdown (Dynamic based on format) -->
       <div class="quality-wrapper">
+        <!-- Quality icon for mobile -->
+        <div class="quality-icon-mobile">
+          <img src="/assest/icons/quality-choose-icon.png" alt="Quality" width="20" height="20" />
+        </div>
         ${qualityDropdownHTML}
         <div class="select-arrow">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
