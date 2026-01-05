@@ -168,99 +168,110 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 0.75rem;
-  margin: 0px;
+  gap: 12px;
+  margin: 16px 0 0 0;
 }
 
 /* All buttons - shared styles */
-.download-btn,
-.retry-btn,
-.btn-new-convert {
+.action-container .download-btn,
+.action-container .retry-btn,
+.action-container .btn-new-convert {
   margin: 0;
-  padding: 0 1.5rem;
+  padding: 0 24px;
   font-size: 14px;
   font-weight: 600;
-  border-radius: var(--radius-xl);
+  border-radius: 24px;
   cursor: pointer;
   transition: all 0.2s ease;
   display: none;
-  min-height: 2.5rem;
+  height: 44px;
+  min-height: 44px;
   position: relative;
   overflow: hidden;
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
   user-select: none;
   flex: 1;
-  font-family: var(--font-sans);
+  font-family: inherit;
   letter-spacing: -0.01em;
+  border: none;
 }
 
 @media (min-width: 640px) {
-  .download-btn,
-  .retry-btn,
-  .btn-new-convert {
+  .action-container .download-btn,
+  .action-container .retry-btn,
+  .action-container .btn-new-convert {
     flex: none;
-    min-width: 7rem;
+    min-width: 120px;
     font-size: 15px;
   }
 }
 
-.download-btn.active,
-.retry-btn.active,
-.btn-new-convert.active {
+.action-container .download-btn.active,
+.action-container .retry-btn.active,
+.action-container .btn-new-convert.active {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 /* Download Button - Primary black style */
-.download-btn {
-  background: var(--color-primary);
+.action-container .download-btn {
+  background: #1f2937;
   color: white;
   border: none;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
 }
 
-.download-btn:hover {
-  background: var(--color-button-hover);
+.action-container .download-btn:hover {
+  background: #111827;
+  box-shadow: 0 6px 10px -2px rgba(0, 0, 0, 0.3), 0 3px 6px -2px rgba(0, 0, 0, 0.2);
+  transform: translateY(-1px);
 }
 
-.download-btn:active {
-  transform: scale(0.98);
+.action-container .download-btn:active {
+  transform: scale(0.98) translateY(0);
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2);
 }
 
 /* Retry Button - Red error style */
-.retry-btn {
+.action-container .retry-btn {
   background: #dc2626;
   color: white;
   border: none;
+  box-shadow: 0 4px 6px -1px rgba(220, 38, 38, 0.3), 0 2px 4px -1px rgba(220, 38, 38, 0.2);
 }
 
-.retry-btn:hover {
+.action-container .retry-btn:hover {
   background: #b91c1c;
+  box-shadow: 0 6px 10px -2px rgba(220, 38, 38, 0.4);
+  transform: translateY(-1px);
 }
 
-.retry-btn:active {
-  transform: scale(0.98);
+.action-container .retry-btn:active {
+  transform: scale(0.98) translateY(0);
 }
 
-/* Next/New Convert Button - Outlined style */
-.btn-new-convert {
+/* Start Over Button - Outlined style */
+.action-container .btn-new-convert {
   background: white;
-  color: var(--color-text-primary);
-  border: 1px solid var(--color-border);
+  color: #374151;
+  border: 1px solid #d1d5db !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
 }
 
-.btn-new-convert:hover {
+.action-container .btn-new-convert:hover {
   background: #f9fafb;
-  border-color: var(--color-border-dark);
+  border-color: #9ca3af;
+  transform: translateY(-1px);
 }
 
-.btn-new-convert:active {
-  transform: scale(0.98);
+.action-container .btn-new-convert:active {
+  transform: scale(0.98) translateY(0);
+  background: #f3f4f6;
 }
 
 /* ===== RESPONSIVE ===== */
@@ -279,9 +290,5 @@
     font-size: 15px;
   }
 
-  .download-btn,
-  .retry-btn,
-  .btn-new-convert {
-    min-height: 52px; /* Desktop: 52px height */
-  }
+
 }
