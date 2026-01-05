@@ -44,7 +44,7 @@
 /* ===== MOBILE TOGGLE BUTTON ===== */
 .navbar-toggler {
     position: absolute;
-    right: var(--space-lg);
+    right: 0; /* Default: align to container edge */
     top: 0;
     color: var(--color-text-primary);
     margin-right: 0;
@@ -175,6 +175,7 @@
 @media (max-width: 900px) {
     .navbar-toggler {
         display: block;
+        right: var(--space-2xl); /* Match container padding at tablet size */
     }
 
     .menu-navbar .navbar {
@@ -230,6 +231,20 @@
     .menu-navbar > li > a {
         display: block;
         padding: var(--space-md);
+    }
+}
+
+/* ===== MOBILE (max-width: 767px) ===== */
+@media (max-width: 767px) {
+    .navbar-toggler {
+        right: var(--space-lg); /* Match container padding at mobile size */
+    }
+}
+
+/* ===== SMALL MOBILE (max-width: 575px) ===== */
+@media (max-width: 575px) {
+    .navbar-toggler {
+        right: 12px; /* Match container padding at small mobile size */
     }
 }
 
