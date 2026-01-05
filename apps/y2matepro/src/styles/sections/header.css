@@ -171,8 +171,8 @@
     background-color: var(--color-bg-light-hover);
 }
 
-/* ===== MOBILE (max-width: 767px) ===== */
-@media (max-width: 767px) {
+/* ===== MOBILE/TABLET (max-width: 900px) ===== */
+@media (max-width: 900px) {
     .navbar-toggler {
         display: block;
     }
@@ -233,8 +233,8 @@
     }
 }
 
-/* ===== DESKTOP (min-width: 768px) ===== */
-@media (min-width: 768px) {
+/* ===== DESKTOP (min-width: 901px) ===== */
+@media (min-width: 901px) {
     .navbar-toggler {
         display: none;
     }
@@ -348,7 +348,7 @@
 }
 
 /* Hide mobile menu on desktop */
-@media (min-width: 768px) {
+@media (min-width: 901px) {
     .mobile-menu-overlay {
         display: none !important;
     }
