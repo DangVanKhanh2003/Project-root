@@ -50,16 +50,9 @@
   --color-gray-300: #d1d5db;
   --color-gray-400: #9ca3af;
 
-  /* Logo colors (Google-style) */
-  --logo-blue: #4285F4;
-  --logo-red: #EA4335;
-  --logo-yellow: #FBBC05;
-  --logo-green: #34A853;
-  --logo-gray: #5f6368;
-
   /* Dimensions */
+  --content-max-width: 800px;
   --search-bar-height: 52px;
-  --search-bar-max-width: 672px;
   --search-bar-radius: 26px;
 
   /* Shadows */
@@ -191,60 +184,35 @@ a {
   width: 100%;
 }
 
-/* ===== LOGO (Google-style colorful) ===== */
+/* ===== LOGO (Google) ===== */
 .logo {
   margin-bottom: 40px;
-  font-family: var(--font-logo);
-  font-size: 84px;
-  font-weight: 700;
-  letter-spacing: -0.04em;
   user-select: none;
   text-align: center;
 }
 
-.logo-char {
-  display: inline-block;
-}
-
-.logo-g {
-  color: var(--logo-blue);
-}
-
-.logo-e1 {
-  color: var(--logo-red);
-}
-
-.logo-t1 {
-  color: var(--logo-yellow);
-}
-
-.logo-t2 {
-  color: var(--logo-blue);
-}
-
-.logo-u {
-  color: var(--logo-green);
-}
-
-.logo-b {
-  color: var(--logo-red);
-}
-
-.logo-e2 {
-  color: var(--logo-gray);
+.logo svg {
+  height: 92px;
+  width: auto;
 }
 
 @media (max-width: 768px) {
   .logo {
-    font-size: 56px;
     margin-bottom: 32px;
+  }
+
+  .logo svg {
+    height: 64px;
   }
 }
 
 @media (max-width: 480px) {
   .logo {
-    font-size: 42px;
     margin-bottom: 24px;
+  }
+
+  .logo svg {
+    height: 48px;
   }
 }
 
@@ -252,7 +220,7 @@ a {
 .search-wrapper {
   position: relative;
   width: 100%;
-  max-width: var(--search-bar-max-width);
+  max-width: var(--content-max-width);
 }
 
 .hero-card {
@@ -447,7 +415,7 @@ a {
 
 .content-wrapper {
   width: 100%;
-  max-width: 800px;
+  max-width: var(--content-max-width);
   margin: 48px 0;
   line-height: 1.7;
   color: var(--color-text-secondary);
