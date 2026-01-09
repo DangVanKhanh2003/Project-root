@@ -780,8 +780,6 @@ button[type="submit"]:disabled {
   left: 0;
   right: 0;
   background: white;
-  border: 1px solid var(--color-border);
-  border-top: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
   max-height: 300px;
   overflow-y: auto;

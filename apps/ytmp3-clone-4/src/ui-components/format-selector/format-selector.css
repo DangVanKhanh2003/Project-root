@@ -221,15 +221,6 @@
   border-color: var(--color-accent-dark);
 }
 
-.quality-select option {
-  background: var(--pkg-color-gray-800);
-  color: var(--color-white);
-}
-
-[data-theme="light"] .quality-select option {
-  background: var(--color-white);
-  color: var(--pkg-color-gray-800);
-}
 
 .select-arrow {
   position: absolute;
