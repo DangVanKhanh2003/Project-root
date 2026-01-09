@@ -19,12 +19,7 @@
 /* ===== SECTION CONTAINER ===== */
 .history-section {
   width: 100%;
-  padding: 0 16px;
-}
-
-.history-section > .container {
   max-width: var(--content-max-width);
-  margin: 0 auto;
 }
 
 /* ===== CARD CONTAINER ===== */
