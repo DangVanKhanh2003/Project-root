@@ -23,6 +23,7 @@
 @import './reusable-packages/video-info-card/video-info-card.css';
 @import './reusable-packages/conversion-status/conversion-status.css';
 @import './reusable-packages/captcha-modal/captcha-modal.css';
+@import './reusable-packages/history-card/history-card.css';
 
 /* ===== CSS VARIABLES ===== */
 :root {

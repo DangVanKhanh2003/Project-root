@@ -165,6 +165,19 @@ async function initLanguageSwitcher() {
 }
 
 /**
+ * Initialize history card
+ */
+async function initHistoryCard() {
+  try {
+    const { initHistoryCard } = await import('./features/history/history-card');
+    initHistoryCard();
+    console.log('[App] History card initialized');
+  } catch (err) {
+    console.error('[App] Failed to initialize history card:', err);
+  }
+}
+
+/**
  * Initialize app
  */
 function loadFeatures() {
@@ -173,6 +186,7 @@ function loadFeatures() {
   initLanguageSwitcher(); // Initialize language switcher
   initDownloaderUI();
   initLogoClickHandler(); // Prevent logo reload issue
+  initHistoryCard(); // Initialize history card
 }
 
 // DOM Ready
