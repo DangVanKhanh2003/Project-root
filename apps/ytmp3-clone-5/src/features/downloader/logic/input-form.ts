@@ -36,6 +36,61 @@ import { getInputValue as getInputValueFromRenderer, setInputValue as setInputVa
 import type { VideoData } from '@downloader/ui-components';
 import { navigateToVideo } from '../routing/url-manager';
 import { setVideoPageSEO } from '../routing/seo-manager';
+import { saveConversionToHistory } from '@downloader/history';
+
+/**
+ * Save to history with video metadata
+ * Fetches video info from YouTube API then saves to history
+ * Doesn't block UI - runs in background
+ */
+async function saveToHistoryWithMetadata(
+  url: string,
+  videoId: string,
+  thumbnail: string
+): Promise<void> {
+  try {
+    // Get current format/quality from state
+    const currentState = getState();
+    const format = currentState.selectedFormat === 'mp4' ? 'mp4' : 'mp3';
+    const quality = format === 'mp4'
+      ? currentState.videoQuality
+      : `${currentState.audioBitrate}kbps`;
+    const audioFormat = format === 'mp3' ? currentState.audioFormat : undefined;
+
+    // Fetch video metadata from YouTube API
+    let title = url; // Fallback to URL if API fails
+    let author: string | undefined;
+
+    try {
+      const metadata = await coreServices.youtubePublicApi.getMetadata(url);
+      if (metadata) {
+        if (metadata.title) {
+          title = metadata.title;
+        }
+        if (metadata.authorName) {
+          author = metadata.authorName;
+        }
+      }
+    } catch (error) {
+      console.warn('[History] Failed to fetch video metadata, using URL as title:', error);
+    }
+
+    // Save to history with all info
+    saveConversionToHistory({
+      url,
+      title,
+      author,
+      thumbnail,
+      format,
+      quality,
+      audioFormat
+    });
+
+    console.log('[History] Saved to history:', { url, title, author, format, quality });
+  } catch (error) {
+    console.error('[History] Failed to save to history:', error);
+  }
+}
 
 // Import YouTube helpers from @downloader/core (TODO: remove local duplicates)
 import {
@@ -643,6 +698,9 @@ async function handleExtractMedia(url: string): Promise<void> {
 
       // 1. Create thumbnail URL from video ID
       const thumbnail = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+
+      // 1.5. Save to history with video metadata (async, doesn't block UI)
+      saveToHistoryWithMetadata(url, videoId, thumbnail);
 
       // 2. Set initial preview with loading state (show skeleton)
       setYouTubePreview({

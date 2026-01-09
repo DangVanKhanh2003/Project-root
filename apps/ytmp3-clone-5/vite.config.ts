@@ -71,7 +71,9 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': resolve(__dirname, './src'),
-      '@downloader/core': resolve(__dirname, '../../packages/core/src')
+      '@downloader/core': resolve(__dirname, '../../packages/core/src'),
+      '@downloader/history': resolve(__dirname, '../../packages/history/src'),
+      '@downloader/history/styles': resolve(__dirname, '../../packages/history/styles')
     }
   },
   server: {

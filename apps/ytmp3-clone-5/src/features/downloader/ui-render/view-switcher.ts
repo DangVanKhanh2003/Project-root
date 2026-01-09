@@ -6,6 +6,7 @@
 // Cache DOM elements
 let searchView: HTMLElement | null = null;
 let resultView: HTMLElement | null = null;
+let historySection: HTMLElement | null = null;
 let isInitialized = false;
 let currentView: 'search' | 'result' = 'search';
 
@@ -16,6 +17,7 @@ let currentView: 'search' | 'result' = 'search';
 export function initViewSwitcher(): boolean {
   searchView = document.getElementById('search-view');
   resultView = document.getElementById('result-view');
+  historySection = document.querySelector('.history-section');
 
   if (!searchView || !resultView) {
     console.error('View switcher: Required view elements not found');
@@ -24,9 +26,10 @@ export function initViewSwitcher(): boolean {
     return false;
   }
 
-  // Set default state: search visible, result hidden
+  // Set default state: search visible, result hidden, history visible
   searchView.classList.remove('hidden');
   resultView.classList.add('hidden');
+  historySection?.classList.remove('hidden');
   currentView = 'search';
 
   isInitialized = true;
@@ -44,6 +47,7 @@ export function showSearchView(): void {
 
   searchView.classList.remove('hidden');
   resultView.classList.add('hidden');
+  historySection?.classList.remove('hidden');
   currentView = 'search';
 }
 
@@ -56,15 +60,10 @@ export function showResultView(): void {
     return;
   }
 
-  console.log('[View Switcher] Switching to result view');
-  console.log('[View Switcher] searchView:', searchView);
-  console.log('[View Switcher] resultView:', resultView);
-
   searchView.classList.add('hidden');
   resultView.classList.remove('hidden');
+  historySection?.classList.add('hidden');
   currentView = 'result';
-
-  console.log('[View Switcher] Result view should now be visible');
 }
 
 /**

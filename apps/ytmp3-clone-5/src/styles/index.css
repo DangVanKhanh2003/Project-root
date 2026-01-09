@@ -23,7 +23,9 @@
 @import './reusable-packages/video-info-card/video-info-card.css';
 @import './reusable-packages/conversion-status/conversion-status.css';
 @import './reusable-packages/captcha-modal/captcha-modal.css';
-@import './reusable-packages/history-card/history-card.css';
+
+/* ===== SHARED PACKAGES ===== */
+@import '../../../../packages/history/styles/history-card.css';
 
 /* ===== CSS VARIABLES ===== */
 :root {
@@ -392,11 +394,11 @@ a {
 /* ===== SEARCH RESULTS SECTION ===== */
 .search-results-section {
   width: 100%;
-  padding: 24px 16px;
+  padding: 24px 0;
 }
 
 .container {
-  max-width: 960px;
+  max-width: var(--content-max-width);
   margin: 0 auto;
   padding: 0 16px;
 }
@@ -408,15 +410,16 @@ a {
 /* ===== CONTENT SECTION (SEO) ===== */
 .content-section {
   width: 100%;
-  display: flex;
-  justify-content: center;
-  padding: 0 16px;
+  padding: 0;
   margin-top: auto;
+}
+
+.content-section > .container {
+  max-width: var(--content-max-width);
 }
 
 .content-wrapper {
   width: 100%;
-  max-width: var(--content-max-width);
   margin: 48px 0;
   line-height: 1.7;
   color: var(--color-text-secondary);

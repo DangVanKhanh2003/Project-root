@@ -23,7 +23,9 @@
       "@downloader/core": ["./packages/core/src"],
       "@downloader/core/*": ["./packages/core/src/*"],
       "@downloader/ui-shared": ["./packages/ui-shared/src"],
-      "@downloader/ui-shared/*": ["./packages/ui-shared/src/*"]
+      "@downloader/ui-shared/*": ["./packages/ui-shared/src/*"],
+      "@downloader/history": ["./packages/history/src"],
+      "@downloader/history/*": ["./packages/history/src/*"]
     }
   }
 }

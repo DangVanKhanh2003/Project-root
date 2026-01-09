@@ -174,6 +174,9 @@ importers:
       '@downloader/core':
         specifier: workspace:*
         version: link:../../packages/core
+      '@downloader/history':
+        specifier: workspace:*
+        version: link:../../packages/history
       '@downloader/i18n':
         specifier: workspace:*
         version: link:../../packages/i18n
@@ -236,6 +239,12 @@ importers:
       vitest:
         specifier: ^1.6.1
         version: 1.6.1(@types/node@20.19.25)(@vitest/ui@1.6.1)(jsdom@25.0.1)(terser@5.44.1)
+
+  packages/history:
+    dependencies:
+      '@downloader/core':
+        specifier: workspace:*
+        version: link:../core
 
   packages/i18n:
     devDependencies:
