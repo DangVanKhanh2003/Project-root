@@ -189,34 +189,14 @@ a {
 
 /* ===== LOGO (Google) ===== */
 .logo {
-  margin-bottom: 40px;
+  margin-bottom: clamp(24px, 5vw, 40px);
   user-select: none;
   text-align: center;
 }
 
 .logo svg {
-  height: 92px;
+  height: clamp(40px, 12vw, 92px);
   width: auto;
-}
-
-@media (max-width: 768px) {
-  .logo {
-    margin-bottom: 32px;
-  }
-
-  .logo svg {
-    height: 64px;
-  }
-}
-
-@media (max-width: 480px) {
-  .logo {
-    margin-bottom: 24px;
-  }
-
-  .logo svg {
-    height: 48px;
-  }
 }
 
 /* ===== SEARCH WRAPPER ===== */

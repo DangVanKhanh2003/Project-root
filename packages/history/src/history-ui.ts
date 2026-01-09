@@ -85,8 +85,8 @@ function renderHistoryItem(item: HistoryItem): string {
       <div class="history-card__content">
         <div class="history-card__video-title" title="${escapeHtml(item.title)}">${escapeHtml(item.title)}</div>
         <div class="history-card__meta">
-          ${item.author ? `<span class="history-card__author">${escapeHtml(item.author)}</span><span class="history-card__meta-separator">·</span>` : ''}
           <span class="history-card__format ${formatClass}">${item.format.toUpperCase()}</span>
+          ${item.author ? `<span class="history-card__author-wrapper"><span class="history-card__meta-separator">·</span><span class="history-card__author">${escapeHtml(item.author)}</span></span>` : ''}
           <span class="history-card__meta-separator">·</span>
           <span>${qualityDisplay}</span>
           <span class="history-card__meta-separator">·</span>
@@ -135,16 +135,18 @@ function renderHistoryCard(items: HistoryItem[], totalCount: number): string {
           </div>
         </div>
       </div>
-      <ul class="history-card__list" data-history-list>
-        ${items.map(renderHistoryItem).join('')}
-      </ul>
-      ${showViewMore ? `
-        <div class="history-card__footer">
-          <button class="history-card__view-all" data-history-view-more>
-            View more
-          </button>
-        </div>
-      ` : ''}
+      <div class="history-card__details">
+        <ul class="history-card__list" data-history-list>
+          ${items.map(renderHistoryItem).join('')}
+        </ul>
+        ${showViewMore ? `
+          <div class="history-card__footer">
+            <button class="history-card__view-all" data-history-view-more>
+              See more
+            </button>
+          </div>
+        ` : ''}
+      </div>
     </div>
   `;
 }

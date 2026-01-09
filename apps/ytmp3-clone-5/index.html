@@ -142,6 +142,9 @@
         <!-- History Card Container -->
         <section class="history-section">
             <div id="history-card-container"></div>
+            <script>
+            (function(){try{var d=localStorage.getItem('downloader_history');if(!d)return;var items=(JSON.parse(d).items||[]);var c=Math.min(items.length,5);if(c===0)return;var s='';for(var i=0;i<c;i++){s+='<li class="history-card__item history-card__item--skeleton"><div class="skeleton-thumbnail"></div><div class="skeleton-content"><div class="skeleton-title"></div><div class="skeleton-meta"></div></div></li>';}var m=items.length>5?'<div class="history-card__footer"><button class="history-card__view-all skeleton-btn">See more</button></div>':'';document.getElementById('history-card-container').innerHTML='<div class="history-card"><div class="history-card__header"><h3 class="history-card__title">Recent Downloads</h3></div><div class="history-card__details"><ul class="history-card__list">'+s+'</ul>'+m+'</div></div>';}catch(e){}})();
+            </script>
         </section>
 
         <!-- SEO / TEXT CONTENT -->
