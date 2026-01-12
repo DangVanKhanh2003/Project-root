@@ -20,16 +20,16 @@ import { t } from '@downloader/i18n';
 // ==========================================
 
 /**
- * Render format selector into the input form
+ * Initialize format selector from static HTML
  * Called once during app initialization
  *
- * IMPORTANT: This function MUST be called AFTER initializeFormatSelector()
- * to ensure state is loaded before rendering. This prevents layout shift.
+ * IMPORTANT: HTML is already rendered in index.html with default values (MP3, 128kbps).
+ * This function only updates the UI if localStorage has different values.
  *
  * Flow:
- * 1. initializeFormatSelector() - Loads state from localStorage or page defaults
- * 2. renderFormatSelectorToForm() - Renders HTML with loaded state
- * 3. User sees FormatSelector immediately with correct values (no layout shift)
+ * 1. initializeFormatSelector() - Loads state from localStorage or defaults
+ * 2. renderFormatSelectorToForm() - Updates UI if state differs from HTML defaults
+ * 3. User sees FormatSelector immediately (no layout shift)
  */
 export function renderFormatSelectorToForm(): void {
   const container = document.getElementById('format-selector-container');
@@ -38,12 +38,60 @@ export function renderFormatSelectorToForm(): void {
     return;
   }
 
-  // Render immediately with current state (no loading/skeleton needed)
-  const html = renderFormatSelector();
-  container.innerHTML = html;
+  // Get state from localStorage (already loaded by initializeFormatSelector)
+  const state = getState();
+  const { selectedFormat, videoQuality, audioFormat, audioBitrate } = state;
+
+  // HTML defaults: MP3, mp3-128
+  // Only update if state differs from defaults
+  if (selectedFormat !== 'mp3' || audioFormat !== 'mp3' || audioBitrate !== '128') {
+    updateFormatSelectorUI(state);
+  }
 
   // Initialize event listeners
   initFormatSelector('#format-selector-container');
+}
+
+/**
+ * Update format selector UI to match state
+ * Called when state differs from HTML defaults
+ */
+function updateFormatSelectorUI(state: ReturnType<typeof getState>): void {
+  const { selectedFormat, videoQuality, audioFormat, audioBitrate } = state;
+
+  // Update format buttons
+  const mp3Btn = document.querySelector('.format-btn[data-format="mp3"]');
+  const mp4Btn = document.querySelector('.format-btn[data-format="mp4"]');
+
+  if (mp3Btn && mp4Btn) {
+    mp3Btn.classList.toggle('active', selectedFormat === 'mp3');
+    mp4Btn.classList.toggle('active', selectedFormat === 'mp4');
+  }
+
+  // Update quality dropdown based on format
+  if (selectedFormat === 'mp4') {
+    // Switch to MP4 quality options
+    const qualityWrapper = document.querySelector('.quality-wrapper');
+    if (qualityWrapper) {
+      const dropdownWrapper = qualityWrapper.querySelector('.quality-dropdown-wrapper');
+      if (dropdownWrapper) {
+        dropdownWrapper.innerHTML = renderVideoQualityDropdown(videoQuality);
+      } else {
+        // No wrapper, update select directly
+        const select = qualityWrapper.querySelector('.quality-select');
+        if (select) {
+          select.outerHTML = renderVideoQualityDropdown(videoQuality);
+        }
+      }
+    }
+  } else {
+    // MP3 format - just update selected value
+    const select = document.querySelector('.quality-select') as HTMLSelectElement;
+    if (select) {
+      const value = `${audioFormat}-${audioBitrate}`;
+      select.value = value;
+    }
+  }
 }
 
 /**
