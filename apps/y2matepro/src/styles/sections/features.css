@@ -8,6 +8,7 @@
 /* ===== FEATURES WRAPPER ===== */
 .y2mate-features-wrap-pro {
     padding: 30px 0;
+    padding-bottom: 0px !important;
     position: relative;
     display: flex;
     flex-wrap: wrap;
@@ -20,17 +21,7 @@
     max-width: 33.333333%;
 }
 
-.y2mate-features-wrap-pro::before {
-    background: rgba(0, 0, 0, 0) radial-gradient(ellipse at center center, rgba(0, 0, 0, 0.2) 0px, rgba(255, 255, 255, 0) 75%) repeat scroll 0 0;
-    bottom: 0;
-    content: "";
-    display: block;
-    height: 1px;
-    left: 50%;
-    margin-left: -40%;
-    position: absolute;
-    width: 80%;
-}
+
 
 .y2mate-features-wrap-pro.first::before {
     background: inherit;

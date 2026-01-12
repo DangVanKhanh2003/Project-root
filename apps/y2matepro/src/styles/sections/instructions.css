@@ -11,6 +11,7 @@
     position: relative;
     display: flex;
     justify-content: space-between;
+    gap: 30px;
 }
 
 .y2mate-instruction-pro::before {
@@ -27,6 +28,7 @@
 
 .y2mate-in-ad-pro {
     margin-bottom: var(--space-2xl);
+    flex: 1;
 }
 
 .y2mate-in-ad-pro:last-child {
