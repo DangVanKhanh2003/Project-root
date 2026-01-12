@@ -4,17 +4,30 @@
 {#- Language-specific configs for multilingual SEO -#}
 {%- set localeMap = {
   en: 'en_US',
-  vi: 'vi_VN',
+  ar: 'ar_SA',
+  bn: 'bn_BD',
+  de: 'de_DE',
   es: 'es_ES',
   fr: 'fr_FR',
-  de: 'de_DE',
+  hi: 'hi_IN',
+  id: 'id_ID',
+  it: 'it_IT',
   ja: 'ja_JP',
-  ar: 'ar_SA',
-  he: 'he_IL'
+  ko: 'ko_KR',
+  ms: 'ms_MY',
+  my: 'my_MM',
+  pt: 'pt_BR',
+  ru: 'ru_RU',
+  th: 'th_TH',
+  tr: 'tr_TR',
+  ur: 'ur_PK',
+  vi: 'vi_VN'
 } -%}
 {%- set locale = localeMap[lang] or 'en_US' -%}
+{#- RTL languages -#}
+{%- set rtlLanguages = ['ar', 'ur'] -%}
 <!DOCTYPE html>
-<html lang="{{ lang or 'en' }}"{% if lang == 'ar' or lang == 'he' %} dir="rtl"{% endif %}>
+<html lang="{{ lang or 'en' }}"{% if lang in rtlLanguages %} dir="rtl"{% endif %}>
 
 <head>
     <meta name="robots" content="index, follow">
@@ -24,11 +37,20 @@
     <!-- SEO Metadata -->
     <title>{{ seo.title }}</title>
     <meta name="description" content="{{ seo.description }}">
-    <link rel="canonical" href="{{ site.url }}{{ page.url | replace('.html', '') | replace('/index', '/') }}">
+    {% set cleanUrl = page.url | replace('/index.html', '/') | replace('.html', '') %}
+    <link rel="canonical" href="{{ site.url }}{{ cleanUrl }}">
 
     <!-- hreflang tags for multilingual SEO -->
-    <link rel="alternate" hreflang="en" href="{{ site.url }}{{ page.url | replace('.html', '') | replace('/index', '/') }}" />
-    <link rel="alternate" hreflang="x-default" href="{{ site.url }}{{ page.url | replace('.html', '') | replace('/index', '/') }}" />
+    {%- set pageSlug = '' if pageKey == 'index' else pageKey -%}
+    {%- for langItem in site.languages %}
+    {%- if langItem.isDefault %}
+    {%- set altUrl = '/' if pageSlug == '' else '/' + pageSlug %}
+    {%- else %}
+    {%- set altUrl = '/' + langItem.code + '/' if pageSlug == '' else '/' + langItem.code + '/' + pageSlug %}
+    {%- endif %}
+    <link rel="alternate" hreflang="{{ langItem.code }}" href="{{ site.url }}{{ altUrl }}" />
+    {%- endfor %}
+    <link rel="alternate" hreflang="x-default" href="{{ site.url }}{{ '/' if pageSlug == '' else '/' + pageSlug }}" />
 
     <!-- Schema.org markup -->
     <meta itemprop="name" content="{{ seo.schemaName }}" />
@@ -58,6 +80,9 @@
 
     <!-- Critical CSS imported via Vite -->
     <script type="module" src="/src/main.ts"></script>
+
+    <!-- JSON-LD Structured Data -->
+    {% include "json-ld.njk" %}
 </head>
 
 <body>

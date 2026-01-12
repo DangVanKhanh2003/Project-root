@@ -1,0 +1,128 @@
+{#- JSON-LD Structured Data for SEO -#}
+{%- set isHomePage = (pageKey == 'index') -%}
+{%- set hasInstructions = pageData.instructions and pageData.instructions.steps -%}
+{%- set hasFaqs = pageData.faqs and pageData.faqs.items -%}
+
+{#- Organization (shared across all schemas) -#}
+{%- set organization = {
+  "@type": "Organization",
+  "name": "Y2mate",
+  "url": site.url,
+  "logo": site.url + "/logo.png",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "email": "y2matepro@gmail.com",
+    "contactType": "customer service"
+  }
+} -%}
+
+{#- Build canonical URL -#}
+{%- set cleanUrl = page.url | replace('/index.html', '/') | replace('.html', '') -%}
+{%- set canonicalUrl = site.url + cleanUrl -%}
+
+<script type="application/ld+json">
+{%- if isHomePage %}
+{#- === HOMEPAGE: WebSite Schema === -#}
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "name": "Y2mate",
+      "url": "{{ site.url }}",
+      "description": "{{ seo.description | stripHtml }}",
+      "inLanguage": "{{ lang or 'en' }}",
+      "publisher": {{ organization | dump | safe }}
+    },
+    {{ organization | dump | safe }}
+    {%- if hasFaqs %},
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {%- for item in pageData.faqs.items %}
+        {
+          "@type": "Question",
+          "name": "{{ item.question | stripHtml }}",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "{{ item.answer | stripHtml }}"
+          }
+        }{%- if not loop.last %},{% endif %}
+        {%- endfor %}
+      ]
+    }
+    {%- endif %}
+    {%- if hasInstructions %},
+    {
+      "@type": "HowTo",
+      "name": "{{ pageData.instructions.title | stripHtml }}",
+      "step": [
+        {%- for step in pageData.instructions.steps %}
+        {
+          "@type": "HowToStep",
+          "position": {{ loop.index }},
+          "text": "{{ step | stripHtml }}"
+        }{%- if not loop.last %},{% endif %}
+        {%- endfor %}
+      ]
+    }
+    {%- endif %}
+  ]
+}
+{%- else %}
+{#- === TOOL PAGES: WebApplication Schema === -#}
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Y2mate",
+      "url": "{{ canonicalUrl }}",
+      "description": "{{ seo.schemaDescription | stripHtml }}",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "{{ lang or 'en' }}",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {{ organization | dump | safe }}
+    }
+    {%- if hasFaqs %},
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {%- for item in pageData.faqs.items %}
+        {
+          "@type": "Question",
+          "name": "{{ item.question | stripHtml }}",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "{{ item.answer | stripHtml }}"
+          }
+        }{%- if not loop.last %},{% endif %}
+        {%- endfor %}
+      ]
+    }
+    {%- endif %}
+    {%- if hasInstructions %},
+    {
+      "@type": "HowTo",
+      "name": "{{ pageData.instructions.title | stripHtml }}",
+      "step": [
+        {%- for step in pageData.instructions.steps %}
+        {
+          "@type": "HowToStep",
+          "position": {{ loop.index }},
+          "text": "{{ step | stripHtml }}"
+        }{%- if not loop.last %},{% endif %}
+        {%- endfor %}
+      ]
+    }
+    {%- endif %}
+  ]
+}
+{%- endif %}
+</script>

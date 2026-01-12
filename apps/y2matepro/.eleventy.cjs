@@ -97,6 +97,12 @@ module.exports = function(eleventyConfig) {
   // 5. FILTERS (Template helpers)
   // ============================================
 
+  // Strip HTML tags from string (for JSON-LD)
+  eleventyConfig.addFilter('stripHtml', function(str) {
+    if (!str) return '';
+    return str.replace(/<[^>]*>/g, '');
+  });
+
   // Get alternate URL for different language
   // Example: /youtube-to-mp4/ → /vi/youtube-to-mp4/ (for Vietnamese)
   eleventyConfig.addFilter('getAlternateUrl', function(url, targetLang) {
@@ -117,13 +123,70 @@ module.exports = function(eleventyConfig) {
 
 
   // ============================================
-  // 6. CONFIGURATION
+  // 6. POST-BUILD: Copy output to final locations
+  // ============================================
+  eleventyConfig.on('eleventy.after', async () => {
+    const outputDir = path.join(__dirname, '_11ty-output');
+    const rootDir = __dirname;
+    const pagesDir = path.join(__dirname, 'pages');
+
+    // Ensure pages directory exists
+    if (!fs.existsSync(pagesDir)) {
+      fs.mkdirSync(pagesDir, { recursive: true });
+    }
+
+    // Helper: Copy directory recursively
+    function copyDirSync(src, dest) {
+      if (!fs.existsSync(dest)) {
+        fs.mkdirSync(dest, { recursive: true });
+      }
+      const entries = fs.readdirSync(src, { withFileTypes: true });
+      for (const entry of entries) {
+        const srcPath = path.join(src, entry.name);
+        const destPath = path.join(dest, entry.name);
+        if (entry.isDirectory()) {
+          copyDirSync(srcPath, destPath);
+        } else {
+          fs.copyFileSync(srcPath, destPath);
+        }
+      }
+    }
+
+    // Get all language codes (except 'en')
+    const langCodes = ['ar', 'bn', 'de', 'es', 'fr', 'hi', 'id', 'it', 'ja', 'ko', 'my', 'ms', 'pt', 'ru', 'th', 'tr', 'ur', 'vi'];
+
+    // Read output directory
+    const items = fs.readdirSync(outputDir, { withFileTypes: true });
+
+    for (const item of items) {
+      const srcPath = path.join(outputDir, item.name);
+
+      if (item.isDirectory() && langCodes.includes(item.name)) {
+        // Language folder → copy to /pages/{lang}/
+        const destPath = path.join(pagesDir, item.name);
+        copyDirSync(srcPath, destPath);
+        console.log(`[post-build] Copied ${item.name}/ → pages/${item.name}/`);
+      } else if (item.isFile() && item.name.endsWith('.html')) {
+        // English HTML files → copy to root
+        const destPath = path.join(rootDir, item.name);
+        fs.copyFileSync(srcPath, destPath);
+        console.log(`[post-build] Copied ${item.name} → root`);
+      }
+    }
+
+    console.log('[post-build] Done copying files to final locations');
+  });
+
+
+  // ============================================
+  // 7. CONFIGURATION
   // ============================================
   return {
     dir: {
       input: "_templates",      // Source templates folder
       output: "_11ty-output",   // Build output folder (temp)
       includes: "_includes",    // Components (header, footer)
+      layouts: "_includes",     // Layout files (same as includes)
       data: "_data"            // Data files (JSON, JS)
     },
 
