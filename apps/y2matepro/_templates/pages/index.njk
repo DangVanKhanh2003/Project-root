@@ -1,11 +1,16 @@
 ---
 layout: base.njk
-permalink: /index.html
-lang: en
-pageKey: index
+pagination:
+  data: indexPages
+  size: 1
+  alias: pageInfo
+eleventyComputed:
+  permalink: "{{ pageInfo.permalink }}"
+  lang: "{{ pageInfo.lang }}"
+  pageKey: "{{ pageInfo.pageKey }}"
 ---
 {%- set base = i18nBase -%}
-{%- set page = i18nPages.index[lang] or i18nPages.index.en -%}
+{%- set page = i18nPages[pageKey][lang] or i18nPages[pageKey].en -%}
 <div class="container">
     <section class="y2mate-download-pro">
         <div class="y2mate-search-form-pro d-flex">

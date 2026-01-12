@@ -131,7 +131,7 @@ Update `<html lang>` in each file:
 <html lang="vi">
 <head>
   <meta charset="utf-8" />
-  <title>YTMP3 – Tải YouTube sang MP3</title>
+  <title>YTMP3 - Tải YouTube sang MP3</title>
   <script type="module" src="/src/main.ts"></script>
 </head>
 ...
@@ -240,7 +240,7 @@ Add to each page's `<head>`:
 <html lang="vi" dir="ltr">
 <head>
   <meta charset="utf-8" />
-  <title>YTMP3 – Chuyển đổi YouTube sang MP3 miễn phí</title>
+  <title>YTMP3 - Chuyển đổi YouTube sang MP3 miễn phí</title>
   <meta name="description" content="Công cụ chuyển đổi YouTube sang MP3 & MP4 miễn phí, nhanh, an toàn." />
   ...
 </head>

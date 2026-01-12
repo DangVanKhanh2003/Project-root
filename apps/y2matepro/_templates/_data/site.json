@@ -1,15 +1,3 @@
 {
-  "url": "https://y2matepro.com",
-  "languages": [
-    {
-      "code": "en",
-      "name": "English",
-      "isDefault": true
-    },
-    {
-      "code": "vi",
-      "name": "Tiếng Việt",
-      "isDefault": false
-    }
-  ]
+  "url": "https://y2matepro.com"
 }

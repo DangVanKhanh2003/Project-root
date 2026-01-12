@@ -1,11 +1,16 @@
 ---
 layout: base.njk
-permalink: /youtube-to-mp4.html
-lang: en
-pageKey: youtube-to-mp4
+pagination:
+  data: youtubeToMp4Pages
+  size: 1
+  alias: pageInfo
+eleventyComputed:
+  permalink: "{{ pageInfo.permalink }}"
+  lang: "{{ pageInfo.lang }}"
+  pageKey: "{{ pageInfo.pageKey }}"
 ---
 {%- set base = i18nBase -%}
-{%- set page = i18nPages['youtube-to-mp4'][lang] or i18nPages['youtube-to-mp4'].en -%}
+{%- set page = i18nPages[pageKey][lang] or i18nPages[pageKey].en -%}
 <div class="container">
     <section class="y2mate-download-pro">
         <div class="y2mate-search-form-pro d-flex">

@@ -14,11 +14,11 @@
    - Empty state handling
 
    Responsive Breakpoints & Grid Layout:
-   • Mobile (0–599px) - 2 columns, gap 10px, NO metadata
-   • Tablet (600–839px) - 3 columns, show metadata
-   • Desktop (840–1239px) - 4 columns, max-width 1100px
-   • Wide Desktop (1240–1919px) - 4 columns, max-width 1100px
-   • 2K Display (1920–2559px) - 4 columns, max-width 1100px
+   • Mobile (0-599px) - 2 columns, gap 10px, NO metadata
+   • Tablet (600-839px) - 3 columns, show metadata
+   • Desktop (840-1239px) - 4 columns, max-width 1100px
+   • Wide Desktop (1240-1919px) - 4 columns, max-width 1100px
+   • 2K Display (1920-2559px) - 4 columns, max-width 1100px
    • 4K Display (2560px+) - 4 columns, max-width 1600px
    ========================================================= */
 

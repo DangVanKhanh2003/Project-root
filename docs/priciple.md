@@ -39,7 +39,7 @@ Mục tiêu chính:
   favicon.ico
 
 /src/
-  main.js               # Orchestrator – xác định page, import module
+  main.js               # Orchestrator - xác định page, import module
   /styles/
     reset.css           # Làm phẳng khác biệt trình duyệt
     base.css            # Tokens + typography + layout cơ bản
@@ -51,7 +51,7 @@ Mục tiêu chính:
       modal.css
   /libs/                # Business logic, không đụng DOM
     downloader-lib/
-  /features/            # UI logic – mỗi module 1 chức năng
+  /features/            # UI logic - mỗi module 1 chức năng
     downloader/
       index.js
       pastebox.js
@@ -86,7 +86,7 @@ Mục tiêu chính:
 
 ### 4.4 JS
 
-* `main.js`: chỉ **orchestrator** – xác định `body#id`, dynamic import module trang.
+* `main.js`: chỉ **orchestrator** - xác định `body#id`, dynamic import module trang.
 * `features/`: mỗi file 1 chức năng (UI logic).
 * `libs/`: business logic thuần, không thao tác DOM.
 * Không dùng jQuery; chỉ dùng ES Modules.
@@ -102,7 +102,7 @@ Mục tiêu chính:
 
 ### 5.2 Quy Tắc
 
-* **Preload (critical):** layout, màu, typography, spacing – áp dụng ngay.
+* **Preload (critical):** layout, màu, typography, spacing - áp dụng ngay.
 * **Feature:** animation, hover, state (`.is-open`, `.is-playing`...), lazy-load.
 * **Không** để style interaction trong preload.
 
@@ -140,11 +140,11 @@ Mỗi file CSS **bắt buộc** có phần khai báo media theo chuẩn dưới 
 /* =========================================================
    Responsive Breakpoints (BẮT BUỘC CHO MỌI FILE)
    ---------------------------------------------------------
-   • Extra Small Mobile (0–350px)
-   • Small Mobile (351–599px)
-   • Medium (Tablet) – 600–839px
-   • Expanded (Desktop) – 840–1239px
-   • Large (Wide Desktop) – 1240px+
+   • Extra Small Mobile (0-350px)
+   • Small Mobile (351-599px)
+   • Medium (Tablet) - 600-839px
+   • Expanded (Desktop) - 840-1239px
+   • Large (Wide Desktop) - 1240px+
    ========================================================= */
 ```
 
@@ -162,11 +162,11 @@ Mỗi file CSS **bắt buộc** có phần khai báo media theo chuẩn dưới 
 /* =========================================================
    Responsive Breakpoints (BẮT BUỘC)
    ---------------------------------------------------------
-   • Extra Small Mobile (0–350px)
-   • Small Mobile (351–599px)
-   • Medium (Tablet) – 600–839px
-   • Expanded (Desktop) – 840–1239px
-   • Large (Wide Desktop) – 1240px+
+   • Extra Small Mobile (0-350px)
+   • Small Mobile (351-599px)
+   • Medium (Tablet) - 600-839px
+   • Expanded (Desktop) - 840-1239px
+   • Large (Wide Desktop) - 1240px+
    ========================================================= */
 
 @media (min-width: 0px) and (max-width: 350px) {
@@ -267,7 +267,7 @@ Mỗi file CSS **bắt buộc** có phần khai báo media theo chuẩn dưới 
 
 Tuân thủ tài liệu này sẽ đảm bảo:
 
-* **Cấu trúc rõ ràng – tách bạch – mobile-first**
+* **Cấu trúc rõ ràng - tách bạch - mobile-first**
 * **Hiệu năng cao và dễ bảo trì**
 * **AI sinh code thống nhất, không phá cấu trúc base**
 * **Mọi trang đều đáp ứng trải nghiệm hiện đại, sạch, và chuẩn SEO.**
