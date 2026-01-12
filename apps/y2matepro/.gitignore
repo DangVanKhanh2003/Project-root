@@ -18,3 +18,8 @@ dist/
 
 # Claude Code temp files
 tmpclaude-*/
+
+# SEO Checker
+logs/
+skills/seo-checker/dist/
+skills/seo-checker/node_modules/
