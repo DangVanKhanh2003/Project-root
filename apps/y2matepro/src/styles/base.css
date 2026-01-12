@@ -39,7 +39,7 @@
     --color-error-text: #a94442;
 
     /* ===== TYPOGRAPHY ===== */
-    --font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-family-base: sans-serif;
     --font-size-base: 1rem;
     --font-size-xs: 12px;
     --font-size-sm: 14px;
@@ -112,6 +112,7 @@ html:not(.tab-outline) *:focus {
 /* ===== TYPOGRAPHY ===== */
 p {
     margin: 0 0 var(--space-md);
+    color: #293a46;
 }
 
 ul {

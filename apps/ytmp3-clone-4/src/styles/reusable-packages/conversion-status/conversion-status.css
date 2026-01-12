@@ -59,9 +59,9 @@
   left: 0;
   height: 100%;
   width: var(--progress-width, 0%);
-  background: rgb(155 155 155 / 35%);
-  border-right: 1px solid rgb(155 155 155 / 60%);
-  box-shadow: 0 0 20px rgb(155 155 155 / 30%);
+  background: rgb(111 198 210 / 35%);
+  border-right: 1px solid rgb(111 198 210 / 60%);
+  box-shadow: 0 0 20px rgb(111 198 210 / 30%);
   transition: width 0.2s linear;
   z-index: 1;
 }
@@ -117,7 +117,7 @@
   /* Always reserve space, but hidden by default */
   visibility: hidden;
   border: 2px solid rgba(139, 92, 246, 0.3);
-  border-top: 2px solid black;
+  border-top: 2px solid #3d9aa8;
   border-radius: 50%;
   margin: 0px;
   display: none;
