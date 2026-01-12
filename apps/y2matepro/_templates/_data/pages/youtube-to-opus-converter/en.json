@@ -5,7 +5,7 @@
     "ogTitle": "Y2mate - YouTube to OPUS Converter (Modern, Efficient)",
     "ogDescription": "Convert YouTube to OPUS audio. Modern codec with superior compression.",
     "schemaName": "Y2mate - YouTube to OPUS Converter",
-    "schemaDescription": "Convert YouTube to OPUS—modern codec with best compression efficiency."
+    "schemaDescription": "Convert YouTube to OPUS-modern codec with best compression efficiency."
   },
 
   "hero": {
@@ -14,8 +14,8 @@
 
   "content": {
     "mainTitle": "Free YouTube to OPUS Converter - Next-Gen Audio Codec",
-    "intro1": "Y2mate OPUS converter extracts YouTube audio using the OPUS codec—the most advanced open-source audio compression technology available. OPUS delivers superior quality at ultra-low bitrates, making it the future standard for internet audio streaming and voice calls.",
-    "intro2": "OPUS combines SILK (voice) and CELT (music) codecs for hybrid efficiency. Perfect for low-bandwidth streaming, VoIP applications, podcasts, and modern web audio. Download unlimited OPUS files for free—royalty-free codec with no licensing restrictions."
+    "intro1": "Y2mate OPUS converter extracts YouTube audio using the OPUS codec-the most advanced open-source audio compression technology available. OPUS delivers superior quality at ultra-low bitrates, making it the future standard for internet audio streaming and voice calls.",
+    "intro2": "OPUS combines SILK (voice) and CELT (music) codecs for hybrid efficiency. Perfect for low-bandwidth streaming, VoIP applications, podcasts, and modern web audio. Download unlimited OPUS files for free-royalty-free codec with no licensing restrictions."
   },
 
   "instructions": {
@@ -23,7 +23,7 @@
     "steps": [
       "Copy the YouTube video URL you want to convert to OPUS format.",
       "Paste the link into Y2mate and click Start to analyze the audio.",
-      "Select \"OPUS\" format from available options—this uses the modern hybrid codec.",
+      "Select \"OPUS\" format from available options-this uses the modern hybrid codec.",
       "Download your OPUS file, optimized for streaming or low-bandwidth playback."
     ]
   },
@@ -31,11 +31,11 @@
   "whyChoose": {
     "title": "Why choose OPUS codec",
     "reasons": [
-      "Best-in-class compression efficiency—OPUS outperforms MP3, AAC, and Vorbis at all bitrates.",
-      "Ultra-low latency streaming—optimized for real-time voice calls, live audio, and WebRTC.",
-      "Hybrid codec design—combines SILK for speech and CELT for music in a single adaptive stream.",
-      "Flexible bitrate range—works from 6kbps (voice) to 510kbps (studio music) with seamless quality scaling.",
-      "Royalty-free and open source—standardized by IETF (RFC 6716), free for commercial use."
+      "Best-in-class compression efficiency-OPUS outperforms MP3, AAC, and Vorbis at all bitrates.",
+      "Ultra-low latency streaming-optimized for real-time voice calls, live audio, and WebRTC.",
+      "Hybrid codec design-combines SILK for speech and CELT for music in a single adaptive stream.",
+      "Flexible bitrate range-works from 6kbps (voice) to 510kbps (studio music) with seamless quality scaling.",
+      "Royalty-free and open source-standardized by IETF (RFC 6716), free for commercial use."
     ]
   },
 
@@ -44,19 +44,19 @@
     "items": [
       {
         "title": "Next-Generation Codec",
-        "description": "OPUS is the newest audio standard—finalized in 2012 by IETF. It represents 10+ years of codec evolution beyond MP3, delivering state-of-the-art compression efficiency."
+        "description": "OPUS is the newest audio standard-finalized in 2012 by IETF. It represents 10+ years of codec evolution beyond MP3, delivering state-of-the-art compression efficiency."
       },
       {
         "title": "Ultra-Low Bandwidth",
-        "description": "OPUS excels at low bitrates—64kbps OPUS sounds better than 128kbps MP3. Perfect for mobile data, slow connections, and minimizing server bandwidth costs."
+        "description": "OPUS excels at low bitrates-64kbps OPUS sounds better than 128kbps MP3. Perfect for mobile data, slow connections, and minimizing server bandwidth costs."
       },
       {
         "title": "Voice-Optimized Quality",
-        "description": "OPUS's SILK layer specializes in speech compression. Podcasts, audiobooks, and voice recordings sound crystal-clear at just 32-64kbps—MP3 requires 96-128kbps for similar clarity."
+        "description": "OPUS's SILK layer specializes in speech compression. Podcasts, audiobooks, and voice recordings sound crystal-clear at just 32-64kbps-MP3 requires 96-128kbps for similar clarity."
       },
       {
         "title": "Real-Time Streaming",
-        "description": "OPUS has ultra-low latency—as low as 5ms encoding delay. This makes it the standard for WebRTC, Discord voice chat, Zoom calls, and live audio streaming."
+        "description": "OPUS has ultra-low latency-as low as 5ms encoding delay. This makes it the standard for WebRTC, Discord voice chat, Zoom calls, and live audio streaming."
       },
       {
         "title": "Adaptive Bitrate Scaling",
@@ -64,7 +64,7 @@
       },
       {
         "title": "Industry Standard Adoption",
-        "description": "WhatsApp, Skype, Discord, YouTube livestreams, and most modern VoIP services use OPUS. It's the mandated codec for WebRTC—the web's real-time communication standard."
+        "description": "WhatsApp, Skype, Discord, YouTube livestreams, and most modern VoIP services use OPUS. It's the mandated codec for WebRTC-the web's real-time communication standard."
       }
     ]
   },
@@ -81,7 +81,7 @@
         "answer": "Yes, Y2mate offers completely free YouTube to OPUS conversion. Download unlimited OPUS files with no subscription fees, no file size limits, and no hidden costs. The OPUS codec itself is also royalty-free for commercial use."
       },
       {
-        "question": "OPUS vs MP3—which is better?",
+        "question": "OPUS vs MP3-which is better?",
         "answer": "OPUS significantly outperforms MP3 at all bitrates. A 96kbps OPUS file sounds better than 128kbps MP3. OPUS has lower latency, better low-bitrate quality, and hybrid voice/music optimization. MP3 has wider legacy device support, but OPUS is the future."
       },
       {

@@ -1,4 +1,4 @@
-# SEO Checklist — Full (Project + Per Page)
+# SEO Checklist - Full (Project + Per Page)
 
 Use this checklist to audit before release. Items are tailored to this static Vite multi‑page build (index + platform pages) and are safe to keep under version control.
 

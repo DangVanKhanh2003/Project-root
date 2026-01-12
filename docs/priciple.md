@@ -1,4 +1,4 @@
-Tuyệt vời — dưới đây là **phiên bản hoàn chỉnh hợp nhất** toàn bộ tài liệu kiến trúc frontend, đã bao gồm: triết lý, cấu trúc, tách base/preload/feature, quy tắc mobile-first, section-level CSS, và media query chuẩn.
+Tuyệt vời - dưới đây là **phiên bản hoàn chỉnh hợp nhất** toàn bộ tài liệu kiến trúc frontend, đã bao gồm: triết lý, cấu trúc, tách base/preload/feature, quy tắc mobile-first, section-level CSS, và media query chuẩn.
 Bạn có thể copy nguyên văn làm file:
 📘 `ARCHITECTURE_GUIDELINES.md`
 

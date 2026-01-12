@@ -5,7 +5,7 @@
     "ogTitle": "Y2mate - YouTube to WAV Converter (Lossless, Uncompressed)",
     "ogDescription": "Convert YouTube to WAV lossless audio. Uncompressed, studio-quality downloads.",
     "schemaName": "Y2mate - YouTube to WAV Converter",
-    "schemaDescription": "Convert YouTube to lossless WAV audio—uncompressed studio quality."
+    "schemaDescription": "Convert YouTube to lossless WAV audio-uncompressed studio quality."
   },
 
   "hero": {
@@ -14,8 +14,8 @@
 
   "content": {
     "mainTitle": "Free YouTube to WAV Converter - Lossless Audio Downloads",
-    "intro1": "Y2mate WAV converter extracts YouTube audio in uncompressed WAV format—the gold standard for lossless audio. WAV (Waveform Audio File Format) preserves 100% of the original sound without any compression or quality loss.",
-    "intro2": "WAV files use PCM (Pulse Code Modulation) encoding at 1411kbps for CD-quality audio. Perfect for professional audio editing, music production, sampling, and archival. Download unlimited WAV files for free—no quality compromise."
+    "intro1": "Y2mate WAV converter extracts YouTube audio in uncompressed WAV format-the gold standard for lossless audio. WAV (Waveform Audio File Format) preserves 100% of the original sound without any compression or quality loss.",
+    "intro2": "WAV files use PCM (Pulse Code Modulation) encoding at 1411kbps for CD-quality audio. Perfect for professional audio editing, music production, sampling, and archival. Download unlimited WAV files for free-no quality compromise."
   },
 
   "instructions": {
@@ -23,7 +23,7 @@
     "steps": [
       "Copy the YouTube link of the audio content you want in lossless WAV format.",
       "Paste the URL into Y2mate and click Start to process the video.",
-      "Select \"WAV\" format from available options—this gives you uncompressed PCM audio.",
+      "Select \"WAV\" format from available options-this gives you uncompressed PCM audio.",
       "Download your studio-quality WAV file, ready for editing or archival storage."
     ]
   },
@@ -31,11 +31,11 @@
   "whyChoose": {
     "title": "Why choose WAV format",
     "reasons": [
-      "Zero compression loss—WAV preserves every bit of the original audio signal without degradation.",
-      "Professional editing standard—DAWs like Pro Tools, Ableton, and FL Studio use WAV as native format.",
-      "Perfect for sampling—extract clean audio loops and samples without compression artifacts.",
-      "Archival quality—WAV is the industry standard for long-term audio preservation and mastering.",
-      "Full 16-bit/44.1kHz CD quality—identical to what you'd get from ripping an audio CD."
+      "Zero compression loss-WAV preserves every bit of the original audio signal without degradation.",
+      "Professional editing standard-DAWs like Pro Tools, Ableton, and FL Studio use WAV as native format.",
+      "Perfect for sampling-extract clean audio loops and samples without compression artifacts.",
+      "Archival quality-WAV is the industry standard for long-term audio preservation and mastering.",
+      "Full 16-bit/44.1kHz CD quality-identical to what you'd get from ripping an audio CD."
     ]
   },
 
@@ -44,11 +44,11 @@
     "items": [
       {
         "title": "100% Lossless Audio",
-        "description": "WAV format uses uncompressed PCM encoding—zero data loss. Every waveform, transient, and frequency is preserved exactly as recorded. True studio quality."
+        "description": "WAV format uses uncompressed PCM encoding-zero data loss. Every waveform, transient, and frequency is preserved exactly as recorded. True studio quality."
       },
       {
         "title": "DAW-Ready Format",
-        "description": "Import WAV files directly into Pro Tools, Logic Pro, Ableton Live, or any DAW. No conversion needed—WAV is the universal standard for audio workstations."
+        "description": "Import WAV files directly into Pro Tools, Logic Pro, Ableton Live, or any DAW. No conversion needed-WAV is the universal standard for audio workstations."
       },
       {
         "title": "Clean Sampling Source",
@@ -60,11 +60,11 @@
       },
       {
         "title": "CD-Quality 44.1kHz",
-        "description": "WAV files from Y2mate use 16-bit/44.1kHz PCM encoding—identical to audio CD specifications. This is the professional baseline for high-fidelity audio."
+        "description": "WAV files from Y2mate use 16-bit/44.1kHz PCM encoding-identical to audio CD specifications. This is the professional baseline for high-fidelity audio."
       },
       {
         "title": "No Compression Artifacts",
-        "description": "Unlike MP3/AAC, WAV has zero compression artifacts. No muffled highs, no pumping bass, no digital \"swishiness\"—just pure, unaltered audio waveforms."
+        "description": "Unlike MP3/AAC, WAV has zero compression artifacts. No muffled highs, no pumping bass, no digital \"swishiness\"-just pure, unaltered audio waveforms."
       }
     ]
   },
@@ -81,12 +81,12 @@
         "answer": "Yes, Y2mate offers completely free YouTube to WAV conversion. Download unlimited lossless audio files with no subscription fees, no file size caps, and no hidden costs. Professional-grade WAV exports are always free."
       },
       {
-        "question": "WAV vs MP3—which is better?",
+        "question": "WAV vs MP3-which is better?",
         "answer": "WAV is uncompressed lossless (1411kbps), while MP3 320kbps is compressed. WAV preserves 100% audio quality but creates files 4-5× larger. Use WAV for editing, mastering, or archival. Use MP3 for portable listening and storage efficiency."
       },
       {
         "question": "Why are WAV files so large?",
-        "answer": "WAV files store every audio sample without compression—a 4-minute song is ~40MB. This size represents complete audio fidelity. MP3 320kbps achieves similar quality at 10MB through perceptual compression, but WAV is mathematically perfect."
+        "answer": "WAV files store every audio sample without compression-a 4-minute song is ~40MB. This size represents complete audio fidelity. MP3 320kbps achieves similar quality at 10MB through perceptual compression, but WAV is mathematically perfect."
       },
       {
         "question": "Can I edit WAV files?",
