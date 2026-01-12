@@ -1,0 +1,95 @@
+{
+  "seo": {
+    "title": "Y2mate - Téléchargeur de YouTube Shorts (Gratuit, Rapide, HD)",
+    "description": "Téléchargez les YouTube Shorts en HD. Enregistrez instantanément des vidéos verticales au format portrait, ratio 9:16. Téléchargeur de Shorts gratuit pour mobile et ordinateur.",
+    "ogTitle": "Y2mate - Téléchargeur de YouTube Shorts (Gratuit, Rapide, HD)",
+    "ogDescription": "Téléchargez les YouTube Shorts en HD. Enregistrez instantanément des vidéos verticales au format portrait, ratio 9:16.",
+    "schemaName": "Y2mate - Téléchargeur de YouTube Shorts",
+    "schemaDescription": "Téléchargez instantanément les YouTube Shorts. Téléchargeur de vidéos verticales gratuit pour mobile."
+  },
+
+  "hero": {
+    "title": "Y2mate - Téléchargeur de YouTube Shorts"
+  },
+
+  "content": {
+    "mainTitle": "Téléchargez les YouTube Shorts en Full HD",
+    "intro1": "Y2mate est un outil en ligne gratuit qui vous permet de télécharger des YouTube Shorts en haute qualité directement sur votre téléphone ou votre ordinateur. Alors que les Shorts deviennent incontournables pour un divertissement rapide, notre téléchargeur vous assure de pouvoir sauvegarder ces moments viraux, montages créatifs ou astuces utiles pour un visionnage hors ligne. C'est un service 100% basé sur le web, ce qui signifie que vous pouvez récupérer n'importe quel Short dans son format vertical d'origine sans installer d'applications ni créer de compte.",
+    "intro2": "Que vous souhaitiez conserver un clip amusant dans votre galerie pour le partager avec des amis ou enregistrer une recette pour plus tard, Y2mate gère la conversion instantanément. Nous nous concentrons sur le maintien de la résolution HD d'origine afin que vos téléchargements soient aussi nets que sur l'application, tout en gardant le processus rapide, sûr et entièrement sans publicité."
+  },
+
+  "instructions": {
+    "title": "Comment Télécharger des YouTube Shorts en Quelques Secondes",
+    "steps": [
+      "<strong>Copiez le lien du Short :</strong> Appuyez sur le bouton \"Partager\" sur n'importe quel YouTube Short et copiez l'URL.",
+      "<strong>Collez et Analysez :</strong> Collez le lien dans la barre de recherche Y2mate ci-dessus et appuyez sur \"Démarrer\".",
+      "<strong>Choisissez et Enregistrez :</strong> Sélectionnez votre qualité préférée et cliquez sur \"Télécharger\". La vidéo sera enregistrée directement dans la galerie de votre appareil ou dans le dossier des téléchargements."
+    ]
+  },
+
+  "whyChoose": {
+    "title": "Pourquoi Y2mate est Parfait pour les YouTube Shorts",
+    "reasons": [
+      "<strong>Format Vertical d'Origine :</strong> Nous nous assurons que la vidéo conserve son format natif 9:16, ce qui la rend parfaite pour la revoir sur votre téléphone ou la partager sur d'autres plateformes sociales.",
+      "<strong>Qualité Haute Définition :</strong> Si le Short a été mis en ligne en 1080p ou 720p, vous pouvez le télécharger dans cette résolution exacte pour la meilleure expérience visuelle.",
+      "<strong>Téléchargements Ultra-Rapides :</strong> Les Shorts sont rapides, et notre téléchargeur l'est aussi. La plupart des clips sont traités et prêts à être enregistrés en quelques instants.",
+      "<strong>Sans Filigrane :</strong> Profitez de vos Shorts préférés dans leur forme pure. Y2mate enregistre la vidéo exactement telle qu'elle apparaît sur YouTube sans ajouter de superpositions supplémentaires."
+    ]
+  },
+
+  "features": {
+    "title": "Fonctionnalités Clés pour les Utilisateurs Mobiles",
+    "items": [
+      {
+        "title": "Prêt pour iPhone et Android",
+        "description": "Optimisé pour les navigateurs mobiles comme Safari et Chrome, vous pouvez donc télécharger des Shorts directement sur votre smartphone lors de vos déplacements."
+      },
+      {
+        "title": "Aucune Installation d'Application",
+        "description": "Économisez le stockage et la batterie de votre téléphone. Il n'est pas nécessaire de télécharger des applications \"Shorts Saver\" douteuses."
+      },
+      {
+        "title": "Enregistrement Illimité",
+        "description": "Il n'y a pas de limites quotidiennes. Enregistrez un Short ou cent, c'est toujours gratuit et illimité."
+      },
+      {
+        "title": "Sûr et Sans Publicité",
+        "description": "Nous avons supprimé les redirections et les pop-ups ennuyeux, vous offrant un environnement sécurisé pour récupérer votre contenu."
+      },
+      {
+        "title": "Qualité Haute Définition",
+        "description": "Téléchargez des Shorts en résolution 1080p ou 720p pour un affichage net et clair sur les smartphones modernes."
+      },
+      {
+        "title": "Format Vertical d'Origine",
+        "description": "Nous préservons le format natif 9:16, parfait pour le visionnage mobile et le partage sur les réseaux sociaux."
+      }
+    ]
+  },
+
+  "faqs": {
+    "title": "Questions Fréquemment Posées (FAQs)",
+    "items": [
+      {
+        "question": "Y a-t-il une limite au nombre de Shorts que je peux télécharger ?",
+        "answer": "Pas du tout ! Vous pouvez utiliser Y2mate pour télécharger autant de YouTube Shorts que vous le souhaitez. Nous n'avons pas de plafonds quotidiens ni de frais cachés."
+      },
+      {
+        "question": "Comment puis-je enregistrer un Short directement dans la Galerie de mon téléphone ?",
+        "answer": "<strong>Sur Android :</strong> Une fois le téléchargement terminé, la vidéo apparaîtra automatiquement dans votre dossier \"Téléchargements\" et votre application Galerie.<br><strong>Sur iPhone :</strong> Utilisez Safari pour télécharger le fichier. Appuyez sur l'icône de téléchargement bleue, sélectionnez la vidéo, puis appuyez sur \"Enregistrer la vidéo\" pour la déplacer directement dans votre application Photos."
+      },
+      {
+        "question": "Puis-je télécharger des YouTube Shorts en audio MP3 ?",
+        "answer": "Oui ! Si vous ne voulez que le son ou la musique d'un Short, choisissez simplement le format MP3 après avoir cliqué sur \"Démarrer\". Vous pouvez obtenir l'audio en haute qualité jusqu'à 320kbps."
+      },
+      {
+        "question": "Y2mate fonctionne-t-il avec les Shorts Privés ?",
+        "answer": "Non, pour des raisons de confidentialité, notre outil ne fonctionne qu'avec les Shorts Publics ou Non répertoriés. Si le créateur a défini la vidéo sur \"Privé\", l'outil ne peut pas y accéder pour la télécharger."
+      },
+      {
+        "question": "Est-ce sûr pour mon appareil ?",
+        "answer": "100% sûr. Comme Y2mate est un outil basé sur un navigateur, vous n'avez pas besoin d'installer de logiciel ni d'accorder d'autorisations spéciales. Votre appareil reste sécurisé et sans encombrement."
+      }
+    ]
+  }
+}

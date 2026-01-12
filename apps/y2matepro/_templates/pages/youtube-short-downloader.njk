@@ -5,7 +5,7 @@ lang: en
 pageKey: youtube-short-downloader
 ---
 {%- set base = i18nBase -%}
-{%- set page = i18nPages['youtube-short-downloader'].en -%}
+{%- set page = i18nPages['youtube-short-downloader'][lang] or i18nPages['youtube-short-downloader'].en -%}
 <div class="container">
     <section class="y2mate-download-pro">
         <div class="y2mate-search-form-pro d-flex">

@@ -1,0 +1,96 @@
+{
+  "seo": {
+    "title": "Y2Mate - Convertitore gratuito da YouTube a MP4 (1080p Full HD, sicuro e senza pubblicità)",
+    "description": "Y2Mate è un downloader online gratuito da YouTube a MP4 che ti consente di salvare video in modo sicuro, istantaneo e senza pubblicità o reindirizzamenti. Nessuna registrazione richiesta, nessun costo nascosto e nessuna installazione di software. Scarica video in 360p, 720p HD o 1080p Full HD.",
+    "ogTitle": "Y2Mate - Convertitore gratuito da YouTube a MP4 (1080p Full HD, sicuro e senza pubblicità)",
+    "ogDescription": "Y2Mate è un downloader online gratuito da YouTube a MP4. Scarica video in modo sicuro in 144p, 360p, 720p HD o 1080p Full HD senza pubblicità o reindirizzamenti.",
+    "schemaName": "Y2Mate - Convertitore gratuito da YouTube a MP4",
+    "schemaDescription": "Y2Mate è un downloader online gratuito da YouTube a MP4. Scarica video in modo sicuro in 144p, 360p, 720p HD o 1080p Full HD senza pubblicità o reindirizzamenti."
+  },
+
+  "hero": {
+    "title": "Convertitore gratuito da YouTube a MP4"
+  },
+
+  "content": {
+    "mainTitle": "Downloader gratuito da YouTube a MP4 – Veloce, HD e senza pubblicità",
+    "intro1": "Questo downloader da YouTube a MP4 di Y2mate è uno strumento online specializzato progettato per convertire e salvare video di YouTube in formato MP4 ad alta definizione direttamente sul tuo dispositivo. Se hai mai desiderato scaricare un tutorial per un lungo volo o salvare un video musicale di alta qualità per un viaggio in auto senza fare affidamento su una connessione dati instabile, questa è la tua soluzione. È progettato per essere veloce, gratuito e, soprattutto, privo di fastidiose pubblicità e reindirizzamenti che affliggono altri siti.",
+    "intro2": "Che tu abbia bisogno di un file leggero da 144p per risparmiare spazio o di una versione nitida da 1080p Full HD per il tuo home theater, questo strumento gestisce la conversione nel cloud in modo che il tuo dispositivo non debba farlo. Nessun software, nessun account, solo download MP4 puri."
+  },
+
+  "instructions": {
+    "title": "Come convertire YouTube in MP4 in pochi secondi",
+    "steps": [
+      "<strong>Copia e incolla:</strong> prendi l'URL di YouTube e incollalo nella casella del convertitore sopra.",
+      "<strong>Seleziona MP4:</strong> fai clic su \"Avvia\" e il nostro sistema elencherà immediatamente tutte le risoluzioni MP4 disponibili.",
+      "<strong>Scegli la qualità:</strong> scegli la risoluzione più adatta alle tue esigenze, da 144p a basso consumo di dati a 1080p HD cristallino.",
+      "<strong>Salvataggio istantaneo:</strong> premi \"Converti\" e poi \"Scarica\". Il tuo video è ora pronto per la visualizzazione offline su qualsiasi dispositivo!"
+    ]
+  },
+
+  "whyChoose": {
+    "title": "Perché questo convertitore MP4 si distingue",
+    "reasons": [
+      "<strong>Esperienza sicura e senza pubblicità:</strong> abbiamo eliminato i pop-up e i reindirizzamenti. Ottieni un processo sicuro e semplificato dall'inizio alla fine.",
+      "<strong>Qualità HD originale:</strong> se il creatore lo ha caricato in 1080p, puoi scaricarlo in 1080p. Non comprimiamo la tua qualità a meno che tu non ce lo chieda.",
+      "<strong>Impatto zero sullo spazio di archiviazione:</strong> poiché si tratta di uno strumento puramente basato sul Web, non è necessario installare alcuna app \"Downloader MP4\" o plug-in del browser.",
+      "<strong>Riproduzione universale:</strong> i nostri file MP4 sono ottimizzati per essere riprodotti perfettamente su VLC, Windows Media Player, QuickTime e persino su Smart TV o console di gioco."
+    ]
+  },
+
+  "features": {
+    "title": "Funzionalità create per te",
+    "items": [
+      {
+        "title": "Conversioni MP4 illimitate",
+        "description": "Non ci sono limiti giornalieri. Converti i video di un'intera playlist se necessario!"
+      },
+      {
+        "title": "Elaborazione cloud veloce",
+        "description": "I nostri server si occupano del lavoro pesante, il che significa che il tuo MP4 è pronto per il download in pochi istanti."
+      },
+      {
+        "title": "A basso consumo di batteria",
+        "description": "Poiché la conversione avviene dalla nostra parte, non consumerà la batteria del tuo telefono né surriscalderà il tuo laptop."
+      },
+      {
+        "title": "Pronto per più dispositivi",
+        "description": "Perfettamente compatibile con Chrome, Safari, Edge e Firefox sia su dispositivi mobili che desktop."
+      },
+      {
+        "title": "Risoluzioni multiple",
+        "description": "144p, 360p, 480p, 720p (HD), 1080p (Full HD) - scegli la risoluzione più adatta alle tue esigenze."
+      },
+      {
+        "title": "Compatibilità universale",
+        "description": "Funziona perfettamente su iOS, Android, Windows, macOS, Linux e tutti i browser moderni."
+      }
+    ]
+  },
+
+  "faqs": {
+    "title": "Domande frequenti (FAQ)",
+    "items": [
+      {
+        "question": "Questo strumento da YouTube a MP4 è gratuito?",
+        "answer": "Sì, è completamente gratuito. Non abbiamo livelli \"premium\" nascosti o limiti di dimensione dei file. Ottieni l'esperienza Full HD completa per $ 0."
+      },
+      {
+        "question": "Come posso salvare l'MP4 direttamente sul mio iPhone o Android?",
+        "answer": "Su Android, viene salvato direttamente nella cartella Download. Su iPhone, usa Safari per scaricare, quindi tocca l'icona \"Download\" nella barra di ricerca e seleziona \"Salva video\" per spostarlo nella tua app Foto."
+      },
+      {
+        "question": "Perché dovrei scegliere MP4 rispetto ad altri formati?",
+        "answer": "MP4 è il formato \"universale\". Offre il miglior equilibrio tra alta qualità video e dimensioni ridotte del file, rendendolo compatibile con quasi tutti i telefoni, tablet e TV esistenti."
+      },
+      {
+        "question": "Posso scaricare video a 1080p con audio?",
+        "answer": "Assolutamente. A differenza di molti altri strumenti che ti offrono 1080p senza audio, il nostro convertitore li unisce automaticamente in modo da ottenere un file ad alta definizione completo."
+      },
+      {
+        "question": "Cosa succede se il video che voglio è privato?",
+        "answer": "Per motivi di sicurezza e privacy, il nostro strumento può convertire solo video \"pubblici\" o \"non in elenco\". Se un video è impostato su \"privato\" dal proprietario, non può essere elaborato."
+      }
+    ]
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "seo": {
+    "title": "Y2mate - Baixador de YouTube Shorts (Grátis, Rápido, HD)",
+    "description": "Baixe YouTube Shorts em HD. Salve vídeos verticais instantaneamente - formato retrato, proporção 9:16. Baixador de Shorts gratuito para celular e desktop.",
+    "ogTitle": "Y2mate - Baixador de YouTube Shorts (Grátis, Rápido, HD)",
+    "ogDescription": "Baixe YouTube Shorts em HD. Salve vídeos verticais instantaneamente - formato retrato, proporção 9:16.",
+    "schemaName": "Y2mate - Baixador de YouTube Shorts",
+    "schemaDescription": "Baixe YouTube Shorts instantaneamente. Baixador de vídeos verticais gratuito para celular."
+  },
+
+  "hero": {
+    "title": "Y2mate - Baixador de YouTube Shorts"
+  },
+
+  "content": {
+    "mainTitle": "Baixe YouTube Shorts em Full HD",
+    "intro1": "Y2mate é uma ferramenta online gratuita que permite baixar YouTube Shorts em alta qualidade diretamente para o seu celular ou computador. Com os Shorts se tornando a escolha preferida para entretenimento rápido, nosso baixador garante que você possa salvar aqueles momentos virais, edições criativas ou dicas úteis para visualização offline. É um serviço 100% baseado na web, o que significa que você pode pegar qualquer Short em seu formato vertical original sem instalar aplicativos ou se inscrever em uma conta.",
+    "intro2": "Se você quer manter um clipe engraçado em sua galeria para compartilhar com amigos ou salvar uma receita para mais tarde, o Y2mate lida com a conversão instantaneamente. Nós nos concentramos em manter a resolução HD original para que seus downloads pareçam tão nítidos quanto no aplicativo, tudo isso mantendo o processo rápido, seguro e completamente livre de anúncios."
+  },
+
+  "instructions": {
+    "title": "Como Baixar YouTube Shorts em Segundos",
+    "steps": [
+      "<strong>Copie o link do Short:</strong> Toque no botão \"Compartilhar\" em qualquer YouTube Short e copie a URL.",
+      "<strong>Cole e Analise:</strong> Cole o link na caixa de pesquisa do Y2mate acima e pressione \"Iniciar\".",
+      "<strong>Escolha e Salve:</strong> Selecione sua qualidade preferida e clique em \"Baixar\". O vídeo será salvo diretamente na galeria do seu dispositivo ou na pasta de downloads."
+    ]
+  },
+
+  "whyChoose": {
+    "title": "Por que o Y2mate é Perfeito para YouTube Shorts",
+    "reasons": [
+      "<strong>Formato Vertical Original:</strong> Garantimos que o vídeo permaneça em sua proporção nativa de 9:16, tornando-o perfeito para assistir novamente no seu celular ou compartilhar em outras plataformas sociais.",
+      "<strong>Qualidade de Alta Definição:</strong> Se o Short foi carregado em 1080p ou 720p, você pode baixá-lo nessa resolução exata para a melhor experiência visual.",
+      "<strong>Downloads Ultra-Rápidos:</strong> Os Shorts são rápidos, e nosso baixador também é. A maioria dos clipes é processada e pronta para salvar em apenas alguns instantes.",
+      "<strong>Sem Marcas D'água:</strong> Desfrute de seus Shorts favoritos em sua forma pura. O Y2mate salva o vídeo exatamente como ele aparece no YouTube, sem adicionar nenhuma sobreposição extra."
+    ]
+  },
+
+  "features": {
+    "title": "Principais Recursos para Usuários de Celular",
+    "items": [
+      {
+        "title": "Pronto para iPhone e Android",
+        "description": "Otimizado para navegadores móveis como Safari e Chrome, para que você possa baixar Shorts diretamente no seu smartphone em qualquer lugar."
+      },
+      {
+        "title": "Nenhuma Instalação de Aplicativo",
+        "description": "Economize o armazenamento e a bateria do seu celular. Não há necessidade de baixar aplicativos duvidosos de \"Shorts Saver\"."
+      },
+      {
+        "title": "Salvamento Ilimitado",
+        "description": "Não há limites diários. Salve um Short ou cem—é sempre gratuito e ilimitado."
+      },
+      {
+        "title": "Seguro e Livre de Anúncios",
+        "description": "Removemos os redirecionamentos e pop-ups irritantes, oferecendo um ambiente seguro para você obter seu conteúdo."
+      },
+      {
+        "title": "Qualidade de Alta Definição",
+        "description": "Baixe Shorts em resolução de 1080p ou 720p para uma visualização nítida e clara em smartphones modernos."
+      },
+      {
+        "title": "Formato Vertical Original",
+        "description": "Preservamos a proporção nativa de 9:16, perfeita para visualização em dispositivos móveis e compartilhamento em mídias sociais."
+      }
+    ]
+  },
+
+  "faqs": {
+    "title": "Perguntas Frequentes (FAQs)",
+    "items": [
+      {
+        "question": "Existe um limite de quantos Shorts eu posso baixar?",
+        "answer": "De forma alguma! Você pode usar o Y2mate para baixar quantos YouTube Shorts quiser. Não temos limites diários ou taxas ocultas."
+      },
+      {
+        "question": "Como eu salvo um Short diretamente na Galeria do meu celular?",
+        "answer": "<strong>No Android:</strong> Assim que o download terminar, o vídeo aparecerá automaticamente na sua pasta \"Downloads\" e no seu aplicativo de Galeria.<br><strong>No iPhone:</strong> Use o Safari para baixar o arquivo. Toque no ícone de download azul, selecione o vídeo e, em seguida, toque em \"Salvar Vídeo\" para movê-lo diretamente para o seu aplicativo Fotos."
+      },
+      {
+        "question": "Posso baixar YouTube Shorts como áudio MP3?",
+        "answer": "Sim! Se você quiser apenas o som ou a música de um Short, basta escolher o formato MP3 após clicar em \"Iniciar\". Você pode obter o áudio em alta qualidade de até 320kbps."
+      },
+      {
+        "question": "O Y2mate funciona com Shorts Privados?",
+        "answer": "Não, por razões de privacidade, nossa ferramenta funciona apenas com Shorts Públicos ou Não Listados. Se o criador definir o vídeo como \"Privado\", a ferramenta não poderá acessá-lo para baixar."
+      },
+      {
+        "question": "É seguro para o meu dispositivo?",
+        "answer": "100% seguro. Como o Y2mate é uma ferramenta baseada em navegador, você não precisa instalar software ou conceder permissões especiais. Seu dispositivo permanece seguro e livre de bagunça."
+      }
+    ]
+  }
+}

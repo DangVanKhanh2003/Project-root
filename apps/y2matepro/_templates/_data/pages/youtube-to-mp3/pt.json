@@ -1,0 +1,89 @@
+{
+  "seo": {
+    "title": "Y2mate - Conversor de YouTube para MP3 Grátis",
+    "description": "Y2mate - Conversor de YouTube para MP3: áudio de 128/192/320kbps. Rápido, gratuito, sem limites de tamanho, sem aplicativo.",
+    "ogTitle": "Y2mate - Conversor de YouTube para MP3 Grátis",
+    "ogDescription": "Y2mate para MP3: 128/192/320kbps. Rápido, gratuito, sem limites, sem aplicativo.",
+    "schemaName": "Y2mate - Conversor de YouTube para MP3",
+    "schemaDescription": "Y2mate para MP3: 128/192/320kbps. Rápido, gratuito, sem limites, sem aplicativo."
+  },
+  "hero": {
+    "title": "Conversor de YouTube para MP3"
+  },
+  "content": {
+    "mainTitle": "Converta YouTube para MP3 em Alta Qualidade",
+    "intro1": "O Y2mate é uma ferramenta online dedicada que permite extrair áudio de alta qualidade de vídeos do YouTube diretamente no seu navegador, sem a necessidade de instalar nenhum software. Se você está procurando salvar uma música em alta para sua biblioteca de músicas ou um podcast para ouvir offline, este conversor oferece o melhor equilíbrio entre velocidade e fidelidade de som. Suportamos uma gama completa de taxas de bits, incluindo 128kbps, 192kbps e 320kbps, dando a você controle total sobre sua experiência de áudio.",
+    "intro2": "Para aqueles que precisam de mais do que um MP3 padrão, o Y2mate também suporta formatos de áudio avançados como WAV para qualidade sem perdas, bem como OGG e OPUS para codecs modernos e eficientes. É a solução perfeita para quem deseja uma maneira limpa, segura e sem registro de construir sua coleção de áudio pessoal em qualquer dispositivo, de Android e iPhone a Windows e Mac."
+  },
+  "instructions": {
+    "title": "Como Converter YouTube para MP3 e Mais",
+    "steps": [
+      "<strong>Cole seu link:</strong> Copie o URL do YouTube e cole-o na caixa de pesquisa acima.",
+      "<strong>Escolha seu formato e qualidade:</strong> Pressione \"Iniciar\" e selecione sua taxa de bits preferida (128kbps, 192kbps ou 320kbps) ou formato (WAV, OGG, OPUS).",
+      "<strong>Baixar:</strong> Clique no botão e o arquivo de áudio será salvo diretamente no seu dispositivo em segundos."
+    ]
+  },
+  "whyChoose": {
+    "title": "Por que os Amantes de Áudio Escolhem o Y2mate",
+    "reasons": [
+      "<strong>Múltiplas Opções de Taxa de Bits:</strong> Escolha 320kbps para um som cristalino que soa ótimo em fones de ouvido profissionais, ou 128kbps para economizar espaço de armazenamento em seu telefone.",
+      "<strong>Opções de Formato Avançadas:</strong> Além do MP3, suportamos WAV para qualidade não compactada e OGG/OPUS para audiófilos que preferem codecs modernos e de alto desempenho.",
+      "<strong>Sem Limites de Duração:</strong> Converta facilmente conteúdo de longa duração, como mixagens de DJ, audiolivros completos e podcasts de várias horas, sem perda de qualidade ou cortes.",
+      "<strong>Puramente Baseado na Web:</strong> Mantenha seu dispositivo livre de desordem. Sem aplicativos para instalar e sem extensões duvidosas - tudo é tratado com segurança na nuvem."
+    ]
+  },
+  "features": {
+    "title": "Principais Benefícios para sua Biblioteca de Som",
+    "items": [
+      {
+        "title": "Reprodução Universal",
+        "description": "Nossos arquivos funcionam em tudo - de aparelhos de som de carro e players de MP3 dedicados aos aplicativos de música mais recentes no iOS e Android."
+      },
+      {
+        "title": "Amigável à Bateria e aos Dados",
+        "description": "Extrair áudio na nuvem economiza a bateria do seu dispositivo e preserva seu plano de dados móveis em comparação com o streaming de vídeo."
+      },
+      {
+        "title": "Mecanismo de Conversão Mais Rápido",
+        "description": "Nossos servidores são otimizados para entregar seus arquivos de áudio instantaneamente, mesmo para conversões de alta taxa de bits de 320kbps."
+      },
+      {
+        "title": "Privado e Seguro",
+        "description": "Não são necessários cadastros ou informações pessoais. Apenas uma maneira segura e direta de obter suas faixas favoritas."
+      },
+      {
+        "title": "Múltiplas Opções de Taxa de Bits",
+        "description": "Escolha entre a qualidade de MP3 de 128kbps, 192kbps ou 320kbps. Taxas de bits mais altas oferecem um som mais rico, perfeito para os amantes da música."
+      },
+      {
+        "title": "Opções de Formato Avançadas",
+        "description": "Suporte para os formatos WAV (sem perdas), OGG e OPUS. Perfeito para audiófilos que exigem a melhor qualidade ou codecs modernos."
+      }
+    ]
+  },
+  "faqs": {
+    "title": "Perguntas Frequentes",
+    "items": [
+      {
+        "question": "Qual é a diferença entre as taxas de bits de MP3 (128k vs 320k)?",
+        "answer": "320kbps é a mais alta qualidade que o MP3 oferece, proporcionando o som mais rico com o máximo de detalhes. 128kbps usa menos espaço de armazenamento e é perfeito para conteúdo com muita fala, como entrevistas, notícias ou palestras."
+      },
+      {
+        "question": "Por que devo escolher WAV, OGG ou OPUS?",
+        "answer": "Escolha WAV se precisar da qualidade original sem perdas para edição profissional. OGG e OPUS são formatos modernos que oferecem excelente qualidade de som em tamanhos de arquivo ainda menores que o MP3, perfeitos para players de mídia avançados."
+      },
+      {
+        "question": "É seguro usar este conversor no meu telefone?",
+        "answer": "Sim, 100%. O Y2mate funciona inteiramente no seu navegador móvel, então não há necessidade de baixar arquivos ou aplicativos arriscados. É uma maneira limpa e segura de obter áudio enquanto você está em trânsito."
+      },
+      {
+        "question": "Posso converter mixagens de música ou podcasts muito longos?",
+        "answer": "Com certeza. Lidamos com conteúdo de longa duração o tempo todo. Seja uma música de 5 minutos ou uma mixagem de sono ambiente de 3 horas, nossa ferramenta irá processá-la para você sem problemas."
+      },
+      {
+        "question": "Como salvo o áudio diretamente no meu iPhone?",
+        "answer": "Basta usar o navegador Safari para baixar o arquivo. Quando terminar, toque no ícone de download na barra de endereço e salve o áudio no seu aplicativo \"Arquivos\" para fácil acesso offline a qualquer momento."
+      }
+    ]
+  }
+}

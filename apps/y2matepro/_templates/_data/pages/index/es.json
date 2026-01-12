@@ -1,0 +1,96 @@
+{
+  "seo": {
+    "title": "Y2mate – Descargador de videos de YouTube gratuito | Descargar videos en línea",
+    "description": "Descargue videos de YouTube en línea de forma gratuita en alta calidad (144p–1080p). Y2mate funciona de forma rápida, segura y directa en su navegador sin necesidad de aplicación ni registro.",
+    "ogTitle": "Y2mate – Descargador de videos de YouTube gratuito | Descargar videos en línea",
+    "ogDescription": "Descargue videos de YouTube en línea de forma gratuita. Guarde videos en alta calidad (144p–1080p) o audio (128kbps–320kbps). Rápido, seguro, sin aplicación, funciona en todos los dispositivos.",
+    "schemaName": "Y2mate – Descargador de videos de YouTube",
+    "schemaDescription": "Descargue videos de YouTube en línea de forma gratuita. Guarde videos en alta calidad (144p–1080p) o audio (128kbps–320kbps). Rápido, seguro, sin aplicación, funciona en todos los dispositivos."
+  },
+
+  "hero": {
+    "title": "Y2mate – Descargador de YouTube"
+  },
+
+  "content": {
+    "mainTitle": "Y2mate – Descargue videos de YouTube de forma rápida y gratuita",
+    "intro1": "Y2mate es un descargador de YouTube en línea gratuito que le permite convertir y descargar videos de YouTube en formatos MP4 y MP3 de alta calidad directamente desde su navegador. Nuestra herramienta es 100% basada en la web, no requiere instalación de software ni registro. Puede elegir fácilmente la resolución que se adapte a sus necesidades, desde 144p para vistas previas rápidas hasta 1080p Full HD para una experiencia de cine premium.",
+    "intro2": "También es un salvavidas si le gusta la música. ¿Quiere convertir una genial versión de YouTube en un MP3 para su carrera matutina o establecerla como un tono de llamada personalizado? Y2mate también se encarga de eso, con opciones de audio de alta calidad de hasta 320kbps."
+  },
+
+  "instructions": {
+    "title": "Cómo obtener su video en segundos",
+    "steps": [
+      "<strong>Pegue el enlace:</strong> Copie la URL de YouTube que le encanta y péguela en el cuadro de búsqueda de arriba.",
+      "<strong>Permítanos analizarlo:</strong> Presione \"Iniciar\". Rápidamente obtendremos todos los formatos y resoluciones disponibles para usted.",
+      "<strong>Elija su ambiente:</strong> ¿Quiere el video completo (MP4) o solo la canción (MP3)? Elija la calidad que se adapte a su dispositivo.",
+      "<strong>Descargar y listo:</strong> Haga clic en \"Convertir\", espere un momento a que finalice el proceso y guárdelo. ¡Eso es todo, sin registro, sin dramas!"
+    ]
+  },
+
+  "whyChoose": {
+    "title": "Por qué Y2mate es realmente útil",
+    "reasons": [
+      "<strong>Audio de primer nivel:</strong> No se conforme con un sonido metálico. Extraiga audio en MP3 de 320kbps, perfecto para crear su biblioteca de música personal de alta calidad.",
+      "<strong>Listo para cortos:</strong> ¿Le encantan esos rápidos cortos de YouTube? Puede descargarlos en su formato vertical original para compartirlos en otras aplicaciones o verlos más tarde.",
+      "<strong>Ahorre su batería:</strong> Dado que todo el trabajo pesado (conversión) se realiza en nuestros servidores, su teléfono o computadora portátil no se calentará ni agotará su batería.",
+      "<strong>Funciona en todas partes:</strong> Ya sea que esté en un iPhone nuevo, un Android antiguo, una Mac o una PC con Windows, siempre que tenga un navegador, está listo para comenzar."
+    ]
+  },
+
+  "features": {
+    "title": "Por qué elegir Y2mate",
+    "items": [
+      {
+        "title": "Descargas ilimitadas",
+        "description": "Descargue tantos videos o audios de YouTube como desee sin restricciones."
+      },
+      {
+        "title": "Múltiples calidades de video y audio",
+        "description": "Elija entre resoluciones de video de 144p, 360p, 480p, 720p y 1080p o velocidades de bits de audio de 128kbps, 192kbps, 320kbps para la mejor experiencia."
+      },
+      {
+        "title": "Rápido y confiable",
+        "description": "Los servidores optimizados garantizan que los videos se procesen y descarguen rápidamente sin demoras."
+      },
+      {
+        "title": "Funciona en todos los dispositivos",
+        "description": "Admite iPhone, Android, Windows, Mac y Linux. Funciona con los principales navegadores: Chrome, Firefox, Safari, Edge, Opera."
+      },
+      {
+        "title": "Seguro y privado",
+        "description": "Sin anuncios, ventanas emergentes ni redireccionamientos. Y2mate no rastrea sus descargas ni recopila datos personales."
+      },
+      {
+        "title": "No se necesita instalación",
+        "description": "Herramienta 100% en línea: no se requieren software, extensiones de navegador ni aplicaciones. Simplemente pegue su enlace y descargue al instante."
+      }
+    ]
+  },
+
+  "faqs": {
+    "title": "Preguntas frecuentes",
+    "items": [
+      {
+        "question": "¿Cómo puedo descargar videos de YouTube como archivos MP3?",
+        "answer": "¡Es fácil! Pegue el enlace de YouTube en el cuadro de búsqueda de Y2mate, haga clic en \"Iniciar\" y luego seleccione la pestaña Audio. Elija su tasa de bits preferida (como 320kbps para alta calidad) y presione \"Convertir\". Su MP3 estará listo en segundos, perfecto para escuchar sus pistas favoritas sin conexión."
+      },
+      {
+        "question": "¿Por qué no aparece el botón de descarga o muestra un error?",
+        "answer": "Los errores suelen ocurrir debido a una caída temporal de la conexión o si el video está configurado como Privado. Para solucionarlo, simplemente actualice la página (F5) y vuelva a pegar el enlace. Si está en un dispositivo móvil, asegúrese de que su navegador no esté en modo \"Incógnito\", ya que a veces puede bloquear las descargas."
+      },
+      {
+        "question": "¿Puedo descargar videos en 1080p Full HD con sonido?",
+        "answer": "¡Sí! Y2mate admite descargas en Full HD. Mientras que otros sitios separan el video y el audio para 1080p, Y2mate los combina para que obtenga un archivo MP4 nítido y de alta definición con un sonido claro, listo para cualquier pantalla."
+      },
+      {
+        "question": "¿Cómo guardo videos de YouTube directamente en la galería de mi iPhone o Android?",
+        "answer": "<strong>En Android:</strong> Simplemente descargue el archivo a través de Chrome y aparecerá automáticamente en su Galería o en la carpeta de Descargas.<br><strong>En iPhone:</strong> Abra Safari, descargue el archivo y luego toque la flecha azul en la barra de direcciones. Vaya a \"Descargas\", seleccione el video y toque \"Guardar video\" para moverlo a su aplicación Fotos."
+      },
+      {
+        "question": "¿Es legal descargar videos a través de Y2mate?",
+        "answer": "Y2mate está diseñado para descargar contenido para uso personal, como ver un video sin conexión o guardar una versión de música para escucharla personalmente. Respete a los creadores originales y no utilice los archivos descargados con fines comerciales o de infracción de derechos de autor."
+      }
+    ]
+  }
+}

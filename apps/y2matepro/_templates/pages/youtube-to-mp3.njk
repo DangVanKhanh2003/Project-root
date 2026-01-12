@@ -5,7 +5,7 @@ lang: en
 pageKey: youtube-to-mp3
 ---
 {%- set base = i18nBase -%}
-{%- set page = i18nPages['youtube-to-mp3'].en -%}
+{%- set page = i18nPages['youtube-to-mp3'][lang] or i18nPages['youtube-to-mp3'].en -%}
 <div class="container">
     <section class="y2mate-download-pro">
         <div class="y2mate-search-form-pro d-flex">
