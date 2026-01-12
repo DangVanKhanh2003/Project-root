@@ -17,7 +17,7 @@ dist/
 .idea/
 
 # Claude Code temp files
-tmpclaude-*/
+tmpclaude-*
 
 # SEO Checker
 logs/
