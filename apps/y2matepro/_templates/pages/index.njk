@@ -77,15 +77,15 @@ pageKey: index
             <h3>{{ page.instructions.title }}</h3>
             <ol>
                 {% for step in page.instructions.steps %}
-                <li>{{ step }}</li>
+                <li>{{ step | safe }}</li>
                 {% endfor %}
             </ol>
         </div>
         <div class="y2mate-in-ad-pro">
-            <h3>{{ page.whyChoose.title }}</h3>
+            <h2>{{ page.whyChoose.title }}</h2>
             <ul>
                 {% for reason in page.whyChoose.reasons %}
-                <li>{{ reason }}</li>
+                <li>{{ reason | safe }}</li>
                 {% endfor %}
             </ul>
         </div>
@@ -161,7 +161,7 @@ pageKey: index
             <div class="guide-data">
                 {% for faq in page.faqs.items %}
                 <h3>{{ faq.question }}</h3>
-                <p>{{ faq.answer }}</p>
+                <p>{{ faq.answer | safe }}</p>
                 {% endfor %}
             </div>
         </div>

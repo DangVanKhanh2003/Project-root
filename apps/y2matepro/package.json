@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "11ty:build": "eleventy --config=.eleventy.cjs --input=_templates --output=_11ty-output && npm run 11ty:copy",
-    "11ty:copy": "cp _11ty-output/index.html ./index.html && cp _11ty-output/youtube-to-mp4.html ./youtube-to-mp4.html && cp _11ty-output/youtube-to-mp3.html ./youtube-to-mp3.html && cp _11ty-output/youtube-to-wav-converter.html ./youtube-to-wav-converter.html && cp _11ty-output/youtube-short-downloader.html ./youtube-short-downloader.html && cp _11ty-output/youtube-to-mp3-320kbps-converter.html ./youtube-to-mp3-320kbps-converter.html && cp _11ty-output/youtube-music-downloader.html ./youtube-music-downloader.html && cp _11ty-output/youtube-to-opus-converter.html ./youtube-to-opus-converter.html && cp _11ty-output/youtube-to-ogg-converter.html ./youtube-to-ogg-converter.html",
+    "11ty:copy": "cp _11ty-output/index.html ./index.html && cp _11ty-output/youtube-to-mp4.html ./youtube-to-mp4.html && cp _11ty-output/youtube-to-mp3.html ./youtube-to-mp3.html && cp _11ty-output/youtube-short-downloader.html ./youtube-short-downloader.html",
     "11ty:watch": "eleventy --config=.eleventy.cjs --input=_templates --output=_11ty-output --watch",
     "dev": "vite",
     "build": "tsc && vite build",

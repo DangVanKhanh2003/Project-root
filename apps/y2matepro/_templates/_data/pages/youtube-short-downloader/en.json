@@ -13,88 +13,82 @@
   },
 
   "content": {
-    "mainTitle": "Free YouTube Shorts Downloader - Save Vertical Videos",
-    "intro1": "Y2mate Shorts Downloader saves YouTube Shorts in their native 9:16 vertical format-perfect for mobile viewing. Download Shorts instantly with no watermark, no app required.",
-    "intro2": "Our downloader preserves the portrait orientation (1080x1920) so you can watch or share on mobile devices. Download unlimited Shorts for free-no file size limits."
+    "mainTitle": "Download YouTube Shorts in Full HD",
+    "intro1": "Y2mate is a free online tool that allows you to download YouTube Shorts in high quality directly to your phone or computer. As Shorts become the go-to for quick entertainment, our downloader ensures you can save those viral moments, creative edits, or helpful tips for offline viewing. It's a 100% web-based service, meaning you can grab any Short in its original vertical format without installing apps or signing up for an account.",
+    "intro2": "Whether you want to keep a funny clip in your gallery to share with friends or save a recipe for later, Y2mate handles the conversion instantly. We focus on maintaining the original HD resolution so your downloads look just as crisp as they do on the app, all while keeping the process fast, safe, and completely ad-free."
   },
 
   "instructions": {
-    "title": "How to download YouTube Shorts",
+    "title": "How to Download YouTube Shorts in Seconds",
     "steps": [
-      "Open YouTube Shorts on mobile or desktop and copy the Short's URL from the share button.",
-      "Paste the Shorts link into Y2mate's input field and click Start.",
-      "Select vertical format (9:16 portrait) to preserve the Short's native mobile orientation.",
-      "Download the Short video to your device-ready to watch or repost on social media."
+      "<strong>Copy the Short link:</strong> Tap the \"Share\" button on any YouTube Short and copy the URL.",
+      "<strong>Paste & Analyze:</strong> Paste the link into the Y2mate search box above and hit \"Start.\"",
+      "<strong>Choose & Save:</strong> Select your preferred quality and click \"Download.\" The video will be saved directly to your device's gallery or downloads folder."
     ]
   },
 
   "whyChoose": {
-    "title": "Why use Y2mate for Shorts",
+    "title": "Why Y2mate is Perfect for YouTube Shorts",
     "reasons": [
-      "Preserves vertical 9:16 aspect ratio-no black bars or cropping on mobile screens.",
-      "Instant Shorts detection-automatically recognizes Short URLs and optimizes download settings.",
-      "No watermark added to your downloaded Shorts videos.",
-      "Download Shorts up to 1080p resolution for crisp quality on high-end phones.",
-      "Perfect for saving viral Shorts, dance challenges, and trending clips to watch offline."
+      "<strong>Original Vertical Format:</strong> We ensure the video stays in its native 9:16 aspect ratio, making it perfect for re-watching on your phone or sharing on other social platforms.",
+      "<strong>High-Definition Quality:</strong> If the Short was uploaded in 1080p or 720p, you can download it in that exact resolution for the best visual experience.",
+      "<strong>Lightning Fast Downloads:</strong> Shorts are quick, and our downloader is too. Most clips are processed and ready to save in just a few heartbeats.",
+      "<strong>No Watermarks:</strong> Enjoy your favorite Shorts in their pure form. Y2mate saves the video exactly as it appears on YouTube without adding any extra overlays."
     ]
   },
 
   "features": {
-    "title": "Key Features of Y2mate Shorts Downloader",
+    "title": "Key Features for Mobile Users",
     "items": [
       {
-        "title": "Vertical Format Preserved",
-        "description": "Download Shorts in native 9:16 portrait orientation. No black bars, no cropping-perfect vertical format for mobile viewing and social media sharing."
+        "title": "iPhone & Android Ready",
+        "description": "Optimized for mobile browsers like Safari and Chrome, so you can download Shorts directly to your smartphone on the go."
       },
       {
-        "title": "Quick & High-Quality Downloads",
-        "description": "Download YouTube Shorts in seconds with original quality maintained. Specialized processing for vertical 60-second videos-keep your favorite trending content offline."
+        "title": "Zero App Installation",
+        "description": "Save your phone's storage and battery. There's no need to download sketchy \"Shorts Saver\" apps."
       },
       {
-        "title": "Social Media Ready",
-        "description": "Download Shorts to repost on Instagram Reels, TikTok, or Snapchat Spotlight. The vertical format matches all mobile social platforms perfectly."
+        "title": "Unlimited Saving",
+        "description": "There are no daily limits. Save one Short or a hundred—it's always free and unlimited."
       },
       {
-        "title": "Instant Short Detection",
-        "description": "Y2mate automatically identifies Shorts URLs and applies vertical video settings. No manual configuration needed-just paste and download."
+        "title": "Safe & Ad-Free",
+        "description": "We've removed the annoying redirects and pop-ups, giving you a secure environment to grab your content."
       },
       {
-        "title": "Full HD Shorts Quality",
-        "description": "Download Shorts at up to 1080x1920 resolution. Crisp, clear vertical video quality optimized for modern high-resolution phone screens."
+        "title": "High-Definition Quality",
+        "description": "Download Shorts in 1080p or 720p resolution for crisp, clear viewing on modern smartphones."
       },
       {
-        "title": "No Watermark Added",
-        "description": "Downloaded Shorts are clean and watermark-free from Y2mate. Save viral clips without any branding overlays covering the content."
+        "title": "Original Vertical Format",
+        "description": "We preserve the native 9:16 aspect ratio, perfect for mobile viewing and social media sharing."
       }
     ]
   },
 
   "faqs": {
-    "title": "FAQs",
+    "title": "People Also Ask (FAQs)",
     "items": [
       {
-        "question": "What is Y2mate Shorts Downloader?",
-        "answer": "Y2mate Shorts Downloader is a free tool specialized for downloading YouTube Shorts in their native vertical 9:16 format. It preserves the portrait orientation for mobile viewing and supports downloads up to 1080p resolution. No app installation required-download Shorts directly in your browser."
+        "question": "Is there a limit on how many Shorts I can download?",
+        "answer": "Not at all! You can use Y2mate to download as many YouTube Shorts as you like. We don't have any daily caps or hidden fees."
       },
       {
-        "question": "Are downloaded Shorts free?",
-        "answer": "Yes, downloading YouTube Shorts via Y2mate is completely free. Save unlimited Shorts with no file size caps, daily limits, or subscription fees. All vertical formats and resolutions are available at no cost."
+        "question": "How do I save a Short directly to my phone's Gallery?",
+        "answer": "<strong>On Android:</strong> Once the download is finished, the video will automatically appear in your \"Downloads\" folder and your Gallery app.<br><strong>On iPhone:</strong> Use Safari to download the file. Tap the blue download icon, select the video, and then tap \"Save Video\" to move it directly into your Photos app."
       },
       {
-        "question": "What is the Shorts 9:16 format?",
-        "answer": "9:16 is the vertical aspect ratio for Shorts (portrait orientation). Typical resolution is 1080 pixels wide by 1920 pixels tall-optimized for mobile phone screens held vertically, matching Instagram Reels and TikTok format."
+        "question": "Can I download YouTube Shorts as MP3 audio?",
+        "answer": "Yes! If you only want the sound or music from a Short, simply choose the MP3 format after clicking \"Start.\" You can get the audio in high quality up to 320kbps."
       },
       {
-        "question": "Can I repost downloaded Shorts?",
-        "answer": "You can download Shorts for personal offline viewing. If reposting to social media, always credit the original creator and respect YouTube's Terms of Service. Y2mate does not add watermarks, but redistribution may require permission."
+        "question": "Does Y2mate work with Private Shorts?",
+        "answer": "No, for privacy reasons, our tool only works with Public or Unlisted Shorts. If the creator set the video to \"Private\", the tool cannot access it to download."
       },
       {
-        "question": "How do I find a Short's URL?",
-        "answer": "On mobile, tap the three-dot menu on a Short and select \"Share\" → \"Copy link.\" On desktop, click the Short and copy the URL from your browser address bar. Shorts URLs typically include \"/shorts/\" in the path."
-      },
-      {
-        "question": "Can I convert Shorts to horizontal video?",
-        "answer": "Y2mate downloads Shorts in their original vertical format. Converting vertical to horizontal would require adding black bars or cropping content. For best quality, keep Shorts in their native 9:16 portrait orientation."
+        "question": "Is it safe for my device?",
+        "answer": "100% safe. Since Y2mate is a browser-based tool, you don't need to install software or grant special permissions. Your device stays secure and clutter-free."
       }
     ]
   }

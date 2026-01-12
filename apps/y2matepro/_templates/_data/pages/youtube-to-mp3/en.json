@@ -9,103 +9,86 @@
   },
 
   "hero": {
-    "title": "Y2mate - YouTube to MP3 Converter"
+    "title": "YouTube to MP3 Converter"
   },
 
   "content": {
-    "mainTitle": "Convert YouTube to MP3 at high quality",
-    "intro1": "Looking for \"y2mate\" to extract audio? This Y2mate MP3 converter focuses on YouTube only and delivers fast, stable conversion in your browser-no app, no account.",
-    "intro2": "Pick the bitrate that fits your needs: MP3 128/192/320kbps. There's no file size limit and conversions are optimized for long videos such as podcasts, lectures, and mixes."
+    "mainTitle": "Convert YouTube to MP3 at High Quality",
+    "intro1": "Y2mate is a dedicated online tool that allows you to extract high-quality audio from YouTube videos directly in your browser without any software installation. Whether you're looking to save a trending song for your music library or a podcast for offline listening, this converter offers the best balance of speed and sound fidelity. We support a full range of bitrates, including 128kbps, 192kbps, and 320kbps, giving you full control over your audio experience.",
+    "intro2": "For those who need more than just a standard MP3, Y2mate also supports advanced audio formats like WAV for lossless quality, as well as OGG and OPUS for modern, efficient codecs. It's the perfect solution for anyone wanting a clean, safe, and registration-free way to build their personal audio collection on any device, from Android and iPhone to Windows and Mac."
   },
 
   "instructions": {
-    "title": "How to convert YouTube to MP3",
+    "title": "How to Convert YouTube to MP3 & More",
     "steps": [
-      "Paste a YouTube link (or enter a keyword) into the box.",
-      "Click Start to analyze the video.",
-      "Select MP3 128/192/320kbps and download."
+      "<strong>Paste your link:</strong> Copy the YouTube URL and paste it into the search box above.",
+      "<strong>Pick your format & quality:</strong> Hit \"Start\" and select your preferred bitrate (128kbps, 192kbps, or 320kbps) or format (WAV, OGG, OPUS).",
+      "<strong>Download:</strong> Click the button, and the audio file is saved directly to your device in seconds."
     ]
   },
 
   "whyChoose": {
-    "title": "Why this Y2mate MP3 converter",
+    "title": "Why Audio Lovers Choose Y2mate",
     "reasons": [
-      "No file size limits and unlimited conversions.",
-      "Fastest download speed in the market.",
-      "No app or registration required.",
-      "Bitrate options: 128/192/320kbps.",
-      "Works on iPhone, Android, and desktop browsers."
+      "<strong>Multiple Bitrate Options:</strong> Choose 320kbps for crystal-clear sound that sounds great on professional headphones, or 128kbps to save storage space on your phone.",
+      "<strong>Advanced Format Options:</strong> Beyond MP3, we support WAV for uncompressed quality, and OGG/OPUS for audiophiles who prefer modern, high-performance codecs.",
+      "<strong>No Length Limits:</strong> Easily convert long-form content like DJ mixes, full audiobooks, and multi-hour podcasts without any quality loss or cut-offs.",
+      "<strong>Purely Web-Based:</strong> Keep your device clutter-free. No apps to install and no sketchy extensions—everything is handled securely in the cloud."
     ]
   },
 
   "features": {
-    "title": "Key Features of Y2mate MP3 Converter",
+    "title": "Key Benefits for Your Sound Library",
     "items": [
       {
-        "title": "Free Unlimited conversion",
-        "description": "Download YouTube videos for free using Y2mate and users can download unlimited YouTube videos. Enjoy the freedom to download as many videos as you want."
+        "title": "Universal Playback",
+        "description": "Our files work on everything—from car stereos and dedicated MP3 players to the latest music apps on iOS and Android."
       },
       {
-        "title": "Easy and User-Friendly Interface",
-        "description": "Y2mate features an attractive and easy-to-use interface that simplifies the process of downloading videos from YouTube. Simply copy and paste the YouTube video URL into the designated field to begin your download."
+        "title": "Battery & Data Friendly",
+        "description": "Extracting audio in the cloud saves your device's battery and preserves your mobile data plan compared to streaming video."
       },
       {
-        "title": "Audio tuned for clarity",
-        "description": "Get MP3 at 128/192/320kbps for music, podcasts, and lectures. Choose higher bitrate for richer sound."
+        "title": "Fastest Conversion Engine",
+        "description": "Our servers are optimized to deliver your audio files instantly, even for high-bitrate 320kbps conversions."
       },
       {
-        "title": "Instant MP3 Conversion",
-        "description": "Extract audio from YouTube videos in seconds with our optimized MP3 conversion engine. Get your music files ready to play without waiting-perfect for building playlists quickly."
+        "title": "Private & Secure",
+        "description": "No sign-ups or personal info required. Just a safe, straightforward way to get your favorite tracks."
       },
       {
-        "title": "Browser-Based Audio Extractor",
-        "description": "Access our MP3 converter directly from any web browser-no downloads, no installations, no sign-ups. Start converting YouTube to MP3 immediately on Chrome, Firefox, Safari, or Edge."
+        "title": "Multiple Bitrate Options",
+        "description": "Choose from 128kbps, 192kbps, or 320kbps MP3 quality. Higher bitrates deliver richer sound perfect for music lovers."
       },
       {
-        "title": "Universal MP3 Format",
-        "description": "Download MP3 files that play everywhere: smartphones (iPhone/Android), tablets, computers, MP3 players, and car audio systems. Our MP3s work with iTunes, Spotify, VLC, and all major music apps."
+        "title": "Advanced Format Options",
+        "description": "Support for WAV (lossless), OGG, and OPUS formats. Perfect for audiophiles who demand the best quality or modern codecs."
       }
     ]
   },
 
   "faqs": {
-    "title": "FAQs",
+    "title": "FQAs",
     "items": [
       {
-        "question": "What is Y2mate MP3 Converter?",
-        "answer": "Y2mate is a free browser-based tool that extracts audio from YouTube videos and converts them to MP3 format. Choose from 128kbps, 192kbps, or 320kbps bitrates to balance file size and audio quality. Perfect for creating music playlists, podcasts, and offline listening."
+        "question": "What is the difference between MP3 bitrates (128k vs 320k)?",
+        "answer": "320kbps is the highest quality MP3 offers, providing the richest sound with the most detail. 128kbps uses less storage space and is perfect for speech-heavy content like interviews, news, or lectures."
       },
       {
-        "question": "Is Y2mate MP3 conversion free?",
-        "answer": "Absolutely free with zero limitations. Convert unlimited YouTube videos to MP3 without paying, registering, or providing any personal information. All bitrate options (128/192/320kbps) are available for free-no premium tier or subscription required."
+        "question": "Why should I choose WAV, OGG, or OPUS?",
+        "answer": "Choose WAV if you need the original, lossless quality for professional editing. OGG and OPUS are modern formats that offer excellent sound quality at even smaller file sizes than MP3, perfect for advanced media players."
       },
       {
-        "question": "Which bitrate should I pick for music vs speech?",
-        "answer": "For songs, choose 192 or 320kbps for fuller sound. For podcasts/lectures, 128kbps usually balances quality and size well."
+        "question": "Is it safe to use this converter on my phone?",
+        "answer": "Yes, 100%. Y2mate runs entirely in your mobile browser, so there's no need to download risky files or apps. It's a clean and secure way to grab audio while you're on the go."
       },
       {
-        "question": "Will converting to MP3 reduce quality?",
-        "answer": "MP3 is lossy. Using 192–320kbps helps preserve more detail, but it cannot exceed the quality of the original upload."
+        "question": "Can I convert very long music mixes or podcasts?",
+        "answer": "Absolutely. We handle long-form content all the time. Whether it's a 5-minute song or a 3-hour ambient sleep mix, our tool will process it for you without any issues."
       },
       {
-        "question": "Why is my MP3 length or size different from the video?",
-        "answer": "Audio tracks can differ slightly from the displayed video length due to source encoding or trimming by the uploader. Higher bitrates produce larger files."
-      },
-      {
-        "question": "How can I add cover art and metadata?",
-        "answer": "Cover art and extended tags aren't embedded during conversion. You can add them later with a tag editor app (e.g., Mp3Tag, MusicBrainz Picard)."
-      },
-      {
-        "question": "Can I convert very long videos or mixes?",
-        "answer": "There's no hard size limit, but very long videos may take more time depending on your connection and device storage."
-      },
-      {
-        "question": "Can I trim or split the audio?",
-        "answer": "Trimming/splitting isn't built in. Export the MP3, then use an audio editor app to cut or split tracks as you like."
-      },
-      {
-        "question": "Why can't I find some videos?",
-        "answer": "Private, age‑restricted, or region‑blocked videos may not be available. Make sure the link is public and accessible in your region."
+        "question": "How do I save the audio directly to my iPhone?",
+        "answer": "Simply use the Safari browser to download the file. Once it's finished, tap the download icon in the address bar and save the audio to your \"Files\" app for easy offline access anytime."
       }
     ]
   }

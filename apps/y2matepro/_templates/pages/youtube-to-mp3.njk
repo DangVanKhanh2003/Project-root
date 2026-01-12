@@ -77,7 +77,7 @@ pageKey: youtube-to-mp3
             <h3>{{ page.instructions.title }}</h3>
             <ol>
                 {% for step in page.instructions.steps %}
-                <li>{{ step }}</li>
+                <li>{{ step | safe }}</li>
                 {% endfor %}
             </ol>
         </div>
@@ -85,7 +85,7 @@ pageKey: youtube-to-mp3
             <h3>{{ page.whyChoose.title }}</h3>
             <ul>
                 {% for reason in page.whyChoose.reasons %}
-                <li>{{ reason }}</li>
+                <li>{{ reason | safe }}</li>
                 {% endfor %}
             </ul>
         </div>
@@ -185,7 +185,7 @@ pageKey: youtube-to-mp3
             <div class="guide-data">
                 {% for faq in page.faqs.items %}
                 <h3>{{ faq.question }}</h3>
-                <p>{{ faq.answer }}</p>
+                <p>{{ faq.answer | safe }}</p>
                 {% endfor %}
             </div>
         </div>
