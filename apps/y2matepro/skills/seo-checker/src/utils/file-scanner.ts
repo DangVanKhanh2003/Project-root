@@ -1,30 +1,30 @@
 /**
  * File Scanner Utility
  * Scan HTML files trong project
+ *
+ * IMPORTANT: Mặc định scan trong dist/ (build output)
+ * vì đó là output thực tế sẽ deploy
  */
 
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import fg from 'fast-glob';
 import type { ScanOptions, ScannedFile } from '../types.js';
+import { FILE_PATTERNS } from '../config.js';
 
 // ============================================
 // Default Configuration
 // ============================================
 
-const DEFAULT_INCLUDE = ['**/*.html'];
-const DEFAULT_EXCLUDE = [
-  '**/node_modules/**',
-  '**/dist/**',
-  '**/_11ty-output/**',
-  '**/404.html',
-];
+const DEFAULT_INCLUDE = FILE_PATTERNS.include;
+const DEFAULT_EXCLUDE = FILE_PATTERNS.exclude;
 
 // Language codes được support
 export const SUPPORTED_LANGUAGES = [
   'en', 'vi', 'es', 'fr', 'de', 'it', 'pt', 'ru', 'ja', 'ko', 'zh',
   'ar', 'hi', 'th', 'id', 'ms', 'tr', 'pl', 'nl', 'sv', 'da', 'no',
   'fi', 'cs', 'el', 'he', 'uk', 'ro', 'hu', 'sk', 'bg', 'hr', 'sr',
+  'bn', 'ur', 'my',
 ];
 
 // ============================================

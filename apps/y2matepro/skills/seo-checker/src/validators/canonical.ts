@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Canonical Tag Validator
  * Kiểm tra canonical tags trong HTML files
  */
@@ -6,9 +6,9 @@
 import type { Validator, ValidatorLogger, ValidatorResult } from '../types.js';
 import { scanHtmlFiles } from '../utils/file-scanner.js';
 import { parseHtmlFile, extractCanonical } from '../utils/html-parser.js';
+import { getTargetDir, SITE_CONFIG } from '../config.js';
 
-const ROOT_DIR = process.cwd();
-const BASE_URL = 'https://y2matepro.com';
+const BASE_URL = SITE_CONFIG.baseUrl;
 
 export const canonicalValidator: Validator = {
   name: 'Canonical Tags',
@@ -19,12 +19,14 @@ export const canonicalValidator: Validator = {
     const startTime = Date.now();
     let filesChecked = 0;
 
-    logger.info('Scanning HTML files for canonical tags...');
+    // Sử dụng dist/ folder (build output)
+    const targetDir = getTargetDir();
+    logger.info(`Scanning HTML files in: ${targetDir}`);
 
     const files = await scanHtmlFiles({
-      rootDir: ROOT_DIR,
+      rootDir: targetDir,
       include: ['**/*.html', 'pages/**/*.html'],
-      exclude: ['**/node_modules/**', '**/dist/**', '**/_11ty-output/**', '**/_templates/**', '**/404.html'],
+      exclude: ['**/node_modules/**', '**/_templates/**', '**/404.html'],
     });
 
     for (const file of files) {
@@ -98,7 +100,7 @@ export const canonicalValidator: Validator = {
             issue: 'Canonical URL contains .html extension',
             currentValue: canonical.href,
             reason: 'Clean URLs without .html extension are preferred for SEO',
-            fix: `Remove .html extension from canonical URL`,
+            fix: 'Remove .html extension from canonical URL',
           });
         }
 

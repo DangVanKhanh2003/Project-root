@@ -5,10 +5,11 @@
 
 import * as fs from 'node:fs';
 import * as path from 'node:path';
+import { getTargetDir } from '../config.js';
 import type { Validator, ValidatorLogger, ValidatorResult } from '../types.js';
 import { scanLanguageDirectories, getPageTypes, scanLanguagePages } from '../utils/file-scanner.js';
 
-const ROOT_DIR = process.cwd();
+// Target directory determined at runtime via getTargetDir()
 
 // Các trang không cần i18n (chỉ có bản English)
 const SKIP_I18N_PAGES = [
@@ -30,11 +31,11 @@ export const i18nCompletenessValidator: Validator = {
     logger.info('Checking i18n completeness...');
 
     // Get all page types from root
-    const pageTypes = await getPageTypes(ROOT_DIR);
+    const pageTypes = await getPageTypes(getTargetDir());
     logger.info(`Found ${pageTypes.length} page types: ${pageTypes.join(', ')}`);
 
     // Get all language directories
-    const languages = await scanLanguageDirectories(ROOT_DIR);
+    const languages = await scanLanguageDirectories(getTargetDir());
     logger.info(`Found ${languages.length} languages: ${languages.join(', ')}`);
 
     if (languages.length === 0) {
@@ -60,8 +61,8 @@ export const i18nCompletenessValidator: Validator = {
 
     // Check each language has all page types
     for (const lang of languages) {
-      const langDir = path.join(ROOT_DIR, 'pages', lang);
-      const langPages = await scanLanguagePages(ROOT_DIR, lang);
+      const langDir = path.join(getTargetDir(), 'pages', lang);
+      const langPages = await scanLanguagePages(getTargetDir(), lang);
       const langPageTypes = langPages.map((p) => p.pageType).filter(Boolean);
 
       filesChecked += langPages.length;
@@ -118,7 +119,7 @@ export const i18nCompletenessValidator: Validator = {
       const langPageCounts = new Map<string, number>();
 
       for (const lang of languages) {
-        const langPages = await scanLanguagePages(ROOT_DIR, lang);
+        const langPages = await scanLanguagePages(getTargetDir(), lang);
         langPageCounts.set(lang, langPages.length);
       }
 

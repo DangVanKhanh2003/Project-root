@@ -7,6 +7,7 @@ import { CentralLogger } from './logger/index.js';
 import { allValidators, getValidatorBySlug } from './validators/index.js';
 import type { ValidatorResult, AuditSummary } from './types.js';
 import { colors, icons, boxHeader, divider } from './logger/formats.js';
+import { getTargetDir, getProjectRoot } from './config.js';
 
 // ============================================
 // Configuration
@@ -52,6 +53,7 @@ export async function runSEOAudit(options: SEOCheckerOptions = {}): Promise<Audi
 
   // Print header
   console.log(colors.bold(boxHeader('SEO AUDIT')));
+  console.log(colors.muted(`Target directory: ${getTargetDir()}`));
   console.log(colors.muted(`Running ${validatorsToRun.length} validators...\n`));
 
   // Run validators
@@ -148,6 +150,9 @@ async function main(): Promise<void> {
       options.only = args[++i].split(',');
     } else if (arg === '--skip' && args[i + 1]) {
       options.skip = args[++i].split(',');
+    } else if (arg === '--target' && args[i + 1]) {
+      // Set SEO_CHECK_TARGET environment variable for config.ts to pick up
+      process.env.SEO_CHECK_TARGET = args[++i];
     } else if (arg === '--help' || arg === '-h') {
       printHelp();
       process.exit(0);

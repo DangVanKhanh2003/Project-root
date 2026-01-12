@@ -3,11 +3,12 @@
  * Kiểm tra title và meta description tags
  */
 
+import { getTargetDir } from '../config.js';
 import type { Validator, ValidatorLogger, ValidatorResult } from '../types.js';
 import { scanHtmlFiles } from '../utils/file-scanner.js';
 import { parseHtmlFile, extractMetaTags } from '../utils/html-parser.js';
 
-const ROOT_DIR = process.cwd();
+// Target directory determined at runtime via getTargetDir()
 
 // SEO best practices for meta tag lengths
 const TITLE_MIN_LENGTH = 30;
@@ -34,9 +35,9 @@ export const metaTagsValidator: Validator = {
     logger.info('Scanning HTML files for meta tags...');
 
     const files = await scanHtmlFiles({
-      rootDir: ROOT_DIR,
+      rootDir: getTargetDir(),
       include: ['**/*.html', 'pages/**/*.html'],
-      exclude: ['**/node_modules/**', '**/dist/**', '**/_11ty-output/**', '**/_templates/**', '**/404.html'],
+      exclude: ['**/node_modules/**', '**/_templates/**', '**/404.html'],
     });
 
     for (const file of files) {

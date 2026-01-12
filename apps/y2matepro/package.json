@@ -10,6 +10,8 @@
     "build": "tsc && vite build",
     "build:test": "NODE_ENV=test tsc && NODE_ENV=test vite build && NODE_ENV=test TARGET_DIR=dist node ../../modify-robots-meta.js",
     "preview": "vite preview",
+    "seo:check": "npm run build && cd skills/seo-checker && npm run build && cd ../.. && node skills/seo-checker/dist/index.js",
+    "seo:check-only": "cd skills/seo-checker && npm run build && cd ../.. && node skills/seo-checker/dist/index.js",
     "remove-logs": "tsx remove-console-logs.ts",
     "remove-logs:preview": "tsx remove-console-logs.ts --dry-run",
     "remove-logs:all": "tsx remove-console-logs.ts --all-methods"

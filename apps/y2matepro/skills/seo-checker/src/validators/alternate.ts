@@ -6,8 +6,7 @@
 import type { Validator, ValidatorLogger, ValidatorResult } from '../types.js';
 import { scanHtmlFiles, scanLanguageDirectories, SUPPORTED_LANGUAGES } from '../utils/file-scanner.js';
 import { parseHtmlFile, extractAlternateTags } from '../utils/html-parser.js';
-
-const ROOT_DIR = process.cwd();
+import { getTargetDir } from '../config.js';
 
 // Pages that should skip hreflang check (single language only)
 const SKIP_HREFLANG_PAGES = ['404'];
@@ -21,16 +20,18 @@ export const alternateValidator: Validator = {
     const startTime = Date.now();
     let filesChecked = 0;
 
-    logger.info('Scanning for hreflang alternate tags...');
+    // Sử dụng dist/ folder (build output)
+    const targetDir = getTargetDir();
+    logger.info(`Scanning for hreflang alternate tags in: ${targetDir}`);
 
     // Get available languages in project
-    const availableLanguages = await scanLanguageDirectories(ROOT_DIR);
+    const availableLanguages = await scanLanguageDirectories(targetDir);
     logger.info(`Found ${availableLanguages.length} language directories`);
 
     const files = await scanHtmlFiles({
-      rootDir: ROOT_DIR,
+      rootDir: targetDir,
       include: ['**/*.html', 'pages/**/*.html'],
-      exclude: ['**/node_modules/**', '**/dist/**', '**/_11ty-output/**', '**/_templates/**'],
+      exclude: ['**/node_modules/**', '**/_templates/**'],
     });
 
     for (const file of files) {

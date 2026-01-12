@@ -3,11 +3,12 @@
  * Kiểm tra format của internal links
  */
 
+import { getTargetDir } from '../config.js';
 import type { Validator, ValidatorLogger, ValidatorResult } from '../types.js';
 import { scanHtmlFiles } from '../utils/file-scanner.js';
 import { parseHtmlFile, extractInternalLinks } from '../utils/html-parser.js';
 
-const ROOT_DIR = process.cwd();
+// Target directory determined at runtime via getTargetDir()
 
 export const urlFormatValidator: Validator = {
   name: 'URL Format',
@@ -21,9 +22,9 @@ export const urlFormatValidator: Validator = {
     logger.info('Checking URL formats in HTML files...');
 
     const files = await scanHtmlFiles({
-      rootDir: ROOT_DIR,
+      rootDir: getTargetDir(),
       include: ['**/*.html', 'pages/**/*.html'],
-      exclude: ['**/node_modules/**', '**/dist/**', '**/_11ty-output/**', '**/_templates/**'],
+      exclude: ['**/node_modules/**', '**/_templates/**'],
     });
 
     for (const file of files) {

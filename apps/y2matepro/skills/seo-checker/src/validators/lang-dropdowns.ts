@@ -3,11 +3,12 @@
  * Kiểm tra có language selector UI không
  */
 
+import { getTargetDir } from '../config.js';
 import type { Validator, ValidatorLogger, ValidatorResult } from '../types.js';
 import { scanHtmlFiles } from '../utils/file-scanner.js';
 import { parseHtmlFile, hasLanguageDropdown, hasElement } from '../utils/html-parser.js';
 
-const ROOT_DIR = process.cwd();
+// Target directory determined at runtime via getTargetDir()
 
 export const langDropdownsValidator: Validator = {
   name: 'Language Dropdowns',
@@ -21,9 +22,9 @@ export const langDropdownsValidator: Validator = {
     logger.info('Checking for language dropdown elements...');
 
     const files = await scanHtmlFiles({
-      rootDir: ROOT_DIR,
+      rootDir: getTargetDir(),
       include: ['**/*.html', 'pages/**/*.html'],
-      exclude: ['**/node_modules/**', '**/dist/**', '**/_11ty-output/**', '**/_templates/**', '**/404.html'],
+      exclude: ['**/node_modules/**', '**/_templates/**', '**/404.html'],
     });
 
     for (const file of files) {

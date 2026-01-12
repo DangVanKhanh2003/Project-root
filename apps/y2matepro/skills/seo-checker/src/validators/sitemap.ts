@@ -5,9 +5,10 @@
 
 import * as fs from 'node:fs';
 import * as path from 'node:path';
+import { getTargetDir } from '../config.js';
 import type { Validator, ValidatorLogger, ValidatorResult } from '../types.js';
 
-const ROOT_DIR = process.cwd();
+// Target directory determined at runtime via getTargetDir()
 
 export const sitemapValidator: Validator = {
   name: 'Sitemap',
@@ -22,9 +23,9 @@ export const sitemapValidator: Validator = {
 
     // Check possible sitemap locations
     const possiblePaths = [
-      path.join(ROOT_DIR, 'public', 'sitemap.xml'),
-      path.join(ROOT_DIR, 'sitemap.xml'),
-      path.join(ROOT_DIR, '_11ty-output', 'sitemap.xml'),
+      path.join(getTargetDir(), 'public', 'sitemap.xml'),
+      path.join(getTargetDir(), 'sitemap.xml'),
+      path.join(getTargetDir(), '_11ty-output', 'sitemap.xml'),
     ];
 
     let sitemapPath: string | null = null;
@@ -58,7 +59,7 @@ export const sitemapValidator: Validator = {
     }
 
     filesChecked = 1;
-    const relativePath = path.relative(ROOT_DIR, sitemapPath);
+    const relativePath = path.relative(getTargetDir(), sitemapPath);
 
     try {
       const content = fs.readFileSync(sitemapPath, 'utf-8');
