@@ -30,7 +30,7 @@
       "@type": "WebSite",
       "name": "Y2mate",
       "url": "{{ site.url }}",
-      "description": "{{ seo.description | stripHtml }}",
+      "description": "{{ seo.description | jsonString | safe }}",
       "inLanguage": "{{ lang or 'en' }}",
       "publisher": {{ organization | dump | safe }}
     },
@@ -42,10 +42,10 @@
         {%- for item in pageData.faqs.items %}
         {
           "@type": "Question",
-          "name": "{{ item.question | stripHtml }}",
+          "name": "{{ item.question | jsonString | safe }}",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "{{ item.answer | stripHtml }}"
+            "text": "{{ item.answer | jsonString | safe }}"
           }
         }{%- if not loop.last %},{% endif %}
         {%- endfor %}
@@ -55,13 +55,13 @@
     {%- if hasInstructions %},
     {
       "@type": "HowTo",
-      "name": "{{ pageData.instructions.title | stripHtml }}",
+      "name": "{{ pageData.instructions.title | jsonString | safe }}",
       "step": [
         {%- for step in pageData.instructions.steps %}
         {
           "@type": "HowToStep",
           "position": {{ loop.index }},
-          "text": "{{ step | stripHtml }}"
+          "text": "{{ step | jsonString | safe }}"
         }{%- if not loop.last %},{% endif %}
         {%- endfor %}
       ]
@@ -78,7 +78,7 @@
       "@type": "WebApplication",
       "name": "Y2mate",
       "url": "{{ canonicalUrl }}",
-      "description": "{{ seo.schemaDescription | stripHtml }}",
+      "description": "{{ seo.schemaDescription | jsonString | safe }}",
       "applicationCategory": "MultimediaApplication",
       "operatingSystem": "All",
       "browserRequirements": "Requires JavaScript. Requires HTML5.",
@@ -97,10 +97,10 @@
         {%- for item in pageData.faqs.items %}
         {
           "@type": "Question",
-          "name": "{{ item.question | stripHtml }}",
+          "name": "{{ item.question | jsonString | safe }}",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "{{ item.answer | stripHtml }}"
+            "text": "{{ item.answer | jsonString | safe }}"
           }
         }{%- if not loop.last %},{% endif %}
         {%- endfor %}
@@ -110,13 +110,13 @@
     {%- if hasInstructions %},
     {
       "@type": "HowTo",
-      "name": "{{ pageData.instructions.title | stripHtml }}",
+      "name": "{{ pageData.instructions.title | jsonString | safe }}",
       "step": [
         {%- for step in pageData.instructions.steps %}
         {
           "@type": "HowToStep",
           "position": {{ loop.index }},
-          "text": "{{ step | stripHtml }}"
+          "text": "{{ step | jsonString | safe }}"
         }{%- if not loop.last %},{% endif %}
         {%- endfor %}
       ]

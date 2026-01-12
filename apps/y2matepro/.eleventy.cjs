@@ -103,6 +103,22 @@ module.exports = function(eleventyConfig) {
     return str.replace(/<[^>]*>/g, '');
   });
 
+  // Properly escape string for JSON-LD (no HTML entity encoding)
+  // Use this for JSON-LD content inside <script> tags
+  eleventyConfig.addFilter('jsonString', function(str) {
+    if (!str) return '';
+    // 1. Strip HTML tags
+    let clean = str.replace(/<[^>]*>/g, '');
+    // 2. Escape for JSON: backslash, quotes, newlines, tabs
+    clean = clean
+      .replace(/\\/g, '\\\\')      // backslashes first
+      .replace(/"/g, '\\"')        // double quotes
+      .replace(/\n/g, ' ')         // newlines → space
+      .replace(/\r/g, '')          // carriage returns
+      .replace(/\t/g, ' ');        // tabs → space
+    return clean;
+  });
+
   // Get alternate URL for different language
   // Example: /youtube-to-mp4/ → /vi/youtube-to-mp4/ (for Vietnamese)
   eleventyConfig.addFilter('getAlternateUrl', function(url, targetLang) {
