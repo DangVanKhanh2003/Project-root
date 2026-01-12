@@ -82,11 +82,29 @@ export function getCurrentVideoId(): string | null {
  * Uses replaceState if already on video page (prevents history pollution)
  * Uses pushState if coming from home page
  *
+ * Preserves current pathname (e.g., /youtube-to-mp4.html → /youtube-to-mp4/search?v=xxx)
+ *
  * @param videoId - YouTube video ID
  */
 export function navigateToVideo(videoId: string): void {
   const currentRoute = getRouteFromUrl();
-  const newUrl = `/search?v=${videoId}`;
+
+  // Get current pathname and preserve it
+  let basePath = window.location.pathname;
+
+  // Remove .html extension if present
+  basePath = basePath.replace(/\.html$/, '');
+
+  // Remove trailing slash
+  basePath = basePath.replace(/\/$/, '');
+
+  // Build new URL:
+  // - If on home page (/ or /index) → /search?v=xxx
+  // - If on specific page (/youtube-to-mp4) → /youtube-to-mp4/search?v=xxx
+  const newUrl = (basePath === '' || basePath === '/' || basePath === '/index')
+    ? `/search?v=${videoId}`
+    : `${basePath}/search?v=${videoId}`;
+
   const state = { type: 'video', videoId };
 
   if (currentRoute.type === 'video') {

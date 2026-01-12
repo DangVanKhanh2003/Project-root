@@ -3,8 +3,24 @@
  * Manages video and gallery detail data, including format updates
  */
 
-import type { VideoDetail, GalleryDetail, DetailType, VideoMeta } from './types';
+import type { VideoDetail, GalleryDetail, DetailType, VideoMeta, ActiveTab } from './types';
 import { getState, setState } from './state-manager';
+
+/**
+ * Get default active tab based on current page
+ * - Pages with "mp3" or "audio" in pathname → 'audio' tab
+ * - All other pages → 'video' tab
+ */
+function getDefaultActiveTab(): ActiveTab {
+  const pathname = window.location.pathname.toLowerCase();
+
+  // Check if current page is audio-focused (mp3, audio converter pages)
+  if (pathname.includes('mp3') || pathname.includes('audio')) {
+    return 'audio';
+  }
+
+  return 'video';
+}
 
 /**
  * Set video detail data (single media content)
@@ -22,7 +38,7 @@ export function setVideoDetail(data: Omit<VideoDetail, 'completedAt'>): void {
     galleryDetail: null, // Ensure mutual exclusion
     results: [], // Clear search results when viewing detail
     viewingItem: null, // Clear any viewing item
-    activeTab: 'video', // Reset to video tab
+    activeTab: getDefaultActiveTab(), // Set tab based on current page (mp3 → audio, mp4 → video)
     downloadTasks: {} // Clear download states
   });
 }
