@@ -3,6 +3,7 @@ import { resolve } from 'path';
 import { readdirSync, existsSync } from 'fs';
 import { htmlRewritePlugin } from './vite-plugin-html-rewrite';
 import { movePagesPlugin } from './vite-plugin-move-pages';
+import { sitemapPlugin } from './vite-plugin-sitemap';
 
 // Auto-detect all HTML pages from Eleventy output directory
 const eleventyOutputDir = resolve(__dirname, '_11ty-output');
@@ -31,7 +32,7 @@ const srcPageEntries = pageFiles.reduce((entries, file) => {
 }, {} as Record<string, string>);
 
 export default defineConfig({
-  plugins: [htmlRewritePlugin(), movePagesPlugin()],
+  plugins: [htmlRewritePlugin(), movePagesPlugin(), sitemapPlugin()],
   build: {
     outDir: 'dist',
     rollupOptions: {

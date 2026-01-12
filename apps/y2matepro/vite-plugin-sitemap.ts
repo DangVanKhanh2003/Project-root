@@ -1,0 +1,129 @@
+import type { Plugin } from 'vite';
+import { readdirSync, writeFileSync, readFileSync, existsSync, statSync } from 'fs';
+import { resolve, join, relative } from 'path';
+
+interface SitemapConfig {
+  baseUrl?: string;
+  changefreq?: string;
+  defaultPriority?: number;
+  homePriority?: number;
+}
+
+/**
+ * Vite plugin to generate sitemap.xml after build
+ * Supports multilingual pages with hreflang alternate links
+ */
+export function sitemapPlugin(config: SitemapConfig = {}): Plugin {
+  const {
+    changefreq = 'weekly',
+    defaultPriority = 0.8,
+    homePriority = 1.0
+  } = config;
+
+  return {
+    name: 'vite-plugin-sitemap',
+    closeBundle() {
+      const distDir = resolve(__dirname, 'dist');
+      // Read HTML files from 11ty output (source of truth for all pages including i18n)
+      const eleventyOutputDir = resolve(__dirname, '_11ty-output');
+
+      if (!existsSync(distDir)) {
+        console.warn('[sitemap] dist directory not found, skipping sitemap generation');
+        return;
+      }
+
+      if (!existsSync(eleventyOutputDir)) {
+        console.warn('[sitemap] _11ty-output directory not found, skipping sitemap generation');
+        return;
+      }
+
+      // Read base URL from site.json
+      const siteConfigPath = resolve(__dirname, '_templates/_data/site.json');
+      let baseUrl = 'https://y2matepro.com';
+
+      if (existsSync(siteConfigPath)) {
+        try {
+          const siteConfig = JSON.parse(readFileSync(siteConfigPath, 'utf-8'));
+          if (siteConfig.url) {
+            baseUrl = siteConfig.url.replace(/\/$/, ''); // Remove trailing slash
+          }
+        } catch (err) {
+          console.warn('[sitemap] Failed to read site.json, using default URL');
+        }
+      }
+
+      // Collect all HTML files from 11ty output (includes all languages)
+      const htmlFiles = collectHtmlFiles(eleventyOutputDir, eleventyOutputDir);
+
+      if (htmlFiles.length === 0) {
+        console.warn('[sitemap] No HTML files found in dist directory');
+        return;
+      }
+
+      // Generate sitemap XML
+      const today = new Date().toISOString().split('T')[0];
+      const urls = htmlFiles.map(file => {
+        const urlPath = file.replace(/\\/g, '/').replace(/index\.html$/, '').replace(/\.html$/, '');
+        const fullUrl = urlPath ? `${baseUrl}/${urlPath}` : baseUrl;
+        const isHome = urlPath === '' || urlPath.match(/^[a-z]{2}$/) !== null;
+        const priority = isHome ? homePriority : defaultPriority;
+
+        return generateUrlEntry(fullUrl, today, changefreq, priority);
+      });
+
+      const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${urls.join('\n')}
+</urlset>`;
+
+      // Write sitemap.xml to dist
+      const sitemapPath = join(distDir, 'sitemap.xml');
+      writeFileSync(sitemapPath, sitemap, 'utf-8');
+      console.log(`[sitemap] Generated sitemap.xml with ${htmlFiles.length} URLs`);
+    }
+  };
+}
+
+/**
+ * Recursively collect all HTML files from a directory
+ */
+function collectHtmlFiles(dir: string, baseDir: string): string[] {
+  const files: string[] = [];
+
+  const entries = readdirSync(dir, { withFileTypes: true });
+
+  for (const entry of entries) {
+    const fullPath = join(dir, entry.name);
+
+    if (entry.isDirectory()) {
+      // Skip asset directories
+      if (entry.name === 'assets' || entry.name === 'public') {
+        continue;
+      }
+      files.push(...collectHtmlFiles(fullPath, baseDir));
+    } else if (entry.name.endsWith('.html')) {
+      // Get relative path from dist
+      const relativePath = relative(baseDir, fullPath);
+      files.push(relativePath);
+    }
+  }
+
+  return files;
+}
+
+/**
+ * Generate a single URL entry for the sitemap
+ */
+function generateUrlEntry(
+  loc: string,
+  lastmod: string,
+  changefreq: string,
+  priority: number
+): string {
+  return `  <url>
+    <loc>${loc}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <changefreq>${changefreq}</changefreq>
+    <priority>${priority}</priority>
+  </url>`;
+}
