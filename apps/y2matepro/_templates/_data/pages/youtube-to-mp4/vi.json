@@ -1,95 +1,97 @@
 {
   "seo": {
-    "title": "Y2Mate - Trình chuyển đổi YouTube sang MP4 miễn phí (1080p Full HD, An toàn & Không có quảng cáo)",
-    "description": "Y2Mate là công cụ miễn phí giúp bạn tải video YouTube sang MP4 chất lượng 360p, 720p HD, 1080p. Nhanh chóng, an toàn và không yêu cầu đăng ký hay cài đặt.",
-    "ogTitle": "Y2Mate - Trình chuyển đổi YouTube sang MP4 miễn phí (1080p Full HD, An toàn & Không có quảng cáo)",
-    "ogDescription": "Y2Mate là một trình tải xuống YouTube sang MP4 trực tuyến miễn phí. Tải xuống video một cách an toàn ở định dạng 144p, 360p, 720p HD hoặc 1080p Full HD mà không có quảng cáo hoặc chuyển hướng.",
-    "schemaName": "Y2Mate - Trình chuyển đổi YouTube sang MP4 miễn phí",
-    "schemaDescription": "Y2Mate là một trình tải xuống YouTube sang MP4 trực tuyến miễn phí. Tải xuống video một cách an toàn ở định dạng 144p, 360p, 720p HD hoặc 1080p Full HD mà không có quảng cáo hoặc chuyển hướng."
+    "title": "Y2Mate – Trình chuyển đổi YouTube sang MP4 (Lên đến 1080p Full HD)",
+    "description": "Chuyển đổi video YouTube sang MP4 với độ phân giải từ 144p đến 1080p Full HD. Y2Mate tạo tệp MP4 với âm thanh tích hợp, xử lý liên kết hiệu quả và không yêu cầu cài đặt phần mềm.",
+    "ogTitle": "Y2Mate – Trình chuyển đổi YouTube sang MP4 (HD & Full HD)",
+    "ogDescription": "Chuyển đổi video YouTube sang MP4 với âm thanh tích hợp. Hỗ trợ 144p, 360p, 480p, 720p HD và 1080p Full HD.",
+    "schemaName": "Y2Mate – Trình chuyển đổi YouTube sang MP4",
+    "schemaDescription": "Một hệ thống trực tuyến chuyển đổi video YouTube sang định dạng MP4 với nhiều tùy chọn độ phân giải và âm thanh được tích hợp đầy đủ."
   },
-
   "hero": {
-    "title": "Trình chuyển đổi YouTube sang MP4 miễn phí"
+    "title": "Trình chuyển đổi YouTube sang MP4"
   },
-
   "content": {
-    "mainTitle": "Trình tải xuống YouTube sang MP4 miễn phí - Nhanh, HD & Không có quảng cáo",
-    "intro1": "Trình tải xuống YouTube sang MP4 của Y2mate này là một công cụ trực tuyến chuyên dụng được thiết kế để chuyển đổi và lưu video YouTube ở định dạng MP4 độ nét cao trực tiếp vào thiết bị của bạn. Nếu bạn đã từng muốn tải một hướng dẫn cho một chuyến bay dài hoặc lưu một video nhạc chất lượng cao cho một chuyến đi đường bộ mà không cần phụ thuộc vào kết nối dữ liệu không ổn định, thì đây là giải pháp dành cho bạn. Nó được xây dựng để nhanh chóng, miễn phí và quan trọng nhất là không có những quảng cáo và chuyển hướng phiền phức gây khó chịu cho các trang web khác.",
-    "intro2": "Cho dù bạn cần một tệp 144p nhẹ để tiết kiệm dung lượng hay một phiên bản 1080p Full HD sắc nét cho rạp hát tại nhà của mình, công cụ này sẽ xử lý việc chuyển đổi trên đám mây để thiết bị của bạn không phải làm vậy. Không có phần mềm, không có tài khoản, chỉ cần tải xuống MP4 thuần túy."
+    "mainTitle": "Chuyển đổi video YouTube sang định dạng MP4",
+    "intro1": "Y2Mate là một hệ thống chuyển đổi trực tuyến được thiết kế để tạo tệp video MP4 từ các nguồn YouTube. Các tệp đầu ra bao gồm các luồng âm thanh và video được tích hợp đầy đủ, đảm bảo khả năng tương thích với các trình phát media tiêu chuẩn và thiết bị phát lại mà không yêu cầu codec bổ sung hoặc xử lý hậu kỳ.",
+    "intro2": "Hệ thống hỗ trợ độ phân giải MP4 từ 144p đến 1080p Full HD. Phân tích liên kết video và chuẩn bị tệp được tối ưu hóa để hoàn thành nhanh hơn khoảng hai lần so với nhiều trình chuyển đổi trực tuyến tương đương. Trong toàn bộ quy trình chuyển đổi, Y2Mate không hiển thị quảng cáo hoặc các yếu tố bật lên. Tất cả các hoạt động được thực hiện trực tiếp trong trình duyệt mà không cần cài đặt phần mềm hoặc yêu cầu quyền cao hơn, cung cấp một môi trường an toàn và cô lập để xử lý video."
   },
-
   "instructions": {
-    "title": "Cách chuyển đổi YouTube sang MP4 trong vài giây",
+    "title": "Cách chuyển đổi YouTube sang MP4",
     "steps": [
-      "<strong>Sao chép & Dán:</strong> Lấy URL YouTube và dán vào hộp chuyển đổi ở trên.",
-      "<strong>Chọn MP4:</strong> Nhấp vào \"Bắt đầu\" và hệ thống của chúng tôi sẽ ngay lập tức liệt kê tất cả các độ phân giải MP4 có sẵn.",
-      "<strong>Chọn chất lượng:</strong> Chọn độ phân giải phù hợp với nhu cầu của bạn—từ 144p thân thiện với dữ liệu đến 1080p HD trong như pha lê.",
-      "<strong>Lưu tức thì:</strong> Nhấn \"Chuyển đổi\" và sau đó \"Tải xuống.\" Video của bạn hiện đã sẵn sàng để xem ngoại tuyến trên mọi thiết bị!"
+      "<strong>Nhập liên kết video:</strong> Sao chép URL YouTube và dán vào trường nhập.",
+      "<strong>Phân tích nguồn:</strong> Nhấp vào \"Bắt đầu\" để truy xuất các luồng MP4 có sẵn.",
+      "<strong>Chọn độ phân giải:</strong> Chọn 144p, 360p, 480p, 720p HD hoặc 1080p Full HD.",
+      "<strong>Chuyển đổi & Tải xuống:</strong> Nhấp vào \"Chuyển đổi\" để tạo và tải xuống tệp MP4 trực tiếp vào thiết bị của bạn."
     ]
   },
-
   "whyChoose": {
-    "title": "Tại sao Trình chuyển đổi MP4 này lại nổi bật",
+    "title": "Tại sao nên sử dụng trình chuyển đổi YouTube sang MP4 này",
     "reasons": [
-      "<strong>Trải nghiệm an toàn và không có quảng cáo:</strong> Chúng tôi đã loại bỏ các cửa sổ bật lên và chuyển hướng. Bạn sẽ có được một quy trình an toàn, hợp lý từ đầu đến cuối.",
-      "<strong>Chất lượng HD gốc:</strong> Nếu người tạo đã tải nó lên ở định dạng 1080p, bạn có thể tải xuống ở định dạng 1080p. Chúng tôi không nén chất lượng của bạn trừ khi bạn yêu cầu chúng tôi.",
-      "<strong>Không ảnh hưởng đến bộ nhớ:</strong> Vì đây là một công cụ hoàn toàn dựa trên web, bạn không cần cài đặt bất kỳ ứng dụng \"Trình tải xuống MP4\" hoặc plugin trình duyệt nào.",
-      "<strong>Phát lại toàn cầu:</strong> Các tệp MP4 của chúng tôi được tối ưu hóa để phát hoàn hảo trên VLC, Windows Media Player, QuickTime và thậm chí cả trên TV thông minh hoặc máy chơi game."
+      "<strong>Tính toàn vẹn video nhất quán:</strong> Các luồng video và âm thanh được hợp nhất bằng cách sử dụng căn chỉnh dấu thời gian để ngăn chặn sự mất đồng bộ hoặc mất âm thanh.",
+      "<strong>Đầu ra âm thanh tích hợp:</strong> Tệp MP4 được tạo bao gồm dữ liệu âm thanh đầy đủ mà không yêu cầu tải xuống riêng biệt.",
+      "<strong>Quy trình xử lý hiệu quả:</strong> Phân tích luồng và lắp ráp tệp được tối ưu hóa để hoàn thành nhanh hơn so với nhiều công cụ trực tuyến.",
+      "<strong>Môi trường chuyển đổi không có quảng cáo:</strong> Hệ thống hoạt động mà không có quảng cáo hoặc gián đoạn bật lên trong quá trình xử lý."
     ]
   },
-
   "features": {
-    "title": "Các tính năng được xây dựng cho bạn",
+    "title": "Các tính năng chuyển đổi MP4",
     "items": [
       {
-        "title": "Chuyển đổi MP4 không giới hạn",
-        "description": "Không có giới hạn hàng ngày. Chuyển đổi toàn bộ video trong danh sách phát nếu bạn cần!"
+        "title": "Nhiều độ phân giải MP4",
+        "description": "Hỗ trợ 144p, 360p, 480p, 720p HD và 1080p Full HD để phù hợp với các yêu cầu phát lại và lưu trữ khác nhau."
       },
       {
-        "title": "Xử lý đám mây nhanh",
-        "description": "Các máy chủ của chúng tôi xử lý công việc nặng nhọc, có nghĩa là MP4 của bạn đã sẵn sàng để tải xuống chỉ trong vài nhịp tim."
+        "title": "Âm thanh và video tích hợp",
+        "description": "Mỗi tệp MP4 chứa các luồng video và âm thanh được đồng bộ hóa được đóng gói trong một vùng chứa duy nhất."
       },
       {
-        "title": "Thân thiện với pin",
-        "description": "Bởi vì việc chuyển đổi diễn ra ở phía chúng tôi, nó sẽ không làm hao pin điện thoại của bạn hoặc làm nóng máy tính xách tay của bạn."
+        "title": "Xử lý dựa trên trình duyệt",
+        "description": "Tất cả các chuyển đổi được thực hiện trực tuyến mà không cần cài đặt ứng dụng hoặc tiện ích mở rộng trình duyệt."
       },
       {
-        "title": "Sẵn sàng trên nhiều thiết bị",
-        "description": "Hoàn toàn tương thích với Chrome, Safari, Edge và Firefox trên cả Di động và Máy tính để bàn."
+        "title": "Quy trình chuyển đổi an toàn",
+        "description": "Không yêu cầu tạo tài khoản, yêu cầu quyền hoặc truy cập hệ thống cục bộ trong quá trình xử lý."
       },
       {
-        "title": "Nhiều độ phân giải",
-        "description": "144p, 360p, 480p, 720p (HD), 1080p (Full HD) - chọn độ phân giải phù hợp với nhu cầu của bạn."
+        "title": "Chuyển đổi không giới hạn",
+        "description": "Người dùng có thể chuyển đổi và tải xuống nhiều tệp MP4 mà không có giới hạn sử dụng bắt buộc."
       },
       {
-        "title": "Khả năng tương thích toàn cầu",
-        "description": "Hoạt động trơn tru trên iOS, Android, Windows, macOS, Linux và tất cả các trình duyệt hiện đại."
+        "title": "Khả năng tương thích thiết bị rộng",
+        "description": "Đầu ra MP4 tương thích với điện thoại thông minh, máy tính, TV thông minh và trình phát media tiêu chuẩn."
       }
     ]
   },
-
   "faqs": {
-    "title": "Câu hỏi thường gặp (FAQ)",
+    "title": "Các câu hỏi thường gặp",
     "items": [
       {
-        "question": "Công cụ chuyển đổi YouTube sang MP4 này có miễn phí không?",
-        "answer": "Có, nó hoàn toàn miễn phí để sử dụng. Chúng tôi không có các bậc \"cao cấp\" ẩn hoặc giới hạn kích thước tệp. Bạn sẽ có được trải nghiệm Full HD đầy đủ với giá 0 đô la."
+        "question": "Độ phân giải MP4 ảnh hưởng đến chất lượng video và kích thước tệp như thế nào?",
+        "answer": "Độ phân giải MP4 xác định số lượng pixel được sử dụng để biểu thị mỗi khung hình video. Độ phân giải thấp hơn như 144p hoặc 360p làm giảm kích thước tệp và sử dụng băng thông nhưng hạn chế chi tiết hình ảnh. Độ phân giải cao hơn như 720p HD và 1080p Full HD giữ lại nhiều thông tin hình ảnh hơn, dẫn đến hình ảnh sắc nét hơn và chuyển động mượt mà hơn, đồng thời tăng kích thước tệp và yêu cầu giải mã."
       },
       {
-        "question": "Làm cách nào để lưu MP4 trực tiếp vào iPhone hoặc Android của tôi?",
-        "answer": "Trên Android, nó sẽ lưu trực tiếp vào thư mục Tải xuống của bạn. Trên iPhone, hãy sử dụng Safari để tải xuống, sau đó nhấn vào biểu tượng \"Tải xuống\" trên thanh tìm kiếm và chọn \"Lưu video\" để di chuyển nó vào ứng dụng Ảnh của bạn."
+        "question": "Tại sao tốc độ chuyển đổi quan trọng trong các công cụ MP4 trực tuyến?",
+        "answer": "Tốc độ chuyển đổi bị ảnh hưởng bởi hiệu quả của một hệ thống trong việc phân tích luồng video và chuẩn bị tệp đầu ra. Phân tích chậm có thể dẫn đến thời gian chờ đợi lâu hoặc các tùy chọn độ phân giải không đầy đủ. Bằng cách tối ưu hóa việc trích xuất siêu dữ liệu luồng và lắp ráp tệp, Y2Mate hoàn thành các bước này nhanh hơn khoảng hai lần so với nhiều trình chuyển đổi trực tuyến thông thường."
       },
       {
-        "question": "Tại sao tôi nên chọn MP4 thay vì các định dạng khác?",
-        "answer": "MP4 là định dạng \"phổ quát\". Nó cung cấp sự cân bằng tốt nhất giữa chất lượng video cao và kích thước tệp nhỏ, giúp nó tương thích với hầu hết mọi điện thoại, máy tính bảng và TV hiện có."
+        "question": "Hệ thống đảm bảo đồng bộ hóa âm thanh và video như thế nào?",
+        "answer": "Video YouTube lưu trữ âm thanh và video dưới dạng các luồng riêng biệt. Trong quá trình chuyển đổi, các luồng này phải được hợp nhất chính xác. Y2Mate căn chỉnh âm thanh và video bằng cách sử dụng dấu thời gian luồng để ngăn chặn các vấn đề phổ biến như âm thanh bị trễ, các phần bị tắt tiếng hoặc các phân đoạn bị mất trong tệp MP4 cuối cùng."
       },
       {
-        "question": "Tôi có thể tải xuống video 1080p có âm thanh không?",
-        "answer": "Chắc chắn rồi. Không giống như nhiều công cụ khác cung cấp cho bạn 1080p không có âm thanh, trình chuyển đổi của chúng tôi sẽ tự động hợp nhất chúng để bạn có được một tệp Độ nét cao hoàn chỉnh."
+        "question": "Tại sao môi trường không có quảng cáo và cửa sổ bật lên lại quan trọng đối với các chuyển đổi?",
+        "answer": "Quảng cáo và các yếu tố bật lên thường giới thiệu các tập lệnh bổ sung có thể làm gián đoạn quá trình xử lý hoặc can thiệp vào quá trình tải xuống. Môi trường không có quảng cáo làm giảm chi phí thực thi, cải thiện độ ổn định của hệ thống và giảm thiểu rủi ro chuyển hướng ngẫu nhiên hoặc tạo tệp không đầy đủ."
       },
       {
-        "question": "Nếu video tôi muốn là Riêng tư thì sao?",
-        "answer": "Vì lý do bảo mật và quyền riêng tư, công cụ của chúng tôi chỉ có thể chuyển đổi các video \"Công khai\" hoặc \"Không công khai\". Nếu video được chủ sở hữu đặt thành \"Riêng tư\", video đó không thể được xử lý."
+        "question": "Xử lý dựa trên trình duyệt cải thiện bảo mật như thế nào?",
+        "answer": "Xử lý dựa trên trình duyệt loại bỏ nhu cầu cài đặt phần mềm hoặc tiện ích mở rộng của bên thứ ba, có thể gây ra rủi ro bảo mật. Vì Y2Mate hoạt động thông qua các yêu cầu web tiêu chuẩn và không yêu cầu quyền cao hơn, quá trình chuyển đổi vẫn được cô lập khỏi hệ điều hành và tệp cá nhân của người dùng."
+      },
+      {
+        "question": "Tất cả các thiết bị có thể phát tệp MP4 Full HD 1080p không?",
+        "answer": "Hầu hết các thiết bị hiện đại đều hỗ trợ phát lại MP4 1080p. Tuy nhiên, phần cứng cũ hơn có thể có khả năng giải mã hạn chế. Trong những trường hợp như vậy, việc chọn 480p hoặc 720p có thể cung cấp khả năng phát lại mượt mà hơn trong khi vẫn duy trì chất lượng hình ảnh chấp nhận được."
+      },
+      {
+        "question": "Video YouTube riêng tư hoặc bị hạn chế có được hỗ trợ không?",
+        "answer": "Không. Chỉ có thể xử lý các video YouTube Công khai hoặc Không được liệt kê. Các video riêng tư hoặc bị hạn chế yêu cầu xác thực mà các hệ thống chuyển đổi bên ngoài không thể truy cập."
       }
     ]
   }

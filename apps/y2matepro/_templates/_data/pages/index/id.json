@@ -1,95 +1,101 @@
 {
   "seo": {
     "title": "Y2mate - Pengunduh Video YouTube Gratis | Unduh Video Online",
-    "description": "Y2mate adalah alat gratis untuk mengunduh video YouTube dalam kualitas tinggi (144p-1080p). Ini berfungsi cepat dan aman di browser Anda, tanpa perlu aplikasi atau registrasi.",
+    "description": "Unduh video YouTube dengan cepat dan aman dengan Y2mate. Pilih resolusi apa pun dari 144p hingga 1080p atau audio dari 128kbps hingga 320kbps, langsung di browser Anda—tidak perlu aplikasi atau pendaftaran.",
     "ogTitle": "Y2mate - Pengunduh Video YouTube Gratis | Unduh Video Online",
-    "ogDescription": "Unduh video YouTube online secara gratis. Simpan video dalam kualitas tinggi (144p-1080p) atau audio (128kbps-320kbps). Cepat, aman, tanpa aplikasi, berfungsi di semua perangkat.",
+    "ogDescription": "Simpan video YouTube online secara gratis. Pilih kualitas yang Anda inginkan, dari video 144p hingga 1080p atau audio 128kbps–320kbps. Cepat, aman, dan berfungsi di semua perangkat.",
     "schemaName": "Y2mate - Pengunduh Video YouTube",
-    "schemaDescription": "Unduh video YouTube online secara gratis. Simpan video dalam kualitas tinggi (144p-1080p) atau audio (128kbps-320kbps). Cepat, aman, tanpa aplikasi, berfungsi di semua perangkat."
+    "schemaDescription": "Unduh video YouTube online secara gratis. Simpan video atau audio dalam kualitas yang Anda inginkan. Berfungsi cepat di perangkat apa pun tanpa instalasi."
   },
-
   "hero": {
     "title": "Y2mate - Pengunduh YouTube"
   },
-
   "content": {
-    "mainTitle": "Y2mate - Unduh Video YouTube dengan Cepat & Gratis",
-    "intro1": "Y2mate adalah pengunduh YouTube online gratis yang memungkinkan Anda mengonversi dan mengunduh video YouTube ke format MP4 dan MP3 berkualitas tinggi langsung dari browser Anda. Alat kami 100% berbasis web, tidak memerlukan instalasi perangkat lunak atau registrasi. Anda dapat dengan mudah memilih resolusi yang sesuai dengan kebutuhan Anda, dari 144p untuk pratinjau cepat hingga 1080p Full HD untuk pengalaman seperti teater premium.",
-    "intro2": "Ini juga penyelamat jika Anda menyukai musik. Ingin mengubah cover YouTube yang keren menjadi MP3 untuk lari pagi Anda atau mengaturnya sebagai nada dering khusus? Y2mate juga menanganinya, dengan opsi audio berkualitas tinggi hingga 320kbps."
+    "mainTitle": "Y2mate – Unduh Video YouTube Cepat dan Gratis",
+    "intro1": "Y2mate adalah pengunduh video YouTube online yang berfokus pada kecepatan dan kegunaan. Y2mate mengunduh video YouTube hingga 2 kali lebih cepat daripada banyak alat pengunduh YouTube online lainnya. Anda dapat mengunduh video atau mengonversinya ke audio untuk melihat dan mendengarkan secara offline tanpa menginstal perangkat lunak atau membuat akun.",
+    "intro2": "Y2mate menyediakan pengalaman mengunduh yang bersih dan lancar tanpa iklan, pop-up, dan pengalihan. Semua file diunduh langsung ke perangkat Anda. Alat ini mendukung berbagai pilihan kualitas, termasuk resolusi video dari 144p, 360p, 480p, 720p hingga 1080p (Full HD), dan bitrate audio dari 128kbps hingga 320kbps dalam format MP3, OGG, WAV, dan OPUS. Y2mate berfungsi dengan andal di semua perangkat dan browser."
   },
-
   "instructions": {
-    "title": "Cara Mendapatkan Video Anda dalam Hitungan Detik",
+    "title": "Cara Mengunduh Video YouTube dalam Detik",
     "steps": [
-      "<strong>Tempel tautan:</strong> Salin URL YouTube yang Anda sukai dan tempelkan ke kotak pencarian di atas.",
-      "<strong>Biarkan kami menganalisisnya:</strong> Tekan \"Mulai.\" Kami akan dengan cepat mengambil semua format dan resolusi yang tersedia untuk Anda.",
-      "<strong>Pilih getaran Anda:</strong> Ingin video lengkap (MP4) atau hanya lagunya (MP3)? Pilih kualitas yang sesuai dengan perangkat Anda.",
-      "<strong>Unduh & Pergi:</strong> Klik \"Konversi,\" tunggu sebentar hingga prosesnya selesai, dan simpan. Itu saja—tanpa registrasi, tanpa drama!"
+      "<strong>Tempel tautan YouTube:</strong> Salin URL video YouTube atau YouTube Shorts dan tempelkan ke kotak unduhan.",
+      "<strong>Analisis tautan:</strong> Klik tombol mulai untuk menampilkan format dan opsi kualitas yang tersedia.",
+      "<strong>Pilih video atau audio:</strong> Pilih MP4 untuk video atau MP3 untuk audio, lalu pilih resolusi atau bitrate pilihan Anda.",
+      "<strong>Unduh:</strong> Klik \"Konversi\" dan unduh file langsung ke perangkat Anda tanpa masuk."
     ]
   },
-
   "whyChoose": {
-    "title": "Mengapa Y2mate Sebenarnya Berguna",
+    "title": "Mengapa Memilih Y2mate",
     "reasons": [
-      "<strong>Audio Tingkat Atas:</strong> Jangan puas dengan suara yang tipis. Ekstrak audio dalam MP3 320kbps—sempurna untuk membangun perpustakaan musik pribadi berkualitas tinggi Anda.",
-      "<strong>Siap untuk Celana Pendek:</strong> Suka Celana Pendek YouTube yang cepat itu? Anda dapat mengunduhnya dalam format vertikal aslinya untuk dibagikan di aplikasi lain atau ditonton nanti.",
-      "<strong>Hemat Baterai Anda:</strong> Karena semua pekerjaan berat (konversi) terjadi di server kami, ponsel atau laptop Anda tidak akan memanas atau menguras baterainya.",
-      "<strong>Bekerja di Mana Saja:</strong> Baik Anda menggunakan iPhone baru, Android lama, Mac, atau PC Windows, selama Anda memiliki browser, Anda siap berangkat."
+      "<strong>Kecepatan unduh cepat:</strong> Y2mate mengunduh video hingga 2 kali lebih cepat daripada banyak alat pengunduh YouTube online lainnya.",
+      "<strong>Tanpa iklan:</strong> Tidak ada iklan, pop-up, atau pengalihan yang mengganggu selama proses pengunduhan.",
+      "<strong>Unduhan langsung:</strong> File video dan audio diunduh langsung ke perangkat Anda tanpa halaman perantara.",
+      "<strong>Berfungsi di semua perangkat:</strong> Sepenuhnya kompatibel dengan ponsel, tablet, dan komputer desktop."
     ]
   },
-
   "features": {
-    "title": "Mengapa Memilih Y2mate",
+    "title": "Fitur Utama Y2mate",
     "items": [
       {
-        "title": "Unduhan Tanpa Batas",
-        "description": "Unduh video atau audio YouTube sebanyak yang Anda suka tanpa batasan."
+        "title": "Unduhan video dan audio tanpa batas",
+        "description": "Unduh video YouTube tanpa batas atau konversikan ke file audio untuk penggunaan offline."
       },
       {
-        "title": "Berbagai Kualitas Video & Audio",
-        "description": "Pilih dari resolusi video 144p, 360p, 480p, 720p, dan 1080p atau bitrate audio 128kbps, 192kbps, 320kbps untuk pengalaman terbaik."
+        "title": "Beberapa pilihan kualitas",
+        "description": "Mendukung resolusi video dari 144p, 360p, 480p, 720p hingga 1080p dan bitrate audio dari 128kbps hingga 320kbps."
       },
       {
-        "title": "Cepat & Andal",
-        "description": "Server yang dioptimalkan memastikan video diproses dan diunduh dengan cepat tanpa penundaan."
+        "title": "Pemrosesan cepat dan stabil",
+        "description": "Analisis tautan singkat dan waktu unduh, cocok untuk video pendek dan panjang."
       },
       {
-        "title": "Bekerja di Semua Perangkat",
-        "description": "Mendukung iPhone, Android, Windows, Mac, dan Linux. Bekerja dengan semua browser utama: Chrome, Firefox, Safari, Edge, Opera."
+        "title": "Mendukung semua platform",
+        "description": "Berfungsi dengan lancar di iPhone, Android, Windows, Mac, dan Linux menggunakan browser populer."
       },
       {
-        "title": "Aman & Pribadi",
-        "description": "Tidak ada iklan, popup, atau pengalihan. Y2mate tidak melacak unduhan Anda atau mengumpulkan data pribadi."
+        "title": "Pengalaman pengguna yang bersih",
+        "description": "Tidak ada iklan, tidak ada pop-up, dan tidak ada gangguan saat mengunduh."
       },
       {
-        "title": "Tidak Perlu Instalasi",
-        "description": "Alat 100% online—tidak perlu perangkat lunak, ekstensi browser, atau aplikasi. Cukup tempel tautan Anda dan unduh secara instan."
+        "title": "Tidak perlu instalasi",
+        "description": "Sepenuhnya berbasis web tanpa aplikasi, ekstensi, atau perangkat lunak yang diperlukan."
       }
     ]
   },
-
   "faqs": {
-    "title": "FAQ",
+    "title": "Pertanyaan yang Sering Diajukan",
     "items": [
       {
+        "question": "Apa itu Y2mate?",
+        "answer": "Y2mate adalah pengunduh video YouTube online yang memungkinkan pengguna mengunduh video atau mengonversinya ke audio dengan menempelkan tautan YouTube. Alat ini berfungsi langsung di browser dan tidak memerlukan instalasi."
+      },
+      {
+        "question": "Bisakah saya mengunduh video YouTube online tanpa menginstal perangkat lunak?",
+        "answer": "Ya. Y2mate berfungsi sepenuhnya online, jadi Anda tidak perlu menginstal aplikasi atau ekstensi browser apa pun."
+      },
+      {
+        "question": "Resolusi video apa yang didukung Y2mate?",
+        "answer": "Y2mate mendukung beberapa resolusi video mulai dari 144p hingga 1080p, memungkinkan Anda memilih kualitas yang sesuai dengan perangkat dan kebutuhan penyimpanan Anda."
+      },
+      {
         "question": "Bagaimana cara mengunduh video YouTube sebagai file MP3?",
-        "answer": "Mudah! Tempel tautan YouTube ke kotak pencarian Y2mate, klik \"Mulai,\" lalu pilih tab Audio. Pilih bitrate pilihan Anda (seperti 320kbps untuk kualitas tinggi) dan tekan \"Konversi.\" MP3 Anda akan siap dalam hitungan detik—sempurna untuk mendengarkan trek favorit Anda secara offline."
+        "answer": "Tempel tautan video YouTube ke Y2mate, pilih opsi Audio, pilih bitrate pilihan Anda, dan klik Konversi untuk mengunduh file MP3."
       },
       {
-        "question": "Mengapa tombol unduh tidak muncul atau menunjukkan kesalahan?",
-        "answer": "Kesalahan biasanya terjadi karena koneksi terputus sementara atau jika video diatur ke Pribadi. Untuk memperbaikinya, cukup segarkan halaman (F5) dan tempel tautan lagi. Jika Anda menggunakan perangkat seluler, pastikan browser Anda tidak dalam mode \"Penyamaran\", karena terkadang dapat memblokir unduhan."
+        "question": "Apakah Y2mate mendukung pengunduhan YouTube Shorts?",
+        "answer": "Ya. Y2mate memungkinkan Anda mengunduh YouTube Shorts sebagai file video atau audio untuk melihat atau mendengarkan secara offline."
       },
       {
-        "question": "Bisakah saya mengunduh video dalam 1080p Full HD dengan suara?",
-        "answer": "Ya! Y2mate mendukung unduhan Full HD. Sementara beberapa situs lain memisahkan video dan audio untuk 1080p, Y2mate menggabungkannya untuk Anda sehingga Anda mendapatkan file MP4 yang jernih dan berdefinisi tinggi dengan suara yang jernih, siap untuk layar apa pun."
+        "question": "Apakah aman mengunduh video menggunakan Y2mate?",
+        "answer": "Y2mate dirancang untuk memberikan pengalaman mengunduh yang sederhana dan bersih tanpa iklan atau pop-up dan tidak memerlukan informasi pribadi."
       },
       {
-        "question": "Bagaimana cara menyimpan video YouTube langsung ke galeri iPhone atau Android saya?",
-        "answer": "<strong>Di Android:</strong> Cukup unduh file melalui Chrome, dan itu akan secara otomatis muncul di Galeri atau folder Unduhan Anda.<br><strong>Di iPhone:</strong> Buka Safari, unduh file, lalu ketuk panah biru di bilah alamat. Buka \"Unduhan,\" pilih video, dan ketuk \"Simpan Video\" untuk memindahkannya ke aplikasi Foto Anda."
+        "question": "Bagaimana saya harus menggunakan video yang diunduh dari Y2mate?",
+        "answer": "Video dan file audio yang diunduh dengan Y2mate harus digunakan untuk tujuan pribadi seperti melihat atau mendengarkan secara offline. Pengguna bertanggung jawab atas bagaimana konten yang diunduh digunakan dan harus menghormati hak-hak pemilik konten di YouTube."
       },
       {
-        "question": "Apakah legal mengunduh video melalui Y2mate?",
-        "answer": "Y2mate dirancang untuk mengunduh konten untuk penggunaan pribadi, seperti menonton video secara offline atau menyimpan sampul musik untuk didengarkan secara pribadi. Harap hormati pencipta asli dan jangan gunakan file yang diunduh untuk tujuan komersial atau pelanggaran hak cipta."
+        "question": "Apa pilihan kualitas terbaik untuk video panjang?",
+        "answer": "Untuk video panjang, 720p biasanya merupakan keseimbangan yang baik antara kualitas video dan ukuran file."
       }
     ]
   }

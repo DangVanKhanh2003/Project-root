@@ -1,88 +1,92 @@
 {
   "seo": {
-    "title": "Y2mate - Konverter YouTube ke MP3 Gratis",
-    "description": "Y2mate adalah alat gratis untuk mengonversi YouTube ke MP3 dengan audio 128/192/320kbps. Cepat, gratis, tanpa batas ukuran, dan tanpa aplikasi.",
-    "ogTitle": "Y2mate - Konverter YouTube ke MP3 Gratis",
-    "ogDescription": "Y2mate ke MP3: 128/192/320kbps. Cepat, gratis, tanpa batas, tanpa aplikasi.",
+    "title": "Y2mate - Konverter YouTube ke MP3",
+    "description": "Y2mate adalah konverter YouTube ke MP3 yang mendukung audio 128kbps, 192kbps, dan 320kbps. Unduh file audio lengkap dengan integritas suara yang terjaga. Tidak ada iklan yang ditampilkan.",
+    "ogTitle": "Y2mate - Konverter YouTube ke MP3",
+    "ogDescription": "Konversi YouTube ke MP3 dengan 128/192/320kbps. Pemrosesan cepat, output audio lengkap, dan tanpa iklan.",
     "schemaName": "Y2mate - Konverter YouTube ke MP3",
-    "schemaDescription": "Y2mate ke MP3: 128/192/320kbps. Cepat, gratis, tanpa batas, tanpa aplikasi."
+    "schemaDescription": "Alat konversi YouTube ke MP3 online yang mendukung beberapa opsi bitrate dengan integritas audio yang terjaga."
   },
   "hero": {
     "title": "Konverter YouTube ke MP3"
   },
   "content": {
-    "mainTitle": "Konversi YouTube ke MP3 dengan Kualitas Tinggi",
-    "intro1": "Y2mate adalah alat online khusus yang memungkinkan Anda mengekstrak audio berkualitas tinggi dari video YouTube langsung di browser Anda tanpa perlu menginstal perangkat lunak apa pun. Baik Anda ingin menyimpan lagu yang sedang tren untuk perpustakaan musik Anda atau podcast untuk didengarkan secara offline, konverter ini menawarkan keseimbangan terbaik antara kecepatan dan fidelitas suara. Kami mendukung berbagai bitrate, termasuk 128kbps, 192kbps, dan 320kbps, memberi Anda kontrol penuh atas pengalaman audio Anda.",
-    "intro2": "Bagi mereka yang membutuhkan lebih dari sekadar MP3 standar, Y2mate juga mendukung format audio canggih seperti WAV untuk kualitas lossless, serta OGG dan OPUS untuk codec modern dan efisien. Ini adalah solusi sempurna bagi siapa pun yang menginginkan cara yang bersih, aman, dan bebas registrasi untuk membangun koleksi audio pribadi mereka di perangkat apa pun, dari Android dan iPhone hingga Windows dan Mac."
+    "mainTitle": "Konversi Video YouTube ke MP3 dengan Kualitas Audio Terjaga",
+    "intro1": "Y2mate adalah alat online yang dirancang untuk mengekstrak dan mengonversi aliran audio dari video YouTube ke format MP3. Proses konversi menghasilkan file audio lengkap dengan suara yang disinkronkan, memastikan tidak ada segmen yang hilang, dibisukan, atau terpotong selama ekstraksi.",
+    "intro2": "Analisis tautan dan pembuatan file audio dioptimalkan untuk selesai sekitar dua kali lebih cepat daripada banyak alat online yang sebanding. Y2mate tidak menampilkan iklan atau elemen pop-up pada tahap penggunaan apa pun, memberikan alur kerja tanpa gangguan. Semua pemrosesan dilakukan langsung melalui browser tanpa menginstal perangkat lunak atau ekstensi."
   },
   "instructions": {
-    "title": "Cara Mengonversi YouTube ke MP3 & Lainnya",
+    "title": "Cara Mengonversi YouTube ke MP3",
     "steps": [
-      "<strong>Tempel tautan Anda:</strong> Salin URL YouTube dan tempelkan ke kotak pencarian di atas.",
-      "<strong>Pilih format & kualitas Anda:</strong> Tekan \"Mulai\" dan pilih bitrate (128kbps, 192kbps, atau 320kbps) atau format (WAV, OGG, OPUS) pilihan Anda.",
-      "<strong>Unduh:</strong> Klik tombol, dan file audio disimpan langsung ke perangkat Anda dalam hitungan detik."
+      "<strong>Tempel tautan video:</strong> Salin URL YouTube dan tempelkan ke kolom input.",
+      "<strong>Pilih bitrate:</strong> Klik \"Mulai\" dan pilih MP3 dengan kualitas 128kbps, 192kbps, atau 320kbps.",
+      "<strong>Konversi dan unduh:</strong> Klik \"Konversi\" untuk menghasilkan file MP3 dan mengunduhnya langsung ke perangkat Anda."
     ]
   },
   "whyChoose": {
-    "title": "Mengapa Pecinta Audio Memilih Y2mate",
+    "title": "Mengapa Menggunakan Y2mate untuk Konversi MP3",
     "reasons": [
-      "<strong>Opsi Bitrate Ganda:</strong> Pilih 320kbps untuk suara jernih yang terdengar hebat di headphone profesional, atau 128kbps untuk menghemat ruang penyimpanan di ponsel Anda.",
-      "<strong>Opsi Format Lanjutan:</strong> Selain MP3, kami mendukung WAV untuk kualitas tanpa kompresi, dan OGG/OPUS untuk audiophile yang lebih memilih codec modern berkinerja tinggi.",
-      "<strong>Tanpa Batas Durasi:</strong> Konversi konten berdurasi panjang dengan mudah seperti campuran DJ, buku audio lengkap, dan podcast berjam-jam tanpa kehilangan kualitas atau pemotongan.",
-      "<strong>Murni Berbasis Web:</strong> Jaga agar perangkat Anda bebas dari kekacauan. Tidak ada aplikasi untuk diinstal dan tidak ada ekstensi yang meragukan—semuanya ditangani dengan aman di cloud."
+      "<strong>Integritas Audio yang Konsisten:</strong> Proses konversi menjaga aliran audio asli tanpa pemotongan, segmen yang hilang, atau artefak pengkodean ulang.",
+      "<strong>Kontrol Bitrate:</strong> Beberapa opsi bitrate memungkinkan kontrol yang tepat atas kualitas audio dan persyaratan penyimpanan.",
+      "<strong>Pemrosesan Stabil untuk Konten Panjang:</strong> Audio berdurasi panjang seperti podcast, ceramah, dan campuran musik ditangani tanpa gangguan.",
+      "<strong>Tidak Ada Iklan yang Ditampilkan:</strong> Y2mate beroperasi tanpa menampilkan iklan atau pop-up selama konversi dan pengunduhan."
     ]
   },
   "features": {
-    "title": "Manfaat Utama untuk Perpustakaan Suara Anda",
+    "title": "Kemampuan Konversi MP3",
     "items": [
       {
-        "title": "Pemutaran Universal",
-        "description": "File kami berfungsi di semua perangkat—mulai dari stereo mobil dan pemutar MP3 khusus hingga aplikasi musik terbaru di iOS dan Android."
+        "title": "Bitrate MP3 yang Didukung",
+        "description": "Opsi bitrate yang tersedia termasuk 128kbps, 192kbps, dan 320kbps, tergantung pada preferensi pengguna."
       },
       {
-        "title": "Ramah Baterai & Data",
-        "description": "Mengekstrak audio di cloud menghemat baterai perangkat Anda dan menghemat paket data seluler Anda dibandingkan dengan streaming video."
+        "title": "Output Audio Lengkap",
+        "description": "File MP3 yang dihasilkan berisi trek audio lengkap dengan durasi yang benar dan pemutaran tanpa gangguan."
       },
       {
-        "title": "Mesin Konversi Tercepat",
-        "description": "Server kami dioptimalkan untuk mengirimkan file audio Anda secara instan, bahkan untuk konversi bitrate tinggi 320kbps."
+        "title": "Pemrosesan Berbasis Web",
+        "description": "Ekstraksi dan konversi audio dilakukan sepenuhnya secara online tanpa memerlukan instalasi perangkat lunak."
       },
       {
-        "title": "Pribadi & Aman",
-        "description": "Tidak perlu mendaftar atau memberikan info pribadi. Cukup cara yang aman dan mudah untuk mendapatkan trek favorit Anda."
+        "title": "Alur Kerja Bebas Iklan",
+        "description": "Tidak ada iklan atau pop-up yang ditampilkan selama proses konversi."
       },
       {
-        "title": "Opsi Bitrate Ganda",
-        "description": "Pilih dari kualitas MP3 128kbps, 192kbps, atau 320kbps. Bitrate yang lebih tinggi menghasilkan suara yang lebih kaya yang sempurna untuk pecinta musik."
+        "title": "Konversi Tanpa Batas",
+        "description": "Pengguna dapat mengonversi dan mengunduh beberapa file MP3 tanpa batasan harian atau penggunaan."
       },
       {
-        "title": "Opsi Format Lanjutan",
-        "description": "Dukungan untuk format WAV (lossless), OGG, dan OPUS. Sempurna untuk audiophile yang menuntut kualitas terbaik atau codec modern."
+        "title": "Kompatibilitas Pemutaran yang Luas",
+        "description": "File MP3 kompatibel dengan pemutar media umum, smartphone, dan perangkat audio."
       }
     ]
   },
   "faqs": {
-    "title": "Pertanyaan Umum",
+    "title": "Pertanyaan yang Sering Diajukan",
     "items": [
       {
-        "question": "Apa perbedaan antara bitrate MP3 (128k vs 320k)?",
-        "answer": "320kbps adalah kualitas tertinggi yang ditawarkan MP3, memberikan suara terkaya dengan detail paling banyak. 128kbps menggunakan lebih sedikit ruang penyimpanan dan sangat cocok untuk konten yang banyak bicara seperti wawancara, berita, atau ceramah."
+        "question": "Apa perbedaan antara MP3 128kbps, 192kbps, dan 320kbps?",
+        "answer": "Bitrate MP3 menentukan berapa banyak data audio yang dikodekan per detik. Bitrate yang lebih tinggi mempertahankan lebih banyak detail audio tetapi menghasilkan ukuran file yang lebih besar. 128kbps cocok untuk konten berbasis ucapan seperti ceramah atau wawancara. 192kbps memberikan tingkat kompresi dan kualitas suara yang seimbang untuk pendengaran umum. 320kbps adalah bitrate MP3 standar tertinggi dan mempertahankan sebagian besar informasi audio, membuatnya cocok untuk pemutaran musik pada peralatan audio berkualitas tinggi."
       },
       {
-        "question": "Mengapa saya harus memilih WAV, OGG, atau OPUS?",
-        "answer": "Pilih WAV jika Anda memerlukan kualitas asli tanpa kehilangan untuk pengeditan profesional. OGG dan OPUS adalah format modern yang menawarkan kualitas suara luar biasa dengan ukuran file yang bahkan lebih kecil dari MP3, cocok untuk pemutar media canggih."
+        "question": "Bagaimana Y2mate menjaga integritas audio selama konversi?",
+        "answer": "Sistem memproses aliran audio asli secara terus-menerus, menjaga garis waktu dan struktur pengambilan sampel yang benar. Pendekatan ini mencegah bagian yang hilang, penyimpangan waktu, atau bingkai audio yang hilang, memastikan MP3 akhir cocok dengan durasi penuh audio sumber."
       },
       {
-        "question": "Apakah aman menggunakan konverter ini di ponsel saya?",
-        "answer": "Ya, 100%. Y2mate berjalan sepenuhnya di browser seluler Anda, jadi tidak perlu mengunduh file atau aplikasi yang berisiko. Ini adalah cara yang bersih dan aman untuk mengambil audio saat Anda bepergian."
+        "question": "Bisakah video panjang atau podcast dikonversi ke MP3 dengan andal?",
+        "answer": "Ya. Y2mate mendukung konten berdurasi panjang, termasuk podcast multi-jam dan ceramah yang diperpanjang. Sistem ini dirancang untuk memproses aliran audio berkelanjutan tanpa gangguan atau pemotongan."
       },
       {
-        "question": "Bisakah saya mengonversi campuran musik atau podcast yang sangat panjang?",
-        "answer": "Tentu saja. Kami menangani konten berdurasi panjang setiap saat. Baik itu lagu berdurasi 5 menit atau campuran tidur ambien berdurasi 3 jam, alat kami akan memprosesnya untuk Anda tanpa masalah."
+        "question": "Apakah mengonversi YouTube ke MP3 mengurangi kualitas audio?",
+        "answer": "MP3 adalah format kompresi lossy, yang berarti beberapa data audio dikurangi selama pengkodean. Namun, bitrate yang lebih tinggi seperti 192kbps dan 320kbps meminimalkan kehilangan kualitas yang terlihat. Y2mate tidak menerapkan kompresi tambahan di luar bitrate yang dipilih."
       },
       {
-        "question": "Bagaimana cara menyimpan audio langsung ke iPhone saya?",
-        "answer": "Cukup gunakan browser Safari untuk mengunduh file. Setelah selesai, ketuk ikon unduh di bilah alamat dan simpan audio ke aplikasi \"File\" Anda untuk akses offline yang mudah kapan saja."
+        "question": "Apakah iklan atau pop-up ditampilkan selama konversi?",
+        "answer": "Tidak. Y2mate tidak menampilkan iklan atau pop-up pada tahap apa pun dari proses konversi atau pengunduhan."
+      },
+      {
+        "question": "Bisakah video YouTube pribadi dikonversi?",
+        "answer": "Tidak. Hanya video YouTube Publik atau Tidak Terdaftar yang dapat diproses karena pembatasan akses."
       }
     ]
   }

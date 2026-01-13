@@ -1,95 +1,97 @@
 {
   "seo": {
-    "title": "Y2Mate - Kostenloser YouTube zu MP4 Konverter (1080p Full HD, Sicher & Werbefrei)",
-    "description": "Nutzen Sie Y2Mate, um YouTube-Videos als MP4 in 360p, 720p HD oder 1080p Full HD herunterzuladen. Sicher, sofort und ohne Werbung oder Registrierung.",
-    "ogTitle": "Y2Mate - Kostenloser YouTube zu MP4 Konverter (1080p Full HD, Sicher & Werbefrei)",
-    "ogDescription": "Y2Mate ist ein kostenloser Online-YouTube-zu-MP4-Downloader. Laden Sie Videos sicher in 144p, 360p, 720p HD oder 1080p Full HD ohne Werbung oder Weiterleitungen herunter.",
-    "schemaName": "Y2Mate - Kostenloser YouTube zu MP4 Konverter",
-    "schemaDescription": "Y2Mate ist ein kostenloser Online-YouTube-zu-MP4-Downloader. Laden Sie Videos sicher in 144p, 360p, 720p HD oder 1080p Full HD ohne Werbung oder Weiterleitungen herunter."
+    "title": "Y2Mate – YouTube zu MP4 Konverter (Bis zu 1080p Full HD)",
+    "description": "Konvertieren Sie YouTube-Videos in MP4 mit Auflösungen von 144p bis 1080p Full HD. Y2Mate erstellt MP4-Dateien mit integriertem Audio, verarbeitet Links effizient und erfordert keine Softwareinstallation.",
+    "ogTitle": "Y2Mate – YouTube zu MP4 Konverter (HD & Full HD)",
+    "ogDescription": "Konvertieren Sie YouTube-Videos in MP4 mit integriertem Audio. Unterstützt 144p, 360p, 480p, 720p HD und 1080p Full HD.",
+    "schemaName": "Y2Mate – YouTube zu MP4 Konverter",
+    "schemaDescription": "Ein Online-System, das YouTube-Videos in das MP4-Format mit mehreren Auflösungsoptionen und vollständig integriertem Audio konvertiert."
   },
-
   "hero": {
-    "title": "Kostenloser YouTube zu MP4 Konverter"
+    "title": "YouTube zu MP4 Konverter"
   },
-
   "content": {
-    "mainTitle": "Kostenloser YouTube zu MP4 Downloader - Schnell, HD & Keine Werbung",
-    "intro1": "Dieser YouTube-zu-MP4-Downloader von Y2mate ist ein spezialisiertes Online-Tool, das entwickelt wurde, um YouTube-Videos im hochauflösenden MP4-Format direkt auf Ihrem Gerät zu konvertieren und zu speichern. Wenn Sie schon immer ein Tutorial für einen langen Flug herunterladen oder ein hochwertiges Musikvideo für eine Autoreise speichern wollten, ohne sich auf eine wackelige Datenverbindung verlassen zu müssen, ist dies Ihre Lösung. Es ist schnell, kostenlos und - was am wichtigsten ist - frei von lästiger Werbung und Weiterleitungen, die andere Websites plagen.",
-    "intro2": "Egal, ob Sie eine leichte 144p-Datei benötigen, um Speicherplatz zu sparen, oder eine gestochen scharfe 1080p Full HD-Version für Ihr Heimkino, dieses Tool übernimmt die Konvertierung in der Cloud, sodass Ihr Gerät dies nicht tun muss. Keine Software, keine Konten, nur reine MP4-Downloads."
+    "mainTitle": "YouTube-Videos in MP4-Format konvertieren",
+    "intro1": "Y2Mate ist ein Online-Konvertierungssystem, das für die Erstellung von MP4-Videodateien aus YouTube-Quellen entwickelt wurde. Die Ausgabedateien enthalten vollständig integrierte Audio- und Videostreams, wodurch die Kompatibilität mit Standard-Mediaplayern und Wiedergabegeräten ohne zusätzliche Codecs oder Nachbearbeitung gewährleistet ist.",
+    "intro2": "Das System unterstützt MP4-Auflösungen von 144p bis 1080p Full HD. Die Analyse von Videolinks und die Dateivorbereitung sind so optimiert, dass sie etwa doppelt so schnell abgeschlossen werden wie bei vielen vergleichbaren Online-Konvertern. Während des gesamten Konvertierungsworkflows zeigt Y2Mate keine Werbung oder Pop-up-Elemente an. Alle Vorgänge werden direkt im Browser ausgeführt, ohne Software zu installieren oder erhöhte Berechtigungen anzufordern, was eine sichere und isolierte Umgebung für die Videoverarbeitung bietet."
   },
-
   "instructions": {
-    "title": "So konvertieren Sie YouTube in Sekunden in MP4",
+    "title": "So konvertieren Sie YouTube in MP4",
     "steps": [
-      "<strong>Kopieren & Einfügen:</strong> Nehmen Sie die YouTube-URL und fügen Sie sie in das Konverterfeld oben ein.",
-      "<strong>MP4 auswählen:</strong> Klicken Sie auf „Start“ und unser System listet sofort alle verfügbaren MP4-Auflösungen auf.",
-      "<strong>Qualität wählen:</strong> Wählen Sie die Auflösung, die Ihren Anforderungen entspricht - von datenfreundlichen 144p bis zu kristallklarem 1080p HD.",
-      "<strong>Sofort speichern:</strong> Klicken Sie auf „Konvertieren“ und dann auf „Herunterladen“. Ihr Video ist jetzt für die Offline-Anzeige auf jedem Gerät bereit!"
+      "<strong>Video-Link eingeben:</strong> Kopieren Sie die YouTube-URL und fügen Sie sie in das Eingabefeld ein.",
+      "<strong>Quelle analysieren:</strong> Klicken Sie auf „Start“, um verfügbare MP4-Streams abzurufen.",
+      "<strong>Auflösung auswählen:</strong> Wählen Sie 144p, 360p, 480p, 720p HD oder 1080p Full HD.",
+      "<strong>Konvertieren & Herunterladen:</strong> Klicken Sie auf „Konvertieren“, um die MP4-Datei zu generieren und direkt auf Ihr Gerät herunterzuladen."
     ]
   },
-
   "whyChoose": {
-    "title": "Warum dieser MP4-Konverter herausragt",
+    "title": "Warum diesen YouTube zu MP4 Konverter verwenden",
     "reasons": [
-      "<strong>Sicheres & werbefreies Erlebnis:</strong> Wir haben die Pop-ups und Weiterleitungen entfernt. Sie erhalten einen sicheren, optimierten Prozess von Anfang bis Ende.",
-      "<strong>Original-HD-Qualität:</strong> Wenn der Ersteller es in 1080p hochgeladen hat, können Sie es in 1080p herunterladen. Wir komprimieren Ihre Qualität nicht, es sei denn, Sie bitten uns darum.",
-      "<strong>Keine Speicherbelastung:</strong> Da es sich um ein reines webbasiertes Tool handelt, müssen Sie keine „MP4 Downloader“-Apps oder Browser-Plugins installieren.",
-      "<strong>Universelle Wiedergabe:</strong> Unsere MP4-Dateien sind für die perfekte Wiedergabe auf VLC, Windows Media Player, QuickTime und sogar auf Smart-TVs oder Spielekonsolen optimiert."
+      "<strong>Konsistente Videointegrität:</strong> Video- und Audiostreams werden mithilfe der Zeitstempel-Ausrichtung zusammengeführt, um Desynchronisation oder fehlenden Ton zu verhindern.",
+      "<strong>Integriertes Audio-Ausgabe:</strong> Die generierte MP4-Datei enthält vollständige Audiodaten, ohne dass separate Downloads erforderlich sind.",
+      "<strong>Effiziente Verarbeitungspipeline:</strong> Stream-Analyse und Dateizusammenstellung sind für eine schnellere Fertigstellung im Vergleich zu vielen Online-Tools optimiert.",
+      "<strong>Werbefreie Konvertierungsumgebung:</strong> Das System arbeitet ohne Werbung oder Pop-up-Unterbrechungen während der Verarbeitung."
     ]
   },
-
   "features": {
-    "title": "Funktionen für Sie entwickelt",
+    "title": "MP4 Konvertierungsfunktionen",
     "items": [
       {
-        "title": "Unbegrenzte MP4-Konvertierungen",
-        "description": "Es gibt keine täglichen Obergrenzen. Konvertieren Sie bei Bedarf Videos einer ganzen Wiedergabeliste!"
+        "title": "Mehrere MP4-Auflösungen",
+        "description": "Unterstützt 144p, 360p, 480p, 720p HD und 1080p Full HD, um unterschiedlichen Wiedergabe- und Speicheranforderungen gerecht zu werden."
       },
       {
-        "title": "Schnelle Cloud-Verarbeitung",
-        "description": "Unsere Server erledigen die schwere Arbeit, was bedeutet, dass Ihre MP4 in nur wenigen Augenblicken zum Download bereit ist."
+        "title": "Integriertes Audio und Video",
+        "description": "Jede MP4-Datei enthält synchronisierte Video- und Audiostreams, die in einem einzigen Container verpackt sind."
       },
       {
-        "title": "Akkuschonend",
-        "description": "Da die Konvertierung auf unserer Seite stattfindet, wird der Akku Ihres Telefons nicht entladen oder Ihr Laptop überhitzt."
+        "title": "Browserbasierte Verarbeitung",
+        "description": "Alle Konvertierungen werden online durchgeführt, ohne Anwendungen oder Browser-Erweiterungen installieren zu müssen."
       },
       {
-        "title": "Geräteübergreifend bereit",
-        "description": "Perfekt kompatibel mit Chrome, Safari, Edge und Firefox auf Mobilgeräten und Desktops."
+        "title": "Sicherer Konvertierungsworkflow",
+        "description": "Während der Verarbeitung sind keine Kontoerstellung, Berechtigungsanfragen oder lokaler Systemzugriff erforderlich."
       },
       {
-        "title": "Mehrere Auflösungen",
-        "description": "144p, 360p, 480p, 720p (HD), 1080p (Full HD) - wählen Sie die Auflösung, die Ihren Anforderungen entspricht."
+        "title": "Unbegrenzte Konvertierungen",
+        "description": "Benutzer können mehrere MP4-Dateien ohne erzwungene Nutzungslimits konvertieren und herunterladen."
       },
       {
-        "title": "Universelle Kompatibilität",
-        "description": "Funktioniert nahtlos auf iOS, Android, Windows, macOS, Linux und allen modernen Browsern."
+        "title": "Breite Gerätekompatibilität",
+        "description": "MP4-Ausgabe ist kompatibel mit Smartphones, Computern, Smart-TVs und Standard-Mediaplayern."
       }
     ]
   },
-
   "faqs": {
-    "title": "Häufig gestellte Fragen (FAQs)",
+    "title": "Häufig gestellte Fragen",
     "items": [
       {
-        "question": "Ist dieses YouTube-zu-MP4-Tool kostenlos?",
-        "answer": "Ja, die Nutzung ist völlig kostenlos. Wir haben keine versteckten „Premium“-Stufen oder Dateigrößenbeschränkungen. Sie erhalten das volle HD-Erlebnis für 0 $."
+        "question": "Wie beeinflusst die MP4-Auflösung die Videoqualität und Dateigröße?",
+        "answer": "Die MP4-Auflösung bestimmt die Anzahl der Pixel, die zur Darstellung jedes Videobilds verwendet werden. Niedrigere Auflösungen wie 144p oder 360p reduzieren die Dateigröße und die Bandbreitennutzung, begrenzen jedoch die visuellen Details. Höhere Auflösungen wie 720p HD und 1080p Full HD bewahren mehr Bildinformationen, was zu schärferen Bildern und flüssigeren Bewegungen führt, während gleichzeitig die Dateigröße und die Dekodierungsanforderungen steigen."
       },
       {
-        "question": "Wie speichere ich die MP4 direkt auf meinem iPhone oder Android?",
-        "answer": "Auf Android wird es direkt in Ihrem Downloads-Ordner gespeichert. Auf dem iPhone verwenden Sie Safari zum Herunterladen, tippen Sie dann auf das „Downloads“-Symbol in der Suchleiste und wählen Sie „Video speichern“, um es in Ihre Fotos-App zu verschieben."
+        "question": "Warum ist die Konvertierungsgeschwindigkeit bei Online-MP4-Tools wichtig?",
+        "answer": "Die Konvertierungsgeschwindigkeit wird davon beeinflusst, wie effizient ein System Videostreams analysiert und Ausgabedateien vorbereitet. Eine langsame Analyse kann zu langen Wartezeiten oder unvollständigen Auflösungsoptionen führen. Durch die Optimierung der Extraktion von Stream-Metadaten und der Dateizusammenstellung schließt Y2Mate diese Schritte etwa doppelt so schnell ab wie viele herkömmliche Online-Konverter."
       },
       {
-        "question": "Warum sollte ich MP4 gegenüber anderen Formaten wählen?",
-        "answer": "MP4 ist das „universelle“ Format. Es bietet das beste Gleichgewicht zwischen hoher Videoqualität und geringer Dateigröße und ist mit fast jedem Telefon, Tablet und Fernseher kompatibel."
+        "question": "Wie stellt das System die Audio- und Videosynchronisation sicher?",
+        "answer": "YouTube-Videos speichern Audio und Video als separate Streams. Während der Konvertierung müssen diese Streams genau zusammengeführt werden. Y2Mate richtet Audio und Video mithilfe von Stream-Zeitstempeln aus, um häufige Probleme wie verzögertes Audio, stumme Abschnitte oder fehlende Segmente in der endgültigen MP4-Datei zu verhindern."
       },
       {
-        "question": "Kann ich 1080p-Videos mit Ton herunterladen?",
-        "answer": "Absolut. Im Gegensatz zu vielen anderen Tools, die Ihnen 1080p ohne Audio bieten, führt unser Konverter sie automatisch zusammen, sodass Sie eine vollständige hochauflösende Datei erhalten."
+        "question": "Warum ist eine werbefreie und popup-freie Umgebung für Konvertierungen wichtig?",
+        "answer": "Werbung und Pop-up-Elemente führen oft zusätzliche Skripte ein, die die Verarbeitung unterbrechen oder Downloads stören können. Eine werbefreie Umgebung reduziert den Ausführungsaufwand, verbessert die Systemstabilität und minimiert das Risiko versehentlicher Weiterleitungen oder unvollständiger Dateigenerierung."
       },
       {
-        "question": "Was ist, wenn das gewünschte Video privat ist?",
-        "answer": "Aus Sicherheits- und Datenschutzgründen kann unser Tool nur „öffentliche“ oder „nicht gelistete“ Videos konvertieren. Wenn ein Video vom Eigentümer auf „privat“ gesetzt wird, kann es nicht verarbeitet werden."
+        "question": "Wie verbessert die browserbasierte Verarbeitung die Sicherheit?",
+        "answer": "Die browserbasierte Verarbeitung macht die Installation von Drittanbieter-Software oder -Erweiterungen überflüssig, die Sicherheitsrisiken darstellen können. Da Y2Mate über Standard-Webanfragen arbeitet und keine erhöhten Berechtigungen anfordert, bleibt der Konvertierungsprozess vom Betriebssystem des Benutzers und persönlichen Dateien isoliert."
+      },
+      {
+        "question": "Können alle Geräte 1080p Full HD MP4-Dateien abspielen?",
+        "answer": "Die meisten modernen Geräte unterstützen die Wiedergabe von 1080p MP4. Ältere Hardware kann jedoch eingeschränkte Dekodierungsfähigkeiten haben. In solchen Fällen kann die Auswahl von 480p oder 720p eine flüssigere Wiedergabe bei akzeptabler visueller Qualität ermöglichen."
+      },
+      {
+        "question": "Werden private oder eingeschränkte YouTube-Videos unterstützt?",
+        "answer": "Nein. Es können nur öffentliche oder nicht gelistete YouTube-Videos verarbeitet werden. Private oder eingeschränkte Videos erfordern eine Authentifizierung, auf die externe Konvertierungssysteme nicht zugreifen können."
       }
     ]
   }

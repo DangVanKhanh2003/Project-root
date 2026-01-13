@@ -1,94 +1,92 @@
 {
   "seo": {
     "title": "Y2mate - Trình tải xuống YouTube Shorts (Miễn phí, Nhanh, HD)",
-    "description": "Y2mate là công cụ miễn phí để tải xuống YouTube Shorts ở chất lượng HD. Lưu video dọc theo tỷ lệ 9:16 ngay lập tức cho di động và máy tính để bàn.",
+    "description": "Y2mate là một công cụ miễn phí để tải xuống YouTube Shorts ở chế độ HD. Lưu video dọc ngay lập tức trên thiết bị di động và máy tính để bàn mà không có hình mờ, quảng cáo hoặc chuyển hướng.",
     "ogTitle": "Y2mate - Trình tải xuống YouTube Shorts (Miễn phí, Nhanh, HD)",
-    "ogDescription": "Tải xuống YouTube Shorts ở chất lượng HD. Lưu video dọc ngay lập tức—định dạng dọc, tỷ lệ 9:16.",
+    "ogDescription": "Tải xuống YouTube Shorts ở chế độ HD. Lưu video dọc ngay lập tức — định dạng chân dung, tỷ lệ 9:16, an toàn và không có quảng cáo.",
     "schemaName": "Y2mate - Trình tải xuống YouTube Shorts",
-    "schemaDescription": "Tải xuống YouTube Shorts ngay lập tức. Trình tải xuống video dọc miễn phí cho di động."
+    "schemaDescription": "Tải xuống YouTube Shorts ngay lập tức. Trình tải xuống video dọc miễn phí cho thiết bị di động và máy tính để bàn."
   },
-
   "hero": {
     "title": "Y2mate - Trình tải xuống YouTube Shorts"
   },
-
   "content": {
-    "mainTitle": "Tải xuống YouTube Shorts ở chất lượng Full HD",
-    "intro1": "Y2mate là một công cụ trực tuyến miễn phí cho phép bạn tải xuống YouTube Shorts chất lượng cao trực tiếp về điện thoại hoặc máy tính của mình. Khi Shorts trở thành lựa chọn hàng đầu để giải trí nhanh chóng, trình tải xuống của chúng tôi đảm bảo bạn có thể lưu lại những khoảnh khắc lan truyền, các bản chỉnh sửa sáng tạo hoặc các mẹo hữu ích để xem ngoại tuyến. Đây là một dịch vụ 100% dựa trên web, có nghĩa là bạn có thể lấy bất kỳ Short nào ở định dạng dọc ban đầu của nó mà không cần cài đặt ứng dụng hoặc đăng ký tài khoản.",
-    "intro2": "Cho dù bạn muốn giữ một clip vui nhộn trong thư viện của mình để chia sẻ với bạn bè hay lưu một công thức nấu ăn để dùng sau, Y2mate sẽ xử lý việc chuyển đổi ngay lập tức. Chúng tôi tập trung vào việc duy trì độ phân giải HD gốc để các bản tải xuống của bạn trông sắc nét như trên ứng dụng, đồng thời giữ cho quá trình nhanh chóng, an toàn và hoàn toàn không có quảng cáo."
+    "mainTitle": "Tải xuống YouTube Shorts nhanh chóng và giữ nguyên định dạng dọc",
+    "intro1": "Y2mate là một công cụ chuyên dụng để tải xuống YouTube Shorts — các clip video dọc ngắn — trực tiếp vào thiết bị của bạn. Phân tích liên kết và tải xuống tệp nhanh hơn khoảng 2 lần so với nhiều trình tải xuống Shorts khác, cho phép bạn lưu các clip trong vòng vài giây.",
+    "intro2": "Y2mate hoàn toàn tập trung vào trải nghiệm tải xuống Shorts sạch sẽ và đơn giản: không có quảng cáo, không có cửa sổ bật lên và không có chuyển hướng. Shorts được tải xuống trực tiếp ở định dạng dọc 9:16 gốc của chúng, chính xác như đã tải lên YouTube. Bạn có thể chọn chất lượng video lên đến 1080p hoặc 720p, hoặc chỉ tải xuống âm thanh với tốc độ bit 128kbps, 192kbps hoặc 320kbps ở định dạng MP3, OGG, WAV hoặc OPUS. Công cụ này hoạt động trơn tru trên cả trình duyệt di động và máy tính để bàn."
   },
-
   "instructions": {
     "title": "Cách tải xuống YouTube Shorts trong vài giây",
     "steps": [
-      "<strong>Sao chép liên kết Short:</strong> Nhấn vào nút \"Chia sẻ\" trên bất kỳ YouTube Short nào và sao chép URL.",
-      "<strong>Dán và Phân tích:</strong> Dán liên kết vào hộp tìm kiếm Y2mate ở trên và nhấn \"Bắt đầu\".",
-      "<strong>Chọn và Lưu:</strong> Chọn chất lượng ưa thích của bạn và nhấp vào \"Tải xuống\". Video sẽ được lưu trực tiếp vào thư viện của thiết bị hoặc thư mục tải xuống của bạn."
+      "<strong>Sao chép liên kết Shorts:</strong> Nhấn vào nút \"Chia sẻ\" trên bất kỳ YouTube Short nào và sao chép URL.",
+      "<strong>Dán và phân tích:</strong> Dán liên kết vào Y2mate và nhấp vào \"Bắt đầu\" để xử lý Short.",
+      "<strong>Chọn video hoặc âm thanh:</strong> Chọn định dạng video hoặc âm thanh, chọn chất lượng bạn muốn, sau đó nhấp vào <strong>\"Chuyển đổi\"</strong> để bắt đầu tải xuống tệp vào thiết bị của bạn."
     ]
   },
-
   "whyChoose": {
-    "title": "Tại sao Y2mate hoàn hảo cho YouTube Shorts",
+    "title": "Tại sao nên sử dụng Y2mate cho YouTube Shorts",
     "reasons": [
-      "<strong>Định dạng dọc gốc:</strong> Chúng tôi đảm bảo video vẫn ở tỷ lệ khung hình 9:16 gốc, làm cho nó hoàn hảo để xem lại trên điện thoại của bạn hoặc chia sẻ trên các nền tảng xã hội khác.",
-      "<strong>Chất lượng độ nét cao:</strong> Nếu Short được tải lên ở chất lượng 1080p hoặc 720p, bạn có thể tải xuống ở độ phân giải chính xác đó để có trải nghiệm hình ảnh tốt nhất.",
-      "<strong>Tải xuống nhanh như chớp:</strong> Shorts rất nhanh và trình tải xuống của chúng tôi cũng vậy. Hầu hết các clip được xử lý và sẵn sàng để lưu chỉ trong vài giây.",
-      "<strong>Không có hình mờ:</strong> Thưởng thức các Short yêu thích của bạn ở dạng tinh khiết. Y2mate lưu video chính xác như nó xuất hiện trên YouTube mà không thêm bất kỳ lớp phủ nào."
+      "<strong>Được xây dựng đặc biệt cho Shorts:</strong> Được thiết kế để xử lý các clip dọc ngắn thay vì các video dài.",
+      "<strong>Xử lý nhanh hơn khoảng 2 lần:</strong> Các video có thời lượng ngắn được phân tích và chuyển đổi nhanh chóng.",
+      "<strong>Tỷ lệ khung hình gốc 9:16:</strong> Shorts vẫn giữ nguyên định dạng dọc mà không bị cắt hoặc xoay.",
+      "<strong>Không có hình mờ:</strong> Video được lưu chính xác như chúng xuất hiện trên YouTube."
     ]
   },
-
   "features": {
-    "title": "Các tính năng chính cho người dùng di động",
+    "title": "Các tính năng được thiết kế cho tải xuống Shorts",
     "items": [
       {
-        "title": "Sẵn sàng cho iPhone và Android",
-        "description": "Được tối ưu hóa cho các trình duyệt di động như Safari và Chrome, vì vậy bạn có thể tải xuống Shorts trực tiếp về điện thoại thông minh của mình khi đang di chuyển."
+        "title": "Tối ưu hóa cho các clip ngắn",
+        "description": "Xử lý YouTube Shorts hiệu quả do thời lượng ngắn của chúng."
       },
       {
-        "title": "Không cần cài đặt ứng dụng",
-        "description": "Tiết kiệm dung lượng lưu trữ và pin của điện thoại. Không cần tải xuống các ứng dụng \"Shorts Saver\" đáng ngờ."
+        "title": "Tải xuống tệp trực tiếp",
+        "description": "Các Shorts đã chuyển đổi được tải xuống trực tiếp mà không có chuyển hướng hoặc các bước bổ sung."
       },
       {
-        "title": "Lưu không giới hạn",
-        "description": "Không có giới hạn hàng ngày. Lưu một Short hay một trăm—luôn miễn phí và không giới hạn."
+        "title": "Tải xuống Shorts không giới hạn",
+        "description": "Tải xuống bao nhiêu YouTube Shorts tùy thích mà không có giới hạn hàng ngày."
       },
       {
-        "title": "An toàn và không có quảng cáo",
-        "description": "Chúng tôi đã loại bỏ các chuyển hướng và cửa sổ bật lên phiền phức, mang đến cho bạn một môi trường an toàn để lấy nội dung của mình."
+        "title": "Không có quảng cáo hoặc cửa sổ bật lên",
+        "description": "Một quy trình tải xuống sạch sẽ không có quảng cáo, cửa sổ bật lên hoặc gián đoạn."
       },
       {
-        "title": "Chất lượng độ nét cao",
-        "description": "Tải xuống Shorts ở độ phân giải 1080p hoặc 720p để xem sắc nét, rõ ràng trên điện thoại thông minh hiện đại."
+        "title": "Nhiều tùy chọn video và âm thanh",
+        "description": "Hỗ trợ Shorts ở 1080p hoặc 720p và âm thanh ở 128kbps, 192kbps hoặc 320kbps ở định dạng MP3, OGG, WAV hoặc OPUS."
       },
       {
-        "title": "Định dạng dọc gốc",
-        "description": "Chúng tôi bảo toàn tỷ lệ khung hình 9:16 gốc, hoàn hảo để xem trên thiết bị di động và chia sẻ trên mạng xã hội."
+        "title": "Giữ nguyên định dạng dọc 9:16",
+        "description": "Tất cả các Shorts vẫn giữ nguyên bố cục dọc ban đầu của chúng."
+      },
+      {
+        "title": "Công cụ dựa trên trình duyệt ổn định",
+        "description": "Hoạt động trực tiếp trong trình duyệt của bạn mà không cần cài đặt ứng dụng hoặc tiện ích mở rộng."
       }
     ]
   },
-
   "faqs": {
-    "title": "Các câu hỏi thường gặp (FAQs)",
+    "title": "Các câu hỏi thường gặp",
     "items": [
       {
         "question": "Có giới hạn về số lượng Shorts tôi có thể tải xuống không?",
-        "answer": "Hoàn toàn không! Bạn có thể sử dụng Y2mate để tải xuống bao nhiêu YouTube Shorts tùy thích. Chúng tôi không có giới hạn hàng ngày hoặc phí ẩn."
+        "answer": "Không. Y2mate cho phép tải xuống YouTube Shorts không giới hạn mà không có giới hạn sử dụng."
       },
       {
-        "question": "Làm cách nào để lưu Short trực tiếp vào Thư viện của điện thoại?",
-        "answer": "<strong>Trên Android:</strong> Sau khi tải xuống hoàn tất, video sẽ tự động xuất hiện trong thư mục \"Tải xuống\" và ứng dụng Thư viện của bạn.<br><strong>Trên iPhone:</strong> Sử dụng Safari để tải xuống tệp. Nhấn vào biểu tượng tải xuống màu xanh, chọn video, sau đó nhấn \"Lưu video\" để chuyển nó trực tiếp vào ứng dụng Ảnh của bạn."
+        "question": "Làm cách nào để lưu Shorts trực tiếp vào điện thoại của tôi?",
+        "answer": "<strong>Android:</strong> Các Shorts đã tải xuống xuất hiện trong thư mục Tải xuống và ứng dụng Thư viện của bạn.<br><strong>iPhone:</strong> Sử dụng Safari để tải xuống, mở Tải xuống và nhấn \"Lưu video\" để di chuyển Short vào Ảnh."
       },
       {
-        "question": "Tôi có thể tải xuống YouTube Shorts dưới dạng âm thanh MP3 không?",
-        "answer": "Có! Nếu bạn chỉ muốn âm thanh hoặc nhạc từ một Short, chỉ cần chọn định dạng MP3 sau khi nhấp vào \"Bắt đầu\". Bạn có thể nhận được âm thanh chất lượng cao lên đến 320kbps."
+        "question": "Tôi có thể chỉ tải xuống âm thanh từ một Short không?",
+        "answer": "Có. Bạn có thể chọn chuyển đổi chỉ âm thanh với nhiều tùy chọn tốc độ bit sau khi liên kết được xử lý."
       },
       {
-        "question": "Y2mate có hoạt động với Shorts riêng tư không?",
-        "answer": "Không, vì lý do riêng tư, công cụ của chúng tôi chỉ hoạt động với các Short công khai hoặc không công khai. Nếu người tạo đặt video thành \"Riêng tư\", công cụ không thể truy cập để tải xuống."
+        "question": "Tại sao Shorts tải xuống nhanh hơn các video thông thường?",
+        "answer": "Shorts có thời lượng ngắn hơn và được xử lý riêng, điều này làm giảm thời gian phân tích và chuyển đổi."
       },
       {
-        "question": "Nó có an toàn cho thiết bị của tôi không?",
-        "answer": "An toàn 100%. Vì Y2mate là một công cụ dựa trên trình duyệt, bạn không cần cài đặt phần mềm hoặc cấp quyền đặc biệt. Thiết bị của bạn vẫn an toàn và không bị lộn xộn."
+        "question": "Tôi nên sử dụng Shorts đã tải xuống như thế nào?",
+        "answer": "Các Shorts đã tải xuống được dùng cho mục đích cá nhân như xem hoặc lưu ngoại tuyến. Người dùng có trách nhiệm tôn trọng quyền của người tạo nội dung gốc."
       }
     ]
   }

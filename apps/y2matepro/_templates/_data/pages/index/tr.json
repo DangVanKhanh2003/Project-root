@@ -1,95 +1,101 @@
 {
   "seo": {
     "title": "Y2mate - Ücretsiz YouTube Video İndirici | Çevrimiçi Video İndir",
-    "description": "Y2mate, YouTube videolarını yüksek kalitede (144p-1080p) ücretsiz olarak indirmek için bir araçtır. Tarayıcınızda hızlı ve güvenli bir şekilde, uygulama veya kayıt olmadan çalışır.",
+    "description": "Y2mate ile YouTube videolarını hızlı ve güvenli bir şekilde indirin. 144p'den 1080p'ye kadar herhangi bir çözünürlüğü veya 128kbps'den 320kbps'ye kadar sesi doğrudan tarayıcınızda seçin - uygulama veya kayıt gerekmez.",
     "ogTitle": "Y2mate - Ücretsiz YouTube Video İndirici | Çevrimiçi Video İndir",
-    "ogDescription": "YouTube videolarını çevrimiçi olarak ücretsiz indirin. Videoları yüksek kalitede (144p-1080p) veya ses (128kbps-320kbps) olarak kaydedin. Hızlı, güvenli, uygulama yok, tüm cihazlarda çalışır.",
+    "ogDescription": "YouTube videolarını çevrimiçi olarak ücretsiz kaydedin. 144p'den 1080p videoya veya 128kbps–320kbps sese kadar istediğiniz kaliteyi seçin. Hızlı, güvenli ve tüm cihazlarda çalışır.",
     "schemaName": "Y2mate - YouTube Video İndirici",
-    "schemaDescription": "YouTube videolarını çevrimiçi olarak ücretsiz indirin. Videoları yüksek kalitede (144p-1080p) veya ses (128kbps-320kbps) olarak kaydedin. Hızlı, güvenli, uygulama yok, tüm cihazlarda çalışır."
+    "schemaDescription": "YouTube videolarını çevrimiçi olarak ücretsiz indirin. Videoları veya sesleri tercih ettiğiniz kalitede kaydedin. Kurulum gerektirmeden herhangi bir cihazda hızlı çalışır."
   },
-
   "hero": {
     "title": "Y2mate - YouTube İndirici"
   },
-
   "content": {
-    "mainTitle": "Y2mate - YouTube Videolarını Hızlı ve Ücretsiz İndirin",
-    "intro1": "Y2mate, YouTube videolarını doğrudan tarayıcınızdan yüksek kaliteli MP4 ve MP3 formatlarına dönüştürmenize ve indirmenize olanak tanıyan ücretsiz bir çevrimiçi YouTube indiricisidir. Aracımız %100 web tabanlıdır ve herhangi bir yazılım kurulumu veya kaydı gerektirmez. Hızlı önizlemeler için 144p'den birinci sınıf bir sinema benzeri deneyim için 1080p Full HD'ye kadar ihtiyaçlarınıza uygun çözünürlüğü kolayca seçebilirsiniz.",
-    "intro2": "Müziğe meraklıysanız bu aynı zamanda bir cankurtarandır. Sabah koşunuz için harika bir YouTube cover'ını MP3'e dönüştürmek veya özel bir zil sesi olarak ayarlamak mı istiyorsunuz? Y2mate, 320kbps'ye kadar yüksek kaliteli ses seçenekleriyle bunu da halleder."
+    "mainTitle": "Y2mate – YouTube Videolarını Hızlı ve Ücretsiz İndirin",
+    "intro1": "Y2mate, hız ve kullanılabilirliğe odaklanmış çevrimiçi bir YouTube video indiricisidir. Y2mate, diğer birçok çevrimiçi YouTube indirme aracından 2 kat daha hızlı YouTube videoları indirir. Yazılım yüklemeden veya hesap oluşturmadan çevrimdışı görüntüleme ve dinleme için videoları indirebilir veya sese dönüştürebilirsiniz.",
+    "intro2": "Y2mate, reklam, açılır pencere ve yönlendirme olmadan temiz ve sorunsuz bir indirme deneyimi sunar. Tüm dosyalar doğrudan cihazınıza indirilir. Araç, 144p, 360p, 480p, 720p'den 1080p'ye (Full HD) kadar video çözünürlükleri ve MP3, OGG, WAV ve OPUS formatlarında 128kbps'den 320kbps'ye kadar ses bit hızları dahil olmak üzere eksiksiz bir kalite seçeneği yelpazesini destekler. Y2mate tüm cihazlarda ve tarayıcılarda güvenilir bir şekilde çalışır."
   },
-
   "instructions": {
-    "title": "Videonuzu Saniyeler İçinde Nasıl Alırsınız?",
+    "title": "YouTube Videoları Saniyeler İçinde Nasıl İndirilir",
     "steps": [
-      "<strong>Bağlantıyı yapıştırın:</strong> Beğendiğiniz YouTube URL'sini kopyalayın ve yukarıdaki arama kutusuna yapıştırın.",
-      "<strong>Analiz etmemize izin verin:</strong> \"Başlat\"a basın. Sizin için mevcut tüm formatları ve çözünürlükleri hızla getireceğiz.",
-      "<strong>Vibenizi seçin:</strong> Tam videoyu (MP4) mu yoksa sadece şarkıyı (MP3) mı istiyorsunuz? Cihazınıza uygun kaliteyi seçin.",
-      "<strong>İndirin ve Gidin:</strong> \"Dönüştür\"e tıklayın, işlemin bitmesini bir an bekleyin ve kaydedin. İşte bu kadar - kayıt yok, drama yok!"
+      "<strong>YouTube bağlantısını yapıştırın:</strong> Bir YouTube videosunun veya YouTube Shorts'un URL'sini kopyalayın ve indirme kutusuna yapıştırın.",
+      "<strong>Bağlantıyı analiz edin:</strong> Mevcut formatları ve kalite seçeneklerini görüntülemek için başlat düğmesine tıklayın.",
+      "<strong>Video veya ses seçin:</strong> Video için MP4 veya ses için MP3'ü seçin, ardından tercih ettiğiniz çözünürlüğü veya bit hızını seçin.",
+      "<strong>İndir:</strong> \"Dönüştür\"e tıklayın ve dosyayı oturum açmadan doğrudan cihazınıza indirin."
     ]
   },
-
   "whyChoose": {
-    "title": "Y2mate Neden Gerçekten Faydalı?",
+    "title": "Neden Y2mate'i Seçmelisiniz",
     "reasons": [
-      "<strong>Üst Düzey Ses:</strong> Teneke gibi sese razı olmayın. Kişisel yüksek kaliteli müzik kitaplığınızı oluşturmak için mükemmel olan 320kbps MP3'te ses çıkarın.",
-      "<strong>Kısa Videolara Hazır:</strong> O hızlı YouTube Kısa Videolarını seviyor musunuz? Diğer uygulamalarda paylaşmak veya daha sonra izlemek için bunları orijinal dikey formatlarında indirebilirsiniz.",
-      "<strong>Pilinizden Tasarruf Edin:</strong> Tüm ağır işler (dönüştürme) sunucularımızda gerçekleştiğinden, telefonunuz veya dizüstü bilgisayarınız ısınmaz veya pilini tüketmez.",
-      "<strong>Her Yerde Çalışır:</strong> İster yepyeni bir iPhone, ister eski bir Android, bir Mac veya bir Windows PC'de olun, bir tarayıcınız olduğu sürece hazırsınız."
+      "<strong>Hızlı indirme hızı:</strong> Y2mate, diğer birçok çevrimiçi YouTube indirme aracından 2 kat daha hızlı video indirir.",
+      "<strong>Reklamsız:</strong> İndirme işlemi sırasında reklam, açılır pencere veya rahatsız edici yönlendirme yok.",
+      "<strong>Doğrudan indirme:</strong> Video ve ses dosyaları, ara sayfalar olmadan doğrudan cihazınıza indirilir.",
+      "<strong>Tüm cihazlarda çalışır:</strong> Cep telefonları, tabletler ve masaüstü bilgisayarlarla tamamen uyumludur."
     ]
   },
-
   "features": {
-    "title": "Neden Y2mate'i Seçmelisiniz?",
+    "title": "Y2mate'in Temel Özellikleri",
     "items": [
       {
-        "title": "Sınırsız İndirme",
-        "description": "İstediğiniz kadar YouTube videosu veya sesi kısıtlama olmaksızın indirin."
+        "title": "Sınırsız video ve ses indirme",
+        "description": "Sınırsız YouTube videosu indirin veya çevrimdışı kullanım için ses dosyalarına dönüştürün."
       },
       {
-        "title": "Çoklu Video ve Ses Kaliteleri",
-        "description": "En iyi deneyim için 144p, 360p, 480p, 720p ve 1080p video çözünürlükleri veya 128kbps, 192kbps, 320kbps ses bit hızları arasından seçim yapın."
+        "title": "Birden fazla kalite seçeneği",
+        "description": "144p, 360p, 480p, 720p'den 1080p'ye kadar video çözünürlüklerini ve 128kbps'den 320kbps'ye kadar ses bit hızlarını destekler."
       },
       {
-        "title": "Hızlı ve Güvenilir",
-        "description": "Optimize edilmiş sunucular, videoların gecikme olmaksızın hızlı bir şekilde işlenmesini ve indirilmesini sağlar."
+        "title": "Hızlı ve kararlı işleme",
+        "description": "Kısa bağlantı analizi ve indirme süresi, hem kısa hem de uzun videolar için uygundur."
       },
       {
-        "title": "Tüm Cihazlarda Çalışır",
-        "description": "iPhone, Android, Windows, Mac ve Linux'u destekler. Tüm büyük tarayıcılarla çalışır: Chrome, Firefox, Safari, Edge, Opera."
+        "title": "Tüm platformları destekler",
+        "description": "Popüler tarayıcıları kullanarak iPhone, Android, Windows, Mac ve Linux'ta sorunsuz çalışır."
       },
       {
-        "title": "Güvenli ve Özel",
-        "description": "Reklam, açılır pencere veya yönlendirme yok. Y2mate, indirmelerinizi izlemez veya kişisel verilerinizi toplamaz."
+        "title": "Temiz kullanıcı deneyimi",
+        "description": "İndirme sırasında reklam, açılır pencere ve kesinti yok."
       },
       {
-        "title": "Kurulum Gerekmez",
-        "description": "%100 çevrimiçi araç—yazılım, tarayıcı uzantısı veya uygulama gerekmez. Sadece bağlantınızı yapıştırın ve anında indirin."
+        "title": "Kurulum gerektirmez",
+        "description": "Tamamen web tabanlı, uygulama, uzantı veya yazılım gerektirmez."
       }
     ]
   },
-
   "faqs": {
-    "title": "SSS",
+    "title": "Sıkça Sorulan Sorular",
     "items": [
       {
-        "question": "YouTube videolarını MP3 dosyası olarak nasıl indirebilirim?",
-        "answer": "Çok kolay! YouTube bağlantısını Y2mate'in arama kutusuna yapıştırın, \"Başlat\"a tıklayın ve ardından Ses sekmesini seçin. Tercih ettiğiniz bit hızını (yüksek kalite için 320kbps gibi) seçin ve \"Dönüştür\"e basın. MP3'ünüz saniyeler içinde hazır olacak—favori parçalarınızı çevrimdışı dinlemek için mükemmel."
+        "question": "Y2mate nedir?",
+        "answer": "Y2mate, kullanıcıların bir YouTube bağlantısını yapıştırarak video indirmesine veya sese dönüştürmesine olanak tanıyan çevrimiçi bir YouTube video indiricisidir. Araç doğrudan tarayıcıda çalışır ve kurulum gerektirmez."
       },
       {
-        "question": "İndirme düğmesi neden görünmüyor veya bir hata gösteriyor?",
-        "answer": "Hatalar genellikle geçici bir bağlantı kesintisi nedeniyle veya video Özel olarak ayarlanmışsa meydana gelir. Bunu düzeltmek için sayfayı yenileyin (F5) ve bağlantıyı tekrar yapıştırın. Mobil bir cihazdaysanız, tarayıcınızın \"Gizli\" modda olmadığından emin olun, çünkü bu bazen indirmeleri engelleyebilir."
+        "question": "Yazılım yüklemeden YouTube videolarını çevrimiçi olarak indirebilir miyim?",
+        "answer": "Evet. Y2mate tamamen çevrimiçi çalışır, bu nedenle herhangi bir uygulama veya tarayıcı uzantısı yüklemenize gerek yoktur."
       },
       {
-        "question": "Videoları sesli olarak 1080p Full HD olarak indirebilir miyim?",
-        "answer": "Evet! Y2mate, Full HD indirmeleri destekler. Diğer bazı siteler 1080p için video ve sesi ayırırken, Y2mate bunları sizin için birleştirir, böylece her ekran için hazır, net sesli, canlı, yüksek çözünürlüklü bir MP4 dosyası elde edersiniz."
+        "question": "Y2mate hangi video çözünürlüklerini destekler?",
+        "answer": "Y2mate, 144p'den 1080p'ye kadar değişen birden fazla video çözünürlüğünü destekler ve cihazınıza ve depolama ihtiyaçlarınıza uygun kaliteyi seçmenize olanak tanır."
       },
       {
-        "question": "YouTube videolarını doğrudan iPhone veya Android galerime nasıl kaydederim?",
-        "answer": "<strong>Android'de:</strong> Dosyayı Chrome üzerinden indirmeniz yeterlidir; dosya otomatik olarak Galerinizde veya İndirilenler klasörünüzde görünecektir.<br><strong>iPhone'da:</strong> Safari'yi açın, dosyayı indirin ve ardından adres çubuğundaki mavi oka dokunun. \"İndirilenler\"e gidin, videoyu seçin ve Fotoğraflar uygulamanıza taşımak için \"Videoyu Kaydet\"e dokunun."
+        "question": "YouTube videolarını MP3 dosyaları olarak nasıl indirebilirim?",
+        "answer": "YouTube video bağlantısını Y2mate'e yapıştırın, Ses seçeneğini seçin, tercih ettiğiniz bit hızını seçin ve MP3 dosyasını indirmek için Dönüştür'e tıklayın."
       },
       {
-        "question": "Y2mate aracılığıyla video indirmek yasal mı?",
-        "answer": "Y2mate, bir videoyu çevrimdışı izlemek veya kişisel dinleme için bir müzik cover'ını kaydetmek gibi kişisel kullanım için içerik indirmek üzere tasarlanmıştır. Lütfen orijinal içerik oluşturuculara saygı gösterin ve indirilen dosyaları ticari amaçlarla veya telif hakkı ihlali için kullanmayın."
+        "question": "Y2mate, YouTube Shorts indirmeyi destekliyor mu?",
+        "answer": "Evet. Y2mate, YouTube Shorts'u çevrimdışı görüntüleme veya dinleme için video veya ses dosyaları olarak indirmenize olanak tanır."
+      },
+      {
+        "question": "Y2mate kullanarak video indirmek güvenli mi?",
+        "answer": "Y2mate, reklam veya açılır pencere olmadan basit ve temiz bir indirme deneyimi sağlamak için tasarlanmıştır ve kişisel bilgi gerektirmez."
+      },
+      {
+        "question": "Y2mate'den indirilen videoları nasıl kullanmalıyım?",
+        "answer": "Y2mate ile indirilen videolar ve ses dosyaları, çevrimdışı görüntüleme veya dinleme gibi kişisel amaçlar için kullanılmalıdır. Kullanıcılar, indirilen içeriğin nasıl kullanıldığından sorumludur ve YouTube'daki içerik sahiplerinin haklarına saygı duymalıdır."
+      },
+      {
+        "question": "Uzun videolar için en iyi kalite seçeneği nedir?",
+        "answer": "Uzun videolar için 720p genellikle video kalitesi ve dosya boyutu arasında iyi bir denge sağlar."
       }
     ]
   }

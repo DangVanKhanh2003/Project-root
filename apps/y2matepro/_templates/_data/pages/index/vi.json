@@ -1,95 +1,101 @@
 {
   "seo": {
-    "title": "Y2mate - Trình tải xuống video YouTube miễn phí | Tải video trực tuyến",
-    "description": "Y2mate là công cụ miễn phí để tải video YouTube chất lượng cao (144p-1080p). Hoạt động nhanh chóng, an toàn trên trình duyệt của bạn mà không cần ứng dụng hoặc đăng ký.",
-    "ogTitle": "Y2mate - Trình tải xuống video YouTube miễn phí | Tải video trực tuyến",
-    "ogDescription": "Tải xuống video YouTube trực tuyến miễn phí. Lưu video ở chất lượng cao (144p-1080p) hoặc âm thanh (128kbps-320kbps). Nhanh chóng, an toàn, không cần ứng dụng, hoạt động trên mọi thiết bị.",
+    "title": "Y2mate - Trình tải xuống video YouTube miễn phí | Tải xuống video trực tuyến",
+    "description": "Tải xuống video YouTube nhanh chóng và an toàn với Y2mate. Chọn bất kỳ độ phân giải nào từ 144p đến 1080p hoặc âm thanh từ 128kbps đến 320kbps, trực tiếp trong trình duyệt của bạn — không cần ứng dụng hoặc đăng ký.",
+    "ogTitle": "Y2mate - Trình tải xuống video YouTube miễn phí | Tải xuống video trực tuyến",
+    "ogDescription": "Lưu video YouTube trực tuyến miễn phí. Chọn chất lượng bạn muốn, từ video 144p đến 1080p hoặc âm thanh 128kbps–320kbps. Nhanh chóng, an toàn và hoạt động trên mọi thiết bị.",
     "schemaName": "Y2mate - Trình tải xuống video YouTube",
-    "schemaDescription": "Tải xuống video YouTube trực tuyến miễn phí. Lưu video ở chất lượng cao (144p-1080p) hoặc âm thanh (128kbps-320kbps). Nhanh chóng, an toàn, không cần ứng dụng, hoạt động trên mọi thiết bị."
+    "schemaDescription": "Tải xuống video YouTube trực tuyến miễn phí. Lưu video hoặc âm thanh với chất lượng bạn thích. Hoạt động nhanh chóng trên mọi thiết bị mà không cần cài đặt."
   },
-
   "hero": {
     "title": "Y2mate - Trình tải xuống YouTube"
   },
-
   "content": {
-    "mainTitle": "Y2mate - Tải xuống video YouTube nhanh chóng và miễn phí",
-    "intro1": "Y2mate là một trình tải xuống YouTube trực tuyến miễn phí cho phép bạn chuyển đổi và tải xuống video YouTube sang các định dạng MP4 và MP3 chất lượng cao trực tiếp từ trình duyệt của bạn. Công cụ của chúng tôi dựa trên web 100%, không yêu cầu cài đặt phần mềm hoặc đăng ký. Bạn có thể dễ dàng chọn độ phân giải phù hợp với nhu cầu của mình, từ 144p để xem trước nhanh đến 1080p Full HD cho trải nghiệm giống như rạp chiếu phim cao cấp.",
-    "intro2": "Nó cũng là một cứu cánh nếu bạn thích âm nhạc. Bạn muốn biến một bản cover YouTube thú vị thành MP3 để chạy bộ buổi sáng hoặc đặt nó làm nhạc chuông tùy chỉnh? Y2mate cũng xử lý điều đó, với các tùy chọn âm thanh chất lượng cao lên đến 320kbps."
+    "mainTitle": "Y2mate – Tải xuống video YouTube nhanh chóng và miễn phí",
+    "intro1": "Y2mate là một trình tải xuống video YouTube trực tuyến tập trung vào tốc độ và khả năng sử dụng. Y2mate tải xuống video YouTube nhanh hơn gấp 2 lần so với nhiều công cụ tải xuống YouTube trực tuyến khác. Bạn có thể tải xuống video hoặc chuyển đổi chúng thành âm thanh để xem và nghe ngoại tuyến mà không cần cài đặt phần mềm hoặc tạo tài khoản.",
+    "intro2": "Y2mate cung cấp trải nghiệm tải xuống sạch sẽ và mượt mà không có quảng cáo, cửa sổ bật lên và chuyển hướng. Tất cả các tệp được tải xuống trực tiếp vào thiết bị của bạn. Công cụ này hỗ trợ đầy đủ các tùy chọn chất lượng, bao gồm độ phân giải video từ 144p, 360p, 480p, 720p đến 1080p (Full HD) và tốc độ bit âm thanh từ 128kbps đến 320kbps ở định dạng MP3, OGG, WAV và OPUS. Y2mate hoạt động đáng tin cậy trên tất cả các thiết bị và trình duyệt."
   },
-
   "instructions": {
-    "title": "Cách lấy video của bạn trong vài giây",
+    "title": "Cách tải xuống video YouTube trong vài giây",
     "steps": [
-      "<strong>Dán liên kết:</strong> Sao chép URL YouTube bạn yêu thích và dán vào hộp tìm kiếm ở trên.",
-      "<strong>Hãy để chúng tôi phân tích nó:</strong> Nhấn \"Bắt đầu.\" Chúng tôi sẽ nhanh chóng tìm nạp tất cả các định dạng và độ phân giải có sẵn cho bạn.",
-      "<strong>Chọn cảm giác của bạn:</strong> Bạn muốn có video đầy đủ (MP4) hay chỉ bài hát (MP3)? Chọn chất lượng phù hợp với thiết bị của bạn.",
-      "<strong>Tải xuống và đi:</strong> Nhấp vào \"Chuyển đổi\", đợi một lát để quá trình kết thúc và lưu lại. Thế là xong—không cần đăng ký, không kịch tính!"
+      "<strong>Dán liên kết YouTube:</strong> Sao chép URL của video YouTube hoặc YouTube Shorts và dán vào hộp tải xuống.",
+      "<strong>Phân tích liên kết:</strong> Nhấp vào nút bắt đầu để hiển thị các định dạng và tùy chọn chất lượng có sẵn.",
+      "<strong>Chọn video hoặc âm thanh:</strong> Chọn MP4 cho video hoặc MP3 cho âm thanh, sau đó chọn độ phân giải hoặc tốc độ bit ưa thích của bạn.",
+      "<strong>Tải xuống:</strong> Nhấp vào \"Chuyển đổi\" và tải xuống tệp trực tiếp vào thiết bị của bạn mà không cần đăng nhập."
     ]
   },
-
   "whyChoose": {
-    "title": "Tại sao Y2mate thực sự hữu ích",
+    "title": "Tại sao chọn Y2mate",
     "reasons": [
-      "<strong>Âm thanh hàng đầu:</strong> Đừng chấp nhận âm thanh rè. Trích xuất âm thanh ở định dạng MP3 320kbps—hoàn hảo để xây dựng thư viện nhạc cá nhân chất lượng cao của bạn.",
-      "<strong>Sẵn sàng cho video ngắn:</strong> Yêu thích những video ngắn trên YouTube? Bạn có thể tải chúng xuống ở định dạng dọc ban đầu để chia sẻ trên các ứng dụng khác hoặc xem sau.",
-      "<strong>Tiết kiệm pin của bạn:</strong> Vì tất cả các công việc nặng nhọc (chuyển đổi) đều diễn ra trên máy chủ của chúng tôi, điện thoại hoặc máy tính xách tay của bạn sẽ không bị nóng lên hoặc hết pin.",
-      "<strong>Hoạt động ở mọi nơi:</strong> Cho dù bạn đang dùng iPhone hoàn toàn mới, Android cũ, Mac hay PC Windows, miễn là bạn có trình duyệt, bạn đã sẵn sàng."
+      "<strong>Tốc độ tải xuống nhanh:</strong> Y2mate tải xuống video nhanh hơn gấp 2 lần so với nhiều công cụ tải xuống YouTube trực tuyến khác.",
+      "<strong>Không quảng cáo:</strong> Không có quảng cáo, cửa sổ bật lên hoặc chuyển hướng gây rối trong quá trình tải xuống.",
+      "<strong>Tải xuống trực tiếp:</strong> Các tệp video và âm thanh được tải xuống trực tiếp vào thiết bị của bạn mà không có trang trung gian.",
+      "<strong>Hoạt động trên mọi thiết bị:</strong> Hoàn toàn tương thích với điện thoại di động, máy tính bảng và máy tính để bàn."
     ]
   },
-
   "features": {
-    "title": "Tại sao chọn Y2mate",
+    "title": "Các tính năng chính của Y2mate",
     "items": [
       {
-        "title": "Tải xuống không giới hạn",
-        "description": "Tải xuống bao nhiêu video hoặc âm thanh YouTube tùy thích mà không có giới hạn."
+        "title": "Tải xuống video và âm thanh không giới hạn",
+        "description": "Tải xuống video YouTube không giới hạn hoặc chuyển đổi chúng thành tệp âm thanh để sử dụng ngoại tuyến."
       },
       {
-        "title": "Nhiều chất lượng video và âm thanh",
-        "description": "Chọn từ các độ phân giải video 144p, 360p, 480p, 720p và 1080p hoặc tốc độ bit âm thanh 128kbps, 192kbps, 320kbps để có trải nghiệm tốt nhất."
+        "title": "Nhiều tùy chọn chất lượng",
+        "description": "Hỗ trợ độ phân giải video từ 144p, 360p, 480p, 720p đến 1080p và tốc độ bit âm thanh từ 128kbps đến 320kbps."
       },
       {
-        "title": "Nhanh chóng và đáng tin cậy",
-        "description": "Các máy chủ được tối ưu hóa đảm bảo video được xử lý và tải xuống nhanh chóng mà không bị chậm trễ."
+        "title": "Xử lý nhanh và ổn định",
+        "description": "Phân tích liên kết ngắn và thời gian tải xuống, phù hợp cho cả video ngắn và dài."
       },
       {
-        "title": "Hoạt động trên mọi thiết bị",
-        "description": "Hỗ trợ iPhone, Android, Windows, Mac và Linux. Hoạt động với tất cả các trình duyệt chính: Chrome, Firefox, Safari, Edge, Opera."
+        "title": "Hỗ trợ tất cả các nền tảng",
+        "description": "Hoạt động trơn tru trên iPhone, Android, Windows, Mac và Linux bằng cách sử dụng các trình duyệt phổ biến."
       },
       {
-        "title": "An toàn và riêng tư",
-        "description": "Không có quảng cáo, cửa sổ bật lên hoặc chuyển hướng. Y2mate không theo dõi các bản tải xuống của bạn hoặc thu thập dữ liệu cá nhân."
+        "title": "Trải nghiệm người dùng sạch sẽ",
+        "description": "Không quảng cáo, không cửa sổ bật lên và không bị gián đoạn trong khi tải xuống."
       },
       {
         "title": "Không cần cài đặt",
-        "description": "Công cụ trực tuyến 100%—không cần phần mềm, tiện ích mở rộng trình duyệt hoặc ứng dụng. Chỉ cần dán liên kết của bạn và tải xuống ngay lập tức."
+        "description": "Hoàn toàn dựa trên web mà không cần ứng dụng, tiện ích mở rộng hoặc phần mềm."
       }
     ]
   },
-
   "faqs": {
-    "title": "Câu hỏi thường gặp",
+    "title": "Các câu hỏi thường gặp",
     "items": [
       {
+        "question": "Y2mate là gì?",
+        "answer": "Y2mate là một trình tải xuống video YouTube trực tuyến cho phép người dùng tải xuống video hoặc chuyển đổi chúng thành âm thanh bằng cách dán liên kết YouTube. Công cụ này hoạt động trực tiếp trong trình duyệt và không yêu cầu cài đặt."
+      },
+      {
+        "question": "Tôi có thể tải xuống video YouTube trực tuyến mà không cần cài đặt phần mềm không?",
+        "answer": "Có. Y2mate hoạt động hoàn toàn trực tuyến, vì vậy bạn không cần cài đặt bất kỳ ứng dụng hoặc tiện ích mở rộng trình duyệt nào."
+      },
+      {
+        "question": "Y2mate hỗ trợ độ phân giải video nào?",
+        "answer": "Y2mate hỗ trợ nhiều độ phân giải video khác nhau từ 144p đến 1080p, cho phép bạn chọn chất lượng phù hợp với thiết bị và nhu cầu lưu trữ của mình."
+      },
+      {
         "question": "Làm cách nào để tải xuống video YouTube dưới dạng tệp MP3?",
-        "answer": "Thật dễ dàng! Dán liên kết YouTube vào hộp tìm kiếm của Y2mate, nhấp vào \"Bắt đầu\", sau đó chọn tab Âm thanh. Chọn tốc độ bit ưa thích của bạn (chẳng hạn như 320kbps cho chất lượng cao) và nhấn \"Chuyển đổi\". MP3 của bạn sẽ sẵn sàng sau vài giây—hoàn hảo để nghe các bản nhạc yêu thích của bạn ngoại tuyến."
+        "answer": "Dán liên kết video YouTube vào Y2mate, chọn tùy chọn Âm thanh, chọn tốc độ bit ưa thích của bạn và nhấp vào Chuyển đổi để tải xuống tệp MP3."
       },
       {
-        "question": "Tại sao nút tải xuống không xuất hiện hoặc hiển thị lỗi?",
-        "answer": "Lỗi thường xảy ra do mất kết nối tạm thời hoặc nếu video được đặt ở chế độ Riêng tư. Để khắc phục điều này, chỉ cần làm mới trang (F5) và dán lại liên kết. Nếu bạn đang sử dụng thiết bị di động, hãy đảm bảo trình duyệt của bạn không ở chế độ \"Ẩn danh\", vì đôi khi nó có thể chặn tải xuống."
+        "question": "Y2mate có hỗ trợ tải xuống YouTube Shorts không?",
+        "answer": "Có. Y2mate cho phép bạn tải xuống YouTube Shorts dưới dạng tệp video hoặc âm thanh để xem hoặc nghe ngoại tuyến."
       },
       {
-        "question": "Tôi có thể tải xuống video ở chế độ 1080p Full HD có âm thanh không?",
-        "answer": "Có! Y2mate hỗ trợ tải xuống Full HD. Trong khi một số trang web khác tách video và âm thanh cho 1080p, Y2mate kết hợp chúng lại với nhau để bạn có được một tệp MP4 sắc nét, độ nét cao với âm thanh rõ ràng, sẵn sàng cho mọi màn hình."
+        "question": "Tải xuống video bằng Y2mate có an toàn không?",
+        "answer": "Y2mate được thiết kế để cung cấp trải nghiệm tải xuống đơn giản và sạch sẽ mà không có quảng cáo hoặc cửa sổ bật lên và không yêu cầu thông tin cá nhân."
       },
       {
-        "question": "Làm cách nào để lưu video YouTube trực tiếp vào thư viện iPhone hoặc Android của tôi?",
-        "answer": "<strong>Trên Android:</strong> Chỉ cần tải xuống tệp qua Chrome và nó sẽ tự động xuất hiện trong Thư viện hoặc thư mục Tải xuống của bạn.<br><strong>Trên iPhone:</strong> Mở Safari, tải xuống tệp, sau đó nhấn vào mũi tên màu xanh lam trên thanh địa chỉ. Chuyển đến \"Tải xuống\", chọn video và nhấn vào \"Lưu video\" để chuyển nó vào ứng dụng Ảnh của bạn."
+        "question": "Tôi nên sử dụng video đã tải xuống từ Y2mate như thế nào?",
+        "answer": "Các tệp video và âm thanh được tải xuống bằng Y2mate nên được sử dụng cho mục đích cá nhân như xem hoặc nghe ngoại tuyến. Người dùng chịu trách nhiệm về cách sử dụng nội dung đã tải xuống và phải tôn trọng quyền của chủ sở hữu nội dung trên YouTube."
       },
       {
-        "question": "Việc tải xuống video qua Y2mate có hợp pháp không?",
-        "answer": "Y2mate được thiết kế để tải xuống nội dung cho mục đích sử dụng cá nhân, chẳng hạn như xem video ngoại tuyến hoặc lưu bản cover nhạc để nghe cá nhân. Vui lòng tôn trọng những người sáng tạo ban đầu và không sử dụng các tệp đã tải xuống cho mục đích thương mại hoặc vi phạm bản quyền."
+        "question": "Tùy chọn chất lượng tốt nhất cho video dài là gì?",
+        "answer": "Đối với video dài, 720p thường là sự cân bằng tốt giữa chất lượng video và kích thước tệp."
       }
     ]
   }

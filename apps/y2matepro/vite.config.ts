@@ -31,6 +31,17 @@ const srcPageEntries = pageFiles.reduce((entries, file) => {
   return entries;
 }, {} as Record<string, string>);
 
+// 📄 Static pages in root directory (about, contact, legal pages, 404)
+const staticPages = ['about-us', 'contact', 'privacy-policy', 'terms-condition', '404'];
+const staticPageEntries = staticPages.reduce((entries, name) => {
+  const filePath = resolve(__dirname, `${name}.html`);
+  if (existsSync(filePath)) {
+    entries[name] = filePath;
+    console.log(`📄 Static page: ${name}.html`);
+  }
+  return entries;
+}, {} as Record<string, string>);
+
 // 🌍 Auto-detect language folders in pages/ directory
 const pagesDir = resolve(__dirname, 'pages');
 const languagePageEntries: Record<string, string> = {};
@@ -63,6 +74,7 @@ export default defineConfig({
         main: resolve(__dirname, '_11ty-output/index.html'),
         ...eleventyPageEntries,
         ...srcPageEntries,
+        ...staticPageEntries,
         ...languagePageEntries
       },
       output: {
