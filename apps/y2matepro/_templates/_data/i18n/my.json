@@ -1,0 +1,32 @@
+{
+  "nav": {
+    "home": "ယူကျူ့ဒေါင်းလုတ်",
+    "youtubeToMp4": "ယူကျူ့မှ MP4",
+    "youtubeToMp3": "ယူကျူ့မှ MP3",
+    "youtubeMusicDownloader": "တေးဂီတဒေါင်းလုတ်",
+    "youtubeMp3320": "ယူကျူ့မှ MP3 320kbps",
+    "youtubeToWav": "ယူကျူ့မှ WAV",
+    "youtubeToOgg": "ယူကျူ့မှ OGG",
+    "youtubeToOpus": "ယူကျူ့မှ Opus",
+    "youtubeShorts": "Shorts ဒေါင်းလုတ်",
+    "language": "မြန်မာ"
+  },
+
+  "hero": {
+    "title": "Y2mate - ယူကျူ့ဒေါင်းလုတ်",
+    "placeholder": "ရှာဖွေပါ သို့မဟုတ် လင့်ခ်ကူးထည့်ပါ...",
+    "pasteLabel": "ကလစ်ဘုတ်မှကူးထည့်ပါ",
+    "clearLabel": "ရှင်းလင်းပါ",
+    "submitButton": "စတင်ပါ",
+    "termsText": "ကျွန်ုပ်တို့၏ဝန်ဆောင်မှုကိုအသုံးပြုခြင်းဖြင့်",
+    "termsLink": "အသုံးပြုမှုစည်းမျဉ်းများကိုလက်ခံပါသည်"
+  },
+
+  "footer": {
+    "copyright": "© 2025 y2mate",
+    "about": "အကြောင်း",
+    "contact": "ဆက်သွယ်ရန်",
+    "terms": "ဝန်ဆောင်မှုစည်းမျဉ်းများ",
+    "privacy": "ကိုယ်ရေးအချက်အလက်မူဝါဒ"
+  }
+}

@@ -1,3 +1,5 @@
+{#- Calculate language prefix for internal links -#}
+{%- set langPrefix = '' if (lang == 'en' or not lang) else '/' + lang -%}
 <footer class="footer">
     <p>{{ base.footer.copyright }}</p>
     <ul class="footer_nav">
@@ -14,7 +16,7 @@
             <a href="/privacy-policy">{{ base.footer.privacy }}</a>
         </li>
         <li class="fnav-menu">
-            <a href="/youtube-short-downloader">{{ base.nav.youtubeShorts }}</a>
+            <a href="{{ langPrefix }}/youtube-short-downloader">{{ base.nav.youtubeShorts }}</a>
         </li>
     </ul>
 </footer>

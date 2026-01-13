@@ -9,7 +9,7 @@ eleventyComputed:
   lang: "{{ pageInfo.lang }}"
   pageKey: "{{ pageInfo.pageKey }}"
 ---
-{%- set base = i18nBase -%}
+{%- set base = i18nBase[lang] or i18nBase['en'] -%}
 {%- set page = i18nPages[pageKey][lang] or i18nPages[pageKey].en -%}
 <div class="container">
     <section class="y2mate-download-pro">
@@ -87,7 +87,7 @@ eleventyComputed:
             </ol>
         </div>
         <div class="y2mate-in-ad-pro">
-            <h2>{{ page.whyChoose.title }}</h2>
+            <h3>{{ page.whyChoose.title }}</h3>
             <ul>
                 {% for reason in page.whyChoose.reasons %}
                 <li>{{ reason | safe }}</li>

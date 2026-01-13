@@ -1,0 +1,32 @@
+{
+  "nav": {
+    "home": "YouTubeダウンローダー",
+    "youtubeToMp4": "YouTubeからMP4",
+    "youtubeToMp3": "YouTubeからMP3",
+    "youtubeMusicDownloader": "音楽ダウンローダー",
+    "youtubeMp3320": "YouTubeからMP3 320kbps",
+    "youtubeToWav": "YouTubeからWAV",
+    "youtubeToOgg": "YouTubeからOGG",
+    "youtubeToOpus": "YouTubeからOpus",
+    "youtubeShorts": "ショートダウンローダー",
+    "language": "日本語"
+  },
+
+  "hero": {
+    "title": "Y2mate - Youtubeダウンローダー",
+    "placeholder": "検索またはリンクを貼り付け...",
+    "pasteLabel": "クリップボードから貼り付け",
+    "clearLabel": "クリア",
+    "submitButton": "開始",
+    "termsText": "サービスを利用することで、",
+    "termsLink": "利用規約に同意します"
+  },
+
+  "footer": {
+    "copyright": "© 2025 y2mate",
+    "about": "概要",
+    "contact": "お問い合わせ",
+    "terms": "利用規約",
+    "privacy": "プライバシーポリシー"
+  }
+}

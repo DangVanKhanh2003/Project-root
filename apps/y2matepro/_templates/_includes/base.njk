@@ -1,4 +1,4 @@
-{%- set base = i18nBase -%}
+{%- set base = i18nBase[lang] or i18nBase['en'] -%}
 {%- set pageData = i18nPages[pageKey or 'index'][lang or 'en'] -%}
 {%- set seo = pageData.seo -%}
 {#- Language-specific configs for multilingual SEO -#}
@@ -73,6 +73,7 @@
     <link type="image/png" sizes="32x32" rel="icon" href="/favicon3232.png">
     <link type="image/png" sizes="48x48" rel="icon" href="/favicon4848.png">
     <link type="image/png" sizes="96x96" rel="icon" href="/favicon9696.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
     <!-- Theme Color -->
     <meta name="theme-color" content="#c10841">

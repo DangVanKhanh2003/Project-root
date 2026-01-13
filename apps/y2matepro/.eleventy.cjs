@@ -18,15 +18,19 @@ module.exports = function(eleventyConfig) {
   // ============================================
   // 3. LOAD i18n DATA (MODULAR STRUCTURE)
   // ============================================
-  // Load base i18n data (nav, footer, hero - shared across all pages)
+  // Load base i18n data per language (nav, footer, hero - shared across all pages)
   const i18nBaseDir = path.join(__dirname, '_templates/_data/i18n');
   const baseData = {};
 
   if (fs.existsSync(i18nBaseDir)) {
-    const baseFile = path.join(i18nBaseDir, 'base.json');
-    if (fs.existsSync(baseFile)) {
-      baseData.base = JSON.parse(fs.readFileSync(baseFile, 'utf-8'));
-    }
+    const i18nFiles = fs.readdirSync(i18nBaseDir);
+    i18nFiles.forEach(file => {
+      if (file.endsWith('.json')) {
+        const lang = file.replace('.json', '');
+        const filePath = path.join(i18nBaseDir, file);
+        baseData[lang] = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+      }
+    });
   }
 
   // Load page-specific i18n data
@@ -86,8 +90,9 @@ module.exports = function(eleventyConfig) {
     ]
   });
 
-  // Expose base i18n data (nav, footer, hero)
-  eleventyConfig.addGlobalData('i18nBase', baseData.base || {});
+  // Expose base i18n data per language (nav, footer, hero)
+  // Access via i18nBase[lang] e.g. i18nBase['vi'], i18nBase['en']
+  eleventyConfig.addGlobalData('i18nBase', baseData);
 
   // Expose page-specific i18n data
   eleventyConfig.addGlobalData('i18nPages', pagesData);

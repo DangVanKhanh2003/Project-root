@@ -1,0 +1,32 @@
+{
+  "nav": {
+    "home": "Pemuat Turun YouTube",
+    "youtubeToMp4": "YouTube ke MP4",
+    "youtubeToMp3": "YouTube ke MP3",
+    "youtubeMusicDownloader": "Pemuat Turun Muzik",
+    "youtubeMp3320": "YouTube ke MP3 320kbps",
+    "youtubeToWav": "YouTube ke WAV",
+    "youtubeToOgg": "YouTube ke OGG",
+    "youtubeToOpus": "YouTube ke Opus",
+    "youtubeShorts": "Pemuat Turun Shorts",
+    "language": "Melayu"
+  },
+
+  "hero": {
+    "title": "Y2mate - Pemuat Turun Youtube",
+    "placeholder": "Cari atau tampal pautan di sini...",
+    "pasteLabel": "Tampal dari papan klip",
+    "clearLabel": "Padam",
+    "submitButton": "Mula",
+    "termsText": "Dengan menggunakan perkhidmatan kami, anda bersetuju dengan",
+    "termsLink": "Syarat Penggunaan"
+  },
+
+  "footer": {
+    "copyright": "© 2025 y2mate",
+    "about": "Tentang",
+    "contact": "Hubungi",
+    "terms": "Syarat Perkhidmatan",
+    "privacy": "Dasar Privasi"
+  }
+}

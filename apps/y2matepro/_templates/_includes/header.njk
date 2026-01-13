@@ -1,8 +1,10 @@
+{#- Calculate language prefix for internal links -#}
+{%- set langPrefix = '' if (lang == 'en' or not lang) else '/' + lang -%}
 <header class="nav-header">
     <div class="container">
         <div class="nav_head">
             <div class="navbar-logo">
-                <a href="/">
+                <a href="{{ langPrefix }}/">
                     <img height="46px" width="46px" src="/logo.png" alt="Y2Mate logo">
                     <span class="logo-name">Y2mate</span>
                 </a>
@@ -16,10 +18,10 @@
         <div class="header-menu">
             <ul class="menu-navbar">
                 <li class="navbar">
-                    <a href="/youtube-to-mp4">{{ base.nav.youtubeToMp4 }}</a>
+                    <a href="{{ langPrefix }}/youtube-to-mp4">{{ base.nav.youtubeToMp4 }}</a>
                 </li>
                 <li class="navbar">
-                    <a href="/youtube-to-mp3">{{ base.nav.youtubeToMp3 }}</a>
+                    <a href="{{ langPrefix }}/youtube-to-mp3">{{ base.nav.youtubeToMp3 }}</a>
                 </li>
                 <li class="navbar language">
                     <a href="javascript:void(0);">
@@ -27,9 +29,17 @@
                     </a>
                     <div class="dropdown-menu">
                         <ul class="lang-menu">
+                            {%- set pageSlug = '' if pageKey == 'index' else pageKey -%}
+                            {%- for langItem in site.languages %}
                             <li>
-                                <a data-lang="en" href="/">English</a>
+                                {%- if langItem.isDefault %}
+                                {%- set langUrl = '/' if pageSlug == '' else '/' + pageSlug %}
+                                {%- else %}
+                                {%- set langUrl = '/' + langItem.code + '/' if pageSlug == '' else '/' + langItem.code + '/' + pageSlug %}
+                                {%- endif %}
+                                <a data-lang="{{ langItem.code }}" href="{{ langUrl }}">{{ langItem.name }}</a>
                             </li>
+                            {%- endfor %}
                         </ul>
                     </div>
                 </li>
@@ -40,7 +50,7 @@
         <div class="mobile-menu-overlay" id="mobileMenuOverlay">
             <div class="mobile-menu-content">
                 <div class="mobile-header-top">
-                    <a href="/">
+                    <a href="{{ langPrefix }}/">
                         <div class="mobile-logo">
                             <img height="36px" width="36px" src="/logo.png" alt="Y2Mate logo">
                             <span class="logo-name">Y2mate</span>
@@ -54,10 +64,29 @@
                 </div>
                 <nav class="mobile-nav">
                     <ul class="mobile-menu">
-                        <li><a href="/">{{ base.nav.home }}</a></li>
-                        <li><a href="/youtube-to-mp4">{{ base.nav.youtubeToMp4 }}</a></li>
-                        <li><a href="/youtube-to-mp3">{{ base.nav.youtubeToMp3 }}</a></li>
-                        <li><a href="/youtube-short-downloader">{{ base.nav.youtubeShorts }}</a></li>
+                        <li><a href="{{ langPrefix }}/">{{ base.nav.home }}</a></li>
+                        <li><a href="{{ langPrefix }}/youtube-to-mp4">{{ base.nav.youtubeToMp4 }}</a></li>
+                        <li><a href="{{ langPrefix }}/youtube-to-mp3">{{ base.nav.youtubeToMp3 }}</a></li>
+                        <li><a href="{{ langPrefix }}/youtube-short-downloader">{{ base.nav.youtubeShorts }}</a></li>
+                        <li class="mobile-language-selector">
+                            <button class="mobile-lang-button" aria-haspopup="true" aria-expanded="false" aria-label="Select language">
+                                <span class="mobile-lang-current">{{ base.nav.language }}</span>
+                                <svg class="mobile-lang-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <nav class="mobile-lang-dropdown" role="menu" aria-label="Language selection">
+                                {%- set pageSlug = '' if pageKey == 'index' else pageKey -%}
+                                {%- for langItem in site.languages %}
+                                {%- if langItem.isDefault %}
+                                {%- set langUrl = '/' if pageSlug == '' else '/' + pageSlug %}
+                                {%- else %}
+                                {%- set langUrl = '/' + langItem.code + '/' if pageSlug == '' else '/' + langItem.code + '/' + pageSlug %}
+                                {%- endif %}
+                                <a href="{{ langUrl }}" class="mobile-lang-option{% if langItem.code == lang %} active{% endif %}" data-lang="{{ langItem.code }}" role="menuitem"{% if langItem.code == 'ar' or langItem.code == 'ur' %} dir="rtl"{% endif %}>{{ langItem.name }}</a>
+                                {%- endfor %}
+                            </nav>
+                        </li>
                     </ul>
                 </nav>
             </div>

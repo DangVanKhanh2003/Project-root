@@ -31,6 +31,29 @@ const srcPageEntries = pageFiles.reduce((entries, file) => {
   return entries;
 }, {} as Record<string, string>);
 
+// 🌍 Auto-detect language folders in pages/ directory
+const pagesDir = resolve(__dirname, 'pages');
+const languagePageEntries: Record<string, string> = {};
+
+if (existsSync(pagesDir)) {
+  const items = readdirSync(pagesDir, { withFileTypes: true });
+
+  items.forEach(item => {
+    if (item.isDirectory()) {
+      const langDir = resolve(pagesDir, item.name);
+      const langFiles = readdirSync(langDir).filter(file => file.endsWith('.html'));
+
+      langFiles.forEach(file => {
+        const pageName = file.replace('.html', '');
+        // Key format: lang-pagename (e.g., vi-index, vi-youtube-to-mp3)
+        const entryKey = `${item.name}-${pageName}`;
+        languagePageEntries[entryKey] = resolve(langDir, file);
+        console.log(`🌍 Auto-detected: pages/${item.name}/${file}`);
+      });
+    }
+  });
+}
+
 export default defineConfig({
   plugins: [htmlRewritePlugin(), movePagesPlugin(), sitemapPlugin()],
   build: {
@@ -39,7 +62,8 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, '_11ty-output/index.html'),
         ...eleventyPageEntries,
-        ...srcPageEntries
+        ...srcPageEntries,
+        ...languagePageEntries
       },
       output: {
         entryFileNames: 'assets/[name]-[hash].js',

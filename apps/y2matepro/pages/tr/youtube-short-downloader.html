@@ -55,6 +55,7 @@
     <link type="image/png" sizes="32x32" rel="icon" href="/favicon3232.png">
     <link type="image/png" sizes="48x48" rel="icon" href="/favicon4848.png">
     <link type="image/png" sizes="96x96" rel="icon" href="/favicon9696.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
     <!-- Theme Color -->
     <meta name="theme-color" content="#c10841">
@@ -170,7 +171,7 @@
     <div class="container">
         <div class="nav_head">
             <div class="navbar-logo">
-                <a href="/">
+                <a href="/tr/">
                     <img height="46px" width="46px" src="/logo.png" alt="Y2Mate logo">
                     <span class="logo-name">Y2mate</span>
                 </a>
@@ -184,19 +185,73 @@
         <div class="header-menu">
             <ul class="menu-navbar">
                 <li class="navbar">
-                    <a href="/youtube-to-mp4">YouTube to MP4 Converter</a>
+                    <a href="/tr/youtube-to-mp4">YouTube&#39;dan MP4</a>
                 </li>
                 <li class="navbar">
-                    <a href="/youtube-to-mp3">YouTube to MP3 Converter</a>
+                    <a href="/tr/youtube-to-mp3">YouTube&#39;dan MP3</a>
                 </li>
                 <li class="navbar language">
                     <a href="javascript:void(0);">
-                        English<span class="shape"></span>
+                        Türkçe<span class="shape"></span>
                     </a>
                     <div class="dropdown-menu">
                         <ul class="lang-menu">
                             <li>
-                                <a data-lang="en" href="/">English</a>
+                                <a data-lang="en" href="/youtube-short-downloader">English</a>
+                            </li>
+                            <li>
+                                <a data-lang="ar" href="/ar/youtube-short-downloader">العربية</a>
+                            </li>
+                            <li>
+                                <a data-lang="bn" href="/bn/youtube-short-downloader">বাংলা</a>
+                            </li>
+                            <li>
+                                <a data-lang="de" href="/de/youtube-short-downloader">Deutsch</a>
+                            </li>
+                            <li>
+                                <a data-lang="es" href="/es/youtube-short-downloader">Español</a>
+                            </li>
+                            <li>
+                                <a data-lang="fr" href="/fr/youtube-short-downloader">Français</a>
+                            </li>
+                            <li>
+                                <a data-lang="hi" href="/hi/youtube-short-downloader">हिन्दी</a>
+                            </li>
+                            <li>
+                                <a data-lang="id" href="/id/youtube-short-downloader">Indonesia</a>
+                            </li>
+                            <li>
+                                <a data-lang="it" href="/it/youtube-short-downloader">Italiano</a>
+                            </li>
+                            <li>
+                                <a data-lang="ja" href="/ja/youtube-short-downloader">日本語</a>
+                            </li>
+                            <li>
+                                <a data-lang="ko" href="/ko/youtube-short-downloader">한국어</a>
+                            </li>
+                            <li>
+                                <a data-lang="my" href="/my/youtube-short-downloader">မြန်မာ</a>
+                            </li>
+                            <li>
+                                <a data-lang="ms" href="/ms/youtube-short-downloader">Melayu</a>
+                            </li>
+                            <li>
+                                <a data-lang="pt" href="/pt/youtube-short-downloader">Português</a>
+                            </li>
+                            <li>
+                                <a data-lang="ru" href="/ru/youtube-short-downloader">Русский</a>
+                            </li>
+                            <li>
+                                <a data-lang="th" href="/th/youtube-short-downloader">ไทย</a>
+                            </li>
+                            <li>
+                                <a data-lang="tr" href="/tr/youtube-short-downloader">Türkçe</a>
+                            </li>
+                            <li>
+                                <a data-lang="ur" href="/ur/youtube-short-downloader">اردو</a>
+                            </li>
+                            <li>
+                                <a data-lang="vi" href="/vi/youtube-short-downloader">Tiếng Việt</a>
                             </li>
                         </ul>
                     </div>
@@ -208,7 +263,7 @@
         <div class="mobile-menu-overlay" id="mobileMenuOverlay">
             <div class="mobile-menu-content">
                 <div class="mobile-header-top">
-                    <a href="/">
+                    <a href="/tr/">
                         <div class="mobile-logo">
                             <img height="36px" width="36px" src="/logo.png" alt="Y2Mate logo">
                             <span class="logo-name">Y2mate</span>
@@ -222,10 +277,39 @@
                 </div>
                 <nav class="mobile-nav">
                     <ul class="mobile-menu">
-                        <li><a href="/">YouTube Downloader</a></li>
-                        <li><a href="/youtube-to-mp4">YouTube to MP4 Converter</a></li>
-                        <li><a href="/youtube-to-mp3">YouTube to MP3 Converter</a></li>
-                        <li><a href="/youtube-short-downloader">YouTube Shorts Downloader</a></li>
+                        <li><a href="/tr/">YouTube İndirici</a></li>
+                        <li><a href="/tr/youtube-to-mp4">YouTube&#39;dan MP4</a></li>
+                        <li><a href="/tr/youtube-to-mp3">YouTube&#39;dan MP3</a></li>
+                        <li><a href="/tr/youtube-short-downloader">Shorts İndirici</a></li>
+                        <li class="mobile-language-selector">
+                            <button class="mobile-lang-button" aria-haspopup="true" aria-expanded="false" aria-label="Select language">
+                                <span class="mobile-lang-current">Türkçe</span>
+                                <svg class="mobile-lang-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <nav class="mobile-lang-dropdown" role="menu" aria-label="Language selection">
+                                <a href="/youtube-short-downloader" class="mobile-lang-option" data-lang="en" role="menuitem">English</a>
+                                <a href="/ar/youtube-short-downloader" class="mobile-lang-option" data-lang="ar" role="menuitem" dir="rtl">العربية</a>
+                                <a href="/bn/youtube-short-downloader" class="mobile-lang-option" data-lang="bn" role="menuitem">বাংলা</a>
+                                <a href="/de/youtube-short-downloader" class="mobile-lang-option" data-lang="de" role="menuitem">Deutsch</a>
+                                <a href="/es/youtube-short-downloader" class="mobile-lang-option" data-lang="es" role="menuitem">Español</a>
+                                <a href="/fr/youtube-short-downloader" class="mobile-lang-option" data-lang="fr" role="menuitem">Français</a>
+                                <a href="/hi/youtube-short-downloader" class="mobile-lang-option" data-lang="hi" role="menuitem">हिन्दी</a>
+                                <a href="/id/youtube-short-downloader" class="mobile-lang-option" data-lang="id" role="menuitem">Indonesia</a>
+                                <a href="/it/youtube-short-downloader" class="mobile-lang-option" data-lang="it" role="menuitem">Italiano</a>
+                                <a href="/ja/youtube-short-downloader" class="mobile-lang-option" data-lang="ja" role="menuitem">日本語</a>
+                                <a href="/ko/youtube-short-downloader" class="mobile-lang-option" data-lang="ko" role="menuitem">한국어</a>
+                                <a href="/my/youtube-short-downloader" class="mobile-lang-option" data-lang="my" role="menuitem">မြန်မာ</a>
+                                <a href="/ms/youtube-short-downloader" class="mobile-lang-option" data-lang="ms" role="menuitem">Melayu</a>
+                                <a href="/pt/youtube-short-downloader" class="mobile-lang-option" data-lang="pt" role="menuitem">Português</a>
+                                <a href="/ru/youtube-short-downloader" class="mobile-lang-option" data-lang="ru" role="menuitem">Русский</a>
+                                <a href="/th/youtube-short-downloader" class="mobile-lang-option" data-lang="th" role="menuitem">ไทย</a>
+                                <a href="/tr/youtube-short-downloader" class="mobile-lang-option active" data-lang="tr" role="menuitem">Türkçe</a>
+                                <a href="/ur/youtube-short-downloader" class="mobile-lang-option" data-lang="ur" role="menuitem" dir="rtl">اردو</a>
+                                <a href="/vi/youtube-short-downloader" class="mobile-lang-option" data-lang="vi" role="menuitem">Tiếng Việt</a>
+                            </nav>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -244,9 +328,9 @@
                     <div class="input-container">
                         <div class=" input-wrapper">
                             <input id="videoUrl" class="y2mate_query-pro keyword" type="text" name="q"
-                                placeholder="Search or paste link here..." autocomplete="off" autofocus="">
+                                placeholder="Arayın veya bağlantı yapıştırın..." autocomplete="off" autofocus="">
                             <button id="input-action-button" type="button" class="input-action-btn" data-action="paste"
-                                aria-label="Paste from clipboard">
+                                aria-label="Panodan yapıştır">
                                 <svg class="paste-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                                     viewBox="0 0 24 24">
                                     <path fill="currentColor"
@@ -261,7 +345,7 @@
                         </div>
                     </div>
                     <button id="submit" type="submit" name="form_submit" class="submit-btn" aria-label="Search">
-                        <div class="converter-btn">Start</div>
+                        <div class="converter-btn">Başlat</div>
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                             width="14px" height="14px" fill="#fff" id="Layer_1"
                             style="enable-background:new 0 0 16 16;" version="1.1" viewBox="0 0 16 16"
@@ -273,7 +357,7 @@
                     </button>
                     <div id="suggestion-container" class="suggesstion-list suggesstion-box"></div>
                     <p class="y2mate-terms-pro">
-                        By using our service you are accepting our <a href="/terms-condition">Terms of Use</a>.
+                        Hizmetimizi kullanarak kabul etmiş olursunuz <a href="/terms-condition">Kullanım Koşulları</a>.
                     </p>
                 </form>
                 <div class="spinner" style="display: none;">
@@ -448,19 +532,19 @@
     <p>© 2025 y2mate</p>
     <ul class="footer_nav">
         <li class="fnav-menu">
-            <a href="/about-us">About</a>
+            <a href="/about-us">Hakkında</a>
         </li>
         <li class="fnav-menu">
-            <a href="/contact">Contact</a>
+            <a href="/contact">İletişim</a>
         </li>
         <li class="fnav-menu">
-            <a href="/terms-condition">Terms of Service</a>
+            <a href="/terms-condition">Hizmet Şartları</a>
         </li>
         <li class="fnav-menu">
-            <a href="/privacy-policy">Privacy Policy</a>
+            <a href="/privacy-policy">Gizlilik Politikası</a>
         </li>
         <li class="fnav-menu">
-            <a href="/youtube-short-downloader">YouTube Shorts Downloader</a>
+            <a href="/tr/youtube-short-downloader">Shorts İndirici</a>
         </li>
     </ul>
 </footer>

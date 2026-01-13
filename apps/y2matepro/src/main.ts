@@ -104,10 +104,127 @@ function initMobileMenu() {
 }
 
 /**
+ * Get current language from <html lang> or URL path
+ */
+function getCurrentLanguage(): string {
+  // Try from <html lang> attribute
+  const htmlLang = document.documentElement.getAttribute('lang');
+  if (htmlLang) return htmlLang.toLowerCase();
+
+  // Fallback: detect from URL path (e.g., /vi/youtube-to-mp4)
+  const pathMatch = window.location.pathname.match(/^\/([a-z]{2})\//);
+  if (pathMatch) return pathMatch[1];
+
+  // Default to English
+  return 'en';
+}
+
+/**
+ * Initialize language dropdown toggle
+ */
+function initLanguageDropdown() {
+  document.addEventListener('DOMContentLoaded', function() {
+    const currentLang = getCurrentLanguage();
+
+    // Desktop language dropdown
+    const languageNav = document.querySelector('.navbar.language > a');
+    const dropdownMenu = document.querySelector('.navbar.language .dropdown-menu');
+    const desktopLangOptions = document.querySelectorAll('.lang-menu .lang-option, .lang-menu a');
+
+    if (languageNav && dropdownMenu) {
+      // Update active language for desktop
+      desktopLangOptions.forEach(option => {
+        const optionLang = option.getAttribute('data-lang');
+        if (optionLang === currentLang) {
+          option.classList.add('active');
+        } else {
+          option.classList.remove('active');
+        }
+      });
+
+      // Toggle dropdown on click
+      languageNav.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        dropdownMenu.classList.toggle('open');
+      });
+
+      // Close dropdown when clicking outside
+      document.addEventListener('click', function(e) {
+        const target = e.target as HTMLElement;
+        if (!target.closest('.navbar.language')) {
+          dropdownMenu.classList.remove('open');
+        }
+      });
+
+      // Close dropdown on ESC key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          dropdownMenu.classList.remove('open');
+        }
+      });
+    }
+
+    // Mobile language dropdown
+    const mobileLangButton = document.querySelector('.mobile-lang-button');
+    const mobileLangDropdown = document.querySelector('.mobile-lang-dropdown');
+    const mobileLangCurrent = document.querySelector('.mobile-lang-current');
+    const mobileLangOptions = document.querySelectorAll('.mobile-lang-option');
+
+    if (mobileLangButton && mobileLangDropdown) {
+      // Update active language display for mobile
+      function updateMobileActiveLanguage() {
+
+        mobileLangOptions.forEach(option => {
+          const optionLang = option.getAttribute('data-lang');
+          if (optionLang === currentLang) {
+            option.classList.add('active');
+            // Update button text
+            if (mobileLangCurrent) {
+              mobileLangCurrent.textContent = option.textContent;
+            }
+          } else {
+            option.classList.remove('active');
+          }
+        });
+      }
+
+      // Initialize active language for mobile
+      updateMobileActiveLanguage();
+
+      // Toggle dropdown
+      mobileLangButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const isOpen = mobileLangButton.getAttribute('aria-expanded') === 'true';
+
+        if (isOpen) {
+          mobileLangButton.setAttribute('aria-expanded', 'false');
+          mobileLangDropdown.classList.remove('open');
+        } else {
+          mobileLangButton.setAttribute('aria-expanded', 'true');
+          mobileLangDropdown.classList.add('open');
+        }
+      });
+
+      // Close mobile dropdown when clicking outside
+      document.addEventListener('click', function(e) {
+        const target = e.target as HTMLElement;
+        if (!target.closest('.mobile-language-selector')) {
+          mobileLangButton.setAttribute('aria-expanded', 'false');
+          mobileLangDropdown.classList.remove('open');
+        }
+      });
+    }
+  });
+}
+
+/**
  * Initialize app
  */
 function loadFeatures() {
   initMobileMenu(); // Initialize mobile menu first
+  initLanguageDropdown(); // Initialize language dropdown
   initDownloaderUI();
 }
 

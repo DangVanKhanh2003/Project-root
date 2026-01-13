@@ -1,0 +1,32 @@
+{
+  "nav": {
+    "home": "Pengunduh YouTube",
+    "youtubeToMp4": "YouTube ke MP4",
+    "youtubeToMp3": "YouTube ke MP3",
+    "youtubeMusicDownloader": "Pengunduh Musik",
+    "youtubeMp3320": "YouTube ke MP3 320kbps",
+    "youtubeToWav": "YouTube ke WAV",
+    "youtubeToOgg": "YouTube ke OGG",
+    "youtubeToOpus": "YouTube ke Opus",
+    "youtubeShorts": "Pengunduh Shorts",
+    "language": "Indonesia"
+  },
+
+  "hero": {
+    "title": "Y2mate - Pengunduh Youtube",
+    "placeholder": "Cari atau tempel tautan di sini...",
+    "pasteLabel": "Tempel dari clipboard",
+    "clearLabel": "Hapus",
+    "submitButton": "Mulai",
+    "termsText": "Dengan menggunakan layanan kami, Anda menyetujui",
+    "termsLink": "Ketentuan Penggunaan"
+  },
+
+  "footer": {
+    "copyright": "© 2025 y2mate",
+    "about": "Tentang",
+    "contact": "Kontak",
+    "terms": "Ketentuan Layanan",
+    "privacy": "Kebijakan Privasi"
+  }
+}
