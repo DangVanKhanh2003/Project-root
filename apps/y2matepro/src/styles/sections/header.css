@@ -294,10 +294,40 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+
+    /* iOS Safari scroll optimization */
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+
+    /* iOS Safari: Prevent horizontal overscroll/dragging effect */
+    overscroll-behavior: none;
+    overscroll-behavior-x: none;
+    overscroll-behavior-y: contain;
+
+    /* Lock touch gestures to vertical-only */
+    touch-action: pan-y;
+    -webkit-touch-callout: none;
+
+    /* GPU acceleration WITHOUT transform causing parallax */
+    will-change: transform, scroll-position;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
 .mobile-menu-overlay.active .mobile-menu-content {
     transform: translateX(0);
+}
+
+/* Prevent ALL child elements from horizontal dragging (iOS Safari fix) */
+.mobile-menu-content > * {
+    touch-action: pan-y;
+    -webkit-user-drag: none;
+}
+
+.mobile-menu-content a {
+    touch-action: pan-y;
+    -webkit-user-drag: none;
+    user-select: none;
 }
 
 .mobile-header-top {
@@ -307,6 +337,9 @@
     padding: 15px 20px;
     border-bottom: 1px solid #eee;
     flex-shrink: 0;
+    /* Prevent horizontal drag on sticky header (iOS Safari) */
+    touch-action: pan-y;
+    -webkit-user-drag: none;
 }
 
 .mobile-logo {
@@ -338,6 +371,11 @@
     padding: 15px 0 300px 0;
     flex-grow: 1;
     overflow-y: auto;
+    overflow-x: hidden;
+    /* iOS Safari scroll optimization */
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+    touch-action: pan-y;
 }
 
 .mobile-menu {
