@@ -14,7 +14,7 @@ env:
   PROJECT_NAME: ${{ github.ref_name == 'test-production' && format('{0}-test', vars.Y2MATEPRO_PROJECT_NAME || 'y2matepro.com') || vars.Y2MATEPRO_PROJECT_NAME || 'y2matepro.com' }}
   PROJECT_ROOT: ${{ vars.PROJECT_ROOT || '/var/www/KhanhHAUI/CICD' }}
   RUN_DIR:      ${{ vars.RUN_DIR || format('/var/www/KhanhHAUI/CICD/run/{0}', github.ref_name == 'test-production' && format('{0}-test', vars.Y2MATEPRO_PROJECT_NAME || 'y2matepro.com') || vars.Y2MATEPRO_PROJECT_NAME || 'y2matepro.com') }}
-  DEPLOY_USER:  ${{ vars.DEPLOY_USER  || 'gitdeploy' }}
+  DEPLOY_USER:  ${{ vars.DEPLOY_USER  || 'githubaction' }}
   DEPLOY_GROUP: ${{ vars.DEPLOY_GROUP || 'nginx' }}
 
 concurrency:
