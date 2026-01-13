@@ -11,9 +11,9 @@
     "title": "Trình chuyển đổi YouTube sang MP4"
   },
   "content": {
-    "mainTitle": "Chuyển đổi video YouTube sang định dạng MP4",
-    "intro1": "Y2Mate là một hệ thống chuyển đổi trực tuyến được thiết kế để tạo tệp video MP4 từ các nguồn YouTube. Các tệp đầu ra bao gồm các luồng âm thanh và video được tích hợp đầy đủ, đảm bảo khả năng tương thích với các trình phát media tiêu chuẩn và thiết bị phát lại mà không yêu cầu codec bổ sung hoặc xử lý hậu kỳ.",
-    "intro2": "Hệ thống hỗ trợ độ phân giải MP4 từ 144p đến 1080p Full HD. Phân tích liên kết video và chuẩn bị tệp được tối ưu hóa để hoàn thành nhanh hơn khoảng hai lần so với nhiều trình chuyển đổi trực tuyến tương đương. Trong toàn bộ quy trình chuyển đổi, Y2Mate không hiển thị quảng cáo hoặc các yếu tố bật lên. Tất cả các hoạt động được thực hiện trực tiếp trong trình duyệt mà không cần cài đặt phần mềm hoặc yêu cầu quyền cao hơn, cung cấp một môi trường an toàn và cô lập để xử lý video."
+    "mainTitle": "Chuyển đổi video YouTube sang MP4",
+    "intro1": "Y2Mate là một công cụ chuyển đổi YouTube sang MP4 trực tuyến miễn phí cho phép bạn tải xuống các video YouTube ở định dạng MP4 một cách nhanh chóng và dễ dàng. Chỉ cần dán liên kết YouTube, chọn chất lượng video ưa thích của bạn và tải xuống tệp MP4 trực tiếp về thiết bị của bạn mà không cần cài đặt bất kỳ phần mềm nào.",
+    "intro2": "Trình tải xuống YouTube sang MP4 này hỗ trợ độ phân giải từ 144p đến 1080p Full HD và hoạt động trên máy tính để bàn, iPhone, Android và máy tính bảng. Y2Mate chạy hoàn toàn trong trình duyệt của bạn với tốc độ chuyển đổi nhanh, không có quảng cáo hoặc cửa sổ bật lên và không cần đăng ký."
   },
   "instructions": {
     "title": "Cách chuyển đổi YouTube sang MP4",
@@ -27,10 +27,10 @@
   "whyChoose": {
     "title": "Tại sao nên sử dụng trình chuyển đổi YouTube sang MP4 này",
     "reasons": [
-      "<strong>Tính toàn vẹn video nhất quán:</strong> Các luồng video và âm thanh được hợp nhất bằng cách sử dụng căn chỉnh dấu thời gian để ngăn chặn sự mất đồng bộ hoặc mất âm thanh.",
-      "<strong>Đầu ra âm thanh tích hợp:</strong> Tệp MP4 được tạo bao gồm dữ liệu âm thanh đầy đủ mà không yêu cầu tải xuống riêng biệt.",
-      "<strong>Quy trình xử lý hiệu quả:</strong> Phân tích luồng và lắp ráp tệp được tối ưu hóa để hoàn thành nhanh hơn so với nhiều công cụ trực tuyến.",
-      "<strong>Môi trường chuyển đổi không có quảng cáo:</strong> Hệ thống hoạt động mà không có quảng cáo hoặc gián đoạn bật lên trong quá trình xử lý."
+      "<strong>Tải xuống chỉ với một cú nhấp:</strong> Dán liên kết, chọn chất lượng và tải xuống ngay lập tức — không cần thêm bước nào.",
+      "<strong>Chuyển đổi nhanh, không phải chờ đợi:</strong> Nhận file MP4 của bạn nhanh chóng, ngay cả với video dài.",
+      "<strong>Trải nghiệm sạch, không quảng cáo:</strong> Không pop-up, không chuyển hướng và không có nút tải giả.",
+      "<strong>Hoạt động trên mọi thiết bị:</strong> Tải video YouTube trên máy tính, iPhone, Android hoặc máy tính bảng."
     ]
   },
   "features": {
@@ -66,32 +66,40 @@
     "title": "Các câu hỏi thường gặp",
     "items": [
       {
-        "question": "Độ phân giải MP4 ảnh hưởng đến chất lượng video và kích thước tệp như thế nào?",
-        "answer": "Độ phân giải MP4 xác định số lượng pixel được sử dụng để biểu thị mỗi khung hình video. Độ phân giải thấp hơn như 144p hoặc 360p làm giảm kích thước tệp và sử dụng băng thông nhưng hạn chế chi tiết hình ảnh. Độ phân giải cao hơn như 720p HD và 1080p Full HD giữ lại nhiều thông tin hình ảnh hơn, dẫn đến hình ảnh sắc nét hơn và chuyển động mượt mà hơn, đồng thời tăng kích thước tệp và yêu cầu giải mã."
+        "question": "Làm thế nào để chuyển đổi video YouTube sang MP4?",
+        "answer": "Dán liên kết video YouTube vào ô nhập, nhấn Bắt đầu, chọn độ phân giải MP4 và tải video trực tiếp về thiết bị của bạn."
       },
       {
-        "question": "Tại sao tốc độ chuyển đổi quan trọng trong các công cụ MP4 trực tuyến?",
-        "answer": "Tốc độ chuyển đổi bị ảnh hưởng bởi hiệu quả của một hệ thống trong việc phân tích luồng video và chuẩn bị tệp đầu ra. Phân tích chậm có thể dẫn đến thời gian chờ đợi lâu hoặc các tùy chọn độ phân giải không đầy đủ. Bằng cách tối ưu hóa việc trích xuất siêu dữ liệu luồng và lắp ráp tệp, Y2Mate hoàn thành các bước này nhanh hơn khoảng hai lần so với nhiều trình chuyển đổi trực tuyến thông thường."
+        "question": "Y2Mate có miễn phí không?",
+        "answer": "Có. Bạn có thể chuyển đổi và tải video YouTube sang MP4 miễn phí mà không cần đăng ký hoặc thanh toán."
       },
       {
-        "question": "Hệ thống đảm bảo đồng bộ hóa âm thanh và video như thế nào?",
-        "answer": "Video YouTube lưu trữ âm thanh và video dưới dạng các luồng riêng biệt. Trong quá trình chuyển đổi, các luồng này phải được hợp nhất chính xác. Y2Mate căn chỉnh âm thanh và video bằng cách sử dụng dấu thời gian luồng để ngăn chặn các vấn đề phổ biến như âm thanh bị trễ, các phần bị tắt tiếng hoặc các phân đoạn bị mất trong tệp MP4 cuối cùng."
+        "question": "Tôi có cần cài đặt phần mềm hoặc tiện ích mở rộng trình duyệt không?",
+        "answer": "Không. Y2Mate hoạt động hoàn toàn trực tuyến trong trình duyệt web của bạn. Không cần ứng dụng hay tiện ích mở rộng."
       },
       {
-        "question": "Tại sao môi trường không có quảng cáo và cửa sổ bật lên lại quan trọng đối với các chuyển đổi?",
-        "answer": "Quảng cáo và các yếu tố bật lên thường giới thiệu các tập lệnh bổ sung có thể làm gián đoạn quá trình xử lý hoặc can thiệp vào quá trình tải xuống. Môi trường không có quảng cáo làm giảm chi phí thực thi, cải thiện độ ổn định của hệ thống và giảm thiểu rủi ro chuyển hướng ngẫu nhiên hoặc tạo tệp không đầy đủ."
+        "question": "Hỗ trợ những độ phân giải MP4 nào?",
+        "answer": "Y2Mate hỗ trợ độ phân giải MP4 từ 144p đến 1080p Full HD, tùy thuộc vào chất lượng video gốc."
       },
       {
-        "question": "Xử lý dựa trên trình duyệt cải thiện bảo mật như thế nào?",
-        "answer": "Xử lý dựa trên trình duyệt loại bỏ nhu cầu cài đặt phần mềm hoặc tiện ích mở rộng của bên thứ ba, có thể gây ra rủi ro bảo mật. Vì Y2Mate hoạt động thông qua các yêu cầu web tiêu chuẩn và không yêu cầu quyền cao hơn, quá trình chuyển đổi vẫn được cô lập khỏi hệ điều hành và tệp cá nhân của người dùng."
+        "question": "Tôi có thể sử dụng trình chuyển đổi YouTube sang MP4 này trên thiết bị di động không?",
+        "answer": "Có. Y2Mate hoạt động trên iPhone, Android, máy tính bảng và máy tính để bàn thông qua bất kỳ trình duyệt web hiện đại nào."
       },
       {
-        "question": "Tất cả các thiết bị có thể phát tệp MP4 Full HD 1080p không?",
-        "answer": "Hầu hết các thiết bị hiện đại đều hỗ trợ phát lại MP4 1080p. Tuy nhiên, phần cứng cũ hơn có thể có khả năng giải mã hạn chế. Trong những trường hợp như vậy, việc chọn 480p hoặc 720p có thể cung cấp khả năng phát lại mượt mà hơn trong khi vẫn duy trì chất lượng hình ảnh chấp nhận được."
+        "question": "Tại sao tôi không thể tải một số video YouTube?",
+        "answer": "Video riêng tư, nội dung giới hạn độ tuổi hoặc video yêu cầu đăng nhập không thể được xử lý bởi các trình chuyển đổi trực tuyến."
       },
       {
-        "question": "Video YouTube riêng tư hoặc bị hạn chế có được hỗ trợ không?",
-        "answer": "Không. Chỉ có thể xử lý các video YouTube Công khai hoặc Không được liệt kê. Các video riêng tư hoặc bị hạn chế yêu cầu xác thực mà các hệ thống chuyển đổi bên ngoài không thể truy cập."
+        "question": "Tải video YouTube bằng Y2Mate có an toàn không?",
+        "answer": "Có. Y2Mate không yêu cầu đăng nhập tài khoản, cài đặt phần mềm hoặc quyền đặc biệt, và hoạt động không có quảng cáo bật lên."
+      },
+      {
+        "question": "Có giới hạn tải xuống không?",
+        "answer": "Không. Bạn có thể chuyển đổi và tải bao nhiêu video YouTube sang MP4 tùy thích."
+      },
+      {
+        "question": "Tệp MP4 đã tải có hoạt động trên tất cả thiết bị không?",
+        "answer": "Có. MP4 là định dạng được hỗ trợ rộng rãi và hoạt động trên điện thoại thông minh, máy tính, TV thông minh và hầu hết các trình phát đa phương tiện."
       }
     ]
   }

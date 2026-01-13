@@ -11,9 +11,9 @@
     "title": "Konverter YouTube ke MP4"
   },
   "content": {
-    "mainTitle": "Konversi Video YouTube ke Format MP4",
-    "intro1": "Y2Mate adalah sistem konversi online yang dirancang untuk menghasilkan file video MP4 dari sumber YouTube. File output mencakup aliran audio dan video yang terintegrasi penuh, memastikan kompatibilitas dengan pemutar media standar dan perangkat pemutaran tanpa memerlukan codec tambahan atau pasca-pemrosesan.",
-    "intro2": "Sistem ini mendukung resolusi MP4 mulai dari 144p hingga 1080p Full HD. Analisis tautan video dan persiapan file dioptimalkan untuk selesai sekitar dua kali lebih cepat daripada banyak konverter online yang sebanding. Sepanjang seluruh alur kerja konversi, Y2Mate tidak menampilkan iklan atau elemen pop-up. Semua operasi dieksekusi langsung di browser tanpa menginstal perangkat lunak atau meminta izin yang ditinggikan, menyediakan lingkungan yang aman dan terisolasi untuk pemrosesan video."
+    "mainTitle": "Ubah Video YouTube menjadi MP4",
+    "intro1": "Y2Mate adalah konverter YouTube ke MP4 online gratis yang memungkinkan Anda mengunduh video YouTube dalam format MP4 dengan cepat dan mudah. Cukup tempel tautan YouTube, pilih kualitas video pilihan Anda, dan unduh file MP4 langsung ke perangkat Anda tanpa menginstal perangkat lunak apa pun.",
+    "intro2": "Pengunduh YouTube ke MP4 ini mendukung resolusi dari 144p hingga 1080p Full HD dan berfungsi di desktop, iPhone, Android, dan tablet. Y2Mate berjalan sepenuhnya di browser Anda dengan kecepatan konversi cepat, tanpa iklan atau pop-up, dan tidak perlu registrasi."
   },
   "instructions": {
     "title": "Cara Mengonversi YouTube ke MP4",
@@ -27,10 +27,10 @@
   "whyChoose": {
     "title": "Mengapa Menggunakan Konverter YouTube ke MP4 Ini",
     "reasons": [
-      "<strong>Integritas Video yang Konsisten:</strong> Aliran video dan audio digabungkan menggunakan penyelarasan stempel waktu untuk mencegah desinkronisasi atau suara yang hilang.",
-      "<strong>Output Audio Terintegrasi:</strong> File MP4 yang dihasilkan mencakup data audio lengkap tanpa memerlukan unduhan terpisah.",
-      "<strong>Pipa Pemrosesan yang Efisien:</strong> Analisis aliran dan perakitan file dioptimalkan untuk penyelesaian yang lebih cepat dibandingkan dengan banyak alat online.",
-      "<strong>Lingkungan Konversi Bebas Iklan:</strong> Sistem beroperasi tanpa iklan atau gangguan pop-up selama pemrosesan."
+      "<strong>Unduh Satu Klik:</strong> Tempel tautan, pilih kualitas, dan unduh secara instan — tanpa langkah tambahan.",
+      "<strong>Konversi Cepat, Tanpa Menunggu:</strong> Dapatkan file MP4 Anda dengan cepat, bahkan untuk video panjang.",
+      "<strong>Pengalaman Bersih, Bebas Iklan:</strong> Tanpa pop-up, tanpa pengalihan, dan tanpa tombol unduh palsu.",
+      "<strong>Berfungsi di Semua Perangkat:</strong> Unduh video YouTube di desktop, iPhone, Android, atau tablet."
     ]
   },
   "features": {
@@ -66,32 +66,40 @@
     "title": "Pertanyaan yang Sering Diajukan",
     "items": [
       {
-        "question": "Bagaimana resolusi MP4 memengaruhi kualitas video dan ukuran file?",
-        "answer": "Resolusi MP4 menentukan jumlah piksel yang digunakan untuk merepresentasikan setiap bingkai video. Resolusi yang lebih rendah seperti 144p atau 360p mengurangi ukuran file dan penggunaan bandwidth tetapi membatasi detail visual. Resolusi yang lebih tinggi seperti 720p HD dan 1080p Full HD mempertahankan lebih banyak informasi gambar, menghasilkan visual yang lebih tajam dan gerakan yang lebih halus, sekaligus meningkatkan ukuran file dan persyaratan decoding."
+        "question": "Bagaimana cara mengonversi video YouTube ke MP4?",
+        "answer": "Tempel tautan video YouTube ke kotak input, klik Mulai, pilih resolusi MP4, dan unduh video langsung ke perangkat Anda."
       },
       {
-        "question": "Mengapa kecepatan konversi penting dalam alat MP4 online?",
-        "answer": "Kecepatan konversi dipengaruhi oleh seberapa efisien suatu sistem menganalisis aliran video dan menyiapkan file output. Analisis yang lambat dapat menyebabkan waktu tunggu yang lama atau opsi resolusi yang tidak lengkap. Dengan mengoptimalkan ekstraksi metadata aliran dan perakitan file, Y2Mate menyelesaikan langkah-langkah ini sekitar dua kali lebih cepat daripada banyak konverter online konvensional."
+        "question": "Apakah Y2Mate gratis?",
+        "answer": "Ya. Anda dapat mengonversi dan mengunduh video YouTube ke MP4 secara gratis tanpa registrasi atau pembayaran."
       },
       {
-        "question": "Bagaimana sistem memastikan sinkronisasi audio dan video?",
-        "answer": "Video YouTube menyimpan audio dan video sebagai aliran terpisah. Selama konversi, aliran ini harus digabungkan secara akurat. Y2Mate menyelaraskan audio dan video menggunakan stempel waktu aliran untuk mencegah masalah umum seperti audio tertunda, bagian yang dibisukan, atau segmen yang hilang dalam file MP4 akhir."
+        "question": "Apakah saya perlu menginstal perangkat lunak atau ekstensi browser?",
+        "answer": "Tidak. Y2Mate bekerja sepenuhnya online di browser web Anda. Tidak diperlukan aplikasi atau ekstensi."
       },
       {
-        "question": "Mengapa lingkungan bebas iklan dan pop-up penting untuk konversi?",
-        "answer": "Iklan dan elemen pop-up sering kali memperkenalkan skrip tambahan yang dapat mengganggu pemrosesan atau mengganggu unduhan. Lingkungan bebas iklan mengurangi overhead eksekusi, meningkatkan stabilitas sistem, dan meminimalkan risiko pengalihan yang tidak disengaja atau pembuatan file yang tidak lengkap."
+        "question": "Resolusi MP4 apa yang didukung?",
+        "answer": "Y2Mate mendukung resolusi MP4 dari 144p hingga 1080p Full HD, tergantung pada kualitas video asli."
       },
       {
-        "question": "Bagaimana pemrosesan berbasis browser meningkatkan keamanan?",
-        "answer": "Pemrosesan berbasis browser menghilangkan kebutuhan untuk menginstal perangkat lunak atau ekstensi pihak ketiga, yang dapat menimbulkan risiko keamanan. Karena Y2Mate beroperasi melalui permintaan web standar dan tidak meminta izin yang ditinggikan, proses konversi tetap terisolasi dari sistem operasi pengguna dan file pribadi."
+        "question": "Bisakah saya menggunakan konverter YouTube ke MP4 ini di perangkat seluler?",
+        "answer": "Ya. Y2Mate berfungsi di iPhone, Android, tablet, dan komputer desktop melalui browser web modern apa pun."
       },
       {
-        "question": "Bisakah semua perangkat memutar file MP4 Full HD 1080p?",
-        "answer": "Sebagian besar perangkat modern mendukung pemutaran MP4 1080p. Namun, perangkat keras yang lebih lama mungkin memiliki kemampuan decoding yang terbatas. Dalam kasus seperti itu, memilih 480p atau 720p dapat memberikan pemutaran yang lebih lancar sambil mempertahankan kualitas visual yang dapat diterima."
+        "question": "Mengapa saya tidak bisa mengunduh beberapa video YouTube?",
+        "answer": "Video pribadi, konten yang dibatasi usia, atau video yang memerlukan login tidak dapat diproses oleh konverter online."
       },
       {
-        "question": "Apakah video YouTube pribadi atau terbatas didukung?",
-        "answer": "Tidak. Hanya video YouTube Publik atau Tidak Terdaftar yang dapat diproses. Video pribadi atau terbatas memerlukan otentikasi yang tidak dapat diakses oleh sistem konversi eksternal."
+        "question": "Apakah aman mengunduh video YouTube menggunakan Y2Mate?",
+        "answer": "Ya. Y2Mate tidak memerlukan login akun, instalasi perangkat lunak, atau izin khusus, dan berjalan tanpa iklan pop-up."
+      },
+      {
+        "question": "Apakah ada batasan unduhan?",
+        "answer": "Tidak. Anda dapat mengonversi dan mengunduh video YouTube ke MP4 sebanyak yang Anda inginkan."
+      },
+      {
+        "question": "Apakah file MP4 yang diunduh akan berfungsi di semua perangkat?",
+        "answer": "Ya. MP4 adalah format yang didukung secara luas dan berfungsi di smartphone, komputer, smart TV, dan sebagian besar pemutar media."
       }
     ]
   }

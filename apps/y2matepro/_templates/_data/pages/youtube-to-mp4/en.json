@@ -13,9 +13,9 @@
   },
 
   "content": {
-    "mainTitle": "Convert YouTube Videos to MP4 Format",
-    "intro1": "Y2Mate is an online conversion system designed for generating MP4 video files from YouTube sources. The output files include fully integrated audio and video streams, ensuring compatibility with standard media players and playback devices without requiring additional codecs or post-processing.",
-    "intro2": "The system supports MP4 resolutions ranging from 144p to 1080p Full HD. Video link analysis and file preparation are optimized to complete approximately twice as fast as many comparable online converters. Throughout the entire conversion workflow, Y2Mate does not display advertisements or pop-up elements. All operations are executed directly in the browser without installing software or requesting elevated permissions, providing a secure and isolated environment for video processing."
+    "mainTitle": "Convert YouTube Videos to MP4",
+    "intro1": "Y2Mate is a free online YouTube to MP4 converter that allows you to download YouTube videos in MP4 format quickly and easily. Just paste a YouTube link, choose your preferred video quality, and download the MP4 file directly to your device without installing any software.",
+    "intro2": "This YouTube to MP4 downloader supports resolutions from 144p up to 1080p Full HD and works on desktop, iPhone, Android, and tablets. Y2Mate runs entirely in your browser with fast conversion speed, no ads or pop-ups, and no registration required."
   },
 
   "instructions": {
@@ -31,10 +31,10 @@
   "whyChoose": {
     "title": "Why Use This YouTube to MP4 Converter",
     "reasons": [
-      "<strong>Consistent Video Integrity:</strong> Video and audio streams are merged using timestamp alignment to prevent desynchronization or missing sound.",
-      "<strong>Integrated Audio Output:</strong> The generated MP4 file includes complete audio data without requiring separate downloads.",
-      "<strong>Efficient Processing Pipeline:</strong> Stream analysis and file assembly are optimized for faster completion compared to many online tools.",
-      "<strong>Ad-Free Conversion Environment:</strong> The system operates without advertisements or pop-up interruptions during processing."
+      "<strong>One-Click Download:</strong> Paste the link, choose a quality, and download instantly — no extra steps.",
+      "<strong>Fast Conversion, No Waiting:</strong> Get your MP4 file quickly, even for long videos.",
+      "<strong>Clean, Ad-Free Experience:</strong> No pop-ups, no redirects, and no fake download buttons.",
+      "<strong>Works on Any Device:</strong> Download YouTube videos on desktop, iPhone, Android, or tablet."
     ]
   },
 
@@ -72,32 +72,40 @@
     "title": "Frequently Asked Questions",
     "items": [
       {
-        "question": "How does MP4 resolution impact video quality and file size?",
-        "answer": "MP4 resolution determines the number of pixels used to represent each video frame. Lower resolutions such as 144p or 360p reduce file size and bandwidth usage but limit visual detail. Higher resolutions like 720p HD and 1080p Full HD preserve more image information, resulting in sharper visuals and smoother motion, while also increasing file size and decoding requirements."
+        "question": "How do I convert a YouTube video to MP4?",
+        "answer": "Paste the YouTube video link into the input box, click Start, choose an MP4 resolution, and download the video directly to your device."
       },
       {
-        "question": "Why is conversion speed important in online MP4 tools?",
-        "answer": "Conversion speed is influenced by how efficiently a system analyzes video streams and prepares output files. Slow analysis can lead to long waiting times or incomplete resolution options. By optimizing stream metadata extraction and file assembly, Y2Mate completes these steps approximately twice as fast as many conventional online converters."
+        "question": "Is Y2Mate free to use?",
+        "answer": "Yes. You can convert and download YouTube videos to MP4 for free without registration or payment."
       },
       {
-        "question": "How does the system ensure audio and video synchronization?",
-        "answer": "YouTube videos store audio and video as separate streams. During conversion, these streams must be merged accurately. Y2Mate aligns audio and video using stream timestamps to prevent common issues such as delayed audio, muted sections, or dropped segments in the final MP4 file."
+        "question": "Do I need to install any software or browser extension?",
+        "answer": "No. Y2Mate works entirely online in your web browser. No app or extension is required."
       },
       {
-        "question": "Why does an ad-free and popup-free environment matter for conversions?",
-        "answer": "Advertisements and pop-up elements often introduce additional scripts that can interrupt processing or interfere with downloads. An ad-free environment reduces execution overhead, improves system stability, and minimizes the risk of accidental redirects or incomplete file generation."
+        "question": "What MP4 resolutions are supported?",
+        "answer": "Y2Mate supports MP4 resolutions from 144p up to 1080p Full HD, depending on the original video quality."
       },
       {
-        "question": "How does browser-based processing improve security?",
-        "answer": "Browser-based processing removes the need to install third-party software or extensions, which can introduce security risks. Since Y2Mate operates through standard web requests and does not request elevated permissions, the conversion process remains isolated from the user’s operating system and personal files."
+        "question": "Can I use this YouTube to MP4 converter on mobile devices?",
+        "answer": "Yes. Y2Mate works on iPhone, Android, tablets, and desktop computers through any modern web browser."
       },
       {
-        "question": "Can all devices play 1080p Full HD MP4 files?",
-        "answer": "Most modern devices support 1080p MP4 playback. However, older hardware may have limited decoding capabilities. In such cases, selecting 480p or 720p can provide smoother playback while maintaining acceptable visual quality."
+        "question": "Why can't I download some YouTube videos?",
+        "answer": "Private videos, age-restricted content, or videos that require login cannot be processed by online converters."
       },
       {
-        "question": "Are private or restricted YouTube videos supported?",
-        "answer": "No. Only Public or Unlisted YouTube videos can be processed. Private or restricted videos require authentication that cannot be accessed by external conversion systems."
+        "question": "Is it safe to download YouTube videos using Y2Mate?",
+        "answer": "Yes. Y2Mate does not require account login, software installation, or special permissions, and it runs without pop-up ads."
+      },
+      {
+        "question": "Are there any download limits?",
+        "answer": "No. You can convert and download as many YouTube videos to MP4 as you want."
+      },
+      {
+        "question": "Will the downloaded MP4 file work on all devices?",
+        "answer": "Yes. MP4 is a widely supported format and works on smartphones, computers, smart TVs, and most media players."
       }
     ]
   }

@@ -11,9 +11,9 @@
     "title": "Convertitore da YouTube a MP4"
   },
   "content": {
-    "mainTitle": "Converti video YouTube in formato MP4",
-    "intro1": "Y2Mate è un sistema di conversione online progettato per generare file video MP4 da fonti YouTube. I file di output includono flussi audio e video completamente integrati, garantendo la compatibilità con i lettori multimediali standard e i dispositivi di riproduzione senza richiedere codec aggiuntivi o post-elaborazione.",
-    "intro2": "Il sistema supporta risoluzioni MP4 che vanno da 144p a 1080p Full HD. L'analisi dei collegamenti video e la preparazione dei file sono ottimizzate per completarsi circa due volte più velocemente rispetto a molti convertitori online comparabili. Durante l'intero flusso di lavoro di conversione, Y2Mate non visualizza annunci o elementi pop-up. Tutte le operazioni vengono eseguite direttamente nel browser senza installare software o richiedere autorizzazioni elevate, fornendo un ambiente sicuro e isolato per l'elaborazione video."
+    "mainTitle": "Converti video di YouTube in MP4",
+    "intro1": "Y2Mate è un convertitore online gratuito da YouTube a MP4 che ti consente di scaricare video di YouTube in formato MP4 in modo rapido e semplice. Basta incollare un link di YouTube, scegliere la qualità video preferita e scaricare il file MP4 direttamente sul tuo dispositivo senza installare alcun software.",
+    "intro2": "Questo downloader da YouTube a MP4 supporta risoluzioni da 144p fino a 1080p Full HD e funziona su desktop, iPhone, Android e tablet. Y2Mate funziona interamente nel tuo browser con una velocità di conversione elevata, senza pubblicità o pop-up e senza necessità di registrazione."
   },
   "instructions": {
     "title": "Come convertire YouTube in MP4",
@@ -27,10 +27,10 @@
   "whyChoose": {
     "title": "Perché usare questo convertitore da YouTube a MP4",
     "reasons": [
-      "<strong>Integrità video coerente:</strong> I flussi video e audio vengono uniti utilizzando l'allineamento temporale per prevenire la desincronizzazione o la perdita di suono.",
-      "<strong>Uscita audio integrata:</strong> Il file MP4 generato include dati audio completi senza richiedere download separati.",
-      "<strong>Pipeline di elaborazione efficiente:</strong> L'analisi del flusso e l'assemblaggio dei file sono ottimizzati per un completamento più rapido rispetto a molti strumenti online.",
-      "<strong>Ambiente di conversione senza pubblicità:</strong> Il sistema funziona senza annunci o interruzioni pop-up durante l'elaborazione."
+      "<strong>Download con un clic:</strong> Incolla il link, scegli la qualità e scarica istantaneamente — nessun passaggio extra.",
+      "<strong>Conversione veloce, senza attese:</strong> Ottieni il tuo file MP4 rapidamente, anche per video lunghi.",
+      "<strong>Esperienza pulita, senza pubblicità:</strong> Nessun pop-up, nessun reindirizzamento e nessun pulsante di download falso.",
+      "<strong>Funziona su qualsiasi dispositivo:</strong> Scarica video di YouTube su desktop, iPhone, Android o tablet."
     ]
   },
   "features": {
@@ -66,32 +66,40 @@
     "title": "Domande frequenti",
     "items": [
       {
-        "question": "In che modo la risoluzione MP4 influisce sulla qualità video e sulla dimensione del file?",
-        "answer": "La risoluzione MP4 determina il numero di pixel utilizzati per rappresentare ogni fotogramma video. Le risoluzioni inferiori come 144p o 360p riducono la dimensione del file e l'utilizzo della larghezza di banda, ma limitano i dettagli visivi. Le risoluzioni più elevate come 720p HD e 1080p Full HD conservano più informazioni sull'immagine, con conseguente visualizzazione più nitida e movimento più fluido, aumentando al contempo la dimensione del file e i requisiti di decodifica."
+        "question": "Come converto un video di YouTube in MP4?",
+        "answer": "Incolla il link del video di YouTube nella casella di input, clicca su Avvia, scegli una risoluzione MP4 e scarica il video direttamente sul tuo dispositivo."
       },
       {
-        "question": "Perché la velocità di conversione è importante negli strumenti MP4 online?",
-        "answer": "La velocità di conversione è influenzata dall'efficienza con cui un sistema analizza i flussi video e prepara i file di output. Un'analisi lenta può portare a lunghi tempi di attesa o opzioni di risoluzione incomplete. Ottimizzando l'estrazione dei metadati del flusso e l'assemblaggio dei file, Y2Mate completa questi passaggi circa due volte più velocemente di molti convertitori online convenzionali."
+        "question": "Y2Mate è gratuito?",
+        "answer": "Sì. Puoi convertire e scaricare video di YouTube in MP4 gratuitamente senza registrazione o pagamento."
       },
       {
-        "question": "In che modo il sistema garantisce la sincronizzazione audio e video?",
-        "answer": "I video di YouTube memorizzano audio e video come flussi separati. Durante la conversione, questi flussi devono essere uniti con precisione. Y2Mate allinea audio e video utilizzando i timestamp del flusso per prevenire problemi comuni come audio ritardato, sezioni silenziate o segmenti persi nel file MP4 finale."
+        "question": "Devo installare software o estensioni del browser?",
+        "answer": "No. Y2Mate funziona interamente online nel tuo browser web. Non è richiesta nessuna app o estensione."
       },
       {
-        "question": "Perché un ambiente senza pubblicità e senza pop-up è importante per le conversioni?",
-        "answer": "Gli annunci e gli elementi pop-up spesso introducono script aggiuntivi che possono interrompere l'elaborazione o interferire con i downloads. Un ambiente senza pubblicità riduce il sovraccarico di esecuzione, migliora la stabilità del sistema e minimizza il rischio di reindirizzamenti accidentali o generazione di file incompleti."
+        "question": "Quali risoluzioni MP4 sono supportate?",
+        "answer": "Y2Mate supporta risoluzioni MP4 da 144p fino a 1080p Full HD, a seconda della qualità del video originale."
       },
       {
-        "question": "In che modo l'elaborazione basata su browser migliora la sicurezza?",
-        "answer": "L'elaborazione basata su browser elimina la necessità di installare software o estensioni di terze parti, che possono introdurre rischi per la sicurezza. Poiché Y2Mate opera tramite richieste web standard e non richiede autorizzazioni elevate, il processo di conversione rimane isolato dal sistema operativo dell'utente e dai file personali."
+        "question": "Posso usare questo convertitore YouTube in MP4 su dispositivi mobili?",
+        "answer": "Sì. Y2Mate funziona su iPhone, Android, tablet e computer desktop tramite qualsiasi browser web moderno."
       },
       {
-        "question": "Tutti i dispositivi can riprodurre file MP4 Full HD 1080p?",
-        "answer": "La maggior parte dei dispositivi moderni supporta la riproduzione MP4 1080p. Tuttavia, l'hardware più vecchio potrebbe avere capacità di decodifica limitate. In questi casi, la selezione di 480p o 720p può fornire una riproduzione più fluida mantenendo una qualità visiva accettabile."
+        "question": "Perché non riesco a scaricare alcuni video di YouTube?",
+        "answer": "I video privati, i contenuti con restrizioni di età o i video che richiedono l'accesso non possono essere elaborati dai convertitori online."
       },
       {
-        "question": "I video YouTube privati o con restrizioni sono supportati?",
-        "answer": "No. Possono essere elaborati solo i video YouTube pubblici o non elencati. I video privati o con restrizioni richiedono un'autenticazione a cui i sistemi di conversione esterni non possono accedere."
+        "question": "È sicuro scaricare video di YouTube usando Y2Mate?",
+        "answer": "Sì. Y2Mate non richiede accesso all'account, installazione di software o permessi speciali e funziona senza annunci pop-up."
+      },
+      {
+        "question": "Ci sono limiti di download?",
+        "answer": "No. Puoi convertire e scaricare quanti video di YouTube in MP4 desideri."
+      },
+      {
+        "question": "Il file MP4 scaricato funzionerà su tutti i dispositivi?",
+        "answer": "Sì. MP4 è un formato ampiamente supportato e funziona su smartphone, computer, smart TV e la maggior parte dei lettori multimediali."
       }
     ]
   }

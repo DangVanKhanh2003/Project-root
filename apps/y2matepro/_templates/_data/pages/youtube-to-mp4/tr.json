@@ -11,9 +11,9 @@
     "title": "YouTube'dan MP4'e Dönüştürücü"
   },
   "content": {
-    "mainTitle": "YouTube Videolarını MP4 Formatına Dönüştürün",
-    "intro1": "Y2Mate, YouTube kaynaklarından MP4 video dosyaları oluşturmak için tasarlanmış çevrimiçi bir dönüştürme sistemidir. Çıkış dosyaları, ek kodekler veya işlem sonrası gerektirmeden standart medya oynatıcılar ve oynatma cihazlarıyla uyumluluğu sağlayan tamamen entegre ses ve video akışlarını içerir.",
-    "intro2": "Sistem, 144p'den 1080p Full HD'ye kadar MP4 çözünürlüklerini destekler. Video bağlantı analizi ve dosya hazırlığı, birçok benzer çevrimiçi dönüştürücüye göre yaklaşık iki kat daha hızlı tamamlanacak şekilde optimize edilmiştir. Tüm dönüştürme iş akışı boyunca Y2Mate, reklam veya açılır pencere öğeleri görüntülemez. Tüm işlemler, yazılım yüklemeden veya yükseltilmiş izinler istemeden doğrudan tarayıcıda yürütülür ve video işleme için güvenli ve yalıtılmış bir ortam sağlar."
+    "mainTitle": "YouTube Videolarını MP4'e Dönüştürün",
+    "intro1": "Y2Mate, YouTube videolarını MP4 formatında hızlı ve kolay bir şekilde indirmenize olanak tanıyan ücretsiz bir çevrimiçi YouTube'dan MP4'e dönüştürücüdür. Sadece bir YouTube bağlantısı yapıştırın, tercih ettiğiniz video kalitesini seçin ve herhangi bir yazılım yüklemeden MP4 dosyasını doğrudan cihazınıza indirin.",
+    "intro2": "Bu YouTube'dan MP4'e indirici, 144p'den 1080p'ye kadar Full HD çözünürlükleri destekler ve masaüstü, iPhone, Android ve tabletlerde çalışır. Y2Mate, hızlı dönüştürme hızı, reklam veya açılır pencere olmadan ve kayıt gerektirmeden tamamen tarayıcınızda çalışır."
   },
   "instructions": {
     "title": "YouTube'u MP4'e Nasıl Dönüştürülür",
@@ -27,10 +27,10 @@
   "whyChoose": {
     "title": "Bu YouTube'dan MP4'e Dönüştürücüyü Neden Kullanmalısınız",
     "reasons": [
-      "<strong>Tutarlı Video Bütünlüğü:</strong> Video ve ses akışları, senkronizasyon bozukluğunu veya ses kaybını önlemek için zaman damgası hizalaması kullanılarak birleştirilir.",
-      "<strong>Entegre Ses Çıkışı:</strong> Oluşturulan MP4 dosyası, ayrı indirmeler gerektirmeden eksiksiz ses verilerini içerir.",
-      "<strong>Verimli İşleme Hattı:</strong> Akış analizi ve dosya birleştirme, birçok çevrimiçi araca kıyasla daha hızlı tamamlanacak şekilde optimize edilmiştir.",
-      "<strong>Reklamsız Dönüştürme Ortamı:</strong> Sistem, işleme sırasında reklam veya açılır pencere kesintileri olmadan çalışır."
+      "<strong>Tek Tıkla İndirme:</strong> Bağlantıyı yapıştırın, kaliteyi seçin ve anında indirin — ekstra adım yok.",
+      "<strong>Hızlı Dönüştürme, Bekleme Yok:</strong> Uzun videolar için bile MP4 dosyanızı hızlıca alın.",
+      "<strong>Temiz, Reklamsız Deneyim:</strong> Pop-up yok, yönlendirme yok ve sahte indirme düğmesi yok.",
+      "<strong>Her Cihazda Çalışır:</strong> YouTube videolarını masaüstü, iPhone, Android veya tablette indirin."
     ]
   },
   "features": {
@@ -66,32 +66,40 @@
     "title": "Sıkça Sorulan Sorular",
     "items": [
       {
-        "question": "MP4 çözünürlüğü video kalitesini ve dosya boyutunu nasıl etkiler?",
-        "answer": "MP4 çözünürlüğü, her video karesini temsil etmek için kullanılan piksel sayısını belirler. 144p veya 360p gibi daha düşük çözünürlükler dosya boyutunu ve bant genişliği kullanımını azaltır ancak görsel ayrıntıyı sınırlar. 720p HD ve 1080p Full HD gibi daha yüksek çözünürlükler daha fazla görüntü bilgisini korur, bu da daha keskin görseller ve daha akıcı hareket sağlar, aynı zamanda dosya boyutunu ve kod çözme gereksinimlerini artırır."
+        "question": "Bir YouTube videosunu MP4'e nasıl dönüştürürüm?",
+        "answer": "YouTube video bağlantısını giriş kutusuna yapıştırın, Başlat'a tıklayın, bir MP4 çözünürlüğü seçin ve videoyu doğrudan cihazınıza indirin."
       },
       {
-        "question": "Çevrimiçi MP4 araçlarında dönüştürme hızı neden önemlidir?",
-        "answer": "Dönüştürme hızı, bir sistemin video akışlarını ne kadar verimli analiz ettiği ve çıktı dosyalarını hazırladığı ile etkilenir. Yavaş analiz, uzun bekleme sürelerine veya eksik çözünürlük seçeneklerine yol açabilir. Akış meta veri çıkarma ve dosya birleştirmeyi optimize ederek Y2Mate, bu adımları birçok geleneksel çevrimiçi dönüştürücüye göre yaklaşık iki kat daha hızlı tamamlar."
+        "question": "Y2Mate ücretsiz mi?",
+        "answer": "Evet. YouTube videolarını kayıt veya ödeme olmadan ücretsiz olarak MP4'e dönüştürebilir ve indirebilirsiniz."
       },
       {
-        "question": "Sistem ses ve video senkronizasyonunu nasıl sağlar?",
-        "answer": "YouTube videoları sesi ve videoyu ayrı akışlar olarak depolar. Dönüştürme sırasında bu akışların doğru bir şekilde birleştirilmesi gerekir. Y2Mate, son MP4 dosyasında gecikmeli ses, sessiz bölümler veya kayıp bölümler gibi yaygın sorunları önlemek için akış zaman damgalarını kullanarak sesi ve videoyu hizalar."
+        "question": "Herhangi bir yazılım veya tarayıcı uzantısı yüklemem gerekiyor mu?",
+        "answer": "Hayır. Y2Mate tamamen web tarayıcınızda çevrimiçi çalışır. Uygulama veya uzantı gerekmez."
       },
       {
-        "question": "Reklamsız ve açılır penceresiz bir ortam dönüştürmeler için neden önemlidir?",
-        "answer": "Reklamlar ve açılır pencere öğeleri genellikle işlemeyi kesintiye uğratabilecek veya indirmeleri engelleyebilecek ek komut dosyaları sunar. Reklamsız bir ortam, yürütme yükünü azaltır, sistem kararlılığını artırır ve kazara yönlendirmeler veya eksik dosya oluşturma riskini en aza indirir."
+        "question": "Hangi MP4 çözünürlükleri destekleniyor?",
+        "answer": "Y2Mate, orijinal video kalitesine bağlı olarak 144p'den 1080p Full HD'ye kadar MP4 çözünürlüklerini destekler."
       },
       {
-        "question": "Tarayıcı tabanlı işleme güvenliği nasıl artırır?",
-        "answer": "Tarayıcı tabanlı işleme, güvenlik riskleri oluşturabilecek üçüncü taraf yazılım veya uzantıların yüklenmesi ihtiyacını ortadan kaldırır. Y2Mate, standart web istekleri aracılığıyla çalıştığı ve yükseltilmiş izinler istemediği için dönüştürme süreci, kullanıcının işletim sisteminden ve kişisel dosyalarından izole kalır."
+        "question": "Bu YouTube'dan MP4'e dönüştürücüyü mobil cihazlarda kullanabilir miyim?",
+        "answer": "Evet. Y2Mate, herhangi bir modern web tarayıcısı aracılığıyla iPhone, Android, tabletler ve masaüstü bilgisayarlarda çalışır."
       },
       {
-        "question": "Tüm cihazlar 1080p Full HD MP4 dosyalarını oynatabilir mi?",
-        "answer": "Çoğu modern cihaz 1080p MP4 oynatmayı destekler. Ancak, eski donanımlar sınırlı kod çözme yeteneklerine sahip olabilir. Bu gibi durumlarda, 480p veya 720p seçimi, kabul edilebilir görsel kaliteyi korurken daha akıcı oynatma sağlayabilir."
+        "question": "Neden bazı YouTube videolarını indiremiyorum?",
+        "answer": "Özel videolar, yaş kısıtlamalı içerik veya oturum açma gerektiren videolar çevrimiçi dönüştürücüler tarafından işlenemez."
       },
       {
-        "question": "Özel veya kısıtlı YouTube videoları destekleniyor mu?",
-        "answer": "Hayır. Yalnızca Genel veya Listelenmemiş YouTube videoları işlenebilir. Özel veya kısıtlı videolar, harici dönüştürme sistemleri tarafından erişilemeyen kimlik doğrulama gerektirir."
+        "question": "Y2Mate kullanarak YouTube videoları indirmek güvenli mi?",
+        "answer": "Evet. Y2Mate hesap girişi, yazılım yüklemesi veya özel izinler gerektirmez ve açılır pencere reklamları olmadan çalışır."
+      },
+      {
+        "question": "İndirme limiti var mı?",
+        "answer": "Hayır. İstediğiniz kadar YouTube videosunu MP4'e dönüştürebilir ve indirebilirsiniz."
+      },
+      {
+        "question": "İndirilen MP4 dosyası tüm cihazlarda çalışacak mı?",
+        "answer": "Evet. MP4, yaygın olarak desteklenen bir formattır ve akıllı telefonlar, bilgisayarlar, akıllı TV'ler ve çoğu medya oynatıcıda çalışır."
       }
     ]
   }

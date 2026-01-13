@@ -11,9 +11,9 @@
     "title": "Penukar YouTube ke MP4"
   },
   "content": {
-    "mainTitle": "Tukar Video YouTube ke Format MP4",
-    "intro1": "Y2Mate adalah sistem penukaran dalam talian yang direka untuk menjana fail video MP4 dari sumber YouTube. Fail output termasuk aliran audio dan video yang bersepadu sepenuhnya, memastikan keserasian dengan pemain media standard dan peranti main balik tanpa memerlukan codec tambahan atau pasca-pemprosesan.",
-    "intro2": "Sistem ini menyokong resolusi MP4 dari 144p hingga 1080p Full HD. Analisis pautan video dan penyediaan fail dioptimumkan untuk diselesaikan kira-kira dua kali lebih cepat daripada banyak penukar dalam talian yang setanding. Sepanjang keseluruhan aliran kerja penukaran, Y2Mate tidak memaparkan iklan atau elemen pop-up. Semua operasi dilaksanakan secara langsung dalam pelayar tanpa memasang perisian atau meminta kebenaran yang ditingkatkan, menyediakan persekitaran yang selamat dan terpencil untuk pemprosesan video."
+    "mainTitle": "Tukar Video YouTube kepada MP4",
+    "intro1": "Y2Mate ialah penukar YouTube ke MP4 dalam talian percuma yang membolehkan anda memuat turun video YouTube dalam format MP4 dengan cepat dan mudah. Hanya tampal pautan YouTube, pilih kualiti video pilihan anda dan muat turun fail MP4 terus ke peranti anda tanpa memasang sebarang perisian.",
+    "intro2": "Pemuat turun YouTube ke MP4 ini menyokong resolusi daripada 144p sehingga 1080p HD Penuh dan berfungsi pada desktop, iPhone, Android dan tablet. Y2Mate berjalan sepenuhnya dalam penyemak imbas anda dengan kelajuan penukaran yang pantas, tiada iklan atau pop timbul dan tiada pendaftaran diperlukan."
   },
   "instructions": {
     "title": "Cara Menukar YouTube ke MP4",
@@ -27,10 +27,10 @@
   "whyChoose": {
     "title": "Mengapa Menggunakan Penukar YouTube ke MP4 Ini",
     "reasons": [
-      "<strong>Integriti Video yang Konsisten:</strong> Aliran video dan audio digabungkan menggunakan penjajaran cap masa untuk mengelakkan penyegerakan atau kehilangan bunyi.",
-      "<strong>Output Audio Bersepadu:</strong> Fail MP4 yang dijana termasuk data audio lengkap tanpa memerlukan muat turun berasingan.",
-      "<strong>Saluran Pemprosesan yang Cekap:</strong> Analisis aliran dan pemasangan fail dioptimumkan untuk penyelesaian yang lebih cepat berbanding banyak alat dalam talian.",
-      "<strong>Persekitaran Penukaran Bebas Iklan:</strong> Sistem beroperasi tanpa iklan atau gangguan pop-up semasa pemprosesan."
+      "<strong>Muat Turun Satu Klik:</strong> Tampal pautan, pilih kualiti, dan muat turun serta-merta — tiada langkah tambahan.",
+      "<strong>Penukaran Pantas, Tiada Menunggu:</strong> Dapatkan fail MP4 anda dengan cepat, walaupun untuk video panjang.",
+      "<strong>Pengalaman Bersih, Bebas Iklan:</strong> Tiada pop-up, tiada pengalihan, dan tiada butang muat turun palsu.",
+      "<strong>Berfungsi pada Semua Peranti:</strong> Muat turun video YouTube di desktop, iPhone, Android, atau tablet."
     ]
   },
   "features": {
@@ -66,32 +66,40 @@
     "title": "Soalan Lazim",
     "items": [
       {
-        "question": "Bagaimana resolusi MP4 mempengaruhi kualiti video dan saiz fail?",
-        "answer": "Resolusi MP4 menentukan bilangan piksel yang digunakan untuk mewakili setiap bingkai video. Resolusi yang lebih rendah seperti 144p atau 360p mengurangkan saiz fail dan penggunaan jalur lebar tetapi mengehadkan butiran visual. Resolusi yang lebih tinggi seperti 720p HD dan 1080p Full HD mengekalkan lebih banyak maklumat imej, menghasilkan visual yang lebih tajam dan gerakan yang lebih lancar, sambil juga meningkatkan saiz fail dan keperluan penyahkodan."
+        "question": "Bagaimana saya menukar video YouTube ke MP4?",
+        "answer": "Tampal pautan video YouTube ke dalam kotak input, klik Mula, pilih resolusi MP4, dan muat turun video terus ke peranti anda."
       },
       {
-        "question": "Mengapa kelajuan penukaran penting dalam alat MP4 dalam talian?",
-        "answer": "Kelajuan penukaran dipengaruhi oleh seberapa cekap sistem menganalisis aliran video dan menyediakan fail output. Analisis yang perlahan boleh menyebabkan masa menunggu yang lama atau pilihan resolusi yang tidak lengkap. Dengan mengoptimumkan pengekstrakan metadata aliran dan pemasangan fail, Y2Mate menyelesaikan langkah-langkah ini kira-kira dua kali lebih cepat daripada banyak penukar dalam talian konvensional."
+        "question": "Adakah Y2Mate percuma?",
+        "answer": "Ya. Anda boleh menukar dan memuat turun video YouTube ke MP4 secara percuma tanpa pendaftaran atau pembayaran."
       },
       {
-        "question": "Bagaimana sistem memastikan penyegerakan audio dan video?",
-        "answer": "Video YouTube menyimpan audio dan video sebagai aliran berasingan. Semasa penukaran, aliran ini mesti digabungkan dengan tepat. Y2Mate menyelaraskan audio dan video menggunakan cap masa aliran untuk mengelakkan masalah biasa seperti audio tertunda, bahagian yang diredam, atau segmen yang hilang dalam fail MP4 akhir."
+        "question": "Adakah saya perlu memasang sebarang perisian atau sambungan pelayar?",
+        "answer": "Tidak. Y2Mate berfungsi sepenuhnya dalam talian dalam pelayar web anda. Tiada aplikasi atau sambungan diperlukan."
       },
       {
-        "question": "Mengapa persekitaran bebas iklan dan pop-up penting untuk penukaran?",
-        "answer": "Iklan dan elemen pop-up sering memperkenalkan skrip tambahan yang boleh mengganggu pemprosesan atau mengganggu muat turun. Persekitaran bebas iklan mengurangkan overhed pelaksanaan, meningkatkan kestabilan sistem, dan meminimumkan risiko pengalihan yang tidak disengajakan atau penjanaan fail yang tidak lengkap."
+        "question": "Resolusi MP4 apa yang disokong?",
+        "answer": "Y2Mate menyokong resolusi MP4 dari 144p hingga 1080p Full HD, bergantung pada kualiti video asal."
       },
       {
-        "question": "Bagaimana pemprosesan berasaskan pelayar meningkatkan keselamatan?",
-        "answer": "Pemprosesan berasaskan pelayar menghilangkan keperluan untuk memasang perisian atau sambungan pihak ketiga, yang boleh menimbulkan risiko keselamatan. Oleh kerana Y2Mate beroperasi melalui permintaan web standard dan tidak meminta kebenaran yang ditingkatkan, proses penukaran kekal terpencil dari sistem operasi pengguna dan fail peribadi."
+        "question": "Bolehkah saya menggunakan penukar YouTube ke MP4 ini pada peranti mudah alih?",
+        "answer": "Ya. Y2Mate berfungsi pada iPhone, Android, tablet, dan komputer desktop melalui mana-mana pelayar web moden."
       },
       {
-        "question": "Bolehkah semua peranti memainkan fail MP4 Full HD 1080p?",
-        "answer": "Kebanyakan peranti moden menyokong main balik MP4 1080p. Walau bagaimanapun, perkakasan yang lebih lama mungkin mempunyai keupayaan penyahkodan yang terhad. Dalam kes sedemikian, memilih 480p atau 720p boleh memberikan main balik yang lebih lancar sambil mengekalkan kualiti visual yang boleh diterima."
+        "question": "Mengapa saya tidak boleh memuat turun sesetengah video YouTube?",
+        "answer": "Video peribadi, kandungan terhad umur, atau video yang memerlukan log masuk tidak boleh diproses oleh penukar dalam talian."
       },
       {
-        "question": "Adakah video YouTube peribadi atau terhad disokong?",
-        "answer": "Tidak. Hanya video YouTube Awam atau Tidak Tersenarai yang boleh diproses. Video peribadi atau terhad memerlukan pengesahan yang tidak boleh diakses oleh sistem penukaran luaran."
+        "question": "Adakah selamat memuat turun video YouTube menggunakan Y2Mate?",
+        "answer": "Ya. Y2Mate tidak memerlukan log masuk akaun, pemasangan perisian, atau kebenaran khas, dan berjalan tanpa iklan pop-up."
+      },
+      {
+        "question": "Adakah sebarang had muat turun?",
+        "answer": "Tidak. Anda boleh menukar dan memuat turun seberapa banyak video YouTube ke MP4 yang anda mahu."
+      },
+      {
+        "question": "Adakah fail MP4 yang dimuat turun akan berfungsi pada semua peranti?",
+        "answer": "Ya. MP4 adalah format yang disokong secara meluas dan berfungsi pada telefon pintar, komputer, TV pintar, dan kebanyakan pemain media."
       }
     ]
   }
