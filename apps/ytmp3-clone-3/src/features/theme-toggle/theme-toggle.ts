@@ -6,17 +6,27 @@
 type Theme = 'dark' | 'light';
 
 const THEME_STORAGE_KEY = 'ytmp3-theme';
-const DEFAULT_THEME: Theme = 'dark';
 
 /**
- * Get current theme from localStorage or default
+ * Get system preferred theme from browser
+ */
+function getSystemTheme(): Theme {
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    return 'dark';
+  }
+  return 'light';
+}
+
+/**
+ * Get current theme from localStorage or system preference
  */
 function getCurrentTheme(): Theme {
   const stored = localStorage.getItem(THEME_STORAGE_KEY);
   if (stored === 'dark' || stored === 'light') {
     return stored;
   }
-  return DEFAULT_THEME;
+  // Fallback to system preference if no stored theme
+  return getSystemTheme();
 }
 
 /**
