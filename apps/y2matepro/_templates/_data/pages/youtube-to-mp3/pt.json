@@ -1,0 +1,93 @@
+{
+  "seo": {
+    "title": "Y2mate - Conversor de YouTube para MP3",
+    "description": "Y2mate é um conversor de YouTube para MP3 que suporta áudio de 128kbps, 192kbps e 320kbps. Baixe arquivos de áudio completos com integridade de som preservada. Não são exibidos anúncios.",
+    "ogTitle": "Y2mate - Conversor de YouTube para MP3",
+    "ogDescription": "Converta YouTube para MP3 com 128/192/320kbps. Processamento rápido, saída de áudio completa e sem anúncios.",
+    "schemaName": "Y2mate - Conversor de YouTube para MP3",
+    "schemaDescription": "Uma ferramenta de conversão de YouTube para MP3 online que suporta múltiplas opções de taxa de bits com integridade de áudio preservada."
+  },
+  "hero": {
+    "title": "Conversor de YouTube para MP3"
+  },
+  "content": {
+    "mainTitle": "Converta vídeos do YouTube para MP3 com qualidade de áudio preservada",
+    "intro1": "Y2mate é uma ferramenta online projetada para extrair e converter fluxos de áudio de vídeos do YouTube para o formato MP3. O processo de conversão gera arquivos de áudio completos com som sincronizado, garantindo que nenhum segmento seja perdido, silenciado ou truncado durante a extração.",
+    "intro2": "A análise de links e a geração de arquivos de áudio são otimizadas para serem concluídas aproximadamente duas vezes mais rápido do que muitas ferramentas online comparáveis. O Y2mate não exibe anúncios ou elementos pop-up em nenhuma fase de uso, proporcionando um fluxo de trabalho ininterrupto. Todo o processamento é realizado diretamente através do navegador sem instalar software ou extensões."
+  },
+  "instructions": {
+    "title": "Como Converter YouTube para MP3",
+    "steps": [
+      "<strong>Cole o link do vídeo:</strong> Copie o URL do YouTube e cole-o no campo de entrada.",
+      "<strong>Selecione a taxa de bits:</strong> Clique em \"Iniciar\" e escolha MP3 com qualidade de 128kbps, 192kbps ou 320kbps.",
+      "<strong>Converter e baixar:</strong> Clique em \"Converter\" para gerar o arquivo MP3 e baixá-lo diretamente para o seu dispositivo."
+    ]
+  },
+  "whyChoose": {
+    "title": "Por que Usar Y2mate para Conversão de MP3",
+    "reasons": [
+      "<strong>Integridade de Áudio Consistente:</strong> O processo de conversão preserva o fluxo de áudio original sem truncamento, segmentos perdidos ou artefatos de recodificação.",
+      "<strong>Controle de Taxa de Bits:</strong> Múltiplas opções de taxa de bits permitem um controle preciso sobre a qualidade do áudio e os requisitos de armazenamento.",
+      "<strong>Processamento Estável para Conteúdo Longo:</strong> Áudio de formato longo, como podcasts, palestras e mixagens de música, é tratado sem interrupção.",
+      "<strong>Não são Exibidos Anúncios:</strong> O Y2mate opera sem exibir anúncios ou pop-ups durante a conversão e o download."
+    ]
+  },
+  "features": {
+    "title": "Recursos de Conversão de MP3",
+    "items": [
+      {
+        "title": "Taxas de Bits MP3 Suportadas",
+        "description": "As opções de taxa de bits disponíveis incluem 128kbps, 192kbps e 320kbps, dependendo da preferência do usuário."
+      },
+      {
+        "title": "Saída de Áudio Completa",
+        "description": "O arquivo MP3 gerado contém a faixa de áudio completa com duração correta e reprodução ininterrupta."
+      },
+      {
+        "title": "Processamento Baseado na Web",
+        "description": "A extração e conversão de áudio são realizadas inteiramente online sem a necessidade de instalação de software."
+      },
+      {
+        "title": "Fluxo de Trabalho Sem Anúncios",
+        "description": "Não são exibidos anúncios ou pop-ups durante o processo de conversão."
+      },
+      {
+        "title": "Conversões Ilimitadas",
+        "description": "Os usuários podem converter e baixar vários arquivos MP3 sem limites diários ou de uso."
+      },
+      {
+        "title": "Ampla Compatibilidade de Reprodução",
+        "description": "Os arquivos MP3 são compatíveis com reprodutores de mídia comuns, smartphones e dispositivos de áudio."
+      }
+    ]
+  },
+  "faqs": {
+    "title": "Perguntas Frequentes",
+    "items": [
+      {
+        "question": "Qual a diferença entre MP3 de 128kbps, 192kbps e 320kbps?",
+        "answer": "A taxa de bits do MP3 define a quantidade de dados de áudio codificados por segundo. Uma taxa de bits mais alta retém mais detalhes de áudio, mas resulta em um tamanho de arquivo maior. 128kbps é adequado para conteúdo baseado em fala, como palestras ou entrevistas. 192kbps fornece um nível equilibrado de compressão e qualidade de som para audição geral. 320kbps é a taxa de bits MP3 padrão mais alta e preserva a maior parte das informações de áudio, tornando-o adequado para reprodução de música em equipamentos de áudio de alta qualidade."
+      },
+      {
+        "question": "Como o Y2mate preserva a integridade do áudio durante a conversão?",
+        "answer": "O sistema processa o fluxo de áudio original continuamente, mantendo a linha do tempo e a estrutura de amostragem corretas. Essa abordagem evita seções perdidas, desvio de tempo ou quadros de áudio ausentes, garantindo que o MP3 final corresponda à duração total do áudio de origem."
+      },
+      {
+        "question": "Vídeos longos ou podcasts podem ser convertidos para MP3 de forma confiável?",
+        "answer": "Sim. O Y2mate suporta conteúdo de longa duração, incluindo podcasts de várias horas e palestras estendidas. O sistema é projetado para processar fluxos de áudio contínuos sem interrupção ou truncamento."
+      },
+      {
+        "question": "A conversão de YouTube para MP3 reduz a qualidade do áudio?",
+        "answer": "MP3 é um formato de compressão com perdas, o que significa que alguns dados de áudio são reduzidos durante a codificação. No entanto, taxas de bits mais altas, como 192kbps e 320kbps, minimizam a perda de qualidade perceptível. O Y2mate não aplica compressão adicional além da taxa de bits selecionada."
+      },
+      {
+        "question": "Anúncios ou pop-ups são exibidos durante a conversão?",
+        "answer": "Não. O Y2mate não exibe anúncios ou pop-ups em nenhuma fase do processo de conversão ou download."
+      },
+      {
+        "question": "Vídeos privados do YouTube podem ser convertidos?",
+        "answer": "Não. Apenas vídeos do YouTube Públicos ou Não Listados podem ser processados devido a restrições de acesso."
+      }
+    ]
+  }
+}

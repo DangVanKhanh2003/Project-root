@@ -1,0 +1,93 @@
+{
+  "seo": {
+    "title": "Y2mate - Trình chuyển đổi YouTube sang MP3",
+    "description": "Y2mate là trình chuyển đổi YouTube sang MP3 hỗ trợ âm thanh 128kbps, 192kbps và 320kbps. Tải xuống các tệp âm thanh hoàn chỉnh với tính toàn vẹn âm thanh được bảo toàn. Không hiển thị quảng cáo.",
+    "ogTitle": "Y2mate - Trình chuyển đổi YouTube sang MP3",
+    "ogDescription": "Chuyển đổi YouTube sang MP3 với 128/192/320kbps. Xử lý nhanh, đầu ra âm thanh hoàn chỉnh và không có quảng cáo.",
+    "schemaName": "Y2mate - Trình chuyển đổi YouTube sang MP3",
+    "schemaDescription": "Một công cụ chuyển đổi YouTube sang MP3 trực tuyến hỗ trợ nhiều tùy chọn tốc độ bit với tính toàn vẹn âm thanh được bảo toàn."
+  },
+  "hero": {
+    "title": "Trình chuyển đổi YouTube sang MP3"
+  },
+  "content": {
+    "mainTitle": "Chuyển đổi video YouTube sang MP3 với chất lượng âm thanh được bảo toàn",
+    "intro1": "Y2mate là một công cụ trực tuyến được thiết kế để trích xuất và chuyển đổi luồng âm thanh từ video YouTube sang định dạng MP3. Quá trình chuyển đổi tạo ra các tệp âm thanh hoàn chỉnh với âm thanh được đồng bộ hóa, đảm bảo rằng không có phân đoạn nào bị thiếu, tắt tiếng hoặc cắt bớt trong quá trình trích xuất.",
+    "intro2": "Phân tích liên kết và tạo tệp âm thanh được tối ưu hóa để hoàn thành nhanh hơn khoảng hai lần so với nhiều công cụ trực tuyến tương đương. Y2mate không hiển thị quảng cáo hoặc các yếu tố bật lên ở bất kỳ giai đoạn sử dụng nào, cung cấp quy trình làm việc không bị gián đoạn. Tất cả quá trình xử lý được thực hiện trực tiếp thông qua trình duyệt mà không cần cài đặt phần mềm hoặc tiện ích mở rộng."
+  },
+  "instructions": {
+    "title": "Cách chuyển đổi YouTube sang MP3",
+    "steps": [
+      "<strong>Dán liên kết video:</strong> Sao chép URL YouTube và dán vào trường nhập.",
+      "<strong>Chọn tốc độ bit:</strong> Nhấp vào \"Bắt đầu\" và chọn MP3 với chất lượng 128kbps, 192kbps hoặc 320kbps.",
+      "<strong>Chuyển đổi và tải xuống:</strong> Nhấp vào \"Chuyển đổi\" để tạo tệp MP3 và tải xuống trực tiếp vào thiết bị của bạn."
+    ]
+  },
+  "whyChoose": {
+    "title": "Tại sao nên sử dụng Y2mate để chuyển đổi MP3",
+    "reasons": [
+      "<strong>Tính toàn vẹn âm thanh nhất quán:</strong> Quá trình chuyển đổi bảo toàn luồng âm thanh gốc mà không bị cắt bớt, mất phân đoạn hoặc lỗi mã hóa lại.",
+      "<strong>Kiểm soát tốc độ bit:</strong> Nhiều tùy chọn tốc độ bit cho phép kiểm soát chính xác chất lượng âm thanh và yêu cầu lưu trữ.",
+      "<strong>Xử lý ổn định cho nội dung dài:</strong> Âm thanh dạng dài như podcast, bài giảng và bản phối nhạc được xử lý mà không bị gián đoạn.",
+      "<strong>Không hiển thị quảng cáo:</strong> Y2mate hoạt động mà không hiển thị quảng cáo hoặc cửa sổ bật lên trong quá trình chuyển đổi và tải xuống."
+    ]
+  },
+  "features": {
+    "title": "Khả năng chuyển đổi MP3",
+    "items": [
+      {
+        "title": "Tốc độ bit MP3 được hỗ trợ",
+        "description": "Các tùy chọn tốc độ bit có sẵn bao gồm 128kbps, 192kbps và 320kbps, tùy thuộc vào sở thích của người dùng."
+      },
+      {
+        "title": "Đầu ra âm thanh hoàn chỉnh",
+        "description": "Tệp MP3 được tạo chứa bản nhạc âm thanh đầy đủ với thời lượng chính xác và phát lại không bị gián đoạn."
+      },
+      {
+        "title": "Xử lý dựa trên web",
+        "description": "Trích xuất và chuyển đổi âm thanh được thực hiện hoàn toàn trực tuyến mà không cần cài đặt phần mềm."
+      },
+      {
+        "title": "Quy trình làm việc không có quảng cáo",
+        "description": "Không có quảng cáo hoặc cửa sổ bật lên được hiển thị trong quá trình chuyển đổi."
+      },
+      {
+        "title": "Chuyển đổi không giới hạn",
+        "description": "Người dùng có thể chuyển đổi và tải xuống nhiều tệp MP3 mà không có giới hạn hàng ngày hoặc giới hạn sử dụng."
+      },
+      {
+        "title": "Khả năng tương thích phát lại rộng",
+        "description": "Các tệp MP3 tương thích với các trình phát media phổ biến, điện thoại thông minh và thiết bị âm thanh."
+      }
+    ]
+  },
+  "faqs": {
+    "title": "Các câu hỏi thường gặp",
+    "items": [
+      {
+        "question": "Sự khác biệt giữa MP3 128kbps, 192kbps và 320kbps là gì?",
+        "answer": "Tốc độ bit MP3 xác định lượng dữ liệu âm thanh được mã hóa mỗi giây. Tốc độ bit cao hơn giữ lại nhiều chi tiết âm thanh hơn nhưng dẫn đến kích thước tệp lớn hơn. 128kbps phù hợp cho nội dung dựa trên giọng nói như bài giảng hoặc phỏng vấn. 192kbps cung cấp mức độ nén và chất lượng âm thanh cân bằng để nghe chung. 320kbps là tốc độ bit MP3 tiêu chuẩn cao nhất và bảo toàn hầu hết thông tin âm thanh, làm cho nó phù hợp để phát nhạc trên thiết bị âm thanh chất lượng cao."
+      },
+      {
+        "question": "Y2mate bảo toàn tính toàn vẹn âm thanh như thế nào trong quá trình chuyển đổi?",
+        "answer": "Hệ thống xử lý luồng âm thanh gốc liên tục, duy trì dòng thời gian và cấu trúc lấy mẫu chính xác. Cách tiếp cận này ngăn chặn các phân đoạn bị mất, trôi thời gian hoặc khung âm thanh bị thiếu, đảm bảo rằng MP3 cuối cùng khớp với toàn bộ thời lượng của âm thanh nguồn."
+      },
+      {
+        "question": "Video dài hoặc podcast có thể được chuyển đổi sang MP3 một cách đáng tin cậy không?",
+        "answer": "Có. Y2mate hỗ trợ nội dung có thời lượng dài, bao gồm podcast nhiều giờ và bài giảng mở rộng. Hệ thống được thiết kế để xử lý các luồng âm thanh liên tục mà không bị gián đoạn hoặc cắt bớt."
+      },
+      {
+        "question": "Chuyển đổi YouTube sang MP3 có làm giảm chất lượng âm thanh không?",
+        "answer": "MP3 là định dạng nén mất mát, có nghĩa là một số dữ liệu âm thanh bị giảm trong quá trình mã hóa. Tuy nhiên, tốc độ bit cao hơn như 192kbps và 320kbps giảm thiểu mất chất lượng có thể nhận thấy. Y2mate không áp dụng nén bổ sung ngoài tốc độ bit đã chọn."
+      },
+      {
+        "question": "Quảng cáo hoặc cửa sổ bật lên có được hiển thị trong quá trình chuyển đổi không?",
+        "answer": "Không. Y2mate không hiển thị quảng cáo hoặc cửa sổ bật lên ở bất kỳ giai đoạn nào của quá trình chuyển đổi hoặc tải xuống."
+      },
+      {
+        "question": "Video YouTube riêng tư có thể được chuyển đổi không?",
+        "answer": "Không. Chỉ có thể xử lý các video YouTube Công khai hoặc Không được liệt kê do hạn chế truy cập."
+      }
+    ]
+  }
+}
