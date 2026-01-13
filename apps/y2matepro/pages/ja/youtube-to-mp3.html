@@ -184,7 +184,7 @@
                     <span class="logo-name">Y2mate</span>
                 </a>
             </div>
-            <button type="button" class="navbar-toggler" id="mobileMenuToggle">
+            <button type="button" class="navbar-toggler" id="mobileMenuToggle" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobileMenuOverlay">
                 <span class="toggle-icon"></span>
                 <span class="toggle-icon"></span>
                 <span class="toggle-icon"></span>
@@ -277,8 +277,8 @@
                             <span class="logo-name">Y2mate</span>
                         </div>
                     </a>
-                    <button type="button" class="mobile-close-btn" id="mobileCloseBtn">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <button type="button" class="mobile-close-btn" id="mobileCloseBtn" aria-label="Close navigation menu">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                         </svg>
                     </button>
@@ -336,7 +336,8 @@
                     <div class="input-container">
                         <div class=" input-wrapper">
                             <input id="videoUrl" class="y2mate_query-pro keyword" type="text" name="q"
-                                placeholder="検索またはリンクを貼り付け..." autocomplete="off" autofocus="">
+                                placeholder="検索またはリンクを貼り付け..." autocomplete="off" autofocus=""
+                                role="combobox" aria-autocomplete="list" aria-controls="suggestion-container" aria-expanded="false">
                             <button id="input-action-button" type="button" class="input-action-btn" data-action="paste"
                                 aria-label="クリップボードから貼り付け">
                                 <svg class="paste-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
@@ -410,13 +411,13 @@
             <h3>MP3変換にY2mateを使用する理由</h3>
             <ul>
                 
-                <li><strong>一貫した音質の整合性:</strong> 変換プロセスは、切り詰め、欠落したセグメント、または再エンコードアーティファクトなしで元のオーディオストリームを保持します。</li>
+                <li><strong>高速MP3ダウンロード:</strong> 長い待ち時間なしでYouTube動画をすばやくMP3に変換します。</li>
                 
-                <li><strong>ビットレート制御:</strong> 複数のビットレートオプションにより、音質とストレージ要件を正確に制御できます。</li>
+                <li><strong>広告やポップアップなし:</strong> 広告、ポップアップ、リダイレクトのないクリーンな体験をお楽しみください。</li>
                 
-                <li><strong>長尺コンテンツの安定した処理:</strong> ポッドキャスト、講義、音楽ミックスなどの長尺オーディオは中断なしで処理されます。</li>
+                <li><strong>最大320kbpsのオーディオ品質:</strong> 音楽やオフラインでのリスニング用に高品質のMP3ファイルをダウンロードします。</li>
                 
-                <li><strong>広告は表示されません:</strong> Y2mateは、変換およびダウンロード中に広告やポップアップを表示せずに動作します。</li>
+                <li><strong>クリーンで最小限のインターフェース:</strong> MP3変換を簡単かつ気晴らしなく行うシンプルなデザイン。</li>
                 
             </ul>
         </div>

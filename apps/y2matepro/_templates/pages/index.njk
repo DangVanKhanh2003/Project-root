@@ -20,7 +20,8 @@ eleventyComputed:
                     <div class="input-container">
                         <div class=" input-wrapper">
                             <input id="videoUrl" class="y2mate_query-pro keyword" type="text" name="q"
-                                placeholder="{{ base.hero.placeholder }}" autocomplete="off" autofocus="">
+                                placeholder="{{ base.hero.placeholder }}" autocomplete="off" autofocus=""
+                                role="combobox" aria-autocomplete="list" aria-controls="suggestion-container" aria-expanded="false">
                             <button id="input-action-button" type="button" class="input-action-btn" data-action="paste"
                                 aria-label="{{ base.hero.pasteLabel }}">
                                 <svg class="paste-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"

@@ -124,11 +124,12 @@
 }
 
 .y2mate-terms-pro a {
-    color: var(--color-primary);
-    text-decoration: none;
+    color: #c70040; /* Darker shade for WCAG AA contrast (5.35:1 on white) */
+    text-decoration: underline; /* Links distinguishable without relying on color alone */
 }
 
 .y2mate-terms-pro a:hover {
+    color: var(--color-primary-hover);
     text-decoration: underline;
 }
 
