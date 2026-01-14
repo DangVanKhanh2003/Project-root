@@ -13,7 +13,7 @@
   "content": {
     "mainTitle": "Chuyển đổi âm thanh YouTube sang MP3",
     "intro1": "Công cụ chuyển đổi YouTube sang MP3 của Y2Mate cho phép bạn trích xuất âm thanh từ video YouTube và tải xuống dưới dạng tệp MP3 một cách nhanh chóng và dễ dàng. Chỉ cần dán liên kết YouTube, chọn chất lượng âm thanh ưa thích của bạn và tải tệp MP3 trực tiếp về thiết bị của bạn mà không cần cài đặt bất kỳ phần mềm nào.",
-    "intro2": "Trình tải  video YouTube sang MP3 này hỗ trợ các tốc độ bit âm thanh như 128kbps, 192kbps và 320kbps cho các nhu cầu nghe khác nhau. Y2Mate hoạt động hoàn toàn trong trình duyệt của bạn với tốc độ chuyển đổi nhanh, không có quảng cáo hoặc cửa sổ bật lên và không yêu cầu phần mềm hoặc đăng ký."
+    "intro2": "Trình tải  video YouTube sang MP3 này hỗ trợ các tốc độ bit âm thanh như 128kbps, 192kbps và 320kbps cho các nhu cầu nghe khác nhau. Y2Mate hoạt động hoàn toàn trong trình duyệt của bạn với tốc độ chuyển đổi nhanh."
   },
   "instructions": {
     "title": "Cách chuyển đổi YouTube sang MP3",
@@ -78,10 +78,6 @@
       {
         "question": "Chuyển đổi YouTube sang MP3 có làm giảm chất lượng âm thanh không?",
         "answer": "MP3 là định dạng nén mất mát, có nghĩa là một số dữ liệu âm thanh bị giảm trong quá trình mã hóa. Tuy nhiên, tốc độ bit cao hơn như 192kbps và 320kbps giảm thiểu mất chất lượng có thể nhận thấy. Y2mate không áp dụng nén bổ sung ngoài tốc độ bit đã chọn."
-      },
-      {
-        "question": "Quảng cáo hoặc cửa sổ bật lên có được hiển thị trong quá trình chuyển đổi không?",
-        "answer": "Không. Y2mate không hiển thị quảng cáo hoặc cửa sổ bật lên ở bất kỳ giai đoạn nào của quá trình chuyển đổi hoặc tải xuống."
       },
       {
         "question": "Video YouTube riêng tư có thể được chuyển đổi không?",
