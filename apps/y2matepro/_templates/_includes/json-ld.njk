@@ -48,17 +48,18 @@
       "@id": "{{ canonicalUrl }}#webpage",
       "url": "{{ canonicalUrl }}",
       "name": "{{ seo.title | jsonString | safe }}",
-      {%- if not isRootHomePage %}
       "isPartOf": {
         "@id": "{{ site.url }}/#website"
       },
-      {%- endif %}
+      "about": {
+        "@id": "{{ canonicalUrl }}#application"
+      },
       "inLanguage": "{{ lang or 'en' }}"
     },
     {
-      "@type": "WebApplication",
+      "@type": "SoftwareApplication",
       "@id": "{{ canonicalUrl }}#application",
-      "name": "Y2mate",
+      "name": "{{ seo.title | jsonString | safe }}",
       "url": "{{ canonicalUrl }}",
       "description": "{{ seo.schemaDescription | jsonString | safe }}",
       "applicationCategory": "MultimediaApplication",
@@ -132,9 +133,9 @@
       "inLanguage": "{{ lang or 'en' }}"
     },
     {
-      "@type": "WebApplication",
+      "@type": "SoftwareApplication",
       "@id": "{{ canonicalUrl }}#application",
-      "name": "Y2mate",
+      "name": "{{ seo.title | jsonString | safe }}",
       "url": "{{ canonicalUrl }}",
       "description": "{{ seo.schemaDescription | jsonString | safe }}",
       "applicationCategory": "MultimediaApplication",
