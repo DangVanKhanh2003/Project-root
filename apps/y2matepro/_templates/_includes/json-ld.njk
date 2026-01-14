@@ -51,12 +51,15 @@
       "inLanguage": "{{ lang or 'en' }}"
     },
     {
-      "@type": "SoftwareApplication",
+      "@type": "WebApplication",
       "@id": "{{ site.url }}/#application",
       "name": "Y2mate",
       "url": "{{ site.url }}",
-      "applicationCategory": "WebApplication",
+      "description": "{{ seo.schemaDescription | jsonString | safe }}",
+      "applicationCategory": "MultimediaApplication",
       "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "{{ lang or 'en' }}",
       "offers": {
         "@type": "Offer",
         "price": "0",
