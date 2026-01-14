@@ -19,7 +19,7 @@ export const QUALITY_OPTIONS = {
   mp4: [ '1080p', '720p', '480p', '360p', '240p', '144p'],
   mp3: {
     formats: ['mp3', 'wav', 'm4a', 'opus', 'ogg'] as AudioFormatType[],
-    bitrates: [ '256', '192', '128', '64']
+    bitrates: ['320', '256', '192', '128', '64']
   }
 } as const;
 

@@ -29,6 +29,15 @@ footer,
     color: var(--text-main);
 }
 
+.footer-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    max-width: 48rem;
+    margin: 0 auto 1rem;
+}
+
 .footer-links {
     display: flex;
     flex-wrap: wrap;

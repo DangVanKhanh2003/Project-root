@@ -118,8 +118,9 @@ function renderVideoQualityDropdown(selectedQuality: string): string {
 function renderAudioQualityDropdown(selectedAudioFormat: AudioFormatType, selectedBitrate: string): string {
   // Build audio quality options
   const audioOptions = [
-    { value: 'mp3-128', label: 'MP3 - 128kbps', format: 'mp3', bitrate: '128' },
+    { value: 'mp3-320', label: 'MP3 - 320kbps', format: 'mp3', bitrate: '320' },
     { value: 'mp3-256', label: 'MP3 - 256kbps', format: 'mp3', bitrate: '256' },
+    { value: 'mp3-128', label: 'MP3 - 128kbps', format: 'mp3', bitrate: '128' },
     { value: 'ogg-128', label: 'OGG', format: 'ogg', bitrate: '128' },
     { value: 'wav-128', label: 'WAV - Lossless', format: 'wav', bitrate: '128' },
     { value: 'opus-128', label: 'Opus', format: 'opus', bitrate: '128' },
