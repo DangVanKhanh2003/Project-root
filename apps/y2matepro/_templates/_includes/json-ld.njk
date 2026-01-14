@@ -7,6 +7,7 @@
 {#- Build canonical URL -#}
 {%- set cleanUrl = page.url | replace('/index.html', '/') | replace('.html', '') -%}
 {%- set canonicalUrl = site.url + cleanUrl -%}
+{#- @id uses canonicalUrl directly with #fragment (no extra / needed) -#}
 
 <script type="application/ld+json">
 {%- if isHomePage %}
@@ -44,7 +45,7 @@
     {%- endif %}
     {
       "@type": "WebPage",
-      "@id": "{{ canonicalUrl }}/#webpage",
+      "@id": "{{ canonicalUrl }}#webpage",
       "url": "{{ canonicalUrl }}",
       "name": "{{ seo.title | jsonString | safe }}",
       "inLanguage": "{{ lang or 'en' }}"
@@ -65,9 +66,9 @@
     {%- if hasFaqs %},
     {
       "@type": "FAQPage",
-      "@id": "{{ canonicalUrl }}/#faq",
+      "@id": "{{ canonicalUrl }}#faq",
       "isPartOf": {
-        "@id": "{{ canonicalUrl }}/#webpage"
+        "@id": "{{ canonicalUrl }}#webpage"
       },
       "mainEntity": [
         {%- for item in pageData.faqs.items %}
@@ -86,9 +87,9 @@
     {%- if hasInstructions %},
     {
       "@type": "HowTo",
-      "@id": "{{ canonicalUrl }}/#howto",
+      "@id": "{{ canonicalUrl }}#howto",
       "isPartOf": {
-        "@id": "{{ canonicalUrl }}/#webpage"
+        "@id": "{{ canonicalUrl }}#webpage"
       },
       "name": "{{ pageData.instructions.title | jsonString | safe }}",
       "step": [
@@ -111,17 +112,17 @@
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "{{ canonicalUrl }}/#webpage",
+      "@id": "{{ canonicalUrl }}#webpage",
       "url": "{{ canonicalUrl }}",
       "name": "{{ seo.title | jsonString | safe }}",
       "about": {
-        "@id": "{{ canonicalUrl }}/#application"
+        "@id": "{{ canonicalUrl }}#application"
       },
       "inLanguage": "{{ lang or 'en' }}"
     },
     {
       "@type": "WebApplication",
-      "@id": "{{ canonicalUrl }}/#application",
+      "@id": "{{ canonicalUrl }}#application",
       "name": "Y2mate",
       "url": "{{ canonicalUrl }}",
       "description": "{{ seo.schemaDescription | jsonString | safe }}",
@@ -138,9 +139,9 @@
     {%- if hasFaqs %},
     {
       "@type": "FAQPage",
-      "@id": "{{ canonicalUrl }}/#faq",
+      "@id": "{{ canonicalUrl }}#faq",
       "isPartOf": {
-        "@id": "{{ canonicalUrl }}/#webpage"
+        "@id": "{{ canonicalUrl }}#webpage"
       },
       "mainEntity": [
         {%- for item in pageData.faqs.items %}
@@ -159,9 +160,9 @@
     {%- if hasInstructions %},
     {
       "@type": "HowTo",
-      "@id": "{{ canonicalUrl }}/#howto",
+      "@id": "{{ canonicalUrl }}#howto",
       "isPartOf": {
-        "@id": "{{ canonicalUrl }}/#webpage"
+        "@id": "{{ canonicalUrl }}#webpage"
       },
       "name": "{{ pageData.instructions.title | jsonString | safe }}",
       "step": [
