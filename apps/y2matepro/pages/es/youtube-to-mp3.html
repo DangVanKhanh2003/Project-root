@@ -69,7 +69,18 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://y2matepro.com/es/youtube-to-mp3/#webpage",
+      "url": "https://y2matepro.com/es/youtube-to-mp3",
+      "name": "Y2mate - Convertidor de YouTube a MP3",
+      "about": {
+        "@id": "https://y2matepro.com/es/youtube-to-mp3/#application"
+      },
+      "inLanguage": "es"
+    },
+    {
       "@type": "WebApplication",
+      "@id": "https://y2matepro.com/es/youtube-to-mp3/#application",
       "name": "Y2mate",
       "url": "https://y2matepro.com/es/youtube-to-mp3",
       "description": "Una herramienta de conversión de YouTube a MP3 en línea que soporta múltiples opciones de tasa de bits con integridad de audio preservada.",
@@ -81,21 +92,14 @@
         "@type": "Offer",
         "price": "0",
         "priceCurrency": "USD"
-      },
-      "publisher": {
-  "@type": "Organization",
-  "name": "Y2mate",
-  "url": "https://y2matepro.com",
-  "logo": "https://y2matepro.com/logo.png",
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "email": "y2matepro@gmail.com",
-    "contactType": "customer service"
-  }
-}
+      }
     },
     {
       "@type": "FAQPage",
+      "@id": "https://y2matepro.com/es/youtube-to-mp3/#faq",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/es/youtube-to-mp3/#webpage"
+      },
       "mainEntity": [
         {
           "@type": "Question",
@@ -149,6 +153,10 @@
     },
     {
       "@type": "HowTo",
+      "@id": "https://y2matepro.com/es/youtube-to-mp3/#howto",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/es/youtube-to-mp3/#webpage"
+      },
       "name": "Cómo convertir YouTube a MP3",
       "step": [
         {
@@ -413,8 +421,6 @@
             <ul>
                 
                 <li><strong>Descargas rápidas de MP3:</strong> Convierte videos de YouTube a MP3 rápidamente sin largos tiempos de espera.</li>
-                
-                <li><strong>Sin anuncios ni ventanas emergentes:</strong> Disfruta de una experiencia limpia sin anuncios, ventanas emergentes o redireccionamientos.</li>
                 
                 <li><strong>Calidad de audio de hasta 320kbps:</strong> Descarga archivos MP3 de alta calidad para música y escucha sin conexión.</li>
                 

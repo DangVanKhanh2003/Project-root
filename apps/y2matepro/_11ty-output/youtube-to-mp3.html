@@ -69,7 +69,18 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://y2matepro.com/youtube-to-mp3/#webpage",
+      "url": "https://y2matepro.com/youtube-to-mp3",
+      "name": "Y2Mate – YouTube to MP3 Converter (128kbps, 192kbps, 320kbps)",
+      "about": {
+        "@id": "https://y2matepro.com/youtube-to-mp3/#application"
+      },
+      "inLanguage": "en"
+    },
+    {
       "@type": "WebApplication",
+      "@id": "https://y2matepro.com/youtube-to-mp3/#application",
       "name": "Y2mate",
       "url": "https://y2matepro.com/youtube-to-mp3",
       "description": "An online tool for extracting and converting YouTube audio streams into MP3 with multiple bitrate options.",
@@ -81,21 +92,14 @@
         "@type": "Offer",
         "price": "0",
         "priceCurrency": "USD"
-      },
-      "publisher": {
-  "@type": "Organization",
-  "name": "Y2mate",
-  "url": "https://y2matepro.com",
-  "logo": "https://y2matepro.com/logo.png",
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "email": "y2matepro@gmail.com",
-    "contactType": "customer service"
-  }
-}
+      }
     },
     {
       "@type": "FAQPage",
+      "@id": "https://y2matepro.com/youtube-to-mp3/#faq",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/youtube-to-mp3/#webpage"
+      },
       "mainEntity": [
         {
           "@type": "Question",
@@ -149,6 +153,10 @@
     },
     {
       "@type": "HowTo",
+      "@id": "https://y2matepro.com/youtube-to-mp3/#howto",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/youtube-to-mp3/#webpage"
+      },
       "name": "How to Convert YouTube to MP3",
       "step": [
         {
@@ -420,8 +428,6 @@
             <ul>
                 
                 <li><strong>Fast MP3 Downloads:</strong> Convert YouTube videos to MP3 quickly without long waiting times.</li>
-                
-                <li><strong>No Ads or Pop-ups:</strong> Enjoy a clean experience with no ads, pop-ups, or redirects.</li>
                 
                 <li><strong>Up to 320kbps Audio Quality:</strong> Download high-quality MP3 files for music and offline listening.</li>
                 

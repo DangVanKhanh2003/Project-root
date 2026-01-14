@@ -69,7 +69,18 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "https://y2matepro.com/de/youtube-to-mp3/#webpage",
+      "url": "https://y2matepro.com/de/youtube-to-mp3",
+      "name": "Y2mate - YouTube zu MP3 Konverter",
+      "about": {
+        "@id": "https://y2matepro.com/de/youtube-to-mp3/#application"
+      },
+      "inLanguage": "de"
+    },
+    {
       "@type": "WebApplication",
+      "@id": "https://y2matepro.com/de/youtube-to-mp3/#application",
       "name": "Y2mate",
       "url": "https://y2matepro.com/de/youtube-to-mp3",
       "description": "Ein Online-YouTube zu MP3 Konvertierungstool, das mehrere Bitratenoptionen mit erhaltener Audiointegrität unterstützt.",
@@ -81,21 +92,14 @@
         "@type": "Offer",
         "price": "0",
         "priceCurrency": "USD"
-      },
-      "publisher": {
-  "@type": "Organization",
-  "name": "Y2mate",
-  "url": "https://y2matepro.com",
-  "logo": "https://y2matepro.com/logo.png",
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "email": "y2matepro@gmail.com",
-    "contactType": "customer service"
-  }
-}
+      }
     },
     {
       "@type": "FAQPage",
+      "@id": "https://y2matepro.com/de/youtube-to-mp3/#faq",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/de/youtube-to-mp3/#webpage"
+      },
       "mainEntity": [
         {
           "@type": "Question",
@@ -149,6 +153,10 @@
     },
     {
       "@type": "HowTo",
+      "@id": "https://y2matepro.com/de/youtube-to-mp3/#howto",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/de/youtube-to-mp3/#webpage"
+      },
       "name": "So konvertieren Sie YouTube in MP3",
       "step": [
         {
@@ -413,8 +421,6 @@
             <ul>
                 
                 <li><strong>Schnelle MP3-Downloads:</strong> Konvertieren Sie YouTube-Videos schnell in MP3, ohne lange Wartezeiten.</li>
-                
-                <li><strong>Keine Werbung oder Pop-ups:</strong> Genießen Sie ein sauberes Erlebnis ohne Werbung, Pop-ups oder Weiterleitungen.</li>
                 
                 <li><strong>Bis zu 320kbps Audioqualität:</strong> Laden Sie hochwertige MP3-Dateien für Musik und Offline-Hören herunter.</li>
                 
