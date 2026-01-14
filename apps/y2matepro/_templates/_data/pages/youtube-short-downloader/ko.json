@@ -3,7 +3,7 @@
     "title": "Y2mate - YouTube Shorts 다운로더 (무료, 빠름, HD)",
     "description": "Y2mate는 HD로 YouTube Shorts를 다운로드하는 무료 도구입니다. 워터마크, 광고 또는 리디렉션 없이 모바일 및 데스크톱에서 세로 비디오를 즉시 저장하세요.",
     "ogTitle": "Y2mate - YouTube Shorts 다운로더 (무료, 빠름, HD)",
-    "ogDescription": "HD로 YouTube Shorts를 다운로드하세요. 세로 비디오를 즉시 저장 — 세로 형식, 9:16 비율, 안전하고 광고 없음.",
+    "ogDescription": "HD로 YouTube Shorts를 다운로드하세요. 세로 비디오를 즉시 저장 — 세로 형식, 9:16 비율, 안전.",
     "schemaName": "Y2mate - YouTube Shorts 다운로더",
     "schemaDescription": "YouTube Shorts를 즉시 다운로드하세요. 모바일 및 데스크톱용 무료 세로 비디오 다운로더."
   },
@@ -13,7 +13,7 @@
   "content": {
     "mainTitle": "YouTube Shorts를 빠르게 다운로드하고 세로 형식 유지",
     "intro1": "Y2Mate의 YouTube Shorts 다운로더를 사용하면 YouTube에서 짧은 세로 비디오 클립을 장치에 직접 다운로드할 수 있습니다. 빠른 링크 처리와 빠른 다운로드를 통해 간단하고 사용하기 쉬우며 완전히 무료인 웹사이트를 사용하여 몇 초 안에 Shorts를 저장할 수 있습니다.",
-    "intro2": "Y2mate는 광고, 팝업 및 리디렉션 없이 깨끗하고 간단한 Shorts 다운로드 경험에 전적으로 중점을 둡니다. Shorts는 YouTube에 업로드된 것과 동일하게 원래 9:16 세로 형식으로 직접 다운로드됩니다. 1080p 또는 720p까지 비디오 품질을 선택하거나 MP3, OGG, WAV 또는 OPUS 형식으로 128kbps, 192kbps 또는 320kbps의 비트레이트로 오디오만 다운로드할 수 있습니다. 이 도구는 모바일 및 데스크톱 브라우저 모두에서 원활하게 작동합니다."
+    "intro2": "Y2mate는 깨끗하고 간단한 Shorts 다운로드 경험에 전적으로 중점을 둡니다. Shorts는 YouTube에 업로드된 것과 동일하게 원래 9:16 세로 형식으로 직접 다운로드됩니다. 1080p 또는 720p까지 비디오 품질을 선택하거나 MP3, OGG, WAV 또는 OPUS 형식으로 128kbps, 192kbps 또는 320kbps의 비트레이트로 오디오만 다운로드할 수 있습니다. 이 도구는 모바일 및 데스크톱 브라우저 모두에서 원활하게 작동합니다."
   },
   "instructions": {
     "title": "몇 초 만에 YouTube Shorts를 다운로드하는 방법",
@@ -47,11 +47,7 @@
         "title": "무제한 Shorts 다운로드",
         "description": "매일 제한 없이 원하는 만큼 YouTube Shorts를 다운로드하세요."
       },
-      {
-        "title": "광고 또는 팝업 없음",
-        "description": "광고, 팝업 또는 중단 없이 깨끗한 다운로드 프로세스."
-      },
-      {
+            {
         "title": "다중 비디오 및 오디오 옵션",
         "description": "MP3, OGG, WAV 또는 OPUS 형식으로 1080p 또는 720p의 Shorts 및 128kbps, 192kbps 또는 320kbps의 오디오를 지원합니다."
       },

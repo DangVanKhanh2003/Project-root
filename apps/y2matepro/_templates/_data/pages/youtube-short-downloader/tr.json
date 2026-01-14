@@ -3,7 +3,7 @@
     "title": "Y2mate - YouTube Shorts İndirici (Ücretsiz, Hızlı, HD)",
     "description": "Y2mate, YouTube Shorts'u HD olarak indirmek için ücretsiz bir araçtır. Filigran, reklam veya yönlendirme olmadan dikey videoları mobil ve masaüstünde anında kaydedin.",
     "ogTitle": "Y2mate - YouTube Shorts İndirici (Ücretsiz, Hızlı, HD)",
-    "ogDescription": "YouTube Shorts'u HD olarak indirin. Dikey videoları anında kaydedin — dikey format, 9:16 oranı, güvenli ve reklamsız.",
+    "ogDescription": "YouTube Shorts'u HD olarak indirin. Dikey videoları anında kaydedin — dikey format, 9:16 oranı, güvenli.",
     "schemaName": "Y2mate - YouTube Shorts İndirici",
     "schemaDescription": "YouTube Shorts'u anında indirin. Mobil ve masaüstü için ücretsiz dikey video indirici."
   },
@@ -13,7 +13,7 @@
   "content": {
     "mainTitle": "YouTube Shorts'u Hızlı İndirin ve Dikey Formatı Koruyun",
     "intro1": "Y2Mate'in YouTube Shorts indirici aracı, YouTube'dan kısa dikey video kliplerini doğrudan cihazınıza indirmenizi sağlar. Hızlı bağlantı işleme ve hızlı indirmelerle, basit, kullanımı kolay ve tamamen ücretsiz bir web sitesi kullanarak Shorts'u saniyeler içinde kaydedebilirsiniz.",
-    "intro2": "Y2mate, tamamen temiz ve basit bir Shorts indirme deneyimine odaklanır: reklam yok, açılır pencere yok ve yönlendirme yok. Shorts, YouTube'a yüklendiği gibi orijinal 9:16 dikey formatında doğrudan indirilir. 1080p veya 720p'ye kadar video kalitesi seçebilir veya MP3, OGG, WAV veya OPUS formatlarında 128kbps, 192kbps veya 320kbps bit hızlarıyla yalnızca ses indirebilirsiniz. Araç, hem mobil hem de masaüstü tarayıcılarda sorunsuz çalışır."
+    "intro2": "Y2mate, tamamen temiz ve basit bir Shorts indirme deneyimine odaklanır. Shorts, YouTube'a yüklendiği gibi orijinal 9:16 dikey formatında doğrudan indirilir. 1080p veya 720p'ye kadar video kalitesi seçebilir veya MP3, OGG, WAV veya OPUS formatlarında 128kbps, 192kbps veya 320kbps bit hızlarıyla yalnızca ses indirebilirsiniz. Araç, hem mobil hem de masaüstü tarayıcılarda sorunsuz çalışır."
   },
   "instructions": {
     "title": "YouTube Shorts'u Saniyeler İçinde Nasıl İndirilir",
@@ -46,10 +46,6 @@
       {
         "title": "Sınırsız Shorts indirme",
         "description": "Günlük limit olmaksızın istediğiniz kadar YouTube Shorts indirin."
-      },
-      {
-        "title": "Reklam veya açılır pencere yok",
-        "description": "Reklam, açılır pencere veya kesinti olmadan temiz bir indirme işlemi."
       },
       {
         "title": "Birden fazla video ve ses seçeneği",

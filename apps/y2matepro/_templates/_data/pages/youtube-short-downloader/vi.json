@@ -3,7 +3,7 @@
     "title": "Y2mate - Trình tải  video YouTube Shorts (Miễn phí, Nhanh, HD)",
     "description": "Y2mate là một công cụ miễn phí để tải xuống YouTube Shorts ở chế độ HD. Lưu video dọc ngay lập tức trên thiết bị di động và máy tính để bàn mà không có hình mờ, quảng cáo hoặc chuyển hướng.",
     "ogTitle": "Y2mate - Trình tải  video YouTube Shorts (Miễn phí, Nhanh, HD)",
-    "ogDescription": "Tải xuống YouTube Shorts ở chế độ HD. Lưu video dọc ngay lập tức — định dạng chân dung, tỷ lệ 9:16, an toàn và không có quảng cáo.",
+    "ogDescription": "Tải xuống YouTube Shorts ở chế độ HD. Lưu video dọc ngay lập tức — định dạng chân dung, tỷ lệ 9:16, an toàn.",
     "schemaName": "Y2mate - Trình tải  video YouTube Shorts",
     "schemaDescription": "Tải xuống YouTube Shorts ngay lập tức. Trình tải xuống video dọc miễn phí cho thiết bị di động và máy tính để bàn."
   },
@@ -13,7 +13,7 @@
   "content": {
     "mainTitle": "Tải xuống YouTube Shorts nhanh chóng và giữ nguyên định dạng dọc",
     "intro1": "Công cụ tải YouTube Shorts từ Y2Mate cho phép bạn tải các clip video dọc ngắn từ YouTube trực tiếp vào thiết bị của bạn. Với khả năng xử lý liên kết nhanh chóng và tải xuống nhanh, bạn có thể lưu Shorts trong vài giây bằng cách sử dụng một trang web đơn giản, dễ sử dụng và hoàn toàn miễn phí.",
-    "intro2": "Y2mate hoàn toàn tập trung vào trải nghiệm tải xuống Shorts sạch sẽ và đơn giản: không có quảng cáo, không có cửa sổ bật lên và không có chuyển hướng. Shorts được tải xuống trực tiếp ở định dạng dọc 9:16 gốc của chúng, chính xác như đã tải lên YouTube. Bạn có thể chọn chất lượng video lên đến 1080p hoặc 720p, hoặc chỉ tải xuống âm thanh với tốc độ bit 128kbps, 192kbps hoặc 320kbps ở định dạng MP3, OGG, WAV hoặc OPUS. Công cụ này hoạt động trơn tru trên cả trình duyệt di động và máy tính để bàn."
+    "intro2": "Y2mate hoàn toàn tập trung vào trải nghiệm tải xuống Shorts sạch sẽ và đơn giản. Shorts được tải xuống trực tiếp ở định dạng dọc 9:16 gốc của chúng, chính xác như đã tải lên YouTube. Bạn có thể chọn chất lượng video lên đến 1080p hoặc 720p, hoặc chỉ tải xuống âm thanh với tốc độ bit 128kbps, 192kbps hoặc 320kbps ở định dạng MP3, OGG, WAV hoặc OPUS. Công cụ này hoạt động trơn tru trên cả trình duyệt di động và máy tính để bàn."
   },
   "instructions": {
     "title": "Cách tải xuống YouTube Shorts trong vài giây",
@@ -47,11 +47,7 @@
         "title": "Tải xuống Shorts không giới hạn",
         "description": "Tải xuống bao nhiêu YouTube Shorts tùy thích mà không có giới hạn hàng ngày."
       },
-      {
-        "title": "Không có quảng cáo hoặc cửa sổ bật lên",
-        "description": "Một quy trình tải xuống sạch sẽ không có quảng cáo, cửa sổ bật lên hoặc gián đoạn."
-      },
-      {
+            {
         "title": "Nhiều tùy chọn video và âm thanh",
         "description": "Hỗ trợ Shorts ở 1080p hoặc 720p và âm thanh ở 128kbps, 192kbps hoặc 320kbps ở định dạng MP3, OGG, WAV hoặc OPUS."
       },

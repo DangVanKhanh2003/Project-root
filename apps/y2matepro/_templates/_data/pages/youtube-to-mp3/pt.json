@@ -1,9 +1,9 @@
 {
   "seo": {
     "title": "Y2mate - Conversor de YouTube para MP3",
-    "description": "Y2mate é um conversor de YouTube para MP3 que suporta áudio de 128kbps, 192kbps e 320kbps. Baixe arquivos de áudio completos com integridade de som preservada. Não são exibidos anúncios.",
+    "description": "Y2mate é um conversor de YouTube para MP3 que suporta áudio de 128kbps, 192kbps e 320kbps. Baixe arquivos de áudio completos com integridade de som preservada.",
     "ogTitle": "Y2mate - Conversor de YouTube para MP3",
-    "ogDescription": "Converta YouTube para MP3 com 128/192/320kbps. Processamento rápido, saída de áudio completa e sem anúncios.",
+    "ogDescription": "Converta YouTube para MP3 com 128/192/320kbps. Processamento rápido, saída de áudio completa.",
     "schemaName": "Y2mate - Conversor de YouTube para MP3",
     "schemaDescription": "Uma ferramenta de conversão de YouTube para MP3 online que suporta múltiplas opções de taxa de bits com integridade de áudio preservada."
   },
@@ -47,10 +47,6 @@
         "description": "A extração e conversão de áudio são realizadas inteiramente online sem a necessidade de instalação de software."
       },
       {
-        "title": "Fluxo de Trabalho Sem Anúncios",
-        "description": "Não são exibidos anúncios ou pop-ups durante o processo de conversão."
-      },
-      {
         "title": "Conversões Ilimitadas",
         "description": "Os usuários podem converter e baixar vários arquivos MP3 sem limites diários ou de uso."
       },
@@ -78,10 +74,6 @@
       {
         "question": "A conversão de YouTube para MP3 reduz a qualidade do áudio?",
         "answer": "MP3 é um formato de compressão com perdas, o que significa que alguns dados de áudio são reduzidos durante a codificação. No entanto, taxas de bits mais altas, como 192kbps e 320kbps, minimizam a perda de qualidade perceptível. O Y2mate não aplica compressão adicional além da taxa de bits selecionada."
-      },
-      {
-        "question": "Anúncios ou pop-ups são exibidos durante a conversão?",
-        "answer": "Não. O Y2mate não exibe anúncios ou pop-ups em nenhuma fase do processo de conversão ou download."
       },
       {
         "question": "Vídeos privados do YouTube podem ser convertidos?",

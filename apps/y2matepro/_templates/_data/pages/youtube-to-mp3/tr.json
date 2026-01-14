@@ -1,9 +1,9 @@
 {
   "seo": {
     "title": "Y2mate - YouTube'dan MP3'e Dönüştürücü",
-    "description": "Y2mate, 128kbps, 192kbps ve 320kbps ses desteği sunan bir YouTube'dan MP3'e dönüştürücüdür. Ses bütünlüğü korunarak eksiksiz ses dosyaları indirin. Reklam gösterilmez.",
+    "description": "Y2mate, 128kbps, 192kbps ve 320kbps ses desteği sunan bir YouTube'dan MP3'e dönüştürücüdür. Ses bütünlüğü korunarak eksiksiz ses dosyaları indirin.",
     "ogTitle": "Y2mate - YouTube'dan MP3'e Dönüştürücü",
-    "ogDescription": "YouTube'u 128/192/320kbps ile MP3'e dönüştürün. Hızlı işleme, eksiksiz ses çıkışı ve reklamsız.",
+    "ogDescription": "YouTube'u 128/192/320kbps ile MP3'e dönüştürün. Hızlı işleme, eksiksiz ses çıkışı.",
     "schemaName": "Y2mate - YouTube'dan MP3'e Dönüştürücü",
     "schemaDescription": "Ses bütünlüğü korunarak birden fazla bit hızı seçeneğini destekleyen çevrimiçi bir YouTube'dan MP3'e dönüştürme aracı."
   },
@@ -46,11 +46,7 @@
         "title": "Web Tabanlı İşleme",
         "description": "Ses çıkarma ve dönüştürme, yazılım yüklemesi gerektirmeden tamamen çevrimiçi olarak gerçekleştirilir."
       },
-      {
-        "title": "Reklamsız İş Akışı",
-        "description": "Dönüştürme işlemi sırasında reklam veya açılır pencere gösterilmez."
-      },
-      {
+            {
         "title": "Sınırsız Dönüştürme",
         "description": "Kullanıcılar, günlük veya kullanım limitleri olmaksızın birden fazla MP3 dosyasını dönüştürebilir ve indirebilir."
       },
@@ -79,11 +75,7 @@
         "question": "YouTube'u MP3'e dönüştürmek ses kalitesini düşürür mü?",
         "answer": "MP3, kayıplı bir sıkıştırma formatıdır, yani kodlama sırasında bazı ses verileri azaltılır. Ancak, 192kbps ve 320kbps gibi daha yüksek bit hızları, algılanabilir kalite kaybını en aza indirir. Y2mate, seçilen bit hızının ötesinde ek sıkıştırma uygulamaz."
       },
-      {
-        "question": "Dönüştürme sırasında reklam veya açılır pencere gösterilir mi?",
-        "answer": "Hayır. Y2mate, dönüştürme veya indirme sürecinin hiçbir aşamasında reklam veya açılır pencere göstermez."
-      },
-      {
+            {
         "question": "Özel YouTube videoları dönüştürülebilir mi?",
         "answer": "Hayır. Erişim kısıtlamaları nedeniyle yalnızca Genel veya Listelenmemiş YouTube videoları işlenebilir."
       }

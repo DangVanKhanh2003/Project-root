@@ -3,7 +3,7 @@
     "title": "Y2mate - YouTube Shorts Downloader (Kostenlos, Schnell, HD)",
     "description": "Y2mate ist ein kostenloses Tool zum Herunterladen von YouTube Shorts in HD. Speichern Sie vertikale Videos sofort auf Mobilgeräten und Desktops ohne Wasserzeichen, Werbung oder Weiterleitungen.",
     "ogTitle": "Y2mate - YouTube Shorts Downloader (Kostenlos, Schnell, HD)",
-    "ogDescription": "Laden Sie YouTube Shorts in HD herunter. Speichern Sie vertikale Videos sofort – Hochformat, 9:16-Verhältnis, sicher und werbefrei.",
+    "ogDescription": "Laden Sie YouTube Shorts in HD herunter. Speichern Sie vertikale Videos sofort – Hochformat, 9:16-Verhältnis, sicher.",
     "schemaName": "Y2mate - YouTube Shorts Downloader",
     "schemaDescription": "Laden Sie YouTube Shorts sofort herunter. Kostenloser vertikaler Video-Downloader für Mobilgeräte und Desktops."
   },
@@ -13,7 +13,7 @@
   "content": {
     "mainTitle": "YouTube Shorts schnell herunterladen und das vertikale Format beibehalten",
     "intro1": "Der YouTube Shorts Downloader von Y2Mate ermöglicht es Ihnen, kurze vertikale Videoclips von YouTube direkt auf Ihr Gerät herunterzuladen. Mit schneller Linkverarbeitung und schnellen Downloads können Sie Shorts innerhalb von Sekunden über eine einfache, benutzerfreundliche und völlig kostenlose Website speichern.",
-    "intro2": "Y2mate konzentriert sich vollständig auf ein sauberes und unkompliziertes Shorts-Download-Erlebnis: keine Werbung, keine Pop-ups und keine Weiterleitungen. Shorts werden direkt in ihrem ursprünglichen vertikalen 9:16-Format heruntergeladen, genau wie auf YouTube hochgeladen. Sie können Videoqualität bis zu 1080p oder 720p wählen oder nur Audio mit Bitraten von 128kbps, 192kbps oder 320kbps in den Formaten MP3, OGG, WAV oder OPUS herunterladen. Das Tool funktioniert reibungslos auf mobilen und Desktop-Browsern."
+    "intro2": "Y2mate konzentriert sich vollständig auf ein sauberes und unkompliziertes Shorts-Download-Erlebnis. Shorts werden direkt in ihrem ursprünglichen vertikalen 9:16-Format heruntergeladen, genau wie auf YouTube hochgeladen. Sie können Videoqualität bis zu 1080p oder 720p wählen oder nur Audio mit Bitraten von 128kbps, 192kbps oder 320kbps in den Formaten MP3, OGG, WAV oder OPUS herunterladen. Das Tool funktioniert reibungslos auf mobilen und Desktop-Browsern."
   },
   "instructions": {
     "title": "So laden Sie YouTube Shorts in Sekunden herunter",
@@ -47,11 +47,7 @@
         "title": "Unbegrenzte Shorts-Downloads",
         "description": "Laden Sie so viele YouTube Shorts herunter, wie Sie möchten, ohne tägliche Limits."
       },
-      {
-        "title": "Keine Werbung oder Pop-ups",
-        "description": "Ein sauberer Download-Prozess ohne Werbung, Pop-ups oder Unterbrechungen."
-      },
-      {
+            {
         "title": "Mehrere Video- und Audiooptionen",
         "description": "Unterstützt Shorts in 1080p oder 720p und Audio mit 128kbps, 192kbps oder 320kbps in MP3, OGG, WAV oder OPUS."
       },

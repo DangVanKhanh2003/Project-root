@@ -1,9 +1,9 @@
 {
   "seo": {
     "title": "Y2mate - Trình chuyển đổi YouTube sang MP3",
-    "description": "Y2mate là trình chuyển đổi YouTube sang MP3 hỗ trợ âm thanh 128kbps, 192kbps và 320kbps. Tải xuống các tệp âm thanh hoàn chỉnh với tính toàn vẹn âm thanh được bảo toàn. Không hiển thị quảng cáo.",
+    "description": "Y2mate là trình chuyển đổi YouTube sang MP3 hỗ trợ âm thanh 128kbps, 192kbps và 320kbps. Tải xuống các tệp âm thanh hoàn chỉnh với tính toàn vẹn âm thanh được bảo toàn.",
     "ogTitle": "Y2mate - Trình chuyển đổi YouTube sang MP3",
-    "ogDescription": "Chuyển đổi YouTube sang MP3 với 128/192/320kbps. Xử lý nhanh, đầu ra âm thanh hoàn chỉnh và không có quảng cáo.",
+    "ogDescription": "Chuyển đổi YouTube sang MP3 với 128/192/320kbps. Xử lý nhanh, đầu ra âm thanh hoàn chỉnh.",
     "schemaName": "Y2mate - Trình chuyển đổi YouTube sang MP3",
     "schemaDescription": "Một công cụ chuyển đổi YouTube sang MP3 trực tuyến hỗ trợ nhiều tùy chọn tốc độ bit với tính toàn vẹn âm thanh được bảo toàn."
   },
@@ -46,11 +46,7 @@
         "title": "Xử lý dựa trên web",
         "description": "Trích xuất và chuyển đổi âm thanh được thực hiện hoàn toàn trực tuyến mà không cần cài đặt phần mềm."
       },
-      {
-        "title": "Quy trình làm việc không có quảng cáo",
-        "description": "Không có quảng cáo hoặc cửa sổ bật lên được hiển thị trong quá trình chuyển đổi."
-      },
-      {
+            {
         "title": "Chuyển đổi không giới hạn",
         "description": "Người dùng có thể chuyển đổi và tải xuống nhiều tệp MP3 mà không có giới hạn hàng ngày hoặc giới hạn sử dụng."
       },

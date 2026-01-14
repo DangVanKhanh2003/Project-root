@@ -1,9 +1,9 @@
 {
   "seo": {
     "title": "Y2mate - YouTube zu MP3 Konverter",
-    "description": "Y2mate ist ein YouTube zu MP3 Konverter, der 128kbps, 192kbps und 320kbps Audio unterstützt. Laden Sie vollständige Audiodateien mit erhaltener Klangintegrität herunter. Keine Werbung angezeigt.",
+    "description": "Y2mate ist ein YouTube zu MP3 Konverter, der 128kbps, 192kbps und 320kbps Audio unterstützt. Laden Sie vollständige Audiodateien mit erhaltener Klangintegrität herunter.",
     "ogTitle": "Y2mate - YouTube zu MP3 Konverter",
-    "ogDescription": "YouTube in MP3 mit 128/192/320kbps konvertieren. Schnelle Verarbeitung, vollständige Audioausgabe und keine Werbung.",
+    "ogDescription": "YouTube in MP3 mit 128/192/320kbps konvertieren. Schnelle Verarbeitung, vollständige Audioausgabe.",
     "schemaName": "Y2mate - YouTube zu MP3 Konverter",
     "schemaDescription": "Ein Online-YouTube zu MP3 Konvertierungstool, das mehrere Bitratenoptionen mit erhaltener Audiointegrität unterstützt."
   },
@@ -46,11 +46,7 @@
         "title": "Webbasierte Verarbeitung",
         "description": "Audioextraktion und -konvertierung werden vollständig online durchgeführt, ohne dass eine Softwareinstallation erforderlich ist."
       },
-      {
-        "title": "Werbefreier Arbeitsablauf",
-        "description": "Während des Konvertierungsprozesses werden keine Werbung oder Pop-ups angezeigt."
-      },
-      {
+            {
         "title": "Unbegrenzte Konvertierungen",
         "description": "Benutzer können mehrere MP3-Dateien ohne tägliche oder Nutzungslimits konvertieren und herunterladen."
       },
@@ -79,11 +75,7 @@
         "question": "Reduziert die Konvertierung von YouTube in MP3 die Audioqualität?",
         "answer": "MP3 ist ein verlustbehaftetes Komprimierungsformat, was bedeutet, dass während der Kodierung einige Audiodaten reduziert werden. Höhere Bitraten wie 192kbps und 320kbps minimieren jedoch den wahrnehmbaren Qualitätsverlust. Y2mate wendet keine zusätzliche Komprimierung über die ausgewählte Bitrate hinaus an."
       },
-      {
-        "question": "Werden während der Konvertierung Werbung oder Pop-ups angezeigt?",
-        "answer": "Nein. Y2mate zeigt in keiner Phase des Konvertierungs- oder Downloadprozesses Werbung oder Pop-ups an."
-      },
-      {
+            {
         "question": "Können private YouTube-Videos konvertiert werden?",
         "answer": "Nein. Aufgrund von Zugriffsbeschränkungen können nur öffentliche oder nicht gelistete YouTube-Videos verarbeitet werden."
       }

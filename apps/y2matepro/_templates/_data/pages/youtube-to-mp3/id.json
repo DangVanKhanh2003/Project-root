@@ -1,9 +1,9 @@
 {
   "seo": {
     "title": "Y2mate - Konverter YouTube ke MP3",
-    "description": "Y2mate adalah konverter YouTube ke MP3 yang mendukung audio 128kbps, 192kbps, dan 320kbps. Unduh file audio lengkap dengan integritas suara yang terjaga. Tidak ada iklan yang ditampilkan.",
+    "description": "Y2mate adalah konverter YouTube ke MP3 yang mendukung audio 128kbps, 192kbps, dan 320kbps. Unduh file audio lengkap dengan integritas suara yang terjaga.",
     "ogTitle": "Y2mate - Konverter YouTube ke MP3",
-    "ogDescription": "Konversi YouTube ke MP3 dengan 128/192/320kbps. Pemrosesan cepat, output audio lengkap, dan tanpa iklan.",
+    "ogDescription": "Konversi YouTube ke MP3 dengan 128/192/320kbps. Pemrosesan cepat, output audio lengkap.",
     "schemaName": "Y2mate - Konverter YouTube ke MP3",
     "schemaDescription": "Alat konversi YouTube ke MP3 online yang mendukung beberapa opsi bitrate dengan integritas audio yang terjaga."
   },
@@ -46,11 +46,7 @@
         "title": "Pemrosesan Berbasis Web",
         "description": "Ekstraksi dan konversi audio dilakukan sepenuhnya secara online tanpa memerlukan instalasi perangkat lunak."
       },
-      {
-        "title": "Alur Kerja Bebas Iklan",
-        "description": "Tidak ada iklan atau pop-up yang ditampilkan selama proses konversi."
-      },
-      {
+            {
         "title": "Konversi Tanpa Batas",
         "description": "Pengguna dapat mengonversi dan mengunduh beberapa file MP3 tanpa batasan harian atau penggunaan."
       },
@@ -79,11 +75,7 @@
         "question": "Apakah mengonversi YouTube ke MP3 mengurangi kualitas audio?",
         "answer": "MP3 adalah format kompresi lossy, yang berarti beberapa data audio dikurangi selama pengkodean. Namun, bitrate yang lebih tinggi seperti 192kbps dan 320kbps meminimalkan kehilangan kualitas yang terlihat. Y2mate tidak menerapkan kompresi tambahan di luar bitrate yang dipilih."
       },
-      {
-        "question": "Apakah iklan atau pop-up ditampilkan selama konversi?",
-        "answer": "Tidak. Y2mate tidak menampilkan iklan atau pop-up pada tahap apa pun dari proses konversi atau pengunduhan."
-      },
-      {
+            {
         "question": "Bisakah video YouTube pribadi dikonversi?",
         "answer": "Tidak. Hanya video YouTube Publik atau Tidak Terdaftar yang dapat diproses karena pembatasan akses."
       }

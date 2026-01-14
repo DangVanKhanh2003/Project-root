@@ -1,9 +1,9 @@
 {
   "seo": {
     "title": "Y2Mate – YouTube to MP3 Converter (128kbps, 192kbps, 320kbps)",
-    "description": "Convert YouTube videos to MP3 with selectable bitrates from 128kbps to 320kbps. Y2Mate extracts audio streams efficiently, does not display ads or pop-ups, and operates securely in the browser.",
+    "description": "Convert YouTube videos to MP3 with selectable bitrates from 128kbps to 320kbps. Y2Mate extracts audio streams efficiently and operates securely in the browser.",
     "ogTitle": "Y2Mate – YouTube to MP3 Converter",
-    "ogDescription": "YouTube to MP3 converter supporting 128kbps, 192kbps, and 320kbps audio. Fast processing, no ads, browser-based, and secure.",
+    "ogDescription": "YouTube to MP3 converter supporting 128kbps, 192kbps, and 320kbps audio. Fast processing, browser-based, and secure.",
     "schemaName": "Y2Mate – YouTube to MP3 Converter",
     "schemaDescription": "An online tool for extracting and converting YouTube audio streams into MP3 with multiple bitrate options."
   },
@@ -56,11 +56,7 @@
         "title": "Browser-Based Operation",
         "description": "All conversions run directly in the browser without installing applications or plugins."
       },
-      {
-        "title": "No Advertisements",
-        "description": "The conversion process does not display ads or pop-up windows at any stage."
-      },
-      {
+            {
         "title": "Broad Device Compatibility",
         "description": "Generated MP3 files play smoothly on smartphones, computers, car audio systems, and dedicated music players."
       }

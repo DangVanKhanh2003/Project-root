@@ -1,9 +1,9 @@
 {
   "seo": {
     "title": "Y2mate - Penukar YouTube ke MP3",
-    "description": "Y2mate adalah penukar YouTube ke MP3 yang menyokong audio 128kbps, 192kbps, dan 320kbps. Muat turun fail audio lengkap dengan integriti bunyi yang terpelihara. Tiada iklan dipaparkan.",
+    "description": "Y2mate adalah penukar YouTube ke MP3 yang menyokong audio 128kbps, 192kbps, dan 320kbps. Muat turun fail audio lengkap dengan integriti bunyi yang terpelihara.",
     "ogTitle": "Y2mate - Penukar YouTube ke MP3",
-    "ogDescription": "Tukar YouTube ke MP3 dengan 128/192/320kbps. Pemprosesan pantas, output audio lengkap, dan tiada iklan.",
+    "ogDescription": "Tukar YouTube ke MP3 dengan 128/192/320kbps. Pemprosesan pantas, output audio lengkap.",
     "schemaName": "Y2mate - Penukar YouTube ke MP3",
     "schemaDescription": "Alat penukaran YouTube ke MP3 dalam talian yang menyokong pelbagai pilihan kadar bit dengan integriti audio yang terpelihara."
   },
@@ -47,10 +47,6 @@
         "description": "Pengekstrakan dan penukaran audio dilakukan sepenuhnya dalam talian tanpa memerlukan pemasangan perisian."
       },
       {
-        "title": "Aliran Kerja Bebas Iklan",
-        "description": "Tiada iklan atau pop-up dipaparkan semasa proses penukaran."
-      },
-      {
         "title": "Penukaran Tanpa Had",
         "description": "Pengguna boleh menukar dan memuat turun beberapa fail MP3 tanpa had harian atau penggunaan."
       },
@@ -78,10 +74,6 @@
       {
         "question": "Adakah menukar YouTube ke MP3 mengurangkan kualiti audio?",
         "answer": "MP3 adalah format mampatan lossy, yang bermaksud beberapa data audio dikurangkan semasa pengekodan. Walau bagaimanapun, kadar bit yang lebih tinggi seperti 192kbps dan 320kbps meminimumkan kehilangan kualiti yang dapat dilihat. Y2mate tidak menggunakan mampatan tambahan melebihi kadar bit yang dipilih."
-      },
-      {
-        "question": "Adakah iklan atau pop-up dipaparkan semasa penukaran?",
-        "answer": "Tidak. Y2mate tidak memaparkan iklan atau pop-up pada mana-mana peringkat proses penukaran atau muat turun."
       },
       {
         "question": "Bolehkah video YouTube peribadi ditukar?",

@@ -1,9 +1,9 @@
 {
   "seo": {
     "title": "Y2mate - YouTube MP3 변환기",
-    "description": "Y2mate는 128kbps, 192kbps 및 320kbps 오디오를 지원하는 YouTube MP3 변환기입니다. 음질을 유지하면서 완전한 오디오 파일을 다운로드하세요. 광고는 표시되지 않습니다.",
+    "description": "Y2mate는 128kbps, 192kbps 및 320kbps 오디오를 지원하는 YouTube MP3 변환기입니다. 음질을 유지하면서 완전한 오디오 파일을 다운로드하세요.",
     "ogTitle": "Y2mate - YouTube MP3 변환기",
-    "ogDescription": "128/192/320kbps로 YouTube를 MP3로 변환합니다. 빠른 처리, 완전한 오디오 출력, 광고 없음.",
+    "ogDescription": "128/192/320kbps로 YouTube를 MP3로 변환합니다. 빠른 처리, 완전한 오디오 출력.",
     "schemaName": "Y2mate - YouTube MP3 변환기",
     "schemaDescription": "음질을 유지하면서 여러 비트레이트 옵션을 지원하는 온라인 YouTube MP3 변환 도구."
   },
@@ -46,11 +46,7 @@
         "title": "웹 기반 처리",
         "description": "오디오 추출 및 변환은 소프트웨어 설치가 필요 없이 완전히 온라인으로 수행됩니다."
       },
-      {
-        "title": "광고 없는 워크플로",
-        "description": "변환 프로세스 중에 광고나 팝업이 표시되지 않습니다."
-      },
-      {
+            {
         "title": "무제한 변환",
         "description": "사용자는 일일 또는 사용 제한 없이 여러 MP3 파일을 변환하고 다운로드할 수 있습니다."
       },
@@ -79,11 +75,7 @@
         "question": "YouTube를 MP3로 변환하면 음질이 저하됩니까?",
         "answer": "MP3는 손실 압축 형식으로, 인코딩 중에 일부 오디오 데이터가 감소합니다. 그러나 192kbps 및 320kbps와 같은 높은 비트레이트는 인지 가능한 품질 손실을 최소화합니다. Y2mate는 선택한 비트레이트 외에 추가 압축을 적용하지 않습니다."
       },
-      {
-        "question": "변환 중에 광고나 팝업이 표시됩니까?",
-        "answer": "아니요. Y2mate는 변환 또는 다운로드 프로세스의 어떤 단계에서도 광고나 팝업을 표시하지 않습니다."
-      },
-      {
+            {
         "question": "개인 YouTube 비디오를 변환할 수 있습니까?",
         "answer": "아니요. 액세스 제한으로 인해 공개 또는 비공개 YouTube 비디오만 처리할 수 있습니다."
       }
