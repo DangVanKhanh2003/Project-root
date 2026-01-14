@@ -328,12 +328,10 @@ function setupButtonHandlers(formatId: string): void {
 async function handleDownloadButtonClick(formatId: string): Promise<void> {
   console.log('[renderConversionStatus] Download button clicked for:', formatId);
 
-  const { handleDownloadClick } = await import('../logic/conversion/convert-logic-v2');
+  const { handleDownloadClick } = await import('../logic/conversion');
   const result = handleDownloadClick(formatId);
 
-  if (result === 'expired') {
-    alert('Download link has expired. Please refresh the page and try again.');
-  } else if (result === 'error') {
+  if (result === 'error') {
     alert('Download failed. Please try again.');
   }
 }
@@ -353,15 +351,15 @@ async function handleRetryButtonClick(formatId: string): Promise<void> {
     return;
   }
 
-  const { startConversion } = await import('../logic/conversion/convert-logic-v2');
+  const { startConversion } = await import('../logic/conversion');
   const videoTitle = state.youtubePreview?.title || 'Video';
   const videoUrl = state.youtubePreview?.url || '';
 
   await startConversion({
     formatId,
-    formatData: task.formatData,
+    videoUrl,
     videoTitle,
-    videoUrl
+    extractV2Options: task.formatData?.extractV2Options || {}
   });
 }
 

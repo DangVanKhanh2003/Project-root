@@ -55,6 +55,14 @@ export {
 } from './services/v2';
 
 // ========================================
+// Services - V3
+// ========================================
+export {
+  createV3DownloadService,
+  type IV3DownloadService,
+} from './services/v3';
+
+// ========================================
 // Services - Public API
 // ========================================
 export {
@@ -78,6 +86,19 @@ export {
   normalizeFormats,
   normalizeFormatsFromObject,
 } from './mappers';
+
+// ========================================
+// Mappers - V3
+// ========================================
+export {
+  mapToV3DownloadRequest,
+  detectOsType,
+  mapErrorCodeToMessage,
+  isRetryableError,
+  isUserInputError,
+  isVideoUnavailableError,
+  type ExtractV2Options,
+} from './mappers/v3';
 
 // ========================================
 // Service Base (for custom services)

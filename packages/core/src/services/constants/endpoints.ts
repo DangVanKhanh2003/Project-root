@@ -82,3 +82,27 @@ export const QUEUE_ENDPOINTS = {
   /** Add video to extraction queue */
   ADD_VIDEO_QUEUE: '/api/add-video-queue',
 } as const;
+
+/**
+ * V3 Download API endpoints
+ * Base URL: https://api.ytconvert.org
+ */
+export const V3_ENDPOINTS = {
+  /** Create download job - POST /api/download */
+  DOWNLOAD: '/api/download',
+
+  /** Get job status - GET /api/status/:id */
+  STATUS: '/api/status',
+
+  /** Download file - GET /files/:id/:filename */
+  FILES: '/files',
+
+  /** Stream file - GET /stream/:id */
+  STREAM: '/stream',
+
+  /** Delete job - DELETE /api/jobs/:id */
+  DELETE_JOB: '/api/jobs',
+
+  /** Health check - GET /health */
+  HEALTH: '/health',
+} as const;

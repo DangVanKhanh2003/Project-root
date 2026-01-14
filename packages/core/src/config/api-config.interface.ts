@@ -133,6 +133,12 @@ export interface ApiConfig {
     searchV2?: number;
 
     addQueue?: number;
+
+    /** V3: Create job timeout (1 hour) */
+    v3CreateJob?: number;
+
+    /** V3: Get status timeout (55 seconds) */
+    v3GetStatus?: number;
   };
 }
 
@@ -158,6 +164,9 @@ export const DEFAULT_TIMEOUTS = {
   feedback: 10000,
   searchV2: 15000,
   addQueue: 100000,
+  // V3 API timeouts
+  v3CreateJob: 3600000, // 1 hour
+  v3GetStatus: 55000, // 55 seconds
 } as const;
 
 /**
