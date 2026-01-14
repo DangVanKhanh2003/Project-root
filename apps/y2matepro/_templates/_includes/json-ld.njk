@@ -48,13 +48,18 @@
       "@id": "{{ canonicalUrl }}#webpage",
       "url": "{{ canonicalUrl }}",
       "name": "{{ seo.title | jsonString | safe }}",
+      {%- if not isRootHomePage %}
+      "isPartOf": {
+        "@id": "{{ site.url }}/#website"
+      },
+      {%- endif %}
       "inLanguage": "{{ lang or 'en' }}"
     },
     {
       "@type": "WebApplication",
-      "@id": "{{ site.url }}/#application",
+      "@id": "{{ canonicalUrl }}#application",
       "name": "Y2mate",
-      "url": "{{ site.url }}",
+      "url": "{{ canonicalUrl }}",
       "description": "{{ seo.schemaDescription | jsonString | safe }}",
       "applicationCategory": "MultimediaApplication",
       "operatingSystem": "All",
