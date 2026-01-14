@@ -10,7 +10,7 @@ import {
   cancelConversion,
   handleDownloadClick,
   clearSocialMediaCache
-} from './convert-logic-v2';
+} from './index';
 import { getConversionTask, getState } from '../../state';
 import { showExpireModal } from '@downloader/ui-components';
 
@@ -51,7 +51,7 @@ declare global {
 const handleCancelEvent = (event: CustomEvent<ConversionCancelEventDetail>) => {
   const { formatId } = event.detail;
   if (formatId) {
-    cancelConversion();
+    cancelConversion(formatId);
   }
 };
 
@@ -83,7 +83,7 @@ const handleRetryEvent = async (event: CustomEvent<ConversionRetryEventDetail>) 
     const task = getConversionTask(formatId);
     if (task?.formatData) {
       // Re-import dynamically to avoid circular dependency
-      const { startConversion } = await import('./convert-logic-v2');
+      const { startConversion } = await import('./index');
       const { getState } = await import('../../state');
       const state = getState();
       const videoTitle = state.videoDetail?.meta?.title || 'Video';
@@ -91,9 +91,9 @@ const handleRetryEvent = async (event: CustomEvent<ConversionRetryEventDetail>) 
 
       await startConversion({
         formatId,
-        formatData: task.formatData,
+        videoUrl,
         videoTitle,
-        videoUrl
+        extractV2Options: task.formatData?.extractV2Options || {}
       });
     }
   }

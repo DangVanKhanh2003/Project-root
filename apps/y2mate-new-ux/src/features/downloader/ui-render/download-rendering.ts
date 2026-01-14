@@ -245,7 +245,7 @@ function setupButtonHandlers(wrapper: HTMLElement, formatId: string): void {
 async function handleDownloadButtonClick(formatId: string): Promise<void> {
   console.log('[renderConversionStatus] Download button clicked for:', formatId);
 
-  const { handleDownloadClick } = await import('../logic/conversion/convert-logic-v2');
+  const { handleDownloadClick } = await import('../logic/conversion');
   const result = handleDownloadClick(formatId);
 
   if (result === 'expired') {
@@ -270,15 +270,15 @@ async function handleRetryButtonClick(formatId: string): Promise<void> {
     return;
   }
 
-  const { startConversion } = await import('../logic/conversion/convert-logic-v2');
+  const { startConversion } = await import('../logic/conversion');
   const videoTitle = state.youtubePreview?.title || 'Video';
   const videoUrl = state.youtubePreview?.url || '';
 
   await startConversion({
     formatId,
-    formatData: task.formatData,
+    videoUrl,
     videoTitle,
-    videoUrl
+    extractV2Options: task.formatData?.extractV2Options || {}
   });
 }
 

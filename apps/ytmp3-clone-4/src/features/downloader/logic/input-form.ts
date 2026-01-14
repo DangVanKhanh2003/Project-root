@@ -122,13 +122,13 @@ async function handleAutoDownload(url: string, videoId: string): Promise<void> {
 
     // Trigger conversion with built formatData
     console.log('[Auto-Download] Triggering conversion...');
-    const { startConversion } = await import('./conversion/convert-logic-v2');
+    const { startConversion } = await import('./conversion');
 
     await startConversion({
       formatId,
-      formatData,
+      videoUrl: url,
       videoTitle,
-      videoUrl: url
+      extractV2Options: formatData.extractV2Options || {}
     });
 
     console.log('[Auto-Download] Conversion triggered successfully');

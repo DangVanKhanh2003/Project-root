@@ -12,6 +12,7 @@ import {
   updateConversionTask,
   getConversionTask
 } from '../features/downloader/state';
+import type { ConversionTaskState } from '../features/downloader/state/types';
 
 /**
  * Adapter: Core strategies → App state management
@@ -31,24 +32,28 @@ export class CoreStateAdapter implements IStateUpdater {
     // Core uses lowercase: 'idle', 'success', 'failed'
     // App uses lowercase too, so no conversion needed
 
+    // Destructure to separate state from other fields
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { state, ...otherUpdates } = updates;
+
     // Only include state if it's explicitly provided (not undefined)
     // This prevents overwriting existing state during progress updates
-    const stateUpdate = updates.state !== undefined
-      ? { state: updates.state as any } // Type cast for compatibility
+    const stateUpdate = state !== undefined
+      ? { state: state as ConversionTaskState }
       : {};
 
     updateConversionTask(formatId, {
       ...stateUpdate,
-      statusText: updates.statusText,
-      progress: updates.progress,
-      downloadUrl: updates.downloadUrl,
-      error: updates.error,
-      completedAt: updates.completedAt,
-      showProgressBar: updates.showProgressBar,
-      ramBlob: updates.ramBlob,
-      filename: updates.filename,
-      // Pass through any custom fields
-      ...updates
+      statusText: otherUpdates.statusText,
+      progress: otherUpdates.progress,
+      downloadUrl: otherUpdates.downloadUrl,
+      error: otherUpdates.error,
+      completedAt: otherUpdates.completedAt,
+      showProgressBar: otherUpdates.showProgressBar,
+      ramBlob: otherUpdates.ramBlob,
+      filename: otherUpdates.filename,
+      // Pass through any custom fields (excluding state which is handled above)
+      ...otherUpdates
     });
   }
 
