@@ -1,8 +1,8 @@
 {
   "seo": {
-    "title": "Y2mate - Baixador de Vídeos do YouTube Gratuito | Baixar Vídeos Online",
-    "description": "Baixe vídeos do YouTube de forma rápida e segura com o Y2mate. Escolha qualquer resolução de 144p a 1080p ou áudio de 128kbps a 320kbps, diretamente no seu navegador — sem necessidade de aplicativo ou registro.",
-    "ogTitle": "Y2mate - Baixador de Vídeos do YouTube Gratuito | Baixar Vídeos Online",
+    "title": "Y2Mate – Fast & Easy YouTube Video Downloader",
+    "description": "Baixe vídeos e áudio do YouTube rapidamente. Suporta MP4, MP3, HD e 4K. Um downloader de YouTube online, simples e fácil de usar.",
+    "ogTitle": "Y2Mate – Fast & Easy YouTube Video Downloader",
     "ogDescription": "Salve vídeos do YouTube online gratuitamente. Escolha a qualidade que desejar, de vídeo 144p a 1080p ou áudio de 128kbps a 320kbps. Rápido, seguro e funciona em todos os dispositivos.",
     "schemaName": "Y2mate - Baixador de Vídeos do YouTube",
     "schemaDescription": "Baixe vídeos do YouTube online gratuitamente. Salve vídeos ou áudio na qualidade que preferir. Funciona rapidamente em qualquer dispositivo sem instalação."
@@ -12,8 +12,8 @@
   },
   "content": {
     "mainTitle": "Y2mate – Baixe Vídeos do YouTube Rápido e Grátis",
-    "intro1": "Y2mate é um baixador de vídeos do YouTube online focado em velocidade e usabilidade. O Y2mate baixa vídeos do YouTube até 2x mais rápido do que muitas outras ferramentas de download do YouTube online. Você pode baixar vídeos ou convertê-los para áudio para visualização e audição offline sem instalar software ou criar uma conta.",
-    "intro2": "O Y2mate oferece uma experiência de download limpa e suave, sem anúncios, pop-ups e redirecionamentos. Todos os arquivos são baixados diretamente para o seu dispositivo. A ferramenta suporta uma gama completa de opções de qualidade, incluindo resoluções de vídeo de 144p, 360p, 480p, 720p até 1080p (Full HD), e taxas de bits de áudio de 128kbps a 320kbps nos formatos MP3, OGG, WAV e OPUS. O Y2mate funciona de forma confiável em todos os dispositivos e navegadores."
+    "intro1": "Y2Mate is an online YouTube video downloader that allows you to download videos or convert them into audio for offline use. The tool works directly in your browser, with no software installation or account required.",
+    "intro2": "Y2Mate supports popular video resolutions, including 144p, 360p, 480p, 720p, and 1080p (Full HD), as well as audio formats such as MP3, OGG, WAV, and OPUS with common bitrates like 128kbps, 192kbps, and 320kbps. The tool works smoothly on both desktop and mobile devices."
   },
   "instructions": {
     "title": "Como Baixar Vídeos do YouTube em Segundos",
@@ -42,7 +42,7 @@
       },
       {
         "title": "Múltiplas opções de qualidade",
-        "description": "Suporta resoluções de vídeo de 144p, 360p, 480p, 720p a 1080p e taxas de bits de áudio de 128kbps a 320kbps."
+        "description": "Suporta resoluções de vídeo de 144p, 360p, 480p, 720p a 1080p e bitrates de áudio de 128kbps a 320kbps."
       },
       {
         "title": "Processamento rápido e estável",

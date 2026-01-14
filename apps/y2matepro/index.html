@@ -69,36 +69,57 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "Organization",
+      "@id": "https://y2matepro.com/#organization",
+      "name": "Y2mate",
+      "url": "https://y2matepro.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://y2matepro.com/logo.png"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "email": "y2matepro@gmail.com"
+      }
+    },
+    {
       "@type": "WebSite",
+      "@id": "https://y2matepro.com/#website",
       "name": "Y2mate",
       "url": "https://y2matepro.com",
       "description": "Download YouTube videos quickly and safely with Y2mate. Choose any resolution from 144p to 1080p or audio from 128kbps to 320kbps, directly in your browser—no app or registration needed.",
       "inLanguage": "en",
       "publisher": {
-  "@type": "Organization",
-  "name": "Y2mate",
-  "url": "https://y2matepro.com",
-  "logo": "https://y2matepro.com/logo.png",
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "email": "y2matepro@gmail.com",
-    "contactType": "customer service"
-  }
-}
+        "@id": "https://y2matepro.com/#organization"
+      }
     },
     {
-  "@type": "Organization",
-  "name": "Y2mate",
-  "url": "https://y2matepro.com",
-  "logo": "https://y2matepro.com/logo.png",
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "email": "y2matepro@gmail.com",
-    "contactType": "customer service"
-  }
-},
+      "@type": "WebPage",
+      "@id": "https://y2matepro.com//#webpage",
+      "url": "https://y2matepro.com/",
+      "name": "Y2mate - Free YouTube Video Downloader | Download Videos Online",
+      "inLanguage": "en"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://y2matepro.com/#application",
+      "name": "Y2mate",
+      "url": "https://y2matepro.com",
+      "applicationCategory": "WebApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
     {
       "@type": "FAQPage",
+      "@id": "https://y2matepro.com//#faq",
+      "isPartOf": {
+        "@id": "https://y2matepro.com//#webpage"
+      },
       "mainEntity": [
         {
           "@type": "Question",
@@ -168,6 +189,10 @@
     },
     {
       "@type": "HowTo",
+      "@id": "https://y2matepro.com//#howto",
+      "isPartOf": {
+        "@id": "https://y2matepro.com//#webpage"
+      },
       "name": "How to Download YouTube Videos in Seconds",
       "step": [
         {

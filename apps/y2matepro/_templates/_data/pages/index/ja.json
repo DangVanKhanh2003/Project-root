@@ -1,8 +1,8 @@
 {
   "seo": {
-    "title": "Y2mate - 無料YouTube動画ダウンローダー | オンラインで動画をダウンロード",
-    "description": "Y2mateでYouTube動画を素早く安全にダウンロード。144pから1080pまでの任意の解像度、または128kbpsから320kbpsまでの音声を、ブラウザで直接選択できます。アプリや登録は不要です。",
-    "ogTitle": "Y2mate - 無料YouTube動画ダウンローダー | オンラインで動画をダウンロード",
+    "title": "Y2Mate – Fast & Easy YouTube Video Downloader",
+    "description": "YouTubeから動画や音声を素早くダウンロード。MP4、MP3、HD、4Kに対応した、シンプルで使いやすいオンラインYouTubeダウンローダーです。",
+    "ogTitle": "Y2Mate – Fast & Easy YouTube Video Downloader",
     "ogDescription": "YouTube動画をオンラインで無料で保存。144pから1080pまでの動画、または128kbpsから320kbpsまでの音声の中から、お好みの品質を選択してください。高速、安全で、すべてのデバイスで動作します。",
     "schemaName": "Y2mate - YouTube動画ダウンローダー",
     "schemaDescription": "YouTube動画をオンラインで無料でダウンロード。お好みの品質で動画や音声を保存。インストール不要で、どのデバイスでも素早く動作します。"
@@ -12,15 +12,15 @@
   },
   "content": {
     "mainTitle": "Y2mate – YouTube動画を素早く無料でダウンロード",
-    "intro1": "Y2mateは、速度と使いやすさに重点を置いたオンラインYouTube動画ダウンローダーです。Y2mateは、他の多くのオンラインYouTubeダウンロードツールよりも最大2倍速くYouTube動画をダウンロードします。ソフトウェアをインストールしたり、アカウントを作成したりすることなく、オフラインでの視聴やリスニングのために動画をダウンロードしたり、音声に変換したりできます。",
-    "intro2": "Y2mateは、広告、ポップアップ、リダイレクトなしで、クリーンでスムーズなダウンロード体験を提供します。すべてのファイルはデバイスに直接ダウンロードされます。このツールは、144p、360p、480p、720pから1080p（フルHD）までの動画解像度、およびMP3、OGG、WAV、OPUS形式で128kbpsから320kbpsまでのオーディオビットレートを含む、あらゆる品質オプションをサポートしています。Y2mateはすべてのデバイスとブラウザで確実に動作します。"
+    "intro1": "Y2Mate is an online YouTube video downloader that allows you to download videos or convert them into audio for offline use. The tool works directly in your browser, with no software installation or account required.",
+    "intro2": "Y2Mate supports popular video resolutions, including 144p, 360p, 480p, 720p, and 1080p (Full HD), as well as audio formats such as MP3, OGG, WAV, and OPUS with common bitrates like 128kbps, 192kbps, and 320kbps. The tool works smoothly on both desktop and mobile devices."
   },
   "instructions": {
     "title": "YouTube動画を数秒でダウンロードする方法",
     "steps": [
       "<strong>YouTubeリンクを貼り付けます:</strong> YouTube動画またはYouTubeショートのURLをコピーし、ダウンロードボックスに貼り付けます。",
       "<strong>リンクを分析します:</strong> 開始ボタンをクリックして、利用可能な形式と品質オプションを表示します。",
-      "<strong>動画または音声を選択します:</strong> 動画の場合はMP4、音声の場合はMP3を選択し、お好みの解像度またはビットレートを選択します。",
+      "<strong>動画または音声を選択します:</strong> 動画の場合はMP4、音声の場合はMP3を選択し、お好みの解像度またはbitrateを選択します。",
       "<strong>ダウンロード:</strong> 「変換」をクリックし、ログインせずにファイルをデバイスに直接ダウンロードします。"
     ]
   },
@@ -42,7 +42,7 @@
       },
       {
         "title": "複数の品質オプション",
-        "description": "144p、360p、480p、720pから1080pまでの動画解像度と、128kbpsから320kbpsまでのオーディオビットレートをサポートします。"
+        "description": "144p、360p、480p、720pから1080pまでの動画解像度と、128kbpsから320kbpsまでのオーディオbitrateをサポートします。"
       },
       {
         "title": "高速で安定した処理",
@@ -79,7 +79,7 @@
       },
       {
         "question": "YouTube動画をMP3ファイルとしてダウンロードするにはどうすればよいですか？",
-        "answer": "YouTube動画リンクをY2mateに貼り付け、オーディオオプションを選択し、お好みのビットレートを選択して「変換」をクリックすると、MP3ファイルがダウンロードされます。"
+        "answer": "YouTube動画リンクをY2mateに貼り付け、オーディオオプションを選択し、お好みのbitrateを選択して「変換」をクリックすると、MP3ファイルがダウンロードされます。"
       },
       {
         "question": "Y2mateはYouTubeショートのダウンロードをサポートしていますか？",

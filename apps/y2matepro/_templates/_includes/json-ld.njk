@@ -1,20 +1,8 @@
-{#- JSON-LD Structured Data for SEO -#}
+{#- JSON-LD Structured Data for SEO (EEAT compliant) -#}
 {%- set isHomePage = (pageKey == 'index') -%}
+{%- set isRootHomePage = isHomePage and (lang == 'en' or not lang) -%}
 {%- set hasInstructions = pageData.instructions and pageData.instructions.steps -%}
 {%- set hasFaqs = pageData.faqs and pageData.faqs.items -%}
-
-{#- Organization (shared across all schemas) -#}
-{%- set organization = {
-  "@type": "Organization",
-  "name": "Y2mate",
-  "url": site.url,
-  "logo": site.url + "/logo.png",
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "email": "y2matepro@gmail.com",
-    "contactType": "customer service"
-  }
-} -%}
 
 {#- Build canonical URL -#}
 {%- set cleanUrl = page.url | replace('/index.html', '/') | replace('.html', '') -%}
@@ -22,22 +10,65 @@
 
 <script type="application/ld+json">
 {%- if isHomePage %}
-{#- === HOMEPAGE: WebSite Schema === -#}
+{#- === HOMEPAGE === -#}
 {
   "@context": "https://schema.org",
   "@graph": [
+    {%- if isRootHomePage %}
+    {
+      "@type": "Organization",
+      "@id": "{{ site.url }}/#organization",
+      "name": "Y2mate",
+      "url": "{{ site.url }}",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "{{ site.url }}/logo.png"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "email": "y2matepro@gmail.com"
+      }
+    },
     {
       "@type": "WebSite",
+      "@id": "{{ site.url }}/#website",
       "name": "Y2mate",
       "url": "{{ site.url }}",
       "description": "{{ seo.description | jsonString | safe }}",
-      "inLanguage": "{{ lang or 'en' }}",
-      "publisher": {{ organization | dump | safe }}
+      "inLanguage": "en",
+      "publisher": {
+        "@id": "{{ site.url }}/#organization"
+      }
     },
-    {{ organization | dump | safe }}
+    {%- endif %}
+    {
+      "@type": "WebPage",
+      "@id": "{{ canonicalUrl }}/#webpage",
+      "url": "{{ canonicalUrl }}",
+      "name": "{{ seo.title | jsonString | safe }}",
+      "inLanguage": "{{ lang or 'en' }}"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "{{ site.url }}/#application",
+      "name": "Y2mate",
+      "url": "{{ site.url }}",
+      "applicationCategory": "WebApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
     {%- if hasFaqs %},
     {
       "@type": "FAQPage",
+      "@id": "{{ canonicalUrl }}/#faq",
+      "isPartOf": {
+        "@id": "{{ canonicalUrl }}/#webpage"
+      },
       "mainEntity": [
         {%- for item in pageData.faqs.items %}
         {
@@ -55,6 +86,10 @@
     {%- if hasInstructions %},
     {
       "@type": "HowTo",
+      "@id": "{{ canonicalUrl }}/#howto",
+      "isPartOf": {
+        "@id": "{{ canonicalUrl }}/#webpage"
+      },
       "name": "{{ pageData.instructions.title | jsonString | safe }}",
       "step": [
         {%- for step in pageData.instructions.steps %}
@@ -70,12 +105,23 @@
   ]
 }
 {%- else %}
-{#- === TOOL PAGES: WebApplication Schema === -#}
+{#- === TOOL PAGES === -#}
 {
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "WebPage",
+      "@id": "{{ canonicalUrl }}/#webpage",
+      "url": "{{ canonicalUrl }}",
+      "name": "{{ seo.title | jsonString | safe }}",
+      "about": {
+        "@id": "{{ canonicalUrl }}/#application"
+      },
+      "inLanguage": "{{ lang or 'en' }}"
+    },
+    {
       "@type": "WebApplication",
+      "@id": "{{ canonicalUrl }}/#application",
       "name": "Y2mate",
       "url": "{{ canonicalUrl }}",
       "description": "{{ seo.schemaDescription | jsonString | safe }}",
@@ -87,12 +133,15 @@
         "@type": "Offer",
         "price": "0",
         "priceCurrency": "USD"
-      },
-      "publisher": {{ organization | dump | safe }}
+      }
     }
     {%- if hasFaqs %},
     {
       "@type": "FAQPage",
+      "@id": "{{ canonicalUrl }}/#faq",
+      "isPartOf": {
+        "@id": "{{ canonicalUrl }}/#webpage"
+      },
       "mainEntity": [
         {%- for item in pageData.faqs.items %}
         {
@@ -110,6 +159,10 @@
     {%- if hasInstructions %},
     {
       "@type": "HowTo",
+      "@id": "{{ canonicalUrl }}/#howto",
+      "isPartOf": {
+        "@id": "{{ canonicalUrl }}/#webpage"
+      },
       "name": "{{ pageData.instructions.title | jsonString | safe }}",
       "step": [
         {%- for step in pageData.instructions.steps %}
