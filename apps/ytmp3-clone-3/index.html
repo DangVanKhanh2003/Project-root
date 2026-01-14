@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>YTMP3 - Premium Converter</title>
+    <meta name="description" content="Fast, secure, and futuristic YouTube to MP3 converter.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+
+    <!-- TypeScript Module -->
+    <script type="module" src="/src/main.ts"></script>
+</head>
+<body>
+
+    <header class="header" id="header">
+        <div class="container nav-wrapper">
+            <a href="/" class="logo">
+                <div class="logo-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" fill="#fff" stroke="#fff" stroke-width="2" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span>ytmp3.gg</span>
+            </a>
+
+            <nav class="desktop-nav">
+                <a href="/" class="nav-link active">Converter</a>
+                <a href="#" class="nav-link">How it works</a>
+                <a href="#" class="nav-link">FAQ</a>
+
+                <button class="icon-btn" id="theme-toggle" aria-label="Toggle Theme">
+                    <!-- Sun Icon (for light mode) -->
+                    <svg class="sun-icon hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    <!-- Moon Icon (for dark mode) -->
+                    <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </button>
+
+                <button class="lang-btn">
+                    <span>EN</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                </button>
+            </nav>
+
+            <!-- Mobile nav actions -->
+            <div class="mobile-nav">
+                <button class="icon-btn" id="mobile-header-theme-toggle" aria-label="Toggle Theme">
+                    <!-- Sun Icon (for light mode) -->
+                    <svg class="sun-icon hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    <!-- Moon Icon (for dark mode) -->
+                    <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </button>
+
+                <button class="mobile-toggle" id="mobileMenuToggle" aria-label="Menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Drawer -->
+    <div class="drawer-overlay" id="mobileMenuOverlay"></div>
+    <div class="drawer" id="drawer">
+        <div class="drawer-header">
+            <a href="/" class="logo">
+                <div class="logo-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" fill="#fff" stroke="#fff" stroke-width="2" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span>ytmp3.gg</span>
+            </a>
+            <button class="mobile-toggle" id="mobileCloseBtn" style="padding:0;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+        </div>
+        <a href="#" class="drawer-link active">Converter</a>
+        <a href="#" class="drawer-link">YouTube Downloader</a>
+        <a href="#" class="drawer-link">MP4 Converter</a>
+        <a href="#" class="drawer-link">FAQ</a>
+        <div style="margin-top:auto; display: flex; gap:10px;">
+             <button class="icon-btn" id="mobile-theme-toggle" style="width:100%; border-radius:12px;">
+                <span style="margin-right:10px; font-weight:600;">Switch Theme</span>
+                <!-- Sun Icon (for light mode) -->
+                <svg class="sun-icon hidden" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                <!-- Moon Icon (for dark mode) -->
+                <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+             </button>
+        </div>
+    </div>
+
+    <main>
+        <section class="hero">
+            <div class="hero-glow"></div>
+            <div class="container" style="display: flex; justify-content: center;">
+                <div class="hero-card">
+
+                    <!-- Search View -->
+                    <div id="search-view" class="fade-in">
+                        <div class="hero-header">
+                            <span class="badge">
+                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                                Fast &amp; Secure
+                            </span>
+                            <h1 class="hero-title">YouTube to <span>MP3</span></h1>
+                            <p class="hero-subtitle">Experience the fastest, ad-free YouTube downloader. </p>
+                        </div>
+
+                        <form id="downloadForm" class="form-container">
+                            <div class="input-group">
+                                <div class="input-wrapper" id="input-wrapper">
+                                    <input type="text" id="videoUrl" class="video-input" placeholder="Paste YouTube link here..." autocomplete="off">
+                                    <div class="input-actions">
+                                        <button type="button" id="input-action-button" class="btn-paste" data-action="paste">
+                                            <svg class="paste-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                                            <span class="btn-state--paste">Paste</span>
+                                            <svg class="clear-icon hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                            <span class="btn-state--clear hidden">Clear</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div id="suggestion-container" class="suggestion-container"></div>
+                            </div>
+
+                            <!-- Format Selector Container (TypeScript will render here) -->
+                            <div id="format-selector-container">
+                                <!-- Initial skeleton to prevent layout shift - will be replaced by JS -->
+                                <div class="format-selector-wrapper">
+                                    <div class="format-selector">
+                                        <!-- Format Toggle -->
+                                        <div class="format-toggle">
+                                            <button type="button" class="format-btn active" data-format="mp3">MP3</button>
+                                            <button type="button" class="format-btn" data-format="mp4">MP4</button>
+                                        </div>
+
+                                        <!-- Quality Dropdown -->
+                                        <div class="quality-wrapper">
+                                            <div class="quality-dropdown-wrapper">
+                                                <select id="quality-select" class="quality-select" aria-label="Audio quality">
+                                                    <option value="mp3-128" selected> MP3 - 128kbps </option>
+                                                    <option value="mp3-256"> MP3 - 256kbps </option>
+                                                </select>
+                                            </div>
+                                            <div class="select-arrow">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                                            </div>
+                                        </div>
+
+                                        <!-- Convert Button -->
+                                        <button type="submit" class="btn-convert">
+                                            <span>Convert</span>
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <div id="error-message" class="error-message"></div>
+                    </div>
+                    <!-- End Search View -->
+
+                    <!-- Result View (Hidden by default) -->
+                    <div id="result-view" class="hidden fade-in">
+                        <div class="hero-header" style="margin-bottom: 24px;">
+                            <h1 class="hero-title" style="font-size: 1.8rem;">YouTube to <span>MP3</span></h1>
+                        </div>
+
+                        <!-- Content Area - TypeScript will render preview here -->
+                        <div id="content-area"></div>
+                    </div>
+                    <!-- End Result View -->
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Search Results Section -->
+        <section id="search-results-section" style="display: none;">
+            <div class="container">
+                <div id="search-results-container"></div>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <div class="info-card">
+                    <div class="section-header">
+                        <div class="section-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
+                        </div>
+                        <h2 class="section-title">How to use</h2>
+                    </div>
+
+                    <div class="steps-container">
+                        <div class="step">
+                            <div class="step-number">01</div>
+                            <h3 class="step-title">Copy Link</h3>
+                            <p class="step-desc">Find the video you want on YouTube and copy the URL from the address bar.</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">02</div>
+                            <h3 class="step-title">Paste & Configure</h3>
+                            <p class="step-desc">Paste the link into our converter. Choose MP3 for audio or MP4 for video.</p>
+                        </div>
+                        <div class="step">
+                            <div class="step-number">03</div>
+                            <h3 class="step-title">Download</h3>
+                            <p class="step-desc">Click Initialize. Our servers process the file instantly for you to save.</p>
+                        </div>
+                    </div>
+
+                    <div style="height: 1px; background: var(--border-glass); margin: 50px 0;"></div>
+
+                    <div class="features-grid">
+                        <div class="feature-item">
+                            <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+                            <div>
+                                <div class="feature-title">Lightning Fast</div>
+                                <div class="feature-text">Optimized engine converts videos in milliseconds.</div>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></div>
+                            <div>
+                                <div class="feature-title">Secure & Private</div>
+                                <div class="feature-text">No data retention. Logs are wiped automatically.</div>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></div>
+                            <div>
+                                <div class="feature-title">Dark Mode First</div>
+                                <div class="feature-text">Designed to be easy on the eyes, day or night.</div>
+                            </div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></div>
+                            <div>
+                                <div class="feature-title">Universal Support</div>
+                                <div class="feature-text">Works perfectly on iPhone, Android, Mac, and PC.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="section-header">
+                        <h2 class="section-title">FAQ</h2>
+                    </div>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <div class="faq-q">Is this service really free?</div>
+                            <div class="faq-a">Yes. We do not charge for conversions and there are no download limits.</div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-q">Can I download 4K videos?</div>
+                            <div class="faq-a">Yes, if the source video is in 4K, our tool can process it. Select MP4-1080p+ in the quality settings.</div>
+                        </div>
+                        <div class="faq-item">
+                            <div class="faq-q">How long does it take?</div>
+                            <div class="faq-a">Most music videos convert in under 5 seconds. Longer podcasts may take up to 30 seconds.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="logo">ytmp3.gg</div>
+            <div class="footer-links">
+                <a href="#" class="footer-link">Terms</a>
+                <a href="#" class="footer-link">Privacy</a>
+                <a href="#" class="footer-link">Contact</a>
+                <a href="#" class="footer-link">API</a>
+            </div>
+            <div class="copyright">© 2025 YTMP3.gg. Not affiliated with YouTube.</div>
+        </div>
+    </footer>
+
+</body>
+</html>

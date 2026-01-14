@@ -1,0 +1,30 @@
+{
+  "name": "y2matepro",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "11ty:build": "eleventy --config=.eleventy.cjs --input=_templates --output=_11ty-output && npm run 11ty:copy",
+    "11ty:copy": "cp _11ty-output/index.html ./index.html && cp _11ty-output/youtube-to-mp4.html ./youtube-to-mp4.html && cp _11ty-output/youtube-to-mp3.html ./youtube-to-mp3.html && cp _11ty-output/youtube-short-downloader.html ./youtube-short-downloader.html",
+    "11ty:watch": "eleventy --config=.eleventy.cjs --input=_templates --output=_11ty-output --watch",
+    "dev": "vite",
+    "build": "npm run 11ty:build && tsc && vite build",
+    "build:test": "npm run 11ty:build && NODE_ENV=test tsc && NODE_ENV=test vite build && NODE_ENV=test TARGET_DIR=dist node ../../modify-robots-meta.js",
+    "preview": "vite preview",
+    "seo:check": "npm run build && cd skills/seo-checker && npm run build && cd ../.. && node skills/seo-checker/dist/index.js",
+    "seo:check-only": "cd skills/seo-checker && npm run build && cd ../.. && node skills/seo-checker/dist/index.js",
+    "remove-logs": "tsx remove-console-logs.ts",
+    "remove-logs:preview": "tsx remove-console-logs.ts --dry-run",
+    "remove-logs:all": "tsx remove-console-logs.ts --all-methods"
+  },
+  "dependencies": {
+    "@downloader/core": "workspace:*",
+    "@downloader/ui-shared": "workspace:*"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.2",
+    "@types/node": "^20.19.25",
+    "tsx": "^4.20.6",
+    "typescript": "^5.3.3",
+    "vite": "^7.1.10"
+  }
+}

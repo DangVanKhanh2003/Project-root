@@ -1,0 +1,104 @@
+Tôi cần bạn convert 1 HTML file sang Eleventy template (English only).
+
+**File cần convert:** youtube-music-downloader.html
+
+---
+
+## BƯỚC 1: Đọc file gốc
+
+Đọc file từ: `/Users/macos/Documents/work/downloader/Project-root/apps/y2matepro/backup-html-originals/youtube-music-downloader.html`
+
+---
+
+## BƯỚC 2: Tạo file i18n
+
+**Tạo file:** `/Users/macos/Documents/work/downloader/Project-root/apps/y2matepro/_templates/_data/pages/youtube-music-downloader/en.json`
+
+Từ HTML file, extract và tạo JSON structure:
+1. `seo` object: title, description, ogTitle, ogDescription, schemaName, schemaDescription
+2. `hero` object: title (h1 của page - KHÔNG phải hero form)
+3. `content` object: mainTitle, intro1, intro2
+4. `instructions` object: title, steps (array)
+5. `whyChoose` object: title, reasons (array)
+6. `features` object: title, items (array với title & description)
+7. `faqs` object: title, items (array với question & answer)
+
+**Tham khảo:** `/Users/macos/Documents/work/downloader/Project-root/apps/y2matepro/_templates/_data/pages/index/en.json`
+
+---
+
+## BƯỚC 3: Tạo template
+
+**Tạo file:** `/Users/macos/Documents/work/downloader/Project-root/apps/y2matepro/_templates/pages/youtube-music-downloader.njk`
+
+**Front matter:**
+```yaml
+---
+layout: base.njk
+permalink: /youtube-music-downloader.html
+lang: en
+pageKey: youtube-music-downloader
+---
+{%- set base = i18nBase -%}
+{%- set page = i18nPages['youtube-music-downloader'].en -%}
+```
+
+**Template structure:** Copy từ `/Users/macos/Documents/work/downloader/Project-root/apps/y2matepro/_templates/pages/index.njk`
+
+**LƯU Ý QUAN TRỌNG:**
+- ❌ KHÔNG thêm JSON-LD scripts (đã có trong HTML gốc)
+- ✅ Copy TOÀN BỘ hero form từ index.njk:
+  - Form tag: `<form id="downloadForm" class="search_form" method="POST" action="/search/">`
+  - Search input với paste/clear buttons
+  - Submit button với icon
+  - Terms text
+  - Spinner div
+  - `<div id="content-area"></div>` và `<div id="search-results-container"></div>`
+- ✅ Copy SVG icons từ backup HTML theo đúng thứ tự features
+- ✅ Shared data (nav, footer, hero form text) → `{{ base.xxx }}`
+- ✅ Page-specific data (SEO, content, features) → `{{ page.xxx }}`
+- ✅ Page hero title (h1 đầu tiên) → `{{ page.hero.title }}`
+
+---
+
+## BƯỚC 4: Update npm script
+
+Thêm vào `package.json` trong script `11ty:copy`:
+```
+&& cp _11ty-output/youtube-music-downloader.html ./youtube-music-downloader.html
+```
+
+**Ví dụ script đầy đủ:**
+```json
+"11ty:copy": "cp _11ty-output/index.html ./index.html && cp _11ty-output/youtube-to-mp4.html ./youtube-to-mp4.html && cp _11ty-output/youtube-music-downloader.html ./youtube-music-downloader.html"
+```
+
+---
+
+## BƯỚC 5: Build và verify
+
+```bash
+npm run 11ty:build
+grep "{{ " _11ty-output/youtube-music-downloader.html
+```
+
+**Kiểm tra:**
+- ✅ File output: `youtube-music-downloader.html` (ở root)
+- ✅ No empty `{{ }}` variables
+- ✅ All content từ en.json hiển thị đúng
+- ✅ Hero form hoạt động (paste button, submit button)
+
+---
+
+## OUTPUT
+
+Show cho tôi:
+1. ✅ Đã tạo `_data/pages/youtube-music-downloader/en.json`
+2. ✅ Đã tạo `youtube-music-downloader.njk`
+3. ✅ Build success
+4. ✅ No empty variables
+5. ✅ File copied to root
+
+Reference: `/Users/macos/Documents/work/downloader/Project-root/apps/y2matepro/AI-SIMPLE-GUIDE.md`
+
+Bắt đầu!

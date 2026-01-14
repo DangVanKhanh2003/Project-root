@@ -1,0 +1,32 @@
+{
+  "nav": {
+    "home": "Téléchargeur YouTube",
+    "youtubeToMp4": "YouTube en MP4",
+    "youtubeToMp3": "YouTube en MP3",
+    "youtubeMusicDownloader": "Téléchargeur de Musique",
+    "youtubeMp3320": "YouTube en MP3 320kbps",
+    "youtubeToWav": "YouTube en WAV",
+    "youtubeToOgg": "YouTube en OGG",
+    "youtubeToOpus": "YouTube en Opus",
+    "youtubeShorts": "Téléchargeur de Shorts",
+    "language": "Français"
+  },
+
+  "hero": {
+    "title": "Y2mate - Téléchargeur Youtube",
+    "placeholder": "Rechercher ou coller le lien ici...",
+    "pasteLabel": "Coller depuis le presse-papiers",
+    "clearLabel": "Effacer",
+    "submitButton": "Démarrer",
+    "termsText": "En utilisant notre service, vous acceptez nos",
+    "termsLink": "Conditions d'utilisation"
+  },
+
+  "footer": {
+    "copyright": "© 2025 y2mate",
+    "about": "À propos",
+    "contact": "Contact",
+    "terms": "Conditions de service",
+    "privacy": "Politique de confidentialité"
+  }
+}

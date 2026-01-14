@@ -1,0 +1,90 @@
+/* =========================================================
+   Instructions Section - How to Use
+   ---------------------------------------------------------
+   Instructions and advantages sections
+   Mobile-first responsive design
+   ========================================================= */
+
+/* ===== INSTRUCTIONS SECTION ===== */
+.y2mate-instruction-pro {
+    padding: 30px 0;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.y2mate-instruction-pro::before {
+    background: rgba(0, 0, 0, 0) radial-gradient(ellipse at center center, rgba(0, 0, 0, 0.2) 0px, rgba(255, 255, 255, 0) 75%) repeat scroll 0 0;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 1px;
+    left: 50%;
+    margin-left: -40%;
+    position: absolute;
+    width: 80%;
+}
+
+.y2mate-in-ad-pro {
+    margin-bottom: var(--space-2xl);
+    flex: 1;
+}
+
+.y2mate-in-ad-pro:last-child {
+    margin-bottom: 0;
+}
+
+.y2mate-in-ad-pro h5 {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-normal);
+    color: var(--color-text-primary);
+    margin: var(--space-sm) 0 var(--space-lg);
+}
+
+.y2mate-in-ad-pro h5 strong {
+    font-weight: var(--font-weight-semibold);
+}
+
+.y2mate-in-ad-pro ol,
+.y2mate-in-ad-pro ul {
+    list-style-position: outside;
+    padding-left: var(--space-xl);
+    margin: 0;
+}
+
+.y2mate-in-ad-pro ol {
+    list-style-type: decimal;
+}
+
+.y2mate-in-ad-pro ul {
+    list-style-type: disc;
+}
+
+.y2mate-in-ad-pro li {
+    font-size: var(--font-size-base);
+    color: var(--color-text-light);
+    line-height: var(--line-height-base);
+    margin-bottom: var(--space-md);
+}
+
+/* ===== MOBILE (max-width: 767px) ===== */
+@media (max-width: 767px) {
+    .y2mate-instruction-pro {
+        padding: 25px 0;
+        display: block;
+    }
+
+    .y2mate-in-ad-pro {
+        width: 100%;
+        padding: 0;
+    }
+
+    .y2mate-in-ad-pro h3 {
+        text-align: center;
+    }
+
+    .y2mate-in-ad-pro h5 {
+        text-align: center;
+    }
+}

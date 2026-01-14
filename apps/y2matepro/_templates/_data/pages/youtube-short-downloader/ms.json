@@ -1,0 +1,89 @@
+{
+  "seo": {
+    "title": "Y2mate - Pengunduh YouTube Shorts (Percuma, Cepat, HD)",
+    "description": "Y2mate adalah alat percuma untuk memuat turun YouTube Shorts dalam HD. Simpan video menegak serta-merta pada mudah alih dan desktop tanpa tera air, iklan, atau pengalihan.",
+    "ogTitle": "Y2mate - Pengunduh YouTube Shorts (Percuma, Cepat, HD)",
+    "ogDescription": "Muat turun YouTube Shorts dalam HD. Simpan video menegak serta-merta — format potret, nisbah 9:16, selamat.",
+    "schemaName": "Y2mate - Pengunduh YouTube Shorts",
+    "schemaDescription": "Muat turun YouTube Shorts serta-merta. Pengunduh video menegak percuma untuk mudah alih dan desktop."
+  },
+  "hero": {
+    "title": "Y2mate - Pengunduh YouTube Shorts"
+  },
+  "content": {
+    "mainTitle": "Muat Turun YouTube Shorts Cepat dan Kekalkan Format Menegak",
+    "intro1": "Pemuat turun YouTube Shorts dari Y2Mate membolehkan anda memuat turun klip video menegak pendek dari YouTube terus ke peranti anda. Dengan pemprosesan pautan yang pantas dan muat turun yang cepat, anda boleh menyimpan Shorts dalam beberapa saat menggunakan laman web yang ringkas, mudah digunakan, dan percuma sepenuhnya.",
+    "intro2": "Y2mate menumpukan sepenuhnya pada pengalaman muat turun Shorts yang bersih dan mudah. Shorts dimuat turun terus dalam format menegak asal 9:16, sama seperti yang dimuat naik di YouTube. Anda boleh memilih kualiti video sehingga 1080p atau 720p, atau memuat turun audio sahaja dengan kadar bit 128kbps, 192kbps, atau 320kbps dalam format MP3, OGG, WAV, atau OPUS. Alat ini berfungsi dengan lancar pada pelayar mudah alih dan desktop."
+  },
+  "instructions": {
+    "title": "Cara Muat Turun YouTube Shorts dalam Beberapa Saat",
+    "steps": [
+      "<strong>Salin pautan Shorts:</strong> Ketik butang \"Kongsi\" pada mana-mana YouTube Short dan salin URL.",
+      "<strong>Tampal & analisis:</strong> Tampal pautan ke Y2mate dan klik \"Mula\" untuk memproses Short.",
+      "<strong>Pilih video atau audio:</strong> Pilih format video atau audio, pilih kualiti yang anda inginkan, kemudian klik <strong>\"Tukar\"</strong> untuk mula memuat turun fail ke peranti anda."
+    ]
+  },
+  "whyChoose": {
+    "title": "Mengapa Menggunakan Y2mate untuk YouTube Shorts",
+    "reasons": [
+      "<strong>Dibina khusus untuk Shorts:</strong> Direka untuk mengendalikan klip menegak pendek dan bukannya video bentuk panjang.",
+      "<strong>Kelajuan pemprosesan pantas:</strong> Video berdurasi pendek dianalisis dan ditukar dengan cepat.",
+      "<strong>Nisbah aspek asal 9:16:</strong> Shorts kekal menegak tanpa pemotongan atau putaran.",
+      "<strong>Tiada tera air:</strong> Video disimpan sama seperti yang muncul di YouTube."
+    ]
+  },
+  "features": {
+    "title": "Ciri-ciri yang Direka untuk Muat Turun Shorts",
+    "items": [
+      {
+        "title": "Dioptimumkan untuk klip pendek",
+        "description": "Memproses YouTube Shorts dengan cekap kerana tempohnya yang pendek."
+      },
+      {
+        "title": "Muat turun fail langsung",
+        "description": "Shorts yang ditukar dimuat turun terus tanpa pengalihan atau langkah tambahan."
+      },
+      {
+        "title": "Muat turun Shorts tanpa had",
+        "description": "Muat turun seberapa banyak YouTube Shorts yang anda mahu tanpa had harian."
+      },
+      {
+        "title": "Pelbagai pilihan video dan audio",
+        "description": "Menyokong Shorts dalam 1080p atau 720p dan audio pada 128kbps, 192kbps, atau 320kbps dalam format MP3, OGG, WAV, atau OPUS."
+      },
+      {
+        "title": "Mengekalkan format menegak 9:16",
+        "description": "Semua Shorts kekal dalam susun atur menegak asalnya."
+      },
+      {
+        "title": "Alat berasaskan pelayar yang stabil",
+        "description": "Berfungsi terus dalam pelayar anda tanpa memasang aplikasi atau sambungan."
+      }
+    ]
+  },
+  "faqs": {
+    "title": "Soalan Lazim",
+    "items": [
+      {
+        "question": "Adakah terdapat had berapa banyak Shorts yang boleh saya muat turun?",
+        "answer": "Tidak. Y2mate membenarkan muat turun YouTube Shorts tanpa had tanpa had penggunaan."
+      },
+      {
+        "question": "Bagaimana saya boleh menyimpan Shorts terus ke telefon saya?",
+        "answer": "<strong>Android:</strong> Shorts yang dimuat turun muncul dalam folder Muat Turun dan aplikasi Galeri anda.<br><strong>iPhone:</strong> Gunakan Safari untuk memuat turun, buka Muat Turun, dan ketik \"Simpan Video\" untuk memindahkan Short ke Foto."
+      },
+      {
+        "question": "Bolehkah saya memuat turun audio sahaja dari Short?",
+        "answer": "Ya. Anda boleh memilih penukaran audio sahaja dengan pelbagai pilihan kadar bit selepas pautan diproses."
+      },
+      {
+        "question": "Mengapa Shorts memuat turun lebih cepat daripada video biasa?",
+        "answer": "Shorts mempunyai tempoh yang lebih pendek dan diproses secara berasingan, yang mengurangkan masa analisis dan penukaran."
+      },
+      {
+        "question": "Bagaimana saya harus menggunakan Shorts yang dimuat turun?",
+        "answer": "Shorts yang dimuat turun bertujuan untuk kegunaan peribadi seperti tontonan atau penyimpanan luar talian. Pengguna bertanggungjawab untuk menghormati hak pencipta kandungan asal."
+      }
+    ]
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "seo": {
+    "title": "Y2mate - Convertidor de YouTube a MP3",
+    "description": "Y2mate es un convertidor de YouTube a MP3 que soporta audio de 128kbps, 192kbps y 320kbps. Descarga archivos de audio completos con integridad de sonido preservada.",
+    "ogTitle": "Y2mate - Convertidor de YouTube a MP3",
+    "ogDescription": "Convierte YouTube a MP3 con 128/192/320kbps. Procesamiento rápido, salida de audio completa.",
+    "schemaName": "Y2mate - Convertidor de YouTube a MP3",
+    "schemaDescription": "Una herramienta de conversión de YouTube a MP3 en línea que soporta múltiples opciones de tasa de bits con integridad de audio preservada."
+  },
+  "hero": {
+    "title": "Convertidor de YouTube a MP3"
+  },
+  "content": {
+    "mainTitle": "Convertir audio de YouTube a MP3",
+    "intro1": "El convertidor de YouTube a MP3 de Y2Mate te permite extraer audio de videos de YouTube y descargarlo como un archivo MP3 de forma rápida y sencilla. Simplemente pega el enlace de YouTube, elige tu calidad de audio preferida y descarga el archivo MP3 directamente en tu dispositivo sin instalar ningún software.",
+    "intro2": "Este descargador de YouTube a MP3 admite tasas de bits de audio como 128 kbps, 192 kbps y 320 kbps para diferentes necesidades de escucha. Y2Mate funciona completamente en tu navegador con una velocidad de conversión rápida."
+  },
+  "instructions": {
+    "title": "Cómo convertir YouTube a MP3",
+    "steps": [
+      "<strong>Pega el enlace del video:</strong> Copia la URL de YouTube y pégala en el campo de entrada.",
+      "<strong>Selecciona la tasa de bits:</strong> Haz clic en \"Iniciar\" y elige MP3 con calidad de 128kbps, 192kbps o 320kbps.",
+      "<strong>Convertir y descargar:</strong> Haz clic en \"Convertir\" para generar el archivo MP3 y descargarlo directamente a tu dispositivo."
+    ]
+  },
+  "whyChoose": {
+    "title": "Por qué usar Y2mate para la conversión a MP3",
+    "reasons": [
+      "<strong>Descargas rápidas de MP3:</strong> Convierte videos de YouTube a MP3 rápidamente sin largos tiempos de espera.",
+      "<strong>Calidad de audio de hasta 320kbps:</strong> Descarga archivos MP3 de alta calidad para música y escucha sin conexión.",
+      "<strong>Interfaz limpia y mínima:</strong> Diseño simple que hace que la conversión a MP3 sea fácil."
+    ]
+  },
+  "features": {
+    "title": "Capacidades de conversión a MP3",
+    "items": [
+      {
+        "title": "Tasas de bits MP3 compatibles",
+        "description": "Las opciones de tasa de bits disponibles incluyen 128kbps, 192kbps y 320kbps, según la preferencia del usuario."
+      },
+      {
+        "title": "Salida de audio completa",
+        "description": "El archivo MP3 generado contiene la pista de audio completa con la duración correcta y reproducción ininterrumpida."
+      },
+      {
+        "title": "Procesamiento basado en web",
+        "description": "La extracción y conversión de audio se realizan completamente en línea sin necesidad de instalar software."
+      },
+            {
+        "title": "Conversiones ilimitadas",
+        "description": "Los usuarios pueden convertir y descargar múltiples archivos MP3 sin límites diarios o de uso."
+      },
+      {
+        "title": "Amplia compatibilidad de reproducción",
+        "description": "Los archivos MP3 son compatibles con reproductores multimedia comunes, teléfonos inteligentes y dispositivos de audio."
+      }
+    ]
+  },
+  "faqs": {
+    "title": "Preguntas frecuentes",
+    "items": [
+      {
+        "question": "¿Cuál es la diferencia entre MP3 de 128kbps, 192kbps y 320kbps?",
+        "answer": "La tasa de bits de MP3 define cuántos datos de audio se codifican por segundo. Una tasa de bits más alta retiene más detalles de audio pero resulta en un tamaño de archivo más grande. 128kbps es adecuado para contenido basado en voz como conferencias o entrevistas. 192kbps proporciona un nivel equilibrado de compresión y calidad de sonido para la escucha general. 320kbps es la tasa de bits MP3 estándar más alta y conserva la mayor cantidad de información de audio, lo que la hace adecuada para la reproducción de música en equipos de audio de alta calidad."
+      },
+      {
+        "question": "¿Cómo preserva Y2mate la integridad del audio durante la conversión?",
+        "answer": "El sistema procesa el flujo de audio original continuamente, manteniendo la línea de tiempo y la estructura de muestreo correctas. Este enfoque evita secciones perdidas, desviaciones de tiempo o cuadros de audio faltantes, asegurando que el MP3 final coincida con la duración completa del audio de origen."
+      },
+      {
+        "question": "¿Se pueden convertir videos largos o podcasts a MP3 de forma fiable?",
+        "answer": "Sí. Y2mate admite contenido de larga duración, incluidos podcasts de varias horas y conferencias extendidas. El sistema está diseñado para procesar flujos de audio continuos sin interrupción ni truncamiento."
+      },
+      {
+        "question": "¿La conversión de YouTube a MP3 reduce la calidad del audio?",
+        "answer": "MP3 es un formato de compresión con pérdida, lo que significa que algunos datos de audio se reducen durante la codificación. Sin embargo, tasas de bits más altas como 192kbps y 320kbps minimizan la pérdida de calidad perceptible. Y2mate no aplica compresión adicional más allá de la tasa de bits seleccionada."
+      },
+            {
+        "question": "¿Se pueden convertir videos privados de YouTube?",
+        "answer": "No. Solo se pueden procesar videos de YouTube públicos o no listados debido a restricciones de acceso."
+      }
+    ]
+  }
+}

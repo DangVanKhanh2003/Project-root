@@ -1,0 +1,32 @@
+{
+  "nav": {
+    "home": "تنزيل يوتيوب",
+    "youtubeToMp4": "يوتيوب إلى MP4",
+    "youtubeToMp3": "يوتيوب إلى MP3",
+    "youtubeMusicDownloader": "تنزيل الموسيقى",
+    "youtubeMp3320": "يوتيوب إلى MP3 320kbps",
+    "youtubeToWav": "يوتيوب إلى WAV",
+    "youtubeToOgg": "يوتيوب إلى OGG",
+    "youtubeToOpus": "يوتيوب إلى Opus",
+    "youtubeShorts": "تنزيل الشورتس",
+    "language": "العربية"
+  },
+
+  "hero": {
+    "title": "Y2mate - تنزيل يوتيوب",
+    "placeholder": "ابحث أو الصق الرابط هنا...",
+    "pasteLabel": "لصق من الحافظة",
+    "clearLabel": "مسح",
+    "submitButton": "ابدأ",
+    "termsText": "باستخدام خدمتنا فإنك توافق على",
+    "termsLink": "شروط الاستخدام"
+  },
+
+  "footer": {
+    "copyright": "© 2025 y2mate",
+    "about": "حول",
+    "contact": "اتصل بنا",
+    "terms": "شروط الخدمة",
+    "privacy": "سياسة الخصوصية"
+  }
+}

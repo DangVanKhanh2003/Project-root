@@ -1,0 +1,32 @@
+{
+  "nav": {
+    "home": "ইউটিউব ডাউনলোডার",
+    "youtubeToMp4": "ইউটিউব থেকে MP4",
+    "youtubeToMp3": "ইউটিউব থেকে MP3",
+    "youtubeMusicDownloader": "মিউজিক ডাউনলোডার",
+    "youtubeMp3320": "ইউটিউব থেকে MP3 320kbps",
+    "youtubeToWav": "ইউটিউব থেকে WAV",
+    "youtubeToOgg": "ইউটিউব থেকে OGG",
+    "youtubeToOpus": "ইউটিউব থেকে Opus",
+    "youtubeShorts": "শর্টস ডাউনলোডার",
+    "language": "বাংলা"
+  },
+
+  "hero": {
+    "title": "Y2mate - ইউটিউব ডাউনলোডার",
+    "placeholder": "অনুসন্ধান করুন বা লিঙ্ক পেস্ট করুন...",
+    "pasteLabel": "ক্লিপবোর্ড থেকে পেস্ট করুন",
+    "clearLabel": "মুছুন",
+    "submitButton": "শুরু করুন",
+    "termsText": "আমাদের সেবা ব্যবহার করে আপনি সম্মত হচ্ছেন",
+    "termsLink": "ব্যবহারের শর্তাবলী"
+  },
+
+  "footer": {
+    "copyright": "© 2025 y2mate",
+    "about": "সম্পর্কে",
+    "contact": "যোগাযোগ",
+    "terms": "সেবার শর্তাবলী",
+    "privacy": "গোপনীয়তা নীতি"
+  }
+}

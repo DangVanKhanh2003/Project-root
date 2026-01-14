@@ -1,0 +1,84 @@
+{
+  "seo": {
+    "title": "Y2mate - YouTube'dan MP3'e Dönüştürücü",
+    "description": "Y2mate, 128kbps, 192kbps ve 320kbps ses desteği sunan bir YouTube'dan MP3'e dönüştürücüdür. Ses bütünlüğü korunarak eksiksiz ses dosyaları indirin.",
+    "ogTitle": "Y2mate - YouTube'dan MP3'e Dönüştürücü",
+    "ogDescription": "YouTube'u 128/192/320kbps ile MP3'e dönüştürün. Hızlı işleme, eksiksiz ses çıkışı.",
+    "schemaName": "Y2mate - YouTube'dan MP3'e Dönüştürücü",
+    "schemaDescription": "Ses bütünlüğü korunarak birden fazla bit hızı seçeneğini destekleyen çevrimiçi bir YouTube'dan MP3'e dönüştürme aracı."
+  },
+  "hero": {
+    "title": "YouTube'dan MP3'e Dönüştürücü"
+  },
+  "content": {
+    "mainTitle": "YouTube Sesini MP3'e Dönüştür",
+    "intro1": "Y2Mate'in YouTube'dan MP3'e dönüştürücüsü, YouTube videolarından ses çıkarmanıza ve bunu hızlı ve kolay bir şekilde MP3 dosyası olarak indirmenize olanak tanır. Sadece YouTube bağlantısını yapıştırın, tercih ettiğiniz ses kalitesini seçin ve herhangi bir yazılım yüklemeden MP3 dosyasını doğrudan cihazınıza indirin.",
+    "intro2": "Bu YouTube'dan MP3'e indirici, farklı dinleme ihtiyaçları için 128kbps, 192kbps ve 320kbps gibi ses bit hızlarını destekler. Y2Mate, hızlı dönüştürme hızıyla tamamen tarayıcınızda çalışır."
+  },
+  "instructions": {
+    "title": "YouTube'u MP3'e Nasıl Dönüştürülür",
+    "steps": [
+      "<strong>Video bağlantısını yapıştırın:</strong> YouTube URL'sini kopyalayın ve giriş alanına yapıştırın.",
+      "<strong>Bit hızını seçin:</strong> \"Başlat\"a tıklayın ve 128kbps, 192kbps veya 320kbps kalitesinde MP3'ü seçin.",
+      "<strong>Dönüştür ve indir:</strong> MP3 dosyasını oluşturmak ve doğrudan cihazınıza indirmek için \"Dönüştür\"e tıklayın."
+    ]
+  },
+  "whyChoose": {
+    "title": "MP3 Dönüştürme için Neden Y2mate Kullanmalısınız?",
+    "reasons": [
+      "<strong>Hızlı MP3 İndirmeleri:</strong> YouTube videolarını uzun bekleme süreleri olmadan hızlı bir şekilde MP3'e dönüştürün.",
+      "<strong>320kbps'ye kadar Ses Kalitesi:</strong> Müzik ve çevrimdışı dinleme için yüksek kaliteli MP3 dosyaları indirin.",
+      "<strong>Temiz ve Minimal Arayüz:</strong> MP3 dönüştürmeyi kolaylaştıran basit tasarım."
+    ]
+  },
+  "features": {
+    "title": "MP3 Dönüştürme Yetenekleri",
+    "items": [
+      {
+        "title": "Desteklenen MP3 Bit Hızları",
+        "description": "Kullanıcı tercihine bağlı olarak 128kbps, 192kbps ve 320kbps bit hızı seçenekleri mevcuttur."
+      },
+      {
+        "title": "Tam Ses Çıkışı",
+        "description": "Oluşturulan MP3 dosyası, doğru süre ve kesintisiz oynatma ile tam ses parçasını içerir."
+      },
+      {
+        "title": "Web Tabanlı İşleme",
+        "description": "Ses çıkarma ve dönüştürme, yazılım yüklemesi gerektirmeden tamamen çevrimiçi olarak gerçekleştirilir."
+      },
+            {
+        "title": "Sınırsız Dönüştürme",
+        "description": "Kullanıcılar, günlük veya kullanım limitleri olmaksızın birden fazla MP3 dosyasını dönüştürebilir ve indirebilir."
+      },
+      {
+        "title": "Geniş Oynatma Uyumluluğu",
+        "description": "MP3 dosyaları, yaygın medya oynatıcılar, akıllı telefonlar ve ses cihazlarıyla uyumludur."
+      }
+    ]
+  },
+  "faqs": {
+    "title": "Sıkça Sorulan Sorular",
+    "items": [
+      {
+        "question": "128kbps, 192kbps ve 320kbps MP3 arasındaki fark nedir?",
+        "answer": "MP3 bit hızı, saniyede kodlanan ses verisi miktarını tanımlar. Daha yüksek bir bit hızı daha fazla ses ayrıntısını korur ancak daha büyük bir dosya boyutuyla sonuçlanır. 128kbps, dersler veya röportajlar gibi konuşma tabanlı içerikler için uygundur. 192kbps, genel dinleme için dengeli bir sıkıştırma ve ses kalitesi seviyesi sağlar. 320kbps, en yüksek standart MP3 bit hızıdır ve çoğu ses bilgisini korur, bu da onu yüksek kaliteli ses ekipmanlarında müzik çalmak için uygun hale getirir."
+      },
+      {
+        "question": "Y2mate, dönüştürme sırasında ses bütünlüğünü nasıl korur?",
+        "answer": "Sistem, orijinal ses akışını sürekli olarak işler, doğru zaman çizelgesini ve örnekleme yapısını korur. Bu yaklaşım, kayıp bölümleri, zaman kaymasını veya eksik ses karelerini önleyerek, son MP3'ün kaynak sesin tam süresiyle eşleşmesini sağlar."
+      },
+      {
+        "question": "Uzun videolar veya podcast'ler güvenilir bir şekilde MP3'e dönüştürülebilir mi?",
+        "answer": "Evet. Y2mate, çok saatlik podcast'ler ve uzun dersler dahil olmak üzere uzun süreli içerikleri destekler. Sistem, kesintisiz veya kesilmeden sürekli ses akışlarını işlemek için tasarlanmıştır."
+      },
+      {
+        "question": "YouTube'u MP3'e dönüştürmek ses kalitesini düşürür mü?",
+        "answer": "MP3, kayıplı bir sıkıştırma formatıdır, yani kodlama sırasında bazı ses verileri azaltılır. Ancak, 192kbps ve 320kbps gibi daha yüksek bit hızları, algılanabilir kalite kaybını en aza indirir. Y2mate, seçilen bit hızının ötesinde ek sıkıştırma uygulamaz."
+      },
+            {
+        "question": "Özel YouTube videoları dönüştürülebilir mi?",
+        "answer": "Hayır. Erişim kısıtlamaları nedeniyle yalnızca Genel veya Listelenmemiş YouTube videoları işlenebilir."
+      }
+    ]
+  }
+}

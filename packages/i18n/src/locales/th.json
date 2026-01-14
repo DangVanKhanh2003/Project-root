@@ -1,0 +1,112 @@
+{
+  "common": {
+    "buttons": {
+      "convert": "แปลง",
+      "download": "ดาวน์โหลด",
+      "cancel": "ยกเลิก",
+      "retry": "ลองอีกครั้ง",
+      "start": "เริ่มต้น",
+      "tryAgain": "ลองอีกครั้ง",
+      "startOver": "เริ่มใหม่",
+      "paste": "วาง",
+      "clear": "ล้าง",
+      "search": "ค้นหา"
+    },
+    "labels": {
+      "videoQuality": "คุณภาพวิดีโอ",
+      "audioQuality": "คุณภาพเสียง",
+      "searchPlaceholder": "ค้นหาหรือวางลิงก์ที่นี่...",
+      "pasteLabel": "วางจากคลิปบอร์ด",
+      "clearLabel": "ล้างข้อมูล"
+    },
+    "actions": {
+      "downloading": "กำลังดาวน์โหลด",
+      "processing": "กำลังประมวลผล",
+      "converting": "กำลังแปลง",
+      "extracting": "กำลังแยกไฟล์"
+    }
+  },
+  "status": {
+    "idle": "พร้อมสำหรับการแปลง",
+    "starting": "กำลังเริ่ม…",
+    "extracting": "กำลังแยกไฟล์",
+    "extractingProgress": "กำลังแยก {progress}%",
+    "processing": "กำลังประมวลผล",
+    "processingProgress": "กำลังประมวลผล… {progress}%",
+    "converting": "กำลังแปลง",
+    "convertingProgress": "กำลังแปลง... {loaded} / {total}",
+    "convertingSize": "กำลังแปลง... {size}",
+    "downloading": "กำลังดาวน์โหลด",
+    "downloadProgress": "กำลังดาวน์โหลด... {loaded} MB / {total} MB",
+    "downloadComplete": "ดาวน์โหลดเสร็จสิ้น 100%",
+    "polling": "กำลังประมวลผล",
+    "pollingProgress": "ประมวลผล {progress}%",
+    "completed": "เสร็จสิ้น",
+    "success": "แปลงสำเร็จ",
+    "failed": "แปลงล้มเหลว",
+    "canceled": "ยกเลิกแล้ว",
+    "error": "เกิดข้อผิดพลาด"
+  },
+  "formats": {
+    "mp3": "MP3",
+    "mp4": "MP4",
+    "ogg": "OGG",
+    "wav": "WAV",
+    "opus": "Opus",
+    "m4a": "M4A",
+    "quality": {
+      "mp3_128": "MP3 - 128kbps",
+      "mp3_256": "MP3 - 256kbps",
+      "mp3_320": "MP3 - 320kbps",
+      "ogg_128": "OGG",
+      "wav_lossless": "WAV - ไม่สูญเสียคุณภาพ",
+      "opus_128": "Opus",
+      "m4a_192": "M4A",
+      "video_360p": "MP4 - 360p",
+      "video_480p": "MP4 - 480p",
+      "video_720p": "MP4 - 720p",
+      "video_1080p": "MP4 - 1080p",
+      "video_2k": "MP4 - 2K",
+      "video_4k": "MP4 - 4K"
+    }
+  },
+  "errors": {
+    "downloadExpired": "ลิงก์ดาวน์โหลดหมดอายุสำหรับ: {title}",
+    "downloadExpiredGeneric": "ลิงก์ดาวน์โหลดหมดอายุแล้ว",
+    "confirmRetry": "คุณต้องการลองอีกครั้งหรือไม่?",
+    "noGalleryItems": "ไม่มีรายการในแกลเลอรีให้แสดง",
+    "conversionFailed": "การแปลงล้มเหลว",
+    "networkError": "เกิดข้อผิดพลาดของเครือข่าย",
+    "invalidUrl": "URL ไม่ถูกต้อง",
+    "unsupportedFormat": "รูปแบบไม่รองรับ",
+    "timeout": "คำขอหมดเวลา",
+    "unknown": "เกิดข้อผิดพลาดที่ไม่ทราบสาเหตุ"
+  },
+  "features": {
+    "downloader": {
+      "title": "ดาวน์โหลดวิดีโอ YouTube",
+      "description": "เครื่องมือดาวน์โหลดวิดีโอ YouTube ที่รวดเร็วและใช้งานง่าย"
+    },
+    "search": {
+      "placeholder": "ค้นหาหรือวางลิงก์ YouTube",
+      "suggestions": "คำแนะนำ",
+      "noResults": "ไม่พบผลลัพธ์"
+    },
+    "gallery": {
+      "title": "แกลเลอรี",
+      "empty": "ไม่มีรายการให้แสดง",
+      "downloadItem": "ดาวน์โหลดรายการนี้"
+    }
+  },
+  "aria": {
+    "downloadButton": "ดาวน์โหลดรายการนี้",
+    "retryButton": "ลองแปลงอีกครั้ง",
+    "cancelButton": "ยกเลิกการแปลง",
+    "pasteButton": "วางจากคลิปบอร์ด",
+    "clearButton": "ล้างช่องป้อนข้อมูล",
+    "searchButton": "ค้นหา",
+    "languageSelector": "เลือกภาษา",
+    "formatSelector": "เลือกรูปแบบ",
+    "qualitySelector": "เลือกคุณภาพ"
+  }
+}

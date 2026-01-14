@@ -1,0 +1,32 @@
+{
+  "nav": {
+    "home": "YouTube İndirici",
+    "youtubeToMp4": "YouTube'dan MP4",
+    "youtubeToMp3": "YouTube'dan MP3",
+    "youtubeMusicDownloader": "Müzik İndirici",
+    "youtubeMp3320": "YouTube'dan MP3 320kbps",
+    "youtubeToWav": "YouTube'dan WAV",
+    "youtubeToOgg": "YouTube'dan OGG",
+    "youtubeToOpus": "YouTube'dan Opus",
+    "youtubeShorts": "Shorts İndirici",
+    "language": "Türkçe"
+  },
+
+  "hero": {
+    "title": "Y2mate - Youtube İndirici",
+    "placeholder": "Arayın veya bağlantı yapıştırın...",
+    "pasteLabel": "Panodan yapıştır",
+    "clearLabel": "Temizle",
+    "submitButton": "Başlat",
+    "termsText": "Hizmetimizi kullanarak kabul etmiş olursunuz",
+    "termsLink": "Kullanım Koşulları"
+  },
+
+  "footer": {
+    "copyright": "© 2025 y2mate",
+    "about": "Hakkında",
+    "contact": "İletişim",
+    "terms": "Hizmet Şartları",
+    "privacy": "Gizlilik Politikası"
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "seo": {
+    "title": "Y2mate - YouTube Shorts Downloader (Free, Fast, HD)",
+    "description": "Y2mate is a free tool to download YouTube Shorts in HD. Save vertical videos instantly on mobile and desktop without watermarks, ads, or redirects.",
+    "ogTitle": "Y2mate - YouTube Shorts Downloader (Free, Fast, HD)",
+    "ogDescription": "Download YouTube Shorts in HD. Save vertical videos instantly—portrait format, 9:16 ratio, safe.",
+    "schemaName": "Y2mate - YouTube Shorts Downloader",
+    "schemaDescription": "Download YouTube Shorts instantly. Free vertical video downloader for mobile and desktop."
+  },
+  "hero": {
+    "title": "Y2mate - YouTube Shorts Downloader"
+  },
+  "content": {
+    "mainTitle": "Download YouTube Shorts Videos",
+    "intro1": "The YouTube Shorts downloader from Y2Mate lets you download short vertical video clips from YouTube directly to your device. With fast link processing and quick downloads, you can save Shorts within seconds using a simple, easy-to-use, and completely free website.",
+    "intro2": "Y2mate focuses entirely on a clean and straightforward Shorts download experience. Shorts are downloaded directly in their original 9:16 vertical format, exactly as uploaded on YouTube. You can choose video quality up to 1080p or 720p, or download audio only with bitrates of 128kbps, 192kbps, or 320kbps in MP3, OGG, WAV, or OPUS formats. The tool works smoothly on both mobile and desktop browsers."
+  },
+  "instructions": {
+    "title": "How to Download YouTube Shorts in Seconds",
+    "steps": [
+      "<strong>Copy the Shorts link:</strong> Tap the \"Share\" button on any YouTube Short and copy the URL.",
+      "<strong>Paste & analyze:</strong> Paste the link into Y2mate and click \"Start\" to process the Short.",
+      "<strong>Select video or audio:</strong> Choose video or audio format, select the quality you want, then click <strong>\"Convert\"</strong> to start downloading the file to your device."
+    ]
+  },
+  "whyChoose": {
+    "title": "Why Use Y2mate for YouTube Shorts",
+    "reasons": [
+      "<strong>Built specifically for Shorts:</strong> Designed to handle short vertical clips instead of long-form videos.",
+      "<strong>Fast processing speed:</strong> Short-length videos are analyzed and converted quickly.",
+      "<strong>Original 9:16 aspect ratio:</strong> Shorts remain vertical with no cropping or rotation.",
+      "<strong>No watermark:</strong> Videos are saved exactly as they appear on YouTube."
+    ]
+  },
+  "features": {
+    "title": "Features Designed for Shorts Downloads",
+    "items": [
+      {
+        "title": "Optimized for short clips",
+        "description": "Processes YouTube Shorts efficiently due to their short duration."
+      },
+      {
+        "title": "Direct file download",
+        "description": "Converted Shorts are downloaded directly without redirects or extra steps."
+      },
+      {
+        "title": "Unlimited Shorts downloads",
+        "description": "Download as many YouTube Shorts as you want with no daily limits."
+      },
+            {
+        "title": "Multiple video and audio options",
+        "description": "Supports Shorts in 1080p or 720p and audio at 128kbps, 192kbps, or 320kbps in MP3, OGG, WAV, or OPUS."
+      },
+      {
+        "title": "Keeps the vertical 9:16 format",
+        "description": "All Shorts remain in their original vertical layout."
+      },
+      {
+        "title": "Stable browser-based tool",
+        "description": "Works directly in your browser without installing apps or extensions."
+      }
+    ]
+  },
+  "faqs": {
+    "title": "Frequently Asked Questions",
+    "items": [
+      {
+        "question": "Is there a limit to how many Shorts I can download?",
+        "answer": "No. Y2mate allows unlimited YouTube Shorts downloads with no usage limits."
+      },
+      {
+        "question": "How can I save Shorts directly to my phone?",
+        "answer": "<strong>Android:</strong> Downloaded Shorts appear in the Downloads folder and your Gallery app.<br><strong>iPhone:</strong> Use Safari to download, open Downloads, and tap \"Save Video\" to move the Short into Photos."
+      },
+      {
+        "question": "Can I download audio only from a Short?",
+        "answer": "Yes. You can choose audio-only conversion with multiple bitrate options after the link is processed."
+      },
+      {
+        "question": "Why do Shorts download faster than regular videos?",
+        "answer": "Shorts have a shorter duration and are processed separately, which reduces analysis and conversion time."
+      },
+      {
+        "question": "How should I use downloaded Shorts?",
+        "answer": "Downloaded Shorts are intended for personal use such as offline viewing or saving. Users are responsible for respecting the rights of the original content creators."
+      }
+    ]
+  }
+}

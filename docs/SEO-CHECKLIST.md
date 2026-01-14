@@ -1,4 +1,4 @@
-# SEO Checklist — Full (Project + Per Page)
+# SEO Checklist - Full (Project + Per Page)
 
 Use this checklist to audit before release. Items are tailored to this static Vite multi‑page build (index + platform pages) and are safe to keep under version control.
 
@@ -19,7 +19,7 @@ Use this checklist to audit before release. Items are tailored to this static Vi
 
 ## Mỗi Trang: Phần HEAD (Bắt Buộc)
 
-- Meta cốt lõi: `<title>` duy nhất (50–60 ký tự); `<meta name="description">` (150–160 ký tự); `<meta name="robots" content="index, follow">` cho trang indexable; charset/viewport đầy đủ.
+- Meta cốt lõi: `<title>` duy nhất (50-60 ký tự); `<meta name="description">` (150-160 ký tự); `<meta name="robots" content="index, follow">` cho trang indexable; charset/viewport đầy đủ.
 - Canonical: `<link rel="canonical" href="https://yt1s.cx/path/">`.
 - Hreflang: đầy đủ 2 chiều + x-default nếu đa ngôn ngữ.
 - Open Graph/Twitter: `og:type`, `og:title`, `og:description`, `og:url`, `og:site_name`, `og:image(+width/height/alt)`, `og:locale`; `twitter:card=summary_large_image`, `twitter:title`, `twitter:description`, `twitter:image`.
@@ -37,8 +37,8 @@ Use this checklist to audit before release. Items are tailored to this static Vi
 ## Mỗi Trang: Phần BODY (Nội Dung & Semantics)
 
 - Cấu trúc: 1 thẻ `<h1>` duy nhất bám sát intent; H2/H3 phân mục rõ ràng.
-- TL;DR: đoạn tóm tắt 3–5 ý đầu trang (AI/SGE dễ trích).
-- FAQ ngắn (2–4 câu trả lời dứt khoát) + HowTo 3–5 bước khi phù hợp.
+- TL;DR: đoạn tóm tắt 3-5 ý đầu trang (AI/SGE dễ trích).
+- FAQ ngắn (2-4 câu trả lời dứt khoát) + HowTo 3-5 bước khi phù hợp.
 - Internal links theo cụm (hub → cluster; cluster ↔ cluster liên quan); breadcrumb HTML (ARIA).
 - Cập nhật: hiển thị ngày cập nhật/chỉnh sửa; tác giả/đơn vị chịu trách nhiệm khi cần (E‑E‑A‑T).
 

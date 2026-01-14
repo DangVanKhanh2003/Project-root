@@ -1,0 +1,32 @@
+{
+  "nav": {
+    "home": "यूट्यूब डाउनलोडर",
+    "youtubeToMp4": "यूट्यूब से MP4",
+    "youtubeToMp3": "यूट्यूब से MP3",
+    "youtubeMusicDownloader": "म्यूजिक डाउनलोडर",
+    "youtubeMp3320": "यूट्यूब से MP3 320kbps",
+    "youtubeToWav": "यूट्यूब से WAV",
+    "youtubeToOgg": "यूट्यूब से OGG",
+    "youtubeToOpus": "यूट्यूब से Opus",
+    "youtubeShorts": "शॉर्ट्स डाउनलोडर",
+    "language": "हिन्दी"
+  },
+
+  "hero": {
+    "title": "Y2mate - यूट्यूब डाउनलोडर",
+    "placeholder": "खोजें या लिंक पेस्ट करें...",
+    "pasteLabel": "क्लिपबोर्ड से पेस्ट करें",
+    "clearLabel": "साफ़ करें",
+    "submitButton": "शुरू करें",
+    "termsText": "हमारी सेवा का उपयोग करके आप स्वीकार करते हैं",
+    "termsLink": "उपयोग की शर्तें"
+  },
+
+  "footer": {
+    "copyright": "© 2025 y2mate",
+    "about": "हमारे बारे में",
+    "contact": "संपर्क करें",
+    "terms": "सेवा की शर्तें",
+    "privacy": "गोपनीयता नीति"
+  }
+}

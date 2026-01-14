@@ -1,0 +1,112 @@
+{
+  "common": {
+    "buttons": {
+      "convert": "تبدیل کریں",
+      "download": "ڈاؤن لوڈ",
+      "cancel": "منسوخ کریں",
+      "retry": "دوبارہ کوشش کریں",
+      "start": "شروع کریں",
+      "tryAgain": "دوبارہ کوشش کریں",
+      "startOver": "دوبارہ سے شروع کریں",
+      "paste": "پیسٹ کریں",
+      "clear": "صاف کریں",
+      "search": "تلاش کریں"
+    },
+    "labels": {
+      "videoQuality": "ویڈیو معیار",
+      "audioQuality": "آڈیو معیار",
+      "searchPlaceholder": "یہاں تلاش کریں یا لنک پیسٹ کریں...",
+      "pasteLabel": "کلپ بورڈ سے پیسٹ کریں",
+      "clearLabel": "ان پٹ صاف کریں"
+    },
+    "actions": {
+      "downloading": "ڈاؤن لوڈ ہو رہا ہے",
+      "processing": "پراسیسنگ جاری ہے",
+      "converting": "تبدیل کیا جا رہا ہے",
+      "extracting": "اخذ کیا جا رہا ہے"
+    }
+  },
+  "status": {
+    "idle": "تبدیل کرنے کے لیے تیار",
+    "starting": "شروع ہو رہا ہے…",
+    "extracting": "اخذ کیا جا رہا ہے",
+    "extractingProgress": "اخذ کیا جا رہا ہے {progress}%",
+    "processing": "پراسیسنگ جاری ہے",
+    "processingProgress": "پراسیسنگ… {progress}%",
+    "converting": "تبدیل کیا جا رہا ہے",
+    "convertingProgress": "تبدیل ہو رہا ہے... {loaded} / {total}",
+    "convertingSize": "تبدیل ہو رہا ہے... {size}",
+    "downloading": "ڈاؤن لوڈ ہو رہا ہے",
+    "downloadProgress": "ڈاؤن لوڈ ہو رہا ہے... {loaded} MB / {total} MB",
+    "downloadComplete": "ڈاؤن لوڈ مکمل 100%",
+    "polling": "پراسیسنگ جاری ہے",
+    "pollingProgress": "پراسیسنگ {progress}%",
+    "completed": "مکمل",
+    "success": "تبدیلی کامیاب",
+    "failed": "تبدیلی ناکام",
+    "canceled": "منسوخ",
+    "error": "خرابی پیش آگئی"
+  },
+  "formats": {
+    "mp3": "MP3",
+    "mp4": "MP4",
+    "ogg": "OGG",
+    "wav": "WAV",
+    "opus": "Opus",
+    "m4a": "M4A",
+    "quality": {
+      "mp3_128": "MP3 - 128kbps",
+      "mp3_256": "MP3 - 256kbps",
+      "mp3_320": "MP3 - 320kbps",
+      "ogg_128": "OGG",
+      "wav_lossless": "WAV - بغیر نقصان کے",
+      "opus_128": "Opus",
+      "m4a_192": "M4A",
+      "video_360p": "MP4 - 360p",
+      "video_480p": "MP4 - 480p",
+      "video_720p": "MP4 - 720p",
+      "video_1080p": "MP4 - 1080p",
+      "video_2k": "MP4 - 2K",
+      "video_4k": "MP4 - 4K"
+    }
+  },
+  "errors": {
+    "downloadExpired": "ڈاؤن لوڈ لنک کی میعاد ختم ہو چکی ہے: {title}",
+    "downloadExpiredGeneric": "ڈاؤن لوڈ لنک کی میعاد ختم ہو چکی ہے",
+    "confirmRetry": "کیا آپ دوبارہ کوشش کرنا چاہتے ہیں؟",
+    "noGalleryItems": "دکھانے کے لیے کوئی گیلری آئٹم نہیں",
+    "conversionFailed": "تبدیلی ناکام ہوئی",
+    "networkError": "نیٹ ورک میں خرابی پیش آگئی",
+    "invalidUrl": "غلط URL",
+    "unsupportedFormat": "فارمیٹ معاون نہیں",
+    "timeout": "درخواست کی مدت ختم ہو گئی",
+    "unknown": "نامعلوم خرابی پیش آگئی"
+  },
+  "features": {
+    "downloader": {
+      "title": "YouTube ویڈیوز ڈاؤن لوڈ کریں",
+      "description": "تیز اور آسان YouTube ویڈیو ڈاؤنلوڈر"
+    },
+    "search": {
+      "placeholder": "YouTube لنک تلاش کریں یا پیسٹ کریں",
+      "suggestions": "تجاویز",
+      "noResults": "کوئی نتائج نہیں ملے"
+    },
+    "gallery": {
+      "title": "گیلری",
+      "empty": "دکھانے کے لیے کوئی آئٹم نہیں",
+      "downloadItem": "اس آئٹم کو ڈاؤن لوڈ کریں"
+    }
+  },
+  "aria": {
+    "downloadButton": "اس آئٹم کو ڈاؤن لوڈ کریں",
+    "retryButton": "تبدیلی دوبارہ کریں",
+    "cancelButton": "تبدیلی منسوخ کریں",
+    "pasteButton": "کلپ بورڈ سے پیسٹ کریں",
+    "clearButton": "ان پٹ فیلڈ صاف کریں",
+    "searchButton": "تلاش کریں",
+    "languageSelector": "زبان منتخب کریں",
+    "formatSelector": "فارمیٹ منتخب کریں",
+    "qualitySelector": "معیار منتخب کریں"
+  }
+}

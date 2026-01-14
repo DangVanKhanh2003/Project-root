@@ -1,0 +1,25 @@
+/**
+ * Ripple Effect Styles
+ * Shared CSS for ripple animation effect on buttons
+ *
+ * Usage: Import this file in your app's main CSS:
+ * @import '@downloader/core/styles/ripple-effect.css';
+ */
+
+/* ===== RIPPLE EFFECT ===== */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.6);
+  transform: scale(0);
+  animation: ripple-animation 0.4s linear;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes ripple-animation {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}

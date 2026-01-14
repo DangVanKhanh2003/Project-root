@@ -1,0 +1,286 @@
+/**
+ * Conversion Status Bar Component
+ * Updated with glassmorphism design and purple progress bar - Phase 2.5
+ * Based on demo .status--processing design
+ */
+
+/* ===== WRAPPER TO PREVENT LAYOUT SHIFT ===== */
+.conversion-state-wrapper {
+  min-height: 52px; /* Reserve space for status OR action container (mobile: 40px + 12px margin) */
+}
+
+@media (min-width: 768px) {
+  .conversion-state-wrapper {
+    min-height: 64px; /* Desktop: 52px + 12px margin */
+  }
+}
+
+/* ===== SHARED DIMENSIONS ===== */
+.status-container,
+.action-container {
+  padding: 0px !important;
+  margin: 0px !important;
+  border-radius: var(--radius-md, 12px);
+  min-height: 40px; /* Mobile-first: 40px height */
+}
+
+.status-container {
+  margin: 0px;
+}
+
+.action-container {
+  margin: 12px 0 0 0;
+}
+
+/* ===== STATUS BAR ===== */
+.status-container {
+  position: relative;
+  width: 100%;
+  background: var(--bg-input);
+  border: 1px solid rgba(128, 128, 128, 0.496);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+/* Processing state - purple progress bar fill */
+.status--processing::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: var(--progress-width, 0%);
+  background: rgba(139, 92, 246, 0.35); /* Purple tint - 35% opacity for visibility */
+  border-right: 1px solid rgba(139, 92, 246, 0.6);
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+  transition: width 0.2s linear;
+  z-index: 1;
+}
+
+/* Hide status bar on success and error - controlled by JavaScript */
+/* Note: JavaScript now handles hiding for both SUCCESS and FAILED states */
+.status-container:has(.status--success) {
+  display: none;
+}
+
+.status-container:has(.status--error) {
+  display: none;
+}
+
+.status {
+  position: relative;
+  z-index: 2;
+  width: 100%; /* Fill full width of status-container */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.status-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-main);
+  text-transform: capitalize;
+  height: 18px; /* Match icon height to prevent layout shift */
+  line-height: 18px; /* Center text vertically */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 160px;
+}
+
+/* ===== ICON STATES ===== */
+.icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0; /* Prevent icon from shrinking */
+  display: inline-flex; /* Always reserve space (visibility will be controlled by opacity/content) */
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s ease;
+  visibility: hidden; /* Hide from screen readers */
+}
+
+/* Spinner (extracting, processing) - Purple theme */
+.icon.spinner {
+  /* Always reserve space, but hidden by default */
+  visibility: hidden;
+  border: 2px solid rgba(139, 92, 246, 0.3);
+  border-top: 2px solid #8b5cf6;
+  border-radius: 50%;
+  margin: 0px;
+  display: none;
+}
+
+/* Show spinner only when active */
+.icon.spinner.active {
+  display: inline-flex;
+  visibility: visible;
+  animation: spin 0.4s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Checkmark & Error icons - Keep hidden (opacity: 0, space still reserved) */
+/* Status bar is hidden for SUCCESS/FAILED anyway, so these don't render */
+.icon.checkmark,
+.icon.error {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* ===== STATUS STATES ===== */
+.status--success .status-text {
+  color: var(--status-success, #2ecc71);
+}
+
+.status--error .status-text {
+  color: var(--status-error, #e74c3c);
+}
+
+/* ===== PROGRESS BAR ===== */
+/* Progress bar is hidden - only show background gradient */
+.progress-bar {
+  display: none !important;
+}
+
+/* ===== ACTION CONTAINER ===== */
+.action-container {
+  display: none;
+}
+
+.action-container.active {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 12px;
+  margin: 0px;
+}
+
+.download-btn,
+.retry-btn {
+  margin: 0;
+  padding: 5px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: var(--radius-md, 8px);
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: none;
+  min-height: 40px; /* Mobile: 40px height to match status-container */
+  position: relative;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
+  width: fit-content;
+}
+
+.download-btn.active,
+.retry-btn.active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.download-btn {
+  background: var(--gradient-primary);
+  color: #fff;
+}
+
+.download-btn:hover {
+  transform: translateY(-2px);
+}
+
+.download-btn:active {
+  transform: translateY(0);
+}
+
+.retry-btn {
+  background: var(--status-error, #e74c3c);
+  color: #fff;
+}
+
+.retry-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.retry-btn:active {
+  transform: translateY(0);
+}
+
+.btn-new-convert {
+  margin: 0;
+  padding: 5px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: var(--radius-md, 8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px; /* Mobile: 40px height to match status-container */
+  position: relative;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
+  width: fit-content;
+}
+
+[data-theme="light"] .btn-new-convert {
+  border: 1px solid #cbd5e1;
+  color: var(--text-muted);
+}
+
+.btn-new-convert:hover {
+  border-color: #fff;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateY(-1px);
+}
+
+[data-theme="light"] .btn-new-convert:hover {
+  background: #f1f5f9;
+  color: var(--text-main);
+  border-color: #94a3b8;
+}
+
+.btn-new-convert:active {
+  transform: translateY(0);
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (min-width: 768px) {
+  .status-container,
+  .action-container {
+    min-height: 52px; /* Desktop: 52px height */
+  }
+
+  .status-text {
+    font-size: 15px;
+  }
+
+  .download-btn,
+  .retry-btn,
+  .btn-new-convert {
+    font-size: 17px;
+    min-height: 52px; /* Desktop: 52px height */
+  }
+}

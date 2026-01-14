@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I18n Fallback Test</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      line-height: 1.6;
+    }
+    .test-case {
+      background: #f5f5f5;
+      padding: 15px;
+      margin: 15px 0;
+      border-radius: 5px;
+      border-left: 4px solid #4CAF50;
+    }
+    .test-case.warning {
+      border-left-color: #ff9800;
+      background: #fff3e0;
+    }
+    .test-case.error {
+      border-left-color: #f44336;
+      background: #ffebee;
+    }
+    h3 {
+      margin-top: 0;
+    }
+    code {
+      background: #e0e0e0;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-family: 'Courier New', monospace;
+    }
+    .result {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    .expected {
+      color: #4CAF50;
+    }
+    .actual {
+      color: #2196F3;
+    }
+  </style>
+</head>
+<body>
+  <h1>I18n Fallback Logic Test</h1>
+  <p>This page demonstrates the 3-level fallback cascade:</p>
+  <ol>
+    <li>Try current language</li>
+    <li>If missing → fallback to English (en)</li>
+    <li>If still missing → return the key itself</li>
+  </ol>
+
+  <div id="test-results"></div>
+
+  <script type="module">
+    import { initI18n, loadTranslations, t, setLanguage } from './src/index.ts';
+
+    // Initialize i18n
+    initI18n({
+      defaultLanguage: 'en',
+      fallbackLanguage: 'en',
+      debug: true // Enable debug to see console warnings
+    });
+
+    // Load ONLY English locale (to test fallback)
+    loadTranslations('en', {
+      "common": {
+        "buttons": {
+          "convert": "Convert",
+          "download": "Download"
+        }
+      },
+      "status": {
+        "processing": "Processing",
+        "converting": "Converting"
+      }
+    });
+
+    // Load incomplete Vietnamese locale (missing some keys)
+    loadTranslations('vi', {
+      "common": {
+        "buttons": {
+          "convert": "Chuyển đổi"
+          // Missing "download" key!
+        }
+      }
+      // Missing entire "status" namespace!
+    });
+
+    const resultsDiv = document.getElementById('test-results');
+
+    function addTestCase(title, description, key, lang, expectedResult, className = '') {
+      const actual = t(key);
+      const passed = actual === expectedResult;
+
+      const testDiv = document.createElement('div');
+      testDiv.className = `test-case ${className}`;
+      testDiv.innerHTML = `
+        <h3>${title}</h3>
+        <p>${description}</p>
+        <p><strong>Key:</strong> <code>${key}</code></p>
+        <p><strong>Current Language:</strong> ${lang}</p>
+        <div class="result">
+          <div class="expected">Expected: "${expectedResult}"</div>
+          <div class="actual">Actual: "${actual}"</div>
+          <div>${passed ? '✅ PASS' : '❌ FAIL'}</div>
+        </div>
+      `;
+      resultsDiv.appendChild(testDiv);
+    }
+
+    // Test Case 1: Key exists in English
+    setLanguage('en');
+    addTestCase(
+      'Test 1: Key exists in current language (en)',
+      'Should return English translation',
+      'common.buttons.convert',
+      'en',
+      'Convert'
+    );
+
+    // Test Case 2: Key exists in Vietnamese
+    setLanguage('vi');
+    addTestCase(
+      'Test 2: Key exists in current language (vi)',
+      'Should return Vietnamese translation',
+      'common.buttons.convert',
+      'vi',
+      'Chuyển đổi'
+    );
+
+    // Test Case 3: Missing key in Vietnamese → fallback to English
+    setLanguage('vi');
+    addTestCase(
+      'Test 3: Missing key in Vietnamese → fallback to English',
+      'Key "download" missing in Vietnamese, should fallback to English',
+      'common.buttons.download',
+      'vi',
+      'Download',
+      'warning'
+    );
+
+    // Test Case 4: Missing namespace in Vietnamese → fallback to English
+    setLanguage('vi');
+    addTestCase(
+      'Test 4: Missing namespace → fallback to English',
+      'Entire "status" namespace missing in Vietnamese, should fallback to English',
+      'status.processing',
+      'vi',
+      'Processing',
+      'warning'
+    );
+
+    // Test Case 5: Key doesn't exist anywhere → return key itself
+    setLanguage('vi');
+    addTestCase(
+      'Test 5: Key missing everywhere → return key',
+      'Key not found in Vietnamese or English, should return the key itself',
+      'nonexistent.key.path',
+      'vi',
+      'nonexistent.key.path',
+      'error'
+    );
+
+    // Test Case 6: Variable interpolation with fallback
+    setLanguage('en');
+    loadTranslations('en', {
+      "status": {
+        "processingProgress": "Processing… {progress}%"
+      }
+    });
+
+    addTestCase(
+      'Test 6: Variable interpolation',
+      'Should interpolate {progress} variable correctly',
+      'status.processingProgress',
+      'en',
+      'Processing… 45%'
+    );
+
+    // Manually trigger variable interpolation test
+    const interpolatedResult = t('status.processingProgress', { progress: 45 });
+    const lastTest = resultsDiv.lastElementChild;
+    lastTest.querySelector('.actual').textContent = `Actual: "${interpolatedResult}"`;
+    lastTest.querySelector('.result > div:last-child').textContent =
+      interpolatedResult === 'Processing… 45%' ? '✅ PASS' : '❌ FAIL';
+
+    console.log('\n=== Check browser console for fallback warnings ===');
+  </script>
+</body>
+</html>

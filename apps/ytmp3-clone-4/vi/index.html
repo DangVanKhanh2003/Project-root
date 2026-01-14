@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Chuyển đổi YouTube sang MP3 & MP4 miễn phí. Nhanh, không quảng cáo, an toàn." />
+    <title>YTMP3 - Chuyển đổi YouTube sang MP3 miễn phí</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="/assest/fonts/fonts.css">
+
+    <!-- SEO: Hreflang tags for language variants -->
+    <link rel="alternate" hreflang="en" href="https://ytmp3.gg/" />
+    <link rel="alternate" hreflang="vi" href="https://ytmp3.gg/vi/" />
+    <link rel="alternate" hreflang="ar" href="https://ytmp3.gg/ar/" />
+    <link rel="alternate" hreflang="x-default" href="https://ytmp3.gg/" />
+
+    <!-- TypeScript Module -->
+    <script type="module" src="/src/main.ts"></script>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header-wrapper">
+        <div id="header" class="nav-links">
+            <a href="/vi/" class="nav-link">Trang chủ</a>
+            <a href="/vi/faq/" class="nav-link">FAQ</a>
+            <a href="/vi/changelog/" class="nav-link">Changelog</a>
+        </div>
+        <div class="logo-container">
+            <img src="/logo.svg" alt="YTMP3 Logo" class="logo-img" />
+            <div class="logo-text">ytmp3.gg</div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero-section">
+            <div class="hero-container">
+
+                <!-- Main Card -->
+                <div class="hero-card">
+
+                    <!-- Search View -->
+                    <div id="search-view" class="fade-in">
+
+                        <!-- REQUIRED: Main Download Form -->
+                        <form id="downloadForm" class="converter-form" autocomplete="off">
+                            <!-- Invisible submit for Enter key -->
+
+                            <div class="input-group">
+                                <div class="input-wrapper" id="input-wrapper">
+                                    <!-- REQUIRED: #videoUrl input -->
+                                    <input
+                                        type="text"
+                                        id="videoUrl"
+                                        class="video-input"
+                                        placeholder="Dán link YouTube hoặc tìm kiếm từ khóa..."
+                                        autocomplete="off"
+                                        autocapitalize="off"
+                                        autocorrect="off"
+                                        spellcheck="false"
+                                    />
+                                    <div class="input-actions">
+                                        <!-- REQUIRED: #input-action-button -->
+                                        <button
+                                            type="button"
+                                            id="input-action-button"
+                                            class="btn-paste"
+                                            data-action="paste"
+                                        >
+                                            <!-- Paste Icon -->
+                                            <svg class="paste-icon" width="14" height="14" viewBox="0 0 640 640" fill="currentColor">
+                                                <path d="M128 64C92.7 64 64 92.7 64 128L64 448C64 483.3 92.7 512 128 512L240 512L240 288C240 226.1 290.1 176 352 176L416 176L416 128C416 92.7 387.3 64 352 64L128 64zM312 176L168 176C154.7 176 144 165.3 144 152C144 138.7 154.7 128 168 128L312 128C325.3 128 336 138.7 336 152C336 165.3 325.3 176 312 176zM352 224C316.7 224 288 252.7 288 288L288 512C288 547.3 316.7 576 352 576L512 576C547.3 576 576 547.3 576 512L576 346.5C576 329.5 569.3 313.2 557.3 301.2L498.8 242.7C486.8 230.7 470.5 224 453.5 224L352 224z"/>
+                                            </svg>
+                                            <span class="btn-state--paste">Dán</span>
+
+                                            <!-- Clear Icon (hidden by default) -->
+                                            <svg class="clear-icon hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                                            </svg>
+                                            <span class="btn-state--clear hidden">Xóa</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- REQUIRED: #suggestion-container with class "suggesstion-list" (typo is intentional) -->
+                                <div id="suggestion-container" class="suggestion-container suggesstion-list"></div>
+                            </div>
+
+                            <!-- REQUIRED: #format-selector-container INSIDE form -->
+                            <div id="format-selector-container">
+                                <div class="format-selector">
+                                    <!-- Format Toggle -->
+                                    <div class="format-toggle">
+                                        <button type="button" class="format-btn active" data-format="mp3">MP3</button>
+                                        <button type="button" class="format-btn" data-format="mp4">MP4</button>
+                                    </div>
+
+                                    <!-- Quality Dropdown -->
+                                    <div class="quality-wrapper">
+                                        <div class="quality-icon-mobile">
+                                            <img src="/assest/icons/quality-choose-icon.png" alt="Quality" width="20" height="20" />
+                                        </div>
+                                        <div class="quality-dropdown-wrapper">
+                                            <select id="quality-select" class="quality-select" aria-label="Chọn chất lượng" data-quality-select>
+                                                <option value="mp3-128" selected> MP3 - 128kbps </option>
+                                                <option value="mp3-256"> MP3 - 256kbps </option>
+                                                <option value="ogg-128"> OGG </option>
+                                                <option value="wav-128"> WAV - Lossless </option>
+                                                <option value="opus-128"> Opus </option>
+                                                <option value="m4a-192"> M4A </option>
+                                            </select>
+                                        </div>
+                                        <div class="select-arrow">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                                        </div>
+                                    </div>
+
+                                    <!-- Convert Button -->
+                                    <button type="submit" class="btn-convert">
+                                        <span>Chuyển đổi</span>
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Error Message -->
+                            <div id="error-message" class="error-message hidden"></div>
+                        </form>
+                    </div>
+                    <!-- End Search View -->
+
+                    <!-- Result View (Hidden by default) -->
+                    <div id="result-view" class="hidden fade-in">
+                        <!-- REQUIRED: #content-area - TypeScript will render preview here -->
+                        <div id="content-area"></div>
+                    </div>
+                    <!-- End Result View -->
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- REQUIRED: Search Results Section -->
+        <section id="search-results-section" style="display: none;">
+            <div class="container">
+                <!-- REQUIRED: #search-results-container -->
+                <div id="search-results-container"></div>
+            </div>
+        </section>
+
+        <!-- SEO / TEXT CONTENT (Vietnamese) -->
+        <section class="content-section">
+            <div class="content-wrapper">
+                <h2>YTMP3 - Công cụ chuyển đổi YouTube sang MP3 tốt nhất</h2>
+                <p>
+                    ytmp3.gg chuyển đổi YouTube sang audio chất lượng cao định dạng MP3, WAV, OGG và Opus - cùng với video 4K, 2K và 1080p tuyệt đẹp - một cách đơn giản, không quảng cáo.
+                </p>
+                <p>
+                    Chuyển đổi bất kỳ video YouTube nào sang MP3 hoặc MP4 trong vài giây với YTMP3.gg - cách nhanh, không quảng cáo và an toàn
+                    để tải xuống nội dung YouTube. Chỉ cần dán link, chọn định dạng và chất lượng, và để YTMP3 làm phần còn lại.
+                    Không pop-up, không đăng ký, không làm phiền - chỉ chuyển đổi mượt mà hoàn thành trong tích tắc.
+                </p>
+
+                <h3>Cách chuyển đổi YouTube sang MP3 hoặc MP4</h3>
+                <p>
+                    Sử dụng YTMP3 rất đơn giản: Copy link YouTube của bạn, dán vào ô trên, chọn MP3 cho
+                    audio hoặc MP4 cho video, chọn chất lượng mong muốn, và nhấn Chuyển đổi. Hầu hết các lần tải xuống sẽ sẵn sàng
+                    trong vài giây, tùy thuộc vào độ dài và độ phân giải của video.
+                </p>
+
+                <h3>Tại sao mọi người chọn YTMP3</h3>
+                <p>
+                    Miễn phí, không quảng cáo và nhanh. Tải xuống video và audio YouTube không giới hạn mà không cần đăng ký hay pop-up. Giao diện sạch và tập trung, quy trình 3 bước đơn giản, và file sẵn sàng phát trên mọi thiết bị. Dán link, chọn chất lượng và xong - trên điện thoại hoặc máy tính.
+                </p>
+
+                <h3>Định dạng và chất lượng được hỗ trợ</h3>
+                <ul>
+                    <li><strong>Audio:</strong> MP3 (128kbps, 192kbps, 320kbps), OPUS, OGG và WAV cho âm thanh lossless hoặc chất lượng cao.</li>
+                    <li><strong>Video:</strong> MP4 ở 144p, 240p, 360p, 480p, 720p HD, 1080p Full HD và 2160p 4K.</li>
+                </ul>
+
+                <h3>Câu hỏi thường gặp</h3>
+                <div>
+                    <div>
+                        <h3>YTMP3 có miễn phí không?</h3>
+                        <p>Có - YTMP3 hoàn toàn miễn phí. Bạn có thể chuyển đổi và tải xuống video YouTube không giới hạn ở định dạng MP3 hoặc MP4 - miễn phí và không quảng cáo.</p>
+                    </div>
+                    <div>
+                        <h3>Tôi có thể dùng YTMP3 trên điện thoại hoặc máy tính bảng không?</h3>
+                        <p>Hoàn toàn được. YTMP3 thân thiện với mobile và hoạt động tuyệt vời trên iPhone, Android, iPad, hoặc bất kỳ thiết bị hiện đại nào có trình duyệt.</p>
+                    </div>
+                    <div>
+                        <h3>Tôi có cần cài đặt phần mềm nào không?</h3>
+                        <p>Không hề. YTMP3 chạy hoàn toàn trong trình duyệt của bạn - miễn phí, không quảng cáo và nhanh - không cần extension hay cài đặt.</p>
+                    </div>
+                </div>
+
+                <div class="final-thoughts">
+                    <h3>Lời kết</h3>
+                    <p>
+                        YTMP3.gg không chỉ là một công cụ chuyển đổi YouTube thông thường - đây là nền tảng tinh tế, an toàn và không quảng cáo được xây dựng
+                        cho những người coi trọng chất lượng và sự đơn giản. Chuyển đổi YouTube sang MP3 hoặc MP4 trong vài giây, thưởng thức
+                        nội dung ở bất kỳ đâu, và giữ an toàn khi làm điều đó.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-text">© 2025 YTMP3.gg | Chuyển đổi YouTube sang MP3 miễn phí</p>
+            <div class="footer-links">
+                <a href="#" class="footer-link">Liên hệ</a>
+                <a href="#" class="footer-link">Khiếu nại bản quyền</a>
+                <a href="#" class="footer-link">Chính sách bảo mật</a>
+                <a href="#" class="footer-link">Điều khoản sử dụng</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

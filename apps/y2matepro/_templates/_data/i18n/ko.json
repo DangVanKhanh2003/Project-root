@@ -1,0 +1,32 @@
+{
+  "nav": {
+    "home": "유튜브 다운로더",
+    "youtubeToMp4": "유튜브 MP4 변환",
+    "youtubeToMp3": "유튜브 MP3 변환",
+    "youtubeMusicDownloader": "음악 다운로더",
+    "youtubeMp3320": "유튜브 MP3 320kbps",
+    "youtubeToWav": "유튜브 WAV 변환",
+    "youtubeToOgg": "유튜브 OGG 변환",
+    "youtubeToOpus": "유튜브 Opus 변환",
+    "youtubeShorts": "쇼츠 다운로더",
+    "language": "한국어"
+  },
+
+  "hero": {
+    "title": "Y2mate - 유튜브 다운로더",
+    "placeholder": "검색하거나 링크 붙여넣기...",
+    "pasteLabel": "클립보드에서 붙여넣기",
+    "clearLabel": "지우기",
+    "submitButton": "시작",
+    "termsText": "서비스 이용 시",
+    "termsLink": "이용약관에 동의합니다"
+  },
+
+  "footer": {
+    "copyright": "© 2025 y2mate",
+    "about": "소개",
+    "contact": "문의",
+    "terms": "서비스 약관",
+    "privacy": "개인정보 처리방침"
+  }
+}

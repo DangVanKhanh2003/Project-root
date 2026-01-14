@@ -1,0 +1,7 @@
+/**
+ * Core Styles
+ * Barrel export for all shared CSS modules
+ */
+
+/* Ripple effect utilities */
+@import './ripple-effect.css';

@@ -1,0 +1,32 @@
+{
+  "nav": {
+    "home": "Загрузчик YouTube",
+    "youtubeToMp4": "YouTube в MP4",
+    "youtubeToMp3": "YouTube в MP3",
+    "youtubeMusicDownloader": "Загрузчик музыки",
+    "youtubeMp3320": "YouTube в MP3 320kbps",
+    "youtubeToWav": "YouTube в WAV",
+    "youtubeToOgg": "YouTube в OGG",
+    "youtubeToOpus": "YouTube в Opus",
+    "youtubeShorts": "Загрузчик Shorts",
+    "language": "Русский"
+  },
+
+  "hero": {
+    "title": "Y2mate - Загрузчик Youtube",
+    "placeholder": "Поиск или вставьте ссылку...",
+    "pasteLabel": "Вставить из буфера",
+    "clearLabel": "Очистить",
+    "submitButton": "Начать",
+    "termsText": "Используя наш сервис, вы принимаете",
+    "termsLink": "Условия использования"
+  },
+
+  "footer": {
+    "copyright": "© 2025 y2mate",
+    "about": "О нас",
+    "contact": "Контакты",
+    "terms": "Условия сервиса",
+    "privacy": "Политика конфиденциальности"
+  }
+}

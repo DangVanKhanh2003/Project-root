@@ -1,0 +1,112 @@
+{
+  "common": {
+    "buttons": {
+      "convert": "変換",
+      "download": "ダウンロード",
+      "cancel": "キャンセル",
+      "retry": "再試行",
+      "start": "開始",
+      "tryAgain": "もう一度試す",
+      "startOver": "最初からやり直す",
+      "paste": "貼り付け",
+      "clear": "クリア",
+      "search": "検索"
+    },
+    "labels": {
+      "videoQuality": "動画品質",
+      "audioQuality": "音質",
+      "searchPlaceholder": "ここに検索またはリンクを貼り付け...",
+      "pasteLabel": "クリップボードから貼り付け",
+      "clearLabel": "入力をクリア"
+    },
+    "actions": {
+      "downloading": "ダウンロード中",
+      "processing": "処理中",
+      "converting": "変換中",
+      "extracting": "抽出中"
+    }
+  },
+  "status": {
+    "idle": "変換の準備完了",
+    "starting": "開始中…",
+    "extracting": "抽出中",
+    "extractingProgress": "抽出中 {progress}%",
+    "processing": "処理中",
+    "processingProgress": "処理中… {progress}%",
+    "converting": "変換中",
+    "convertingProgress": "変換中... {loaded} / {total}",
+    "convertingSize": "変換中... {size}",
+    "downloading": "ダウンロード中",
+    "downloadProgress": "ダウンロード中... {loaded} MB / {total} MB",
+    "downloadComplete": "ダウンロード完了 100%",
+    "polling": "処理中",
+    "pollingProgress": "処理中 {progress}%",
+    "completed": "完了",
+    "success": "変換に成功しました",
+    "failed": "変換に失敗しました",
+    "canceled": "キャンセルされました",
+    "error": "エラーが発生しました"
+  },
+  "formats": {
+    "mp3": "MP3",
+    "mp4": "MP4",
+    "ogg": "OGG",
+    "wav": "WAV",
+    "opus": "Opus",
+    "m4a": "M4A",
+    "quality": {
+      "mp3_128": "MP3 - 128kbps",
+      "mp3_256": "MP3 - 256kbps",
+      "mp3_320": "MP3 - 320kbps",
+      "ogg_128": "OGG",
+      "wav_lossless": "WAV - ロスレス",
+      "opus_128": "Opus",
+      "m4a_192": "M4A",
+      "video_360p": "MP4 - 360p",
+      "video_480p": "MP4 - 480p",
+      "video_720p": "MP4 - 720p",
+      "video_1080p": "MP4 - 1080p",
+      "video_2k": "MP4 - 2K",
+      "video_4k": "MP4 - 4K"
+    }
+  },
+  "errors": {
+    "downloadExpired": "ダウンロードリンクの有効期限が切れました: {title}",
+    "downloadExpiredGeneric": "ダウンロードリンクの有効期限が切れています",
+    "confirmRetry": "もう一度試しますか？",
+    "noGalleryItems": "表示するギャラリー項目がありません",
+    "conversionFailed": "変換に失敗しました",
+    "networkError": "ネットワークエラーが発生しました",
+    "invalidUrl": "無効なURL",
+    "unsupportedFormat": "サポートされていない形式",
+    "timeout": "リクエストがタイムアウトしました",
+    "unknown": "不明なエラーが発生しました"
+  },
+  "features": {
+    "downloader": {
+      "title": "YouTube動画をダウンロード",
+      "description": "高速で簡単なYouTube動画ダウンローダー"
+    },
+    "search": {
+      "placeholder": "YouTubeリンクを検索または貼り付け",
+      "suggestions": "候補",
+      "noResults": "結果が見つかりません"
+    },
+    "gallery": {
+      "title": "ギャラリー",
+      "empty": "表示する項目がありません",
+      "downloadItem": "この項目をダウンロード"
+    }
+  },
+  "aria": {
+    "downloadButton": "この項目をダウンロード",
+    "retryButton": "変換を再試行",
+    "cancelButton": "変換をキャンセル",
+    "pasteButton": "クリップボードから貼り付け",
+    "clearButton": "入力欄をクリア",
+    "searchButton": "検索",
+    "languageSelector": "言語を選択",
+    "formatSelector": "形式を選択",
+    "qualitySelector": "品質を選択"
+  }
+}

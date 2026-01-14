@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta charset="UTF-8">
+
+    <!-- SEO Metadata -->
+    <title>Y2mate - YouTube Shorts Downloader (Free, Fast, HD)</title>
+    <meta name="description" content="Download YouTube Shorts in HD. Save vertical videos instantly-portrait format, 9:16 ratio. Free Shorts downloader for mobile and desktop.">
+    <link rel="canonical" href="https://y2matepro.com/youtube-short-downloader">
+
+    <!-- Schema.org markup -->
+    <meta itemprop="name" content="Y2mate - YouTube Shorts Downloader" />
+    <meta itemprop="description" content="Download YouTube Shorts instantly. Free vertical video downloader for mobile." />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Y2Mate" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content="Y2mate - YouTube Shorts Downloader (Free, Fast, HD)" />
+    <meta property="og:description" content="Download YouTube Shorts in HD. Save vertical videos instantly-portrait format, 9:16 ratio." />
+    <meta property="og:image" content="https://y2matepro.com/logo.png" />
+    <meta property="og:url" content="https://y2matepro.com/youtube-short-downloader" />
+
+   
+    
+
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.png">
+    <link type="image/png" sizes="16x16" rel="icon" href="/favicon1616.png">
+    <link type="image/png" sizes="32x32" rel="icon" href="/favicon3232.png">
+    <link type="image/png" sizes="48x48" rel="icon" href="/favicon4848.png">
+    <link type="image/png" sizes="96x96" rel="icon" href="/favicon9696.png">
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#c10841">
+    <meta name="color-scheme" content="light">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZWPL9SR6P6"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'G-ZWPL9SR6P6');
+    </script>
+
+
+    <!-- Critical CSS imported via Vite -->
+    <script type="module" src="/src/main.ts"></script>
+</head>
+
+<body>
+    <header class="nav-header">
+        <div class="container">
+            <div class="nav_head">
+                <div class="navbar-logo">
+                    <a href="/">
+                        <img height="46px" width="46px" src="/logo.png" alt="Y2Mate logo">
+                        <span class="logo-name">Y2mate</span>
+                    </a>
+                </div>
+                <button type="button" class="navbar-toggler" id="mobileMenuToggle">
+                    <span class="toggle-icon"></span>
+                    <span class="toggle-icon"></span>
+                    <span class="toggle-icon"></span>
+                </button>
+
+
+            </div>
+            <div class="header-menu">
+                <ul class="menu-navbar">
+                    <li class="navbar">
+                        <a href="/">YouTube Downloader</a>
+                    </li>
+                    <li class="navbar">
+                        <a href="youtube-to-mp4">YouTube to MP4 Converter</a>
+                    </li>
+                    <li class="navbar">
+                        <a href="youtube-to-mp3">YouTube to MP3 Converter</a>
+                    </li>
+                    <li class="navbar language">
+                        <a href="javascript:void(0);">
+                            English<span class="shape"></span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <ul class="lang-menu">
+                                <li>
+                                    <a data-lang="en" href="/">English</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Mobile Menu Overlay -->
+            <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+                <div class="mobile-menu-content">
+                    <div class="mobile-header-top">
+                            <a href="/">
+                        <div class="mobile-logo">
+                                <img height="36px" width="36px" src="/logo.png" alt="Y2Mate logo">
+                                <span class="logo-name">Y2mate</span>
+                        </div>
+                            </a>
+                        <button type="button" class="mobile-close-btn" id="mobileCloseBtn">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </button>
+
+                    
+
+                    </div>
+                    <nav class="mobile-nav">
+                        <ul class="mobile-menu">
+                            <li><a href="/">YouTube Downloader</a></li>
+                            <li><a href="youtube-to-mp4">YouTube to MP4 Converter</a></li>
+                            <li><a href="youtube-to-mp3">YouTube to MP3 Converter</a></li>
+                            <li><a href="youtube-to-mp3-320kbps-converter">YouTube to MP3 320kbps</a></li>
+                            <li><a href="youtube-to-wav-converter">YouTube to WAV Converter</a></li>
+                            <li><a href="youtube-to-ogg-converter">YouTube to OGG Converter</a></li>
+                            <li><a href="youtube-to-opus-converter">YouTube to Opus Converter</a></li>
+                            <li><a href="youtube-short-downloader">YouTube Shorts Downloader</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- End Mobile Menu Overlay -->
+        </div>
+    </header>
+    <div class="container">
+        <section class="y2mate-download-pro">
+            <div class="y2mate-search-form-pro d-flex">
+                <div class="form-wrap">
+                    <h1 class="y2mate_title-pro">Y2mate - YouTube Shorts Downloader</h1>
+                    <form id="downloadForm" class="search_form" method="POST" action="/search/">
+                        <div class="input-container">
+                            <div class=" input-wrapper">
+                                <input id="videoUrl" class="y2mate_query-pro keyword" type="text" name="q"
+                                    placeholder="Search or paste Shorts link here..." autocomplete="off" autofocus="">
+                                <button id="input-action-button" type="button" class="input-action-btn" data-action="paste"
+                                    aria-label="Paste from clipboard">
+                                    <svg class="paste-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                        viewBox="0 0 24 24">
+                                        <path fill="currentColor"
+                                            d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm7 16H5V5h2v3h10V5h2v14z" />
+                                    </svg>
+                                    <svg class="clear-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                        viewBox="0 0 24 24">
+                                        <path fill="currentColor"
+                                            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                                    </svg>
+                                </button>
+
+                            </div>
+                        </div>
+                        <button id="submit" type="submit" name="form_submit" class="submit-btn" aria-label="Search">
+                            <div class="converter-btn">Download</div>
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                width="14px" height="14px" fill="#fff" id="Layer_1"
+                                style="enable-background:new 0 0 16 16;" version="1.1" viewBox="0 0 16 16"
+                                xml:space="preserve">
+                                <path
+                                    d="M15.375,7L10,2.54C9.695,2.287,9.461,2,9,2C8.375,2,8,2.516,8,3v3H1C0.45,6,0,6.45,0,7v2c0,0.55,0.45,1,1,1h7v3  c0,0.484,0.375,1,1,1c0.461,0,0.695-0.287,1-0.54L15.375,9C15.758,8.688,16,8.445,16,8S15.758,7.313,15.375,7z">
+                                </path>
+                            </svg>
+                        </button>
+
+                        <!-- Format Selector -->
+                        <div id="format-selector-container" class="format-selector-wrapper"></div>
+
+                        <div id="suggestion-container" class="suggesstion-list suggesstion-box"></div>
+                    </form>
+                    <div class="spinner" style="display: none;">
+                        <img id="loading_img" src="/loading.gif">
+                    </div>
+
+                    <!-- Video Detail Area -->
+                    <div id="content-area"></div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+        <!-- Search Results Section -->
+        <section id="search-results-section" class="search-results-section" style="display: none;">
+                <div id="search-results-container"></div>
+        </section>
+
+        <section class="y2mate-content-pro d-flex">
+            <div class="col-sm-12">
+                <h2>Free YouTube Shorts Downloader - Save Vertical Videos</h2>
+                <p>
+                    Y2mate Shorts Downloader saves YouTube Shorts in their native 9:16 vertical format-perfect for mobile viewing. Download Shorts instantly with no watermark, no app required.
+                </p>
+                <p>
+                    Our downloader preserves the <strong>portrait orientation (1080x1920)</strong> so you can watch or share on mobile devices. Download unlimited Shorts for free-no file size limits.
+                </p>
+            </div>
+        </section>
+        <section class="y2mate-instruction-pro">
+            <div class="y2mate-in-ad-pro">
+                <h3>How to download YouTube Shorts</h3>
+                <ol>
+                    <li>Open YouTube Shorts on mobile or desktop and copy the Short's URL from the share button.</li>
+                    <li>Paste the Shorts link into Y2mate's input field and click Start.</li>
+                    <li>Select vertical format (9:16 portrait) to preserve the Short's native mobile orientation.</li>
+                    <li>Download the Short video to your device-ready to watch or repost on social media.</li>
+                </ol>
+            </div>
+            <div class="y2mate-in-ad-pro">
+                <h3>Why use Y2mate for Shorts</h3>
+                <ul>
+                    <li>Preserves vertical 9:16 aspect ratio-no black bars or cropping on mobile screens.</li>
+                    <li>Instant Shorts detection-automatically recognizes Short URLs and optimizes download settings.</li>
+                    <li>No watermark added to your downloaded Shorts videos.</li>
+                    <li>Download Shorts up to 1080p resolution for crisp quality on high-end phones.</li>
+                    <li>Perfect for saving viral Shorts, dance challenges, and trending clips to watch offline.</li>
+                </ul>
+            </div>
+        </section>
+        <section class="y2mate-features-wrap">
+            <div class="y2mate-features-wrap-pro first">
+                <div class="col-sm-4 d-flex">
+                    <div class="y2mate-features-pro">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
+                            class="bi bi-phone" viewBox="0 0 16 16">
+                            <path
+                                d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z">
+                            </path>
+                            <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2"></path>
+                        </svg>
+                        <h3>Vertical Format Preserved</h3>
+                        <p>Download Shorts in native 9:16 portrait orientation. No black bars, no cropping-perfect vertical format for mobile viewing and social media sharing.</p>
+                    </div>
+                </div>
+                <div class="col-sm-4 d-flex">
+                    <div class="y2mate-features-pro">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
+                            class="bi bi-clock-history" viewBox="0 0 16 16">
+                            <path
+                                d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022zm2.004.45a7 7 0 0 0-.985-.299l.219-.976q.576.129 1.126.342zm1.37.71a7 7 0 0 0-.439-.27l.493-.87a8 8 0 0 1 .979.654l-.615.789a7 7 0 0 0-.418-.302zm1.834 1.79a7 7 0 0 0-.653-.796l.724-.69q.406.429.747.91zm.744 1.352a7 7 0 0 0-.214-.468l.893-.45a8 8 0 0 1 .45 1.088l-.95.313a7 7 0 0 0-.179-.483m.53 2.507a7 7 0 0 0-.1-1.025l.985-.17q.1.58.116 1.17zm-.131 1.538q.05-.254.081-.51l.993.123a8 8 0 0 1-.23 1.155l-.964-.267q.069-.247.12-.501m-.952 2.379q.276-.436.486-.908l.914.405q-.24.54-.555 1.038zm-.964 1.205q.183-.183.35-.378l.758.653a8 8 0 0 1-.401.432z">
+                            </path>
+                            <path d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0z"></path>
+                            <path
+                                d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5">
+                            </path>
+                        </svg>
+                        <h3>60-Second Format Support</h3>
+                        <p>Specialized for Shorts' 60-second maximum length. Fast processing for these bite-sized vertical videos-ideal for saving quick trending content.</p>
+                    </div>
+                </div>
+                <div class="col-sm-4 d-flex">
+                    <div class="y2mate-features-pro">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
+                            class="bi bi-share" viewBox="0 0 16 16">
+                            <path
+                                d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5m-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3">
+                            </path>
+                        </svg>
+                        <h3>Social Media Ready</h3>
+                        <p>Download Shorts to repost on Instagram Reels, TikTok, or Snapchat Spotlight. The vertical format matches all mobile social platforms perfectly.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="y2mate-features-wrap-pro second">
+                <div class="col-sm-4 d-flex">
+                    <div class="y2mate-features-pro">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
+                            class="bi bi-lightning-charge" viewBox="0 0 16 16">
+                            <path
+                                d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09z">
+                            </path>
+                        </svg>
+                        <h3>Instant Short Detection</h3>
+                        <p>Y2mate automatically identifies Shorts URLs and applies vertical video settings. No manual configuration needed-just paste and download.</p>
+                    </div>
+                </div>
+                <div class="col-sm-4 d-flex">
+                    <div class="y2mate-features-pro">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-badge-hd"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M7.396 11V5.001H6.209v2.44H3.687V5H2.5v6h1.187V8.43h2.522V11zM8.5 5.001V11h2.188c1.811 0 2.685-1.107 2.685-3.015 0-1.894-.86-2.984-2.684-2.984zm1.187.967h.843c1.112 0 1.622.686 1.622 2.04 0 1.353-.505 2.02-1.622 2.02h-.843z">
+                            </path>
+                            <path
+                                d="M14 3a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zM2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z">
+                            </path>
+                        </svg>
+                        <h3>Full HD Shorts Quality</h3>
+                        <p>Download Shorts at up to 1080x1920 resolution. Crisp, clear vertical video quality optimized for modern high-resolution phone screens.</p>
+                    </div>
+                </div>
+                <div class="col-sm-4 d-flex">
+                    <div class="y2mate-features-pro">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
+                            class="bi bi-camera-video" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2zm11.5 5.175 3.5 1.556V4.269l-3.5 1.556zM2 4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h7.5a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1z">
+                            </path>
+                        </svg>
+                        <h3>No Watermark Added</h3>
+                        <p>Downloaded Shorts are clean and watermark-free from Y2mate. Save viral clips without any branding overlays covering the content.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="yt-content">
+            <h2 >FAQs</h2>
+            <div class="download-uses">
+                <p></p>
+                <div class="guide-data">
+                    <h3>What is Y2mate Shorts Downloader?</h3>
+                    <p>Y2mate Shorts Downloader is a free tool specialized for downloading YouTube Shorts in their native vertical 9:16 format. It preserves the portrait orientation for mobile viewing and supports downloads up to 1080p resolution. No app installation required-download Shorts directly in your browser.</p>
+                    <h3>Are downloaded Shorts free?</h3>
+                    <p>Yes, downloading YouTube Shorts via Y2mate is completely free. Save unlimited Shorts with no file size caps, daily limits, or subscription fees. All vertical formats and resolutions are available at no cost.</p>
+                    <h3>What is the Shorts 9:16 format?</h3>
+                    <p>9:16 is the vertical aspect ratio for Shorts (portrait orientation). Typical resolution is 1080 pixels wide by 1920 pixels tall-optimized for mobile phone screens held vertically, matching Instagram Reels and TikTok format.</p>
+                    <h3>Can I repost downloaded Shorts?</h3>
+                    <p>You can download Shorts for personal offline viewing. If reposting to social media, always credit the original creator and respect YouTube's Terms of Service. Y2mate does not add watermarks, but redistribution may require permission.</p>
+                    <h3>How do I find a Short's URL?</h3>
+                    <p>On mobile, tap the three-dot menu on a Short and select "Share" → "Copy link." On desktop, click the Short and copy the URL from your browser address bar. Shorts URLs typically include "/shorts/" in the path.</p>
+                    <h3>Do Shorts download faster than long videos?</h3>
+                    <p>Yes, because Shorts are limited to 60 seconds. Most Shorts download in just a few seconds, even at 1080p resolution. The short duration means smaller file sizes and faster processing.</p>
+                    <h3>Can I convert Shorts to horizontal video?</h3>
+                    <p>Y2mate downloads Shorts in their original vertical format. Converting vertical to horizontal would require adding black bars or cropping content. For best quality, keep Shorts in their native 9:16 portrait orientation.</p>
+                </div>
+            </div>
+
+    </div>
+    <footer class="footer">
+        <p>© 2025 y2mate</p>
+        <ul class="footer_nav">
+            <li class="fnav-menu">
+                <a href="about-us">About</a>
+            </li>
+            <li class="fnav-menu">
+                <a href="contact">Contact</a>
+            </li>
+            <li class="fnav-menu">
+                <a href="terms-condition">Terms of Service</a>
+            </li>
+            <li class="fnav-menu">
+                <a href="privacy-policy">Privacy Policy</a>
+            </li>
+            <li class="fnav-menu">
+                <a href="youtube-short-downloader">YouTube Shorts Downloader</a>
+            </li>
+            <li class="fnav-menu">
+                <a href="youtube-to-mp3-320kbps-converter">YouTube to MP3 320kbps</a>
+            </li>
+            <li class="fnav-menu">
+                <a href="youtube-to-wav-converter">YouTube to WAV Converter</a>
+            </li>
+            <li class="fnav-menu">
+                <a href="youtube-to-ogg-converter">YouTube to OGG Converter</a>
+            </li>
+            <li class="fnav-menu">
+                <a href="youtube-to-opus-converter">YouTube to Opus Converter</a>
+            </li>
+        </ul>
+    </footer>
+
+    <!-- Conversion Modal Wrapper -->
+</body>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the Shorts 9:16 format?",
+      "acceptedAnswer": {"@type": "Answer", "text": "9:16 is the vertical aspect ratio for Shorts (portrait orientation). Typical resolution is 1080 pixels wide by 1920 pixels tall-optimized for mobile phone screens held vertically."}
+    },
+    {
+      "@type": "Question",
+      "name": "Can I repost downloaded Shorts?",
+      "acceptedAnswer": {"@type": "Answer", "text": "You can download Shorts for personal offline viewing. If reposting to social media, always credit the original creator and respect YouTube's Terms of Service."}
+    },
+    {
+      "@type": "Question",
+      "name": "How do I find a Short's URL?",
+      "acceptedAnswer": {"@type": "Answer", "text": "On mobile, tap the three-dot menu on a Short and select Share → Copy link. On desktop, click the Short and copy the URL from your browser address bar."}
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Y2MatePro Shorts Downloader",
+  "operatingSystem": "Web",
+  "applicationCategory": "UtilitiesApplication",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+  "url": "https://y2matepro.com/youtube-short-downloader",
+  "publisher": {"@type": "Organization", "name": "Y2MatePro"}
+}
+</script>
+</html>

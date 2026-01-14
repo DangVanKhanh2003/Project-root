@@ -1,0 +1,193 @@
+{#- JSON-LD Structured Data for SEO (EEAT compliant) -#}
+{%- set isHomePage = (pageKey == 'index') -%}
+{%- set isRootHomePage = isHomePage and (lang == 'en' or not lang) -%}
+{%- set hasInstructions = pageData.instructions and pageData.instructions.steps -%}
+{%- set hasFaqs = pageData.faqs and pageData.faqs.items -%}
+
+{#- Build canonical URL -#}
+{%- set cleanUrl = page.url | replace('/index.html', '/') | replace('.html', '') -%}
+{%- set canonicalUrl = site.url + cleanUrl -%}
+{#- @id uses canonicalUrl directly with #fragment (no extra / needed) -#}
+
+<script type="application/ld+json">
+{%- if isHomePage %}
+{#- === HOMEPAGE === -#}
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {%- if isRootHomePage %}
+    {
+      "@type": "Organization",
+      "@id": "{{ site.url }}/#organization",
+      "name": "Y2mate",
+      "url": "{{ site.url }}",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "{{ site.url }}/logo.png"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "email": "y2matepro@gmail.com"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "{{ site.url }}/#website",
+      "name": "Y2mate",
+      "url": "{{ site.url }}",
+      "description": "{{ seo.description | jsonString | safe }}",
+      "inLanguage": "en",
+      "publisher": {
+        "@id": "{{ site.url }}/#organization"
+      }
+    },
+    {%- endif %}
+    {
+      "@type": "WebPage",
+      "@id": "{{ canonicalUrl }}#webpage",
+      "url": "{{ canonicalUrl }}",
+      "name": "{{ seo.title | jsonString | safe }}",
+      {%- if not isRootHomePage %}
+      "isPartOf": {
+        "@id": "{{ site.url }}/#website"
+      },
+      {%- endif %}
+      "inLanguage": "{{ lang or 'en' }}"
+    },
+    {
+      "@type": "WebApplication",
+      "@id": "{{ canonicalUrl }}#application",
+      "name": "Y2mate",
+      "url": "{{ canonicalUrl }}",
+      "description": "{{ seo.schemaDescription | jsonString | safe }}",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "{{ lang or 'en' }}",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    {%- if hasFaqs %},
+    {
+      "@type": "FAQPage",
+      "@id": "{{ canonicalUrl }}#faq",
+      "isPartOf": {
+        "@id": "{{ canonicalUrl }}#webpage"
+      },
+      "mainEntity": [
+        {%- for item in pageData.faqs.items %}
+        {
+          "@type": "Question",
+          "name": "{{ item.question | jsonString | safe }}",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "{{ item.answer | jsonString | safe }}"
+          }
+        }{%- if not loop.last %},{% endif %}
+        {%- endfor %}
+      ]
+    }
+    {%- endif %}
+    {%- if hasInstructions %},
+    {
+      "@type": "HowTo",
+      "@id": "{{ canonicalUrl }}#howto",
+      "isPartOf": {
+        "@id": "{{ canonicalUrl }}#webpage"
+      },
+      "name": "{{ pageData.instructions.title | jsonString | safe }}",
+      "step": [
+        {%- for step in pageData.instructions.steps %}
+        {
+          "@type": "HowToStep",
+          "position": {{ loop.index }},
+          "text": "{{ step | jsonString | safe }}"
+        }{%- if not loop.last %},{% endif %}
+        {%- endfor %}
+      ]
+    }
+    {%- endif %}
+  ]
+}
+{%- else %}
+{#- === TOOL PAGES === -#}
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "{{ canonicalUrl }}#webpage",
+      "url": "{{ canonicalUrl }}",
+      "name": "{{ seo.title | jsonString | safe }}",
+      "isPartOf": {
+        "@id": "{{ site.url }}/#website"
+      },
+      "about": {
+        "@id": "{{ canonicalUrl }}#application"
+      },
+      "inLanguage": "{{ lang or 'en' }}"
+    },
+    {
+      "@type": "WebApplication",
+      "@id": "{{ canonicalUrl }}#application",
+      "name": "Y2mate",
+      "url": "{{ canonicalUrl }}",
+      "description": "{{ seo.schemaDescription | jsonString | safe }}",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "{{ lang or 'en' }}",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    {%- if hasFaqs %},
+    {
+      "@type": "FAQPage",
+      "@id": "{{ canonicalUrl }}#faq",
+      "isPartOf": {
+        "@id": "{{ canonicalUrl }}#webpage"
+      },
+      "mainEntity": [
+        {%- for item in pageData.faqs.items %}
+        {
+          "@type": "Question",
+          "name": "{{ item.question | jsonString | safe }}",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "{{ item.answer | jsonString | safe }}"
+          }
+        }{%- if not loop.last %},{% endif %}
+        {%- endfor %}
+      ]
+    }
+    {%- endif %}
+    {%- if hasInstructions %},
+    {
+      "@type": "HowTo",
+      "@id": "{{ canonicalUrl }}#howto",
+      "isPartOf": {
+        "@id": "{{ canonicalUrl }}#webpage"
+      },
+      "name": "{{ pageData.instructions.title | jsonString | safe }}",
+      "step": [
+        {%- for step in pageData.instructions.steps %}
+        {
+          "@type": "HowToStep",
+          "position": {{ loop.index }},
+          "text": "{{ step | jsonString | safe }}"
+        }{%- if not loop.last %},{% endif %}
+        {%- endfor %}
+      ]
+    }
+    {%- endif %}
+  ]
+}
+{%- endif %}
+</script>

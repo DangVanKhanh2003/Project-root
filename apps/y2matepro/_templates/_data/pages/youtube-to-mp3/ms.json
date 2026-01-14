@@ -1,0 +1,84 @@
+{
+  "seo": {
+    "title": "Y2mate - Penukar YouTube ke MP3",
+    "description": "Y2mate adalah penukar YouTube ke MP3 yang menyokong audio 128kbps, 192kbps, dan 320kbps. Muat turun fail audio lengkap dengan integriti bunyi yang terpelihara.",
+    "ogTitle": "Y2mate - Penukar YouTube ke MP3",
+    "ogDescription": "Tukar YouTube ke MP3 dengan 128/192/320kbps. Pemprosesan pantas, output audio lengkap.",
+    "schemaName": "Y2mate - Penukar YouTube ke MP3",
+    "schemaDescription": "Alat penukaran YouTube ke MP3 dalam talian yang menyokong pelbagai pilihan kadar bit dengan integriti audio yang terpelihara."
+  },
+  "hero": {
+    "title": "Penukar YouTube ke MP3"
+  },
+  "content": {
+    "mainTitle": "Tukar Audio YouTube kepada MP3",
+    "intro1": "Penukar YouTube ke MP3 dari Y2Mate membolehkan anda mengekstrak audio daripada video YouTube dan memuat turunnya sebagai fail MP3 dengan cepat dan mudah. Hanya tampal pautan YouTube, pilih kualiti audio pilihan anda dan muat turun fail MP3 terus ke peranti anda tanpa memasang sebarang perisian.",
+    "intro2": "Pemuat turun YouTube ke MP3 ini menyokong kadar bit audio seperti 128kbps, 192kbps dan 320kbps untuk keperluan mendengar yang berbeza. Y2Mate berfungsi sepenuhnya dalam penyemak imbas anda dengan kelajuan penukaran yang pantas."
+  },
+  "instructions": {
+    "title": "Cara Menukar YouTube ke MP3",
+    "steps": [
+      "<strong>Tampal pautan video:</strong> Salin URL YouTube dan tampalkannya ke dalam medan input.",
+      "<strong>Pilih kadar bit:</strong> Klik \"Mula\" dan pilih MP3 dengan kualiti 128kbps, 192kbps, atau 320kbps.",
+      "<strong>Tukar dan muat turun:</strong> Klik \"Tukar\" untuk menjana fail MP3 dan memuat turunnya terus ke peranti anda."
+    ]
+  },
+  "whyChoose": {
+    "title": "Mengapa Menggunakan Y2mate untuk Penukaran MP3",
+    "reasons": [
+      "<strong>Muat Turun MP3 Pantas:</strong> Tukar video YouTube kepada MP3 dengan cepat tanpa masa menunggu yang lama.",
+      "<strong>Kualiti Audio Sehingga 320kbps:</strong> Muat turun fail MP3 berkualiti tinggi untuk muzik dan pendengaran luar talian.",
+      "<strong>Antara Muka Bersih dan Minimal:</strong> Reka bentuk ringkas yang menjadikan penukaran MP3 mudah."
+    ]
+  },
+  "features": {
+    "title": "Keupayaan Penukaran MP3",
+    "items": [
+      {
+        "title": "Kadar Bit MP3 yang Disokong",
+        "description": "Pilihan kadar bit yang tersedia termasuk 128kbps, 192kbps, dan 320kbps, bergantung pada pilihan pengguna."
+      },
+      {
+        "title": "Output Audio Lengkap",
+        "description": "Fail MP3 yang dijana mengandungi trek audio lengkap dengan tempoh yang betul dan main balik tanpa gangguan."
+      },
+      {
+        "title": "Pemprosesan Berasaskan Web",
+        "description": "Pengekstrakan dan penukaran audio dilakukan sepenuhnya dalam talian tanpa memerlukan pemasangan perisian."
+      },
+      {
+        "title": "Penukaran Tanpa Had",
+        "description": "Pengguna boleh menukar dan memuat turun beberapa fail MP3 tanpa had harian atau penggunaan."
+      },
+      {
+        "title": "Keserasian Main Balik yang Luas",
+        "description": "Fail MP3 serasi dengan pemain media umum, telefon pintar, dan peranti audio."
+      }
+    ]
+  },
+  "faqs": {
+    "title": "Soalan Lazim",
+    "items": [
+      {
+        "question": "Apakah perbezaan antara MP3 128kbps, 192kbps, dan 320kbps?",
+        "answer": "Kadar bit MP3 menentukan berapa banyak data audio yang dikodkan setiap saat. Kadar bit yang lebih tinggi mengekalkan lebih banyak butiran audio tetapi menghasilkan saiz fail yang lebih besar. 128kbps sesuai untuk kandungan berasaskan ucapan seperti kuliah atau temu bual. 192kbps menyediakan tahap mampatan dan kualiti bunyi yang seimbang untuk pendengaran umum. 320kbps adalah kadar bit MP3 standard tertinggi dan mengekalkan kebanyakan maklumat audio, menjadikannya sesuai untuk main balik muzik pada peralatan audio berkualiti tinggi."
+      },
+      {
+        "question": "Bagaimana Y2mate mengekalkan integriti audio semasa penukaran?",
+        "answer": "Sistem memproses aliran audio asal secara berterusan, mengekalkan garis masa dan struktur pensampelan yang betul. Pendekatan ini menghalang bahagian yang hilang, hanyutan masa, atau bingkai audio yang hilang, memastikan MP3 akhir sepadan dengan tempoh penuh audio sumber."
+      },
+      {
+        "question": "Bolehkah video panjang atau podcast ditukar ke MP3 dengan andal?",
+        "answer": "Ya. Y2mate menyokong kandungan berdurasi panjang, termasuk podcast berbilang jam dan kuliah lanjutan. Sistem ini direka untuk memproses aliran audio berterusan tanpa gangguan atau pemotongan."
+      },
+      {
+        "question": "Adakah menukar YouTube ke MP3 mengurangkan kualiti audio?",
+        "answer": "MP3 adalah format mampatan lossy, yang bermaksud beberapa data audio dikurangkan semasa pengekodan. Walau bagaimanapun, kadar bit yang lebih tinggi seperti 192kbps dan 320kbps meminimumkan kehilangan kualiti yang dapat dilihat. Y2mate tidak menggunakan mampatan tambahan melebihi kadar bit yang dipilih."
+      },
+      {
+        "question": "Bolehkah video YouTube peribadi ditukar?",
+        "answer": "Tidak. Hanya video YouTube Awam atau Tidak Tersenarai yang boleh diproses kerana sekatan akses."
+      }
+    ]
+  }
+}

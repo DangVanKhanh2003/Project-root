@@ -1,0 +1,101 @@
+{
+  "seo": {
+    "title": "Y2Mate – Fast & Easy YouTube Video Downloader",
+    "description": "Baixe vídeos e áudio do YouTube rapidamente. Suporta MP4, MP3, SD e Full HD. Um downloader de YouTube online, simples e fácil de usar.",
+    "ogTitle": "Y2Mate – Fast & Easy YouTube Video Downloader",
+    "ogDescription": "Salve vídeos do YouTube online gratuitamente. Escolha a qualidade que desejar, de vídeo 144p a 1080p ou áudio de 128kbps a 320kbps. Rápido, seguro e funciona em todos os dispositivos.",
+    "schemaName": "Y2mate - Baixador de Vídeos do YouTube",
+    "schemaDescription": "Baixe vídeos do YouTube online gratuitamente. Salve vídeos ou áudio na qualidade que preferir. Funciona rapidamente em qualquer dispositivo sem instalação."
+  },
+  "hero": {
+    "title": "Y2mate - Baixador de YouTube"
+  },
+  "content": {
+    "mainTitle": "Baixe Vídeos do YouTube Rápido e Grátis",
+    "intro1": "Y2Mate é um baixador de vídeos do YouTube online que permite baixar vídeos ou convertê-los em áudio para uso offline. A ferramenta funciona diretamente no seu navegador, sem necessidade de instalação de software ou conta.",
+    "intro2": "Y2Mate suporta resoluções de vídeo populares, incluindo 144p, 360p, 480p, 720p e 1080p (Full HD), bem como formatos de áudio como MP3, OGG, WAV e OPUS com taxas de bits comuns como 128kbps, 192kbps e 320kbps. A ferramenta funciona perfeitamente em dispositivos desktop e móveis."
+  },
+  "instructions": {
+    "title": "Como Baixar Vídeos do YouTube em Segundos",
+    "steps": [
+      "<strong>Cole o link do YouTube:</strong> Copie a URL de um vídeo do YouTube ou YouTube Shorts e cole-o na caixa de download.",
+      "<strong>Analise o link:</strong> Clique no botão iniciar para exibir os formatos e opções de qualidade disponíveis.",
+      "<strong>Escolha vídeo ou áudio:</strong> Selecione MP4 para vídeo ou MP3 para áudio, então escolha sua resolução ou taxa de bits preferida.",
+      "<strong>Baixar:</strong> Clique em \"Converter\" e baixe o arquivo diretamente para o seu dispositivo sem fazer login."
+    ]
+  },
+  "whyChoose": {
+    "title": "Por que Escolher Y2mate",
+    "reasons": [
+      "<strong>Velocidade de download rápida:</strong> O Y2Mate é otimizado para processar e baixar vídeos do YouTube de forma rápida e confiável.",
+      "<strong>Sem necessidade de conta:</strong> Baixe vídeos instantaneamente sem se registrar ou compartilhar informações pessoais.",
+      "<strong>Funciona em todos os dispositivos:</strong> Totalmente compatível com telefones celulares, tablets e computadores de mesa."
+    ]
+  },
+  "features": {
+    "title": "Principais Recursos do Y2mate",
+    "items": [
+      {
+        "title": "Downloads ilimitados de vídeo e áudio",
+        "description": "Baixe vídeos ilimitados do YouTube ou converta-os para arquivos de áudio para uso offline."
+      },
+      {
+        "title": "Múltiplas opções de qualidade",
+        "description": "Suporta resoluções de vídeo de 144p, 360p, 480p, 720p a 1080p e bitrates de áudio de 128kbps a 320kbps."
+      },
+      {
+        "title": "Processamento rápido e estável",
+        "description": "Análise de link curta e tempo de download, adequado para vídeos curtos e longos."
+      },
+      {
+        "title": "Suporta todas as plataformas",
+        "description": "Funciona sem problemas em iPhone, Android, Windows, Mac e Linux usando navegadores populares."
+      },
+      {
+        "title": "Experiência de usuário limpa",
+        "description": "Uma experiência suave e sem distrações durante o download."
+      },
+      {
+        "title": "Não é necessária instalação",
+        "description": "Totalmente baseado na web, sem aplicativos, extensões ou software necessários."
+      }
+    ]
+  },
+  "faqs": {
+    "title": "Perguntas Frequentes",
+    "items": [
+      {
+        "question": "O que é Y2mate?",
+        "answer": "Y2mate é um baixador de vídeos do YouTube online que permite aos usuários baixar vídeos ou convertê-los para áudio colando um link do YouTube. A ferramenta funciona diretamente no navegador e não requer instalação."
+      },
+      {
+        "question": "Posso baixar vídeos do YouTube online sem instalar software?",
+        "answer": "Sim. O Y2mate funciona inteiramente online, então você não precisa instalar nenhum aplicativo ou extensão de navegador."
+      },
+      {
+        "question": "Quais resoluções de vídeo o Y2mate suporta?",
+        "answer": "O Y2mate suporta várias resoluções de vídeo que variam de 144p a 1080p, permitindo que você escolha a qualidade que se adapta ao seu dispositivo e necessidades de armazenamento."
+      },
+      {
+        "question": "Como posso baixar vídeos do YouTube como arquivos MP3?",
+        "answer": "Cole o link do vídeo do YouTube no Y2mate, selecione a opção de Áudio, escolha sua taxa de bits preferida e clique em Converter para baixar o arquivo MP3."
+      },
+      {
+        "question": "O Y2mate suporta o download de YouTube Shorts?",
+        "answer": "Sim. O Y2mate permite que você baixe YouTube Shorts como arquivos de vídeo ou áudio para visualização ou audição offline."
+      },
+      {
+        "question": "É seguro baixar vídeos usando o Y2mate?",
+        "answer": "O Y2mate foi projetado para fornecer uma experiência de download simples e limpa e não requer informações pessoais."
+      },
+      {
+        "question": "Como devo usar os vídeos baixados do Y2mate?",
+        "answer": "Vídeos e arquivos de áudio baixados com o Y2mate devem ser usados para fins pessoais, como visualização ou audição offline. Os usuários são responsáveis por como o conteúdo baixado é usado e devem respeitar os direitos dos proprietários do conteúdo no YouTube."
+      },
+        {
+        "question": "Qual é a melhor opção de qualidade para vídeos longos?",
+        "answer": "Para vídeos longos, 720p geralmente é um bom equilíbrio entre a qualidade do vídeo e o tamanho do arquivo."
+      }
+    ]
+  }
+}

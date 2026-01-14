@@ -1,0 +1,32 @@
+{
+  "nav": {
+    "home": "Tải Video YouTube",
+    "youtubeToMp4": "YouTube sang MP4",
+    "youtubeToMp3": "YouTube sang MP3",
+    "youtubeMusicDownloader": "Tải Nhạc YouTube",
+    "youtubeMp3320": "YouTube sang MP3 320kbps",
+    "youtubeToWav": "YouTube sang WAV",
+    "youtubeToOgg": "YouTube sang OGG",
+    "youtubeToOpus": "YouTube sang Opus",
+    "youtubeShorts": "Tải YouTube Shorts",
+    "language": "Tiếng Việt"
+  },
+
+  "hero": {
+    "title": "Y2mate - Trình tải  video YouTube",
+    "placeholder": "Tìm kiếm hoặc dán liên kết vào đây...",
+    "pasteLabel": "Dán từ clipboard",
+    "clearLabel": "Xóa",
+    "submitButton": "Bắt đầu",
+    "termsText": "Khi sử dụng dịch vụ của chúng tôi, bạn đồng ý với",
+    "termsLink": "Điều khoản sử dụng"
+  },
+
+  "footer": {
+    "copyright": "© 2025 y2mate",
+    "about": "Giới thiệu",
+    "contact": "Liên hệ",
+    "terms": "Điều khoản dịch vụ",
+    "privacy": "Chính sách bảo mật"
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "common": {
+    "buttons": {
+      "convert": "Konvertieren",
+      "download": "Herunterladen",
+      "cancel": "Abbrechen",
+      "retry": "Erneut versuchen",
+      "start": "Starten",
+      "tryAgain": "Erneut versuchen",
+      "startOver": "Neu beginnen",
+      "paste": "Einfügen",
+      "clear": "Löschen",
+      "search": "Suchen"
+    },
+    "labels": {
+      "videoQuality": "Videoqualität",
+      "audioQuality": "Audioqualität",
+      "searchPlaceholder": "Hier suchen oder Link einfügen...",
+      "pasteLabel": "Aus Zwischenablage einfügen",
+      "clearLabel": "Eingabe löschen"
+    },
+    "actions": {
+      "downloading": "Wird heruntergeladen",
+      "processing": "Wird verarbeitet",
+      "converting": "Wird konvertiert",
+      "extracting": "Wird extrahiert"
+    }
+  },
+  "status": {
+    "idle": "Bereit zum Konvertieren",
+    "starting": "Startet…",
+    "extracting": "Wird extrahiert",
+    "extractingProgress": "Extrahieren {progress}%",
+    "processing": "Wird verarbeitet",
+    "processingProgress": "Verarbeiten… {progress}%",
+    "converting": "Wird konvertiert",
+    "convertingProgress": "Konvertieren... {loaded} / {total}",
+    "convertingSize": "Konvertieren... {size}",
+    "downloading": "Wird heruntergeladen",
+    "downloadProgress": "Herunterladen... {loaded} MB / {total} MB",
+    "downloadComplete": "Download abgeschlossen 100%",
+    "polling": "Wird verarbeitet",
+    "pollingProgress": "Verarbeiten {progress}%",
+    "completed": "Abgeschlossen",
+    "success": "Konvertierung erfolgreich",
+    "failed": "Konvertierung fehlgeschlagen",
+    "canceled": "Abgebrochen",
+    "error": "Fehler aufgetreten"
+  },
+  "formats": {
+    "mp3": "MP3",
+    "mp4": "MP4",
+    "ogg": "OGG",
+    "wav": "WAV",
+    "opus": "Opus",
+    "m4a": "M4A",
+    "quality": {
+      "mp3_128": "MP3 - 128kbps",
+      "mp3_256": "MP3 - 256kbps",
+      "mp3_320": "MP3 - 320kbps",
+      "ogg_128": "OGG",
+      "wav_lossless": "WAV - Verlustfrei",
+      "opus_128": "Opus",
+      "m4a_192": "M4A",
+      "video_360p": "MP4 - 360p",
+      "video_480p": "MP4 - 480p",
+      "video_720p": "MP4 - 720p",
+      "video_1080p": "MP4 - 1080p",
+      "video_2k": "MP4 - 2K",
+      "video_4k": "MP4 - 4K"
+    }
+  },
+  "errors": {
+    "downloadExpired": "Download-Link ist abgelaufen für: {title}",
+    "downloadExpiredGeneric": "Download-Link ist abgelaufen",
+    "confirmRetry": "Möchten Sie es erneut versuchen?",
+    "noGalleryItems": "Keine Galerieelemente zum Anzeigen",
+    "conversionFailed": "Konvertierung fehlgeschlagen",
+    "networkError": "Netzwerkfehler ist aufgetreten",
+    "invalidUrl": "Ungültige URL",
+    "unsupportedFormat": "Nicht unterstütztes Format",
+    "timeout": "Zeitüberschreitung der Anfrage",
+    "unknown": "Ein unbekannter Fehler ist aufgetreten"
+  },
+  "features": {
+    "downloader": {
+      "title": "YouTube-Videos herunterladen",
+      "description": "Schneller und einfacher YouTube-Downloader"
+    },
+    "search": {
+      "placeholder": "YouTube-Link suchen oder einfügen",
+      "suggestions": "Vorschläge",
+      "noResults": "Keine Ergebnisse gefunden"
+    },
+    "gallery": {
+      "title": "Galerie",
+      "empty": "Keine Elemente zum Anzeigen",
+      "downloadItem": "Dieses Element herunterladen"
+    }
+  },
+  "aria": {
+    "downloadButton": "Dieses Element herunterladen",
+    "retryButton": "Konvertierung erneut versuchen",
+    "cancelButton": "Konvertierung abbrechen",
+    "pasteButton": "Aus Zwischenablage einfügen",
+    "clearButton": "Eingabefeld löschen",
+    "searchButton": "Suchen",
+    "languageSelector": "Sprache auswählen",
+    "formatSelector": "Format auswählen",
+    "qualitySelector": "Qualität auswählen"
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "seo": {
+    "title": "Y2mate - Descargador de YouTube Shorts (Gratis, Rápido, HD)",
+    "description": "Y2mate es una herramienta gratuita para descargar YouTube Shorts en HD. Guarda videos verticales instantáneamente en dispositivos móviles y de escritorio sin marcas de agua, anuncios o redirecciones.",
+    "ogTitle": "Y2mate - Descargador de YouTube Shorts (Gratis, Rápido, HD)",
+    "ogDescription": "Descarga YouTube Shorts en HD. Guarda videos verticales instantáneamente — formato retrato, relación 9:16, seguro.",
+    "schemaName": "Y2mate - Descargador de YouTube Shorts",
+    "schemaDescription": "Descarga YouTube Shorts instantáneamente. Descargador de videos verticales gratuito para dispositivos móviles y de escritorio."
+  },
+  "hero": {
+    "title": "Y2mate - Descargador de YouTube Shorts"
+  },
+  "content": {
+    "mainTitle": "Descarga YouTube Shorts rápidamente y mantén el formato vertical",
+    "intro1": "El descargador de YouTube Shorts de Y2Mate te permite descargar clips de video verticales cortos de YouTube directamente a tu dispositivo. Con un procesamiento de enlaces rápido y descargas rápidas, puedes guardar Shorts en segundos usando un sitio web simple, fácil de usar y completamente gratuito.",
+    "intro2": "Y2mate se enfoca completamente en una experiencia de descarga de Shorts limpia y sencilla. Los Shorts se descargan directamente en su formato vertical original 9:16, exactamente como se subieron a YouTube. Puedes elegir la calidad de video hasta 1080p o 720p, o descargar solo audio con tasas de bits de 128kbps, 192kbps o 320kbps en formatos MP3, OGG, WAV o OPUS. La herramienta funciona sin problemas tanto en navegadores móviles como de escritorio."
+  },
+  "instructions": {
+    "title": "Cómo descargar YouTube Shorts en segundos",
+    "steps": [
+      "<strong>Copia el enlace del Short:</strong> Toca el botón \"Compartir\" en cualquier YouTube Short y copia la URL.",
+      "<strong>Pega y analiza:</strong> Pega el enlace en Y2mate y haz clic en \"Iniciar\" para procesar el Short.",
+      "<strong>Selecciona video o audio:</strong> Elige el formato de video o audio, selecciona la calidad que deseas y luego haz clic en <strong>\"Convertir\"</strong> para comenzar a descargar el archivo a tu dispositivo."
+    ]
+  },
+  "whyChoose": {
+    "title": "Por qué usar Y2mate para YouTube Shorts",
+    "reasons": [
+      "<strong>Diseñado específicamente para Shorts:</strong> Diseñado para manejar clips verticales cortos en lugar de videos de formato largo.",
+      "<strong>Procesamiento aproximadamente 2 veces más rápido:</strong> Los videos de corta duración se analizan y convierten rápidamente.",
+      "<strong>Relación de aspecto original 9:16:</strong> Los Shorts permanecen verticales sin recortes ni rotaciones.",
+      "<strong>Sin marca de agua:</strong> Los videos se guardan exactamente como aparecen en YouTube."
+    ]
+  },
+  "features": {
+    "title": "Características diseñadas para descargas de Shorts",
+    "items": [
+      {
+        "title": "Optimizado para clips cortos",
+        "description": "Procesa YouTube Shorts de manera eficiente debido a su corta duración."
+      },
+      {
+        "title": "Descarga directa de archivos",
+        "description": "Los Shorts convertidos se descargan directamente sin redirecciones ni pasos adicionales."
+      },
+      {
+        "title": "Descargas ilimitadas de Shorts",
+        "description": "Descarga tantos YouTube Shorts como quieras sin límites diarios."
+      },
+            {
+        "title": "Múltiples opciones de video y audio",
+        "description": "Admite Shorts en 1080p o 720p y audio a 128kbps, 192kbps o 320kbps en MP3, OGG, WAV o OPUS."
+      },
+      {
+        "title": "Mantiene el formato vertical 9:16",
+        "description": "Todos los Shorts permanecen en su diseño vertical original."
+      },
+      {
+        "title": "Herramienta estable basada en navegador",
+        "description": "Funciona directamente en tu navegador sin instalar aplicaciones o extensiones."
+      }
+    ]
+  },
+  "faqs": {
+    "title": "Preguntas frecuentes",
+    "items": [
+      {
+        "question": "¿Hay un límite en la cantidad de Shorts que puedo descargar?",
+        "answer": "No. Y2mate permite descargas ilimitadas de YouTube Shorts sin límites de uso."
+      },
+      {
+        "question": "¿Cómo puedo guardar Shorts directamente en mi teléfono?",
+        "answer": "<strong>Android:</strong> Los Shorts descargados aparecen en la carpeta de Descargas y en tu aplicación de Galería.<br><strong>iPhone:</strong> Usa Safari para descargar, abre Descargas y toca \"Guardar video\" para mover el Short a Fotos."
+      },
+      {
+        "question": "¿Puedo descargar solo audio de un Short?",
+        "answer": "Sí. Puedes elegir la conversión solo de audio con múltiples opciones de tasa de bits después de que se procese el enlace."
+      },
+      {
+        "question": "¿Por qué los Shorts se descargan más rápido que los videos normales?",
+        "answer": "Los Shorts tienen una duración más corta y se procesan por separado, lo que reduce el tiempo de análisis y conversión."
+      },
+      {
+        "question": "¿Cómo debo usar los Shorts descargados?",
+        "answer": "Los Shorts descargados están destinados para uso personal, como visualización o almacenamiento sin conexión. Los usuarios son responsables de respetar los derechos de los creadores de contenido original."
+      }
+    ]
+  }
+}

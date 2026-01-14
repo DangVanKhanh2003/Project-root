@@ -115,7 +115,7 @@ export async function resolveDownloadUrl(input) {
  * USAGE: openSSE(id); startZipJob(id, files);
  */
 function emitProgress(sessionId, data) {
-    // Avoid writes after close — check before send to prevent leak
+    // Avoid writes after close - check before send to prevent leak
     if (!isOpen(sessionId)) return;
     sendEvent(sessionId, "progress", data);
 }

@@ -1,0 +1,145 @@
+/* =========================================================
+   Component - Form Input
+   ---------------------------------------------------------
+   Form container, input wrapper, video input, error message
+   Extracted from index.html - Phase 2
+   ========================================================= */
+
+/* Form Container */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+@media (min-width: 600px) {
+    .form-container {
+        gap: 15px;
+    }
+}
+
+.input-group {
+    position: relative;
+}
+
+/* Input Wrapper */
+.input-wrapper {
+    position: relative;
+    background: var(--bg-input);
+    border: var(--border-input);
+    border-radius: 12px;
+
+    height: 50px;
+    border-color: #8a5cf6c0;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+}
+
+
+
+@media (min-width: 600px) {
+    .input-wrapper {
+        height: 64px;
+        border-radius: var(--radius-lg);
+        
+    }
+}
+
+.input-wrapper.focused {
+    border-color: #8b5cf6;
+    box-shadow: var(--glow-input), inset 0 2px 4px rgba(0,0,0,0.05);
+}
+
+[data-theme="dark"] .input-wrapper.focused {
+    background: rgba(0,0,0,0.4);
+}
+
+/* Video Input */
+.video-input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    font-size: 14px;
+    padding: 0 60px 0 24px;
+}
+
+@media (min-width: 600px) {
+    .video-input {
+        font-size: 1.1rem;
+        padding: 0 120px 0 24px;
+    }
+}
+
+.video-input::placeholder {
+    color: var(--text-muted);
+    opacity: 0.6;
+}
+
+/* Input Actions (Paste/Clear button container) */
+.input-actions {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+@media (min-width: 600px) {
+    .input-actions {
+        right: 12px;
+    }
+}
+
+/* Form Controls */
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+@media (min-width: 600px) {
+    .controls {
+        flex-direction: row;
+        align-items: stretch;
+    }
+}
+
+.hero-card #error-message {
+    display: none !important;
+}
+
+.hero-inline-message {
+    width: 100%;
+    max-width: 900px;
+    margin: 24px auto 0;
+    display: none;
+    padding: 0 24px;
+}
+
+.inline-message {
+    padding: 18px 24px;
+    border-radius: var(--radius-md);
+    text-align: center;
+    font-size: 0.95rem;
+    border: 1px solid transparent;
+    backdrop-filter: blur(4px);
+}
+
+.inline-message--error {
+    background: rgba(239, 68, 68, 0.12);
+    border-color: rgba(239, 68, 68, 0.3);
+    color: #ef4444;
+}
+
+.inline-message--info {
+    background: rgba(59, 130, 246, 0.12);
+    border-color: rgba(59, 130, 246, 0.3);
+    color: #60a5fa;
+}
+
+.inline-message--success {
+    background: rgba(34, 197, 94, 0.12);
+    border-color: rgba(34, 197, 94, 0.3);
+    color: #34d399;
+}

@@ -1,0 +1,32 @@
+{
+  "nav": {
+    "home": "Scaricatore YouTube",
+    "youtubeToMp4": "YouTube in MP4",
+    "youtubeToMp3": "YouTube in MP3",
+    "youtubeMusicDownloader": "Scaricatore Musica",
+    "youtubeMp3320": "YouTube in MP3 320kbps",
+    "youtubeToWav": "YouTube in WAV",
+    "youtubeToOgg": "YouTube in OGG",
+    "youtubeToOpus": "YouTube in Opus",
+    "youtubeShorts": "Scaricatore Shorts",
+    "language": "Italiano"
+  },
+
+  "hero": {
+    "title": "Y2mate - Scaricatore Youtube",
+    "placeholder": "Cerca o incolla il link qui...",
+    "pasteLabel": "Incolla dagli appunti",
+    "clearLabel": "Cancella",
+    "submitButton": "Avvia",
+    "termsText": "Utilizzando il nostro servizio accetti i nostri",
+    "termsLink": "Termini di utilizzo"
+  },
+
+  "footer": {
+    "copyright": "© 2025 y2mate",
+    "about": "Chi siamo",
+    "contact": "Contatti",
+    "terms": "Termini di servizio",
+    "privacy": "Politica sulla privacy"
+  }
+}

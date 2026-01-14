@@ -1,0 +1,98 @@
+/* =========================================================
+   Features Section - Features Grid
+   ---------------------------------------------------------
+   Features cards with icons, titles, and descriptions
+   Mobile-first responsive design with 3-column grid
+   ========================================================= */
+
+/* ===== FEATURES WRAPPER ===== */
+.y2mate-features-wrap-pro {
+    padding: 30px 0;
+    padding-bottom: 0px !important;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+}
+
+/* Desktop: 3 columns (>1023px) */
+.y2mate-features-wrap-pro .col-sm-4 {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+}
+
+
+
+.y2mate-features-wrap-pro.first::before {
+    background: inherit;
+}
+
+/* ===== FEATURES CARD ===== */
+.y2mate-features-pro {
+    text-align: center;
+    padding: var(--space-xl);
+}
+
+.y2mate-features-pro svg {
+    display: block;
+    margin: 0 auto var(--space-lg);
+    color: var(--color-text-dark, #333);
+}
+
+.y2mate-features-pro h3 {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: #c10841;
+    margin: 0 0 8px;
+    line-height: var(--line-height-tight);
+}
+
+.y2mate-features-pro p {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-light);
+    line-height: var(--line-height-base);
+    margin: 0 auto;
+    max-width: 350px;
+}
+
+/* ===== TABLET (768px - 1023px) ===== */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .y2mate-features-wrap-pro .col-sm-4 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+    .y2mate-features-pro {
+        padding: var(--space-lg);
+    }
+
+    .y2mate-features-pro h3 {
+        font-size: var(--font-size-xl);
+    }
+
+    .y2mate-features-pro p {
+        font-size: var(--font-size-xs);
+    }
+}
+
+/* ===== MOBILE (max-width: 767px) ===== */
+@media (max-width: 767px) {
+    .y2mate-features-wrap-pro {
+        padding: 25px 0;
+        display: block;
+    }
+
+    .y2mate-features-wrap-pro .col-sm-4 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .y2mate-features-pro {
+        padding: var(--space-md);
+    }
+
+    .y2mate-features-pro h3 {
+        width: 100%;
+        margin: 8px 0 0 0;
+    }
+}

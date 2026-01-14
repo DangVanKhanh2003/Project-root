@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite'
 import { resolve } from 'path'
 import criticalCss from './vite-plugin-critical.js'
-import { viteStaticCopy } from 'vite-plugin-static-copy'
 import purgeCss from 'vite-plugin-purgecss'
 import minifyHTML from './vite-plugin-minify-html.js'
 import cleanUrls from './vite-plugin-clean-urls.js'
@@ -57,22 +56,6 @@ export default defineConfig({
 
         // Brand and theming
         /^md-sys/, /^intro/
-      ]
-    }),
-    viteStaticCopy({
-      targets: [
-        {
-          src: 'src/assest/social-icon',
-          dest: 'assest'
-        },
-        {
-          src: 'src/assest/img-social',
-          dest: 'assest'
-        },
-        {
-          src: 'src/assest/section-img',
-          dest: 'assest'
-        }
       ]
     })
   ],

@@ -1,0 +1,354 @@
+/**
+ * Format Selector Component Styles
+ * Mobile-first responsive design
+ */
+
+/* Wrapper in input form */
+.format-selector-wrapper {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  min-height: 48px; /* Reserve space to prevent layout shift */
+  display: block; /* Always visible */
+}
+
+.format-selector {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  min-height: 44px; /* Fixed height to prevent layout shift */
+  flex-wrap: wrap; /* Allow wrapping on mobile */
+}
+
+/* Convert button in format selector */
+
+/* This breakpoint is now handled in the quality-wrapper section below */
+
+/* Desktop: all 3 items in one row */
+@media (min-width: 600px) {
+  .format-selector {
+    flex-wrap: nowrap; /* No wrapping on desktop */
+    justify-content: flex-start; /* Align items to left */
+    gap: 12px; /* Gap between format and quality */
+  }
+
+
+}
+
+/* Group 1: Format + Quality */
+.format-quality-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+/* ==========================================
+   Format Toggle (Two separate buttons)
+   ========================================== */
+
+.format-toggle {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #e4e4e4c9;
+  border: var(--border-glass, 1px solid var(--text-step-num));
+  border-radius: var(--radius-md, 12px);
+  padding: 4px;
+  width: fit-content; /* Don't expand to full width */
+  flex-shrink: 0; /* Don't shrink */
+}
+
+[data-theme="light"] .format-toggle {
+  background: #e4e4e4c9;
+  border: 1px solid var(--pkg-color-gray-200);
+}
+
+.format-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text-muted, var(--color-gray-550));
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0 15px;
+  height: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.toggle-btn.active,
+.format-btn.active {
+  background: #000000;
+  color: white !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+  transform: translateY(-1px);
+}
+
+/* ==========================================
+   Quality Select Dropdown
+   ========================================== */
+
+.quality-wrapper {
+  position: relative;
+  flex-grow: 1;
+}
+
+/* Hide quality icon on desktop by default */
+.quality-icon-mobile {
+  display: none;
+}
+
+/* Mobile: Keep same 1-row layout, show icons only */
+@media (max-width: 599px) {
+  .format-selector {
+    flex-wrap: nowrap; /* Keep single row */
+    justify-content: flex-start;
+    gap: 8px;
+  }
+
+  .quality-wrapper {
+    flex: 0 0 auto;
+    width: 40px; /* Square: match height */
+    min-width: 40px;
+  }
+
+  .format-toggle {
+    flex: 0 0 auto;
+    width: fit-content;
+    max-width: 140px; /* Limit max width */
+  }
+
+  .format-btn {
+    padding: 6px 14px;
+  }
+
+  .format-selector .btn-convert {
+    flex: 0 0 auto; /* Fit content */
+    width: fit-content;
+    padding: 8px 12px;
+    min-width: 44px;
+  }
+
+  /* Hide text, show icon only on mobile */
+  .format-selector .btn-convert span {
+    display: none;
+  }
+
+  /* Quality select: show icon, hide text */
+  .quality-select {
+    color: transparent; /* Hide text */
+    padding: 0;
+    text-indent: -9999px; /* Move text off-screen */
+    width: 40px; /* Square: width = height */
+    height: 40px;
+    box-sizing: border-box;
+    border: none; /* Remove border */
+    background: #e4e4e4c9; /* Match format-toggle background */
+  }
+
+  .quality-icon-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .quality-icon-mobile img {
+    width: 30px;
+    height: 30px;
+    opacity: 0.8;
+  }
+
+  /* Hide arrow on mobile */
+  .select-arrow {
+    display: none;
+  }
+}
+
+/* Desktop: quality dropdown fixed 180px width, aligned left with format */
+@media (min-width: 600px) {
+  .quality-wrapper {
+    width: 180px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    margin-right: 0; /* No margin, let convert button use margin-left: auto */
+  }
+
+  .quality-select {
+    width: 180px;
+  }
+
+  .format-toggle {
+    flex-shrink: 0; /* Don't shrink format toggle */
+  }
+
+  .format-selector .btn-convert {
+    flex: 0 0 auto; /* Don't grow or shrink */
+    width: fit-content;
+    margin-left: auto; /* Push to the right */
+  }
+}
+
+.quality-select {
+  background: var(--bg-card, var(--color-white));
+  border: var(--border-glass, 1px solid var(--text-step-num));
+  border-radius: var(--radius-md, 12px);
+  color: var(--text-main, var(--color-gray-850));
+  padding: 0 20px;
+  appearance: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s;
+  box-sizing: border-box;
+}
+
+[data-theme="light"] .quality-select {
+  background: var(--color-white);
+  border: 1px solid var(--pkg-color-gray-200);
+}
+
+.quality-select:hover,
+.quality-select:focus {
+  border-color: var(--color-accent-dark);
+}
+
+
+.select-arrow {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--text-muted, var(--color-gray-550));
+}
+
+/* ==========================================
+   Responsive Design
+   ========================================== */
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .format-selector-wrapper {
+    min-height: 42px;
+  }
+
+  .format-selector {
+    gap: 6px;
+    min-height: 40px;
+  }
+
+  .format-toggle {
+    height: 40px;
+  }
+
+  .quality-wrapper {
+    width: 40px; /* Square: match height */
+    min-width: 40px;
+  }
+
+  .format-selector .btn-convert {
+    height: 40px;
+    padding: 8px 10px;
+    min-width: 40px;
+  }
+
+  .format-btn {
+    /* Inherit from 599px breakpoint: 6px 14px */
+    font-size: 12px;
+  }
+
+  .quality-select {
+    width: 40px; /* Square: match height */
+    height: 40px;
+    box-sizing: border-box;
+    padding: 0px !important;
+  }
+
+  /* Inherit icon size from 599px breakpoint: 40x40px */
+}
+
+/* Very small devices - keep 1 row, reduce sizes */
+@media (max-width: 360px) {
+  .format-selector-wrapper {
+    min-height: 40px;
+  }
+
+  .format-selector {
+    gap: 4px;
+    min-height: 40px;
+  }
+
+  .format-toggle {
+    height: 40px;
+  }
+
+  .quality-wrapper {
+    width: 40px; /* Square: match height */
+    min-width: 40px;
+  }
+
+  .format-btn {
+    /* Inherit from 599px breakpoint: 6px 14px */
+    font-size: 11px;
+  }
+
+  .quality-select {
+    width: 40px; /* Square: match height */
+    height: 40px;
+    box-sizing: border-box;
+  }
+
+  .format-selector .btn-convert {
+    height: 40px;
+    padding: 6px 8px;
+    min-width: 40px;
+  }
+
+  /* Inherit icon size from 599px breakpoint: 40x40px */
+}
+
+/* ==========================================
+   Accessibility
+   ========================================== */
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .format-toggle {
+    border-width: 3px;
+  }
+
+  .format-btn.active {
+    border: 2px solid white;
+  }
+
+  .quality-select {
+    border-width: 3px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .format-toggle,
+  .format-btn,
+  .quality-select {
+    transition: none;
+  }
+}
+
+/* Focus visible (keyboard navigation) */
+.format-btn:focus-visible {
+  outline-offset: 3px;
+}
+
+.quality-select:focus-visible {
+  outline-offset: 3px;
+}

@@ -1,0 +1,32 @@
+{
+  "nav": {
+    "home": "یوٹیوب ڈاؤنلوڈر",
+    "youtubeToMp4": "یوٹیوب سے MP4",
+    "youtubeToMp3": "یوٹیوب سے MP3",
+    "youtubeMusicDownloader": "میوزک ڈاؤنلوڈر",
+    "youtubeMp3320": "یوٹیوب سے MP3 320kbps",
+    "youtubeToWav": "یوٹیوب سے WAV",
+    "youtubeToOgg": "یوٹیوب سے OGG",
+    "youtubeToOpus": "یوٹیوب سے Opus",
+    "youtubeShorts": "شارٹس ڈاؤنلوڈر",
+    "language": "اردو"
+  },
+
+  "hero": {
+    "title": "Y2mate - یوٹیوب ڈاؤنلوڈر",
+    "placeholder": "تلاش کریں یا لنک چسپاں کریں...",
+    "pasteLabel": "کلپ بورڈ سے چسپاں کریں",
+    "clearLabel": "صاف کریں",
+    "submitButton": "شروع کریں",
+    "termsText": "ہماری خدمت استعمال کر کے آپ اتفاق کرتے ہیں",
+    "termsLink": "استعمال کی شرائط"
+  },
+
+  "footer": {
+    "copyright": "© 2025 y2mate",
+    "about": "ہمارے بارے میں",
+    "contact": "رابطہ",
+    "terms": "سروس کی شرائط",
+    "privacy": "پرائیویسی پالیسی"
+  }
+}
