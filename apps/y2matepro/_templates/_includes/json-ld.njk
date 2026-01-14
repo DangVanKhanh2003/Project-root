@@ -123,6 +123,9 @@
       "@id": "{{ canonicalUrl }}#webpage",
       "url": "{{ canonicalUrl }}",
       "name": "{{ seo.title | jsonString | safe }}",
+      "isPartOf": {
+        "@id": "{{ site.url }}/#website"
+      },
       "about": {
         "@id": "{{ canonicalUrl }}#application"
       },
