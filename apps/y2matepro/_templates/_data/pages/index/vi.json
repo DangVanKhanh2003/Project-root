@@ -1,7 +1,7 @@
 {
   "seo": {
     "title": "Y2Mate – Fast & Easy YouTube Video Downloader",
-    "description": "Tải video và âm thanh từ YouTube nhanh chóng. Hỗ trợ các định dạng MP4, MP3, HD và 4K. Một trình tải xuống YouTube trực tuyến đơn giản và dễ sử dụng.",
+    "description": "Tải video và âm thanh từ YouTube nhanh chóng. Hỗ trợ các định dạng MP4, MP3, SD và Full HD. Một trình tải xuống YouTube trực tuyến đơn giản và dễ sử dụng.",
     "ogTitle": "Y2Mate – Fast & Easy YouTube Video Downloader",
     "ogDescription": "Lưu video YouTube trực tuyến miễn phí. Chọn chất lượng bạn muốn, từ video 144p đến 1080p hoặc âm thanh 128kbps–320kbps. Nhanh chóng, an toàn và hoạt động trên mọi thiết bị.",
     "schemaName": "Y2mate - Trình tải  video YouTube",
@@ -12,8 +12,8 @@
   },
   "content": {
     "mainTitle": "Y2mate – Tải xuống video YouTube nhanh chóng và miễn phí",
-    "intro1": "Y2Mate is an online YouTube video downloader that allows you to download videos or convert them into audio for offline use. The tool works directly in your browser, with no software installation or account required.",
-    "intro2": "Y2Mate supports popular video resolutions, including 144p, 360p, 480p, 720p, and 1080p (Full HD), as well as audio formats such as MP3, OGG, WAV, and OPUS with common bitrates like 128kbps, 192kbps, and 320kbps. The tool works smoothly on both desktop and mobile devices."
+    "intro1": "Y2Mate là công cụ tải video YouTube trực tuyến cho phép bạn tải video hoặc chuyển đổi chúng thành âm thanh để sử dụng ngoại tuyến. Công cụ hoạt động trực tiếp trong trình duyệt, không cần cài đặt phần mềm hoặc tạo tài khoản.",
+    "intro2": "Y2Mate hỗ trợ nhiều độ phân giải video phổ biến, bao gồm 144p, 360p, 480p, 720p và 1080p (Full HD), cũng như các định dạng âm thanh như MP3, OGG, WAV và OPUS với các bitrate phổ biến như 128kbps, 192kbps và 320kbps. Công cụ hoạt động mượt mà trên cả máy tính để bàn và thiết bị di động."
   },
   "instructions": {
     "title": "Cách tải xuống video YouTube trong vài giây",
