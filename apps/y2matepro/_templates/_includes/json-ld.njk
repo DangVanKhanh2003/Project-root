@@ -47,7 +47,7 @@
       "@type": "WebPage",
       "@id": "{{ canonicalUrl }}#webpage",
       "url": "{{ canonicalUrl }}",
-      "name": "{{ seo.title | jsonString | safe }}",
+      "name": "{{ pageData.hero.title | jsonString | safe }}",
       "isPartOf": {
         "@id": "{{ site.url }}/#website"
       },
@@ -124,7 +124,7 @@
       "@type": "WebPage",
       "@id": "{{ canonicalUrl }}#webpage",
       "url": "{{ canonicalUrl }}",
-      "name": "{{ seo.title | jsonString | safe }}",
+      "name": "{{ pageData.hero.title | jsonString | safe }}",
       "isPartOf": {
         "@id": "{{ site.url }}/#website"
       },

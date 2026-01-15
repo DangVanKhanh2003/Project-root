@@ -73,7 +73,7 @@ WebPage (#webpage)
 {
   "@type": "WebPage",
   "@id": "{url}#webpage",
-  "name": "{seo.title}",
+  "name": "{hero.title}",  // ← H1 title, giống SoftwareApplication
   "isPartOf": { "@id": "{site}/#website" },
   "about": { "@type": "SoftwareApplication", "@id": "{url}#application" },
   "inLanguage": "{lang}"
@@ -95,5 +95,5 @@ WebPage (#webpage)
 |--------|---------------|-------|
 | Organization | "Y2mate" (fixed) | Brand name |
 | WebSite | "Y2mate" (fixed) | Site name |
-| WebPage | `seo.title` | Full SEO title |
+| WebPage | `hero.title` (H1) | Tên trang/tool cụ thể |
 | SoftwareApplication | `hero.title` (H1) | Tên tool cụ thể |
