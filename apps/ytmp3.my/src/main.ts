@@ -153,11 +153,42 @@ function initHeaderScroll() {
 }
 
 /**
+ * Initialize language selector dropdown
+ */
+function initLangSelector() {
+  const langSelector = document.querySelector('.lang-selector');
+  const langButton = document.querySelector('.lang-button');
+
+  if (!langSelector || !langButton) return;
+
+  // Toggle dropdown on button click
+  langButton.addEventListener('click', (e) => {
+    e.stopPropagation();
+    langSelector.classList.toggle('active');
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!langSelector.contains(e.target as Node)) {
+      langSelector.classList.remove('active');
+    }
+  });
+
+  // Close dropdown on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      langSelector.classList.remove('active');
+    }
+  });
+}
+
+/**
  * Initialize app
  */
 function loadFeatures() {
   initHeaderScroll(); // Initialize header scroll effect
   initMobileMenu(); // Initialize mobile menu
+  initLangSelector(); // Initialize language selector dropdown
   initDownloaderUI();
   initLogoClickHandler(); // Prevent logo reload issue
 }

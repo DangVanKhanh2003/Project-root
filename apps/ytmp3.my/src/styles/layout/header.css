@@ -134,7 +134,7 @@
     transition: transform 0.2s;
 }
 
-.lang-selector:hover .chevron {
+.lang-selector.active .chevron {
     transform: rotate(180deg);
 }
 
@@ -148,14 +148,40 @@
     border-radius: 0.5rem;
     box-shadow: var(--shadow-dropdown);
     border: 1px solid var(--border-primary);
-    overflow: hidden;
+    overflow-y: auto;
     z-index: 20;
     padding: 0.5rem 0;
     display: none;
+    max-height: 400px;
 }
 
-.lang-selector:hover .lang-dropdown {
+@media (max-width: 767px) {
+    .lang-dropdown {
+        max-height: 300px;
+    }
+}
+
+.lang-selector.active .lang-dropdown {
     display: block;
+}
+
+/* Thin scrollbar for lang dropdown */
+.lang-dropdown::-webkit-scrollbar {
+    width: 2px;
+}
+
+.lang-dropdown::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.lang-dropdown::-webkit-scrollbar-thumb {
+    background: var(--border-primary);
+    border-radius: 1px;
+}
+
+.lang-dropdown {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-primary) transparent;
 }
 
 .lang-option {
