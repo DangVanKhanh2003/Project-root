@@ -116,11 +116,28 @@ function renderQualityOptions(
 ): string {
   if (selectedFormat === 'mp4') {
     const qualities = QUALITY_OPTIONS.mp4.qualities;
-    return qualities.map(quality => {
-      const isSelected = quality === videoQuality;
+    const formats = QUALITY_OPTIONS.mp4.formats;
+
+    // Build video options: MP4 with all qualities, then WEBM and MKV without quality
+    const videoOptions: { value: string; label: string }[] = [];
+
+    // MP4 with all quality options
+    qualities.forEach(quality => {
+      videoOptions.push({ value: `mp4-${quality}`, label: `MP4 - ${quality}` });
+    });
+
+    // WEBM and MKV without quality suffix
+    formats.forEach(format => {
+      if (format !== 'mp4') {
+        videoOptions.push({ value: format, label: format.toUpperCase() });
+      }
+    });
+
+    return videoOptions.map(option => {
+      const isSelected = option.value === `mp4-${videoQuality}` || option.value === videoQuality;
       return `
-        <button type="button" class="dropdown-item ${isSelected ? 'selected' : ''}" data-quality="${quality}">
-          <span>${quality}</span>
+        <button type="button" class="dropdown-item ${isSelected ? 'selected' : ''}" data-quality="${option.value}">
+          <span>${option.label}</span>
           <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
         </button>
       `;
@@ -227,9 +244,17 @@ function initQualitySelector(): void {
     // Video quality
     const qualityItem = target.closest('[data-quality]') as HTMLElement;
     if (qualityItem) {
-      const quality = qualityItem.dataset.quality;
-      if (quality) {
-        setVideoQuality(quality);
+      const value = qualityItem.dataset.quality;
+      if (value) {
+        // Video format: value can be "mp4-720p", "webm", "mkv"
+        if (value.startsWith('mp4-')) {
+          // MP4 with quality: "mp4-720p" -> "720p"
+          const quality = value.replace('mp4-', '');
+          setVideoQuality(quality);
+        } else {
+          // WEBM or MKV without quality suffix
+          setVideoQuality(value); // Store as "webm" or "mkv"
+        }
         refreshAll();
         closeAllDropdowns();
       }

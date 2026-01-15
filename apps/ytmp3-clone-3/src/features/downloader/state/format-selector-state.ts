@@ -215,9 +215,13 @@ export function setSelectedFormat(format: FormatType): void {
 
 /**
  * Set video quality (for MP4 format)
+ * Accepts: resolution (e.g., "720p") or format (e.g., "webm", "mkv")
  */
 export function setVideoQuality(quality: string): void {
-  if (!QUALITY_OPTIONS.mp4.qualities.includes(quality as any)) {
+  const isValidQuality = QUALITY_OPTIONS.mp4.qualities.includes(quality as any);
+  const isValidFormat = QUALITY_OPTIONS.mp4.formats.includes(quality as any);
+
+  if (!isValidQuality && !isValidFormat) {
     console.warn(`Invalid video quality: ${quality}`);
     return;
   }

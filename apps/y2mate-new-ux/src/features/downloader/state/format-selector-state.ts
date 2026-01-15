@@ -17,7 +17,10 @@ const AUTO_SUBMIT_STORAGE_KEY = 'y2mate_auto_submit';
  * Available quality options for each format
  */
 export const QUALITY_OPTIONS = {
-  mp4: [ '1080p', '720p', '480p', '360p', '240p', '144p'],
+  mp4: {
+    formats: ['mp4', 'webm', 'mkv'] as const,
+    qualities: ['1080p', '720p', '480p', '360p', '240p', '144p'] as const
+  },
   mp3: {
     formats: ['mp3', 'wav', 'm4a', 'opus', 'ogg', 'flac'] as AudioFormatType[],
     bitrates: ['320', '192', '128', '64'] // Only for MP3
@@ -215,9 +218,13 @@ export function setSelectedFormat(format: FormatType): void {
 
 /**
  * Set video quality (for MP4 format)
+ * Accepts: resolution (e.g., "720p") or format (e.g., "webm", "mkv")
  */
 export function setVideoQuality(quality: string): void {
-  if (!QUALITY_OPTIONS.mp4.includes(quality as any)) {
+  const isValidQuality = QUALITY_OPTIONS.mp4.qualities.includes(quality as any);
+  const isValidFormat = QUALITY_OPTIONS.mp4.formats.includes(quality as any);
+
+  if (!isValidQuality && !isValidFormat) {
     console.warn(`Invalid video quality: ${quality}`);
     return;
   }
@@ -341,7 +348,7 @@ export function getCurrentQualityLabel(): string {
 /**
  * Get available quality options based on current format
  */
-export function getAvailableQualities(): readonly string[] | { formats: readonly AudioFormatType[]; bitrates: readonly string[] } {
+export function getAvailableQualities(): { formats: readonly string[]; qualities: readonly string[] } | { formats: readonly AudioFormatType[]; bitrates: readonly string[] } {
   const state = getState();
 
   if (state.selectedFormat === 'mp4') {

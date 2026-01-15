@@ -145,33 +145,33 @@ function renderFormatSelector(): string {
 
 /**
  * Render video quality dropdown (for MP4)
+ * Shows MP4 with all resolutions + WEBM and MKV options
  */
 function renderVideoQualityDropdown(selectedQuality: string): string {
+  const qualities = QUALITY_OPTIONS.mp4.qualities;
+  const formats = QUALITY_OPTIONS.mp4.formats;
   const defaultQuality = selectedQuality || '720p';
 
-  // Build video quality options with all formats
-  const videoOptions = [
-    // MP4 options
-    { value: 'mp4-1080', label: 'MP4 - 1080p', format: 'mp4', quality: '1080p' },
-    { value: 'mp4-720', label: 'MP4 - 720p', format: 'mp4', quality: '720p' },
-    { value: 'mp4-480', label: 'MP4 - 480p', format: 'mp4', quality: '480p' },
-    { value: 'mp4-360', label: 'MP4 - 360p', format: 'mp4', quality: '360p' },
-    // WebM options
-    { value: 'webm-1080', label: 'WebM - 1080p', format: 'webm', quality: '1080p' },
-    { value: 'webm-720', label: 'WebM - 720p', format: 'webm', quality: '720p' },
-    { value: 'webm-480', label: 'WebM - 480p', format: 'webm', quality: '480p' },
-    // MKV options
-    { value: 'mkv-1080', label: 'MKV - 1080p', format: 'mkv', quality: '1080p' },
-    { value: 'mkv-720', label: 'MKV - 720p', format: 'mkv', quality: '720p' },
-  ];
+  // Build video options: MP4 with all qualities, then WEBM and MKV without quality
+  const videoOptions: { value: string; label: string }[] = [];
 
-  // Determine selected value
-  const selectedValue = `mp4-${defaultQuality.replace('p', '')}`;
+  // MP4 with all quality options
+  qualities.forEach(quality => {
+    const resolution = quality.replace('p', '');
+    videoOptions.push({ value: `mp4-${resolution}`, label: `MP4 - ${quality}` });
+  });
+
+  // WEBM and MKV without quality suffix
+  formats.forEach(format => {
+    if (format !== 'mp4') {
+      videoOptions.push({ value: format, label: format.toUpperCase() });
+    }
+  });
 
   return `
     <select id="quality-select" class="quality-select" aria-label="${t('aria.qualitySelector')}" data-quality-select>
       ${videoOptions.map(option => {
-        const isSelected = option.value === selectedValue;
+        const isSelected = option.value === `mp4-${defaultQuality.replace('p', '')}` || option.value === defaultQuality;
         return `<option value="${option.value}"${isSelected ? ' selected' : ''}> ${option.label} </option>`;
       }).join('')}
     </select>
@@ -270,12 +270,14 @@ function handleQualityChange(event: Event): void {
   const state = getState();
 
   if (state.selectedFormat === 'mp4') {
-    // MP4 format: value is "format-resolution" (e.g., "mp4-1080", "webm-720")
-    const [format, resolution] = value.split('-');
-    if (format && resolution) {
-      const quality = `${resolution}p`;
-      setVideoQuality(quality);
-      // TODO: Store video format (mp4/webm/mkv) in state if needed
+    // Video format: value can be "mp4-1080", "webm", "mkv"
+    if (value.startsWith('mp4-')) {
+      // MP4 with quality: "mp4-1080" -> "1080p"
+      const resolution = value.split('-')[1];
+      setVideoQuality(`${resolution}p`);
+    } else {
+      // WEBM or MKV without quality suffix
+      setVideoQuality(value); // Store as "webm" or "mkv"
     }
   } else {
     // Audio format: MP3 has "mp3-bitrate", others are just format name

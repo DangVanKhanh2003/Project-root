@@ -95,17 +95,34 @@ function renderFormatSelector(): string {
 
 /**
  * Render video quality dropdown (for MP4)
+ * Shows MP4 with all resolutions + WEBM and MKV options
  */
 function renderVideoQualityDropdown(selectedQuality: string): string {
   const qualities = QUALITY_OPTIONS.mp4.qualities;
+  const formats = QUALITY_OPTIONS.mp4.formats;
   const defaultQuality = selectedQuality || '720p';
+
+  // Build video options: MP4 with all qualities, then WEBM and MKV without quality
+  const videoOptions: { value: string; label: string }[] = [];
+
+  // MP4 with all quality options
+  qualities.forEach(quality => {
+    const resolution = quality.replace('p', '');
+    videoOptions.push({ value: `mp4-${resolution}`, label: `MP4 - ${quality}` });
+  });
+
+  // WEBM and MKV without quality suffix
+  formats.forEach(format => {
+    if (format !== 'mp4') {
+      videoOptions.push({ value: format, label: format.toUpperCase() });
+    }
+  });
 
   return `
     <select id="quality-select" class="quality-select" aria-label="${t('aria.qualitySelector')}" data-quality-select>
-      ${qualities.map(quality => {
-        const resolution = quality.replace('p', '');
-        const isSelected = quality === defaultQuality;
-        return `<option value="${resolution}"${isSelected ? ' selected' : ''}> MP4 - ${quality} </option>`;
+      ${videoOptions.map(option => {
+        const isSelected = option.value === `mp4-${defaultQuality.replace('p', '')}` || option.value === defaultQuality;
+        return `<option value="${option.value}"${isSelected ? ' selected' : ''}> ${option.label} </option>`;
       }).join('')}
     </select>
   `;
@@ -208,9 +225,15 @@ function handleQualityChange(event: Event): void {
   const state = getState();
 
   if (state.selectedFormat === 'mp4') {
-    // MP4 format: value is resolution (e.g., "1080")
-    const quality = `${value}p`;
-    setVideoQuality(quality);
+    // Video format: value can be "mp4-1080", "webm", "mkv"
+    if (value.startsWith('mp4-')) {
+      // MP4 with quality: "mp4-1080" -> "720p"
+      const resolution = value.split('-')[1];
+      setVideoQuality(`${resolution}p`);
+    } else {
+      // WEBM or MKV without quality suffix
+      setVideoQuality(value); // Store as "webm" or "mkv"
+    }
   } else {
     // Audio format: MP3 has "mp3-bitrate", others are just format name
     if (value.startsWith('mp3-')) {
