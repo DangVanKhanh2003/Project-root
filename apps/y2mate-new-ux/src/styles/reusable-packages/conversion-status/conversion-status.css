@@ -55,8 +55,9 @@
   transition: background 0.3s, border-color 0.3s;
 }
 
-/* Processing state - blue progress bar fill */
-.status--processing::before {
+/* Progress bar fill - shown during processing and success states */
+.status--processing::before,
+.status--success::before {
   content: '';
   position: absolute;
   top: 0;
@@ -70,10 +71,8 @@
   z-index: 1;
 }
 
-/* Hide status bar on success */
-.status-container:has(.status--success) {
-  display: none; /* Hide status bar on success - only show download button */
-}
+/* Hide status bar on success - controlled by JavaScript */
+/* CSS :has() rule removed - JS handles hiding with delay for fill animation */
 
 /* Override to red border on error */
 .status-container:has(.status--error) {
@@ -130,11 +129,8 @@
 }
 
 /* ===== STATUS STATES ===== */
-/* Default text is blue (primary), only override for success and error */
-
-.status--success .status-text {
-  color: var(--status-success); /* Green for success */
-}
+/* Default text is blue (primary), only override for error */
+/* Success: keep normal text color */
 
 .status--error .status-text {
   color: var(--status-error); /* Red for error */

@@ -200,17 +200,32 @@ function updateStatusBarUI(wrapper: HTMLElement, task: ConversionTask, formatId:
     }
   }
 
-  // Update action-container visibility
+  // Update action-container visibility and status-container hiding
   if (task.state === TaskState.SUCCESS || task.state === TaskState.FAILED) {
-    // Delay showing buttons to let progress bar fill animation complete (200ms transition + 50ms buffer)
-    setTimeout(() => {
+    // Prevent re-triggering setTimeout if already showing completion state
+    if (statusContainer.dataset.completionState === task.state) {
+      return;
+    }
+    statusContainer.dataset.completionState = task.state;
+
+    if (task.state === TaskState.SUCCESS) {
+      // SUCCESS: Wait for animation to complete before hiding status container
+      // 200ms CSS transition + 150ms visible at 100% = 350ms
+      setTimeout(() => {
+        statusContainer.style.display = 'none';
+        actionContainer.classList.add('active');
+        delete statusContainer.dataset.completionState;
+      }, 350);
+    } else {
+      // FAILED: Keep showing error, show action buttons immediately
       actionContainer.classList.add('active');
-    }, 250);
+    }
 
     // Cleanup throttle map when task completes (prevent memory leak)
     lastUpdateTimes.delete(formatId);
   } else {
     actionContainer.classList.remove('active');
+    statusContainer.style.display = ''; // Ensure status container is visible
   }
 }
 

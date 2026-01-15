@@ -62,9 +62,25 @@ export function renderConversionStatus(state: AppState, _prevState?: AppState): 
 
   // Check if SUCCESS or FAILED - hide status bar, show action buttons only
   if (task.state === TaskState.SUCCESS || task.state === TaskState.FAILED) {
-    statusContainer.style.display = 'none';
-    // Update action buttons (download for SUCCESS, retry for FAILED)
+    // Prevent re-triggering setTimeout if already showing completion state
+    if (statusContainer.dataset.completionState === task.state) {
+      return;
+    }
+    statusContainer.dataset.completionState = task.state;
+
+    // Update status bar UI first (show status text, icons)
     updateStatusBarUI(statusContainer, task, formatId);
+
+    if (task.state === TaskState.SUCCESS) {
+      // SUCCESS: Wait for animation to complete before hiding
+      // 200ms CSS transition + 150ms visible at 100% = 350ms
+      setTimeout(() => {
+        statusContainer.style.display = 'none';
+        delete statusContainer.dataset.completionState;
+      }, 350);
+    }
+    // FAILED: Keep showing error, don't hide
+
     return;
   }
 

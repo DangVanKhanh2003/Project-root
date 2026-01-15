@@ -46,8 +46,9 @@
   transition: background 0.3s, border-color 0.3s;
 }
 
-/* Processing state - lime/yellow progress bar fill */
-.status--processing::before {
+/* Progress bar fill - shown during processing and success states */
+.status--processing::before,
+.status--success::before {
   content: '';
   position: absolute;
   top: 0;
@@ -62,13 +63,12 @@
 }
 
 /* Hide status bar on success and error - controlled by JavaScript */
-/* Note: JavaScript now handles hiding for both SUCCESS and FAILED states */
-.status-container:has(.status--success) {
-  display: none;
-}
+/* Note: JavaScript handles hiding with delay for fill animation */
+/* CSS :has() rules removed - they override JS setTimeout delay */
 
+/* Error state - red border */
 .status-container:has(.status--error) {
-  display: none;
+  border-color: var(--status-error, #e74c3c);
 }
 
 .status {
@@ -139,9 +139,7 @@
 }
 
 /* ===== STATUS STATES ===== */
-.status--success .status-text {
-  color: var(--color-status-success);
-}
+/* Success: keep normal text color */
 
 .status--error .status-text {
   color: var(--color-status-error);
