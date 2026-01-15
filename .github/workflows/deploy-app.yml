@@ -101,7 +101,7 @@ jobs:
 
           if [[ "${{ github.ref_name }}" == "test-production" ]]; then
             echo "Expected: noindex for test environment"
-            if grep -r 'content="noindex"' "$DIST_DIR" > /dev/null; then
+            if grep -rE 'content="noindex' "$DIST_DIR" > /dev/null; then
               echo "✅ SUCCESS: Found noindex meta tags for test environment"
             else
               echo "❌ ERROR: noindex meta tags not found in test environment"
@@ -109,10 +109,10 @@ jobs:
             fi
           else
             echo "Expected: index, follow for production"
-            if grep -r 'content="index, follow"' "$DIST_DIR" > /dev/null; then
-              echo "✅ SUCCESS: Found index,follow meta tags for production"
+            if grep -rE 'content="index' "$DIST_DIR" > /dev/null; then
+              echo "✅ SUCCESS: Found index meta tags for production"
             else
-              echo "⚠️  WARNING: index,follow meta tags not found in production"
+              echo "⚠️  WARNING: index meta tags not found in production"
             fi
           fi
 

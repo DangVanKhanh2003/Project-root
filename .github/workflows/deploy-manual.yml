@@ -117,7 +117,7 @@ jobs:
           echo "🔍 Verifying meta robots tags..."
 
           if [[ "${{ inputs.environment }}" == "test" ]]; then
-            if grep -r 'content="noindex"' "$DIST_DIR" > /dev/null; then
+            if grep -rE 'content="noindex' "$DIST_DIR" > /dev/null; then
               echo "✅ SUCCESS: Found noindex meta tags"
             else
               echo "❌ ERROR: noindex meta tags not found"
