@@ -1,0 +1,199 @@
+name: Deploy App (Reusable)
+
+on:
+  workflow_call:
+    inputs:
+      app_name:
+        description: 'App identifier (e.g., y2matepro)'
+        required: true
+        type: string
+      app_directory:
+        description: 'App directory relative to repo root (e.g., apps/y2matepro)'
+        required: true
+        type: string
+      filter_path:
+        description: 'pnpm filter path (e.g., ./apps/y2matepro)'
+        required: true
+        type: string
+      domain:
+        description: 'Domain/project name for server path'
+        required: true
+        type: string
+      build_command:
+        description: 'Build script name for production'
+        default: 'build'
+        type: string
+      build_test_command:
+        description: 'Build script name for test environment'
+        default: 'build:test'
+        type: string
+      dist_path:
+        description: 'Build output directory'
+        default: 'dist'
+        type: string
+    secrets:
+      SSH_HOST:
+        required: true
+      SSH_USERNAME:
+        required: true
+      SSH_PRIVATE_KEY:
+        required: true
+
+env:
+  PROJECT_NAME: ${{ github.ref_name == 'test-production' && format('{0}-test', inputs.domain) || inputs.domain }}
+  PROJECT_ROOT: /var/www/KhanhHAUI/CICD
+  RUN_DIR: ${{ format('/var/www/KhanhHAUI/CICD/run/{0}', github.ref_name == 'test-production' && format('{0}-test', inputs.domain) || inputs.domain) }}
+  DEPLOY_USER: ${{ secrets.SSH_USERNAME }}
+  DEPLOY_GROUP: nginx
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Verify Vite exists
+        working-directory: ./${{ inputs.app_directory }}
+        run: npx vite --version
+
+      - name: Build
+        env:
+          NODE_ENV: ${{ github.ref_name == 'test-production' && 'test' || 'production' }}
+        run: |
+          set -euo pipefail
+          if [[ "${{ github.ref_name }}" == "test-production" ]]; then
+            echo "🔧 Building ${{ inputs.app_name }} for test environment..."
+            pnpm --filter "${{ inputs.filter_path }}" run ${{ inputs.build_test_command }}
+          else
+            echo "🏗️ Building ${{ inputs.app_name }} for production environment..."
+            pnpm --filter "${{ inputs.filter_path }}" run ${{ inputs.build_command }}
+          fi
+          test -d ${{ inputs.app_directory }}/${{ inputs.dist_path }}
+
+      - name: Replace robots.txt for test environment
+        if: github.ref_name == 'test-production'
+        run: |
+          echo "User-agent: *" > ${{ inputs.app_directory }}/${{ inputs.dist_path }}/robots.txt
+          echo "Disallow: /" >> ${{ inputs.app_directory }}/${{ inputs.dist_path }}/robots.txt
+          echo "✅ Replaced robots.txt to block all crawlers for test environment"
+
+      - name: Verify robots meta tags
+        run: |
+          set -euo pipefail
+          DIST_DIR="${{ inputs.app_directory }}/${{ inputs.dist_path }}"
+          echo "🔍 Verifying meta robots tags in HTML files..."
+          find "$DIST_DIR" -name "*.html" -exec grep 'meta name="robots"' {} \; | head -5 || true
+
+          if [[ "${{ github.ref_name }}" == "test-production" ]]; then
+            echo "Expected: noindex for test environment"
+            if grep -r 'content="noindex"' "$DIST_DIR" > /dev/null; then
+              echo "✅ SUCCESS: Found noindex meta tags for test environment"
+            else
+              echo "❌ ERROR: noindex meta tags not found in test environment"
+              exit 1
+            fi
+          else
+            echo "Expected: index, follow for production"
+            if grep -r 'content="index, follow"' "$DIST_DIR" > /dev/null; then
+              echo "✅ SUCCESS: Found index,follow meta tags for production"
+            else
+              echo "⚠️  WARNING: index,follow meta tags not found in production"
+            fi
+          fi
+
+      - name: Archive dist (tar.gz)
+        run: |
+          set -euo pipefail
+          tar -C ${{ inputs.app_directory }}/${{ inputs.dist_path }} -czf dist.tar.gz .
+
+      - name: Upload artifact to server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "dist.tar.gz"
+          target: "/tmp"
+          overwrite: true
+
+      - name: Activate on server
+        uses: appleboy/ssh-action@v1.2.2
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          envs: PROJECT_NAME,PROJECT_ROOT,RUN_DIR,DEPLOY_USER,DEPLOY_GROUP
+          script: |
+            set -euo pipefail
+            : "${PROJECT_ROOT:?}"; : "${RUN_DIR:?}"; : "${PROJECT_NAME:?}"
+            : "${DEPLOY_USER:?}"; : "${DEPLOY_GROUP:?}"
+
+            SRC_TAR="/tmp/dist.tar.gz"
+            TMP_TAR="/tmp/${PROJECT_NAME}-dist.tar.gz"
+
+            echo "== /tmp listing for debug =="
+            ls -l /tmp || true
+
+            # Xoá thư mục rác trùng tên file tar (nếu có từ cấu hình cũ)
+            if [ -d "$TMP_TAR" ]; then
+              echo "Found leftover dir $TMP_TAR → removing"
+              rm -rf "$TMP_TAR"
+            fi
+
+            # Fallback nếu ai đó từng upload vào /tmp/${PROJECT_NAME}-dist.tar.gz/dist.tar.gz
+            if [ ! -f "$SRC_TAR" ] && [ -f "/tmp/${PROJECT_NAME}-dist.tar.gz/dist.tar.gz" ]; then
+              SRC_TAR="/tmp/${PROJECT_NAME}-dist.tar.gz/dist.tar.gz"
+            fi
+            [ -f "$SRC_TAR" ] || { echo "Artifact not found: $SRC_TAR" >&2; exit 1; }
+
+            # Chuẩn hoá tên file artifact
+            mv -f "$SRC_TAR" "$TMP_TAR"
+
+            # Chỉ cho phép deploy trong PROJECT_ROOT
+            case "$RUN_DIR" in "$PROJECT_ROOT"/*) ;; *)
+              echo "Unsafe RUN_DIR: $RUN_DIR" >&2; exit 1;;
+            esac
+
+            # Tự tạo thư mục dự án
+            mkdir -p "$RUN_DIR" || {
+              echo "❌ mkdir -p $RUN_DIR failed. Kiểm tra quyền x trên /var/www và /var/www/KhanhHAUI, hoặc dùng ACL cho gitdeploy."; exit 1;
+            }
+
+            # Kiểm tra quyền ghi
+            if ! ( : > "$RUN_DIR/.writetest" 2>/dev/null ); then
+              echo "❌ $RUN_DIR không ghi được bởi $(whoami). Nhờ admin chown/chmod hoặc setfacl cho gitdeploy."; exit 1
+            fi
+            rm -f "$RUN_DIR/.writetest" || true
+
+            # Dọn bản cũ & bung bản mới
+            find "$RUN_DIR" -mindepth 1 -maxdepth 1 -exec rm -rf {} +
+            tar -xzf "$TMP_TAR" -C "$RUN_DIR"
+
+            # Quyền đọc cho web
+            find "$RUN_DIR" -type d -exec chmod 755 {} +
+            find "$RUN_DIR" -type f -exec chmod 644 {} +
+
+            # Nếu gitdeploy thuộc DEPLOY_GROUP → đổi group (chgrp), không chown
+            if id -nG "$USER" | grep -qw "$DEPLOY_GROUP"; then
+              chgrp -R "$DEPLOY_GROUP" "$RUN_DIR" || true
+            fi
+
+            # Xoá artifact tạm
+            rm -f "$TMP_TAR" || true
+
+            echo "✅ Deployed $PROJECT_NAME successfully!"

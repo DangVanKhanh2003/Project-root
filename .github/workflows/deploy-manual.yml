@@ -1,0 +1,210 @@
+name: Manual Deploy Single App
+
+on:
+  workflow_dispatch:
+    inputs:
+      app:
+        description: 'App to deploy'
+        required: true
+        type: choice
+        options:
+          - 'y2matepro'
+          - 'y2mate-new-ux'
+          - 'ytmp3-clone-3'
+          - 'ytmp3-clone-4'
+          - 'ytmp3-clone-5'
+          - 'ytmp3-clone-darkmode-3'
+      environment:
+        description: 'Target environment'
+        required: true
+        type: choice
+        options:
+          - 'production'
+          - 'test'
+
+concurrency:
+  group: manual-deploy-${{ github.repository }}-${{ inputs.app }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.environment == 'test' && 'test-production' || 'main' }}
+
+      - name: Get app config
+        id: config
+        run: |
+          case "${{ inputs.app }}" in
+            "y2matepro")
+              echo "directory=apps/y2matepro" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/y2matepro" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.Y2MATEPRO_DOMAIN || 'y2matepro.com' }}" >> $GITHUB_OUTPUT
+              ;;
+            "y2mate-new-ux")
+              echo "directory=apps/y2mate-new-ux" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/y2mate-new-ux" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.Y2MATE_NEW_UX_DOMAIN || 'y2mate-new-ux.com' }}" >> $GITHUB_OUTPUT
+              ;;
+            "ytmp3-clone-3")
+              echo "directory=apps/ytmp3-clone-3" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/ytmp3-clone-3" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.YTMP3_CLONE_3_DOMAIN || 'ytmp3-clone-3.com' }}" >> $GITHUB_OUTPUT
+              ;;
+            "ytmp3-clone-4")
+              echo "directory=apps/ytmp3-clone-4" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/ytmp3-clone-4" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.YTMP3_CLONE_4_DOMAIN || 'ytmp3-clone-4.com' }}" >> $GITHUB_OUTPUT
+              ;;
+            "ytmp3-clone-5")
+              echo "directory=apps/ytmp3-clone-5" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/ytmp3-clone-5" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.YTMP3_CLONE_5_DOMAIN || 'ytmp3-clone-5.com' }}" >> $GITHUB_OUTPUT
+              ;;
+            "ytmp3-clone-darkmode-3")
+              echo "directory=apps/ytmp3-clone-darkmode-3" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/ytmp3-clone-darkmode-3" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.YTMP3_CLONE_DARKMODE_3_DOMAIN || 'ytmp3-clone-darkmode-3.com' }}" >> $GITHUB_OUTPUT
+              ;;
+          esac
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Verify Vite exists
+        working-directory: ./${{ steps.config.outputs.directory }}
+        run: npx vite --version
+
+      - name: Build
+        env:
+          NODE_ENV: ${{ inputs.environment == 'test' && 'test' || 'production' }}
+        run: |
+          set -euo pipefail
+          if [[ "${{ inputs.environment }}" == "test" ]]; then
+            echo "🔧 Building ${{ inputs.app }} for test environment..."
+            pnpm --filter "${{ steps.config.outputs.filter_path }}" run build:test
+          else
+            echo "🏗️ Building ${{ inputs.app }} for production environment..."
+            pnpm --filter "${{ steps.config.outputs.filter_path }}" run build
+          fi
+          test -d ${{ steps.config.outputs.directory }}/dist
+
+      - name: Replace robots.txt for test
+        if: inputs.environment == 'test'
+        run: |
+          echo "User-agent: *" > ${{ steps.config.outputs.directory }}/dist/robots.txt
+          echo "Disallow: /" >> ${{ steps.config.outputs.directory }}/dist/robots.txt
+          echo "✅ Replaced robots.txt to block all crawlers for test environment"
+
+      - name: Verify robots meta tags
+        run: |
+          set -euo pipefail
+          DIST_DIR="${{ steps.config.outputs.directory }}/dist"
+          echo "🔍 Verifying meta robots tags..."
+
+          if [[ "${{ inputs.environment }}" == "test" ]]; then
+            if grep -r 'content="noindex"' "$DIST_DIR" > /dev/null; then
+              echo "✅ SUCCESS: Found noindex meta tags"
+            else
+              echo "❌ ERROR: noindex meta tags not found"
+              exit 1
+            fi
+          fi
+
+      - name: Archive and upload
+        run: tar -C ${{ steps.config.outputs.directory }}/dist -czf dist.tar.gz .
+
+      - name: Upload to server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "dist.tar.gz"
+          target: "/tmp"
+          overwrite: true
+
+      - name: Deploy on server
+        env:
+          DOMAIN: ${{ steps.config.outputs.domain }}
+          ENV_TYPE: ${{ inputs.environment }}
+        uses: appleboy/ssh-action@v1.2.2
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          envs: DOMAIN,ENV_TYPE
+          script: |
+            set -euo pipefail
+            PROJECT_ROOT="/var/www/KhanhHAUI/CICD"
+            DEPLOY_GROUP="nginx"
+
+            if [[ "$ENV_TYPE" == "test" ]]; then
+              PROJECT_NAME="${DOMAIN}-test"
+            else
+              PROJECT_NAME="$DOMAIN"
+            fi
+
+            RUN_DIR="$PROJECT_ROOT/run/$PROJECT_NAME"
+            SRC_TAR="/tmp/dist.tar.gz"
+            TMP_TAR="/tmp/${PROJECT_NAME}-dist.tar.gz"
+
+            echo "== /tmp listing for debug =="
+            ls -l /tmp || true
+
+            # Clean up old directory if exists
+            [ -d "$TMP_TAR" ] && rm -rf "$TMP_TAR"
+
+            # Verify artifact exists
+            [ -f "$SRC_TAR" ] || { echo "Artifact not found: $SRC_TAR" >&2; exit 1; }
+
+            # Rename artifact
+            mv -f "$SRC_TAR" "$TMP_TAR"
+
+            # Security check
+            case "$RUN_DIR" in "$PROJECT_ROOT"/*) ;; *)
+              echo "Unsafe RUN_DIR: $RUN_DIR" >&2; exit 1;;
+            esac
+
+            # Create and verify directory
+            mkdir -p "$RUN_DIR" || {
+              echo "❌ mkdir -p $RUN_DIR failed."; exit 1;
+            }
+
+            # Verify write permissions
+            if ! ( : > "$RUN_DIR/.writetest" 2>/dev/null ); then
+              echo "❌ $RUN_DIR không ghi được bởi $(whoami)."; exit 1
+            fi
+            rm -f "$RUN_DIR/.writetest" || true
+
+            # Clean and extract
+            find "$RUN_DIR" -mindepth 1 -maxdepth 1 -exec rm -rf {} +
+            tar -xzf "$TMP_TAR" -C "$RUN_DIR"
+
+            # Set permissions
+            find "$RUN_DIR" -type d -exec chmod 755 {} +
+            find "$RUN_DIR" -type f -exec chmod 644 {} +
+
+            # Change group if applicable
+            if id -nG "$USER" | grep -qw "$DEPLOY_GROUP"; then
+              chgrp -R "$DEPLOY_GROUP" "$RUN_DIR" || true
+            fi
+
+            # Cleanup
+            rm -f "$TMP_TAR" || true
+
+            echo "✅ Deployed $PROJECT_NAME ($ENV_TYPE) successfully!"

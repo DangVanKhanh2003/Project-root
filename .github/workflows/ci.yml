@@ -1,0 +1,252 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main, test-production]
+  workflow_dispatch:
+    inputs:
+      deploy_all:
+        description: 'Deploy all apps regardless of changes'
+        type: boolean
+        default: false
+      specific_app:
+        description: 'Deploy specific app only (leave empty for auto-detect)'
+        type: choice
+        options:
+          - ''
+          - 'y2matepro'
+          - 'y2mate-new-ux'
+          - 'ytmp3-clone-3'
+          - 'ytmp3-clone-4'
+          - 'ytmp3-clone-5'
+          - 'ytmp3-clone-darkmode-3'
+
+concurrency:
+  group: ci-${{ github.repository }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # ============================================
+  # Job 1: Detect which apps have changes
+  # ============================================
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      apps_to_deploy: ${{ steps.determine-apps.outputs.apps }}
+      has_changes: ${{ steps.determine-apps.outputs.has_changes }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect changes with dorny/paths-filter
+        id: filter
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            shared:
+              - 'packages/**'
+              - 'modify-robots-meta.js'
+              - 'pnpm-lock.yaml'
+            y2matepro:
+              - 'apps/y2matepro/**'
+            y2mate-new-ux:
+              - 'apps/y2mate-new-ux/**'
+            ytmp3-clone-3:
+              - 'apps/ytmp3-clone-3/**'
+            ytmp3-clone-4:
+              - 'apps/ytmp3-clone-4/**'
+            ytmp3-clone-5:
+              - 'apps/ytmp3-clone-5/**'
+            ytmp3-clone-darkmode-3:
+              - 'apps/ytmp3-clone-darkmode-3/**'
+
+      - name: Determine apps to deploy
+        id: determine-apps
+        run: |
+          ALL_APPS='["y2matepro","y2mate-new-ux","ytmp3-clone-3","ytmp3-clone-4","ytmp3-clone-5","ytmp3-clone-darkmode-3"]'
+
+          # Handle manual trigger with specific_app
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            if [[ -n "${{ inputs.specific_app }}" ]]; then
+              echo "📌 Manual deploy: ${{ inputs.specific_app }}"
+              echo "apps=[\"${{ inputs.specific_app }}\"]" >> $GITHUB_OUTPUT
+              echo "has_changes=true" >> $GITHUB_OUTPUT
+              exit 0
+            fi
+
+            if [[ "${{ inputs.deploy_all }}" == "true" ]]; then
+              echo "📌 Manual deploy: ALL apps"
+              echo "apps=$ALL_APPS" >> $GITHUB_OUTPUT
+              echo "has_changes=true" >> $GITHUB_OUTPUT
+              exit 0
+            fi
+          fi
+
+          # If shared packages changed, deploy ALL apps
+          if [[ "${{ steps.filter.outputs.shared }}" == "true" ]]; then
+            echo "📦 Shared packages changed - deploying ALL apps"
+            echo "apps=$ALL_APPS" >> $GITHUB_OUTPUT
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          # Build list of changed apps
+          CHANGED_APPS="[]"
+
+          if [[ "${{ steps.filter.outputs.y2matepro }}" == "true" ]]; then
+            CHANGED_APPS=$(echo $CHANGED_APPS | jq '. + ["y2matepro"]')
+            echo "✅ y2matepro changed"
+          fi
+          if [[ "${{ steps.filter.outputs.y2mate-new-ux }}" == "true" ]]; then
+            CHANGED_APPS=$(echo $CHANGED_APPS | jq '. + ["y2mate-new-ux"]')
+            echo "✅ y2mate-new-ux changed"
+          fi
+          if [[ "${{ steps.filter.outputs.ytmp3-clone-3 }}" == "true" ]]; then
+            CHANGED_APPS=$(echo $CHANGED_APPS | jq '. + ["ytmp3-clone-3"]')
+            echo "✅ ytmp3-clone-3 changed"
+          fi
+          if [[ "${{ steps.filter.outputs.ytmp3-clone-4 }}" == "true" ]]; then
+            CHANGED_APPS=$(echo $CHANGED_APPS | jq '. + ["ytmp3-clone-4"]')
+            echo "✅ ytmp3-clone-4 changed"
+          fi
+          if [[ "${{ steps.filter.outputs.ytmp3-clone-5 }}" == "true" ]]; then
+            CHANGED_APPS=$(echo $CHANGED_APPS | jq '. + ["ytmp3-clone-5"]')
+            echo "✅ ytmp3-clone-5 changed"
+          fi
+          if [[ "${{ steps.filter.outputs.ytmp3-clone-darkmode-3 }}" == "true" ]]; then
+            CHANGED_APPS=$(echo $CHANGED_APPS | jq '. + ["ytmp3-clone-darkmode-3"]')
+            echo "✅ ytmp3-clone-darkmode-3 changed"
+          fi
+
+          echo "📋 Changed apps: $CHANGED_APPS"
+
+          if [[ "$CHANGED_APPS" == "[]" ]]; then
+            echo "⏭️ No app changes detected"
+            echo "apps=[]" >> $GITHUB_OUTPUT
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "apps=$CHANGED_APPS" >> $GITHUB_OUTPUT
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          fi
+
+  # ============================================
+  # Job 2-7: Deploy apps (parallel)
+  # ============================================
+  deploy-y2matepro:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'y2matepro')
+    uses: ./.github/workflows/deploy-app.yml
+    with:
+      app_name: y2matepro
+      app_directory: apps/y2matepro
+      filter_path: ./apps/y2matepro
+      domain: ${{ vars.Y2MATEPRO_DOMAIN || 'y2matepro.com' }}
+    secrets:
+      SSH_HOST: ${{ secrets.SSH_HOST }}
+      SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
+  deploy-y2mate-new-ux:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'y2mate-new-ux')
+    uses: ./.github/workflows/deploy-app.yml
+    with:
+      app_name: y2mate-new-ux
+      app_directory: apps/y2mate-new-ux
+      filter_path: ./apps/y2mate-new-ux
+      domain: ${{ vars.Y2MATE_NEW_UX_DOMAIN || 'y2mate-new-ux.com' }}
+    secrets:
+      SSH_HOST: ${{ secrets.SSH_HOST }}
+      SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
+  deploy-ytmp3-clone-3:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'ytmp3-clone-3')
+    uses: ./.github/workflows/deploy-app.yml
+    with:
+      app_name: ytmp3-clone-3
+      app_directory: apps/ytmp3-clone-3
+      filter_path: ./apps/ytmp3-clone-3
+      domain: ${{ vars.YTMP3_CLONE_3_DOMAIN || 'ytmp3-clone-3.com' }}
+    secrets:
+      SSH_HOST: ${{ secrets.SSH_HOST }}
+      SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
+  deploy-ytmp3-clone-4:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'ytmp3-clone-4')
+    uses: ./.github/workflows/deploy-app.yml
+    with:
+      app_name: ytmp3-clone-4
+      app_directory: apps/ytmp3-clone-4
+      filter_path: ./apps/ytmp3-clone-4
+      domain: ${{ vars.YTMP3_CLONE_4_DOMAIN || 'ytmp3-clone-4.com' }}
+    secrets:
+      SSH_HOST: ${{ secrets.SSH_HOST }}
+      SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
+  deploy-ytmp3-clone-5:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'ytmp3-clone-5')
+    uses: ./.github/workflows/deploy-app.yml
+    with:
+      app_name: ytmp3-clone-5
+      app_directory: apps/ytmp3-clone-5
+      filter_path: ./apps/ytmp3-clone-5
+      domain: ${{ vars.YTMP3_CLONE_5_DOMAIN || 'ytmp3-clone-5.com' }}
+    secrets:
+      SSH_HOST: ${{ secrets.SSH_HOST }}
+      SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
+  deploy-ytmp3-clone-darkmode-3:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'ytmp3-clone-darkmode-3')
+    uses: ./.github/workflows/deploy-app.yml
+    with:
+      app_name: ytmp3-clone-darkmode-3
+      app_directory: apps/ytmp3-clone-darkmode-3
+      filter_path: ./apps/ytmp3-clone-darkmode-3
+      domain: ${{ vars.YTMP3_CLONE_DARKMODE_3_DOMAIN || 'ytmp3-clone-darkmode-3.com' }}
+    secrets:
+      SSH_HOST: ${{ secrets.SSH_HOST }}
+      SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
+  # ============================================
+  # Job 8: Summary
+  # ============================================
+  summary:
+    needs:
+      - detect-changes
+      - deploy-y2matepro
+      - deploy-y2mate-new-ux
+      - deploy-ytmp3-clone-3
+      - deploy-ytmp3-clone-4
+      - deploy-ytmp3-clone-5
+      - deploy-ytmp3-clone-darkmode-3
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deployment Summary
+        run: |
+          echo "## 📊 Deployment Summary"
+          echo ""
+          echo "**Branch:** ${{ github.ref_name }}"
+          echo "**Environment:** ${{ github.ref_name == 'test-production' && 'Test (noindex)' || 'Production' }}"
+          echo "**Apps detected:** ${{ needs.detect-changes.outputs.apps_to_deploy }}"
+          echo ""
+          echo "### Job Results"
+          echo "| App | Status |"
+          echo "|-----|--------|"
+          echo "| y2matepro | ${{ needs.deploy-y2matepro.result || 'skipped' }} |"
+          echo "| y2mate-new-ux | ${{ needs.deploy-y2mate-new-ux.result || 'skipped' }} |"
+          echo "| ytmp3-clone-3 | ${{ needs.deploy-ytmp3-clone-3.result || 'skipped' }} |"
+          echo "| ytmp3-clone-4 | ${{ needs.deploy-ytmp3-clone-4.result || 'skipped' }} |"
+          echo "| ytmp3-clone-5 | ${{ needs.deploy-ytmp3-clone-5.result || 'skipped' }} |"
+          echo "| ytmp3-clone-darkmode-3 | ${{ needs.deploy-ytmp3-clone-darkmode-3.result || 'skipped' }} |"
