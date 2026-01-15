@@ -4,9 +4,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite --config vite.config.ts",
-    "build": "tsc && vite build --config vite.config.ts",
-    "build:test": "NODE_ENV=test tsc && NODE_ENV=test vite build --config vite.config.ts && NODE_ENV=test TARGET_DIR=dist node ../../modify-robots-meta.js",
+    "build": "npm run 11ty:build && tsc && vite build --config vite.config.ts",
+    "build:test": "NODE_ENV=test npm run 11ty:build && NODE_ENV=test tsc && NODE_ENV=test vite build --config vite.config.ts && NODE_ENV=test TARGET_DIR=dist node ../../modify-robots-meta.js",
     "preview": "vite preview --config vite.config.ts",
+    "11ty:build": "eleventy --config=.eleventy.cjs",
+    "11ty:watch": "eleventy --config=.eleventy.cjs --watch",
+    "11ty:serve": "eleventy --config=.eleventy.cjs --serve",
     "remove-logs": "tsx remove-console-logs.ts",
     "remove-logs:preview": "tsx remove-console-logs.ts --dry-run",
     "remove-logs:all": "tsx remove-console-logs.ts --all-methods"
@@ -18,6 +21,7 @@
     "@downloader/ui-components": "workspace:*"
   },
   "devDependencies": {
+    "@11ty/eleventy": "^3.0.0",
     "@types/node": "^20.19.25",
     "tsx": "^4.20.6",
     "typescript": "^5.3.3",
