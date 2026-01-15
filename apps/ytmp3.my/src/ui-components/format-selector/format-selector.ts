@@ -46,8 +46,14 @@ export function renderFormatSelectorToForm(): void {
     // Update format button states
     updateFormatButtonState(container, state.selectedFormat);
 
-    // Update dropdown selected value
-    updateDropdownSelectedValue(container, state);
+    // HTML default is MP3. If user selected MP4, we need to replace dropdown options
+    // (not just set value, because MP4 options don't exist in HTML)
+    if (state.selectedFormat === 'mp4') {
+      replaceDropdownOptions(container, 'mp4');
+    } else {
+      // For audio formats, just update the selected value
+      updateDropdownSelectedValue(container, state);
+    }
   }
 
   // Always initialize event listeners
