@@ -2,7 +2,8 @@
 <html lang="en">
 
 <head>
-    
+    <!-- Critical: Set format before render to prevent FOUC -->
+    <script>(function(){var f='mp4';try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p&&p.selectedFormat)f=p.selectedFormat}catch(e){}document.documentElement.dataset.format=f}())</script>
     <meta name="robots" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta charset="UTF-8">
@@ -180,11 +181,12 @@
                             <div class="format-selector">
                                 <div class="format-quality-group">
                                     <button type="button" class="format-toggle-btn" data-toggle-format>
-                                        <span class="toggle-side active" data-format="mp4"><span class="format-label">MP4</span></span>
+                                        <span class="toggle-side" data-format="mp4"><span class="format-label">MP4</span></span>
                                         <span class="toggle-side" data-format="mp3"><span class="format-label">MP3</span></span>
                                     </button>
                                     <div class="quality-selector">
-                                        <select id="quality-select" class="quality-select" aria-label="Quality selector" data-quality-select>
+                                        <!-- MP4 Options -->
+                                        <select id="quality-select-mp4" class="quality-select quality-select--mp4" aria-label="Video quality" data-quality-select>
                                             <option value="mp4-2160">MP4 - 2160p (4K)</option>
                                             <option value="mp4-1440">MP4 - 1440p (2K)</option>
                                             <option value="mp4-1080">MP4 - 1080p</option>
@@ -194,6 +196,16 @@
                                             <option value="webm">WEBM</option>
                                             <option value="mkv">MKV</option>
                                         </select>
+                                        <!-- MP3 Options -->
+                                        <select id="quality-select-mp3" class="quality-select quality-select--mp3" aria-label="Audio quality" data-quality-select>
+                                            <option value="mp3-320">MP3 - 320kbps</option>
+                                            <option value="mp3-256">MP3 - 256kbps</option>
+                                            <option value="mp3-192">MP3 - 192kbps</option>
+                                            <option value="mp3-128" selected>MP3 - 128kbps</option>
+                                            <option value="ogg">OGG</option>
+                                            <option value="opus">OPUS</option>
+                                            <option value="wav">WAV</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="auto-submit-toggle" data-tooltip="Automatically submit when pasting URL or keyword">
@@ -202,7 +214,7 @@
                                         <input type="checkbox" id="auto-submit-checkbox" data-auto-submit-toggle />
                                         <span class="toggle-slider"></span>
                                     </label>
-                                    <span class="custom-tooltip"></span>
+                                    <span class="custom-tooltip" style="opacity:0;visibility:hidden"></span>
                                 </div>
                             </div>
                         </div>
@@ -402,6 +414,8 @@
     </footer>
 
     <!-- Conversion Modal Wrapper -->
+    <!-- Set selected dropdown value and auto-submit state from localStorage -->
+    <script>(function(){try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p){var s=p.selectedFormat==='mp4'?document.getElementById('quality-select-mp4'):document.getElementById('quality-select-mp3');if(s){var v;if(p.selectedFormat==='mp4'){var vq=p.videoQuality||'720p';v=(vq==='webm'||vq==='mkv')?vq:'mp4-'+vq.replace('p','')}else{var af=p.audioFormat||'mp3';v=(af==='mp3')?'mp3-'+(p.audioBitrate||'128'):af}s.value=v}}var a=localStorage.getItem('y2mate_auto_submit');var c=document.getElementById('auto-submit-checkbox');if(c)c.checked=a===null||a==='true';document.documentElement.dataset.formatReady='1'}catch(e){document.documentElement.dataset.formatReady='1'}})()</script>
 </body>
 <script type="application/ld+json">
 {

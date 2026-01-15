@@ -55,9 +55,9 @@
         gtag('config', 'G-ZWPL9SR6P6');
     </script>
 
-    <!-- Critical: Read format preference before render to prevent FOUC -->
+    <!-- Critical: Set format before render to prevent FOUC -->
     <script>
-      (function(){try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p&&p.selectedFormat){document.documentElement.dataset.format=p.selectedFormat}}catch(e){}}())
+      (function(){var f='mp4';try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p&&p.selectedFormat)f=p.selectedFormat}catch(e){}document.documentElement.dataset.format=f}())
     </script>
 
     <!-- Critical CSS imported via Vite -->
@@ -205,13 +205,13 @@
                                         </select>
                                         <!-- MP3 Options (hidden by default) -->
                                         <select id="quality-select-mp3" class="quality-select quality-select--mp3" aria-label="Audio quality" data-quality-select>
-                                            <option value="mp3-128" selected> MP3 - 128kbps </option>
-                                            <option value="mp3-192"> MP3 - 192kbps </option>
-                                            <option value="mp3-320"> MP3 - 320kbps </option>
-                                            <option value="ogg-128"> OGG </option>
-                                            <option value="wav-128"> WAV - Lossless </option>
-                                            <option value="opus-128"> Opus </option>
-                                            <option value="m4a-192"> M4A </option>
+                                            <option value="mp3-320">MP3 - 320kbps</option>
+                                            <option value="mp3-256">MP3 - 256kbps</option>
+                                            <option value="mp3-192">MP3 - 192kbps</option>
+                                            <option value="mp3-128" selected>MP3 - 128kbps</option>
+                                            <option value="ogg">OGG</option>
+                                            <option value="opus">OPUS</option>
+                                            <option value="wav">WAV</option>
                                         </select>
                                     </div>
                                 </div>
@@ -222,7 +222,7 @@
                                         <input type="checkbox" id="auto-submit-checkbox" data-auto-submit-toggle />
                                         <span class="toggle-slider"></span>
                                     </label>
-                                    <span class="custom-tooltip"></span>
+                                    <span class="custom-tooltip" style="opacity:0;visibility:hidden"></span>
                                 </div>
                             </div>
                         </div>
@@ -427,9 +427,9 @@
 
     <!-- Conversion Modal Wrapper -->
 
-    <!-- Set selected dropdown value from localStorage (runs after DOM ready) -->
+    <!-- Set selected dropdown value and auto-submit state from localStorage (runs after DOM ready) -->
     <script>
-      (function(){try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(!p)return;var s=p.selectedFormat==='mp4'?document.getElementById('quality-select-mp4'):document.getElementById('quality-select-mp3');if(!s)return;var v=p.selectedFormat==='mp4'?'mp4-'+(p.videoQuality||'720p').replace('p',''):(p.audioFormat||'mp3')+'-'+(p.audioBitrate||'128');s.value=v}catch(e){}})()
+      (function(){try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p){var s=p.selectedFormat==='mp4'?document.getElementById('quality-select-mp4'):document.getElementById('quality-select-mp3');if(s){var v;if(p.selectedFormat==='mp4'){var vq=p.videoQuality||'720p';v=(vq==='webm'||vq==='mkv')?vq:'mp4-'+vq.replace('p','')}else{var af=p.audioFormat||'mp3';v=(af==='mp3')?'mp3-'+(p.audioBitrate||'128'):af}s.value=v}}var a=localStorage.getItem('y2mate_auto_submit');var c=document.getElementById('auto-submit-checkbox');if(c)c.checked=a===null||a==='true';document.documentElement.dataset.formatReady='1'}catch(e){document.documentElement.dataset.formatReady='1'}})()
     </script>
 </body>
 </html>

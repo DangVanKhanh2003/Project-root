@@ -8,29 +8,27 @@
    Prevents FOUC by using CSS instead of JS
    ========================================== */
 
-/* Default state (no data-format or mp4): MP4 active */
-.toggle-side[data-format="mp4"] {
+/* Disable transitions on initial page load to prevent FOUC animation */
+html:not([data-format-ready]) .toggle-side,
+html:not([data-format-ready]) .quality-select {
+  transition: none !important;
+}
+
+/* When data-format="mp4": MP4 active */
+html[data-format="mp4"] .toggle-side[data-format="mp4"] {
   background: #f20a51;
   color: white;
   border-radius: 6px;
 }
+html[data-format="mp4"] .quality-select--mp4 { display: block; }
+html[data-format="mp4"] .quality-select--mp3 { display: none; }
 
-.quality-select--mp4 { display: block; }
-.quality-select--mp3 { display: none; }
-
-/* When data-format="mp3": MP3 active, MP4 inactive */
-html[data-format="mp3"] .toggle-side[data-format="mp4"] {
-  background: transparent;
-  color: #666;
-  border-radius: 0;
-}
-
+/* When data-format="mp3": MP3 active */
 html[data-format="mp3"] .toggle-side[data-format="mp3"] {
   background: #f20a51;
   color: white;
   border-radius: 6px;
 }
-
 html[data-format="mp3"] .quality-select--mp4 { display: none; }
 html[data-format="mp3"] .quality-select--mp3 { display: block; }
 

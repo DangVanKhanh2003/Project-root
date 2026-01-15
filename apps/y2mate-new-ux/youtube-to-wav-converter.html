@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
+    <!-- Critical: Set format before render to prevent FOUC -->
+    <script>(function(){var f='mp3';try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p&&p.selectedFormat)f=p.selectedFormat}catch(e){}document.documentElement.dataset.format=f}())</script>
     <meta name="robots" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta charset="UTF-8">
@@ -130,11 +131,12 @@
                             <div class="format-selector">
                                 <div class="format-quality-group">
                                     <button type="button" class="format-toggle-btn" data-toggle-format>
-                                        <span class="toggle-side active" data-format="mp4"><span class="format-label">MP4</span></span>
+                                        <span class="toggle-side" data-format="mp4"><span class="format-label">MP4</span></span>
                                         <span class="toggle-side" data-format="mp3"><span class="format-label">MP3</span></span>
                                     </button>
                                     <div class="quality-selector">
-                                        <select id="quality-select" class="quality-select" aria-label="Quality selector" data-quality-select>
+                                        <!-- MP4 Options -->
+                                        <select id="quality-select-mp4" class="quality-select quality-select--mp4" aria-label="Video quality" data-quality-select>
                                             <option value="mp4-2160">MP4 - 2160p (4K)</option>
                                             <option value="mp4-1440">MP4 - 1440p (2K)</option>
                                             <option value="mp4-1080">MP4 - 1080p</option>
@@ -144,6 +146,16 @@
                                             <option value="webm">WEBM</option>
                                             <option value="mkv">MKV</option>
                                         </select>
+                                        <!-- MP3 Options (WAV default) -->
+                                        <select id="quality-select-mp3" class="quality-select quality-select--mp3" aria-label="Audio quality" data-quality-select>
+                                            <option value="mp3-320">MP3 - 320kbps</option>
+                                            <option value="mp3-256">MP3 - 256kbps</option>
+                                            <option value="mp3-192">MP3 - 192kbps</option>
+                                            <option value="mp3-128">MP3 - 128kbps</option>
+                                            <option value="ogg">OGG</option>
+                                            <option value="opus">OPUS</option>
+                                            <option value="wav" selected>WAV</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="auto-submit-toggle" data-tooltip="Automatically submit when pasting URL or keyword">
@@ -152,13 +164,12 @@
                                         <input type="checkbox" id="auto-submit-checkbox" data-auto-submit-toggle />
                                         <span class="toggle-slider"></span>
                                     </label>
-                                    <span class="custom-tooltip"></span>
+                                    <span class="custom-tooltip" style="opacity:0;visibility:hidden"></span>
                                 </div>
                             </div>
                         </div>
 
                         <div id="suggestion-container" class="suggesstion-list suggesstion-box"></div>
-                <p>WAV files use <strong>PCM (Pulse Code Modulation)</strong> encoding at 1411kbps for CD-quality audio. Perfect for <strong>professional audio editing</strong>, music production, sampling, and archival. Download unlimited WAV files for free-no quality compromise.</p>
             </div>
         </section>
         <section class="y2mate-instruction-pro">
@@ -264,6 +275,8 @@
             <li class="fnav-menu"><a href="youtube-to-opus-converter">YouTube to Opus Converter</a></li>
         </ul>
     </footer>
+    <!-- Set selected dropdown value and auto-submit state from localStorage -->
+    <script>(function(){try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p){var s=p.selectedFormat==='mp4'?document.getElementById('quality-select-mp4'):document.getElementById('quality-select-mp3');if(s){var v;if(p.selectedFormat==='mp4'){var vq=p.videoQuality||'720p';v=(vq==='webm'||vq==='mkv')?vq:'mp4-'+vq.replace('p','')}else{var af=p.audioFormat||'mp3';v=(af==='mp3')?'mp3-'+(p.audioBitrate||'128'):af}s.value=v}}var a=localStorage.getItem('y2mate_auto_submit');var c=document.getElementById('auto-submit-checkbox');if(c)c.checked=a===null||a==='true';document.documentElement.dataset.formatReady='1'}catch(e){document.documentElement.dataset.formatReady='1'}})()</script>
 </body>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is WAV format?","acceptedAnswer":{"@type":"Answer","text":"WAV (Waveform Audio File Format) is an uncompressed lossless audio format that stores audio as PCM data at 1411kbps for CD-quality. WAV preserves 100% of the original audio."}},{"@type":"Question","name":"WAV vs MP3-which is better?","acceptedAnswer":{"@type":"Answer","text":"WAV is uncompressed lossless (1411kbps), while MP3 is compressed. WAV preserves 100% audio quality. Use WAV for editing, mastering, or archival."}},{"@type":"Question","name":"Why are WAV files so large?","acceptedAnswer":{"@type":"Answer","text":"WAV files store every audio sample without compression. A 4-minute song is ~40MB. This size represents complete audio fidelity without any quality loss."}}]}

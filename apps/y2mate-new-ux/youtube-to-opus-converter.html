@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
+    <!-- Critical: Set format before render to prevent FOUC -->
+    <script>(function(){var f='mp3';try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p&&p.selectedFormat)f=p.selectedFormat}catch(e){}document.documentElement.dataset.format=f}())</script>
     <meta name="robots" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta charset="UTF-8">
@@ -133,11 +134,12 @@
                             <div class="format-selector">
                                 <div class="format-quality-group">
                                     <button type="button" class="format-toggle-btn" data-toggle-format>
-                                        <span class="toggle-side active" data-format="mp4"><span class="format-label">MP4</span></span>
+                                        <span class="toggle-side" data-format="mp4"><span class="format-label">MP4</span></span>
                                         <span class="toggle-side" data-format="mp3"><span class="format-label">MP3</span></span>
                                     </button>
                                     <div class="quality-selector">
-                                        <select id="quality-select" class="quality-select" aria-label="Quality selector" data-quality-select>
+                                        <!-- MP4 Options -->
+                                        <select id="quality-select-mp4" class="quality-select quality-select--mp4" aria-label="Video quality" data-quality-select>
                                             <option value="mp4-2160">MP4 - 2160p (4K)</option>
                                             <option value="mp4-1440">MP4 - 1440p (2K)</option>
                                             <option value="mp4-1080">MP4 - 1080p</option>
@@ -147,6 +149,16 @@
                                             <option value="webm">WEBM</option>
                                             <option value="mkv">MKV</option>
                                         </select>
+                                        <!-- MP3 Options (OPUS default) -->
+                                        <select id="quality-select-mp3" class="quality-select quality-select--mp3" aria-label="Audio quality" data-quality-select>
+                                            <option value="mp3-320">MP3 - 320kbps</option>
+                                            <option value="mp3-256">MP3 - 256kbps</option>
+                                            <option value="mp3-192">MP3 - 192kbps</option>
+                                            <option value="mp3-128">MP3 - 128kbps</option>
+                                            <option value="ogg">OGG</option>
+                                            <option value="opus" selected>OPUS</option>
+                                            <option value="wav">WAV</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="auto-submit-toggle" data-tooltip="Automatically submit when pasting URL or keyword">
@@ -155,13 +167,12 @@
                                         <input type="checkbox" id="auto-submit-checkbox" data-auto-submit-toggle />
                                         <span class="toggle-slider"></span>
                                     </label>
-                                    <span class="custom-tooltip"></span>
+                                    <span class="custom-tooltip" style="opacity:0;visibility:hidden"></span>
                                 </div>
                             </div>
                         </div>
 
                         <div id="suggestion-container" class="suggesstion-list suggesstion-box"></div>
-                <p>OPUS combines <strong>SILK (voice) and CELT (music)</strong> codecs for hybrid efficiency. Perfect for <strong>low-bandwidth streaming</strong>, VoIP applications, podcasts, and modern web audio. Download unlimited OPUS files for free-royalty-free codec with no licensing restrictions.</p>
             </div>
         </section>
         <section class="y2mate-instruction-pro">
@@ -267,6 +278,8 @@
             <li class="fnav-menu"><a href="youtube-to-opus-converter">YouTube to Opus Converter</a></li>
         </ul>
     </footer>
+    <!-- Set selected dropdown value and auto-submit state from localStorage -->
+    <script>(function(){try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p){var s=p.selectedFormat==='mp4'?document.getElementById('quality-select-mp4'):document.getElementById('quality-select-mp3');if(s){var v;if(p.selectedFormat==='mp4'){var vq=p.videoQuality||'720p';v=(vq==='webm'||vq==='mkv')?vq:'mp4-'+vq.replace('p','')}else{var af=p.audioFormat||'mp3';v=(af==='mp3')?'mp3-'+(p.audioBitrate||'128'):af}s.value=v}}var a=localStorage.getItem('y2mate_auto_submit');var c=document.getElementById('auto-submit-checkbox');if(c)c.checked=a===null||a==='true';document.documentElement.dataset.formatReady='1'}catch(e){document.documentElement.dataset.formatReady='1'}})()</script>
 </body>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is OPUS audio codec?","acceptedAnswer":{"@type":"Answer","text":"OPUS is a modern, open-source audio codec standardized by IETF in 2012. It combines SILK (voice) and CELT (music) for superior compression efficiency from 6kbps to 510kbps."}},{"@type":"Question","name":"OPUS vs MP3-which is better?","acceptedAnswer":{"@type":"Answer","text":"OPUS significantly outperforms MP3 at all bitrates. A 96kbps OPUS file sounds better than 128kbps MP3, with lower latency and better optimization."}},{"@type":"Question","name":"Is OPUS better than AAC or OGG Vorbis?","acceptedAnswer":{"@type":"Answer","text":"Yes. Tests show OPUS outperforms AAC and Vorbis at equivalent bitrates, especially below 128kbps, with lower latency for streaming."}}]}

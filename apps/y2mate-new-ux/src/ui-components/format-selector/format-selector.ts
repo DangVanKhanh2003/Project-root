@@ -70,13 +70,16 @@ function updateFormatSelectorUI(state: ReturnType<typeof getState>): void {
   if (selectedFormat === 'mp4') {
     const mp4Select = document.getElementById('quality-select-mp4') as HTMLSelectElement;
     if (mp4Select) {
-      const resolution = videoQuality?.replace('p', '') || '720';
-      mp4Select.value = `mp4-${resolution}`;
+      // webm, mkv don't have prefix - use as-is
+      const isAlternateFormat = videoQuality === 'webm' || videoQuality === 'mkv';
+      const value = isAlternateFormat ? videoQuality : `mp4-${videoQuality?.replace('p', '') || '720'}`;
+      mp4Select.value = value;
     }
   } else {
     const mp3Select = document.getElementById('quality-select-mp3') as HTMLSelectElement;
     if (mp3Select) {
-      const value = audioFormat === 'mp3' ? `${audioFormat}-${audioBitrate || '128'}` : `${audioFormat}-128`;
+      // ogg, opus, wav, flac don't have bitrate suffix - use as-is
+      const value = audioFormat === 'mp3' ? `mp3-${audioBitrate || '128'}` : audioFormat;
       mp3Select.value = value;
     }
   }
