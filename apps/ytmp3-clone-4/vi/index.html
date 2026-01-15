@@ -22,9 +22,7 @@
     <link rel="alternate" hreflang="x-default" href="https://ytmp3.gg/" />
 
     <!-- Critical: Read format preference before render to prevent FOUC -->
-    <script>
-      (function(){try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p&&p.selectedFormat){document.documentElement.dataset.format=p.selectedFormat;document.documentElement.dataset.quality=p.selectedFormat==='mp4'?(p.videoQuality||'720p'):(p.audioFormat+'-'+(p.audioBitrate||'128'))}}catch(e){}}())
-    </script>
+    <script>(function(){var f='mp3';try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p&&p.selectedFormat)f=p.selectedFormat}catch(e){}document.documentElement.dataset.format=f;document.write('<style>html[data-format="mp3"] .quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4{display:block!important}</style>')})()</script>
 
     <!-- TypeScript Module -->
     <script type="module" src="/src/main.ts"></script>
@@ -116,15 +114,31 @@
                                             <img src="/assest/icons/quality-choose-icon.png" alt="Quality" width="20" height="20" />
                                         </div>
                                         <div class="quality-dropdown-wrapper">
-                                            <select id="quality-select" class="quality-select" aria-label="Chọn chất lượng" data-quality-select>
-                                                <option value="mp3-128" selected> MP3 - 128kbps </option>
-                                                <option value="mp3-256"> MP3 - 256kbps </option>
-                                                <option value="ogg-128"> OGG </option>
-                                                <option value="wav-128"> WAV - Lossless </option>
-                                                <option value="opus-128"> Opus </option>
-                                                <option value="m4a-192"> M4A </option>
+                                            <!-- MP3 Options (default visible) -->
+                                            <select id="quality-select-mp3" class="quality-select quality-select--mp3" aria-label="Chọn chất lượng âm thanh" data-quality-select>
+                                                <option value="mp3-320">MP3 - 320kbps</option>
+                                                <option value="mp3-192">MP3 - 192kbps</option>
+                                                <option value="mp3-128" selected>MP3 - 128kbps</option>
+                                                <option value="mp3-64">MP3 - 64kbps</option>
+                                                <option value="flac">FLAC - Lossless</option>
+                                                <option value="wav">WAV - Lossless</option>
+                                                <option value="m4a">M4A</option>
+                                                <option value="opus">Opus</option>
+                                                <option value="ogg">OGG</option>
+                                            </select>
+                                            <!-- MP4 Options (hidden by default) -->
+                                            <select id="quality-select-mp4" class="quality-select quality-select--mp4" aria-label="Chọn chất lượng video" data-quality-select>
+                                                <option value="mp4-1080"> MP4 - 1080p </option>
+                                                <option value="mp4-720" selected> MP4 - 720p </option>
+                                                <option value="mp4-480"> MP4 - 480p </option>
+                                                <option value="mp4-360"> MP4 - 360p </option>
+                                                <option value="mp4-240"> MP4 - 240p </option>
+                                                <option value="mp4-144"> MP4 - 144p </option>
+                                                <option value="webm"> WEBM </option>
+                                                <option value="mkv"> MKV </option>
                                             </select>
                                         </div>
+                                        <script>(function(){try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(!p)return;var s=p.selectedFormat==='mp4'?document.getElementById('quality-select-mp4'):document.getElementById('quality-select-mp3');if(!s)return;var v;if(p.selectedFormat==='mp4'){var vq=p.videoQuality||'720p';v=(vq==='webm'||vq==='mkv')?vq:'mp4-'+vq.replace('p','')}else{var af=p.audioFormat||'mp3';v=(af==='mp3')?'mp3-'+(p.audioBitrate||'128'):af}s.value=v}catch(e){}})()</script>
                                         <div class="select-arrow">
                                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                                         </div>
@@ -236,9 +250,5 @@
         </div>
     </footer>
 
-    <!-- Set selected dropdown value from localStorage (runs after DOM ready) -->
-    <script>
-      (function(){try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(!p)return;var s=p.selectedFormat==='mp4'?document.getElementById('quality-select-mp4'):document.getElementById('quality-select-mp3');if(!s)return;var v;if(p.selectedFormat==='mp4'){var vq=p.videoQuality||'720p';v=(vq==='webm'||vq==='mkv')?vq:'mp4-'+vq.replace('p','')}else{v=(p.audioFormat||'mp3')+'-'+(p.audioBitrate||'128')}s.value=v}catch(e){}})()
-    </script>
 </body>
 </html>

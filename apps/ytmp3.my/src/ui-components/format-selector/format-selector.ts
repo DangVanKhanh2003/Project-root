@@ -277,15 +277,15 @@ function handleQualityChange(event: Event): void {
       setVideoQuality(value); // Store as "webm" or "mkv"
     }
   } else {
-    // Audio format: MP3 has "mp3-bitrate", others are just format name
+    // Audio format: MP3 uses "mp3-bitrate", others are just format name
     if (value.startsWith('mp3-')) {
       const [format, bitrate] = value.split('-');
       setAudioFormat(format as AudioFormatType);
       setAudioBitrate(bitrate);
     } else {
-      // flac, wav, m4a, opus, ogg - no bitrate
+      // ogg, wav, opus, m4a, flac - no bitrate suffix
       setAudioFormat(value as AudioFormatType);
-      setAudioBitrate(''); // No bitrate for lossless/other formats
+      setAudioBitrate('');
     }
   }
 }
