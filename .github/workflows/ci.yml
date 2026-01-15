@@ -204,15 +204,15 @@ jobs:
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
-  deploy-ytmp3-clone-darkmode-3:
+  deploy-ytmp3-my:
     needs: detect-changes
-    if: needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'ytmp3-clone-darkmode-3')
+    if: needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'ytmp3.my')
     uses: ./.github/workflows/deploy-app.yml
     with:
-      app_name: ytmp3-clone-darkmode-3
-      app_directory: apps/ytmp3-clone-darkmode-3
-      filter_path: ./apps/ytmp3-clone-darkmode-3
-      domain: ${{ vars.YTMP3_CLONE_DARKMODE_3_DOMAIN || 'ytmp3-clone-darkmode-3.com' }}
+      app_name: ytmp3.my
+      app_directory: apps/ytmp3.my
+      filter_path: ./apps/ytmp3.my
+      domain: ${{ vars.YTMP3_MY_DOMAIN || 'ytmp3.my' }}
     secrets:
       SSH_HOST: ${{ secrets.SSH_HOST }}
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
@@ -229,7 +229,7 @@ jobs:
       - deploy-ytmp3-clone-3
       - deploy-ytmp3-clone-4
       - deploy-ytmp3-clone-5
-      - deploy-ytmp3-clone-darkmode-3
+      - deploy-ytmp3-my
     if: always()
     runs-on: ubuntu-latest
     steps:
@@ -249,4 +249,4 @@ jobs:
           echo "| ytmp3-clone-3 | ${{ needs.deploy-ytmp3-clone-3.result || 'skipped' }} |"
           echo "| ytmp3-clone-4 | ${{ needs.deploy-ytmp3-clone-4.result || 'skipped' }} |"
           echo "| ytmp3-clone-5 | ${{ needs.deploy-ytmp3-clone-5.result || 'skipped' }} |"
-          echo "| ytmp3-clone-darkmode-3 | ${{ needs.deploy-ytmp3-clone-darkmode-3.result || 'skipped' }} |"
+          echo "| ytmp3.my | ${{ needs.deploy-ytmp3-my.result || 'skipped' }} |"

@@ -13,7 +13,7 @@ on:
           - 'ytmp3-clone-3'
           - 'ytmp3-clone-4'
           - 'ytmp3-clone-5'
-          - 'ytmp3-clone-darkmode-3'
+          - 'ytmp3.my'
       environment:
         description: 'Target environment'
         required: true
@@ -64,10 +64,10 @@ jobs:
               echo "filter_path=./apps/ytmp3-clone-5" >> $GITHUB_OUTPUT
               echo "domain=${{ vars.YTMP3_CLONE_5_DOMAIN || 'ytmp3-clone-5.com' }}" >> $GITHUB_OUTPUT
               ;;
-            "ytmp3-clone-darkmode-3")
-              echo "directory=apps/ytmp3-clone-darkmode-3" >> $GITHUB_OUTPUT
-              echo "filter_path=./apps/ytmp3-clone-darkmode-3" >> $GITHUB_OUTPUT
-              echo "domain=${{ vars.YTMP3_CLONE_DARKMODE_3_DOMAIN || 'ytmp3-clone-darkmode-3.com' }}" >> $GITHUB_OUTPUT
+            "ytmp3.my")
+              echo "directory=apps/ytmp3.my" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/ytmp3.my" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.YTMP3_MY_DOMAIN || 'ytmp3.my' }}" >> $GITHUB_OUTPUT
               ;;
           esac
 
