@@ -28,7 +28,7 @@ import { t } from '@downloader/i18n';
  *
  * Flow:
  * 1. initializeFormatSelector() - Loads state from localStorage or page defaults
- * 2. renderFormatSelectorToForm() - Renders HTML with loaded state
+ * 2. renderFormatSelectorToForm() - Only updates if localStorage exists, otherwise keeps HTML default
  * 3. User sees FormatSelector immediately with correct values (no layout shift)
  */
 export function renderFormatSelectorToForm(): void {
@@ -38,12 +38,62 @@ export function renderFormatSelectorToForm(): void {
     return;
   }
 
-  // Render immediately with current state (no loading/skeleton needed)
-  const html = renderFormatSelector();
-  container.innerHTML = html;
+  const state = getState();
 
-  // Initialize event listeners
+  // Only update HTML if user has stored preferences in localStorage
+  // Otherwise, keep the HTML default values (no JS modification needed)
+  if (state.hasUserSelectedFormat) {
+    // Update format button states
+    updateFormatButtonState(container, state.selectedFormat);
+
+    // Update dropdown selected value
+    updateDropdownSelectedValue(container, state);
+  }
+
+  // Always initialize event listeners
   initFormatSelector('#format-selector-container');
+}
+
+/**
+ * Update format button active state without replacing HTML
+ */
+function updateFormatButtonState(container: HTMLElement, selectedFormat: FormatType): void {
+  const formatButtons = container.querySelectorAll('.format-btn');
+  formatButtons.forEach((btn) => {
+    const format = (btn as HTMLElement).dataset.format;
+    if (format === selectedFormat) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+}
+
+/**
+ * Update dropdown selected value without replacing options
+ */
+function updateDropdownSelectedValue(container: HTMLElement, state: ReturnType<typeof getState>): void {
+  const select = container.querySelector('[data-quality-select]') as HTMLSelectElement;
+  if (!select) return;
+
+  let targetValue: string;
+
+  if (state.selectedFormat === 'mp4') {
+    // For MP4: value format is "mp4-720" (without 'p')
+    const resolution = state.videoQuality?.replace('p', '') || '720';
+    targetValue = `mp4-${resolution}`;
+  } else {
+    // For audio: MP3 has bitrate suffix, others don't
+    if (state.audioFormat === 'mp3') {
+      targetValue = `mp3-${state.audioBitrate}`;
+    } else {
+      // flac, wav, m4a, opus, ogg - no bitrate suffix
+      targetValue = state.audioFormat;
+    }
+  }
+
+  // Set the selected value
+  select.value = targetValue;
 }
 
 /**
@@ -228,34 +278,89 @@ function handleQualityChange(event: Event): void {
       // TODO: Store video format (mp4/webm/mkv) in state if needed
     }
   } else {
-    // MP3 format: value is "format-bitrate" (e.g., "mp3-128")
-    const [format, bitrate] = value.split('-');
-    if (format && bitrate) {
+    // Audio format: MP3 has "mp3-bitrate", others are just format name
+    if (value.startsWith('mp3-')) {
+      const [format, bitrate] = value.split('-');
       setAudioFormat(format as AudioFormatType);
       setAudioBitrate(bitrate);
+    } else {
+      // flac, wav, m4a, opus, ogg - no bitrate
+      setAudioFormat(value as AudioFormatType);
+      setAudioBitrate(''); // No bitrate for lossless/other formats
     }
   }
 }
 
 /**
  * Handle format change (MP3 ↔ MP4)
- * Triggers dropdown re-render
+ * Updates button state and replaces dropdown options
  */
 function handleFormatChange(format: FormatType): void {
   setSelectedFormat(format);
-  refreshFormatSelector();
-}
 
-/**
- * Refresh format selector UI
- * Re-renders the component with current state
- */
-function refreshFormatSelector(): void {
   const container = document.getElementById('format-selector-container');
   if (!container) return;
 
-  const html = renderFormatSelector();
-  container.innerHTML = html;
+  // Update button states
+  updateFormatButtonState(container, format);
+
+  // Replace dropdown with appropriate options (audio vs video)
+  replaceDropdownOptions(container, format);
+}
+
+/**
+ * Replace dropdown options when switching between MP3 and MP4
+ * Only replaces the <select> element, not the entire component
+ */
+function replaceDropdownOptions(container: HTMLElement, format: FormatType): void {
+  const dropdownWrapper = container.querySelector('.quality-dropdown-wrapper');
+  if (!dropdownWrapper) return;
+
+  const state = getState();
+
+  if (format === 'mp4') {
+    // Replace with video options
+    dropdownWrapper.innerHTML = renderVideoQualityDropdown(state.videoQuality);
+  } else {
+    // Replace with audio options
+    dropdownWrapper.innerHTML = renderAudioDropdownOnly(state.audioFormat, state.audioBitrate);
+  }
+}
+
+/**
+ * Render only the audio dropdown select element (no wrapper)
+ */
+function renderAudioDropdownOnly(selectedAudioFormat: AudioFormatType, selectedBitrate: string): string {
+  const audioOptions = [
+    { value: 'mp3-320', label: 'MP3 - 320kbps' },
+    { value: 'mp3-192', label: 'MP3 - 192kbps' },
+    { value: 'mp3-128', label: 'MP3 - 128kbps' },
+    { value: 'mp3-64', label: 'MP3 - 64kbps' },
+    { value: 'flac', label: 'FLAC - Lossless' },
+    { value: 'wav', label: 'WAV - Lossless' },
+    { value: 'm4a', label: 'M4A' },
+    { value: 'opus', label: 'Opus' },
+    { value: 'ogg', label: 'OGG' },
+  ];
+
+  // Determine selected value: MP3 has bitrate suffix, others don't
+  let selectedValue: string;
+  if (selectedAudioFormat === 'mp3' && selectedBitrate) {
+    selectedValue = `mp3-${selectedBitrate}`;
+  } else if (selectedAudioFormat) {
+    selectedValue = selectedAudioFormat;
+  } else {
+    selectedValue = 'mp3-128'; // Default
+  }
+
+  return `
+    <select id="quality-select" class="quality-select" aria-label="${t('aria.qualitySelector')}" data-quality-select>
+      ${audioOptions.map(option => {
+        const isSelected = option.value === selectedValue;
+        return `<option value="${option.value}"${isSelected ? ' selected' : ''}>${option.label}</option>`;
+      }).join('')}
+    </select>
+  `;
 }
 
 // ==========================================

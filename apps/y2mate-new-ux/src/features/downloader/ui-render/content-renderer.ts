@@ -25,6 +25,7 @@ import {
 import { transformSearchItemToVideoData } from '../logic/input-form';
 import { getInfiniteScrollThreshold } from '@downloader/ui-shared/scroll';
 import { api } from '../../../api';
+import { t } from '@downloader/i18n';
 
 let contentArea: HTMLElement | null = null;
 let searchResultsContainer: HTMLElement | null = null;

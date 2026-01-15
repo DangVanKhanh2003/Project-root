@@ -28,7 +28,7 @@ export interface CoreUIState {
 // Format Selector State Types (NEW FLOW)
 // ==========================================
 export type FormatType = 'mp3' | 'mp4';
-export type AudioFormatType = 'mp3' | 'wav' | 'm4a' | 'opus' | 'ogg';
+export type AudioFormatType = 'mp3' | 'wav' | 'm4a' | 'opus' | 'ogg' | 'flac';
 
 export interface QualityPreferences {
   mp3: string;  // e.g., '320kbps'

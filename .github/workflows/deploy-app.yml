@@ -119,7 +119,7 @@ jobs:
       - name: Archive dist (tar.gz)
         run: |
           set -euo pipefail
-          tar -C ${{ inputs.app_directory }}/${{ inputs.dist_path }} -czf dist.tar.gz .
+          tar -C ${{ inputs.app_directory }}/${{ inputs.dist_path }} -czf ${{ inputs.app_name }}-dist.tar.gz .
 
       - name: Upload artifact to server
         uses: appleboy/scp-action@v0.1.7
@@ -127,7 +127,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "dist.tar.gz"
+          source: "${{ inputs.app_name }}-dist.tar.gz"
           target: "/tmp"
           overwrite: true
 
@@ -143,26 +143,19 @@ jobs:
             : "${PROJECT_ROOT:?}"; : "${RUN_DIR:?}"; : "${PROJECT_NAME:?}"
             : "${DEPLOY_USER:?}"; : "${DEPLOY_GROUP:?}"
 
-            SRC_TAR="/tmp/dist.tar.gz"
-            TMP_TAR="/tmp/${PROJECT_NAME}-dist.tar.gz"
+            # File artifact được upload với tên riêng cho mỗi app (tránh race condition khi deploy song song)
+            APP_TAR="/tmp/${{ inputs.app_name }}-dist.tar.gz"
 
             echo "== /tmp listing for debug =="
             ls -l /tmp || true
 
             # Xoá thư mục rác trùng tên file tar (nếu có từ cấu hình cũ)
-            if [ -d "$TMP_TAR" ]; then
-              echo "Found leftover dir $TMP_TAR → removing"
-              rm -rf "$TMP_TAR"
+            if [ -d "$APP_TAR" ]; then
+              echo "Found leftover dir $APP_TAR → removing"
+              rm -rf "$APP_TAR"
             fi
 
-            # Fallback nếu ai đó từng upload vào /tmp/${PROJECT_NAME}-dist.tar.gz/dist.tar.gz
-            if [ ! -f "$SRC_TAR" ] && [ -f "/tmp/${PROJECT_NAME}-dist.tar.gz/dist.tar.gz" ]; then
-              SRC_TAR="/tmp/${PROJECT_NAME}-dist.tar.gz/dist.tar.gz"
-            fi
-            [ -f "$SRC_TAR" ] || { echo "Artifact not found: $SRC_TAR" >&2; exit 1; }
-
-            # Chuẩn hoá tên file artifact
-            mv -f "$SRC_TAR" "$TMP_TAR"
+            [ -f "$APP_TAR" ] || { echo "Artifact not found: $APP_TAR" >&2; exit 1; }
 
             # Chỉ cho phép deploy trong PROJECT_ROOT
             case "$RUN_DIR" in "$PROJECT_ROOT"/*) ;; *)
@@ -182,7 +175,7 @@ jobs:
 
             # Dọn bản cũ & bung bản mới
             find "$RUN_DIR" -mindepth 1 -maxdepth 1 -exec rm -rf {} +
-            tar -xzf "$TMP_TAR" -C "$RUN_DIR"
+            tar -xzf "$APP_TAR" -C "$RUN_DIR"
 
             # Quyền đọc cho web
             find "$RUN_DIR" -type d -exec chmod 755 {} +
@@ -194,6 +187,6 @@ jobs:
             fi
 
             # Xoá artifact tạm
-            rm -f "$TMP_TAR" || true
+            rm -f "$APP_TAR" || true
 
             echo "✅ Deployed $PROJECT_NAME successfully!"
