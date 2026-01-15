@@ -2,157 +2,161 @@
 <html lang="en">
 
 <head>
-    
-    <meta name="robots" content="noindex, nofollow">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
 
     <!-- SEO Metadata -->
-    <title>404 - Page Not Found</title>
+    <title>404 - Page Not Found | YTMP3.my</title>
     <meta name="description"
         content="The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.">
 
-   
-    
+    <!-- Fonts -->
+    <link rel="stylesheet" href="/public/assest/fonts/fonts.css">
 
-    <!-- Favicons -->
-    <link rel="icon" href="/favicon.png">
-    <link type="image/png" sizes="16x16" rel="icon" href="/favicon1616.png">
-    <link type="image/png" sizes="32x32" rel="icon" href="/favicon3232.png">
-    <link type="image/png" sizes="48x48" rel="icon" href="/favicon4848.png">
-    <link type="image/png" sizes="96x96" rel="icon" href="/favicon9696.png">
-
-    <!-- Theme Color -->
-    <meta name="theme-color" content="#c10841">
-    <meta name="color-scheme" content="light">
-
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZWPL9SR6P6"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-        gtag('config', 'G-ZWPL9SR6P6');
-    </script>
-
-    <!-- Critical CSS imported via Vite -->
+    <!-- TypeScript Module -->
     <script type="module" src="/src/main.ts"></script>
 </head>
 
-<body style="background-color: white;">
-    <header class="nav-header">
-        <div class="container">
-            <div class="nav_head">
-                <div class="navbar-logo">
-                    <a href="/">
-                        <img height="46px" width="46px" src="/logo.png" alt="Y2Mate logo">
-                        <span class="logo-name">Y2mate</span>
-                    </a>
+<body class="bg-tech-grid">
+
+    <!-- HEADER -->
+    <header id="main-header">
+        <div class="container max-w-5xl header-container">
+            <a href="/" class="logo">
+                <div class="logo-text">ytmp3<span class="domain">.my</span></div>
+            </a>
+
+            <div class="desktop-nav">
+                <nav class="nav-links">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="/about" class="nav-link">About</a>
+                </nav>
+
+                <div class="nav-divider"></div>
+
+                <div class="lang-selector">
+                    <button class="lang-button">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <line x1="2" y1="12" x2="22" y2="12" />
+                            <path
+                                d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                        </svg>
+                        <span>EN</span>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="chevron">
+                            <polyline points="6 9 12 15 18 9" />
+                        </svg>
+                    </button>
+                    <div class="lang-dropdown">
+                        <a href="#" class="lang-option">English</a>
+                        <a href="#" class="lang-option">Español</a>
+                        <a href="#" class="lang-option">Tiếng Việt</a>
+                    </div>
                 </div>
-                <button type="button" class="navbar-toggler" id="mobileMenuToggle">
-                    <span class="toggle-icon"></span>
-                    <span class="toggle-icon"></span>
-                    <span class="toggle-icon"></span>
-                </button>
-            </div>
-            <div class="header-menu">
-                <ul class="menu-navbar">
-                    <li class="navbar">
-                        <a href="/">YouTube Downloader</a>
-                    </li>
-                    <li class="navbar">
-                        <a href="youtube-to-mp4">YouTube to MP4 Converter</a>
-                    </li>
-                    <li class="navbar">
-                        <a href="youtube-to-mp3">YouTube to MP3 Converter</a>
-                    </li>
-                    <li class="navbar language">
-                        <a href="#language" role="button" aria-haspopup="true" aria-expanded="false">
-                            English<span class="shape"></span>
-                        </a>
-                        <div class="dropdown-menu">
-                            <ul class="lang-menu">
-                                <li>
-                                    <a data-lang="en" href="/">English</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
             </div>
 
-            <!-- Mobile Menu Overlay -->
-            <div class="mobile-menu-overlay" id="mobileMenuOverlay">
-                <div class="mobile-menu-content">
-                    <div class="mobile-header-top">
-                            <a href="/">
-                        <div class="mobile-logo">
-                                <img height="36px" width="36px" src="/logo.png" alt="Y2Mate logo">
-                                <span class="logo-name">Y2mate</span>
-                        </div>
-                            </a>
-                        <button type="button" class="mobile-close-btn" id="mobileCloseBtn">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                            </svg>
-                        </button>
-                    </div>
-                    <nav class="mobile-nav">
-                        <ul class="mobile-menu">
-                            <li><a href="/">YouTube Downloader</a></li>
-                            <li><a href="youtube-to-mp4">YouTube to MP4 Converter</a></li>
-                            <li><a href="youtube-to-mp3">YouTube to MP3 Converter</a></li>
-                            <li><a href="youtube-to-mp3-320kbps-converter">YouTube to MP3 320kbps</a></li>
-                            <li><a href="youtube-to-wav-converter">YouTube to WAV Converter</a></li>
-                            <li><a href="youtube-to-ogg-converter">YouTube to OGG Converter</a></li>
-                            <li><a href="youtube-to-opus-converter">YouTube to Opus Converter</a></li>
-                            <li><a href="youtube-short-downloader">YouTube Shorts Downloader</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-            <!-- End Mobile Menu Overlay -->
+            <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Open menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12" />
+                    <line x1="3" y1="6" x2="21" y2="6" />
+                    <line x1="3" y1="18" x2="21" y2="18" />
+                </svg>
+            </button>
         </div>
     </header>
-    <main class="container-404" style="display: flex; justify-content: center; align-items: center; padding: 40px 15px; min-height: calc(100vh - 150px); width: 100%;">
-        <img src="/404.jpg" alt="Page Not Found" style="max-width: 100%; height: auto; max-height: 400px;">
+
+    <!-- MOBILE DRAWER -->
+    <div id="mobile-drawer" class="mobile-drawer">
+        <div id="mobile-drawer-content" class="drawer-content">
+            <div class="drawer-header">
+                <span class="drawer-logo">ytmp3.my</span>
+                <button id="close-drawer-btn" class="close-drawer-btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                </button>
+            </div>
+            <div class="drawer-menu">
+                <a href="/youtube-to-mp3-320kbps-converter" class="drawer-sublink">YouTube to MP3 320kbps</a>
+                <a href="/youtube-to-wav" class="drawer-sublink">YouTube to WAV</a>
+                <a href="/youtube-to-flac" class="drawer-sublink">YouTube to FLAC</a>
+                <a href="/youtube-to-m4a" class="drawer-sublink">YouTube to M4A</a>
+                <div class="drawer-divider"></div>
+                <a href="/" class="drawer-sublink">Home</a>
+                <a href="/about" class="drawer-sublink">About</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <section class="hero-section">
+            <div class="decorative-glow"></div>
+            <div class="hero-container">
+                <div class="hero-card">
+                    <div id="hero-header" class="hero-header">
+                        <h1><span class="title-accent">404</span></h1>
+                    </div>
+                    <p class="hero-subtitle">Page Not Found</p>
+                    <p style="color: var(--text-secondary); margin-top: 1rem; text-align: center;">
+                        The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.
+                    </p>
+                    <div style="margin-top: 2rem; text-align: center;">
+                        <a href="/" style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.5rem; background: var(--accent-gradient); color: white; border-radius: 8px; text-decoration: none; font-weight: 500;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M19 12H5" />
+                                <path d="M12 19l-7-7 7-7" />
+                            </svg>
+                            Back to Home
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- QUICK LINKS -->
+        <section class="seo-section container">
+            <div class="seo-container">
+                <article class="prose">
+                    <h2>Popular Converters</h2>
+                    <p>Try one of our popular conversion tools:</p>
+                    <ul>
+                        <li><a href="/">YouTube to MP3</a> – Convert YouTube videos to MP3 audio</li>
+                        <li><a href="/youtube-to-mp3-320kbps-converter">YouTube to MP3 320kbps</a> – High quality MP3 downloads</li>
+                        <li><a href="/youtube-to-flac">YouTube to FLAC</a> – Lossless audio conversion</li>
+                        <li><a href="/youtube-to-wav">YouTube to WAV</a> – Uncompressed audio format</li>
+                        <li><a href="/youtube-to-m4a">YouTube to M4A</a> – AAC audio for Apple devices</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
     </main>
-    <footer class="footer">
-        <p>©2025 y2matepro.com</p>
-        <ul class="footer_nav">
-            <li class="fnav-menu">
-                <a href="about-us">About</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="contact">Contact</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="terms-condition">Terms of Service</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="privacy-policy">Privacy Policy</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="youtube-short-downloader">YouTube Shorts Downloader</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="youtube-to-mp3-320kbps-converter">YouTube to MP3 320kbps</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="youtube-to-wav-converter">YouTube to WAV Converter</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="youtube-to-ogg-converter">YouTube to OGG Converter</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="youtube-to-opus-converter">YouTube to Opus Converter</a>
-            </li>
-        </ul>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">ytmp3.my</div>
+            <nav class="footer-nav">
+                <a href="/" class="footer-link">YouTube to MP3</a>
+                <a href="/youtube-to-mp3-320kbps-converter" class="footer-link">YouTube to MP3 320kbps</a>
+                <a href="/youtube-to-wav" class="footer-link">YouTube to WAV</a>
+                <a href="/youtube-to-flac" class="footer-link">YouTube to FLAC</a>
+                <a href="/youtube-to-m4a" class="footer-link">YouTube to M4A</a>
+            </nav>
+            <div class="footer-links">
+                <a href="mailto:contact.ytmp3.my@gmail.com" class="footer-link" rel="nofollow">Contact</a>
+                <a href="/terms-of-use" class="footer-link">Terms of Use</a>
+            </div>
+            <p class="footer-copyright">© 2025 YTMP3.my</p>
+        </div>
     </footer>
 
-    <!-- Conversion Modal Wrapper -->
 </body>
 
 </html>
