@@ -24,16 +24,9 @@ export function sitemapPlugin(config: SitemapConfig = {}): Plugin {
     name: 'vite-plugin-sitemap',
     closeBundle() {
       const distDir = resolve(__dirname, 'dist');
-      // Read HTML files from 11ty output (source of truth for all pages including i18n)
-      const eleventyOutputDir = resolve(__dirname, '_11ty-output');
 
       if (!existsSync(distDir)) {
         console.warn('[sitemap] dist directory not found, skipping sitemap generation');
-        return;
-      }
-
-      if (!existsSync(eleventyOutputDir)) {
-        console.warn('[sitemap] _11ty-output directory not found, skipping sitemap generation');
         return;
       }
 
@@ -52,8 +45,8 @@ export function sitemapPlugin(config: SitemapConfig = {}): Plugin {
         }
       }
 
-      // Collect all HTML files from 11ty output (includes all languages)
-      const htmlFiles = collectHtmlFiles(eleventyOutputDir, eleventyOutputDir);
+      // Collect all HTML files from dist directory (final build output)
+      const htmlFiles = collectHtmlFiles(distDir, distDir);
 
       if (htmlFiles.length === 0) {
         console.warn('[sitemap] No HTML files found in dist directory');
@@ -85,6 +78,11 @@ ${urls.join('\n')}
 }
 
 /**
+ * Files to exclude from sitemap
+ */
+const EXCLUDE_FILES = ['404.html', 'googleebb8aa47a7c7a0b4.html'];
+
+/**
  * Recursively collect all HTML files from a directory
  */
 function collectHtmlFiles(dir: string, baseDir: string): string[] {
@@ -102,6 +100,10 @@ function collectHtmlFiles(dir: string, baseDir: string): string[] {
       }
       files.push(...collectHtmlFiles(fullPath, baseDir));
     } else if (entry.name.endsWith('.html')) {
+      // Skip excluded files (404, verification files, etc.)
+      if (EXCLUDE_FILES.includes(entry.name)) {
+        continue;
+      }
       // Get relative path from dist
       const relativePath = relative(baseDir, fullPath);
       files.push(relativePath);
