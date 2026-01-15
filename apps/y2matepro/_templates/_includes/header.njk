@@ -24,9 +24,9 @@
                     <a href="{{ langPrefix }}/youtube-to-mp3">{{ base.nav.youtubeToMp3 }}</a>
                 </li>
                 <li class="navbar language">
-                    <a href="#language" role="button" aria-haspopup="true" aria-expanded="false">
+                    <button type="button" aria-haspopup="true" aria-expanded="false">
                         {{ base.nav.language }}<span class="shape"></span>
-                    </a>
+                    </button>
                     <div class="dropdown-menu">
                         <ul class="lang-menu">
                             {%- set pageSlug = '' if pageKey == 'index' else pageKey -%}
