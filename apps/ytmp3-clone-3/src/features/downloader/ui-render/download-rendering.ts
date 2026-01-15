@@ -181,7 +181,7 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
   iconElement.textContent = ''; // Clear icon content
   console.log(`%c[DEBUG] Applying new state: ${task.state}`, 'color: yellow;');
 
-  const isMergingPhase = task.state === 'polling' && progress >= 100;
+  const isMergingPhase = task.state === 'processing' && progress >= 100;
 
   // Add appropriate state class based on task state
   switch (task.state) {
@@ -192,15 +192,11 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
 
     case TaskState.PROCESSING:
     case TaskState.DOWNLOADING:
-      statusElement.classList.add('status--processing');
-      iconElement.classList.add('spinner');
-      break;
-
     case TaskState.POLLING:
       statusElement.classList.add('status--processing');
       iconElement.classList.add('spinner');
       if (isMergingPhase) {
-        iconElement.classList.add('active');
+        iconElement.classList.add('active'); // Show spinner during merging (progress = 100%)
       }
       break;
 
