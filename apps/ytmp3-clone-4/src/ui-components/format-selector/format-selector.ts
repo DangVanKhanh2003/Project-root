@@ -38,11 +38,11 @@ export function renderFormatSelectorToForm(): void {
 
   // Get state from localStorage (already loaded by initializeFormatSelector)
   const state = getState();
-  const { selectedFormat, videoQuality } = state;
+  const { selectedFormat, audioFormat, audioBitrate } = state;
 
-  // HTML defaults: MP4, 720p
+  // HTML defaults: MP3, 128kbps
   // Only update if state differs from defaults
-  if (selectedFormat !== 'mp4' || videoQuality !== '720p') {
+  if (selectedFormat !== 'mp3' || audioFormat !== 'mp3' || audioBitrate !== '128') {
     updateFormatSelectorUI(state);
   }
 

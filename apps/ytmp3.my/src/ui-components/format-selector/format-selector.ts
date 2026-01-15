@@ -28,7 +28,7 @@ import { t } from '@downloader/i18n';
  *
  * Flow:
  * 1. initializeFormatSelector() - Loads state from localStorage or page defaults
- * 2. renderFormatSelectorToForm() - Only updates if localStorage exists, otherwise keeps HTML default
+ * 2. renderFormatSelectorToForm() - Sets data-format attribute, CSS handles visibility
  * 3. User sees FormatSelector immediately with correct values (no layout shift)
  */
 export function renderFormatSelectorToForm(): void {
@@ -40,21 +40,9 @@ export function renderFormatSelectorToForm(): void {
 
   const state = getState();
 
-  // Only update HTML if user has stored preferences in localStorage
-  // Otherwise, keep the HTML default values (no JS modification needed)
-  if (state.hasUserSelectedFormat) {
-    // Update format button states
-    updateFormatButtonState(container, state.selectedFormat);
-
-    // HTML default is MP3. If user selected MP4, we need to replace dropdown options
-    // (not just set value, because MP4 options don't exist in HTML)
-    if (state.selectedFormat === 'mp4') {
-      replaceDropdownOptions(container, 'mp4');
-    } else {
-      // For audio formats, just update the selected value
-      updateDropdownSelectedValue(container, state);
-    }
-  }
+  // Set data-format attribute on <html> - CSS handles visibility
+  // Inline script in <head> already set this from localStorage, but ensure consistency
+  document.documentElement.dataset.format = state.selectedFormat;
 
   // Always initialize event listeners
   initFormatSelector('#format-selector-container');
@@ -307,19 +295,13 @@ function handleQualityChange(event: Event): void {
 
 /**
  * Handle format change (MP3 ↔ MP4)
- * Updates button state and replaces dropdown options
+ * Updates data-format attribute on <html> - CSS handles visibility
  */
 function handleFormatChange(format: FormatType): void {
   setSelectedFormat(format);
 
-  const container = document.getElementById('format-selector-container');
-  if (!container) return;
-
-  // Update button states
-  updateFormatButtonState(container, format);
-
-  // Replace dropdown with appropriate options (audio vs video)
-  replaceDropdownOptions(container, format);
+  // Update data-format attribute on <html> - CSS handles button active state and dropdown visibility
+  document.documentElement.dataset.format = format;
 }
 
 /**

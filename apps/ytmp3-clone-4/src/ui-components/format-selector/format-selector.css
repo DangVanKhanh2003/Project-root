@@ -8,34 +8,34 @@
    Prevents FOUC by using CSS instead of JS
    ========================================== */
 
-/* Default state (no data-format or mp4): MP4 active */
-.format-btn[data-format="mp4"] {
+/* Default state (no data-format or mp3): MP3 active */
+.format-btn[data-format="mp3"] {
   background: #000000;
   color: white !important;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
   transform: translateY(-1px);
 }
 
-.quality-select--mp3 { display: none; }
-.quality-select--mp4 { display: block; }
+.quality-select--mp3 { display: block; }
+.quality-select--mp4 { display: none; }
 
-/* When data-format="mp3": MP3 active, MP4 inactive */
-html[data-format="mp3"] .format-btn[data-format="mp4"] {
+/* When data-format="mp4": MP4 active, MP3 inactive */
+html[data-format="mp4"] .format-btn[data-format="mp3"] {
   background: transparent;
   color: var(--text-muted, var(--color-gray-550)) !important;
   box-shadow: none;
   transform: none;
 }
 
-html[data-format="mp3"] .format-btn[data-format="mp3"] {
+html[data-format="mp4"] .format-btn[data-format="mp4"] {
   background: #000000;
   color: white !important;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
   transform: translateY(-1px);
 }
 
-html[data-format="mp3"] .quality-select--mp4 { display: none; }
-html[data-format="mp3"] .quality-select--mp3 { display: block; }
+html[data-format="mp4"] .quality-select--mp3 { display: none; }
+html[data-format="mp4"] .quality-select--mp4 { display: block; }
 
 /* ==========================================
    End Critical section
