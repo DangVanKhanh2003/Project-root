@@ -1,0 +1,44 @@
+{
+  "seo": {
+    "title": "Fast YouTube to M4A Converter | YTMP3",
+    "description": "YTMP3 provides a free YouTube to M4A converter. High-quality AAC audio, better than MP3 at same bitrate. Works on Windows, macOS, Android, and iOS."
+  },
+  "hero": {
+    "title": "YouTube to",
+    "titleAccent": "M4A",
+    "subtitle": "Free & fast YouTube to M4A converter"
+  },
+  "content": {
+    "mainTitle": "YouTube to M4A Converter – High Quality AAC Audio",
+    "intro1": "YTMP3 provides a free YouTube to M4A converter that extracts <strong>high-quality AAC audio</strong> from YouTube videos.",
+    "intro2": "M4A format offers better audio quality than MP3 at the same bitrate, making it ideal for Apple devices and modern audio players.",
+    "whatIsTitle": "What Is M4A Format?",
+    "whatIsText": "M4A is an audio container format using AAC (Advanced Audio Coding) compression. Developed by Apple, M4A provides superior audio quality compared to MP3 at equivalent bitrates, and is the default format for iTunes and Apple Music."
+  },
+  "whyChoose": {
+    "title": "Why Choose M4A?",
+    "reasons": [
+      { "title": "Better Quality Than MP3", "text": "AAC compression delivers clearer audio at same file size." },
+      { "title": "Apple Optimized", "text": "Native support on iPhone, iPad, Mac, and Apple Music." },
+      { "title": "Smaller File Size", "text": "More efficient compression than MP3." },
+      { "title": "Wide Compatibility", "text": "Supported by most modern devices and players." }
+    ]
+  },
+  "instructions": {
+    "title": "How to Convert YouTube to M4A",
+    "steps": [
+      "Copy the YouTube video URL.",
+      "Paste it into YTMP3.",
+      "Select M4A as the output format.",
+      "Click Convert and download your M4A file."
+    ]
+  },
+  "faqs": {
+    "title": "Frequently Asked Questions",
+    "items": [
+      { "question": "Is M4A better than MP3?", "answer": "Yes, M4A (AAC) provides better audio quality than MP3 at the same bitrate due to more efficient compression." },
+      { "question": "Can Android phones play M4A?", "answer": "Yes, Android has supported M4A playback since version 3.1." },
+      { "question": "Is the M4A converter free?", "answer": "Yes, completely free with no registration required." }
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About"
+  },
+  "hero": {
+    "placeholder": "Paste YouTube link here...",
+    "pasteButton": "Paste",
+    "clearButton": "Clear",
+    "convertButton": "Convert"
+  },
+  "drawer": {
+    "mp3320": "YouTube to MP3 320kbps",
+    "wav": "YouTube to WAV",
+    "flac": "YouTube to FLAC",
+    "m4a": "YouTube to M4A"
+  },
+  "footer": {
+    "ytToMp3": "YouTube to MP3",
+    "ytToMp3320": "YouTube to MP3 320kbps",
+    "ytToWav": "YouTube to WAV",
+    "ytToFlac": "YouTube to FLAC",
+    "ytToM4a": "YouTube to M4A",
+    "contact": "Contact",
+    "terms": "Terms of Use",
+    "copyright": "© 2025 YTMP3.my"
+  }
+}

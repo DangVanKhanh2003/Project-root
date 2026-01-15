@@ -1,0 +1,21 @@
+{%- set langPrefix = '' if (lang == 'en' or not lang) else '/' + lang -%}
+{%- set homeUrl = '/' if (lang == 'en' or not lang) else '/' + lang + '/' -%}
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-container">
+        <div class="footer-logo">ytmp3.my</div>
+        <nav class="footer-nav">
+            <a href="{{ homeUrl }}" class="footer-link">{{ base.footer.ytToMp3 }}</a>
+            <a href="{{ langPrefix }}/youtube-to-mp3-320kbps-converter" class="footer-link">{{ base.footer.ytToMp3320 }}</a>
+            <a href="{{ langPrefix }}/youtube-to-wav-converter" class="footer-link">{{ base.footer.ytToWav }}</a>
+            <a href="{{ langPrefix }}/youtube-to-flac-converter" class="footer-link">{{ base.footer.ytToFlac }}</a>
+            <a href="{{ langPrefix }}/youtube-to-m4a-converter" class="footer-link">{{ base.footer.ytToM4a }}</a>
+        </nav>
+        <div class="footer-links">
+            <a href="mailto:contact.ytmp3.my@gmail.com" class="footer-link" rel="nofollow">{{ base.footer.contact }}</a>
+            <a href="/terms-of-use" class="footer-link">{{ base.footer.terms }}</a>
+        </div>
+        <p class="footer-copyright">{{ base.footer.copyright }}</p>
+    </div>
+</footer>

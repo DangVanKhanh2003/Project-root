@@ -1,0 +1,44 @@
+{
+  "seo": {
+    "title": "Chuyển đổi YouTube sang M4A nhanh | YTMP3",
+    "description": "YTMP3 cung cấp công cụ chuyển đổi YouTube sang M4A miễn phí. Âm thanh AAC chất lượng cao, tốt hơn MP3 cùng bitrate. Hoạt động trên Windows, macOS, Android và iOS."
+  },
+  "hero": {
+    "title": "YouTube sang",
+    "titleAccent": "M4A",
+    "subtitle": "Chuyển đổi YouTube sang M4A miễn phí & nhanh"
+  },
+  "content": {
+    "mainTitle": "Chuyển đổi YouTube sang M4A – Âm thanh AAC chất lượng cao",
+    "intro1": "YTMP3 cung cấp công cụ chuyển đổi YouTube sang M4A miễn phí, trích xuất <strong>âm thanh AAC chất lượng cao</strong> từ video YouTube.",
+    "intro2": "Định dạng M4A cho chất lượng âm thanh tốt hơn MP3 ở cùng bitrate, lý tưởng cho thiết bị Apple và trình phát âm thanh hiện đại.",
+    "whatIsTitle": "Định dạng M4A là gì?",
+    "whatIsText": "M4A là định dạng container âm thanh sử dụng nén AAC (Advanced Audio Coding). Được phát triển bởi Apple, M4A cung cấp chất lượng âm thanh vượt trội so với MP3 ở bitrate tương đương, và là định dạng mặc định cho iTunes và Apple Music."
+  },
+  "whyChoose": {
+    "title": "Tại sao chọn M4A?",
+    "reasons": [
+      { "title": "Chất lượng tốt hơn MP3", "text": "Nén AAC cho âm thanh rõ hơn ở cùng kích thước file." },
+      { "title": "Tối ưu cho Apple", "text": "Hỗ trợ tự nhiên trên iPhone, iPad, Mac và Apple Music." },
+      { "title": "Kích thước file nhỏ hơn", "text": "Nén hiệu quả hơn MP3." },
+      { "title": "Tương thích rộng rãi", "text": "Được hỗ trợ bởi hầu hết thiết bị và trình phát hiện đại." }
+    ]
+  },
+  "instructions": {
+    "title": "Cách chuyển đổi YouTube sang M4A",
+    "steps": [
+      "Sao chép URL video YouTube.",
+      "Dán vào YTMP3.",
+      "Chọn M4A làm định dạng đầu ra.",
+      "Nhấn Chuyển đổi và tải xuống file M4A."
+    ]
+  },
+  "faqs": {
+    "title": "Câu hỏi thường gặp",
+    "items": [
+      { "question": "M4A có tốt hơn MP3 không?", "answer": "Có, M4A (AAC) cho chất lượng âm thanh tốt hơn MP3 ở cùng bitrate nhờ nén hiệu quả hơn." },
+      { "question": "Điện thoại Android có phát được M4A không?", "answer": "Có, Android đã hỗ trợ phát M4A từ phiên bản 3.1." },
+      { "question": "Công cụ chuyển đổi M4A có miễn phí không?", "answer": "Có, hoàn toàn miễn phí không cần đăng ký." }
+    ]
+  }
+}

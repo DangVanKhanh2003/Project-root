@@ -1,0 +1,44 @@
+{
+  "seo": {
+    "title": "Fast YouTube to WAV Converter | YTMP3",
+    "description": "Download high-quality WAV audio from YouTube fast. Supports lossless output, YouTube Shorts, no ads, no popups. Completely free and easy to use."
+  },
+  "hero": {
+    "title": "YouTube to",
+    "titleAccent": "WAV",
+    "subtitle": "Free & fast YouTube to WAV lossless converter"
+  },
+  "content": {
+    "mainTitle": "YouTube to WAV Converter – Lossless Audio",
+    "intro1": "YTMP3 provides a fast and free YouTube to WAV converter that extracts <strong>uncompressed lossless audio</strong> from YouTube videos.",
+    "intro2": "WAV format preserves the original audio quality without any compression, making it ideal for professional audio editing, music production, and archival purposes.",
+    "whatIsTitle": "What Is WAV Format?",
+    "whatIsText": "WAV (Waveform Audio File Format) is an uncompressed audio format that stores audio data without any quality loss. Unlike MP3 or M4A, WAV files contain raw audio data, resulting in larger file sizes but perfect audio fidelity."
+  },
+  "whyChoose": {
+    "title": "Why Choose WAV?",
+    "reasons": [
+      { "title": "Uncompressed Quality", "text": "No audio data is lost during conversion." },
+      { "title": "Professional Standard", "text": "Widely used in music production and audio editing." },
+      { "title": "Maximum Fidelity", "text": "Preserves every detail of the original audio." },
+      { "title": "Universal Compatibility", "text": "Supported by virtually all audio software and players." }
+    ]
+  },
+  "instructions": {
+    "title": "How to Convert YouTube to WAV",
+    "steps": [
+      "Copy the YouTube video URL.",
+      "Paste it into YTMP3.",
+      "Select WAV as the output format.",
+      "Click Convert and download your WAV file."
+    ]
+  },
+  "faqs": {
+    "title": "Frequently Asked Questions",
+    "items": [
+      { "question": "Is WAV better than MP3?", "answer": "WAV provides better audio quality as it's uncompressed, but files are much larger. Choose WAV for professional use or MP3 for everyday listening." },
+      { "question": "Can I convert long videos to WAV?", "answer": "Yes. YTMP3 supports videos of any length." },
+      { "question": "Is the WAV converter free?", "answer": "Yes, completely free with no registration required." }
+    ]
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "seo": {
+    "title": "Chuyển đổi YouTube sang WAV nhanh | YTMP3",
+    "description": "Tải xuống âm thanh WAV chất lượng cao từ YouTube nhanh chóng. Hỗ trợ đầu ra lossless, YouTube Shorts, không quảng cáo. Hoàn toàn miễn phí."
+  },
+  "hero": {
+    "title": "YouTube sang",
+    "titleAccent": "WAV",
+    "subtitle": "Chuyển đổi YouTube sang WAV lossless miễn phí & nhanh"
+  },
+  "content": {
+    "mainTitle": "Chuyển đổi YouTube sang WAV – Âm thanh Lossless",
+    "intro1": "YTMP3 cung cấp công cụ chuyển đổi YouTube sang WAV nhanh và miễn phí, trích xuất <strong>âm thanh lossless không nén</strong> từ video YouTube.",
+    "intro2": "Định dạng WAV giữ nguyên chất lượng âm thanh gốc không nén, lý tưởng cho chỉnh sửa âm thanh chuyên nghiệp, sản xuất nhạc và lưu trữ.",
+    "whatIsTitle": "Định dạng WAV là gì?",
+    "whatIsText": "WAV (Waveform Audio File Format) là định dạng âm thanh không nén, lưu trữ dữ liệu âm thanh không mất chất lượng. Khác với MP3 hay M4A, file WAV chứa dữ liệu âm thanh thô, kích thước file lớn hơn nhưng độ trung thực âm thanh hoàn hảo."
+  },
+  "whyChoose": {
+    "title": "Tại sao chọn WAV?",
+    "reasons": [
+      { "title": "Chất lượng không nén", "text": "Không mất dữ liệu âm thanh khi chuyển đổi." },
+      { "title": "Tiêu chuẩn chuyên nghiệp", "text": "Được sử dụng rộng rãi trong sản xuất nhạc và chỉnh sửa âm thanh." },
+      { "title": "Độ trung thực tối đa", "text": "Giữ nguyên mọi chi tiết của âm thanh gốc." },
+      { "title": "Tương thích phổ biến", "text": "Được hỗ trợ bởi hầu hết phần mềm và trình phát âm thanh." }
+    ]
+  },
+  "instructions": {
+    "title": "Cách chuyển đổi YouTube sang WAV",
+    "steps": [
+      "Sao chép URL video YouTube.",
+      "Dán vào YTMP3.",
+      "Chọn WAV làm định dạng đầu ra.",
+      "Nhấn Chuyển đổi và tải xuống file WAV."
+    ]
+  },
+  "faqs": {
+    "title": "Câu hỏi thường gặp",
+    "items": [
+      { "question": "WAV có tốt hơn MP3 không?", "answer": "WAV cho chất lượng âm thanh tốt hơn vì không nén, nhưng file lớn hơn nhiều. Chọn WAV cho sử dụng chuyên nghiệp hoặc MP3 để nghe hàng ngày." },
+      { "question": "Tôi có thể chuyển đổi video dài sang WAV không?", "answer": "Có. YTMP3 hỗ trợ video với mọi độ dài." },
+      { "question": "Công cụ chuyển đổi WAV có miễn phí không?", "answer": "Có, hoàn toàn miễn phí không cần đăng ký." }
+    ]
+  }
+}

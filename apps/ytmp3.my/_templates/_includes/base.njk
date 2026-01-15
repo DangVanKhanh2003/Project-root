@@ -1,0 +1,99 @@
+{%- set base = i18nBase[lang] or i18nBase['en'] -%}
+{%- set pageData = i18nPages[pageKey or 'index'][lang or 'en'] -%}
+{%- set seo = pageData.seo -%}
+{#- Language-specific configs for multilingual SEO -#}
+{%- set localeMap = {
+  en: 'en_US',
+  ar: 'ar_SA',
+  bn: 'bn_BD',
+  de: 'de_DE',
+  es: 'es_ES',
+  fr: 'fr_FR',
+  hi: 'hi_IN',
+  id: 'id_ID',
+  it: 'it_IT',
+  ja: 'ja_JP',
+  ko: 'ko_KR',
+  ms: 'ms_MY',
+  my: 'my_MM',
+  pt: 'pt_BR',
+  ru: 'ru_RU',
+  th: 'th_TH',
+  tr: 'tr_TR',
+  ur: 'ur_PK',
+  vi: 'vi_VN'
+} -%}
+{%- set locale = localeMap[lang] or 'en_US' -%}
+{#- RTL languages -#}
+{%- set rtlLanguages = ['ar', 'ur'] -%}
+<!DOCTYPE html>
+<html lang="{{ lang or 'en' }}"{% if lang in rtlLanguages %} dir="rtl"{% endif %}>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+
+    <!-- SEO Metadata -->
+    <title>{{ seo.title }}</title>
+    <meta name="description" content="{{ seo.description }}">
+    {% set cleanUrl = page.url | replace('/index.html', '/') | replace('.html', '') %}
+    <link rel="canonical" href="{{ site.url }}{{ cleanUrl }}">
+
+    <!-- hreflang tags for multilingual SEO -->
+    {%- set pageSlug = '' if pageKey == 'index' else pageKey -%}
+    {%- for langItem in site.languages %}
+    {%- if langItem.isDefault %}
+    {%- set altUrl = '/' if pageSlug == '' else '/' + pageSlug + '-converter' %}
+    {%- else %}
+    {%- set altUrl = '/' + langItem.code + '/' if pageSlug == '' else '/' + langItem.code + '/' + pageSlug + '-converter' %}
+    {%- endif %}
+    <link rel="alternate" hreflang="{{ langItem.code }}" href="{{ site.url }}{{ altUrl }}" />
+    {%- endfor %}
+    <link rel="alternate" hreflang="x-default" href="{{ site.url }}{{ '/' if pageSlug == '' else '/' + pageSlug + '-converter' }}" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="YTMP3.my">
+    <meta property="og:locale" content="{{ locale }}">
+    <meta property="og:title" content="{{ seo.ogTitle or seo.title }}">
+    <meta property="og:description" content="{{ seo.ogDescription or seo.description }}">
+    <meta property="og:image" content="{{ site.url }}/logo.png">
+    <meta property="og:url" content="{{ site.url }}{{ cleanUrl }}">
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="/public/assest/fonts/fonts.css">
+
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <link type="image/png" sizes="16x16" rel="icon" href="/favicon1616.png">
+    <link type="image/png" sizes="32x32" rel="icon" href="/favicon3232.png">
+    <link type="image/png" sizes="48x48" rel="icon" href="/favicon4848.png">
+    <link type="image/png" sizes="96x96" rel="icon" href="/favicon9696.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+    <!-- Critical: Read format preference before render to prevent FOUC -->
+    <script>
+      (function(){var f='mp3';try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p&&p.selectedFormat)f=p.selectedFormat}catch(e){}document.documentElement.dataset.format=f;document.write('<style>html[data-format="mp3"] .quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4{display:block!important}</style>')})()
+    </script>
+
+    <!-- TypeScript Module -->
+    <script type="module" src="/src/main.ts"></script>
+
+    <!-- JSON-LD Structured Data -->
+    {% include "json-ld.njk" %}
+</head>
+
+<body class="bg-tech-grid">
+    {% include "header.njk" %}
+    {% include "mobile-drawer.njk" %}
+
+    <main>
+        {{ content | safe }}
+    </main>
+
+    {% include "footer.njk" %}
+</body>
+
+</html>

@@ -1,0 +1,27 @@
+{%- set homeUrl = '/' if (lang == 'en' or not lang) else '/' + lang + '/' -%}
+{%- set langPrefix = '' if (lang == 'en' or not lang) else '/' + lang -%}
+
+<!-- MOBILE DRAWER -->
+<div id="mobile-drawer" class="mobile-drawer">
+    <div id="mobile-drawer-content" class="drawer-content">
+        <div class="drawer-header">
+            <span class="drawer-logo">ytmp3.my</span>
+            <button id="close-drawer-btn" class="close-drawer-btn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+            </button>
+        </div>
+        <div class="drawer-menu">
+            <a href="{{ langPrefix }}/youtube-to-mp3-320kbps-converter" class="drawer-sublink">{{ base.drawer.mp3320 }}</a>
+            <a href="{{ langPrefix }}/youtube-to-wav-converter" class="drawer-sublink">{{ base.drawer.wav }}</a>
+            <a href="{{ langPrefix }}/youtube-to-flac-converter" class="drawer-sublink">{{ base.drawer.flac }}</a>
+            <a href="{{ langPrefix }}/youtube-to-m4a-converter" class="drawer-sublink">{{ base.drawer.m4a }}</a>
+            <div class="drawer-divider"></div>
+            <a href="{{ homeUrl }}" class="drawer-sublink">{{ base.nav.home }}</a>
+            <a href="/about" class="drawer-sublink">{{ base.nav.about }}</a>
+        </div>
+    </div>
+</div>

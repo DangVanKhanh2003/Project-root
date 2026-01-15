@@ -1,0 +1,44 @@
+{
+  "seo": {
+    "title": "Fast YouTube to FLAC – Free Lossless Audio Converter | YTMP3",
+    "description": "Convert YouTube to FLAC lossless audio for free. Preserve original quality with no compression loss. Fast, easy, works on all devices."
+  },
+  "hero": {
+    "title": "YouTube to",
+    "titleAccent": "FLAC",
+    "subtitle": "Free & fast YouTube to FLAC lossless converter"
+  },
+  "content": {
+    "mainTitle": "YouTube to FLAC Converter – Lossless Audio",
+    "intro1": "YTMP3 provides a free YouTube to FLAC converter that extracts <strong>lossless compressed audio</strong> from YouTube videos.",
+    "intro2": "FLAC offers the best of both worlds: lossless audio quality with smaller file sizes than WAV, making it perfect for audiophiles and music collectors.",
+    "whatIsTitle": "What Is FLAC Format?",
+    "whatIsText": "FLAC (Free Lossless Audio Codec) is a compressed audio format that preserves 100% of the original audio quality. Unlike MP3, FLAC doesn't discard any audio data, while still achieving 50-60% compression compared to WAV."
+  },
+  "whyChoose": {
+    "title": "Why Choose FLAC?",
+    "reasons": [
+      { "title": "Lossless Quality", "text": "Preserves original audio without any quality loss." },
+      { "title": "Smaller Than WAV", "text": "50-60% smaller file size while maintaining lossless quality." },
+      { "title": "Audiophile Standard", "text": "Preferred format for high-fidelity music collections." },
+      { "title": "Wide Support", "text": "Supported by most modern audio players and devices." }
+    ]
+  },
+  "instructions": {
+    "title": "How to Convert YouTube to FLAC",
+    "steps": [
+      "Copy the YouTube video URL.",
+      "Paste it into YTMP3.",
+      "Select FLAC as the output format.",
+      "Click Convert and download your FLAC file."
+    ]
+  },
+  "faqs": {
+    "title": "Frequently Asked Questions",
+    "items": [
+      { "question": "Is FLAC better than MP3?", "answer": "Yes, FLAC provides lossless audio quality while MP3 is lossy. FLAC files are larger but sound identical to the original." },
+      { "question": "Can iPhones play FLAC files?", "answer": "Yes, iOS supports FLAC playback natively since iOS 11." },
+      { "question": "Is the FLAC converter free?", "answer": "Yes, completely free with no limits on conversions." }
+    ]
+  }
+}
