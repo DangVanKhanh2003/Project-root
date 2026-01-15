@@ -172,6 +172,8 @@ export const AUDIO_FORMAT = {
   OGG: 'ogg',
   WAV: 'wav',
   OPUS: 'opus',
+  M4A: 'm4a',
+  FLAC: 'flac',
 } as const;
 
 export type AudioFormatType =

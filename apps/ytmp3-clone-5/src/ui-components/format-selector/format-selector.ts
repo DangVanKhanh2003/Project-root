@@ -77,9 +77,14 @@ function renderQualitySelector(): string {
   const { selectedFormat, videoQuality, audioFormat, audioBitrate } = state;
 
   // Get current quality display text
-  const qualityText = selectedFormat === 'mp4'
-    ? videoQuality
-    : `${audioBitrate}kbps`;
+  let qualityText: string;
+  if (selectedFormat === 'mp4') {
+    qualityText = videoQuality;
+  } else if (audioFormat === 'mp3' && audioBitrate) {
+    qualityText = `${audioBitrate}kbps`;
+  } else {
+    qualityText = audioFormat ? audioFormat.toUpperCase() : '128kbps';
+  }
 
   return `
     <button type="button" class="settings-btn" id="settingsBtn" title="Quality: ${qualityText}">
@@ -121,16 +126,28 @@ function renderQualityOptions(
       `;
     }).join('');
   } else {
+    // Build audio quality options - MP3 has bitrate suffix, others don't
     const audioOptions = [
-      { value: 'mp3-128', label: 'MP3 128kbps', format: 'mp3', bitrate: '128' },
-      { value: 'mp3-256', label: 'MP3 256kbps', format: 'mp3', bitrate: '256' },
-      { value: 'ogg-128', label: 'OGG', format: 'ogg', bitrate: '128' },
-      { value: 'wav-128', label: 'WAV Lossless', format: 'wav', bitrate: '128' },
-      { value: 'opus-128', label: 'Opus', format: 'opus', bitrate: '128' },
-      { value: 'm4a-192', label: 'M4A', format: 'm4a', bitrate: '192' },
+      { value: 'mp3-320', label: 'MP3 320kbps' },
+      { value: 'mp3-192', label: 'MP3 192kbps' },
+      { value: 'mp3-128', label: 'MP3 128kbps' },
+      { value: 'mp3-64', label: 'MP3 64kbps' },
+      { value: 'flac', label: 'FLAC Lossless' },
+      { value: 'wav', label: 'WAV Lossless' },
+      { value: 'm4a', label: 'M4A' },
+      { value: 'opus', label: 'Opus' },
+      { value: 'ogg', label: 'OGG' },
     ];
 
-    const currentValue = `${audioFormat}-${audioBitrate}`;
+    // Determine current value: MP3 has bitrate suffix, others don't
+    let currentValue: string;
+    if (audioFormat === 'mp3' && audioBitrate) {
+      currentValue = `mp3-${audioBitrate}`;
+    } else if (audioFormat) {
+      currentValue = audioFormat;
+    } else {
+      currentValue = 'mp3-128';
+    }
 
     return audioOptions.map(option => {
       const isSelected = option.value === currentValue;
@@ -224,13 +241,18 @@ function initQualitySelector(): void {
     if (audioItem) {
       const value = audioItem.dataset.audioQuality;
       if (value) {
-        const [format, bitrate] = value.split('-');
-        if (format && bitrate) {
+        // Audio format: MP3 has "mp3-bitrate", others are just format name
+        if (value.startsWith('mp3-')) {
+          const [format, bitrate] = value.split('-');
           setAudioFormat(format as AudioFormatType);
           setAudioBitrate(bitrate);
-          refreshAll();
-          closeAllDropdowns();
+        } else {
+          // flac, wav, m4a, opus, ogg - no bitrate
+          setAudioFormat(value as AudioFormatType);
+          setAudioBitrate(''); // No bitrate for lossless/other formats
         }
+        refreshAll();
+        closeAllDropdowns();
       }
     }
   });

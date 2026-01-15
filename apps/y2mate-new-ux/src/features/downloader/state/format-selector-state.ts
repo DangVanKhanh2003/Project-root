@@ -19,22 +19,25 @@ const AUTO_SUBMIT_STORAGE_KEY = 'y2mate_auto_submit';
 export const QUALITY_OPTIONS = {
   mp4: [ '1080p', '720p', '480p', '360p', '240p', '144p'],
   mp3: {
-    formats: ['mp3', 'wav', 'm4a', 'opus', 'ogg'] as AudioFormatType[],
-    bitrates: [ '256', '192', '128', '64']
+    formats: ['mp3', 'wav', 'm4a', 'opus', 'ogg', 'flac'] as AudioFormatType[],
+    bitrates: ['320', '192', '128', '64'] // Only for MP3
   }
 } as const;
 
 /**
  * Page-specific default values based on URL
  * Maps page URL patterns to default format/quality
+ * Note: audioBitrate is only used for MP3, empty for other formats
  */
 const PAGE_DEFAULTS: Record<string, { format: FormatType; videoQuality?: string; audioFormat?: AudioFormatType; audioBitrate?: string }> = {
   'youtube-to-mp3': { format: 'mp3', audioFormat: 'mp3', audioBitrate: '128' },
   'youtube-to-mp4': { format: 'mp4', videoQuality: '720p' },
-  'youtube-to-wav-converter': { format: 'mp3', audioFormat: 'wav', audioBitrate: '128' },
-  'youtube-to-m4a-converter': { format: 'mp3', audioFormat: 'm4a', audioBitrate: '192' },
-  'youtube-to-opus-converter': { format: 'mp3', audioFormat: 'opus', audioBitrate: '128' },
-  'youtube-to-ogg-converter': { format: 'mp3', audioFormat: 'ogg', audioBitrate: '192' },
+  'youtube-to-wav-converter': { format: 'mp3', audioFormat: 'wav', audioBitrate: '' },
+  'youtube-to-m4a-converter': { format: 'mp3', audioFormat: 'm4a', audioBitrate: '' },
+  'youtube-to-opus-converter': { format: 'mp3', audioFormat: 'opus', audioBitrate: '' },
+  'youtube-to-ogg-converter': { format: 'mp3', audioFormat: 'ogg', audioBitrate: '' },
+  'youtube-to-flac-converter': { format: 'mp3', audioFormat: 'flac', audioBitrate: '' },
+  'youtube-to-mp3-320kbps-converter': { format: 'mp3', audioFormat: 'mp3', audioBitrate: '320' },
 };
 
 // ==========================================

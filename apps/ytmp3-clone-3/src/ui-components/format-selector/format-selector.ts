@@ -116,20 +116,28 @@ function renderVideoQualityDropdown(selectedQuality: string): string {
  * Shows combined format + quality options
  */
 function renderAudioQualityDropdown(selectedAudioFormat: AudioFormatType, selectedBitrate: string): string {
-  // Build audio quality options
+  // Build audio quality options - MP3 has bitrate suffix, others don't
   const audioOptions = [
-    { value: 'mp3-128', label: 'MP3 - 128kbps', format: 'mp3', bitrate: '128' },
-    { value: 'mp3-256', label: 'MP3 - 256kbps', format: 'mp3', bitrate: '256' },
-    { value: 'ogg-128', label: 'OGG', format: 'ogg', bitrate: '128' },
-    { value: 'wav-128', label: 'WAV - Lossless', format: 'wav', bitrate: '128' },
-    { value: 'opus-128', label: 'Opus', format: 'opus', bitrate: '128' },
-    { value: 'm4a-192', label: 'M4A', format: 'm4a', bitrate: '192' },
+    { value: 'mp3-320', label: 'MP3 - 320kbps' },
+    { value: 'mp3-192', label: 'MP3 - 192kbps' },
+    { value: 'mp3-128', label: 'MP3 - 128kbps' },
+    { value: 'mp3-64', label: 'MP3 - 64kbps' },
+    { value: 'flac', label: 'FLAC - Lossless' },
+    { value: 'wav', label: 'WAV - Lossless' },
+    { value: 'm4a', label: 'M4A' },
+    { value: 'opus', label: 'Opus' },
+    { value: 'ogg', label: 'OGG' },
   ];
 
-  // Determine selected value
-  const selectedValue = selectedAudioFormat && selectedBitrate
-    ? `${selectedAudioFormat}-${selectedBitrate}`
-    : 'mp3-128'; // Default
+  // Determine selected value: MP3 has bitrate suffix, others don't
+  let selectedValue: string;
+  if (selectedAudioFormat === 'mp3' && selectedBitrate) {
+    selectedValue = `mp3-${selectedBitrate}`;
+  } else if (selectedAudioFormat) {
+    selectedValue = selectedAudioFormat;
+  } else {
+    selectedValue = 'mp3-128'; // Default
+  }
 
   return `
     <div class="quality-dropdown-wrapper">
@@ -204,11 +212,15 @@ function handleQualityChange(event: Event): void {
     const quality = `${value}p`;
     setVideoQuality(quality);
   } else {
-    // MP3 format: value is "format-bitrate" (e.g., "mp3-128")
-    const [format, bitrate] = value.split('-');
-    if (format && bitrate) {
+    // Audio format: MP3 has "mp3-bitrate", others are just format name
+    if (value.startsWith('mp3-')) {
+      const [format, bitrate] = value.split('-');
       setAudioFormat(format as AudioFormatType);
       setAudioBitrate(bitrate);
+    } else {
+      // flac, wav, m4a, opus, ogg - no bitrate
+      setAudioFormat(value as AudioFormatType);
+      setAudioBitrate(''); // No bitrate for lossless/other formats
     }
   }
 }
