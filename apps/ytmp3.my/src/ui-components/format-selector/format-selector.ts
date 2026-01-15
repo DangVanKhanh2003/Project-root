@@ -79,9 +79,15 @@ function updateDropdownSelectedValue(container: HTMLElement, state: ReturnType<t
   let targetValue: string;
 
   if (state.selectedFormat === 'mp4') {
-    // For MP4: value format is "mp4-720" (without 'p')
-    const resolution = state.videoQuality?.replace('p', '') || '720';
-    targetValue = `mp4-${resolution}`;
+    // Check if videoQuality is a format (webm, mkv) or resolution (720p)
+    if (state.videoQuality === 'webm' || state.videoQuality === 'mkv') {
+      // WEBM/MKV: value is just the format name
+      targetValue = state.videoQuality;
+    } else {
+      // MP4: value format is "mp4-720" (without 'p')
+      const resolution = state.videoQuality?.replace('p', '') || '720';
+      targetValue = `mp4-${resolution}`;
+    }
   } else {
     // For audio: MP3 has bitrate suffix, others don't
     if (state.audioFormat === 'mp3') {
