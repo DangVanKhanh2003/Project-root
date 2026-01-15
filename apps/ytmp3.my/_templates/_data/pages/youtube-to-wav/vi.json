@@ -37,6 +37,7 @@
     "title": "Câu hỏi thường gặp",
     "items": [
       { "question": "WAV có tốt hơn MP3 không?", "answer": "WAV cho chất lượng âm thanh tốt hơn vì không nén, nhưng file lớn hơn nhiều. Chọn WAV cho sử dụng chuyên nghiệp hoặc MP3 để nghe hàng ngày." },
+      { "question": "WAV so với FLAC như thế nào?", "answer": "Cả hai đều lossless, nhưng WAV không nén trong khi <a href=\"/youtube-to-flac-converter\">FLAC</a> sử dụng nén. File FLAC nhỏ hơn 40-50% với chất lượng giống hệt. WAV tương thích tốt hơn với phần mềm cũ." },
       { "question": "Tôi có thể chuyển đổi video dài sang WAV không?", "answer": "Có. YTMP3 hỗ trợ video với mọi độ dài." },
       { "question": "Công cụ chuyển đổi WAV có miễn phí không?", "answer": "Có, hoàn toàn miễn phí không cần đăng ký." }
     ]

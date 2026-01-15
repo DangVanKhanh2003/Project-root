@@ -36,7 +36,8 @@
   "faqs": {
     "title": "Frequently Asked Questions",
     "items": [
-      { "question": "Is M4A better than MP3?", "answer": "Yes, M4A (AAC) provides better audio quality than MP3 at the same bitrate due to more efficient compression." },
+      { "question": "Is M4A better than MP3?", "answer": "M4A is a file format using the AAC codec, which was designed as the successor to MP3. AAC delivers better sound quality at the same bitrate, meaning a 256kbps M4A sounds as good as <a href=\"/youtube-to-mp3-320kbps-converter\">320kbps MP3</a> while being smaller in file size." },
+      { "question": "Should I choose M4A or lossless formats like FLAC/WAV?", "answer": "Choose M4A for everyday listening – it offers excellent quality with small file sizes. For archiving or audiophile use, choose <a href=\"/youtube-to-flac-converter\">FLAC</a> (compressed lossless). For uncompressed lossless, use <a href=\"/youtube-to-wav-converter\">WAV</a>." },
       { "question": "Can Android phones play M4A?", "answer": "Yes, Android has supported M4A playback since version 3.1." },
       { "question": "Is the M4A converter free?", "answer": "Yes, completely free with no registration required." }
     ]

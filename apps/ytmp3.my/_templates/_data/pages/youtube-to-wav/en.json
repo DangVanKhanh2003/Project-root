@@ -37,6 +37,7 @@
     "title": "Frequently Asked Questions",
     "items": [
       { "question": "Is WAV better than MP3?", "answer": "WAV provides better audio quality as it's uncompressed, but files are much larger. Choose WAV for professional use or MP3 for everyday listening." },
+      { "question": "How does WAV compare to FLAC?", "answer": "Both are lossless, but WAV is uncompressed while <a href=\"/youtube-to-flac-converter\">FLAC</a> uses compression. FLAC files are 40-50% smaller with identical quality. WAV has better compatibility with older software." },
       { "question": "Can I convert long videos to WAV?", "answer": "Yes. YTMP3 supports videos of any length." },
       { "question": "Is the WAV converter free?", "answer": "Yes, completely free with no registration required." }
     ]

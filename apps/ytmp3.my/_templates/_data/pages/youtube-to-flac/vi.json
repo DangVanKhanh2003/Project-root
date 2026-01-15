@@ -36,8 +36,9 @@
   "faqs": {
     "title": "Câu hỏi thường gặp",
     "items": [
-      { "question": "FLAC có tốt hơn MP3 không?", "answer": "Có, FLAC cung cấp chất lượng âm thanh lossless trong khi MP3 là lossy. File FLAC lớn hơn nhưng âm thanh giống hệt bản gốc." },
-      { "question": "iPhone có phát được file FLAC không?", "answer": "Có, iOS hỗ trợ phát FLAC tự nhiên từ iOS 11." },
+      { "question": "FLAC có tốt hơn MP3 không?", "answer": "Có, về chất lượng. FLAC giữ nguyên 100% âm thanh gốc trong khi MP3 loại bỏ dữ liệu. Tuy nhiên, file FLAC lớn hơn <a href=\"/youtube-to-mp3-320kbps-converter\">MP3 320kbps</a>." },
+      { "question": "Tôi có thể phát file FLAC trên điện thoại không?", "answer": "Có. FLAC được hỗ trợ tự nhiên trên Windows 10, macOS, iOS, Android và hầu hết trình phát âm thanh hiện đại. Để tương thích rộng hơn, hãy xem xét <a href=\"/youtube-to-m4a-converter\">M4A</a>." },
+      { "question": "FLAC nhỏ hơn WAV bao nhiêu?", "answer": "FLAC thường giảm kích thước file 40-50% so với <a href=\"/youtube-to-wav-converter\">WAV</a> không nén trong khi giữ nguyên chất lượng âm thanh." },
       { "question": "Công cụ chuyển đổi FLAC có miễn phí không?", "answer": "Có, hoàn toàn miễn phí không giới hạn số lần chuyển đổi." }
     ]
   }

@@ -44,8 +44,8 @@
       { "question": "Tôi có thể chuyển đổi video YouTube với mọi độ dài không?", "answer": "Có. Không có giới hạn về thời lượng video." },
       { "question": "Mất bao lâu để chuyển đổi video?", "answer": "Tốc độ chuyển đổi phụ thuộc vào độ dài video và kết nối internet, nhưng YTMP3 được thiết kế để chuyển đổi nhanh." },
       { "question": "Tôi có thể chọn chất lượng MP3 320kbps không?", "answer": "Có. Bạn có thể chọn MP3 320kbps để đảm bảo chất lượng MP3 tiêu chuẩn cao nhất." },
-      { "question": "File MP3 tải xuống có hoạt động trên thiết bị của tôi không?", "answer": "Có. MP3 320kbps tương thích phổ biến với điện thoại, tablet, máy tính, hệ thống âm thanh xe hơi và trình phát media." },
-      { "question": "MP3 320kbps có phải lossless không?", "answer": "Không. MP3 là định dạng lossy, nhưng 320kbps là chất lượng MP3 cao nhất và rất gần với nguồn âm thanh gốc. Để có âm thanh lossless thực sự, dùng FLAC." },
+      { "question": "File MP3 tải xuống có hoạt động trên thiết bị của tôi không?", "answer": "Có. MP3 320kbps tương thích phổ biến với điện thoại, tablet, máy tính, hệ thống âm thanh xe hơi và trình phát media. Với thiết bị Apple, <a href=\"/youtube-to-m4a-converter\">M4A</a> cũng là lựa chọn tốt." },
+      { "question": "MP3 320kbps có phải lossless không?", "answer": "Không. MP3 là định dạng lossy, nhưng 320kbps là chất lượng MP3 cao nhất và rất gần với nguồn âm thanh gốc. Để có âm thanh lossless thực sự, dùng <a href=\"/youtube-to-flac-converter\">FLAC</a>. Để lossless không nén, chọn <a href=\"/youtube-to-wav-converter\">WAV</a>." },
       { "question": "Tôi nên làm gì nếu chuyển đổi không bắt đầu?", "answer": "Đảm bảo link video hợp lệ, làm mới trang, và tắt ad-blocker nếu cần." }
     ]
   }

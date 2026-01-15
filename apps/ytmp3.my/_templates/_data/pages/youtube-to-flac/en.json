@@ -36,8 +36,9 @@
   "faqs": {
     "title": "Frequently Asked Questions",
     "items": [
-      { "question": "Is FLAC better than MP3?", "answer": "Yes, FLAC provides lossless audio quality while MP3 is lossy. FLAC files are larger but sound identical to the original." },
-      { "question": "Can iPhones play FLAC files?", "answer": "Yes, iOS supports FLAC playback natively since iOS 11." },
+      { "question": "Is FLAC better than MP3?", "answer": "Yes, for quality. FLAC preserves 100% of the original audio while MP3 discards data. However, FLAC files are larger than <a href=\"/youtube-to-mp3-320kbps-converter\">MP3 320kbps</a>." },
+      { "question": "Can I play FLAC files on my phone?", "answer": "Yes. FLAC is natively supported on Windows 10, macOS, iOS, Android, and most modern audio players. For wider compatibility, consider <a href=\"/youtube-to-m4a-converter\">M4A</a>." },
+      { "question": "How much smaller is FLAC than WAV?", "answer": "FLAC typically reduces file size by 40-50% compared to uncompressed <a href=\"/youtube-to-wav-converter\">WAV</a> while maintaining identical audio quality." },
       { "question": "Is the FLAC converter free?", "answer": "Yes, completely free with no limits on conversions." }
     ]
   }
