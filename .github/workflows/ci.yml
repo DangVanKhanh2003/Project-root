@@ -96,27 +96,27 @@ jobs:
           CHANGED_APPS="[]"
 
           if [[ "${{ steps.filter.outputs.y2matepro }}" == "true" ]]; then
-            CHANGED_APPS=$(echo $CHANGED_APPS | jq '. + ["y2matepro"]')
+            CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["y2matepro"]')
             echo "✅ y2matepro changed"
           fi
           if [[ "${{ steps.filter.outputs.y2mate-new-ux }}" == "true" ]]; then
-            CHANGED_APPS=$(echo $CHANGED_APPS | jq '. + ["y2mate-new-ux"]')
+            CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["y2mate-new-ux"]')
             echo "✅ y2mate-new-ux changed"
           fi
           if [[ "${{ steps.filter.outputs.ytmp3-clone-3 }}" == "true" ]]; then
-            CHANGED_APPS=$(echo $CHANGED_APPS | jq '. + ["ytmp3-clone-3"]')
+            CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["ytmp3-clone-3"]')
             echo "✅ ytmp3-clone-3 changed"
           fi
           if [[ "${{ steps.filter.outputs.ytmp3-clone-4 }}" == "true" ]]; then
-            CHANGED_APPS=$(echo $CHANGED_APPS | jq '. + ["ytmp3-clone-4"]')
+            CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["ytmp3-clone-4"]')
             echo "✅ ytmp3-clone-4 changed"
           fi
           if [[ "${{ steps.filter.outputs.ytmp3-clone-5 }}" == "true" ]]; then
-            CHANGED_APPS=$(echo $CHANGED_APPS | jq '. + ["ytmp3-clone-5"]')
+            CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["ytmp3-clone-5"]')
             echo "✅ ytmp3-clone-5 changed"
           fi
           if [[ "${{ steps.filter.outputs.ytmp3-clone-darkmode-3 }}" == "true" ]]; then
-            CHANGED_APPS=$(echo $CHANGED_APPS | jq '. + ["ytmp3-clone-darkmode-3"]')
+            CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["ytmp3-clone-darkmode-3"]')
             echo "✅ ytmp3-clone-darkmode-3 changed"
           fi
 
