@@ -53,6 +53,10 @@
         gtag('config', 'G-ZWPL9SR6P6');
     </script>
 
+    <!-- Critical: Read format preference before render to prevent FOUC -->
+    <script>
+      (function(){try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p&&p.selectedFormat){document.documentElement.dataset.format=p.selectedFormat}}catch(e){}}())
+    </script>
 
     <!-- Critical CSS imported via Vite -->
     <script type="module" src="/src/main.ts"></script>
@@ -177,24 +181,35 @@
                                 <div class="format-quality-group">
                                     <!-- Format Toggle -->
                                     <button type="button" class="format-toggle-btn" data-toggle-format>
-                                        <span class="toggle-side active" data-format="mp4">
+                                        <span class="toggle-side" data-format="mp4">
                                             <span class="format-label">MP4</span>
                                         </span>
                                         <span class="toggle-side" data-format="mp3">
                                             <span class="format-label">MP3</span>
                                         </span>
                                     </button>
-                                    <!-- Quality Dropdown -->
+                                    <!-- Quality Dropdowns (CSS controls visibility via html[data-format]) -->
                                     <div class="quality-selector">
-                                        <select id="quality-select" class="quality-select" aria-label="Quality selector" data-quality-select>
-                                            <option value="mp4-2160">MP4 - 2160p (4K)</option>
-                                            <option value="mp4-1440">MP4 - 1440p (2K)</option>
-                                            <option value="mp4-1080">MP4 - 1080p</option>
-                                            <option value="mp4-720" selected>MP4 - 720p</option>
-                                            <option value="mp4-480">MP4 - 480p</option>
-                                            <option value="mp4-360">MP4 - 360p</option>
-                                            <option value="webm">WEBM</option>
-                                            <option value="mkv">MKV</option>
+                                        <!-- MP4 Options (default visible) -->
+                                        <select id="quality-select-mp4" class="quality-select quality-select--mp4" aria-label="Video quality" data-quality-select>
+                                            <option value="mp4-1080"> MP4 - 1080p </option>
+                                            <option value="mp4-720" selected> MP4 - 720p </option>
+                                            <option value="mp4-480"> MP4 - 480p </option>
+                                            <option value="mp4-360"> MP4 - 360p </option>
+                                            <option value="mp4-240"> MP4 - 240p </option>
+                                            <option value="mp4-144"> MP4 - 144p </option>
+                                            <option value="webm"> WEBM </option>
+                                            <option value="mkv"> MKV </option>
+                                        </select>
+                                        <!-- MP3 Options (hidden by default) -->
+                                        <select id="quality-select-mp3" class="quality-select quality-select--mp3" aria-label="Audio quality" data-quality-select>
+                                            <option value="mp3-128" selected> MP3 - 128kbps </option>
+                                            <option value="mp3-192"> MP3 - 192kbps </option>
+                                            <option value="mp3-320"> MP3 - 320kbps </option>
+                                            <option value="ogg-128"> OGG </option>
+                                            <option value="wav-128"> WAV - Lossless </option>
+                                            <option value="opus-128"> Opus </option>
+                                            <option value="m4a-192"> M4A </option>
                                         </select>
                                     </div>
                                 </div>
@@ -409,5 +424,10 @@
     </footer>
 
     <!-- Conversion Modal Wrapper -->
+
+    <!-- Set selected dropdown value from localStorage (runs after DOM ready) -->
+    <script>
+      (function(){try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(!p)return;var s=p.selectedFormat==='mp4'?document.getElementById('quality-select-mp4'):document.getElementById('quality-select-mp3');if(!s)return;var v=p.selectedFormat==='mp4'?'mp4-'+(p.videoQuality||'720p').replace('p',''):(p.audioFormat||'mp3')+'-'+(p.audioBitrate||'128');s.value=v}catch(e){}})()
+    </script>
 </body>
 </html>
