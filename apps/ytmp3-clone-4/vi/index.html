@@ -21,6 +21,11 @@
     <link rel="alternate" hreflang="ar" href="https://ytmp3.gg/ar/" />
     <link rel="alternate" hreflang="x-default" href="https://ytmp3.gg/" />
 
+    <!-- Critical: Read format preference before render to prevent FOUC -->
+    <script>
+      (function(){try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p&&p.selectedFormat){document.documentElement.dataset.format=p.selectedFormat;document.documentElement.dataset.quality=p.selectedFormat==='mp4'?(p.videoQuality||'720p'):(p.audioFormat+'-'+(p.audioBitrate||'128'))}}catch(e){}}())
+    </script>
+
     <!-- TypeScript Module -->
     <script type="module" src="/src/main.ts"></script>
 </head>
@@ -231,5 +236,9 @@
         </div>
     </footer>
 
+    <!-- Set selected dropdown value from localStorage (runs after DOM ready) -->
+    <script>
+      (function(){try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(!p)return;var s=p.selectedFormat==='mp4'?document.getElementById('quality-select-mp4'):document.getElementById('quality-select-mp3');if(!s)return;var v;if(p.selectedFormat==='mp4'){var vq=p.videoQuality||'720p';v=(vq==='webm'||vq==='mkv')?vq:'mp4-'+vq.replace('p','')}else{v=(p.audioFormat||'mp3')+'-'+(p.audioBitrate||'128')}s.value=v}catch(e){}})()
+    </script>
 </body>
 </html>

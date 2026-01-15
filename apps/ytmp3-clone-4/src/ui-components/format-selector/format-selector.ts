@@ -4,7 +4,6 @@
  */
 
 import {
-  getState,
   setSelectedFormat,
   setVideoQuality,
   setAudioFormat,
@@ -21,13 +20,10 @@ import {
  * Initialize format selector from static HTML
  * Called once during app initialization
  *
- * IMPORTANT: HTML is already rendered in index.html with default values (MP3, 128kbps).
- * This function only updates the UI if localStorage has different values.
- *
- * Flow:
- * 1. initializeFormatSelector() - Loads state from localStorage or defaults
- * 2. renderFormatSelectorToForm() - Updates UI if state differs from HTML defaults
- * 3. User sees FormatSelector immediately (no layout shift)
+ * HTML inline scripts already handle:
+ * 1. data-format attribute on <html> (head script)
+ * 2. Dropdown values (body script)
+ * TS only needs to attach event listeners
  */
 export function renderFormatSelectorToForm(): void {
   const container = document.getElementById('format-selector-container');
@@ -36,44 +32,8 @@ export function renderFormatSelectorToForm(): void {
     return;
   }
 
-  // Get state from localStorage (already loaded by initializeFormatSelector)
-  const state = getState();
-  const { selectedFormat, audioFormat, audioBitrate } = state;
-
-  // HTML defaults: MP3, 128kbps
-  // Only update if state differs from defaults
-  if (selectedFormat !== 'mp3' || audioFormat !== 'mp3' || audioBitrate !== '128') {
-    updateFormatSelectorUI(state);
-  }
-
-  // Initialize event listeners
+  // HTML inline scripts already set UI - just attach event listeners
   initFormatSelector('#format-selector-container');
-}
-
-/**
- * Update format selector UI to match state
- * Uses data-format attribute on <html> for CSS-based switching (no FOUC)
- */
-function updateFormatSelectorUI(state: ReturnType<typeof getState>): void {
-  const { selectedFormat, videoQuality, audioFormat, audioBitrate } = state;
-
-  // Update data-format attribute on <html> for CSS-based switching
-  document.documentElement.dataset.format = selectedFormat;
-
-  // Update selected value in the appropriate dropdown
-  if (selectedFormat === 'mp4') {
-    const mp4Select = document.getElementById('quality-select-mp4') as HTMLSelectElement;
-    if (mp4Select) {
-      const resolution = videoQuality?.replace('p', '') || '720';
-      mp4Select.value = `mp4-${resolution}`;
-    }
-  } else {
-    const mp3Select = document.getElementById('quality-select-mp3') as HTMLSelectElement;
-    if (mp3Select) {
-      const value = audioFormat === 'mp3' ? `${audioFormat}-${audioBitrate || '128'}` : `${audioFormat}-128`;
-      mp3Select.value = value;
-    }
-  }
 }
 
 // ==========================================

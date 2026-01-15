@@ -38,13 +38,10 @@ export function renderFormatSelectorToForm(): void {
     return;
   }
 
-  const state = getState();
-
-  // Set data-format attribute on <html> - CSS handles visibility
-  // Inline script in <head> already set this from localStorage, but ensure consistency
-  document.documentElement.dataset.format = state.selectedFormat;
-
-  // Always initialize event listeners
+  // HTML inline scripts already set:
+  // 1. data-format attribute on <html> (head script)
+  // 2. Dropdown values (body script)
+  // TS only needs to attach event listeners
   initFormatSelector('#format-selector-container');
 }
 

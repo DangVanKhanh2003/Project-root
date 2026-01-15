@@ -5,7 +5,6 @@
  */
 
 import {
-  getState,
   setSelectedFormat,
   setVideoQuality,
   setAudioFormat,
@@ -36,53 +35,11 @@ export function renderFormatSelectorToForm(): void {
     return;
   }
 
-  // Get state from localStorage (already loaded by initializeFormatSelector)
-  const state = getState();
-  const { selectedFormat, videoQuality } = state;
-
-  // HTML defaults: MP4, 720p
-  // Only update if state differs from defaults
-  if (selectedFormat !== 'mp4' || videoQuality !== '720p') {
-    updateFormatSelectorUI(state);
-  }
-
-  // Sync auto-submit toggle
-  const autoSubmitCheckbox = container.querySelector('#auto-submit-checkbox') as HTMLInputElement;
-  if (autoSubmitCheckbox && autoSubmitCheckbox.checked !== state.autoSubmit) {
-    autoSubmitCheckbox.checked = state.autoSubmit;
-  }
-
-  // Initialize event listeners
+  // HTML inline scripts already set:
+  // 1. data-format attribute on <html> (head script)
+  // 2. Dropdown values + auto-submit checkbox (body script)
+  // TS only needs to attach event listeners
   initFormatSelector('#format-selector-container');
-}
-
-/**
- * Update format selector UI to match state
- * Uses data-format attribute on <html> for CSS-based switching (no FOUC)
- */
-function updateFormatSelectorUI(state: ReturnType<typeof getState>): void {
-  const { selectedFormat, videoQuality, audioFormat, audioBitrate } = state;
-
-  // Update data-format attribute on <html> for CSS-based switching
-  document.documentElement.dataset.format = selectedFormat;
-
-  // Update selected value in the appropriate dropdown
-  if (selectedFormat === 'mp4') {
-    const mp4Select = document.getElementById('quality-select-mp4') as HTMLSelectElement;
-    if (mp4Select) {
-      // webm, mkv don't have prefix - use as-is
-      const isAlternateFormat = videoQuality === 'webm' || videoQuality === 'mkv';
-      const value = isAlternateFormat ? videoQuality : `mp4-${videoQuality?.replace('p', '') || '720'}`;
-      mp4Select.value = value;
-    }
-  } else {
-    const mp3Select = document.getElementById('quality-select-mp3') as HTMLSelectElement;
-    if (mp3Select) {
-      // ogg, opus, wav, flac don't have bitrate suffix - use as-is
-      const value = audioFormat === 'mp3' ? `mp3-${audioBitrate || '128'}` : audioFormat;
-      mp3Select.value = value;
-    }
-  }
 }
 
 // ==========================================

@@ -257,7 +257,7 @@
 
     <!-- Set selected dropdown value from localStorage (runs after DOM ready) -->
     <script>
-      (function(){try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(!p)return;var s=p.selectedFormat==='mp4'?document.getElementById('quality-select-mp4'):document.getElementById('quality-select-mp3');if(!s)return;var v=p.selectedFormat==='mp4'?'mp4-'+(p.videoQuality||'720p').replace('p',''):(p.audioFormat||'mp3')+'-'+(p.audioBitrate||'128');s.value=v}catch(e){}})()
+      (function(){try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(!p)return;var s=p.selectedFormat==='mp4'?document.getElementById('quality-select-mp4'):document.getElementById('quality-select-mp3');if(!s)return;var v;if(p.selectedFormat==='mp4'){var vq=p.videoQuality||'720p';v=(vq==='webm'||vq==='mkv')?vq:'mp4-'+vq.replace('p','')}else{v=(p.audioFormat||'mp3')+'-'+(p.audioBitrate||'128')}s.value=v}catch(e){}})()
     </script>
 </body>
 </html>

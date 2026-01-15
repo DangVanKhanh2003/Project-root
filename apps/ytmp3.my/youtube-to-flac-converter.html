@@ -22,6 +22,11 @@
     <link type="image/png" sizes="96x96" rel="icon" href="/favicon9696.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
+    <!-- Critical: Read format preference before render to prevent FOUC -->
+    <script>
+      (function(){var f='mp3';try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p&&p.selectedFormat)f=p.selectedFormat}catch(e){}document.documentElement.dataset.format=f}())
+    </script>
+
     <!-- TypeScript Module -->
     <script type="module" src="/src/main.ts"></script>
 </head>
@@ -305,6 +310,10 @@
         </div>
     </footer>
 
+    <!-- Set selected dropdown value from localStorage (runs after DOM ready) -->
+    <script>
+      (function(){try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(!p)return;var s=p.selectedFormat==='mp4'?document.getElementById('quality-select-mp4'):document.getElementById('quality-select-mp3');if(!s)return;var v;if(p.selectedFormat==='mp4'){var vq=p.videoQuality||'720p';v=(vq==='webm'||vq==='mkv')?vq:'mp4-'+vq.replace('p','')}else{v=(p.audioFormat||'mp3')+'-'+(p.audioBitrate||'128')}s.value=v}catch(e){}})()
+    </script>
 </body>
 
 </html>
