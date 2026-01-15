@@ -81,15 +81,16 @@ export async function startConversion(params: V3ConversionParams): Promise<void>
       statusUrl: jobResponse.statusUrl,
 
       onProgress: (progress, detail) => {
-        log('Progress:', progress, detail);
+        console.log('[ConvertLogic] 📊 onProgress received:', progress, detail);
         updateConversionTask(formatId, {
           progress,
           statusText: progress < 100 ? 'Processing...' : 'Finalizing...',
         });
+        console.log('[ConvertLogic] 📊 State updated with progress:', progress);
       },
 
       onComplete: (downloadUrl) => {
-        log('Completed! Download URL:', downloadUrl);
+        console.log('[ConvertLogic] ✅ onComplete received, downloadUrl exists');
         updateConversionTask(formatId, {
           state: TaskState.SUCCESS,
           statusText: 'Ready to download',
@@ -98,6 +99,7 @@ export async function startConversion(params: V3ConversionParams): Promise<void>
           filename: generateFilename(videoTitle, extractV2Options),
           completedAt: Date.now(),
         });
+        console.log('[ConvertLogic] ✅ State updated to SUCCESS with progress: 100');
       },
 
       onError: (error) => {

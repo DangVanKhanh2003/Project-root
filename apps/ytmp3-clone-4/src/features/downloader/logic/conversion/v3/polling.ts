@@ -51,6 +51,7 @@ export async function startPolling(options: PollingOptions): Promise<void> {
       switch (status.status) {
         case 'pending':
           // Update progress
+          console.log('[Polling] 📡 pending - progress:', status.progress);
           onProgress(
             status.progress,
             status.detail ? { video: status.detail.video, audio: status.detail.audio } : undefined
@@ -59,8 +60,10 @@ export async function startPolling(options: PollingOptions): Promise<void> {
 
         case 'completed':
           // Success - download URL available
+          console.log('[Polling] 📡 completed - calling onProgress(100) then onComplete');
           if (status.downloadUrl) {
             onProgress(100);
+            console.log('[Polling] 📡 onProgress(100) done, now calling onComplete');
             onComplete(status.downloadUrl);
             return;
           } else {

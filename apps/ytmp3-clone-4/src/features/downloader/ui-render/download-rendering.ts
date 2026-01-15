@@ -62,28 +62,39 @@ export function renderConversionStatus(state: AppState, _prevState?: AppState): 
 
   // Check if SUCCESS or FAILED - hide status bar, show action buttons only
   if (task.state === TaskState.SUCCESS || task.state === TaskState.FAILED) {
+    console.log('[StatusBar] State:', task.state, 'Progress:', task.progress, 'completionState:', statusContainer.dataset.completionState);
+
     // Prevent re-triggering setTimeout if already showing completion state
     if (statusContainer.dataset.completionState === task.state) {
+      console.log('[StatusBar] Already showing completion state, skipping');
       return;
     }
     statusContainer.dataset.completionState = task.state;
 
     // Update status bar UI first (show status text, icons)
+    console.log('[StatusBar] Calling updateStatusBarUI');
     updateStatusBarUI(statusContainer, task, formatId);
 
+    const currentWidth = statusContainer.style.getPropertyValue('--progress-width');
+    console.log('[StatusBar] After updateStatusBarUI, --progress-width:', currentWidth);
+
     if (task.state === TaskState.SUCCESS) {
-      // SUCCESS: Ensure UI shows 100% before hiding
-      // Force set 100% and wait for CSS transition + visible time
-      statusContainer.style.setProperty('--progress-width', '100%');
+      // SUCCESS: Wait for animation to complete before hiding
+      // rAF (~16ms) + CSS transition (200ms) + visible at 100% (100ms) = ~350ms
+      console.log('[StatusBar] SUCCESS - will hide after 350ms');
       setTimeout(() => {
+        console.log('[StatusBar] Hiding now');
         statusContainer.style.display = 'none';
         delete statusContainer.dataset.completionState;
-      }, 400); // 200ms CSS transition + 200ms visible at 100%
+      }, 350);
     }
     // FAILED: Keep showing error, don't hide
 
     return;
   }
+
+  // Log progress updates during polling
+  console.log('[StatusBar] Polling state:', task.state, 'Progress:', task.progress);
 
   // Show status bar for other states (processing, extracting, polling)
   statusContainer.style.display = 'flex';
@@ -173,7 +184,18 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
 
   // Update progress fill background
   const progress = task.progress ?? 0;
-  statusContainer.style.setProperty('--progress-width', `${progress}%`);
+  const currentWidth = statusContainer.style.getPropertyValue('--progress-width') || '0%';
+  console.log('[updateStatusBarUI] 🎨 Setting --progress-width:', `${progress}%`, 'State:', task.state, 'Current:', currentWidth);
+
+  // If jumping from 0% to 100%, use requestAnimationFrame to ensure browser paints 0% first
+  if (progress === 100 && (currentWidth === '0%' || currentWidth === '')) {
+    console.log('[updateStatusBarUI] 🎨 Detected 0% → 100% jump, using rAF for animation');
+    requestAnimationFrame(() => {
+      statusContainer.style.setProperty('--progress-width', `${progress}%`);
+    });
+  } else {
+    statusContainer.style.setProperty('--progress-width', `${progress}%`);
+  }
   // Remove all state classes
   console.log(`%c[DEBUG] Removing classes. Current icon classes: ${Array.from(iconElement.classList).join(' ')}`, 'color: yellow;');
   statusElement.classList.remove('status--extracting', 'status--processing', 'status--success', 'status--error');

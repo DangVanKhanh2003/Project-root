@@ -45,7 +45,9 @@
 }
 
 /* Progress bar fill using ::before pseudo-element */
-.status--processing::before {
+/* Progress bar fill - shown during processing and success states */
+.status--processing::before,
+.status--success::before {
   content: '';
   position: absolute;
   top: 0;
@@ -132,9 +134,7 @@
 }
 
 /* ===== STATUS STATES ===== */
-.status--success .status-text {
-  color: var(--status-success, #2ecc71);
-}
+/* Success: keep normal text color, no change needed */
 
 .status--error .status-text {
   color: var(--status-error, #e74c3c);
