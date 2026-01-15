@@ -74,8 +74,10 @@ export function renderConversionStatus(state: AppState, _prevState?: AppState): 
     if (task.state === TaskState.SUCCESS) {
       // SUCCESS: Wait for animation to complete before hiding
       // 200ms CSS transition + 150ms visible at 100% = 350ms
+      const actionContainer = document.getElementById('action-container');
       setTimeout(() => {
-        statusContainer.style.display = 'none';
+        statusContainer.style.display = 'none';  // Ẩn status trước
+        actionContainer?.classList.add('active'); // Rồi mới hiện button
         delete statusContainer.dataset.completionState;
       }, 350);
     }
@@ -261,8 +263,9 @@ function setupButtonHandlers(formatId: string): void {
     return;
   }
 
-  // Use a flag to prevent duplicate setup
-  if (actionContainer.dataset.handlersAttached === 'true') {
+  // Use a flag to prevent duplicate setup for same formatId
+  // If formatId changed, we need to re-attach handlers with new formatId
+  if (actionContainer.dataset.handlersAttached === 'true' && actionContainer.dataset.formatId === formatId) {
     return;
   }
 
@@ -270,22 +273,30 @@ function setupButtonHandlers(formatId: string): void {
   const retryBtn = document.getElementById('conversion-retry-btn');
   const newConvertBtn = document.getElementById('btn-new-convert');
 
+  // Clone and replace buttons to remove old listeners when formatId changes
   if (downloadBtn) {
-    downloadBtn.addEventListener('click', () => handleDownloadButtonClick(formatId));
-    addRippleEffect(downloadBtn as HTMLElement);
+    const newDownloadBtn = downloadBtn.cloneNode(true) as HTMLElement;
+    downloadBtn.parentNode?.replaceChild(newDownloadBtn, downloadBtn);
+    newDownloadBtn.addEventListener('click', () => handleDownloadButtonClick(formatId));
+    addRippleEffect(newDownloadBtn);
   }
 
   if (retryBtn) {
-    retryBtn.addEventListener('click', () => handleRetryButtonClick(formatId));
-    addRippleEffect(retryBtn as HTMLElement);
+    const newRetryBtn = retryBtn.cloneNode(true) as HTMLElement;
+    retryBtn.parentNode?.replaceChild(newRetryBtn, retryBtn);
+    newRetryBtn.addEventListener('click', () => handleRetryButtonClick(formatId));
+    addRippleEffect(newRetryBtn);
   }
 
   if (newConvertBtn) {
-    newConvertBtn.addEventListener('click', handleNewConvertButtonClick);
-    addRippleEffect(newConvertBtn as HTMLElement);
+    const newNewConvertBtn = newConvertBtn.cloneNode(true) as HTMLElement;
+    newConvertBtn.parentNode?.replaceChild(newNewConvertBtn, newConvertBtn);
+    newNewConvertBtn.addEventListener('click', handleNewConvertButtonClick);
+    addRippleEffect(newNewConvertBtn);
   }
 
   actionContainer.dataset.handlersAttached = 'true';
+  actionContainer.dataset.formatId = formatId;
 }
 
 /**
@@ -303,30 +314,15 @@ async function handleDownloadButtonClick(formatId: string): Promise<void> {
 }
 
 /**
- * Handle retry button click
+ * Handle retry button click - resubmit the URL from scratch
  */
-async function handleRetryButtonClick(formatId: string): Promise<void> {
-  console.log('[renderConversionStatus] Retry button clicked for:', formatId);
+function handleRetryButtonClick(_formatId: string): void {
+  console.log('[renderConversionStatus] Retry button clicked, resubmitting URL');
 
-  const { getState } = await import('../state');
-  const state = getState();
-  const task = state.conversionTasks[formatId];
-
-  if (!task?.formatData) {
-    console.error('[renderConversionStatus] No formatData found for retry');
-    return;
+  const form = document.getElementById('url-form') as HTMLFormElement | null;
+  if (form) {
+    form.requestSubmit();
   }
-
-  const { startConversion } = await import('../logic/conversion');
-  const videoTitle = state.youtubePreview?.title || 'Video';
-  const videoUrl = state.youtubePreview?.url || '';
-
-  await startConversion({
-    formatId,
-    videoUrl,
-    videoTitle,
-    extractV2Options: task.formatData?.extractV2Options || {}
-  });
 }
 
 /**
