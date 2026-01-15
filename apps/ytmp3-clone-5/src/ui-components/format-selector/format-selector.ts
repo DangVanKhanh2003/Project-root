@@ -115,7 +115,7 @@ function renderQualityOptions(
   audioBitrate: string
 ): string {
   if (selectedFormat === 'mp4') {
-    const qualities = QUALITY_OPTIONS.mp4;
+    const qualities = QUALITY_OPTIONS.mp4.qualities;
     return qualities.map(quality => {
       const isSelected = quality === videoQuality;
       return `

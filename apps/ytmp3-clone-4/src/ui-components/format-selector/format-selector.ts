@@ -149,7 +149,7 @@ function renderFormatSelector(): string {
  * Render video quality dropdown (for MP4)
  */
 function renderVideoQualityDropdown(selectedQuality: string): string {
-  const qualities = QUALITY_OPTIONS.mp4;
+  const qualities = QUALITY_OPTIONS.mp4.qualities;
   const defaultQuality = selectedQuality || '720p';
 
   return `
