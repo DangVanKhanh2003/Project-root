@@ -54,9 +54,9 @@
   left: 0;
   height: 100%;
   width: var(--progress-width, 0%);
-  background: rgb(111 198 210 / 35%);
-  border-right: 1px solid rgb(111 198 210 / 60%);
-  box-shadow: 0 0 20px rgb(111 198 210 / 30%);
+  background: #eeeeeed1;
+  border-right: 1px solid #dddddd;
+  box-shadow: none;
   transition: width 0.2s linear;
   z-index: 1;
 }
@@ -77,6 +77,8 @@
 }
 
 .status-text {
+  position: relative;
+  z-index: 2;
   font-size: 14px;
   font-weight: 600;
   color: var(--text-main);
@@ -91,6 +93,8 @@
 
 /* ===== ICON STATES ===== */
 .icon {
+  position: relative;
+  z-index: 2;
   width: 18px;
   height: 18px;
   flex-shrink: 0; /* Prevent icon from shrinking */
