@@ -87,9 +87,9 @@
 .converter-btn {
     display: inline-block;
     font-size: var(--font-size-sm);
-    color: var(--color-bg-white);
+    color: white;
     background: transparent;
-    font-weight: var(--font-weight-normal);
+    font-weight: var(--font-weight-semibold);
     cursor: pointer;
     border: none;
 }
