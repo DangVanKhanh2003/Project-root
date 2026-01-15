@@ -240,16 +240,18 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
   }
 
   // Update action-container visibility
-  if (task.state === TaskState.SUCCESS || task.state === TaskState.FAILED) {
-    // Delay showing buttons to let progress bar fill animation complete (200ms transition + 50ms buffer)
-    setTimeout(() => {
-      actionContainer.classList.add('active');
-    }, 250);
-
+  // Note: For SUCCESS, action-container is shown in renderConversionStatus() after status hides
+  // Here we only handle FAILED state (show immediately) and other states (hide)
+  if (task.state === TaskState.FAILED) {
+    actionContainer.classList.add('active');
     // Cleanup throttle map when task completes (prevent memory leak)
     lastUpdateTimes.delete(formatId);
-  } else {
+  } else if (task.state !== TaskState.SUCCESS) {
+    // Hide for non-terminal states (SUCCESS is handled separately)
     actionContainer.classList.remove('active');
+  } else {
+    // SUCCESS: Cleanup throttle map (action-container handled in renderConversionStatus)
+    lastUpdateTimes.delete(formatId);
   }
 }
 
@@ -319,7 +321,7 @@ async function handleDownloadButtonClick(formatId: string): Promise<void> {
 function handleRetryButtonClick(_formatId: string): void {
   console.log('[renderConversionStatus] Retry button clicked, resubmitting URL');
 
-  const form = document.getElementById('url-form') as HTMLFormElement | null;
+  const form = document.getElementById('downloadForm') as HTMLFormElement | null;
   if (form) {
     form.requestSubmit();
   }
