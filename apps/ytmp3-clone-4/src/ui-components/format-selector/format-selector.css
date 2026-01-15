@@ -3,6 +3,44 @@
  * Mobile-first responsive design
  */
 
+/* ==========================================
+   Critical: Format switching via data-format
+   Prevents FOUC by using CSS instead of JS
+   ========================================== */
+
+/* Default state (no data-format or mp4): MP4 active */
+.format-btn[data-format="mp4"] {
+  background: #000000;
+  color: white !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+  transform: translateY(-1px);
+}
+
+.quality-select--mp3 { display: none; }
+.quality-select--mp4 { display: block; }
+
+/* When data-format="mp3": MP3 active, MP4 inactive */
+html[data-format="mp3"] .format-btn[data-format="mp4"] {
+  background: transparent;
+  color: var(--text-muted, var(--color-gray-550)) !important;
+  box-shadow: none;
+  transform: none;
+}
+
+html[data-format="mp3"] .format-btn[data-format="mp3"] {
+  background: #000000;
+  color: white !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+  transform: translateY(-1px);
+}
+
+html[data-format="mp3"] .quality-select--mp4 { display: none; }
+html[data-format="mp3"] .quality-select--mp3 { display: block; }
+
+/* ==========================================
+   End Critical section
+   ========================================== */
+
 /* Wrapper in input form */
 .format-selector-wrapper {
   margin-top: 8px;
@@ -80,8 +118,9 @@
   transition: all 0.3s;
 }
 
-.toggle-btn.active,
-.format-btn.active {
+/* Note: .format-btn.active is now handled via html[data-format] attribute
+   See "Critical: Format switching" section at the top */
+.toggle-btn.active {
   background: #000000;
   color: white !important;
   box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
@@ -199,7 +238,7 @@
 }
 
 .quality-select {
-  background: var(--bg-card, var(--color-white));
+  background: #e4e4e4c9;
   border: var(--border-glass, 1px solid var(--text-step-num));
   border-radius: var(--radius-md, 12px);
   color: var(--text-main, var(--color-gray-850));

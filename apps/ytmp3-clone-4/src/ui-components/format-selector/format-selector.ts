@@ -9,11 +9,9 @@ import {
   setVideoQuality,
   setAudioFormat,
   setAudioBitrate,
-  QUALITY_OPTIONS,
   type FormatType,
   type AudioFormatType
 } from '../../features/downloader/state';
-import { t } from '@downloader/i18n';
 
 // ==========================================
 // Render Functions
@@ -40,11 +38,11 @@ export function renderFormatSelectorToForm(): void {
 
   // Get state from localStorage (already loaded by initializeFormatSelector)
   const state = getState();
-  const { selectedFormat, videoQuality, audioFormat, audioBitrate } = state;
+  const { selectedFormat, videoQuality } = state;
 
-  // HTML defaults: MP3, mp3-128
+  // HTML defaults: MP4, 720p
   // Only update if state differs from defaults
-  if (selectedFormat !== 'mp3' || audioFormat !== 'mp3' || audioBitrate !== '128') {
+  if (selectedFormat !== 'mp4' || videoQuality !== '720p') {
     updateFormatSelectorUI(state);
   }
 
@@ -54,170 +52,28 @@ export function renderFormatSelectorToForm(): void {
 
 /**
  * Update format selector UI to match state
- * Called when state differs from HTML defaults
+ * Uses data-format attribute on <html> for CSS-based switching (no FOUC)
  */
 function updateFormatSelectorUI(state: ReturnType<typeof getState>): void {
   const { selectedFormat, videoQuality, audioFormat, audioBitrate } = state;
 
-  // Update format buttons
-  const mp3Btn = document.querySelector('.format-btn[data-format="mp3"]');
-  const mp4Btn = document.querySelector('.format-btn[data-format="mp4"]');
+  // Update data-format attribute on <html> for CSS-based switching
+  document.documentElement.dataset.format = selectedFormat;
 
-  if (mp3Btn && mp4Btn) {
-    mp3Btn.classList.toggle('active', selectedFormat === 'mp3');
-    mp4Btn.classList.toggle('active', selectedFormat === 'mp4');
-  }
-
-  // Update quality dropdown based on format
+  // Update selected value in the appropriate dropdown
   if (selectedFormat === 'mp4') {
-    // Switch to MP4 quality options
-    const qualityWrapper = document.querySelector('.quality-wrapper');
-    if (qualityWrapper) {
-      const dropdownWrapper = qualityWrapper.querySelector('.quality-dropdown-wrapper');
-      if (dropdownWrapper) {
-        dropdownWrapper.innerHTML = renderVideoQualityDropdown(videoQuality);
-      } else {
-        // No wrapper, update select directly
-        const select = qualityWrapper.querySelector('.quality-select');
-        if (select) {
-          select.outerHTML = renderVideoQualityDropdown(videoQuality);
-        }
-      }
+    const mp4Select = document.getElementById('quality-select-mp4') as HTMLSelectElement;
+    if (mp4Select) {
+      const resolution = videoQuality?.replace('p', '') || '720';
+      mp4Select.value = `mp4-${resolution}`;
     }
   } else {
-    // MP3 format - just update selected value
-    const select = document.querySelector('.quality-select') as HTMLSelectElement;
-    if (select) {
-      const value = `${audioFormat}-${audioBitrate}`;
-      select.value = value;
+    const mp3Select = document.getElementById('quality-select-mp3') as HTMLSelectElement;
+    if (mp3Select) {
+      const value = audioFormat === 'mp3' ? `${audioFormat}-${audioBitrate || '128'}` : `${audioFormat}-128`;
+      mp3Select.value = value;
     }
   }
-}
-
-/**
- * Render format selector HTML
- * Returns HTML string for the format selector component
- */
-function renderFormatSelector(): string {
-  const state = getState();
-  const { selectedFormat, videoQuality, audioFormat, audioBitrate } = state;
-
-  // Generate quality dropdown HTML based on selected format
-  const qualityDropdownHTML = selectedFormat === 'mp4'
-    ? renderVideoQualityDropdown(videoQuality)
-    : renderAudioQualityDropdown(audioFormat, audioBitrate);
-
-  // Debug: Check language at render time
-  const htmlLang = document.documentElement.getAttribute('lang');
-  const convertText = t('common.buttons.convert');
-  console.log('[FormatSelector] Rendering:', {
-    htmlLang,
-    convertText,
-    timestamp: new Date().toISOString()
-  });
-
-  return `
-    <div class="format-selector">
-      <!-- Format Toggle (Two separate buttons) -->
-      <div class="format-toggle">
-        <button type="button" class="format-btn ${selectedFormat === 'mp3' ? 'active' : ''}" data-format="mp3">MP3</button>
-        <button type="button" class="format-btn ${selectedFormat === 'mp4' ? 'active' : ''}" data-format="mp4">MP4</button>
-      </div>
-
-      <!-- Quality Dropdown (Dynamic based on format) -->
-      <div class="quality-wrapper">
-        <!-- Quality icon for mobile -->
-        <div class="quality-icon-mobile">
-          <img src="/assest/icons/quality-choose-icon.png" alt="Quality" width="20" height="20" />
-        </div>
-        ${qualityDropdownHTML}
-        <div class="select-arrow">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-        </div>
-      </div>
-
-      <!-- Convert Button -->
-      <button type="submit" class="btn-convert">
-        <span>${convertText}</span>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-      </button>
-    </div>
-  `;
-}
-
-/**
- * Render video quality dropdown (for MP4)
- * Shows MP4 with all resolutions + WEBM and MKV options
- */
-function renderVideoQualityDropdown(selectedQuality: string): string {
-  const qualities = QUALITY_OPTIONS.mp4.qualities;
-  const formats = QUALITY_OPTIONS.mp4.formats;
-  const defaultQuality = selectedQuality || '720p';
-
-  // Build video options: MP4 with all qualities, then WEBM and MKV without quality
-  const videoOptions: { value: string; label: string }[] = [];
-
-  // MP4 with all quality options
-  qualities.forEach(quality => {
-    const resolution = quality.replace('p', '');
-    videoOptions.push({ value: `mp4-${resolution}`, label: `MP4 - ${quality}` });
-  });
-
-  // WEBM and MKV without quality suffix
-  formats.forEach(format => {
-    if (format !== 'mp4') {
-      videoOptions.push({ value: format, label: format.toUpperCase() });
-    }
-  });
-
-  return `
-    <select id="quality-select" class="quality-select" aria-label="${t('aria.qualitySelector')}" data-quality-select>
-      ${videoOptions.map(option => {
-        const isSelected = option.value === `mp4-${defaultQuality.replace('p', '')}` || option.value === defaultQuality;
-        return `<option value="${option.value}"${isSelected ? ' selected' : ''}> ${option.label} </option>`;
-      }).join('')}
-    </select>
-  `;
-}
-
-/**
- * Render audio quality dropdown (for MP3)
- * Shows combined format + quality options
- */
-function renderAudioQualityDropdown(selectedAudioFormat: AudioFormatType, selectedBitrate: string): string {
-  // Build audio quality options - MP3 has bitrate suffix, others don't
-  const audioOptions = [
-    { value: 'mp3-320', label: 'MP3 - 320kbps' },
-    { value: 'mp3-192', label: 'MP3 - 192kbps' },
-    { value: 'mp3-128', label: 'MP3 - 128kbps' },
-    { value: 'mp3-64', label: 'MP3 - 64kbps' },
-    { value: 'flac', label: 'FLAC - Lossless' },
-    { value: 'wav', label: 'WAV - Lossless' },
-    { value: 'm4a', label: 'M4A' },
-    { value: 'opus', label: 'Opus' },
-    { value: 'ogg', label: 'OGG' },
-  ];
-
-  // Determine selected value: MP3 has bitrate suffix, others don't
-  let selectedValue: string;
-  if (selectedAudioFormat === 'mp3' && selectedBitrate) {
-    selectedValue = `mp3-${selectedBitrate}`;
-  } else if (selectedAudioFormat) {
-    selectedValue = selectedAudioFormat;
-  } else {
-    selectedValue = 'mp3-128'; // Default
-  }
-
-  return `
-    <div class="quality-dropdown-wrapper">
-      <select id="quality-select" class="quality-select" aria-label="${t('aria.qualitySelector')}" data-quality-select>
-        ${audioOptions.map(option => {
-          const isSelected = option.value === selectedValue;
-          return `<option value="${option.value}"${isSelected ? ' selected' : ''}> ${option.label} </option>`;
-        }).join('')}
-      </select>
-    </div>
-  `;
 }
 
 // ==========================================
@@ -264,6 +120,7 @@ function handleFormatSelectorClick(event: Event): void {
 
 /**
  * Handle quality select change
+ * Determines format type from select element id (mp3 vs mp4)
  */
 function handleQualityChange(event: Event): void {
   const target = event.target as HTMLSelectElement;
@@ -274,51 +131,33 @@ function handleQualityChange(event: Event): void {
   }
 
   const value = target.value;
-  const state = getState();
+  const isMP4Select = target.id === 'quality-select-mp4';
 
-  if (state.selectedFormat === 'mp4') {
-    // Video format: value can be "mp4-1080", "webm", "mkv"
-    if (value.startsWith('mp4-')) {
-      // MP4 with quality: "mp4-1080" -> "720p"
-      const resolution = value.split('-')[1];
-      setVideoQuality(`${resolution}p`);
-    } else {
-      // WEBM or MKV without quality suffix
-      setVideoQuality(value); // Store as "webm" or "mkv"
-    }
+  if (isMP4Select) {
+    // Video format: value is "mp4-1080", "mp4-720", etc.
+    const resolution = value.split('-')[1];
+    setVideoQuality(`${resolution}p`);
   } else {
-    // Audio format: MP3 has "mp3-bitrate", others are just format name
-    if (value.startsWith('mp3-')) {
-      const [format, bitrate] = value.split('-');
-      setAudioFormat(format as AudioFormatType);
+    // Audio format: MP3 has "mp3-bitrate", others have "format-bitrate"
+    const [format, bitrate] = value.split('-');
+    setAudioFormat(format as AudioFormatType);
+    if (format === 'mp3') {
       setAudioBitrate(bitrate);
     } else {
-      // flac, wav, m4a, opus, ogg - no bitrate
-      setAudioFormat(value as AudioFormatType);
-      setAudioBitrate(''); // No bitrate for lossless/other formats
+      setAudioBitrate(''); // Non-MP3 formats don't use bitrate
     }
   }
 }
 
 /**
  * Handle format change (MP3 ↔ MP4)
- * Triggers dropdown re-render
+ * Updates data-format attribute for CSS-based switching (no re-render needed)
  */
 function handleFormatChange(format: FormatType): void {
   setSelectedFormat(format);
-  refreshFormatSelector();
-}
 
-/**
- * Refresh format selector UI
- * Re-renders the component with current state
- */
-function refreshFormatSelector(): void {
-  const container = document.getElementById('format-selector-container');
-  if (!container) return;
-
-  const html = renderFormatSelector();
-  container.innerHTML = html;
+  // Update data-format attribute on <html> - CSS handles visibility
+  document.documentElement.dataset.format = format;
 }
 
 // ==========================================
