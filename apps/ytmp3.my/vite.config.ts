@@ -4,14 +4,16 @@ import { readdirSync, existsSync } from 'fs';
 import { htmlRewritePlugin } from './vite-plugin-html-rewrite';
 import { movePagesPlugin } from './vite-plugin-move-pages';
 
-// Auto-detect all HTML pages in root directory
-const rootDir = resolve(__dirname);
-const rootHtmlFiles = readdirSync(rootDir).filter(file => file.endsWith('.html') && file !== 'index.html');
+// Auto-detect all HTML pages from Eleventy output directory
+const eleventyOutputDir = resolve(__dirname, '_11ty-output');
+const eleventyHtmlFiles = existsSync(eleventyOutputDir)
+  ? readdirSync(eleventyOutputDir).filter(file => file.endsWith('.html') && file !== 'index.html')
+  : [];
 
-// Generate input entries for root HTML pages
-const rootPageEntries = rootHtmlFiles.reduce((entries, file) => {
+// Generate input entries for Eleventy-generated pages
+const eleventyPageEntries = eleventyHtmlFiles.reduce((entries, file) => {
   const name = file.replace('.html', '');
-  entries[name] = resolve(rootDir, file);
+  entries[name] = resolve(eleventyOutputDir, file);
   return entries;
 }, {} as Record<string, string>);
 
@@ -28,38 +30,56 @@ const srcPageEntries = pageFiles.reduce((entries, file) => {
   return entries;
 }, {} as Record<string, string>);
 
-export default defineConfig({
-  plugins: [
-    htmlRewritePlugin(),
-    movePagesPlugin(),
-    // SPA fallback for language routes
-    {
-      name: 'language-spa-fallback',
-      configureServer(server) {
-        server.middlewares.use((req, res, next) => {
-          const url = req.url || '';
+// 📄 Static pages in root directory (not translated)
+const staticPages = ['about', 'terms-of-use', '404'];
+const staticPageEntries = staticPages.reduce((entries, name) => {
+  const filePath = resolve(__dirname, `${name}.html`);
+  if (existsSync(filePath)) {
+    entries[name] = filePath;
+    console.log(`📄 Static page: ${name}.html`);
+  }
+  return entries;
+}, {} as Record<string, string>);
 
-          // Match /vi/*, /ar/*, /es/*, etc. (but not static files)
-          const langMatch = url.match(/^\/([a-z]{2})\/(.*)/);
+// 🌍 Auto-detect language folders in pages/ directory
+const pagesDir = resolve(__dirname, 'pages');
+const languagePageEntries: Record<string, string> = {};
 
-          if (langMatch && !url.includes('.')) {
-            const lang = langMatch[1];
-            console.log(`[SPA Fallback] ${url} → /${lang}/index.html`);
-            req.url = `/${lang}/index.html`;
-          }
+if (existsSync(pagesDir)) {
+  const items = readdirSync(pagesDir, { withFileTypes: true });
 
-          next();
-        });
-      }
+  items.forEach(item => {
+    if (item.isDirectory()) {
+      const langDir = resolve(pagesDir, item.name);
+      const langFiles = readdirSync(langDir).filter(file => file.endsWith('.html'));
+
+      langFiles.forEach(file => {
+        const pageName = file.replace('.html', '');
+        // Key format: lang-pagename (e.g., vi-index, vi-youtube-to-mp3)
+        const entryKey = `${item.name}-${pageName}`;
+        languagePageEntries[entryKey] = resolve(langDir, file);
+        console.log(`🌍 Auto-detected: pages/${item.name}/${file}`);
+      });
     }
-  ],
+  });
+}
+
+// Determine main entry point
+const mainEntry = existsSync(resolve(eleventyOutputDir, 'index.html'))
+  ? resolve(eleventyOutputDir, 'index.html')
+  : resolve(__dirname, 'index.html');
+
+export default defineConfig({
+  plugins: [htmlRewritePlugin(), movePagesPlugin()],
   build: {
     outDir: 'dist',
     rollupOptions: {
       input: {
-        main: resolve(__dirname, 'index.html'),
-        ...rootPageEntries,
-        ...srcPageEntries
+        main: mainEntry,
+        ...eleventyPageEntries,
+        ...srcPageEntries,
+        ...staticPageEntries,
+        ...languagePageEntries
       },
       output: {
         entryFileNames: 'assets/[name]-[hash].js',
