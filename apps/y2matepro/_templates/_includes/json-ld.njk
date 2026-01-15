@@ -52,6 +52,7 @@
         "@id": "{{ site.url }}/#website"
       },
       "about": {
+        "@type": "SoftwareApplication",
         "@id": "{{ canonicalUrl }}#application"
       },
       "inLanguage": "{{ lang or 'en' }}"
@@ -128,6 +129,7 @@
         "@id": "{{ site.url }}/#website"
       },
       "about": {
+        "@type": "SoftwareApplication",
         "@id": "{{ canonicalUrl }}#application"
       },
       "inLanguage": "{{ lang or 'en' }}"
@@ -142,6 +144,9 @@
       "operatingSystem": "All",
       "browserRequirements": "Requires JavaScript. Requires HTML5.",
       "inLanguage": "{{ lang or 'en' }}",
+      "publisher": {
+        "@id": "{{ site.url }}/#organization"
+      },
       "offers": {
         "@type": "Offer",
         "price": "0",
