@@ -135,7 +135,6 @@ function getCurrentFormatId(state: AppState): string | null {
  * @param formatId - Format ID for throttle tracking
  */
 function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, formatId: string): void {
-  console.log(`%c[DEBUG] updateStatusBarUI called for ${formatId}`, 'color: cyan; font-weight: bold;', { task: JSON.parse(JSON.stringify(task)) });
   const now = Date.now();
   const lastUpdate = lastUpdateTimes.get(formatId) || 0;
   const timeSinceLastUpdate = now - lastUpdate;
@@ -172,30 +171,21 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
 
   // Update progress fill background
   const progress = task.progress ?? 0;
-  statusContainer.style.setProperty('--progress-width', `${progress}%`);
+  const currentWidth = statusContainer.style.getPropertyValue('--progress-width') || '0%';
 
-  // 🔍 DEBUG: Check CSS state before changes
-  console.group(`%c[CSS DEBUG] Before state change`, 'color: cyan; font-weight: bold;');
-  console.log('statusElement classes:', Array.from(statusElement.classList).join(' '));
-  console.log('iconElement classes:', Array.from(iconElement.classList).join(' '));
-  console.log('--progress-width on container:', getComputedStyle(statusContainer).getPropertyValue('--progress-width'));
-  console.log('--progress-width on status:', getComputedStyle(statusElement).getPropertyValue('--progress-width'));
-
-  // Check ::before pseudo-element
-  const beforeStyles = window.getComputedStyle(statusElement, '::before');
-  console.log('::before exists:', beforeStyles.content !== 'none');
-  console.log('::before width:', beforeStyles.width);
-  console.log('::before background:', beforeStyles.background);
-  console.log('::before position:', beforeStyles.position);
-  console.log('::before z-index:', beforeStyles.zIndex);
-  console.groupEnd();
+  // If jumping from 0% to 100%, use requestAnimationFrame to ensure browser paints 0% first
+  if (progress === 100 && (currentWidth === '0%' || currentWidth === '')) {
+    requestAnimationFrame(() => {
+      statusContainer.style.setProperty('--progress-width', `${progress}%`);
+    });
+  } else {
+    statusContainer.style.setProperty('--progress-width', `${progress}%`);
+  }
 
   // Remove all state classes
-  console.log(`%c[DEBUG] Removing classes. Current icon classes: ${Array.from(iconElement.classList).join(' ')}`, 'color: yellow;');
   statusElement.classList.remove('status--extracting', 'status--processing', 'status--success', 'status--error');
   iconElement.classList.remove('spinner', 'checkmark', 'error', 'active');
-  iconElement.textContent = ''; // Clear icon content
-  console.log(`%c[DEBUG] Applying new state: ${task.state}`, 'color: yellow;');
+  iconElement.textContent = '';
 
   const isMergingPhase = task.state === 'processing' && progress >= 100;
 
@@ -232,42 +222,6 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
       // Idle, canceled, or unknown state
       break;
   }
-
-  // 🔍 DEBUG: Check CSS state after changes
-  console.group(`%c[CSS DEBUG] After state change (${task.state})`, 'color: lime; font-weight: bold;');
-  console.log('statusElement classes:', Array.from(statusElement.classList).join(' '));
-  console.log('iconElement classes:', Array.from(iconElement.classList).join(' '));
-  console.log('--progress-width on container:', getComputedStyle(statusContainer).getPropertyValue('--progress-width'));
-  console.log('--progress-width on status:', getComputedStyle(statusElement).getPropertyValue('--progress-width'));
-
-  // Check ::before pseudo-element AFTER adding class
-  const beforeStylesAfter = window.getComputedStyle(statusElement, '::before');
-  console.log('::before content:', beforeStylesAfter.content);
-  console.log('::before width:', beforeStylesAfter.width);
-  console.log('::before background:', beforeStylesAfter.background);
-  console.log('::before position:', beforeStylesAfter.position);
-  console.log('::before z-index:', beforeStylesAfter.zIndex);
-  console.log('::before display:', beforeStylesAfter.display);
-
-  // Get all CSS rules for .status--processing::before
-  console.log('%c[CSS Rules Debug]', 'color: orange; font-weight: bold;');
-  const sheets = Array.from(document.styleSheets);
-  sheets.forEach((sheet, idx) => {
-    try {
-      const rules = Array.from(sheet.cssRules || []);
-      rules.forEach(rule => {
-        // Type guard: check if rule is CSSStyleRule (has selectorText)
-        if ('selectorText' in rule && typeof rule.selectorText === 'string') {
-          if (rule.selectorText.includes('status--processing::before')) {
-            console.log(`Sheet ${idx} (${sheet.href || 'inline'}):`, rule.cssText);
-          }
-        }
-      });
-    } catch (e) {
-      // CORS blocked sheets
-    }
-  });
-  console.groupEnd();
 
   // Update action buttons based on state
   if (downloadBtn && retryBtn) {

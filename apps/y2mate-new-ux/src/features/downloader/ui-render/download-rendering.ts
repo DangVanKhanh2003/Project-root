@@ -149,7 +149,16 @@ function updateStatusBarUI(wrapper: HTMLElement, task: ConversionTask, formatId:
 
   // Update progress fill background
   const progress = task.progress ?? 0;
-  statusContainer.style.setProperty('--progress-width', `${progress}%`);
+  const currentWidth = statusContainer.style.getPropertyValue('--progress-width') || '0%';
+
+  // If jumping from 0% to 100%, use requestAnimationFrame to ensure browser paints 0% first
+  if (progress === 100 && (currentWidth === '0%' || currentWidth === '')) {
+    requestAnimationFrame(() => {
+      statusContainer.style.setProperty('--progress-width', `${progress}%`);
+    });
+  } else {
+    statusContainer.style.setProperty('--progress-width', `${progress}%`);
+  }
 
   // Remove all state classes
   statusElement.classList.remove('status--extracting', 'status--processing', 'status--success', 'status--error');

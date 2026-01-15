@@ -135,7 +135,6 @@ function getCurrentFormatId(state: AppState): string | null {
  * @param formatId - Format ID for throttle tracking
  */
 function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, formatId: string): void {
-  console.log(`%c[DEBUG] updateStatusBarUI called for ${formatId}`, 'color: cyan; font-weight: bold;', { task: JSON.parse(JSON.stringify(task)) });
   const now = Date.now();
   const lastUpdate = lastUpdateTimes.get(formatId) || 0;
   const timeSinceLastUpdate = now - lastUpdate;
@@ -172,13 +171,21 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
 
   // Update progress fill background
   const progress = task.progress ?? 0;
-  statusContainer.style.setProperty('--progress-width', `${progress}%`);
+  const currentWidth = statusContainer.style.getPropertyValue('--progress-width') || '0%';
+
+  // If jumping from 0% to 100%, use requestAnimationFrame to ensure browser paints 0% first
+  if (progress === 100 && (currentWidth === '0%' || currentWidth === '')) {
+    requestAnimationFrame(() => {
+      statusContainer.style.setProperty('--progress-width', `${progress}%`);
+    });
+  } else {
+    statusContainer.style.setProperty('--progress-width', `${progress}%`);
+  }
+
   // Remove all state classes
-  console.log(`%c[DEBUG] Removing classes. Current icon classes: ${Array.from(iconElement.classList).join(' ')}`, 'color: yellow;');
   statusElement.classList.remove('status--extracting', 'status--processing', 'status--success', 'status--error');
   iconElement.classList.remove('spinner', 'checkmark', 'error', 'active');
-  iconElement.textContent = ''; // Clear icon content
-  console.log(`%c[DEBUG] Applying new state: ${task.state}`, 'color: yellow;');
+  iconElement.textContent = '';
 
   const isMergingPhase = task.state === 'processing' && progress >= 100;
 
