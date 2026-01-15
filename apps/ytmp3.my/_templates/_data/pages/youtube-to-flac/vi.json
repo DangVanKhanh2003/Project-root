@@ -36,10 +36,14 @@
   "faqs": {
     "title": "Câu hỏi thường gặp",
     "items": [
+      { "question": "YTMP3 có miễn phí cho chuyển đổi YouTube sang FLAC không?", "answer": "Có. Hoàn toàn miễn phí, không cần đăng ký, không cần đăng ký gói." },
+      { "question": "\"Lossless\" trong FLAC có nghĩa là gì?", "answer": "Lossless nghĩa là âm thanh được nén mà không mất dữ liệu. Khi giải nén, nó giống hệt bit-for-bit với bản gốc." },
       { "question": "FLAC có tốt hơn MP3 không?", "answer": "Có, về chất lượng. FLAC giữ nguyên 100% âm thanh gốc trong khi MP3 loại bỏ dữ liệu. Tuy nhiên, file FLAC lớn hơn <a href=\"/youtube-to-mp3-320kbps-converter\">MP3 320kbps</a>." },
-      { "question": "Tôi có thể phát file FLAC trên điện thoại không?", "answer": "Có. FLAC được hỗ trợ tự nhiên trên Windows 10, macOS, iOS, Android và hầu hết trình phát âm thanh hiện đại. Để tương thích rộng hơn, hãy xem xét <a href=\"/youtube-to-m4a-converter\">M4A</a>." },
+      { "question": "Sự khác biệt giữa FLAC 16-bit và 24-bit là gì?", "answer": "24-bit có dải động cao hơn (144dB so với 96dB) và được dùng cho âm thanh Hi-Res. 16-bit/44.1kHz là chất lượng CD và đủ cho hầu hết người nghe." },
+      { "question": "Tôi có thể phát FLAC trên thiết bị không?", "answer": "Có. FLAC được hỗ trợ tự nhiên trên Windows 10, macOS, iOS, Android và hầu hết trình phát âm thanh hiện đại. Để tương thích rộng hơn, hãy xem xét <a href=\"/youtube-to-m4a-converter\">M4A</a>." },
       { "question": "FLAC nhỏ hơn WAV bao nhiêu?", "answer": "FLAC thường giảm kích thước file 40-50% so với <a href=\"/youtube-to-wav-converter\">WAV</a> không nén trong khi giữ nguyên chất lượng âm thanh." },
-      { "question": "Công cụ chuyển đổi FLAC có miễn phí không?", "answer": "Có, hoàn toàn miễn phí không giới hạn số lần chuyển đổi." }
+      { "question": "YTMP3 có lưu trữ dữ liệu của tôi không?", "answer": "Không. Tất cả chuyển đổi là tạm thời, và không có dữ liệu cá nhân nào được lưu trữ." },
+      { "question": "FLAC có tốt để lưu trữ nhạc không?", "answer": "Có. FLAC lý tưởng để lưu trữ vì nó lossless, mã nguồn mở, và có thể chuyển đổi sang bất kỳ định dạng nào mà không mất chất lượng." }
     ]
   }
 }

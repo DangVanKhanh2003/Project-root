@@ -36,10 +36,14 @@
   "faqs": {
     "title": "Câu hỏi thường gặp",
     "items": [
-      { "question": "M4A có tốt hơn MP3 không?", "answer": "M4A là định dạng file sử dụng codec AAC, được thiết kế như người kế nhiệm của MP3. AAC cho chất lượng âm thanh tốt hơn ở cùng bitrate, nghĩa là M4A 256kbps nghe tốt như <a href=\"/youtube-to-mp3-320kbps-converter\">MP3 320kbps</a> trong khi kích thước file nhỏ hơn." },
-      { "question": "Tôi nên chọn M4A hay định dạng lossless như FLAC/WAV?", "answer": "Chọn M4A để nghe hàng ngày – nó cho chất lượng tuyệt vời với kích thước file nhỏ. Để lưu trữ hoặc sử dụng audiophile, chọn <a href=\"/youtube-to-flac-converter\">FLAC</a> (lossless nén). Để lossless không nén, dùng <a href=\"/youtube-to-wav-converter\">WAV</a>." },
-      { "question": "Điện thoại Android có phát được M4A không?", "answer": "Có, Android đã hỗ trợ phát M4A từ phiên bản 3.1." },
-      { "question": "Công cụ chuyển đổi M4A có miễn phí không?", "answer": "Có, hoàn toàn miễn phí không cần đăng ký." }
+      { "question": "YTMP3 có miễn phí cho chuyển đổi YouTube sang M4A không?", "answer": "Có. YTMP3 hoàn toàn miễn phí để chuyển đổi video YouTube sang âm thanh M4A, không cần đăng ký." },
+      { "question": "M4A là gì và khác gì với MP3?", "answer": "M4A là định dạng file sử dụng codec AAC, được thiết kế như người kế nhiệm của MP3. AAC cho chất lượng âm thanh tốt hơn ở cùng bitrate, nghĩa là M4A 256kbps nghe tốt như <a href=\"/youtube-to-mp3-320kbps-converter\">MP3 320kbps</a> trong khi kích thước file nhỏ hơn." },
+      { "question": "Tôi nên chọn bitrate nào cho M4A?", "answer": "Với hầu hết người dùng, 256kbps cho sự cân bằng tuyệt vời giữa chất lượng và kích thước file. Chọn 128kbps nếu bạn cần file nhỏ hơn hoặc dung lượng lưu trữ hạn chế." },
+      { "question": "Tôi có thể phát file M4A trên Android không?", "answer": "Có. Android 2.3 trở lên hỗ trợ đầy đủ phát M4A/AAC. Tất cả thiết bị Android hiện đại có thể phát file M4A tự nhiên mà không cần ứng dụng bổ sung." },
+      { "question": "Tôi có thể tải YouTube Shorts dưới dạng M4A không?", "answer": "Có. YTMP3 hỗ trợ chuyển đổi YouTube Shorts sang âm thanh M4A giống như video đầy đủ." },
+      { "question": "YTMP3 có giữ metadata trong file M4A không?", "answer": "Có. Khi có sẵn, YTMP3 giữ nguyên metadata như tiêu đề, nghệ sĩ, ảnh bìa album và các tag khác trong file M4A để dễ dàng tổ chức trong thư viện nhạc của bạn." },
+      { "question": "M4A có tương thích với iTunes và Apple Music không?", "answer": "Có. M4A là định dạng gốc cho iTunes và Apple Music. File M4A bạn tải xuống sẽ hoạt động liền mạch với tất cả thiết bị và phần mềm Apple." },
+      { "question": "Tôi nên chọn M4A hay định dạng lossless như FLAC/WAV?", "answer": "Chọn M4A để nghe hàng ngày – nó cho chất lượng tuyệt vời với kích thước file nhỏ. Để lưu trữ hoặc sử dụng audiophile, chọn <a href=\"/youtube-to-flac-converter\">FLAC</a> (lossless nén). Để lossless không nén, dùng <a href=\"/youtube-to-wav-converter\">WAV</a>." }
     ]
   }
 }
