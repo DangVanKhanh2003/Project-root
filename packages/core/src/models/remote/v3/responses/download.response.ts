@@ -5,11 +5,11 @@
 
 /**
  * Response from POST /api/download
- * Returns job ID and video metadata
+ * Returns statusUrl for polling and video metadata
  */
 export interface CreateJobResponse {
-  /** Job ID for polling status */
-  id: string;
+  /** Full URL for polling status (includes token & expires) */
+  statusUrl: string;
 
   /** Video title */
   title: string;
@@ -28,6 +28,9 @@ export interface CreateJobResponse {
 
   /** Reason for quality change */
   qualityChangeReason?: string;
+
+  /** True if video needs re-encoding */
+  needsReencode?: boolean;
 }
 
 /**

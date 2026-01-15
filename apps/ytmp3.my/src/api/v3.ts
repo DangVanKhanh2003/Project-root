@@ -40,10 +40,10 @@ export const apiV3 = {
   createJob: v3DownloadService.createJob.bind(v3DownloadService),
 
   /**
-   * Get job status
-   * GET /api/status/:id
+   * Get job status by full URL
+   * GET {statusUrl} - URL from createJob response
    */
-  getStatus: v3DownloadService.getStatus.bind(v3DownloadService),
+  getStatusByUrl: v3DownloadService.getStatusByUrl.bind(v3DownloadService),
 };
 
 // Export config for debugging

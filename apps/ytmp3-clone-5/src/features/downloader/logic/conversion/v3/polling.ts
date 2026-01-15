@@ -1,6 +1,6 @@
 /**
  * V3 Polling Logic
- * Simple polling for job status
+ * Simple polling for job status using statusUrl
  */
 
 import { apiV3, v3Config } from '../../../../../api/v3';
@@ -10,8 +10,8 @@ import type { StatusResponse } from '@downloader/core';
  * Polling options
  */
 export interface PollingOptions {
-  /** Job ID to poll */
-  jobId: string;
+  /** Full status URL from createJob response (includes token & expires) */
+  statusUrl: string;
 
   /** Callback when progress updates */
   onProgress: (progress: number, detail?: { video: number; audio: number }) => void;
@@ -31,7 +31,7 @@ export interface PollingOptions {
  * Polls every 1 second until completed or error
  */
 export async function startPolling(options: PollingOptions): Promise<void> {
-  const { jobId, onProgress, onComplete, onError, signal } = options;
+  const { statusUrl, onProgress, onComplete, onError, signal } = options;
 
   const pollingInterval = v3Config.timeout.pollingInterval;
   const maxDuration = v3Config.timeout.maxPollingDuration;
@@ -45,7 +45,7 @@ export async function startPolling(options: PollingOptions): Promise<void> {
     }
 
     try {
-      const status = await apiV3.getStatus(jobId);
+      const status = await apiV3.getStatusByUrl(statusUrl);
 
       // Handle different statuses
       switch (status.status) {

@@ -11,7 +11,7 @@ import type {
 } from '../../../models/remote/v3/responses';
 import type { IV3DownloadService } from '../interfaces/download.interface';
 import { BaseService } from '../../base/base-service';
-import { V3_ENDPOINTS } from '../../constants/endpoints';
+import { V3_ENDPOINTS } from '../../constants/endpoints'; // Only using DOWNLOAD endpoint now
 import { getTimeout } from '../../../config/api-config.interface';
 
 /**
@@ -57,17 +57,17 @@ class V3DownloadServiceImpl extends BaseService implements IV3DownloadService {
   }
 
   /**
-   * Get job status
-   * GET /api/status/:id
+   * Get job status by full URL
+   * GET {statusUrl} - URL from createJob response
    */
-  async getStatus(jobId: string): Promise<StatusResponse> {
-    if (!jobId || typeof jobId !== 'string') {
-      throw new Error('Invalid jobId: must be a non-empty string');
+  async getStatusByUrl(statusUrl: string): Promise<StatusResponse> {
+    if (!statusUrl || typeof statusUrl !== 'string') {
+      throw new Error('Invalid statusUrl: must be a non-empty string');
     }
 
     const response = await this.makeRequest<StatusResponse | V3ErrorResponse>({
       method: 'GET',
-      url: `${V3_ENDPOINTS.STATUS}/${jobId}`,
+      url: statusUrl, // Full URL from createJob response - httpClient handles this automatically
       timeout: getTimeout(this.config, 'v3GetStatus'),
     });
 

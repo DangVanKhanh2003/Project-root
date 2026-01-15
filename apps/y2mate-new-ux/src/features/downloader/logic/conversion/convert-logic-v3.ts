@@ -71,14 +71,14 @@ export async function startConversion(params: V3ConversionParams): Promise<void>
       state: TaskState.PROCESSING,
       statusText: 'Processing...',
       showProgressBar: true,
-      sourceId: jobResponse.id,
+      sourceId: jobResponse.statusUrl, // Store statusUrl for reference
     });
 
-    // Phase 2: Poll for status
-    log('Phase 2: Starting polling for job:', jobResponse.id);
+    // Phase 2: Poll for status using statusUrl
+    log('Phase 2: Starting polling with statusUrl:', jobResponse.statusUrl);
 
     await startPolling({
-      jobId: jobResponse.id,
+      statusUrl: jobResponse.statusUrl,
 
       onProgress: (progress, detail) => {
         log('Progress:', progress, detail);

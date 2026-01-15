@@ -126,7 +126,36 @@
                         </button>
 
                         <!-- Format Selector -->
-                        <div id="format-selector-container" class="format-selector-wrapper"></div>
+                        <div id="format-selector-container" class="format-selector-wrapper">
+                            <div class="format-selector">
+                                <div class="format-quality-group">
+                                    <button type="button" class="format-toggle-btn" data-toggle-format>
+                                        <span class="toggle-side active" data-format="mp4"><span class="format-label">MP4</span></span>
+                                        <span class="toggle-side" data-format="mp3"><span class="format-label">MP3</span></span>
+                                    </button>
+                                    <div class="quality-selector">
+                                        <select id="quality-select" class="quality-select" aria-label="Quality selector" data-quality-select>
+                                            <option value="mp4-2160">MP4 - 2160p (4K)</option>
+                                            <option value="mp4-1440">MP4 - 1440p (2K)</option>
+                                            <option value="mp4-1080">MP4 - 1080p</option>
+                                            <option value="mp4-720" selected>MP4 - 720p</option>
+                                            <option value="mp4-480">MP4 - 480p</option>
+                                            <option value="mp4-360">MP4 - 360p</option>
+                                            <option value="webm">WEBM</option>
+                                            <option value="mkv">MKV</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="auto-submit-toggle" data-tooltip="Automatically submit when pasting URL or keyword">
+                                    <strong class="toggle-label">Auto</strong>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="auto-submit-checkbox" data-auto-submit-toggle />
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                    <span class="custom-tooltip"></span>
+                                </div>
+                            </div>
+                        </div>
 
                         <div id="suggestion-container" class="suggesstion-list suggesstion-box"></div>
                 <p>OGG files use <strong>Vorbis compression</strong>, an open-source alternative to proprietary formats. Perfect for <strong>web applications</strong>, HTML5 audio, game development, and projects requiring patent-free audio. Download unlimited OGG files for free-no licensing fees ever.</p>

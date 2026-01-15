@@ -9,6 +9,7 @@ import {
   setVideoQuality,
   setAudioFormat,
   setAudioBitrate,
+  setAutoSubmit,
   QUALITY_OPTIONS,
   type FormatType,
   type AudioFormatType
@@ -20,16 +21,13 @@ import { t } from '@downloader/i18n';
 // ==========================================
 
 /**
- * Render format selector into the input form
+ * Initialize format selector from static HTML
  * Called once during app initialization
  *
- * IMPORTANT: This function MUST be called AFTER initializeFormatSelector()
- * to ensure state is loaded before rendering. This prevents layout shift.
- *
- * Flow:
- * 1. initializeFormatSelector() - Loads state from localStorage or page defaults
- * 2. renderFormatSelectorToForm() - Renders HTML with loaded state
- * 3. User sees FormatSelector immediately with correct values (no layout shift)
+ * HTML is already rendered in the page (no JS rendering needed).
+ * This function only:
+ * 1. Syncs UI with state from localStorage (if user has saved preferences)
+ * 2. Attaches event listeners
  */
 export function renderFormatSelectorToForm(): void {
   const container = document.getElementById('format-selector-container');
@@ -38,12 +36,80 @@ export function renderFormatSelectorToForm(): void {
     return;
   }
 
-  // Render immediately with current state (no loading/skeleton needed)
-  const html = renderFormatSelector();
-  container.innerHTML = html;
+  // Sync UI with state from localStorage (update selected values if different from HTML defaults)
+  syncUIWithState(container);
 
   // Initialize event listeners
   initFormatSelector('#format-selector-container');
+}
+
+/**
+ * Sync UI elements with current state from localStorage
+ * Updates format toggle, quality dropdown, and auto-submit based on saved preferences
+ */
+function syncUIWithState(container: HTMLElement): void {
+  const state = getState();
+  const { selectedFormat, videoQuality, audioFormat, audioBitrate, autoSubmit } = state;
+
+  // Sync format toggle (MP4/MP3)
+  const mp4Toggle = container.querySelector('.toggle-side[data-format="mp4"]');
+  const mp3Toggle = container.querySelector('.toggle-side[data-format="mp3"]');
+  if (mp4Toggle && mp3Toggle) {
+    mp4Toggle.classList.toggle('active', selectedFormat === 'mp4');
+    mp3Toggle.classList.toggle('active', selectedFormat === 'mp3');
+  }
+
+  // Sync quality dropdown - may need to re-render if format changed
+  const qualitySelect = container.querySelector('#quality-select') as HTMLSelectElement;
+  if (qualitySelect) {
+    if (selectedFormat === 'mp4') {
+      // Check if dropdown has MP4 options, if not re-render
+      const hasMP4Options = qualitySelect.querySelector('option[value^="mp4-"]');
+      if (!hasMP4Options) {
+        // Need to replace dropdown with video options
+        const qualitySelector = container.querySelector('.quality-selector');
+        if (qualitySelector) {
+          qualitySelector.innerHTML = renderVideoQualityDropdown(videoQuality);
+        }
+      } else {
+        // Just update selected value
+        const qualityValue = videoQuality.replace('p', '');
+        const targetValue = `mp4-${qualityValue}`;
+        if (qualitySelect.value !== targetValue && qualitySelect.querySelector(`option[value="${targetValue}"]`)) {
+          qualitySelect.value = targetValue;
+        }
+      }
+    } else {
+      // MP3 format - check if dropdown has audio options
+      const hasAudioOptions = qualitySelect.querySelector('option[value^="mp3-"]');
+      if (!hasAudioOptions) {
+        // Need to replace dropdown with audio options
+        const qualitySelector = container.querySelector('.quality-selector');
+        if (qualitySelector) {
+          qualitySelector.innerHTML = renderAudioQualityDropdown(audioFormat, audioBitrate);
+        }
+      } else {
+        // Update selected value
+        let targetValue: string;
+        if (audioFormat === 'mp3' && audioBitrate) {
+          targetValue = `mp3-${audioBitrate}`;
+        } else if (audioFormat) {
+          targetValue = audioFormat;
+        } else {
+          targetValue = 'mp3-128';
+        }
+        if (qualitySelect.value !== targetValue && qualitySelect.querySelector(`option[value="${targetValue}"]`)) {
+          qualitySelect.value = targetValue;
+        }
+      }
+    }
+  }
+
+  // Sync auto-submit toggle
+  const autoSubmitCheckbox = container.querySelector('#auto-submit-checkbox') as HTMLInputElement;
+  if (autoSubmitCheckbox && autoSubmitCheckbox.checked !== autoSubmit) {
+    autoSubmitCheckbox.checked = autoSubmit;
+  }
 }
 
 /**
@@ -52,43 +118,42 @@ export function renderFormatSelectorToForm(): void {
  */
 function renderFormatSelector(): string {
   const state = getState();
-  const { selectedFormat, videoQuality, audioFormat, audioBitrate } = state;
+  const { selectedFormat, videoQuality, audioFormat, audioBitrate, autoSubmit } = state;
 
   // Generate quality dropdown HTML based on selected format
   const qualityDropdownHTML = selectedFormat === 'mp4'
     ? renderVideoQualityDropdown(videoQuality)
     : renderAudioQualityDropdown(audioFormat, audioBitrate);
 
-  // Debug: Check language at render time
-  const htmlLang = document.documentElement.getAttribute('lang');
-  const convertText = t('common.buttons.convert');
-  console.log('[FormatSelector] Rendering:', {
-    htmlLang,
-    convertText,
-    timestamp: new Date().toISOString()
-  });
-
   return `
     <div class="format-selector">
-      <!-- Format Toggle (Two separate buttons) -->
-      <div class="format-toggle">
-        <button type="button" class="format-btn ${selectedFormat === 'mp3' ? 'active' : ''}" data-format="mp3">MP3</button>
-        <button type="button" class="format-btn ${selectedFormat === 'mp4' ? 'active' : ''}" data-format="mp4">MP4</button>
-      </div>
+      <!-- Group 1: Format + Quality -->
+      <div class="format-quality-group">
+        <!-- Format Toggle (Single button: MP4 | MP3) -->
+        <button type="button" class="format-toggle-btn" data-toggle-format>
+          <span class="toggle-side ${selectedFormat === 'mp4' ? 'active' : ''}" data-format="mp4">
+            <span class="format-label">MP4</span>
+          </span>
+          <span class="toggle-side ${selectedFormat === 'mp3' ? 'active' : ''}" data-format="mp3">
+            <span class="format-label">MP3</span>
+          </span>
+        </button>
 
-      <!-- Quality Dropdown (Dynamic based on format) -->
-      <div class="quality-wrapper">
-        ${qualityDropdownHTML}
-        <div class="select-arrow">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        <!-- Quality Dropdown (Dynamic based on format) -->
+        <div class="quality-selector">
+          ${qualityDropdownHTML}
         </div>
       </div>
 
-      <!-- Convert Button -->
-      <button type="submit" class="btn-convert">
-        <span>${convertText}</span>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-      </button>
+      <!-- Group 2: Auto Submit Toggle -->
+      <div class="auto-submit-toggle" data-tooltip="Automatically submit when pasting URL or keyword">
+        <strong class="toggle-label">Auto</strong>
+        <label class="toggle-switch">
+          <input type="checkbox" id="auto-submit-checkbox" ${autoSubmit ? 'checked' : ''} data-auto-submit-toggle />
+          <span class="toggle-slider"></span>
+        </label>
+        <span class="custom-tooltip"></span>
+      </div>
     </div>
   `;
 }
@@ -189,6 +254,9 @@ export function initFormatSelector(containerSelector: string = '#previewCard'): 
   // Listen for quality select changes
   container.addEventListener('change', handleQualityChange);
 
+  // Listen for auto-submit toggle changes
+  container.addEventListener('change', handleAutoSubmitToggle);
+
   // Initialize custom tooltips
   initCustomTooltips(container);
 }
@@ -199,10 +267,10 @@ export function initFormatSelector(containerSelector: string = '#previewCard'): 
 function handleFormatSelectorClick(event: Event): void {
   const target = event.target as HTMLElement;
 
-  // Handle format button clicks (Two separate buttons)
-  const formatBtn = target.closest('.format-btn') as HTMLElement;
-  if (formatBtn) {
-    const format = formatBtn.dataset.format as FormatType;
+  // Handle format toggle (Single button with two sides)
+  const toggleSide = target.closest('.toggle-side') as HTMLElement;
+  if (toggleSide) {
+    const format = toggleSide.dataset.format as FormatType;
     if (format) {
       handleFormatChange(format);
     }
@@ -246,6 +314,20 @@ function handleQualityChange(event: Event): void {
       setAudioBitrate(''); // No bitrate for lossless/other formats
     }
   }
+}
+
+/**
+ * Handle auto-submit toggle change
+ */
+function handleAutoSubmitToggle(event: Event): void {
+  const target = event.target as HTMLInputElement;
+
+  // Only handle auto-submit toggle changes
+  if (!target.matches('[data-auto-submit-toggle]')) {
+    return;
+  }
+
+  setAutoSubmit(target.checked);
 }
 
 /**
