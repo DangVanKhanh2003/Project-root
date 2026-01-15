@@ -19,7 +19,7 @@ on:
           - 'ytmp3-clone-3'
           - 'ytmp3-clone-4'
           - 'ytmp3-clone-5'
-          - 'ytmp3-clone-darkmode-3'
+          - 'ytmp3.my'
 
 concurrency:
   group: ci-${{ github.repository }}-${{ github.ref }}
@@ -59,13 +59,13 @@ jobs:
               - 'apps/ytmp3-clone-4/**'
             ytmp3-clone-5:
               - 'apps/ytmp3-clone-5/**'
-            ytmp3-clone-darkmode-3:
-              - 'apps/ytmp3-clone-darkmode-3/**'
+            ytmp3.my:
+              - 'apps/ytmp3.my/**'
 
       - name: Determine apps to deploy
         id: determine-apps
         run: |
-          ALL_APPS='["y2matepro","y2mate-new-ux","ytmp3-clone-3","ytmp3-clone-4","ytmp3-clone-5","ytmp3-clone-darkmode-3"]'
+          ALL_APPS='["y2matepro","y2mate-new-ux","ytmp3-clone-3","ytmp3-clone-4","ytmp3-clone-5","ytmp3.my"]'
 
           # Handle manual trigger with specific_app
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
@@ -115,9 +115,9 @@ jobs:
             CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["ytmp3-clone-5"]')
             echo "✅ ytmp3-clone-5 changed"
           fi
-          if [[ "${{ steps.filter.outputs.ytmp3-clone-darkmode-3 }}" == "true" ]]; then
-            CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["ytmp3-clone-darkmode-3"]')
-            echo "✅ ytmp3-clone-darkmode-3 changed"
+          if [[ "${{ steps.filter.outputs.ytmp3.my }}" == "true" ]]; then
+            CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["ytmp3.my"]')
+            echo "✅ ytmp3.my changed"
           fi
 
           echo "📋 Changed apps: $CHANGED_APPS"
