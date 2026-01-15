@@ -21,6 +21,11 @@
     <link type="image/png" sizes="96x96" rel="icon" href="/favicon9696.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
+    <!-- Critical: Set format before render to prevent FOUC -->
+    <script>
+      (function(){var f='mp3';try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p&&p.selectedFormat)f=p.selectedFormat}catch(e){}document.documentElement.dataset.format=f;document.write('<style>html[data-format="mp3"] .quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3{display:flex!important}html[data-format="mp4"] .quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4{display:flex!important}</style>')})()
+    </script>
+
     <!-- TypeScript Module -->
     <script type="module" src="/src/main.ts"></script>
 </head>
@@ -135,23 +140,43 @@
                                 <div id="suggestion-container" class="suggestion-container"></div>
                             </div>
 
-                            <!-- Format Selector Container (TypeScript will render here) -->
+                            <!-- Format Selector Container -->
                             <div id="format-selector-container">
-                                <!-- Initial skeleton to prevent layout shift - will be replaced by JS -->
                                 <div class="format-selector-wrapper">
                                     <div class="format-selector">
                                         <!-- Format Toggle -->
                                         <div class="format-toggle">
-                                            <button type="button" class="format-btn active" data-format="mp3">MP3</button>
+                                            <button type="button" class="format-btn" data-format="mp3">MP3</button>
                                             <button type="button" class="format-btn" data-format="mp4">MP4</button>
                                         </div>
 
-                                        <!-- Quality Dropdown -->
+                                        <!-- Quality Dropdowns (CSS controls visibility via html[data-format]) -->
                                         <div class="quality-wrapper">
-                                            <div class="quality-dropdown-wrapper">
-                                                <select id="quality-select" class="quality-select" aria-label="Audio quality">
-                                                    <option value="mp3-128" selected> MP3 - 128kbps </option>
-                                                    <option value="mp3-256"> MP3 - 256kbps </option>
+                                            <!-- MP3 Options -->
+                                            <div class="quality-dropdown-wrapper quality-select--mp3">
+                                                <select id="quality-select-mp3" class="quality-select" aria-label="Audio quality" data-quality-select>
+                                                    <option value="mp3-320">MP3 - 320kbps</option>
+                                                    <option value="mp3-192">MP3 - 192kbps</option>
+                                                    <option value="mp3-128" selected>MP3 - 128kbps</option>
+                                                    <option value="mp3-64">MP3 - 64kbps</option>
+                                                    <option value="flac">FLAC - Lossless</option>
+                                                    <option value="wav">WAV - Lossless</option>
+                                                    <option value="m4a">M4A</option>
+                                                    <option value="opus">Opus</option>
+                                                    <option value="ogg">OGG</option>
+                                                </select>
+                                            </div>
+                                            <!-- MP4 Options -->
+                                            <div class="quality-dropdown-wrapper quality-select--mp4">
+                                                <select id="quality-select-mp4" class="quality-select" aria-label="Video quality" data-quality-select>
+                                                    <option value="mp4-1080">MP4 - 1080p</option>
+                                                    <option value="mp4-720" selected>MP4 - 720p</option>
+                                                    <option value="mp4-480">MP4 - 480p</option>
+                                                    <option value="mp4-360">MP4 - 360p</option>
+                                                    <option value="mp4-240">MP4 - 240p</option>
+                                                    <option value="mp4-144">MP4 - 144p</option>
+                                                    <option value="webm">WEBM</option>
+                                                    <option value="mkv">MKV</option>
                                                 </select>
                                             </div>
                                             <div class="select-arrow">
@@ -166,6 +191,7 @@
                                         </button>
                                     </div>
                                 </div>
+                                <script>(function(){try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p){var f=p.selectedFormat||'mp3';document.querySelectorAll('.format-btn').forEach(function(b){b.classList.toggle('active',b.dataset.format===f)});var s=f==='mp4'?document.getElementById('quality-select-mp4'):document.getElementById('quality-select-mp3');if(s){var v;if(f==='mp4'){var vq=p.videoQuality||'720p';v=(vq==='webm'||vq==='mkv')?vq:'mp4-'+vq.replace('p','')}else{var af=p.audioFormat||'mp3';v=(af==='mp3')?'mp3-'+(p.audioBitrate||'128'):af}s.value=v}}else{document.querySelector('.format-btn[data-format="mp3"]').classList.add('active')}}catch(e){document.querySelector('.format-btn[data-format="mp3"]').classList.add('active')}})();</script>
                             </div>
                         </form>
                         <div id="error-message" class="error-message"></div>
