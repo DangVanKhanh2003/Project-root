@@ -10,7 +10,8 @@ import { initI18n, loadTranslations, locales, getLanguage, t } from '@downloader
 // Single entry point for all styles (Phase 2: CSS Refactor)
 import './styles/index.css';
 
-// Note: format-selector CSS is lazy-loaded with downloader-ui to avoid blocking initial render
+// Import format-selector CSS immediately (contains critical styles to prevent FOUC)
+import './ui-components/format-selector/format-selector.css';
 
 // ==========================================
 // Initialize I18n System
@@ -43,19 +44,33 @@ if (typeof window !== 'undefined') {
 }
 
 /**
- * Initialize downloader UI (lazy loaded)
- * CSS is loaded together with the module to avoid blocking initial render
+ * Initialize downloader UI (lazy loaded after page is idle)
+ * Only the JS logic is lazy loaded, CSS is already loaded to prevent FOUC
  */
 async function initDownloaderUI() {
   try {
-    // Lazy load downloader UI CSS and module in parallel
-    const [_, { init }] = await Promise.all([
-      import('./ui-components/format-selector/format-selector.css'),
-      import('./features/downloader/downloader-ui')
-    ]);
+    const { init } = await import('./features/downloader/downloader-ui');
     await init();
   } catch (err) {
     console.error('Failed to initialize downloader UI:', err);
+  }
+}
+
+/**
+ * Lazy load downloader UI JS when browser is idle
+ * This defers non-critical JS execution to improve initial page load
+ */
+function lazyLoadDownloaderUI() {
+  // Use requestIdleCallback if available, otherwise setTimeout
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(() => {
+      initDownloaderUI();
+    }, { timeout: 2000 }); // Fallback after 2s
+  } else {
+    // Fallback for browsers without requestIdleCallback
+    setTimeout(() => {
+      initDownloaderUI();
+    }, 100);
   }
 }
 
@@ -193,7 +208,7 @@ function loadFeatures() {
   initHeaderScroll(); // Initialize header scroll effect
   initMobileMenu(); // Initialize mobile menu
   initLangSelector(); // Initialize language selector dropdown
-  initDownloaderUI();
+  lazyLoadDownloaderUI(); // Lazy load when browser is idle
   initLogoClickHandler(); // Prevent logo reload issue
 }
 
