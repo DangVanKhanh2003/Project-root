@@ -123,13 +123,16 @@ eleventyComputed:
             <h2 id="about">{{ page.content.mainTitle }}</h2>
             <p>{{ page.content.intro1 | localizeLinks(lang) | safe }}</p>
 
-            <h3>{{ page.content.formatsTitle }}</h3>
+            <h2>{{ page.content.ytToMP3 }}</h2>
+            <p>{{ page.content.ytToMP3Content | localizeLinks(lang) | safe }}</p>
+
+            <h2>{{ page.content.formatsTitle }}</h2>
             <p>{{ page.content.formatsText | localizeLinks(lang) | safe }}</p>
 
-            <h3>{{ page.content.speedTitle }}</h3>
+            <h2>{{ page.content.speedTitle }}</h2>
             <p>{{ page.content.speedText | localizeLinks(lang) | safe }}</p>
 
-            <h3>{{ page.instructions.title }}</h3>
+            <h2>{{ page.instructions.title }}</h2>
             <ol>
                 {%- for step in page.instructions.steps %}
                 <li>{{ step }}</li>
@@ -137,7 +140,7 @@ eleventyComputed:
             </ol>
             <p>{{ page.instructions.note }}</p>
 
-            <h3>{{ page.whyChoose.title }}</h3>
+            <h2>{{ page.whyChoose.title }}</h2>
             <ul>
                 {%- for reason in page.whyChoose.reasons %}
                 <li><strong>{{ reason.title }}:</strong> {{ reason.text }}</li>
@@ -146,14 +149,14 @@ eleventyComputed:
 
             {%- if page.faqs and page.faqs.items %}
             <div id="faq" class="faq-section">
-                <h3 class="faq-title">
+                <h2 class="faq-title">
                     <span class="faq-icon">?</span>
                     {{ page.faqs.title }}
-                </h3>
+                </h2>
                 <div class="faq-grid">
                     {%- for faq in page.faqs.items %}
                     <div class="faq-item">
-                        <h4 class="faq-question">{{ faq.question }}</h4>
+                        <h3 class="faq-question">{{ faq.question }}</h3>
                         <p class="faq-answer">{{ faq.answer | localizeLinks(lang) | safe }}</p>
                     </div>
                     {%- endfor %}
