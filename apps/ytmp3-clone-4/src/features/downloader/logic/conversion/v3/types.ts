@@ -3,17 +3,7 @@
  * Simplified types for V3 API flow
  */
 
-/**
- * Task state enum (compatible with V2 UI)
- */
-export enum TaskState {
-  IDLE = 'idle',
-  EXTRACTING = 'extracting',
-  PROCESSING = 'processing',
-  SUCCESS = 'success',
-  FAILED = 'failed',
-  CANCELED = 'canceled',
-}
+import { TaskState } from '../types';
 
 /**
  * V3 Conversion Task

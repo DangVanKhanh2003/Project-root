@@ -6,3 +6,4 @@
 export * from './types';
 export * from './polling';
 export * from './error-messages';
+export { TaskState } from '../types';
