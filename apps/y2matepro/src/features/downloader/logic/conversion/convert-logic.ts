@@ -1,8 +1,12 @@
 /**
- * convert-logic-v2.ts - Simple Orchestrator using Strategy Pattern
+ * convert-logic.ts - Simple V3 Conversion Flow
  *
- * Clean replacement for convert-logic.ts (1100+ lines → ~150 lines)
- * Uses simple types and strategies.
+ * Unified flow for all devices:
+ * 1. Create job (POST /api/download)
+ * 2. Poll status (GET statusUrl)
+ * 3. Get download URL when completed
+ *
+ * No device-specific routing or strategies - same flow for iOS, Windows, Mac, Android.
  */
 
 import { api } from '../../../../api';
@@ -10,6 +14,7 @@ import { apiV3 } from '../../../../api/v3';
 import {
   setConversionTask,
   getConversionTask,
+  updateConversionTask,
   clearConversionTask,
   updateVideoDetailFormat,
   clearVideoDetailFormat,
@@ -18,22 +23,17 @@ import {
 import { getConversionModal } from '../../../../ui-components/modal/conversion-modal';
 import { triggerDownload } from '../../../../utils';
 import { isLinkExpired } from '../../../../utils/link-validator';
-import { isYouTubeUrl, mapToV3DownloadRequest } from '@downloader/core';
+import { isYouTubeUrl, mapToV3DownloadRequest, type CreateJobResponse } from '@downloader/core';
 
-// Types
-import {
-  FormatData,
-  ExtractResult,
-  RouteType,
-  createExtractResult,
-  determineRoute
-} from './types';
-
-// Strategy
-import { createStrategy, StrategyContext } from './application';
+// V3 helpers
+import { startPolling } from './v3/polling';
+import { getErrorMessage } from './v3/error-messages';
 
 // Retry helper
 import { retryWithBackoff, RETRY_CONFIGS } from './retry-helper';
+
+// Types
+import { FormatData } from './types';
 
 // Params interface
 interface ConversionParams {
@@ -43,9 +43,6 @@ interface ConversionParams {
   videoUrl: string;
 }
 
-// Singleton
-let currentStrategy: ReturnType<typeof createStrategy> | null = null;
-
 // Debug logger
 const LOG_PREFIX = '[ConvertLogic]';
 const log = (...args: unknown[]) => console.log(LOG_PREFIX, ...args);
@@ -53,6 +50,7 @@ const logError = (...args: unknown[]) => console.error(LOG_PREFIX, ...args);
 
 /**
  * Main entry point for conversion flow
+ * Same flow for ALL devices (iOS, Windows, Mac, Android)
  */
 export async function startConversion(params: ConversionParams): Promise<void> {
   const { formatId, formatData, videoTitle, videoUrl } = params;
@@ -68,19 +66,19 @@ export async function startConversion(params: ConversionParams): Promise<void> {
   const abortController = new AbortController();
 
   // Initialize task state
-  log('Setting conversion task state...');
   setConversionTask(formatId, {
     sourceId: formatData.vid || formatId,
     quality: formatData.quality,
     format: formatData.type,
     state: 'Extracting',
-    statusText: 'Extracting...',
+    statusText: 'Creating job...',
     showProgressBar: false,
     startedAt: Date.now(),
-    formatData
+    formatData,
+    abortController,
   });
 
-  // Open modal in extracting phase
+  // Open modal in EXTRACTING phase
   log('Opening modal in EXTRACTING phase...');
   modal.open({
     videoTitle,
@@ -90,72 +88,163 @@ export async function startConversion(params: ConversionParams): Promise<void> {
     onCancel: () => {
       log('Cancel triggered by user');
       abortController.abort();
-      currentStrategy?.cancel();
+      updateConversionTask(formatId, {
+        state: 'Canceled',
+        statusText: 'Canceled',
+      });
     }
   });
 
   try {
-    // Phase 1: Extract - get download URL from API (with auto retry)
-    log('Phase 1: Calling extractFormat API (with retry)...');
-    const extractResult = await retryWithBackoff(
-      () => extractFormat(formatData, abortController.signal, videoUrl),
-      RETRY_CONFIGS.extracting
-    );
-    log('Extract result:', JSON.stringify(extractResult, null, 2));
+    // Get extractV2Options (YouTube) or handle social media
+    const extractOptions = formatData.extractV2Options;
 
-    if (abortController.signal.aborted) {
-      log('Aborted after extract');
+    // ============ YouTube Format - V3 API ============
+    if (extractOptions) {
+      log('YouTube format detected - using V3 API');
+
+      // Phase 1: Create job
+      log('Phase 1: Creating job...');
+      const v3Request = mapToV3DownloadRequest(videoUrl, {
+        downloadMode: (extractOptions.downloadMode as 'video' | 'audio') || 'audio',
+        videoQuality: extractOptions.videoQuality,
+        youtubeVideoContainer: extractOptions.youtubeVideoContainer,
+        audioBitrate: extractOptions.audioBitrate,
+        audioFormat: extractOptions.audioFormat,
+      });
+
+      log('V3 Request:', JSON.stringify(v3Request, null, 2));
+
+      const jobResponse = await retryWithBackoff(
+        () => apiV3.createJob(v3Request, abortController.signal),
+        RETRY_CONFIGS.extracting
+      ) as CreateJobResponse;
+
+      log('Job created:', JSON.stringify(jobResponse, null, 2));
+
+      if (abortController.signal.aborted) {
+        log('Aborted after job creation');
+        return;
+      }
+
+      // Transition modal to CONVERTING phase
+      log('Transitioning to CONVERTING phase...');
+      await modal.transitionToConvertingWithAnimation();
+
+      updateConversionTask(formatId, {
+        state: 'Processing',
+        statusText: 'Processing...',
+        showProgressBar: true,
+        sourceId: jobResponse.statusUrl,
+      });
+
+      // Phase 2: Poll for status
+      log('Phase 2: Starting polling with statusUrl:', jobResponse.statusUrl);
+
+      await startPolling({
+        statusUrl: jobResponse.statusUrl,
+
+        onProgress: (progress, detail) => {
+          log('Progress:', progress, detail);
+          modal.updateConversionProgress(progress, 'Processing...');
+          updateConversionTask(formatId, {
+            progress,
+            statusText: progress < 100 ? 'Processing...' : 'Finalizing...',
+          });
+        },
+
+        onComplete: (downloadUrl) => {
+          log('Completed! Download URL:', downloadUrl);
+
+          // Update task state
+          updateConversionTask(formatId, {
+            state: 'Success',
+            statusText: 'Ready to download',
+            progress: 100,
+            downloadUrl,
+            filename: generateFilename(videoTitle, extractOptions),
+            completedAt: Date.now(),
+          });
+
+          // Update format cache for reuse
+          updateFormatCache(formatId, downloadUrl, formatData);
+
+          // Show success in modal
+          modal.showDownloadButton(downloadUrl);
+        },
+
+        onError: (error) => {
+          logError('Polling error:', error);
+          const errorMessage = getErrorMessage(error);
+
+          updateConversionTask(formatId, {
+            state: 'Failed',
+            statusText: `Error: ${errorMessage}`,
+            error: errorMessage,
+            completedAt: Date.now(),
+          });
+
+          modal.transitionToError(errorMessage);
+        },
+
+        signal: abortController.signal,
+      });
+
       return;
     }
 
-    // Determine routing based on platform/format/size
-    const routing = determineRoute(extractResult, formatData);
-    log('Routing decision:', JSON.stringify(routing, null, 2));
+    // ============ Social Media - Direct URL ============
+    if (formatData.encryptedUrl) {
+      log('Social media format with encrypted URL');
 
-    // Transition modal to converting phase
-    // Only for cases that need CONVERTING phase (Polling cases)
-    // - Static Direct: Skip CONVERTING → SUCCESS
-    // - iOS RAM: Double EXTRACTING trick (strategy handles transition)
-    // - Other Stream: Skip CONVERTING → SUCCESS
-    // - Polling cases: Need CONVERTING phase (direct transition)
-    const needsConvertingPhase =
-      routing.routeType === RouteType.IOS_POLLING ||
-      routing.routeType === RouteType.WINDOWS_MP4_POLLING;
+      const result = await retryWithBackoff(
+        () => api.decodeUrl({ encrypted_url: formatData.encryptedUrl! }),
+        RETRY_CONFIGS.extracting
+      );
 
-    if (needsConvertingPhase) {
-      log('Transitioning modal to CONVERTING phase...');
-      await modal.transitionToConvertingWithAnimation(); // Direct transition
-    } else {
-      log('Skipping CONVERTING phase for routeType:', routing.routeType);
+      // Check if API returned error
+      if ('ok' in result && result.ok === false) {
+        throw new Error((result as any).message || 'Decode URL failed');
+      }
+
+      const extractData = (result as { data?: unknown })?.data || result;
+      const downloadUrl = (extractData as { url?: string })?.url;
+
+      if (!downloadUrl) {
+        throw new Error('No download URL returned');
+      }
+
+      // Direct download for social media
+      log('Social media URL decoded:', downloadUrl);
+
+      updateConversionTask(formatId, {
+        state: 'Success',
+        downloadUrl,
+        completedAt: Date.now(),
+      });
+
+      updateFormatCache(formatId, downloadUrl, formatData);
+      modal.showDownloadButton(downloadUrl);
+      return;
     }
 
-    // Create strategy context
-    const context: StrategyContext = {
-      formatId,
-      formatData,
-      extractResult,
-      routing,
-      abortSignal: abortController.signal,
-      videoTitle,
-      videoUrl
-    };
+    // ============ Direct URL Format ============
+    if (formatData.url) {
+      log('Direct URL format:', formatData.url);
 
-    // Create and execute strategy
-    log('Creating strategy for routeType:', routing.routeType);
-    currentStrategy = createStrategy(context);
-    log('Strategy created:', currentStrategy.getName());
+      updateConversionTask(formatId, {
+        state: 'Success',
+        downloadUrl: formatData.url,
+        completedAt: Date.now(),
+      });
 
-    log('Executing strategy...');
-    const result = await currentStrategy.execute();
-    log('Strategy result:', JSON.stringify(result, null, 2));
-
-    // Handle result
-    if (result.success && result.downloadUrl) {
-      log('Success! Updating format cache...');
-      updateFormatCache(formatId, result.downloadUrl, formatData, extractResult);
-    } else {
-      log('Strategy completed but no success/downloadUrl');
+      updateFormatCache(formatId, formatData.url, formatData);
+      modal.showDownloadButton(formatData.url);
+      return;
     }
+
+    // No valid format found
+    throw new Error(`No valid format options found for: ${formatData.id}`);
 
   } catch (error) {
     if (abortController.signal.aborted) {
@@ -163,29 +252,40 @@ export async function startConversion(params: ConversionParams): Promise<void> {
       return;
     }
 
-    const errorMessage = (error as Error).message || 'Conversion failed';
+    const errorMessage = getErrorMessage(error);
     logError('Error in conversion:', errorMessage);
-    logError('Full error:', error);
 
-    log('⚠️ Calling modal.transitionToError() with message:', errorMessage);
+    updateConversionTask(formatId, {
+      state: 'Failed',
+      statusText: `Error: ${errorMessage}`,
+      error: errorMessage,
+      completedAt: Date.now(),
+    });
+
     modal.transitionToError(errorMessage);
-    log('⚠️ modal.transitionToError() call completed');
   } finally {
     log('=== END CONVERSION ===');
-    currentStrategy = null;
   }
 }
 
 /**
  * Cancel current conversion
  */
-export function cancelConversion(): void {
-  currentStrategy?.cancel();
-  currentStrategy = null;
+export function cancelConversion(formatId: string): void {
+  const task = getConversionTask(formatId);
+  if (task?.abortController) {
+    log('Canceling conversion:', formatId);
+    task.abortController.abort();
+    updateConversionTask(formatId, {
+      state: 'Canceled',
+      statusText: 'Canceled',
+      completedAt: Date.now(),
+    });
+  }
 }
 
 /**
- * Check if current video is YouTube based on originalUrl
+ * Check if current video is YouTube
  */
 function isYouTubePlatform(): boolean {
   const state = getState();
@@ -194,105 +294,25 @@ function isYouTubePlatform(): boolean {
 }
 
 /**
- * Clear URL cache for social media formats when modal closes
- * YouTube formats keep cache, social media formats clear cache
+ * Clear URL cache for social media formats
  */
 export function clearSocialMediaCache(formatId: string): void {
-  // Only clear cache for non-YouTube formats (social media)
   if (!isYouTubePlatform()) {
-    // Clear conversion task cache
     clearConversionTask(formatId);
-
-    // Clear format URL in videoDetail
     clearVideoDetailFormat(formatId);
   }
 }
 
 /**
- * Extract format from API
- * Now uses V3 API (hub.ytconvert.org) for YouTube downloads
- */
-async function extractFormat(
-  formatData: FormatData,
-  signal: AbortSignal,
-  videoUrl: string
-): Promise<ExtractResult> {
-  log('extractFormat called with formatData:', JSON.stringify(formatData, null, 2));
-
-  // Get extractV2Options from formatData (YouTube)
-  const extractOptions = formatData.extractV2Options;
-
-  // YouTube format - use V3 API (hub.ytconvert.org)
-  if (extractOptions) {
-    log('Using V3 API with extractV2Options:', JSON.stringify(extractOptions, null, 2));
-
-    // Map extractV2Options to V3 request format
-    const v3Request = mapToV3DownloadRequest(videoUrl, {
-      downloadMode: (extractOptions.downloadMode as 'video' | 'audio') || 'audio',
-      videoQuality: extractOptions.videoQuality,
-      youtubeVideoContainer: extractOptions.youtubeVideoContainer,
-      audioBitrate: extractOptions.audioBitrate,
-      audioFormat: extractOptions.audioFormat,
-    });
-
-    log('V3 Request:', JSON.stringify(v3Request, null, 2));
-
-    // Call V3 createJob API
-    const jobResponse = await apiV3.createJob(v3Request, signal);
-    log('V3 createJob response:', JSON.stringify(jobResponse, null, 2));
-
-    // Map V3 response to ExtractResult (V2-compatible format)
-    // statusUrl becomes progressUrl for polling
-    return createExtractResult({
-      url: '', // No direct URL - requires polling
-      status: 'stream', // Indicates polling is needed
-      progressUrl: jobResponse.statusUrl, // V3 statusUrl → V2 progressUrl
-      filename: jobResponse.title,
-    });
-  }
-
-  // Social media format with encrypted URL - use decodeUrl
-  if (formatData.encryptedUrl) {
-    log('Using decodeUrl API for encrypted URL');
-    const result = await api.decodeUrl({ encrypted_url: formatData.encryptedUrl });
-
-    // Check if API returned error response (ok: false)
-    if ('ok' in result && result.ok === false) {
-      const errorMsg = (result as any).message || 'Decode URL failed';
-      log('decodeUrl returned error response, throwing error for retry...');
-      throw new Error(errorMsg);
-    }
-
-    const extractData = (result as { data?: unknown })?.data || result;
-    return createExtractResult(extractData as { url: string; filename?: string; size?: number; status: string; progressUrl?: string });
-  }
-
-  // Direct URL format - already have URL
-  if (formatData.url) {
-    log('Using direct URL:', formatData.url);
-    return createExtractResult({
-      url: formatData.url,
-      status: 'static',
-      filename: formatData.filename
-    });
-  }
-
-  // No valid extraction method found
-  throw new Error(`No extractV2Options or URL found for format: ${formatData.id}`);
-}
-
-/**
- * Update format cache after successful extraction
+ * Update format cache after successful conversion
  */
 function updateFormatCache(
   formatId: string,
   downloadUrl: string,
-  formatData: FormatData,
-  extractResult: ExtractResult
+  formatData: FormatData
 ): void {
   const completedAt = Date.now();
 
-  // Update videoDetail.formats for reuse
   updateVideoDetailFormat(formatId, {
     url: downloadUrl,
     quality: formatData.quality,
@@ -300,30 +320,51 @@ function updateFormatCache(
     isFakeData: false,
     completedAt,
     updatedAt: completedAt,
-    size: extractResult.size,
-    status: extractResult.status,
-    filename: extractResult.filename
   });
 }
 
 /**
- * Handle download button click (trigger actual download)
- * Returns 'expired' if YouTube link has expired (caller should show expired UI)
+ * Generate filename from title and options
+ */
+function generateFilename(
+  title: string,
+  options: NonNullable<FormatData['extractV2Options']>
+): string {
+  const sanitizedTitle = title
+    .replace(/[<>:"/\\|?*]/g, '')
+    .replace(/\s+/g, '_')
+    .substring(0, 100);
+
+  const isVideo = options.downloadMode === 'video';
+
+  if (isVideo) {
+    const quality = options.videoQuality || '720';
+    const format = options.youtubeVideoContainer || 'mp4';
+    return `${sanitizedTitle}_${quality}p.${format}`;
+  } else {
+    const format = options.audioFormat || 'mp3';
+    const bitrate = options.audioBitrate || '128';
+    return `${sanitizedTitle}_${bitrate}kbps.${format}`;
+  }
+}
+
+/**
+ * Handle download button click
+ * Returns 'success', 'expired', or 'error' for UI handling
  */
 export function handleDownloadClick(formatId: string): 'success' | 'expired' | 'error' {
   const task = getConversionTask(formatId);
   const modal = getConversionModal();
 
   if (!task?.downloadUrl) {
-    console.error('No download URL available');
+    logError('No download URL available');
     return 'error';
   }
 
-  // Check expire for YouTube only
+  // Check expiry for YouTube only
   if (isYouTubePlatform()) {
     const completedAt = task.completedAt || 0;
     if (isLinkExpired(completedAt)) {
-      // Get video title for expired modal
       const state = getState();
       const videoTitle = state.videoDetail?.meta?.title || 'Video';
       modal.transitionToExpired(videoTitle);
@@ -331,25 +372,7 @@ export function handleDownloadClick(formatId: string): 'success' | 'expired' | '
     }
   }
 
-  // If RAM blob available (iOS RAM strategy), download from blob
-  if (task.ramBlob) {
-    downloadFromBlob(task.ramBlob, task.filename || 'download');
-    return 'success';
-  }
-
-  // Otherwise trigger normal download
+  // Trigger download
   triggerDownload(task.downloadUrl, task.filename);
   return 'success';
-}
-
-/**
- * Download from RAM blob (iOS)
- */
-function downloadFromBlob(blob: Blob, filename: string): void {
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = filename;
-  a.click();
-  URL.revokeObjectURL(url);
 }

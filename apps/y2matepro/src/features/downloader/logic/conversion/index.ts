@@ -1,18 +1,17 @@
 /**
  * Conversion Module - Main Barrel Export
  *
- * Using V2 orchestrator with V3 API backend.
- * The V2 orchestrator handles UI flow via Strategy pattern.
- * The V3 API is called internally by extractFormat() and concurrent-polling.
+ * Simple V3 API flow for all devices.
+ * No device-specific routing or strategies.
  */
 
 // Types
 export * from './types';
 
-// Application layer (strategies)
-export * from './application';
+// V3 exports
+export * from './v3';
 
-// Main orchestrator (V2 structure with V3 API backend)
+// Main conversion logic
 export {
   startConversion,
   cancelConversion,
