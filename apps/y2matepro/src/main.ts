@@ -127,7 +127,7 @@ function initLanguageDropdown() {
     const currentLang = getCurrentLanguage();
 
     // Desktop language dropdown
-    const languageNav = document.querySelector('.navbar.language > a');
+    const languageNav = document.querySelector('.navbar.language > button');
     const dropdownMenu = document.querySelector('.navbar.language .dropdown-menu');
     const desktopLangOptions = document.querySelectorAll('.lang-menu .lang-option, .lang-menu a');
 
