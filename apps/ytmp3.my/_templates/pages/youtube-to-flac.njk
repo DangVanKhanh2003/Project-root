@@ -23,7 +23,7 @@ eleventyComputed:
             </div>
 
             <div id="search-view" class="fade-in">
-                <p class="hero-subtitle">{{ page.hero.subtitle }}</p>
+                <p class="hero-subtitle">{{ page.hero.subtitle | safe }}</p>
 
                 <form id="downloadForm" class="form-container">
                     <div class="input-group">
@@ -118,7 +118,7 @@ eleventyComputed:
             <p>{{ page.content.intro2 | localizeLinks(lang) | safe }}</p>
 
             <h2>{{ page.content.whatIsTitle }}</h2>
-            <p>{{ page.content.whatIsText }}</p>
+            {{ page.content.whatIsText | localizeLinks(lang) | safe }}
 
             <h2>{{ page.whyChoose.title }}</h2>
             <ul>

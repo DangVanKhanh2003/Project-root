@@ -9,7 +9,7 @@
   "hero": {
     "title": "YouTube to",
     "titleAccent": "MP3",
-    "subtitle": "Convert YouTube to MP3 in high quality (128–320kbps), FLAC (lossless), WAV (uncompressed), and M4A – fast, free, and unlimited."
+    "subtitle": "Free & fast yt to mp3 downloads"
   },
 
   "content": {
@@ -61,24 +61,36 @@
     ]
   },
 
-  "faqs": {
-    "title": "MP3 vs M4A vs FLAC vs WAV",
+ "faqs": {
+    "title": "Frequently Asked Questions (FAQ)",
     "items": [
       {
-        "question": "What is MP3?",
-        "answer": "<strong>MP3</strong> is lightweight, widely compatible, and ideal for everyday listening."
+        "question": "Is YTMP3 a free YouTube to MP3 converter?",
+        "answer": "Yes, YTMP3 is completely free to use. There are no hidden fees, subscriptions, or limitations on the number of conversions."
       },
       {
-        "question": "What is M4A (AAC)?",
-        "answer": "<strong>M4A (AAC)</strong> is more efficient than MP3 at the same bitrate."
+        "question": "Can I convert YouTube to MP3 online without installing software?",
+        "answer": "Absolutely. YTMP3 works entirely online. You don't need to install any software or create an account to convert videos."
       },
       {
-        "question": "What is FLAC?",
-        "answer": "<strong>FLAC</strong> is a lossless audio format for high-quality storage."
+        "question": "What formats does YTMP3 support?",
+        "answer": "YTMP3 supports audio formats: MP3 (up to 320kbps), FLAC, WAV, M4A. For video: MP4, WebM, MKV with quality up to 1080p."
       },
       {
-        "question": "What is WAV?",
-        "answer": "<strong>WAV</strong> is an uncompressed audio format with the highest fidelity."
+        "question": "Is YTMP3 safe to use on mobile and desktop?",
+        "answer": "YTMP3 is secure and safe. We use HTTPS encryption and do not collect personal data. It works on any device including desktop, iOS, and Android."
+      },
+      {
+        "question": "What is the difference between YTMP3 and other YouTube to MP3 sites?",
+        "answer": "YTMP3 focuses on speed, unlimited downloads, high-quality audio, and a clean interface."
+      },
+      {
+        "question": "Can I download YouTube videos of any length?",
+        "answer": "Yes, YTMP3 allows you to convert and download YouTube videos of any duration. There are no time limits."
+      },
+      {
+        "question": "Which format should I choose?",
+        "answer": "For general listening, MP3 or M4A are suitable. For lossless quality, choose FLAC. For uncompressed audio, use WAV."
       }
     ]
   }

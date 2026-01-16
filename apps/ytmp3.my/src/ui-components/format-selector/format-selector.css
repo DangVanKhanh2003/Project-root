@@ -64,7 +64,7 @@ html[data-format="mp4"] .quality-select--mp4 { display: block; }
 /* This breakpoint is now handled in the quality-wrapper section below */
 
 /* Desktop: all 3 items in one row */
-@media (min-width: 600px) {
+@media (min-width: 800px) {
   .format-selector {
     flex-wrap: nowrap; /* No wrapping on desktop */
     justify-content: flex-start; /* Align items to left */
@@ -129,7 +129,7 @@ html[data-format="mp4"] .quality-select--mp4 { display: block; }
 }
 
 /* Mobile: quality dropdown full width on line 1, format+convert on line 2 */
-@media (max-width: 599px) {
+@media (max-width: 799px) {
   .quality-wrapper {
     width: 100%;
     order: 1;
@@ -149,7 +149,7 @@ html[data-format="mp4"] .quality-select--mp4 { display: block; }
 }
 
 /* Desktop: quality dropdown fixed 250px width, aligned left with format */
-@media (min-width: 600px) {
+@media (min-width: 800px) {
   .quality-wrapper {
     width: 250px;
     flex-grow: 0;

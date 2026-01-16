@@ -1,0 +1,97 @@
+{
+  "seo": {
+    "title": "YouTube zu MP3 – YTMP3 | Schneller & kostenloser Konverter",
+    "description": "Konvertieren Sie YouTube online kostenlos in MP3 mit YTMP3. Unterstützt MP3 128–320kbps, FLAC (verlustfrei), WAV (unkomprimiert) und M4A. Keine Limits, keine Installation erforderlich.",
+    "ogTitle": "YouTube zu MP3 – YTMP3",
+    "ogDescription": "Konvertieren Sie YouTube in hoher Qualität in MP3. Unterstützt MP3, FLAC, WAV und M4A. Schnell, kostenlos und unbegrenzt."
+  },
+
+  "hero": {
+    "title": "YouTube zu",
+    "titleAccent": "MP3",
+    "subtitle": "Kostenlose & schnelle YouTube zu MP3 Downloads"
+  },
+
+  "content": {
+    "mainTitle": "Was ist YouTube zu MP3?",
+    "intro1": "YouTube zu MP3 ist der Prozess, bei dem Audio aus YouTube-Videos extrahiert und in das MP3-Format konvertiert wird, um es offline auf Handys, Computern, Auto-Audiosystemen oder anderen Musik-Playern anzuhören. MP3 bleibt dank seiner geringen Dateigröße, stabilen Qualität und hervorragenden Kompatibilität über Geräte hinweg das am weitesten verbreitete Audioformat.",
+
+    "formatsTitle": "Warum YTMP3 für die Konvertierung von YouTube zu MP3 wählen?",
+    "formatsText": "YTMP3 bietet eine einfache und zuverlässige Möglichkeit, YouTube-Videos in MP3 zu konvertieren. Der Dienst ist völlig kostenlos, funktioniert direkt in Ihrem Browser und erfordert keine Registrierung. Videos beliebiger Länge können in nur wenigen Sekunden verarbeitet werden, wobei eine hohe Audioqualität erhalten bleibt.",
+
+    "speedTitle": "Verfügbare Formate für YouTube-Downloads",
+    "speedText": "<ul><li><strong>MP3 (128–320kbps):</strong> Das beliebteste Audioformat. <a href=\"/youtube-to-mp3-320kbps-converter\">MP3 320kbps</a> bietet die höchste MP3-Qualität.</li><li><strong>FLAC (verlustfrei):</strong> Bewahrt die ursprüngliche Audioqualität – <a href=\"/youtube-to-flac-converter\">YouTube zu FLAC</a>.</li><li><strong>WAV (unkomprimiert):</strong> Maximale Audioqualität – <a href=\"/youtube-to-wav-converter\">YouTube zu WAV</a>.</li><li><strong>M4A (AAC):</strong> Optimiert für Apple-Geräte – <a href=\"/youtube-to-m4a-converter\">YouTube zu M4A</a>.</li></ul>"
+  },
+
+  "instructions": {
+    "title": "Wie man YouTube mit YTMP3 in MP3 konvertiert",
+    "steps": [
+      "Kopieren Sie die URL des YouTube-Videos, das Sie konvertieren möchten.",
+      "Fügen Sie den Link in das Eingabefeld von YTMP3 ein.",
+      "Wählen Sie Ihr bevorzugtes Audioformat und Ihre Qualität.",
+      "Klicken Sie auf die Schaltfläche „Konvertieren“, um den Vorgang zu starten.",
+      "Laden Sie die Audiodatei herunter, sobald die Konvertierung abgeschlossen ist."
+    ],
+    "note": "Keine Registrierung, keine Installation und keine Nutzungslimits."
+  },
+
+  "whyChoose": {
+    "title": "Warum YTMP3 wählen?",
+    "reasons": [
+      {
+        "title": "100% kostenlos",
+        "text": "Keine versteckten Gebühren und keine Registrierung erforderlich."
+      },
+      {
+        "title": "Schnelle Konvertierung",
+        "text": "Verarbeiten Sie YouTube-Videos in nur wenigen Sekunden."
+      },
+      {
+        "title": "Keine Limits",
+        "text": "Unterstützt YouTube-Videos beliebiger Länge."
+      },
+      {
+        "title": "Hohe Audioqualität",
+        "text": "MP3-Audio verfügbar von 128kbps bis zu 320kbps."
+      },
+      {
+        "title": "Sicher & privat",
+        "text": "Keine Speicherung des Verlaufs und kein Tracking persönlicher Daten."
+      }
+    ]
+  },
+
+ "faqs": {
+    "title": "Häufig gestellte Fragen (FAQ)",
+    "items": [
+      {
+        "question": "Ist YTMP3 ein kostenloser YouTube-zu-MP3-Konverter?",
+        "answer": "Ja, YTMP3 ist völlig kostenlos. Es gibt keine versteckten Gebühren, Abonnements oder Beschränkungen für die Anzahl der Konvertierungen."
+      },
+      {
+        "question": "Kann ich YouTube online in MP3 konvertieren, ohne Software zu installieren?",
+        "answer": "Absolut. YTMP3 funktioniert vollständig online. Sie müssen keine Software installieren oder ein Konto erstellen, um Videos zu konvertieren."
+      },
+      {
+        "question": "Welche Formate unterstützt YTMP3?",
+        "answer": "YTMP3 unterstützt die Audioformate: MP3 (bis zu 320kbps), FLAC, WAV, M4A. Für Video: MP4, WebM, MKV mit einer Qualität von bis zu 1080p."
+      },
+      {
+        "question": "Ist YTMP3 sicher auf Mobilgeräten und Desktops zu verwenden?",
+        "answer": "YTMP3 ist sicher und geschützt. Wir verwenden HTTPS-Verschlüsselung und sammeln keine persönlichen Daten. Es funktioniert auf jedem Gerät, einschließlich Desktop, iOS und Android."
+      },
+      {
+        "question": "Was ist der Unterschied zwischen YTMP3 und anderen YouTube-zu-MP3-Websites?",
+        "answer": "YTMP3 konzentriert sich auf Geschwindigkeit, unbegrenzte Downloads, hochwertige Audioqualität und eine saubere Benutzeroberfläche."
+      },
+      {
+        "question": "Kann ich YouTube-Videos beliebiger Länge herunterladen?",
+        "answer": "Ja, mit YTMP3 können Sie YouTube-Videos beliebiger Dauer konvertieren und herunterladen. Es gibt keine Zeitlimits."
+      },
+      {
+        "question": "Welches Format sollte ich wählen?",
+        "answer": "Für allgemeines Hören sind MP3 oder M4A geeignet. Für verlustfreie Qualität wählen Sie FLAC. Für unkomprimiertes Audio verwenden Sie WAV."
+      }
+    ]
+  }
+}

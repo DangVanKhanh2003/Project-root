@@ -1,296 +1,360 @@
 # Translation Prompts for YTMP3 Pages
 
-## Important Instructions for All Translations
+**10 Independent Prompts for Parallel Processing**
+
+Each prompt is completely independent and can be run on separate AI CLI instances simultaneously.
+
+---
+
+## PROMPT 1: Index Page - Group 1 Languages
+
+**Task:** Translate the Index (homepage) to 9 languages
+
+**Languages:** Arabic (ar), Bengali (bn), German (de), Spanish (es), French (fr), Hindi (hi), Indonesian (id), Italian (it), Japanese (ja)
+
+**Source file:** `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\index\en.json`
+
+**Instructions:**
+1. Read the English source file from the path above
+2. Translate to 9 languages and create these files:
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\index\ar.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\index\bn.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\index\de.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\index\es.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\index\fr.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\index\hi.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\index\id.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\index\it.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\index\ja.json`
 
 **CRITICAL RULES:**
-1. **Read the source file first**: Always read the English JSON file from the provided path
-2. **Preserve HTML structure exactly**: Keep all HTML tags like `<strong>`, `<a href="...">`, `<ul>`, `<ol>`, `<li>`, etc.
-3. **Maintain JSON structure**: The translated JSON must have the exact same structure as the English version
-4. **Internal links**: Keep all internal links (`<a href="/...">`) exactly as they are
-5. **Translate accurately**: Provide contextually accurate translations that match the original meaning
-6. **No extra/missing fields**: Do not add or remove any JSON fields
-7. **Format consistency**: Keep the same formatting, spacing, and indentation as the source file
+- Preserve ALL HTML tags exactly: `<a href="/...">`, `<strong>`, etc.
+- Keep JSON structure identical to English version
+- **IMPORTANT: Keep all internal links EXACTLY as in English** - DO NOT add language prefix (e.g., `/de/`, `/ar/`). The template system automatically handles language-specific URLs. Examples:
+  - ✅ CORRECT: `<a href="/youtube-to-flac-converter">FLAC</a>`
+  - ❌ WRONG: `<a href="/de/youtube-to-flac-converter">FLAC</a>`
+- Maintain technical terms: YTMP3, MP3, FLAC, WAV, M4A, MP4, WebM, MKV, iOS, Android, HTTPS, kbps, 360p, 1080p
+- Translate content accurately and naturally for each target language
+- Keep same formatting and indentation as source file
 
 ---
 
-## Page 1: Index (Homepage)
+## PROMPT 2: Index Page - Group 2 Languages
 
-### Prompt 1.1 - Index Page (Languages: ar, bn, de, es, fr, hi, id, it, ja)
+**Task:** Translate the Index (homepage) to 8 languages
 
-**Task:** Translate the Index page to 9 languages: **Arabic (ar), Bengali (bn), German (de), Spanish (es), French (fr), Hindi (hi), Indonesian (id), Italian (it), Japanese (ja)**
+**Languages:** Korean (ko), Malay (ms), Burmese (my), Portuguese (pt), Russian (ru), Thai (th), Turkish (tr), Urdu (ur)
 
-**Source file path:** `apps/ytmp3.my/_templates/_data/pages/index/en.json`
+**Source file:** `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\index\en.json`
 
 **Instructions:**
 1. Read the English source file from the path above
-2. Create 9 separate translated files in the same directory:
-   - `apps/ytmp3.my/_templates/_data/pages/index/ar.json`
-   - `apps/ytmp3.my/_templates/_data/pages/index/bn.json`
-   - `apps/ytmp3.my/_templates/_data/pages/index/de.json`
-   - `apps/ytmp3.my/_templates/_data/pages/index/es.json`
-   - `apps/ytmp3.my/_templates/_data/pages/index/fr.json`
-   - `apps/ytmp3.my/_templates/_data/pages/index/hi.json`
-   - `apps/ytmp3.my/_templates/_data/pages/index/id.json`
-   - `apps/ytmp3.my/_templates/_data/pages/index/it.json`
-   - `apps/ytmp3.my/_templates/_data/pages/index/ja.json`
-3. Preserve all HTML tags exactly: `<a href="/youtube-to-mp3-320kbps-converter">`, `<a href="/youtube-to-m4a-converter">`, `<a href="/youtube-to-flac-converter">`, `<a href="/youtube-to-wav-converter">`, `<a href="/">`
-4. Keep the JSON structure identical to English
-5. Translate content accurately while maintaining technical terms (YTMP3, MP3, FLAC, WAV, M4A, MP4, WebM, MKV, etc.)
+2. Translate to 8 languages and create these files:
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\index\ko.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\index\ms.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\index\my.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\index\pt.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\index\ru.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\index\th.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\index\tr.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\index\ur.json`
+
+**CRITICAL RULES:**
+- Preserve ALL HTML tags exactly: `<a href="/...">`, `<strong>`, etc.
+- Keep JSON structure identical to English version
+- **IMPORTANT: Keep all internal links EXACTLY as in English** - DO NOT add language prefix (e.g., `/de/`, `/ar/`). The template system automatically handles language-specific URLs. Examples:
+  - ✅ CORRECT: `<a href="/youtube-to-flac-converter">FLAC</a>`
+  - ❌ WRONG: `<a href="/de/youtube-to-flac-converter">FLAC</a>`
+- Maintain technical terms: YTMP3, MP3, FLAC, WAV, M4A, MP4, WebM, MKV, iOS, Android, HTTPS, kbps, 360p, 1080p
+- Translate content accurately and naturally for each target language
+- Keep same formatting and indentation as source file
 
 ---
 
-### Prompt 1.2 - Index Page (Languages: ko, ms, my, pt, ru, th, tr, ur)
+## PROMPT 3: YouTube to FLAC Page - Group 1 Languages
 
-**Task:** Translate the Index page to 8 languages: **Korean (ko), Malay (ms), Burmese (my), Portuguese (pt), Russian (ru), Thai (th), Turkish (tr), Urdu (ur)**
+**Task:** Translate the YouTube to FLAC page to 9 languages
 
-**Source file path:** `apps/ytmp3.my/_templates/_data/pages/index/en.json`
+**Languages:** Arabic (ar), Bengali (bn), German (de), Spanish (es), French (fr), Hindi (hi), Indonesian (id), Italian (it), Japanese (ja)
+
+**Source file:** `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-flac\en.json`
 
 **Instructions:**
 1. Read the English source file from the path above
-2. Create 8 separate translated files in the same directory:
-   - `apps/ytmp3.my/_templates/_data/pages/index/ko.json`
-   - `apps/ytmp3.my/_templates/_data/pages/index/ms.json`
-   - `apps/ytmp3.my/_templates/_data/pages/index/my.json`
-   - `apps/ytmp3.my/_templates/_data/pages/index/pt.json`
-   - `apps/ytmp3.my/_templates/_data/pages/index/ru.json`
-   - `apps/ytmp3.my/_templates/_data/pages/index/th.json`
-   - `apps/ytmp3.my/_templates/_data/pages/index/tr.json`
-   - `apps/ytmp3.my/_templates/_data/pages/index/ur.json`
-3. Preserve all HTML tags exactly: `<a href="/youtube-to-mp3-320kbps-converter">`, `<a href="/youtube-to-m4a-converter">`, `<a href="/youtube-to-flac-converter">`, `<a href="/youtube-to-wav-converter">`, `<a href="/">`
-4. Keep the JSON structure identical to English
-5. Translate content accurately while maintaining technical terms (YTMP3, MP3, FLAC, WAV, M4A, MP4, WebM, MKV, etc.)
+2. Translate to 9 languages and create these files:
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-flac\ar.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-flac\bn.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-flac\de.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-flac\es.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-flac\fr.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-flac\hi.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-flac\id.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-flac\it.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-flac\ja.json`
+
+**CRITICAL RULES:**
+- Preserve ALL HTML tags exactly: `<strong>`, `<a href="/...">`, etc.
+- Keep JSON structure identical to English version
+- Keep all internal links unchanged: `/youtube-to-mp3-320kbps-converter`, `/youtube-to-m4a-converter`, `/youtube-to-wav-converter`
+- Maintain technical terms: YTMP3, FLAC, WAV, MP3, M4A, AAC, lossless, Hi-Res, bit-for-bit, 16-bit, 24-bit, 44.1kHz, dB (decibel), Windows, macOS, iOS, Android
+- Translate content accurately and naturally for each target language
+- Keep same formatting and indentation as source file
 
 ---
 
-## Page 2: YouTube to FLAC
+## PROMPT 4: YouTube to FLAC Page - Group 2 Languages
 
-### Prompt 2.1 - YouTube to FLAC Page (Languages: ar, bn, de, es, fr, hi, id, it, ja)
+**Task:** Translate the YouTube to FLAC page to 8 languages
 
-**Task:** Translate the YouTube to FLAC page to 9 languages: **Arabic (ar), Bengali (bn), German (de), Spanish (es), French (fr), Hindi (hi), Indonesian (id), Italian (it), Japanese (ja)**
+**Languages:** Korean (ko), Malay (ms), Burmese (my), Portuguese (pt), Russian (ru), Thai (th), Turkish (tr), Urdu (ur)
 
-**Source file path:** `apps/ytmp3.my/_templates/_data/pages/youtube-to-flac/en.json`
+**Source file:** `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-flac\en.json`
 
 **Instructions:**
 1. Read the English source file from the path above
-2. Create 9 separate translated files in the same directory:
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-flac/ar.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-flac/bn.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-flac/de.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-flac/es.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-flac/fr.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-flac/hi.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-flac/id.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-flac/it.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-flac/ja.json`
-3. Preserve all HTML tags exactly: `<strong>`, `<a href="/youtube-to-mp3-320kbps-converter">`, `<a href="/youtube-to-m4a-converter">`, `<a href="/youtube-to-wav-converter">`
-4. Keep the JSON structure identical to English
-5. Translate content accurately while maintaining technical terms (FLAC, WAV, MP3, M4A, Hi-Res, dB, kHz, bit-for-bit, etc.)
+2. Translate to 8 languages and create these files:
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-flac\ko.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-flac\ms.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-flac\my.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-flac\pt.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-flac\ru.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-flac\th.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-flac\tr.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-flac\ur.json`
+
+**CRITICAL RULES:**
+- Preserve ALL HTML tags exactly: `<strong>`, `<a href="/...">`, etc.
+- Keep JSON structure identical to English version
+- Keep all internal links unchanged: `/youtube-to-mp3-320kbps-converter`, `/youtube-to-m4a-converter`, `/youtube-to-wav-converter`
+- Maintain technical terms: YTMP3, FLAC, WAV, MP3, M4A, AAC, lossless, Hi-Res, bit-for-bit, 16-bit, 24-bit, 44.1kHz, dB (decibel), Windows, macOS, iOS, Android
+- Translate content accurately and naturally for each target language
+- Keep same formatting and indentation as source file
 
 ---
 
-### Prompt 2.2 - YouTube to FLAC Page (Languages: ko, ms, my, pt, ru, th, tr, ur)
+## PROMPT 5: YouTube to M4A Page - Group 1 Languages
 
-**Task:** Translate the YouTube to FLAC page to 8 languages: **Korean (ko), Malay (ms), Burmese (my), Portuguese (pt), Russian (ru), Thai (th), Turkish (tr), Urdu (ur)**
+**Task:** Translate the YouTube to M4A page to 9 languages
 
-**Source file path:** `apps/ytmp3.my/_templates/_data/pages/youtube-to-flac/en.json`
+**Languages:** Arabic (ar), Bengali (bn), German (de), Spanish (es), French (fr), Hindi (hi), Indonesian (id), Italian (it), Japanese (ja)
+
+**Source file:** `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-m4a\en.json`
 
 **Instructions:**
 1. Read the English source file from the path above
-2. Create 8 separate translated files in the same directory:
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-flac/ko.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-flac/ms.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-flac/my.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-flac/pt.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-flac/ru.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-flac/th.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-flac/tr.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-flac/ur.json`
-3. Preserve all HTML tags exactly: `<strong>`, `<a href="/youtube-to-mp3-320kbps-converter">`, `<a href="/youtube-to-m4a-converter">`, `<a href="/youtube-to-wav-converter">`
-4. Keep the JSON structure identical to English
-5. Translate content accurately while maintaining technical terms (FLAC, WAV, MP3, M4A, Hi-Res, dB, kHz, bit-for-bit, etc.)
+2. Translate to 9 languages and create these files:
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-m4a\ar.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-m4a\bn.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-m4a\de.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-m4a\es.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-m4a\fr.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-m4a\hi.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-m4a\id.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-m4a\it.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-m4a\ja.json`
+
+**CRITICAL RULES:**
+- Preserve ALL HTML tags exactly: `<strong>`, `<a href="/...">`, etc.
+- Keep JSON structure identical to English version
+- Keep all internal links unchanged: `/youtube-to-mp3-320kbps-converter`, `/youtube-to-flac-converter`, `/youtube-to-wav-converter`
+- Maintain technical terms: YTMP3, M4A, MP3, AAC (Advanced Audio Coding), Apple, iTunes, Apple Music, iPhone, iPad, Mac, Android, iOS, Windows, macOS, YouTube Shorts, kbps (128kbps, 256kbps, 320kbps)
+- Translate content accurately and naturally for each target language
+- Keep same formatting and indentation as source file
 
 ---
 
-## Page 3: YouTube to M4A
+## PROMPT 6: YouTube to M4A Page - Group 2 Languages
 
-### Prompt 3.1 - YouTube to M4A Page (Languages: ar, bn, de, es, fr, hi, id, it, ja)
+**Task:** Translate the YouTube to M4A page to 8 languages
 
-**Task:** Translate the YouTube to M4A page to 9 languages: **Arabic (ar), Bengali (bn), German (de), Spanish (es), French (fr), Hindi (hi), Indonesian (id), Italian (it), Japanese (ja)**
+**Languages:** Korean (ko), Malay (ms), Burmese (my), Portuguese (pt), Russian (ru), Thai (th), Turkish (tr), Urdu (ur)
 
-**Source file path:** `apps/ytmp3.my/_templates/_data/pages/youtube-to-m4a/en.json`
+**Source file:** `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-m4a\en.json`
 
 **Instructions:**
 1. Read the English source file from the path above
-2. Create 9 separate translated files in the same directory:
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-m4a/ar.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-m4a/bn.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-m4a/de.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-m4a/es.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-m4a/fr.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-m4a/hi.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-m4a/id.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-m4a/it.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-m4a/ja.json`
-3. Preserve all HTML tags exactly: `<strong>`, `<a href="/youtube-to-mp3-320kbps-converter">`, `<a href="/youtube-to-flac-converter">`, `<a href="/youtube-to-wav-converter">`
-4. Keep the JSON structure identical to English
-5. Translate content accurately while maintaining technical terms (M4A, MP3, AAC, Apple, iTunes, iOS, Android, kbps, etc.)
+2. Translate to 8 languages and create these files:
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-m4a\ko.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-m4a\ms.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-m4a\my.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-m4a\pt.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-m4a\ru.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-m4a\th.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-m4a\tr.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-m4a\ur.json`
+
+**CRITICAL RULES:**
+- Preserve ALL HTML tags exactly: `<strong>`, `<a href="/...">`, etc.
+- Keep JSON structure identical to English version
+- Keep all internal links unchanged: `/youtube-to-mp3-320kbps-converter`, `/youtube-to-flac-converter`, `/youtube-to-wav-converter`
+- Maintain technical terms: YTMP3, M4A, MP3, AAC (Advanced Audio Coding), Apple, iTunes, Apple Music, iPhone, iPad, Mac, Android, iOS, Windows, macOS, YouTube Shorts, kbps (128kbps, 256kbps, 320kbps)
+- Translate content accurately and naturally for each target language
+- Keep same formatting and indentation as source file
 
 ---
 
-### Prompt 3.2 - YouTube to M4A Page (Languages: ko, ms, my, pt, ru, th, tr, ur)
+## PROMPT 7: YouTube to MP3 320kbps Page - Group 1 Languages
 
-**Task:** Translate the YouTube to M4A page to 8 languages: **Korean (ko), Malay (ms), Burmese (my), Portuguese (pt), Russian (ru), Thai (th), Turkish (tr), Urdu (ur)**
+**Task:** Translate the YouTube to MP3 320kbps page to 9 languages
 
-**Source file path:** `apps/ytmp3.my/_templates/_data/pages/youtube-to-m4a/en.json`
+**Languages:** Arabic (ar), Bengali (bn), German (de), Spanish (es), French (fr), Hindi (hi), Indonesian (id), Italian (it), Japanese (ja)
+
+**Source file:** `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-mp3-320kbps\en.json`
 
 **Instructions:**
 1. Read the English source file from the path above
-2. Create 8 separate translated files in the same directory:
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-m4a/ko.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-m4a/ms.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-m4a/my.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-m4a/pt.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-m4a/ru.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-m4a/th.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-m4a/tr.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-m4a/ur.json`
-3. Preserve all HTML tags exactly: `<strong>`, `<a href="/youtube-to-mp3-320kbps-converter">`, `<a href="/youtube-to-flac-converter">`, `<a href="/youtube-to-wav-converter">`
-4. Keep the JSON structure identical to English
-5. Translate content accurately while maintaining technical terms (M4A, MP3, AAC, Apple, iTunes, iOS, Android, kbps, etc.)
+2. Translate to 9 languages and create these files:
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-mp3-320kbps\ar.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-mp3-320kbps\bn.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-mp3-320kbps\de.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-mp3-320kbps\es.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-mp3-320kbps\fr.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-mp3-320kbps\hi.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-mp3-320kbps\id.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-mp3-320kbps\it.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-mp3-320kbps\ja.json`
+
+**CRITICAL RULES:**
+- Preserve ALL HTML tags exactly: `<strong>`, `<a href="/...">`, etc.
+- Keep JSON structure identical to English version
+- Keep all internal links unchanged: `/youtube-to-m4a-converter`, `/youtube-to-flac-converter`, `/youtube-to-wav-converter`
+- Maintain technical terms: MP3, 320kbps, 128kbps, 256kbps, bitrate, WAV, FLAC, M4A, AAC, lossy, lossless
+- Translate content accurately and naturally for each target language
+- Keep same formatting and indentation as source file
 
 ---
 
-## Page 4: YouTube to MP3 320kbps
+## PROMPT 8: YouTube to MP3 320kbps Page - Group 2 Languages
 
-### Prompt 4.1 - YouTube to MP3 320kbps Page (Languages: ar, bn, de, es, fr, hi, id, it, ja)
+**Task:** Translate the YouTube to MP3 320kbps page to 8 languages
 
-**Task:** Translate the YouTube to MP3 320kbps page to 9 languages: **Arabic (ar), Bengali (bn), German (de), Spanish (es), French (fr), Hindi (hi), Indonesian (id), Italian (it), Japanese (ja)**
+**Languages:** Korean (ko), Malay (ms), Burmese (my), Portuguese (pt), Russian (ru), Thai (th), Turkish (tr), Urdu (ur)
 
-**Source file path:** `apps/ytmp3.my/_templates/_data/pages/youtube-to-mp3-320kbps/en.json`
+**Source file:** `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-mp3-320kbps\en.json`
 
 **Instructions:**
 1. Read the English source file from the path above
-2. Create 9 separate translated files in the same directory:
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-mp3-320kbps/ar.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-mp3-320kbps/bn.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-mp3-320kbps/de.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-mp3-320kbps/es.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-mp3-320kbps/fr.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-mp3-320kbps/hi.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-mp3-320kbps/id.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-mp3-320kbps/it.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-mp3-320kbps/ja.json`
-3. Preserve all HTML tags exactly: `<strong>`, `<a href="/youtube-to-m4a-converter">`, `<a href="/youtube-to-flac-converter">`, `<a href="/youtube-to-wav-converter">`
-4. Keep the JSON structure identical to English
-5. Translate content accurately while maintaining technical terms (MP3, 320kbps, 128kbps, 256kbps, bitrate, WAV, FLAC, M4A, AAC, etc.)
+2. Translate to 8 languages and create these files:
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-mp3-320kbps\ko.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-mp3-320kbps\ms.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-mp3-320kbps\my.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-mp3-320kbps\pt.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-mp3-320kbps\ru.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-mp3-320kbps\th.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-mp3-320kbps\tr.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-mp3-320kbps\ur.json`
+
+**CRITICAL RULES:**
+- Preserve ALL HTML tags exactly: `<strong>`, `<a href="/...">`, etc.
+- Keep JSON structure identical to English version
+- Keep all internal links unchanged: `/youtube-to-m4a-converter`, `/youtube-to-flac-converter`, `/youtube-to-wav-converter`
+- Maintain technical terms: MP3, 320kbps, 128kbps, 256kbps, bitrate, WAV, FLAC, M4A, AAC, lossy, lossless
+- Translate content accurately and naturally for each target language
+- Keep same formatting and indentation as source file
 
 ---
 
-### Prompt 4.2 - YouTube to MP3 320kbps Page (Languages: ko, ms, my, pt, ru, th, tr, ur)
+## PROMPT 9: YouTube to WAV Page - Group 1 Languages
 
-**Task:** Translate the YouTube to MP3 320kbps page to 8 languages: **Korean (ko), Malay (ms), Burmese (my), Portuguese (pt), Russian (ru), Thai (th), Turkish (tr), Urdu (ur)**
+**Task:** Translate the YouTube to WAV page to 9 languages
 
-**Source file path:** `apps/ytmp3.my/_templates/_data/pages/youtube-to-mp3-320kbps/en.json`
+**Languages:** Arabic (ar), Bengali (bn), German (de), Spanish (es), French (fr), Hindi (hi), Indonesian (id), Italian (it), Japanese (ja)
+
+**Source file:** `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-wav\en.json`
 
 **Instructions:**
 1. Read the English source file from the path above
-2. Create 8 separate translated files in the same directory:
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-mp3-320kbps/ko.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-mp3-320kbps/ms.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-mp3-320kbps/my.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-mp3-320kbps/pt.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-mp3-320kbps/ru.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-mp3-320kbps/th.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-mp3-320kbps/tr.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-mp3-320kbps/ur.json`
-3. Preserve all HTML tags exactly: `<strong>`, `<a href="/youtube-to-m4a-converter">`, `<a href="/youtube-to-flac-converter">`, `<a href="/youtube-to-wav-converter">`
-4. Keep the JSON structure identical to English
-5. Translate content accurately while maintaining technical terms (MP3, 320kbps, 128kbps, 256kbps, bitrate, WAV, FLAC, M4A, AAC, etc.)
+2. Translate to 9 languages and create these files:
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-wav\ar.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-wav\bn.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-wav\de.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-wav\es.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-wav\fr.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-wav\hi.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-wav\id.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-wav\it.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-wav\ja.json`
+
+**CRITICAL RULES:**
+- Preserve ALL HTML tags exactly: `<strong>`, `<a href="/...">`, etc.
+- Keep JSON structure identical to English version
+- Keep all internal links unchanged: `/youtube-to-mp3-320kbps-converter`, `/youtube-to-flac-converter`, `/youtube-to-m4a-converter`
+- Maintain technical terms: WAV (Waveform Audio File Format), FLAC, MP3, uncompressed, lossless, 16-bit, 24-bit, stereo, MB, CD-quality, Studio-quality, YouTube Shorts, HTTPS
+- Translate content accurately and naturally for each target language
+- Keep same formatting and indentation as source file
 
 ---
 
-## Page 5: YouTube to WAV
+## PROMPT 10: YouTube to WAV Page - Group 2 Languages
 
-### Prompt 5.1 - YouTube to WAV Page (Languages: ar, bn, de, es, fr, hi, id, it, ja)
+**Task:** Translate the YouTube to WAV page to 8 languages
 
-**Task:** Translate the YouTube to WAV page to 9 languages: **Arabic (ar), Bengali (bn), German (de), Spanish (es), French (fr), Hindi (hi), Indonesian (id), Italian (it), Japanese (ja)**
+**Languages:** Korean (ko), Malay (ms), Burmese (my), Portuguese (pt), Russian (ru), Thai (th), Turkish (tr), Urdu (ur)
 
-**Source file path:** `apps/ytmp3.my/_templates/_data/pages/youtube-to-wav/en.json`
-
-**Instructions:**
-1. Read the English source file from the path above
-2. Create 9 separate translated files in the same directory:
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-wav/ar.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-wav/bn.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-wav/de.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-wav/es.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-wav/fr.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-wav/hi.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-wav/id.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-wav/it.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-wav/ja.json`
-3. Preserve all HTML tags exactly: `<strong>`, `<a href="/youtube-to-flac-converter">`
-4. Keep the JSON structure identical to English
-5. Translate content accurately while maintaining technical terms (WAV, FLAC, MP3, uncompressed, lossless, 16-bit, 24-bit, stereo, MB, CD-quality, Studio-quality, etc.)
-
----
-
-### Prompt 5.2 - YouTube to WAV Page (Languages: ko, ms, my, pt, ru, th, tr, ur)
-
-**Task:** Translate the YouTube to WAV page to 8 languages: **Korean (ko), Malay (ms), Burmese (my), Portuguese (pt), Russian (ru), Thai (th), Turkish (tr), Urdu (ur)**
-
-**Source file path:** `apps/ytmp3.my/_templates/_data/pages/youtube-to-wav/en.json`
+**Source file:** `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-wav\en.json`
 
 **Instructions:**
 1. Read the English source file from the path above
-2. Create 8 separate translated files in the same directory:
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-wav/ko.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-wav/ms.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-wav/my.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-wav/pt.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-wav/ru.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-wav/th.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-wav/tr.json`
-   - `apps/ytmp3.my/_templates/_data/pages/youtube-to-wav/ur.json`
-3. Preserve all HTML tags exactly: `<strong>`, `<a href="/youtube-to-flac-converter">`
-4. Keep the JSON structure identical to English
-5. Translate content accurately while maintaining technical terms (WAV, FLAC, MP3, uncompressed, lossless, 16-bit, 24-bit, stereo, MB, CD-quality, Studio-quality, etc.)
+2. Translate to 8 languages and create these files:
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-wav\ko.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-wav\ms.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-wav\my.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-wav\pt.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-wav\ru.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-wav\th.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-wav\tr.json`
+   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-wav\ur.json`
+
+**CRITICAL RULES:**
+- Preserve ALL HTML tags exactly: `<strong>`, `<a href="/...">`, etc.
+- Keep JSON structure identical to English version
+- Keep all internal links unchanged: `/youtube-to-mp3-320kbps-converter`, `/youtube-to-flac-converter`, `/youtube-to-m4a-converter`
+- Maintain technical terms: WAV (Waveform Audio File Format), FLAC, MP3, uncompressed, lossless, 16-bit, 24-bit, stereo, MB, CD-quality, Studio-quality, YouTube Shorts, HTTPS
+- Translate content accurately and naturally for each target language
+- Keep same formatting and indentation as source file
 
 ---
 
 ## Summary
 
-**Total prompts:** 10 prompts (5 pages × 2 prompts each)
+**10 Independent Prompts:**
+1. Index - Group 1 (9 languages)
+2. Index - Group 2 (8 languages)
+3. FLAC - Group 1 (9 languages)
+4. FLAC - Group 2 (8 languages)
+5. M4A - Group 1 (9 languages)
+6. M4A - Group 2 (8 languages)
+7. MP3 320kbps - Group 1 (9 languages)
+8. MP3 320kbps - Group 2 (8 languages)
+9. WAV - Group 1 (9 languages)
+10. WAV - Group 2 (8 languages)
 
-**Languages covered:**
+**Total files to create:** 85 JSON files
+- Index: 17 files
+- FLAC: 17 files
+- M4A: 17 files
+- MP3 320kbps: 17 files
+- WAV: 17 files
+
+**Languages:**
 - **Group 1 (9 languages):** ar, bn, de, es, fr, hi, id, it, ja
 - **Group 2 (8 languages):** ko, ms, my, pt, ru, th, tr, ur
-
-**Total files to create:** 85 JSON files (5 pages × 17 languages)
-
-**Pages:**
-1. Index (homepage)
-2. YouTube to FLAC
-3. YouTube to M4A
-4. YouTube to MP3 320kbps
-5. YouTube to WAV
 
 ---
 
 ## Usage Instructions
 
-To use these prompts with an AI translation service:
+**For parallel processing on 10 AI CLI instances:**
 
-1. **Copy one prompt at a time** from this file
-2. **Paste it into your AI chat** (Claude, ChatGPT, etc.)
-3. **The AI will:**
-   - Read the English source file
-   - Translate it to all specified languages
-   - Create separate JSON files for each language
-4. **Verify the output** to ensure HTML tags and structure are preserved
-5. **Move to the next prompt**
+1. Copy **PROMPT 1** → Paste into AI CLI #1
+2. Copy **PROMPT 2** → Paste into AI CLI #2
+3. Copy **PROMPT 3** → Paste into AI CLI #3
+4. Copy **PROMPT 4** → Paste into AI CLI #4
+5. Copy **PROMPT 5** → Paste into AI CLI #5
+6. Copy **PROMPT 6** → Paste into AI CLI #6
+7. Copy **PROMPT 7** → Paste into AI CLI #7
+8. Copy **PROMPT 8** → Paste into AI CLI #8
+9. Copy **PROMPT 9** → Paste into AI CLI #9
+10. Copy **PROMPT 10** → Paste into AI CLI #10
 
-**Recommended order:**
-- Complete all Prompt X.1 tasks first (Group 1 languages)
-- Then complete all Prompt X.2 tasks (Group 2 languages)
-- This allows you to verify translations in batches
+All 10 prompts can run simultaneously and independently without conflicts.

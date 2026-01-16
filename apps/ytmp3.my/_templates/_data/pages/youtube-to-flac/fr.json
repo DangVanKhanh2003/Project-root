@@ -1,0 +1,69 @@
+{
+  "seo": {
+    "title": "YouTube en FLAC (compressé sans perte) – YTMP3",
+    "description": "Convertissez YouTube en FLAC sans perte (compressé) avec YTMP3. Préservez 100 % de la qualité audio originale avec une taille de fichier plus petite que WAV. Gratuit, rapide et illimité.",
+    "ogTitle": "YouTube en FLAC – YTMP3",
+    "ogDescription": "Convertissez YouTube en FLAC compressé sans perte. Qualité originale avec une taille de fichier plus petite que WAV."
+  },
+
+  "hero": {
+    "title": "YouTube en",
+    "titleAccent": "FLAC",
+    "subtitle": "Convertisseur gratuit et rapide de YouTube en FLAC sans perte"
+  },
+
+  "content": {
+    "mainTitle": "Qu'est-ce que YouTube en FLAC ?",
+    "intro1": "YouTube en FLAC est le processus d'extraction de l'audio d'une vidéo YouTube et de sa conversion au format FLAC (Free Lossless Audio Codec).",
+    "intro2": "FLAC est un format audio <strong>compressé sans perte</strong>, ce qui signifie que la qualité sonore est préservée à 100 % de la source originale tout en réduisant la taille du fichier par rapport aux formats non compressés.",
+
+    "whatIsTitle": "En quoi FLAC est-il différent de MP3 et WAV ?",
+    "whatIsText": "<ul><li><strong>Par rapport au MP3 :</strong> FLAC ne supprime aucune donnée audio. Même les formats de haute qualité comme le <a href=\"/youtube-to-mp3-320kbps-converter\">MP3 320kbps</a> sont toujours avec perte et suppriment certaines informations.</li><li><strong>Par rapport au WAV :</strong> FLAC conserve la même qualité audio mais réduit la taille du fichier d'environ 40 à 50 % par rapport au <a href=\"/youtube-to-wav-converter\">WAV non compressé</a>.</li></ul>"
+  },
+
+  "whyChoose": {
+    "title": "Pourquoi utiliser YTMP3 pour la conversion de YouTube en FLAC ?",
+    "reasons": [
+      {
+        "title": "100 % gratuit",
+        "text": "Pas d'inscription, pas de limites d'utilisation."
+      },
+      {
+        "title": "Vraiment sans perte",
+        "text": "Les données audio sont entièrement préservées."
+      },
+      {
+        "title": "Compression efficace",
+        "text": "Plus petit que WAV, même qualité."
+      },
+      {
+        "title": "Multiplateforme",
+        "text": "Fonctionne sur Windows, macOS, iOS et Android."
+      }
+    ]
+  },
+
+  "instructions": {
+    "title": "Comment convertir YouTube en FLAC",
+    "steps": [
+      "Copiez le lien de la vidéo YouTube.",
+      "Collez-le dans le convertisseur YTMP3.",
+      "Sélectionnez FLAC comme format de sortie.",
+      "Cliquez sur « Convertir » et téléchargez votre fichier FLAC."
+    ]
+  },
+
+  "faqs": {
+    "title": "Questions fréquemment posées",
+    "items": [
+      { "question": "YTMP3 est-il gratuit pour la conversion de YouTube en FLAC ?", "answer": "Oui. Entièrement gratuit, aucune inscription, aucun abonnement requis." },
+      { "question": "Que signifie « sans perte » dans FLAC ?", "answer": "Sans perte signifie que l'audio est compressé sans perdre de données. Une fois décodé, il est identique bit pour bit à l'original." },
+      { "question": "FLAC est-il meilleur que le MP3 ?", "answer": "Oui, pour la qualité. FLAC préserve 100 % de l'audio original tandis que le MP3 supprime des données. Cependant, les fichiers FLAC sont plus volumineux que les fichiers MP3 320kbps." },
+      { "question": "Quelle est la différence entre le FLAC 16 bits et 24 bits ?", "answer": "Le 24 bits offre une plage dynamique plus élevée (144 dB contre 96 dB) et est utilisé pour l'audio Hi-Res. Le 16 bits/44,1 kHz correspond à la qualité CD et est suffisant pour la plupart des auditeurs." },
+      { "question": "Puis-je lire du FLAC sur mon appareil ?", "answer": "Oui. FLAC est pris en charge nativement sur Windows 10, macOS, iOS, Android et la plupart des lecteurs audio modernes. Pour une compatibilité plus large, envisagez le M4A." },
+      { "question": "De combien FLAC est-il plus petit que WAV ?", "answer": "FLAC réduit généralement la taille du fichier de 40 à 50 % par rapport au WAV non compressé tout en conservant une qualité audio identique." },
+      { "question": "YTMP3 stocke-t-il mes données ?", "answer": "Non. Toutes les conversions sont temporaires et aucune donnée personnelle n'est stockée." },
+      { "question": "FLAC est-il bon pour l'archivage de musique ?", "answer": "Oui. FLAC est idéal pour l'archivage car il est sans perte, open-source et peut être converti dans n'importe quel format sans perte de génération." }
+    ]
+  }
+}
