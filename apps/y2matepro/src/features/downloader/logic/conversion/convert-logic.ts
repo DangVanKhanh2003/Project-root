@@ -6,6 +6,7 @@
  */
 
 import { api } from '../../../../api';
+import { apiV3 } from '../../../../api/v3';
 import {
   setConversionTask,
   getConversionTask,
@@ -17,7 +18,7 @@ import {
 import { getConversionModal } from '../../../../ui-components/modal/conversion-modal';
 import { triggerDownload } from '../../../../utils';
 import { isLinkExpired } from '../../../../utils/link-validator';
-import { isYouTubeUrl } from '@downloader/core';
+import { isYouTubeUrl, mapToV3DownloadRequest } from '@downloader/core';
 
 // Types
 import {
@@ -209,6 +210,7 @@ export function clearSocialMediaCache(formatId: string): void {
 
 /**
  * Extract format from API
+ * Now uses V3 API (api.ytconvert.org) for YouTube downloads
  */
 async function extractFormat(
   formatData: FormatData,
@@ -217,38 +219,36 @@ async function extractFormat(
 ): Promise<ExtractResult> {
   log('extractFormat called with formatData:', JSON.stringify(formatData, null, 2));
 
-  // Get extractV2Options from formatData (YouTube V2 API)
+  // Get extractV2Options from formatData (YouTube)
   const extractOptions = formatData.extractV2Options;
 
-  // YouTube format - use downloadYouTube API V2
+  // YouTube format - use V3 API (api.ytconvert.org)
   if (extractOptions) {
-    log('Using YouTube V2 API with extractV2Options:', JSON.stringify(extractOptions, null, 2));
+    log('Using V3 API with extractV2Options:', JSON.stringify(extractOptions, null, 2));
 
-    // Build request based on downloadMode
-    const downloadRequest = {
-      url: videoUrl,
-      downloadMode: extractOptions.downloadMode,
-      brandName: 'y2matepro',
+    // Map extractV2Options to V3 request format
+    const v3Request = mapToV3DownloadRequest(videoUrl, {
+      downloadMode: (extractOptions.downloadMode as 'video' | 'audio') || 'audio',
       videoQuality: extractOptions.videoQuality,
       youtubeVideoContainer: extractOptions.youtubeVideoContainer,
       audioBitrate: extractOptions.audioBitrate,
       audioFormat: extractOptions.audioFormat,
-    };
+    });
 
-    log('downloadRequest:', JSON.stringify(downloadRequest, null, 2));
+    log('V3 Request:', JSON.stringify(v3Request, null, 2));
 
-    const result = await api.downloadYouTube(downloadRequest as Parameters<typeof api.downloadYouTube>[0], signal);
-    log('downloadYouTube result:', JSON.stringify(result, null, 2));
+    // Call V3 createJob API
+    const jobResponse = await apiV3.createJob(v3Request, signal);
+    log('V3 createJob response:', JSON.stringify(jobResponse, null, 2));
 
-    // Check if API returned error response (ok: false)
-    if ('ok' in result && result.ok === false) {
-      const errorMsg = (result as any).message || 'API request failed';
-      log('API returned error response, throwing error for retry...');
-      throw new Error(errorMsg);
-    }
-
-    const extractData = (result as { data?: unknown })?.data || result;
-    return createExtractResult(extractData as { url: string; filename?: string; size?: number; status: string; progressUrl?: string });
+    // Map V3 response to ExtractResult (V2-compatible format)
+    // statusUrl becomes progressUrl for polling
+    return createExtractResult({
+      url: '', // No direct URL - requires polling
+      status: 'stream', // Indicates polling is needed
+      progressUrl: jobResponse.statusUrl, // V3 statusUrl → V2 progressUrl
+      filename: jobResponse.title,
+    });
   }
 
   // Social media format with encrypted URL - use decodeUrl

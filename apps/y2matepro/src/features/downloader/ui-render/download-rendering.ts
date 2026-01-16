@@ -770,7 +770,7 @@ async function handleDownloadClick(event: MouseEvent): Promise<void> {
         }
 
         // For YouTube or formats without direct URL, use conversion flow
-        const { startConversion } = await import('../logic/conversion/convert-logic-v2.js');
+        const { startConversion } = await import('../logic/conversion/convert-logic.js');
         const videoTitle = state.videoDetail?.meta?.title || 'Video';
         const videoUrl = state.videoDetail?.meta?.originalUrl || '';
 

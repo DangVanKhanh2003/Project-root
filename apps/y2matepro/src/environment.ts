@@ -25,6 +25,11 @@ interface TimeoutConfig {
     multifileStart: number;
     streamDownload: number;
     addQueue: number;
+    // V3 API timeouts
+    v3CreateJob: number;
+    v3GetStatus: number;
+    v3PollingInterval: number;
+    v3MaxPollingDuration: number;
 }
 
 interface ExpiryConfig {
@@ -36,6 +41,7 @@ interface ApiConfig {
     baseUrl: string;
     baseUrlV1: string;
     baseUrlV2: string;
+    baseUrlV3: string;
     searchV2BaseUrl: string;
     youtubeStreamApiUrl: string;
     youtubeStreamApiEndpoint: string;
@@ -102,6 +108,9 @@ const environment: Environment = {
         // V2 API Base URL (new API endpoint - current default)
         baseUrlV2: import.meta.env.VITE_API_BASE_URL_V2 || 'https://sv-190.y2mp3.co',
 
+        // V3 API Base URL (YouTube Download API)
+        baseUrlV3: import.meta.env.VITE_API_BASE_URL_V3 || 'https://api.ytconvert.org',
+
         // Main API (currently uses V1 - for extract, convert, playlist, etc.)
         // Both dev and prod use production API (no local backend)
         baseUrl: import.meta.env.VITE_API_BASE_URL || 'https://api.yt1s.cx/api/v1',
@@ -143,6 +152,11 @@ const environment: Environment = {
             multifileStart: 15000, // 15 seconds for multifile start request
             streamDownload: 30 * 60 * 1000, // 30 minutes for stream downloads to RAM
             addQueue: 5000, // 5 seconds for queue API (fire-and-forget)
+            // V3 API timeouts
+            v3CreateJob: 60 * 60 * 1000, // 1 hour for create job
+            v3GetStatus: 55 * 1000, // 55 seconds for get status
+            v3PollingInterval: 1000, // 1 second polling interval
+            v3MaxPollingDuration: 5 * 60 * 60 * 1000, // 5 hours max polling
         },
 
         // Data expiry times (in milliseconds)
@@ -218,6 +232,14 @@ export function getApiBaseUrlV1(): string {
  */
 export function getApiBaseUrlV2(): string {
     return environment.api.baseUrlV2;
+}
+
+/**
+ * Get API V3 base URL
+ * @returns API V3 base URL
+ */
+export function getApiBaseUrlV3(): string {
+    return environment.api.baseUrlV3;
 }
 
 /**

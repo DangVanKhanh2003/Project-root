@@ -7,10 +7,25 @@
 
 import { updateConversionTask, getConversionTask } from '../state';
 import { api } from '../../../api';
+import { apiV3 } from '../../../api/v3';
 import { getConversionModal } from '../../../ui-components/modal/conversion-modal.js';
 import { extractCacheId, type ProgressResponse } from '@downloader/core';
 import { getTimeout } from '../../../environment';
 import { isTimeoutError, RETRY_CONFIGS } from './conversion/retry-helper';
+
+// V3 API URL patterns
+const V3_API_DOMAIN = 'api.ytconvert.org';
+
+/**
+ * Check if URL is a V3 status URL
+ */
+function isV3StatusUrl(url: string): boolean {
+    try {
+        return url.includes(V3_API_DOMAIN);
+    } catch {
+        return false;
+    }
+}
 
 // Type definitions
 interface PollingConfig {
@@ -176,81 +191,144 @@ class ConcurrentPollingManager {
 
     /**
      * Handle rich progress polling with progressUrl
-     * Uses service layer instead of direct fetch for proper architecture
+     * Supports both V2 and V3 APIs
      * @private
      */
     private async _handleProgressPolling(formatId: string, taskData: TaskData): Promise<void> {
         try {
-            // Extract cache ID from progressUrl using helper
-            const cacheId = extractCacheId(taskData.progressUrl!);
+            const progressUrl = taskData.progressUrl!;
 
-            const callTime = Date.now();
-
-            // Setup timeout for API request
-            const timeoutMs = getTimeout('pollingV2'); // 950ms for V2 polling
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
-
-            let result;
-
-            try {
-                // Use service layer for progress polling (proper architecture)
-                result = await api.getDownloadProgress({ cacheId });
-
-                clearTimeout(timeoutId);
-
-                const responseTime = Date.now() - callTime;
-
-            } catch (fetchError: any) {
-                clearTimeout(timeoutId);
-                if (fetchError.name === 'AbortError') {
-                    throw new Error('Progress check timeout');
-                }
-                throw fetchError;
-            }
-
-            // Check if request succeeded (VerifiedResult uses 'ok' instead of 'success')
-            if (!result.ok || !result.data) {
-                throw new Error(`Progress API error: ${result.message}`);
-            }
-
-            // Type assertion for ProgressResponse
-            const progressData = result.data as ProgressResponse;
-
-            // Expected format: { cacheId, videoProgress, audioProgress, status, mergedUrl, error }
-            const { videoProgress, audioProgress, status, mergedUrl } = progressData;
-
-
-            // Call progress update callback from convert logic
-            if (taskData.onProgressUpdate) {
-                await taskData.onProgressUpdate({
-                    videoProgress: videoProgress || 0,
-                    audioProgress: audioProgress || 0,
-                    status: status,
-                    mergedUrl: mergedUrl,
-                    filename: undefined // filename not available in ProgressResponse
-                });
-            }
-
-            // Success - reset error counter
-            const poll = this.activePolls.get(formatId);
-            if (poll) {
-                poll.errorCount = 0;
-            }
-
-            // Check completion based on mergedUrl availability
-            if (mergedUrl) {
-                // Stop polling and mark as complete
-                this.stopPolling(formatId);
-
-                // The onProgressUpdate callback will handle the completion
-                // via completePolling() function in convert-logic.js
-
-                this._processQueue();
+            // Check if this is a V3 status URL
+            if (isV3StatusUrl(progressUrl)) {
+                await this._handleV3Polling(formatId, taskData, progressUrl);
+            } else {
+                await this._handleV2Polling(formatId, taskData, progressUrl);
             }
 
         } catch (error) {
             throw error; // Let _checkTaskStatus handle the error
+        }
+    }
+
+    /**
+     * Handle V3 API polling (api.ytconvert.org)
+     * @private
+     */
+    private async _handleV3Polling(formatId: string, taskData: TaskData, statusUrl: string): Promise<void> {
+        // Call V3 getStatusByUrl
+        const statusResponse = await apiV3.getStatusByUrl(statusUrl);
+
+        // Map V3 response to V2 format
+        // V3: { status: 'pending'|'completed'|'error', progress, detail: {video, audio}, downloadUrl, jobError }
+        // V2: { videoProgress, audioProgress, status, mergedUrl }
+        const videoProgress = statusResponse.detail?.video ?? statusResponse.progress ?? 0;
+        const audioProgress = statusResponse.detail?.audio ?? statusResponse.progress ?? 0;
+
+        // Map V3 status to V2 status
+        let v2Status = 'processing';
+        if (statusResponse.status === 'completed') {
+            v2Status = 'completed';
+        } else if (statusResponse.status === 'error') {
+            throw new Error(statusResponse.jobError || 'Conversion failed');
+        } else if (statusResponse.progress >= 100) {
+            v2Status = 'merging';
+        }
+
+        // Call progress update callback
+        if (taskData.onProgressUpdate) {
+            await taskData.onProgressUpdate({
+                videoProgress,
+                audioProgress,
+                status: v2Status,
+                mergedUrl: statusResponse.downloadUrl,
+                filename: statusResponse.title
+            });
+        }
+
+        // Success - reset error counter
+        const poll = this.activePolls.get(formatId);
+        if (poll) {
+            poll.errorCount = 0;
+        }
+
+        // Check completion
+        if (statusResponse.downloadUrl) {
+            this.stopPolling(formatId);
+            this._processQueue();
+        }
+    }
+
+    /**
+     * Handle V2 API polling (legacy)
+     * @private
+     */
+    private async _handleV2Polling(formatId: string, taskData: TaskData, progressUrl: string): Promise<void> {
+        // Extract cache ID from progressUrl using helper
+        const cacheId = extractCacheId(progressUrl);
+
+        const callTime = Date.now();
+
+        // Setup timeout for API request
+        const timeoutMs = getTimeout('pollingV2'); // 950ms for V2 polling
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+
+        let result;
+
+        try {
+            // Use service layer for progress polling (proper architecture)
+            result = await api.getDownloadProgress({ cacheId });
+
+            clearTimeout(timeoutId);
+
+            const responseTime = Date.now() - callTime;
+
+        } catch (fetchError: any) {
+            clearTimeout(timeoutId);
+            if (fetchError.name === 'AbortError') {
+                throw new Error('Progress check timeout');
+            }
+            throw fetchError;
+        }
+
+        // Check if request succeeded (VerifiedResult uses 'ok' instead of 'success')
+        if (!result.ok || !result.data) {
+            throw new Error(`Progress API error: ${result.message}`);
+        }
+
+        // Type assertion for ProgressResponse
+        const progressData = result.data as ProgressResponse;
+
+        // Expected format: { cacheId, videoProgress, audioProgress, status, mergedUrl, error }
+        const { videoProgress, audioProgress, status, mergedUrl } = progressData;
+
+
+        // Call progress update callback from convert logic
+        if (taskData.onProgressUpdate) {
+            await taskData.onProgressUpdate({
+                videoProgress: videoProgress || 0,
+                audioProgress: audioProgress || 0,
+                status: status,
+                mergedUrl: mergedUrl,
+                filename: undefined // filename not available in ProgressResponse
+            });
+        }
+
+        // Success - reset error counter
+        const poll = this.activePolls.get(formatId);
+        if (poll) {
+            poll.errorCount = 0;
+        }
+
+        // Check completion based on mergedUrl availability
+        if (mergedUrl) {
+            // Stop polling and mark as complete
+            this.stopPolling(formatId);
+
+            // The onProgressUpdate callback will handle the completion
+            // via completePolling() function in convert-logic.js
+
+            this._processQueue();
         }
     }
 

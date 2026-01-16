@@ -10,7 +10,7 @@ import {
   cancelConversion,
   handleDownloadClick,
   clearSocialMediaCache
-} from './convert-logic-v2';
+} from './convert-logic';
 import { getConversionTask } from '../../state';
 
 // Type definitions for custom events
@@ -68,7 +68,7 @@ const handleRetryEvent = async (event: CustomEvent<ConversionRetryEventDetail>) 
     const task = getConversionTask(formatId);
     if (task?.formatData) {
       // Re-import dynamically to avoid circular dependency
-      const { startConversion } = await import('./convert-logic-v2');
+      const { startConversion } = await import('./convert-logic');
       const { getState } = await import('../../state');
       const state = getState();
       const videoTitle = state.videoDetail?.meta?.title || 'Video';
