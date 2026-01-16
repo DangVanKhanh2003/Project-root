@@ -6,6 +6,7 @@
 import { apiV3, v3Config } from '../../../../../api/v3';
 import type { StatusResponse } from '@downloader/core';
 import { ApiError, NetworkError, TimeoutError } from '@downloader/core';
+import { RETRY_CONFIGS } from '../retry-helper';
 
 /**
  * Polling options
@@ -30,16 +31,27 @@ export interface PollingOptions {
 /**
  * Start polling for job status
  * Polls until API returns completed or error
- * Network errors are ignored - only stop when API explicitly returns error
+ *
+ * Retry strategy:
+ * - Timeout errors: do NOT count, can retry unlimited times
+ * - Other errors: count towards consecutive error limit (3 max)
+ * - Success: reset consecutive error count
  */
 export async function startPolling(options: PollingOptions): Promise<void> {
   const { statusUrl, onProgress, onComplete, onError, signal } = options;
 
   const pollingInterval = v3Config.timeout.pollingInterval;
+  const maxConsecutiveErrors = RETRY_CONFIGS.polling.maxConsecutiveErrors;
+
+  let consecutiveErrors = 0;
+  let lastErrorMessage = '';
 
   while (!signal.aborted) {
     try {
       const status = await apiV3.getStatusByUrl(statusUrl);
+
+      // Success - reset consecutive errors
+      consecutiveErrors = 0;
 
       // Handle different statuses
       switch (status.status) {
@@ -63,7 +75,7 @@ export async function startPolling(options: PollingOptions): Promise<void> {
           }
 
         case 'error':
-          // API returned error - stop polling
+          // API returned error (job failed) - stop polling immediately
           onError(status.jobError || 'Conversion failed');
           return;
 
@@ -75,16 +87,47 @@ export async function startPolling(options: PollingOptions): Promise<void> {
     } catch (error) {
       if (signal.aborted) return;
 
-      // API errors (HTTP 4xx/5xx or status:"error") should STOP polling
-      // Only NetworkError/TimeoutError should continue polling
-      if (error instanceof ApiError && !(error instanceof NetworkError) && !(error instanceof TimeoutError)) {
-        console.error('[V3 Polling] API error, stopping polling:', error.message);
-        onError(error.message || 'Conversion failed');
-        return;
+      // Timeout errors do NOT count - can retry unlimited times
+      if (error instanceof TimeoutError) {
+        console.log('[V3 Polling] Timeout, retrying (does not count as error)...');
+        // Continue polling without incrementing consecutiveErrors
       }
+      // Network errors and other retryable errors - count towards limit
+      else if (error instanceof NetworkError) {
+        consecutiveErrors++;
+        lastErrorMessage = error.message || 'Network error';
+        console.log(`[V3 Polling] Network error (${consecutiveErrors}/${maxConsecutiveErrors}):`, error.message);
 
-      // Network/Timeout errors - log and continue polling
-      console.log('[V3 Polling] Temporary error, continuing...', error);
+        if (consecutiveErrors >= maxConsecutiveErrors) {
+          console.error('[V3 Polling] Max consecutive errors reached, stopping');
+          onError(lastErrorMessage);
+          return;
+        }
+      }
+      // API errors (HTTP 4xx/5xx) - count towards limit
+      else if (error instanceof ApiError) {
+        consecutiveErrors++;
+        lastErrorMessage = error.message || 'Server error';
+        console.log(`[V3 Polling] API error (${consecutiveErrors}/${maxConsecutiveErrors}):`, error.message);
+
+        if (consecutiveErrors >= maxConsecutiveErrors) {
+          console.error('[V3 Polling] Max consecutive errors reached, stopping');
+          onError(lastErrorMessage);
+          return;
+        }
+      }
+      // Unknown errors - count towards limit
+      else {
+        consecutiveErrors++;
+        lastErrorMessage = error instanceof Error ? error.message : 'Unknown error';
+        console.log(`[V3 Polling] Unknown error (${consecutiveErrors}/${maxConsecutiveErrors}):`, error);
+
+        if (consecutiveErrors >= maxConsecutiveErrors) {
+          console.error('[V3 Polling] Max consecutive errors reached, stopping');
+          onError(lastErrorMessage);
+          return;
+        }
+      }
     }
 
     // Wait for next poll
