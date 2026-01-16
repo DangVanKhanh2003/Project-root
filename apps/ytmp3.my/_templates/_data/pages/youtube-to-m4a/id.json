@@ -1,48 +1,69 @@
-
-
 {
-  "title": "YouTube ke M4A (AAC berkualitas tinggi) – YTMP3",
-  "description": "Konversi YouTube ke M4A (AAC) dengan YTMP3. Kualitas audio tinggi, ukuran file lebih kecil, ideal untuk mendengarkan sehari-hari di iPhone, Android, dan desktop. Gratis dan cepat.",
-  "og_title": "YouTube ke M4A – YTMP3",
-  "og_description": "Konversi YouTube ke M4A (AAC). Audio berkualitas tinggi dengan ukuran file kecil untuk mendengarkan setiap hari.",
-  "hero_title": "YouTube ke M4A",
-  "hero_subtitle": "Konverter YouTube ke M4A gratis & cepat",
-  "video_input_placeholder": "Tempel tautan YouTube di sini...",
-  "paste_button": "Tempel",
-  "clear_button": "Hapus",
-  "convert_button": "Konversi",
-  "article_title": "Apa itu YouTube ke M4A?",
-  "article_p1": "YouTube ke M4A adalah proses mengonversi audio dari video YouTube ke dalam format M4A menggunakan codec AAC (Advanced Audio Coding).",
-  "article_p2": "AAC adalah format audio lossy modern yang dirancang agar lebih efisien daripada MP3, memberikan kualitas pendengaran yang baik dengan ukuran file yang lebih kecil. Ini membuat M4A ideal untuk mendengarkan musik sehari-hari.",
-  "article_subtitle": "Apa perbedaan M4A dari MP3, FLAC, dan WAV?",
-  "article_list_item1": "<strong>Dibandingkan dengan MP3:</strong> Baik M4A (AAC) maupun MP3 adalah format lossy. AAC menggunakan algoritma kompresi yang lebih baru, sehingga pada tingkat pendengaran biasa, M4A dapat terdengar mirip dengan MP3 pada bitrate yang lebih rendah, menghasilkan file yang lebih kecil.<br><br><strong>Namun:</strong> <a href=\"/youtube-to-mp3-320kbps-converter\">MP3 320kbps</a> tetap menjadi pilihan teraman jika Anda memerlukan kompatibilitas maksimum dengan semua perangkat dan pemutar lawas.",
-  "article_list_item2": "<strong>Dibandingkan dengan FLAC:</strong> <a href=\"/youtube-to-flac-converter\">FLAC</a> adalah format lossless yang ditujukan untuk pengarsipan dan audiophile. M4A bersifat lossy dan dioptimalkan untuk kenyamanan, unduhan lebih cepat, dan penggunaan sehari-hari.",
-  "article_list_item3": "<strong>Dibandingkan dengan WAV:</strong> <a href=\"/youtube-to-wav-converter\">WAV</a> tidak terkompresi dan menyimpan semua data audio, tetapi ukuran filenya sangat besar. M4A jauh lebih kecil dan lebih praktis untuk pengguna biasa.",
-  "why_us_title": "Mengapa menggunakan YTMP3 untuk YouTube ke M4A?",
-  "why_us_list_item1": "<strong>Gratis digunakan:</strong> Tanpa daftar, tanpa batas.",
-  "why_us_list_item2": "<strong>AAC berkualitas tinggi:</strong> Suara jernih dan seimbang.",
-  "why_us_list_item3": "<strong>Ukuran file kecil:</strong> Penyimpanan efisien untuk mendengarkan setiap hari.",
-  "why_us_list_item4": "<strong>Kompatibilitas luas:</strong> Berfungsi di iOS, Android, Windows, dan macOS.",
-  "how_to_title": "Cara mengonversi YouTube ke M4A",
-  "how_to_step1": "Salin URL video YouTube.",
-  "how_to_step2": "Tempelkan ke konverter YTMP3.",
-  "how_to_step3": "Pilih M4A sebagai format output.",
-  "how_to_step4": "Klik “Konversi” dan unduh file M4A Anda.",
-  "faq_title": "Pertanyaan yang Sering Diajukan",
-  "faq1_question": "Apakah YTMP3 gratis untuk konversi YouTube ke M4A?",
-  "faq1_answer": "Ya. YTMP3 sepenuhnya gratis untuk digunakan untuk mengonversi video YouTube ke audio M4A, tanpa perlu registrasi.",
-  "faq2_question": "Apa itu M4A dan apa bedanya dengan MP3?",
-  "faq2_answer": "M4A adalah format file yang menggunakan codec AAC, yang dirancang sebagai penerus MP3. AAC memberikan kualitas suara yang lebih baik pada bitrate yang sama, yang berarti M4A 256kbps terdengar sebagus MP3 320kbps meskipun ukuran filenya lebih kecil.",
-  "faq3_question": "Bitrate mana yang harus saya pilih untuk M4A?",
-  "faq3_answer": "Untuk sebagian besar pengguna, 256kbps menawarkan keseimbangan kualitas dan ukuran file yang sangat baik. Pilih 128kbps jika Anda memerlukan file yang lebih kecil atau memiliki ruang penyimpanan terbatas.",
-  "faq4_question": "Bisakah saya memutar file M4A di Android?",
-  "faq4_answer": "Ya. Android 2.3 dan yang lebih baru sepenuhnya mendukung pemutaran M4A/AAC. Semua perangkat Android modern dapat memutar file M4A secara native tanpa aplikasi tambahan.",
-  "faq5_question": "Bisakah saya mengunduh YouTube Shorts sebagai M4A?",
-  "faq5_answer": "Ya. YTMP3 mendukung konversi YouTube Shorts ke audio M4A dengan cara yang sama seperti video penuh.",
-  "faq6_question": "Apakah YTMP3 menyimpan metadata dalam file M4A?",
-  "faq6_answer": "Ya. Jika tersedia, YTMP3 menyimpan metadata seperti judul, artis, sampul album, dan tag lainnya dalam file M4A untuk pengorganisasian yang lebih mudah di perpustakaan musik Anda.",
-  "faq7_question": "Apakah M4A kompatibel dengan iTunes dan Apple Music?",
-  "faq7_answer": "Ya. M4A adalah format asli untuk iTunes dan Apple Music. File M4A yang Anda unduh akan berfungsi dengan lancar di semua perangkat dan perangkat lunak Apple.",
-  "faq8_question": "Haruskah saya memilih M4A atau format lossless seperti FLAC/WAV?",
-  "faq8_answer": "Pilih M4A untuk mendengarkan sehari-hari – ia menawarkan kualitas luar biasa dengan ukuran file kecil. Untuk pengarsipan atau penggunaan audiophile, pilih FLAC (lossless terkompresi). Untuk lossless tidak terkompresi, gunakan WAV."
+  "seo": {
+    "title": "YouTube ke M4A (AAC Berkualitas Tinggi) – YTMP3",
+    "description": "Konversi YouTube ke M4A (AAC) dengan YTMP3. Kualitas audio tinggi, ukuran file lebih kecil, ideal untuk mendengarkan sehari-hari di iPhone, Android, dan desktop. Gratis dan cepat.",
+    "ogTitle": "YouTube ke M4A – YTMP3",
+    "ogDescription": "Konversi YouTube ke M4A (AAC). Audio berkualitas tinggi dengan ukuran file kecil untuk mendengarkan sehari-hari."
+  },
+
+  "hero": {
+    "title": "YouTube ke",
+    "titleAccent": "M4A",
+    "subtitle": "Konverter YouTube ke M4A gratis & cepat"
+  },
+
+  "content": {
+    "mainTitle": "Apa itu YouTube ke M4A?",
+    "intro1": "YouTube ke M4A adalah proses mengonversi audio dari video YouTube ke format M4A menggunakan codec AAC (Advanced Audio Coding).",
+    "intro2": "AAC adalah format audio lossy modern yang dirancang lebih efisien daripada MP3, memberikan kualitas mendengarkan yang baik dengan ukuran file yang lebih kecil. Ini membuat M4A ideal untuk mendengarkan musik sehari-hari.",
+
+    "whatIsTitle": "Bagaimana M4A berbeda dari MP3, FLAC, dan WAV?",
+    "whatIsText": "<ul><li><strong>Dibandingkan dengan MP3:</strong> Baik M4A (AAC) dan MP3 adalah format lossy. AAC menggunakan algoritma kompresi yang lebih baru, jadi pada level mendengarkan biasa, M4A dapat terdengar serupa dengan MP3 pada bitrate yang lebih rendah, menghasilkan file yang lebih kecil.<br><br><strong>Namun:</strong> <a href=\"/youtube-to-mp3-320kbps-converter\">MP3 320kbps</a> tetap menjadi pilihan paling aman jika Anda membutuhkan kompatibilitas maksimum dengan semua perangkat dan player lama.</li><li><strong>Dibandingkan dengan FLAC:</strong> <a href=\"/youtube-to-flac-converter\">FLAC</a> adalah format lossless yang ditujukan untuk pengarsipan dan audiofil. M4A adalah lossy dan dioptimalkan untuk kenyamanan, unduhan lebih cepat, dan penggunaan sehari-hari.</li><li><strong>Dibandingkan dengan WAV:</strong> <a href=\"/youtube-to-wav-converter\">WAV</a> tidak dikompresi dan mempertahankan semua data audio, tetapi ukuran filenya sangat besar. M4A jauh lebih kecil dan lebih praktis untuk pengguna biasa.</li></ul>"
+  },
+
+  "whyChoose": {
+    "title": "Mengapa menggunakan YTMP3 untuk YouTube ke M4A?",
+    "reasons": [
+      {
+        "title": "Gratis untuk digunakan",
+        "text": "Tanpa pendaftaran, tanpa batas."
+      },
+      {
+        "title": "AAC berkualitas tinggi",
+        "text": "Suara jernih dan seimbang."
+      },
+      {
+        "title": "Ukuran file kecil",
+        "text": "Penyimpanan efisien untuk mendengarkan sehari-hari."
+      },
+      {
+        "title": "Kompatibilitas luas",
+        "text": "Bekerja di iOS, Android, Windows, dan macOS."
+      }
+    ]
+  },
+
+  "instructions": {
+    "title": "Cara mengonversi YouTube ke M4A",
+    "steps": [
+      "Salin URL video YouTube.",
+      "Tempelkan ke konverter YTMP3.",
+      "Pilih M4A sebagai format output.",
+      "Klik \"Konversi\" dan unduh file M4A Anda."
+    ]
+  },
+
+  "faqs": {
+    "title": "Pertanyaan yang Sering Diajukan",
+    "items": [
+      { "question": "Apakah YTMP3 gratis untuk konversi YouTube ke M4A?", "answer": "Ya. YTMP3 sepenuhnya gratis digunakan untuk mengonversi video YouTube ke audio M4A, tanpa perlu pendaftaran." },
+      { "question": "Apa itu M4A dan bagaimana perbedaannya dengan MP3?", "answer": "M4A adalah format file yang menggunakan codec AAC, yang dirancang sebagai penerus MP3. AAC memberikan kualitas suara yang lebih baik pada bitrate yang sama, artinya M4A 256kbps terdengar sama baiknya dengan MP3 320kbps sambil ukuran filenya lebih kecil." },
+      { "question": "Bitrate mana yang harus saya pilih untuk M4A?", "answer": "Untuk kebanyakan pengguna, 256kbps menawarkan keseimbangan kualitas dan ukuran file yang sangat baik. Pilih 128kbps jika Anda memerlukan file yang lebih kecil atau memiliki ruang penyimpanan terbatas." },
+      { "question": "Bisakah saya memutar file M4A di Android?", "answer": "Ya. Android 2.3 dan yang lebih baru sepenuhnya mendukung pemutaran M4A/AAC. Semua perangkat Android modern dapat memutar file M4A secara native tanpa aplikasi tambahan." },
+      { "question": "Bisakah saya mengunduh YouTube Shorts sebagai M4A?", "answer": "Ya. YTMP3 mendukung konversi YouTube Shorts ke audio M4A dengan cara yang sama seperti video penuh." },
+      { "question": "Apakah YTMP3 mempertahankan metadata dalam file M4A?", "answer": "Ya. Jika tersedia, YTMP3 mempertahankan metadata seperti judul, artis, sampul album, dan tag lainnya dalam file M4A untuk organisasi yang lebih mudah di perpustakaan musik Anda." },
+      { "question": "Apakah M4A kompatibel dengan iTunes dan Apple Music?", "answer": "Ya. M4A adalah format native untuk iTunes dan Apple Music. File M4A yang Anda unduh akan bekerja dengan mulus di semua perangkat dan perangkat lunak Apple." },
+      { "question": "Haruskah saya memilih M4A atau format lossless seperti FLAC/WAV?", "answer": "Pilih M4A untuk mendengarkan sehari-hari – ini menawarkan kualitas sangat baik dengan ukuran file kecil. Untuk pengarsipan atau penggunaan audiofil, pilih FLAC (lossless terkompresi). Untuk lossless tidak terkompresi, gunakan WAV." }
+    ]
+  }
 }

@@ -1,56 +1,70 @@
 {
-  "title": "Penukar YouTube ke WAV | Audio Tidak Dimampatkan & Lossless",
-  "description": "Tukar video YouTube kepada WAV (Waveform Audio File Format) untuk kualiti audio tertinggi yang mungkin. Muat turun dalam format tidak dimampatkan, lossless secara percuma.",
-  "og_url": "/youtube-to-wav-converter",
-  "og_image": "https://ytmp3.my/images/youtube-to-wav.jpg",
-  "canonical": "/youtube-to-wav-converter",
-  "h1": "Penukar YouTube ke WAV",
-  "h2": "Muat Turun Video YouTube dalam Format WAV Lossless",
-  "p1": "Penukar YouTube ke WAV kami ialah alat yang sempurna untuk audiophile, penerbit muzik, dan sesiapa sahaja yang menuntut kesetiaan audio tertinggi. WAV (Waveform Audio File Format) ialah format audio tidak dimampatkan yang mengekalkan data bunyi asal tanpa sebarang kehilangan kualiti. Apabila anda menukar video YouTube kepada WAV, anda mendapat salinan bit-demi-bit audio sumber, memastikan anda menangkap setiap butiran sama seperti yang dimaksudkan.",
-  "p2": "Tidak seperti format lossy seperti MP3, yang membuang beberapa data audio untuk mengurangkan saiz fail, fail WAV adalah lossless. Ini menjadikannya ideal untuk penyuntingan audio profesional, pengarkiban, atau sekadar mendengar muzik dalam bentuk paling tulen. Alami julat dinamik penuh, nuansa halus, dan kejelasan tajam bunyi berkualiti studio dengan penukar kami yang mudah digunakan.",
-  "p3": "Penukaran adalah mudah dan selamat. Hanya tampal URL video YouTube ke dalam medan input, dan alat kami akan memproses video dan memberikan anda fail WAV berkualiti tinggi. Tiada pendaftaran atau pemasangan perisian diperlukan. Ia adalah cara terpantas untuk mendapatkan audio tidak dimampatkan daripada YouTube, termasuk kandungan daripada YouTube Shorts.",
-  "h3_1": "Memahami WAV: Standard Emas Audio",
-  "p4": "WAV ialah standard yang dicipta oleh Microsoft dan IBM, dan ia kekal sebagai asas pengeluaran audio profesional. Inilah sebabnya ia menonjol:",
-  "ul1": [
-    "<strong>Kualiti Tidak Dimampatkan:</strong> Fail WAV menyimpan data audio tanpa sebarang pemampatan, bermakna tiada kehilangan kualiti daripada sumber asal. Apa yang anda dengar ialah replika yang sempurna.",
-    "<strong>Format Lossless:</strong> Sebagai format lossless, WAV sesuai untuk penyuntingan dan mastering. Anda boleh menyimpan fail beberapa kali tanpa merendahkan kualitinya, tidak seperti format lossy.",
-    "<strong>Kesetiaan Gred Studio:</strong> WAV menyokong pelbagai kedalaman bit dan kadar sampel, termasuk 16-bit/44.1kHz (kualiti CD) dan 24-bit/48kHz (kualiti studio), memberikan anda audio gred profesional.",
-    "<strong>Keserasian Luas:</strong> Fail WAV disokong oleh semua perisian penyuntingan audio utama dan sistem pengendalian, menjadikannya pilihan serba boleh untuk sebarang projek."
-  ],
-  "h3_2": "Cara Menukar YouTube ke WAV",
-  "p5": "Dapatkan fail audio tidak dimampatkan anda dalam beberapa klik sahaja. Begini caranya:",
-  "ol1": [
-    "<strong>Cari Video YouTube Anda:</strong> Buka YouTube dan navigasi ke video yang ingin anda tukar. Salin URLnya.",
-    "<strong>Tampal Pautan:</strong> Kembali ke penukar kami dan tampal URL ke dalam kotak input yang ditetapkan.",
-    "<strong>Mulakan Penukaran:</strong> Proses penukaran bermula secara automatik. Perkhidmatan kami akan mengambil video dan mengekstrak trek audio.",
-    "<strong>Muat Turun Fail WAV:</strong> Setelah penukaran selesai, klik butang muat turun untuk menyimpan fail WAV lossless ke peranti anda."
-  ],
-  "h3_3": "WAV lwn. Format Lain",
-  "p6": "Walaupun WAV menawarkan kualiti terbaik, saiz failnya yang besar (sekitar 10 MB seminit untuk audio stereo) tidak selalunya praktikal. Berikut adalah beberapa alternatif:",
-  "ul2": [
-    "<strong><a href=\"/youtube-to-flac-converter\">FLAC</a>:</strong> Format lossless yang menggunakan pemampatan untuk mengurangkan saiz fail sehingga 60% tanpa mengorbankan sebarang data audio. Alternatif yang hebat kepada WAV untuk pendengaran berkualiti tinggi.",
-    "<strong><a href=\"/youtube-to-mp3-320kbps-converter\">MP3 (320kbps)</a>:</strong> Format MP3 berkualiti tinggi. Ia lossy tetapi menawarkan keseimbangan yang sangat baik antara saiz fail dan kualiti bunyi, menjadikannya hampir tidak dapat dibezakan daripada lossless bagi kebanyakan pendengar.",
-    "<strong><a href=\"/youtube-to-m4a-converter\">M4A</a>:</strong> Format lossy moden yang selalunya memberikan kualiti yang lebih baik daripada MP3 pada kadar bit yang sama."
-  ],
-  "faq": {
+  "seo": {
+    "title": "YouTube ke WAV (Lossless Tidak Dimampatkan) – YTMP3",
+    "description": "Tukar YouTube ke audio WAV lossless tidak dimampatkan dengan YTMP3. Simpan data audio asal untuk penyuntingan dan produksi profesional. Percuma, pantas, tanpa had.",
+    "ogTitle": "YouTube ke WAV – YTMP3",
+    "ogDescription": "Muat turun audio YouTube sebagai WAV lossless tidak dimampatkan untuk penyuntingan dan produksi profesional."
+  },
+
+  "hero": {
+    "title": "YouTube ke",
+    "titleAccent": "WAV",
+    "subtitle": "Penukar YouTube ke WAV lossless percuma & pantas"
+  },
+
+  "content": {
+    "mainTitle": "Apakah YouTube ke WAV?",
+
+    "intro1": "YouTube ke WAV ialah proses mengekstrak audio daripada video YouTube dan menukarnya ke <strong>format WAV</strong>, format audio <strong>lossless tidak dimampatkan</strong>.",
+    "intro2": "WAV menyimpan data audio mentah tanpa sebarang pemampatan, mengekalkan <strong>100% maklumat bunyi asal</strong>. Ini menjadikannya ideal untuk penyuntingan audio profesional, pencampuran, penguasaan dan aliran kerja produksi.",
+
+    "whatIsTitle": "Bagaimana WAV berbeza daripada FLAC dan MP3?",
+    "whatIsText": "<ul><li><strong>Berbanding FLAC:</strong> <a href=\"/youtube-to-flac-converter\">FLAC</a> adalah lossless tetapi dimampatkan, manakala WAV sepenuhnya tidak dimampatkan. Fail WAV lebih besar tetapi memberikan ketepatan dan kesederhanaan mutlak.</li><li><strong>Berbanding MP3:</strong> MP3 (termasuk MP3 320kbps) adalah format lossy yang membuang data audio, manakala WAV mengekalkan semua maklumat bunyi asal.</li></ul>"
+  },
+
+  "whyChoose": {
+    "title": "Mengapa gunakan YTMP3 untuk menukar YouTube ke WAV?",
+    "reasons": [
+      {
+        "title": "Lossless tidak dimampatkan tulen",
+        "text": "Data audio mentah dikekalkan tanpa sebarang pemampatan atau kehilangan kualiti."
+      },
+      {
+        "title": "Percuma untuk digunakan",
+        "text": "Tiada pendaftaran, tiada had dan tiada kos tersembunyi."
+      },
+      {
+        "title": "Bersedia untuk profesional",
+        "text": "Ideal untuk DAW, editor audio dan aliran kerja produksi."
+      },
+      {
+        "title": "Sokongan pelbagai platform",
+        "text": "Berfungsi pada Windows, macOS dan Linux."
+      }
+    ]
+  },
+
+  "instructions": {
+    "title": "Cara menukar YouTube ke WAV",
+    "steps": [
+      "Salin pautan video YouTube.",
+      "Tampalkan ke dalam penukar YTMP3.",
+      "Pilih WAV sebagai format output.",
+      "Klik \"Tukar\" dan muat turun fail WAV anda."
+    ]
+  },
+
+  "faqs": {
     "title": "Soalan Lazim",
     "items": [
-      {
-        "question": "Mengapakah fail WAV jauh lebih besar daripada fail MP3?",
-        "answer": "Fail WAV tidak dimampatkan, bermakna ia mengandungi semua data audio asal. Fail MP3 menggunakan pemampatan lossy untuk membuang bahagian audio yang kurang dapat dilihat oleh telinga manusia, yang mengurangkan saiz fail dengan ketara tetapi juga mengorbankan sedikit kualiti."
-      },
-      {
-        "question": "Adakah kualiti penukaran YouTube ke WAV benar-benar lossless?",
-        "answer": "Penukaran kepada WAV itu sendiri adalah lossless, bermakna ia mengekalkan audio daripada video YouTube dengan sempurna. Walau bagaimanapun, kualiti akhir masih dihadkan oleh kualiti trek audio di YouTube. Alat kami memastikan anda mendapat versi terbaik yang tersedia daripada sumbernya."
-      },
-      {
-        "question": "Bolehkah saya menukar video panjang kepada WAV?",
-        "answer": "Ya, anda boleh menukar video dengan sebarang panjang. Walau bagaimanapun, sedar bahawa disebabkan sifat WAV yang tidak dimampatkan, video yang lebih panjang akan menghasilkan saiz fail yang sangat besar. Pastikan anda mempunyai ruang storan yang mencukupi pada peranti anda."
-      },
-      {
-        "question": "Adakah penukar YouTube ke WAV anda percuma untuk digunakan?",
-        "answer": "Sudah tentu. Perkhidmatan kami adalah 100% percuma dan tidak memerlukan sebarang pendaftaran. Semua sambungan adalah selamat melalui HTTPS."
-      }
+      { "question": "Adakah YTMP3 benar-benar percuma untuk penukaran YouTube ke WAV?", "answer": "Ya. YTMP3 adalah penukar WAV percuma untuk YouTube. Tiada pendaftaran, tiada langganan, tiada iklan, tiada tetingkap timbul dan tiada had muat turun." },
+      { "question": "Adakah fail WAV akan mengekalkan audio berkualiti tinggi?", "answer": "Ya. Pilihan termasuk WAV Lossless, kualiti CD dan kualiti Studio 24-bit. Kualiti maksimum bergantung pada video sumber, tetapi fail WAV sentiasa tidak dimampatkan." },
+      { "question": "Bolehkah saya memuat turun YouTube Shorts sebagai WAV?", "answer": "Ya. YTMP3 menyokong sepenuhnya YouTube Shorts, membolehkan muat turun video bentuk pendek dengan pantas dan mudah." },
+      { "question": "Adakah menggunakan YTMP3 selamat?", "answer": "Sepenuhnya. YTMP3 tidak menyimpan data peribadi dan bebas daripada perisian hasad. Sentiasa akses laman web rasmi untuk keselamatan." },
+      { "question": "Bolehkah saya menukar video YouTube ke WAV pada peranti mudah alih saya?", "answer": "Ya. YTMP3 responsif sepenuhnya untuk pelayar mudah alih. Langkah-langkahnya sama: tampal pautan → pilih WAV → tukar → muat turun." },
+      { "question": "Adakah terdapat had saiz fail untuk muat turun WAV?", "answer": "Tidak. WAV tidak dimampatkan, jadi fail besar adalah normal (~10 MB setiap 1 minit audio stereo 16-bit)." },
+      { "question": "Mengapa memilih WAV berbanding MP3?", "answer": "WAV tidak dimampatkan, mengekalkan kualiti audio asal dan lebih baik untuk penyuntingan atau penggunaan profesional. MP3 sesuai untuk mendengar santai, tetapi kehilangan beberapa data audio." },
+      { "question": "Bagaimana WAV dibandingkan dengan FLAC?", "answer": "Kedua-duanya lossless, tetapi WAV tidak dimampatkan manakala FLAC menggunakan pemampatan. Fail FLAC 40-50% lebih kecil dengan kualiti yang sama. WAV mempunyai keserasian yang lebih baik dengan perisian lama." }
     ]
   }
 }

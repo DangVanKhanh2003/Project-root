@@ -1,56 +1,68 @@
 {
-  "title": "Penukar YouTube ke MP3 320kbps | Audio Berkualiti Tinggi",
-  "description": "Tukar video YouTube kepada fail audio MP3 berkualiti tinggi pada 320kbps. Penukar kami yang pantas dan percuma memberikan bunyi yang unggul untuk koleksi muzik anda.",
-  "og_url": "/youtube-to-mp3-320kbps-converter",
-  "og_image": "https://ytmp3.my/images/youtube-to-mp3-320kbps.jpg",
-  "canonical": "/youtube-to-mp3-320kbps-converter",
-  "h1": "Penukar YouTube ke MP3 320kbps",
-  "h2": "Tukar Video YouTube kepada Fail MP3 320kbps Berfideliti Tinggi",
-  "p1": "Penukar YouTube ke MP3 320kbps kami membolehkan anda mengekstrak audio berkualiti tinggi daripada video YouTube. Walaupun banyak penukar mengehadkan anda kepada kadar bit yang lebih rendah, alat kami memastikan anda mendapat bunyi yang terbaik, sesuai untuk audiophile dan pencinta muzik yang enggan berkompromi dengan kualiti. Alami trek kegemaran anda dengan kejelasan dan kedalaman yang sepatutnya.",
-  "p2": "320kbps ialah kadar bit tertinggi yang tersedia untuk format MP3, menawarkan pengalaman mendengar yang kaya dan terperinci yang hampir tidak dapat dibezakan daripada kualiti CD. Dengan menukar pada tahap ini, anda mengekalkan jumlah maksimum data audio, menghasilkan nada tinggi yang tajam, nada rendah yang mendalam dan julat dinamik penuh. Ia adalah pilihan yang ideal untuk membina perpustakaan muzik berkualiti tinggi.",
-  "p3": "Menggunakan penukar kami adalah mudah. Hanya tampal URL YouTube, dan kami akan menguruskan yang lain. Prosesnya pantas, selamat dan tidak memerlukan pemasangan perisian. Sama ada anda mengarkibkan persembahan langsung, menyimpan podcast, atau hanya mahukan versi terbaik sesebuah lagu, penukar 320kbps kami adalah alat utama untuk tugas itu.",
-  "h3_1": "Mengapa Pilih MP3 320kbps?",
-  "p4": "Apabila bercakap tentang audio digital, kadar bit adalah segalanya. Kadar bit yang lebih tinggi bermakna lebih banyak data digunakan untuk mengekod audio, menghasilkan perwakilan bunyi asal yang lebih tepat. Inilah sebabnya 320kbps menjadi pilihan utama untuk audio berkualiti tinggi:",
-  "ul1": [
-    "<strong>Kualiti Maksimum:</strong> 320kbps ialah kadar bit tertinggi yang disokong oleh format MP3, memberikan bunyi yang paling terperinci dan terkaya.",
-    "<strong>Lossy, Tetapi Hampir Tidak:</strong> Walaupun MP3 ialah format lossy, pada 320kbps, pemampatan audio adalah minimum. Kebanyakan pendengar tidak dapat membezakan antara MP3 320kbps dan fail lossless seperti WAV atau FLAC dalam persekitaran pendengaran standard.",
-    "<strong>Keserasian Cemerlang:</strong> MP3 ialah format audio yang paling disokong secara universal, boleh dimainkan pada hampir mana-mana peranti, daripada telefon pintar dan komputer riba kepada stereo kereta dan TV pintar.",
-    "<strong>Saiz Fail yang Boleh Diurus:</strong> Walaupun lebih besar daripada fail kadar bit yang lebih rendah (seperti 128kbps atau 256kbps), MP3 320kbps masih cukup kecil untuk menyimpan beribu-ribu lagu pada peranti anda tanpa menggunakan ruang yang berlebihan."
-  ],
-  "h3_2": "Cara Menukar Video YouTube kepada MP3 320kbps",
-  "p5": "Alat kami menjadikannya sangat mudah untuk mendapatkan MP3 berkualiti tinggi. Ikuti langkah mudah ini:",
-  "ol1": [
-    "<strong>Salin URL YouTube:</strong> Cari video yang ingin anda tukar di YouTube dan salin URLnya dari bar alamat pelayar anda.",
-    "<strong>Tampal URL:</strong> Tampal pautan video ke dalam kotak input pada penukar kami.",
-    "<strong>Mulakan Penukaran:</strong> Penukaran akan bermula secara automatik. Alat kami akan memproses video dan menyediakan fail MP3 320kbps anda.",
-    "<strong>Muat Turun Fail Anda:</strong> Setelah sedia, klik butang muat turun untuk menyimpan MP3 berkualiti tinggi ke peranti anda."
-  ],
-  "h3_3": "Terokai Format Audio Lain",
-  "p6": "Walaupun MP3 320kbps menawarkan keseimbangan kualiti dan saiz fail yang hebat, kami juga menyokong format lain untuk memenuhi keperluan anda. Terokai penukar kami yang lain untuk pengalaman audio yang berbeza:",
-  "ul2": [
-    "<strong><a href=\"/youtube-to-m4a-converter\">Penukar M4A</a>:</strong> Alternatif kepada MP3, selalunya memberikan kualiti yang lebih baik pada kadar bit yang serupa.",
-    "<strong><a href=\"/youtube-to-flac-converter\">Penukar FLAC</a>:</strong> Untuk audiophile sejati yang mahukan kualiti lossless tanpa kompromi.",
-    "<strong><a href=\"/youtube-to-wav-converter\">Penukar WAV</a>:</strong> Dapatkan audio mentah yang tidak dimampatkan sama seperti pada sumbernya."
-  ],
-  "faq": {
+  "seo": {
+    "title": "YouTube ke MP3 320kbps Kualiti Tinggi – YTMP3",
+    "description": "Tukar YouTube ke MP3 320kbps – kualiti audio MP3 tertinggi. Muat turun muzik YouTube yang jelas dan terperinci secara percuma dengan YTMP3. Tiada had, tiada pemasangan.",
+    "ogTitle": "YouTube ke MP3 320kbps – YTMP3",
+    "ogDescription": "Muat turun muzik YouTube sebagai MP3 320kbps. Kualiti MP3 tertinggi dengan bunyi yang jelas dan terperinci."
+  },
+
+  "hero": {
+    "title": "YouTube ke",
+    "titleAccent": "MP3 320kbps",
+    "subtitle": "Penukar YouTube ke MP3 320kbps percuma & pantas"
+  },
+
+  "content": {
+    "mainTitle": "Apakah YouTube ke MP3 320kbps?",
+    "intro1": "YouTube ke MP3 320kbps ialah proses menukar audio daripada video YouTube ke format MP3 pada kadar bit 320kbps, iaitu tahap kualiti tertinggi yang tersedia untuk audio MP3.",
+    "intro2": "Kadar bit ini mengekalkan lebih banyak perincian audio berbanding 128kbps atau 192kbps, menjadikannya sesuai untuk muzik berkualiti tinggi, campuran semula dan fon kepala atau pembesar suara premium.",
+
+    "whatIsTitle": "Bilakah anda patut memilih MP3 320kbps?",
+    "whatIsText": "<ul><li>Apabila anda mahukan kualiti bunyi terbaik dalam format MP3.</li><li>Apabila mendengar dengan fon kepala atau pembesar suara berkualiti tinggi.</li><li>Apabila anda memerlukan keserasian yang luas tanpa mengorbankan kejelasan.</li></ul><p>Jika anda hanya memerlukan audio kualiti standard untuk mendengar santai, anda boleh kembali ke halaman <a href=\"/\">YouTube ke MP3</a> untuk memilih kadar bit yang lebih rendah.</p>"
+  },
+
+  "whyChoose": {
+    "title": "Mengapa gunakan YTMP3 untuk menukar YouTube ke MP3 320kbps?",
+    "reasons": [
+      {
+        "title": "Percuma untuk digunakan",
+        "text": "Tiada pendaftaran, tiada had."
+      },
+      {
+        "title": "Kualiti 320kbps tulen",
+        "text": "Kadar bit MP3 tertinggi yang disokong."
+      },
+      {
+        "title": "Penukaran pantas",
+        "text": "Fail siap dalam beberapa saat."
+      },
+      {
+        "title": "Keserasian sejagat",
+        "text": "Berfungsi pada semua peranti dan pemain."
+      }
+    ]
+  },
+
+  "instructions": {
+    "title": "Cara menukar YouTube ke MP3 320kbps",
+    "steps": [
+      "Salin pautan video YouTube.",
+      "Tampalkan ke dalam penukar YTMP3.",
+      "Pilih MP3 320kbps sebagai kualiti output.",
+      "Klik \"Tukar\" dan muat turun fail MP3 anda."
+    ]
+  },
+
+  "faqs": {
     "title": "Soalan Lazim",
     "items": [
-      {
-        "question": "Adakah menukar video YouTube kepada MP3 320kbps sah?",
-        "answer": "Adalah sah untuk memuat turun dan menukar kandungan yang tidak berhak cipta atau video yang anda mempunyai kebenaran daripada pemegang hak cipta. Sentiasa hormati undang-undang hak cipta dan syarat perkhidmatan YouTube."
-      },
-      {
-        "question": "Adakah terdapat perbezaan yang ketara antara 128kbps, 256kbps, dan 320kbps?",
-        "answer": "Ya, terutamanya pada fon kepala atau pembesar suara berkualiti baik. Lonjakan daripada 128kbps kepada 256kbps adalah ketara, dengan artifak pemampatan yang lebih sedikit. Perbezaan antara 256kbps dan 320kbps adalah lebih halus tetapi memberikan lapisan kejelasan dan kekayaan tambahan, menjadikannya pilihan utama untuk mengarkibkan muzik."
-      },
-      {
-        "question": "Adakah penukar ini akan sentiasa menyediakan fail 320kbps?",
-        "answer": "Penukar kami akan sentiasa mengekod audio pada 320kbps. Walau bagaimanapun, kualiti akhir juga bergantung pada kualiti audio sumber daripada video YouTube itu sendiri. Jika video asal mempunyai audio yang lemah, MP3 akan tetap 320kbps, tetapi ia tidak dapat mencipta perincian yang tidak ada pada mulanya."
-      },
-      {
-        "question": "Adakah terdapat sebarang had ke atas bilangan penukaran?",
-        "answer": "Tidak, perkhidmatan kami adalah percuma sepenuhnya dan tanpa had. Anda boleh menukar seberapa banyak video YouTube kepada MP3 320kbps yang anda suka."
-      }
+      { "question": "Adakah YTMP3 percuma untuk digunakan?", "answer": "Ya. YTMP3 adalah percuma sepenuhnya dan tidak memerlukan pendaftaran." },
+      { "question": "Bolehkah saya menukar video YouTube dengan sebarang panjang?", "answer": "Ya. Tiada had pada tempoh video." },
+      { "question": "Berapa lama masa yang diperlukan untuk menukar video?", "answer": "Kelajuan penukaran bergantung pada panjang video dan sambungan internet, tetapi YTMP3 direka untuk penukaran pantas." },
+      { "question": "Bolehkah saya memilih kualiti MP3 320kbps?", "answer": "Ya. Anda boleh memilih MP3 320kbps untuk memastikan audio MP3 standard tertinggi." },
+      { "question": "Adakah fail MP3 yang dimuat turun akan berfungsi pada peranti saya?", "answer": "Ya. MP3 320kbps adalah serasi secara sejagat dengan telefon, tablet, komputer, sistem audio kereta dan pemain media. Untuk peranti Apple, M4A juga merupakan pilihan yang bagus." },
+      { "question": "Adakah MP3 320kbps tanpa kehilangan?", "answer": "Tidak. MP3 adalah format kehilangan, tetapi 320kbps adalah kualiti MP3 tertinggi dan sangat hampir dengan sumber audio asal. Untuk audio tanpa kehilangan tulen, gunakan FLAC. Untuk tanpa kehilangan tidak dimampatkan, pilih WAV." },
+      { "question": "Apa yang perlu saya lakukan jika penukaran tidak bermula?", "answer": "Pastikan pautan video adalah sah, segarkan semula halaman dan lumpuhkan penyekat iklan jika perlu." }
     ]
   }
 }
