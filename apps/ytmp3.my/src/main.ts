@@ -44,8 +44,7 @@ if (typeof window !== 'undefined') {
 }
 
 /**
- * Initialize downloader UI (lazy loaded after page is idle)
- * Only the JS logic is lazy loaded, CSS is already loaded to prevent FOUC
+ * Initialize downloader UI
  */
 async function initDownloaderUI() {
   try {
@@ -53,24 +52,6 @@ async function initDownloaderUI() {
     await init();
   } catch (err) {
     console.error('Failed to initialize downloader UI:', err);
-  }
-}
-
-/**
- * Lazy load downloader UI JS when browser is idle
- * This defers non-critical JS execution to improve initial page load
- */
-function lazyLoadDownloaderUI() {
-  // Use requestIdleCallback if available, otherwise setTimeout
-  if ('requestIdleCallback' in window) {
-    requestIdleCallback(() => {
-      initDownloaderUI();
-    }, { timeout: 2000 }); // Fallback after 2s
-  } else {
-    // Fallback for browsers without requestIdleCallback
-    setTimeout(() => {
-      initDownloaderUI();
-    }, 100);
   }
 }
 
@@ -208,7 +189,7 @@ function loadFeatures() {
   initHeaderScroll(); // Initialize header scroll effect
   initMobileMenu(); // Initialize mobile menu
   initLangSelector(); // Initialize language selector dropdown
-  lazyLoadDownloaderUI(); // Lazy load when browser is idle
+  initDownloaderUI(); // Initialize downloader (async/lazy loaded)
   initLogoClickHandler(); // Prevent logo reload issue
 }
 
