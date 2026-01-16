@@ -9,7 +9,6 @@ import { updateConversionTask, getConversionTask } from '../state';
 import { apiV3 } from '../../../api/v3';
 import { getConversionModal } from '../../../ui-components/modal/conversion-modal.js';
 import { getTimeout } from '../../../environment';
-import { isTimeoutError, RETRY_CONFIGS } from './conversion/retry-helper';
 
 // Type definitions
 interface PollingConfig {
@@ -296,66 +295,47 @@ class ConcurrentPollingManager {
     }
 
     /**
-     * Handle polling error with retry logic
-     * Based on ytmp3.gg pattern:
-     * - Timeout errors: NOT counted as errors, continue polling
-     * - Network errors: Retry up to MAX_CONSECUTIVE_ERRORS times
-     * - Other errors: Fail immediately
+     * Handle polling error
+     * Only stop when API returns status === 'error'
+     * Network/timeout errors just continue polling
      * @private
      */
     private async _handlePollingError(formatId: string, error: any): Promise<void> {
         const poll = this.activePolls.get(formatId);
         if (!poll) {
-            // Poll already stopped
             return;
         }
 
-        // Check if this is a timeout error (server responding slowly)
-        // Timeout is NOT an error - just continue polling
-        if (isTimeoutError(error)) {
-            console.log(`[Polling] Timeout for ${formatId} - server is slow, continuing...`);
-            // Don't increment errorCount, just continue polling
-            return;
-        }
-
-        // Real error (network error, API error, etc.)
-        poll.errorCount++;
-        console.warn(`[Polling] Error ${poll.errorCount}/${RETRY_CONFIGS.polling.maxConsecutiveErrors} for ${formatId}:`, error);
-
-        // Auto-retry if not exceeded max consecutive errors
-        if (poll.errorCount <= RETRY_CONFIGS.polling.maxConsecutiveErrors) {
-            console.log(`[Polling] Will retry after ${RETRY_CONFIGS.polling.retryDelay}ms...`);
-            // Don't stop polling - let the interval continue
-            // Error count will be reset on next successful poll
-            return;
-        }
-
-        // Max retries exceeded - stop polling and fail
-        console.error(`[Polling] Max consecutive errors exceeded for ${formatId}`);
-        this.stopPolling(formatId);
-
-        let errorMessage = 'Conversion failed';
+        // Check if user canceled
         if (error.name === 'AbortError') {
-            errorMessage = 'Conversion was canceled';
-        } else if (error.message) {
-            errorMessage = error.message;
+            this.stopPolling(formatId);
+            return;
         }
 
-        updateConversionTask(formatId, {
-            state: 'Failed',
-            statusText: errorMessage,
-            showProgressBar: false,
-            error: errorMessage,
-            completedAt: Date.now()
-        });
+        // Check if this is an API error (status === 'error' from server)
+        const isApiError = error.message && error.message.includes('Conversion failed');
 
-        // Transition modal to error state (unless it's user cancellation)
-        if (error.name !== 'AbortError') {
+        if (isApiError) {
+            // API returned error status - stop polling and show error
+            console.error(`[Polling] API error for ${formatId}:`, error.message);
+            this.stopPolling(formatId);
+
+            updateConversionTask(formatId, {
+                state: 'Failed',
+                statusText: error.message,
+                showProgressBar: false,
+                error: error.message,
+                completedAt: Date.now()
+            });
+
             const conversionModal = getConversionModal();
-            conversionModal.transitionToError(errorMessage);
+            conversionModal.transitionToError(error.message);
+            this._processQueue();
+            return;
         }
 
-        this._processQueue();
+        // Network/timeout error - just log and continue polling
+        console.log(`[Polling] Network error for ${formatId}, continuing...`, error.message);
     }
 
     /**
