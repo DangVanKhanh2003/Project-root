@@ -1,49 +1,70 @@
 {
   "seo": {
-    "title": "Convertidor Rápido de YouTube a WAV | YTMP3",
-    "description": "Descarga audio WAV de alta calidad desde YouTube rápidamente. Admite salida sin pérdidas, YouTube Shorts, sin anuncios, sin ventanas emergentes. Completamente gratis y fácil de usar."
+    "title": "YouTube a WAV (sin comprimir sin pérdidas) – YTMP3",
+    "description": "Convierte YouTube a audio WAV sin comprimir y sin pérdidas con YTMP3. Conserva los datos de audio originales para edición y producción profesional. Gratis, rápido, ilimitado.",
+    "ogTitle": "YouTube a WAV – YTMP3",
+    "ogDescription": "Descarga audio de YouTube como WAV sin comprimir y sin pérdidas para edición y producción profesional."
   },
+
   "hero": {
     "title": "YouTube a",
     "titleAccent": "WAV",
     "subtitle": "Convertidor gratuito y rápido de YouTube a WAV sin pérdidas"
   },
+
   "content": {
-    "mainTitle": "Convertidor de YouTube a WAV – Audio sin pérdidas",
-    "intro1": "YTMP3 proporciona un convertidor de YouTube a WAV rápido y gratuito que extrae <strong>audio sin comprimir y sin pérdidas</strong> de los videos de YouTube.",
-    "intro2": "El formato WAV conserva la calidad de audio original sin ninguna compresión, lo que lo hace ideal para la edición de audio profesional, la producción musical y fines de archivo.",
-    "whatIsTitle": "¿Qué es el formato WAV?",
-    "whatIsText": "WAV (Waveform Audio File Format) es un formato de audio sin comprimir que almacena datos de audio sin ninguna pérdida de calidad. A diferencia de MP3 o M4A, los archivos WAV contienen datos de audio sin procesar, lo que resulta en archivos de mayor tamaño pero con una fidelidad de audio perfecta."
+    "mainTitle": "¿Qué es YouTube a WAV?",
+
+    "intro1": "YouTube a WAV es el proceso de extraer audio de un video de YouTube y convertirlo al <strong>formato WAV</strong>, un formato de audio <strong>sin comprimir y sin pérdidas</strong>.",
+    "intro2": "WAV almacena datos de audio sin procesar sin ninguna compresión, conservando el <strong>100% de la información de sonido original</strong>. Esto lo hace ideal para la edición, mezcla, masterización y flujos de trabajo de producción de audio profesional.",
+
+    "whatIsTitle": "¿En qué se diferencia WAV de FLAC y MP3?",
+    "whatIsText": "<ul><li><strong>Comparado con FLAC:</strong> <a href=\"/youtube-to-flac-converter\">FLAC</a> es sin pérdidas pero comprimido, mientras que WAV está completamente sin comprimir. Los archivos WAV son más grandes pero proporcionan una precisión y simplicidad absolutas.</li><li><strong>Comparado con MP3:</strong> MP3 (incluido MP3 320kbps) es un formato con pérdidas que elimina datos de audio, mientras que WAV conserva toda la información de sonido original.</li></ul>"
   },
+
   "whyChoose": {
-    "title": "¿Por qué elegir WAV?",
+    "title": "¿Por qué usar YTMP3 para convertir YouTube a WAV?",
     "reasons": [
-      { "title": "Calidad sin comprimir", "text": "No se pierde ningún dato de audio durante la conversión." },
-      { "title": "Estándar profesional", "text": "Ampliamente utilizado en la producción musical y la edición de audio." },
-      { "title": "Máxima fidelidad", "text": "Conserva cada detalle del audio original." },
-      { "title": "Compatibilidad universal", "text": "Compatible con prácticamente todo el software y reproductores de audio." }
+      {
+        "title": "Verdadero sin comprimir sin pérdidas",
+        "text": "Los datos de audio sin procesar se conservan sin ninguna compresión o pérdida de calidad."
+      },
+      {
+        "title": "Gratis de usar",
+        "text": "Sin registro, sin límites y sin costos ocultos."
+      },
+      {
+        "title": "Listo para profesionales",
+        "text": "Ideal para DAWs, editores de audio y flujos de trabajo de producción."
+      },
+      {
+        "title": "Soporte multiplataforma",
+        "text": "Funciona en Windows, macOS y Linux."
+      }
     ]
   },
+
   "instructions": {
     "title": "Cómo convertir YouTube a WAV",
     "steps": [
-      "Copia la URL del video de YouTube.",
-      "Pégala en YTMP3.",
+      "Copia el enlace del video de YouTube.",
+      "Pégalo en el convertidor YTMP3.",
       "Selecciona WAV como formato de salida.",
-      "Haz clic en Convertir y descarga tu archivo WAV."
+      "Haz clic en “Convertir” y descarga tu archivo WAV."
     ]
   },
+
   "faqs": {
-    "title": "Preguntas Frecuentes",
+    "title": "Preguntas frecuentes",
     "items": [
       { "question": "¿Es YTMP3 completamente gratuito para la conversión de YouTube a WAV?", "answer": "Sí. YTMP3 es un convertidor de WAV gratuito para YouTube. Sin registro, sin suscripción, sin anuncios, sin ventanas emergentes y sin límites de descarga." },
-      { "question": "¿Mantendrá el archivo WAV una alta calidad de audio?", "answer": "Sí. Las opciones incluyen WAV sin pérdidas, calidad de CD y calidad de estudio de 24 bits. La calidad máxima depende del video de origen, pero los archivos WAV siempre están sin comprimir." },
+      { "question": "El archivo WAV mantendrá una alta calidad de audio?", "answer": "Sí. Las opciones incluyen WAV sin pérdidas, calidad de CD y calidad de estudio de 24 bits. La calidad máxima depende del video de origen, pero los archivos WAV siempre están sin comprimir." },
       { "question": "¿Puedo descargar YouTube Shorts como WAV?", "answer": "Sí. YTMP3 es totalmente compatible con YouTube Shorts, lo que permite descargas rápidas y fáciles de videos de formato corto." },
-      { "question": "¿Es seguro usar YTMP3?", "answer": "Completamente. YTMP3 no almacena datos personales y está libre de malware. Accede siempre al sitio web oficial por seguridad." },
-      { "question": "¿Puedo convertir videos de YouTube a WAV en mi dispositivo móvil?", "answer": "Sí. YTMP3 es totalmente compatible con los navegadores móviles. Los pasos son los mismos: pegar enlace → seleccionar WAV → convertir → descargar." },
-      { "question": "¿Existen límites de tamaño de archivo para las descargas de WAV?", "answer": "No. WAV no está comprimido, por lo que los archivos grandes son normales (~10 MB por 1 minuto de audio estéreo de 16 bits)." },
-      { "question": "¿Por qué elegir WAV en lugar de MP3?", "answer": "WAV no está comprimido, conserva la calidad de audio original y es mejor para la edición o el uso profesional. MP3 es adecuado para la escucha casual, pero pierde algunos datos de audio." },
-      { "question": "¿Cómo se compara WAV con FLAC?", "answer": "Ambos son sin pérdidas, pero WAV no está comprimido mientras que <a href=\"/youtube-to-flac-converter\">FLAC</a> utiliza compresión. Los archivos FLAC son un 40-50% más pequeños con una calidad idéntica. WAV tiene una mejor compatibilidad con software más antiguo." }
+      { "question": "¿Es seguro usar YTMP3?", "answer": "Completamente. YTMP3 no almacena datos personales y está libre de malware. Accede siempre al sitio web oficial para mayor seguridad." },
+      { "question": "¿Puedo convertir videos de YouTube a WAV en mi dispositivo móvil?", "answer": "Sí. YTMP3 es totalmente responsivo para navegadores móviles. Los pasos son los mismos: pegar enlace → seleccionar WAV → convertir → descargar." },
+      { "question": "¿Hay límites de tamaño de archivo para las descargas de WAV?", "answer": "No. WAV no está comprimido, por lo que los archivos grandes son normales (~10 MB por 1 minuto de audio estéreo de 16 bits)." },
+      { "question": "¿Por qué elegir WAV en lugar de MP3?", "answer": "WAV no está comprimido, conserva la calidad de audio original y es mejor para edición o uso profesional. MP3 es adecuado para escuchar de forma casual, pero pierde algunos datos de audio." },
+      { "question": "¿Cómo se compara WAV con FLAC?", "answer": "Ambos son sin pérdidas, pero WAV no está comprimido mientras que FLAC usa compresión. Los archivos FLAC son un 40-50% más pequeños con idéntica calidad. WAV tiene mejor compatibilidad con software antiguo." }
     ]
   }
 }
