@@ -22,6 +22,17 @@ export {
 } from './http';
 
 // ========================================
+// HTTP Errors
+// ========================================
+export {
+  ApiError,
+  NetworkError,
+  TimeoutError,
+  ValidationError,
+  CancellationError,
+} from './http';
+
+// ========================================
 // Services - V1
 // ========================================
 export {

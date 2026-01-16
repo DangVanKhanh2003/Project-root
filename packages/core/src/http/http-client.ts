@@ -180,6 +180,7 @@ export class HttpClient implements IHttpClient {
       if (responseData.status === 'error') {
         console.log('[HttpClient] API-level error detected (status === "error"):', responseData);
         const message =
+          responseData.jobError ||  // V3 API uses jobError field
           responseData.message ||
           responseData.error?.message ||
           responseData.error?.code ||

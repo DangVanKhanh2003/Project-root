@@ -5,6 +5,7 @@
 
 import { apiV3, v3Config } from '../../../../../api/v3';
 import type { StatusResponse } from '@downloader/core';
+import { ApiError, NetworkError, TimeoutError } from '@downloader/core';
 
 /**
  * Polling options
@@ -72,9 +73,18 @@ export async function startPolling(options: PollingOptions): Promise<void> {
           break;
       }
     } catch (error) {
-      // Network error - log and continue polling
       if (signal.aborted) return;
-      console.log('[V3 Polling] Network error, continuing...', error);
+
+      // API errors (HTTP 4xx/5xx or status:"error") should STOP polling
+      // Only NetworkError/TimeoutError should continue polling
+      if (error instanceof ApiError && !(error instanceof NetworkError) && !(error instanceof TimeoutError)) {
+        console.error('[V3 Polling] API error, stopping polling:', error.message);
+        onError(error.message || 'Conversion failed');
+        return;
+      }
+
+      // Network/Timeout errors - log and continue polling
+      console.log('[V3 Polling] Temporary error, continuing...', error);
     }
 
     // Wait for next poll
