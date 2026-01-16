@@ -50,7 +50,7 @@ declare global {
 const handleCancelEvent = (event: CustomEvent<ConversionCancelEventDetail>) => {
   const { formatId } = event.detail;
   if (formatId) {
-    cancelConversion();
+    cancelConversion(formatId);
   }
 };
 
