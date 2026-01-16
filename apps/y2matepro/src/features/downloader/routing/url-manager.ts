@@ -15,6 +15,8 @@
 export interface Route {
   type: 'home' | 'video';
   videoId?: string;
+  format?: string;  // f param: mp3, mp4, etc.
+  quality?: string; // q param: 320, 1080, etc.
 }
 
 /**
@@ -35,12 +37,16 @@ export function getRouteFromUrl(): Route {
   try {
     const searchParams = new URLSearchParams(window.location.search);
     const videoId = searchParams.get('v');
+    const format = searchParams.get('f');  // mp3, mp4, etc.
+    const quality = searchParams.get('q'); // 320, 1080, etc.
 
     // Validate videoId format if present
     if (videoId && isValidVideoId(videoId)) {
       return {
         type: 'video',
-        videoId
+        videoId,
+        format: format || undefined,
+        quality: quality || undefined
       };
     }
 
@@ -97,6 +103,9 @@ export function navigateToVideo(videoId: string): void {
 
   // Remove trailing slash
   basePath = basePath.replace(/\/$/, '');
+
+  // Remove existing /search suffix to prevent /search/search duplication
+  basePath = basePath.replace(/\/search$/, '');
 
   // Build new URL:
   // - If on home page (/ or /index) → /search?v=xxx

@@ -23,3 +23,6 @@ tmpclaude-*
 logs/
 skills/seo-checker/dist/
 skills/seo-checker/node_modules/
+
+# Reports
+titles_report.txt
