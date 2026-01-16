@@ -91,11 +91,13 @@ export async function init(): Promise<void> {
 
     // Store auto-download params if present (f=format, q=quality)
     // Must be done BEFORE cleanUrl() which removes extra params
-    if (route.format && route.quality) {
+    // At least one of format or quality must be present
+    if (route.format || route.quality) {
       pendingAutoDownload = {
-        format: route.format.toLowerCase(),
-        quality: route.quality
+        format: (route.format || '').toLowerCase(),
+        quality: route.quality || ''
       };
+      console.log('[Auto-download] Stored params:', pendingAutoDownload);
     }
 
     // Clean URL after storing params (remove f and q from URL)
@@ -135,9 +137,11 @@ export async function init(): Promise<void> {
  * @param quality - Quality value (320, 1080, 720, etc.)
  */
 function triggerAutoDownload(format: string, quality: string): void {
+  console.log('[Auto-download] Triggering for format:', format, 'quality:', quality);
+
   // Determine category based on format
   const audioFormats = ['mp3', 'aac', 'ogg', 'wav', 'opus', 'm4a'];
-  const category = audioFormats.includes(format) ? 'audio' : 'video';
+  const category = format ? (audioFormats.includes(format) ? 'audio' : 'video') : 'video';
 
   // Switch to correct tab first
   const tabButton = document.querySelector(`.format-tab[data-tab="${category}"]`) as HTMLButtonElement;
@@ -159,8 +163,11 @@ function triggerAutoDownload(format: string, quality: string): void {
  * @param quality - Quality value (320, 1080, etc.)
  */
 function findAndClickFormatButton(format: string, quality: string): void {
+  console.log('[Auto-download] Finding button for format:', format, 'quality:', quality);
+
   // Find all quality items
   const qualityItems = document.querySelectorAll('.quality-item');
+  console.log('[Auto-download] Found quality items:', qualityItems.length);
 
   for (const item of qualityItems) {
     const formatId = item.getAttribute('data-format-id');
@@ -170,34 +177,44 @@ function findAndClickFormatButton(format: string, quality: string): void {
     const formatIdLower = formatId.toLowerCase();
 
     // Check if format matches (e.g., "mp4" in "video|mp4|1080p")
-    const formatMatch = formatIdLower.includes(`|${format}|`) || formatIdLower.includes(`|${format}-`);
+    const formatMatch = !format || formatIdLower.includes(`|${format}|`) || formatIdLower.includes(`|${format}-`);
 
     // Check if quality matches (e.g., "1080" in "1080p" or "320" in "320kbps")
-    const qualityMatch = formatIdLower.includes(quality);
+    const qualityMatch = !quality || formatIdLower.includes(quality);
 
-    if (formatMatch && qualityMatch) {
+    // Both must match (if provided)
+    if (formatMatch && qualityMatch && (format || quality)) {
+      console.log('[Auto-download] Matched formatId:', formatId);
       // Found matching format, click the button
       const button = item.querySelector('.btn-convert') as HTMLButtonElement;
       if (button && !button.disabled) {
         button.click();
+        console.log('[Auto-download] Clicked button!');
         return;
       }
     }
   }
+
+  console.log('[Auto-download] No exact match found, trying fallback...');
 
   // Fallback: try to find by quality only if format didn't match exactly
-  for (const item of qualityItems) {
-    const formatId = item.getAttribute('data-format-id');
-    if (!formatId) continue;
+  if (quality) {
+    for (const item of qualityItems) {
+      const formatId = item.getAttribute('data-format-id');
+      if (!formatId) continue;
 
-    const formatIdLower = formatId.toLowerCase();
-    if (formatIdLower.includes(quality)) {
-      const button = item.querySelector('.btn-convert') as HTMLButtonElement;
-      if (button && !button.disabled) {
-        button.click();
-        return;
+      const formatIdLower = formatId.toLowerCase();
+      if (formatIdLower.includes(quality)) {
+        const button = item.querySelector('.btn-convert') as HTMLButtonElement;
+        if (button && !button.disabled) {
+          console.log('[Auto-download] Fallback matched formatId:', formatId);
+          button.click();
+          return;
+        }
       }
     }
   }
+
+  console.log('[Auto-download] No button found for format:', format, 'quality:', quality);
 }
 
