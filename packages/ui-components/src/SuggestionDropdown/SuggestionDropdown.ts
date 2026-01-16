@@ -153,8 +153,7 @@ export class SuggestionDropdown {
   private updateInputAria(state: SuggestionState): void {
     if (!this.input) return;
 
-    this.input.setAttribute('aria-expanded', state.showSuggestions ? 'true' : 'false');
-
+    // Only set aria-expanded and related attributes when suggestions are visible
     if (state.showSuggestions && state.highlightedIndex >= 0) {
       const highlightedElement = this.container?.querySelector(`[data-suggestion-index="${state.highlightedIndex}"]`);
       if (highlightedElement) {
