@@ -28,22 +28,15 @@ export interface PollingOptions {
 
 /**
  * Start polling for job status
- * Polls every 1 second until completed or error
+ * Polls until API returns completed or error
+ * Network errors are ignored - only stop when API explicitly returns error
  */
 export async function startPolling(options: PollingOptions): Promise<void> {
   const { statusUrl, onProgress, onComplete, onError, signal } = options;
 
   const pollingInterval = v3Config.timeout.pollingInterval;
-  const maxDuration = v3Config.timeout.maxPollingDuration;
-  const startTime = Date.now();
 
   while (!signal.aborted) {
-    // Check max duration
-    if (Date.now() - startTime > maxDuration) {
-      onError('Polling timeout: exceeded maximum duration');
-      return;
-    }
-
     try {
       const status = await apiV3.getStatusByUrl(statusUrl);
 
@@ -51,7 +44,6 @@ export async function startPolling(options: PollingOptions): Promise<void> {
       switch (status.status) {
         case 'pending':
           // Update progress
-          console.log('[Polling] 📡 pending - progress:', status.progress);
           onProgress(
             status.progress,
             status.detail ? { video: status.detail.video, audio: status.detail.audio } : undefined
@@ -60,10 +52,8 @@ export async function startPolling(options: PollingOptions): Promise<void> {
 
         case 'completed':
           // Success - download URL available
-          console.log('[Polling] 📡 completed - calling onProgress(100) then onComplete');
           if (status.downloadUrl) {
             onProgress(100);
-            console.log('[Polling] 📡 onProgress(100) done, now calling onComplete');
             onComplete(status.downloadUrl);
             return;
           } else {
@@ -72,22 +62,19 @@ export async function startPolling(options: PollingOptions): Promise<void> {
           }
 
         case 'error':
-          // Error occurred
-          onError(status.jobError || 'Unknown error');
+          // API returned error - stop polling
+          onError(status.jobError || 'Conversion failed');
           return;
 
         default:
-          // Unknown status
-          onError(`Unknown status: ${status.status}`);
-          return;
+          // Unknown status - continue polling
+          console.log('[V3 Polling] Unknown status:', status.status);
+          break;
       }
     } catch (error) {
-      // Network or API error
+      // Network error - log and continue polling
       if (signal.aborted) return;
-
-      const errorMessage = error instanceof Error ? error.message : 'Polling failed';
-      onError(errorMessage);
-      return;
+      console.log('[V3 Polling] Network error, continuing...', error);
     }
 
     // Wait for next poll
