@@ -183,12 +183,46 @@ function initLangSelector() {
 }
 
 /**
+ * Initialize drawer language selector dropdown
+ */
+function initDrawerLangSelector() {
+  const drawerLangSelector = document.querySelector('.drawer-lang-selector');
+  const drawerLangButton = document.querySelector('.drawer-lang-button');
+
+  if (!drawerLangSelector || !drawerLangButton) return;
+
+  // Toggle dropdown on button click
+  drawerLangButton.addEventListener('click', (e) => {
+    e.stopPropagation();
+    drawerLangSelector.classList.toggle('active');
+  });
+
+  // Close dropdown when clicking outside (within drawer)
+  const mobileDrawer = document.getElementById('mobile-drawer');
+  if (mobileDrawer) {
+    mobileDrawer.addEventListener('click', (e) => {
+      if (!drawerLangSelector.contains(e.target as Node)) {
+        drawerLangSelector.classList.remove('active');
+      }
+    });
+  }
+
+  // Close dropdown on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      drawerLangSelector.classList.remove('active');
+    }
+  });
+}
+
+/**
  * Initialize app
  */
 function loadFeatures() {
   initHeaderScroll(); // Initialize header scroll effect
   initMobileMenu(); // Initialize mobile menu
   initLangSelector(); // Initialize language selector dropdown
+  initDrawerLangSelector(); // Initialize drawer language selector dropdown
   initDownloaderUI(); // Initialize downloader (async/lazy loaded)
   initLogoClickHandler(); // Prevent logo reload issue
 }

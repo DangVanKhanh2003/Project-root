@@ -117,3 +117,98 @@
 .drawer-sublink:hover {
     color: var(--text-main);
 }
+
+.drawer-lang-selector {
+    position: relative;
+}
+
+.drawer-lang-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background-color: var(--bg-header);
+    color: var(--text-main);
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-primary);
+    transition: all 0.2s;
+    cursor: pointer;
+    width: 100%;
+}
+
+.drawer-lang-button:hover {
+    background-color: var(--bg-button-hover);
+    border-color: var(--border-hover);
+}
+
+.drawer-lang-button svg {
+    color: var(--text-muted);
+}
+
+.drawer-lang-button .chevron {
+    transition: transform 0.2s;
+    margin-left: auto;
+}
+
+.drawer-lang-selector.active .chevron {
+    transform: rotate(180deg);
+}
+
+.drawer-lang-dropdown {
+    margin-top: 0.5rem;
+    background-color: var(--bg-header);
+    border-radius: 0.5rem;
+    box-shadow: var(--shadow-dropdown);
+    border: 1px solid var(--border-primary);
+    padding: 0.5rem 0;
+    display: none;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.drawer-lang-selector.active .drawer-lang-dropdown {
+    display: block;
+}
+
+/* Thin scrollbar for lang dropdown */
+.drawer-lang-dropdown::-webkit-scrollbar {
+    width: 2px;
+}
+
+.drawer-lang-dropdown::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.drawer-lang-dropdown::-webkit-scrollbar-thumb {
+    background: var(--border-primary);
+    border-radius: 1px;
+}
+
+.drawer-lang-dropdown {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-primary) transparent;
+}
+
+.drawer-lang-option {
+    display: block;
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: all 0.2s;
+    font-weight: 500;
+}
+
+.drawer-lang-option.active {
+    color: var(--color-accent);
+    font-weight: 600;
+}
+
+.drawer-lang-option:hover {
+    background-color: var(--bg-white);
+    color: var(--color-black);
+}
