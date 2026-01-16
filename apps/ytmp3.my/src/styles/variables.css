@@ -102,8 +102,9 @@
 
 
     /* ===== TYPOGRAPHY ===== */
-    --font-main: 'Manrope', sans-serif;
-    --font-display: 'Space Grotesk', sans-serif;
+    /* System font stack for optimal performance (0ms load, 0KB download) */
+    --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-display: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 
     /* Font Weights */
     --font-weight-regular: 400;

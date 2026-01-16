@@ -58,7 +58,7 @@
 h1,
 .hero-title {
     font-size: 2.25rem;
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: var(--font-display);
     font-weight: 700;
     text-align: center;
     color: var(--text-main);

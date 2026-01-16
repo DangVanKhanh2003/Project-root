@@ -30,7 +30,7 @@
 }
 
 .prose h2 {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: var(--font-display);
     font-weight: 700;
     letter-spacing: -0.025em;
     color: var(--text-main);
@@ -44,7 +44,7 @@
 }
 
 .prose h3 {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: var(--font-display);
     font-weight: 700;
     letter-spacing: -0.025em;
     color: var(--text-main);
@@ -84,7 +84,7 @@
 .prose li::marker {
     color: var(--color-accent);
     font-weight: 700;
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: var(--font-display);
 }
 
 .prose strong {
@@ -143,7 +143,7 @@
 }
 
 .faq-question {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: var(--font-display);
     font-weight: 700;
     color: var(--text-main);
     font-size: 1.125rem;
