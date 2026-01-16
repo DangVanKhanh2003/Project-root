@@ -1,105 +1,36 @@
 {
   "seo": {
-    "title": "YouTube sang FLAC (lossless nén) – YTMP3",
-    "description": "Chuyển đổi YouTube sang FLAC lossless (nén) với YTMP3. Giữ nguyên 100% chất lượng âm thanh gốc, dung lượng nhỏ hơn WAV. Miễn phí, nhanh, không giới hạn."
+    "title": "YouTube sang FLAC – Chuyển đổi âm thanh Lossless miễn phí | YTMP3",
+    "description": "Chuyển đổi YouTube sang FLAC lossless miễn phí. Giữ nguyên chất lượng gốc không mất mát. Nhanh, dễ dàng, hoạt động trên mọi thiết bị."
   },
   "hero": {
     "title": "YouTube sang",
     "titleAccent": "FLAC",
-    "titleSuffix": " lossless",
-    "subtitle": "Tải nhạc YouTube sang FLAC lossless (nén) – giữ nguyên chất lượng gốc, dung lượng nhỏ hơn WAV."
+    "subtitle": "Chuyển đổi YouTube sang FLAC lossless miễn phí & nhanh"
   },
   "content": {
-    "sections": [
-      {
-        "type": "h2",
-        "content": "YouTube sang FLAC là gì?"
-      },
-      {
-        "type": "p",
-        "content": "YouTube sang FLAC là quá trình trích xuất âm thanh từ video YouTube và chuyển đổi sang định dạng FLAC (Free Lossless Audio Codec). FLAC là định dạng <strong>lossless nén</strong>, nghĩa là âm thanh được giữ nguyên 100% so với nguồn gốc nhưng có dung lượng nhỏ hơn so với định dạng không nén."
-      },
-      {
-        "type": "h2",
-        "content": "FLAC khác gì so với MP3 và WAV?"
-      },
-      {
-        "type": "ul",
-        "items": [
-          "<strong>So với MP3:</strong> FLAC không làm mất dữ liệu âm thanh. MP3 (kể cả <a href=\"/vi/youtube-to-mp3-320kbps-converter\">MP3 320kbps</a>) vẫn là định dạng nén mất dữ liệu.",
-          "<strong>So với WAV:</strong> FLAC giữ nguyên chất lượng nhưng dung lượng nhỏ hơn khoảng 40–50% so với <a href=\"/vi/youtube-to-wav-converter\">WAV không nén</a>."
-        ]
-      },
-      {
-        "type": "h2",
-        "content": "Khi nào bạn nên chọn FLAC?"
-      },
-      {
-        "type": "ul",
-        "items": [
-          "Khi bạn muốn lưu trữ nhạc chất lượng cao lâu dài.",
-          "Khi cần chỉnh sửa âm thanh mà không suy giảm chất lượng.",
-          "Khi bạn là audiophile hoặc dùng tai nghe, loa cao cấp."
-        ]
-      },
-      {
-        "type": "p",
-        "content": "Nếu bạn chỉ cần nghe nhạc thông thường, bạn có thể quay lại trang <a href=\"/vi/\">YouTube sang MP3</a> để chọn các định dạng nhẹ hơn."
-      },
-      {
-        "type": "h2",
-        "content": "Tại sao dùng YTMP3 để chuyển đổi YouTube sang FLAC?"
-      },
-      {
-        "type": "ul",
-        "items": [
-          "<strong>Miễn phí 100%:</strong> Không đăng ký, không giới hạn.",
-          "<strong>Lossless thực sự:</strong> Giữ nguyên dữ liệu âm thanh.",
-          "<strong>Nén hiệu quả:</strong> Nhẹ hơn WAV nhưng vẫn chất lượng cao.",
-          "<strong>Hoạt động mọi thiết bị:</strong> Windows, macOS, iOS, Android."
-        ]
-      },
-      {
-        "type": "h2",
-        "content": "Cách chuyển đổi YouTube sang FLAC"
-      },
-      {
-        "type": "ol",
-        "items": [
-          "Sao chép link video YouTube.",
-          "Dán vào công cụ YTMP3.",
-          "Chọn FLAC làm định dạng đầu ra.",
-          "Nhấn \"Chuyển đổi\" và tải file FLAC."
-        ]
-      },
-      {
-        "type": "h2",
-        "content": "Câu hỏi thường gặp về FLAC"
-      },
-      {
-        "type": "h3",
-        "content": "FLAC có phải là âm thanh chất lượng cao nhất không?"
-      },
-      {
-        "type": "p",
-        "content": "FLAC giữ nguyên chất lượng âm thanh gốc nhưng vẫn là định dạng nén. Nếu bạn cần âm thanh không nén hoàn toàn, hãy tham khảo <a href=\"/vi/youtube-to-wav-converter\">WAV</a>."
-      },
-      {
-        "type": "h3",
-        "content": "FLAC có phù hợp để lưu trữ lâu dài không?"
-      },
-      {
-        "type": "p",
-        "content": "Có. FLAC là định dạng mã nguồn mở, lossless và có thể chuyển đổi sang bất kỳ định dạng nào khác mà không mất chất lượng."
-      },
-      {
-        "type": "h3",
-        "content": "Thiết bị Apple có nên dùng FLAC không?"
-      },
-      {
-        "type": "p",
-        "content": "iOS hỗ trợ FLAC, nhưng để tương thích tốt nhất với hệ sinh thái Apple, bạn có thể cân nhắc <a href=\"/vi/youtube-to-m4a-converter\">M4A (AAC)</a>."
-      }
+    "mainTitle": "Chuyển đổi YouTube sang FLAC – Âm thanh Lossless",
+    "intro1": "YTMP3 cung cấp công cụ chuyển đổi YouTube sang FLAC miễn phí, trích xuất <strong>âm thanh lossless nén</strong> từ video YouTube.",
+    "intro2": "FLAC mang lại điều tốt nhất từ cả hai thế giới: chất lượng âm thanh lossless với kích thước file nhỏ hơn WAV, hoàn hảo cho audiophile và người sưu tập nhạc.",
+    "whatIsTitle": "Định dạng FLAC là gì?",
+    "whatIsText": "FLAC (Free Lossless Audio Codec) là định dạng âm thanh nén giữ nguyên 100% chất lượng âm thanh gốc. Khác với MP3, FLAC không loại bỏ dữ liệu âm thanh nào, trong khi vẫn đạt nén 50-60% so với WAV."
+  },
+  "whyChoose": {
+    "title": "Tại sao chọn FLAC?",
+    "reasons": [
+      { "title": "Chất lượng Lossless", "text": "Giữ nguyên âm thanh gốc không mất chất lượng." },
+      { "title": "Nhỏ hơn WAV", "text": "Kích thước file nhỏ hơn 50-60% trong khi vẫn giữ chất lượng lossless." },
+      { "title": "Tiêu chuẩn Audiophile", "text": "Định dạng ưa thích cho bộ sưu tập nhạc chất lượng cao." },
+      { "title": "Hỗ trợ rộng rãi", "text": "Được hỗ trợ bởi hầu hết trình phát và thiết bị âm thanh hiện đại." }
+    ]
+  },
+  "instructions": {
+    "title": "Cách chuyển đổi YouTube sang FLAC",
+    "steps": [
+      "Sao chép URL video YouTube.",
+      "Dán vào YTMP3.",
+      "Chọn FLAC làm định dạng đầu ra.",
+      "Nhấn Chuyển đổi và tải xuống file FLAC."
     ]
   },
   "faqs": {
@@ -107,10 +38,10 @@
     "items": [
       { "question": "YTMP3 có miễn phí cho chuyển đổi YouTube sang FLAC không?", "answer": "Có. Hoàn toàn miễn phí, không cần đăng ký, không cần đăng ký gói." },
       { "question": "\"Lossless\" trong FLAC có nghĩa là gì?", "answer": "Lossless nghĩa là âm thanh được nén mà không mất dữ liệu. Khi giải nén, nó giống hệt bit-for-bit với bản gốc." },
-      { "question": "FLAC có tốt hơn MP3 không?", "answer": "Có, về chất lượng. FLAC giữ nguyên 100% âm thanh gốc trong khi MP3 loại bỏ dữ liệu. Tuy nhiên, file FLAC lớn hơn <a href=\"/vi/youtube-to-mp3-320kbps-converter\">MP3 320kbps</a>." },
+      { "question": "FLAC có tốt hơn MP3 không?", "answer": "Có, về chất lượng. FLAC giữ nguyên 100% âm thanh gốc trong khi MP3 loại bỏ dữ liệu. Tuy nhiên, file FLAC lớn hơn <a href=\"/youtube-to-mp3-320kbps-converter\">MP3 320kbps</a>." },
       { "question": "Sự khác biệt giữa FLAC 16-bit và 24-bit là gì?", "answer": "24-bit có dải động cao hơn (144dB so với 96dB) và được dùng cho âm thanh Hi-Res. 16-bit/44.1kHz là chất lượng CD và đủ cho hầu hết người nghe." },
-      { "question": "Tôi có thể phát FLAC trên thiết bị không?", "answer": "Có. FLAC được hỗ trợ tự nhiên trên Windows 10, macOS, iOS, Android và hầu hết trình phát âm thanh hiện đại. Để tương thích rộng hơn, hãy xem xét <a href=\"/vi/youtube-to-m4a-converter\">M4A</a>." },
-      { "question": "FLAC nhỏ hơn WAV bao nhiêu?", "answer": "FLAC thường giảm kích thước file 40-50% so với <a href=\"/vi/youtube-to-wav-converter\">WAV</a> không nén trong khi giữ nguyên chất lượng âm thanh." },
+      { "question": "Tôi có thể phát FLAC trên thiết bị không?", "answer": "Có. FLAC được hỗ trợ tự nhiên trên Windows 10, macOS, iOS, Android và hầu hết trình phát âm thanh hiện đại. Để tương thích rộng hơn, hãy xem xét <a href=\"/youtube-to-m4a-converter\">M4A</a>." },
+      { "question": "FLAC nhỏ hơn WAV bao nhiêu?", "answer": "FLAC thường giảm kích thước file 40-50% so với <a href=\"/youtube-to-wav-converter\">WAV</a> không nén trong khi giữ nguyên chất lượng âm thanh." },
       { "question": "YTMP3 có lưu trữ dữ liệu của tôi không?", "answer": "Không. Tất cả chuyển đổi là tạm thời, và không có dữ liệu cá nhân nào được lưu trữ." },
       { "question": "FLAC có tốt để lưu trữ nhạc không?", "answer": "Có. FLAC lý tưởng để lưu trữ vì nó lossless, mã nguồn mở, và có thể chuyển đổi sang bất kỳ định dạng nào mà không mất chất lượng." }
     ]
