@@ -12,6 +12,7 @@ import {
   clearSocialMediaCache
 } from './convert-logic';
 import { getConversionTask } from '../../state';
+import { logEvent } from '../../../../libs/firebase/firebase-analytics';
 
 // Type definitions for custom events
 interface ConversionCancelEventDetail {
@@ -64,8 +65,14 @@ const handleDownloadEvent = (event: CustomEvent<ConversionDownloadEventDetail>) 
 const handleRetryEvent = async (event: CustomEvent<ConversionRetryEventDetail>) => {
   const { formatId } = event.detail;
   if (formatId) {
-    // Get task and re-trigger conversion
+    // 📊 Analytics: Track retry attempt
     const task = getConversionTask(formatId);
+    logEvent('download_retry', {
+      format: task?.formatData?.format || 'unknown',
+      quality: task?.formatData?.quality || 'unknown'
+    });
+
+    // Get task and re-trigger conversion
     if (task?.formatData) {
       // Re-import dynamically to avoid circular dependency
       const { startConversion } = await import('./convert-logic');

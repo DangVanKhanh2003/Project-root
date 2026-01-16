@@ -35,6 +35,7 @@ import { getInputValue as getInputValueFromRenderer, setInputValue as setInputVa
 import type { VideoData } from '../../../ui-components/search-result-card/search-result-card';
 import { navigateToVideo } from '../routing/url-manager';
 import { setVideoPageSEO } from '../routing/seo-manager';
+import { logEvent } from '../../../libs/firebase/firebase-analytics';
 
 // ============================================
 // YOUTUBE HELPERS
@@ -727,6 +728,12 @@ async function handleSubmit(event: Event): Promise<void> {
 
   try {
     if (state.inputType === 'url') {
+      // 📊 Analytics: Track URL submission
+      logEvent('submit_url', {
+        platform: isYouTubeUrl(value) ? 'youtube' : 'other',
+        has_video_id: Boolean(extractYouTubeVideoId(value))
+      });
+
       // Show detail skeleton for video extraction
       showLoading('detail');
 
@@ -738,6 +745,12 @@ async function handleSubmit(event: Event): Promise<void> {
 
       await handleExtractMedia(value);
     } else {
+      // 📊 Analytics: Track keyword search
+      logEvent('search', {
+        query_length: value.length,
+        query_word_count: value.split(/\s+/).length
+      });
+
       // Show list skeleton (12 cards) for keyword search
       showLoading('list');
 
