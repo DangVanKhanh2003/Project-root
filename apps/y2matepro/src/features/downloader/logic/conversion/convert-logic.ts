@@ -210,7 +210,7 @@ export function clearSocialMediaCache(formatId: string): void {
 
 /**
  * Extract format from API
- * Now uses V3 API (api.ytconvert.org) for YouTube downloads
+ * Now uses V3 API (hub.ytconvert.org) for YouTube downloads
  */
 async function extractFormat(
   formatData: FormatData,
@@ -222,7 +222,7 @@ async function extractFormat(
   // Get extractV2Options from formatData (YouTube)
   const extractOptions = formatData.extractV2Options;
 
-  // YouTube format - use V3 API (api.ytconvert.org)
+  // YouTube format - use V3 API (hub.ytconvert.org)
   if (extractOptions) {
     log('Using V3 API with extractV2Options:', JSON.stringify(extractOptions, null, 2));
 

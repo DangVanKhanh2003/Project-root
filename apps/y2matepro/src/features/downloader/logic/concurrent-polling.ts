@@ -14,7 +14,7 @@ import { getTimeout } from '../../../environment';
 import { isTimeoutError, RETRY_CONFIGS } from './conversion/retry-helper';
 
 // V3 API URL patterns
-const V3_API_DOMAIN = 'api.ytconvert.org';
+const V3_API_DOMAIN = 'hub.ytconvert.org';
 
 /**
  * Check if URL is a V3 status URL
@@ -211,7 +211,7 @@ class ConcurrentPollingManager {
     }
 
     /**
-     * Handle V3 API polling (api.ytconvert.org)
+     * Handle V3 API polling (hub.ytconvert.org)
      * @private
      */
     private async _handleV3Polling(formatId: string, taskData: TaskData, statusUrl: string): Promise<void> {
