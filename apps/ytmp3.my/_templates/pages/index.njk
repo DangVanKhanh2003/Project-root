@@ -121,13 +121,13 @@ eleventyComputed:
     <div class="seo-container">
         <article class="prose">
             <h2 id="about">{{ page.content.mainTitle }}</h2>
-            <p>{{ page.content.intro1 }}</p>
+            <p>{{ page.content.intro1 | localizeLinks(lang) | safe }}</p>
 
             <h3>{{ page.content.formatsTitle }}</h3>
-            <p>{{ page.content.formatsText }}</p>
+            <p>{{ page.content.formatsText | localizeLinks(lang) | safe }}</p>
 
             <h3>{{ page.content.speedTitle }}</h3>
-            <p>{{ page.content.speedText }}</p>
+            <p>{{ page.content.speedText | localizeLinks(lang) | safe }}</p>
 
             <h3>{{ page.instructions.title }}</h3>
             <ol>

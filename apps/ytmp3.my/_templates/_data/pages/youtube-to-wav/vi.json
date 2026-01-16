@@ -1,105 +1,49 @@
 {
   "seo": {
-    "title": "YouTube sang WAV (lossless không nén) – YTMP3",
-    "description": "Chuyển đổi YouTube sang WAV lossless không nén với YTMP3. Giữ nguyên dữ liệu âm thanh gốc, lý tưởng cho chỉnh sửa và sản xuất âm thanh chuyên nghiệp. Miễn phí, không giới hạn."
+    "title": "Chuyển đổi YouTube sang WAV nhanh | YTMP3",
+    "description": "Tải xuống âm thanh WAV chất lượng cao từ YouTube nhanh chóng. Hỗ trợ đầu ra lossless, YouTube Shorts, không quảng cáo. Hoàn toàn miễn phí."
   },
   "hero": {
     "title": "YouTube sang",
     "titleAccent": "WAV",
-    "titleSuffix": "lossless không nén",
-    "subtitle": "Tải âm thanh YouTube sang WAV không nén – giữ nguyên dữ liệu gốc, phù hợp chỉnh sửa và sản xuất âm thanh."
+    "subtitle": "Chuyển đổi YouTube sang WAV lossless miễn phí & nhanh"
   },
   "content": {
-    "sections": [
-      {
-        "title": "YouTube sang WAV là gì?",
-        "content": "YouTube sang WAV là quá trình trích xuất âm thanh từ video YouTube và chuyển đổi sang định dạng WAV – định dạng <strong>lossless không nén</strong>. WAV lưu trữ dữ liệu âm thanh thô (raw audio), giữ nguyên 100% thông tin so với nguồn gốc, không qua nén hay tối ưu dung lượng."
-      },
-      {
-        "title": "WAV khác gì so với FLAC và MP3?",
-        "list": [
-          {
-            "title": "So với FLAC:",
-            "text": "<a href=\"/vi/youtube-to-flac-converter\">FLAC</a> là lossless nhưng có nén, còn WAV là lossless không nén hoàn toàn. WAV có dung lượng lớn hơn nhưng đơn giản và chính xác tuyệt đối."
-          },
-          {
-            "title": "So với MP3:",
-            "text": "MP3 (kể cả <a href=\"/vi/youtube-to-mp3-320kbps-converter\">MP3 320kbps</a>) là định dạng nén mất dữ liệu, trong khi WAV giữ nguyên toàn bộ dữ liệu âm thanh."
-          }
-        ]
-      },
-      {
-        "title": "Khi nào bạn nên chọn WAV?",
-        "list": [
-          "Khi chỉnh sửa âm thanh, mixing, mastering.",
-          "Khi sản xuất nhạc, podcast, video chuyên nghiệp.",
-          "Khi cần định dạng âm thanh gốc để xử lý hậu kỳ."
-        ],
-        "note": "Nếu bạn cần chất lượng cao nhưng muốn dung lượng nhỏ hơn, hãy cân nhắc <a href=\"/vi/youtube-to-flac-converter\">FLAC</a>. Nếu chỉ nghe nhạc thông thường, bạn có thể quay lại trang <a href=\"/vi/\">YouTube sang MP3</a>."
-      },
-      {
-        "title": "Tại sao dùng YTMP3 để chuyển đổi YouTube sang WAV?",
-        "list": [
-          "<strong>Lossless không nén:</strong> Dữ liệu âm thanh nguyên bản.",
-          "<strong>Miễn phí:</strong> Không đăng ký, không giới hạn.",
-          "<strong>Phù hợp chuyên nghiệp:</strong> Dùng tốt cho DAW & phần mềm chỉnh sửa.",
-          "<strong>Hỗ trợ đa thiết bị:</strong> Windows, macOS, Linux."
-        ]
-      },
-      {
-        "title": "Cách chuyển đổi YouTube sang WAV",
-        "steps": [
-          "Sao chép link video YouTube.",
-          "Dán vào công cụ YTMP3.",
-          "Chọn WAV làm định dạng đầu ra.",
-          "Nhấn \"Chuyển đổi\" và tải file WAV."
-        ]
-      }
+    "mainTitle": "Chuyển đổi YouTube sang WAV – Âm thanh Lossless",
+    "intro1": "YTMP3 cung cấp công cụ chuyển đổi YouTube sang WAV nhanh và miễn phí, trích xuất <strong>âm thanh lossless không nén</strong> từ video YouTube.",
+    "intro2": "Định dạng WAV giữ nguyên chất lượng âm thanh gốc không nén, lý tưởng cho chỉnh sửa âm thanh chuyên nghiệp, sản xuất nhạc và lưu trữ.",
+    "whatIsTitle": "Định dạng WAV là gì?",
+    "whatIsText": "WAV (Waveform Audio File Format) là định dạng âm thanh không nén, lưu trữ dữ liệu âm thanh không mất chất lượng. Khác với MP3 hay M4A, file WAV chứa dữ liệu âm thanh thô, kích thước file lớn hơn nhưng độ trung thực âm thanh hoàn hảo."
+  },
+  "whyChoose": {
+    "title": "Tại sao chọn WAV?",
+    "reasons": [
+      { "title": "Chất lượng không nén", "text": "Không mất dữ liệu âm thanh khi chuyển đổi." },
+      { "title": "Tiêu chuẩn chuyên nghiệp", "text": "Được sử dụng rộng rãi trong sản xuất nhạc và chỉnh sửa âm thanh." },
+      { "title": "Độ trung thực tối đa", "text": "Giữ nguyên mọi chi tiết của âm thanh gốc." },
+      { "title": "Tương thích phổ biến", "text": "Được hỗ trợ bởi hầu hết phần mềm và trình phát âm thanh." }
+    ]
+  },
+  "instructions": {
+    "title": "Cách chuyển đổi YouTube sang WAV",
+    "steps": [
+      "Sao chép URL video YouTube.",
+      "Dán vào YTMP3.",
+      "Chọn WAV làm định dạng đầu ra.",
+      "Nhấn Chuyển đổi và tải xuống file WAV."
     ]
   },
   "faqs": {
-    "title": "Câu hỏi thường gặp về WAV",
+    "title": "Câu hỏi thường gặp",
     "items": [
-      {
-        "question": "WAV có phải là chất lượng cao nhất không?",
-        "answer": "WAV giữ dữ liệu âm thanh ở dạng nguyên bản, không nén, nên phù hợp nhất cho chỉnh sửa và sản xuất. Tuy nhiên, dung lượng file sẽ lớn hơn FLAC."
-      },
-      {
-        "question": "WAV có phù hợp để nghe hằng ngày không?",
-        "answer": "Có thể, nhưng không tối ưu do dung lượng lớn. Để nghe hằng ngày, MP3 hoặc M4A sẽ tiện lợi hơn."
-      },
-      {
-        "question": "YTMP3 có hoàn toàn miễn phí cho chuyển đổi YouTube sang WAV không?",
-        "answer": "Có. YTMP3 là công cụ chuyển đổi WAV miễn phí cho YouTube. Không cần đăng ký, không cần đăng ký gói, không quảng cáo, không popup, và không giới hạn tải xuống."
-      },
-      {
-        "question": "File WAV có giữ được chất lượng âm thanh cao không?",
-        "answer": "Có. Các tùy chọn bao gồm WAV Lossless, chất lượng CD, và chất lượng Studio 24-bit. Chất lượng tối đa phụ thuộc vào video nguồn, nhưng file WAV luôn không nén."
-      },
-      {
-        "question": "Tôi có thể tải YouTube Shorts dưới dạng WAV không?",
-        "answer": "Có. YTMP3 hỗ trợ đầy đủ YouTube Shorts, cho phép tải xuống nhanh chóng và dễ dàng các video ngắn."
-      },
-      {
-        "question": "Sử dụng YTMP3 có an toàn không?",
-        "answer": "Hoàn toàn. YTMP3 không lưu trữ dữ liệu cá nhân và không có malware. Luôn truy cập trang web chính thức để đảm bảo an toàn."
-      },
-      {
-        "question": "Tôi có thể chuyển đổi video YouTube sang WAV trên thiết bị di động không?",
-        "answer": "Có. YTMP3 hoàn toàn responsive cho trình duyệt di động. Các bước giống nhau: dán link → chọn WAV → chuyển đổi → tải xuống."
-      },
-      {
-        "question": "Có giới hạn kích thước file cho tải WAV không?",
-        "answer": "Không. WAV không nén, nên file lớn là bình thường (~10 MB cho 1 phút âm thanh stereo 16-bit)."
-      },
-      {
-        "question": "Tại sao chọn WAV thay vì MP3?",
-        "answer": "WAV không nén, giữ nguyên chất lượng âm thanh gốc, và tốt hơn cho chỉnh sửa hoặc sử dụng chuyên nghiệp. MP3 phù hợp để nghe bình thường, nhưng mất một số dữ liệu âm thanh."
-      },
-      {
-        "question": "WAV so với FLAC như thế nào?",
-        "answer": "Cả hai đều lossless, nhưng WAV không nén trong khi <a href=\"/vi/youtube-to-flac-converter\">FLAC</a> sử dụng nén. File FLAC nhỏ hơn 40-50% với chất lượng giống hệt. WAV tương thích tốt hơn với phần mềm cũ."
-      }
+      { "question": "YTMP3 có hoàn toàn miễn phí cho chuyển đổi YouTube sang WAV không?", "answer": "Có. YTMP3 là công cụ chuyển đổi WAV miễn phí cho YouTube. Không cần đăng ký, không cần đăng ký gói, không quảng cáo, không popup, và không giới hạn tải xuống." },
+      { "question": "File WAV có giữ được chất lượng âm thanh cao không?", "answer": "Có. Các tùy chọn bao gồm WAV Lossless, chất lượng CD, và chất lượng Studio 24-bit. Chất lượng tối đa phụ thuộc vào video nguồn, nhưng file WAV luôn không nén." },
+      { "question": "Tôi có thể tải YouTube Shorts dưới dạng WAV không?", "answer": "Có. YTMP3 hỗ trợ đầy đủ YouTube Shorts, cho phép tải xuống nhanh chóng và dễ dàng các video ngắn." },
+      { "question": "Sử dụng YTMP3 có an toàn không?", "answer": "Hoàn toàn. YTMP3 không lưu trữ dữ liệu cá nhân và không có malware. Luôn truy cập trang web chính thức để đảm bảo an toàn." },
+      { "question": "Tôi có thể chuyển đổi video YouTube sang WAV trên thiết bị di động không?", "answer": "Có. YTMP3 hoàn toàn responsive cho trình duyệt di động. Các bước giống nhau: dán link → chọn WAV → chuyển đổi → tải xuống." },
+      { "question": "Có giới hạn kích thước file cho tải WAV không?", "answer": "Không. WAV không nén, nên file lớn là bình thường (~10 MB cho 1 phút âm thanh stereo 16-bit)." },
+      { "question": "Tại sao chọn WAV thay vì MP3?", "answer": "WAV không nén, giữ nguyên chất lượng âm thanh gốc, và tốt hơn cho chỉnh sửa hoặc sử dụng chuyên nghiệp. MP3 phù hợp để nghe bình thường, nhưng mất một số dữ liệu âm thanh." },
+      { "question": "WAV so với FLAC như thế nào?", "answer": "Cả hai đều lossless, nhưng WAV không nén trong khi <a href=\"/youtube-to-flac-converter\">FLAC</a> sử dụng nén. File FLAC nhỏ hơn 40-50% với chất lượng giống hệt. WAV tương thích tốt hơn với phần mềm cũ." }
     ]
   }
 }

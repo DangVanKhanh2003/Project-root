@@ -116,8 +116,8 @@ eleventyComputed:
     <div class="seo-container">
         <article class="prose">
             <h2>{{ page.content.mainTitle }}</h2>
-            <p>{{ page.content.intro1 | safe }}</p>
-            <p>{{ page.content.intro2 | safe }}</p>
+            <p>{{ page.content.intro1 | localizeLinks(lang) | safe }}</p>
+            <p>{{ page.content.intro2 | localizeLinks(lang) | safe }}</p>
 
             <h2>{{ page.content.whatIsTitle }}</h2>
             <p>{{ page.content.whatIsText }}</p>
