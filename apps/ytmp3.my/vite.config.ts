@@ -32,7 +32,7 @@ const srcPageEntries = pageFiles.reduce((entries, file) => {
 }, {} as Record<string, string>);
 
 // 📄 Static pages in root directory (not translated)
-const staticPages = ['about', 'terms-of-use', '404'];
+const staticPages = ['about', 'terms-of-use', '404', 'contact', 'copyright-claims'];
 const staticPageEntries = staticPages.reduce((entries, name) => {
   const filePath = resolve(__dirname, `${name}.html`);
   if (existsSync(filePath)) {
