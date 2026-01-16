@@ -10,8 +10,7 @@ import { initI18n, loadTranslations, locales, getLanguage, t } from '@downloader
 // Single entry point for all styles (Phase 2: CSS Refactor)
 import './styles/index.css';
 
-// Import UI components CSS
-import './ui-components/format-selector/format-selector.css';
+// Note: format-selector CSS is lazy-loaded with downloader-ui to avoid blocking initial render
 
 // ==========================================
 // Initialize I18n System
@@ -45,10 +44,15 @@ if (typeof window !== 'undefined') {
 
 /**
  * Initialize downloader UI (lazy loaded)
+ * CSS is loaded together with the module to avoid blocking initial render
  */
 async function initDownloaderUI() {
   try {
-    const { init } = await import('./features/downloader/downloader-ui');
+    // Lazy load downloader UI CSS and module in parallel
+    const [_, { init }] = await Promise.all([
+      import('./ui-components/format-selector/format-selector.css'),
+      import('./features/downloader/downloader-ui')
+    ]);
     await init();
   } catch (err) {
     console.error('Failed to initialize downloader UI:', err);

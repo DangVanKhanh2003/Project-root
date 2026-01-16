@@ -3,6 +3,7 @@ import { resolve } from 'path';
 import { readdirSync, existsSync } from 'fs';
 import { htmlRewritePlugin } from './vite-plugin-html-rewrite';
 import { movePagesPlugin } from './vite-plugin-move-pages';
+import { cssPreloadPlugin } from './vite-plugin-css-preload';
 
 // Auto-detect all HTML pages from Eleventy output directory
 const eleventyOutputDir = resolve(__dirname, '_11ty-output');
@@ -70,9 +71,28 @@ const mainEntry = existsSync(resolve(eleventyOutputDir, 'index.html'))
   : resolve(__dirname, 'index.html');
 
 export default defineConfig({
-  plugins: [htmlRewritePlugin(), movePagesPlugin()],
+  plugins: [
+    htmlRewritePlugin(),
+    movePagesPlugin(),
+    cssPreloadPlugin() // Inject CSS preload links to eliminate render blocking
+  ],
   build: {
     outDir: 'dist',
+    // Enable CSS code splitting per entry point
+    cssCodeSplit: true,
+    // Optimize minification
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+        passes: 2,
+        pure_funcs: ['console.log', 'console.info']
+      },
+      format: {
+        comments: false
+      }
+    },
     rollupOptions: {
       input: {
         main: mainEntry,
@@ -84,9 +104,33 @@ export default defineConfig({
       output: {
         entryFileNames: 'assets/[name]-[hash].js',
         chunkFileNames: 'assets/[name]-[hash].js',
-        assetFileNames: 'assets/[name]-[hash].[ext]'
+        assetFileNames: 'assets/[name]-[hash].[ext]',
+        // Manual chunk splitting for better caching and parallel loading
+        manualChunks(id) {
+          // Vendor chunks - rarely change, better caching
+          if (id.includes('node_modules')) {
+            return 'vendor';
+          }
+          // Downloader UI - lazy loaded, separate chunk
+          if (id.includes('downloader-ui') || id.includes('features/downloader')) {
+            return 'downloader-ui';
+          }
+          // I18n - large translations data
+          if (id.includes('@downloader/i18n') || id.includes('i18n')) {
+            return 'i18n';
+          }
+          // UI Components - reusable across pages
+          if (id.includes('@downloader/ui-components') || id.includes('ui-components')) {
+            return 'ui-components';
+          }
+        }
       }
     }
+  },
+  // CSS optimization
+  css: {
+    devSourcemap: false,
+    preprocessorMaxWorkers: true
   },
   resolve: {
     alias: {
