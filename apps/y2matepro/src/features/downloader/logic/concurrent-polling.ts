@@ -13,15 +13,13 @@ import { extractCacheId, type ProgressResponse } from '@downloader/core';
 import { getTimeout } from '../../../environment';
 import { isTimeoutError, RETRY_CONFIGS } from './conversion/retry-helper';
 
-// V3 API URL patterns
-const V3_API_DOMAIN = 'hub.ytconvert.org';
-
 /**
  * Check if URL is a V3 status URL
+ * V3 statusUrl contains /api/status/ pattern
  */
 function isV3StatusUrl(url: string): boolean {
     try {
-        return url.includes(V3_API_DOMAIN);
+        return url.includes('/api/status/');
     } catch {
         return false;
     }
