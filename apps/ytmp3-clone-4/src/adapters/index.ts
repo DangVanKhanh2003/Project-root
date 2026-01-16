@@ -6,4 +6,3 @@
  */
 
 export { CoreStateAdapter } from './CoreStateAdapter';
-export { CorePollingAdapter } from './CorePollingAdapter';

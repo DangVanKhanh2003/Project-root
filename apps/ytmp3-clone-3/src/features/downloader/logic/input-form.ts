@@ -29,7 +29,6 @@ import {
   setYouTubePreview,
   updateYouTubePreviewMetadata,
 } from '../state';
-import { destroyOldProcesses } from './cleanup';
 import { renderResults, renderMessage, renderPreviewCard, showLoading, clearContent, clearFormMessage } from '../ui-render/content-renderer';
 import { updateVideoTitle } from '../ui-render/download-rendering';
 import { getInputValue as getInputValueFromRenderer, setInputValue as setInputValueInRenderer } from '../ui-render/ui-renderer';
@@ -734,10 +733,6 @@ async function handleSubmit(event: Event): Promise<void> {
     return;
   }
 
-
-  // 🧹 CRITICAL: Destroy ALL old processes first (polling, conversions, API calls)
-  // This prevents race conditions and memory leaks when user submits new URL
-  destroyOldProcesses();
 
   // Blur input to hide keyboard on mobile
   if (input) {
