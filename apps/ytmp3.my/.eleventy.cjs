@@ -135,13 +135,23 @@ module.exports = function(eleventyConfig) {
   // Usage: {{ content | localizeLinks(lang) | safe }}
   eleventyConfig.addFilter('localizeLinks', function(str, lang) {
     if (!str || !lang || lang === 'en') return str;
+
+    const langCodes = ['ar', 'bn', 'de', 'es', 'fr', 'hi', 'id', 'it', 'ja', 'ko', 'my', 'ms', 'pt', 'ru', 'th', 'tr', 'ur', 'vi'];
+
     // Match href="/..." but not href="http" or href="mailto" or href="#"
     // Add language prefix to internal links
     return str.replace(/href="\/([^"]*?)"/g, function(match, path) {
-      // Skip if already has language prefix or is external
+      // Skip if external link
       if (path.startsWith('http') || path.startsWith('mailto') || path.startsWith('#')) {
         return match;
       }
+
+      // Skip if already has language prefix
+      const pathStart = path.split('/')[0];
+      if (langCodes.includes(pathStart)) {
+        return match;
+      }
+
       return `href="/${lang}/${path}"`;
     });
   });
