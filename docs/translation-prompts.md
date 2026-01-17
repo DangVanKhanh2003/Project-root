@@ -12,20 +12,20 @@ Each prompt is completely independent and can be run on separate AI CLI instance
 
 **Languages:** Arabic (ar), Bengali (bn), German (de), Spanish (es), French (fr), Hindi (hi), Indonesian (id), Italian (it), Japanese (ja)
 
-**Source file:** `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\index\en.json`
+**Source file:** `_templates\_data\pages\index\en.json`
 
 **Instructions:**
 1. Read the English source file from the path above
 2. Translate to 9 languages and create these files:
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\index\ar.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\index\bn.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\index\de.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\index\es.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\index\fr.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\index\hi.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\index\id.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\index\it.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\index\ja.json`
+   - `_templates\_data\pages\index\ar.json`
+   - `_templates\_data\pages\index\bn.json`
+   - `_templates\_data\pages\index\de.json`
+   - `_templates\_data\pages\index\es.json`
+   - `_templates\_data\pages\index\fr.json`
+   - `_templates\_data\pages\index\hi.json`
+   - `_templates\_data\pages\index\id.json`
+   - `_templates\_data\pages\index\it.json`
+   - `_templates\_data\pages\index\ja.json`
 
 **CRITICAL RULES:**
 - Preserve ALL HTML tags exactly: `<a href="/...">`, `<strong>`, etc.
@@ -45,19 +45,19 @@ Each prompt is completely independent and can be run on separate AI CLI instance
 
 **Languages:** Korean (ko), Malay (ms), Burmese (my), Portuguese (pt), Russian (ru), Thai (th), Turkish (tr), Urdu (ur)
 
-**Source file:** `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\index\en.json`
+**Source file:** `_templates\_data\pages\index\en.json`
 
 **Instructions:**
 1. Read the English source file from the path above
 2. Translate to 8 languages and create these files:
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\index\ko.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\index\ms.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\index\my.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\index\pt.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\index\ru.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\index\th.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\index\tr.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\index\ur.json`
+   - `_templates\_data\pages\index\ko.json`
+   - `_templates\_data\pages\index\ms.json`
+   - `_templates\_data\pages\index\my.json`
+   - `_templates\_data\pages\index\pt.json`
+   - `_templates\_data\pages\index\ru.json`
+   - `_templates\_data\pages\index\th.json`
+   - `_templates\_data\pages\index\tr.json`
+   - `_templates\_data\pages\index\ur.json`
 
 **CRITICAL RULES:**
 - Preserve ALL HTML tags exactly: `<a href="/...">`, `<strong>`, etc.
@@ -77,20 +77,20 @@ Each prompt is completely independent and can be run on separate AI CLI instance
 
 **Languages:** Arabic (ar), Bengali (bn), German (de), Spanish (es), French (fr), Hindi (hi), Indonesian (id), Italian (it), Japanese (ja)
 
-**Source file:** `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-flac\en.json`
+**Source file:** `_templates\_data\pages\youtube-to-flac\en.json`
 
 **Instructions:**
 1. Read the English source file from the path above
 2. Translate to 9 languages and create these files:
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-flac\ar.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-flac\bn.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-flac\de.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-flac\es.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-flac\fr.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-flac\hi.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-flac\id.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-flac\it.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-flac\ja.json`
+   - `_templates\_data\pages\youtube-to-flac\ar.json`
+   - `_templates\_data\pages\youtube-to-flac\bn.json`
+   - `_templates\_data\pages\youtube-to-flac\de.json`
+   - `_templates\_data\pages\youtube-to-flac\es.json`
+   - `_templates\_data\pages\youtube-to-flac\fr.json`
+   - `_templates\_data\pages\youtube-to-flac\hi.json`
+   - `_templates\_data\pages\youtube-to-flac\id.json`
+   - `_templates\_data\pages\youtube-to-flac\it.json`
+   - `_templates\_data\pages\youtube-to-flac\ja.json`
 
 **CRITICAL RULES:**
 - Preserve ALL HTML tags exactly: `<strong>`, `<a href="/...">`, etc.
@@ -108,19 +108,19 @@ Each prompt is completely independent and can be run on separate AI CLI instance
 
 **Languages:** Korean (ko), Malay (ms), Burmese (my), Portuguese (pt), Russian (ru), Thai (th), Turkish (tr), Urdu (ur)
 
-**Source file:** `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-flac\en.json`
+**Source file:** `_templates\_data\pages\youtube-to-flac\en.json`
 
 **Instructions:**
 1. Read the English source file from the path above
 2. Translate to 8 languages and create these files:
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-flac\ko.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-flac\ms.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-flac\my.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-flac\pt.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-flac\ru.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-flac\th.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-flac\tr.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-flac\ur.json`
+   - `_templates\_data\pages\youtube-to-flac\ko.json`
+   - `_templates\_data\pages\youtube-to-flac\ms.json`
+   - `_templates\_data\pages\youtube-to-flac\my.json`
+   - `_templates\_data\pages\youtube-to-flac\pt.json`
+   - `_templates\_data\pages\youtube-to-flac\ru.json`
+   - `_templates\_data\pages\youtube-to-flac\th.json`
+   - `_templates\_data\pages\youtube-to-flac\tr.json`
+   - `_templates\_data\pages\youtube-to-flac\ur.json`
 
 **CRITICAL RULES:**
 - Preserve ALL HTML tags exactly: `<strong>`, `<a href="/...">`, etc.
@@ -138,20 +138,20 @@ Each prompt is completely independent and can be run on separate AI CLI instance
 
 **Languages:** Arabic (ar), Bengali (bn), German (de), Spanish (es), French (fr), Hindi (hi), Indonesian (id), Italian (it), Japanese (ja)
 
-**Source file:** `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-m4a\en.json`
+**Source file:** `_templates\_data\pages\youtube-to-m4a\en.json`
 
 **Instructions:**
 1. Read the English source file from the path above
 2. Translate to 9 languages and create these files:
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-m4a\ar.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-m4a\bn.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-m4a\de.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-m4a\es.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-m4a\fr.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-m4a\hi.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-m4a\id.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-m4a\it.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-m4a\ja.json`
+   - `_templates\_data\pages\youtube-to-m4a\ar.json`
+   - `_templates\_data\pages\youtube-to-m4a\bn.json`
+   - `_templates\_data\pages\youtube-to-m4a\de.json`
+   - `_templates\_data\pages\youtube-to-m4a\es.json`
+   - `_templates\_data\pages\youtube-to-m4a\fr.json`
+   - `_templates\_data\pages\youtube-to-m4a\hi.json`
+   - `_templates\_data\pages\youtube-to-m4a\id.json`
+   - `_templates\_data\pages\youtube-to-m4a\it.json`
+   - `_templates\_data\pages\youtube-to-m4a\ja.json`
 
 **CRITICAL RULES:**
 - Preserve ALL HTML tags exactly: `<strong>`, `<a href="/...">`, etc.
@@ -169,19 +169,19 @@ Each prompt is completely independent and can be run on separate AI CLI instance
 
 **Languages:** Korean (ko), Malay (ms), Burmese (my), Portuguese (pt), Russian (ru), Thai (th), Turkish (tr), Urdu (ur)
 
-**Source file:** `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-m4a\en.json`
+**Source file:** `_templates\_data\pages\youtube-to-m4a\en.json`
 
 **Instructions:**
 1. Read the English source file from the path above
 2. Translate to 8 languages and create these files:
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-m4a\ko.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-m4a\ms.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-m4a\my.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-m4a\pt.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-m4a\ru.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-m4a\th.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-m4a\tr.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-m4a\ur.json`
+   - `_templates\_data\pages\youtube-to-m4a\ko.json`
+   - `_templates\_data\pages\youtube-to-m4a\ms.json`
+   - `_templates\_data\pages\youtube-to-m4a\my.json`
+   - `_templates\_data\pages\youtube-to-m4a\pt.json`
+   - `_templates\_data\pages\youtube-to-m4a\ru.json`
+   - `_templates\_data\pages\youtube-to-m4a\th.json`
+   - `_templates\_data\pages\youtube-to-m4a\tr.json`
+   - `_templates\_data\pages\youtube-to-m4a\ur.json`
 
 **CRITICAL RULES:**
 - Preserve ALL HTML tags exactly: `<strong>`, `<a href="/...">`, etc.
@@ -199,20 +199,20 @@ Each prompt is completely independent and can be run on separate AI CLI instance
 
 **Languages:** Arabic (ar), Bengali (bn), German (de), Spanish (es), French (fr), Hindi (hi), Indonesian (id), Italian (it), Japanese (ja)
 
-**Source file:** `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-mp3-320kbps\en.json`
+**Source file:** `_templates\_data\pages\youtube-to-mp3-320kbps\en.json`
 
 **Instructions:**
 1. Read the English source file from the path above
 2. Translate to 9 languages and create these files:
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-mp3-320kbps\ar.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-mp3-320kbps\bn.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-mp3-320kbps\de.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-mp3-320kbps\es.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-mp3-320kbps\fr.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-mp3-320kbps\hi.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-mp3-320kbps\id.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-mp3-320kbps\it.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-mp3-320kbps\ja.json`
+   - `_templates\_data\pages\youtube-to-mp3-320kbps\ar.json`
+   - `_templates\_data\pages\youtube-to-mp3-320kbps\bn.json`
+   - `_templates\_data\pages\youtube-to-mp3-320kbps\de.json`
+   - `_templates\_data\pages\youtube-to-mp3-320kbps\es.json`
+   - `_templates\_data\pages\youtube-to-mp3-320kbps\fr.json`
+   - `_templates\_data\pages\youtube-to-mp3-320kbps\hi.json`
+   - `_templates\_data\pages\youtube-to-mp3-320kbps\id.json`
+   - `_templates\_data\pages\youtube-to-mp3-320kbps\it.json`
+   - `_templates\_data\pages\youtube-to-mp3-320kbps\ja.json`
 
 **CRITICAL RULES:**
 - Preserve ALL HTML tags exactly: `<strong>`, `<a href="/...">`, etc.
@@ -230,19 +230,19 @@ Each prompt is completely independent and can be run on separate AI CLI instance
 
 **Languages:** Korean (ko), Malay (ms), Burmese (my), Portuguese (pt), Russian (ru), Thai (th), Turkish (tr), Urdu (ur)
 
-**Source file:** `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-mp3-320kbps\en.json`
+**Source file:** `_templates\_data\pages\youtube-to-mp3-320kbps\en.json`
 
 **Instructions:**
 1. Read the English source file from the path above
 2. Translate to 8 languages and create these files:
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-mp3-320kbps\ko.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-mp3-320kbps\ms.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-mp3-320kbps\my.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-mp3-320kbps\pt.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-mp3-320kbps\ru.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-mp3-320kbps\th.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-mp3-320kbps\tr.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-mp3-320kbps\ur.json`
+   - `_templates\_data\pages\youtube-to-mp3-320kbps\ko.json`
+   - `_templates\_data\pages\youtube-to-mp3-320kbps\ms.json`
+   - `_templates\_data\pages\youtube-to-mp3-320kbps\my.json`
+   - `_templates\_data\pages\youtube-to-mp3-320kbps\pt.json`
+   - `_templates\_data\pages\youtube-to-mp3-320kbps\ru.json`
+   - `_templates\_data\pages\youtube-to-mp3-320kbps\th.json`
+   - `_templates\_data\pages\youtube-to-mp3-320kbps\tr.json`
+   - `_templates\_data\pages\youtube-to-mp3-320kbps\ur.json`
 
 **CRITICAL RULES:**
 - Preserve ALL HTML tags exactly: `<strong>`, `<a href="/...">`, etc.
@@ -260,20 +260,20 @@ Each prompt is completely independent and can be run on separate AI CLI instance
 
 **Languages:** Arabic (ar), Bengali (bn), German (de), Spanish (es), French (fr), Hindi (hi), Indonesian (id), Italian (it), Japanese (ja)
 
-**Source file:** `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-wav\en.json`
+**Source file:** `_templates\_data\pages\youtube-to-wav\en.json`
 
 **Instructions:**
 1. Read the English source file from the path above
 2. Translate to 9 languages and create these files:
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-wav\ar.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-wav\bn.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-wav\de.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-wav\es.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-wav\fr.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-wav\hi.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-wav\id.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-wav\it.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-wav\ja.json`
+   - `_templates\_data\pages\youtube-to-wav\ar.json`
+   - `_templates\_data\pages\youtube-to-wav\bn.json`
+   - `_templates\_data\pages\youtube-to-wav\de.json`
+   - `_templates\_data\pages\youtube-to-wav\es.json`
+   - `_templates\_data\pages\youtube-to-wav\fr.json`
+   - `_templates\_data\pages\youtube-to-wav\hi.json`
+   - `_templates\_data\pages\youtube-to-wav\id.json`
+   - `_templates\_data\pages\youtube-to-wav\it.json`
+   - `_templates\_data\pages\youtube-to-wav\ja.json`
 
 **CRITICAL RULES:**
 - Preserve ALL HTML tags exactly: `<strong>`, `<a href="/...">`, etc.
@@ -291,19 +291,19 @@ Each prompt is completely independent and can be run on separate AI CLI instance
 
 **Languages:** Korean (ko), Malay (ms), Burmese (my), Portuguese (pt), Russian (ru), Thai (th), Turkish (tr), Urdu (ur)
 
-**Source file:** `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-wav\en.json`
+**Source file:** `_templates\_data\pages\youtube-to-wav\en.json`
 
 **Instructions:**
 1. Read the English source file from the path above
 2. Translate to 8 languages and create these files:
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-wav\ko.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-wav\ms.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-wav\my.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-wav\pt.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-wav\ru.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-wav\th.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-wav\tr.json`
-   - `F:\downloader\Project-root\apps\ytmp3.my\_templates\_data\pages\youtube-to-wav\ur.json`
+   - `_templates\_data\pages\youtube-to-wav\ko.json`
+   - `_templates\_data\pages\youtube-to-wav\ms.json`
+   - `_templates\_data\pages\youtube-to-wav\my.json`
+   - `_templates\_data\pages\youtube-to-wav\pt.json`
+   - `_templates\_data\pages\youtube-to-wav\ru.json`
+   - `_templates\_data\pages\youtube-to-wav\th.json`
+   - `_templates\_data\pages\youtube-to-wav\tr.json`
+   - `_templates\_data\pages\youtube-to-wav\ur.json`
 
 **CRITICAL RULES:**
 - Preserve ALL HTML tags exactly: `<strong>`, `<a href="/...">`, etc.

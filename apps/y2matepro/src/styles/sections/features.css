@@ -21,7 +21,11 @@
     max-width: 33.333333%;
 }
 
-
+/* Index page features: 2 columns for 4 items */
+.y2mate-features-wrap-pro.index-features .col-sm-4 {
+    flex: 0 0 50%;
+    max-width: 50%;
+}
 
 .y2mate-features-wrap-pro.first::before {
     background: inherit;
@@ -58,6 +62,12 @@
 /* ===== TABLET (768px - 1023px) ===== */
 @media (min-width: 768px) and (max-width: 1023px) {
     .y2mate-features-wrap-pro .col-sm-4 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+    /* Index page features: maintain 2 columns on tablet */
+    .y2mate-features-wrap-pro.index-features .col-sm-4 {
         flex: 0 0 50%;
         max-width: 50%;
     }

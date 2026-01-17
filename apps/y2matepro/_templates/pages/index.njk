@@ -95,7 +95,7 @@ eleventyComputed:
     </section>
     <section class="y2mate-features-wrap">
         <h2>{{ page.features.title }}</h2>
-        <div class="y2mate-features-wrap-pro first">
+        <div class="y2mate-features-wrap-pro first index-features">
             {% for feature in page.features.items %}
             <div class="col-sm-4 d-flex">
                 <div class="y2mate-features-pro">
@@ -151,7 +151,7 @@ eleventyComputed:
                     </svg>
                     {% endif %}
                     <h3>{{ feature.title }}</h3>
-                    <p>{{ feature.description }}</p>
+                    <p>{{ feature.description | safe }}</p>
                 </div>
             </div>
             {% endfor %}

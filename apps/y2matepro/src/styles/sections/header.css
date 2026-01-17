@@ -146,6 +146,8 @@
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-lg);
     background-clip: padding-box;
+    max-height: 450px;
+    overflow-y: auto;
 }
 
 .lang-menu {

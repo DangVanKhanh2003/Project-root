@@ -1,0 +1,85 @@
+{
+  "en": {
+    "hero": {
+      "title": "YouTube to WAV Converter"
+    },
+    "content": {
+      "mainTitle": "Convert YouTube Videos to WAV",
+      "intro1": "Our YouTube to WAV converter allows you to download and convert YouTube videos to high-quality WAV audio files. The process is simple, fast, and completely free.",
+      "intro2": "WAV (Waveform Audio File Format) is an uncompressed audio format that preserves the original audio quality, making it ideal for professional audio editing and archiving."
+    },
+    "instructions": {
+      "title": "How to Convert YouTube to WAV",
+      "steps": [
+        "Copy the URL of the YouTube video you want to convert.",
+        "Paste the URL into the search box on our site.",
+        "Select WAV as the output format and click 'Convert'.",
+        "Once the conversion is complete, click 'Download' to save the WAV file to your device."
+      ]
+    },
+    "whyChoose": {
+      "title": "Why Use Our YouTube to WAV Converter?",
+      "reasons": [
+        "<strong>High-Quality Audio:</strong> Convert videos to WAV format without any loss of quality.",
+        "<strong>Fast and Efficient:</strong> Our converter is designed for speed, delivering your WAV file in seconds.",
+        "<strong>Completely Free:</strong> No hidden fees or subscriptions. Enjoy unlimited conversions at no cost.",
+        "<strong>No Registration Required:</strong> Convert and download videos without signing up.",
+        "<strong>Cross-Platform Support:</strong> Our tool works on all modern browsers and devices, including Windows, macOS, Linux, Android, and iOS."
+      ]
+    },
+    "features": {
+      "title": "Our Features",
+      "items": [
+        {
+          "title": "Unlimited Conversions",
+          "description": "Convert as many YouTube videos as you want to WAV format without any limitations."
+        },
+        {
+          "title": "User-Friendly Interface",
+          "description": "Our intuitive interface makes converting YouTube videos to WAV a breeze for everyone."
+        },
+        {
+          "title": "High-Quality Output",
+          "description": "We provide the best possible audio quality for your WAV conversions, preserving the original sound."
+        },
+        {
+          "title": "Blazing-Fast Speed",
+          "description": "Experience ultra-fast conversions and downloads, so you can get your audio files quickly."
+        },
+        {
+          "title": "No Software Installation",
+          "description": "Our online tool works directly in your browser, so you don't need to install any software."
+        },
+        {
+          "title": "Multiple Format Support",
+          "description": "Besides WAV, we also support other popular formats like MP3, MP4, and more."
+        }
+      ]
+    },
+    "faqs": {
+      "title": "Frequently Asked Questions",
+      "items": [
+        {
+          "question": "Is the YouTube to WAV converter free to use?",
+          "answer": "Yes, our service is 100% free. You can convert and download as many videos as you like without any cost."
+        },
+        {
+          "question": "What is the quality of the converted WAV files?",
+          "answer": "Our tool extracts the audio in the highest possible quality. Since WAV is a lossless format, the converted file will be a perfect copy of the original audio stream from the YouTube video."
+        },
+        {
+          "question": "How long does it take to convert a video?",
+          "answer": "The conversion time depends on the length and quality of the video. However, our tool is highly optimized for speed and most conversions are completed in under a minute."
+        },
+        {
+          "question": "Can I use this converter on my mobile device?",
+          "answer": "Absolutely! Our website is fully responsive and works on all devices, including smartphones and tablets. You can convert YouTube videos to WAV on your Android or iOS device without any issues."
+        },
+        {
+          "question": "Is it legal to convert YouTube videos to WAV?",
+          "answer": "Converting YouTube videos to WAV is generally legal for personal use. However, you should respect copyright laws and not download copyrighted content without permission from the owner. We recommend you only download your own videos or videos that are in the public domain."
+        }
+      ]
+    }
+  }
+}
