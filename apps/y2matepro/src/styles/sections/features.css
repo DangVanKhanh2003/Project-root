@@ -96,16 +96,23 @@
     }
 }
 
-/* ===== MOBILE (max-width: 767px) ===== */
+/* ===== MOBILE (<768px) ===== */
 @media (max-width: 767px) {
     .y2mate-features-wrap-pro {
         padding: 25px 0;
         display: block;
     }
 
+    /* All features: 1 column on mobile */
     .y2mate-features-wrap-pro .col-sm-4 {
-        flex: 0 0 100%;
-        max-width: 100%;
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* Override index-features to 1 column on mobile */
+    .y2mate-features-wrap-pro.index-features .col-sm-4 {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
     }
 
     .y2mate-features-pro {
