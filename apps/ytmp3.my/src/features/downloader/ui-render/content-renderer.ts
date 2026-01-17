@@ -455,9 +455,11 @@ function createConversionStateWrapper(): string {
         </div>
       </div>
       <div class="action-container" id="action-container">
-        <button class="download-btn" id="conversion-download-btn">${t('common.buttons.download')}</button>
-        <button class="retry-btn" id="conversion-retry-btn">${t('common.buttons.retry')}</button>
         <button class="btn-new-convert" id="btn-new-convert">${t('common.buttons.startOver')}</button>
+        <button class="retry-btn" id="conversion-retry-btn">${t('common.buttons.retry')}</button>
+
+        <button class="download-btn" id="conversion-download-btn">${t('common.buttons.download')}</button>
+
       </div>
     </div>
   `;

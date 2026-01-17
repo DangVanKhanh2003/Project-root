@@ -55,19 +55,19 @@ footer,
 
 .footer-link {
     font-size: 0.875rem;
-    color: var(--text-muted);
+    color: var(--text-main);
     text-decoration: none;
     transition: color 0.2s ease;
     font-weight: 500;
 }
 
 .footer-link:hover {
-    color: var(--text-main);
+    color: var(--text-accent);
 }
 
 .footer-copyright,
 .copyright {
     font-size: 0.75rem;
-    color: var(--text-secondary);
+    color: var(--text-main);
     font-weight: 500;
 }
