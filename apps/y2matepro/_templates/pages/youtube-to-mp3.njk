@@ -11,6 +11,7 @@ eleventyComputed:
 ---
 {%- set base = i18nBase[lang] or i18nBase['en'] -%}
 {%- set page = i18nPages[pageKey][lang] or i18nPages[pageKey].en -%}
+{%- set langPrefix = '' if (lang == 'en' or not lang) else '/' + lang -%}
 <div class="container">
     <section class="y2mate-download-pro">
         <div class="y2mate-search-form-pro d-flex">

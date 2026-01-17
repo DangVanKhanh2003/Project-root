@@ -59,6 +59,17 @@
     max-width: 350px;
 }
 
+.y2mate-features-pro p a {
+    color: inherit; /* Cùng màu với text */
+    font-weight: var(--font-weight-bold); /* Font weight đậm hơn */
+    text-decoration: none;
+}
+
+.y2mate-features-pro p a:hover {
+    text-decoration: underline;
+    color: var(--color-primary); /* Đổi màu khi hover cho rõ */
+}
+
 /* ===== TABLET (768px - 1023px) ===== */
 @media (min-width: 768px) and (max-width: 1023px) {
     .y2mate-features-wrap-pro .col-sm-4 {
