@@ -44,3 +44,10 @@
     flex-direction: column;
     align-items: center;
 }
+
+/* ===== RTL SUPPORT ===== */
+[dir="rtl"] .decorative-glow,
+[dir="rtl"] .hero-glow {
+    right: auto;
+    left: 0;
+}

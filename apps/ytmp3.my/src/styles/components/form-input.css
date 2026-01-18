@@ -213,3 +213,26 @@
     border-color: rgba(16, 185, 129, 0.3);
     color: #6ee7b7;
 }
+
+/* ===== RTL SUPPORT ===== */
+[dir="rtl"] .video-input {
+    padding-left: 8rem;
+    padding-right: 2rem;
+}
+
+@media (min-width: 768px) {
+    [dir="rtl"] .video-input {
+        padding-left: 8rem;
+        padding-right: 2rem;
+    }
+}
+
+[dir="rtl"] .input-actions {
+    right: auto;
+    left: 1rem;
+}
+
+[dir="rtl"] .quality-icon {
+    right: auto;
+    left: 0;
+}

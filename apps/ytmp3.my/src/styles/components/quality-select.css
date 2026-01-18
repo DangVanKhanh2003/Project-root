@@ -57,3 +57,9 @@
     pointer-events: none;
     color: var(--text-muted);
 }
+
+/* ===== RTL SUPPORT ===== */
+[dir="rtl"] .select-arrow {
+    right: auto;
+    left: 16px;
+}
