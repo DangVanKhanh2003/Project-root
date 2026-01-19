@@ -1,0 +1,49 @@
+{
+  "seo": {
+    "title": "Conversor de YouTube para MP3 – Download de MP3 rápido e confiável",
+    "description": "Converta vídeos do YouTube para MP3 em alta velocidade. Escolha a qualidade do MP3 antes de converter. Sem limite de duração de vídeo, sem necessidade de registro."
+  },
+  "h1": "Conversor de YouTube para MP3",
+  "intro": "Esta ferramenta permite que você converta vídeos do YouTube para MP3 de forma rápida e confiável. Basta colar um link do YouTube, selecionar a qualidade de MP3 desejada e baixar o arquivo diretamente para o seu dispositivo. Nenhuma instalação de software e nenhuma conta necessária.",
+  "primary_features": {
+    "h2": "Principais recursos",
+    "items": [
+      "Converta vídeos do YouTube para o formato MP3",
+      "Selecione a qualidade do MP3 antes da conversão",
+      "Suporta qualidade de MP3 de 64kbps até 320kbps",
+      "Sem limitação de duração de vídeo",
+      "Os arquivos MP3 baixados não contêm tags ou marcas d'água"
+    ]
+  },
+  "performance": {
+    "h2": "Desempenho de conversão",
+    "content": "O sistema é otimizado para velocidade. Para vídeos com duração de cerca de 10 horas, a conversão para MP3 geralmente leva apenas de 10 a 15 segundos. A velocidade de download depende da conexão com a internet do usuário."
+  },
+  "how_to": {
+    "h2": "Como converter YouTube para MP3",
+    "steps": [
+      {
+        "step": 1,
+        "content": "Copie o URL do vídeo do YouTube que você deseja converter."
+      },
+      {
+        "step": 2,
+        "content": "Cole o link na caixa de entrada acima, escolha a qualidade do MP3 e clique em Converter."
+      },
+      {
+        "step": 3,
+        "content": "Quando a conversão estiver concluída, clique em Baixar MP3 para salvar o arquivo em seu dispositivo."
+      }
+    ]
+  },
+  "limitations": {
+    "h2": "Notas de uso",
+    "content": "A ferramenta suporta todos os vídeos públicos do YouTube que são acessíveis e permitidos pelo YouTube. Durante os horários de pico, como noites ou fins de semana, o tempo de processamento pode ser um pouco mais lento devido ao alto tráfego."
+  },
+  "privacy_notice": {
+    "content": "Nenhum registro de conta é necessário e nenhuma informação pessoal é coletada."
+  },
+  "responsibility_notice": {
+    "content": "Os usuários são os únicos responsáveis pelo conteúdo que convertem e baixam."
+  }
+}

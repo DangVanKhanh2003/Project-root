@@ -5,6 +5,9 @@
 
 import { TaskState } from '../types';
 
+// Re-export for consumers
+export { TaskState };
+
 /**
  * V3 Conversion Task
  */

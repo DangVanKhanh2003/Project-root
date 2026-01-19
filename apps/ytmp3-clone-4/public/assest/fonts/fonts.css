@@ -1,3 +1,12 @@
+/* Fredoka Font (Logo only) */
+@font-face {
+    font-family: 'Fredoka';
+    src: url('./fredoka/Fredoka-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
 /* Manrope Font Family (replacing Inter) */
 @font-face {
     font-family: 'Manrope';

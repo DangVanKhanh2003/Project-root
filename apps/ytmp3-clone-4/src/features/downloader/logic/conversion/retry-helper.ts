@@ -1,7 +1,7 @@
 /**
  * Retry Helper - Auto retry for API calls with exponential backoff
  *
- * Based on ytmp3.gg retry pattern:
+ * Based on mp3fast.net retry pattern:
  * - Auto retry silently (user không biết)
  * - Exponential backoff delays
  * - Track consecutive errors

@@ -1,0 +1,49 @@
+{
+  "seo": {
+    "title": "Convertidor de YouTube a MP3: descarga de MP3 rápida y confiable",
+    "description": "Convierta videos de YouTube a MP3 a alta velocidad. Elija la calidad de MP3 antes de convertir. Sin límite de duración de video, no se requiere registro."
+  },
+  "h1": "Convertidor de YouTube a MP3",
+  "intro": "Esta herramienta le permite convertir videos de YouTube a MP3 de forma rápida y confiable. Simplemente pegue un enlace de YouTube, seleccione la calidad de MP3 que desee y descargue el archivo directamente en su dispositivo. No se requiere instalación de software ni cuenta.",
+  "primary_features": {
+    "h2": "Características clave",
+    "items": [
+      "Convertir videos de YouTube a formato MP3",
+      "Seleccione la calidad de MP3 antes de la conversión",
+      "Admite calidad de MP3 desde 64 kbps hasta 320 kbps",
+      "Sin limitación de duración de video",
+      "Los archivos MP3 descargados no contienen etiquetas ni marcas de agua"
+    ]
+  },
+  "performance": {
+    "h2": "Rendimiento de conversión",
+    "content": "El sistema está optimizado para la velocidad. Para videos con una duración de alrededor de 10 horas, la conversión a MP3 generalmente toma solo de 10 a 15 segundos. La velocidad de descarga depende de la conexión a Internet del usuario."
+  },
+  "how_to": {
+    "h2": "Cómo convertir YouTube a MP3",
+    "steps": [
+      {
+        "step": 1,
+        "content": "Copie la URL del video de YouTube que desea convertir."
+      },
+      {
+        "step": 2,
+        "content": "Pegue el enlace en el cuadro de entrada de arriba, elija la calidad de MP3 y haga clic en Convertir."
+      },
+      {
+        "step": 3,
+        "content": "Una vez que se complete la conversión, haga clic en Descargar MP3 para guardar el archivo en su dispositivo."
+      }
+    ]
+  },
+  "limitations": {
+    "h2": "Notas de uso",
+    "content": "La herramienta es compatible con todos los videos públicos de YouTube a los que YouTube puede acceder y permitir. Durante las horas pico, como las noches o los fines de semana, el tiempo de procesamiento puede ser un poco más lento debido al alto tráfico."
+  },
+  "privacy_notice": {
+    "content": "No se requiere registro de cuenta y no se recopila información personal."
+  },
+  "responsibility_notice": {
+    "content": "Los usuarios son los únicos responsables del contenido que convierten y descargan."
+  }
+}

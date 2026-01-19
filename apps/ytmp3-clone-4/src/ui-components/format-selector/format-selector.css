@@ -168,13 +168,17 @@ html[data-format="mp4"] .quality-select--mp4 { display: block; }
   .format-selector .btn-convert {
     flex: 0 0 auto; /* Fit content */
     width: fit-content;
-    padding: 8px 12px;
-    min-width: 44px;
+    padding: 8px 16px;
+    min-width: auto;
   }
 
-  /* Hide text, show icon only on mobile */
+  /* Show both text and icon on mobile */
   .format-selector .btn-convert span {
-    display: none;
+    display: inline;
+  }
+
+  .format-selector .btn-convert svg {
+    display: inline;
   }
 
   /* Quality select: show icon, hide text */

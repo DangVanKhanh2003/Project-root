@@ -1,0 +1,49 @@
+{
+  "seo": {
+    "title": "YouTube'dan MP3'e Dönüştürücü – Hızlı ve Güvenilir MP3 İndirme",
+    "description": "YouTube videolarını yüksek hızda MP3'e dönüştürün. Dönüştürmeden önce MP3 kalitesini seçin. Video uzunluğu sınırı yok, kayıt gerekmez."
+  },
+  "h1": "YouTube'dan MP3'e Dönüştürücü",
+  "intro": "Bu araç, YouTube videolarını hızlı ve güvenilir bir şekilde MP3'e dönüştürmenizi sağlar. Sadece bir YouTube bağlantısı yapıştırın, istediğiniz MP3 kalitesini seçin ve dosyayı doğrudan cihazınıza indirin. Yazılım kurulumu ve hesap gerekmez.",
+  "primary_features": {
+    "h2": "Ana Özellikler",
+    "items": [
+      "YouTube videolarını MP3 formatına dönüştürün",
+      "Dönüştürmeden önce MP3 kalitesini seçin",
+      "64kbps'den 320kbps'ye kadar MP3 kalitesini destekler",
+      "Video uzunluğu sınırlaması yok",
+      "İndirilen MP3 dosyaları etiket veya filigran içermez"
+    ]
+  },
+  "performance": {
+    "h2": "Dönüştürme Performansı",
+    "content": "Sistem hız için optimize edilmiştir. Yaklaşık 10 saat süren videolar için MP3 dönüştürme genellikle yalnızca 10 ila 15 saniye sürer. İndirme hızı, kullanıcının internet bağlantısına bağlıdır."
+  },
+  "how_to": {
+    "h2": "YouTube'u MP3'e dönüştürme",
+    "steps": [
+      {
+        "step": 1,
+        "content": "Dönüştürmek istediğiniz YouTube videosunun URL'sini kopyalayın."
+      },
+      {
+        "step": 2,
+        "content": "Bağlantıyı yukarıdaki giriş kutusuna yapıştırın, MP3 kalitesini seçin ve Dönüştür'ü tıklayın."
+      },
+      {
+        "step": 3,
+        "content": "Dönüştürme tamamlandığında, dosyayı cihazınıza kaydetmek için MP3 İndir'i tıklayın."
+      }
+    ]
+  },
+  "limitations": {
+    "h2": "Kullanım Notları",
+    "content": "Araç, YouTube tarafından erişilebilen ve izin verilen tüm herkese açık YouTube videolarını destekler. Akşamları veya hafta sonları gibi yoğun saatlerde, yoğun trafik nedeniyle işlem süresi biraz daha yavaş olabilir."
+  },
+  "privacy_notice": {
+    "content": "Hesap kaydı gerekmez ve hiçbir kişisel bilgi toplanmaz."
+  },
+  "responsibility_notice": {
+    "content": "Kullanıcılar, dönüştürdükleri ve indirdikleri içerikten yalnızca kendileri sorumludur."
+  }
+}
