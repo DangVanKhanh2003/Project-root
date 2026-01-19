@@ -13,6 +13,8 @@ interface ModalState {
   progress: number;
   formatId?: string;
   formatData?: any;
+  format?: string;
+  quality?: string;
   downloadUrl?: string | null;
   errorMessage?: string | null;
   videoTitle: string;
@@ -74,6 +76,8 @@ export class ConversionModal {
       progress: skipProgressBar ? 100 : 0,
       formatId: options.formatId,
       formatData: options.formatData,
+      format: options.format || options.formatData?.type || '',
+      quality: options.quality || options.formatData?.quality || '',
       downloadUrl: options.downloadUrl || null,
       errorMessage: null,
       videoTitle: options.videoTitle || 'Video',
@@ -592,6 +596,25 @@ export class ConversionModal {
     `;
   }
 
+  private renderFormatInfo(): string {
+    if (!this.state) return '';
+
+    const format = this.state.format || '';
+    const quality = this.state.quality || '';
+
+    if (!format && !quality) return '';
+
+    const parts: string[] = [];
+    if (format) parts.push(`<span class="format-info-label">Format:</span> <span class="format-info-value">${this.escapeHtml(format.toUpperCase())}</span>`);
+    if (quality) parts.push(`<span class="format-info-label">Quality:</span> <span class="format-info-value">${this.escapeHtml(quality)}</span>`);
+
+    return `
+      <div class="conversion-format-info">
+        ${parts.join('<span class="format-info-separator">|</span>')}
+      </div>
+    `;
+  }
+
   private renderExtracting(): string {
     return `
       <div class="conversion-state conversion-state--extracting">
@@ -599,10 +622,10 @@ export class ConversionModal {
           <div id="circular-progress-container"></div>
         </div>
 
-        <h3 class="conversion-title">Extracting...</h3>
+        <p class="conversion-title">Extracting...</p>
         <p class="conversion-message">Preparing your download</p>
 
-        <!-- NO PROGRESS BAR - just circular spinner -->
+        ${this.renderFormatInfo()}
       </div>
     `;
   }
@@ -614,13 +637,15 @@ export class ConversionModal {
           <div id="circular-progress-container"></div>
         </div>
 
-        <h3 class="conversion-title" id="conversion-title-text">Converting Video...</h3>
+        <p class="conversion-title" id="conversion-title-text">Converting Video...</p>
 
         <div class="conversion-progress">
           <div class="progress-bar-content">
             <!-- ProgressBarManager will inject its DOM here -->
           </div>
         </div>
+
+        ${this.renderFormatInfo()}
       </div>
     `;
   }
@@ -639,6 +664,8 @@ export class ConversionModal {
             Download
           </button>
         </div>
+
+        ${this.renderFormatInfo()}
       </div>
     `;
   }

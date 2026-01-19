@@ -167,10 +167,11 @@
 
 /* ======= BODY - Content Area ======= */
 .conversion-modal-body {
-    padding: var(--pkg-space-6) var(--pkg-space-5);
+    position: relative;
+    padding: var(--pkg-space-6) var(--pkg-space-5) 20px !important;
     flex: 1;
     overflow-y: auto;
-    min-height: 180px; /* Maximum buffer for mobile - prevents layout shift */
+    min-height: 210px; /* Maximum buffer for mobile - prevents layout shift */
 }
 
 /* ======= State Container ======= */
@@ -180,6 +181,8 @@
     flex-direction: column;
     align-items: center;
     gap: 5px;
+    flex: 1;
+    min-height: 100%;
 
     /* Fixed margin-top - prevents layout shift, no flex centering */
     margin-top: 24px; /* Mobile base */
@@ -269,7 +272,7 @@
     font-size: 0.875rem;
     line-height: 1.5;
     color: var(--pkg-conversion-message-color);
-    margin: 0; /* Remove default margins - handled by flex gap */
+    margin: 8px 0; /* Add spacing for badges */
 }
 
 .conversion-message--error {
@@ -284,6 +287,55 @@
     margin: var(--pkg-space-2) 0 var(--pkg-space-4) 0;
 }
 
+/* ======= Format & Quality Info (Bottom) ======= */
+.conversion-format-info {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+}
+
+.format-info-label {
+    font-weight: 500;
+    color: var(--pkg-conversion-message-color);
+}
+
+.format-info-value {
+    font-weight: 600;
+    color: var(--pkg-conversion-title-color);
+}
+
+.format-info-separator {
+    color: var(--pkg-conversion-message-color);
+    opacity: 0.5;
+    margin: 0 4px;
+}
+
+/* ======= Progress Status Text ======= */
+.status-text-container {
+    margin: 8px 0;
+}
+
+.main-status-text {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--pkg-conversion-title-color);
+    text-align: center;
+}
+
+.progress-detail-text {
+    font-size: 0.8125rem;
+    color: var(--pkg-conversion-message-color);
+    text-align: center;
+    margin-top: 4px;
+}
 
 .conversion-progress .progress-bar.progress-bar-striped.progress-bar-subtle {
     background-image: linear-gradient(
@@ -747,7 +799,7 @@
 
     .conversion-modal-body {
         padding: var(--pkg-space-7) var(--pkg-space-6);
-        min-height: 220px; /* Maximum buffer - prevents layout shift on small mobile */
+        min-height: 250px; /* Maximum buffer - prevents layout shift on small mobile */
     }
 
     .conversion-title {
@@ -799,7 +851,7 @@
 
     .conversion-modal-body {
         padding: var(--pkg-space-8) var(--pkg-space-7);
-        min-height: 250px; /* Maximum buffer - prevents layout shift on tablets */
+        min-height: 280px; /* Maximum buffer - prevents layout shift on tablets */
     }
 
     .conversion-state {
@@ -856,7 +908,7 @@
 
     .conversion-modal-body {
         padding: var(--pkg-space-10) var(--pkg-space-8);
-        min-height: 250px; /* Optimized buffer - prevents layout shift on desktop */
+        min-height: 280px; /* Optimized buffer - prevents layout shift on desktop */
     }
 
     .conversion-state {
@@ -870,14 +922,14 @@
     .btn-download {
         padding: 12px 28px;
         font-size: 1.125rem;
-        border-radius: var(--pkg-radius-lg);
+        border-radius: 8px;
     }
 
     .btn-retry {
         min-width: 200px;
         padding: 16px 36px;
         font-size: 1.125rem;
-        border-radius: var(--pkg-radius-lg);
+        border-radius: 8px;
     }
 }
 
@@ -892,7 +944,7 @@
     }
 
     .conversion-modal-body {
-        min-height: 250px; /* Optimized buffer - prevents layout shift on wide desktop */
+        min-height: 280px; /* Optimized buffer - prevents layout shift on wide desktop */
     }
 
     .conversion-title {
@@ -945,7 +997,7 @@
 
     .conversion-modal-body {
         padding: var(--pkg-space-12) var(--pkg-space-10);
-        min-height: 280px; /* Optimized buffer - prevents layout shift on 2K displays */
+        min-height: 310px; /* Optimized buffer - prevents layout shift on 2K displays */
     }
 
 
@@ -1003,7 +1055,7 @@
 
     .conversion-modal-body {
         padding: var(--pkg-space-14) var(--pkg-space-12);
-        min-height: 280px; /* Optimized buffer - prevents layout shift on 4K+ displays */
+        min-height: 310px; /* Optimized buffer - prevents layout shift on 4K+ displays */
     }
 
     .conversion-title {
