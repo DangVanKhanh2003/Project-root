@@ -4,7 +4,7 @@
  * Adapter that bridges @downloader/core strategies to app's state management.
  * Implements IStateUpdater interface for dependency injection.
  *
- * Phase 3A Integration - ytmp3-clone-3
+ * Phase 3A Integration - mp3fast
  */
 
 import type { IStateUpdater, StateUpdate, TaskData } from '@downloader/core/conversion';

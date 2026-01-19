@@ -456,6 +456,24 @@
   }
 }
 
+/* ======= Mobile Only (0-599px): Hide text, show icon only ======= */
+@media (max-width: 599px) {
+  .btn-convert {
+    padding: 10px 12px; /* Square-like padding for icon-only */
+    min-width: 44px;
+  }
+
+  /* Hide text, show icon only */
+  .btn-convert .btn-text {
+    display: none;
+  }
+
+  .btn-icon {
+    width: 18px !important;
+    height: 18px !important;
+  }
+}
+
 /* ======= Medium Tablet (600px-839px) ======= */
 @media (min-width: 600px) {
   .video-layout {

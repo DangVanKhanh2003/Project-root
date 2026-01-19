@@ -29,282 +29,51 @@ import {
   setYouTubePreview,
   updateYouTubePreviewMetadata,
 } from '../state';
-import { renderResults, renderMessage, renderPreviewCard, showLoading, clearContent, clearFormMessage } from '../ui-render/content-renderer';
+import { renderResults, renderMessage, renderPreviewCard, showLoading, clearContent, clearHeroMessage } from '../ui-render/content-renderer';
 import { updateVideoTitle } from '../ui-render/download-rendering';
 import { getInputValue as getInputValueFromRenderer, setInputValue as setInputValueInRenderer } from '../ui-render/ui-renderer';
 import type { VideoData } from '@downloader/ui-components';
 import { navigateToVideo } from '../routing/url-manager';
 import { setVideoPageSEO } from '../routing/seo-manager';
 
-// ============================================
-// YOUTUBE HELPERS
-// ============================================
-
-/**
- * Check if URL is YouTube
- */
-function isYouTubeUrl(url: string): boolean {
-  return /(?:youtube\.com|youtu\.be|youtube-nocookie\.com|youtubekids\.com)/i.test(url);
-}
-
-/**
- * Extract YouTube video ID from URL
- */
-function extractYouTubeVideoId(url: string): string | null {
-  // youtu.be/VIDEO_ID
-  const shortMatch = url.match(/youtu\.be\/([a-zA-Z0-9_-]{11})/);
-  if (shortMatch) return shortMatch[1];
-
-  // youtube.com/shorts/VIDEO_ID
-  const shortsMatch = url.match(/\/shorts\/([a-zA-Z0-9_-]{11})/);
-  if (shortsMatch) return shortsMatch[1];
-
-  // youtube.com/watch?v=VIDEO_ID
-  const longMatch = url.match(/[?&]v=([a-zA-Z0-9_-]{11})/);
-  if (longMatch) return longMatch[1];
-
-  // youtube.com/embed/VIDEO_ID
-  const embedMatch = url.match(/\/embed\/([a-zA-Z0-9_-]{11})/);
-  if (embedMatch) return embedMatch[1];
-
-  return null;
-}
-
-/**
- * Generate fake YouTube data for instant UI
- * Returns pre-defined quality options before API call
- */
-function generateFakeYouTubeData(videoId: string, url: string): any {
-  return {
-    meta: {
-      vid: videoId,
-      title: `Loading video information...`,
-      author: 'Please wait...',
-      thumbnail: `https://i.ytimg.com/vi/${videoId}/0.jpg`,
-      duration: '--:--',
-      source: 'YouTube',
-      originalUrl: url,
-      isFakeData: true
-    },
-    formats: {
-      video: [
-        {
-          quality: '1080p',
-          format: 'mp4',
-          vid: videoId,
-          type: 'VIDEO',
-          size: 'Processing...',
-          isFakeData: true,
-          extractV2Options: {
-            downloadMode: 'video',
-            videoQuality: '1080',
-            youtubeVideoContainer: 'mp4'
-          }
-        },
-        {
-          quality: '720p',
-          format: 'mp4',
-          vid: videoId,
-          type: 'VIDEO',
-          size: 'Processing...',
-          isFakeData: true,
-          extractV2Options: {
-            downloadMode: 'video',
-            videoQuality: '720',
-            youtubeVideoContainer: 'mp4'
-          }
-        },
-        {
-          quality: '480p',
-          format: 'mp4',
-          vid: videoId,
-          type: 'VIDEO',
-          size: 'Processing...',
-          isFakeData: true,
-          extractV2Options: {
-            downloadMode: 'video',
-            videoQuality: '480',
-            youtubeVideoContainer: 'mp4'
-          }
-        },
-        {
-          quality: '360p',
-          format: 'mp4',
-          vid: videoId,
-          type: 'VIDEO',
-          size: 'Processing...',
-          isFakeData: true,
-          extractV2Options: {
-            downloadMode: 'video',
-            videoQuality: '360',
-            youtubeVideoContainer: 'mp4'
-          }
-        },
-        {
-          quality: '240p',
-          format: 'mp4',
-          vid: videoId,
-          type: 'VIDEO',
-          size: 'Processing...',
-          isFakeData: true,
-          extractV2Options: {
-            downloadMode: 'video',
-            videoQuality: '240',
-            youtubeVideoContainer: 'mp4'
-          }
-        },
-        {
-          quality: '144p',
-          format: 'mp4',
-          vid: videoId,
-          type: 'VIDEO',
-          size: 'Processing...',
-          isFakeData: true,
-          extractV2Options: {
-            downloadMode: 'video',
-            videoQuality: '144',
-            youtubeVideoContainer: 'mp4'
-          }
-        },
-      ],
-      audio: [
-        {
-          quality: '256kbps',
-          format: 'mp3',
-          vid: videoId,
-          type: 'AUDIO',
-          size: 'Processing...',
-          isFakeData: true,
-          extractV2Options: {
-            downloadMode: 'audio',
-            audioBitrate: '256',
-            audioFormat: 'mp3'
-          }
-        },
-        {
-          quality: '128kbps',
-          format: 'mp3',
-          vid: videoId,
-          type: 'AUDIO',
-          size: 'Processing...',
-          isFakeData: true,
-          extractV2Options: {
-            downloadMode: 'audio',
-            audioBitrate: '128',
-            audioFormat: 'mp3'
-          }
-        },
-        {
-          quality: 'OGG',
-          format: 'ogg',
-          vid: videoId,
-          type: 'AUDIO',
-          size: 'Processing...',
-          isFakeData: true,
-          extractV2Options: {
-            downloadMode: 'audio',
-            audioFormat: 'ogg'
-          }
-        },
-        {
-          quality: 'WAV',
-          format: 'wav',
-          vid: videoId,
-          type: 'AUDIO',
-          size: 'Processing...',
-          isFakeData: true,
-          extractV2Options: {
-            downloadMode: 'audio',
-            audioFormat: 'wav'
-          }
-        },
-        {
-          quality: 'Opus',
-          format: 'opus',
-          vid: videoId,
-          type: 'AUDIO',
-          size: 'Processing...',
-          isFakeData: true,
-          extractV2Options: {
-            downloadMode: 'audio',
-            audioFormat: 'opus'
-          }
-        },
-      ]
-    }
-  };
-}
+// Import YouTube helpers from @downloader/core (TODO: remove local duplicates)
+import {
+  isYouTubeUrl as isYouTubeUrlFromCore,
+  extractYouTubeVideoId as extractYouTubeVideoIdFromCore,
+  generateFakeYouTubeData as generateFakeYouTubeDataFromCore
+} from '@downloader/core/utils/youtube';
 
 /**
  * Handle auto-download after preview is shown
- * Builds formatData from FormatSelector state and triggers conversion
+ * Always uses MP3 format with bitrate from dropdown
  */
 async function handleAutoDownload(url: string, videoId: string): Promise<void> {
   try {
     console.log('[Auto-Download] Starting auto-download for:', videoId);
 
-    // Get current format/quality selection from state
+    // Get bitrate from state (dropdown selection)
     const state = getState();
+    const audioBitrate = state.audioBitrate || '128'; // Default to 128kbps
 
-    const selectedFormat = state.selectedFormat; // 'mp4' or 'mp3'
-    const videoQuality = state.videoQuality; // e.g., '720p'
-    const audioFormat = state.audioFormat; // e.g., 'mp3'
-    const audioBitrate = state.audioBitrate; // e.g., '128'
+    console.log('[Auto-Download] Audio bitrate:', audioBitrate);
 
-    console.log('[Auto-Download] Selected format:', selectedFormat);
-    console.log('[Auto-Download] Video quality:', videoQuality);
-    console.log('[Auto-Download] Audio format:', audioFormat, 'Bitrate:', audioBitrate);
-
-    // Build formatData with extractV2Options based on user selection
-    let formatData: any;
-    let formatId: string;
-
-    if (selectedFormat === 'mp4') {
-      // Video format
-      const qualityNumber = videoQuality.replace('p', ''); // '720p' → '720'
-
-      formatData = {
-        id: `video|mp4-${videoQuality}`,
-        vid: videoId,
-        category: 'video',
-        type: 'VIDEO',
-        format: 'mp4',
-        quality: videoQuality,
-        sizeText: 'Processing...',
-        isFakeData: true,
-        extractV2Options: {
-          downloadMode: 'video',
-          videoQuality: qualityNumber,
-          youtubeVideoContainer: 'mp4'
-        }
-      };
-      formatId = `video|mp4-${videoQuality}`;
-
-    } else {
-      // Audio format - All formats need audioBitrate
-      // M4A, OGG, WAV, Opus: Fixed '128'
-      // MP3: User selection (64/128/192/256/320)
-      const isNonBitrateFormat = ['m4a', 'ogg', 'wav', 'opus'].includes(audioFormat.toLowerCase());
-      const finalBitrate = isNonBitrateFormat ? '128' : audioBitrate;
-      const finalQuality = isNonBitrateFormat ? audioFormat.toUpperCase() : `${audioBitrate}kbps`;
-
-      formatData = {
-        id: isNonBitrateFormat ? `audio|${audioFormat}` : `audio|${audioFormat}-${audioBitrate}kbps`,
-        vid: videoId,
-        category: 'audio',
-        type: 'AUDIO',
-        format: audioFormat,
-        quality: finalQuality,
-        sizeText: 'Processing...',
-        isFakeData: true,
-        extractV2Options: {
-          downloadMode: 'audio',
-          audioBitrate: finalBitrate,  // '128' for M4A/OGG/WAV/Opus, user choice for MP3
-          audioFormat: audioFormat
-        }
-      };
-      formatId = formatData.id;
-    }
+    // Build formatData - always MP3
+    const formatId = `audio|mp3-${audioBitrate}kbps`;
+    const formatData = {
+      id: formatId,
+      vid: videoId,
+      category: 'audio',
+      type: 'AUDIO',
+      format: 'mp3',
+      quality: `${audioBitrate}kbps`,
+      sizeText: 'Processing...',
+      isFakeData: true,
+      extractV2Options: {
+        downloadMode: 'audio' as const,
+        audioBitrate: audioBitrate,
+        audioFormat: 'mp3'
+      }
+    };
 
     console.log('[Auto-Download] Built formatData:', formatData);
 
@@ -440,7 +209,7 @@ function handleInput(event: Event): void {
 
   // Clear error when user types
   clearError();
-  clearFormMessage();
+  clearHeroMessage();
 
   // Update current query state
   setQuery(value);
@@ -585,10 +354,8 @@ function navigateDown(state: ReturnType<typeof getState>, displaySuggestions: st
     newIndex = state.highlightedIndex + 1;
   }
 
-
+  // Only update highlight, don't change input value
   setHighlightedIndex(newIndex);
-  setQuery(displaySuggestions[newIndex]);
-  setInputValueInRenderer(displaySuggestions[newIndex]);
 }
 
 /**
@@ -604,23 +371,28 @@ function navigateUp(state: ReturnType<typeof getState>, displaySuggestions: stri
     newIndex = state.highlightedIndex - 1;
   }
 
-
+  // Only update highlight, don't change input value
   setHighlightedIndex(newIndex);
-  setQuery(displaySuggestions[newIndex]);
-  setInputValueInRenderer(displaySuggestions[newIndex]);
 }
 
 /**
  * Select current highlighted suggestion and submit
  */
 function selectCurrentSuggestion(state: ReturnType<typeof getState>): void {
-
   // Cancel any pending suggestion fetches
   if (suggestionTimer) {
     clearTimeout(suggestionTimer);
     suggestionTimer = null;
   }
   lastSuggestionCallTime = 0; // Reset throttle state
+
+  // Get highlighted suggestion and fill into input
+  const displaySuggestions = getDisplaySuggestions(state);
+  if (state.highlightedIndex >= 0 && state.highlightedIndex < displaySuggestions.length) {
+    const selectedText = displaySuggestions[state.highlightedIndex];
+    setQuery(selectedText);
+    setInputValueInRenderer(selectedText);
+  }
 
   hideSuggestions();
   setHighlightedIndex(-1);
@@ -749,7 +521,7 @@ async function handleSubmit(event: Event): Promise<void> {
   // Clear remaining UI state
   setResults([]);              // Clear search results
   clearError();                // Clear error messages
-  clearFormMessage();          // Hide inline message
+  clearHeroMessage();          // Hide inline messages
   clearSuggestions();          // Clear suggestions completely (array + state + flags)
   setLoading(true);
 
@@ -805,18 +577,15 @@ async function handleExtractMedia(url: string): Promise<void> {
     // ═══════════════════════════════════════════════════════
 
     // ❌ Reject if not a YouTube URL
-    if (!isYouTubeUrl(url)) {
-      console.warn('[Downloader] Rejected non-YouTube URL:', url);
-      const error = new Error('Only YouTube URLs are supported. Please enter a valid YouTube link.');
-      console.error('[Downloader] Non-YouTube error thrown:', error);
-      throw error;
+    if (!isYouTubeUrlFromCore(url)) {
+      throw new Error('Only YouTube URLs are supported. Please enter a valid YouTube link.');
     }
 
     // ═══════════════════════════════════════════════════════
     // YOUTUBE WORKFLOW: Simple Preview with Metadata
     // ═══════════════════════════════════════════════════════
 
-    const videoId = extractYouTubeVideoId(url);
+    const videoId = extractYouTubeVideoIdFromCore(url);
 
       if (!videoId) {
         throw new Error('Invalid YouTube URL - cannot extract video ID');
@@ -1039,6 +808,7 @@ function handleActionButton(): void {
 
   const action = pasteBtn.dataset.action;
 
+  // Always shift focus back to the text input so keyboard ENTER submits the form
   input.focus();
 
   if (action === 'clear') {
@@ -1120,7 +890,7 @@ function handleClear(): void {
 
   // Clear state
   clearError();
-  clearFormMessage();
+  clearHeroMessage();
   setResults([]);
   clearSuggestions();
 }

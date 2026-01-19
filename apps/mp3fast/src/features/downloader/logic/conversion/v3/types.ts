@@ -5,7 +5,7 @@
 
 import { TaskState } from '../types';
 
-// Re-export TaskState for use in V3 modules
+// Re-export for consumers
 export { TaskState };
 
 /**

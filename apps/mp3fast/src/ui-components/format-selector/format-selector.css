@@ -3,6 +3,44 @@
  * Mobile-first responsive design
  */
 
+/* ==========================================
+   Critical: Format switching via data-format
+   Prevents FOUC by using CSS instead of JS
+   ========================================== */
+
+/* Default state (no data-format or mp3): MP3 active */
+.format-btn[data-format="mp3"] {
+  background: #000000;
+  color: white !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+  transform: translateY(-1px);
+}
+
+.quality-select--mp3 { display: block; }
+.quality-select--mp4 { display: none; }
+
+/* When data-format="mp4": MP4 active, MP3 inactive */
+html[data-format="mp4"] .format-btn[data-format="mp3"] {
+  background: transparent;
+  color: var(--text-muted, var(--color-gray-550)) !important;
+  box-shadow: none;
+  transform: none;
+}
+
+html[data-format="mp4"] .format-btn[data-format="mp4"] {
+  background: #000000;
+  color: white !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+  transform: translateY(-1px);
+}
+
+html[data-format="mp4"] .quality-select--mp3 { display: none; }
+html[data-format="mp4"] .quality-select--mp4 { display: block; }
+
+/* ==========================================
+   End Critical section
+   ========================================== */
+
 /* Wrapper in input form */
 .format-selector-wrapper {
   margin-top: 8px;
@@ -50,45 +88,43 @@
    ========================================== */
 
 .format-toggle {
-  background: var(--bg-card, #f5f5f5);
-  padding: 4px;
-  border-radius: var(--radius-md, 12px);
   display: flex;
-  border: var(--border-glass, 1px solid rgba(255, 255, 255, 0.08));
-  height: 56px;
   align-items: center;
-  flex-shrink: 0;
+  gap: 4px;
+  background: #e4e4e4c9;
+  border: var(--border-glass, 1px solid var(--text-step-num));
+  border-radius: var(--radius-md, 12px);
+  padding: 4px;
+  width: fit-content; /* Don't expand to full width */
+  flex-shrink: 0; /* Don't shrink */
 }
 
 [data-theme="light"] .format-toggle {
-  background: #fff;
-  border: 1px solid #cbd5e1;
+  background: #e4e4e4c9;
+  border: 1px solid var(--pkg-color-gray-200);
 }
 
 .format-btn {
   flex: 1;
   background: transparent;
   border: none;
-  color: var(--text-muted, #666);
+  color: var(--text-muted, var(--color-gray-550));
   font-weight: 700;
   font-size: 0.9rem;
-  padding: 0 20px;
+  padding: 0 15px;
   height: 100%;
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.3s;
 }
 
-.format-btn.active {
-  background: rgb(104 93 185);
-  color: #fff;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-}
-
-[data-theme="light"] .format-btn.active {
-  background: rgb(104 93 185);
-  color: white;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+/* Note: .format-btn.active is now handled via html[data-format] attribute
+   See "Critical: Format switching" section at the top */
+.toggle-btn.active {
+  background: #000000;
+  color: white !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+  transform: translateY(-1px);
 }
 
 /* ==========================================
@@ -100,33 +136,98 @@
   flex-grow: 1;
 }
 
-/* Mobile: quality dropdown full width on line 1, format+convert on line 2 */
+/* Hide quality icon on desktop by default */
+.quality-icon-mobile {
+  display: none;
+}
+
+/* Mobile: Keep same 1-row layout, show icons only */
 @media (max-width: 599px) {
+  .format-selector {
+    flex-wrap: nowrap; /* Keep single row */
+    justify-content: flex-start;
+    gap: 8px;
+  }
+
   .quality-wrapper {
-    width: 100%;
-    order: 1;
+    flex: 0 0 auto;
+    width: 40px; /* Square: match height */
+    min-width: 40px;
   }
 
   .format-toggle {
-    order: 2;
-    flex: 1;
-    max-width: 150px; /* Limit width on mobile */
+    flex: 0 0 auto;
+    width: fit-content;
+    max-width: 140px; /* Limit max width */
+  }
+
+  .format-btn {
+    padding: 6px 14px;
   }
 
   .format-selector .btn-convert {
-    order: 2;
-    flex: 0 0 auto; /* Don't grow, fit content */
+    flex: 0 0 auto; /* Fit content */
     width: fit-content;
+    padding: 8px 16px;
+    min-width: auto;
+  }
+
+  /* Show both text and icon on mobile */
+  .format-selector .btn-convert span {
+    display: inline;
+  }
+
+  .format-selector .btn-convert svg {
+    display: inline;
+  }
+
+  /* Quality select: show icon, hide text */
+  .quality-select {
+    color: transparent; /* Hide text */
+    padding: 0;
+    text-indent: -9999px; /* Move text off-screen */
+    width: 40px; /* Square: width = height */
+    height: 40px;
+    box-sizing: border-box;
+    border: none; /* Remove border */
+    background: #e4e4e4c9; /* Match format-toggle background */
+  }
+
+  .quality-icon-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .quality-icon-mobile img {
+    width: 30px;
+    height: 30px;
+    opacity: 0.8;
+  }
+
+  /* Hide arrow on mobile */
+  .select-arrow {
+    display: none;
   }
 }
 
-/* Desktop: quality dropdown fixed 250px width, aligned left with format */
+/* Desktop: quality dropdown fixed 180px width, aligned left with format */
 @media (min-width: 600px) {
   .quality-wrapper {
-    width: 250px;
+    width: 180px;
     flex-grow: 0;
     flex-shrink: 0;
     margin-right: 0; /* No margin, let convert button use margin-left: auto */
+  }
+
+  .quality-select {
+    width: 180px;
   }
 
   .format-toggle {
@@ -141,12 +242,10 @@
 }
 
 .quality-select {
-  width: 100%;
-  height: 56px;
-  background: var(--bg-card, white);
-  border: var(--border-glass, 1px solid rgba(255, 255, 255, 0.08));
+  background: #e4e4e4c9;
+  border: var(--border-glass, 1px solid var(--text-step-num));
   border-radius: var(--radius-md, 12px);
-  color: var(--text-main, #333);
+  color: var(--text-main, var(--color-gray-850));
   padding: 0 20px;
   appearance: none;
   cursor: pointer;
@@ -156,24 +255,15 @@
 }
 
 [data-theme="light"] .quality-select {
-  background: #fff;
-  border: 1px solid #cbd5e1;
+  background: var(--color-white);
+  border: 1px solid var(--pkg-color-gray-200);
 }
 
 .quality-select:hover,
 .quality-select:focus {
-  border-color: rgba(139, 92, 246, 0.3);
+  border-color: var(--color-accent-dark);
 }
 
-.quality-select option {
-  background: #0f172a;
-  color: #fff;
-}
-
-[data-theme="light"] .quality-select option {
-  background: #fff;
-  color: #0f172a;
-}
 
 .select-arrow {
   position: absolute;
@@ -181,7 +271,7 @@
   top: 50%;
   transform: translateY(-50%);
   pointer-events: none;
-  color: var(--text-muted, #666);
+  color: var(--text-muted, var(--color-gray-550));
 }
 
 /* ==========================================
@@ -195,57 +285,78 @@
   }
 
   .format-selector {
-    gap: 8px;
+    gap: 6px;
     min-height: 40px;
-    flex-wrap: wrap;
-    justify-content: space-between;
   }
 
   .format-toggle {
     height: 40px;
   }
 
+  .quality-wrapper {
+    width: 40px; /* Square: match height */
+    min-width: 40px;
+  }
+
   .format-selector .btn-convert {
-    height: 40px; /* Match format-toggle height */
+    height: 40px;
+    padding: 8px 10px;
+    min-width: 40px;
   }
 
   .format-btn {
-    padding: 8px 10px;
-    font-size: 13px;
+    /* Inherit from 599px breakpoint: 6px 14px */
+    font-size: 12px;
   }
 
   .quality-select {
+    width: 40px; /* Square: match height */
     height: 40px;
-    padding: 8px 12px;
-    font-size: 13px;
-    padding-right: 32px;
+    box-sizing: border-box;
+    padding: 0px !important;
   }
+
+  /* Inherit icon size from 599px breakpoint: 40x40px */
 }
 
-/* Very small devices - stack vertically */
+/* Very small devices - keep 1 row, reduce sizes */
 @media (max-width: 360px) {
   .format-selector-wrapper {
-    min-height: 136px; /* 40px + 40px + 48px + gaps */
+    min-height: 40px;
   }
 
   .format-selector {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 8px;
-    min-height: 136px;
+    gap: 4px;
+    min-height: 40px;
   }
 
   .format-toggle {
     height: 40px;
   }
 
+  .quality-wrapper {
+    width: 40px; /* Square: match height */
+    min-width: 40px;
+  }
+
+  .format-btn {
+    /* Inherit from 599px breakpoint: 6px 14px */
+    font-size: 11px;
+  }
+
   .quality-select {
+    width: 40px; /* Square: match height */
     height: 40px;
+    box-sizing: border-box;
   }
 
   .format-selector .btn-convert {
     height: 40px;
+    padding: 6px 8px;
+    min-width: 40px;
   }
+
+  /* Inherit icon size from 599px breakpoint: 40x40px */
 }
 
 /* ==========================================

@@ -160,15 +160,15 @@ function setupInfiniteScroll(): void {
 }
 
 /**
- * Show inline message below the form (hero card)
+ * Ensure inline message container exists right below hero section
  */
 function ensureHeroMessageContainer(): HTMLElement | null {
   if (heroMessageContainer && heroMessageContainer.isConnected) {
     return heroMessageContainer;
   }
 
-  const heroSection = document.querySelector('section.hero');
-  if (!heroSection || !heroSection.parentElement) {
+  const heroSection = document.querySelector('.hero-section');
+  if (!heroSection) {
     return null;
   }
 
@@ -185,7 +185,7 @@ function ensureHeroMessageContainer(): HTMLElement | null {
   return heroMessageContainer;
 }
 
-function showFormMessage(message: string, type: 'info' | 'error' | 'success'): boolean {
+function showHeroMessage(message: string, type: 'info' | 'error' | 'success'): boolean {
   const container = ensureHeroMessageContainer();
   if (!container) {
     return false;
@@ -196,15 +196,11 @@ function showFormMessage(message: string, type: 'info' | 'error' | 'success'): b
       <p>${escapeHtml(message)}</p>
     </div>
   `;
-
   container.style.display = 'block';
   return true;
 }
 
-/**
- * Clear inline form message
- */
-export function clearFormMessage(): void {
+export function clearHeroMessage(): void {
   const container = ensureHeroMessageContainer();
   if (!container) {
     return;
@@ -415,19 +411,15 @@ export function showLoading(type: 'list' | 'detail' = 'list', append: boolean = 
 export function renderMessage(message: string, type: 'info' | 'error' | 'success' = 'info'): void {
   if (!contentArea) return;
 
-  // Prefer showing message under the search form when result view is hidden
-  if (!isResultViewVisible() && showFormMessage(message, type)) {
+  if (!isResultViewVisible() && showHeroMessage(message, type)) {
     showSearchView();
-    // Hide search results section when showing message
     hideSearchResultsSection();
     return;
   }
 
-  // Fallback: show inside result view
-  clearFormMessage();
-  contentArea.classList.remove('showing-loading');
+  clearHeroMessage();
   contentArea.innerHTML = `
-    <div class="content-message content-message--${type}">
+    <div class="message message-${type}">
       <p>${escapeHtml(message)}</p>
     </div>
   `;
@@ -491,7 +483,10 @@ export function renderPreviewCard(_data: any): void {
     return;
   }
 
-  clearFormMessage();
+  clearHeroMessage();
+
+  // Switch to result view when rendering preview
+  showResultView();
 
   const state = getState();
   const youtubePreview = state.youtubePreview;

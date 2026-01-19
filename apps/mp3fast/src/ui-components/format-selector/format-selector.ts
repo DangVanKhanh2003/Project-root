@@ -1,16 +1,10 @@
 /**
  * Format Selector Component
- * Reusable MP3/MP4 toggle + Quality dropdown
- * Uses CSS-based switching to prevent FOUC
+ * Quality dropdown for MP3 (auto format = mp3)
  */
 
 import {
-  setSelectedFormat,
-  setVideoQuality,
-  setAudioFormat,
-  setAudioBitrate,
-  type FormatType,
-  type AudioFormatType
+  setAudioBitrate
 } from '../../features/downloader/state';
 
 // ==========================================
@@ -21,11 +15,10 @@ import {
  * Initialize format selector from static HTML
  * Called once during app initialization
  *
- * HTML is already rendered with both MP3/MP4 dropdowns.
- * CSS controls visibility via html[data-format] attribute.
- * This function only:
- * 1. Syncs UI with state from localStorage (if different from defaults)
- * 2. Attaches event listeners
+ * HTML inline scripts already handle:
+ * 1. data-format attribute on <html> (head script)
+ * 2. Dropdown values (body script)
+ * TS only needs to attach event listeners
  */
 export function renderFormatSelectorToForm(): void {
   const container = document.getElementById('format-selector-container');
@@ -34,10 +27,7 @@ export function renderFormatSelectorToForm(): void {
     return;
   }
 
-  // HTML inline scripts already set:
-  // 1. data-format attribute on <html> (head script)
-  // 2. Dropdown values + format button active state (body script)
-  // TS only needs to attach event listeners
+  // HTML inline scripts already set UI - just attach event listeners
   initFormatSelector('#format-selector-container');
 }
 
@@ -56,10 +46,7 @@ export function initFormatSelector(containerSelector: string = '#previewCard'): 
     return;
   }
 
-  // Use event delegation for all format selector interactions
-  container.addEventListener('click', handleFormatSelectorClick);
-
-  // Listen for quality select changes
+  // Listen for quality select changes (MP3 bitrate)
   container.addEventListener('change', handleQualityChange);
 
   // Initialize custom tooltips
@@ -67,25 +54,8 @@ export function initFormatSelector(containerSelector: string = '#previewCard'): 
 }
 
 /**
- * Handle all clicks within format selector (event delegation)
- */
-function handleFormatSelectorClick(event: Event): void {
-  const target = event.target as HTMLElement;
-
-  // Handle format button clicks (Two separate buttons)
-  const formatBtn = target.closest('.format-btn') as HTMLElement;
-  if (formatBtn) {
-    const format = formatBtn.dataset.format as FormatType;
-    if (format) {
-      handleFormatChange(format);
-    }
-    return;
-  }
-}
-
-/**
  * Handle quality select change
- * Determines format type from select element id (mp3 vs mp4)
+ * Only handles MP3 bitrate selection
  */
 function handleQualityChange(event: Event): void {
   const target = event.target as HTMLSelectElement;
@@ -96,46 +66,11 @@ function handleQualityChange(event: Event): void {
   }
 
   const value = target.value;
-  const isMP4Select = target.id === 'quality-select-mp4';
-
-  if (isMP4Select) {
-    // Video format: value is "mp4-1080", "mp4-720", "webm", "mkv"
-    if (value.startsWith('mp4-')) {
-      const resolution = value.split('-')[1];
-      setVideoQuality(`${resolution}p`);
-    } else {
-      // WEBM or MKV
-      setVideoQuality(value);
-    }
-  } else {
-    // Audio format: MP3 has "mp3-bitrate", others have just format name
-    if (value.startsWith('mp3-')) {
-      const [format, bitrate] = value.split('-');
-      setAudioFormat(format as AudioFormatType);
-      setAudioBitrate(bitrate);
-    } else {
-      // flac, wav, m4a, opus, ogg - no bitrate
-      setAudioFormat(value as AudioFormatType);
-      setAudioBitrate(''); // No bitrate for lossless/other formats
-    }
+  // Value format: "mp3-128", "mp3-320", etc.
+  const bitrate = value.split('-')[1];
+  if (bitrate) {
+    setAudioBitrate(bitrate);
   }
-}
-
-/**
- * Handle format change (MP3 ↔ MP4)
- * Updates data-format attribute for CSS-based switching (no re-render needed)
- */
-function handleFormatChange(format: FormatType): void {
-  setSelectedFormat(format);
-
-  // Update data-format attribute on <html> - CSS handles visibility
-  document.documentElement.dataset.format = format;
-
-  // Update active class on format buttons
-  document.querySelectorAll('.format-btn').forEach((btn) => {
-    const btnFormat = (btn as HTMLElement).dataset.format;
-    btn.classList.toggle('active', btnFormat === format);
-  });
 }
 
 // ==========================================

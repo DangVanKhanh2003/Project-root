@@ -9,7 +9,6 @@
 import { initExpandableText } from '../../../utils';
 import { addRippleEffect } from '@downloader/core/utils';
 import { TaskState } from '../logic/conversion/types';
-import { updateButtonVisibility, setQuery, setOriginalQuery } from '../state';
 import type { AppState, ConversionTask } from '../state/types';
 
 // ============================================================
@@ -74,7 +73,7 @@ export function renderConversionStatus(state: AppState, _prevState?: AppState): 
 
     if (task.state === TaskState.SUCCESS) {
       // SUCCESS: Wait for animation to complete before hiding
-      // 200ms CSS transition + 150ms visible at 100% = 350ms
+      // rAF (~16ms) + CSS transition (200ms) + visible at 100% (100ms) = ~350ms
       setTimeout(() => {
         statusContainer.style.display = 'none';
         delete statusContainer.dataset.completionState;

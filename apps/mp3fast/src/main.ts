@@ -3,7 +3,7 @@
  * Y2matePro - Rebuilt from webclone.html
  */
 
-// === I18n Import ===
+// === I18n Import (Phase 2) ===
 import { initI18n, loadTranslations, locales, getLanguage, t } from '@downloader/i18n';
 
 // === CSS Import ===
@@ -12,9 +12,7 @@ import './styles/index.css';
 
 // Import UI components CSS
 import './ui-components/format-selector/format-selector.css';
-
-// Import theme toggle
-import { initThemeToggle } from './features/theme-toggle/theme-toggle';
+import './ui-components/language-switcher/language-switcher.css';
 
 // ==========================================
 // Initialize I18n System
@@ -33,7 +31,6 @@ Object.entries(locales).forEach(([lang, data]) => {
 });
 
 console.log('[App] I18n initialized with 19 languages');
-
 console.log('[App] HTML lang attribute:', document.documentElement.getAttribute('lang'));
 console.log('[App] Detected language:', getLanguage());
 
@@ -62,57 +59,53 @@ async function initDownloaderUI() {
  * Initialize mobile menu functionality
  */
 function initMobileMenu() {
-  // Get mobile menu elements
-  const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-  const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
-  const mobileCloseBtn = document.getElementById('mobileCloseBtn');
+  // Get mobile menu elements from demo HTML structure
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const closeDrawerBtn = document.getElementById('close-drawer-btn');
+  const mobileDrawer = document.getElementById('mobile-drawer');
 
-  // Check if all required elements exist before adding event listeners
-  if (!mobileMenuToggle || !mobileMenuOverlay) {
-    // Only warn if we're on a page that should have mobile menu
-    if (document.querySelector('.navbar-toggler')) {
-      console.warn('Mobile menu elements not found on this page');
-    }
+  // Check if required elements exist
+  if (!mobileMenuBtn || !mobileDrawer) {
     return;
   }
 
   const openDrawer = () => {
-    document.body.classList.add('drawer-open');
+    mobileDrawer.classList.add('open');
     document.body.style.overflow = 'hidden'; // Prevent background scrolling
   };
 
   const closeDrawer = () => {
-    document.body.classList.remove('drawer-open');
+    mobileDrawer.classList.remove('open');
     document.body.style.overflow = ''; // Restore scrolling
   };
 
-  // Toggle mobile menu when hamburger icon is clicked
-  mobileMenuToggle.addEventListener('click', function(e) {
+  // Open mobile menu when hamburger icon is clicked
+  mobileMenuBtn.addEventListener('click', function(e) {
     e.preventDefault();
     openDrawer();
   });
 
-  // Close mobile menu when close button is clicked (if element exists)
-  if (mobileCloseBtn) {
-    mobileCloseBtn.addEventListener('click', closeDrawer);
+  // Close mobile menu when close button is clicked
+  if (closeDrawerBtn) {
+    closeDrawerBtn.addEventListener('click', closeDrawer);
   }
 
-  // Close mobile menu when clicking outside the menu content
-  mobileMenuOverlay.addEventListener('click', function(e) {
-    if (e.target === mobileMenuOverlay) {
+  // Close mobile menu when clicking on overlay
+  mobileDrawer.addEventListener('click', function(e) {
+    if (e.target === mobileDrawer) {
       closeDrawer();
     }
   });
 
-  // Close mobile menu when clicking on menu links (for better UX)
-  const mobileMenuLinks = document.querySelectorAll('.drawer-link');
-  mobileMenuLinks.forEach(link => {
+  // Close mobile menu when clicking on menu links
+  const drawerLinks = document.querySelectorAll('.drawer-link, .drawer-sublink');
+  drawerLinks.forEach(link => {
     link.addEventListener('click', closeDrawer);
   });
 
   // Add keyboard support - close menu with Escape key
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && document.body.classList.contains('drawer-open')) {
+    if (e.key === 'Escape' && mobileDrawer.classList.contains('open')) {
       closeDrawer();
     }
   });
@@ -144,11 +137,40 @@ function initLogoClickHandler() {
 }
 
 /**
+ * Initialize header scroll effect
+ */
+function initHeaderScroll() {
+  const header = document.getElementById('main-header');
+  if (!header) return;
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 10) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  });
+}
+
+/**
+ * Initialize language switcher
+ */
+async function initLanguageSwitcher() {
+  try {
+    const { renderLanguageSwitcher } = await import('./ui-components/language-switcher/language-switcher');
+    renderLanguageSwitcher('language-switcher-container');
+  } catch (err) {
+    console.error('[App] Failed to initialize language switcher:', err);
+  }
+}
+
+/**
  * Initialize app
  */
 function loadFeatures() {
-  initThemeToggle(); // Initialize theme toggle first (before any rendering)
+  initHeaderScroll(); // Initialize header scroll effect
   initMobileMenu(); // Initialize mobile menu
+  initLanguageSwitcher(); // Initialize language switcher
   initDownloaderUI();
   initLogoClickHandler(); // Prevent logo reload issue
 }
