@@ -1,0 +1,70 @@
+{
+  "seo": {
+    "title": "YouTube를 WAV로 (비압축 무손실) – YTMP3",
+    "description": "YTMP3로 YouTube를 WAV 비압축 무손실 오디오로 변환하세요. 전문적인 편집 및 제작을 위해 원본 오디오 데이터를 보존합니다. 무료, 빠르고, 무제한.",
+    "ogTitle": "YouTube를 WAV로 – YTMP3",
+    "ogDescription": "전문적인 편집 및 제작을 위해 YouTube 오디오를 비압축 WAV 무손실로 다운로드하세요."
+  },
+
+  "hero": {
+    "title": "YouTube를",
+    "titleAccent": "WAV",
+    "subtitle": "무료 & 빠른 YouTube를 WAV 무손실 변환기"
+  },
+
+  "content": {
+    "mainTitle": "YouTube를 WAV로 변환하는 것은 무엇인가요?",
+
+    "intro1": "YouTube를 WAV로 변환하는 것은 YouTube 비디오에서 오디오를 추출하여 <strong>WAV 형식</strong>, 즉 <strong>비압축 무손실</strong> 오디오 형식으로 변환하는 과정입니다.",
+    "intro2": "WAV는 압축 없이 원시 오디오 데이터를 저장하여 <strong>원본 사운드 정보의 100%</strong>를 보존합니다. 이는 전문적인 오디오 편집, 믹싱, 마스터링 및 제작 워크플로우에 이상적입니다.",
+
+    "whatIsTitle": "WAV는 FLAC 및 MP3와 어떻게 다른가요?",
+    "whatIsText": "<ul><li><strong>FLAC과 비교:</strong> <a href=\"/youtube-to-flac-converter\">FLAC</a>은 무손실이지만 압축된 반면, WAV는 완전히 비압축입니다. WAV 파일은 더 크지만 절대적인 정확성과 단순성을 제공합니다.</li><li><strong>MP3와 비교:</strong> MP3 (MP3 320kbps 포함)는 오디오 데이터를 제거하는 손실 형식인 반면, WAV는 모든 원본 사운드 정보를 보존합니다.</li></ul>"
+  },
+
+  "whyChoose": {
+    "title": "YouTube를 WAV로 변환하기 위해 YTMP3를 사용하는 이유",
+    "reasons": [
+      {
+        "title": "진정한 비압축 무손실",
+        "text": "원시 오디오 데이터는 압축이나 품질 손실 없이 보존됩니다."
+      },
+      {
+        "title": "무료 사용",
+        "text": "등록, 제한, 숨겨진 비용이 없습니다."
+      },
+      {
+        "title": "전문가용",
+        "text": "DAW, 오디오 편집기 및 제작 워크플로우에 이상적입니다."
+      },
+      {
+        "title": "다중 플랫폼 지원",
+        "text": "Windows, macOS 및 Linux에서 작동합니다."
+      }
+    ]
+  },
+
+  "instructions": {
+    "title": "YouTube를 WAV로 변환하는 방법",
+    "steps": [
+      "YouTube 비디오 링크를 복사합니다.",
+      "YTMP3 변환기에 붙여넣습니다.",
+      "출력 형식으로 WAV를 선택합니다.",
+      "“변환”을 클릭하고 WAV 파일을 다운로드합니다."
+    ]
+  },
+
+  "faqs": {
+    "title": "자주 묻는 질문",
+    "items": [
+      { "question": "YTMP3는 YouTube를 WAV로 변환하는 데 완전히 무료인가요?", "answer": "예. YTMP3는 YouTube용 무료 WAV 변환기입니다. 등록, 구독, 광고, 팝업, 다운로드 제한이 없습니다." },
+      { "question": "WAV 파일은 고품질 오디오를 유지하나요?", "answer": "예. 옵션에는 무손실 WAV, CD 품질 및 24비트 스튜디오 품질이 포함됩니다. 최대 품질은 소스 비디오에 따라 다르지만 WAV 파일은 항상 비압축입니다." },
+      { "question": "YouTube Shorts를 WAV로 다운로드할 수 있나요?", "answer": "예. YTMP3는 YouTube Shorts를 완벽하게 지원하여 짧은 형식 비디오를 빠르고 쉽게 다운로드할 수 있습니다." },
+      { "question": "YTMP3를 사용하는 것이 안전한가요?", "answer": "완전히 안전합니다. YTMP3는 개인 데이터를 저장하지 않으며 악성 코드로부터 자유롭습니다. 안전을 위해 항상 공식 웹사이트에 접속하세요." },
+      { "question": "모바일 장치에서 YouTube 비디오를 WAV로 변환할 수 있나요?", "answer": "예. YTMP3는 모바일 브라우저에 완전히 반응합니다. 단계는 동일합니다: 링크 붙여넣기 → WAV 선택 → 변환 → 다운로드." },
+      { "question": "WAV 다운로드에 파일 크기 제한이 있나요?", "answer": "아니요. WAV는 비압축이므로 큰 파일은 정상입니다 (16비트 스테레오 오디오 1분당 약 10MB)." },
+      { "question": "MP3 대신 WAV를 선택하는 이유는 무엇인가요?", "answer": "WAV는 비압축이며 원본 오디오 품질을 보존하며 편집 또는 전문적인 사용에 더 좋습니다. MP3는 캐주얼한 청취에 적합하지만 일부 오디오 데이터가 손실됩니다." },
+      { "question": "WAV는 FLAC과 어떻게 비교되나요?", "answer": "둘 다 무손실이지만 WAV는 비압축인 반면 FLAC은 압축을 사용합니다. FLAC 파일은 동일한 품질로 40-50% 더 작습니다. WAV는 이전 소프트웨어와의 호환성이 더 좋습니다." }
+    ]
+  }
+}

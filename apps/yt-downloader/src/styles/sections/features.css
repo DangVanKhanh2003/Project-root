@@ -1,0 +1,44 @@
+/* =========================================================
+   Section - Features
+   ---------------------------------------------------------
+   Features grid layout
+   Extracted from index.html - Phase 2
+   ========================================================= */
+
+.features-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-top: 40px;
+}
+
+@media (min-width: 768px) {
+    .features-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.feature-item {
+    display: flex;
+    gap: 16px;
+}
+
+.feature-icon {
+    color: var(--color-sky-blue);
+    flex-shrink: 0;
+}
+
+[data-theme="light"] .feature-icon {
+    color: var(--color-accent-secondary);
+}
+
+.feature-title {
+    font-weight: 700;
+    color: var(--text-main);
+    margin-bottom: 6px;
+}
+
+.feature-text {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}

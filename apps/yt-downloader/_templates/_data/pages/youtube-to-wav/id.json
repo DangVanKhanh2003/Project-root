@@ -1,0 +1,70 @@
+{
+  "seo": {
+    "title": "YouTube ke WAV (Tanpa Kompresi Lossless) – YTMP3",
+    "description": "Konversi YouTube ke audio WAV tanpa kompresi lossless dengan YTMP3. Pertahankan data audio asli untuk pengeditan dan produksi profesional. Gratis, cepat, tanpa batas.",
+    "ogTitle": "YouTube ke WAV – YTMP3",
+    "ogDescription": "Unduh audio YouTube sebagai WAV tanpa kompresi lossless untuk pengeditan dan produksi profesional."
+  },
+
+  "hero": {
+    "title": "YouTube ke",
+    "titleAccent": "WAV",
+    "subtitle": "Konverter YouTube ke WAV lossless gratis & cepat"
+  },
+
+  "content": {
+    "mainTitle": "Apa itu YouTube ke WAV?",
+
+    "intro1": "YouTube ke WAV adalah proses mengekstrak audio dari video YouTube dan mengonversinya ke <strong>format WAV</strong>, format audio <strong>tanpa kompresi lossless</strong>.",
+    "intro2": "WAV menyimpan data audio mentah tanpa kompresi apa pun, mempertahankan <strong>100% informasi suara asli</strong>. Ini membuatnya ideal untuk pengeditan audio profesional, mixing, mastering, dan alur kerja produksi.",
+
+    "whatIsTitle": "Bagaimana WAV berbeda dari FLAC dan MP3?",
+    "whatIsText": "<ul><li><strong>Dibandingkan dengan FLAC:</strong> <a href=\"/youtube-to-flac-converter\">FLAC</a> adalah lossless tetapi terkompresi, sedangkan WAV sepenuhnya tidak terkompresi. File WAV lebih besar tetapi memberikan akurasi dan kesederhanaan mutlak.</li><li><strong>Dibandingkan dengan MP3:</strong> MP3 (termasuk MP3 320kbps) adalah format lossy yang menghilangkan data audio, sedangkan WAV mempertahankan semua informasi suara asli.</li></ul>"
+  },
+
+  "whyChoose": {
+    "title": "Mengapa menggunakan YTMP3 untuk mengonversi YouTube ke WAV?",
+    "reasons": [
+      {
+        "title": "Lossless tanpa kompresi sejati",
+        "text": "Data audio mentah dipertahankan tanpa kompresi atau kehilangan kualitas."
+      },
+      {
+        "title": "Gratis digunakan",
+        "text": "Tanpa registrasi, tanpa batas, dan tanpa biaya tersembunyi."
+      },
+      {
+        "title": "Siap profesional",
+        "text": "Ideal untuk DAW, editor audio, dan alur kerja produksi."
+      },
+      {
+        "title": "Dukungan multi-platform",
+        "text": "Berfungsi di Windows, macOS, dan Linux."
+      }
+    ]
+  },
+
+  "instructions": {
+    "title": "Cara mengonversi YouTube ke WAV",
+    "steps": [
+      "Salin tautan video YouTube.",
+      "Tempelkan ke konverter YTMP3.",
+      "Pilih WAV sebagai format output.",
+      "Klik “Konversi” dan unduh file WAV Anda."
+    ]
+  },
+
+  "faqs": {
+    "title": "Pertanyaan yang Sering Diajukan",
+    "items": [
+      { "question": "Apakah YTMP3 sepenuhnya gratis untuk konversi YouTube ke WAV?", "answer": "Ya. YTMP3 adalah konverter WAV gratis untuk YouTube. Tanpa registrasi, tanpa langganan, tanpa iklan, tanpa pop-up, dan tanpa batas unduhan." },
+      { "question": "Apakah file WAV akan mempertahankan audio berkualitas tinggi?", "answer": "Ya. Opsi termasuk WAV Lossless, kualitas CD, dan kualitas Studio 24-bit. Kualitas maksimum tergantung pada video sumber, tetapi file WAV selalu tidak terkompresi." },
+      { "question": "Bisakah saya mengunduh YouTube Shorts sebagai WAV?", "answer": "Ya. YTMP3 sepenuhnya mendukung YouTube Shorts, memungkinkan unduhan video pendek yang cepat dan mudah." },
+      { "question": "Apakah menggunakan YTMP3 aman?", "answer": "Sepenuhnya. YTMP3 tidak menyimpan data pribadi dan bebas dari malware. Selalu akses situs web resmi untuk keamanan." },
+      { "question": "Bisakah saya mengonversi video YouTube ke WAV di perangkat seluler saya?", "answer": "Ya. YTMP3 sepenuhnya responsif untuk browser seluler. Langkah-langkahnya sama: tempel tautan → pilih WAV → konversi → unduh." },
+      { "question": "Apakah ada batasan ukuran file untuk unduhan WAV?", "answer": "Tidak. WAV tidak terkompresi, jadi file besar adalah normal (~10 MB per 1 menit audio stereo 16-bit)." },
+      { "question": "Mengapa memilih WAV daripada MP3?", "answer": "WAV tidak terkompresi, mempertahankan kualitas audio asli, dan lebih baik untuk pengeditan atau penggunaan profesional. MP3 cocok untuk mendengarkan santai, tetapi kehilangan beberapa data audio." },
+      { "question": "Bagaimana WAV dibandingkan dengan FLAC?", "answer": "Keduanya lossless, tetapi WAV tidak terkompresi sedangkan FLAC menggunakan kompresi. File FLAC 40-50% lebih kecil dengan kualitas yang identik. WAV memiliki kompatibilitas yang lebih baik dengan perangkat lunak lama." }
+    ]
+  }
+}
