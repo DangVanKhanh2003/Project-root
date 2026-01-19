@@ -1,0 +1,314 @@
+/**
+ * Format Selector Component Styles
+ * Mobile-first responsive design
+ */
+
+/* ==========================================
+   Critical: Format switching via data-format
+   Prevents FOUC by using CSS instead of JS
+   ========================================== */
+
+/* Default state (no data-format or mp3): MP3 active */
+.format-btn[data-format="mp3"] {
+  background: var(--color-accent);
+  color: var(--color-black);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+[data-theme="light"] .format-btn[data-format="mp3"] {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.quality-select--mp3 { display: block; }
+.quality-select--mp4 { display: none; }
+
+/* When data-format="mp4": MP4 active, MP3 inactive */
+html[data-format="mp4"] .format-btn[data-format="mp3"] {
+  background: transparent;
+  color:white;
+  box-shadow: none;
+}
+html[data-format="mp4"] .format-btn[data-format="mp4"] {
+  background: var(--color-accent);
+  color: var(--color-black);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+html[data-format="mp4"][data-theme="light"] .format-btn[data-format="mp4"] {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+html[data-format="mp4"] .quality-select--mp3 { display: none; }
+html[data-format="mp4"] .quality-select--mp4 { display: block; }
+
+/* ==========================================
+   End Critical section
+   ========================================== */
+
+/* Wrapper in input form */
+.format-selector-wrapper {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  min-height: 48px; /* Reserve space to prevent layout shift */
+  display: block; /* Always visible */
+}
+
+.format-selector {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  min-height: 44px; /* Fixed height to prevent layout shift */
+  flex-wrap: wrap; /* Allow wrapping on mobile */
+}
+
+/* Convert button in format selector */
+
+/* This breakpoint is now handled in the quality-wrapper section below */
+
+/* Desktop: all 3 items in one row */
+@media (min-width: 800px) {
+  .format-selector {
+    flex-wrap: nowrap; /* No wrapping on desktop */
+    justify-content: flex-start; /* Align items to left */
+    gap: 12px; /* Gap between format and quality */
+  }
+
+
+}
+
+/* Group 1: Format + Quality */
+.format-quality-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+/* ==========================================
+   Format Toggle (Two separate buttons)
+   ========================================== */
+
+.format-toggle {
+  background: var(--bg-card, var(--color-gray-100));
+  padding: 4px;
+  border-radius: var(--radius-md, 12px);
+  display: flex;
+  border: var(--border-glass, 1px solid var(--text-step-num));
+  height: 56px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+[data-theme="light"] .format-toggle {
+  background: var(--color-white);
+  border: 1px solid var(--pkg-color-gray-200);
+}
+
+.format-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: white;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0 20px;
+  height: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+/* .format-btn.active moved to CSS-based switching at top of file */
+
+/* ==========================================
+   Quality Select Dropdown
+   ========================================== */
+
+.quality-wrapper {
+  position: relative;
+  flex-grow: 1;
+}
+
+/* Mobile: quality dropdown full width on line 1, format+convert on line 2 */
+@media (max-width: 799px) {
+  .quality-wrapper {
+    width: 100%;
+    order: 1;
+  }
+
+  .format-toggle {
+    order: 2;
+    flex: 1;
+    max-width: 150px; /* Limit width on mobile */
+  }
+
+  .format-selector .btn-convert {
+    order: 2;
+    flex: 0 0 auto; /* Don't grow, fit content */
+    width: fit-content;
+  }
+}
+
+/* Desktop: quality dropdown fixed 250px width, aligned left with format */
+@media (min-width: 800px) {
+  .quality-wrapper {
+    width: 250px;
+    flex-grow: 0;
+    flex-shrink: 0;
+    margin-right: 0; /* No margin, let convert button use margin-left: auto */
+  }
+
+  .format-toggle {
+    flex-shrink: 0; /* Don't shrink format toggle */
+  }
+
+  .format-selector .btn-convert {
+    flex: 0 0 auto; /* Don't grow or shrink */
+    width: fit-content;
+    margin-left: auto; /* Push to the right */
+  }
+}
+
+.quality-select {
+  width: 100%;
+  height: 56px;
+  background: var(--bg-card, var(--color-white));
+  border: var(--border-glass, 1px solid var(--text-step-num));
+  border-radius: var(--radius-md, 12px);
+  color: var(--text-main, var(--color-gray-850));
+  padding: 0 20px;
+  appearance: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s;
+  box-sizing: border-box;
+}
+
+[data-theme="light"] .quality-select {
+  background: var(--color-white);
+  border: 1px solid var(--pkg-color-gray-200);
+}
+
+.quality-select:hover,
+.quality-select:focus {
+  border-color: var(--color-accent-dark);
+}
+
+.quality-select option {
+  background: var(--pkg-color-gray-800);
+  color: var(--color-white);
+}
+
+[data-theme="light"] .quality-select option {
+  background: var(--color-white);
+  color: var(--pkg-color-gray-800);
+}
+
+.select-arrow {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--text-muted, var(--color-gray-550));
+}
+
+/* ==========================================
+   Responsive Design
+   ========================================== */
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .format-selector-wrapper {
+    min-height: 42px;
+  }
+
+  .format-selector {
+    gap: 8px;
+    min-height: 40px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .format-toggle {
+    height: 40px;
+  }
+
+  .format-selector .btn-convert {
+    height: 40px; /* Match format-toggle height */
+  }
+
+  .format-btn {
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+
+  .quality-select {
+    height: 40px;
+    padding: 8px 12px;
+    font-size: 13px;
+    padding-right: 32px;
+  }
+}
+
+/* Very small devices - stack vertically */
+@media (max-width: 360px) {
+  .format-selector-wrapper {
+    min-height: 136px; /* 40px + 40px + 48px + gaps */
+  }
+
+  .format-selector {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    min-height: 136px;
+  }
+
+  .format-toggle {
+    height: 40px;
+  }
+
+  .quality-select {
+    height: 40px;
+  }
+
+  .format-selector .btn-convert {
+    height: 40px;
+  }
+}
+
+/* ==========================================
+   Accessibility
+   ========================================== */
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .format-toggle {
+    border-width: 3px;
+  }
+
+  .format-btn.active {
+    border: 2px solid white;
+  }
+
+  .quality-select {
+    border-width: 3px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .format-toggle,
+  .format-btn,
+  .quality-select {
+    transition: none;
+  }
+}
+
+/* Focus visible (keyboard navigation) */
+.format-btn:focus-visible {
+  outline-offset: 3px;
+}
+
+.quality-select:focus-visible {
+  outline-offset: 3px;
+}

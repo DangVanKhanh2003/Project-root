@@ -5,14 +5,6 @@
 .form-container {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-}
-
-@media (min-width: 768px) {
-    .convert-form,
-    .form-container {
-        gap: 2rem;
-    }
 }
 
 /* View Container */

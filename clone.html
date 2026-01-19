@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="en" data-format="mp3">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YTMP3 - Free YouTube Converter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- 1. VARIABLES & RESET --- */
+        :root {
+            --primary: #1DBAC9;
+            --primary-hover: #179ba8;
+            --text-main: #1e293b;
+            --text-secondary: #64748b;
+            --text-light: #94a3b8;
+            --bg-body: #f8fafc;
+            --bg-surface: #ffffff;
+            --border: #e2e8f0;
+            --error: #ef4444;
+            --error-bg: #fef2f2;
+            
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-full: 9999px;
+            
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+            
+            --container-max: 1024px;
+            --header-height: 70px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        button, input, select { font-family: inherit; border: none; outline: none; background: none; }
+        button { cursor: pointer; }
+
+        /* --- 2. UTILITY CLASSES --- */
+        .container {
+            width: 100%;
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hidden { display: none !important; }
+        .block { display: block !important; }
+        
+        /* View Transitions */
+        .view-container {
+            width: 100%;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        
+        .view-input.hidden-state {
+            display: none; /* Simple toggle for pure CSS approach efficiency */
+            opacity: 0;
+        }
+        
+        .view-result {
+            display: none;
+            opacity: 0;
+        }
+        .view-result.active {
+            display: block;
+            opacity: 1;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- 3. HEADER --- */
+        .header-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--header-height);
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: var(--container-max);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+        }
+
+        .desktop-nav {
+            display: none;
+            align-items: center;
+            gap: 24px;
+        }
+
+        @media (min-width: 768px) {
+            .desktop-nav { display: flex; }
+            .mobile-menu-btn { display: none; }
+        }
+
+        .nav-link {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary);
+        }
+
+        .nav-divider {
+            width: 1px;
+            height: 16px;
+            background-color: var(--border);
+        }
+
+        /* Language Selector */
+        .lang-selector {
+            position: relative;
+        }
+
+        .lang-button {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .lang-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            margin-top: 8px;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-lg);
+            width: 140px;
+            padding: 4px;
+            z-index: 101;
+        }
+
+        .lang-option {
+            width: 100%;
+            text-align: left;
+            padding: 8px 12px;
+            font-size: 14px;
+            color: var(--text-main);
+            border-radius: var(--radius-sm);
+        }
+
+        .lang-option:hover {
+            background-color: var(--bg-body);
+        }
+
+        /* --- 4. HERO SECTION --- */
+        main {
+            padding-top: calc(var(--header-height) + 40px);
+            padding-bottom: 60px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-section {
+            text-align: center;
+            margin: 0 auto 40px auto; /* Centered */
+            width: 100%;
+            max-width: 800px;
+            padding: 0 20px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background-color: rgba(29, 186, 201, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(29, 186, 201, 0.2);
+            border-radius: var(--radius-full);
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-size: 32px; /* Smaller on mobile */
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+        
+        @media (min-width: 640px) {
+            h1 { font-size: 48px; }
+        }
+
+        .title-accent {
+            color: var(--primary); /* Solid color, no gradient */
+        }
+
+        .hero-subtitle {
+            font-size: 16px; /* Smaller on mobile */
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        @media (min-width: 640px) {
+            .hero-subtitle { font-size: 18px; }
+        }
+
+        /* --- 5. DOWNLOAD FORM --- */
+        .form-container {
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto; /* Centered */
+            position: relative;
+            z-index: 10;
+        }
+
+        .input-group {
+            position: relative;
+            margin-bottom: 12px; /* Reduced from 24px */
+        }
+
+        .input-wrapper {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .input-wrapper:focus-within {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(29, 186, 201, 0.1);
+        }
+
+        .video-input {
+            flex: 1;
+            padding: 12px 16px;
+            font-size: 16px;
+            color: var(--text-main);
+            min-width: 0; /* Prevents overflow on flex items */
+        }
+
+        .video-input::placeholder {
+            color: var(--text-light);
+        }
+
+        .btn-paste {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background-color: var(--bg-body);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+            white-space: nowrap; /* Prevent text wrapping */
+        }
+
+        .btn-paste:hover {
+            background-color: #f1f5f9;
+            color: var(--text-main);
+        }
+
+        .paste-icon, .clear-icon {
+            width: 16px;
+            height: 16px;
+            stroke: currentColor;
+            stroke-width: 2;
+        }
+
+        /* Format Selector Container */
+        .format-selector {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        @media (min-width: 640px) {
+            .format-selector {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 16px;
+            }
+        }
+
+        /* 1. Format Toggle */
+        /* Mobile: Bottom Left (Row 2, Col 1) */
+        .format-toggle {
+            grid-column: span 1;
+            order: 2;
+            display: flex;
+            background: #f1f5f9;
+            border: 1px solid var(--border);
+            padding: 4px;
+            border-radius: var(--radius-md);
+            gap: 4px;
+            width: 100%;
+        }
+
+        @media (min-width: 640px) {
+            .format-toggle {
+                width: auto;
+                order: 1;
+            }
+        }
+
+        .format-btn {
+            padding: 8px 12px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            border-radius: 8px;
+            transition: all 0.2s;
+            flex: 1;
+            text-align: center;
+            white-space: nowrap;
+        }
+        
+        @media (min-width: 640px) {
+            .format-btn { padding: 8px 24px; }
+        }
+
+        .format-btn.active {
+            background-color: var(--bg-surface);
+            color: var(--primary);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .format-btn:not(.active):hover {
+            color: var(--text-main);
+        }
+
+        /* 2. Quality Wrapper */
+        /* Mobile: Top (Row 1, Span 2) */
+        .quality-wrapper {
+            grid-column: span 2;
+            order: 1;
+            display: flex;
+            width: 100%;
+        }
+
+        @media (min-width: 640px) {
+            .quality-wrapper {
+                width: auto;
+                order: 2;
+                margin-left: auto; /* Push to right */
+            }
+        }
+
+        .quality-dropdown-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .quality-select {
+            width: 100%;
+            appearance: none;
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 12px 16px;
+            padding-right: 40px;
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .quality-select:focus {
+            border-color: var(--primary);
+        }
+
+        .select-arrow {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: var(--text-secondary);
+            width: 16px;
+            height: 16px;
+        }
+
+        /* 3. Convert Button */
+        /* Mobile: Bottom Right (Row 2, Col 2) */
+        .btn-convert {
+            grid-column: span 1;
+            order: 3;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 16px;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: background-color 0.2s;
+            box-shadow: 0 4px 6px -1px rgba(29, 186, 201, 0.2);
+            width: 100%;
+        }
+        
+        @media (min-width: 640px) {
+            .btn-convert {
+                width: auto;
+                order: 3;
+                padding: 12px 24px;
+            }
+        }
+
+        .btn-convert:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-convert svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .error-message {
+            margin-top: 16px;
+            padding: 12px;
+            border-radius: var(--radius-md);
+            background-color: var(--error-bg);
+            color: var(--error);
+            font-size: 14px;
+            text-align: center;
+            border: 1px solid #fecaca;
+        }
+
+        /* --- 6. RESULT VIEW --- */
+        .video-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media (min-width: 768px) {
+            .video-card { flex-direction: row; }
+        }
+
+        .thumbnail-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9; /* Maintain aspect ratio on mobile */
+        }
+
+        @media (min-width: 768px) {
+            .thumbnail-wrapper { width: 45%; max-width: 360px; aspect-ratio: auto; }
+        }
+
+        .thumbnail {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .duration {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.75);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .video-details {
+            padding: 24px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .video-channel {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .video-title {
+            font-size: 18px; /* Smaller on mobile */
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+        
+        @media (min-width: 640px) {
+            .video-title { font-size: 20px; }
+        }
+
+        .video-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .meta-tag {
+            display: inline-flex;
+            gap: 6px;
+            padding: 6px 12px;
+            background-color: var(--bg-body);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .meta-value {
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .meta-value.accent {
+            color: var(--primary);
+        }
+
+        /* Action Area */
+        .action-area {
+            margin-top: auto;
+        }
+
+        .download-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-download {
+            flex: 2; /* Give more space to download button on mobile */
+            background-color: var(--primary);
+            color: white;
+            padding: 12px;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: background-color 0.2s;
+        }
+
+        .btn-download:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-reset {
+            flex: 1; /* Smaller space for Back button */
+            padding: 12px;
+            background-color: var(--bg-body);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            transition: background-color 0.2s;
+            text-align: center;
+        }
+
+        .btn-reset:hover {
+            background-color: #e2e8f0;
+        }
+
+        /* Status Bar (Loading) */
+        .status-bar {
+            width: 100%;
+        }
+
+        .status-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .progress-track {
+            width: 100%;
+            height: 8px;
+            background-color: var(--bg-body);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 60%;
+            background-color: var(--primary);
+            border-radius: var(--radius-full);
+            animation: progressIndeterminate 1.5s infinite linear;
+        }
+
+        @keyframes progressIndeterminate {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(200%); }
+        }
+
+        .spinner {
+            width: 16px;
+            height: 16px;
+            border: 2px solid var(--primary);
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* --- 7. SEO CONTENT & FAQ --- */
+        .seo-content {
+            max-width: 800px;
+            margin: 60px auto 0 auto; /* Centered */
+            text-align: center;
+        }
+
+        .seo-content h2 {
+            font-size: 24px; /* Smaller on mobile */
+            margin-bottom: 20px;
+        }
+        
+        @media (min-width: 640px) {
+            .seo-content h2 { font-size: 28px; }
+        }
+
+        .seo-content p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .faq-section {
+            width: 100%;
+            max-width: var(--container-max);
+            margin: 80px auto 0; /* Centered */
+            padding: 0 20px;
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .faq-title {
+            font-size: 24px; /* Smaller on mobile */
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+        
+        @media (min-width: 640px) {
+            .faq-title { font-size: 28px; }
+        }
+
+        .faq-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: rgba(29, 186, 201, 0.1);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        @media (min-width: 768px) {
+            .faq-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        .faq-item {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            padding: 24px;
+            border-radius: var(--radius-lg);
+            transition: border-color 0.2s;
+        }
+
+        .faq-item:hover {
+            border-color: var(--primary);
+        }
+
+        .faq-question {
+            font-size: 16px; /* Smaller on mobile */
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        
+        @media (min-width: 640px) {
+            .faq-question { font-size: 18px; }
+        }
+
+        .faq-answer {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* --- 8. FOOTER --- */
+        .footer-container {
+            margin-top: auto;
+            border-top: 1px solid var(--border);
+            padding: 40px 20px;
+            background: var(--bg-surface);
+            text-align: center;
+        }
+
+        .footer-nav {
+            margin: 24px 0;
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+        }
+
+        .footer-link {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .footer-link:hover { color: var(--text-main); }
+
+        .footer-legal {
+            margin-bottom: 24px;
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        .footer-copyright {
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        /* --- 9. MOBILE DRAWER --- */
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 280px;
+            background: var(--bg-surface);
+            z-index: 200;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            box-shadow: var(--shadow-lg);
+            border-right: 1px solid var(--border);
+        }
+
+        .mobile-drawer.open {
+            transform: translateX(0);
+        }
+
+        .drawer-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 150;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .drawer-backdrop.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .drawer-header {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .drawer-menu {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .drawer-sublink {
+            padding: 12px;
+            border-radius: var(--radius-sm);
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .drawer-sublink:hover {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+        }
+
+        .drawer-divider {
+            height: 1px;
+            background-color: var(--border);
+            margin: 8px 0;
+        }
+
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/"
+  }
+}
+</script>
+</head>
+<body>
+
+    <!-- 1. HEADER -->
+    <header id="main-header" class="header-container">
+        <div class="header-content">
+            <!-- Logo -->
+            <a href="/" class="logo">
+                <div class="logo-icon">YT</div>
+                <span class="logo-text">YTMP3</span>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="desktop-nav">
+                <a href="/" class="nav-link active">Home</a>
+                <a href="/about" class="nav-link">About</a>
+                <a href="/faq" class="nav-link">FAQ</a>
+                <div class="nav-divider"></div>
+
+                <!-- Language Selector -->
+                <div class="lang-selector">
+                    <button id="lang-btn" class="lang-button">
+                        EN
+                        <svg class="select-arrow" style="position:static; width:12px; height:12px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+                    </button>
+                    <div id="lang-dropdown" class="lang-dropdown hidden">
+                        <button class="lang-option" data-lang="en">English</button>
+                        <button class="lang-option" data-lang="es">Español</button>
+                        <button class="lang-option" data-lang="fr">Français</button>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="mobile-menu-btn">
+                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" /></svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- 2. MOBILE DRAWER -->
+    <div id="mobile-drawer-backdrop" class="drawer-backdrop"></div>
+    <div id="mobile-drawer" class="mobile-drawer">
+        <div id="mobile-drawer-content">
+            <div class="drawer-header">
+                <a href="/" class="logo">
+                    <div class="logo-icon">YT</div>
+                    <span class="logo-text">YTMP3</span>
+                </a>
+                <button id="close-drawer-btn">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                </button>
+            </div>
+            <nav class="drawer-menu">
+                <a href="/" class="drawer-sublink" style="color: var(--primary); background: rgba(29, 186, 201, 0.1);">Home</a>
+                <a href="/about" class="drawer-sublink">About</a>
+                <div class="drawer-divider"></div>
+                <a href="/faq" class="drawer-sublink">FAQ</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        
+        <!-- 3. VIEW INPUT -->
+        <div id="search-view" class="view-container view-input">
+            
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <!-- Removed Gradient Glow -->
+                <div class="hero-header" id="hero-header">
+                    <span class="badge">Free YouTube Converter</span>
+                    <h1>
+                        YouTube to <span id="title-format" class="title-accent">MP3</span> Converter
+                    </h1>
+                    <p class="hero-subtitle">
+                        Convert and download YouTube videos to <span id="subtitle-format">MP3</span> with the highest quality. Fast, free, and secure.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Download Form Section -->
+            <form id="downloadForm" class="form-container">
+                
+                <!-- INPUT GROUP -->
+                <div class="input-group">
+                    <div class="input-wrapper" id="input-wrapper">
+                        
+                        <!-- URL INPUT -->
+                        <input type="text" id="videoUrl" class="video-input" placeholder="Paste YouTube link here..." autocomplete="off">
+                        
+                        <!-- ACTION BUTTONS -->
+                        <div style="padding-right: 8px;">
+                            <button type="button" id="input-action-button" class="btn-paste" data-action="paste">
+                                <!-- Paste Icon -->
+                                <svg class="paste-icon block" fill="none" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                                </svg>
+                                <span class="btn-state--paste block">Paste</span>
+                                
+                                <!-- Clear Icon -->
+                                <svg class="clear-icon hidden" fill="none" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                                <span class="btn-state--clear hidden">Clear</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- SUGGESTION DROPDOWN -->
+                    <div id="suggestion-container" class="suggestion-container hidden"></div>
+                </div>
+
+                <!-- FORMAT SELECTOR -->
+                <div id="format-selector-container">
+                    <div class="format-selector">
+                        
+                        <!-- FORMAT TOGGLE -->
+                        <div class="format-toggle">
+                            <button type="button" class="format-btn active" data-format="mp3">MP3</button>
+                            <button type="button" class="format-btn" data-format="mp4">MP4</button>
+                        </div>
+
+                        <!-- QUALITY WRAPPER (Moved button out of here) -->
+                        <div class="quality-wrapper">
+                            <div class="quality-dropdown-wrapper">
+                                <!-- MP3 Select -->
+                                <select id="quality-select-mp3" class="quality-select quality-select--mp3" data-quality-select>
+                                    <option value="mp3-320" selected>MP3 - 320kbps</option>
+                                    <option value="mp3-192">MP3 - 192kbps</option>
+                                    <option value="mp3-128">MP3 - 128kbps</option>
+                                    <option value="m4a">M4A</option>
+                                    <option value="webm">WebM Audio</option>
+                                </select>
+                                <!-- MP4 Select -->
+                                <select id="quality-select-mp4" class="quality-select quality-select--mp4 hidden" data-quality-select>
+                                    <option value="mp4-720" selected>MP4 - 720p</option>
+                                    <option value="mp4-1080">MP4 - 1080p</option>
+                                    <option value="mp4-480">MP4 - 480p</option>
+                                    <option value="mp4-360">MP4 - 360p</option>
+                                </select>
+                                <svg class="select-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+                            </div>
+                        </div>
+
+                        <!-- CONVERT BUTTON -->
+                        <button type="submit" class="btn-convert">
+                            <span>Convert</span>
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                        </button>
+                        
+                    </div>
+                </div>
+
+                <!-- ERROR MESSAGE -->
+                <div id="error-message" class="error-message hidden"></div>
+            </form>
+
+            <!-- SEO Content -->
+            <section class="seo-content">
+                <h2>The Best YouTube to MP3 Converter</h2>
+                <p>
+                    Convert and download YouTube videos in MP3, MP4, 3GP for free with our YouTube Downloader. 
+                    The downloading is very quick and simple, just wait a few seconds for the file to be ready on your device.
+                </p>
+                <p>
+                    Our YouTube converter is completely free and compatible with all devices: iPhone, Android, PC, and Tablets.
+                    No software installation is required.
+                </p>
+            </section>
+        </div>
+
+        <!-- 4. VIEW RESULT -->
+        <div id="result-view" class="view-container view-result">
+            <div id="content-area" class="container" style="max-width: 800px;">
+                
+                <!-- Video Card -->
+                <div class="video-card">
+                    <!-- Thumbnail -->
+                    <div class="thumbnail-wrapper">
+                        <img id="result-thumbnail" class="thumbnail" src="" alt="Video Thumbnail">
+                        <span id="result-duration" class="duration">3:45</span>
+                    </div>
+                    
+                    <!-- Details -->
+                    <div class="video-details">
+                        <p id="result-channel" class="video-channel">Channel Name</p>
+                        <h3 id="result-title" class="video-title">Video Title</h3>
+                        
+                        <div class="video-meta">
+                            <span class="meta-tag">
+                                <span class="meta-label">Format:</span>
+                                <span id="result-format" class="meta-value accent">MP3</span>
+                            </span>
+                            <span class="meta-tag">
+                                <span class="meta-label">Quality:</span>
+                                <span id="result-quality" class="meta-value">320kbps</span>
+                            </span>
+                            <span class="meta-tag">
+                                <span class="meta-label">Size:</span>
+                                <span id="result-size" class="meta-value">10.5 MB</span>
+                            </span>
+                        </div>
+
+                        <!-- Action Buttons / Status -->
+                        <div class="action-area">
+                            <!-- Loading State -->
+                            <div id="status-bar" class="status-bar hidden">
+                                <div class="status-header">
+                                    <span class="status-text">Converting...</span>
+                                    <div class="spinner"></div>
+                                </div>
+                                <div class="progress-track">
+                                    <div class="progress-fill"></div>
+                                </div>
+                            </div>
+                            
+                            <!-- Buttons -->
+                            <div id="download-buttons" class="download-buttons hidden">
+                                <button class="btn-download">
+                                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /></svg>
+                                    Download
+                                </button>
+                                <button id="btn-reset" class="btn-reset">Back</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. FAQ SECTION -->
+        <section id="faq" class="faq-section">
+            <div class="faq-header">
+                <h2 class="faq-title">
+                    <span class="faq-icon">?</span>
+                    Frequently Asked Questions
+                </h2>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3 class="faq-question">How do I download YouTube videos?</h3>
+                    <p class="faq-answer">Simply paste the YouTube video URL into the input field above, select your desired format (MP3 or MP4) and quality, then click the 'Convert' button. Once processed, click 'Download' to save the file.</p>
+                </div>
+                <div class="faq-item">
+                    <h3 class="faq-question">Is this YouTube Downloader free?</h3>
+                    <p class="faq-answer">Yes, our tool is 100% free to use. You can convert and download as many videos as you want without any hidden costs or limitations.</p>
+                </div>
+                <div class="faq-item">
+                    <h3 class="faq-question">Can I use this on my mobile phone?</h3>
+                    <p class="faq-answer">Absolutely. Our website is fully responsive and works perfectly on all devices including iPhones, Android phones, tablets, and desktop computers.</p>
+                </div>
+                <div class="faq-item">
+                    <h3 class="faq-question">Is it safe to download from this site?</h3>
+                    <p class="faq-answer">Security is our priority. We do not store any files on our servers, and no personal data is collected. The download process is secure and free from viruses.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 6. FOOTER -->
+    <footer class="footer-container">
+        <a href="/" class="logo" style="justify-content:center; margin-bottom: 20px;">
+            <div class="logo-icon">YT</div>
+            <span class="logo-text">YTMP3</span>
+        </a>
+        <nav class="footer-nav">
+            <a href="/about" class="footer-link">About</a>
+            <a href="/contact" class="footer-link">Contact</a>
+            <a href="/faq" class="footer-link">FAQ</a>
+        </nav>
+        <div class="footer-legal">
+            <a href="/privacy-policy" class="footer-link">Privacy Policy</a>
+            <span style="margin: 0 10px; color: var(--border);">|</span>
+            <a href="/terms-of-use" class="footer-link">Terms of Use</a>
+        </div>
+        <p class="footer-copyright">
+            &copy; <script>document.write(new Date().getFullYear())</script> YTMP3. All rights reserved.
+        </p>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- STATE MANAGEMENT ---
+            let currentFormat = 'mp3';
+            
+            // --- DOM ELEMENTS ---
+            const html = document.documentElement;
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const closeDrawerBtn = document.getElementById('close-drawer-btn');
+            const mobileDrawer = document.getElementById('mobile-drawer');
+            const drawerBackdrop = document.getElementById('mobile-drawer-backdrop');
+            const langBtn = document.getElementById('lang-btn');
+            const langDropdown = document.getElementById('lang-dropdown');
+            
+            const videoUrlInput = document.getElementById('videoUrl');
+            const inputActionBtn = document.getElementById('input-action-button');
+            const pasteIcon = document.querySelector('.paste-icon');
+            const clearIcon = document.querySelector('.clear-icon');
+            const pasteText = document.querySelector('.btn-state--paste');
+            const clearText = document.querySelector('.btn-state--clear');
+            const errorMessage = document.getElementById('error-message');
+
+            const formatBtns = document.querySelectorAll('.format-btn');
+            const qualitySelectMp3 = document.getElementById('quality-select-mp3');
+            const qualitySelectMp4 = document.getElementById('quality-select-mp4');
+            const titleFormat = document.getElementById('title-format');
+            const subtitleFormat = document.getElementById('subtitle-format');
+            
+            const downloadForm = document.getElementById('downloadForm');
+            const searchView = document.getElementById('search-view');
+            const resultView = document.getElementById('result-view');
+            
+            const statusBar = document.getElementById('status-bar');
+            const downloadButtons = document.getElementById('download-buttons');
+            const btnReset = document.getElementById('btn-reset');
+
+            // --- MOBILE DRAWER LOGIC ---
+            function toggleDrawer(isOpen) {
+                if (isOpen) {
+                    mobileDrawer.classList.add('open');
+                    drawerBackdrop.classList.add('show');
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    mobileDrawer.classList.remove('open');
+                    drawerBackdrop.classList.remove('show');
+                    document.body.style.overflow = '';
+                }
+            }
+
+            mobileMenuBtn.addEventListener('click', () => toggleDrawer(true));
+            closeDrawerBtn.addEventListener('click', () => toggleDrawer(false));
+            drawerBackdrop.addEventListener('click', () => toggleDrawer(false));
+
+            // --- LANGUAGE DROPDOWN ---
+            langBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                langDropdown.classList.toggle('hidden');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!langBtn.contains(e.target) && !langDropdown.contains(e.target)) {
+                    langDropdown.classList.add('hidden');
+                }
+            });
+
+            // --- FORMAT SELECTION ---
+            formatBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const format = btn.getAttribute('data-format');
+                    currentFormat = format;
+                    html.setAttribute('data-format', format);
+
+                    // Update buttons UI
+                    formatBtns.forEach(b => {
+                        if (b.getAttribute('data-format') === format) {
+                            b.classList.add('active');
+                        } else {
+                            b.classList.remove('active');
+                        }
+                    });
+
+                    // Toggle Quality Selects
+                    if (format === 'mp3') {
+                        qualitySelectMp3.classList.remove('hidden');
+                        qualitySelectMp4.classList.add('hidden');
+                        titleFormat.textContent = 'MP3';
+                        subtitleFormat.textContent = 'MP3';
+                    } else {
+                        qualitySelectMp3.classList.add('hidden');
+                        qualitySelectMp4.classList.remove('hidden');
+                        titleFormat.textContent = 'MP4';
+                        subtitleFormat.textContent = 'MP4';
+                    }
+                });
+            });
+
+            // --- INPUT & PASTE/CLEAR ---
+            function updateInputActionState() {
+                const hasValue = videoUrlInput.value.length > 0;
+                if (hasValue) {
+                    pasteIcon.classList.add('hidden');
+                    pasteIcon.classList.remove('block');
+                    pasteText.classList.add('hidden');
+                    pasteText.classList.remove('block');
+
+                    clearIcon.classList.remove('hidden');
+                    clearIcon.classList.add('block');
+                    clearText.classList.remove('hidden');
+                    clearText.classList.add('block');
+                    inputActionBtn.setAttribute('data-action', 'clear');
+                    
+                    if (errorMessage) errorMessage.classList.add('hidden');
+                } else {
+                    pasteIcon.classList.remove('hidden');
+                    pasteIcon.classList.add('block');
+                    pasteText.classList.remove('hidden');
+                    pasteText.classList.add('block');
+
+                    clearIcon.classList.add('hidden');
+                    clearIcon.classList.remove('block');
+                    clearText.classList.add('hidden');
+                    clearText.classList.remove('block');
+                    inputActionBtn.setAttribute('data-action', 'paste');
+                }
+            }
+
+            videoUrlInput.addEventListener('input', updateInputActionState);
+
+            inputActionBtn.addEventListener('click', async () => {
+                const action = inputActionBtn.getAttribute('data-action');
+                if (action === 'paste') {
+                    try {
+                        const text = await navigator.clipboard.readText();
+                        videoUrlInput.value = text;
+                        updateInputActionState();
+                        videoUrlInput.focus();
+                    } catch (err) {
+                        console.error('Clipboard access denied');
+                    }
+                } else {
+                    videoUrlInput.value = '';
+                    updateInputActionState();
+                    videoUrlInput.focus();
+                }
+            });
+
+            // --- FORM SUBMIT (CONVERT) ---
+            downloadForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const url = videoUrlInput.value.trim();
+
+                if (!url) {
+                    errorMessage.textContent = 'Please enter a valid YouTube URL';
+                    errorMessage.classList.remove('hidden');
+                    return;
+                }
+                if (!url.includes('youtube.com') && !url.includes('youtu.be')) {
+                    errorMessage.textContent = "That doesn't look like a valid YouTube link";
+                    errorMessage.classList.remove('hidden');
+                    return;
+                }
+
+                // Transition to Result View
+                searchView.classList.add('hidden-state');
+                resultView.classList.add('active');
+                
+                // Show Loading
+                statusBar.classList.remove('hidden');
+                downloadButtons.classList.add('hidden');
+
+                // Mock API Call
+                setTimeout(() => {
+                    // Update Result Data
+                    document.getElementById('result-thumbnail').src = 'https://picsum.photos/640/360';
+                    document.getElementById('result-title').textContent = 'Lofi Hip Hop Radio - Beats to Relax/Study to';
+                    document.getElementById('result-channel').textContent = 'Lofi Girl';
+                    document.getElementById('result-format').textContent = currentFormat.toUpperCase();
+                    document.getElementById('result-quality').textContent = currentFormat === 'mp3' ? qualitySelectMp3.value.split('-')[1] : qualitySelectMp4.value.split('-')[1];
+                    
+                    // Show Buttons
+                    statusBar.classList.add('hidden');
+                    downloadButtons.classList.remove('hidden');
+                }, 1500);
+            });
+
+            // --- BACK BUTTON ---
+            btnReset.addEventListener('click', () => {
+                resultView.classList.remove('active');
+                searchView.classList.remove('hidden-state');
+                videoUrlInput.value = '';
+                updateInputActionState();
+            });
+        });
+    </script>
+</body>
+</html>

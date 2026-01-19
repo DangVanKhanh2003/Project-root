@@ -1,0 +1,29 @@
+/* =========================================================
+   Reset Styles - New Design
+   ---------------------------------------------------------
+   Minimal reset for new glassmorphism design
+   Extracted from index.html - Phase 2
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.2s;
+}
+
+button, input, select {
+    font-family: inherit;
+    font-size: 100%;
+    outline: none;
+}
+
+ul {
+    list-style: none;
+}

@@ -1,0 +1,70 @@
+{
+  "seo": {
+    "title": "YouTube'dan WAV'a (Sıkıştırılmamış Kayıpsız) – YTMP3",
+    "description": "YTMP3 ile YouTube'u WAV sıkıştırılmamış kayıpsız sese dönüştürün. Profesyonel düzenleme ve üretim için orijinal ses verilerini koruyun. Ücretsiz, hızlı, sınırsız.",
+    "ogTitle": "YouTube'dan WAV'a – YTMP3",
+    "ogDescription": "Profesyonel düzenleme ve üretim için YouTube sesini sıkıştırılmamış WAV kayıpsız olarak indirin."
+  },
+
+  "hero": {
+    "title": "YouTube'dan",
+    "titleAccent": "WAV'a",
+    "subtitle": "Ücretsiz ve hızlı YouTube'dan WAV kayıpsız dönüştürücü"
+  },
+
+  "content": {
+    "mainTitle": "YouTube'dan WAV'a nedir?",
+
+    "intro1": "YouTube'dan WAV'a, bir YouTube videosundan sesi çıkarıp <strong>WAV formatına</strong>, yani <strong>sıkıştırılmamış kayıpsız</strong> bir ses formatına dönüştürme işlemidir.",
+    "intro2": "WAV, ham ses verilerini herhangi bir sıkıştırma olmadan depolar ve <strong>orijinal ses bilgilerinin %100'ünü</strong> korur. Bu, profesyonel ses düzenleme, miksaj, mastering ve üretim iş akışları için idealdir.",
+
+    "whatIsTitle": "WAV, FLAC ve MP3'ten nasıl farklıdır?",
+    "whatIsText": "<ul><li><strong>FLAC ile karşılaştırıldığında:</strong> <a href=\"/youtube-to-flac-converter\">FLAC</a> kayıpsızdır ancak sıkıştırılmıştır, WAV ise tamamen sıkıştırılmamıştır. WAV dosyaları daha büyüktür ancak mutlak doğruluk ve basitlik sağlar.</li><li><strong>MP3 ile karşılaştırıldığında:</strong> MP3 (MP3 320kbps dahil) ses verilerini kaldıran kayıplı bir formattır, WAV ise tüm orijinal ses bilgilerini korur.</li></ul>"
+  },
+
+  "whyChoose": {
+    "title": "YouTube'u WAV'a dönüştürmek için neden YTMP3'ü kullanmalısınız?",
+    "reasons": [
+      {
+        "title": "Gerçek sıkıştırılmamış kayıpsız",
+        "text": "Ham ses verileri herhangi bir sıkıştırma veya kalite kaybı olmadan korunur."
+      },
+      {
+        "title": "Kullanımı ücretsiz",
+        "text": "Kayıt yok, sınır yok ve gizli maliyet yok."
+      },
+      {
+        "title": "Profesyonel kullanıma hazır",
+        "text": "DAW'lar, ses düzenleyiciler ve üretim iş akışları için idealdir."
+      },
+      {
+        "title": "Çoklu platform desteği",
+        "text": "Windows, macOS ve Linux'ta çalışır."
+      }
+    ]
+  },
+
+  "instructions": {
+    "title": "YouTube'u WAV'a nasıl dönüştürülür",
+    "steps": [
+      "YouTube video bağlantısını kopyalayın.",
+      "YTMP3 dönüştürücüsüne yapıştırın.",
+      "Çıkış formatı olarak WAV'ı seçin.",
+      "“Dönüştür”e tıklayın ve WAV dosyanızı indirin."
+    ]
+  },
+
+  "faqs": {
+    "title": "Sıkça Sorulan Sorular",
+    "items": [
+      { "question": "YTMP3, YouTube'dan WAV'a dönüştürme için tamamen ücretsiz mi?", "answer": "Evet. YTMP3, YouTube için ücretsiz bir WAV dönüştürücüsüdür. Kayıt yok, abonelik yok, reklam yok, açılır pencere yok ve indirme sınırı yok." },
+      { "question": "WAV dosyası yüksek kaliteli ses sağlayacak mı?", "answer": "Evet. Seçenekler arasında Kayıpsız WAV, CD kalitesi ve 24 bit Stüdyo kalitesi bulunur. Maksimum kalite kaynak videoya bağlıdır, ancak WAV dosyaları her zaman sıkıştırılmamıştır." },
+      { "question": "YouTube Shorts'u WAV olarak indirebilir miyim?", "answer": "Evet. YTMP3, YouTube Shorts'u tamamen destekler ve kısa biçimli videoların hızlı ve kolay indirilmesini sağlar." },
+      { "question": "YTMP3 kullanmak güvenli mi?", "answer": "Kesinlikle. YTMP3 kişisel verileri depolamaz ve kötü amaçlı yazılımlardan arındırılmıştır. Güvenlik için her zaman resmi web sitesine erişin." },
+      { "question": "Mobil cihazımda YouTube videolarını WAV'a dönüştürebilir miyim?", "answer": "Evet. YTMP3, mobil tarayıcılar için tamamen duyarlıdır. Adımlar aynıdır: bağlantıyı yapıştır → WAV'ı seç → dönüştür → indir." },
+      { "question": "WAV indirmeleri için dosya boyutu sınırlamaları var mı?", "answer": "Hayır. WAV sıkıştırılmamıştır, bu nedenle büyük dosyalar normaldir (16 bit stereo sesin 1 dakikası başına ~10 MB)." },
+      { "question": "Neden MP3 yerine WAV'ı seçmelisiniz?", "answer": "WAV sıkıştırılmamıştır, orijinal ses kalitesini korur ve düzenleme veya profesyonel kullanım için daha iyidir. MP3, sıradan dinleme için uygundur, ancak bazı ses verilerini kaybeder." },
+      { "question": "WAV, FLAC ile nasıl karşılaştırılır?", "answer": "Her ikisi de kayıpsızdır, ancak WAV sıkıştırılmamışken FLAC sıkıştırma kullanır. FLAC dosyaları aynı kalitede %40-50 daha küçüktür. WAV, eski yazılımlarla daha iyi uyumluluğa sahiptir." }
+    ]
+  }
+}

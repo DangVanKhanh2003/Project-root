@@ -1,0 +1,232 @@
+/* ===== MOBILE DRAWER ===== */
+.mobile-drawer {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    transition: opacity 0.3s;
+    opacity: 0;
+    pointer-events: none;
+}
+
+@media (min-width: 768px) {
+    .mobile-drawer {
+        display: none;
+    }
+}
+
+.mobile-drawer.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.drawer-content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 280px;
+    background-color: #0F1219;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease-out;
+    transform: translateX(100%);
+    display: flex;
+    flex-direction: column;
+}
+
+.mobile-drawer.open .drawer-content {
+    transform: translateX(0);
+}
+
+.drawer-header {
+    padding: 1.25rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.drawer-logo {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #C9A66B;
+    letter-spacing: -0.05em;
+}
+
+.close-drawer-btn {
+    padding: 0.5rem;
+    color: #FFFFFF;
+    background-color: transparent;
+    border: none;
+    border-radius: 0.25rem;
+    transition: color 0.2s;
+    cursor: pointer;
+}
+
+.close-drawer-btn:hover {
+    color: #C9A66B;
+}
+
+.drawer-menu {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.drawer-link {
+    font-size: 1.25rem;
+    font-family: var(--font-display);
+    font-weight: 700;
+    padding: 0.5rem 0;
+    display: block;
+    text-decoration: none;
+    color: #FFFFFF;
+    transition: color 0.2s;
+}
+
+.drawer-link.active {
+    color: #C9A66B;
+}
+
+.drawer-link:not(.active):hover {
+    color: #C9A66B;
+}
+
+.drawer-divider {
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.1);
+    margin: 1rem 0;
+}
+
+.drawer-sublink {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 0.5rem 0;
+    display: block;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.drawer-sublink:hover {
+    color: #C9A66B;
+}
+
+.drawer-lang-selector {
+    position: relative;
+}
+
+.drawer-lang-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #FFFFFF;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.2s;
+    cursor: pointer;
+    width: 100%;
+}
+
+.drawer-lang-button:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: #C9A66B;
+}
+
+.drawer-lang-button svg {
+    color: #FFFFFF;
+}
+
+.drawer-lang-button .chevron {
+    transition: transform 0.2s;
+    margin-left: auto;
+}
+
+.drawer-lang-selector.active .chevron {
+    transform: rotate(180deg);
+}
+
+.drawer-lang-dropdown {
+    margin-top: 0.5rem;
+    background-color: #1A1F2E;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 0;
+    display: none;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.drawer-lang-selector.active .drawer-lang-dropdown {
+    display: block;
+}
+
+/* Thin scrollbar for lang dropdown */
+.drawer-lang-dropdown::-webkit-scrollbar {
+    width: 2px;
+}
+
+.drawer-lang-dropdown::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.drawer-lang-dropdown::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 1px;
+}
+
+.drawer-lang-dropdown {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+.drawer-lang-option {
+    display: block;
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: all 0.2s;
+    font-weight: 500;
+}
+
+.drawer-lang-option.active {
+    color: #C9A66B;
+    font-weight: 600;
+}
+
+.drawer-lang-option:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #FFFFFF;
+}
+
+/* ===== RTL SUPPORT ===== */
+[dir="rtl"] .drawer-content {
+    right: auto;
+    left: 0;
+    border-left: none;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    transform: translateX(-100%);
+}
+
+[dir="rtl"] .mobile-drawer.open .drawer-content {
+    transform: translateX(0);
+}
+
+[dir="rtl"] .drawer-lang-button .chevron {
+    margin-left: 0;
+    margin-right: auto;
+}

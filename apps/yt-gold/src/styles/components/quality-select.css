@@ -1,0 +1,56 @@
+/* =========================================================
+   Component - Quality Select
+   ---------------------------------------------------------
+   Quality dropdown selector - Dark card with Gold accent
+   ========================================================= */
+
+.quality-wrapper {
+    position: relative;
+    flex-grow: 1;
+}
+
+.quality-select {
+    width: 100%;
+    height: 56px;
+    background: var(--bg-input);
+    border: 1px solid #FFFFFF;
+    border-radius: var(--radius-md);
+    color: #FFFFFF !important;
+    padding: 0 40px 0 20px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.quality-select:hover {
+    border-color: rgba(201, 166, 107, 0.4);
+}
+
+.quality-select:focus {
+    border-color: var(--color-accent);
+    outline: none;
+    box-shadow: var(--glow-input);
+}
+
+.quality-select option {
+    background: var(--color-midnight);
+    color: var(--color-white);
+}
+
+.select-arrow {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--color-white);
+}
+
+/* ===== RTL SUPPORT ===== */
+[dir="rtl"] .select-arrow {
+    right: auto;
+    left: 16px;
+}

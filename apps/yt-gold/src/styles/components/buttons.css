@@ -1,0 +1,185 @@
+/* ===== BUTTONS ===== */
+
+/* Paste/Clear Button (Toggle Button) - Dark card context */
+.btn-paste,
+.btn-clear {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--bg-button);
+    border-radius: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-card-main);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.btn-paste:hover,
+.btn-clear:hover {
+    background-color: var(--bg-button-hover);
+    border-color: var(--color-accent);
+}
+
+.btn-paste span,
+.btn-clear span {
+    display: none;
+}
+
+@media (min-width: 640px) {
+    .btn-paste span,
+    .btn-clear span {
+        display: inline;
+    }
+}
+
+/* Format Toggle Buttons */
+.format-toggle {
+    display: flex;
+    background-color: var(--color-navy-lighter);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.25rem;
+    border-radius: 0.75rem;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .format-toggle {
+        width: auto;
+    }
+}
+
+.format-btn {
+    flex: 1;
+    padding: 0.625rem 2rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 700;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: #FFFFFF;
+}
+
+@media (min-width: 768px) {
+    .format-btn {
+        flex: none;
+    }
+}
+
+.format-btn.active {
+    background-color: var(--color-accent);
+    color: var(--color-black);
+}
+
+.format-btn:not(.active) {
+    color: #FFFFFF;
+}
+
+
+/* Convert/Submit Button */
+.btn-submit,
+.btn-convert,
+.convert-button {
+    height: 3.5rem;
+    padding: 0 2rem;
+    background-color: var(--color-accent);
+    color: var(--color-black);
+    border-radius: 0.75rem;
+    font-weight: 700;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    transform: scale(1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    box-shadow: 0 2px 8px rgba(201, 166, 107, 0.3);
+    border: none;
+    min-width: 140px;
+    cursor: pointer;
+}
+
+@media (min-width: 768px) {
+    .btn-submit,
+    .btn-convert,
+    .convert-button {
+        height: 52px;
+    }
+}
+
+.btn-submit:hover,
+.btn-convert:hover,
+.convert-button:hover {
+    background-color: var(--color-accent-hover);
+    box-shadow: 0 0 30px var(--glow-accent);
+}
+
+.btn-submit:active,
+.btn-convert:active,
+.convert-button:active {
+    transform: scale(0.98);
+}
+
+.btn-icon {
+    background-color: transparent;
+    padding: 0.25rem;
+    border-radius: 9999px;
+    transition: all 0.2s ease;
+}
+
+.btn-submit:hover .btn-icon,
+.btn-convert:hover .btn-icon,
+.convert-button:hover .btn-icon {
+    background-color: var(--color-black);
+    color: var(--color-accent);
+}
+
+/* Download Button */
+.btn-download {
+    flex: 2;
+    background-color: var(--color-accent);
+    color: var(--color-black);
+    border: none;
+    height: 52px;
+    border-radius: 0.75rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    box-shadow: 0 2px 8px rgba(201, 166, 107, 0.3);
+    transition: all 0.2s ease;
+}
+
+.btn-download:hover {
+    background-color: var(--color-accent-hover);
+    box-shadow: 0 0 30px var(--glow-accent);
+}
+
+/* Secondary Button */
+.btn-secondary {
+    flex: 1;
+    background: transparent;
+    border: 2px solid var(--border-secondary);
+    color: var(--text-muted);
+    height: 52px;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+    border-color: var(--text-main);
+    color: var(--text-main);
+    background: var(--bg-button-hover);
+}

@@ -1,0 +1,228 @@
+/* ===== HEADER ===== */
+#main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    transition: all 0.3s ease;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    background-color: #0F1219;
+}
+
+#main-header.scrolled {
+    background-color: #0F1219;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+}
+
+.logo-text {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: -0.05em;
+    color: #C9A66B;
+    transition: color 0.2s;
+}
+
+.logo:hover .logo-text {
+    color: #FFFFFF;
+}
+
+.logo-text .domain {
+    color: #FFFFFF;
+}
+
+/* Desktop Navigation */
+.desktop-nav {
+    display: none;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .desktop-nav {
+        display: flex;
+    }
+}
+
+.nav-links {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.nav-link {
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 700;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+}
+
+.nav-link.active {
+    border-color: #C9A66B;
+    background-color: #C9A66B;
+    color: #000000;
+}
+
+.nav-link:not(.active) {
+    color: #FFFFFF;
+}
+
+.nav-link:not(.active):hover {
+    color: #C9A66B;
+    border-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav-divider {
+    width: 1px;
+    height: 1.25rem;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: 0 0.25rem;
+}
+
+/* Language Selector */
+.lang-selector {
+    position: relative;
+}
+
+.lang-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #FFFFFF;
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.lang-button:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: #C9A66B;
+}
+
+.lang-button svg {
+    color: #FFFFFF;
+}
+
+.lang-button .chevron {
+    transition: transform 0.2s;
+}
+
+.lang-selector.active .chevron {
+    transform: rotate(180deg);
+}
+
+.lang-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 0.5rem;
+    width: 12rem;
+    background-color: #0F1219;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow-y: auto;
+    z-index: 20;
+    padding: 0.5rem 0;
+    display: none;
+    max-height: 400px;
+}
+
+@media (max-width: 767px) {
+    .lang-dropdown {
+        max-height: 300px;
+    }
+}
+
+.lang-selector.active .lang-dropdown {
+    display: block;
+}
+
+/* Thin scrollbar for lang dropdown */
+.lang-dropdown::-webkit-scrollbar {
+    width: 2px;
+}
+
+.lang-dropdown::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.lang-dropdown::-webkit-scrollbar-thumb {
+    background: var(--border-primary);
+    border-radius: 1px;
+}
+
+.lang-dropdown {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-primary) transparent;
+}
+
+.lang-option {
+    display: block;
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: all 0.2s;
+    font-weight: 500;
+}
+
+.lang-option:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #FFFFFF;
+}
+
+/* Mobile Menu Button */
+.mobile-menu-btn {
+    display: block;
+    padding: 0.5rem;
+    color: #FFFFFF;
+    background-color: transparent;
+    border: none;
+    border-radius: 0.25rem;
+    transition: background-color 0.2s;
+    cursor: pointer;
+}
+
+@media (min-width: 768px) {
+    .mobile-menu-btn {
+        display: none;
+    }
+}
+
+.mobile-menu-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ===== RTL SUPPORT ===== */
+[dir="rtl"] .lang-dropdown {
+    right: auto;
+    left: 0;
+}
