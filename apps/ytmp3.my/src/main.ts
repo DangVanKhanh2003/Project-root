@@ -216,6 +216,28 @@ function initDrawerLangSelector() {
 }
 
 /**
+ * Initialize Firebase Analytics (lazy loaded)
+ *
+ * Strategy: Load Firebase after 5s delay to ensure:
+ * 1. Critical rendering is complete
+ * 2. User interactions are not blocked
+ * 3. INP metrics are not affected
+ */
+function initFirebaseAnalytics(): void {
+  // Delay 5s before even starting to load Firebase
+  setTimeout(() => {
+    import('./libs/firebase/firebase-loader')
+      .then(({ loadFirebaseWhenIdle }) => {
+        // Load when browser is idle (requestIdleCallback)
+        loadFirebaseWhenIdle();
+      })
+      .catch(() => {
+        // Silent fail - app works without analytics
+      });
+  }, 5000);
+}
+
+/**
  * Initialize app
  */
 function loadFeatures() {
@@ -225,6 +247,7 @@ function loadFeatures() {
   initDrawerLangSelector(); // Initialize drawer language selector dropdown
   initDownloaderUI(); // Initialize downloader (async/lazy loaded)
   initLogoClickHandler(); // Prevent logo reload issue
+  initFirebaseAnalytics(); // Initialize Firebase Analytics (lazy loaded after 5s)
 }
 
 // DOM Ready

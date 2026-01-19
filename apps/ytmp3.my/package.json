@@ -28,8 +28,9 @@
   "dependencies": {
     "@downloader/core": "workspace:*",
     "@downloader/i18n": "workspace:*",
+    "@downloader/ui-components": "workspace:*",
     "@downloader/ui-shared": "workspace:*",
-    "@downloader/ui-components": "workspace:*"
+    "firebase": "^12.8.0"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",
