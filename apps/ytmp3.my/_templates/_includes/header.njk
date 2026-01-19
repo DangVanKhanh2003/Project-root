@@ -43,9 +43,9 @@
                 <div class="lang-dropdown">
                     {%- for langItem in site.languages %}
                     {%- if langItem.isDefault %}
-                    {%- set langUrl = '/' if pageKey == 'index' else '/' + pageInfo.slug + '.html' %}
+                    {%- set langUrl = '/' if pageKey == 'index' else '/' + pageInfo.slug %}
                     {%- else %}
-                    {%- set langUrl = '/' + langItem.code + '/' if pageKey == 'index' else '/' + langItem.code + '/' + pageInfo.slug + '.html' %}
+                    {%- set langUrl = '/' + langItem.code + '/' if pageKey == 'index' else '/' + langItem.code + '/' + pageInfo.slug %}
                     {%- endif %}
                     <a href="{{ langUrl }}" class="lang-option{% if langItem.code == lang %} active{% endif %}">{{ langItem.name }}</a>
                     {%- endfor %}
