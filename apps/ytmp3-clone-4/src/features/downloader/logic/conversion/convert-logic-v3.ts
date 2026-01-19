@@ -24,6 +24,9 @@ import { TaskState, type V3ConversionParams } from './v3/types';
 import { startPolling } from './v3/polling';
 import { getErrorMessage } from './v3/error-messages';
 
+// Retry helper
+import { retryWithBackoff, RETRY_CONFIGS } from './retry-helper';
+
 // Debug logger
 const LOG_PREFIX = '[ConvertLogicV3]';
 const log = (...args: unknown[]) => console.log(LOG_PREFIX, ...args);
@@ -53,12 +56,15 @@ export async function startConversion(params: V3ConversionParams): Promise<void>
   });
 
   try {
-    // Phase 1: Create job
+    // Phase 1: Create job (with retry)
     log('Phase 1: Creating job...');
     const request = mapToV3DownloadRequest(videoUrl, extractV2Options);
     log('V3 Request:', JSON.stringify(request, null, 2));
 
-    const jobResponse = await apiV3.createJob(request, abortController.signal);
+    const jobResponse = await retryWithBackoff(
+      () => apiV3.createJob(request, abortController.signal),
+      RETRY_CONFIGS.extracting
+    );
     log('Job created:', JSON.stringify(jobResponse, null, 2));
 
     if (abortController.signal.aborted) {
