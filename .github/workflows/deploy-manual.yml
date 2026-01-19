@@ -11,7 +11,7 @@ on:
           - 'y2matepro'
           - 'y2mate-new-ux'
           - 'ytmp3-clone-3'
-          - 'ytmp3-clone-4'
+          - 'mp3fast'
           - 'ytmp3-clone-5'
           - 'ytmp3.my'
       environment:
@@ -54,10 +54,10 @@ jobs:
               echo "filter_path=./apps/ytmp3-clone-3" >> $GITHUB_OUTPUT
               echo "domain=${{ vars.YTMP3_CLONE_3_DOMAIN || 'ytmp3-clone-3.com' }}" >> $GITHUB_OUTPUT
               ;;
-            "ytmp3-clone-4")
-              echo "directory=apps/ytmp3-clone-4" >> $GITHUB_OUTPUT
-              echo "filter_path=./apps/ytmp3-clone-4" >> $GITHUB_OUTPUT
-              echo "domain=${{ vars.YTMP3_CLONE_4_DOMAIN || 'ytmp3-clone-4.com' }}" >> $GITHUB_OUTPUT
+            "mp3fast")
+              echo "directory=apps/mp3fast" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/mp3fast" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.MP3FAST_DOMAIN || 'mp3fast.net' }}" >> $GITHUB_OUTPUT
               ;;
             "ytmp3-clone-5")
               echo "directory=apps/ytmp3-clone-5" >> $GITHUB_OUTPUT
