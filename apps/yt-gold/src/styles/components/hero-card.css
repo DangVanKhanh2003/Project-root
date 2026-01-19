@@ -52,13 +52,13 @@ h1,
     max-width: 48rem;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 1rem;
+    margin-top: 0;
 }
 
 /* Main Card Container - Only for the form */
 .hero-card {
     width: 100%;
-    background: linear-gradient(180deg, var(--color-navy-light) 0%, var(--bg-card) 100%);
+    background: linear-gradient(180deg, #434343 0%, #191919 100%);
     border-radius: 20px;
     box-shadow:
         0 25px 50px -12px rgba(0, 0, 0, 0.5),

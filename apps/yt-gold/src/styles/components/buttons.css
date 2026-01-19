@@ -7,22 +7,22 @@
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem 1rem;
-    background-color: var(--bg-button);
+    background-color: #1F1F1F;
     border-radius: 0.5rem;
     font-size: 0.75rem;
     font-weight: 700;
-    color: var(--text-card-main);
+    color: #FFFFFF;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: var(--border-glass);
     transition: all 0.2s ease;
     cursor: pointer;
 }
 
 .btn-paste:hover,
 .btn-clear:hover {
-    background-color: var(--bg-button-hover);
-    border-color: var(--color-accent);
+    background-color: #262626;
+    border-color: #e2b85e;
 }
 
 .btn-paste span,
@@ -40,8 +40,8 @@
 /* Format Toggle Buttons */
 .format-toggle {
     display: flex;
-    background-color: var(--color-navy-lighter);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    background-color: #1A1A1A;
+    border: 1px solid #2A2A2A;
     padding: 0.25rem;
     border-radius: 0.75rem;
     width: 100%;
@@ -75,8 +75,8 @@
 }
 
 .format-btn.active {
-    background-color: var(--color-accent);
-    color: var(--color-black);
+    background-color: #e2b85e;
+    color: #0F0F0F;
 }
 
 .format-btn:not(.active) {
@@ -90,8 +90,8 @@
 .convert-button {
     height: 3.5rem;
     padding: 0 2rem;
-    background-color: var(--color-accent);
-    color: var(--color-black);
+    background-color: #e2b85e;
+    color: #0F0F0F;
     border-radius: 0.75rem;
     font-weight: 700;
     font-size: 1rem;
@@ -101,7 +101,7 @@
     align-items: center;
     justify-content: center;
     gap: 0.75rem;
-    box-shadow: 0 2px 8px rgba(201, 166, 107, 0.3);
+    box-shadow: 0 2px 8px rgba(201, 162, 77, 0.3);
     border: none;
     min-width: 140px;
     cursor: pointer;
@@ -118,8 +118,8 @@
 .btn-submit:hover,
 .btn-convert:hover,
 .convert-button:hover {
-    background-color: var(--color-accent-hover);
-    box-shadow: 0 0 30px var(--glow-accent);
+    background-color: #ebc575;
+    box-shadow: 0 0 30px rgba(201, 162, 77, 0.3);
 }
 
 .btn-submit:active,

@@ -16,11 +16,11 @@
     --color-navy-light: #1A1F2E;
     --color-navy-lighter: #252B3B;
 
-    /* Primary Accent - Muted Gold/Champagne */
-    --color-accent-primary: #C9A66B;
-    --color-accent-hover: #D4B57A;
-    --color-accent-light: rgba(201, 166, 107, 0.15);
-    --color-accent-dark: #B8956A;
+    /* Primary Accent - Gold */
+    --color-accent-primary: #e2b85e;
+    --color-accent-hover: #ebc575;
+    --color-accent-light: rgba(226, 184, 94, 0.15);
+    --color-accent-dark: #d4a94f;
 
     /* Grayscale */
     --color-gray-900: #171717;
@@ -79,7 +79,7 @@
     --border-primary: var(--color-gray-200);
     --border-secondary: var(--color-gray-300);
     --border-hover: var(--color-gray-400);
-    --border-glass: 1px solid var(--color-gray-200);
+    --border-glass: 1px solid #878787;
     --border-input: 2px solid rgba(255, 255, 255, 0.1);
     --border-input-hover: var(--color-accent-primary);
     --border-input-focus: var(--color-accent-primary);

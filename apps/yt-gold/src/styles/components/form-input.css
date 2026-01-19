@@ -39,9 +39,9 @@
     padding-left: 2rem;
     padding-right: 8rem;
     border-radius: 0.75rem;
-    background-color: var(--bg-input);
-    border: 1px solid #FFFFFF;
-    color: var(--text-card-main);
+    background-color: #1A1A1A;
+    border: 1px solid #878787;
+    color: #FFFFFF;
     font-weight: 500;
     font-size: 1.125rem;
     outline: none;
@@ -56,12 +56,12 @@
 }
 
 .video-input:focus {
-    border-color: var(--border-input-focus);
-    box-shadow: var(--glow-input);
+    border-color: #e2b85e;
+    box-shadow: 0 0 0 1px rgba(201, 162, 77, 0.35);
 }
 
 .video-input::placeholder {
-    color: var(--text-card-muted);
+    color: rgba(255, 255, 255, 0.55);
 }
 
 /* Input Actions */
@@ -107,8 +107,8 @@
 .quality-select {
     width: 100%;
     height: 52px;
-    background-color: var(--bg-input);
-    border: 1px solid #FFFFFF;
+    background-color: #1A1A1A;
+    border: 1px solid #2A2A2A;
     color: #FFFFFF !important;
     font-size: 0.875rem;
     border-radius: 0.75rem;
@@ -124,12 +124,12 @@
 }
 
 .quality-select:focus {
-    border-color: var(--border-input-focus);
-    box-shadow: var(--glow-input);
+    border-color: #e2b85e;
+    box-shadow: 0 0 0 1px rgba(201, 162, 77, 0.35);
 }
 
 .quality-select:hover {
-    border-color: rgba(201, 166, 107, 0.5);
+    border-color: #e2b85e;
 }
 
 .quality-select option {
