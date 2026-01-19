@@ -17,18 +17,18 @@ const initialState: AppState = {
   showPasteButton: true,
   showClearButton: false,
 
-  // Format Selector (NEW FLOW)
-  selectedFormat: 'mp4',
-  selectedQuality: '720p', // Deprecated - kept for backward compatibility
+  // Format Selector - Auto MP3 mode
+  selectedFormat: 'mp3',      // Always MP3
+  selectedQuality: '128kbps', // Deprecated - kept for backward compatibility
   qualityPreferences: {
     mp3: '128kbps',
     mp4: '720p'
   },
 
-  // NEW: Separate quality tracking
-  videoQuality: '720p',       // Default to 720p for mp4
-  audioFormat: 'mp3',         // Default audio format
-  audioBitrate: '128',        // Default to 128 for mp3
+  // Quality tracking - MP3 only
+  videoQuality: '720p',       // Kept for backward compatibility
+  audioFormat: 'mp3',         // Always MP3
+  audioBitrate: '128',        // Default to 128kbps
   hasUserSelectedFormat: false, // Track if user has made a selection
 
   // Suggestions

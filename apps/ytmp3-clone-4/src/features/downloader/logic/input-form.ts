@@ -45,74 +45,35 @@ import {
 
 /**
  * Handle auto-download after preview is shown
- * Builds formatData from FormatSelector state and triggers conversion
+ * Always uses MP3 format with bitrate from dropdown
  */
 async function handleAutoDownload(url: string, videoId: string): Promise<void> {
   try {
     console.log('[Auto-Download] Starting auto-download for:', videoId);
 
-    // Get current format/quality selection from state
+    // Get bitrate from state (dropdown selection)
     const state = getState();
+    const audioBitrate = state.audioBitrate || '128'; // Default to 128kbps
 
-    const selectedFormat = state.selectedFormat; // 'mp4' or 'mp3'
-    const videoQuality = state.videoQuality; // e.g., '720p'
-    const audioFormat = state.audioFormat; // e.g., 'mp3'
-    const audioBitrate = state.audioBitrate; // e.g., '128'
+    console.log('[Auto-Download] Audio bitrate:', audioBitrate);
 
-    console.log('[Auto-Download] Selected format:', selectedFormat);
-    console.log('[Auto-Download] Video quality:', videoQuality);
-    console.log('[Auto-Download] Audio format:', audioFormat, 'Bitrate:', audioBitrate);
-
-    // Build formatData with extractV2Options based on user selection
-    let formatData: any;
-    let formatId: string;
-
-    if (selectedFormat === 'mp4') {
-      // Video format
-      const qualityNumber = videoQuality.replace('p', ''); // '720p' → '720'
-
-      formatData = {
-        id: `video|mp4-${videoQuality}`,
-        vid: videoId,
-        category: 'video',
-        type: 'VIDEO',
-        format: 'mp4',
-        quality: videoQuality,
-        sizeText: 'Processing...',
-        isFakeData: true,
-        extractV2Options: {
-          downloadMode: 'video',
-          videoQuality: qualityNumber,
-          youtubeVideoContainer: 'mp4'
-        }
-      };
-      formatId = `video|mp4-${videoQuality}`;
-
-    } else {
-      // Audio format - All formats need audioBitrate
-      // M4A, OGG, WAV, Opus: Fixed '128'
-      // MP3: User selection (64/128/192/256/320)
-      const isNonBitrateFormat = ['m4a', 'ogg', 'wav', 'opus'].includes(audioFormat.toLowerCase());
-      const finalBitrate = isNonBitrateFormat ? '128' : audioBitrate;
-      const finalQuality = isNonBitrateFormat ? audioFormat.toUpperCase() : `${audioBitrate}kbps`;
-
-      formatData = {
-        id: isNonBitrateFormat ? `audio|${audioFormat}` : `audio|${audioFormat}-${audioBitrate}kbps`,
-        vid: videoId,
-        category: 'audio',
-        type: 'AUDIO',
-        format: audioFormat,
-        quality: finalQuality,
-        sizeText: 'Processing...',
-        isFakeData: true,
-        extractV2Options: {
-          downloadMode: 'audio',
-          audioBitrate: finalBitrate,  // '128' for M4A/OGG/WAV/Opus, user choice for MP3
-          audioFormat: audioFormat
-        }
-      };
-      formatId = formatData.id;
-    }
+    // Build formatData - always MP3
+    const formatId = `audio|mp3-${audioBitrate}kbps`;
+    const formatData = {
+      id: formatId,
+      vid: videoId,
+      category: 'audio',
+      type: 'AUDIO',
+      format: 'mp3',
+      quality: `${audioBitrate}kbps`,
+      sizeText: 'Processing...',
+      isFakeData: true,
+      extractV2Options: {
+        downloadMode: 'audio' as const,
+        audioBitrate: audioBitrate,
+        audioFormat: 'mp3'
+      }
+    };
 
     console.log('[Auto-Download] Built formatData:', formatData);
 
