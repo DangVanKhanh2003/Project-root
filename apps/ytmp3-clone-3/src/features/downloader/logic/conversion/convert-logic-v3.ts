@@ -10,7 +10,7 @@
  */
 
 import { apiV3 } from '../../../../api/v3';
-import { mapToV3DownloadRequest } from '@downloader/core';
+import { mapToV3DownloadRequest, type CreateJobResponse } from '@downloader/core';
 import {
   setConversionTask,
   getConversionTask,
@@ -64,7 +64,7 @@ export async function startConversion(params: V3ConversionParams): Promise<void>
     const jobResponse = await retryWithBackoff(
       () => apiV3.createJob(request, abortController.signal),
       RETRY_CONFIGS.extracting
-    );
+    ) as CreateJobResponse;
     log('Job created:', JSON.stringify(jobResponse, null, 2));
 
     if (abortController.signal.aborted) {
