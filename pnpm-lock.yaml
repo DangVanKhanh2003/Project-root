@@ -109,6 +109,9 @@ importers:
         specifier: workspace:*
         version: link:../../packages/ui-shared
     devDependencies:
+      '@11ty/eleventy':
+        specifier: ^3.0.0
+        version: 3.1.2
       '@types/node':
         specifier: ^20.19.25
         version: 20.19.25
@@ -246,7 +249,7 @@ importers:
         specifier: ^7.1.10
         version: 7.2.2(@types/node@20.19.25)(terser@5.44.1)(tsx@4.20.6)
 
-  apps/ytmp3-clone-4:
+  apps/ytmp3-clone-3:
     dependencies:
       '@downloader/core':
         specifier: workspace:*
@@ -261,9 +264,6 @@ importers:
         specifier: workspace:*
         version: link:../../packages/ui-shared
     devDependencies:
-      '@11ty/eleventy':
-        specifier: ^3.0.0
-        version: 3.1.2
       '@types/node':
         specifier: ^20.19.25
         version: 20.19.25
