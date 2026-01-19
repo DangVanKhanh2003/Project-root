@@ -1,19 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex, nofollow">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <meta charset="UTF-8">
 
     <!-- SEO Metadata -->
-    <title>404 - Page Not Found</title>
-    <meta name="description"
-        content="The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.">
+    <title>404 - Page Not Found | MP3Fast</title>
+    <meta name="description" content="The page you are looking for might have been removed, had its name changed, or is temporarily unavailable." />
 
-   
-    
+    <!-- Fonts -->
+    <link rel="stylesheet" href="/assest/fonts/fonts.css">
 
     <!-- Favicons -->
     <link rel="icon" href="/favicon.ico" sizes="any">
@@ -26,135 +23,94 @@
 
     <!-- Theme Color -->
     <meta name="theme-color" content="#c10841">
-    <meta name="color-scheme" content="light">
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZWPL9SR6P6"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-        gtag('config', 'G-ZWPL9SR6P6');
-    </script>
-
-    <!-- Critical CSS imported via Vite -->
+    <!-- TypeScript Module -->
     <script type="module" src="/src/main.ts"></script>
 </head>
-
-<body style="background-color: white;">
-    <header class="nav-header">
-        <div class="container">
-            <div class="nav_head">
-                <div class="navbar-logo">
-                    <a href="/">
-                        <img height="46px" width="46px" src="/logo.png" alt="Y2Mate logo">
-                        <span class="logo-name">Y2mate</span>
-                    </a>
-                </div>
-                <button type="button" class="navbar-toggler" id="mobileMenuToggle">
-                    <span class="toggle-icon"></span>
-                    <span class="toggle-icon"></span>
-                    <span class="toggle-icon"></span>
-                </button>
-            </div>
-            <div class="header-menu">
-                <ul class="menu-navbar">
-                    <li class="navbar">
-                        <a href="/">YouTube Downloader</a>
-                    </li>
-                    <li class="navbar">
-                        <a href="youtube-to-mp4">YouTube to MP4 Converter</a>
-                    </li>
-                    <li class="navbar">
-                        <a href="youtube-to-mp3">YouTube to MP3 Converter</a>
-                    </li>
-                    <li class="navbar language">
-                        <a href="javascript:void(0);">
-                            English<span class="shape"></span>
-                        </a>
-                        <div class="dropdown-menu">
-                            <ul class="lang-menu">
-                                <li>
-                                    <a data-lang="en" href="/">English</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Mobile Menu Overlay -->
-            <div class="mobile-menu-overlay" id="mobileMenuOverlay">
-                <div class="mobile-menu-content">
-                    <div class="mobile-header-top">
-                            <a href="/">
-                        <div class="mobile-logo">
-                                <img height="36px" width="36px" src="/logo.png" alt="Y2Mate logo">
-                                <span class="logo-name">Y2mate</span>
-                        </div>
-                            </a>
-                        <button type="button" class="mobile-close-btn" id="mobileCloseBtn">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                            </svg>
-                        </button>
-                    </div>
-                    <nav class="mobile-nav">
-                        <ul class="mobile-menu">
-                            <li><a href="/">YouTube Downloader</a></li>
-                            <li><a href="youtube-to-mp4">YouTube to MP4 Converter</a></li>
-                            <li><a href="youtube-to-mp3">YouTube to MP3 Converter</a></li>
-                            <li><a href="youtube-to-mp3-320kbps-converter">YouTube to MP3 320kbps</a></li>
-                            <li><a href="youtube-to-wav-converter">YouTube to WAV Converter</a></li>
-                            <li><a href="youtube-to-ogg-converter">YouTube to OGG Converter</a></li>
-                            <li><a href="youtube-to-opus-converter">YouTube to Opus Converter</a></li>
-                            <li><a href="youtube-short-downloader">YouTube Shorts Downloader</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-            <!-- End Mobile Menu Overlay -->
+<body>
+    <!-- HEADER -->
+    <div class="header-wrapper">
+        <div id="header" class="nav-links">
+            <a href="/" class="nav-link">Home</a>
+            <a href="/faq/" class="nav-link">FAQ</a>
         </div>
-    </header>
-    <main class="container-404" style="display: flex; justify-content: center; align-items: center; padding: 40px 15px; min-height: calc(100vh - 150px); width: 100%;">
-        <img src="/404.jpg" alt="Page Not Found" style="max-width: 100%; height: auto; max-height: 400px;">
+        <a href="/" class="logo-container">
+            <img src="/logo.svg" alt="MP3Fast Logo" class="logo-img" />
+            <div class="logo-text">MP3Fast</div>
+        </a>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main class="error-page">
+        <div class="error-content">
+            <h1>404</h1>
+            <p>Page Not Found</p>
+            <a href="/" class="btn-home">Go to Homepage</a>
+        </div>
     </main>
+
+    <!-- FOOTER -->
     <footer class="footer">
-        <p>©2025 y2matepro.com</p>
-        <ul class="footer_nav">
-            <li class="fnav-menu">
-                <a href="about-us">About</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="contact">Contact</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="terms-condition">Terms of Service</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="privacy-policy">Privacy Policy</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="youtube-short-downloader">YouTube Shorts Downloader</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="youtube-to-mp3-320kbps-converter">YouTube to MP3 320kbps</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="youtube-to-wav-converter">YouTube to WAV Converter</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="youtube-to-ogg-converter">YouTube to OGG Converter</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="youtube-to-opus-converter">YouTube to Opus Converter</a>
-            </li>
-        </ul>
+        <div class="footer-content">
+            <p class="footer-text">© 2025 MP3Fast.net | Free YouTube to MP3 Converter</p>
+            <div class="footer-links">
+                <a href="/contact/" class="footer-link">Contact</a>
+                <a href="/copyright-claims/" class="footer-link">Copyright Claims</a>
+                <a href="/privacy-policy/" class="footer-link">Privacy Policy</a>
+                <a href="/terms-of-use/" class="footer-link">Terms of Use</a>
+            </div>
+        </div>
     </footer>
 
-    <!-- Conversion Modal Wrapper -->
+    <style>
+        .error-page {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 200px);
+            padding: 40px 20px;
+            text-align: center;
+        }
+        .error-content h1 {
+            font-size: 120px;
+            font-weight: 700;
+            color: #000;
+            margin: 0;
+            line-height: 1;
+        }
+        .error-content p {
+            font-size: 24px;
+            color: #666;
+            margin: 16px 0 32px;
+        }
+        .btn-home {
+            display: inline-block;
+            padding: 14px 32px;
+            background: #c10841;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        .btn-home:hover {
+            background: #a00636;
+        }
+        @media (max-width: 480px) {
+            .error-content h1 {
+                font-size: 80px;
+            }
+            .error-content p {
+                font-size: 18px;
+            }
+        }
+        .footer {
+            background: #000;
+        }
+        .footer-text,
+        .footer-link {
+            color: #fff;
+        }
+    </style>
 </body>
-
 </html>
