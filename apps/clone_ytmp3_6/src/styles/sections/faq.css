@@ -1,0 +1,107 @@
+/* =========================================================
+   Section - FAQ
+   ---------------------------------------------------------
+   FAQ grid styles based on clone.html template
+   ========================================================= */
+
+.faq-section {
+    width: 100%;
+    max-width: var(--container-width);
+    margin: 80px auto 0;
+    padding: 0 20px;
+}
+
+.faq-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.faq-title {
+    font-size: 24px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+@media (min-width: 640px) {
+    .faq-title {
+        font-size: 28px;
+    }
+}
+
+.faq-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: var(--color-accent-light);
+    color: var(--color-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+}
+
+@media (min-width: 768px) {
+    .faq-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.faq-item {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-primary);
+    padding: 24px;
+    border-radius: var(--radius-lg);
+    transition: border-color 0.2s;
+}
+
+.faq-item:hover {
+    border-color: var(--color-accent);
+}
+
+.faq-question {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--text-main);
+}
+
+@media (min-width: 640px) {
+    .faq-question {
+        font-size: 18px;
+    }
+}
+
+.faq-answer {
+    color: var(--text-secondary);
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* Legacy support */
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.faq-q {
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+
+.faq-a {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}

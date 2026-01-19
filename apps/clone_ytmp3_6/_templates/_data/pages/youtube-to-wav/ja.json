@@ -1,0 +1,70 @@
+{
+  "seo": {
+    "title": "YouTubeをWAVに変換（非圧縮ロスレス） – YTMP3",
+    "description": "YTMP3でYouTubeをWAV非圧縮ロスレスオーディオに変換します。プロの編集と制作のために元のオーディオデータを保持します。無料、高速、無制限。",
+    "ogTitle": "YouTubeをWAVに – YTMP3",
+    "ogDescription": "プロの編集と制作のためにYouTubeオーディオを非圧縮WAVロスレスとしてダウンロードします。"
+  },
+
+  "hero": {
+    "title": "YouTubeを",
+    "titleAccent": "WAV",
+    "subtitle": "無料＆高速なYouTubeからWAVロスレスコンバーター"
+  },
+
+  "content": {
+    "mainTitle": "YouTubeからWAVとは？",
+
+    "intro1": "YouTubeからWAVとは、YouTube動画からオーディオを抽出し、<strong>WAV形式</strong>、つまり<strong>非圧縮ロスレス</strong>オーディオ形式に変換するプロセスです。",
+    "intro2": "WAVは、圧縮なしで生のオーディオデータを保存し、<strong>元のサウンド情報の100%</strong>を保持します。これにより、プロのオーディオ編集、ミキシング、マスタリング、および制作ワークフローに最適です。",
+
+    "whatIsTitle": "WAVはFLACやMP3とどう違うのですか？",
+    "whatIsText": "<ul><li><strong>FLACと比較して：</strong> <a href=\"/youtube-to-flac-converter\">FLAC</a>はロスレスですが圧縮されていますが、WAVは完全に非圧縮です。WAVファイルは大きいですが、絶対的な精度とシンプルさを提供します。</li><li><strong>MP3と比較して：</strong> MP3（MP3 320kbpsを含む）はオーディオデータを削除する非可逆形式ですが、WAVはすべての元のサウンド情報を保持します。</li></ul>"
+  },
+
+  "whyChoose": {
+    "title": "YouTubeをWAVに変換するためにYTMP3を使用する理由",
+    "reasons": [
+      {
+        "title": "真の非圧縮ロスレス",
+        "text": "生のオーディオデータは、圧縮や品質の損失なしに保持されます。"
+      },
+      {
+        "title": "無料で使用可能",
+        "text": "登録不要、制限なし、隠れた費用なし。"
+      },
+      {
+        "title": "プロフェッショナル対応",
+        "text": "DAW、オーディオエディター、および制作ワークフローに最適です。"
+      },
+      {
+        "title": "マルチプラットフォーム対応",
+        "text": "Windows、macOS、Linuxで動作します。"
+      }
+    ]
+  },
+
+  "instructions": {
+    "title": "YouTubeをWAVに変換する方法",
+    "steps": [
+      "YouTube動画のリンクをコピーします。",
+      "YTMP3コンバーターに貼り付けます。",
+      "出力形式としてWAVを選択します。",
+      "「変換」をクリックしてWAVファイルをダウンロードします。"
+    ]
+  },
+
+  "faqs": {
+    "title": "よくある質問",
+    "items": [
+      { "question": "YTMP3はYouTubeからWAVへの変換に完全に無料ですか？", "answer": "はい。YTMP3はYouTube用の無料WAVコンバーターです。登録不要、サブスクリプション不要、広告なし、ポップアップなし、ダウンロード制限なし。" },
+      { "question": "WAVファイルは高品質のオーディオを維持しますか？", "answer": "はい。オプションにはロスレスWAV、CD品質、24ビットスタジオ品質が含まれます。最大品質はソースビデオに依存しますが、WAVファイルは常に非圧縮です。" },
+      { "question": "YouTube ShortsをWAVとしてダウンロードできますか？", "answer": "はい。YTMP3はYouTube Shortsを完全にサポートしており、短編動画をすばやく簡単にダウンロードできます。" },
+      { "question": "YTMP3の使用は安全ですか？", "answer": "完全に。YTMP3は個人データを保存せず、マルウェアもありません。安全のために常に公式サイトにアクセスしてください。" },
+      { "question": "モバイルデバイスでYouTube動画をWAVに変換できますか？", "answer": "はい。YTMP3はモバイルブラウザに完全にレスポンシブです。手順は同じです：リンクを貼り付け → WAVを選択 → 変換 → ダウンロード。" },
+      { "question": "WAVダウンロードのファイルサイズ制限はありますか？", "answer": "いいえ。WAVは非圧縮なので、大きなファイルは正常です（16ビットステレオオーディオ1分あたり約10MB）。" },
+      { "question": "MP3ではなくWAVを選ぶ理由は何ですか？", "answer": "WAVは非圧縮で、元のオーディオ品質を保持し、編集やプロの使用に適しています。MP3はカジュアルなリスニングに適していますが、一部のオーディオデータが失われます。" },
+      { "question": "WAVはFLACと比較してどうですか？", "answer": "どちらもロスレスですが、WAVは非圧縮で、FLACは圧縮を使用します。FLACファイルは同じ品質で40〜50％小さくなります。WAVは古いソフトウェアとの互換性が優れています。" }
+    ]
+  }
+}

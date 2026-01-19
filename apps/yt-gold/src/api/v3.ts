@@ -1,6 +1,6 @@
 /**
  * API V3 Setup - YouTube Download API
- * https://hub.ytconvert.org
+ * https://gate.ytconvert.org
  *
  * Completely isolated from V2 - no cross-imports
  */

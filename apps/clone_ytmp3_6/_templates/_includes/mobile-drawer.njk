@@ -1,0 +1,28 @@
+{%- set homeUrl = '/' if (lang == 'en' or not lang) else '/' + lang + '/' -%}
+{%- set langPrefix = '' if (lang == 'en' or not lang) else '/' + lang -%}
+
+<!-- MOBILE DRAWER BACKDROP -->
+<div id="mobile-drawer-backdrop" class="drawer-backdrop"></div>
+
+<!-- MOBILE DRAWER -->
+<div id="mobile-drawer" class="mobile-drawer">
+    <div id="mobile-drawer-content" class="drawer-content">
+        <div class="drawer-header">
+            <a href="{{ homeUrl }}" class="logo">
+                <div class="logo-icon">MP3</div>
+                <span class="logo-text">MP3Converter</span>
+            </a>
+            <button id="close-drawer-btn" class="close-drawer-btn" aria-label="Close menu">
+                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+        <nav class="drawer-menu">
+            <a href="{{ homeUrl }}" class="drawer-sublink{% if pageKey == 'index' %} active{% endif %}">{{ base.nav.home }}</a>
+            <a href="/about" class="drawer-sublink">{{ base.nav.about }}</a>
+            <div class="drawer-divider"></div>
+            <a href="/faq" class="drawer-sublink">{{ base.nav.faq or 'FAQ' }}</a>
+        </nav>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+{#- Helper: Get language-aware URL -#}
+{%- macro getUrl(slug) -%}
+{%- if lang == 'en' or not lang -%}/{{ slug }}{%- else -%}/{{ lang }}/{{ slug }}{%- endif -%}
+{%- endmacro -%}
+
+{%- set homeUrl = '/' if (lang == 'en' or not lang) else '/' + lang + '/' -%}
+
+<!-- HEADER -->
+<header id="main-header" class="header-container">
+    <div class="header-content">
+        <!-- Logo -->
+        <a href="{{ homeUrl }}" class="logo">
+            <div class="logo-icon">MP3</div>
+            <span class="logo-text">MP3Converter</span>
+        </a>
+
+        <!-- Desktop Nav -->
+        <nav class="desktop-nav">
+            <a href="{{ homeUrl }}" class="nav-link{% if pageKey == 'index' %} active{% endif %}">{{ base.nav.home }}</a>
+            <a href="/about" class="nav-link">{{ base.nav.about }}</a>
+            <a href="/faq" class="nav-link">{{ base.nav.faq or 'FAQ' }}</a>
+            <div class="nav-divider"></div>
+
+            <!-- Language Selector -->
+            <div class="lang-selector">
+                <button id="lang-btn" class="lang-button">
+                    <span>{{ lang | upper }}</span>
+                    <svg class="select-arrow" width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <!-- Language Dropdown -->
+                <div id="lang-dropdown" class="lang-dropdown hidden">
+                    {%- for langItem in site.languages %}
+                    {%- if langItem.isDefault %}
+                    {%- set langUrl = '/' if pageKey == 'index' else '/' + pageInfo.slug %}
+                    {%- else %}
+                    {%- set langUrl = '/' + langItem.code + '/' if pageKey == 'index' else '/' + langItem.code + '/' + pageInfo.slug %}
+                    {%- endif %}
+                    <a href="{{ langUrl }}" class="lang-option{% if langItem.code == lang %} active{% endif %}">{{ langItem.name }}</a>
+                    {%- endfor %}
+                </div>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Open menu">
+            <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+            </svg>
+        </button>
+    </div>
+</header>

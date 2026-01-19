@@ -60,6 +60,40 @@ importers:
         specifier: ^3.1.4
         version: 3.1.4(vite@7.2.2(@types/node@20.19.25)(terser@5.44.1)(tsx@4.20.6))
 
+  apps/clone_ytmp3_6:
+    dependencies:
+      '@downloader/core':
+        specifier: workspace:*
+        version: link:../../packages/core
+      '@downloader/i18n':
+        specifier: workspace:*
+        version: link:../../packages/i18n
+      '@downloader/ui-components':
+        specifier: workspace:*
+        version: link:../../packages/ui-components
+      '@downloader/ui-shared':
+        specifier: workspace:*
+        version: link:../../packages/ui-shared
+      firebase:
+        specifier: ^12.8.0
+        version: 12.8.0
+    devDependencies:
+      '@11ty/eleventy':
+        specifier: ^3.0.0
+        version: 3.1.2
+      '@types/node':
+        specifier: ^20.19.25
+        version: 20.19.25
+      tsx:
+        specifier: ^4.20.6
+        version: 4.20.6
+      typescript:
+        specifier: ^5.3.3
+        version: 5.9.3
+      vite:
+        specifier: ^7.1.10
+        version: 7.2.2(@types/node@20.19.25)(terser@5.44.1)(tsx@4.20.6)
+
   apps/y2mate-new-ux:
     dependencies:
       '@downloader/core':
