@@ -6,6 +6,7 @@
    ========================================================= */
 
 /* Quality Wrapper */
+/* Mobile: Top (Row 1, Span 2) */
 .quality-wrapper {
     grid-column: span 2;
     order: 1;
@@ -17,7 +18,6 @@
     .quality-wrapper {
         width: auto;
         order: 2;
-        margin-left: auto;
     }
 }
 

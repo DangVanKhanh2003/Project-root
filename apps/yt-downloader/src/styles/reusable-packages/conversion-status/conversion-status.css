@@ -264,6 +264,20 @@
 
 /* ===== RESPONSIVE ===== */
 
+/* Small mobile screens */
+@media (max-width: 359px) {
+  .action-container.active {
+    gap: 8px;
+  }
+
+  .download-btn,
+  .retry-btn,
+  .btn-new-convert {
+    padding: 3px 8px !important;
+    font-size: 13px;
+  }
+}
+
 @media (min-width: 768px) {
   .status-container,
   .action-container {

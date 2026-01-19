@@ -250,28 +250,36 @@ html[data-format="mp4"] .quality-select--mp4 { display: block; }
   }
 }
 
-/* Very small devices - stack vertically */
+/* Very small devices - quality on line 1, format + convert on line 2 */
 @media (max-width: 360px) {
   .format-selector-wrapper {
-    min-height: 136px; /* 40px + 40px + 48px + gaps */
+    min-height: 96px; /* 40px + 40px + gap */
   }
 
   .format-selector {
-    flex-direction: column;
-    align-items: stretch;
+    flex-wrap: wrap;
     gap: 8px;
-    min-height: 136px;
+    min-height: 88px;
+  }
+
+  .quality-wrapper {
+    width: 100%;
+    order: 1;
   }
 
   .format-toggle {
-    height: 40px;
-  }
-
-  .quality-select {
+    order: 2;
+    flex: 1;
     height: 40px;
   }
 
   .format-selector .btn-convert {
+    order: 2;
+    flex: 1;
+    height: 40px;
+  }
+
+  .quality-select {
     height: 40px;
   }
 }

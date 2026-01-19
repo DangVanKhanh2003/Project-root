@@ -184,3 +184,14 @@
     color: var(--text-main);
     background: var(--bg-button-hover);
 }
+
+/* Small mobile screens */
+@media (max-width: 359px) {
+    .btn-submit,
+    .btn-convert,
+    .convert-button {
+        padding: 0 0.75rem;
+        font-size: 0.875rem;
+        min-width: 100px;
+    }
+}

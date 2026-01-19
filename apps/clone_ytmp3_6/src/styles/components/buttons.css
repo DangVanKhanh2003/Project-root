@@ -31,10 +31,13 @@
 }
 
 /* Convert Button */
+/* Mobile: Bottom Right (Row 2, Col 2) */
 .btn-convert {
+    grid-column: span 1;
+    order: 3;
     background-color: var(--color-accent);
     color: white;
-    padding: 12px 16px;
+    padding: 12px 12px;
     border-radius: var(--radius-md);
     font-weight: 600;
     font-size: 16px;
@@ -47,12 +50,21 @@
     width: 100%;
     border: none;
     cursor: pointer;
+    min-width: 0;
+}
+
+@media (max-width: 359px) {
+    .btn-convert {
+        padding: 12px 8px !important;
+        font-size: 13px;
+    }
 }
 
 @media (min-width: 640px) {
     .btn-convert {
         width: auto;
         padding: 12px 24px;
+        margin-left: auto;
     }
 }
 
@@ -60,9 +72,16 @@
     background-color: var(--color-accent-hover);
 }
 
+.btn-convert span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .btn-convert svg {
     width: 20px;
     height: 20px;
+    flex-shrink: 0;
 }
 
 /* Download Button */
