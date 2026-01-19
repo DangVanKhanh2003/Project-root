@@ -235,6 +235,7 @@ html[data-format="mp4"] .quality-select--mp4 { display: block; }
 
   .format-selector .btn-convert {
     height: 40px; /* Match format-toggle height */
+    padding: 5px 12px;
   }
 
   .format-btn {
@@ -277,6 +278,7 @@ html[data-format="mp4"] .quality-select--mp4 { display: block; }
     order: 2;
     flex: 1;
     height: 40px;
+    padding: 5px 12px;
   }
 
   .quality-select {
