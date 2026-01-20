@@ -218,19 +218,9 @@ body {
   letter-spacing: -0.02em;
 }
 
-.logo-text-svg {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
 @media (max-width: 640px) {
   .logo-text {
     font-size: 2rem;
-  }
-
-  .logo-text-svg {
-    width: 150px;
   }
 }
 
@@ -340,7 +330,6 @@ main {
   margin-bottom: 0.5rem;
 }
 
-
 /* ===== HERO SECTION ===== */
 .hero-section {
   width: 100%;
@@ -360,23 +349,6 @@ main {
   width: 100%;
   max-width: 56rem;
 }
-
-/* Hero Header */
-.hero-header h1 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 1.5rem;
-  letter-spacing: -0.025em;
-  color: var(--color-text-primary);
-}
-
-@media (min-width: 768px) {
-  .hero-header h1 {
-    font-size: 1.875rem;
-  }
-}
-
 
 /* ===== FORM STYLES ===== */
 .converter-form,
@@ -746,8 +718,6 @@ button[type="submit"]:disabled {
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
   margin-top: 0.5rem;
 }
-
-/* Format Selector Container - TypeScript will render format selector here */
 
 /* Hero Card */
 .hero-card {

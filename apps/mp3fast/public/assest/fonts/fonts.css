@@ -1,7 +1,7 @@
-/* Fredoka Font (Logo only) */
+/* Fredoka Font (Logo only - subset for "MP3Fast") */
 @font-face {
     font-family: 'Fredoka';
-    src: url('./fredoka/Fredoka-Bold.ttf') format('truetype');
+    src: url('./fredoka/Fredoka-Bold.woff2') format('woff2');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
