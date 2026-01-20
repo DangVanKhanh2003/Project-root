@@ -21,8 +21,8 @@ import { initViewSwitcher, showSearchView } from './ui-render/view-switcher';
  */
 export async function init(): Promise<void> {
   // Step 0: Initialize shared services
-  // Configure scroll manager for mp3fast (header is fixed at 80px)
-  scrollManager.setHeaderConfig({ isFixed: true, height: 80 });
+  // Configure scroll manager for mp3fast (header not fixed, no offset)
+  scrollManager.setHeaderConfig({ isFixed: false, height: 0 });
   scrollManager.init();
 
   // ==========================================
