@@ -500,22 +500,34 @@ export function renderPreviewCard(_data: any): void {
   const selectedFormat = state.selectedFormat; // 'mp3' or 'mp4'
 
   // Get format badge and quality info based on selected format
-  const audioFormat = state.audioFormat || 'mp3';
-  const bitrate = state.audioBitrate || '128';
+  // For wav, flac, opus, ogg (audio) and webm, mkv (video): show badge only (no quality-info)
+  // For mp4, mp3: show badge + quality-info
+  const audioBadgeOnlyFormats = ['wav', 'flac', 'opus', 'ogg'];
+  const videoBadgeOnlyFormats = ['webm', 'mkv'];
 
-  let formatBadge = '';
   let qualityInfo = '';
+  let formatBadge = '';
+  const videoQuality = state.videoQuality || '720p';
 
-  if (selectedFormat === 'mp4') {
+  if (selectedFormat === 'mp4' && videoBadgeOnlyFormats.includes(videoQuality)) {
+    // webm, mkv: show badge only, no quality-info
+    formatBadge = videoQuality.toUpperCase();
+    qualityInfo = '';
+  } else if (selectedFormat === 'mp4') {
     formatBadge = 'MP4';
-    qualityInfo = state.videoQuality || '720p';
+    qualityInfo = videoQuality;
   } else {
-    // Audio formats - badge shows format, quality shows bitrate (MP3 only)
-    formatBadge = audioFormat.toUpperCase();
-    const isNonBitrateFormat = ['flac', 'wav', 'ogg', 'opus', 'm4a'].includes(audioFormat.toLowerCase());
-
-    // MP3 shows bitrate, other formats hide quality-info
-    qualityInfo = isNonBitrateFormat ? '' : `${bitrate}kbps`;
+    const audioFormat = state.audioFormat || 'mp3';
+    if (audioBadgeOnlyFormats.includes(audioFormat)) {
+      // wav, flac, opus, ogg: show badge only, no quality-info
+      formatBadge = audioFormat.toUpperCase();
+      qualityInfo = '';
+    } else {
+      // MP3: show badge + bitrate
+      formatBadge = audioFormat.toUpperCase();
+      const bitrate = state.audioBitrate || '128';
+      qualityInfo = `${bitrate}kbps`;
+    }
   }
 
   const previewCardHtml = `
@@ -531,7 +543,7 @@ export function renderPreviewCard(_data: any): void {
         <h3 class="yt-preview-title">${escapeHtml(title)}</h3>
         <div class="yt-preview-meta">
           <div class="yt-preview-format">
-            <span class="format-badge">${formatBadge}</span>
+            ${formatBadge ? `<span class="format-badge">${formatBadge}</span>` : ''}
             ${qualityInfo ? `<span class="quality-info">${escapeHtml(qualityInfo)}</span>` : ''}
           </div>
           ${author ? `<p class="yt-preview-author">${escapeHtml(author)}</p>` : ''}
