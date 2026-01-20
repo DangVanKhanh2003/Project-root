@@ -529,28 +529,22 @@ async function handleSubmit(event: Event): Promise<void> {
   const state = getState();
 
   try {
+    // Show appropriate skeleton based on input type
     if (state.inputType === 'url') {
-      // Show detail skeleton for video extraction
       showLoading('detail');
+    } else {
+      showLoading('list');
+    }
 
-      // Scroll to hero-card after skeleton renders (50ms delay)
-      setTimeout(() => {
-        scrollManager.scrollToElement('.hero-card');
-      }, 50);
+    // Scroll to hero-card after skeleton renders (50ms delay), with 20px offset
+    setTimeout(() => {
+      scrollManager.scrollToElement('.hero-card', { customOffset: 20 });
+    }, 50);
 
+    // Execute the appropriate action
+    if (state.inputType === 'url') {
       await handleExtractMedia(value);
     } else {
-      // Show list skeleton (12 cards) for keyword search
-      showLoading('list');
-
-      // Scroll to content area after skeleton renders (50ms delay)
-      setTimeout(() => {
-        // Only scroll on mobile for keyword searches
-        if (scrollManager.isMobile()) {
-          scrollManager.scrollToElement('#videoUrl');
-        }
-      }, 50);
-
       await handleSearch(value);
     }
   } catch (error) {
