@@ -1,5 +1,10 @@
 /* ===== FORM INPUT ===== */
 
+/* Input Group */
+.input-group {
+    position: relative;
+}
+
 /* Form Container */
 .convert-form,
 .form-container {
