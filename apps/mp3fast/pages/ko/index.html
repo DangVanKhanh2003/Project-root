@@ -99,7 +99,7 @@
     <div class="header-wrapper">
         <div id="header" class="nav-links">
             <a href="/ko/" class="nav-link">Home</a>
-            <a href="/ko/faq/" class="nav-link">FAQ</a>
+            <a href="/faq/" class="nav-link">FAQ</a>
             <div class="language-selector">
                 <button type="button" class="lang-btn" aria-haspopup="true" aria-expanded="false">한국어<span class="arrow"></span>
                 </button>
@@ -128,10 +128,10 @@
                 </div>
             </div>
         </div>
-        <a href="/ko/" class="logo-container">
-            <img src="/logo.svg" alt="MP3Fast Logo" class="logo-img" />
-            <div class="logo-text">MP3Fast</div>
-        </a>
+        <div class="logo-container">
+            <a href="/ko/"><img src="/logo.svg" alt="MP3Fast Logo" class="logo-img" /></a>
+            <a href="/ko/" class="logo-text">MP3Fast</a>
+        </div>
     </div>
 
     <!-- MAIN CONTENT -->
@@ -200,11 +200,15 @@
                                     <img src="/assest/icons/quality-choose-icon.png" alt="Quality" width="20" height="20" />
                                 </div>
                                 <div class="quality-dropdown-wrapper">
-                                    <select id="quality-select-mp3" class="quality-select" aria-label="Select MP3 quality" data-quality-select>
-                                        <option value="mp3-320">320kbps</option>
+                                    <select id="quality-select-mp3" class="quality-select" aria-label="Select audio quality" data-quality-select>
+                                        <option value="mp3-320" selected>320kbps</option>
                                         <option value="mp3-192">192kbps</option>
-                                        <option value="mp3-128" selected>128kbps</option>
                                         <option value="mp3-64">64kbps</option>
+                                        <option value="wav">WAV</option>
+                                        <option value="flac">FLAC</option>
+                                        <option value="ogg">OGG</option>
+                                        <option value="opus">OPUS</option>
+                                        <option value="m4a">M4A</option>
                                     </select>
                                 </div>
                                 <script>(function(){try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(!p)return;var s=document.getElementById('quality-select-mp3');if(!s)return;var v='mp3-'+(p.audioBitrate||'128');s.value=v}catch(e){}})()</script>

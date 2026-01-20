@@ -522,12 +522,17 @@ main {
 .select-arrow {
   content: '▾';
   position: absolute;
-  right: 0.75rem;
+  right: 10px;
   top: 50%;
   transform: translateY(-50%);
   pointer-events: none;
   color: var(--color-text-secondary);
   font-size: 0.875rem;
+  transition: transform 0.2s ease;
+}
+
+.quality-wrapper.dropdown-open .select-arrow {
+  transform: translateY(-50%) rotate(180deg);
 }
 
 .select-arrow svg {

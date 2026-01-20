@@ -245,11 +245,16 @@ html[data-format="mp4"] .quality-select--mp4 { display: block; }
 
 .select-arrow {
   position: absolute;
-  right: 16px;
-  top: 50%;
+  right: 10px;
+  top: 55%;
   transform: translateY(-50%);
   pointer-events: none;
   color: var(--text-muted, var(--color-gray-550));
+  transition: transform 0.2s ease;
+}
+
+.quality-wrapper.dropdown-open .select-arrow {
+  transform: translateY(-50%) rotate(180deg);
 }
 
 /* ==========================================

@@ -49,6 +49,9 @@ export function initFormatSelector(containerSelector: string = '#previewCard'): 
   // Listen for quality select changes (MP3 bitrate)
   container.addEventListener('change', handleQualityChange);
 
+  // Initialize dropdown arrow rotation
+  initDropdownArrow(container);
+
   // Initialize custom tooltips
   initCustomTooltips(container);
 }
@@ -71,6 +74,41 @@ function handleQualityChange(event: Event): void {
   if (bitrate) {
     setAudioBitrate(bitrate);
   }
+}
+
+// ==========================================
+// Dropdown Arrow
+// ==========================================
+
+/**
+ * Initialize dropdown arrow rotation on open/close
+ * Native <select> doesn't have open/close events, so we use:
+ * - mousedown: toggle open state
+ * - change: option selected, close
+ * - blur: clicked outside, close
+ */
+function initDropdownArrow(container: Element): void {
+  const qualityWrappers = container.querySelectorAll('.quality-wrapper');
+
+  qualityWrappers.forEach((wrapper) => {
+    const select = wrapper.querySelector('select');
+    if (!select) return;
+
+    // Toggle dropdown on mousedown (handles open and close on same element)
+    select.addEventListener('mousedown', () => {
+      wrapper.classList.toggle('dropdown-open');
+    });
+
+    // Close dropdown when option selected
+    select.addEventListener('change', () => {
+      wrapper.classList.remove('dropdown-open');
+    });
+
+    // Close dropdown when focus lost
+    select.addEventListener('blur', () => {
+      wrapper.classList.remove('dropdown-open');
+    });
+  });
 }
 
 // ==========================================

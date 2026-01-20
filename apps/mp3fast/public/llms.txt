@@ -1,5 +1,3 @@
-# Ytmp3 LLM crawling policy
-# Non-standard file (llms.txt / ai.txt). For transparency only.
 
 User-agent: GPTBot
 Allow: /
