@@ -543,7 +543,37 @@ export function renderPreviewCard(_data: any): void {
     // Wrapper exists - only update preview card (preserve conversion state)
     const existingPreviewCard = contentArea.querySelector('.yt-preview-card');
     if (existingPreviewCard) {
-      existingPreviewCard.outerHTML = previewCardHtml;
+      // Check if thumbnail is the same - only update text to prevent flicker
+      const existingImg = existingPreviewCard.querySelector('.yt-preview-thumbnail img') as HTMLImageElement;
+      if (existingImg && existingImg.src === thumbnail) {
+        // Same thumbnail - only update text elements (no DOM replacement = no flicker)
+        const titleEl = existingPreviewCard.querySelector('.yt-preview-title');
+        const formatBadgeEl = existingPreviewCard.querySelector('.format-badge');
+        const qualityInfoEl = existingPreviewCard.querySelector('.quality-info');
+        const authorEl = existingPreviewCard.querySelector('.yt-preview-author');
+        const metaEl = existingPreviewCard.querySelector('.yt-preview-meta');
+
+        if (titleEl) titleEl.textContent = title;
+        if (formatBadgeEl) formatBadgeEl.textContent = formatBadge;
+        if (qualityInfoEl) qualityInfoEl.textContent = qualityInfo;
+
+        // Handle author: update, create, or remove
+        if (author) {
+          if (authorEl) {
+            authorEl.textContent = author;
+          } else if (metaEl) {
+            const newAuthor = document.createElement('p');
+            newAuthor.className = 'yt-preview-author';
+            newAuthor.textContent = author;
+            metaEl.appendChild(newAuthor);
+          }
+        } else if (authorEl) {
+          authorEl.remove();
+        }
+      } else {
+        // Different thumbnail - full replacement needed
+        existingPreviewCard.outerHTML = previewCardHtml;
+      }
     } else {
       // Preview card doesn't exist - insert before wrapper
       existingWrapper.insertAdjacentHTML('beforebegin', previewCardHtml);
