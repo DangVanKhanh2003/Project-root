@@ -54,9 +54,18 @@
 }
 
 @media (max-width: 359px) {
+    .format-toggle {
+        max-width: 120px !important;
+    }
+
     .btn-convert {
         padding: 12px 8px !important;
         font-size: 13px;
+        min-width: 100px;
+    }
+
+    .btn-convert svg {
+        display: none;
     }
 }
 

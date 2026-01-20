@@ -76,11 +76,14 @@ eleventyComputed:
                                     <img src="/assest/icons/quality-choose-icon.png" alt="Quality" width="20" height="20" />
                                 </div>
                                 <div class="quality-dropdown-wrapper">
-                                    <select id="quality-select-mp3" class="quality-select" aria-label="Select MP3 quality" data-quality-select>
-                                        <option value="mp3-320">320kbps</option>
+                                    <select id="quality-select-mp3" class="quality-select" aria-label="Select audio quality" data-quality-select>
+                                        <option value="mp3-320" selected>320kbps</option>
                                         <option value="mp3-192">192kbps</option>
-                                        <option value="mp3-128" selected>128kbps</option>
                                         <option value="mp3-64">64kbps</option>
+                                        <option value="wav">WAV</option>
+                                        <option value="flac">FLAC</option>
+                                        <option value="ogg">OGG</option>
+                                        <option value="opus">OPUS</option>
                                     </select>
                                 </div>
                                 <script>(function(){try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(!p)return;var s=document.getElementById('quality-select-mp3');if(!s)return;var v='mp3-'+(p.audioBitrate||'128');s.value=v}catch(e){}})()</script>
