@@ -27,7 +27,7 @@
 /* Section Container - Mobile First (0-599px) */
 #search-results-section {
     width: 100%;
-    padding-top: 40px !important;
+    padding-top: 0 !important;
     padding-bottom: 40px !important;
     min-height: 0; /* Allow section to collapse when empty */
 }
