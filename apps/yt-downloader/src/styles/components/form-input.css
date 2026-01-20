@@ -46,6 +46,7 @@
     font-size: 1.125rem;
     outline: none;
     transition: all 0.2s ease;
+    -webkit-tap-highlight-color: transparent;
 }
 
 @media (min-width: 768px) {
@@ -109,7 +110,7 @@
     background-color: var(--bg-input);
     border: var(--border-input);
     color: var(--text-main);
-    font-size: 0.875rem;
+    font-size: max(16px, 0.875rem); /* min 16px to prevent iOS auto-zoom */
     border-radius: 0.75rem;
     outline: none;
     display: block;

@@ -73,9 +73,11 @@ export function renderConversionStatus(state: AppState, _prevState?: AppState): 
 
     if (task.state === TaskState.SUCCESS) {
       // SUCCESS: Wait for animation to complete before hiding
-      // rAF (~16ms) + CSS transition (200ms) + visible at 100% (100ms) = ~350ms
+      // 200ms CSS transition + 150ms visible at 100% = 350ms
+      const actionContainer = document.getElementById('action-container');
       setTimeout(() => {
-        statusContainer.style.display = 'none';
+        statusContainer.style.display = 'none';  // Ẩn status trước
+        actionContainer?.classList.add('active'); // Rồi mới hiện button
         delete statusContainer.dataset.completionState;
       }, 350);
     }
@@ -238,16 +240,18 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
   }
 
   // Update action-container visibility
-  if (task.state === TaskState.SUCCESS || task.state === TaskState.FAILED) {
-    // Delay showing buttons to let progress bar fill animation complete (200ms transition + 50ms buffer)
-    setTimeout(() => {
-      actionContainer.classList.add('active');
-    }, 250);
-
+  // Note: For SUCCESS, action-container is shown in renderConversionStatus() after status hides
+  // Here we only handle FAILED state (show immediately) and other states (hide)
+  if (task.state === TaskState.FAILED) {
+    actionContainer.classList.add('active');
     // Cleanup throttle map when task completes (prevent memory leak)
     lastUpdateTimes.delete(formatId);
-  } else {
+  } else if (task.state !== TaskState.SUCCESS) {
+    // Hide for non-terminal states (SUCCESS is handled separately)
     actionContainer.classList.remove('active');
+  } else {
+    // SUCCESS: Cleanup throttle map (action-container handled in renderConversionStatus)
+    lastUpdateTimes.delete(formatId);
   }
 }
 

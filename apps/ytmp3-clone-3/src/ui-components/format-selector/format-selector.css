@@ -150,6 +150,7 @@
   padding: 0 20px;
   appearance: none;
   cursor: pointer;
+  font-size: 16px; /* prevent iOS auto-zoom */
   font-weight: 500;
   transition: all 0.3s;
   box-sizing: border-box;
@@ -217,7 +218,7 @@
   .quality-select {
     height: 40px;
     padding: 8px 12px;
-    font-size: 13px;
+    font-size: 16px; /* prevent iOS auto-zoom */
     padding-right: 32px;
   }
 }
