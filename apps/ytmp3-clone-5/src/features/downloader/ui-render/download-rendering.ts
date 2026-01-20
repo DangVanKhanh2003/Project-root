@@ -10,6 +10,7 @@ import { initExpandableText } from '../../../utils';
 import { addRippleEffect } from '@downloader/core/utils';
 import { TaskState } from '../logic/conversion/types';
 import type { AppState, ConversionTask } from '../state/types';
+import { getMergingEstimator, clearMergingEstimator } from './merging-progress-estimator';
 
 // ============================================================
 // TYPE DEFINITIONS
@@ -101,6 +102,22 @@ const lastUpdateTimes = new Map<string, number>();
 const UPDATE_THROTTLE_MS = 1000; // Update UI max every 1 second
 
 // ============================================================
+// MERGING PHASE TRANSITION STATE
+// ============================================================
+
+const previousMergingPhase = new Map<string, boolean>();
+const transitionInProgress = new Map<string, boolean>();
+
+function smoothTransitionTo100(
+  statusContainer: HTMLElement,
+  callback: () => void,
+  totalDelay: number = 400
+): void {
+  statusContainer.style.setProperty('--progress-width', '100%');
+  setTimeout(callback, totalDelay);
+}
+
+// ============================================================
 // HELPER FUNCTIONS
 // ============================================================
 
@@ -137,6 +154,11 @@ function getCurrentFormatId(state: AppState): string | null {
  * @param formatId - Format ID for throttle tracking
  */
 function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, formatId: string): void {
+  // Skip updates if transition animation is in progress
+  if (transitionInProgress.get(formatId)) {
+    return;
+  }
+
   const now = Date.now();
   const lastUpdate = lastUpdateTimes.get(formatId) || 0;
   const timeSinceLastUpdate = now - lastUpdate;
@@ -155,16 +177,61 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
   // Update last update time
   lastUpdateTimes.set(formatId, now);
 
+  // Detect merging phase
+  const statusText = task.statusText || '';
+  const isMergingPhase = statusText.toLowerCase().includes('merging') ||
+                         statusText.toLowerCase().includes('encoding') ||
+                         (task as any).pollingPhase === 'merging';
+  const wasMergingPhase = previousMergingPhase.get(formatId) || false;
+  const isTransitionToMerging = !wasMergingPhase && isMergingPhase;
+  previousMergingPhase.set(formatId, isMergingPhase);
+
   // Get DOM elements
-  const statusElement = statusContainer.querySelector('.status');
+  const statusElement = statusContainer.querySelector('.status') as HTMLElement | null;
   const statusTextElement = statusContainer.querySelector('.status-text');
-  const iconElement = statusContainer.querySelector('.icon');
+  const iconElement = statusContainer.querySelector('.icon') as HTMLElement | null;
   const actionContainer = document.getElementById('action-container') as HTMLElement | null;
   const downloadBtn = document.getElementById('conversion-download-btn') as HTMLElement | null;
   const retryBtn = document.getElementById('conversion-retry-btn') as HTMLElement | null;
 
   if (!statusElement || !statusTextElement || !iconElement || !actionContainer) {
     console.warn('[renderConversionStatus] Required DOM elements not found');
+    return;
+  }
+
+  // Handle transition to merging phase
+  if (isTransitionToMerging) {
+    transitionInProgress.set(formatId, true);
+
+    // Hide spinner immediately
+    iconElement.classList.remove('spinner', 'active');
+    iconElement.style.display = 'none';
+
+    // Smooth transition: fill to 100%, delay 400ms, reset to 0%, start CSS animation
+    smoothTransitionTo100(statusContainer, () => {
+      statusTextElement.textContent = 'Merging... 0%';
+      statusElement.classList.add('status--no-transition');
+      statusContainer.style.setProperty('--progress-width', '0%');
+      void statusElement.offsetWidth; // Force reflow
+
+      requestAnimationFrame(() => {
+        statusContainer.style.setProperty('--progress-width', '0%');
+        statusElement.classList.remove('status--no-transition');
+        statusElement.classList.add('status--merging');
+        const estimator = getMergingEstimator(formatId);
+        estimator.start(() => {});
+        transitionInProgress.set(formatId, false);
+      });
+    }, 400);
+
+    return;
+  }
+
+  // During merging phase, just update text
+  if (isMergingPhase) {
+    statusTextElement.textContent = task.statusText || 'Merging...';
+    iconElement.classList.remove('spinner', 'active');
+    iconElement.style.display = 'none';
     return;
   }
 
@@ -189,7 +256,7 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
   iconElement.classList.remove('spinner', 'checkmark', 'error', 'active');
   iconElement.textContent = '';
 
-  const isMergingPhase = task.state === 'processing' && progress >= 100;
+  const isMergingPhaseLocal = task.state === 'processing' && progress >= 100;
 
   // Add appropriate state class based on task state
   switch (task.state) {
@@ -203,7 +270,7 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
     case TaskState.POLLING:
       statusElement.classList.add('status--processing');
       iconElement.classList.add('spinner');
-      if (isMergingPhase) {
+      if (isMergingPhaseLocal) {
         iconElement.classList.add('active'); // Show spinner during merging (progress = 100%)
       }
       break;
@@ -212,6 +279,17 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
       statusElement.classList.add('status--success');
       iconElement.classList.add('checkmark');
       iconElement.textContent = '✓';
+
+      // Handle completing transition from merging phase
+      if (wasMergingPhase || statusElement.classList.contains('status--merging')) {
+        statusElement.classList.remove('status--merging');
+        statusElement.classList.add('status--completing');
+        statusContainer.style.setProperty('--progress-width', '100%');
+        const estimator = getMergingEstimator(formatId);
+        estimator.complete();
+        clearMergingEstimator(formatId);
+        previousMergingPhase.delete(formatId);
+      }
       break;
 
     case TaskState.FAILED:
