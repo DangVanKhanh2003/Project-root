@@ -25,7 +25,7 @@ export interface RetryConfig {
 export const RETRY_CONFIGS = {
   // Extracting phase (API calls to create job)
   extracting: {
-    maxRetries: 3, // Max 4 attempts total (1 original + 3 retries)
+    maxRetries: 5, // Max 6 attempts total (1 original + 5 retries)
     delays: [], // NO delays - retry immediately
     retryOnError: (error: any) => {
       // Don't retry user cancellation
@@ -37,7 +37,7 @@ export const RETRY_CONFIGS = {
 
   // Polling phase (checking progress)
   polling: {
-    maxConsecutiveErrors: 3, // 3 consecutive errors before failing
+    maxConsecutiveErrors: 5, // 5 consecutive errors before failing
     retryDelay: 0, // NO delay - retry immediately
     // Timeout does NOT count as error - can retry unlimited times
   }

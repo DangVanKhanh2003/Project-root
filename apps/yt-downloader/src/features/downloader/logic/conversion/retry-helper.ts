@@ -25,7 +25,7 @@ export interface RetryConfig {
 export const RETRY_CONFIGS = {
   // Extracting phase (API calls to get download URL)
   extracting: {
-    maxRetries: 1, // Max 2 attempts total (1 original + 1 retry)
+    maxRetries: 5, // Max 6 attempts total (1 original + 5 retries)
     delays: [], // NO delays - retry immediately
     retryOnError: (error: any) => {
       // Retry ALL errors except user cancellation
@@ -36,7 +36,7 @@ export const RETRY_CONFIGS = {
 
   // Polling phase (checking progress)
   polling: {
-    maxConsecutiveErrors: 1, // Allow 1 consecutive error before failing
+    maxConsecutiveErrors: 5, // Allow 5 consecutive errors before failing
     retryDelay: 0, // NO delay - retry immediately
     retryOnTimeout: true, // Timeout is NOT an error - continue polling
   }
