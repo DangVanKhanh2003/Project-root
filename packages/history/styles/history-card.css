@@ -255,7 +255,7 @@
 
 .history-card__author {
   color: var(--google-grey-700);
-  max-width: 120px;
+  max-width: 120px !important;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

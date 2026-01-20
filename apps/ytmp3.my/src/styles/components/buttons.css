@@ -184,3 +184,22 @@
     color: var(--text-main);
     background: var(--bg-button-hover);
 }
+
+/* Small screen adjustments (< 360px) */
+@media (max-width: 359px) {
+    .format-toggle {
+        max-width: 120px !important;
+    }
+
+    .btn-submit,
+    .btn-convert,
+    .convert-button {
+        min-width: 100px;
+    }
+
+    .btn-submit svg,
+    .btn-convert svg,
+    .convert-button svg {
+        display: none;
+    }
+}
