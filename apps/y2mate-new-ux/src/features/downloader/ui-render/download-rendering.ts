@@ -120,15 +120,19 @@ function getCurrentFormatId(state: AppState): string | null {
     return null;
   }
 
-  // Build formatId (same logic as in content-renderer.ts)
+  // Build formatId (same logic as in input-form.ts)
+  // IMPORTANT: Must use same fallback values to match formatId
   if (selectedFormat === 'mp4') {
-    return `video|mp4-${state.videoQuality}`;
+    return `video|mp4-${state.videoQuality || '720p'}`;
   } else {
-    // Audio formats
-    if (state.audioFormat === 'mp3') {
-      return `audio|mp3-${state.audioBitrate}kbps`;
+    // Audio formats - apply same fallback as input-form.ts
+    const audioFormat = state.audioFormat || 'mp3';
+    const audioBitrate = state.audioBitrate || '128';
+
+    if (audioFormat === 'mp3') {
+      return `audio|mp3-${audioBitrate}kbps`;
     } else {
-      return `audio|${state.audioFormat}`;
+      return `audio|${audioFormat}`;
     }
   }
 }
