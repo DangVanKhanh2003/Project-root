@@ -33,6 +33,7 @@ export class ConversionModal {
   private boundHandleClick: ((e: Event) => void) | null = null;
   private boundHandleEscape: ((e: KeyboardEvent) => void) | null = null;
   private boundHandleOverlayClick: ((e: MouseEvent) => void) | null = null;
+  private isMergingTransition: boolean = false; // Flag to prevent multiple merging transitions
 
   constructor(wrapperSelector: string) {
     this.wrapperSelector = wrapperSelector;
@@ -67,6 +68,7 @@ export class ConversionModal {
 
     this.isOpenFlag = true;
     this.abortController = new AbortController();
+    this.isMergingTransition = false; // Reset merging flag for new conversion
 
     // Create fresh state
     this.state = {
@@ -137,6 +139,7 @@ export class ConversionModal {
     // Destroy state
     this.state = null;
     this.isOpenFlag = false;
+    this.isMergingTransition = false; // Reset merging flag
 
     // Hide modal
     this.hide();
@@ -371,6 +374,27 @@ export class ConversionModal {
       // Polling mode: use % directly
       console.log('[ConversionModal] 📊 Updating circular progress to', Math.round(percent) + '%');
       this.circularProgress?.updateProgress(percent);
+
+      // When reaching 100%: trigger merging transition after fill animation completes
+      if (percent >= 100 && !this.isMergingTransition) {
+        this.isMergingTransition = true;
+        console.log('[ConversionModal] 📊 Will switch to merging mode after 100% fill animation');
+        // Wait for fill animation to complete (completing-final class uses 0.05s transition)
+        // Then switch to merging spinner and update text
+        const timer = window.setTimeout(() => {
+          // Guard: only switch to merging if still in CONVERTING state
+          // (status might have changed to SUCCESS/COMPLETED in the meantime)
+          if (this.state?.status !== 'CONVERTING') {
+            console.log('[ConversionModal] 📊 Skipping merging mode - status changed to', this.state?.status);
+            return;
+          }
+          console.log('[ConversionModal] 📊 Switching to merging mode');
+          this.circularProgress?.startMergingMode();
+          // Update text to "Merging..." without %
+          this.progressBarManager?.updateDownloadProgress(100, 'Merging...');
+        }, 150); // 150ms delay to show "100%" before switching
+        this.timers.push(timer);
+      }
     }
 
     // Update text progress below

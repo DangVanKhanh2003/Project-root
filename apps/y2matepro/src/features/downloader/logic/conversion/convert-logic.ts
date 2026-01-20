@@ -146,31 +146,38 @@ export async function startConversion(params: ConversionParams): Promise<void> {
 
         onProgress: (progress, detail) => {
           log('Progress:', progress, detail);
-          modal.updateConversionProgress(progress, 'Processing...');
+          // Always show "Processing... XX%" - merging transition handled by modal
+          modal.updateConversionProgress(progress, 'Processing...', false, undefined, undefined, true);
           updateConversionTask(formatId, {
             progress,
-            statusText: progress < 100 ? 'Processing...' : 'Finalizing...',
+            statusText: progress < 100 ? 'Processing...' : 'Merging...',
           });
         },
 
         onComplete: (downloadUrl) => {
           log('Completed! Download URL:', downloadUrl);
 
-          // Update task state
-          updateConversionTask(formatId, {
-            state: 'Success',
-            statusText: 'Ready to download',
-            progress: 100,
-            downloadUrl,
-            filename: generateFilename(videoTitle, extractOptions),
-            completedAt: Date.now(),
-          });
+          // First: ensure 100% is shown and fill animation completes
+          modal.updateConversionProgress(100, 'Processing...', false, undefined, undefined, true);
 
-          // Update format cache for reuse
-          updateFormatCache(formatId, downloadUrl, formatData);
+          // Wait for fill animation to complete before showing success
+          setTimeout(() => {
+            // Update task state
+            updateConversionTask(formatId, {
+              state: 'Success',
+              statusText: 'Ready to download',
+              progress: 100,
+              downloadUrl,
+              filename: generateFilename(videoTitle, extractOptions),
+              completedAt: Date.now(),
+            });
 
-          // Show success in modal
-          modal.showDownloadButton(downloadUrl);
+            // Update format cache for reuse
+            updateFormatCache(formatId, downloadUrl, formatData);
+
+            // Show success in modal
+            modal.showDownloadButton(downloadUrl);
+          }, 150); // 150ms delay to show "100%" before success
         },
 
         onError: (error) => {
