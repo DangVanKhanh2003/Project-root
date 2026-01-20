@@ -212,7 +212,7 @@
                                         <option value="m4a">M4A</option>
                                     </select>
                                 </div>
-                                <script>(function(){try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(!p)return;var s=document.getElementById('quality-select-mp3');if(!s)return;var v='mp3-'+(p.audioBitrate||'128');s.value=v}catch(e){}})()</script>
+                                <script>(function(){try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(!p)return;var s=document.getElementById('quality-select-mp3');if(!s)return;var f=p.audioFormat||'mp3';var v=(f==='mp3')?'mp3-'+(p.audioBitrate||'128'):f;s.value=v}catch(e){}})()</script>
                                 <div class="select-arrow">
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
                                 </div>
