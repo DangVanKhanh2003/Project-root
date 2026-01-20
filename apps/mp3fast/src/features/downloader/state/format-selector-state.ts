@@ -27,6 +27,7 @@ const DEFAULT_BITRATE = '128';
 // ==========================================
 
 interface StoredPreferences {
+  audioFormat: string;
   audioBitrate: string;
   timestamp: number;
 }
@@ -42,6 +43,7 @@ export function saveFormatPreferences(): void {
   try {
     const state = getState();
     const preferences: StoredPreferences = {
+      audioFormat: state.audioFormat,
       audioBitrate: state.audioBitrate,
       timestamp: Date.now()
     };
@@ -53,7 +55,13 @@ export function saveFormatPreferences(): void {
 }
 
 /**
- * Load bitrate preference from localStorage
+ * Valid audio formats for mp3fast
+ */
+const AUDIO_FORMATS = ['mp3', 'wav', 'm4a', 'opus', 'ogg', 'flac'] as const;
+type AudioFormat = typeof AUDIO_FORMATS[number];
+
+/**
+ * Load format preferences from localStorage
  * Returns null if no preferences found or invalid
  */
 function loadFormatPreferences(): StoredPreferences | null {
@@ -63,9 +71,14 @@ function loadFormatPreferences(): StoredPreferences | null {
 
     const preferences = JSON.parse(stored) as StoredPreferences;
 
-    // Validate stored data - check audioBitrate is valid
+    // Validate audioFormat - default to 'mp3' if invalid
+    if (!preferences.audioFormat || !AUDIO_FORMATS.includes(preferences.audioFormat as AudioFormat)) {
+      preferences.audioFormat = 'mp3';
+    }
+
+    // Validate audioBitrate - default to DEFAULT_BITRATE if invalid
     if (!preferences.audioBitrate || !BITRATE_OPTIONS.includes(preferences.audioBitrate as any)) {
-      return null;
+      preferences.audioBitrate = DEFAULT_BITRATE;
     }
 
     return preferences;
@@ -92,22 +105,22 @@ export function clearFormatPreferences(): void {
 
 /**
  * Initialize format selector state on page load
- * Priority: localStorage > Default (128kbps)
- * Always sets format to MP3
+ * Priority: localStorage > Default (mp3, 128kbps)
  */
 export function initializeFormatSelector(): void {
   const stored = loadFormatPreferences();
 
   if (stored) {
-    // Use stored bitrate preference
+    // Use stored format and bitrate preferences
+    // selectedFormat is always 'mp3' (audio mode) for this app
     setState({
       selectedFormat: 'mp3',
-      audioFormat: 'mp3',
+      audioFormat: stored.audioFormat as AudioFormat,
       audioBitrate: stored.audioBitrate,
       hasUserSelectedFormat: true
     });
   } else {
-    // Use default bitrate
+    // Use defaults
     setState({
       selectedFormat: 'mp3',
       audioFormat: 'mp3',
@@ -120,12 +133,6 @@ export function initializeFormatSelector(): void {
 // ==========================================
 // State Setters
 // ==========================================
-
-/**
- * Valid audio formats for mp3fast
- */
-const AUDIO_FORMATS = ['mp3', 'wav', 'm4a', 'opus', 'ogg', 'flac'] as const;
-type AudioFormat = typeof AUDIO_FORMATS[number];
 
 /**
  * Set audio format
