@@ -10,6 +10,7 @@ import { initExpandableText } from '../../../utils';
 import { addRippleEffect } from '@downloader/core/utils';
 import { TaskState } from '../logic/conversion/types';
 import type { AppState, ConversionTask } from '../state/types';
+import { getMergingEstimator, clearMergingEstimator } from './merging-progress-estimator';
 
 // ============================================================
 // TYPE DEFINITIONS
@@ -76,6 +77,35 @@ const lastUpdateTimes = new Map<string, number>();
 const UPDATE_THROTTLE_MS = 1000; // Update UI max every 1 second
 
 // ============================================================
+// MERGING PHASE TRANSITION STATE
+// ============================================================
+
+// Track previous merging phase status per format ID to detect transitions
+const previousMergingPhase = new Map<string, boolean>();
+
+// Flag to prevent updates during smooth transition animation
+const transitionInProgress = new Map<string, boolean>();
+
+/**
+ * Smooth transition helper - tween gradient to 100% before phase change
+ * Mimics ytmp3.gg behavior for smooth UX when transitioning to merging phase
+ * @param statusContainer - Status bar container element
+ * @param callback - Execute after transition completes
+ * @param totalDelay - Total delay in ms (default 400ms, includes CSS transition time)
+ */
+function smoothTransitionTo100(
+  statusContainer: HTMLElement,
+  callback: () => void,
+  totalDelay: number = 400
+): void {
+  // Always set to 100% first (so UI displays it)
+  statusContainer.style.setProperty('--progress-width', '100%');
+
+  // Then delay 400ms for user to see 100%, then callback
+  setTimeout(callback, totalDelay);
+}
+
+// ============================================================
 // HELPER FUNCTIONS
 // ============================================================
 
@@ -106,12 +136,18 @@ function getCurrentFormatId(state: AppState): string | null {
 /**
  * Update status bar UI based on conversion task state
  * Throttled to update max every 1 second to avoid excessive DOM updates
+ * Includes smooth transition handling for processing → merging phase
  *
  * @param wrapper - Status bar wrapper element
  * @param task - Conversion task with state
  * @param formatId - Format ID for throttle tracking
  */
 function updateStatusBarUI(wrapper: HTMLElement, task: ConversionTask, formatId: string): void {
+  // Skip if transition animation is in progress for this format
+  if (transitionInProgress.get(formatId)) {
+    return;
+  }
+
   const now = Date.now();
   const lastUpdate = lastUpdateTimes.get(formatId) || 0;
   const timeSinceLastUpdate = now - lastUpdate;
@@ -132,9 +168,9 @@ function updateStatusBarUI(wrapper: HTMLElement, task: ConversionTask, formatId:
 
   // Get DOM elements
   const statusContainer = wrapper.querySelector('.status-container') as HTMLElement | null;
-  const statusElement = wrapper.querySelector('.status');
+  const statusElement = wrapper.querySelector('.status') as HTMLElement | null;
   const statusTextElement = wrapper.querySelector('.status-text');
-  const iconElement = wrapper.querySelector('.icon');
+  const iconElement = wrapper.querySelector('.icon') as HTMLElement | null;
   const actionContainer = wrapper.querySelector('.action-container') as HTMLElement | null;
   const downloadBtn = wrapper.querySelector('#conversion-download-btn') as HTMLElement | null;
   const retryBtn = wrapper.querySelector('#conversion-retry-btn') as HTMLElement | null;
@@ -144,20 +180,87 @@ function updateStatusBarUI(wrapper: HTMLElement, task: ConversionTask, formatId:
     return;
   }
 
-  // Update status text
-  statusTextElement.textContent = task.statusText || 'Processing...';
+  // Calculate progress and detect merging phase
+  const progress = task.progress ?? 0;
+  const isMergingPhase = task.state === 'processing' && progress >= 100;
+
+  // Detect transition from processing → merging phase
+  const wasMergingPhase = previousMergingPhase.get(formatId) || false;
+  const isTransitionToMerging = !wasMergingPhase && isMergingPhase;
+
+  // Update previous merging phase status for next call
+  previousMergingPhase.set(formatId, isMergingPhase);
+
+  // If transitioning to merging phase, smooth tween to 100% first
+  if (isTransitionToMerging) {
+    transitionInProgress.set(formatId, true);
+
+    // Hide spinner immediately (before delay)
+    iconElement.style.display = 'none';
+
+    smoothTransitionTo100(statusContainer, () => {
+      // After transition, update text and reset gradient to 0%
+      statusTextElement.textContent = 'Merging... 0%';
+
+      // Temporarily disable transition for instant reset
+      statusElement.classList.add('status--no-transition');
+      statusContainer.style.setProperty('--progress-width', '0%');
+
+      // Force browser reflow to apply instant reset
+      void statusElement.offsetWidth;
+
+      // Setup for CSS @keyframes animation (0%→50% in 15s, 50%→98% in 25s)
+      requestAnimationFrame(() => {
+        // 1. Reset progress to 0% so animation starts from 0
+        statusContainer.style.setProperty('--progress-width', '0%');
+
+        // 2. Remove no-transition, add merging class (triggers animation)
+        statusElement.classList.remove('status--no-transition');
+        statusElement.classList.add('status--merging');
+        transitionInProgress.set(formatId, false);
+
+        // 3. Update text
+        if (statusTextElement) {
+          statusTextElement.textContent = 'Merging...';
+        }
+
+        // 4. Mark estimator as running for complete() to work
+        const estimator = getMergingEstimator(formatId);
+        estimator.start(() => {}); // CSS @keyframes handles animation
+      });
+    });
+
+    return; // Exit early, callback will handle UI update
+  }
+
+  // Update status text - show "Merging..." during merging phase
+  if (isMergingPhase) {
+    // During merging, estimator handles progress updates directly
+    // Just ensure spinner is hidden
+    const estimator = getMergingEstimator(formatId);
+    if (!estimator.isRunning()) {
+      // Estimator not running - show current progress from estimator
+      const currentMergingProgress = estimator.getProgress();
+      statusTextElement.textContent = `Merging... ${currentMergingProgress}%`;
+    }
+    // Don't update progress bar here - CSS animation handles it
+  } else {
+    statusTextElement.textContent = task.statusText || 'Processing...';
+  }
 
   // Update progress fill background
-  const progress = task.progress ?? 0;
   const currentWidth = statusContainer.style.getPropertyValue('--progress-width') || '0%';
 
-  // If jumping from 0% to 100%, use requestAnimationFrame to ensure browser paints 0% first
-  if (progress === 100 && (currentWidth === '0%' || currentWidth === '')) {
-    requestAnimationFrame(() => {
+  // During merging phase, don't update progress (CSS animation handles it)
+  if (!isMergingPhase) {
+    // If jumping from 0% to 100%, use requestAnimationFrame to ensure browser paints 0% first
+    if (progress === 100 && (currentWidth === '0%' || currentWidth === '')) {
+      requestAnimationFrame(() => {
+        statusContainer.style.setProperty('--progress-width', `${progress}%`);
+      });
+    } else {
       statusContainer.style.setProperty('--progress-width', `${progress}%`);
-    });
-  } else {
-    statusContainer.style.setProperty('--progress-width', `${progress}%`);
+    }
   }
 
   // Remove all state classes
@@ -173,21 +276,49 @@ function updateStatusBarUI(wrapper: HTMLElement, task: ConversionTask, formatId:
       break;
 
     case TaskState.PROCESSING:
+    case TaskState.DOWNLOADING:
     case TaskState.POLLING:
       statusElement.classList.add('status--processing');
-      iconElement.classList.add('spinner');
+      if (isMergingPhase) {
+        // Merging phase: hide spinner (status--merging class added in transition handler)
+        iconElement.style.display = 'none';
+      } else {
+        // Processing phase: show spinner
+        iconElement.style.display = '';
+        iconElement.classList.add('spinner');
+      }
       break;
 
     case TaskState.SUCCESS:
       statusElement.classList.add('status--success');
       iconElement.classList.add('checkmark');
       iconElement.textContent = '✓';
+      iconElement.style.display = ''; // Show icon again
+      // Add completing class for fast 0.5s transition to 100%
+      statusElement.classList.add('status--completing');
+      statusElement.classList.remove('status--no-transition', 'status--merging');
+      // Complete merging estimator (jump to 100%) and cleanup
+      {
+        const estimator = getMergingEstimator(formatId);
+        if (estimator.isRunning()) {
+          estimator.complete(); // Jump to 100%
+        }
+        clearMergingEstimator(formatId);
+      }
+      // Set progress to 100%
+      statusContainer.style.setProperty('--progress-width', '100%');
+      // Cleanup merging phase tracking
+      previousMergingPhase.delete(formatId);
       break;
 
     case TaskState.FAILED:
       statusElement.classList.add('status--error');
       iconElement.classList.add('error');
       iconElement.textContent = '✕';
+      // Stop and cleanup merging estimator
+      clearMergingEstimator(formatId);
+      // Cleanup merging phase tracking
+      previousMergingPhase.delete(formatId);
       break;
 
     default:
@@ -232,6 +363,7 @@ function updateStatusBarUI(wrapper: HTMLElement, task: ConversionTask, formatId:
 
     // Cleanup throttle map when task completes (prevent memory leak)
     lastUpdateTimes.delete(formatId);
+    transitionInProgress.delete(formatId);
   } else {
     actionContainer.classList.remove('active');
     statusContainer.style.display = ''; // Ensure status container is visible
