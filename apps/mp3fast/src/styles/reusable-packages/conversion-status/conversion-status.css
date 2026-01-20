@@ -12,7 +12,7 @@
 /* ===== SHARED DIMENSIONS ===== */
 .status-container,
 .action-container {
-  border-radius: 12px;
+  border-radius: var(--radius-xl);
   min-height: 40px; /* Mobile-first: 40px height */
 }
 
@@ -31,7 +31,7 @@
   width: 100%;
   background: var(--bg-input);
   border: 1px solid rgba(128, 128, 128, 0.496);
-  border-radius: 12px;
+  border-radius: var(--radius-xl);
   display: flex;
   align-items: center;
   justify-content: center;

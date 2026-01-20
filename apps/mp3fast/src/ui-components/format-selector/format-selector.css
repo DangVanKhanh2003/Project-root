@@ -91,7 +91,7 @@ html[data-format="mp4"] .quality-select--mp4 { display: block; }
   display: flex;
   align-items: center;
   gap: 4px;
-  background: #e4e4e4c9;
+  background: var(--color-bg-disabled);
   border: var(--border-glass, 1px solid var(--text-step-num));
   border-radius: var(--radius-md, 12px);
   padding: 4px;
@@ -100,7 +100,7 @@ html[data-format="mp4"] .quality-select--mp4 { display: block; }
 }
 
 [data-theme="light"] .format-toggle {
-  background: #e4e4e4c9;
+  background: var(--color-bg-disabled);
   border: 1px solid var(--pkg-color-gray-200);
 }
 
@@ -220,7 +220,7 @@ html[data-format="mp4"] .quality-select--mp4 { display: block; }
 }
 
 .quality-select {
-  background: #e4e4e4c9;
+  background: var(--color-bg-disabled);
   border: var(--border-glass, 1px solid var(--text-step-num));
   border-radius: var(--radius-md, 12px);
   color: var(--text-main, var(--color-gray-850));

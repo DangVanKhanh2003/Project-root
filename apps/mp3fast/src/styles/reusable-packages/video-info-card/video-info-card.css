@@ -129,6 +129,16 @@
    - Title: font-size(17px) × line-height(1.4) × 2 lines ≈ 48px
    - See more: margin-top(4px) + line-height(~17px) + buffer ≈ 26px
    - Total: ~74px */
+/* Skeleton Shimmer Pattern - shared animation */
+.skeleton-shimmer,
+.skeleton-line,
+.skeleton-see-more,
+.skeleton-convert-btn {
+  background: linear-gradient(90deg, #d7d7d7 25%, #c7c7c7 50%, #d7d7d7 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s linear infinite;
+}
+
 .video-title-skeleton {
   display: flex;
   flex-direction: column;
@@ -141,9 +151,6 @@
 .video-title-skeleton .skeleton-line {
   height: 17px;
   border-radius: 4px;
-  background: linear-gradient(90deg, #d7d7d7 25%, #c7c7c7 50%, #d7d7d7 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.5s linear infinite;
 }
 
 .video-title-skeleton .skeleton-line:first-child {
@@ -160,9 +167,6 @@
   width: 60px;
   margin-top: 4px;
   border-radius: 4px;
-  background: linear-gradient(90deg, #d7d7d7 25%, #c7c7c7 50%, #d7d7d7 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.5s linear infinite;
 }
 
 /* Video Title */
@@ -294,7 +298,7 @@
   padding: 2px 8px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  border-radius: 12px;
+  border-radius: var(--radius-xl);
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
@@ -375,12 +379,7 @@
   border: 2px solid transparent;
   border-top: 2px solid currentColor;
   border-radius: 50%;
-  animation: btn-spin 1s linear infinite;
-}
-
-@keyframes btn-spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  animation: spin 1s linear infinite;
 }
 
 /* Skeleton Convert Button - MUST match .btn-convert dimensions */
@@ -389,9 +388,6 @@
   width: 65px;
   height: 22px;
   border-radius: 8px;
-  background: linear-gradient(90deg, #d7d7d7 25%, #c7c7c7 50%, #d7d7d7 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.5s linear infinite;
 }
 
 /* Content Message (Error/Info) */
@@ -456,8 +452,8 @@
   }
 }
 
-/* ======= Mobile Only (0-599px): Hide text, show icon only ======= */
-@media (max-width: 599px) {
+/* ======= Mobile Only (0-600px): Hide text, show icon only ======= */
+@media (max-width: 600px) {
   .btn-convert {
     padding: 10px 12px; /* Square-like padding for icon-only */
     min-width: 44px;
