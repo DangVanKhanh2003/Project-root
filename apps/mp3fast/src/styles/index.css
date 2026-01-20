@@ -216,6 +216,7 @@ body {
   font-weight: 700;
   color: var(--color-primary);
   letter-spacing: -0.02em;
+  text-decoration: none;
 }
 
 @media (max-width: 640px) {

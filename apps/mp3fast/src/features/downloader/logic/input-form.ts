@@ -45,33 +45,43 @@ import {
 
 /**
  * Handle auto-download after preview is shown
- * Always uses MP3 format with bitrate from dropdown
+ * Builds formatData from state (audioFormat + audioBitrate)
+ * Matches ytmp3.my behavior for audio format handling
  */
 async function handleAutoDownload(url: string, videoId: string): Promise<void> {
   try {
     console.log('[Auto-Download] Starting auto-download for:', videoId);
 
-    // Get bitrate from state (dropdown selection)
+    // Get format and bitrate from state (dropdown selection)
     const state = getState();
-    const audioBitrate = state.audioBitrate || '128'; // Default to 128kbps
+    const audioFormat = state.audioFormat || 'mp3';
+    const audioBitrate = state.audioBitrate || '128';
 
-    console.log('[Auto-Download] Audio bitrate:', audioBitrate);
+    console.log('[Auto-Download] Audio format:', audioFormat, 'Bitrate:', audioBitrate);
 
-    // Build formatData - always MP3
-    const formatId = `audio|mp3-${audioBitrate}kbps`;
+    // Non-MP3 formats (wav, flac, ogg, opus, m4a) use fixed bitrate
+    const isNonBitrateFormat = ['m4a', 'ogg', 'wav', 'opus', 'flac'].includes(audioFormat.toLowerCase());
+    const finalBitrate = isNonBitrateFormat ? '128' : audioBitrate;
+    const finalQuality = isNonBitrateFormat ? audioFormat.toUpperCase() : `${audioBitrate}kbps`;
+
+    // Build formatData with correct format
+    const formatId = isNonBitrateFormat
+      ? `audio|${audioFormat}`
+      : `audio|${audioFormat}-${audioBitrate}kbps`;
+
     const formatData = {
       id: formatId,
       vid: videoId,
       category: 'audio',
       type: 'AUDIO',
-      format: 'mp3',
-      quality: `${audioBitrate}kbps`,
+      format: audioFormat,
+      quality: finalQuality,
       sizeText: 'Processing...',
       isFakeData: true,
       extractV2Options: {
         downloadMode: 'audio' as const,
-        audioBitrate: audioBitrate,
-        audioFormat: 'mp3'
+        audioBitrate: finalBitrate,
+        audioFormat: audioFormat
       }
     };
 

@@ -4,6 +4,7 @@
  */
 
 import {
+  setAudioFormat,
   setAudioBitrate
 } from '../../features/downloader/state';
 
@@ -58,7 +59,11 @@ export function initFormatSelector(containerSelector: string = '#previewCard'): 
 
 /**
  * Handle quality select change
- * Only handles MP3 bitrate selection
+ * Sets both audio format and bitrate (matches ytmp3.my behavior)
+ *
+ * Value formats:
+ * - "mp3-128", "mp3-320" etc. → format='mp3', bitrate='128'/'320'
+ * - "wav", "flac", "ogg", "opus", "m4a" → format=value, bitrate=''
  */
 function handleQualityChange(event: Event): void {
   const target = event.target as HTMLSelectElement;
@@ -69,10 +74,17 @@ function handleQualityChange(event: Event): void {
   }
 
   const value = target.value;
-  // Value format: "mp3-128", "mp3-320", etc.
-  const bitrate = value.split('-')[1];
-  if (bitrate) {
+
+  // Check if value contains bitrate (e.g., "mp3-128")
+  if (value.includes('-')) {
+    const [format, bitrate] = value.split('-');
+    setAudioFormat(format);
     setAudioBitrate(bitrate);
+  } else {
+    // Non-MP3 formats without bitrate (wav, flac, ogg, opus, m4a)
+    setAudioFormat(value);
+    // Clear bitrate for non-MP3 formats (API will use default)
+    setAudioBitrate('128'); // Default bitrate for API compatibility
   }
 }
 

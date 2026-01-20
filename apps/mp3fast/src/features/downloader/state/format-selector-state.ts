@@ -122,6 +122,32 @@ export function initializeFormatSelector(): void {
 // ==========================================
 
 /**
+ * Valid audio formats for mp3fast
+ */
+const AUDIO_FORMATS = ['mp3', 'wav', 'm4a', 'opus', 'ogg', 'flac'] as const;
+type AudioFormat = typeof AUDIO_FORMATS[number];
+
+/**
+ * Set audio format
+ * Supports: mp3, wav, m4a, opus, ogg, flac
+ */
+export function setAudioFormat(format: string): void {
+  // Validate format
+  if (!AUDIO_FORMATS.includes(format as AudioFormat)) {
+    console.warn(`Invalid audio format: ${format}, defaulting to 'mp3'`);
+    format = 'mp3';
+  }
+
+  setState({
+    audioFormat: format as AudioFormat,
+    hasUserSelectedFormat: true
+  });
+
+  // Auto-save to localStorage
+  saveFormatPreferences();
+}
+
+/**
  * Set audio bitrate (MP3)
  */
 export function setAudioBitrate(bitrate: string): void {
@@ -131,6 +157,34 @@ export function setAudioBitrate(bitrate: string): void {
   }
 
   setState({
+    audioBitrate: bitrate,
+    hasUserSelectedFormat: true
+  });
+
+  // Auto-save to localStorage
+  saveFormatPreferences();
+}
+
+/**
+ * Combined setter for audio (format + bitrate)
+ * More efficient when setting both at once
+ * Matches ytmp3.my API for consistency
+ */
+export function setAudioOptions(format: string, bitrate: string): void {
+  // Validate format
+  if (!AUDIO_FORMATS.includes(format as AudioFormat)) {
+    console.warn(`Invalid audio format: ${format}, defaulting to 'mp3'`);
+    format = 'mp3';
+  }
+
+  // Bitrate is optional for non-MP3 formats
+  if (bitrate && !BITRATE_OPTIONS.includes(bitrate as any)) {
+    console.warn(`Invalid audio bitrate: ${bitrate}`);
+    bitrate = '';
+  }
+
+  setState({
+    audioFormat: format as AudioFormat,
     audioBitrate: bitrate,
     hasUserSelectedFormat: true
   });

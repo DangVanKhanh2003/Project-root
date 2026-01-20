@@ -499,18 +499,24 @@ export function renderPreviewCard(_data: any): void {
   const { title, thumbnail, author } = youtubePreview;
   const selectedFormat = state.selectedFormat; // 'mp3' or 'mp4'
 
-  // Get quality info based on selected format
+  // Get format badge and quality info based on selected format
+  const audioFormat = state.audioFormat || 'mp3';
+  const bitrate = state.audioBitrate || '128';
+
+  let formatBadge = '';
   let qualityInfo = '';
+
   if (selectedFormat === 'mp4') {
+    formatBadge = 'MP4';
     qualityInfo = state.videoQuality || '720p';
   } else {
-    // MP3 or other audio formats
-    const format = state.audioFormat.toUpperCase();
-    const bitrate = state.audioBitrate || '128';
-    qualityInfo = `${format} ${bitrate}kbps`;
-  }
+    // Audio formats - badge shows format, quality shows bitrate (MP3 only)
+    formatBadge = audioFormat.toUpperCase();
+    const isNonBitrateFormat = ['flac', 'wav', 'ogg', 'opus', 'm4a'].includes(audioFormat.toLowerCase());
 
-  const formatBadge = selectedFormat.toUpperCase(); // "MP4" or "MP3"
+    // MP3 shows bitrate, other formats hide quality-info
+    qualityInfo = isNonBitrateFormat ? '' : `${bitrate}kbps`;
+  }
 
   const previewCardHtml = `
     <div class="yt-preview-card">
@@ -526,7 +532,7 @@ export function renderPreviewCard(_data: any): void {
         <div class="yt-preview-meta">
           <div class="yt-preview-format">
             <span class="format-badge">${formatBadge}</span>
-            <span class="quality-info">${escapeHtml(qualityInfo)}</span>
+            ${qualityInfo ? `<span class="quality-info">${escapeHtml(qualityInfo)}</span>` : ''}
           </div>
           ${author ? `<p class="yt-preview-author">${escapeHtml(author)}</p>` : ''}
         </div>
@@ -553,7 +559,21 @@ export function renderPreviewCard(_data: any): void {
 
         if (titleEl) titleEl.textContent = title;
         if (formatBadgeEl) formatBadgeEl.textContent = formatBadge;
-        if (qualityInfoEl) qualityInfoEl.textContent = qualityInfo;
+
+        // Handle quality-info: update, create, or remove
+        const formatEl = existingPreviewCard.querySelector('.yt-preview-format');
+        if (qualityInfo) {
+          if (qualityInfoEl) {
+            qualityInfoEl.textContent = qualityInfo;
+          } else if (formatEl) {
+            const newQualityInfo = document.createElement('span');
+            newQualityInfo.className = 'quality-info';
+            newQualityInfo.textContent = qualityInfo;
+            formatEl.appendChild(newQualityInfo);
+          }
+        } else if (qualityInfoEl) {
+          qualityInfoEl.remove();
+        }
 
         // Handle author: update, create, or remove
         if (author) {
