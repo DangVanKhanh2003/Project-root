@@ -3,7 +3,7 @@
  * Simplified types for V3 API flow
  */
 
-import { TaskState } from '../types';
+export { TaskState } from '../types';
 
 /**
  * V3 Conversion Task
