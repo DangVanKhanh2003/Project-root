@@ -36,8 +36,8 @@
 .video-input {
     width: 100%;
     height: 4rem;
-    padding-left: 2rem;
-    padding-right: 8rem;
+    padding-left: 20px;
+    padding-right: 60px;
     border-radius: 0.75rem;
     background-color: var(--bg-input);
     border: var(--border-input);
@@ -209,14 +209,14 @@
 
 /* ===== RTL SUPPORT ===== */
 [dir="rtl"] .video-input {
-    padding-left: 8rem;
-    padding-right: 2rem;
+    padding-left: 60px;
+    padding-right: 20px;
 }
 
 @media (min-width: 768px) {
     [dir="rtl"] .video-input {
-        padding-left: 8rem;
-        padding-right: 2rem;
+        padding-left: 60px;
+        padding-right: 20px;
     }
 }
 

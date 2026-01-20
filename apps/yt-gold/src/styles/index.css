@@ -28,7 +28,7 @@
 @import './common.css';
 
 /* 3. Themes (after variables) */
-@import './themes/light.css';
+/* Light theme is default in variables.css */
 
 /* 4. Layout */
 @import './layout/grid.css';
@@ -63,5 +63,4 @@
 @import './reusable-packages/captcha-modal/captcha-modal.css';
 
 /* 8. Utilities (MUST be last) */
-@import './utilities/animations.css';
-@import './utilities/helpers.css';
+/* .hidden is in common.css, @keyframes spin is in status-bar.css */

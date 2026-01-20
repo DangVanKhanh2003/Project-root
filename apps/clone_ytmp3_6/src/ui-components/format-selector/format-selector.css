@@ -250,31 +250,6 @@ html[data-format="mp4"] .quality-select--mp4 { display: block; }
   }
 }
 
-/* Very small devices - stack vertically */
-@media (max-width: 360px) {
-  .format-selector-wrapper {
-    min-height: 136px; /* 40px + 40px + 48px + gaps */
-  }
-
-  .format-selector {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 8px;
-    min-height: 136px;
-  }
-
-  .format-toggle {
-    height: 40px;
-  }
-
-  .quality-select {
-    height: 40px;
-  }
-
-  .format-selector .btn-convert {
-    height: 40px;
-  }
-}
 
 /* ==========================================
    Accessibility
