@@ -62,6 +62,34 @@
   z-index: 1;
 }
 
+/* Disable transition for instant reset (e.g., when transitioning between phases) */
+.status--no-transition::before {
+  transition: none !important;
+}
+
+/* Merging phase: 2-phase animation using @keyframes
+   - 0% → 50% in 15s (37.5% of 40s)
+   - 50% → 98% in 25s (62.5% of 40s)
+   Total: 40s */
+.status--processing.status--merging::before {
+  /* Override var(--progress-width) - animation controls width */
+  width: 0%;
+  animation: merging-progress 40s ease-out forwards;
+  transition: none !important;
+}
+
+@keyframes merging-progress {
+  from { width: 0%; }
+  37.5% { width: 50%; }
+  to { width: 98%; }
+}
+
+/* When API completes, stop animation and transition to 100% in 0.5s */
+.status--completing::before {
+  animation: none !important;
+  transition: width 0.5s ease-out !important;
+}
+
 /* Hide status bar on success and error - controlled by JavaScript */
 /* Note: JavaScript handles hiding with delay for fill animation */
 /* CSS :has() rules removed - they override JS setTimeout delay */

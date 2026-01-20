@@ -41,6 +41,12 @@ if (typeof window !== 'undefined') {
     t
   };
   console.log('[App] i18n exposed to window.__i18n__ for debugging');
+
+  // Debug: Expose conversion state functions for testing merging UI
+  import('./features/downloader/state/conversion-state').then(conversionState => {
+    (window as any).__conversionState__ = conversionState;
+    console.log('[App] Conversion state exposed to window.__conversionState__ for debugging');
+  });
 }
 
 /**
