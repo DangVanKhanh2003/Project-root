@@ -143,10 +143,7 @@ eleventyComputed:
 
             {%- if page.faqs and page.faqs.items %}
             <div id="faq" class="faq-section">
-                <h2 class="faq-title">
-                    <span class="faq-icon">?</span>
-                    {{ page.faqs.title }}
-                </h2>
+                <h2 class="faq-title">{{ page.faqs.title }}</h2>
                 <div class="faq-grid">
                     {%- for faq in page.faqs.items %}
                     <div class="faq-item">
