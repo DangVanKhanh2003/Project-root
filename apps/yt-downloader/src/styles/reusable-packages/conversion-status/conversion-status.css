@@ -223,7 +223,7 @@
 
 .download-btn {
   background-color: var(--color-accent);
-  color: var(--color-black);
+  color: var(--color-white);
 }
 
 .download-btn:hover {
