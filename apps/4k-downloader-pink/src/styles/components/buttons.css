@@ -98,7 +98,7 @@
 .btn-download {
     flex: 2;
     background-color: var(--color-accent-primary);
-    color: var(--color-white);
+    color: white;
     border: none;
     height: 52px;
     border-radius: 0.75rem;

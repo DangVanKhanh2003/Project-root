@@ -27,6 +27,11 @@
     pointer-events: none;
 }
 
+/* Input Group */
+.input-group {
+    position: relative;
+}
+
 /* Input Wrapper */
 .input-wrapper {
     position: relative;

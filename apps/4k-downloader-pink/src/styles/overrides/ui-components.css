@@ -14,3 +14,9 @@
 #suggestion-container.suggestion-container--visible {
   top: 85px !important;
 }
+
+@media (max-width: 767px) {
+  #suggestion-container.suggestion-container--visible {
+    top: 60px !important;
+  }
+}
