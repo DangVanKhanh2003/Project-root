@@ -222,7 +222,7 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
   // Get DOM elements
   const statusElement = statusContainer.querySelector('.status') as HTMLElement | null;
   const statusTextElement = statusContainer.querySelector('.status-text');
-  const iconElement = statusContainer.querySelector('.icon');
+  const iconElement = statusContainer.querySelector('.icon') as HTMLElement | null;
   const actionContainer = document.getElementById('action-container') as HTMLElement | null;
   const downloadBtn = document.getElementById('conversion-download-btn') as HTMLElement | null;
   const retryBtn = document.getElementById('conversion-retry-btn') as HTMLElement | null;
