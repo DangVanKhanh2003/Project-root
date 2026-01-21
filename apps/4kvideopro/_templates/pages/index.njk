@@ -118,6 +118,9 @@ eleventyComputed:
 <section class="seo-section container">
     <div class="seo-container">
         <article class="prose">
+            {%- if page.content.introTitle %}
+            <h2>{{ page.content.introTitle }}</h2>
+            {%- endif %}
             {%- for para in page.content.intro %}
             <p>{{ para | localizeLinks(lang) | safe }}</p>
             {%- endfor %}
