@@ -64,8 +64,8 @@ module.exports = function(eleventyConfig) {
   // 4. GLOBAL DATA
   // ============================================
   eleventyConfig.addGlobalData('site', {
-    url: 'https://ytmp3.my',
-    name: 'YTMP3.my',
+    url: 'https://4kvideo.pro',
+    name: '4kvideo',
     languages: [
       { code: 'en', name: 'English', isDefault: true },
       { code: 'ar', name: 'العربية', isDefault: false },
