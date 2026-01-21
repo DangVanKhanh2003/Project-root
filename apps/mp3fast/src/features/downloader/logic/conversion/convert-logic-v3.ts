@@ -99,7 +99,7 @@ export async function startConversion(params: V3ConversionParams): Promise<void>
         console.log('[ConvertLogic] ✅ onComplete received, downloadUrl exists');
         updateConversionTask(formatId, {
           state: TaskState.SUCCESS,
-          statusText: 'Ready to download',
+          statusText: 'Merging...',
           progress: 100,
           downloadUrl,
           filename: generateFilename(videoTitle, extractV2Options),

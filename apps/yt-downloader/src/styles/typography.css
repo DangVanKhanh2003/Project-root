@@ -19,7 +19,7 @@ body {
 /* ===== HEADINGS ===== */
 /* Mobile: Conservative sizes */
 h1 {
-  font-size: 1.75rem;    /* 24.5px on mobile (14px base) */
+  font-size: 1.857rem;   /* 26px on mobile (14px base) */
   font-weight: 700;
   line-height: 1.2;
   font-family: var(--font-display);
@@ -30,7 +30,7 @@ h1 span {
 }
 
 h2 {
-  font-size: 1.5rem;     /* 21px on mobile */
+  font-size: 1.571rem;   /* 22px on mobile */
   font-weight: 600;
   line-height: 1.3;
   font-family: var(--font-display);

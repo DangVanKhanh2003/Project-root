@@ -165,7 +165,7 @@ export async function startConversion(params: ConversionParams): Promise<void> {
             // Update task state
             updateConversionTask(formatId, {
               state: 'Success',
-              statusText: 'Ready to download',
+              statusText: 'Merging...',
               progress: 100,
               downloadUrl,
               filename: generateFilename(videoTitle, extractOptions),
