@@ -42,6 +42,7 @@
 @import './sections/features.css';
 @import './sections/faq.css';
 @import './sections/footer.css';
+@import './sections/legal.css';
 
 /* 6. Components */
 @import './components/hero-card.css';
