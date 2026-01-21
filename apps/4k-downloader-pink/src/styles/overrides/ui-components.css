@@ -1,0 +1,16 @@
+/**
+ * UI Components Overrides
+ * Override styles from @downloader/ui-components for ytmp3-clone-darkmode-3
+ */
+
+/* ==========================================
+   Suggestion Dropdown Override
+   ========================================== */
+
+/**
+ * Override suggestion container position
+ * Default from package uses top: calc(...), we need fixed top: 150px
+ */
+#suggestion-container.suggestion-container--visible {
+  top: 60px !important;
+}

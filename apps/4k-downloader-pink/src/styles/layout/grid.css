@@ -1,0 +1,23 @@
+/* =========================================================
+   Layout - Grid Overlay & Ambient Glow
+   ---------------------------------------------------------
+   Background effects using body pseudo-elements
+   Extracted from index.html - Phase 2
+   ========================================================= */
+
+/* Ambient Background Glow - Disabled for light theme */
+
+/* Grid overlay - Dark Theme Only */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: var(--overlay-grid);
+    background-size: 50px 50px;
+    mask-image: radial-gradient(circle at center, var(--color-black), transparent 80%);
+    -webkit-mask-image: radial-gradient(circle at center, var(--color-black), transparent 80%);
+    pointer-events: none;
+    z-index: -1;
+    transition: background-image 0.3s, opacity 0.3s;
+    opacity: 1;
+}

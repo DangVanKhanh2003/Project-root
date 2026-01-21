@@ -1,0 +1,70 @@
+{
+  "seo": {
+    "title": "YouTube în WAV (necomprimat fără pierderi) – YTMP3",
+    "description": "Convertiți YouTube în audio WAV necomprimat fără pierderi cu YTMP3. Păstrați datele audio originale pentru editare și producție profesională. Gratuit, rapid, nelimitat.",
+    "ogTitle": "YouTube în WAV – YTMP3",
+    "ogDescription": "Descărcați audio YouTube ca WAV necomprimat fără pierderi pentru editare și producție profesională."
+  },
+
+  "hero": {
+    "title": "YouTube în",
+    "titleAccent": "WAV",
+    "subtitle": "Convertor YouTube în WAV fără pierderi gratuit și rapid"
+  },
+
+  "content": {
+    "mainTitle": "Ce este YouTube în WAV?",
+
+    "intro1": "YouTube în WAV este procesul de extragere a sunetului dintr-un videoclip YouTube și convertirea acestuia în <strong>format WAV</strong>, un format audio <strong>necomprimat fără pierderi</strong>.",
+    "intro2": "WAV stochează date audio brute fără nicio compresie, păstrând <strong>100% din informațiile sonore originale</strong>. Acest lucru îl face ideal pentru editarea audio profesională, mixare, masterizare și fluxuri de lucru de producție.",
+
+    "whatIsTitle": "Cum diferă WAV de FLAC și MP3?",
+    "whatIsText": "<ul><li><strong>Comparativ cu FLAC:</strong> <a href=\"/youtube-to-flac-converter\">FLAC</a> este fără pierderi, dar comprimat, în timp ce WAV este complet necomprimat. Fișierele WAV sunt mai mari, dar oferă precizie și simplitate absolută.</li><li><strong>Comparativ cu MP3:</strong> MP3 (inclusiv MP3 320kbps) este un format cu pierderi care elimină date audio, în timp ce WAV păstrează toate informațiile sonore originale.</li></ul>"
+  },
+
+  "whyChoose": {
+    "title": "De ce să folosiți YTMP3 pentru a converti YouTube în WAV?",
+    "reasons": [
+      {
+        "title": "Adevărat fără pierderi necomprimat",
+        "text": "Datele audio brute sunt păstrate fără nicio compresie sau pierdere de calitate."
+      },
+      {
+        "title": "Gratuit de utilizat",
+        "text": "Fără înregistrare, fără limite și fără costuri ascunse."
+      },
+      {
+        "title": "Pregătit pentru profesioniști",
+        "text": "Ideal pentru DAW-uri, editori audio și fluxuri de lucru de producție."
+      },
+      {
+        "title": "Suport multi-platformă",
+        "text": "Funcționează pe Windows, macOS și Linux."
+      }
+    ]
+  },
+
+  "instructions": {
+    "title": "Cum să convertiți YouTube în WAV",
+    "steps": [
+      "Copiați linkul videoclipului YouTube.",
+      "Lipiți-l în convertorul YTMP3.",
+      "Selectați WAV ca format de ieșire.",
+      "Faceți clic pe „Convertire” și descărcați fișierul WAV."
+    ]
+  },
+
+  "faqs": {
+    "title": "Întrebări frecvente",
+    "items": [
+      { "question": "Este YTMP3 complet gratuit pentru conversia YouTube în WAV?", "answer": "Da. YTMP3 este un convertor WAV gratuit pentru YouTube. Fără înregistrare, fără abonament, fără reclame, fără pop-up-uri și fără limite de descărcare." },
+      { "question": "Fișierul WAV va menține o calitate audio ridicată?", "answer": "Da. Opțiunile includ WAV fără pierderi, calitate CD și calitate Studio de 24 de biți. Calitatea maximă depinde de videoclipul sursă, dar fișierele WAV sunt întotdeauna necomprimate." },
+      { "question": "Pot descărca YouTube Shorts ca WAV?", "answer": "Da. YTMP3 acceptă pe deplin YouTube Shorts, permițând descărcări rapide și ușoare de videoclipuri scurte." },
+      { "question": "Este sigur să utilizați YTMP3?", "answer": "Complet. YTMP3 nu stochează date personale și este lipsit de malware. Accesați întotdeauna site-ul web oficial pentru siguranță." },
+      { "question": "Pot converti videoclipuri YouTube în WAV pe dispozitivul meu mobil?", "answer": "Da. YTMP3 este complet receptiv pentru browserele mobile. Pașii sunt aceiași: lipiți linkul → selectați WAV → convertiți → descărcați." },
+      { "question": "Există limite de dimensiune a fișierului pentru descărcările WAV?", "answer": "Nu. WAV este necomprimat, deci fișierele mari sunt normale (~10 MB pe 1 minut de audio stereo pe 16 biți)." },
+      { "question": "De ce să alegeți WAV în loc de MP3?", "answer": "WAV este necomprimat, păstrează calitatea audio originală și este mai bun pentru editare sau utilizare profesională. MP3 este potrivit pentru ascultare ocazională, dar pierde unele date audio." },
+      { "question": "Cum se compară WAV cu FLAC?", "answer": "Ambele sunt fără pierderi, dar WAV este necomprimat în timp ce FLAC utilizează compresia. Fișierele FLAC sunt cu 40-50% mai mici cu o calitate identică. WAV are o compatibilitate mai bună cu software-ul mai vechi." }
+    ]
+  }
+}
