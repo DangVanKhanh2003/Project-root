@@ -147,7 +147,7 @@
     .convert-button {
         padding: 0 0.75rem;
         font-size: 0.875rem;
-        min-width: 100px;
+        min-width: 85px;
     }
 
     .btn-submit svg,

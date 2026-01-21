@@ -11,7 +11,7 @@
 }
 
 .quality-select {
-    width: 100%;
+    width: 150px;
     height: 56px;
     background: var(--bg-card);
     border: var(--border-glass);
@@ -51,15 +51,27 @@
 
 .select-arrow {
     position: absolute;
-    right: 16px;
-    top: 50%;
+    right: -5px;
+    top: 55%;
     transform: translateY(-50%);
     pointer-events: none;
-    color: var(--text-muted);
+    color: var(--text-muted, var(--color-gray-550));
 }
 
 /* ===== RTL SUPPORT ===== */
 [dir="rtl"] .select-arrow {
     right: auto;
     left: 16px;
+}
+
+.unified-format-select {
+    width: 150px;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 480px) {
+    .quality-select,
+    .unified-format-select {
+        width: 140px;
+    }
 }
