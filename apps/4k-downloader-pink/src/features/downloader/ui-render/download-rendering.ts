@@ -36,24 +36,40 @@ export function renderConversionStatus(state: AppState, _prevState?: AppState): 
   // Get status bar container
   const statusContainer = document.getElementById('status-container');
 
+  console.log('[DEBUG-BTN] renderConversionStatus called', {
+    hasStatusContainer: !!statusContainer,
+    selectedFormat: state.selectedFormat,
+    videoQuality: state.videoQuality,
+    audioFormat: state.audioFormat,
+    audioBitrate: state.audioBitrate,
+    conversionTasksKeys: Object.keys(state.conversionTasks)
+  });
+
   if (!statusContainer) {
     // Status bar not present on page - skip
+    console.log('[DEBUG-BTN] SKIP: statusContainer not found');
     return;
   }
 
   // Get current format ID being displayed
   const formatId = getCurrentFormatId(state);
 
+  console.log('[DEBUG-BTN] formatId computed:', formatId);
+
   if (!formatId) {
     // No format selected - hide status bar
+    console.log('[DEBUG-BTN] SKIP: No formatId');
     statusContainer.style.display = 'none';
     return;
   }
 
   // Get conversion task for current format
   const task = state.conversionTasks[formatId];
+  console.log('[DEBUG-BTN] task for formatId:', { formatId, task: task ? { state: task.state, progress: task.progress } : null });
+
   if (!task) {
     // No active conversion - hide status bar
+    console.log('[DEBUG-BTN] SKIP: No task for formatId', formatId);
     statusContainer.style.display = 'none';
     return;
   }
@@ -63,8 +79,11 @@ export function renderConversionStatus(state: AppState, _prevState?: AppState): 
 
   // Check if SUCCESS or FAILED - hide status bar, show action buttons only
   if (task.state === TaskState.SUCCESS || task.state === TaskState.FAILED) {
+    console.log('[DEBUG-BTN] Task completed:', task.state);
+
     // Prevent re-triggering setTimeout if already showing completion state
     if (statusContainer.dataset.completionState === task.state) {
+      console.log('[DEBUG-BTN] SKIP: Already showing completion state', task.state);
       return;
     }
     statusContainer.dataset.completionState = task.state;
@@ -76,9 +95,27 @@ export function renderConversionStatus(state: AppState, _prevState?: AppState): 
       // SUCCESS: Wait for animation to complete before hiding
       // 200ms CSS transition + 150ms visible at 100% = 350ms
       const actionContainer = document.getElementById('action-container');
+      const downloadBtn = document.getElementById('conversion-download-btn');
+
+      console.log('[DEBUG-BTN] SUCCESS - scheduling setTimeout(350ms)', {
+        hasActionContainer: !!actionContainer,
+        hasDownloadBtn: !!downloadBtn,
+        downloadBtnClasses: downloadBtn?.className
+      });
+
       setTimeout(() => {
+        console.log('[DEBUG-BTN] setTimeout callback executing - showing action container');
         statusContainer.style.display = 'none';  // Ẩn status trước
         actionContainer?.classList.add('active'); // Rồi mới hiện button
+
+        // Log state after update
+        const downloadBtnAfter = document.getElementById('conversion-download-btn');
+        console.log('[DEBUG-BTN] After setTimeout:', {
+          actionContainerClasses: actionContainer?.className,
+          downloadBtnClasses: downloadBtnAfter?.className,
+          downloadBtnDisplay: downloadBtnAfter ? getComputedStyle(downloadBtnAfter).display : null
+        });
+
         delete statusContainer.dataset.completionState;
       }, 350);
     }
@@ -129,24 +166,36 @@ function getCurrentFormatId(state: AppState): string | null {
   const selectedFormat = state.selectedFormat;
 
   if (!selectedFormat) {
+    console.log('[DEBUG-BTN] getCurrentFormatId: no selectedFormat');
     return null;
   }
 
   // Build formatId (same logic as in input-form.ts)
   // IMPORTANT: Must use same fallback values to match formatId
+  let formatId: string;
   if (selectedFormat === 'mp4') {
-    return `video|mp4-${state.videoQuality || '720p'}`;
+    formatId = `video|mp4-${state.videoQuality || '720p'}`;
   } else {
     // Audio formats - apply same fallback as input-form.ts
     const audioFormat = state.audioFormat || 'mp3';
     const audioBitrate = state.audioBitrate || '128';
 
     if (audioFormat === 'mp3') {
-      return `audio|mp3-${audioBitrate}kbps`;
+      formatId = `audio|mp3-${audioBitrate}kbps`;
     } else {
-      return `audio|${audioFormat}`;
+      formatId = `audio|${audioFormat}`;
     }
   }
+
+  console.log('[DEBUG-BTN] getCurrentFormatId:', {
+    selectedFormat,
+    videoQuality: state.videoQuality,
+    audioFormat: state.audioFormat,
+    audioBitrate: state.audioBitrate,
+    computedFormatId: formatId
+  });
+
+  return formatId;
 }
 
 /**
@@ -190,8 +239,19 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
   const downloadBtn = document.getElementById('conversion-download-btn') as HTMLElement | null;
   const retryBtn = document.getElementById('conversion-retry-btn') as HTMLElement | null;
 
+  console.log('[DEBUG-BTN] updateStatusBarUI DOM check', {
+    hasStatusElement: !!statusElement,
+    hasStatusTextElement: !!statusTextElement,
+    hasIconElement: !!iconElement,
+    hasActionContainer: !!actionContainer,
+    hasDownloadBtn: !!downloadBtn,
+    hasRetryBtn: !!retryBtn,
+    formatId,
+    taskState: task.state
+  });
+
   if (!statusElement || !statusTextElement || !iconElement || !actionContainer) {
-    console.warn('[renderConversionStatus] Required DOM elements not found');
+    console.warn('[DEBUG-BTN] Required DOM elements not found - EARLY RETURN');
     return;
   }
 
@@ -342,17 +402,30 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
   }
 
   // Update action buttons based on state
+  console.log('[DEBUG-BTN] updateStatusBarUI - updating buttons', {
+    hasDownloadBtn: !!downloadBtn,
+    hasRetryBtn: !!retryBtn,
+    taskState: task.state,
+    downloadBtnClassesBefore: downloadBtn?.className,
+    retryBtnClassesBefore: retryBtn?.className
+  });
+
   if (downloadBtn && retryBtn) {
     if (task.state === TaskState.SUCCESS) {
       downloadBtn.classList.add('active');
       retryBtn.classList.remove('active');
+      console.log('[DEBUG-BTN] SUCCESS: Added active to downloadBtn', downloadBtn.className);
     } else if (task.state === TaskState.FAILED) {
       downloadBtn.classList.remove('active');
       retryBtn.classList.add('active');
+      console.log('[DEBUG-BTN] FAILED: Added active to retryBtn', retryBtn.className);
     } else {
       downloadBtn.classList.remove('active');
       retryBtn.classList.remove('active');
+      console.log('[DEBUG-BTN] OTHER STATE: Removed active from both buttons');
     }
+  } else {
+    console.log('[DEBUG-BTN] WARNING: downloadBtn or retryBtn not found!');
   }
 
   // Update action-container visibility
@@ -360,14 +433,17 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
   // Here we only handle FAILED state (show immediately) and other states (hide)
   if (task.state === TaskState.FAILED) {
     actionContainer.classList.add('active');
+    console.log('[DEBUG-BTN] FAILED: action-container set to active');
     // Cleanup throttle map when task completes (prevent memory leak)
     lastUpdateTimes.delete(formatId);
     transitionInProgress.delete(formatId);
   } else if (task.state !== TaskState.SUCCESS) {
     // Hide for non-terminal states (SUCCESS is handled separately)
     actionContainer.classList.remove('active');
+    console.log('[DEBUG-BTN] NON-TERMINAL: action-container active removed');
   } else {
     // SUCCESS: Cleanup throttle map (action-container handled in renderConversionStatus)
+    console.log('[DEBUG-BTN] SUCCESS in updateStatusBarUI: cleanup only, action-container handled by setTimeout');
     lastUpdateTimes.delete(formatId);
     transitionInProgress.delete(formatId);
   }
@@ -380,14 +456,21 @@ function setupButtonHandlers(formatId: string): void {
   const actionContainer = document.getElementById('action-container');
 
   if (!actionContainer) {
+    console.log('[DEBUG-BTN] setupButtonHandlers: actionContainer not found');
     return;
   }
 
   // Use a flag to prevent duplicate setup for same formatId
   // If formatId changed, we need to re-attach handlers with new formatId
   if (actionContainer.dataset.handlersAttached === 'true' && actionContainer.dataset.formatId === formatId) {
+    console.log('[DEBUG-BTN] setupButtonHandlers: SKIP - already attached for formatId', formatId);
     return;
   }
+
+  console.log('[DEBUG-BTN] setupButtonHandlers: ATTACHING handlers for formatId', formatId, {
+    previousFormatId: actionContainer.dataset.formatId,
+    wasAttached: actionContainer.dataset.handlersAttached
+  });
 
   const downloadBtn = document.getElementById('conversion-download-btn');
   const retryBtn = document.getElementById('conversion-retry-btn');
@@ -395,17 +478,27 @@ function setupButtonHandlers(formatId: string): void {
 
   // Clone and replace buttons to remove old listeners when formatId changes
   if (downloadBtn) {
+    const oldClasses = downloadBtn.className;
     const newDownloadBtn = downloadBtn.cloneNode(true) as HTMLElement;
     downloadBtn.parentNode?.replaceChild(newDownloadBtn, downloadBtn);
     newDownloadBtn.addEventListener('click', () => handleDownloadButtonClick(formatId));
     addRippleEffect(newDownloadBtn);
+    console.log('[DEBUG-BTN] setupButtonHandlers: downloadBtn cloned', {
+      oldClasses,
+      newClasses: newDownloadBtn.className
+    });
   }
 
   if (retryBtn) {
+    const oldClasses = retryBtn.className;
     const newRetryBtn = retryBtn.cloneNode(true) as HTMLElement;
     retryBtn.parentNode?.replaceChild(newRetryBtn, retryBtn);
     newRetryBtn.addEventListener('click', () => handleRetryButtonClick(formatId));
     addRippleEffect(newRetryBtn);
+    console.log('[DEBUG-BTN] setupButtonHandlers: retryBtn cloned', {
+      oldClasses,
+      newClasses: newRetryBtn.className
+    });
   }
 
   if (newConvertBtn) {
