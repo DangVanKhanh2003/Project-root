@@ -1,0 +1,68 @@
+{
+  "seo": {
+    "title": "YouTube a MP3 320kbps Alta Calidad – YTMP3",
+    "description": "Convierte YouTube a MP3 320kbps – la más alta calidad de audio MP3. Descarga música de YouTube clara y detallada gratis con YTMP3. Sin límites, sin instalación.",
+    "ogTitle": "YouTube a MP3 320kbps – YTMP3",
+    "ogDescription": "Descarga música de YouTube como MP3 320kbps. La más alta calidad de MP3 con un sonido claro y detallado."
+  },
+
+  "hero": {
+    "title": "YouTube a",
+    "titleAccent": "MP3 320kbps",
+    "subtitle": "Convertidor de YouTube a MP3 320kbps gratuito y rápido"
+  },
+
+  "content": {
+    "mainTitle": "¿Qué es YouTube a MP3 320kbps?",
+    "intro1": "YouTube a MP3 320kbps es el proceso de convertir el audio de un video de YouTube al formato MP3 a una tasa de bits de 320kbps, que es el nivel de calidad más alto disponible para el audio MP3.",
+    "intro2": "Esta tasa de bits conserva más detalles de audio en comparación con 128kbps o 192kbps, lo que lo hace ideal para música de alta calidad, remezclas y auriculares o altavoces de primera calidad.",
+
+    "whatIsTitle": "¿Cuándo deberías elegir MP3 320kbps?",
+    "whatIsText": "<ul><li>Cuando quieres la mejor calidad de sonido posible en formato MP3.</li><li>Cuando escuchas con auriculares o altavoces de alta calidad.</li><li>Cuando necesitas una amplia compatibilidad sin sacrificar la claridad.</li></ul><p>Si solo necesitas audio de calidad estándar para escuchar de forma casual, puedes volver a la página de <a href=\"/\">YouTube a MP3</a> para seleccionar tasas de bits más bajas.</p>"
+  },
+
+  "whyChoose": {
+    "title": "¿Por qué usar YTMP3 para convertir YouTube a MP3 320kbps?",
+    "reasons": [
+      {
+        "title": "Gratis de usar",
+        "text": "Sin registro, sin límites."
+      },
+      {
+        "title": "Calidad real de 320kbps",
+        "text": "La tasa de bits de MP3 más alta admitida."
+      },
+      {
+        "title": "Conversión rápida",
+        "text": "Archivos listos en segundos."
+      },
+      {
+        "title": "Compatibilidad universal",
+        "text": "Funciona en todos los dispositivos y reproductores."
+      }
+    ]
+  },
+
+  "instructions": {
+    "title": "Cómo convertir YouTube a MP3 320kbps",
+    "steps": [
+      "Copia el enlace del video de YouTube.",
+      "Pégalo en el convertidor YTMP3.",
+      "Selecciona MP3 320kbps como la calidad de salida.",
+      "Haz clic en “Convertir” y descarga tu archivo MP3."
+    ]
+  },
+
+  "faqs": {
+    "title": "Preguntas Frecuentes",
+    "items": [
+      { "question": "¿Es YTMP3 de uso gratuito?", "answer": "Sí. YTMP3 es completamente gratuito y no requiere registro." },
+      { "question": "¿Puedo convertir videos de YouTube de cualquier duración?", "answer": "Sí. No hay límites en la duración del video." },
+      { "question": "¿Cuánto tiempo se tarda en convertir un video?", "answer": "La velocidad de conversión depende de la duración del video y la conexión a Internet, pero YTMP3 está diseñado para una conversión rápida." },
+      { "question": "¿Puedo elegir la calidad de MP3 320kbps?", "answer": "Sí. Puedes seleccionar MP3 320kbps para garantizar el audio MP3 estándar más alto." },
+      { "question": "¿Funcionará el archivo MP3 descargado en mi dispositivo?", "answer": "Sí. MP3 320kbps es universalmente compatible con teléfonos, tabletas, computadoras, sistemas de audio para automóviles y reproductores de medios. Para dispositivos Apple, M4A también es una excelente opción." },
+      { "question": "¿Es MP3 320kbps sin pérdidas?", "answer": "No. MP3 es un formato con pérdida, pero 320kbps es la calidad de MP3 más alta y muy cercana a la fuente de audio original. Para un audio verdaderamente sin pérdidas, usa FLAC. Para un audio sin pérdidas y sin comprimir, elige WAV." },
+      { "question": "¿Qué debo hacer si la conversión no comienza?", "answer": "Asegúrate de que el enlace del video sea válido, actualiza la página y desactiva los bloqueadores de anuncios si es necesario." }
+    ]
+  }
+}

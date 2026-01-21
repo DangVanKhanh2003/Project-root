@@ -142,7 +142,7 @@
     --glow-input: 0 0 0 4px rgba(29, 186, 201, 0.15);
 
     /* Backdrop */
-    --backdrop-drawer: rgba(255, 255, 255, 0.95);
+    --backdrop-drawer: rgba(0, 0, 0, 0.5);
 
     /* ===== GRID PATTERN ===== */
     --grid-pattern:
