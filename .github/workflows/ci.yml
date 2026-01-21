@@ -87,6 +87,40 @@ jobs:
             fi
           fi
 
+          # Handle commit message convention [deploy:app1,app2] or [deploy:all]
+          COMMIT_MSG="${{ github.event.head_commit.message }}"
+          if [[ "$COMMIT_MSG" =~ \[deploy:([^\]]+)\] ]]; then
+            DEPLOY_TARGETS="${BASH_REMATCH[1]}"
+            echo "📝 Found deploy tag in commit: $DEPLOY_TARGETS"
+
+            if [[ "$DEPLOY_TARGETS" == "all" ]]; then
+              echo "📌 Commit tag deploy: ALL apps"
+              echo "apps=$ALL_APPS" >> $GITHUB_OUTPUT
+              echo "has_changes=true" >> $GITHUB_OUTPUT
+              exit 0
+            fi
+
+            # Parse comma-separated app names
+            DEPLOY_APPS="[]"
+            IFS=',' read -ra APPS <<< "$DEPLOY_TARGETS"
+            for app in "${APPS[@]}"; do
+              app=$(echo "$app" | xargs)  # trim whitespace
+              if echo "$ALL_APPS" | jq -e --arg a "$app" 'index($a) != null' > /dev/null; then
+                DEPLOY_APPS=$(echo $DEPLOY_APPS | jq -c --arg a "$app" '. + [$a]')
+                echo "✅ Will deploy: $app"
+              else
+                echo "⚠️ Unknown app ignored: $app"
+              fi
+            done
+
+            if [[ "$DEPLOY_APPS" != "[]" ]]; then
+              echo "📌 Commit tag deploy: $DEPLOY_APPS"
+              echo "apps=$DEPLOY_APPS" >> $GITHUB_OUTPUT
+              echo "has_changes=true" >> $GITHUB_OUTPUT
+              exit 0
+            fi
+          fi
+
           # If shared packages changed, deploy ALL apps
           if [[ "${{ steps.filter.outputs.shared }}" == "true" ]]; then
             echo "📦 Shared packages changed - deploying ALL apps"
