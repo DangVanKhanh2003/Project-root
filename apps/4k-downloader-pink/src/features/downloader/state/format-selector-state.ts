@@ -1,59 +1,151 @@
 /**
- * Format Selector State Management
- * Manages format/quality selection with localStorage persistence
+ * Format Selector State Management (UNIFIED DROPDOWN)
+ * Manages unified format/quality selection with localStorage persistence
  */
 
 import { setState, getState } from './state-manager';
-import type { FormatType, AudioFormatType } from './types';
+import type { FormatType, AudioFormatType, ParsedSelection, DownloadMode } from './types';
 
 // ==========================================
 // Constants
 // ==========================================
 
 const STORAGE_KEY = 'y2mate_format_preferences';
+const STORAGE_VERSION = 2;
 
-/**
- * Available quality options for each format
- */
-export const QUALITY_OPTIONS = {
-  mp4: {
-    formats: ['mp4', 'webm', 'mkv'] as const,
-    qualities: ['1080p', '720p', '480p', '360p', '240p', '144p'] as const
-  },
-  mp3: {
-    formats: ['mp3', 'wav', 'm4a', 'opus', 'ogg', 'flac'] as AudioFormatType[],
-    bitrates: ['320', '192', '128', '64'] // Only for MP3
-  }
-} as const;
+// App default (fallback): 4K video
+const APP_DEFAULT = 'video|mp4-2160';
 
 /**
  * Page-specific default values based on URL
- * Maps page URL patterns to default format/quality
- * Note: audioBitrate is only used for MP3, empty for other formats
+ * Maps page URL patterns to unified selection value
  */
-const PAGE_DEFAULTS: Record<string, { format: FormatType; videoQuality?: string; audioFormat?: AudioFormatType; audioBitrate?: string }> = {
+const PAGE_DEFAULTS: Record<string, string> = {
   // Main pages
-  'youtube-to-mp3': { format: 'mp3', audioFormat: 'mp3', audioBitrate: '128' },
-  'youtube-to-mp4': { format: 'mp4', videoQuality: '720p' },
-  // Audio format converter pages (non-MP3 formats don't have bitrate)
-  'youtube-to-wav-converter': { format: 'mp3', audioFormat: 'wav', audioBitrate: '' },
-  'youtube-to-m4a-converter': { format: 'mp3', audioFormat: 'm4a', audioBitrate: '' },
-  'youtube-to-opus-converter': { format: 'mp3', audioFormat: 'opus', audioBitrate: '' },
-  'youtube-to-ogg-converter': { format: 'mp3', audioFormat: 'ogg', audioBitrate: '' },
-  'youtube-to-flac-converter': { format: 'mp3', audioFormat: 'flac', audioBitrate: '' },
-  'youtube-to-mp3-320kbps-converter': { format: 'mp3', audioFormat: 'mp3', audioBitrate: '320' },
+  'youtube-to-mp3': 'audio|mp3-128',
+  'youtube-to-mp4': 'video|mp4-2160',
+  // Audio format converter pages
+  'youtube-to-wav-converter': 'audio|wav',
+  'youtube-to-m4a-converter': 'audio|m4a',
+  'youtube-to-opus-converter': 'audio|opus',
+  'youtube-to-ogg-converter': 'audio|ogg',
+  'youtube-to-flac-converter': 'audio|flac',
+  'youtube-to-mp3-320kbps-converter': 'audio|mp3-320',
 };
+
+/**
+ * Available quality options for unified dropdown
+ */
+export const UNIFIED_OPTIONS = {
+  video: [
+    { value: 'video|mp4-2160', label: 'MP4 - 4K' },
+    { value: 'video|mp4-1080', label: 'MP4 - 1080p' },
+    { value: 'video|mp4-720', label: 'MP4 - 720p' },
+    { value: 'video|mp4-480', label: 'MP4 - 480p' },
+    { value: 'video|mp4-360', label: 'MP4 - 360p' },
+    { value: 'video|mp4-240', label: 'MP4 - 240p' },
+    { value: 'video|mp4-144', label: 'MP4 - 144p' },
+    { value: 'video|webm', label: 'WEBM' },
+    { value: 'video|mkv', label: 'MKV' },
+  ],
+  audio: [
+    { value: 'audio|mp3-320', label: 'MP3 - 320kbps' },
+    { value: 'audio|mp3-256', label: 'MP3 - 256kbps' },
+    { value: 'audio|mp3-128', label: 'MP3 - 128kbps' },
+    { value: 'audio|mp3-64', label: 'MP3 - 64kbps' },
+    { value: 'audio|flac', label: 'FLAC' },
+    { value: 'audio|wav', label: 'WAV' },
+    { value: 'audio|m4a', label: 'M4A' },
+    { value: 'audio|opus', label: 'Opus' },
+    { value: 'audio|ogg', label: 'OGG' },
+  ],
+} as const;
+
+// Legacy QUALITY_OPTIONS - kept for backward compatibility
+export const QUALITY_OPTIONS = {
+  mp4: {
+    formats: ['mp4', 'webm', 'mkv'] as const,
+    qualities: ['2160p', '1080p', '720p', '480p', '360p', '240p', '144p'] as const
+  },
+  mp3: {
+    formats: ['mp3', 'wav', 'm4a', 'opus', 'ogg', 'flac'] as AudioFormatType[],
+    bitrates: ['320', '256', '128', '64']
+  }
+} as const;
 
 // ==========================================
 // LocalStorage Types
 // ==========================================
 
-interface StoredPreferences {
+interface StoredPreferencesV2 {
+  unifiedSelection: string;
+  version: 2;
+  timestamp: number;
+}
+
+// Legacy V1 format
+interface StoredPreferencesV1 {
   selectedFormat: FormatType;
   videoQuality: string;
   audioFormat: AudioFormatType;
   audioBitrate: string;
-  timestamp: number; // For potential expiration logic
+  timestamp: number;
+}
+
+// ==========================================
+// Parsing Functions
+// ==========================================
+
+/**
+ * Parse unified selection value into components
+ * @param value - e.g., "video|mp4-720", "audio|mp3-128", "audio|wav"
+ */
+export function parseUnifiedSelection(value: string): ParsedSelection {
+  const [mode, rest] = value.split('|') as [DownloadMode, string];
+
+  if (mode === 'video') {
+    if (rest === 'webm' || rest === 'mkv') {
+      return { mode: 'video', format: rest };
+    }
+    const [format, quality] = rest.split('-');
+    return { mode: 'video', format, quality };
+  }
+
+  // Audio
+  if (rest.startsWith('mp3-')) {
+    const [format, bitrate] = rest.split('-');
+    return { mode: 'audio', format, bitrate };
+  }
+  return { mode: 'audio', format: rest };
+}
+
+/**
+ * Build legacy state fields from unified selection
+ * Used for backward compatibility with existing code
+ */
+function buildLegacyState(unifiedSelection: string): {
+  selectedFormat: FormatType;
+  videoQuality: string;
+  audioFormat: AudioFormatType;
+  audioBitrate: string;
+} {
+  const parsed = parseUnifiedSelection(unifiedSelection);
+
+  if (parsed.mode === 'video') {
+    return {
+      selectedFormat: 'mp4',
+      videoQuality: parsed.quality ? `${parsed.quality}p` : parsed.format,
+      audioFormat: 'mp3',
+      audioBitrate: '128',
+    };
+  }
+
+  return {
+    selectedFormat: 'mp3',
+    videoQuality: '720p',
+    audioFormat: parsed.format as AudioFormatType,
+    audioBitrate: parsed.bitrate || '',
+  };
 }
 
 // ==========================================
@@ -70,29 +162,36 @@ function getCurrentPage(): string {
 }
 
 /**
- * Get page-specific defaults based on current URL
+ * Get page-specific default unified selection
  */
-function getPageDefaults(): { format: FormatType; videoQuality: string; audioFormat: AudioFormatType; audioBitrate: string } {
+function getPageDefault(): string {
   const page = getCurrentPage();
-  const defaults = PAGE_DEFAULTS[page];
+  return PAGE_DEFAULTS[page] || APP_DEFAULT;
+}
 
-  if (defaults) {
-    return {
-      format: defaults.format,
-      videoQuality: defaults.videoQuality || '',
-      audioFormat: defaults.audioFormat || 'mp3',
-      audioBitrate: defaults.audioBitrate || ''
-    };
+// ==========================================
+// Migration Functions
+// ==========================================
+
+/**
+ * Migrate V1 preferences to V2 unified format
+ */
+function migrateV1ToV2(v1: StoredPreferencesV1): string {
+  if (v1.selectedFormat === 'mp4') {
+    const quality = v1.videoQuality?.replace('p', '') || '720';
+    if (quality === 'webm' || quality === 'mkv') {
+      return `video|${quality}`;
+    }
+    return `video|mp4-${quality}`;
   }
 
-  // Fallback defaults (App-level defaults)
-  // IMPORTANT: Must match HTML defaults to prevent FOUC
-  return {
-    format: 'mp3',
-    videoQuality: '720p',
-    audioFormat: 'mp3',
-    audioBitrate: '128'
-  };
+  // Audio
+  const format = v1.audioFormat || 'mp3';
+  if (format === 'mp3') {
+    const bitrate = v1.audioBitrate || '128';
+    return `audio|mp3-${bitrate}`;
+  }
+  return `audio|${format}`;
 }
 
 // ==========================================
@@ -100,18 +199,15 @@ function getPageDefaults(): { format: FormatType; videoQuality: string; audioFor
 // ==========================================
 
 /**
- * Save format preferences to localStorage
- * Only called after successful format selection with valid URL
+ * Save unified selection to localStorage (V2 format)
  */
 export function saveFormatPreferences(): void {
   try {
     const state = getState();
-    const preferences: StoredPreferences = {
-      selectedFormat: state.selectedFormat,
-      videoQuality: state.videoQuality,
-      audioFormat: state.audioFormat,
-      audioBitrate: state.audioBitrate,
-      timestamp: Date.now()
+    const preferences: StoredPreferencesV2 = {
+      unifiedSelection: state.unifiedSelection,
+      version: STORAGE_VERSION,
+      timestamp: Date.now(),
     };
 
     localStorage.setItem(STORAGE_KEY, JSON.stringify(preferences));
@@ -122,22 +218,34 @@ export function saveFormatPreferences(): void {
 
 /**
  * Load format preferences from localStorage
- * Returns null if no preferences found or invalid
+ * Handles migration from V1 to V2
  */
-function loadFormatPreferences(): StoredPreferences | null {
+function loadFormatPreferences(): string | null {
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (!stored) return null;
 
-    const preferences = JSON.parse(stored) as StoredPreferences;
+    const preferences = JSON.parse(stored);
 
-    // Validate stored data
-    if (!preferences.selectedFormat ||
-        (preferences.selectedFormat !== 'mp3' && preferences.selectedFormat !== 'mp4')) {
-      return null;
+    // Check if V2 format
+    if (preferences.version === 2 && preferences.unifiedSelection) {
+      return preferences.unifiedSelection;
     }
 
-    return preferences;
+    // Detect V1 by presence of selectedFormat field
+    if (preferences.selectedFormat) {
+      const migrated = migrateV1ToV2(preferences as StoredPreferencesV1);
+      // Save migrated preferences
+      const v2Prefs: StoredPreferencesV2 = {
+        unifiedSelection: migrated,
+        version: STORAGE_VERSION,
+        timestamp: Date.now(),
+      };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(v2Prefs));
+      return migrated;
+    }
+
+    return null;
   } catch (err) {
     console.warn('Failed to load format preferences:', err);
     return null;
@@ -165,27 +273,16 @@ export function clearFormatPreferences(): void {
  */
 export function initializeFormatSelector(): void {
   const stored = loadFormatPreferences();
-  const pageDefaults = getPageDefaults();
+  const pageDefault = getPageDefault();
 
-  if (stored) {
-    // Use stored preferences (user has used the app before)
-    setState({
-      selectedFormat: stored.selectedFormat,
-      videoQuality: stored.videoQuality,
-      audioFormat: stored.audioFormat,
-      audioBitrate: stored.audioBitrate,
-      hasUserSelectedFormat: true
-    });
-  } else {
-    // Use page-specific defaults (first time or cleared)
-    setState({
-      selectedFormat: pageDefaults.format,
-      videoQuality: pageDefaults.videoQuality,
-      audioFormat: pageDefaults.audioFormat,
-      audioBitrate: pageDefaults.audioBitrate,
-      hasUserSelectedFormat: false
-    });
-  }
+  const unifiedSelection = stored || pageDefault;
+  const legacyState = buildLegacyState(unifiedSelection);
+
+  setState({
+    unifiedSelection,
+    ...legacyState,
+    hasUserSelectedFormat: !!stored,
+  });
 }
 
 // ==========================================
@@ -193,109 +290,114 @@ export function initializeFormatSelector(): void {
 // ==========================================
 
 /**
- * Change format (mp3 ↔ mp4)
- * Triggers quality dropdown re-render
+ * Set unified selection (primary setter)
+ * Updates both unified and legacy state fields
+ */
+export function setUnifiedSelection(value: string): void {
+  const legacyState = buildLegacyState(value);
+
+  setState({
+    unifiedSelection: value,
+    ...legacyState,
+    hasUserSelectedFormat: true,
+  });
+
+  // Update data-format attribute on <html> for CSS
+  const parsed = parseUnifiedSelection(value);
+  document.documentElement.dataset.format = parsed.mode === 'video' ? 'mp4' : 'mp3';
+
+  // Auto-save to localStorage
+  saveFormatPreferences();
+}
+
+// ==========================================
+// Legacy Setters (backward compatibility)
+// ==========================================
+
+/**
+ * Change format (mp3 ↔ mp4) - Legacy
+ * @deprecated Use setUnifiedSelection instead
  */
 export function setSelectedFormat(format: FormatType): void {
   const state = getState();
+  let newUnified: string;
 
-  setState({
-    selectedFormat: format,
-    hasUserSelectedFormat: true
-  });
-
-  // Clear quality if switching format type to force user selection
-  if (format === 'mp4' && !state.videoQuality) {
-    setState({ videoQuality: '' });
-  } else if (format === 'mp3' && !state.audioBitrate) {
-    setState({ audioBitrate: '' });
+  if (format === 'mp4') {
+    // Switch to video, keep previous video quality or default to 4K
+    const videoQuality = state.videoQuality?.replace('p', '') || '2160';
+    if (videoQuality === 'webm' || videoQuality === 'mkv') {
+      newUnified = `video|${videoQuality}`;
+    } else {
+      newUnified = `video|mp4-${videoQuality}`;
+    }
+  } else {
+    // Switch to audio
+    if (state.audioFormat === 'mp3') {
+      newUnified = `audio|mp3-${state.audioBitrate || '128'}`;
+    } else {
+      newUnified = `audio|${state.audioFormat}`;
+    }
   }
 
-  // Auto-save to localStorage after format change
-  saveFormatPreferences();
+  setUnifiedSelection(newUnified);
 }
 
 /**
- * Set video quality (for MP4 format)
- * Accepts: resolution (e.g., "720p") or format (e.g., "webm", "mkv")
+ * Set video quality - Legacy
+ * @deprecated Use setUnifiedSelection instead
  */
 export function setVideoQuality(quality: string): void {
-  const isValidQuality = QUALITY_OPTIONS.mp4.qualities.includes(quality as any);
-  const isValidFormat = QUALITY_OPTIONS.mp4.formats.includes(quality as any);
+  const resolution = quality.replace('p', '');
+  let newUnified: string;
 
-  if (!isValidQuality && !isValidFormat) {
-    console.warn(`Invalid video quality: ${quality}`);
-    return;
+  if (resolution === 'webm' || resolution === 'mkv') {
+    newUnified = `video|${resolution}`;
+  } else {
+    newUnified = `video|mp4-${resolution}`;
   }
 
-  setState({
-    videoQuality: quality,
-    hasUserSelectedFormat: true
-  });
-
-  // Auto-save to localStorage
-  saveFormatPreferences();
+  setUnifiedSelection(newUnified);
 }
 
 /**
- * Set audio format (for MP3 mode)
+ * Set audio format - Legacy
+ * @deprecated Use setUnifiedSelection instead
  */
 export function setAudioFormat(format: AudioFormatType): void {
-  if (!QUALITY_OPTIONS.mp3.formats.includes(format)) {
-    console.warn(`Invalid audio format: ${format}`);
-    return;
+  const state = getState();
+  let newUnified: string;
+
+  if (format === 'mp3') {
+    newUnified = `audio|mp3-${state.audioBitrate || '128'}`;
+  } else {
+    newUnified = `audio|${format}`;
   }
 
-  setState({
-    audioFormat: format,
-    hasUserSelectedFormat: true
-  });
-
-  // Auto-save to localStorage
-  saveFormatPreferences();
+  setUnifiedSelection(newUnified);
 }
 
 /**
- * Set audio bitrate (for MP3 mode)
+ * Set audio bitrate - Legacy
+ * @deprecated Use setUnifiedSelection instead
  */
 export function setAudioBitrate(bitrate: string): void {
-  if (!QUALITY_OPTIONS.mp3.bitrates.includes(bitrate as any)) {
-    console.warn(`Invalid audio bitrate: ${bitrate}`);
-    return;
-  }
-
-  setState({
-    audioBitrate: bitrate,
-    hasUserSelectedFormat: true
-  });
-
-  // Auto-save to localStorage
-  saveFormatPreferences();
+  setUnifiedSelection(`audio|mp3-${bitrate}`);
 }
 
 /**
- * Combined setter for audio (format + bitrate)
- * More efficient when setting both at once
+ * Combined setter for audio - Legacy
+ * @deprecated Use setUnifiedSelection instead
  */
 export function setAudioOptions(format: AudioFormatType, bitrate: string): void {
-  if (!QUALITY_OPTIONS.mp3.formats.includes(format)) {
-    console.warn(`Invalid audio format: ${format}`);
-    return;
+  let newUnified: string;
+
+  if (format === 'mp3') {
+    newUnified = `audio|mp3-${bitrate}`;
+  } else {
+    newUnified = `audio|${format}`;
   }
 
-  if (!QUALITY_OPTIONS.mp3.bitrates.includes(bitrate as any)) {
-    console.warn(`Invalid audio bitrate: ${bitrate}`);
-    return;
-  }
-
-  setState({
-    audioFormat: format,
-    audioBitrate: bitrate,
-    hasUserSelectedFormat: true
-  });
-
-  // Auto-save to localStorage
-  saveFormatPreferences();
+  setUnifiedSelection(newUnified);
 }
 
 // ==========================================
@@ -303,23 +405,19 @@ export function setAudioOptions(format: AudioFormatType, bitrate: string): void 
 // ==========================================
 
 /**
- * Validate if current format selection is complete
- * Used before allowing form submission
+ * Validate if current unified selection is valid
  */
 export function validateFormatSelection(): { isValid: boolean; message?: string } {
   const state = getState();
 
-  if (state.selectedFormat === 'mp4') {
-    if (!state.videoQuality) {
-      return { isValid: false, message: 'Please select a video quality' };
-    }
-  } else if (state.selectedFormat === 'mp3') {
-    if (!state.audioFormat) {
-      return { isValid: false, message: 'Please select an audio format' };
-    }
-    if (!state.audioBitrate) {
-      return { isValid: false, message: 'Please select an audio bitrate' };
-    }
+  if (!state.unifiedSelection) {
+    return { isValid: false, message: 'Please select a format' };
+  }
+
+  const parsed = parseUnifiedSelection(state.unifiedSelection);
+
+  if (!parsed.mode || !parsed.format) {
+    return { isValid: false, message: 'Invalid format selection' };
   }
 
   return { isValid: true };
@@ -330,14 +428,20 @@ export function validateFormatSelection(): { isValid: boolean; message?: string 
  */
 export function getCurrentQualityLabel(): string {
   const state = getState();
+  const parsed = parseUnifiedSelection(state.unifiedSelection);
 
-  if (state.selectedFormat === 'mp4') {
-    return state.videoQuality || 'Select quality';
-  } else {
-    const format = state.audioFormat.toUpperCase();
-    const bitrate = state.audioBitrate ? `${state.audioBitrate}kbps` : 'Select quality';
-    return state.audioBitrate ? `${format} - ${bitrate}` : bitrate;
+  if (parsed.mode === 'video') {
+    if (parsed.quality) {
+      return `MP4 - ${parsed.quality}p`;
+    }
+    return parsed.format.toUpperCase();
   }
+
+  // Audio
+  if (parsed.format === 'mp3' && parsed.bitrate) {
+    return `MP3 - ${parsed.bitrate}kbps`;
+  }
+  return parsed.format.toUpperCase();
 }
 
 // ==========================================
@@ -345,7 +449,14 @@ export function getCurrentQualityLabel(): string {
 // ==========================================
 
 /**
- * Get available quality options based on current format
+ * Get all unified options (for dropdown)
+ */
+export function getUnifiedOptions() {
+  return UNIFIED_OPTIONS;
+}
+
+/**
+ * Get available quality options based on current format - Legacy
  */
 export function getAvailableQualities(): { formats: readonly string[]; qualities: readonly string[] } | { formats: readonly AudioFormatType[]; bitrates: readonly string[] } {
   const state = getState();
@@ -356,4 +467,3 @@ export function getAvailableQualities(): { formats: readonly string[]; qualities
     return QUALITY_OPTIONS.mp3;
   }
 }
-

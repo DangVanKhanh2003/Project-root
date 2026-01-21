@@ -55,9 +55,9 @@
   left: 0;
   height: 100%;
   width: var(--progress-width, 0%);
-  background: rgba(29, 186, 201, 0.35); /* Cyan - 35% opacity for visibility */
-  border-right: 1px solid rgba(29, 186, 201, 0.6);
-  box-shadow: 0 0 20px rgba(29, 186, 201, 0.3);
+  background: color-mix(in srgb, var(--color-accent) 35%, transparent);
+  border-right: 1px solid color-mix(in srgb, var(--color-accent) 60%, transparent);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--color-accent) 30%, transparent);
   transition: width 0.2s linear;
   z-index: 1;
 }

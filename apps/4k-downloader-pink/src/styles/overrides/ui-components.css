@@ -12,5 +12,5 @@
  * Default from package uses top: calc(...), we need fixed top: 150px
  */
 #suggestion-container.suggestion-container--visible {
-  top: 60px !important;
+  top: 85px !important;
 }

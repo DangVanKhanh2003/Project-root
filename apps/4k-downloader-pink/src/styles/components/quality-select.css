@@ -49,9 +49,32 @@
     color: #0f172a;
 }
 
+/* Unified dropdown with optgroups */
+.unified-format-select {
+    flex-grow: 1;
+}
+
+.quality-select optgroup {
+    background: #0f172a;
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 8px 0;
+}
+
+[data-theme="light"] .quality-select optgroup {
+    background: #f8fafc;
+    color: var(--pkg-color-gray-500);
+}
+
+.quality-select optgroup option {
+    font-weight: 500;
+    padding: 8px 12px;
+}
+
 .select-arrow {
     position: absolute;
-    right: 16px;
+    right: 10px;
     top: 50%;
     transform: translateY(-50%);
     pointer-events: none;

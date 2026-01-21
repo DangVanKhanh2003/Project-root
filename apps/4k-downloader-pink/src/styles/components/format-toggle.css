@@ -1,15 +1,16 @@
 /* =========================================================
-   Component - Format Toggle
+   Component - Format Toggle (DEPRECATED)
    ---------------------------------------------------------
-   MP3/MP4 format toggle button
-   Extracted from index.html - Phase 2
+   Legacy styles kept for backward compatibility.
+   The app now uses unified dropdown instead of toggle buttons.
    ========================================================= */
 
+/* Legacy format toggle - kept for backward compatibility */
 .format-toggle {
+    display: none; /* Hidden by default, unified dropdown is used */
     background: var(--bg-card);
     padding: 4px;
     border-radius: var(--radius-md);
-    display: flex;
     border: var(--border-glass);
     height: 56px;
     align-items: center;

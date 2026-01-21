@@ -76,7 +76,7 @@
 
     <!-- Critical: Read format preference before render to prevent FOUC -->
     <script>
-      (function(){var f='mp3';try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p&&p.selectedFormat)f=p.selectedFormat}catch(e){}document.documentElement.dataset.format=f;document.write('<style>html[data-format="mp3"] .quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4{display:block!important}</style>')})()
+      (function(){var d='video|mp4-2160';try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p){if(p.version===2&&p.unifiedSelection){d=p.unifiedSelection}else if(p.selectedFormat){d=p.selectedFormat==='mp4'?'video|mp4-'+(p.videoQuality||'720').replace('p',''):(p.audioFormat==='mp3'?'audio|mp3-'+(p.audioBitrate||'128'):'audio|'+(p.audioFormat||'mp3'))}}}catch(e){}document.documentElement.dataset.unifiedSelection=d;document.documentElement.dataset.format=d.startsWith('video')?'mp4':'mp3'})()
     </script>
 
     <!-- TypeScript Module -->

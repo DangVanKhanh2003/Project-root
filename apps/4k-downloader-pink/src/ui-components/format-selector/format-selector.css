@@ -1,17 +1,17 @@
 /**
- * Format Selector Component Styles
+ * Format Selector Component Styles (UNIFIED DROPDOWN)
  * Mobile-first responsive design
  *
  * Structure:
- * 1. Format Toggle Container
- * 2. Format Button Base & States
- * 3. Quality Select
+ * 1. Format Selector Container
+ * 2. Quality Select (Unified Dropdown)
+ * 3. Optgroup Styling
  * 4. Layout & Responsive
  * 5. Accessibility
  */
 
 /* ==========================================
-   1. FORMAT TOGGLE CONTAINER
+   1. FORMAT SELECTOR CONTAINER
    ========================================== */
 
 .format-selector-wrapper {
@@ -31,100 +31,38 @@
   flex-wrap: wrap;
 }
 
+/* Legacy format toggle - hidden for unified dropdown */
 .format-toggle {
-  display: flex;
-  align-items: center;
-  background: var(--bg-card, var(--color-gray-100));
-  border: var(--border-glass, 1px solid var(--text-step-num));
-  border-radius: var(--radius-md, 12px);
-  padding: 4px;
-  height: 56px;
-  flex-shrink: 0;
-}
-
-[data-theme="light"] .format-toggle {
-  background: var(--color-white);
-  border: 1px solid var(--pkg-color-gray-200);
+  display: none;
 }
 
 /* ==========================================
-   2. FORMAT BUTTON - BASE & STATES
-   ========================================== */
-
-/* Base button styles */
-.format-btn {
-  flex: 1;
-  height: 100%;
-  padding: 0 20px;
-  background: transparent;
-  border: none;
-  border-radius: 10px;
-  font-size: 0.9rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-/* Active state (shared styles) */
-.format-btn.active,
-.format-btn[data-format="mp3"],
-html[data-format="mp4"] .format-btn[data-format="mp4"] {
-  background: var(--color-accent);
-  color: var(--color-white);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-}
-
-[data-theme="light"] .format-btn.active,
-[data-theme="light"] .format-btn[data-format="mp3"],
-html[data-format="mp4"][data-theme="light"] .format-btn[data-format="mp4"] {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-/* Inactive state */
-.format-btn[data-format="mp4"],
-html[data-format="mp4"] .format-btn[data-format="mp3"] {
-  background: transparent;
-  color: var(--color-black);
-  box-shadow: none;
-}
-
-/* Inactive hover */
-.format-btn[data-format="mp4"]:hover,
-html[data-format="mp4"] .format-btn[data-format="mp3"]:hover {
-  background: var(--bg-button);
-  color: var(--text-main);
-}
-
-/* Active hover - no change */
-.format-btn.active:hover,
-html[data-format="mp4"] .format-btn[data-format="mp4"]:hover {
-  background: var(--color-accent);
-}
-
-/* ==========================================
-   3. QUALITY SELECT
+   2. QUALITY SELECT (UNIFIED DROPDOWN)
    ========================================== */
 
 .quality-wrapper {
   position: relative;
-  flex-grow: 1;
+  width: 140px;
+  max-width: 140px;
+  flex: 0 0 140px;
 }
 
 .quality-select {
   width: 100%;
   height: 56px;
-  padding: 0 20px;
+  padding: 0 12px;
+  padding-right: 32px;
   background: var(--bg-card, var(--color-white));
   border: var(--border-glass, 1px solid var(--text-step-num));
   border-radius: var(--radius-md, 12px);
   color: var(--text-main, var(--color-gray-850));
   font-weight: 500;
-  appearance: none;
   cursor: pointer;
   transition: all 0.3s;
   box-sizing: border-box;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
 [data-theme="light"] .quality-select {
@@ -140,6 +78,7 @@ html[data-format="mp4"] .format-btn[data-format="mp4"]:hover {
 .quality-select option {
   background: var(--pkg-color-gray-800);
   color: var(--color-white);
+  padding: 8px 12px;
 }
 
 [data-theme="light"] .quality-select option {
@@ -149,40 +88,61 @@ html[data-format="mp4"] .format-btn[data-format="mp4"]:hover {
 
 .select-arrow {
   position: absolute;
-  right: 16px;
+  right: 10px;
   top: 50%;
   transform: translateY(-50%);
   pointer-events: none;
   color: var(--text-muted, var(--color-gray-550));
 }
 
-/* Quality visibility based on format */
-.quality-select--mp3 { display: block; }
-.quality-select--mp4 { display: none; }
-html[data-format="mp4"] .quality-select--mp3 { display: none; }
-html[data-format="mp4"] .quality-select--mp4 { display: block; }
+/* Unified dropdown specific */
+.unified-format-select {
+  width: 100%;
+}
+
+/* ==========================================
+   3. OPTGROUP STYLING
+   ========================================== */
+
+.quality-select optgroup {
+  background: var(--pkg-color-gray-900, #0f172a);
+  color: var(--text-muted, #94a3b8);
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 8px 0;
+}
+
+[data-theme="light"] .quality-select optgroup {
+  background: var(--pkg-color-gray-50, #f8fafc);
+  color: var(--pkg-color-gray-500, #64748b);
+}
+
+.quality-select optgroup option {
+  font-weight: 500;
+  padding-left: 16px;
+}
 
 /* ==========================================
    4. LAYOUT & RESPONSIVE
    ========================================== */
 
-/* Mobile: quality full width, format+convert below */
+/* Mobile: quality and convert button side by side */
 @media (max-width: 799px) {
   .quality-wrapper {
-    width: 100%;
+    flex: 0 0 120px;
+    max-width: 120px;
     order: 1;
   }
 
-  .format-toggle {
-    order: 2;
-    flex: 1;
-    max-width: 150px;
+  .quality-select {
+    font-size: 16px;
   }
 
   .format-selector .btn-convert {
     order: 2;
     flex: 0 0 auto;
-    width: fit-content;
+    width: auto;
+    padding: 5px 8px;
   }
 }
 
@@ -191,16 +151,6 @@ html[data-format="mp4"] .quality-select--mp4 { display: block; }
   .format-selector {
     flex-wrap: nowrap;
     justify-content: flex-start;
-  }
-
-  .quality-wrapper {
-    width: 250px;
-    flex-grow: 0;
-    flex-shrink: 0;
-  }
-
-  .format-toggle {
-    flex-shrink: 0;
   }
 
   .format-selector .btn-convert {
@@ -221,15 +171,6 @@ html[data-format="mp4"] .quality-select--mp4 { display: block; }
     min-height: 40px;
   }
 
-  .format-toggle {
-    height: 40px;
-  }
-
-  .format-btn {
-    padding: 8px 10px;
-    font-size: 13px;
-  }
-
   .format-selector .btn-convert {
     height: 40px;
   }
@@ -237,8 +178,8 @@ html[data-format="mp4"] .quality-select--mp4 { display: block; }
   .quality-select {
     height: 40px;
     padding: 8px 12px;
-    font-size: 13px;
     padding-right: 32px;
+    font-size: 13px;
   }
 }
 
@@ -247,28 +188,28 @@ html[data-format="mp4"] .quality-select--mp4 { display: block; }
    ========================================== */
 
 @media (prefers-contrast: high) {
-  .format-toggle {
-    border-width: 3px;
-  }
-
-  .format-btn.active {
-    border: 2px solid white;
-  }
-
   .quality-select {
     border-width: 3px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .format-toggle,
-  .format-btn,
   .quality-select {
     transition: none;
   }
 }
 
-.format-btn:focus-visible,
 .quality-select:focus-visible {
   outline-offset: 3px;
+}
+
+/* RTL Support */
+[dir="rtl"] .select-arrow {
+  right: auto;
+  left: 10px;
+}
+
+[dir="rtl"] .quality-select {
+  padding-right: 12px;
+  padding-left: 32px;
 }
