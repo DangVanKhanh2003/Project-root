@@ -73,7 +73,12 @@
 }
 
 .format-btn.active {
-    background-color: var(--bg-white);
+    background-color: var(--color-accent-primary);
+    color: var(--color-white);
+}
+
+.format-btn.active:hover {
+    background-color: var(--color-accent-hover);
 }
 
 .format-btn:not(.active) {
@@ -91,8 +96,8 @@
 .convert-button {
     height: 3.5rem;
     padding: 0 2rem;
-    background-color: var(--color-accent);
-    color: var(--color-black);
+    background-color: var(--color-accent-primary);
+    color: var(--color-white);
     border-radius: 0.75rem;
     font-weight: 700;
     font-size: 1rem;
@@ -146,8 +151,8 @@
 /* Download Button */
 .btn-download {
     flex: 2;
-    background-color: var(--color-accent);
-    color: var(--color-black);
+    background-color: var(--color-accent-primary);
+    color: var(--color-white);
     border: none;
     height: 52px;
     border-radius: 0.75rem;

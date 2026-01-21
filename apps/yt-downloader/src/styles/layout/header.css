@@ -36,7 +36,7 @@
     font-weight: 700;
     font-size: 1.5rem;
     letter-spacing: -0.05em;
-    color: var(--text-logo);
+    color: var(--color-accent-primary);
     transition: color 0.2s;
 }
 
@@ -77,9 +77,9 @@
 }
 
 .nav-link.active {
-    border-color: var(--border-active);
-    background-color: var(--bg-white);
-    color: var(--color-black);
+    background-color: var(--color-accent-light);
+    color: var(--color-accent-primary);
+    border-color: var(--color-accent-light);
 }
 
 .nav-link:not(.active) {
@@ -197,6 +197,16 @@
 .lang-option:hover {
     background-color: var(--bg-white);
     color: var(--color-black);
+}
+
+.lang-option.active {
+    background-color: var(--color-accent-primary);
+    color: var(--color-white);
+    font-weight: 700;
+}
+
+.lang-option.active:hover {
+    background-color: var(--color-accent);
 }
 
 /* Mobile Menu Button */
