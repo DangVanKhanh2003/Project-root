@@ -8,7 +8,8 @@
   "hero": {
     "title": "Downloader de Vídeos",
     "titleAccent": "4K do YouTube",
-    "subtitle": "Baixe vídeos do YouTube em qualidade 4K"
+    "subtitle": "Baixe vídeos do YouTube em qualidade 4K",
+    "placeholder": "Cole o link aqui"
   },
   "content": {
     "intro": [

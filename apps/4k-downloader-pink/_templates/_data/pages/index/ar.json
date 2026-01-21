@@ -8,7 +8,8 @@
   "hero": {
     "title": "برنامج تنزيل يوتيوب",
     "titleAccent": "فيديو 4K",
-    "subtitle": "تنزيل فيديوهات يوتيوب بجودة 4K"
+    "subtitle": "تنزيل فيديوهات يوتيوب بجودة 4K",
+    "placeholder": "الصق الرابط هنا"
   },
   "content": {
     "intro": [

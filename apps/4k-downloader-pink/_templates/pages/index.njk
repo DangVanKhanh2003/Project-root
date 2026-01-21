@@ -29,7 +29,7 @@ eleventyComputed:
                     <div class="input-group">
                         <div class="input-wrapper" id="input-wrapper">
                             <input type="text" id="videoUrl" class="video-input"
-                                placeholder="{{ base.hero.placeholder }}" autocomplete="off">
+                                placeholder="{{ page.hero.placeholder or base.hero.placeholder }}" autocomplete="off">
                             <div class="input-actions">
                                 <button type="button" id="input-action-button" class="btn-paste" data-action="paste">
                                     <svg class="paste-icon" width="14" height="14" viewBox="0 0 24 24"

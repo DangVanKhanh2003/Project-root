@@ -8,7 +8,8 @@
   "hero": {
     "title": "Загрузчик видео",
     "titleAccent": "4K с YouTube",
-    "subtitle": "Скачивайте видео с YouTube в качестве 4K"
+    "subtitle": "Скачивайте видео с YouTube в качестве 4K",
+    "placeholder": "Вставьте ссылку сюда"
   },
   "content": {
     "intro": [

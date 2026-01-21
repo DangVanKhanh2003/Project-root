@@ -8,7 +8,8 @@
   "hero": {
     "title": "ダウンローダーYouTube",
     "titleAccent": "ビデオ4K",
-    "subtitle": "YouTubeビデオを4K品質でダウンロード"
+    "subtitle": "YouTubeビデオを4K品質でダウンロード",
+    "placeholder": "ここにリンクを貼り付け"
   },
   "content": {
     "intro": [
