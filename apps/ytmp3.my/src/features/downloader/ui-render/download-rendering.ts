@@ -63,6 +63,12 @@ export function renderConversionStatus(state: AppState, _prevState?: AppState): 
 
   // Check if SUCCESS or FAILED - hide status bar, show action buttons only
   if (task.state === TaskState.SUCCESS || task.state === TaskState.FAILED) {
+    // IMPORTANT: Clear transitionInProgress to prevent updateStatusBarUI from being skipped
+    // This can happen when API returns success very quickly after progress reaches 100%
+    if (transitionInProgress.get(formatId)) {
+      transitionInProgress.set(formatId, false);
+    }
+
     // Prevent re-triggering setTimeout if already showing completion state
     if (statusContainer.dataset.completionState === task.state) {
       return;
@@ -78,7 +84,19 @@ export function renderConversionStatus(state: AppState, _prevState?: AppState): 
       const actionContainer = document.getElementById('action-container');
       setTimeout(() => {
         statusContainer.style.display = 'none';  // Ẩn status trước
-        actionContainer?.classList.add('active'); // Rồi mới hiện button
+        actionContainer?.classList.add('active'); // Hiện action container
+
+        // IMPORTANT: Ensure downloadBtn has active class
+        // This is needed because updateStatusBarUI might have been skipped
+        const downloadBtnInCallback = document.getElementById('conversion-download-btn');
+        const retryBtnInCallback = document.getElementById('conversion-retry-btn');
+        if (downloadBtnInCallback) {
+          downloadBtnInCallback.classList.add('active');
+        }
+        if (retryBtnInCallback) {
+          retryBtnInCallback.classList.remove('active');
+        }
+
         delete statusContainer.dataset.completionState;
       }, 350);
     }
