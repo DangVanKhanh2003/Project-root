@@ -296,20 +296,20 @@
      SUGGESTIONS PACKAGE
      ======================================================== */
 
-  /* Suggestions Container - Dark Glass */
+  /* Suggestions Container - Light Theme */
   --pkg-suggestions-z-index: var(--pkg-z-popover);
-  --pkg-suggestions-bg: var(--pkg-color-gray-800);
-  --pkg-suggestions-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  --pkg-suggestions-bg: #ffffff;
+  --pkg-suggestions-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
   --pkg-suggestions-radius: var(--pkg-radius-md);
 
   /* Suggestions Positioning */
   --pkg-suggestions-offset-top: 55px;  /* Position below input field */
 
-  /* Suggestions Colors - Dark Theme */
-  --pkg-suggestions-text-color: var(--pkg-color-white);
-  --pkg-suggestions-hover-bg: rgba(255, 255, 255, 0.1);
-  --pkg-suggestions-highlight-bg: var(--pkg-color-primary-container);
-  --pkg-suggestions-highlight-color: var(--pkg-color-on-primary-container);
+  /* Suggestions Colors - Light Theme with Blue Accent */
+  --pkg-suggestions-text-color: #171717;
+  --pkg-suggestions-hover-bg: #f5f5f5;
+  --pkg-suggestions-highlight-bg: #EFF6FF;
+  --pkg-suggestions-highlight-color: #3B82F6;
 
   /* Suggestions Animation */
   --pkg-suggestions-duration: var(--pkg-duration-short3);

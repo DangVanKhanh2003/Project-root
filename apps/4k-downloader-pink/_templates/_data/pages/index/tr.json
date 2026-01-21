@@ -1,0 +1,95 @@
+{
+  "seo": {
+    "title": "YouTube Video 4K İndir – YouTube 4K İndirici",
+    "description": "YouTube videolarını çevrimiçi olarak 4K kalitesinde indirin. Basit, hızlı ve web tabanlı YouTube 4K indirici.",
+    "ogTitle": "YouTube Video 4K İndir – YouTube 4K İndirici",
+    "ogDescription": "YouTube videolarını çevrimiçi olarak 4K kalitesinde indirin. Basit, hızlı ve web tabanlı YouTube 4K indirici."
+  },
+  "hero": {
+    "title": "YouTube Video",
+    "titleAccent": "4K İndirici",
+    "subtitle": "YouTube videolarını 4K kalitesinde indirin"
+  },
+  "content": {
+    "intro": [
+      "Bu sayfa, YouTube videolarını 4K kalitesinde indirmek için özel bir araçtır.",
+      "Araç, YouTube videolarını yüksek çözünürlükte indirmesi gereken kullanıcılara hizmet vermek için oluşturulmuştur."
+    ],
+    "sections": [
+      {
+        "id": "download-4k",
+        "title": "YouTube Videolarını 4K Kalitesinde İndirin",
+        "paragraphs": [
+          "Bir YouTube videosu 4K çözünürlüğü (2160p) desteklediğinde, araç videoyu 4K kalitesinde indirme seçeneğini gösterecektir.",
+          "İndirilen videolar her zaman YouTube tarafından sağlanan orijinal kaliteyle eşleşir.",
+          "Araç, indirme işlemi sırasında video kalitesini değiştirmez veya modifiye etmez."
+        ]
+      },
+      {
+        "id": "when-4k-not-available",
+        "title": "4K Mevcut Olmadığında",
+        "paragraphs": [
+          "Tüm YouTube videoları 4K çözünürlükte yüklenmez.",
+          "Bir video 4K akışı sağlamıyorsa, araç YouTube tarafından sunulan diğer tüm mevcut kaliteleri gösterecektir.",
+          "Orijinal videonun desteklediği en yüksek kaliteyi yine de indirebilirsiniz."
+        ]
+      },
+      {
+        "id": "how-it-works",
+        "title": "YouTube Videoları 4K Olarak Nasıl İndirilir",
+        "list": [
+          {
+            "title": "YouTube video bağlantısını yapıştırın",
+            "text": "YouTube video URL'sini kopyalayın ve bu sayfadaki giriş alanına yapıştırın."
+          },
+          {
+            "title": "Mevcutsa 4K indirin",
+            "text": "Video 4K çözünürlüğü destekliyorsa, 4K indirme seçeneği varsayılan olarak mevcut olacaktır."
+          },
+          {
+            "title": "Gerekirse başka bir kalite seçin",
+            "text": "4K mevcut değilse, YouTube tarafından sağlanan en yüksek kaliteyi seçin ve videoyu indirin."
+          }
+        ]
+      },
+      {
+        "id": "formats",
+        "title": "Mevcut İndirme Formatları",
+        "paragraphs": [
+          "Video dosyaları, orijinal YouTube video kalitesine göre MP4 formatında sağlanır.",
+          "MP3 formatında yalnızca ses indirme isteğe bağlı bir seçenek olarak mevcuttur.",
+          "Mevcut tüm formatlar, YouTube tarafından sağlanan orijinal akışları yansıtır."
+        ]
+      }
+    ]
+  },
+  "instructions": {
+    "title": "YouTube Videoları 4K Olarak Nasıl İndirilir",
+    "steps": [
+      "YouTube video URL'sini kopyalayın ve bu sayfadaki giriş alanına yapıştırın.",
+      "Video 4K çözünürlüğü destekliyorsa, 4K indirme seçeneği varsayılan olarak mevcut olacaktır.",
+      "4K mevcut değilse, YouTube tarafından sağlanan en yüksek kaliteyi seçin ve videoyu indirin."
+    ]
+  },
+  "faqs": {
+    "title": "Sıkça Sorulan Sorular",
+    "items": [
+      {
+        "question": "Tüm YouTube videoları 4K olarak indirilebilir mi?",
+        "answer": "Hayır. Yalnızca yerel 4K akışına sahip YouTube videoları 4K kalitesinde indirilebilir."
+      },
+      {
+        "question": "Bu araç videoları 4K'ya yükseltir mi?",
+        "answer": "Hayır. Araç videoları yükseltmez veya değiştirmez. Yalnızca YouTube'da mevcut olan orijinal kaliteye göre indirme seçenekleri sunar."
+      },
+      {
+        "question": "İndirme için hangi formatlar mevcuttur?",
+        "answer": "Video dosyaları, orijinal YouTube video kalitesine göre MP4 formatında sağlanır. MP3 formatında yalnızca ses indirme isteğe bağlı bir seçenek olarak mevcuttur."
+      },
+      {
+        "question": "4K mevcut değilse ne olur?",
+        "answer": "Bir video 4K akışı sağlamıyorsa, araç YouTube tarafından sunulan diğer tüm mevcut kaliteleri gösterecektir. Orijinal videonun desteklediği en yüksek kaliteyi yine de indirebilirsiniz."
+      }
+    ]
+  }
+}

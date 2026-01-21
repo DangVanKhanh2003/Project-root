@@ -2,25 +2,36 @@
 
 const { spawn } = require('child_process');
 const path = require('path');
-
-const sites = [
-  { name: '4k-downloader', port: 3001 },
-  { name: '4k-downloader-pink', port: 3002 },
-  { name: 'clone_ytmp3_6', port: 3003 },
-  { name: 'clone-7', port: 3004 },
-  { name: 'yt-downloader', port: 3005 },
-];
+const fs = require('fs');
 
 const appsDir = path.join(__dirname, '..', 'apps');
+const BASE_PORT = 3001;
+
+// Auto-detect all apps with vite.config.ts
+const apps = fs.readdirSync(appsDir).filter(name => {
+  const appPath = path.join(appsDir, name);
+  const hasViteConfig = fs.existsSync(path.join(appPath, 'vite.config.ts')) ||
+                        fs.existsSync(path.join(appPath, 'vite.config.js'));
+  return fs.statSync(appPath).isDirectory() && hasViteConfig;
+});
+
+// Sort alphabetically for consistent port assignment
+apps.sort();
+
+const sites = apps.map((name, index) => ({
+  name,
+  port: BASE_PORT + index
+}));
 
 console.log('\n🚀 Starting all dev servers...\n');
+console.log(`📦 Found ${sites.length} apps\n`);
 
 const processes = [];
 
 sites.forEach(({ name, port }) => {
   const appPath = path.join(appsDir, name);
 
-  const server = spawn('npx', ['vite', '--host'], {
+  const server = spawn('npx', ['vite', '--host', '--port', port.toString()], {
     cwd: appPath,
     shell: true,
     stdio: 'pipe'

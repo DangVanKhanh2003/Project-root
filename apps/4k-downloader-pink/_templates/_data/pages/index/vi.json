@@ -1,0 +1,95 @@
+{
+  "seo": {
+    "title": "Tải Video YouTube 4K – Trình tải xuống YouTube 4K",
+    "description": "Tải xuống video YouTube chất lượng 4K trực tuyến. Trình tải xuống YouTube 4K đơn giản, nhanh chóng và dựa trên web.",
+    "ogTitle": "Tải Video YouTube 4K – Trình tải xuống YouTube 4K",
+    "ogDescription": "Tải xuống video YouTube chất lượng 4K trực tuyến. Trình tải xuống YouTube 4K đơn giản, nhanh chóng và dựa trên web."
+  },
+  "hero": {
+    "title": "Trình tải xuống",
+    "titleAccent": "Video YouTube 4K",
+    "subtitle": "Tải xuống video YouTube chất lượng 4K"
+  },
+  "content": {
+    "intro": [
+      "Trang này là một công cụ chuyên dụng để tải xuống video YouTube ở chất lượng 4K.",
+      "Công cụ này được xây dựng để phục vụ người dùng cần tải xuống video YouTube ở độ phân giải cao."
+    ],
+    "sections": [
+      {
+        "id": "download-4k",
+        "title": "Tải xuống Video YouTube chất lượng 4K",
+        "paragraphs": [
+          "Khi một video YouTube hỗ trợ độ phân giải 4K (2160p), công cụ sẽ hiển thị tùy chọn tải xuống video ở chất lượng 4K.",
+          "Các video đã tải xuống luôn khớp với chất lượng gốc do YouTube cung cấp.",
+          "Công cụ không sửa đổi hoặc thay đổi chất lượng video trong quá trình tải xuống."
+        ]
+      },
+      {
+        "id": "when-4k-not-available",
+        "title": "Khi không có chất lượng 4K",
+        "paragraphs": [
+          "Không phải tất cả các video YouTube đều được tải lên với độ phân giải 4K.",
+          "Nếu một video không cung cấp luồng 4K, công cụ sẽ hiển thị tất cả các chất lượng có sẵn khác do YouTube cung cấp.",
+          "Bạn vẫn có thể tải xuống chất lượng cao nhất được video gốc hỗ trợ."
+        ]
+      },
+      {
+        "id": "how-it-works",
+        "title": "Cách tải xuống Video YouTube ở chất lượng 4K",
+        "list": [
+          {
+            "title": "Dán liên kết video YouTube",
+            "text": "Sao chép URL video YouTube và dán vào trường nhập liệu trên trang này."
+          },
+          {
+            "title": "Tải xuống 4K nếu có",
+            "text": "Nếu video hỗ trợ độ phân giải 4K, tùy chọn tải xuống 4K sẽ có sẵn theo mặc định."
+          },
+          {
+            "title": "Chọn chất lượng khác nếu cần",
+            "text": "Nếu không có 4K, hãy chọn chất lượng cao nhất do YouTube cung cấp và tải xuống video."
+          }
+        ]
+      },
+      {
+        "id": "formats",
+        "title": "Các định dạng tải xuống có sẵn",
+        "paragraphs": [
+          "Các tệp video được cung cấp ở định dạng MP4 dựa trên chất lượng video YouTube gốc.",
+          "Tải xuống chỉ âm thanh ở định dạng MP3 có sẵn dưới dạng tùy chọn.",
+          "Tất cả các định dạng có sẵn đều phản ánh các luồng gốc do YouTube cung cấp."
+        ]
+      }
+    ]
+  },
+  "instructions": {
+    "title": "Cách tải xuống Video YouTube ở chất lượng 4K",
+    "steps": [
+      "Sao chép URL video YouTube và dán vào trường nhập liệu trên trang này.",
+      "Nếu video hỗ trợ độ phân giải 4K, tùy chọn tải xuống 4K sẽ có sẵn theo mặc định.",
+      "Nếu không có 4K, hãy chọn chất lượng cao nhất do YouTube cung cấp và tải xuống video."
+    ]
+  },
+  "faqs": {
+    "title": "Các câu hỏi thường gặp",
+    "items": [
+      {
+        "question": "Có thể tải xuống tất cả các video YouTube ở chất lượng 4K không?",
+        "answer": "Không. Chỉ những video YouTube có luồng 4K gốc mới có thể được tải xuống ở chất lượng 4K."
+      },
+      {
+        "question": "Công cụ này có nâng cấp video lên 4K không?",
+        "answer": "Không. Công cụ không nâng cấp hoặc sửa đổi video. Nó chỉ cung cấp các tùy chọn tải xuống dựa trên chất lượng gốc có sẵn trên YouTube."
+      },
+      {
+        "question": "Có những định dạng nào để tải xuống?",
+        "answer": "Các tệp video được cung cấp ở định dạng MP4 dựa trên chất lượng video YouTube gốc. Tải xuống chỉ âm thanh ở định dạng MP3 có sẵn dưới dạng tùy chọn."
+      },
+      {
+        "question": "Điều gì xảy ra nếu không có chất lượng 4K?",
+        "answer": "Nếu một video không cung cấp luồng 4K, công cụ sẽ hiển thị tất cả các chất lượng có sẵn khác do YouTube cung cấp. Bạn vẫn có thể tải xuống chất lượng cao nhất được video gốc hỗ trợ."
+      }
+    ]
+  }
+}

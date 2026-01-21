@@ -1,0 +1,95 @@
+{
+  "seo": {
+    "title": "Muat Turun Video YouTube 4K – Pemuat Turun YouTube 4K",
+    "description": "Muat turun video YouTube dalam kualiti 4K secara dalam talian. Pemuat turun YouTube 4K yang ringkas, pantas dan berasaskan web.",
+    "ogTitle": "Muat Turun Video YouTube 4K – Pemuat Turun YouTube 4K",
+    "ogDescription": "Muat turun video YouTube dalam kualiti 4K secara dalam talian. Pemuat turun YouTube 4K yang ringkas, pantas dan berasaskan web."
+  },
+  "hero": {
+    "title": "Pemuat Turun Video",
+    "titleAccent": "YouTube 4K",
+    "subtitle": "Muat turun video YouTube dalam kualiti 4K"
+  },
+  "content": {
+    "intro": [
+      "Halaman ini adalah alat khusus untuk memuat turun video YouTube dalam kualiti 4K.",
+      "Alat ini dibina untuk melayani pengguna yang perlu memuat turun video YouTube dalam resolusi tinggi."
+    ],
+    "sections": [
+      {
+        "id": "download-4k",
+        "title": "Muat Turun Video YouTube dalam Kualiti 4K",
+        "paragraphs": [
+          "Apabila video YouTube menyokong resolusi 4K (2160p), alat ini akan memaparkan pilihan untuk memuat turun video dalam kualiti 4K.",
+          "Video yang dimuat turun sentiasa sepadan dengan kualiti asal yang disediakan oleh YouTube.",
+          "Alat ini tidak mengubah suai atau menukar kualiti video semasa proses muat turun."
+        ]
+      },
+      {
+        "id": "when-4k-not-available",
+        "title": "Apabila 4K Tidak Tersedia",
+        "paragraphs": [
+          "Tidak semua video YouTube dimuat naik dengan resolusi 4K.",
+          "Jika video tidak menyediakan strim 4K, alat ini akan memaparkan semua kualiti lain yang tersedia yang ditawarkan oleh YouTube.",
+          "Anda masih boleh memuat turun kualiti tertinggi yang disokong oleh video asal."
+        ]
+      },
+      {
+        "id": "how-it-works",
+        "title": "Cara Memuat Turun Video YouTube dalam 4K",
+        "list": [
+          {
+            "title": "Tampal pautan video YouTube",
+            "text": "Salin URL video YouTube dan tampalkannya ke dalam medan input di halaman ini."
+          },
+          {
+            "title": "Muat turun 4K jika tersedia",
+            "text": "Jika video menyokong resolusi 4K, pilihan muat turun 4K akan tersedia secara lalai."
+          },
+          {
+            "title": "Pilih kualiti lain jika perlu",
+            "text": "Jika 4K tidak tersedia, pilih kualiti tertinggi yang disediakan oleh YouTube dan muat turun video."
+          }
+        ]
+      },
+      {
+        "id": "formats",
+        "title": "Format Muat Turun yang Tersedia",
+        "paragraphs": [
+          "Fail video disediakan dalam format MP4 berdasarkan kualiti video YouTube asal.",
+          "Muat turun audio sahaja dalam format MP3 tersedia sebagai pilihan pilihan.",
+          "Semua format yang tersedia mencerminkan strim asal yang disediakan oleh YouTube."
+        ]
+      }
+    ]
+  },
+  "instructions": {
+    "title": "Cara Memuat Turun Video YouTube dalam 4K",
+    "steps": [
+      "Salin URL video YouTube dan tampalkannya ke dalam medan input di halaman ini.",
+      "Jika video menyokong resolusi 4K, pilihan muat turun 4K akan tersedia secara lalai.",
+      "Jika 4K tidak tersedia, pilih kualiti tertinggi yang disediakan oleh YouTube dan muat turun video."
+    ]
+  },
+  "faqs": {
+    "title": "Soalan Lazim",
+    "items": [
+      {
+        "question": "Bolehkah semua video YouTube dimuat turun dalam 4K?",
+        "answer": "Tidak. Hanya video YouTube yang mempunyai strim 4K asli boleh dimuat turun dalam kualiti 4K."
+      },
+      {
+        "question": "Adakah alat ini menaik taraf video kepada 4K?",
+        "answer": "Tidak. Alat ini tidak menaik taraf atau mengubah suai video. Ia hanya menyediakan pilihan muat turun berdasarkan kualiti asal yang tersedia di YouTube."
+      },
+      {
+        "question": "Apakah format yang tersedia untuk dimuat turun?",
+        "answer": "Fail video disediakan dalam format MP4 berdasarkan kualiti video YouTube asal. Muat turun audio sahaja dalam format MP3 tersedia sebagai pilihan pilihan."
+      },
+      {
+        "question": "Apa yang berlaku jika 4K tidak tersedia?",
+        "answer": "Jika video tidak menyediakan strim 4K, alat ini akan memaparkan semua kualiti lain yang tersedia yang ditawarkan oleh YouTube. Anda masih boleh memuat turun kualiti tertinggi yang disokong oleh video asal."
+      }
+    ]
+  }
+}
