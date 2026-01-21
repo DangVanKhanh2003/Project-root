@@ -68,8 +68,8 @@ export function getProjectRoot(): string {
     if (fs.existsSync(packageJson)) {
       try {
         const pkg = JSON.parse(fs.readFileSync(packageJson, 'utf-8'));
-        // Tìm package.json của ytmp3.my (không phải của seo-checker)
-        if (pkg.name === 'ytmp3.my') {
+        // Tìm package.json của 4kvideo.pro (không phải của seo-checker)
+        if (pkg.name === '4kvideo.pro') {
           return current;
         }
       } catch {
@@ -88,7 +88,7 @@ export function getProjectRoot(): string {
 // ============================================
 
 export const SITE_CONFIG = {
-  baseUrl: 'https://ytmp3.my',
+  baseUrl: 'https://4kvideo.pro',
   defaultLanguage: 'en',
   supportedLanguages: [
     'ar', 'bn', 'de', 'es', 'fr', 'hi', 'id', 'it', 'ja', 'ko',

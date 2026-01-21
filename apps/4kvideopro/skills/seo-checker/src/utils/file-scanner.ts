@@ -163,7 +163,7 @@ export function readFile(filePath: string): string {
  */
 export function getExpectedUrl(
   relativePath: string,
-  baseUrl: string = 'https://ytmp3.my'
+  baseUrl: string = 'https://4kvideo.pro'
 ): string {
   // Remove .html extension và /index
   let url = relativePath

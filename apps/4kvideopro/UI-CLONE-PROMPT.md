@@ -667,4 +667,4 @@ Khi yêu cầu AI tạo UI clone, bạn có thể nói:
 ---
 
 *Document version: 1.0*
-*Generated for: YTMP3.my YouTube Downloader*
+*Generated for: 4kvideo.pro YouTube Downloader*
