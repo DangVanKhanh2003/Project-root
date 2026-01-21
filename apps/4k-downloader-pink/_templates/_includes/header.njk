@@ -1,0 +1,57 @@
+{%- set base = i18nBase[lang] or i18nBase['en'] -%}
+{%- set langPrefix = '' if (lang == 'en' or not lang) else '/' + lang -%}
+<!-- HEADER -->
+<header id="main-header">
+    <div class="container max-w-5xl header-container">
+        <!-- Logo -->
+        <a href="{{ langPrefix }}/" class="logo">
+            <div class="logo-text">{{ site.name }}</div>
+        </a>
+
+        <!-- Desktop Nav -->
+        <div class="desktop-nav">
+            <nav class="nav-links">
+                <a href="{{ langPrefix }}/" class="nav-link{% if pageKey == 'index' %} active{% endif %}">{{ base.nav.home }}</a>
+                <a href="{{ langPrefix }}/contact" class="nav-link">{{ base.nav.contact }}</a>
+            </nav>
+
+            <div class="nav-divider"></div>
+
+            <!-- Language Selector -->
+            <div class="lang-selector">
+                <button class="lang-button">
+                    <!-- Globe Icon -->
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="2" y1="12" x2="22" y2="12" />
+                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                    </svg>
+                    <span>{{ lang | upper if lang else 'EN' }}</span>
+                    <!-- Chevron Icon -->
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="chevron">
+                        <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                </button>
+                <!-- Language Dropdown -->
+                <div class="lang-dropdown">
+                    {%- for langItem in site.languages %}
+                    {%- set langUrl = '/' if langItem.isDefault else '/' + langItem.code + '/' %}
+                    <a href="{{ langUrl }}" class="lang-option{% if lang == langItem.code or (langItem.isDefault and not lang) %} active{% endif %}">{{ langItem.name }}</a>
+                    {%- endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Open menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="12" x2="21" y2="12" />
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
+        </button>
+    </div>
+</header>

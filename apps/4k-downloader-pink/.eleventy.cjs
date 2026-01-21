@@ -216,12 +216,14 @@ module.exports = function(eleventyConfig) {
   // ============================================
   // 7. CONFIGURATION
   // ============================================
+  // Eleventy 3.x: Explicitly set layouts directory
+  eleventyConfig.setLayoutsDirectory("_includes");
+
   return {
     dir: {
       input: "_templates",
       output: "_11ty-output",
       includes: "_includes",
-      layouts: "_includes",
       data: "_data"
     },
     templateFormats: ["njk"],

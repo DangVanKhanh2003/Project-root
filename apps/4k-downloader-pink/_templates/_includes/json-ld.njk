@@ -1,0 +1,107 @@
+{%- set base = i18nBase[lang] or i18nBase['en'] -%}
+{%- set pageData = i18nPages[pageKey or 'index'][lang or 'en'] -%}
+{%- set seo = pageData.seo -%}
+{%- set langPrefix = '' if (lang == 'en' or not lang) else '/' + lang -%}
+{%- set pageUrl = site.url + langPrefix + '/' -%}
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "{{ site.url }}/#organization",
+      "name": "{{ site.name }}",
+      "url": "{{ site.url }}",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "{{ site.url }}/logo.png"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "email": "contact.ytmp3.my@gmail.com"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "{{ site.url }}/#website",
+      "name": "{{ site.name }}",
+      "url": "{{ site.url }}",
+      "description": "{{ seo.description | jsonString }}",
+      "inLanguage": "{{ lang or 'en' }}",
+      "publisher": {
+        "@id": "{{ site.url }}/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "{{ pageUrl }}#webpage",
+      "url": "{{ pageUrl }}",
+      "name": "{{ seo.title | jsonString }}",
+      "isPartOf": {
+        "@id": "{{ site.url }}/#website"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "@id": "{{ site.url }}/#application"
+      },
+      "inLanguage": "{{ lang or 'en' }}"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "{{ site.url }}/#application",
+      "name": "{{ site.name }}",
+      "url": "{{ pageUrl }}",
+      "description": "{{ seo.description | jsonString }}",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "{{ lang or 'en' }}",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    {%- if pageData.faqs and pageData.faqs.items %},
+    {
+      "@type": "FAQPage",
+      "@id": "{{ pageUrl }}#faq",
+      "isPartOf": {
+        "@id": "{{ pageUrl }}#webpage"
+      },
+      "mainEntity": [
+        {%- for faq in pageData.faqs.items %}
+        {
+          "@type": "Question",
+          "name": "{{ faq.question | jsonString }}",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "{{ faq.answer | jsonString }}"
+          }
+        }{% if not loop.last %},{% endif %}
+        {%- endfor %}
+      ]
+    }
+    {%- endif %}
+    {%- if pageData.instructions and pageData.instructions.steps %},
+    {
+      "@type": "HowTo",
+      "@id": "{{ pageUrl }}#howto",
+      "isPartOf": {
+        "@id": "{{ pageUrl }}#webpage"
+      },
+      "name": "{{ pageData.instructions.title | jsonString }}",
+      "step": [
+        {%- for step in pageData.instructions.steps %}
+        {
+          "@type": "HowToStep",
+          "position": {{ loop.index }},
+          "text": "{{ step | jsonString }}"
+        }{% if not loop.last %},{% endif %}
+        {%- endfor %}
+      ]
+    }
+    {%- endif %}
+  ]
+}
+</script>
