@@ -86,14 +86,6 @@
   color: var(--pkg-color-gray-800);
 }
 
-.select-arrow {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  pointer-events: none;
-  color: var(--text-muted, var(--color-gray-550));
-}
 
 /* Unified dropdown specific */
 .unified-format-select {
@@ -204,10 +196,7 @@
 }
 
 /* RTL Support */
-[dir="rtl"] .select-arrow {
-  right: auto;
-  left: 10px;
-}
+
 
 [dir="rtl"] .quality-select {
   padding-right: 12px;

@@ -74,8 +74,8 @@
 
 .select-arrow {
     position: absolute;
-    right: 10px;
-    top: 50%;
+    right: 5px;
+    top: 55%;
     transform: translateY(-50%);
     pointer-events: none;
     color: var(--text-muted);

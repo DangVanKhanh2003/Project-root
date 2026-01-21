@@ -65,7 +65,7 @@ module.exports = function(eleventyConfig) {
   // ============================================
   eleventyConfig.addGlobalData('site', {
     url: 'https://4kvideo.pro',
-    name: '4kvideo',
+    name: '4K Video',
     languages: [
       { code: 'en', name: 'English', isDefault: true },
       { code: 'ar', name: 'العربية', isDefault: false },
