@@ -97,7 +97,7 @@ importers:
         specifier: ^7.1.10
         version: 7.2.2(@types/node@20.19.25)(terser@5.44.1)(tsx@4.20.6)
 
-  apps/4k-downloader-pink:
+  apps/4kvideopro:
     dependencies:
       '@downloader/core':
         specifier: workspace:*
