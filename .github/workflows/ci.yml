@@ -20,6 +20,7 @@ on:
           - 'mp3fast'
           - 'ytmp3-clone-5'
           - 'ytmp3.my'
+          - '4kvideopro'
 
 concurrency:
   group: ci-${{ github.repository }}-${{ github.ref }}
@@ -61,11 +62,13 @@ jobs:
               - 'apps/ytmp3-clone-5/**'
             ytmp3.my:
               - 'apps/ytmp3.my/**'
+            4kvideopro:
+              - 'apps/4kvideopro/**'
 
       - name: Determine apps to deploy
         id: determine-apps
         run: |
-          ALL_APPS='["y2matepro","y2mate-new-ux","ytmp3-clone-3","mp3fast","ytmp3-clone-5","ytmp3.my"]'
+          ALL_APPS='["y2matepro","y2mate-new-ux","ytmp3-clone-3","mp3fast","ytmp3-clone-5","ytmp3.my","4kvideopro"]'
 
           # Handle manual trigger with specific_app
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
@@ -118,6 +121,10 @@ jobs:
           if [[ "${{ steps.filter.outputs.ytmp3.my }}" == "true" ]]; then
             CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["ytmp3.my"]')
             echo "✅ ytmp3.my changed"
+          fi
+          if [[ "${{ steps.filter.outputs.4kvideopro }}" == "true" ]]; then
+            CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["4kvideopro"]')
+            echo "✅ 4kvideopro changed"
           fi
 
           echo "📋 Changed apps: $CHANGED_APPS"
@@ -218,8 +225,22 @@ jobs:
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
+  deploy-4kvideopro:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), '4kvideopro')
+    uses: ./.github/workflows/deploy-app.yml
+    with:
+      app_name: 4kvideopro
+      app_directory: apps/4kvideopro
+      filter_path: ./apps/4kvideopro
+      domain: ${{ vars.FOUR_K_VIDEO_PRO_DOMAIN || '4kvideo.pro' }}
+    secrets:
+      SSH_HOST: ${{ secrets.SSH_HOST }}
+      SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
   # ============================================
-  # Job 8: Summary
+  # Job 9: Summary
   # ============================================
   summary:
     needs:
@@ -230,6 +251,7 @@ jobs:
       - deploy-mp3fast
       - deploy-ytmp3-clone-5
       - deploy-ytmp3-my
+      - deploy-4kvideopro
     if: always()
     runs-on: ubuntu-latest
     steps:
@@ -250,3 +272,4 @@ jobs:
           echo "| mp3fast | ${{ needs.deploy-mp3fast.result || 'skipped' }} |"
           echo "| ytmp3-clone-5 | ${{ needs.deploy-ytmp3-clone-5.result || 'skipped' }} |"
           echo "| ytmp3.my | ${{ needs.deploy-ytmp3-my.result || 'skipped' }} |"
+          echo "| 4kvideopro | ${{ needs.deploy-4kvideopro.result || 'skipped' }} |"
