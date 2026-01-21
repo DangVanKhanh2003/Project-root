@@ -122,7 +122,7 @@ jobs:
             CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["ytmp3.my"]')
             echo "✅ ytmp3.my changed"
           fi
-          if [[ "${{ steps.filter.outputs.4kvideopro }}" == "true" ]]; then
+          if [[ "${{ steps.filter.outputs['4kvideopro'] }}" == "true" ]]; then
             CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["4kvideopro"]')
             echo "✅ 4kvideopro changed"
           fi
