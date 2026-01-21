@@ -80,7 +80,23 @@ ${urls.join('\n')}
 /**
  * Files to exclude from sitemap
  */
-const EXCLUDE_FILES = ['404.html', 'googleebb8aa47a7c7a0b4.html'];
+const EXCLUDE_FILES = ['404.html'];
+
+/**
+ * Patterns to exclude from sitemap (regex)
+ */
+const EXCLUDE_PATTERNS = [
+  /^google[a-z0-9]+\.html$/,  // Google verification files
+  /^Bing.*\.xml$/i,           // Bing verification files
+];
+
+/**
+ * Check if a file should be excluded from sitemap
+ */
+function shouldExclude(filename: string): boolean {
+  if (EXCLUDE_FILES.includes(filename)) return true;
+  return EXCLUDE_PATTERNS.some(pattern => pattern.test(filename));
+}
 
 /**
  * Recursively collect all HTML files from a directory
@@ -101,7 +117,7 @@ function collectHtmlFiles(dir: string, baseDir: string): string[] {
       files.push(...collectHtmlFiles(fullPath, baseDir));
     } else if (entry.name.endsWith('.html')) {
       // Skip excluded files (404, verification files, etc.)
-      if (EXCLUDE_FILES.includes(entry.name)) {
+      if (shouldExclude(entry.name)) {
         continue;
       }
       // Get relative path from dist
