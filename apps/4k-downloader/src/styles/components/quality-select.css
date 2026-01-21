@@ -51,7 +51,7 @@
 
 .select-arrow {
     position: absolute;
-    right: -5px;
+    right: 5px;
     top: 55%;
     transform: translateY(-50%);
     pointer-events: none;
