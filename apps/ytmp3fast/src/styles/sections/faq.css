@@ -12,12 +12,8 @@
 }
 
 .faq-item {
-    border-bottom: 1px solid var(--text-step-num);
-    padding-bottom: 16px;
-}
-
-[data-theme="light"] .faq-item {
     border-bottom: 1px solid var(--pkg-color-gray-100);
+    padding-bottom: 16px;
 }
 
 .faq-q {

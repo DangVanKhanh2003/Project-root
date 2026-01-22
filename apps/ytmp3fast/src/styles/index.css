@@ -27,9 +27,6 @@
 @import './typography.css';
 @import './common.css';
 
-/* 3. Themes (after variables) */
-@import './themes/light.css';
-
 /* 4. Layout */
 @import './layout/grid.css';
 @import './layout/container.css';

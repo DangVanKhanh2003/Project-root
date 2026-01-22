@@ -10,17 +10,12 @@
 }
 
 .info-card {
-    background: var(--bg-card);
-    border: var(--border-glass);
+    background: var(--color-white);
+    border: 1px solid var(--pkg-color-gray-100);
     border-radius: var(--radius-lg);
     padding: 30px;
     margin-bottom: 40px;
     transition: background 0.3s;
-}
-
-[data-theme="light"] .info-card {
-    background: var(--color-white);
-    border: 1px solid var(--pkg-color-gray-100);
     box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
 }
 
@@ -40,16 +35,11 @@
 .section-icon {
     width: 40px;
     height: 40px;
-    background: var(--text-step-num);
+    background: var(--pkg-color-gray-50);
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--pkg-color-on-primary-container);
-}
-
-[data-theme="light"] .section-icon {
-    background: var(--pkg-color-gray-50);
     color: var(--pkg-color-accent);
 }
 

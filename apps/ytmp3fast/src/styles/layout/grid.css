@@ -5,7 +5,7 @@
    Extracted from index.html - Phase 2
    ========================================================= */
 
-/* Ambient Background Glow - Dark Theme Only */
+/* Ambient Background Glow - Hidden for light theme */
 body::before {
     content: '';
     position: fixed;
@@ -19,11 +19,6 @@ body::before {
     pointer-events: none;
     z-index: -1;
     transition: background 0.3s, opacity 0.3s;
-    opacity: 1;
-}
-
-/* Hide ambient glow in light theme */
-[data-theme="light"] body::before {
     opacity: 0;
 }
 

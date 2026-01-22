@@ -24,12 +24,8 @@
 }
 
 .feature-icon {
-    color: var(--color-sky-blue);
-    flex-shrink: 0;
-}
-
-[data-theme="light"] .feature-icon {
     color: var(--color-accent-secondary);
+    flex-shrink: 0;
 }
 
 .feature-title {

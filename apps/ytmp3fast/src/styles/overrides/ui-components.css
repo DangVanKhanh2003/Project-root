@@ -9,8 +9,14 @@
 
 /**
  * Override suggestion container position
- * Default from package uses top: calc(...), we need fixed top: 150px
+ * Mobile: 60px, Desktop: 85px
  */
 #suggestion-container.suggestion-container--visible {
   top: 60px !important;
+}
+
+@media (min-width: 768px) {
+  #suggestion-container.suggestion-container--visible {
+    top: 85px !important;
+  }
 }
