@@ -73,7 +73,8 @@ export default defineConfig({
       '@': resolve(__dirname, './src'),
       '@downloader/core': resolve(__dirname, '../../packages/core/src'),
       '@downloader/history': resolve(__dirname, '../../packages/history/src'),
-      '@downloader/history/styles': resolve(__dirname, '../../packages/history/styles')
+      '@downloader/history/styles': resolve(__dirname, '../../packages/history/styles'),
+      '@downloader/vidtool-popup': resolve(__dirname, '../../packages/vidtool-popup/src')
     }
   },
   server: {

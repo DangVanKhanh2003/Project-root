@@ -12,7 +12,6 @@ import { TaskState } from '../logic/conversion/types';
 import type { AppState, ConversionTask } from '../state/types';
 import { getMergingEstimator, clearMergingEstimator } from './merging-progress-estimator';
 import { showVidToolPopup } from '@downloader/vidtool-popup';
-import { logEvent } from '../../../libs/firebase';
 
 // ============================================================
 // TYPE DEFINITIONS
@@ -328,8 +327,7 @@ function updateStatusBarUI(wrapper: HTMLElement, task: ConversionTask, formatId:
 
       // Show VidTool popup when download fails (after all retries exhausted)
       showVidToolPopup({
-        lang: document.documentElement.lang || 'en',
-        logEvent
+        lang: document.documentElement.lang || 'en'
       });
       break;
 

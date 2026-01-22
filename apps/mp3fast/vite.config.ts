@@ -103,7 +103,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': resolve(__dirname, './src'),
-      '@downloader/core': resolve(__dirname, '../../packages/core/src')
+      '@downloader/core': resolve(__dirname, '../../packages/core/src'),
+      '@downloader/vidtool-popup': resolve(__dirname, '../../packages/vidtool-popup/src')
     }
   },
   server: {
