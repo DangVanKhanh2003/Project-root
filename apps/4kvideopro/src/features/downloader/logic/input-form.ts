@@ -5,6 +5,7 @@
 
 import { api, coreServices } from '../../../api';
 import { scrollManager } from '@downloader/ui-shared';
+import { logEvent } from '../../../libs/firebase/firebase-analytics';
 import {
   getState,
   setState,
@@ -798,6 +799,7 @@ async function handleSubmit(event: Event): Promise<void> {
  * Rejects non-YouTube URLs with error message
  */
 async function handleExtractMedia(url: string): Promise<void> {
+  logEvent('submit_url');
 
   try {
     // ═══════════════════════════════════════════════════════
