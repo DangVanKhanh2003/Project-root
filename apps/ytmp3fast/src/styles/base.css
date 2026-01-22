@@ -1,0 +1,30 @@
+/* =========================================================
+   Base Styles - Body & Layout
+   ---------------------------------------------------------
+   Light theme body styles with technical grid pattern
+   Based on ytmp3.gg_clone1 template
+   ========================================================= */
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ===== TECHNICAL GRID PATTERN ===== */
+.bg-tech-grid {
+    background-image: var(--grid-pattern);
+    background-size: var(--grid-size);
+}
+
+/* ===== MAIN CONTAINER ===== */
+main {
+    flex-grow: 1;
+}

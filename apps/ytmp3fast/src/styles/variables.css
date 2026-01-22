@@ -1,0 +1,159 @@
+/* =========================================================
+   CSS Variables - Light Theme
+   ---------------------------------------------------------
+   Light Blue Premium Design System
+   Based on ytmp3.gg_clone1 template
+   ========================================================= */
+
+:root {
+    /* ===== COLORS ===== */
+
+    /* Base Palette */
+    --color-black: #0F172A;
+    --color-white: #FFFFFF;
+    --color-primary: #2563EB;
+    --color-primary-dark: #1D4ED8;
+    --color-primary-light: #eff6ff;
+    --color-cyan: #06B6D4;
+
+    /* Grayscale (Slate) */
+    --color-gray-900: #0F172A;
+    --color-gray-850: #1E293B;
+    --color-gray-800: #1E293B;
+    --color-gray-700: #334155;
+    --color-gray-600: #475569;
+    --color-gray-550: #64748B;
+    --color-gray-500: #64748B;
+    --color-gray-400: #94A3B8;
+    --color-gray-300: #CBD5E1;
+    --color-gray-250: #E2E8F0;
+    --color-gray-200: #E2E8F0;
+    --color-gray-100: #F1F5F9;
+
+    /* Background */
+    --bg-body: #F1F5F9;
+    --bg-card: var(--color-white);
+    --bg-card-hover: var(--color-gray-100);
+    --bg-input: var(--color-white);
+    --bg-header: rgba(255, 255, 255, 0.95);
+    --bg-header-scroll: rgba(255, 255, 255, 0.98);
+    --bg-footer: var(--color-gray-900);
+    --bg-step: var(--color-white);
+    --bg-step-hover: var(--color-gray-100);
+    --bg-badge: var(--color-primary-light);
+    --bg-button: var(--color-gray-900);
+    --bg-button-hover: var(--color-gray-800);
+    --bg-white: var(--color-white);
+
+    /* Accent */
+    --color-accent: var(--color-gray-900);
+    --color-accent-hover: var(--color-gray-800);
+    --color-accent-secondary: var(--color-primary);
+    --color-accent-dark: rgba(37, 99, 235, 0.1);
+
+    /* Gradient */
+    --gradient-primary: linear-gradient(135deg, var(--color-primary) 0%, var(--color-cyan) 100%);
+    --gradient-line: linear-gradient(90deg, var(--color-primary), var(--color-cyan));
+
+    /* Text */
+    --text-main: var(--color-gray-900);
+    --text-muted: var(--color-gray-600);
+    --text-secondary: var(--color-gray-400);
+    --text-tertiary: var(--color-gray-500);
+    --text-accent: var(--color-primary);
+    --text-logo: var(--color-gray-900);
+    --text-step-num: rgba(0, 0, 0, 0.03);
+
+    /* Borders */
+    --border-primary: var(--color-gray-200);
+    --border-secondary: var(--color-gray-300);
+    --border-hover: var(--color-gray-400);
+    --border-glass: 1px solid var(--color-gray-200);
+    --border-input: 2px solid var(--color-gray-300);
+    --border-input-hover: var(--color-gray-900);
+    --border-input-focus: var(--color-primary);
+    --border-active: 1px solid var(--color-gray-900);
+
+    /* Selection */
+    --selection-bg: var(--color-primary);
+    --selection-text: var(--color-white);
+
+    /* Semantic Colors */
+    --color-error-bg: #FEE2E2;
+    --color-error-border: #DC2626;
+    --color-error-text: #991B1B;
+    --color-error-dot: #DC2626;
+    --color-status-success: #2ecc71;
+    --color-status-error: #e74c3c;
+    --color-success-bg: #d4edda;
+    --color-success-text: #155724;
+    --color-error-bg-light: #f2dede;
+    --color-error-border-light: #ebccd1;
+    --color-error-text-light: #a94442;
+    --color-warning-yellow: #ffc107;
+    --color-orange: #ff9800;
+    --color-orange-dark: #f57c00;
+
+    /* Skeleton - Light theme (like y2matepro) */
+    --color-skeleton-dark: #e0e0e0;
+    --color-skeleton-light: #f0f0f0;
+
+    /* ===== TYPOGRAPHY ===== */
+    /* System font stack for optimal performance (0ms load, 0KB download) */
+    --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-display: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+    /* Font Weights */
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    /* ===== SPACING ===== */
+    --header-height: 80px;
+    --container-width: 1100px;
+    --container-max: 64rem;
+    --card-max: 56rem;
+
+    /* Border Radius */
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 20px;
+    --radius-pill: 9999px;
+
+    /* ===== EFFECTS ===== */
+
+    /* Shadows */
+    --shadow-card: 0 0 0 1px rgba(0, 0, 0, 0.03), 0 2px 8px rgba(0, 0, 0, 0.04);
+    --shadow-card-hover: 0 0 0 1px rgba(0, 0, 0, 0.05), 0 4px 16px rgba(0, 0, 0, 0.08);
+    --shadow-button: 0 4px 12px rgba(0, 0, 0, 0.15);
+    --shadow-button-hover: 0 6px 20px rgba(0, 0, 0, 0.2);
+    --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+    --shadow-dropdown: 0 4px 16px rgba(0, 0, 0, 0.1);
+    --shadow-glow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+
+    /* Glow */
+    --glow-accent: rgba(37, 99, 235, 0.05);
+    --glow-input: 0 0 0 4px rgba(37, 99, 235, 0.1);
+
+    /* Backdrop */
+    --backdrop-drawer: rgba(15, 23, 42, 0.7);
+
+    /* ===== GRID PATTERN ===== */
+    --grid-pattern:
+        linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+    --grid-size: 50px 50px;
+
+    /* ===== TRANSITIONS ===== */
+    --transition-fast: 0.2s;
+    --transition-normal: 0.3s;
+    --transition-slow: 0.5s;
+}
+
+/* ===== SELECTION ===== */
+::selection {
+    background-color: var(--selection-bg);
+    color: var(--selection-text);
+}

@@ -1,0 +1,69 @@
+{
+  "seo": {
+    "title": "YouTube를 FLAC(무손실 압축)으로 변환 – YTMP3",
+    "description": "YTMP3를 사용하여 YouTube를 FLAC 무손실(압축)으로 변환하세요. WAV보다 작은 파일 크기로 100% 원본 오디오 품질을 보존합니다. 무료, 빠르고 무제한입니다.",
+    "ogTitle": "YouTube를 FLAC으로 – YTMP3",
+    "ogDescription": "YouTube를 FLAC 무손실 압축으로 변환하세요. WAV보다 작은 파일 크기로 원본 품질을 제공합니다."
+  },
+
+  "hero": {
+    "title": "YouTube를",
+    "titleAccent": "FLAC",
+    "subtitle": "무료 및 빠른 YouTube-FLAC 무손실 변환기"
+  },
+
+  "content": {
+    "mainTitle": "YouTube-FLAC 변환이란 무엇인가요?",
+    "intro1": "YouTube-FLAC 변환은 YouTube 동영상에서 오디오를 추출하여 FLAC(Free Lossless Audio Codec) 형식으로 변환하는 과정입니다.",
+    "intro2": "FLAC은 <strong>무손실 압축</strong> 오디오 형식으로, 비압축 형식에 비해 파일 크기를 줄이면서 원본 소스의 100% 음질을 보존한다는 의미입니다.",
+
+    "whatIsTitle": "FLAC은 MP3 및 WAV와 어떻게 다른가요?",
+    "whatIsText": "<ul><li><strong>MP3와 비교:</strong> FLAC은 오디오 데이터를 제거하지 않습니다. <a href=\"/youtube-to-mp3-320kbps-converter\">MP3 320kbps</a>와 같은 고품질 형식도 여전히 손실이 있으며 일부 정보를 버립니다.</li><li><strong>WAV와 비교:</strong> FLAC은 동일한 오디오 품질을 유지하지만 <a href=\"/youtube-to-wav-converter\">비압축 WAV</a>에 비해 파일 크기를 약 40-50% 줄입니다.</li></ul>"
+  },
+
+  "whyChoose": {
+    "title": "YouTube-FLAC 변환에 YTMP3를 사용해야 하는 이유",
+    "reasons": [
+      {
+        "title": "100% 무료",
+        "text": "가입 없음, 사용 제한 없음."
+      },
+      {
+        "title": "진정한 무손실",
+        "text": "오디오 데이터가 완전히 보존됩니다."
+      },
+      {
+        "title": "효율적인 압축",
+        "text": "WAV보다 작고 품질은 동일합니다."
+      },
+      {
+        "title": "크로스 플랫폼",
+        "text": "Windows, macOS, iOS 및 Android에서 작동합니다."
+      }
+    ]
+  },
+
+  "instructions": {
+    "title": "YouTube를 FLAC으로 변환하는 방법",
+    "steps": [
+      "YouTube 동영상 링크를 복사합니다.",
+      "YTMP3 변환기에 붙여넣습니다.",
+      "출력 형식으로 FLAC을 선택합니다.",
+      "\"변환\"을 클릭하고 FLAC 파일을 다운로드합니다."
+    ]
+  },
+
+  "faqs": {
+    "title": "자주 묻는 질문",
+    "items": [
+      { "question": "YTMP3는 YouTube-FLAC 변환에 무료인가요?", "answer": "예. 완전히 무료이며 가입이나 구독이 필요하지 않습니다." },
+      { "question": "FLAC에서 \"무손실\"은 무엇을 의미하나요?", "answer": "무손실은 데이터 손실 없이 오디오가 압축된다는 의미입니다. 디코딩하면 원본과 비트 단위로 동일합니다." },
+      { "question": "FLAC이 MP3보다 나은가요?", "answer": "예, 품질 면에서 그렇습니다. FLAC은 원본 오디오의 100%를 보존하는 반면 MP3는 데이터를 버립니다. 그러나 FLAC 파일은 MP3 320kbps보다 큽니다." },
+      { "question": "16비트와 24비트 FLAC의 차이점은 무엇인가요?", "answer": "24비트는 더 높은 다이내믹 레인지(144dB 대 96dB)를 제공하며 고해상도 오디오에 사용됩니다. 16비트/44.1kHz는 CD 품질이며 대부분의 청취자에게 충분합니다." },
+      { "question": "내 기기에서 FLAC을 재생할 수 있나요?", "answer": "예. FLAC은 Windows 10, macOS, iOS, Android 및 대부분의 최신 오디오 플레이어에서 기본적으로 지원됩니다. 더 넓은 호환성을 위해 M4A를 고려하십시오." },
+      { "question": "FLAC은 WAV보다 얼마나 작은가요?", "answer": "FLAC은 일반적으로 동일한 오디오 품질을 유지하면서 비압축 WAV에 비해 파일 크기를 40-50% 줄입니다." },
+      { "question": "YTMP3가 내 데이터를 저장하나요?", "answer": "아니요. 모든 변환은 일시적이며 개인 데이터는 저장되지 않습니다." },
+      { "question": "FLAC은 음악 보관에 좋은가요?", "answer": "예. FLAC은 무손실이고 오픈 소스이며 세대 손실 없이 모든 형식으로 변환할 수 있으므로 보관에 이상적입니다." }
+    ]
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "nav": {
+    "home": "Trang chủ",
+    "about": "Giới thiệu"
+  },
+  "hero": {
+    "placeholder": "Dán link YouTube vào đây...",
+    "pasteButton": "Dán",
+    "clearButton": "Xóa",
+    "convertButton": "Chuyển đổi"
+  },
+  "drawer": {
+    "mp3320": "YouTube sang MP3 320kbps",
+    "wav": "YouTube sang WAV",
+    "flac": "YouTube sang FLAC",
+    "m4a": "YouTube sang M4A"
+  },
+  "footer": {
+    "ytToMp3": "YouTube sang MP3",
+    "ytToMp3320": "YouTube sang MP3 320kbps",
+    "ytToWav": "YouTube sang WAV",
+    "ytToFlac": "YouTube sang FLAC",
+    "ytToM4a": "YouTube sang M4A",
+    "contact": "Liên hệ",
+    "faq": "Câu hỏi thường gặp",
+    "privacyPolicy": "Chính sách bảo mật",
+    "copyrightClaims": "Khiếu nại bản quyền",
+    "terms": "Điều khoản sử dụng",
+    "copyright": "© 2025 YTMP3fast"
+  }
+}

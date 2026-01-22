@@ -147,7 +147,7 @@
     position: relative;
     width: 100%;
     aspect-ratio: 16 / 9;
-    background: #252525;
+    background: #e0e0e0;
     overflow: hidden;
 }
 
@@ -357,13 +357,15 @@
 
 .skeleton-card .card-channel,
 .skeleton-card .card-metadata {
-    color: #252525;
+    color: transparent;
 }
 
 .skeleton-card .skeleton-thumbnail,
 .skeleton-card .skeleton-line,
 .skeleton-card .skeleton-segment {
-    background: #252525;
+    background: linear-gradient(90deg, #d7d7d7 25%, #c7c7c7, #d7d7d7 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s linear infinite;
 }
 
 /* Ensure skeleton card-content is visible */
@@ -383,7 +385,9 @@
     position: absolute;
     top: 0;
     left: 0;
-    background: #252525;
+    background: linear-gradient(90deg, #d7d7d7 25%, #c7c7c7, #d7d7d7 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s linear infinite;
     border-radius: 0px;
     aspect-ratio: 16 / 9;
 }

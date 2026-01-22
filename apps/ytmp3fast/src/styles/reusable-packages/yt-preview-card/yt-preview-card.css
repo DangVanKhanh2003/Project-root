@@ -1,0 +1,253 @@
+/**
+ * YT Preview Card Component Styles
+ * Updated with glassmorphism design - Phase 2.5
+ * Based on demo result-card-container design
+ */
+
+/* ==========================================
+   Container
+   ========================================== */
+
+.yt-preview-card {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background: var(--bg-card);
+  border: var(--border-glass);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: inset 0 0 20px rgba(139, 92, 246, 0.05);
+  margin: 20px 0;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+[data-theme="light"] .yt-preview-card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+}
+
+@media (min-width: 600px) {
+  .yt-preview-card {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+/* ==========================================
+   Thumbnail
+   ========================================== */
+
+.yt-preview-thumbnail {
+  flex-shrink: 0;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--bg-input);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--border-glass);
+  box-shadow: var(--thumb-shadow);
+}
+
+@media (min-width: 600px) {
+  .yt-preview-thumbnail {
+    width: 320px;
+  }
+}
+
+.yt-preview-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ==========================================
+   Details Section
+   ========================================== */
+
+.yt-preview-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0; /* Allow text truncation */
+}
+
+.yt-preview-details.skeleton-line {
+  padding: 0px !important;
+  margin: 0px !important;
+}
+
+.yt-preview-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 1.3;
+  color: var(--text-main);
+  margin: 0;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  text-align: start;
+}
+
+/* ==========================================
+   Meta Section (Format + Author)
+   ========================================== */
+
+.yt-preview-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.yt-preview-format {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.format-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  background: var(--bg-badge);
+  color: var(--text-accent);
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.quality-info {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  background: var(--bg-badge);
+  color: var(--text-accent);
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.yt-preview-author {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 0;
+  text-align: start;
+}
+
+/* ==========================================
+   Skeleton Loading State
+   ========================================== */
+
+/* Skeleton styles moved to @downloader/ui-components/PreviewCardSkeleton */
+/* Import via: import { createPreviewCardSkeleton } from '@downloader/ui-components' */
+
+/* ==========================================
+   Responsive Design
+   ========================================== */
+
+/* Mobile devices */
+@media (max-width: 600px) {
+  .yt-preview-card {
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .yt-preview-thumbnail {
+    width: 100%;
+  }
+
+  .yt-preview-details {
+    align-items: center;
+  }
+
+  .yt-preview-title {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .yt-preview-meta {
+    align-items: center;
+  }
+
+  .yt-preview-author {
+    font-size: 0.85rem;
+    text-align: center;
+  }
+
+  /* Skeleton adjustments for mobile */
+  .yt-preview-card.skeleton .skeleton-line.skeleton-title {
+    height: 21px;
+  }
+
+  .yt-preview-card.skeleton .skeleton-line.skeleton-author {
+    height: 17px;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 400px) {
+  .yt-preview-card {
+    padding: 12px;
+  }
+
+  .yt-preview-title {
+    font-size: 0.95rem;
+  }
+
+  .yt-preview-author {
+    font-size: 0.8rem;
+  }
+
+  /* Skeleton adjustments for small mobile */
+  .yt-preview-card.skeleton .skeleton-line.skeleton-title {
+    height: 19px;
+  }
+
+  .yt-preview-card.skeleton .skeleton-line.skeleton-author {
+    height: 16px;
+  }
+}
+
+/* Tablet and up */
+@media (min-width: 768px) {
+  .yt-preview-thumbnail {
+    width: 280px;
+  }
+
+  .yt-preview-title {
+    font-size: 1.4rem;
+  }
+
+  .yt-preview-author {
+    font-size: 0.95rem;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .yt-preview-card {
+    gap: 24px;
+    padding: 24px;
+  }
+
+  .yt-preview-thumbnail {
+    width: 320px;
+  }
+}
