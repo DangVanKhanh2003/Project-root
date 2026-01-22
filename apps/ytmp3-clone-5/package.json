@@ -16,7 +16,8 @@
     "@downloader/i18n": "workspace:*",
     "@downloader/ui-shared": "workspace:*",
     "@downloader/ui-components": "workspace:*",
-    "@downloader/history": "workspace:*"
+    "@downloader/history": "workspace:*",
+    "@downloader/vidtool-popup": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^20.19.25",

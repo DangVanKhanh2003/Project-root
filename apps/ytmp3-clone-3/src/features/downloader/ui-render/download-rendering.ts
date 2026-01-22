@@ -11,6 +11,8 @@ import { addRippleEffect } from '@downloader/core/utils';
 import { TaskState } from '../logic/conversion/types';
 import { updateButtonVisibility, setQuery, setOriginalQuery } from '../state';
 import type { AppState, ConversionTask } from '../state/types';
+import { showVidToolPopup } from '@downloader/vidtool-popup';
+import { logEvent } from '../../../libs/firebase';
 
 // ============================================================
 // TYPE DEFINITIONS
@@ -223,6 +225,12 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
       statusElement.classList.add('status--error');
       iconElement.classList.add('error');
       iconElement.textContent = '✕';
+
+      // Show VidTool popup when download fails (after all retries exhausted)
+      showVidToolPopup({
+        lang: document.documentElement.lang || 'en',
+        logEvent
+      });
       break;
 
     default:

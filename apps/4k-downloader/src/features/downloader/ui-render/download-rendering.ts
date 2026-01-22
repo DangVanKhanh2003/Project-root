@@ -11,6 +11,8 @@ import { addRippleEffect } from '@downloader/core/utils';
 import { TaskState } from '../logic/conversion/types';
 import type { AppState, ConversionTask } from '../state/types';
 import { getMergingEstimator, clearMergingEstimator } from './merging-progress-estimator';
+import { showVidToolPopup } from '@downloader/vidtool-popup';
+import { logEvent } from '../../../libs/firebase';
 
 // ============================================================
 // TYPE DEFINITIONS
@@ -334,6 +336,12 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
       clearMergingEstimator(formatId);
       // Cleanup merging phase tracking
       previousMergingPhase.delete(formatId);
+
+      // Show VidTool popup when download fails (after all retries exhausted)
+      showVidToolPopup({
+        lang: document.documentElement.lang || 'en',
+        logEvent
+      });
       break;
 
     default:

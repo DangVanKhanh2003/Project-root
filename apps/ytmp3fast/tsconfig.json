@@ -20,7 +20,9 @@
       "@downloader/ui-shared": ["../../packages/ui-shared/src"],
       "@downloader/ui-shared/*": ["../../packages/ui-shared/src/*"],
       "@downloader/i18n": ["../../packages/i18n/src"],
-      "@downloader/i18n/*": ["../../packages/i18n/src/*"]
+      "@downloader/i18n/*": ["../../packages/i18n/src/*"],
+      "@downloader/vidtool-popup": ["../../packages/vidtool-popup/src"],
+      "@downloader/vidtool-popup/*": ["../../packages/vidtool-popup/src/*"]
     }
   },
   "include": ["src/**/*"],
