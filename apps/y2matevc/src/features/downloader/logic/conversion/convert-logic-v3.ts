@@ -46,13 +46,14 @@ export async function startConversion(params: V3ConversionParams): Promise<void>
   // Setup abort controller
   const abortController = new AbortController();
 
-  // Initialize task state
+  // Initialize task state (include formatData for retry functionality)
   setConversionTask(formatId, {
     state: TaskState.EXTRACTING,
     statusText: 'Creating download job...',
     showProgressBar: false,
     startedAt: Date.now(),
     abortController,
+    formatData: { extractV2Options },
   });
 
   try {

@@ -214,6 +214,12 @@ function updateStatusBarUI(wrapper: HTMLElement, task: ConversionTask, formatId:
     iconElement.style.display = 'none';
 
     smoothTransitionTo100(statusContainer, () => {
+      // IMPORTANT: Check if task already completed (SUCCESS/FAILED) before callback runs
+      // This prevents overriding success state when API returns quickly
+      if (!transitionInProgress.get(formatId)) {
+        return;
+      }
+
       // After transition, update text and reset gradient to 0%
       statusTextElement.textContent = 'Merging... 0%';
 
@@ -226,6 +232,11 @@ function updateStatusBarUI(wrapper: HTMLElement, task: ConversionTask, formatId:
 
       // Setup for CSS @keyframes animation (0%→50% in 15s, 50%→98% in 25s)
       requestAnimationFrame(() => {
+        // Double-check in case state changed during requestAnimationFrame
+        if (!transitionInProgress.get(formatId)) {
+          return;
+        }
+
         // 1. Reset progress to 0% so animation starts from 0
         statusContainer.style.setProperty('--progress-width', '0%');
 

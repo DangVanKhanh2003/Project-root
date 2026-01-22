@@ -28,6 +28,7 @@ import {
   setSearchPagination,
   setYouTubePreview,
   updateYouTubePreviewMetadata,
+  clearConversionTasks,
 } from '../state';
 import { renderResults, renderMessage, renderPreviewCard, showLoading, clearContent } from '../ui-render/content-renderer';
 import { updateVideoTitle } from '../ui-render/download-rendering';
@@ -783,6 +784,7 @@ async function handleSubmit(event: Event): Promise<void> {
   setResults([]);              // Clear search results
   clearError();                // Clear error messages
   clearSuggestions();          // Clear suggestions completely (array + state + flags)
+  clearConversionTasks();      // Abort and clear any active conversions from previous video
   setLoading(true);
 
   // Get input type to show appropriate skeleton
