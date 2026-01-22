@@ -222,12 +222,12 @@
 }
 
 .download-btn {
-  background-color: var(--color-accent);
+  background-color: #16a34a;
   color: var(--color-white);
 }
 
 .download-btn:hover {
-  background-color: var(--color-accent-hover);
+  background-color: #15803d;
   transform: translateY(-2px);
 }
 
@@ -278,9 +278,9 @@
 }
 
 .btn-new-convert:hover {
-  border-color: var(--color-accent);
-  color: var(--color-accent);
-  background: rgba(29, 186, 201, 0.1);
+  border-color: var(--text-main);
+  color: var(--text-main);
+  background: var(--bg-secondary);
   transform: translateY(-1px);
 }
 
