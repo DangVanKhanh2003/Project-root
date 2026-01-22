@@ -159,12 +159,14 @@ function handleDropdownClick(event: Event): void {
 
   if (!wrapper) return;
 
+  // Click on trigger button -> toggle dropdown
   if (target.closest('.custom-dropdown-trigger')) {
     event.preventDefault();
     toggleDropdown(wrapper);
     return;
   }
 
+  // Click on option -> select it
   const option = target.closest('.dropdown-option') as HTMLElement;
   if (option) {
     const value = option.getAttribute('data-value');

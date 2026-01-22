@@ -29,6 +29,16 @@ const LOG_PREFIX = '[ConvertLogicV3]';
 const log = (...args: unknown[]) => console.log(LOG_PREFIX, ...args);
 const logError = (...args: unknown[]) => console.error(LOG_PREFIX, ...args);
 
+// Rotating extract messages (displayed every 2s during extract phase)
+const EXTRACT_MESSAGES = [
+  'Creating download job...',
+  'Analyzing video source...',
+  'Fetching media info...',
+  'Preparing download...',
+  'Connecting to server...',
+];
+const EXTRACT_MESSAGE_INTERVAL = 2000; // 2 seconds
+
 /**
  * Main entry point for V3 conversion flow
  */
@@ -46,11 +56,20 @@ export async function startConversion(params: V3ConversionParams): Promise<void>
   // Initialize task state
   setConversionTask(formatId, {
     state: TaskState.EXTRACTING,
-    statusText: 'Creating download job...',
+    statusText: EXTRACT_MESSAGES[0],
     showProgressBar: false,
     startedAt: Date.now(),
     abortController,
   });
+
+  // Start rotating extract messages every 2 seconds
+  let messageIndex = 0;
+  const messageInterval = setInterval(() => {
+    messageIndex = (messageIndex + 1) % EXTRACT_MESSAGES.length;
+    updateConversionTask(formatId, {
+      statusText: EXTRACT_MESSAGES[messageIndex],
+    });
+  }, EXTRACT_MESSAGE_INTERVAL);
 
   try {
     // Phase 1: Create job
@@ -60,6 +79,9 @@ export async function startConversion(params: V3ConversionParams): Promise<void>
 
     const jobResponse = await apiV3.createJob(request, abortController.signal);
     log('Job created:', JSON.stringify(jobResponse, null, 2));
+
+    // Stop rotating messages when job is created
+    clearInterval(messageInterval);
 
     if (abortController.signal.aborted) {
       log('Aborted after job creation');
@@ -114,6 +136,9 @@ export async function startConversion(params: V3ConversionParams): Promise<void>
     });
 
   } catch (error) {
+    // Always clear interval on error
+    clearInterval(messageInterval);
+
     if (abortController.signal.aborted) {
       log('Caught error but was aborted, ignoring');
       return;
@@ -129,6 +154,8 @@ export async function startConversion(params: V3ConversionParams): Promise<void>
       completedAt: Date.now(),
     });
   } finally {
+    // Ensure interval is always cleared
+    clearInterval(messageInterval);
     log('=== END CONVERSION V3 ===');
   }
 }
