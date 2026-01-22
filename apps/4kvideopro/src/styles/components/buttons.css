@@ -97,7 +97,7 @@
 /* Download Button */
 .btn-download {
     flex: 2;
-    background-color: var(--color-accent-primary);
+    background-color: #10B981;
     color: white;
     border: none;
     height: 52px;
@@ -108,13 +108,13 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    box-shadow: 0 2px 8px rgba(29, 186, 201, 0.3);
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
     transition: all 0.2s ease;
 }
 
 .btn-download:hover {
-    background-color: var(--color-accent-hover);
-    box-shadow: 0 0 30px var(--glow-accent);
+    background-color: #059669;
+    box-shadow: 0 0 30px rgba(16, 185, 129, 0.4);
 }
 
 /* Secondary Button */
