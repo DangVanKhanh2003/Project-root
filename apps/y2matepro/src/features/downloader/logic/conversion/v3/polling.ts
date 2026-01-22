@@ -40,6 +40,7 @@ export interface PollingOptions {
 export async function startPolling(options: PollingOptions): Promise<void> {
   const { statusUrl, onProgress, onComplete, onError, signal } = options;
 
+  const pollingInterval = v3Config.timeout.pollingInterval;
   const maxConsecutiveErrors = RETRY_CONFIGS.polling.maxConsecutiveErrors;
 
   let consecutiveErrors = 0;
@@ -129,6 +130,14 @@ export async function startPolling(options: PollingOptions): Promise<void> {
       }
     }
 
-    // No delay - poll immediately after response or error
+    // Wait before next poll
+    await sleep(pollingInterval);
   }
+}
+
+/**
+ * Sleep helper
+ */
+function sleep(ms: number): Promise<void> {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
