@@ -136,6 +136,22 @@
     background: var(--bg-button-hover);
 }
 
+/* Mobile screens */
+@media (max-width: 799px) {
+    .btn-submit,
+    .btn-convert,
+    .convert-button {
+        padding: 0 0.75rem;
+        min-width: auto;
+    }
+
+    .btn-submit svg,
+    .btn-convert svg,
+    .convert-button svg {
+        display: none;
+    }
+}
+
 /* Small mobile screens */
 @media (max-width: 359px) {
     .format-toggle {
@@ -145,14 +161,7 @@
     .btn-submit,
     .btn-convert,
     .convert-button {
-        padding: 0 0.75rem;
         font-size: 0.875rem;
         min-width: 100px;
-    }
-
-    .btn-submit svg,
-    .btn-convert svg,
-    .convert-button svg {
-        display: none;
     }
 }
