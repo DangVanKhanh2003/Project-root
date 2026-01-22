@@ -48,7 +48,7 @@
     border: 1px solid #878787;
     color: #FFFFFF;
     font-weight: 500;
-    font-size: 1.125rem;
+    font-size: 16px;
     outline: none;
     transition: all 0.2s ease;
     -webkit-tap-highlight-color: transparent;
@@ -57,7 +57,6 @@
 @media (min-width: 768px) {
     .video-input {
         height: 5rem;
-        font-size: 1.25rem;
     }
 }
 

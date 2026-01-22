@@ -18,6 +18,12 @@ Dự án sử dụng công nghệ web chuẩn với kiến trúc hiện đại:
 
 **Không sử dụng frameworks** - dự án được xây dựng hoàn toàn bằng vanilla web technologies để đảm bảo hiệu suất tối ưu và kiểm soát hoàn toàn code base.
 
+## CSS Guidelines
+
+### Input Fields
+- **Font size**: Minimum và default là `16px` cho tất cả input fields (bao gồm cả mobile)
+- Lý do: Tránh auto-zoom trên iOS khi focus vào input có font-size < 16px
+
 ## Monorepo Structure
 
 Dự án sử dụng kiến trúc monorepo với các apps trong `apps/`.

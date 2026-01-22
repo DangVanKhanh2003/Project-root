@@ -567,7 +567,7 @@ h1 {
     border: 2px solid #3F3F46;
     color: white;
     font-weight: 500;
-    font-size: 1.125rem;
+    font-size: 16px;
     outline: none;
     transition: all 0.2s;
 }
@@ -575,7 +575,6 @@ h1 {
 @media (min-width: 768px) {
     .video-input {
         height: 5rem;
-        font-size: 1.25rem;
     }
 }
 
