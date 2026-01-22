@@ -17,6 +17,7 @@
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-sm);
     padding: var(--space-lg);
+    margin-bottom: 20px;
 }
 
 .form-wrap {
