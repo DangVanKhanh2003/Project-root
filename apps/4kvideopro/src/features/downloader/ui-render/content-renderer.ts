@@ -517,7 +517,14 @@ export function renderPreviewCard(_data: any): void {
     qualityInfo = '';
   } else if (selectedFormat === 'mp4') {
     formatBadge = 'MP4';
-    qualityInfo = videoQuality;
+    // Add 4K/2K label for high resolutions
+    if (videoQuality.includes('2160')) {
+      qualityInfo = `${videoQuality} - 4K`;
+    } else if (videoQuality.includes('1440')) {
+      qualityInfo = `${videoQuality} - 2K`;
+    } else {
+      qualityInfo = videoQuality;
+    }
   } else {
     const audioFormat = state.audioFormat;
     if (audioBadgeOnlyFormats.includes(audioFormat)) {

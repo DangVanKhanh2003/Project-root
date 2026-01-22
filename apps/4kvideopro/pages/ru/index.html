@@ -342,37 +342,48 @@
                         <div class="format-selector-wrapper">
                             <div class="format-selector">
                                 <div class="quality-wrapper">
-                                    <select id="unified-format-select" class="quality-select unified-format-select"
-                                        aria-label="Format and quality" data-unified-select>
-                                        <optgroup label="Video">
-                                            <option value="video|mp4-2160" selected>MP4 - 4K</option>
-                                            <option value="video|mp4-1080">MP4 - 1080p</option>
-                                            <option value="video|mp4-720">MP4 - 720p</option>
-                                            <option value="video|mp4-480">MP4 - 480p</option>
-                                            <option value="video|mp4-360">MP4 - 360p</option>
-                                            <option value="video|mp4-240">MP4 - 240p</option>
-                                            <option value="video|mp4-144">MP4 - 144p</option>
-                                            <option value="video|webm">WEBM</option>
-                                            <option value="video|mkv">MKV</option>
-                                        </optgroup>
-                                        <optgroup label="Audio">
-                                            <option value="audio|mp3-320">MP3 - 320kbps</option>
-                                            <option value="audio|mp3-256">MP3 - 256kbps</option>
-                                            <option value="audio|mp3-128">MP3 - 128kbps</option>
-                                            <option value="audio|mp3-64">MP3 - 64kbps</option>
-                                            <option value="audio|flac">FLAC</option>
-                                            <option value="audio|wav">WAV</option>
-                                            <option value="audio|m4a">M4A</option>
-                                            <option value="audio|opus">Opus</option>
-                                            <option value="audio|ogg">OGG</option>
-                                        </optgroup>
-                                    </select>
-                                    <script>(function(){try{var s=document.getElementById('unified-format-select');if(!s)return;var d=document.documentElement.dataset.unifiedSelection;if(d)s.value=d}catch(e){}})()</script>
-                                    <div class="select-arrow">
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <input type="hidden" id="unified-format-select" name="format" value="video|mp4-2160" data-unified-select>
+                                    <button type="button" class="quality-select custom-dropdown-trigger" aria-haspopup="listbox" aria-expanded="false">
+                                        <span class="dropdown-selected-text">MP4 - 4K</span>
+                                        <svg class="dropdown-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                             <path d="M6 9l6 6 6-6" />
                                         </svg>
+                                    </button>
+                                    <div class="custom-dropdown-menu" role="listbox">
+                                        <div class="dropdown-group">
+                                            <div class="dropdown-group-label">Video</div>
+                                            <div class="dropdown-option selected" data-value="video|mp4-2160" role="option">MP4 - 4K</div>
+                                            <div class="dropdown-option" data-value="video|mp4-1440" role="option">MP4 - 2K</div>
+                                            <div class="dropdown-option" data-value="video|mp4-1080" role="option">MP4 - 1080p</div>
+                                            <div class="dropdown-option" data-value="video|mp4-720" role="option">MP4 - 720p</div>
+                                            <div class="dropdown-option" data-value="video|mp4-480" role="option">MP4 - 480p</div>
+                                            <div class="dropdown-option" data-value="video|mp4-360" role="option">MP4 - 360p</div>
+                                            <div class="dropdown-option" data-value="video|mp4-240" role="option">MP4 - 240p</div>
+                                            <div class="dropdown-option" data-value="video|mp4-144" role="option">MP4 - 144p</div>
+                                            <div class="dropdown-option" data-value="video|webm" role="option">WEBM</div>
+                                            <div class="dropdown-option" data-value="video|mkv" role="option">MKV</div>
+                                        </div>
+                                        <div class="dropdown-group dropdown-submenu-parent">
+                                            <div class="dropdown-group-label dropdown-submenu-trigger">
+                                                Audio
+                                                <svg class="submenu-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <path d="M9 6l6 6-6 6" />
+                                                </svg>
+                                            </div>
+                                            <div class="dropdown-submenu">
+                                                <div class="dropdown-option" data-value="audio|mp3-320" role="option">MP3 - 320kbps</div>
+                                                <div class="dropdown-option" data-value="audio|mp3-256" role="option">MP3 - 256kbps</div>
+                                                <div class="dropdown-option" data-value="audio|mp3-128" role="option">MP3 - 128kbps</div>
+                                                <div class="dropdown-option" data-value="audio|mp3-64" role="option">MP3 - 64kbps</div>
+                                                <div class="dropdown-option" data-value="audio|flac" role="option">FLAC</div>
+                                                <div class="dropdown-option" data-value="audio|wav" role="option">WAV</div>
+                                                <div class="dropdown-option" data-value="audio|m4a" role="option">M4A</div>
+                                                <div class="dropdown-option" data-value="audio|opus" role="option">Opus</div>
+                                                <div class="dropdown-option" data-value="audio|ogg" role="option">OGG</div>
+                                            </div>
+                                        </div>
                                     </div>
+                                    <script>(function(){try{var h=document.getElementById('unified-format-select');if(!h)return;var d=document.documentElement.dataset.unifiedSelection;if(d){h.value=d;var t=document.querySelector('.dropdown-selected-text');var opts=document.querySelectorAll('.dropdown-option');opts.forEach(function(o){o.classList.remove('selected');if(o.dataset.value===d){o.classList.add('selected');if(t)t.textContent=o.textContent}})}}catch(e){}})()</script>
                                 </div>
                                 <button type="submit" class="btn-convert">
                                     <span>Convert</span>

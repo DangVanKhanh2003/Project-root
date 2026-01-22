@@ -39,6 +39,7 @@ const PAGE_DEFAULTS: Record<string, string> = {
 export const UNIFIED_OPTIONS = {
   video: [
     { value: 'video|mp4-2160', label: 'MP4 - 4K' },
+    { value: 'video|mp4-1440', label: 'MP4 - 2K' },
     { value: 'video|mp4-1080', label: 'MP4 - 1080p' },
     { value: 'video|mp4-720', label: 'MP4 - 720p' },
     { value: 'video|mp4-480', label: 'MP4 - 480p' },
@@ -65,7 +66,7 @@ export const UNIFIED_OPTIONS = {
 export const QUALITY_OPTIONS = {
   mp4: {
     formats: ['mp4', 'webm', 'mkv'] as const,
-    qualities: ['2160p', '1080p', '720p', '480p', '360p', '240p', '144p'] as const
+    qualities: ['2160p', '1440p', '1080p', '720p', '480p', '360p', '240p', '144p'] as const
   },
   mp3: {
     formats: ['mp3', 'wav', 'm4a', 'opus', 'ogg', 'flac'] as AudioFormatType[],
