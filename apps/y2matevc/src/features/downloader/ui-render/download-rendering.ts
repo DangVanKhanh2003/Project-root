@@ -65,6 +65,16 @@ export function renderConversionStatus(state: AppState, _prevState?: AppState): 
 
   // Setup button handlers if not already set up
   setupButtonHandlers(wrapper, formatId);
+
+  // IMPORTANT: Clear transitionInProgress to prevent updateStatusBarUI from being skipped
+  // This can happen when API returns success very quickly after progress reaches 100%
+  // (merging phase detection sets transitionInProgress=true, but callback hasn't run yet)
+  if (task.state === TaskState.SUCCESS || task.state === TaskState.FAILED) {
+    if (transitionInProgress.get(formatId)) {
+      transitionInProgress.set(formatId, false);
+    }
+  }
+
   // Update status bar UI (with throttling)
   updateStatusBarUI(wrapper, task, formatId);
 }
