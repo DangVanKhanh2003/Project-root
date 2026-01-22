@@ -47,7 +47,7 @@
     background-color: var(--bg-input);
     border: var(--border-input);
     color: var(--text-main);
-    font-weight: 500;
+    font-weight: 400;
     font-size: max(16px, 1.125rem); /* min 16px to prevent iOS auto-zoom */
     outline: none;
     transition: all 0.2s ease;
