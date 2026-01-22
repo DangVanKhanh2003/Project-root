@@ -1,13 +1,19 @@
 /**
- * Format Selector Component (UNIFIED DROPDOWN)
- * Single dropdown combining Video and Audio options with optgroups
+ * Format Selector Component (CUSTOM DROPDOWN WITH SUBMENU)
+ * Custom dropdown with nested Audio submenu that expands on hover
  */
 
 import {
   setUnifiedSelection,
   UNIFIED_OPTIONS
 } from '../../features/downloader/state';
-import { t } from '@downloader/i18n';
+
+// ==========================================
+// State
+// ==========================================
+
+let isDropdownOpen = false;
+let clickOutsideHandler: ((e: MouseEvent) => void) | null = null;
 
 // ==========================================
 // Render Functions
@@ -16,9 +22,6 @@ import { t } from '@downloader/i18n';
 /**
  * Render format selector into the input form
  * Called once during app initialization
- *
- * IMPORTANT: This function MUST be called AFTER initializeFormatSelector()
- * to ensure state is loaded before rendering. This prevents layout shift.
  */
 export function renderFormatSelectorToForm(): void {
   const container = document.getElementById('format-selector-container');
@@ -27,44 +30,118 @@ export function renderFormatSelectorToForm(): void {
     return;
   }
 
-  // HTML inline scripts already set dropdown value
-  // TS only needs to attach event listeners
   initFormatSelector('#format-selector-container');
 }
 
 /**
- * Render unified dropdown HTML with optgroups
+ * Render unified dropdown HTML with custom dropdown structure
  */
 export function renderUnifiedDropdown(selectedValue: string): string {
   const videoOptions = UNIFIED_OPTIONS.video;
   const audioOptions = UNIFIED_OPTIONS.audio;
 
+  const selectedOption = [...videoOptions, ...audioOptions].find(o => o.value === selectedValue);
+  const selectedLabel = selectedOption?.label || 'MP4 - 4K';
+
   return `
-    <select id="unified-format-select" class="quality-select unified-format-select" aria-label="${t('aria.qualitySelector')}" data-unified-select>
-      <optgroup label="Video">
-        ${videoOptions.map(option => {
-          const isSelected = option.value === selectedValue;
-          return `<option value="${option.value}"${isSelected ? ' selected' : ''}>${option.label}</option>`;
-        }).join('')}
-      </optgroup>
-      <optgroup label="Audio">
-        ${audioOptions.map(option => {
-          const isSelected = option.value === selectedValue;
-          return `<option value="${option.value}"${isSelected ? ' selected' : ''}>${option.label}</option>`;
-        }).join('')}
-      </optgroup>
-    </select>
+    <input type="hidden" id="unified-format-select" name="format" value="${selectedValue}" data-unified-select>
+    <button type="button" class="quality-select custom-dropdown-trigger" aria-haspopup="listbox" aria-expanded="false">
+      <span class="dropdown-selected-text">${selectedLabel}</span>
+      <svg class="dropdown-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M6 9l6 6 6-6" />
+      </svg>
+    </button>
+    <div class="custom-dropdown-menu" role="listbox">
+      <div class="dropdown-group">
+        <div class="dropdown-group-label">Video</div>
+        ${videoOptions.map(option => `
+          <div class="dropdown-option${option.value === selectedValue ? ' selected' : ''}" data-value="${option.value}" role="option">${option.label}</div>
+        `).join('')}
+      </div>
+      <div class="dropdown-group">
+        <div class="dropdown-group-label">Audio</div>
+        ${audioOptions.map(option => `
+          <div class="dropdown-option${option.value === selectedValue ? ' selected' : ''}" data-value="${option.value}" role="option">${option.label}</div>
+        `).join('')}
+      </div>
+    </div>
   `;
+}
+
+// ==========================================
+// Dropdown Control
+// ==========================================
+
+function openDropdown(wrapper: Element): void {
+  if (isDropdownOpen) return;
+
+  isDropdownOpen = true;
+  wrapper.classList.add('open');
+
+  const trigger = wrapper.querySelector('.custom-dropdown-trigger');
+  if (trigger) {
+    trigger.setAttribute('aria-expanded', 'true');
+  }
+
+  clickOutsideHandler = (e: MouseEvent) => {
+    if (!wrapper.contains(e.target as Node)) {
+      closeDropdown(wrapper);
+    }
+  };
+  setTimeout(() => {
+    document.addEventListener('click', clickOutsideHandler!);
+  }, 0);
+}
+
+function closeDropdown(wrapper: Element): void {
+  if (!isDropdownOpen) return;
+
+  isDropdownOpen = false;
+  wrapper.classList.remove('open');
+
+  const trigger = wrapper.querySelector('.custom-dropdown-trigger');
+  if (trigger) {
+    trigger.setAttribute('aria-expanded', 'false');
+  }
+
+  if (clickOutsideHandler) {
+    document.removeEventListener('click', clickOutsideHandler);
+    clickOutsideHandler = null;
+  }
+}
+
+function toggleDropdown(wrapper: Element): void {
+  if (isDropdownOpen) {
+    closeDropdown(wrapper);
+  } else {
+    openDropdown(wrapper);
+  }
+}
+
+function selectOption(wrapper: Element, value: string, label: string): void {
+  const hiddenInput = wrapper.querySelector('[data-unified-select]') as HTMLInputElement;
+  if (hiddenInput) {
+    hiddenInput.value = value;
+  }
+
+  const selectedText = wrapper.querySelector('.dropdown-selected-text');
+  if (selectedText) {
+    selectedText.textContent = label;
+  }
+
+  const options = wrapper.querySelectorAll('.dropdown-option');
+  options.forEach(opt => {
+    opt.classList.toggle('selected', opt.getAttribute('data-value') === value);
+  });
+
+  setUnifiedSelection(value);
+  closeDropdown(wrapper);
 }
 
 // ==========================================
 // Event Handlers
 // ==========================================
 
-/**
- * Initialize format selector event listeners
- * Call this after rendering the component
- */
 export function initFormatSelector(containerSelector: string = '#previewCard'): void {
   const container = document.querySelector(containerSelector);
   if (!container) {
@@ -72,32 +149,61 @@ export function initFormatSelector(containerSelector: string = '#previewCard'): 
     return;
   }
 
-  // Listen for unified select changes
-  container.addEventListener('change', handleUnifiedChange);
+  container.addEventListener('click', handleDropdownClick);
+  container.addEventListener('keydown', handleDropdownKeydown);
 }
 
-/**
- * Handle unified dropdown change
- */
-function handleUnifiedChange(event: Event): void {
-  const target = event.target as HTMLSelectElement;
+function handleDropdownClick(event: Event): void {
+  const target = event.target as HTMLElement;
+  const wrapper = target.closest('.quality-wrapper');
 
-  // Only handle unified-select changes
-  if (!target.matches('[data-unified-select]')) {
+  if (!wrapper) return;
+
+  if (target.closest('.custom-dropdown-trigger')) {
+    event.preventDefault();
+    toggleDropdown(wrapper);
     return;
   }
 
-  const value = target.value;
-  setUnifiedSelection(value);
+  const option = target.closest('.dropdown-option') as HTMLElement;
+  if (option) {
+    const value = option.getAttribute('data-value');
+    const label = option.textContent?.trim();
+    if (value && label) {
+      selectOption(wrapper, value, label);
+    }
+    return;
+  }
+}
+
+function handleDropdownKeydown(event: KeyboardEvent): void {
+  const target = event.target as HTMLElement;
+  const wrapper = target.closest('.quality-wrapper');
+
+  if (!wrapper) return;
+
+  switch (event.key) {
+    case 'Enter':
+    case ' ':
+      if (target.classList.contains('custom-dropdown-trigger')) {
+        event.preventDefault();
+        toggleDropdown(wrapper);
+      }
+      break;
+    case 'Escape':
+      closeDropdown(wrapper);
+      break;
+  }
 }
 
 // ==========================================
 // Cleanup
 // ==========================================
 
-/**
- * Cleanup format selector (remove event listeners)
- */
 export function cleanupFormatSelector(): void {
-  // No global event listeners to clean up (using event delegation)
+  if (clickOutsideHandler) {
+    document.removeEventListener('click', clickOutsideHandler);
+    clickOutsideHandler = null;
+  }
+  isDropdownOpen = false;
 }
