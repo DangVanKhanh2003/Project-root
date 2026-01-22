@@ -40,7 +40,6 @@ export interface PollingOptions {
 export async function startPolling(options: PollingOptions): Promise<void> {
   const { statusUrl, onProgress, onComplete, onError, signal } = options;
 
-  const pollingInterval = v3Config.timeout.pollingInterval;
   const { maxConsecutiveErrors } = RETRY_CONFIGS.polling;
 
   let consecutiveErrors = 0;
@@ -86,32 +85,24 @@ export async function startPolling(options: PollingOptions): Promise<void> {
     } catch (error) {
       if (signal.aborted) return;
 
-      // Timeout errors do NOT count - continue polling indefinitely
+      // Timeout is NOT an error - continue polling immediately
       if (isTimeoutError(error)) {
         log('Timeout error, continuing polling...');
-        // Don't increment consecutiveErrors for timeouts
-      } else {
-        // Network/API error - increment consecutive errors
-        consecutiveErrors++;
-        log(`Error (${consecutiveErrors}/${maxConsecutiveErrors}):`, error);
+        continue;
+      }
 
-        // Check if max consecutive errors reached
-        if (consecutiveErrors >= maxConsecutiveErrors) {
-          log('Max consecutive errors reached, failing...');
-          onError('Network error - please try again');
-          return;
-        }
+      // Network/API error - increment consecutive errors
+      consecutiveErrors++;
+      log(`Error (${consecutiveErrors}/${maxConsecutiveErrors}):`, error);
+
+      // Check if max consecutive errors reached
+      if (consecutiveErrors >= maxConsecutiveErrors) {
+        log('Max consecutive errors reached, failing...');
+        onError('Network error - please try again');
+        return;
       }
     }
 
-    // Wait for next poll
-    await sleep(pollingInterval);
+    // No delay - poll immediately after response or error
   }
-}
-
-/**
- * Sleep helper
- */
-function sleep(ms: number): Promise<void> {
-  return new Promise(resolve => setTimeout(resolve, ms));
 }

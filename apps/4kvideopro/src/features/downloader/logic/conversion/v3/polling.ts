@@ -5,6 +5,7 @@
 
 import { apiV3, v3Config } from '../../../../../api/v3';
 import type { StatusResponse } from '@downloader/core';
+import { RETRY_CONFIGS, isTimeoutError } from '../retry-helper';
 
 /**
  * Polling options
@@ -29,16 +30,20 @@ export interface PollingOptions {
 /**
  * Start polling for job status
  * Polls until API returns completed or error
- * Network errors are ignored - only stop when API explicitly returns error
+ * Network errors are retried up to maxConsecutiveErrors times
  */
 export async function startPolling(options: PollingOptions): Promise<void> {
   const { statusUrl, onProgress, onComplete, onError, signal } = options;
 
-  const pollingInterval = v3Config.timeout.pollingInterval;
+  const maxConsecutiveErrors = RETRY_CONFIGS.polling.maxConsecutiveErrors;
+  let consecutiveErrors = 0;
 
   while (!signal.aborted) {
     try {
       const status = await apiV3.getStatusByUrl(statusUrl);
+
+      // Reset error counter on successful response
+      consecutiveErrors = 0;
 
       // Handle different statuses
       switch (status.status) {
@@ -72,19 +77,27 @@ export async function startPolling(options: PollingOptions): Promise<void> {
           break;
       }
     } catch (error) {
-      // Network error - log and continue polling
       if (signal.aborted) return;
-      console.log('[V3 Polling] Network error, continuing...', error);
+
+      // Timeout is NOT an error - continue polling immediately
+      if (isTimeoutError(error)) {
+        console.log('[V3 Polling] Request timeout - continuing polling...');
+        continue;
+      }
+
+      // Real network error - count it
+      consecutiveErrors++;
+      console.log(`[V3 Polling] Network error (${consecutiveErrors}/${maxConsecutiveErrors}):`, error);
+
+      // Check if max consecutive errors reached
+      if (consecutiveErrors >= maxConsecutiveErrors) {
+        console.log(`[V3 Polling] Max consecutive errors (${maxConsecutiveErrors}) reached. Stopping.`);
+        onError(`Network error after ${maxConsecutiveErrors} retries`);
+        return;
+      }
     }
 
-    // Wait for next poll
-    await sleep(pollingInterval);
+    // No delay - poll immediately after response or error
   }
 }
 
-/**
- * Sleep helper
- */
-function sleep(ms: number): Promise<void> {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}

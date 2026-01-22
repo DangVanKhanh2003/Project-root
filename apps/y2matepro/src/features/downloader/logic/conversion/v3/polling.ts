@@ -40,7 +40,6 @@ export interface PollingOptions {
 export async function startPolling(options: PollingOptions): Promise<void> {
   const { statusUrl, onProgress, onComplete, onError, signal } = options;
 
-  const pollingInterval = v3Config.timeout.pollingInterval;
   const maxConsecutiveErrors = RETRY_CONFIGS.polling.maxConsecutiveErrors;
 
   let consecutiveErrors = 0;
@@ -87,10 +86,10 @@ export async function startPolling(options: PollingOptions): Promise<void> {
     } catch (error) {
       if (signal.aborted) return;
 
-      // Timeout errors do NOT count - can retry unlimited times
+      // Timeout errors do NOT count - continue polling immediately
       if (error instanceof TimeoutError) {
         console.log('[V3 Polling] Timeout, retrying (does not count as error)...');
-        // Continue polling without incrementing consecutiveErrors
+        continue;
       }
       // Network errors and other retryable errors - count towards limit
       else if (error instanceof NetworkError) {
@@ -130,14 +129,6 @@ export async function startPolling(options: PollingOptions): Promise<void> {
       }
     }
 
-    // Wait for next poll
-    await sleep(pollingInterval);
+    // No delay - poll immediately after response or error
   }
-}
-
-/**
- * Sleep helper
- */
-function sleep(ms: number): Promise<void> {
-  return new Promise(resolve => setTimeout(resolve, ms));
 }
