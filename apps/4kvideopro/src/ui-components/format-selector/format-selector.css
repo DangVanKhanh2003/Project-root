@@ -205,3 +205,114 @@
   padding-left: 32px;
 }
 
+/* ==========================================
+   6. CUSTOM DROPDOWN (LIGHT MODE)
+   ========================================== */
+
+/* Trigger button */
+.custom-dropdown-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  text-align: left;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  color: #1e293b;
+}
+
+.custom-dropdown-trigger:hover {
+  border-color: #1dbac9;
+}
+
+.dropdown-selected-text {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dropdown-arrow {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+  color: #64748b;
+}
+
+.quality-wrapper.open .dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+/* Dropdown menu - Light mode */
+.custom-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  min-width: 160px;
+  max-height: 320px;
+  overflow-y: auto;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+  z-index: 100;
+  margin-top: 4px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+}
+
+.quality-wrapper.open .custom-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Dropdown group */
+.dropdown-group {
+  padding: 4px 0;
+}
+
+.dropdown-group + .dropdown-group {
+  border-top: 1px solid #e2e8f0;
+}
+
+.dropdown-group-label {
+  padding: 8px 12px 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748b;
+}
+
+/* Dropdown options */
+.dropdown-option {
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  color: #1e293b;
+  font-size: 0.9rem;
+}
+
+.dropdown-option:hover {
+  background: #f1f5f9;
+}
+
+.dropdown-option.selected {
+  background: #1dbac9;
+  color: #fff;
+}
+
+.dropdown-option.selected:hover {
+  background: #179aa7;
+}
+
+/* ==========================================
+   7. RTL SUPPORT FOR CUSTOM DROPDOWN
+   ========================================== */
+
+[dir="rtl"] .custom-dropdown-trigger {
+  text-align: right;
+}
