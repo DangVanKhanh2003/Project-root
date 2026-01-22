@@ -15,7 +15,7 @@ on:
         options:
           - ''
           - 'y2matepro'
-          - 'y2mate-new-ux'
+          - 'y2matevc'
           - 'ytmp3-clone-3'
           - 'mp3fast'
           - 'ytmp3-clone-5'
@@ -52,8 +52,8 @@ jobs:
               - 'pnpm-lock.yaml'
             y2matepro:
               - 'apps/y2matepro/**'
-            y2mate-new-ux:
-              - 'apps/y2mate-new-ux/**'
+            y2matevc:
+              - 'apps/y2matevc/**'
             ytmp3-clone-3:
               - 'apps/ytmp3-clone-3/**'
             mp3fast:
@@ -68,7 +68,7 @@ jobs:
       - name: Determine apps to deploy
         id: determine-apps
         run: |
-          ALL_APPS='["y2matepro","y2mate-new-ux","ytmp3-clone-3","mp3fast","ytmp3-clone-5","ytmp3.my","4kvideopro"]'
+          ALL_APPS='["y2matepro","y2matevc","ytmp3-clone-3","mp3fast","ytmp3-clone-5","ytmp3.my","4kvideopro"]'
 
           # Handle manual trigger with specific_app
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
@@ -136,9 +136,9 @@ jobs:
             CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["y2matepro"]')
             echo "✅ y2matepro changed"
           fi
-          if [[ "${{ steps.filter.outputs.y2mate-new-ux }}" == "true" ]]; then
-            CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["y2mate-new-ux"]')
-            echo "✅ y2mate-new-ux changed"
+          if [[ "${{ steps.filter.outputs.y2matevc }}" == "true" ]]; then
+            CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["y2matevc"]')
+            echo "✅ y2matevc changed"
           fi
           if [[ "${{ steps.filter.outputs.ytmp3-clone-3 }}" == "true" ]]; then
             CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["ytmp3-clone-3"]')
@@ -189,15 +189,15 @@ jobs:
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
-  deploy-y2mate-new-ux:
+  deploy-y2matevc:
     needs: detect-changes
-    if: needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'y2mate-new-ux')
+    if: needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'y2matevc')
     uses: ./.github/workflows/deploy-app.yml
     with:
-      app_name: y2mate-new-ux
-      app_directory: apps/y2mate-new-ux
-      filter_path: ./apps/y2mate-new-ux
-      domain: ${{ vars.Y2MATE_NEW_UX_DOMAIN || 'y2mate-new-ux.com' }}
+      app_name: y2matevc
+      app_directory: apps/y2matevc
+      filter_path: ./apps/y2matevc
+      domain: ${{ vars.Y2MATEVC_DOMAIN || 'y2matevc.com' }}
     secrets:
       SSH_HOST: ${{ secrets.SSH_HOST }}
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
@@ -280,7 +280,7 @@ jobs:
     needs:
       - detect-changes
       - deploy-y2matepro
-      - deploy-y2mate-new-ux
+      - deploy-y2matevc
       - deploy-ytmp3-clone-3
       - deploy-mp3fast
       - deploy-ytmp3-clone-5
@@ -301,7 +301,7 @@ jobs:
           echo "| App | Status |"
           echo "|-----|--------|"
           echo "| y2matepro | ${{ needs.deploy-y2matepro.result || 'skipped' }} |"
-          echo "| y2mate-new-ux | ${{ needs.deploy-y2mate-new-ux.result || 'skipped' }} |"
+          echo "| y2matevc | ${{ needs.deploy-y2matevc.result || 'skipped' }} |"
           echo "| ytmp3-clone-3 | ${{ needs.deploy-ytmp3-clone-3.result || 'skipped' }} |"
           echo "| mp3fast | ${{ needs.deploy-mp3fast.result || 'skipped' }} |"
           echo "| ytmp3-clone-5 | ${{ needs.deploy-ytmp3-clone-5.result || 'skipped' }} |"

@@ -9,7 +9,7 @@ on:
         type: choice
         options:
           - 'y2matepro'
-          - 'y2mate-new-ux'
+          - 'y2matevc'
           - 'ytmp3-clone-3'
           - 'mp3fast'
           - 'ytmp3-clone-5'
@@ -44,10 +44,10 @@ jobs:
               echo "filter_path=./apps/y2matepro" >> $GITHUB_OUTPUT
               echo "domain=${{ vars.Y2MATEPRO_DOMAIN || 'y2matepro.com' }}" >> $GITHUB_OUTPUT
               ;;
-            "y2mate-new-ux")
-              echo "directory=apps/y2mate-new-ux" >> $GITHUB_OUTPUT
-              echo "filter_path=./apps/y2mate-new-ux" >> $GITHUB_OUTPUT
-              echo "domain=${{ vars.Y2MATE_NEW_UX_DOMAIN || 'y2mate-new-ux.com' }}" >> $GITHUB_OUTPUT
+            "y2matevc")
+              echo "directory=apps/y2matevc" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/y2matevc" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.Y2MATEVC_DOMAIN || 'y2matevc.com' }}" >> $GITHUB_OUTPUT
               ;;
             "ytmp3-clone-3")
               echo "directory=apps/ytmp3-clone-3" >> $GITHUB_OUTPUT
