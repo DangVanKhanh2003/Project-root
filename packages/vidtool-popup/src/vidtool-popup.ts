@@ -18,7 +18,7 @@ export type LogEventFunction = (eventName: string, eventParams?: Record<string, 
 // ==================== Constants ====================
 
 // Default icon URL (can be overridden via options)
-const DEFAULT_ICON_URL = '/public/vidtool_icon.png';
+const DEFAULT_ICON_URL = '/vidtool_icon.png';
 
 // Download URLs per platform
 const DOWNLOAD_URLS: Record<Platform, string> = {
@@ -559,7 +559,7 @@ export interface VidToolPopupOptions {
     lang?: string;
     /** Callback when redirect button is clicked */
     onRedirect?: () => void;
-    /** Custom icon URL (defaults to /public/vidtool_icon.png) */
+    /** Custom icon URL (defaults to /vidtool_icon.png) */
     iconUrl?: string;
     /** Force specific platform (auto-detected if not provided) */
     platform?: Platform;
@@ -574,7 +574,7 @@ export interface VidToolPopupOptions {
  * @param options - Configuration options
  * @param options.lang - Language code (auto-detected from document.documentElement.lang)
  * @param options.onRedirect - Callback when redirect button is clicked
- * @param options.iconUrl - Custom icon URL (defaults to /public/vidtool_icon.png)
+ * @param options.iconUrl - Custom icon URL (defaults to /vidtool_icon.png)
  * @param options.platform - Force specific platform (auto-detected if not provided)
  *
  * @example
