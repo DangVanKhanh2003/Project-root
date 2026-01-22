@@ -77,6 +77,9 @@ importers:
       '@downloader/ui-shared':
         specifier: workspace:*
         version: link:../../packages/ui-shared
+      '@downloader/vidtool-popup':
+        specifier: workspace:*
+        version: link:../../packages/vidtool-popup
       firebase:
         specifier: ^12.8.0
         version: 12.8.0
@@ -148,6 +151,9 @@ importers:
       '@downloader/ui-shared':
         specifier: workspace:*
         version: link:../../packages/ui-shared
+      '@downloader/vidtool-popup':
+        specifier: workspace:*
+        version: link:../../packages/vidtool-popup
       firebase:
         specifier: ^12.8.0
         version: 12.8.0
@@ -182,6 +188,9 @@ importers:
       '@downloader/ui-shared':
         specifier: workspace:*
         version: link:../../packages/ui-shared
+      '@downloader/vidtool-popup':
+        specifier: workspace:*
+        version: link:../../packages/vidtool-popup
       firebase:
         specifier: ^12.8.0
         version: 12.8.0
@@ -216,6 +225,9 @@ importers:
       '@downloader/ui-shared':
         specifier: workspace:*
         version: link:../../packages/ui-shared
+      '@downloader/vidtool-popup':
+        specifier: workspace:*
+        version: link:../../packages/vidtool-popup
     devDependencies:
       '@11ty/eleventy':
         specifier: ^3.0.0
@@ -275,6 +287,9 @@ importers:
       '@downloader/ui-shared':
         specifier: workspace:*
         version: link:../../packages/ui-shared
+      '@downloader/vidtool-popup':
+        specifier: workspace:*
+        version: link:../../packages/vidtool-popup
     devDependencies:
       '@types/node':
         specifier: ^20.19.25
@@ -303,6 +318,9 @@ importers:
       '@downloader/ui-shared':
         specifier: workspace:*
         version: link:../../packages/ui-shared
+      '@downloader/vidtool-popup':
+        specifier: workspace:*
+        version: link:../../packages/vidtool-popup
       firebase:
         specifier: ^12.8.0
         version: 12.8.0
@@ -337,6 +355,9 @@ importers:
       '@downloader/ui-shared':
         specifier: workspace:*
         version: link:../../packages/ui-shared
+      '@downloader/vidtool-popup':
+        specifier: workspace:*
+        version: link:../../packages/vidtool-popup
       firebase:
         specifier: ^12.8.0
         version: 12.8.0
@@ -371,6 +392,9 @@ importers:
       '@downloader/ui-shared':
         specifier: workspace:*
         version: link:../../packages/ui-shared
+      '@downloader/vidtool-popup':
+        specifier: workspace:*
+        version: link:../../packages/vidtool-popup
     devDependencies:
       '@types/node':
         specifier: ^20.19.25
@@ -402,6 +426,9 @@ importers:
       '@downloader/ui-shared':
         specifier: workspace:*
         version: link:../../packages/ui-shared
+      '@downloader/vidtool-popup':
+        specifier: workspace:*
+        version: link:../../packages/vidtool-popup
     devDependencies:
       '@types/node':
         specifier: ^20.19.25
@@ -430,6 +457,9 @@ importers:
       '@downloader/ui-shared':
         specifier: workspace:*
         version: link:../../packages/ui-shared
+      '@downloader/vidtool-popup':
+        specifier: workspace:*
+        version: link:../../packages/vidtool-popup
       firebase:
         specifier: ^12.8.0
         version: 12.8.0
@@ -464,6 +494,9 @@ importers:
       '@downloader/ui-shared':
         specifier: workspace:*
         version: link:../../packages/ui-shared
+      '@downloader/vidtool-popup':
+        specifier: workspace:*
+        version: link:../../packages/vidtool-popup
       firebase:
         specifier: ^12.8.0
         version: 12.8.0
