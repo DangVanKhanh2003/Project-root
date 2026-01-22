@@ -147,7 +147,7 @@
     position: relative;
     width: 100%;
     aspect-ratio: 16 / 9;
-    background: #d7d7d7; /* Match skeleton background color */
+    background: #252525;
     overflow: hidden;
 }
 
@@ -205,7 +205,7 @@
 .card-channel {
     font-size: var(--pkg-body-medium-size);
     font-weight: var(--pkg-body-medium-weight);
-    color: var(--pkg-search-results-channel-color);
+    color: #AAAAAA;
     line-height: var(--pkg-body-medium-line-height);
     margin: 0;
     text-align: left;
@@ -223,7 +223,7 @@
     gap: var(--pkg-space-1);
     font-size: 12px; /* Mobile: 12px */
     font-weight: var(--pkg-label-medium-weight);
-    color: var(--pkg-search-results-metadata-color);
+    color: #AAAAAA;
     line-height: 1;
     text-align: left;
     overflow: hidden;
@@ -350,6 +350,22 @@
     cursor: default;
 }
 
+/* Override skeleton card styles */
+.skeleton-card {
+    border: none;
+}
+
+.skeleton-card .card-channel,
+.skeleton-card .card-metadata {
+    color: #252525;
+}
+
+.skeleton-card .skeleton-thumbnail,
+.skeleton-card .skeleton-line,
+.skeleton-card .skeleton-segment {
+    background: #252525;
+}
+
 /* Ensure skeleton card-content is visible */
 .skeleton-card .card-content {
     display: flex;
@@ -367,9 +383,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    background: linear-gradient(90deg, #d7d7d7 25%, #c7c7c7 50%, #d7d7d7 75%);
-    background-size: 200% 100%;
-    animation: shimmer 1.5s linear infinite;
+    background: #252525;
     border-radius: 0px;
     aspect-ratio: 16 / 9;
 }
