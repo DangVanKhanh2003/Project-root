@@ -449,14 +449,11 @@
 (function() {
   try {
     const preferencesJson = localStorage.getItem('y2mate_format_preferences');
-    console.log('Inline script: preferencesJson', preferencesJson);
     if (preferencesJson) {
       const preferences = JSON.parse(preferencesJson);
-      console.log('Inline script: preferences', preferences);
       const selectElement = preferences.selectedFormat === 'mp4'
         ? document.getElementById('quality-select-mp4')
         : document.getElementById('quality-select-mp3');
-      console.log('Inline script: selectElement', selectElement);
       if (selectElement) {
         let value;
         if (preferences.selectedFormat === 'mp4') {
@@ -470,19 +467,13 @@
             ? `mp3-${preferences.audioBitrate || '128'}`
             : audioFormat;
         }
-        console.log('Inline script: setting selectElement.value to', value);
         selectElement.value = value;
-        console.log('Inline script: selectElement.value after set', selectElement.value);
       }
     }
     const autoSubmitValue = localStorage.getItem('y2mate_auto_submit');
-    console.log('Inline script: autoSubmitValue', autoSubmitValue);
     const checkbox = document.getElementById('auto-submit-checkbox');
-    console.log('Inline script: checkbox', checkbox);
     if (checkbox) {
-      console.log('Inline script: checkbox.checked before set', checkbox.checked);
       checkbox.checked = autoSubmitValue === 'true';
-      console.log('Inline script: checkbox.checked after set', checkbox.checked);
     }
   } catch (error) {
     console.error('Error syncing UI from localStorage in inline script:', error);

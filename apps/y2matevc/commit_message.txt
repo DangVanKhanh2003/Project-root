@@ -1,8 +1,10 @@
-feat: Optimize inline script for format selector
+feat: Centralize format selector logic in HTML
 
-Refactored the inline script in `base.njk` to:
-- Load format and auto-submit preferences from localStorage.
-- Set `data-format` and `data-autoSubmit` attributes on the `<html>` element.
-- Removed the CSS injection part as requested by the user, prioritizing script size optimization.
+Moved localStorage-based initialization logic for format toggle, quality dropdowns, and auto-submit checkbox from TypeScript files to a new inline script in `index.njk`.
 
-This change aims to improve initial page load performance by setting user preferences early, though it may reintroduce visual flicker for the format selector and auto-submit toggle until external CSS loads.
+- Removed `syncUIFromLocalStorage` function and its call from `format-selector.ts`.
+- Modified `<head>` inline script to only set `data-format` attribute.
+- Added a new inline script after `#format-selector-container` in `index.njk` to directly set `select.value` and `checkbox.checked`.
+- Removed all `data-` attribute based CSS from `format-selector.css` as per user request.
+
+This change centralizes initial UI state setup in HTML, but reintroduces visual flicker for these elements due to the absence of critical CSS.
