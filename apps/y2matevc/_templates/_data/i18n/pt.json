@@ -1,0 +1,136 @@
+{
+  "nav": {
+    "home": "Downloader do YouTube",
+    "youtubeToMp4": "Conversor de YouTube para MP4",
+    "youtubeToMp3": "Conversor de YouTube para MP3",
+    "youtubeShorts": "Downloader de YouTube Shorts",
+    "language": "Português"
+  },
+  "hero": {
+    "h1": "Downloader de Vídeos do YouTube",
+    "h2": "Baixe vídeos do YouTube, converta YouTube para MP4, MP3 de graça",
+    "placeholder": "Pesquise ou cole o link do YouTube aqui",
+    "start": "Começar"
+  },
+  "features": {
+    "f1": {
+      "title": "Downloads Ilimitados",
+      "description": "Baixe quantos vídeos do YouTube quiser, sem limitações."
+    },
+    "f2": {
+      "title": "Conversões de Alta Velocidade",
+      "description": "Converta vídeos do YouTube para o formato desejado em segundos."
+    },
+    "f3": {
+      "title": "Múltiplas Opções de Formato",
+      "description": "Suporta MP4, MP3, WEBM, MKV e mais. Escolha a qualidade que atenda às suas necessidades."
+    },
+    "f4": {
+      "title": "Não é Necessário Cadastro",
+      "description": "Baixe e converta vídeos sem qualquer registro ou informação pessoal."
+    },
+    "f5": {
+      "title": "Compatibilidade Multiplataforma",
+      "description": "Nosso downloader funciona em qualquer dispositivo: Windows, macOS, Linux, Android ou iOS."
+    },
+    "f6": {
+      "title": "Seguro e Protegido",
+      "description": "Seus downloads são processados com segurança e seus dados estão sempre protegidos."
+    }
+  },
+  "howTo": {
+    "title": "Como Baixar Vídeos do YouTube?",
+    "step1": {
+      "title": "Copie o URL do Vídeo do YouTube",
+      "description": "Vá para o YouTube, encontre o vídeo que deseja baixar e copie o URL da barra de endereço."
+    },
+    "step2": {
+      "title": "Cole o URL no Y2Mate",
+      "description": "Abra o Y2Mate, cole o URL copiado na caixa de entrada e clique no botão 'Começar'."
+    },
+    "step3": {
+      "title": "Escolha o Formato e Baixe",
+      "description": "Selecione seu formato (MP4, MP3, etc.) e qualidade preferidos e, em seguida, clique em 'Baixar' para salvar o arquivo."
+    }
+  },
+  "faqs": {
+    "title": "Perguntas Frequentes",
+    "q1": {
+      "question": "O Y2Mate é gratuito?",
+      "answer": "Sim, o Y2Mate é totalmente gratuito. Não há custos ocultos ou taxas de assinatura."
+    },
+    "q2": {
+      "question": "Quais formatos e qualidades de vídeo são suportados?",
+      "answer": "Suportamos uma vasta gama de formatos, incluindo MP4, WEBM e MKV para vídeo, e MP3, OGG, OPUS e WAV para áudio. Você pode baixar vídeos em qualidades de 1080p e 720p até resoluções mais baixas."
+    },
+    "q3": {
+      "question": "Posso baixar vídeos no meu dispositivo móvel?",
+      "answer": "Com certeza! O Y2Mate é totalmente responsivo e funciona em todos os dispositivos, incluindo smartphones e tablets."
+    },
+    "q4": {
+      "question": "É legal baixar vídeos do YouTube?",
+      "answer": "Baixar vídeos do YouTube pode ser contra os termos de serviço deles. Recomendamos que você baixe vídeos apenas para uso pessoal e respeite as leis de direitos autorais."
+    },
+    "q5": {
+      "question": "Preciso instalar algum software?",
+      "answer": "Não, o Y2Mate é uma ferramenta baseada na web. Tudo o que você precisa é de um navegador para começar a baixar."
+    }
+  },
+  "footer": {
+    "copyright": "© 2024 Y2Mate. Todos os direitos reservados.",
+    "madeWith": "Feito com ❤️ para os amantes do YouTube.",
+    "contact": "Contato",
+    "privacy": "Política de Privacidade",
+    "terms": "Termos de Serviço"
+  },
+  "downloader": {
+    "h1": "Downloader de Vídeos do YouTube",
+    "h2": "Baixe vídeos do YouTube em MP4, MP3 e outros formatos",
+    "label": "Link do YouTube",
+    "ariaLabel": "Entrada de link de vídeo do YouTube",
+    "tabs": {
+      "video": "Vídeo",
+      "audio": "Áudio",
+      "shorts": "Shorts"
+    },
+    "table": {
+      "resolution": "Resolução",
+      "fileSize": "Tamanho do Arquivo",
+      "status": "Status",
+      "action": "Ação",
+      "formats": {
+        "mp4": "MP4",
+        "mp3": "MP3",
+        "webm": "WEBM",
+        "mkv": "MKV",
+        "ogg": "OGG",
+        "opus": "OPUS",
+        "wav": "WAV"
+      }
+    }
+  },
+  "status": {
+    "processing": "Processando...",
+    "preparing": "Preparando...",
+    "merging": "Mesclando...",
+    "zipping": "Compactando...",
+    "ready": "Pronto 100%",
+    "completed": "Concluído",
+    "failed": "Falhou"
+  },
+  "buttons": {
+    "download": "Baixar",
+    "tryAgain": "Tentar Novamente",
+    "cancel": "Cancelar",
+    "seeMore": "ver mais",
+    "seeLess": "ver menos",
+    "bulkDownload": "Baixar Selecionados"
+  },
+  "gallery": {
+    "title": "Galeria",
+    "noItems": "Nenhum item na galeria ainda."
+  },
+  "common": {
+    "error": "Ocorreu um erro. Por favor, tente novamente mais tarde."
+  }
+}

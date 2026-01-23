@@ -1,0 +1,70 @@
+{
+  "nav": {
+    "home": "YouTube ဒေါင်းလုဒ်လုပ်သူ",
+    "youtubeToMp4": "YouTube ကို MP4 သို့ ပြောင်းရန်",
+    "youtubeToMp3": "YouTube ကို MP3 သို့ ပြောင်းရန်",
+    "youtubeShorts": "YouTube Shorts ဒေါင်းလုဒ်လုပ်သူ"
+  },
+  "footer": {
+    "madeWith": "အိန္ဒိယတွင် ❤️ ဖြင့်ပြုလုပ်သည်",
+    "copyright": "© 2024 Y2Mate. မူပိုင်ခွင့်များရယူပြီး။"
+  },
+  "converter": {
+    "title": "YouTube ဗီဒီယို ပြောင်းစက်",
+    "description": "YouTube ဗီဒီယိုများကို MP4, MP3 နှင့် အခြား format များဖြင့် ဒေါင်းလုဒ်လုပ်ပါ",
+    "placeholder": "YouTube လင့်ခ်ကို ဤနေရာတွင် ကူးထည့်ပါ",
+    "button": "ပြောင်းပါ",
+    "recent": "လတ်တလော ဒေါင်းလုဒ်များ",
+    "clear": "အားလုံးရှင်းလင်းပါ",
+    "quality": {
+      "video": "ဗီဒီယို အရည်အသွေး",
+      "audio": "အသံ အရည်အသွေး"
+    },
+    "format": {
+      "video": "ဗီဒီယို ပုံစံ",
+      "audio": "အသံ ပုံစံ"
+    },
+    "action": {
+      "download": "ဒေါင်းလုဒ်",
+      "convertNext": "နောက်တစ်ခုကို ပြောင်းပါ"
+    },
+    "tabs": {
+      "video": "ဗီဒီယို",
+      "audio": "အသံ",
+      "other": "အခြား"
+    },
+    "labels": {
+      "fileName": "ဖိုင်အမည်",
+      "fileSize": "ဖိုင်အရွယ်အစား",
+      "resolution": "ကြည်လင်ပြတ်သားမှု",
+      "bitrate": "ဘစ်နှုန်း"
+    },
+    "options": {
+      "video": {
+        "mp4": "MP4",
+        "webm": "WEBM",
+        "mkv": "MKV"
+      },
+      "audio": {
+        "mp3": "MP3",
+        "ogg": "OGG",
+        "opus": "OPUS",
+        "wav": "WAV"
+      }
+    }
+  },
+  "status": {
+    "processing": "လုပ်ဆောင်နေသည်...",
+    "preparing": "ပြင်ဆင်နေသည်...",
+    "merging": "ပေါင်းစည်းနေသည်...",
+    "zipping": "ဇစ်လုပ်နေသည်...",
+    "ready": "အဆင်သင့် 100%",
+    "expired": "လင့်ခ် သက်တမ်းကုန်သွားပြီ",
+    "conversionFailed": "ပြောင်းလဲခြင်း မအောင်မြင်ပါ"
+  },
+  "messages": {
+    "downloadReady": "သင်၏ ဒေါင်းလုဒ် အဆင်သင့်ဖြစ်ပါပြီ",
+    "processing": "သင်၏ တောင်းဆိုမှုကို လုပ်ဆောင်နေသည်...",
+    "pleaseWait": "ကျေးဇူးပြု၍ စောင့်ပါ..."
+  }
+}

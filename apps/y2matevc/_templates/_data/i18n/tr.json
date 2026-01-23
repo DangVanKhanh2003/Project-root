@@ -1,0 +1,52 @@
+{
+  "nav": {
+    "home": "YouTube İndirici",
+    "youtubeToMp4": "YouTube'dan MP4'e Dönüştürücü",
+    "youtubeToMp3": "YouTube'dan MP3'e Dönüştürücü",
+    "youtubeShorts": "YouTube Shorts İndirici",
+    "language": "Türkçe"
+  },
+  "hero": {
+    "placeholder": "Buraya bağlantı arayın veya yapıştırın..."
+  },
+  "status": {
+    "processing": "İşleniyor...",
+    "preparing": "Hazırlanıyor...",
+    "merging": "Birleştiriliyor...",
+    "zipping": "Sıkıştırılıyor...",
+    "ready": "Hazır 100%",
+    "completed": "Tamamlandı",
+    "failed": "Başarısız"
+  },
+  "buttons": {
+    "download": "İndir",
+    "tryAgain": "Tekrar Dene",
+    "cancel": "İptal",
+    "seeMore": "daha fazla gör",
+    "seeLess": "daha az gör",
+    "bulkDownload": "Seçilenleri İndir"
+  },
+  "gallery": {
+    "title": "Galeri",
+    "noItems": "Görüntülenecek galeri öğesi yok",
+    "selected": "seçili",
+    "selectAll": "Tümünü Seç",
+    "deselectAll": "Tüm Seçimi Kaldır"
+  },
+  "mobile": {
+    "menuToggleLabel": "Gezinme menüsünü aç",
+    "menuCloseLabel": "Gezinme menüsünü kapat",
+    "langButtonLabel": "Dil seçin"
+  },
+  "footer": {
+    "copyright": "© 2025 y2mate",
+    "about": "Hakkında",
+    "contact": "İletişim",
+    "terms": "Hizmet Şartları",
+    "privacy": "Gizlilik Politikası"
+  },
+  "errors": {
+    "invalidUrl": "Lütfen geçerli bir URL girin",
+    "networkError": "Ağ hatası"
+  }
+}

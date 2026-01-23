@@ -1,0 +1,52 @@
+{
+  "nav": {
+    "home": "Загрузчик YouTube",
+    "youtubeToMp4": "Конвертер YouTube в MP4",
+    "youtubeToMp3": "Конвертер YouTube в MP3",
+    "youtubeShorts": "Загрузчик YouTube Shorts",
+    "language": "Русский"
+  },
+  "hero": {
+    "placeholder": "Искать или вставить ссылку здесь..."
+  },
+  "status": {
+    "processing": "Обработка...",
+    "preparing": "Подготовка...",
+    "merging": "Объединение...",
+    "zipping": "Архивация...",
+    "ready": "Готово 100%",
+    "completed": "Завершено",
+    "failed": "Ошибка"
+  },
+  "buttons": {
+    "download": "Скачать",
+    "tryAgain": "Попробовать снова",
+    "cancel": "Отмена",
+    "seeMore": "показать еще",
+    "seeLess": "показать меньше",
+    "bulkDownload": "Скачать выбранное"
+  },
+  "gallery": {
+    "title": "Галерея",
+    "noItems": "Нет элементов для отображения в галерее",
+    "selected": "выбрано",
+    "selectAll": "Выбрать все",
+    "deselectAll": "Снять выделение со всех"
+  },
+  "mobile": {
+    "menuToggleLabel": "Открыть меню навигации",
+    "menuCloseLabel": "Закрыть меню навигации",
+    "langButtonLabel": "Выбрать язык"
+  },
+  "footer": {
+    "copyright": "© 2025 y2mate",
+    "about": "О нас",
+    "contact": "Контакты",
+    "terms": "Условия использования",
+    "privacy": "Политика конфиденциальности"
+  },
+  "errors": {
+    "invalidUrl": "Пожалуйста, введите действительный URL",
+    "networkError": "Сетевая ошибка"
+  }
+}

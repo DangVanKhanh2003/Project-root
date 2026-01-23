@@ -1,0 +1,70 @@
+{
+  "nav": {
+    "home": "يوتيوب داونلودر",
+    "youtubeToMp4": "تحويل يوتيوب إلى MP4",
+    "youtubeToMp3": "تحويل يوتيوب إلى MP3"
+  },
+  "homepage": {
+    "title": "تنزيل فيديوهات يوتيوب",
+    "description": "Y2Mate هي أداة مجانية تتيح لك تنزيل وتحويل مقاطع فيديو YouTube إلى تنسيق MP4 أو MP3 بجودة عالية. إنها سريعة وسهلة الاستخدام وتدعم جميع الأجهزة.",
+    "placeholder": "الصق رابط يوتيوب هنا",
+    "start": "ابدأ"
+  },
+  "downloader": {
+    "title": "تنزيل",
+    "formats": {
+      "video": {
+        "title": "فيديو",
+        "mp4": "MP4",
+        "webm": "WEBM",
+        "mkv": "MKV"
+      },
+      "audio": {
+        "title": "صوت",
+        "mp3": {
+          "title": "MP3",
+          "320kbps": "MP3 - 320kbps",
+          "256kbps": "MP3 - 256kbps",
+          "192kbps": "MP3 - 192kbps",
+          "128kbps": "MP3 - 128kbps"
+        },
+        "ogg": "OGG",
+        "opus": "OPUS",
+        "wav": "WAV"
+      }
+    }
+  },
+  "status": {
+    "processing": "جاري المعالجة...",
+    "preparing": "جاري التحضير...",
+    "merging": "جاري الدمج...",
+    "zipping": "جاري الضغط...",
+    "ready": "جاهز 100%",
+    "completed": "مكتمل",
+    "failed": "فشل"
+  },
+  "buttons": {
+    "download": "تنزيل",
+    "tryAgain": "حاول مرة أخرى",
+    "cancel": "إلغاء",
+    "seeMore": "عرض المزيد",
+    "seeLess": "عرض أقل",
+    "bulkDownload": "تنزيل المحدد"
+  },
+  "gallery": {
+    "title": "المعرض",
+    "noItems": "لا توجد عناصر في المعرض لعرضها",
+    "selected": "محدد",
+    "selectAll": "تحديد الكل",
+    "deselectAll": "إلغاء تحديد الكل"
+  },
+  "mobile": {
+    "title": "تطبيق الجوال",
+    "description": "قم بتنزيل تطبيق الجوال المجاني الخاص بنا للحصول على تجربة أفضل على هاتفك.",
+    "download": "تنزيل التطبيق"
+  },
+  "footer": {
+    "copyright": "© 2024 Y2Mate. جميع الحقوق محفوظة.",
+    "madeWith": "صنع بـ ❤️ في الهند"
+  }
+}

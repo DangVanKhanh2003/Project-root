@@ -1,0 +1,52 @@
+{
+  "nav": {
+    "home": "Pengunduh YouTube",
+    "youtubeToMp4": "Konverter YouTube ke MP4",
+    "youtubeToMp3": "Konverter YouTube ke MP3",
+    "youtubeShorts": "Pengunduh YouTube Shorts",
+    "language": "Bahasa Indonesia"
+  },
+  "hero": {
+    "placeholder": "Cari atau tempel tautan di sini..."
+  },
+  "status": {
+    "processing": "Memproses...",
+    "preparing": "Mempersiapkan...",
+    "merging": "Menggabungkan...",
+    "zipping": "Mengompres...",
+    "ready": "Siap 100%",
+    "completed": "Selesai",
+    "failed": "Gagal"
+  },
+  "buttons": {
+    "download": "Unduh",
+    "tryAgain": "Coba Lagi",
+    "cancel": "Batal",
+    "seeMore": "lihat lebih banyak",
+    "seeLess": "lihat lebih sedikit",
+    "bulkDownload": "Unduh yang Dipilih"
+  },
+  "gallery": {
+    "title": "Galeri",
+    "noItems": "Tidak ada item galeri untuk ditampilkan",
+    "selected": "dipilih",
+    "selectAll": "Pilih Semua",
+    "deselectAll": "Batalkan Pilihan Semua"
+  },
+  "mobile": {
+    "menuToggleLabel": "Buka menu navigasi",
+    "menuCloseLabel": "Tutup menu navigasi",
+    "langButtonLabel": "Pilih bahasa"
+  },
+  "footer": {
+    "copyright": "© 2025 y2mate",
+    "about": "Tentang",
+    "contact": "Kontak",
+    "terms": "Ketentuan Layanan",
+    "privacy": "Kebijakan Privasi"
+  },
+  "errors": {
+    "invalidUrl": "Silakan masukkan URL yang valid",
+    "networkError": "Kesalahan jaringan"
+  }
+}

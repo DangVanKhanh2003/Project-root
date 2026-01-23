@@ -1,0 +1,136 @@
+{
+  "nav": {
+    "home": "Téléchargeur YouTube",
+    "youtubeToMp4": "Convertisseur YouTube en MP4",
+    "youtubeToMp3": "Convertisseur YouTube en MP3",
+    "youtubeShorts": "Téléchargeur de Shorts YouTube",
+    "language": "Français"
+  },
+  "hero": {
+    "h1": "Téléchargeur de Vidéos YouTube",
+    "h2": "Téléchargez des vidéos YouTube, convertissez YouTube en MP4, MP3 gratuitement",
+    "placeholder": "Recherchez ou collez le lien YouTube ici",
+    "start": "Démarrer"
+  },
+  "features": {
+    "f1": {
+      "title": "Téléchargements Illimités",
+      "description": "Téléchargez autant de vidéos YouTube que vous le souhaitez, sans aucune limitation."
+    },
+    "f2": {
+      "title": "Conversions à Haute Vitesse",
+      "description": "Convertissez les vidéos YouTube dans le format de votre choix en quelques secondes."
+    },
+    "f3": {
+      "title": "Plusieurs Options de Format",
+      "description": "Prend en charge MP4, MP3, WEBM, MKV, et plus encore. Choisissez la qualité qui correspond à vos besoins."
+    },
+    "f4": {
+      "title": "Aucune Inscription Requise",
+      "description": "Téléchargez et convertissez des vidéos sans aucune inscription ni information personnelle."
+    },
+    "f5": {
+      "title": "Compatibilité Multiplateforme",
+      "description": "Notre téléchargeur fonctionne sur n'importe quel appareil : Windows, macOS, Linux, Android ou iOS."
+    },
+    "f6": {
+      "title": "Sûr et Sécurisé",
+      "description": "Vos téléchargements sont traités en toute sécurité et vos données sont toujours protégées."
+    }
+  },
+  "howTo": {
+    "title": "Comment Télécharger des Vidéos YouTube ?",
+    "step1": {
+      "title": "Copiez l'URL de la Vidéo YouTube",
+      "description": "Allez sur YouTube, trouvez la vidéo que vous souhaitez télécharger et copiez son URL depuis la barre d'adresse."
+    },
+    "step2": {
+      "title": "Collez l'URL dans Y2Mate",
+      "description": "Ouvrez Y2Mate, collez l'URL copiée dans la zone de saisie et cliquez sur le bouton 'Démarrer'."
+    },
+    "step3": {
+      "title": "Choisissez le Formato et Téléchargez",
+      "description": "Sélectionnez votre format (MP4, MP3, etc.) et votre qualité préférés, puis cliquez sur 'Télécharger' pour enregistrer le fichier."
+    }
+  },
+  "faqs": {
+    "title": "Foire Aux Questions",
+    "q1": {
+      "question": "L'utilisation de Y2Mate est-elle gratuite ?",
+      "answer": "Oui, Y2Mate est entièrement gratuit. Il n'y a pas de coûts cachés ni de frais d'abonnement."
+    },
+    "q2": {
+      "question": "Quels sont les formats et qualités vidéo pris en charge ?",
+      "answer": "Nous prenons en charge une large gamme de formats, y compris MP4, WEBM et MKV pour la vidéo, et MP3, OGG, OPUS et WAV pour l'audio. Vous pouvez télécharger des vidéos dans des qualités allant de 1080p et 720p à des résolutions inférieures."
+    },
+    "q3": {
+      "question": "Puis-je télécharger des vidéos sur mon appareil mobile ?",
+      "answer": "Absolument ! Y2Mate est entièrement réactif et fonctionne sur tous les appareils, y compris les smartphones et les tablettes."
+    },
+    "q4": {
+      "question": "Est-il légal de télécharger des vidéos YouTube ?",
+      "answer": "Le téléchargement de vidéos depuis YouTube peut être contraire à leurs conditions d'utilisation. Nous vous recommandons de ne télécharger des vidéos que pour un usage personnel et de respecter les lois sur le droit d'auteur."
+    },
+    "q5": {
+      "question": "Dois-je installer un logiciel ?",
+      "answer": "Non, Y2Mate est un outil en ligne. Tout ce dont vous avez besoin est un navigateur web pour commencer à télécharger."
+    }
+  },
+  "footer": {
+    "copyright": "© 2024 Y2Mate. Tous droits réservés.",
+    "madeWith": "Fait avec ❤️ pour les amoureux de YouTube.",
+    "contact": "Contact",
+    "privacy": "Politique de Confidentialité",
+    "terms": "Conditions d'Utilisation"
+  },
+  "downloader": {
+    "h1": "Téléchargeur de Vidéos YouTube",
+    "h2": "Téléchargez des vidéos de YouTube en MP4, MP3 et autres formats",
+    "label": "Lien YouTube",
+    "ariaLabel": "Champ de saisie du lien de la vidéo YouTube",
+    "tabs": {
+      "video": "Vidéo",
+      "audio": "Audio",
+      "shorts": "Shorts"
+    },
+    "table": {
+      "resolution": "Résolution",
+      "fileSize": "Taille du Fichier",
+      "status": "Statut",
+      "action": "Action",
+      "formats": {
+        "mp4": "MP4",
+        "mp3": "MP3",
+        "webm": "WEBM",
+        "mkv": "MKV",
+        "ogg": "OGG",
+        "opus": "OPUS",
+        "wav": "WAV"
+      }
+    }
+  },
+  "status": {
+    "processing": "Traitement...",
+    "preparing": "Préparation...",
+    "merging": "Fusion...",
+    "zipping": "Compression...",
+    "ready": "Prêt 100%",
+    "completed": "Terminé",
+    "failed": "Échec"
+  },
+  "buttons": {
+    "download": "Télécharger",
+    "tryAgain": "Réessayer",
+    "cancel": "Annuler",
+    "seeMore": "voir plus",
+    "seeLess": "voir moins",
+    "bulkDownload": "Télécharger la Sélection"
+  },
+  "gallery": {
+    "title": "Galerie",
+    "noItems": "Aucun élément dans la galerie pour le moment."
+  },
+  "common": {
+    "error": "Une erreur est survenue. Veuillez réessayer plus tard."
+  }
+}

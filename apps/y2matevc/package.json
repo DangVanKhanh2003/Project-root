@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "11ty:build": "eleventy --config=.eleventy.cjs --input=_templates --output=_11ty-output",
+    "11ty:watch": "eleventy --config=.eleventy.cjs --input=_templates --output=_11ty-output --watch",
     "dev": "vite --config vite.config.ts",
-    "build": "tsc && vite build --config vite.config.ts",
-    "build:test": "NODE_ENV=test tsc && NODE_ENV=test vite build --config vite.config.ts && NODE_ENV=test TARGET_DIR=dist node ../../modify-robots-meta.js",
+    "build": "npm run 11ty:build && tsc && vite build --config vite.config.ts",
+    "build:test": "npm run 11ty:build && NODE_ENV=test tsc && NODE_ENV=test vite build --config vite.config.ts && NODE_ENV=test TARGET_DIR=dist node ../../modify-robots-meta.js",
     "preview": "vite preview --config vite.config.ts",
     "remove-logs": "tsx remove-console-logs.ts",
     "remove-logs:preview": "tsx remove-console-logs.ts --dry-run",
@@ -14,11 +16,12 @@
   "dependencies": {
     "@downloader/core": "workspace:*",
     "@downloader/i18n": "workspace:*",
-    "@downloader/ui-shared": "workspace:*",
     "@downloader/ui-components": "workspace:*",
+    "@downloader/ui-shared": "workspace:*",
     "@downloader/vidtool-popup": "workspace:*"
   },
   "devDependencies": {
+    "@11ty/eleventy": "^3.1.2",
     "@types/node": "^20.19.25",
     "tsx": "^4.20.6",
     "typescript": "^5.3.3",

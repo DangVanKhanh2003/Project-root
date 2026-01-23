@@ -28,6 +28,25 @@ const srcPageEntries = pageFiles.reduce((entries, file) => {
   return entries;
 }, {} as Record<string, string>);
 
+// Auto-detect language pages from pages/ directory (pages/vi/, pages/ar/, etc.)
+const pagesDir = resolve(__dirname, 'pages');
+const languagePageEntries: Record<string, string> = {};
+
+if (existsSync(pagesDir)) {
+  const langDirs = readdirSync(pagesDir, { withFileTypes: true });
+  langDirs.forEach(item => {
+    if (item.isDirectory()) {
+      const langDir = resolve(pagesDir, item.name);
+      const langFiles = readdirSync(langDir).filter(file => file.endsWith('.html'));
+      langFiles.forEach(file => {
+        const pageName = file.replace('.html', '');
+        const entryKey = `${item.name}-${pageName}`;
+        languagePageEntries[entryKey] = resolve(langDir, file);
+      });
+    }
+  });
+}
+
 export default defineConfig({
   plugins: [
     htmlRewritePlugin(),
@@ -44,7 +63,22 @@ export default defineConfig({
 
           if (langMatch && !url.includes('.')) {
             const lang = langMatch[1];
-            console.log(`[SPA Fallback] ${url} → /${lang}/index.html`);
+            console.log(`[SPA Fallback] ${url} -> /pages/${lang}/index.html`);
+            req.url = `/pages/${lang}/index.html`;
+          }
+
+          next();
+        });
+      },
+      configurePreviewServer(server) {
+        server.middlewares.use((req, res, next) => {
+          const url = req.url || '';
+
+          const langMatch = url.match(/^\/([a-z]{2})\/(.*)/);
+
+          if (langMatch && !url.includes('.')) {
+            const lang = langMatch[1];
+            console.log(`[SPA Fallback] ${url} -> /${lang}/index.html`);
             req.url = `/${lang}/index.html`;
           }
 
@@ -59,7 +93,8 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
         ...rootPageEntries,
-        ...srcPageEntries
+        ...srcPageEntries,
+        ...languagePageEntries
       },
       output: {
         entryFileNames: 'assets/[name]-[hash].js',

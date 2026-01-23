@@ -2,7 +2,6 @@
 
 File này cung cấp hướng dẫn cho Claude Code (claude.ai/code) khi làm việc với code trong repository này.
 
-**🚨 QUAN TRỌNG: Trước khi thực hiện bất kỳ task nào, PHẢI đọc `docs/task-workflow.md` (1 lần/conversation). Không được code ngay lập tức.**
 
 ## Tổng Quan Dự Án
 

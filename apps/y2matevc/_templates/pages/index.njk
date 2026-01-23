@@ -1,0 +1,173 @@
+---
+layout: base.njk
+pagination:
+  data: indexPages
+  size: 1
+  alias: pageInfo
+eleventyComputed:
+  permalink: "{{ pageInfo.permalink }}"
+  lang: "{{ pageInfo.lang }}"
+  pageKey: "{{ pageInfo.pageKey }}"
+---
+{%- set base = i18nBase[lang] or i18nBase['en'] -%}
+{%- set page = i18nPages[pageKey][lang] or i18nPages[pageKey].en -%}
+{%- set langPrefix = '' if (lang == 'en' or not lang) else '/' + lang -%}
+<div class="container">
+    <section class="y2mate-download-pro">
+        <div class="y2mate-search-form-pro d-flex">
+            <div class="form-wrap">
+                <h1 class="y2mate_title-pro">{{ page.hero.title }}</h1>
+                <form id="downloadForm" class="search_form" method="POST" action="/search/">
+                    <div class="input-container">
+                        <div class=" input-wrapper">
+                            <input id="videoUrl" class="y2mate_query-pro keyword" type="text" name="q"
+                                placeholder="{{ base.hero.placeholder }}" autocomplete="off" autofocus=""
+                                role="combobox" aria-autocomplete="list" aria-controls="suggestion-container" aria-expanded="false">
+                            <button id="input-action-button" type="button" class="input-action-btn" data-action="paste"
+                                aria-label="{{ base.hero.pasteLabel }}">
+                                <svg class="paste-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                    viewBox="0 0 24 24">
+                                    <path fill="currentColor"
+                                        d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm7 16H5V5h2v3h10V5h2v14z" />
+                                </svg>
+                                <svg class="clear-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                    viewBox="0 0 24 24">
+                                    <path fill="currentColor"
+                                        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <button id="submit" type="submit" name="form_submit" class="submit-btn" aria-label="Search">
+                        <div class="converter-btn">{{ base.hero.submitButton }}</div>
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                            width="14px" height="14px" fill="#fff" id="Layer_1"
+                            style="enable-background:new 0 0 16 16;" version="1.1" viewBox="0 0 16 16"
+                            xml:space="preserve">
+                            <path
+                                d="M15.375,7L10,2.54C9.695,2.287,9.461,2,9,2C8.375,2,8,2.516,8,3v3H1C0.45,6,0,6.45,0,7v2c0,0.55,0.45,1,1,1h7v3  c0,0.484,0.375,1,1,1c0.461,0,0.695-0.287,1-0.54L15.375,9C15.758,8.688,16,8.445,16,8S15.758,7.313,15.375,7z">
+                            </path>
+                        </svg>
+                    </button>
+
+                    <!-- Format Selector -->
+                    <div id="format-selector-container" class="format-selector-wrapper">
+                        <div class="format-selector">
+                            <!-- Group 1: Format + Quality -->
+                            <div class="format-quality-group">
+                                <!-- Format Toggle -->
+                                <button type="button" class="format-toggle-btn" data-toggle-format>
+                                    <span class="toggle-side" data-format="mp4">
+                                        <span class="format-label">{{ base.formatSelector.formats.mp4 }}</span>
+                                    </span>
+                                    <span class="toggle-side" data-format="mp3">
+                                        <span class="format-label">{{ base.formatSelector.formats.mp3 }}</span>
+                                    </span>
+                                </button>
+                                <!-- Quality Dropdowns -->
+                                <div class="quality-selector">
+                                    <!-- MP4 Options -->
+                                    <select id="quality-select-mp4" class="quality-select quality-select--mp4"
+                                        aria-label="{{ base.formatSelector.quality.videoLabel }}" data-quality-select>
+                                        <option value="mp4-1080">{{ base.formatSelector.options.mp4['1080p'] }}</option>
+                                        <option value="mp4-720" selected>{{ base.formatSelector.options.mp4['720p'] }}</option>
+                                        <option value="mp4-480">{{ base.formatSelector.options.mp4['480p'] }}</option>
+                                        <option value="mp4-360">{{ base.formatSelector.options.mp4['360p'] }}</option>
+                                        <option value="mp4-240">{{ base.formatSelector.options.mp4['240p'] }}</option>
+                                        <option value="mp4-144">{{ base.formatSelector.options.mp4['144p'] }}</option>
+                                        <option value="webm">{{ base.formatSelector.options.mp4.webm }}</option>
+                                        <option value="mkv">{{ base.formatSelector.options.mp4.mkv }}</option>
+                                    </select>
+                                    <!-- MP3 Options -->
+                                    <select id="quality-select-mp3" class="quality-select quality-select--mp3"
+                                        aria-label="{{ base.formatSelector.quality.audioLabel }}" data-quality-select>
+                                        <option value="mp3-320">{{ base.formatSelector.options.mp3['320kbps'] }}</option>
+                                        <option value="mp3-256">{{ base.formatSelector.options.mp3['256kbps'] }}</option>
+                                        <option value="mp3-192">{{ base.formatSelector.options.mp3['192kbps'] }}</option>
+                                        <option value="mp3-128" selected>{{ base.formatSelector.options.mp3['128kbps'] }}</option>
+                                        <option value="ogg">{{ base.formatSelector.options.mp3.ogg }}</option>
+                                        <option value="opus">{{ base.formatSelector.options.mp3.opus }}</option>
+                                        <option value="wav">{{ base.formatSelector.options.mp3.wav }}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- Group 2: Auto Submit Toggle -->
+                            <div class="auto-submit-toggle"
+                                data-tooltip="{{ base.formatSelector.autoSubmitTooltip }}">
+                                <strong class="toggle-label">{{ base.formatSelector.autoSubmit }}</strong>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="auto-submit-checkbox" data-auto-submit-toggle />
+                                    <span class="toggle-slider"></span>
+                                </label>
+                                <span class="custom-tooltip"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="suggestion-container" class="suggesstion-list suggesstion-box"></div>
+                </form>
+
+                <!-- Video Detail Area -->
+                <div id="content-area"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Results Section -->
+    <section id="search-results-section" class="search-results-section" style="display: none;">
+        <div id="search-results-container"></div>
+    </section>
+
+    <!-- Content Sections -->
+    {%- for section in page.content.sections %}
+    <section class="y2mate-content-pro d-flex">
+        <div class="col-sm-12">
+            <h2>{{ section.title }}</h2>
+            {%- for paragraph in section.paragraphs %}
+            <p>{{ paragraph | localizeLinks(langPrefix) | safe }}</p>
+            {%- endfor %}
+        </div>
+    </section>
+    {%- endfor %}
+
+    <!-- Why Choose Section -->
+    <section class="y2mate-instruction-pro">
+        <div class="y2mate-in-ad-pro">
+            <h2>{{ page.whyChoose.title }}</h2>
+            <p>{{ page.whyChoose.intro }}</p>
+            <ul>
+                {%- for reason in page.whyChoose.reasons %}
+                <li>{{ reason }}</li>
+                {%- endfor %}
+            </ul>
+        </div>
+    </section>
+
+    <!-- Instructions Section -->
+    <section class="y2mate-instruction-pro">
+        <div class="y2mate-in-ad-pro">
+            <h2>{{ page.instructions.title }}</h2>
+            <ol>
+                {%- for step in page.instructions.steps %}
+                <li>{{ step }}</li>
+                {%- endfor %}
+            </ol>
+            <p><em>{{ page.instructions.note }}</em></p>
+        </div>
+    </section>
+
+    <!-- FAQs Section -->
+    {%- if page.faqs and page.faqs.items %}
+    <section class="yt-content">
+        <h2>{{ page.faqs.title }}</h2>
+        <div class="download-uses">
+            {%- for faq in page.faqs.items %}
+            <div class="guide-data">
+                <h3>{{ faq.question }}</h3>
+                <p>{{ faq.answer }}</p>
+            </div>
+            {%- endfor %}
+        </div>
+    </section>
+    {%- endif %}
+</div>

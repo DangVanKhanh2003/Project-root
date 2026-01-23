@@ -1,0 +1,70 @@
+{
+  "nav": {
+    "home": "YouTubeダウンローダー",
+    "youtubeToMp4": "YouTube MP4変換",
+    "youtubeToMp3": "YouTube MP3変換",
+    "youtubeShorts": "YouTubeショートダウンローダー"
+  },
+  "footer": {
+    "madeWith": "インドで❤️を込めて作られました",
+    "copyright": "© 2024 Y2Mate. 全著作権所有。"
+  },
+  "converter": {
+    "title": "YouTubeビデオコンバーター",
+    "description": "YouTubeビデオをMP4、MP3、その他の形式でダウンロード",
+    "placeholder": "ここにYouTubeリンクを貼り付けてください",
+    "button": "変換",
+    "recent": "最近のダウンロード",
+    "clear": "すべてクリア",
+    "quality": {
+      "video": "ビデオ品質",
+      "audio": "オーディオ品質"
+    },
+    "format": {
+      "video": "ビデオ形式",
+      "audio": "オーディオ形式"
+    },
+    "action": {
+      "download": "ダウンロード",
+      "convertNext": "次を変換"
+    },
+    "tabs": {
+      "video": "ビデオ",
+      "audio": "オーディオ",
+      "other": "その他"
+    },
+    "labels": {
+      "fileName": "ファイル名",
+      "fileSize": "ファイルサイズ",
+      "resolution": "解像度",
+      "bitrate": "ビットレート"
+    },
+    "options": {
+      "video": {
+        "mp4": "MP4",
+        "webm": "WEBM",
+        "mkv": "MKV"
+      },
+      "audio": {
+        "mp3": "MP3",
+        "ogg": "OGG",
+        "opus": "OPUS",
+        "wav": "WAV"
+      }
+    }
+  },
+  "status": {
+    "processing": "処理中...",
+    "preparing": "準備中...",
+    "merging": "マージ中...",
+    "zipping": "圧縮中...",
+    "ready": "準備完了 100%",
+    "expired": "リンクの有効期限が切れました",
+    "conversionFailed": "変換に失敗しました"
+  },
+  "messages": {
+    "downloadReady": "ダウンロードの準備ができました",
+    "processing": "リクエストを処理しています...",
+    "pleaseWait": "お待ちください..."
+  }
+}

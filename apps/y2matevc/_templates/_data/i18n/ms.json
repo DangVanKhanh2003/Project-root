@@ -1,0 +1,52 @@
+{
+  "nav": {
+    "home": "Pengunduh YouTube",
+    "youtubeToMp4": "Penukar YouTube ke MP4",
+    "youtubeToMp3": "Penukar YouTube ke MP3",
+    "youtubeShorts": "Pengunduh YouTube Shorts",
+    "language": "Bahasa Melayu"
+  },
+  "hero": {
+    "placeholder": "Cari atau tampal pautan di sini..."
+  },
+  "status": {
+    "processing": "Memproses...",
+    "preparing": "Menyediakan...",
+    "merging": "Menggabungkan...",
+    "zipping": "Memampatkan...",
+    "ready": "Sedia 100%",
+    "completed": "Selesai",
+    "failed": "Gagal"
+  },
+  "buttons": {
+    "download": "Muat turun",
+    "tryAgain": "Cuba Lagi",
+    "cancel": "Batal",
+    "seeMore": "lihat lagi",
+    "seeLess": "lihat kurang",
+    "bulkDownload": "Muat Turun yang Dipilih"
+  },
+  "gallery": {
+    "title": "Galeri",
+    "noItems": "Tiada item galeri untuk dipaparkan",
+    "selected": "dipilih",
+    "selectAll": "Pilih Semua",
+    "deselectAll": "Nyahpilih Semua"
+  },
+  "mobile": {
+    "menuToggleLabel": "Buka menu navigasi",
+    "menuCloseLabel": "Tutup menu navigasi",
+    "langButtonLabel": "Pilih bahasa"
+  },
+  "footer": {
+    "copyright": "© 2025 y2mate",
+    "about": "Mengenai",
+    "contact": "Hubungi",
+    "terms": "Syarat Perkhidmatan",
+    "privacy": "Dasar Privasi"
+  },
+  "errors": {
+    "invalidUrl": "Sila masukkan URL yang sah",
+    "networkError": "Ralat rangkaian"
+  }
+}

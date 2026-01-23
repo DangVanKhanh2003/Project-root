@@ -291,6 +291,9 @@ importers:
         specifier: workspace:*
         version: link:../../packages/vidtool-popup
     devDependencies:
+      '@11ty/eleventy':
+        specifier: ^3.1.2
+        version: 3.1.2
       '@types/node':
         specifier: ^20.19.25
         version: 20.19.25

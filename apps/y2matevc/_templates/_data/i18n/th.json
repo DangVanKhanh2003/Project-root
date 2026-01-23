@@ -1,0 +1,70 @@
+{
+  "nav": {
+    "home": "โปรแกรมดาวน์โหลด YouTube",
+    "youtubeToMp4": "โปรแกรมแปลง YouTube เป็น MP4",
+    "youtubeToMp3": "โปรแกรมแปลง YouTube เป็น MP3",
+    "youtubeShorts": "โปรแกรมดาวน์โหลด YouTube Shorts"
+  },
+  "footer": {
+    "madeWith": "สร้างด้วย ❤️ ในอินเดีย",
+    "copyright": "© 2024 Y2Mate. สงวนลิขสิทธิ์."
+  },
+  "converter": {
+    "title": "โปรแกรมแปลงวิดีโอ YouTube",
+    "description": "ดาวน์โหลดวิดีโอ YouTube ในรูปแบบ MP4, MP3 และอื่นๆ",
+    "placeholder": "วางลิงก์ YouTube ที่นี่",
+    "button": "แปลง",
+    "recent": "ดาวน์โหลดล่าสุด",
+    "clear": "ล้างทั้งหมด",
+    "quality": {
+      "video": "คุณภาพวิดีโอ",
+      "audio": "คุณภาพเสียง"
+    },
+    "format": {
+      "video": "รูปแบบวิดีโอ",
+      "audio": "รูปแบบเสียง"
+    },
+    "action": {
+      "download": "ดาวน์โหลด",
+      "convertNext": "แปลงถัดไป"
+    },
+    "tabs": {
+      "video": "วิดีโอ",
+      "audio": "เสียง",
+      "other": "อื่นๆ"
+    },
+    "labels": {
+      "fileName": "ชื่อไฟล์",
+      "fileSize": "ขนาดไฟล์",
+      "resolution": "ความละเอียด",
+      "bitrate": "บิตเรต"
+    },
+    "options": {
+      "video": {
+        "mp4": "MP4",
+        "webm": "WEBM",
+        "mkv": "MKV"
+      },
+      "audio": {
+        "mp3": "MP3",
+        "ogg": "OGG",
+        "opus": "OPUS",
+        "wav": "WAV"
+      }
+    }
+  },
+  "status": {
+    "processing": "กำลังประมวลผล...",
+    "preparing": "กำลังเตรียม...",
+    "merging": "กำลังรวม...",
+    "zipping": "กำลังบีบอัด...",
+    "ready": "พร้อม 100%",
+    "expired": "ลิงก์หมดอายุ",
+    "conversionFailed": "การแปลงล้มเหลว"
+  },
+  "messages": {
+    "downloadReady": "การดาวน์โหลดของคุณพร้อมแล้ว",
+    "processing": "กำลังประมวลผลคำขอของคุณ...",
+    "pleaseWait": "โปรดรอ..."
+  }
+}
