@@ -3,6 +3,7 @@ import { resolve } from 'path';
 import { readdirSync, existsSync } from 'fs';
 import { htmlRewritePlugin } from './vite-plugin-html-rewrite';
 import { movePagesPlugin } from './vite-plugin-move-pages';
+import { sitemapPlugin } from './vite-plugin-sitemap';
 
 // Auto-detect all HTML pages in root directory
 const rootDir = resolve(__dirname);
@@ -50,7 +51,13 @@ if (existsSync(pagesDir)) {
 export default defineConfig({
   plugins: [
     htmlRewritePlugin(),
-    movePagesPlugin()
+    movePagesPlugin(),
+    sitemapPlugin({
+      baseUrl: 'https://y2mate.vc',
+      changefreq: 'weekly',
+      defaultPriority: 0.8,
+      homePriority: 1.0
+    })
   ],
   build: {
     outDir: 'dist',
