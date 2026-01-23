@@ -74,7 +74,15 @@
     </script>
 
     <!-- Critical: Set format and auto-submit preferences before render to prevent FOUC -->
-    <script>(function(){var f='mp4';var autoSubmit=true;try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p&&p.selectedFormat)f=p.selectedFormat}catch(e){}try{var as=localStorage.getItem('y2mate_auto_submit');if(as!==null)autoSubmit=(as==='true')}catch(e){}document.documentElement.dataset.format=f;document.documentElement.dataset.autoSubmit=autoSubmit.toString();})()</script>
+    <script>(function(){var f='mp4';try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p&&p.selectedFormat)f=p.selectedFormat}catch(e){}document.documentElement.dataset.format=f;})()</script>
+
+    <!-- Critical: Hide auto-submit tooltip before CSS loads -->
+    <style>
+        .custom-tooltip {
+            opacity: 0;
+            visibility: hidden;
+        }
+    </style>
 
     <!-- Critical CSS imported via Vite -->
     <script type="module" src="/src/main.ts"></script>
@@ -461,8 +469,52 @@
                                     <span class="toggle-slider"></span>
                                 </label>
                                 <span class="custom-tooltip"></span>
-                            </div>
                         </div>
+                    </div>
+                    <script>
+(function() {
+  try {
+    const preferencesJson = localStorage.getItem('y2mate_format_preferences');
+    console.log('Inline script: preferencesJson', preferencesJson);
+    if (preferencesJson) {
+      const preferences = JSON.parse(preferencesJson);
+      console.log('Inline script: preferences', preferences);
+      const selectElement = preferences.selectedFormat === 'mp4'
+        ? document.getElementById('quality-select-mp4')
+        : document.getElementById('quality-select-mp3');
+      console.log('Inline script: selectElement', selectElement);
+      if (selectElement) {
+        let value;
+        if (preferences.selectedFormat === 'mp4') {
+          const videoQuality = preferences.videoQuality || '720p';
+          value = (videoQuality === 'webm' || videoQuality === 'mkv')
+            ? videoQuality
+            : `mp4-${videoQuality.replace('p', '')}`;
+        } else {
+          const audioFormat = preferences.audioFormat || 'mp3';
+          value = (audioFormat === 'mp3')
+            ? `mp3-${preferences.audioBitrate || '128'}`
+            : audioFormat;
+        }
+        console.log('Inline script: setting selectElement.value to', value);
+        selectElement.value = value;
+        console.log('Inline script: selectElement.value after set', selectElement.value);
+      }
+    }
+    const autoSubmitValue = localStorage.getItem('y2mate_auto_submit');
+    console.log('Inline script: autoSubmitValue', autoSubmitValue);
+    const checkbox = document.getElementById('auto-submit-checkbox');
+    console.log('Inline script: checkbox', checkbox);
+    if (checkbox) {
+      console.log('Inline script: checkbox.checked before set', checkbox.checked);
+      checkbox.checked = autoSubmitValue === 'true';
+      console.log('Inline script: checkbox.checked after set', checkbox.checked);
+    }
+  } catch (error) {
+    console.error('Error syncing UI from localStorage in inline script:', error);
+  }
+})();
+</script>
                     </div>
 
                     <div id="suggestion-container" class="suggesstion-list suggesstion-box"></div>

@@ -1,0 +1,8 @@
+feat: Optimize inline script for format selector
+
+Refactored the inline script in `base.njk` to:
+- Load format and auto-submit preferences from localStorage.
+- Set `data-format` and `data-autoSubmit` attributes on the `<html>` element.
+- Removed the CSS injection part as requested by the user, prioritizing script size optimization.
+
+This change aims to improve initial page load performance by setting user preferences early, though it may reintroduce visual flicker for the format selector and auto-submit toggle until external CSS loads.
