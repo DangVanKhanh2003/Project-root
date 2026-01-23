@@ -7,102 +7,40 @@
     "language": "Italiano"
   },
   "hero": {
-    "h1": "Downloader di Video di YouTube",
-    "h2": "Scarica video da YouTube, converti YouTube in MP4, MP3 gratuitamente",
-    "placeholder": "Cerca o incolla qui il link di YouTube",
-    "start": "Inizia"
+    "placeholder": "Cerca o incolla il link qui...",
+    "pasteLabel": "Incolla dagli appunti",
+    "clearLabel": "Cancella input",
+    "submitButton": "Inizia",
+    "termsText": "Utilizzando il nostro servizio accetti i nostri",
+    "termsLink": "Termini di utilizzo"
   },
-  "features": {
-    "f1": {
-      "title": "Download Illimitati",
-      "description": "Scarica quanti video di YouTube vuoi, senza limitazioni."
+  "formatSelector": {
+    "autoSubmit": "Invio automatico",
+    "autoSubmitTooltip": "Invia automaticamente quando si incolla l'URL o la parola chiave",
+    "formats": {
+      "mp4": "MP4",
+      "mp3": "MP3"
     },
-    "f2": {
-      "title": "Conversioni ad Alta Velocità",
-      "description": "Converti i video di YouTube nel formato desiderato in pochi secondi."
+    "quality": {
+      "videoLabel": "Qualità video",
+      "audioLabel": "Qualità audio"
     },
-    "f3": {
-      "title": "Molteplici Opzioni di Formato",
-      "description": "Supporta MP4, MP3, WEBM, MKV e altro. Scegli la qualità che si adatta alle tue esigenze."
-    },
-    "f4": {
-      "title": "Nessuna Registrazione Richiesta",
-      "description": "Scarica e converti video senza alcuna registrazione o informazione personale."
-    },
-    "f5": {
-      "title": "Compatibilità Multipiattaforma",
-      "description": "Il nostro downloader funziona su qualsiasi dispositivo: Windows, macOS, Linux, Android o iOS."
-    },
-    "f6": {
-      "title": "Sicuro e Protetto",
-      "description": "I tuoi download vengono elaborati in modo sicuro e i tuoi dati sono sempre protetti."
-    }
-  },
-  "howTo": {
-    "title": "Come Scaricare Video da YouTube?",
-    "step1": {
-      "title": "Copia l'URL del Video di YouTube",
-      "description": "Vai su YouTube, trova il video che vuoi scaricare e copia il suo URL dalla barra degli indirizzi."
-    },
-    "step2": {
-      "title": "Incolla l'URL in Y2Mate",
-      "description": "Apri Y2Mate, incolla l'URL copiato nella casella di input e fai clic sul pulsante 'Inizia'."
-    },
-    "step3": {
-      "title": "Scegli il Formato e Scarica",
-      "description": "Seleziona il tuo formato (MP4, MP3, ecc.) e la qualità preferiti, quindi fai clic su 'Scarica' per salvare il file."
-    }
-  },
-  "faqs": {
-    "title": "Domande Frequenti",
-    "q1": {
-      "question": "Y2Mate è gratuito?",
-      "answer": "Sì, Y2Mate è completamente gratuito. Non ci sono costi nascosti o canoni di abbonamento."
-    },
-    "q2": {
-      "question": "Quali formati e qualità video sono supportati?",
-      "answer": "Supportiamo una vasta gamma di formati tra cui MP4, WEBM e MKV per i video, e MP3, OGG, OPUS e WAV per l'audio. Puoi scaricare video con qualità da 1080p e 720p fino a risoluzioni inferiori."
-    },
-    "q3": {
-      "question": "Posso scaricare video sul mio dispositivo mobile?",
-      "answer": "Assolutamente! Y2Mate è completamente reattivo e funziona su tutti i dispositivi, inclusi smartphone e tablet."
-    },
-    "q4": {
-      "question": "È legale scaricare video da YouTube?",
-      "answer": "Scaricare video da YouTube potrebbe violare i loro termini di servizio. Ti consigliamo di scaricare video solo per uso personale e di rispettare le leggi sul copyright."
-    },
-    "q5": {
-      "question": "Devo installare qualche software?",
-      "answer": "No, Y2Mate è uno strumento basato sul web. Tutto ciò di cui hai bisogno è un browser web per iniziare a scaricare."
-    }
-  },
-  "footer": {
-    "copyright": "© 2024 Y2Mate. Tutti i diritti riservati.",
-    "madeWith": "Fatto con ❤️ per gli amanti di YouTube.",
-    "contact": "Contatti",
-    "privacy": "Informativa sulla Privacy",
-    "terms": "Termini di Servizio"
-  },
-  "downloader": {
-    "h1": "Downloader di Video di YouTube",
-    "h2": "Scarica video da YouTube in MP4, MP3 e altri formati",
-    "label": "Link di YouTube",
-    "ariaLabel": "Input del link del video di YouTube",
-    "tabs": {
-      "video": "Video",
-      "audio": "Audio",
-      "shorts": "Shorts"
-    },
-    "table": {
-      "resolution": "Risoluzione",
-      "fileSize": "Dimensione File",
-      "status": "Stato",
-      "action": "Azione",
-      "formats": {
-        "mp4": "MP4",
-        "mp3": "MP3",
+    "options": {
+      "mp4": {
+        "1080p": "MP4 - 1080p",
+        "720p": "MP4 - 720p",
+        "480p": "MP4 - 480p",
+        "360p": "MP4 - 360p",
+        "240p": "MP4 - 240p",
+        "144p": "MP4 - 144p",
         "webm": "WEBM",
-        "mkv": "MKV",
+        "mkv": "MKV"
+      },
+      "mp3": {
+        "320kbps": "MP3 - 320kbps",
+        "256kbps": "MP3 - 256kbps",
+        "192kbps": "MP3 - 192kbps",
+        "128kbps": "MP3 - 128kbps",
         "ogg": "OGG",
         "opus": "OPUS",
         "wav": "WAV"
@@ -110,11 +48,11 @@
     }
   },
   "status": {
-    "processing": "Elaborazione...",
-    "preparing": "Preparazione...",
-    "merging": "Unione...",
-    "zipping": "Compressione...",
-    "ready": "Pronto 100%",
+    "processing": "In elaborazione...",
+    "preparing": "In preparazione...",
+    "merging": "Unione in corso...",
+    "zipping": "Compressione in corso...",
+    "ready": "Pronto al 100%",
     "completed": "Completato",
     "failed": "Fallito"
   },
@@ -122,15 +60,40 @@
     "download": "Scarica",
     "tryAgain": "Riprova",
     "cancel": "Annulla",
-    "seeMore": "vedi di più",
-    "seeLess": "vedi di meno",
-    "bulkDownload": "Scarica Selezionati"
+    "seeMore": "Vedi di più",
+    "seeLess": "Vedi di meno",
+    "bulkDownload": "Scarica selezionati"
   },
   "gallery": {
     "title": "Galleria",
-    "noItems": "Nessun elemento nella galleria per ora."
+    "noItems": "Nessun elemento della galleria da visualizzare",
+    "selected": "selezionato",
+    "selectAll": "Seleziona tutto",
+    "deselectAll": "Deseleziona tutto"
   },
-  "common": {
-    "error": "Si è verificato un errore. Riprova più tardi."
+  "mobile": {
+    "menuToggleLabel": "Apri menu di navigazione",
+    "menuCloseLabel": "Chiudi menu di navigazione",
+    "langButtonLabel": "Seleziona lingua"
+  },
+  "footer": {
+    "copyright": "© 2025 y2mate",
+    "about": "Informazioni",
+    "contact": "Contatti",
+    "terms": "Termini di servizio",
+    "privacy": "Informativa sulla privacy"
+  },
+  "errors": {
+    "invalidUrl": "Inserisci un URL valido",
+    "networkError": "Errore di rete. Riprova.",
+    "processingError": "Elaborazione non riuscita. Riprova.",
+    "timeout": "Timeout della richiesta. Riprova.",
+    "downloadExpired": "Link per il download scaduto",
+    "conversionFailed": "Conversione non riuscita"
+  },
+  "messages": {
+    "downloadReady": "Il tuo download è pronto",
+    "processing": "Elaborazione della tua richiesta...",
+    "pleaseWait": "Attendere prego..."
   }
 }

@@ -1,108 +1,46 @@
 {
   "nav": {
-    "home": "YouTube Downloader",
-    "youtubeToMp4": "YouTube zu MP4 Konverter",
-    "youtubeToMp3": "YouTube zu MP3 Konverter",
-    "youtubeShorts": "YouTube Shorts Downloader",
+    "home": "YouTube-Downloader",
+    "youtubeToMp4": "YouTube-zu-MP4-Konverter",
+    "youtubeToMp3": "YouTube-zu-MP3-Konverter",
+    "youtubeShorts": "YouTube-Shorts-Downloader",
     "language": "Deutsch"
   },
   "hero": {
-    "h1": "YouTube Video Downloader",
-    "h2": "Laden Sie YouTube-Videos herunter, konvertieren Sie YouTube kostenlos in MP4, MP3",
-    "placeholder": "Suchen oder fügen Sie hier einen YouTube-Link ein",
-    "start": "Start"
+    "placeholder": "Link suchen oder hier einfügen...",
+    "pasteLabel": "Aus der Zwischenablage einfügen",
+    "clearLabel": "Eingabe löschen",
+    "submitButton": "Start",
+    "termsText": "Durch die Nutzung unseres Dienstes akzeptieren Sie unsere",
+    "termsLink": "Nutzungsbedingungen"
   },
-  "features": {
-    "f1": {
-      "title": "Unbegrenzte Downloads",
-      "description": "Laden Sie so viele YouTube-Videos herunter, wie Sie möchten, ohne Einschränkungen."
+  "formatSelector": {
+    "autoSubmit": "Automatisch senden",
+    "autoSubmitTooltip": "Beim Einfügen von URL oder Schlüsselwort automatisch senden",
+    "formats": {
+      "mp4": "MP4",
+      "mp3": "MP3"
     },
-    "f2": {
-      "title": "Hochgeschwindigkeits-Konvertierungen",
-      "description": "Konvertieren Sie YouTube-Videos in Sekundenschnelle in Ihr gewünschtes Format."
+    "quality": {
+      "videoLabel": "Videoqualität",
+      "audioLabel": "Audioqualität"
     },
-    "f3": {
-      "title": "Mehrere Formatoptionen",
-      "description": "Unterstützt MP4, MP3, WEBM, MKV und mehr. Wählen Sie die Qualität, die Ihren Bedürfnissen entspricht."
-    },
-    "f4": {
-      "title": "Keine Anmeldung Erforderlich",
-      "description": "Laden Sie Videos herunter und konvertieren Sie sie ohne Registrierung oder persönliche Informationen."
-    },
-    "f5": {
-      "title": "Plattformübergreifende Kompatibilität",
-      "description": "Unser Downloader funktioniert auf jedem Gerät: Windows, macOS, Linux, Android oder iOS."
-    },
-    "f6": {
-      "title": "Sicher und Geschützt",
-      "description": "Ihre Downloads werden sicher verarbeitet und Ihre Daten sind immer geschützt."
-    }
-  },
-  "howTo": {
-    "title": "Wie lädt man YouTube-Videos herunter?",
-    "step1": {
-      "title": "Kopieren Sie die URL des YouTube-Videos",
-      "description": "Gehen Sie zu YouTube, finden Sie das Video, das Sie herunterladen möchten, und kopieren Sie dessen URL aus der Adressleiste."
-    },
-    "step2": {
-      "title": "Fügen Sie die URL in Y2Mate ein",
-      "description": "Öffnen Sie Y2Mate, fügen Sie die kopierte URL in das Eingabefeld ein und klicken Sie auf die Schaltfläche 'Start'."
-    },
-    "step3": {
-      "title": "Format auswählen und Herunterladen",
-      "description": "Wählen Sie Ihr bevorzugtes Format (MP4, MP3 usw.) und die Qualität aus und klicken Sie dann auf 'Herunterladen', um die Datei zu speichern."
-    }
-  },
-  "faqs": {
-    "title": "Häufig Gestellte Fragen",
-    "q1": {
-      "question": "Ist die Nutzung von Y2Mate kostenlos?",
-      "answer": "Ja, Y2Mate ist völlig kostenlos. Es gibt keine versteckten Kosten oder Abonnementgebühren."
-    },
-    "q2": {
-      "question": "Welche Videoformate und -qualitäten werden unterstützt?",
-      "answer": "Wir unterstützen eine breite Palette von Formaten, einschließlich MP4, WEBM und MKV für Video sowie MP3, OGG, OPUS und WAV für Audio. Sie können Videos in Qualitäten von 1080p und 720p bis hin zu niedrigeren Auflösungen herunterladen."
-    },
-    "q3": {
-      "question": "Kann ich Videos auf mein Mobilgerät herunterladen?",
-      "answer": "Absolut! Y2Mate ist vollständig responsiv und funktioniert auf allen Geräten, einschließlich Smartphones und Tablets."
-    },
-    "q4": {
-      "question": "Ist es legal, YouTube-Videos herunterzuladen?",
-      "answer": "Das Herunterladen von Videos von YouTube kann gegen deren Nutzungsbedingungen verstoßen. Wir empfehlen Ihnen, Videos nur für den persönlichen Gebrauch herunterzuladen und die Urheberrechtsgesetze zu respektieren."
-    },
-    "q5": {
-      "question": "Muss ich eine Software installieren?",
-      "answer": "Nein, Y2Mate ist ein webbasiertes Tool. Alles, was Sie brauchen, ist ein Webbrowser, um mit dem Herunterladen zu beginnen."
-    }
-  },
-  "footer": {
-    "copyright": "© 2024 Y2Mate. Alle Rechte vorbehalten.",
-    "madeWith": "Mit ❤️ für YouTube-Liebhaber gemacht.",
-    "contact": "Kontakt",
-    "privacy": "Datenschutzrichtlinie",
-    "terms": "Nutzungsbedingungen"
-  },
-  "downloader": {
-    "h1": "YouTube Video Downloader",
-    "h2": "Laden Sie Videos von YouTube in MP4, MP3 und anderen Formaten herunter",
-    "label": "YouTube-Link",
-    "ariaLabel": "Eingabefeld für YouTube-Videolink",
-    "tabs": {
-      "video": "Video",
-      "audio": "Audio",
-      "shorts": "Shorts"
-    },
-    "table": {
-      "resolution": "Auflösung",
-      "fileSize": "Dateigröße",
-      "status": "Status",
-      "action": "Aktion",
-      "formats": {
-        "mp4": "MP4",
-        "mp3": "MP3",
+    "options": {
+      "mp4": {
+        "1080p": "MP4 - 1080p",
+        "720p": "MP4 - 720p",
+        "480p": "MP4 - 480p",
+        "360p": "MP4 - 360p",
+        "240p": "MP4 - 240p",
+        "144p": "MP4 - 144p",
         "webm": "WEBM",
-        "mkv": "MKV",
+        "mkv": "MKV"
+      },
+      "mp3": {
+        "320kbps": "MP3 - 320kbps",
+        "256kbps": "MP3 - 256kbps",
+        "192kbps": "MP3 - 192kbps",
+        "128kbps": "MP3 - 128kbps",
         "ogg": "OGG",
         "opus": "OPUS",
         "wav": "WAV"
@@ -110,10 +48,10 @@
     }
   },
   "status": {
-    "processing": "Verarbeite...",
-    "preparing": "Bereite vor...",
-    "merging": "Füge zusammen...",
-    "zipping": "Komprimiere...",
+    "processing": "Wird verarbeitet...",
+    "preparing": "Wird vorbereitet...",
+    "merging": "Wird zusammengeführt...",
+    "zipping": "Wird komprimiert...",
     "ready": "Bereit 100%",
     "completed": "Abgeschlossen",
     "failed": "Fehlgeschlagen"
@@ -122,15 +60,40 @@
     "download": "Herunterladen",
     "tryAgain": "Erneut versuchen",
     "cancel": "Abbrechen",
-    "seeMore": "mehr sehen",
-    "seeLess": "weniger sehen",
-    "bulkDownload": "Auswahl herunterladen"
+    "seeMore": "Mehr sehen",
+    "seeLess": "Weniger sehen",
+    "bulkDownload": "Ausgewählte herunterladen"
   },
   "gallery": {
     "title": "Galerie",
-    "noItems": "Noch keine Elemente in der Galerie."
+    "noItems": "Keine Galerieelemente zum Anzeigen",
+    "selected": "ausgewählt",
+    "selectAll": "Alle auswählen",
+    "deselectAll": "Alle abwählen"
   },
-  "common": {
-    "error": "Ein Fehler ist aufgetreten. Bitte versuchen Sie es später erneut."
+  "mobile": {
+    "menuToggleLabel": "Navigationsmenü öffnen",
+    "menuCloseLabel": "Navigationsmenü schließen",
+    "langButtonLabel": "Sprache auswählen"
+  },
+  "footer": {
+    "copyright": "© 2025 y2mate",
+    "about": "Über",
+    "contact": "Kontakt",
+    "terms": "Nutzungsbedingungen",
+    "privacy": "Datenschutzrichtlinie"
+  },
+  "errors": {
+    "invalidUrl": "Bitte geben Sie eine gültige URL ein",
+    "networkError": "Netzwerkfehler. Bitte versuchen Sie es erneut.",
+    "processingError": "Verarbeitung fehlgeschlagen. Bitte versuchen Sie es erneut.",
+    "timeout": "Zeitüberschreitung der Anforderung. Bitte versuchen Sie es erneut.",
+    "downloadExpired": "Download-Link abgelaufen",
+    "conversionFailed": "Konvertierung fehlgeschlagen"
+  },
+  "messages": {
+    "downloadReady": "Ihr Download ist bereit",
+    "processing": "Ihre Anfrage wird bearbeitet...",
+    "pleaseWait": "Bitte warten..."
   }
 }

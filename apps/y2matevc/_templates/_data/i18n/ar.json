@@ -1,33 +1,46 @@
 {
   "nav": {
-    "home": "يوتيوب داونلودر",
-    "youtubeToMp4": "تحويل يوتيوب إلى MP4",
-    "youtubeToMp3": "تحويل يوتيوب إلى MP3"
+    "home": "يوتيوب تحميل",
+    "youtubeToMp4": "يوتيوب إلى MP4 محول",
+    "youtubeToMp3": "يوتيوب إلى MP3 محول",
+    "youtubeShorts": "يوتيوب شورت تحميل",
+    "language": "العربية"
   },
-  "homepage": {
-    "title": "تنزيل فيديوهات يوتيوب",
-    "description": "Y2Mate هي أداة مجانية تتيح لك تنزيل وتحويل مقاطع فيديو YouTube إلى تنسيق MP4 أو MP3 بجودة عالية. إنها سريعة وسهلة الاستخدام وتدعم جميع الأجهزة.",
-    "placeholder": "الصق رابط يوتيوب هنا",
-    "start": "ابدأ"
+  "hero": {
+    "placeholder": "ابحث أو الصق الرابط هنا...",
+    "pasteLabel": "لصق من الحافظة",
+    "clearLabel": "مسح الإدخال",
+    "submitButton": "ابدأ",
+    "termsText": "باستخدام خدمتنا، فإنك توافق على",
+    "termsLink": "شروط الاستخدام"
   },
-  "downloader": {
-    "title": "تنزيل",
+  "formatSelector": {
+    "autoSubmit": "إرسال تلقائي",
+    "autoSubmitTooltip": "إرسال تلقائي عند لصق عنوان URL أو كلمة رئيسية",
     "formats": {
-      "video": {
-        "title": "فيديو",
-        "mp4": "MP4",
+      "mp4": "MP4",
+      "mp3": "MP3"
+    },
+    "quality": {
+      "videoLabel": "جودة الفيديو",
+      "audioLabel": "جودة الصوت"
+    },
+    "options": {
+      "mp4": {
+        "1080p": "MP4 - 1080p",
+        "720p": "MP4 - 720p",
+        "480p": "MP4 - 480p",
+        "360p": "MP4 - 360p",
+        "240p": "MP4 - 240p",
+        "144p": "MP4 - 144p",
         "webm": "WEBM",
         "mkv": "MKV"
       },
-      "audio": {
-        "title": "صوت",
-        "mp3": {
-          "title": "MP3",
-          "320kbps": "MP3 - 320kbps",
-          "256kbps": "MP3 - 256kbps",
-          "192kbps": "MP3 - 192kbps",
-          "128kbps": "MP3 - 128kbps"
-        },
+      "mp3": {
+        "320kbps": "MP3 - 320kbps",
+        "256kbps": "MP3 - 256kbps",
+        "192kbps": "MP3 - 192kbps",
+        "128kbps": "MP3 - 128kbps",
         "ogg": "OGG",
         "opus": "OPUS",
         "wav": "WAV"
@@ -35,21 +48,21 @@
     }
   },
   "status": {
-    "processing": "جاري المعالجة...",
-    "preparing": "جاري التحضير...",
-    "merging": "جاري الدمج...",
-    "zipping": "جاري الضغط...",
+    "processing": "جارٍ المعالجة...",
+    "preparing": "جارٍ التحضير...",
+    "merging": "جارٍ الدمج...",
+    "zipping": "جارٍ الضغط...",
     "ready": "جاهز 100%",
     "completed": "مكتمل",
     "failed": "فشل"
   },
   "buttons": {
-    "download": "تنزيل",
+    "download": "تحميل",
     "tryAgain": "حاول مرة أخرى",
     "cancel": "إلغاء",
     "seeMore": "عرض المزيد",
     "seeLess": "عرض أقل",
-    "bulkDownload": "تنزيل المحدد"
+    "bulkDownload": "تحميل المحدد"
   },
   "gallery": {
     "title": "المعرض",
@@ -59,12 +72,28 @@
     "deselectAll": "إلغاء تحديد الكل"
   },
   "mobile": {
-    "title": "تطبيق الجوال",
-    "description": "قم بتنزيل تطبيق الجوال المجاني الخاص بنا للحصول على تجربة أفضل على هاتفك.",
-    "download": "تنزيل التطبيق"
+    "menuToggleLabel": "فتح قائمة التنقل",
+    "menuCloseLabel": "إغلاق قائمة التنقل",
+    "langButtonLabel": "اختار اللغة"
   },
   "footer": {
-    "copyright": "© 2024 Y2Mate. جميع الحقوق محفوظة.",
-    "madeWith": "صنع بـ ❤️ في الهند"
+    "copyright": "© 2025 y2mate",
+    "about": "حول",
+    "contact": "اتصل",
+    "terms": "شروط الخدمة",
+    "privacy": "سياسة الخصوصية"
+  },
+  "errors": {
+    "invalidUrl": "الرجاء إدخال عنوان URL صالح",
+    "networkError": "خطأ في الشبكة. يرجى المحاولة مرة أخرى.",
+    "processingError": "فشلت المعالجة. يرجى المحاولة مرة أخرى.",
+    "timeout": "انتهت مهلة الطلب. يرجى المحاولة مرة أخرى.",
+    "downloadExpired": "انتهت صلاحية رابط التنزيل",
+    "conversionFailed": "فشل التحويل"
+  },
+  "messages": {
+    "downloadReady": "التنزيل جاهز",
+    "processing": "جارٍ معالجة طلبك...",
+    "pleaseWait": "ارجوك انتظر..."
   }
 }

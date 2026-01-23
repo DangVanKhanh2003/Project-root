@@ -7,102 +7,40 @@
     "language": "Français"
   },
   "hero": {
-    "h1": "Téléchargeur de Vidéos YouTube",
-    "h2": "Téléchargez des vidéos YouTube, convertissez YouTube en MP4, MP3 gratuitement",
-    "placeholder": "Recherchez ou collez le lien YouTube ici",
-    "start": "Démarrer"
+    "placeholder": "Rechercher ou coller le lien ici...",
+    "pasteLabel": "Coller depuis le presse-papiers",
+    "clearLabel": "Effacer la saisie",
+    "submitButton": "Démarrer",
+    "termsText": "En utilisant notre service, vous acceptez nos",
+    "termsLink": "Conditions d'utilisation"
   },
-  "features": {
-    "f1": {
-      "title": "Téléchargements Illimités",
-      "description": "Téléchargez autant de vidéos YouTube que vous le souhaitez, sans aucune limitation."
+  "formatSelector": {
+    "autoSubmit": "Soumission automatique",
+    "autoSubmitTooltip": "Soumettre automatiquement lors du collage d'une URL ou d'un mot-clé",
+    "formats": {
+      "mp4": "MP4",
+      "mp3": "MP3"
     },
-    "f2": {
-      "title": "Conversions à Haute Vitesse",
-      "description": "Convertissez les vidéos YouTube dans le format de votre choix en quelques secondes."
+    "quality": {
+      "videoLabel": "Qualité vidéo",
+      "audioLabel": "Qualité audio"
     },
-    "f3": {
-      "title": "Plusieurs Options de Format",
-      "description": "Prend en charge MP4, MP3, WEBM, MKV, et plus encore. Choisissez la qualité qui correspond à vos besoins."
-    },
-    "f4": {
-      "title": "Aucune Inscription Requise",
-      "description": "Téléchargez et convertissez des vidéos sans aucune inscription ni information personnelle."
-    },
-    "f5": {
-      "title": "Compatibilité Multiplateforme",
-      "description": "Notre téléchargeur fonctionne sur n'importe quel appareil : Windows, macOS, Linux, Android ou iOS."
-    },
-    "f6": {
-      "title": "Sûr et Sécurisé",
-      "description": "Vos téléchargements sont traités en toute sécurité et vos données sont toujours protégées."
-    }
-  },
-  "howTo": {
-    "title": "Comment Télécharger des Vidéos YouTube ?",
-    "step1": {
-      "title": "Copiez l'URL de la Vidéo YouTube",
-      "description": "Allez sur YouTube, trouvez la vidéo que vous souhaitez télécharger et copiez son URL depuis la barre d'adresse."
-    },
-    "step2": {
-      "title": "Collez l'URL dans Y2Mate",
-      "description": "Ouvrez Y2Mate, collez l'URL copiée dans la zone de saisie et cliquez sur le bouton 'Démarrer'."
-    },
-    "step3": {
-      "title": "Choisissez le Formato et Téléchargez",
-      "description": "Sélectionnez votre format (MP4, MP3, etc.) et votre qualité préférés, puis cliquez sur 'Télécharger' pour enregistrer le fichier."
-    }
-  },
-  "faqs": {
-    "title": "Foire Aux Questions",
-    "q1": {
-      "question": "L'utilisation de Y2Mate est-elle gratuite ?",
-      "answer": "Oui, Y2Mate est entièrement gratuit. Il n'y a pas de coûts cachés ni de frais d'abonnement."
-    },
-    "q2": {
-      "question": "Quels sont les formats et qualités vidéo pris en charge ?",
-      "answer": "Nous prenons en charge une large gamme de formats, y compris MP4, WEBM et MKV pour la vidéo, et MP3, OGG, OPUS et WAV pour l'audio. Vous pouvez télécharger des vidéos dans des qualités allant de 1080p et 720p à des résolutions inférieures."
-    },
-    "q3": {
-      "question": "Puis-je télécharger des vidéos sur mon appareil mobile ?",
-      "answer": "Absolument ! Y2Mate est entièrement réactif et fonctionne sur tous les appareils, y compris les smartphones et les tablettes."
-    },
-    "q4": {
-      "question": "Est-il légal de télécharger des vidéos YouTube ?",
-      "answer": "Le téléchargement de vidéos depuis YouTube peut être contraire à leurs conditions d'utilisation. Nous vous recommandons de ne télécharger des vidéos que pour un usage personnel et de respecter les lois sur le droit d'auteur."
-    },
-    "q5": {
-      "question": "Dois-je installer un logiciel ?",
-      "answer": "Non, Y2Mate est un outil en ligne. Tout ce dont vous avez besoin est un navigateur web pour commencer à télécharger."
-    }
-  },
-  "footer": {
-    "copyright": "© 2024 Y2Mate. Tous droits réservés.",
-    "madeWith": "Fait avec ❤️ pour les amoureux de YouTube.",
-    "contact": "Contact",
-    "privacy": "Politique de Confidentialité",
-    "terms": "Conditions d'Utilisation"
-  },
-  "downloader": {
-    "h1": "Téléchargeur de Vidéos YouTube",
-    "h2": "Téléchargez des vidéos de YouTube en MP4, MP3 et autres formats",
-    "label": "Lien YouTube",
-    "ariaLabel": "Champ de saisie du lien de la vidéo YouTube",
-    "tabs": {
-      "video": "Vidéo",
-      "audio": "Audio",
-      "shorts": "Shorts"
-    },
-    "table": {
-      "resolution": "Résolution",
-      "fileSize": "Taille du Fichier",
-      "status": "Statut",
-      "action": "Action",
-      "formats": {
-        "mp4": "MP4",
-        "mp3": "MP3",
+    "options": {
+      "mp4": {
+        "1080p": "MP4 - 1080p",
+        "720p": "MP4 - 720p",
+        "480p": "MP4 - 480p",
+        "360p": "MP4 - 360p",
+        "240p": "MP4 - 240p",
+        "144p": "MP4 - 144p",
         "webm": "WEBM",
-        "mkv": "MKV",
+        "mkv": "MKV"
+      },
+      "mp3": {
+        "320kbps": "MP3 - 320kbps",
+        "256kbps": "MP3 - 256kbps",
+        "192kbps": "MP3 - 192kbps",
+        "128kbps": "MP3 - 128kbps",
         "ogg": "OGG",
         "opus": "OPUS",
         "wav": "WAV"
@@ -110,11 +48,11 @@
     }
   },
   "status": {
-    "processing": "Traitement...",
-    "preparing": "Préparation...",
-    "merging": "Fusion...",
-    "zipping": "Compression...",
-    "ready": "Prêt 100%",
+    "processing": "En cours de traitement...",
+    "preparing": "En cours de préparation...",
+    "merging": "En cours de fusion...",
+    "zipping": "En cours de compression...",
+    "ready": "Prêt à 100%",
     "completed": "Terminé",
     "failed": "Échec"
   },
@@ -122,15 +60,40 @@
     "download": "Télécharger",
     "tryAgain": "Réessayer",
     "cancel": "Annuler",
-    "seeMore": "voir plus",
-    "seeLess": "voir moins",
-    "bulkDownload": "Télécharger la Sélection"
+    "seeMore": "Voir plus",
+    "seeLess": "Voir moins",
+    "bulkDownload": "Télécharger la sélection"
   },
   "gallery": {
     "title": "Galerie",
-    "noItems": "Aucun élément dans la galerie pour le moment."
+    "noItems": "Aucun élément de galerie à afficher",
+    "selected": "sélectionné",
+    "selectAll": "Tout sélectionner",
+    "deselectAll": "Tout désélectionner"
   },
-  "common": {
-    "error": "Une erreur est survenue. Veuillez réessayer plus tard."
+  "mobile": {
+    "menuToggleLabel": "Ouvrir le menu de navigation",
+    "menuCloseLabel": "Fermer le menu de navigation",
+    "langButtonLabel": "Sélectionner la langue"
+  },
+  "footer": {
+    "copyright": "© 2025 y2mate",
+    "about": "À propos",
+    "contact": "Contact",
+    "terms": "Conditions d'utilisation",
+    "privacy": "Politique de confidentialité"
+  },
+  "errors": {
+    "invalidUrl": "Veuillez saisir une URL valide",
+    "networkError": "Erreur réseau. Veuillez réessayer.",
+    "processingError": "Le traitement a échoué. Veuillez réessayer.",
+    "timeout": "Délai de la requête dépassé. Veuillez réessayer.",
+    "downloadExpired": "Le lien de téléchargement a expiré",
+    "conversionFailed": "La conversion a échoué"
+  },
+  "messages": {
+    "downloadReady": "Votre téléchargement est prêt",
+    "processing": "Traitement de votre demande en cours...",
+    "pleaseWait": "Veuillez patienter..."
   }
 }

@@ -7,14 +7,52 @@
     "language": "Türkçe"
   },
   "hero": {
-    "placeholder": "Buraya bağlantı arayın veya yapıştırın..."
+    "placeholder": "Buraya bağlantı arayın veya yapıştırın...",
+    "pasteLabel": "Panodan yapıştır",
+    "clearLabel": "Girişi temizle",
+    "submitButton": "Başlat",
+    "termsText": "Hizmetimizi kullanarak, kabul etmiş olursunuz",
+    "termsLink": "Kullanım Şartları"
+  },
+  "formatSelector": {
+    "autoSubmit": "Otomatik gönder",
+    "autoSubmitTooltip": "URL veya anahtar kelime yapıştırıldığında otomatik olarak gönder",
+    "formats": {
+      "mp4": "MP4",
+      "mp3": "MP3"
+    },
+    "quality": {
+      "videoLabel": "Video kalitesi",
+      "audioLabel": "Ses kalitesi"
+    },
+    "options": {
+      "mp4": {
+        "1080p": "MP4 - 1080p",
+        "720p": "MP4 - 720p",
+        "480p": "MP4 - 480p",
+        "360p": "MP4 - 360p",
+        "240p": "MP4 - 240p",
+        "144p": "MP4 - 144p",
+        "webm": "WEBM",
+        "mkv": "MKV"
+      },
+      "mp3": {
+        "320kbps": "MP3 - 320kbps",
+        "256kbps": "MP3 - 256kbps",
+        "192kbps": "MP3 - 192kbps",
+        "128kbps": "MP3 - 128kbps",
+        "ogg": "OGG",
+        "opus": "OPUS",
+        "wav": "WAV"
+      }
+    }
   },
   "status": {
     "processing": "İşleniyor...",
     "preparing": "Hazırlanıyor...",
     "merging": "Birleştiriliyor...",
     "zipping": "Sıkıştırılıyor...",
-    "ready": "Hazır 100%",
+    "ready": "Hazır %100",
     "completed": "Tamamlandı",
     "failed": "Başarısız"
   },
@@ -22,8 +60,8 @@
     "download": "İndir",
     "tryAgain": "Tekrar Dene",
     "cancel": "İptal",
-    "seeMore": "daha fazla gör",
-    "seeLess": "daha az gör",
+    "seeMore": "Daha fazla gör",
+    "seeLess": "Daha az gör",
     "bulkDownload": "Seçilenleri İndir"
   },
   "gallery": {
@@ -31,12 +69,12 @@
     "noItems": "Görüntülenecek galeri öğesi yok",
     "selected": "seçili",
     "selectAll": "Tümünü Seç",
-    "deselectAll": "Tüm Seçimi Kaldır"
+    "deselectAll": "Tümünün Seçimini Kaldır"
   },
   "mobile": {
     "menuToggleLabel": "Gezinme menüsünü aç",
     "menuCloseLabel": "Gezinme menüsünü kapat",
-    "langButtonLabel": "Dil seçin"
+    "langButtonLabel": "Dil seç"
   },
   "footer": {
     "copyright": "© 2025 y2mate",
@@ -47,6 +85,15 @@
   },
   "errors": {
     "invalidUrl": "Lütfen geçerli bir URL girin",
-    "networkError": "Ağ hatası"
+    "networkError": "Ağ hatası. Lütfen tekrar deneyin.",
+    "processingError": "İşlem başarısız oldu. Lütfen tekrar deneyin.",
+    "timeout": "İstek zaman aşımına uğradı. Lütfen tekrar deneyin.",
+    "downloadExpired": "İndirme bağlantısının süresi doldu",
+    "conversionFailed": "Dönüştürme başarısız oldu"
+  },
+  "messages": {
+    "downloadReady": "İndirmeniz hazır",
+    "processing": "İsteğiniz işleniyor...",
+    "pleaseWait": "Lütfen bekleyin..."
   }
 }

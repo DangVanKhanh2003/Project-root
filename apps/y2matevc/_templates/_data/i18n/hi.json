@@ -2,32 +2,45 @@
   "nav": {
     "home": "यूट्यूब डाउनलोडर",
     "youtubeToMp4": "यूट्यूब से MP4 कन्वर्टर",
-    "youtubeToMp3": "यूट्यूब से MP3 कन्वर्टर"
+    "youtubeToMp3": "यूट्यूब से MP3 कन्वर्टर",
+    "youtubeShorts": "यूट्यूब शॉर्ट्स डाउनलोडर",
+    "language": "हिंदी"
   },
-  "homepage": {
-    "title": "यूट्यूब वीडियो डाउनलोडर",
-    "description": "Y2Mate एक मुफ़्त टूल है जो आपको उच्च गुणवत्ता में यूट्यूब वीडियो को MP4 या MP3 प्रारूप में डाउनलोड और परिवर्तित करने की अनुमति देता है। यह तेज़, उपयोग में आसान और सभी उपकरणों का समर्थन करता है।",
-    "placeholder": "यहां एक यूट्यूब लिंक पेस्ट करें",
-    "start": "शुरू करें"
+  "hero": {
+    "placeholder": "यहां लिंक खोजें या पेस्ट करें...",
+    "pasteLabel": "क्लिपबोर्ड से पेस्ट करें",
+    "clearLabel": "इनपुट साफ़ करें",
+    "submitButton": "शुरू करें",
+    "termsText": "हमारी सेवा का उपयोग करके आप हमारी स्वीकार कर रहे हैं",
+    "termsLink": "उपयोग की शर्तें"
   },
-  "downloader": {
-    "title": "डाउनलोड",
+  "formatSelector": {
+    "autoSubmit": "स्वतः सबमिट करें",
+    "autoSubmitTooltip": "URL या कीवर्ड पेस्ट करते समय स्वतः सबमिट करें",
     "formats": {
-      "video": {
-        "title": "वीडियो",
-        "mp4": "MP4",
+      "mp4": "MP4",
+      "mp3": "MP3"
+    },
+    "quality": {
+      "videoLabel": "वीडियो की गुणवत्ता",
+      "audioLabel": "ऑडियो की गुणवत्ता"
+    },
+    "options": {
+      "mp4": {
+        "1080p": "MP4 - 1080p",
+        "720p": "MP4 - 720p",
+        "480p": "MP4 - 480p",
+        "360p": "MP4 - 360p",
+        "240p": "MP4 - 240p",
+        "144p": "MP4 - 144p",
         "webm": "WEBM",
         "mkv": "MKV"
       },
-      "audio": {
-        "title": "ऑडियो",
-        "mp3": {
-          "title": "MP3",
-          "320kbps": "MP3 - 320kbps",
-          "256kbps": "MP3 - 256kbps",
-          "192kbps": "MP3 - 192kbps",
-          "128kbps": "MP3 - 128kbps"
-        },
+      "mp3": {
+        "320kbps": "MP3 - 320kbps",
+        "256kbps": "MP3 - 256kbps",
+        "192kbps": "MP3 - 192kbps",
+        "128kbps": "MP3 - 128kbps",
         "ogg": "OGG",
         "opus": "OPUS",
         "wav": "WAV"
@@ -39,12 +52,12 @@
     "preparing": "तैयार हो रहा है...",
     "merging": "मर्ज हो रहा है...",
     "zipping": "ज़िप हो रहा है...",
-    "ready": "तैयार 100%",
-    "completed": "पूर्ण",
+    "ready": "100% तैयार",
+    "completed": "पूरा हुआ",
     "failed": "विफल"
   },
   "buttons": {
-    "download": "डाउनलोड",
+    "download": "डाउनलोड करें",
     "tryAgain": "पुनः प्रयास करें",
     "cancel": "रद्द करें",
     "seeMore": "और देखें",
@@ -53,18 +66,34 @@
   },
   "gallery": {
     "title": "गैलरी",
-    "noItems": "प्रदर्शित करने के लिए कोई गैलरी आइटम नहीं है",
+    "noItems": "प्रदर्शित करने के लिए कोई गैलरी आइटम नहीं",
     "selected": "चयनित",
-    "selectAll": "सभी का चयन करें",
-    "deselectAll": "सभी का चयन रद्द करें"
+    "selectAll": "सभी चुनें",
+    "deselectAll": "सभी अचयनित करें"
   },
   "mobile": {
-    "title": "मोबाइल ऐप",
-    "description": "अपने फ़ोन पर बेहतर अनुभव के लिए हमारा मुफ़्त मोबाइल ऐप डाउनलोड करें।",
-    "download": "ऐप डाउनलोड करें"
+    "menuToggleLabel": "नेविगेशन मेनू खोलें",
+    "menuCloseLabel": "नेविगेशन मेनू बंद करें",
+    "langButtonLabel": "भाषा चुनें"
   },
   "footer": {
-    "copyright": "© 2024 Y2Mate. सर्वाधिकार सुरक्षित।",
-    "madeWith": "❤️ के साथ भारत में निर्मित"
+    "copyright": "© 2025 y2mate",
+    "about": "हमारे बारे में",
+    "contact": "संपर्क करें",
+    "terms": "सेवा की शर्तें",
+    "privacy": "गोपनीयता नीति"
+  },
+  "errors": {
+    "invalidUrl": "कृपया एक वैध URL दर्ज करें",
+    "networkError": "नेटवर्क त्रुटि। कृपया पुनः प्रयास करें।",
+    "processingError": "प्रोसेसिंग विफल। कृपया पुनः प्रयास करें।",
+    "timeout": "अनुरोध टाइमआउट। कृपया पुनः प्रयास करें।",
+    "downloadExpired": "डाउनलोड लिंक समाप्त हो गया है",
+    "conversionFailed": "रूपांतरण विफल"
+  },
+  "messages": {
+    "downloadReady": "आपका डाउनलोड तैयार है",
+    "processing": "आपके अनुरोध को प्रोसेस किया जा रहा है...",
+    "pleaseWait": "कृपया प्रतीक्षा करें..."
   }
 }

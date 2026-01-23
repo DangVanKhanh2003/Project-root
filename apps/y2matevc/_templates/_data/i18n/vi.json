@@ -1,22 +1,22 @@
 {
   "nav": {
-    "home": "Tải Video YouTube",
-    "youtubeToMp4": "Chuyển đổi YouTube sang MP4",
-    "youtubeToMp3": "Chuyển đổi YouTube sang MP3",
-    "youtubeShorts": "Tải YouTube Shorts",
+    "home": "Trình tải xuống YouTube",
+    "youtubeToMp4": "Trình chuyển đổi YouTube sang MP4",
+    "youtubeToMp3": "Trình chuyển đổi YouTube sang MP3",
+    "youtubeShorts": "Trình tải xuống YouTube Shorts",
     "language": "Tiếng Việt"
   },
   "hero": {
     "placeholder": "Tìm kiếm hoặc dán liên kết tại đây...",
-    "pasteLabel": "Dán từ clipboard",
-    "clearLabel": "Xóa nội dung",
+    "pasteLabel": "Dán từ khay nhớ tạm",
+    "clearLabel": "Xóa đầu vào",
     "submitButton": "Bắt đầu",
-    "termsText": "Bằng cách sử dụng dịch vụ của chúng tôi, bạn đang chấp nhận",
+    "termsText": "Bằng cách sử dụng dịch vụ của chúng tôi, bạn chấp nhận",
     "termsLink": "Điều khoản sử dụng"
   },
   "formatSelector": {
-    "autoSubmit": "Tự động chuyển đổi",
-    "autoSubmitTooltip": "Tự động bắt đầu chuyển đổi khi dán URL hoặc từ khóa",
+    "autoSubmit": "Tự động gửi",
+    "autoSubmitTooltip": "Tự động gửi khi dán URL hoặc từ khóa",
     "formats": {
       "mp4": "MP4",
       "mp3": "MP3"
@@ -53,20 +53,20 @@
     "merging": "Đang hợp nhất...",
     "zipping": "Đang nén...",
     "ready": "Sẵn sàng 100%",
-    "completed": "Hoàn tất",
+    "completed": "Đã hoàn tất",
     "failed": "Thất bại"
   },
   "buttons": {
     "download": "Tải xuống",
     "tryAgain": "Thử lại",
     "cancel": "Hủy",
-    "seeMore": "xem thêm",
-    "seeLess": "thu gọn",
-    "bulkDownload": "Tải tất cả"
+    "seeMore": "Xem thêm",
+    "seeLess": "Xem ít hơn",
+    "bulkDownload": "Tải xuống các mục đã chọn"
   },
   "gallery": {
     "title": "Thư viện",
-    "noItems": "Không có mục nào để hiển thị",
+    "noItems": "Không có mục thư viện nào để hiển thị",
     "selected": "đã chọn",
     "selectAll": "Chọn tất cả",
     "deselectAll": "Bỏ chọn tất cả"
@@ -84,10 +84,10 @@
     "privacy": "Chính sách bảo mật"
   },
   "errors": {
-    "invalidUrl": "Vui lòng nhập URL hợp lệ",
+    "invalidUrl": "Vui lòng nhập một URL hợp lệ",
     "networkError": "Lỗi mạng. Vui lòng thử lại.",
     "processingError": "Xử lý thất bại. Vui lòng thử lại.",
-    "timeout": "Hết thời gian chờ. Vui lòng thử lại.",
+    "timeout": "Yêu cầu đã hết thời gian chờ. Vui lòng thử lại.",
     "downloadExpired": "Liên kết tải xuống đã hết hạn",
     "conversionFailed": "Chuyển đổi thất bại"
   },

@@ -1,52 +1,46 @@
 {
   "nav": {
-    "home": "YouTube 다운로더",
-    "youtubeToMp4": "YouTube MP4 변환기",
-    "youtubeToMp3": "YouTube MP3 변환기",
-    "youtubeShorts": "YouTube Shorts 다운로더"
+    "home": "유튜브 다운로더",
+    "youtubeToMp4": "유튜브 MP4 변환기",
+    "youtubeToMp3": "유튜브 MP3 변환기",
+    "youtubeShorts": "유튜브 쇼츠 다운로ダー",
+    "language": "한국어"
   },
-  "footer": {
-    "madeWith": "인도에서 ❤️로 제작",
-    "copyright": "© 2024 Y2Mate. 모든 권리 보유."
+  "hero": {
+    "placeholder": "여기에 링크 검색 또는 붙여넣기...",
+    "pasteLabel": "클립보드에서 붙여넣기",
+    "clearLabel": "입력 지우기",
+    "submitButton": "시작",
+    "termsText": "서비스를 이용함으로써 귀하는 당사의",
+    "termsLink": "이용약관"
   },
-  "converter": {
-    "title": "YouTube 동영상 변환기",
-    "description": "YouTube 동영상을 MP4, MP3 및 기타 형식으로 다운로드",
-    "placeholder": "여기에 YouTube 링크 붙여넣기",
-    "button": "변환",
-    "recent": "최근 다운로드",
-    "clear": "모두 지우기",
+  "formatSelector": {
+    "autoSubmit": "자동 제출",
+    "autoSubmitTooltip": "URL 또는 키워드를 붙여넣을 때 자동으로 제출",
+    "formats": {
+      "mp4": "MP4",
+      "mp3": "MP3"
+    },
     "quality": {
-      "video": "비디오 품질",
-      "audio": "오디오 품질"
-    },
-    "format": {
-      "video": "비디오 형식",
-      "audio": "오디오 형식"
-    },
-    "action": {
-      "download": "다운로드",
-      "convertNext": "다음 변환"
-    },
-    "tabs": {
-      "video": "비디오",
-      "audio": "오디오",
-      "other": "기타"
-    },
-    "labels": {
-      "fileName": "파일 이름",
-      "fileSize": "파일 크기",
-      "resolution": "해상도",
-      "bitrate": "비트레이트"
+      "videoLabel": "비디오 품질",
+      "audioLabel": "오디오 품질"
     },
     "options": {
-      "video": {
-        "mp4": "MP4",
+      "mp4": {
+        "1080p": "MP4 - 1080p",
+        "720p": "MP4 - 720p",
+        "480p": "MP4 - 480p",
+        "360p": "MP4 - 360p",
+        "240p": "MP4 - 240p",
+        "144p": "MP4 - 144p",
         "webm": "WEBM",
         "mkv": "MKV"
       },
-      "audio": {
-        "mp3": "MP3",
+      "mp3": {
+        "320kbps": "MP3 - 320kbps",
+        "256kbps": "MP3 - 256kbps",
+        "192kbps": "MP3 - 192kbps",
+        "128kbps": "MP3 - 128kbps",
         "ogg": "OGG",
         "opus": "OPUS",
         "wav": "WAV"
@@ -58,13 +52,48 @@
     "preparing": "준비 중...",
     "merging": "병합 중...",
     "zipping": "압축 중...",
-    "ready": "준비 완료 100%",
-    "expired": "링크가 만료되었습니다",
+    "ready": "100% 준비 완료",
+    "completed": "완료됨",
+    "failed": "실패함"
+  },
+  "buttons": {
+    "download": "다운로드",
+    "tryAgain": "다시 시도",
+    "cancel": "취소",
+    "seeMore": "더 보기",
+    "seeLess": "간략히 보기",
+    "bulkDownload": "선택 항목 다운로드"
+  },
+  "gallery": {
+    "title": "갤러리",
+    "noItems": "표시할 갤러리 항목 없음",
+    "selected": "선택됨",
+    "selectAll": "모두 선택",
+    "deselectAll": "모두 선택 해제"
+  },
+  "mobile": {
+    "menuToggleLabel": "탐색 메뉴 열기",
+    "menuCloseLabel": "탐색 메뉴 닫기",
+    "langButtonLabel": "언어 선택"
+  },
+  "footer": {
+    "copyright": "© 2025 y2mate",
+    "about": "소개",
+    "contact": "문의",
+    "terms": "서비스 약관",
+    "privacy": "개인정보 보호정책"
+  },
+  "errors": {
+    "invalidUrl": "유효한 URL을 입력하세요",
+    "networkError": "네트워크 오류. 다시 시도하세요.",
+    "processingError": "처리 실패. 다시 시도하세요.",
+    "timeout": "요청 시간 초과. 다시 시도하세요.",
+    "downloadExpired": "다운로드 링크가 만료되었습니다",
     "conversionFailed": "변환 실패"
   },
   "messages": {
     "downloadReady": "다운로드가 준비되었습니다",
     "processing": "요청을 처리하는 중...",
-    "pleaseWait": "기다리세요..."
+    "pleaseWait": "기다려 주세요..."
   }
 }

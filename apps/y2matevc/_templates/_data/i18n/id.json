@@ -7,7 +7,45 @@
     "language": "Bahasa Indonesia"
   },
   "hero": {
-    "placeholder": "Cari atau tempel tautan di sini..."
+    "placeholder": "Cari atau tempel tautan di sini...",
+    "pasteLabel": "Tempel dari papan klip",
+    "clearLabel": "Hapus masukan",
+    "submitButton": "Mulai",
+    "termsText": "Dengan menggunakan layanan kami, Anda menerima",
+    "termsLink": "Ketentuan Penggunaan"
+  },
+  "formatSelector": {
+    "autoSubmit": "Kirim otomatis",
+    "autoSubmitTooltip": "Kirim otomatis saat menempelkan URL atau kata kunci",
+    "formats": {
+      "mp4": "MP4",
+      "mp3": "MP3"
+    },
+    "quality": {
+      "videoLabel": "Kualitas video",
+      "audioLabel": "Kualitas audio"
+    },
+    "options": {
+      "mp4": {
+        "1080p": "MP4 - 1080p",
+        "720p": "MP4 - 720p",
+        "480p": "MP4 - 480p",
+        "360p": "MP4 - 360p",
+        "240p": "MP4 - 240p",
+        "144p": "MP4 - 144p",
+        "webm": "WEBM",
+        "mkv": "MKV"
+      },
+      "mp3": {
+        "320kbps": "MP3 - 320kbps",
+        "256kbps": "MP3 - 256kbps",
+        "192kbps": "MP3 - 192kbps",
+        "128kbps": "MP3 - 128kbps",
+        "ogg": "OGG",
+        "opus": "OPUS",
+        "wav": "WAV"
+      }
+    }
   },
   "status": {
     "processing": "Memproses...",
@@ -22,8 +60,8 @@
     "download": "Unduh",
     "tryAgain": "Coba Lagi",
     "cancel": "Batal",
-    "seeMore": "lihat lebih banyak",
-    "seeLess": "lihat lebih sedikit",
+    "seeMore": "Lihat lebih banyak",
+    "seeLess": "Lihat lebih sedikit",
     "bulkDownload": "Unduh yang Dipilih"
   },
   "gallery": {
@@ -31,7 +69,7 @@
     "noItems": "Tidak ada item galeri untuk ditampilkan",
     "selected": "dipilih",
     "selectAll": "Pilih Semua",
-    "deselectAll": "Batalkan Pilihan Semua"
+    "deselectAll": "Batal Pilih Semua"
   },
   "mobile": {
     "menuToggleLabel": "Buka menu navigasi",
@@ -47,6 +85,15 @@
   },
   "errors": {
     "invalidUrl": "Silakan masukkan URL yang valid",
-    "networkError": "Kesalahan jaringan"
+    "networkError": "Kesalahan jaringan. Silakan coba lagi.",
+    "processingError": "Pemrosesan gagal. Silakan coba lagi.",
+    "timeout": "Waktu permintaan habis. Silakan coba lagi.",
+    "downloadExpired": "Tautan unduhan kedaluwarsa",
+    "conversionFailed": "Konversi gagal"
+  },
+  "messages": {
+    "downloadReady": "Unduhan Anda siap",
+    "processing": "Memproses permintaan Anda...",
+    "pleaseWait": "Harap tunggu..."
   }
 }

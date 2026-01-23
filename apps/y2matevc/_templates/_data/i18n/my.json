@@ -1,52 +1,46 @@
 {
   "nav": {
-    "home": "YouTube ဒေါင်းလုဒ်လုပ်သူ",
-    "youtubeToMp4": "YouTube ကို MP4 သို့ ပြောင်းရန်",
-    "youtubeToMp3": "YouTube ကို MP3 သို့ ပြောင်းရန်",
-    "youtubeShorts": "YouTube Shorts ဒေါင်းလုဒ်လုပ်သူ"
+    "home": "YouTube Downloader",
+    "youtubeToMp4": "YouTube to MP4 Converter",
+    "youtubeToMp3": "YouTube to MP3 Converter",
+    "youtubeShorts": "YouTube Shorts Downloader",
+    "language": "မြန်မာ"
   },
-  "footer": {
-    "madeWith": "အိန္ဒိယတွင် ❤️ ဖြင့်ပြုလုပ်သည်",
-    "copyright": "© 2024 Y2Mate. မူပိုင်ခွင့်များရယူပြီး။"
+  "hero": {
+    "placeholder": "လင့်ခ်ကို ရှာဖွေပါ သို့မဟုတ် ကူးထည့်ပါ...",
+    "pasteLabel": "ကလစ်ဘုတ်မှ ကူးထည့်ပါ",
+    "clearLabel": "ထည့်သွင်းမှုကို ရှင်းလင်းပါ",
+    "submitButton": "စတင်ပါ",
+    "termsText": "ကျွန်ုပ်တို့၏ ဝန်ဆောင်မှုကို အသုံးပြုခြင်းဖြင့် သင်သည် ကျွန်ုပ်တို့၏",
+    "termsLink": "အသုံးပြုမှုဆိုင်ရာ စည်းမျဉ်းများ"
   },
-  "converter": {
-    "title": "YouTube ဗီဒီယို ပြောင်းစက်",
-    "description": "YouTube ဗီဒီယိုများကို MP4, MP3 နှင့် အခြား format များဖြင့် ဒေါင်းလုဒ်လုပ်ပါ",
-    "placeholder": "YouTube လင့်ခ်ကို ဤနေရာတွင် ကူးထည့်ပါ",
-    "button": "ပြောင်းပါ",
-    "recent": "လတ်တလော ဒေါင်းလုဒ်များ",
-    "clear": "အားလုံးရှင်းလင်းပါ",
+  "formatSelector": {
+    "autoSubmit": "အလိုအလျောက် တင်သွင်းပါ",
+    "autoSubmitTooltip": "URL သို့မဟုတ် သော့ချက်စာလုံးကို ကူးထည့်သည့်အခါ အလိုအလျောက် တင်သွင်းပါ",
+    "formats": {
+      "mp4": "MP4",
+      "mp3": "MP3"
+    },
     "quality": {
-      "video": "ဗီဒီယို အရည်အသွေး",
-      "audio": "အသံ အရည်အသွေး"
-    },
-    "format": {
-      "video": "ဗီဒီယို ပုံစံ",
-      "audio": "အသံ ပုံစံ"
-    },
-    "action": {
-      "download": "ဒေါင်းလုဒ်",
-      "convertNext": "နောက်တစ်ခုကို ပြောင်းပါ"
-    },
-    "tabs": {
-      "video": "ဗီဒီယို",
-      "audio": "အသံ",
-      "other": "အခြား"
-    },
-    "labels": {
-      "fileName": "ဖိုင်အမည်",
-      "fileSize": "ဖိုင်အရွယ်အစား",
-      "resolution": "ကြည်လင်ပြတ်သားမှု",
-      "bitrate": "ဘစ်နှုန်း"
+      "videoLabel": "ဗီဒီယို အရည်အသွေး",
+      "audioLabel": "အသံ အရည်အသွေး"
     },
     "options": {
-      "video": {
-        "mp4": "MP4",
+      "mp4": {
+        "1080p": "MP4 - 1080p",
+        "720p": "MP4 - 720p",
+        "480p": "MP4 - 480p",
+        "360p": "MP4 - 360p",
+        "240p": "MP4 - 240p",
+        "144p": "MP4 - 144p",
         "webm": "WEBM",
         "mkv": "MKV"
       },
-      "audio": {
-        "mp3": "MP3",
+      "mp3": {
+        "320kbps": "MP3 - 320kbps",
+        "256kbps": "MP3 - 256kbps",
+        "192kbps": "MP3 - 192kbps",
+        "128kbps": "MP3 - 128kbps",
         "ogg": "OGG",
         "opus": "OPUS",
         "wav": "WAV"
@@ -57,14 +51,49 @@
     "processing": "လုပ်ဆောင်နေသည်...",
     "preparing": "ပြင်ဆင်နေသည်...",
     "merging": "ပေါင်းစည်းနေသည်...",
-    "zipping": "ဇစ်လုပ်နေသည်...",
-    "ready": "အဆင်သင့် 100%",
-    "expired": "လင့်ခ် သက်တမ်းကုန်သွားပြီ",
-    "conversionFailed": "ပြောင်းလဲခြင်း မအောင်မြင်ပါ"
+    "zipping": "ဇစ်ဖိုင်ပြုလုပ်နေသည်...",
+    "ready": "100% အသင့်ဖြစ်ပါပြီ",
+    "completed": "ပြီးမြောက်ပါပြီ",
+    "failed": "မအောင်မြင်ပါ"
+  },
+  "buttons": {
+    "download": "ဒေါင်းလုဒ်လုပ်ပါ",
+    "tryAgain": "ထပ်မံကြိုးစားပါ",
+    "cancel": "ပယ်ဖျက်ပါ",
+    "seeMore": "ပိုမိုကြည့်ရှုပါ",
+    "seeLess": "လျော့ကြည့်ပါ",
+    "bulkDownload": "ရွေးချယ်ထားသည်များကို ဒေါင်းလုဒ်လုပ်ပါ"
+  },
+  "gallery": {
+    "title": "ပြခန်း",
+    "noItems": "ပြသရန် ပြခန်းအရာများ မရှိပါ",
+    "selected": "ရွေးချယ်ထားသည်",
+    "selectAll": "အားလုံးကို ရွေးချယ်ပါ",
+    "deselectAll": "အားလုံးကို ရွေးချယ်မှုမှ ပယ်ဖျက်ပါ"
+  },
+  "mobile": {
+    "menuToggleLabel": "လမ်းညွှန်မီနူးကို ဖွင့်ပါ",
+    "menuCloseLabel": "လမ်းညွှန်မီနူးကို ပိတ်ပါ",
+    "langButtonLabel": "ဘာသာစကားကို ရွေးချယ်ပါ"
+  },
+  "footer": {
+    "copyright": "© 2025 y2mate",
+    "about": "အကြောင်း",
+    "contact": "ဆက်သွယ်ရန်",
+    "terms": "ဝန်ဆောင်မှုဆိုင်ရာ စည်းမျဉ်းများ",
+    "privacy": "ကိုယ်ရေးကိုယ်တာ မူဝါဒ"
+  },
+  "errors": {
+    "invalidUrl": "ကျေးဇူးပြု၍ မှန်ကန်သော URL ကို ထည့်သွင်းပါ",
+    "networkError": "ကွန်ရက် အမှားအယွင်း။ ကျေးဇူးပြု၍ ထပ်မံကြိုးစားပါ။",
+    "processingError": "လုပ်ဆောင်မှု မအောင်မြင်ပါ။ ကျေးဇူးပြု၍ ထပ်မံကြိုးစားပါ။",
+    "timeout": "တောင်းဆိုမှု အချိန်ကုန်သွားပါပြီ။ ကျေးဇူးပြု၍ ထပ်မံကြိုးစားပါ။",
+    "downloadExpired": "ဒေါင်းလုဒ်လင့်ခ် သက်တမ်းကုန်သွားပါပြီ",
+    "conversionFailed": "ပြောင်းလဲမှု မအောင်မြင်ပါ"
   },
   "messages": {
-    "downloadReady": "သင်၏ ဒေါင်းလုဒ် အဆင်သင့်ဖြစ်ပါပြီ",
+    "downloadReady": "သင်၏ ဒေါင်းလုဒ် အသင့်ဖြစ်ပါပြီ",
     "processing": "သင်၏ တောင်းဆိုမှုကို လုပ်ဆောင်နေသည်...",
-    "pleaseWait": "ကျေးဇူးပြု၍ စောင့်ပါ..."
+    "pleaseWait": "ကျေးဇူးပြု၍ စောင့်ဆိုင်းပါ..."
   }
 }

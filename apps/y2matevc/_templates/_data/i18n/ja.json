@@ -1,52 +1,46 @@
 {
   "nav": {
     "home": "YouTubeダウンローダー",
-    "youtubeToMp4": "YouTube MP4変換",
-    "youtubeToMp3": "YouTube MP3変換",
-    "youtubeShorts": "YouTubeショートダウンローダー"
+    "youtubeToMp4": "YouTubeからMP4へのコンバーター",
+    "youtubeToMp3": "YouTubeからMP3へのコンバーター",
+    "youtubeShorts": "YouTubeショートダウンローダー",
+    "language": "日本語"
   },
-  "footer": {
-    "madeWith": "インドで❤️を込めて作られました",
-    "copyright": "© 2024 Y2Mate. 全著作権所有。"
+  "hero": {
+    "placeholder": "ここにリンクを検索または貼り付け...",
+    "pasteLabel": "クリップボードから貼り付け",
+    "clearLabel": "入力をクリア",
+    "submitButton": "開始",
+    "termsText": "当社のサービスを利用することにより、お客様は当社の",
+    "termsLink": "利用規約"
   },
-  "converter": {
-    "title": "YouTubeビデオコンバーター",
-    "description": "YouTubeビデオをMP4、MP3、その他の形式でダウンロード",
-    "placeholder": "ここにYouTubeリンクを貼り付けてください",
-    "button": "変換",
-    "recent": "最近のダウンロード",
-    "clear": "すべてクリア",
+  "formatSelector": {
+    "autoSubmit": "自動送信",
+    "autoSubmitTooltip": "URLまたはキーワードを貼り付けると自動的に送信します",
+    "formats": {
+      "mp4": "MP4",
+      "mp3": "MP3"
+    },
     "quality": {
-      "video": "ビデオ品質",
-      "audio": "オーディオ品質"
-    },
-    "format": {
-      "video": "ビデオ形式",
-      "audio": "オーディオ形式"
-    },
-    "action": {
-      "download": "ダウンロード",
-      "convertNext": "次を変換"
-    },
-    "tabs": {
-      "video": "ビデオ",
-      "audio": "オーディオ",
-      "other": "その他"
-    },
-    "labels": {
-      "fileName": "ファイル名",
-      "fileSize": "ファイルサイズ",
-      "resolution": "解像度",
-      "bitrate": "ビットレート"
+      "videoLabel": "ビデオ品質",
+      "audioLabel": "オーディオ品質"
     },
     "options": {
-      "video": {
-        "mp4": "MP4",
+      "mp4": {
+        "1080p": "MP4 - 1080p",
+        "720p": "MP4 - 720p",
+        "480p": "MP4 - 480p",
+        "360p": "MP4 - 360p",
+        "240p": "MP4 - 240p",
+        "144p": "MP4 - 144p",
         "webm": "WEBM",
         "mkv": "MKV"
       },
-      "audio": {
-        "mp3": "MP3",
+      "mp3": {
+        "320kbps": "MP3 - 320kbps",
+        "256kbps": "MP3 - 256kbps",
+        "192kbps": "MP3 - 192kbps",
+        "128kbps": "MP3 - 128kbps",
         "ogg": "OGG",
         "opus": "OPUS",
         "wav": "WAV"
@@ -58,8 +52,43 @@
     "preparing": "準備中...",
     "merging": "マージ中...",
     "zipping": "圧縮中...",
-    "ready": "準備完了 100%",
-    "expired": "リンクの有効期限が切れました",
+    "ready": "準備完了100％",
+    "completed": "完了",
+    "failed": "失敗"
+  },
+  "buttons": {
+    "download": "ダウンロード",
+    "tryAgain": "再試行",
+    "cancel": "キャンセル",
+    "seeMore": "もっと見る",
+    "seeLess": "少なく表示",
+    "bulkDownload": "選択したものをダウンロード"
+  },
+  "gallery": {
+    "title": "ギャラリー",
+    "noItems": "表示するギャラリーアイテムはありません",
+    "selected": "選択済み",
+    "selectAll": "すべて選択",
+    "deselectAll": "すべて選択解除"
+  },
+  "mobile": {
+    "menuToggleLabel": "ナビゲーションメニューを開く",
+    "menuCloseLabel": "ナビゲーションメニューを閉じる",
+    "langButtonLabel": "言語を選択"
+  },
+  "footer": {
+    "copyright": "© 2025 y2mate",
+    "about": "概要",
+    "contact": "お問い合わせ",
+    "terms": "利用規約",
+    "privacy": "プライバシーポリシー"
+  },
+  "errors": {
+    "invalidUrl": "有効なURLを入力してください",
+    "networkError": "ネットワークエラー。もう一度お試しください。",
+    "processingError": "処理に失敗しました。もう一度お試しください。",
+    "timeout": "リクエストがタイムアウトしました。もう一度お試しください。",
+    "downloadExpired": "ダウンロードリンクの有効期限が切れました",
     "conversionFailed": "変換に失敗しました"
   },
   "messages": {

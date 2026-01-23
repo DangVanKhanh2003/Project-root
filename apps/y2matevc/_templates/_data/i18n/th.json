@@ -3,50 +3,44 @@
     "home": "โปรแกรมดาวน์โหลด YouTube",
     "youtubeToMp4": "โปรแกรมแปลง YouTube เป็น MP4",
     "youtubeToMp3": "โปรแกรมแปลง YouTube เป็น MP3",
-    "youtubeShorts": "โปรแกรมดาวน์โหลด YouTube Shorts"
+    "youtubeShorts": "โปรแกรมดาวน์โหลด YouTube Shorts",
+    "language": "ไทย"
   },
-  "footer": {
-    "madeWith": "สร้างด้วย ❤️ ในอินเดีย",
-    "copyright": "© 2024 Y2Mate. สงวนลิขสิทธิ์."
+  "hero": {
+    "placeholder": "ค้นหาหรือวางลิงก์ที่นี่...",
+    "pasteLabel": "วางจากคลิปบอร์ด",
+    "clearLabel": "ล้างข้อมูลที่ป้อน",
+    "submitButton": "เริ่ม",
+    "termsText": "การใช้บริการของเราแสดงว่าคุณยอมรับ",
+    "termsLink": "ข้อกำหนดการใช้งาน"
   },
-  "converter": {
-    "title": "โปรแกรมแปลงวิดีโอ YouTube",
-    "description": "ดาวน์โหลดวิดีโอ YouTube ในรูปแบบ MP4, MP3 และอื่นๆ",
-    "placeholder": "วางลิงก์ YouTube ที่นี่",
-    "button": "แปลง",
-    "recent": "ดาวน์โหลดล่าสุด",
-    "clear": "ล้างทั้งหมด",
+  "formatSelector": {
+    "autoSubmit": "ส่งอัตโนมัติ",
+    "autoSubmitTooltip": "ส่งอัตโนมัติเมื่อวาง URL หรือคีย์เวิร์ด",
+    "formats": {
+      "mp4": "MP4",
+      "mp3": "MP3"
+    },
     "quality": {
-      "video": "คุณภาพวิดีโอ",
-      "audio": "คุณภาพเสียง"
-    },
-    "format": {
-      "video": "รูปแบบวิดีโอ",
-      "audio": "รูปแบบเสียง"
-    },
-    "action": {
-      "download": "ดาวน์โหลด",
-      "convertNext": "แปลงถัดไป"
-    },
-    "tabs": {
-      "video": "วิดีโอ",
-      "audio": "เสียง",
-      "other": "อื่นๆ"
-    },
-    "labels": {
-      "fileName": "ชื่อไฟล์",
-      "fileSize": "ขนาดไฟล์",
-      "resolution": "ความละเอียด",
-      "bitrate": "บิตเรต"
+      "videoLabel": "คุณภาพวิดีโอ",
+      "audioLabel": "คุณภาพเสียง"
     },
     "options": {
-      "video": {
-        "mp4": "MP4",
+      "mp4": {
+        "1080p": "MP4 - 1080p",
+        "720p": "MP4 - 720p",
+        "480p": "MP4 - 480p",
+        "360p": "MP4 - 360p",
+        "240p": "MP4 - 240p",
+        "144p": "MP4 - 144p",
         "webm": "WEBM",
         "mkv": "MKV"
       },
-      "audio": {
-        "mp3": "MP3",
+      "mp3": {
+        "320kbps": "MP3 - 320kbps",
+        "256kbps": "MP3 - 256kbps",
+        "192kbps": "MP3 - 192kbps",
+        "128kbps": "MP3 - 128kbps",
         "ogg": "OGG",
         "opus": "OPUS",
         "wav": "WAV"
@@ -59,7 +53,42 @@
     "merging": "กำลังรวม...",
     "zipping": "กำลังบีบอัด...",
     "ready": "พร้อม 100%",
-    "expired": "ลิงก์หมดอายุ",
+    "completed": "เสร็จสมบูรณ์",
+    "failed": "ล้มเหลว"
+  },
+  "buttons": {
+    "download": "ดาวน์โหลด",
+    "tryAgain": "ลองอีกครั้ง",
+    "cancel": "ยกเลิก",
+    "seeMore": "ดูเพิ่มเติม",
+    "seeLess": "ดูน้อยลง",
+    "bulkDownload": "ดาวน์โหลดรายการที่เลือก"
+  },
+  "gallery": {
+    "title": "แกลเลอรี",
+    "noItems": "ไม่มีรายการแกลเลอรีที่จะแสดง",
+    "selected": "ที่เลือก",
+    "selectAll": "เลือกทั้งหมด",
+    "deselectAll": "ยกเลิกการเลือกทั้งหมด"
+  },
+  "mobile": {
+    "menuToggleLabel": "เปิดเมนูนำทาง",
+    "menuCloseLabel": "ปิดเมนูนำทาง",
+    "langButtonLabel": "เลือกภาษา"
+  },
+  "footer": {
+    "copyright": "© 2025 y2mate",
+    "about": "เกี่ยวกับ",
+    "contact": "ติดต่อ",
+    "terms": "ข้อกำหนดในการให้บริการ",
+    "privacy": "นโยบายความเป็นส่วนตัว"
+  },
+  "errors": {
+    "invalidUrl": "โปรดป้อน URL ที่ถูกต้อง",
+    "networkError": "เกิดข้อผิดพลาดของเครือข่าย โปรดลองอีกครั้ง",
+    "processingError": "การประมวลผลล้มเหลว โปรดลองอีกครั้ง",
+    "timeout": "หมดเวลาคำขอ โปรดลองอีกครั้ง",
+    "downloadExpired": "ลิงก์ดาวน์โหลดหมดอายุ",
     "conversionFailed": "การแปลงล้มเหลว"
   },
   "messages": {

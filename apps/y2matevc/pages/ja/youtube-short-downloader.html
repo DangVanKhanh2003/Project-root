@@ -221,7 +221,7 @@
                     <span class="logo-name">Y2mate</span>
                 </a>
             </div>
-            <button type="button" class="navbar-toggler" id="mobileMenuToggle" aria-label="">
+            <button type="button" class="navbar-toggler" id="mobileMenuToggle" aria-label="ナビゲーションメニューを開く">
                 <span class="toggle-icon"></span>
                 <span class="toggle-icon"></span>
                 <span class="toggle-icon"></span>
@@ -233,14 +233,14 @@
                     <a href="/ja/">YouTubeダウンローダー</a>
                 </li>
                 <li class="navbar">
-                    <a href="/ja/youtube-to-mp4">YouTube MP4変換</a>
+                    <a href="/ja/youtube-to-mp4">YouTubeからMP4へのコンバーター</a>
                 </li>
                 <li class="navbar">
-                    <a href="/ja/youtube-to-mp3">YouTube MP3変換</a>
+                    <a href="/ja/youtube-to-mp3">YouTubeからMP3へのコンバーター</a>
                 </li>
                 <li class="navbar language">
                     <a href="/">
-                        <span class="shape"></span>
+                        日本語<span class="shape"></span>
                     </a>
                     <div class="dropdown-menu">
                         <ul class="lang-menu">
@@ -320,7 +320,7 @@
                             <span class="logo-name">Y2mate</span>
                         </div>
                     </a>
-                    <button type="button" class="mobile-close-btn" id="mobileCloseBtn" aria-label="">
+                    <button type="button" class="mobile-close-btn" id="mobileCloseBtn" aria-label="ナビゲーションメニューを閉じる">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                         </svg>
@@ -329,12 +329,12 @@
                 <nav class="mobile-nav">
                     <ul class="mobile-menu">
                         <li><a href="/ja/">YouTubeダウンローダー</a></li>
-                        <li><a href="/ja/youtube-to-mp4">YouTube MP4変換</a></li>
-                        <li><a href="/ja/youtube-to-mp3">YouTube MP3変換</a></li>
+                        <li><a href="/ja/youtube-to-mp4">YouTubeからMP4へのコンバーター</a></li>
+                        <li><a href="/ja/youtube-to-mp3">YouTubeからMP3へのコンバーター</a></li>
                         <li><a href="/ja/youtube-short-downloader">YouTubeショートダウンローダー</a></li>
                         <li class="mobile-language">
                             <button type="button" class="mobile-language-toggle" aria-expanded="false">
-                                <span class="shape"></span>
+                                日本語<span class="shape"></span>
                             </button>
                             <ul class="mobile-lang-menu">
                                 <li>
@@ -418,10 +418,10 @@
                     <div class="input-container">
                         <div class=" input-wrapper">
                             <input id="videoUrl" class="y2mate_query-pro keyword" type="text" name="q"
-                                placeholder="" autocomplete="off" autofocus=""
+                                placeholder="ここにリンクを検索または貼り付け..." autocomplete="off" autofocus=""
                                 role="combobox" aria-autocomplete="list" aria-controls="suggestion-container" aria-expanded="false">
                             <button id="input-action-button" type="button" class="input-action-btn" data-action="paste"
-                                aria-label="">
+                                aria-label="クリップボードから貼り付け">
                                 <svg class="paste-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                                     viewBox="0 0 24 24">
                                     <path fill="currentColor"
@@ -436,7 +436,7 @@
                         </div>
                     </div>
                     <button id="submit" type="submit" name="form_submit" class="submit-btn" aria-label="Search">
-                        <div class="converter-btn"></div>
+                        <div class="converter-btn">開始</div>
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                             width="14px" height="14px" fill="#fff" id="Layer_1"
                             style="enable-background:new 0 0 16 16;" version="1.1" viewBox="0 0 16 16"
@@ -455,43 +455,43 @@
                                 <!-- Format Toggle -->
                                 <button type="button" class="format-toggle-btn" data-toggle-format>
                                     <span class="toggle-side" data-format="mp4">
-                                        <span class="format-label"></span>
+                                        <span class="format-label">MP4</span>
                                     </span>
                                     <span class="toggle-side" data-format="mp3">
-                                        <span class="format-label"></span>
+                                        <span class="format-label">MP3</span>
                                     </span>
                                 </button>
                                 <!-- Quality Dropdowns -->
                                 <div class="quality-selector">
                                     <!-- MP4 Options -->
                                     <select id="quality-select-mp4" class="quality-select quality-select--mp4"
-                                        aria-label="" data-quality-select>
-                                        <option value="mp4-1080"></option>
-                                        <option value="mp4-720" selected></option>
-                                        <option value="mp4-480"></option>
-                                        <option value="mp4-360"></option>
-                                        <option value="mp4-240"></option>
-                                        <option value="mp4-144"></option>
-                                        <option value="webm"></option>
-                                        <option value="mkv"></option>
+                                        aria-label="ビデオ品質" data-quality-select>
+                                        <option value="mp4-1080">MP4 - 1080p</option>
+                                        <option value="mp4-720" selected>MP4 - 720p</option>
+                                        <option value="mp4-480">MP4 - 480p</option>
+                                        <option value="mp4-360">MP4 - 360p</option>
+                                        <option value="mp4-240">MP4 - 240p</option>
+                                        <option value="mp4-144">MP4 - 144p</option>
+                                        <option value="webm">WEBM</option>
+                                        <option value="mkv">MKV</option>
                                     </select>
                                     <!-- MP3 Options -->
                                     <select id="quality-select-mp3" class="quality-select quality-select--mp3"
-                                        aria-label="" data-quality-select>
-                                        <option value="mp3-320"></option>
-                                        <option value="mp3-256"></option>
-                                        <option value="mp3-192"></option>
-                                        <option value="mp3-128" selected></option>
-                                        <option value="ogg"></option>
-                                        <option value="opus"></option>
-                                        <option value="wav"></option>
+                                        aria-label="オーディオ品質" data-quality-select>
+                                        <option value="mp3-320">MP3 - 320kbps</option>
+                                        <option value="mp3-256">MP3 - 256kbps</option>
+                                        <option value="mp3-192">MP3 - 192kbps</option>
+                                        <option value="mp3-128" selected>MP3 - 128kbps</option>
+                                        <option value="ogg">OGG</option>
+                                        <option value="opus">OPUS</option>
+                                        <option value="wav">WAV</option>
                                     </select>
                                 </div>
                             </div>
                             <!-- Group 2: Auto Submit Toggle -->
                             <div class="auto-submit-toggle"
-                                data-tooltip="">
-                                <strong class="toggle-label"></strong>
+                                data-tooltip="URLまたはキーワードを貼り付けると自動的に送信します">
+                                <strong class="toggle-label">自動送信</strong>
                                 <label class="toggle-switch">
                                     <input type="checkbox" id="auto-submit-checkbox" data-auto-submit-toggle />
                                     <span class="toggle-slider"></span>
@@ -616,19 +616,19 @@
     </main>
 
     <footer class="footer">
-    <p>© 2024 Y2Mate. 全著作権所有。</p>
+    <p>© 2025 y2mate</p>
     <ul class="footer_nav">
         <li class="fnav-menu">
-            <a href="/about-us"></a>
+            <a href="/about-us">概要</a>
         </li>
         <li class="fnav-menu">
-            <a href="/contact"></a>
+            <a href="/contact">お問い合わせ</a>
         </li>
         <li class="fnav-menu">
-            <a href="/terms-condition"></a>
+            <a href="/terms-condition">利用規約</a>
         </li>
         <li class="fnav-menu">
-            <a href="/privacy-policy"></a>
+            <a href="/privacy-policy">プライバシーポリシー</a>
         </li>
         <li class="fnav-menu">
             <a href="/ja/youtube-short-downloader">YouTubeショートダウンローダー</a>
