@@ -197,7 +197,7 @@ jobs:
       app_name: y2matevc
       app_directory: apps/y2matevc
       filter_path: ./apps/y2matevc
-      domain: ${{ vars.Y2MATEVC_DOMAIN || 'y2matevc.com' }}
+      domain: ${{ vars.Y2MATEVC_DOMAIN || 'y2mate.vc' }}
     secrets:
       SSH_HOST: ${{ secrets.SSH_HOST }}
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
