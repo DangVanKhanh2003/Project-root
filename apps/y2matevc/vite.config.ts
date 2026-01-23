@@ -50,57 +50,7 @@ if (existsSync(pagesDir)) {
 export default defineConfig({
   plugins: [
     htmlRewritePlugin(),
-    movePagesPlugin(),
-    // SPA fallback for language routes
-    {
-      name: 'language-spa-fallback',
-      configureServer(server) {
-        server.middlewares.use((req, res, next) => {
-          const url = req.url || '';
-
-          // Match /vi, /vi/, /vi/anything (but not files like /vi/style.css)
-          const langMatch = url.match(/^\/([a-z]{2})(\/.*)?$/);
-
-          if (langMatch && !url.includes('.')) {
-            const lang = langMatch[1];
-            const path = langMatch[2] || '/';
-
-            // During dev, files are in _11ty-output/{lang}/
-            if (path === '/' || path === '') {
-              console.log(`[Dev Server] ${url} -> /_11ty-output/${lang}/index.html`);
-              req.url = `/_11ty-output/${lang}/index.html`;
-            }
-          }
-
-          next();
-        });
-      },
-      configurePreviewServer(server) {
-        server.middlewares.use((req, res, next) => {
-          const url = req.url || '';
-
-          // Match /vi, /vi/, /vi/anything (but not files like /vi/style.css)
-          const langMatch = url.match(/^\/([a-z]{2})(\/.*)?$/);
-
-          if (langMatch && !url.includes('.')) {
-            const lang = langMatch[1];
-            const path = langMatch[2] || '/';
-
-            // If accessing /vi or /vi/, serve index.html
-            if (path === '/' || path === '') {
-              console.log(`[Preview Server] ${url} -> /${lang}/index.html`);
-              req.url = `/${lang}/index.html`;
-            } else if (!path.endsWith('.html')) {
-              // If accessing /vi/something without .html, add it
-              console.log(`[Preview Server] ${url} -> /${lang}${path}.html`);
-              req.url = `/${lang}${path}.html`;
-            }
-          }
-
-          next();
-        });
-      }
-    }
+    movePagesPlugin()
   ],
   build: {
     outDir: 'dist',

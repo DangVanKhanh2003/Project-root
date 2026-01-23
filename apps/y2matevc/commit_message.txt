@@ -1,0 +1,10 @@
+feat: Centralize format selector logic in HTML
+
+Moved localStorage-based initialization logic for format toggle, quality dropdowns, and auto-submit checkbox from TypeScript files to a new inline script in `index.njk`.
+
+- Removed `syncUIFromLocalStorage` function and its call from `format-selector.ts`.
+- Modified `<head>` inline script to only set `data-format` attribute.
+- Added a new inline script after `#format-selector-container` in `index.njk` to directly set `select.value` and `checkbox.checked`.
+- Removed all `data-` attribute based CSS from `format-selector.css` as per user request.
+
+This change centralizes initial UI state setup in HTML, but reintroduces visual flicker for these elements due to the absence of critical CSS.

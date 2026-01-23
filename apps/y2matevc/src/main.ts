@@ -83,6 +83,31 @@ async function initDownloaderUI() {
 }
 
 /**
+ * Fix scroll restoration on page navigation
+ */
+function fixScrollRestoration() {
+  // Tell the browser to handle scroll restoration manually
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+
+  // On every page display (including back/forward navigation), scroll to the top.
+  window.addEventListener('pageshow', () => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  });
+
+  // A fallback for older browsers that might not support 'pageshow' or 'scrollRestoration'
+  window.addEventListener('load', () => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  });
+
+  // A fallback for DOMContentLoaded
+  document.addEventListener('DOMContentLoaded', () => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  });
+}
+
+/**
  * Initialize mobile menu functionality
  */
 function initMobileMenu() {
@@ -246,6 +271,7 @@ function initLanguageDropdown(): void {
  * Initialize app
  */
 function loadFeatures() {
+  fixScrollRestoration(); // Fix scroll restoration issue
   initMobileMenu(); // Initialize mobile menu first
   initLanguageDropdown();
   initDownloaderUI();

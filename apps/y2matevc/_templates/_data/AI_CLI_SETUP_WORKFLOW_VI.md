@@ -262,7 +262,7 @@ npm run 11ty:build
 Tạo f:/downloader/Project-root/apps/y2matevc/.eleventy.cjs
 
 Copy cấu hình từ y2matepro's .eleventy.cjs, nhưng thay đổi:
-1. Đổi site.url từ 'https://y2matepro.com' thành 'https://y2matevc.com'
+1. Đổi site.url từ 'https://y2matepro.com' thành 'https://y2mate.vc'
 2. Giữ nguyên tất cả filters: stripHtml, jsonString, localizeLinks, dump, getAlternateUrl
 3. Giữ post-build hook để copy files
 4. Load i18n data từ _data/i18n/*.json
@@ -282,7 +282,7 @@ File `.eleventy.cjs` được tạo với:
 
 **⚠️ Lưu Ý Quan Trọng:**
 - BẮT BUỘC dùng CommonJS syntax (`module.exports`), không phải ESM
-- `site.url` phải khớp domain (y2matevc.com)
+- `site.url` phải khớp domain (y2mate.vc)
 - Filters rất quan trọng cho rendering (đặc biệt `localizeLinks` và `jsonString`)
 - Post-build hook tạo cấu trúc thư mục theo ngôn ngữ
 

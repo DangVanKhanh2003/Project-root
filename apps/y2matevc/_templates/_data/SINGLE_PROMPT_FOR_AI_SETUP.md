@@ -64,7 +64,7 @@ Thêm vào scripts:
 
 ### BƯỚC 5: TẠO .ELEVENTY.CJS
 Copy từ y2matepro's .eleventy.cjs nhưng:
-- Đổi site.url: 'https://y2matevc.com'
+- Đổi site.url: 'https://y2mate.vc'
 - Giữ tất cả filters và post-build hooks
 ⚠️ KHÔNG thêm window.__i18n__ injection (y2matepro không dùng pattern này)
 

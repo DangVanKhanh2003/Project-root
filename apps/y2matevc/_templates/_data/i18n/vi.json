@@ -15,8 +15,8 @@
     "termsLink": "Điều khoản sử dụng"
   },
   "formatSelector": {
-    "autoSubmit": "Tự động gửi",
-    "autoSubmitTooltip": "Tự động gửi khi dán URL hoặc từ khóa",
+    "autoSubmit": "Tự động sumbit",
+    "autoSubmitTooltip": "Tự động submit khi dán URL hoặc từ khóa",
     "formats": {
       "mp4": "MP4",
       "mp3": "MP3"
