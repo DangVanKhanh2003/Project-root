@@ -24,8 +24,8 @@ import {
  *
  * HTML is already rendered with both MP3/MP4 dropdowns.
  * CSS controls visibility via html[data-format] attribute.
- * This function only:
- * 1. Syncs UI with state from localStorage (if different from defaults)
+ * This function:
+ * 1. Syncs UI with state from localStorage
  * 2. Attaches event listeners
  */
 export function renderFormatSelectorToForm(): void {
@@ -35,11 +35,64 @@ export function renderFormatSelectorToForm(): void {
     return;
   }
 
-  // HTML inline scripts already set:
-  // 1. data-format attribute on <html> (head script)
-  // 2. Dropdown values + auto-submit checkbox (body script)
-  // TS only needs to attach event listeners
+  // Sync UI from localStorage (moved from inline script)
+  syncUIFromLocalStorage();
+
+  // Attach event listeners
   initFormatSelector('#format-selector-container');
+}
+
+/**
+ * Sync UI elements (dropdowns, checkbox) from localStorage
+ * This replaces the inline script that was previously in HTML
+ */
+function syncUIFromLocalStorage(): void {
+  try {
+    // Sync quality dropdown values from format preferences
+    const preferencesJson = localStorage.getItem('y2mate_format_preferences');
+    if (preferencesJson) {
+      const preferences = JSON.parse(preferencesJson);
+
+      // Get the appropriate dropdown based on selected format
+      const selectElement = preferences.selectedFormat === 'mp4'
+        ? document.getElementById('quality-select-mp4') as HTMLSelectElement
+        : document.getElementById('quality-select-mp3') as HTMLSelectElement;
+
+      if (selectElement) {
+        let value: string;
+
+        if (preferences.selectedFormat === 'mp4') {
+          // Video format: "mp4-1080", "mp4-720", "webm", "mkv"
+          const videoQuality = preferences.videoQuality || '720p';
+          value = (videoQuality === 'webm' || videoQuality === 'mkv')
+            ? videoQuality
+            : `mp4-${videoQuality.replace('p', '')}`;
+        } else {
+          // Audio format: "mp3-128", "ogg", "opus", "wav"
+          const audioFormat = preferences.audioFormat || 'mp3';
+          value = (audioFormat === 'mp3')
+            ? `mp3-${preferences.audioBitrate || '128'}`
+            : audioFormat;
+        }
+
+        selectElement.value = value;
+      }
+    }
+
+    // Sync auto-submit checkbox from preference
+    const autoSubmitValue = localStorage.getItem('y2mate_auto_submit');
+    const checkbox = document.getElementById('auto-submit-checkbox') as HTMLInputElement;
+    if (checkbox) {
+      checkbox.checked = autoSubmitValue === 'true';
+    }
+
+    // Mark format selector as ready
+    document.documentElement.dataset.formatReady = '1';
+  } catch (error) {
+    console.error('Error syncing UI from localStorage:', error);
+    // Still mark as ready even if sync fails
+    document.documentElement.dataset.formatReady = '1';
+  }
 }
 
 // ==========================================

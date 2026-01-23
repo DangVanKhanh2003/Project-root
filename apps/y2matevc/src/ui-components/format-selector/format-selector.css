@@ -363,34 +363,43 @@ input[type="checkbox"]:focus-visible + .toggle-slider {
   }
 }
 
-/* Very small devices - stack vertically */
+/* Very small devices - keep toggle and auto-submit on same row */
 @media (max-width: 360px) {
   .format-selector-wrapper {
     min-height: 88px; /* 40px + 40px + 8px gap */
   }
 
   .format-selector {
-    flex-direction: column;
-    align-items: stretch;
+    flex-wrap: wrap;
+    justify-content: space-between;
     gap: 8px;
     min-height: 88px;
   }
 
+  /* Flatten the group container for mobile layout */
   .format-quality-group {
-    width: 100%;
+    display: contents;
   }
 
   .format-toggle-btn {
-    width: 100%;
     height: 40px;
+    flex: 1;
+    min-width: 100px;
+    max-width: 110px;
+    order: 1;
+  }
+
+  .auto-submit-toggle {
+    order: 2;
+  }
+
+  .quality-selector {
+    width: 100%;
+    order: 3;
   }
 
   .quality-select {
     height: 40px;
-  }
-
-  .auto-submit-toggle {
-    align-self: flex-end;
   }
 }
 

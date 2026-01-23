@@ -214,15 +214,14 @@
                                 </div>
                                 <!-- Group 2: Auto Submit Toggle -->
                                 <div class="auto-submit-toggle" data-tooltip="Automatically submit when pasting URL or keyword">
-                                    <strong class="toggle-label">Auto</strong>
+                                    <strong class="toggle-label">Auto Submit</strong>
                                     <label class="toggle-switch">
                                         <input type="checkbox" id="auto-submit-checkbox" data-auto-submit-toggle />
                                         <span class="toggle-slider"></span>
                                     </label>
-                                    <span class="custom-tooltip" style="opacity:0;visibility:hidden"></span>
+                                    <span class="custom-tooltip"></span>
                                 </div>
                             </div>
-                            <script>(function(){try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p){var s=p.selectedFormat==='mp4'?document.getElementById('quality-select-mp4'):document.getElementById('quality-select-mp3');if(s){var v;if(p.selectedFormat==='mp4'){var vq=p.videoQuality||'720p';v=(vq==='webm'||vq==='mkv')?vq:'mp4-'+vq.replace('p','')}else{var af=p.audioFormat||'mp3';v=(af==='mp3')?'mp3-'+(p.audioBitrate||'128'):af}s.value=v}}var a=localStorage.getItem('y2mate_auto_submit');var c=document.getElementById('auto-submit-checkbox');if(c)c.checked=a===null||a==='true';document.documentElement.dataset.formatReady='1'}catch(e){document.documentElement.dataset.formatReady='1'}})()</script>
                         </div>
 
                         <div id="suggestion-container" class="suggesstion-list suggesstion-box"></div>
