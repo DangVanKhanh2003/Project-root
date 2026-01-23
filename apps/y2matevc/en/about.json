@@ -1,0 +1,60 @@
+{
+  "hero": {
+    "h1": "About Y2Mate"
+  },
+
+  "intro": [
+    "Y2Mate.vc is an online tool designed to help users download content from YouTube in a simple and straightforward way.",
+    "The website supports common use cases such as downloading YouTube videos for offline viewing, extracting audio from videos, and downloading YouTube Shorts in their original format."
+  ],
+
+  "sections": [
+    {
+      "h2": "What Is Y2Mate.vc?",
+      "content": [
+        "Y2Mate.vc provides tools that allow users to process publicly accessible YouTube video links and download content to their personal devices.",
+        "Each tool is built for a specific purpose, including MP4 video downloads, MP3 audio extraction, and YouTube Shorts downloads."
+      ]
+    },
+    {
+      "h2": "How the Website Works",
+      "content": [
+        "Users paste a public YouTube video link into the appropriate tool.",
+        "The system analyzes the video and presents available download options.",
+        "Users select the desired format and download the file directly to their device."
+      ]
+    },
+    {
+      "h2": "Development Focus",
+      "content": [
+        "Y2Mate.vc is developed with a focus on clarity and reliability."
+      ],
+      "list": [
+        "Separate tools for different download purposes.",
+        "Stable handling of long videos and Shorts content.",
+        "Minimal distractions during use.",
+        "No account registration or software installation required."
+      ]
+    },
+    {
+      "h2": "Privacy and User Experience",
+      "content": [
+        "Y2Mate.vc does not require users to provide personal information to access its core features.",
+        "All processing is performed directly in the browser."
+      ]
+    },
+    {
+      "h2": "Responsible Use",
+      "content": [
+        "Users are responsible for ensuring that downloaded content is used for personal purposes and in compliance with applicable copyright regulations.",
+        "Y2Mate.vc does not control or host the content processed through user-provided links."
+      ]
+    },
+    {
+      "h2": "Contact",
+      "content": [
+        "For questions or feedback regarding the service, please visit our <a href=\"/contact\">Contact</a> page."
+      ]
+    }
+  ]
+}

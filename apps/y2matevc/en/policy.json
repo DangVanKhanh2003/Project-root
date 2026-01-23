@@ -1,0 +1,103 @@
+{
+  "meta": {
+    "title": "Privacy Policy | Y2Mate.vc",
+    "last_updated": "2026-01-16"
+  },
+  "hero": {
+    "h1": "Privacy Policy"
+  },
+  "intro": [
+    "This Privacy Policy explains how <strong>Y2Mate.vc</strong> processes information when you access and use the website.",
+    "By using the service, you agree to the practices described in this Privacy Policy."
+  ],
+  "sections": [
+    {
+      "h2": "Service Overview",
+      "content": [
+        "Y2Mate.vc is a web-based technical tool that allows users to process publicly accessible YouTube links to download videos or extract audio.",
+        "The service does not require account registration and is designed to minimize data collection and processing."
+      ]
+    },
+    {
+      "h2": "Information We Process",
+      "list": [
+        "User-submitted URLs and selected output options for processing purposes.",
+        "Temporary technical data generated during conversion, which is automatically deleted after completion.",
+        "Basic technical information such as IP address, browser type, device details, access timestamps, and error logs for security and reliability."
+      ]
+    },
+    {
+      "h2": "Information We Do Not Collect",
+      "list": [
+        "No user accounts or registration data.",
+        "No names, addresses, or personally identifiable profiles.",
+        "No payment or financial information.",
+        "No long-term storage of processed content."
+      ]
+    },
+    {
+      "h2": "Cookies and Similar Technologies",
+      "content": [
+        "Y2Mate.vc uses minimal cookies or local storage strictly for essential functionality and basic user preferences.",
+        "We do not use cookies for behavioral advertising or cross-site tracking."
+      ]
+    },
+    {
+      "h2": "Third-Party Services",
+      "content": [
+        "We may rely on third-party infrastructure providers such as hosting, content delivery networks, or security services.",
+        "These providers may process limited technical data in accordance with their own privacy policies."
+      ]
+    },
+    {
+      "h2": "Purpose and Legal Basis",
+      "content": [
+        "Information is processed solely to operate, maintain, secure, and improve the service, prevent abuse, and comply with applicable legal obligations."
+      ]
+    },
+    {
+      "h2": "Data Retention",
+      "content": [
+        "Temporary processing data is automatically deleted shortly after a conversion is completed.",
+        "Technical logs are retained only for a limited period for security, diagnostics, and abuse prevention."
+      ]
+    },
+    {
+      "h2": "Security",
+      "content": [
+        "We implement reasonable technical and organizational safeguards to protect information.",
+        "However, no method of transmission or storage can be guaranteed to be completely secure."
+      ]
+    },
+    {
+      "h2": "Children’s Privacy",
+      "content": [
+        "The service is not intended for children under the age of 13 (or the minimum age required by local law).",
+        "We do not knowingly collect personal data from children."
+      ]
+    },
+    {
+      "h2": "Copyright and Acceptable Use",
+      "content": [
+        "Users are responsible for ensuring they have the legal right to process submitted content.",
+        "For copyright-related matters, please review our <a href=\"/copyright-claims\">Copyright Claims</a> page."
+      ]
+    },
+    {
+      "h2": "Changes to This Policy",
+      "content": [
+        "This Privacy Policy may be updated from time to time.",
+        "Any changes will be posted on this page along with the updated revision date."
+      ]
+    },
+    {
+      "h2": "Contact",
+      "content": [
+        "If you have questions regarding this Privacy Policy, please contact:",
+        "<a href=\"mailto:contact.y2matevc@gmail.com\" rel=\"nofollow\">contact.y2matevc@gmail.com</a>",
+        "Or visit our <a href=\"/contact\">Contact</a> page."
+      ]
+    }
+  ],
+  "footer_note": "This Privacy Policy is provided for informational purposes only and does not constitute legal advice."
+}

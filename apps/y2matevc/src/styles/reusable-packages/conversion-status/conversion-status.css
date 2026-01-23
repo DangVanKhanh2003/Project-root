@@ -1,0 +1,258 @@
+/**
+ * Conversion Status Bar Component
+ * Displays conversion progress and actions below YouTube preview card
+ */
+
+/* ===== CSS VARIABLES ===== */
+:root {
+  /* Colors */
+  --status-primary: #3498db;
+  --status-success: #2ecc71;
+  --status-error: #e74c3c;
+  --status-border: #e0e0e0;
+  --status-text: #333;
+  --status-white: #fff;
+
+  /* Spacing */
+  --status-gap: 12px;
+  --status-border-radius: 8px;
+
+  /* Animation */
+  --status-transition-fast: 0.2s ease;
+}
+
+/* ===== CONTAINER ===== */
+.conversion-status-wrapper {
+  margin-top: 16px;
+  min-height: 60px;
+}
+
+.conversion-status-wrapper.active {
+  display: block;
+}
+
+/* ===== SHARED DIMENSIONS (both containers must match to prevent layout shift) ===== */
+.status-container,
+.action-container {
+  padding: 0; /* Bỏ padding để giống button download */
+  margin-bottom: var(--status-gap);
+  border-radius: var(--status-border-radius);
+  min-height: 44px; /* Touch-friendly */
+  margin: 0px;
+}
+
+/* ===== STATUS BAR ===== */
+.status-container {
+  position: relative;
+  width: 100%;
+  background: #ff6ba3; /* Màu hồng nhạt hơn */
+  border: none; /* Bỏ border để giống button download */
+  border-radius: 8px;
+  margin: 8px 0px; /* Vertical margin 8px, horizontal 0px */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: background 0.3s, border-color 0.3s;
+  height: 50px;
+}
+
+/* Progress bar fill - shown during processing and success states */
+.status--processing::before,
+.status--success::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: var(--progress-width, 0%);
+  background: rgba(255, 255, 255, 0.45); /* White overlay - 45% opacity đậm hơn */
+  border-right: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  transition: width 0.2s linear;
+  z-index: 1;
+}
+
+/* Disable transition for instant reset (e.g., when transitioning between phases) */
+.status--no-transition::before {
+  transition: none !important;
+}
+
+/* Merging phase: 2-phase animation using @keyframes
+   - 0% → 50% in 15s (37.5% of 40s)
+   - 50% → 98% in 25s (62.5% of 40s)
+   Total: 40s */
+.status--processing.status--merging::before {
+  width: 0%;
+  animation: merging-progress 40s ease-out forwards;
+  transition: none !important;
+}
+
+@keyframes merging-progress {
+  from { width: 0%; }
+  37.5% { width: 50%; }
+  to { width: 98%; }
+}
+
+/* When API completes, stop animation and transition to 100% in 0.5s */
+.status--completing::before {
+  animation: none !important;
+  transition: width 0.5s ease-out !important;
+}
+
+/* Hide status bar on success - controlled by JavaScript */
+/* CSS :has() rule removed - JS handles hiding with delay for fill animation */
+
+/* Override to red background on error */
+.status-container:has(.status--error) {
+  background: var(--status-error); /* Red background for error */
+}
+
+.status {
+  width: 100%; /* Fill full width of status-container */
+  height: 50px; /* Match parent height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--status-gap);
+}
+
+.status-text {
+  position: relative;
+  z-index: 2;
+  font-size: 14px;
+  font-weight: 600; /* Giống button download - font-weight bold hơn */
+  color: var(--status-white); /* Text màu trắng giống button download */
+}
+
+/* ===== ICON STATES ===== */
+.icon {
+  position: relative;
+  z-index: 2;
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: opacity var(--status-transition-fast);
+}
+
+/* Spinner (extracting, processing) */
+.icon.spinner {
+  border: 3px solid rgba(255, 255, 255, 0.3); /* Border màu trắng mờ */
+  border-top: 3px solid var(--status-white); /* Top border màu trắng đậm */
+  border-radius: 50%;
+  animation: spin 0.35s linear infinite;
+  margin: 0px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Checkmark (success) - Hidden */
+.icon.checkmark {
+  display: none; /* Hide checkmark on success */
+}
+
+/* Error icon - Hidden */
+.icon.error {
+  display: none; /* Hide error icon on failed */
+}
+
+/* ===== STATUS STATES ===== */
+/* Default text is white, override for error */
+/* Success: keep white text color */
+
+.status--error .status-text {
+  color: var(--status-white); /* Keep white text even on error */
+}
+
+/* ===== PROGRESS BAR ===== */
+/* Progress bar is completely hidden - only show % in text */
+.progress-bar {
+  display: none !important; /* Always hidden */
+}
+
+/* ===== ACTION CONTAINER ===== */
+.action-container {
+  display: none; /* Hide by default */
+  padding: 8px 0px; /* Override: no horizontal padding */
+}
+
+.action-container.active {
+  display: block; /* Show when success or failed */
+  margin: 0px;
+}
+
+.download-btn,
+.retry-btn {
+  margin: auto;
+  padding: 5px 0px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: none; /* Hide buttons by default */
+  width: 100%;
+
+  /* Touch-friendly */
+  min-height: 50px;
+
+  /* Ripple effect support */
+  position: relative;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
+.download-btn.active,
+.retry-btn.active {
+  display: block; /* Show button when active */
+}
+
+.download-btn {
+  background: var(--color-primary-button);
+  color: var(--status-white);
+}
+
+
+
+.download-btn:active {
+  transform: translateY(0);
+}
+
+.retry-btn {
+  background: var(--status-error);
+  color: var(--status-white);
+}
+
+.retry-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.retry-btn:active {
+  transform: translateY(0);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (min-width: 768px) {
+  .status-container {
+    height: 50px;
+  }
+
+  .status-text {
+    font-size: 15px;
+  }
+
+  .download-btn,
+  .retry-btn {
+    font-size: 17px;
+  }
+}
