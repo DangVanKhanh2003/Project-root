@@ -73,10 +73,8 @@
         gtag('config', 'G-ZWPL9SR6P6');
     </script>
 
-    <!-- Critical: Set format before render to prevent FOUC -->
-    <script>
-      (function(){var f='mp4';try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p&&p.selectedFormat)f=p.selectedFormat}catch(e){}document.documentElement.dataset.format=f;document.write('<style>html[data-format="mp3"] .quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4{display:block!important}</style>')})()
-    </script>
+    <!-- Critical: Set format and auto-submit preferences before render to prevent FOUC -->
+    <script>(function(){var f='mp4';var autoSubmit=true;try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p&&p.selectedFormat)f=p.selectedFormat}catch(e){}try{var as=localStorage.getItem('y2mate_auto_submit');if(as!==null)autoSubmit=(as==='true')}catch(e){}document.documentElement.dataset.format=f;document.documentElement.dataset.autoSubmit=autoSubmit.toString();document.write('<style>html[data-format="mp3"] .quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4{display:block!important}html[data-format="mp4"] .format-toggle-btn .toggle-side[data-format="mp4"]{background-color:#c10841;color:white}html[data-format="mp3"] .format-toggle-btn .toggle-side[data-format="mp3"]{background-color:#c10841;color:white}html[data-format="mp4"] .format-toggle-btn .toggle-side[data-format="mp3"]{background-color:transparent;color:initial}html[data-format="mp3"] .format-toggle-btn .toggle-side[data-format="mp4"]{background-color:transparent;color:initial}html[data-auto-submit="true"] .toggle-switch .toggle-slider{background-color:#4CAF50}html[data-auto-submit="false"] .toggle-switch .toggle-slider{background-color:#ccc}</style>')})()</script>
 
     <!-- Critical CSS imported via Vite -->
     <script type="module" src="/src/main.ts"></script>
