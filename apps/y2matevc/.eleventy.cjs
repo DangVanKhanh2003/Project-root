@@ -66,7 +66,7 @@ module.exports = function(eleventyConfig) {
   // ============================================
   // Make site config and i18n data available to all templates
   eleventyConfig.addGlobalData('site', {
-    url: 'https://y2matevc.com',
+    url: 'https://y2mate.vc',
         languages: [
       { code: 'en', name: 'English', isDefault: true },
       { code: 'ar', name: 'العربية', isDefault: false },

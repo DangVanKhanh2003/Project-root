@@ -262,7 +262,7 @@ npm run 11ty:build
 Create f:/downloader/Project-root/apps/y2matevc/.eleventy.cjs
 
 Copy the configuration from y2matepro's .eleventy.cjs, but make these changes:
-1. Change site.url from 'https://y2matepro.com' to 'https://y2matevc.com'
+1. Change site.url from 'https://y2matepro.com' to 'https://y2mate.vc'
 2. Keep all filters: stripHtml, jsonString, localizeLinks, dump, getAlternateUrl
 3. Keep post-build hook for copying files
 4. Load i18n data from _data/i18n/*.json
@@ -282,7 +282,7 @@ IMPORTANT:
 
 **⚠️ Important Notes:**
 - MUST use CommonJS syntax (`module.exports`), not ESM
-- `site.url` must match your domain (y2matevc.com)
+- `site.url` must match your domain (y2mate.vc)
 - Filters are critical for template rendering (especially `localizeLinks` and `jsonString`)
 - Post-build hook creates language-specific directory structure
 
