@@ -10,7 +10,8 @@
 .yt-preview-card {
   display: flex;
   gap: 16px;
-  background: #ffdadab5;
+  background: #F8FAFC;
+  border: 1px solid #f0f0f0;
   border-radius: 12px;
   padding: 16px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -60,7 +61,7 @@
 .yt-preview-title {
   font-size: 16px;
   font-weight: 600;
-  color: #333;
+  color: rgb(30 41 59);
   margin: 0;
   line-height: 1.4;
   overflow: hidden;
@@ -91,8 +92,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 3px 8px;
-  background: #f20a51;
+  padding: 2px 12px;
+  background: #1E293B;
   color: white;
   border-radius: 6px;
   font-size: 13px;
@@ -105,8 +106,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 3px 8px;
-  background: #f20a86;
+  padding: 1px 12px;
+  background: #1E293B;
   color: white;
   border-radius: 6px;
   font-size: 13px;
@@ -116,8 +117,8 @@
 }
 
 .yt-preview-author {
-  font-size: 14px;
-  color: #888;
+  font-size: 12px;
+  color: rgb(100 116 139);
   margin: 0;
   text-align: start;
 }

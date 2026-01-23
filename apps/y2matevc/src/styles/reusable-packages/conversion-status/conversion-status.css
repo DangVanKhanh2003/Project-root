@@ -34,7 +34,7 @@
 /* ===== SHARED DIMENSIONS (both containers must match to prevent layout shift) ===== */
 .status-container,
 .action-container {
-  padding: 8px 12px; /* Thin padding */
+  padding: 0; /* Bỏ padding để giống button download */
   margin-bottom: var(--status-gap);
   border-radius: var(--status-border-radius);
   min-height: 44px; /* Touch-friendly */
@@ -45,14 +45,16 @@
 .status-container {
   position: relative;
   width: 100%;
-  background: var(--bg-input);
-  border: 1px solid var(--status-primary);
+  background: #ff6ba3; /* Màu hồng nhạt hơn */
+  border: none; /* Bỏ border để giống button download */
   border-radius: 8px;
+  margin: 8px 0px; /* Vertical margin 8px, horizontal 0px */
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
   transition: background 0.3s, border-color 0.3s;
+  height: 50px;
 }
 
 /* Progress bar fill - shown during processing and success states */
@@ -64,9 +66,9 @@
   left: 0;
   height: 100%;
   width: var(--progress-width, 0%);
-  background: rgba(52, 152, 219, 0.35); /* Blue tint - 35% opacity for visibility */
-  border-right: 1px solid rgba(52, 152, 219, 0.6);
-  box-shadow: 0 0 20px rgba(52, 152, 219, 0.3);
+  background: rgba(255, 255, 255, 0.45); /* White overlay - 45% opacity đậm hơn */
+  border-right: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
   transition: width 0.2s linear;
   z-index: 1;
 }
@@ -101,13 +103,14 @@
 /* Hide status bar on success - controlled by JavaScript */
 /* CSS :has() rule removed - JS handles hiding with delay for fill animation */
 
-/* Override to red border on error */
+/* Override to red background on error */
 .status-container:has(.status--error) {
-  border-color: var(--status-error); /* Red */
+  background: var(--status-error); /* Red background for error */
 }
 
 .status {
   width: 100%; /* Fill full width of status-container */
+  height: 50px; /* Match parent height */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -118,8 +121,8 @@
   position: relative;
   z-index: 2;
   font-size: 14px;
-  font-weight: 500;
-  color: var(--status-primary); /* Default blue text */
+  font-weight: 600; /* Giống button download - font-weight bold hơn */
+  color: var(--status-white); /* Text màu trắng giống button download */
 }
 
 /* ===== ICON STATES ===== */
@@ -137,8 +140,8 @@
 
 /* Spinner (extracting, processing) */
 .icon.spinner {
-  border: 3px solid var(--status-border);
-  border-top: 3px solid var(--status-primary);
+  border: 3px solid rgba(255, 255, 255, 0.3); /* Border màu trắng mờ */
+  border-top: 3px solid var(--status-white); /* Top border màu trắng đậm */
   border-radius: 50%;
   animation: spin 0.35s linear infinite;
   margin: 0px;
@@ -160,11 +163,11 @@
 }
 
 /* ===== STATUS STATES ===== */
-/* Default text is blue (primary), only override for error */
-/* Success: keep normal text color */
+/* Default text is white, override for error */
+/* Success: keep white text color */
 
 .status--error .status-text {
-  color: var(--status-error); /* Red for error */
+  color: var(--status-white); /* Keep white text even on error */
 }
 
 /* ===== PROGRESS BAR ===== */
@@ -176,6 +179,7 @@
 /* ===== ACTION CONTAINER ===== */
 .action-container {
   display: none; /* Hide by default */
+  padding: 8px 0px; /* Override: no horizontal padding */
 }
 
 .action-container.active {
@@ -186,7 +190,7 @@
 .download-btn,
 .retry-btn {
   margin: auto;
-  padding: 5px 24px;
+  padding: 5px 0px;
   font-size: 16px;
   font-weight: 600;
   border-radius: 8px;
@@ -194,9 +198,10 @@
   cursor: pointer;
   transition: all 0.2s ease;
   display: none; /* Hide buttons by default */
+  width: 100%;
 
   /* Touch-friendly */
-  min-height: 44px;
+  min-height: 50px;
 
   /* Ripple effect support */
   position: relative;
@@ -238,7 +243,9 @@
 
 /* ===== RESPONSIVE ===== */
 @media (min-width: 768px) {
-  .status-container,
+  .status-container {
+    height: 50px;
+  }
 
   .status-text {
     font-size: 15px;

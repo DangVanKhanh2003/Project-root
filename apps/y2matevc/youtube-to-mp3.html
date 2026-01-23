@@ -2,14 +2,15 @@
 <html lang="en">
 
 <head>
-    
+
     <meta name="robots" content="noindex, nofollow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta charset="UTF-8">
 
     <!-- SEO Metadata -->
     <title>YouTube to MP3 – Extract Audio from YouTube Videos | Y2Mate</title>
-    <meta name="description" content="Extract audio from YouTube videos as MP3 with Y2Mate. Convert YouTube videos to MP3 for offline listening — optimized for music, podcasts, and long videos.">
+    <meta name="description"
+        content="Extract audio from YouTube videos as MP3 with Y2Mate. Convert YouTube videos to MP3 for offline listening — optimized for music, podcasts, and long videos.">
     <link rel="canonical" href="https://y2matepro.com/youtube-to-mp3">
 
     <!-- Schema.org markup -->
@@ -25,8 +26,8 @@
     <meta property="og:image" content="https://y2matepro.com/logo.png" />
     <meta property="og:url" content="https://y2matepro.com/youtube-to-mp3" />
 
-   
-    
+
+
 
     <!-- Favicons -->
     <link rel="icon" href="/favicon.ico" sizes="any">
@@ -54,7 +55,7 @@
 
     <!-- Critical: Set format before render to prevent FOUC -->
     <script>
-      (function(){var f='mp3';try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p&&p.selectedFormat)f=p.selectedFormat}catch(e){}document.documentElement.dataset.format=f;document.write('<style>html[data-format="mp3"] .quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4{display:block!important}</style>')})()
+        (function () { var f = 'mp3'; try { var p = JSON.parse(localStorage.getItem('y2mate_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat } catch (e) { } document.documentElement.dataset.format = f; document.write('<style>html[data-format="mp3"] .quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4{display:block!important}</style>') })()
     </script>
 
     <!-- Critical CSS imported via Vite -->
@@ -110,15 +111,17 @@
             <div class="mobile-menu-overlay" id="mobileMenuOverlay">
                 <div class="mobile-menu-content">
                     <div class="mobile-header-top">
-                            <a href="/">
-                        <div class="mobile-logo">
+                        <a href="/">
+                            <div class="mobile-logo">
                                 <img height="36px" width="36px" src="/logo.png" alt="Y2Mate logo">
                                 <span class="logo-name">Y2mate</span>
-                        </div>
-                            </a>
+                            </div>
+                        </a>
                         <button type="button" class="mobile-close-btn" id="mobileCloseBtn">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" />
                             </svg>
                         </button>
 
@@ -130,7 +133,7 @@
                             <li><a href="/">YouTube Downloader</a></li>
                             <li><a href="youtube-to-mp4">YouTube to MP4 Converter</a></li>
                             <li><a href="youtube-to-mp3">YouTube to MP3 Converter</a></li>
-                            
+
                             <li><a href="youtube-short-downloader">YouTube Shorts Downloader</a></li>
                         </ul>
                     </nav>
@@ -149,8 +152,8 @@
                             <div class=" input-wrapper">
                                 <input id="videoUrl" class="y2mate_query-pro keyword" type="text" name="q"
                                     placeholder="Search or paste link here..." autocomplete="off" autofocus="">
-                                <button id="input-action-button" type="button" class="input-action-btn" data-action="paste"
-                                    aria-label="Paste from clipboard">
+                                <button id="input-action-button" type="button" class="input-action-btn"
+                                    data-action="paste" aria-label="Paste from clipboard">
                                     <svg class="paste-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
                                         viewBox="0 0 24 24">
                                         <path fill="currentColor"
@@ -196,7 +199,8 @@
                                     <!-- Quality Dropdowns (CSS controls visibility via html[data-format]) -->
                                     <div class="quality-selector">
                                         <!-- MP4 Options (hidden by default on this page) -->
-                                        <select id="quality-select-mp4" class="quality-select quality-select--mp4" aria-label="Video quality" data-quality-select>
+                                        <select id="quality-select-mp4" class="quality-select quality-select--mp4"
+                                            aria-label="Video quality" data-quality-select>
                                             <option value="mp4-1080"> MP4 - 1080p </option>
                                             <option value="mp4-720" selected> MP4 - 720p </option>
                                             <option value="mp4-480"> MP4 - 480p </option>
@@ -207,7 +211,8 @@
                                             <option value="mkv"> MKV </option>
                                         </select>
                                         <!-- MP3 Options (visible by default on this page) -->
-                                        <select id="quality-select-mp3" class="quality-select quality-select--mp3" aria-label="Audio quality" data-quality-select>
+                                        <select id="quality-select-mp3" class="quality-select quality-select--mp3"
+                                            aria-label="Audio quality" data-quality-select>
                                             <option value="mp3-320">MP3 - 320kbps</option>
                                             <option value="mp3-256">MP3 - 256kbps</option>
                                             <option value="mp3-192">MP3 - 192kbps</option>
@@ -219,7 +224,8 @@
                                     </div>
                                 </div>
                                 <!-- Group 2: Auto Submit Toggle -->
-                                <div class="auto-submit-toggle" data-tooltip="Automatically submit when pasting URL or keyword">
+                                <div class="auto-submit-toggle"
+                                    data-tooltip="Automatically submit when pasting URL or keyword">
                                     <strong class="toggle-label">Auto</strong>
                                     <label class="toggle-switch">
                                         <input type="checkbox" id="auto-submit-checkbox" data-auto-submit-toggle />
@@ -228,12 +234,12 @@
                                     <span class="custom-tooltip" style="opacity:0;visibility:hidden"></span>
                                 </div>
                             </div>
-                            <script>(function(){try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p){var s=p.selectedFormat==='mp4'?document.getElementById('quality-select-mp4'):document.getElementById('quality-select-mp3');if(s){var v;if(p.selectedFormat==='mp4'){var vq=p.videoQuality||'720p';v=(vq==='webm'||vq==='mkv')?vq:'mp4-'+vq.replace('p','')}else{var af=p.audioFormat||'mp3';v=(af==='mp3')?'mp3-'+(p.audioBitrate||'128'):af}s.value=v}}var a=localStorage.getItem('y2mate_auto_submit');var c=document.getElementById('auto-submit-checkbox');if(c)c.checked=a===null||a==='true';document.documentElement.dataset.formatReady='1'}catch(e){document.documentElement.dataset.formatReady='1'}})()</script>
+                            <script>(function () { try { var p = JSON.parse(localStorage.getItem('y2mate_format_preferences')); if (p) { var s = p.selectedFormat === 'mp4' ? document.getElementById('quality-select-mp4') : document.getElementById('quality-select-mp3'); if (s) { var v; if (p.selectedFormat === 'mp4') { var vq = p.videoQuality || '720p'; v = (vq === 'webm' || vq === 'mkv') ? vq : 'mp4-' + vq.replace('p', '') } else { var af = p.audioFormat || 'mp3'; v = (af === 'mp3') ? 'mp3-' + (p.audioBitrate || '128') : af } s.value = v } } var a = localStorage.getItem('y2mate_auto_submit'); var c = document.getElementById('auto-submit-checkbox'); if (c) c.checked = a === null || a === 'true'; document.documentElement.dataset.formatReady = '1' } catch (e) { document.documentElement.dataset.formatReady = '1' } })()</script>
                         </div>
 
                         <div id="suggestion-container" class="suggesstion-list suggesstion-box"></div>
                     </form>
-                    
+
 
                     <!-- Video Detail Area -->
                     <div id="content-area"></div>
@@ -246,86 +252,101 @@
 
         <!-- Search Results Section -->
         <section id="search-results-section" class="search-results-section" style="display: none;">
-                <div id="search-results-container"></div>
+            <div id="search-results-container"></div>
         </section>
 
         <section class="y2mate-content-pro d-flex">
             <div class="col-sm-12">
-                <p>The <strong>YouTube to MP3</strong> page from <a href="/">Y2Mate</a> is designed specifically for extracting audio from YouTube videos and saving it as MP3 files.</p><p>This page does not focus on video visuals. Instead, it processes only the audio stream to support offline listening use cases.</p>
+                <h2>What Is YouTube to MP3 on Y2Mate?</h2>
+                <p>The <strong>YouTube to MP3</strong> page from <a href="/">Y2Mate</a> is designed specifically for
+                    extracting audio from YouTube videos and saving it as MP3 files.</p>
+                <p>This page does not focus on video visuals. Instead, it processes only the audio stream to support
+                    offline listening use cases.</p>
             </div>
         </section>
-        
+
         <section class="y2mate-content-pro d-flex">
-<div class="col-sm-12">
-<h2>When Should You Use YouTube to MP3?</h2>
-<p>YouTube to MP3 is suitable for music videos, podcasts, lectures, interviews, and long-form content where users only need the audio instead of the video.</p>
-<p>By extracting audio only, MP3 files are significantly smaller than video files, making them easier to store and play on mobile devices.</p>
-</div>
-</section>
-<section class="y2mate-content-pro d-flex">
-<div class="col-sm-12">
-<h2>Common Problems When Extracting Audio from YouTube</h2>
-<p>Many YouTube to MP3 tools struggle with long videos, videos with multiple audio streams, or inconsistent audio quality.</p>
-<p>As a result, MP3 files may contain noise, missing segments, or incorrect durations.</p>
-</div>
-</section>
-<section class="y2mate-content-pro d-flex">
-<div class="col-sm-12">
-<h2>How the Tool Processes and Generates MP3 Files</h2>
-<p>When you paste a YouTube video link, the system analyzes the original audio stream and generates a corresponding MP3 file.</p>
-<p>Audio quality depends on the source video. When available, the tool displays suitable bitrate options for download.</p>
-</div>
-</section>
-<section class="y2mate-content-pro d-flex">
-<div class="col-sm-12">
-<h2>Why Extracting Audio Is More Efficient Than Downloading Video</h2>
-<p>Separating audio from video significantly reduces file size compared to downloading MP4 files.</p>
-<p>This is especially useful for users who listen to music or podcasts on mobile devices and want to save storage space.</p>
-</div>
-</section>
-<section class="y2mate-content-pro d-flex">
-<div class="col-sm-12">
-<h2>Difference Between MP3 and MP4</h2>
-<p>MP3 files contain audio only, while MP4 files include both video and audio.</p>
-<p>If you need to watch the video content, you should use the <a href="/youtube-to-mp4">YouTube to MP4</a> page instead of extracting MP3 audio.</p>
-</div>
-</section>
-<section class="y2mate-content-pro d-flex">
-<div class="col-sm-12">
-<h2>Choosing Between Audio or Video Downloads</h2>
-<p>If you are unsure whether you need audio or video, you can visit the <a href="/">Download Video YouTube</a> page to explore the available download options.</p>
-</div>
-</section>
+            <div class="col-sm-12">
+                <h2>When Should You Use YouTube to MP3?</h2>
+                <p>YouTube to MP3 is suitable for music videos, podcasts, lectures, interviews, and long-form content
+                    where users only need the audio instead of the video.</p>
+                <p>By extracting audio only, MP3 files are significantly smaller than video files, making them easier to
+                    store and play on mobile devices.</p>
+            </div>
+        </section>
+        <section class="y2mate-content-pro d-flex">
+            <div class="col-sm-12">
+                <h2>Common Problems When Extracting Audio from YouTube</h2>
+                <p>Many YouTube to MP3 tools struggle with long videos, videos with multiple audio streams, or
+                    inconsistent audio quality.</p>
+                <p>As a result, MP3 files may contain noise, missing segments, or incorrect durations.</p>
+            </div>
+        </section>
+        <section class="y2mate-content-pro d-flex">
+            <div class="col-sm-12">
+                <h2>How the Tool Processes and Generates MP3 Files</h2>
+                <p>When you paste a YouTube video link, the system analyzes the original audio stream and generates a
+                    corresponding MP3 file.</p>
+                <p>Audio quality depends on the source video. When available, the tool displays suitable bitrate options
+                    for download.</p>
+            </div>
+        </section>
+        <section class="y2mate-content-pro d-flex">
+            <div class="col-sm-12">
+                <h2>Why Extracting Audio Is More Efficient Than Downloading Video</h2>
+                <p>Separating audio from video significantly reduces file size compared to downloading MP4 files.</p>
+                <p>This is especially useful for users who listen to music or podcasts on mobile devices and want to
+                    save storage space.</p>
+            </div>
+        </section>
+        <section class="y2mate-content-pro d-flex">
+            <div class="col-sm-12">
+                <h2>Difference Between MP3 and MP4</h2>
+                <p>MP3 files contain audio only, while MP4 files include both video and audio.</p>
+                <p>If you need to watch the video content, you should use the <a href="/youtube-to-mp4">YouTube to
+                        MP4</a> page instead of extracting MP3 audio.</p>
+            </div>
+        </section>
+        <section class="y2mate-content-pro d-flex">
+            <div class="col-sm-12">
+                <h2>Choosing Between Audio or Video Downloads</h2>
+                <p>If you are unsure whether you need audio or video, you can visit the <a href="/">Download Video
+                        YouTube</a> page to explore the available download options.</p>
+            </div>
+        </section>
 
 
         <section class="yt-content">
             <h2>Frequently Asked Questions About YouTube to MP3</h2>
-<div class="download-uses">
-<div class="guide-data">
-<h3>What does YouTube to MP3 conversion do?</h3>
-<p>It extracts the audio stream from a YouTube video and saves it as an MP3 file for offline listening.</p>
-</div>
-<div class="guide-data">
-<h3>Which MP3 quality should I choose?</h3>
-<p>Lower bitrates are suitable for speech, while higher bitrates provide better sound quality for music and detailed audio.</p>
-</div>
-<div class="guide-data">
-<h3>Does the MP3 include the full audio from the video?</h3>
-<p>Yes. The converted MP3 contains the complete audio track from the original video.</p>
-</div>
-<div class="guide-data">
-<h3>Can I convert long YouTube videos to MP3?</h3>
-<p>Yes. Audio extraction works with long videos as long as the source video is public or unlisted.</p>
-</div>
-<div class="guide-data">
-<h3>Is MP3 conversion done online?</h3>
-<p>Yes. The entire process runs in your browser without installing any software.</p>
-</div>
-<div class="guide-data">
-<h3>Can private YouTube videos be converted to MP3?</h3>
-<p>No. Private videos cannot be accessed or processed by the system.</p>
-</div>
-</div>
+            <div class="download-uses">
+                <div class="guide-data">
+                    <h3>What does YouTube to MP3 conversion do?</h3>
+                    <p>It extracts the audio stream from a YouTube video and saves it as an MP3 file for offline
+                        listening.</p>
+                </div>
+                <div class="guide-data">
+                    <h3>Which MP3 quality should I choose?</h3>
+                    <p>Lower bitrates are suitable for speech, while higher bitrates provide better sound quality for
+                        music and detailed audio.</p>
+                </div>
+                <div class="guide-data">
+                    <h3>Does the MP3 include the full audio from the video?</h3>
+                    <p>Yes. The converted MP3 contains the complete audio track from the original video.</p>
+                </div>
+                <div class="guide-data">
+                    <h3>Can I convert long YouTube videos to MP3?</h3>
+                    <p>Yes. Audio extraction works with long videos as long as the source video is public or unlisted.
+                    </p>
+                </div>
+                <div class="guide-data">
+                    <h3>Is MP3 conversion done online?</h3>
+                    <p>Yes. The entire process runs in your browser without installing any software.</p>
+                </div>
+                <div class="guide-data">
+                    <h3>Can private YouTube videos be converted to MP3?</h3>
+                    <p>No. Private videos cannot be accessed or processed by the system.</p>
+                </div>
+            </div>
         </section>
 
     </div>
@@ -347,11 +368,12 @@
             <li class="fnav-menu">
                 <a href="youtube-short-downloader">YouTube Shorts Downloader</a>
             </li>
-            
+
         </ul>
     </footer>
 
     <!-- Conversion Modal Wrapper -->
 
 </body>
+
 </html>

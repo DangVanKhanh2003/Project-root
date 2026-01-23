@@ -134,6 +134,7 @@ h2 {
     font-weight: var(--font-weight-light);
     line-height: var(--line-height-tight);
     margin: var(--space-md) 0;
+    text-align: left;
 }
 
 h3 {
