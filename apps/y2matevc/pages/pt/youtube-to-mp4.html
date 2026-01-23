@@ -62,16 +62,7 @@
     <meta name="theme-color" content="#c10841">
     <meta name="color-scheme" content="light">
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZWPL9SR6P6"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-        gtag('config', 'G-ZWPL9SR6P6');
-    </script>
+    <!-- Google Analytics: Lazy loaded via analytics-loader.ts for better performance -->
 
     <!-- Critical: Set format and auto-submit preferences before render to prevent FOUC -->
     <script>(function(){var f='mp4';try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p&&p.selectedFormat)f=p.selectedFormat}catch(e){}document.documentElement.dataset.format=f;})()</script>
@@ -235,9 +226,7 @@
         </div>
         <div class="header-menu">
             <ul class="menu-navbar">
-                <li class="navbar">
-                    <a href="/pt/">Downloader do YouTube</a>
-                </li>
+              
                 <li class="navbar">
                     <a href="/pt/youtube-to-mp4">Conversor de YouTube para MP4</a>
                 </li>

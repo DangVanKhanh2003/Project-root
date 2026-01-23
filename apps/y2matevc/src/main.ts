@@ -6,6 +6,10 @@
 // === I18n Import ===
 import { initI18n, loadTranslations, locales, getLanguage, t } from '@downloader/i18n';
 
+// === Utils Import ===
+import { initPreferencesSync } from './utils/preferences-sync';
+import { initAnalytics } from './utils/analytics-loader';
+
 // Import Core Styles (From @downloader/core)
 import '@downloader/core/styles/ripple-effect.css';
 
@@ -272,6 +276,8 @@ function initLanguageDropdown(): void {
  */
 function loadFeatures() {
   fixScrollRestoration(); // Fix scroll restoration issue
+  initPreferencesSync(); // Sync user preferences from localStorage
+  initAnalytics(); // Lazy load Google Analytics
   initMobileMenu(); // Initialize mobile menu first
   initLanguageDropdown();
   initDownloaderUI();
