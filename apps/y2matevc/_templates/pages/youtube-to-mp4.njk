@@ -102,41 +102,7 @@ eleventyComputed:
                                 <span class="custom-tooltip"></span>
                         </div>
                     </div>
-                    <script>
-(function() {
-  try {
-    const preferencesJson = localStorage.getItem('y2mate_format_preferences');
-    if (preferencesJson) {
-      const preferences = JSON.parse(preferencesJson);
-      const selectElement = preferences.selectedFormat === 'mp4'
-        ? document.getElementById('quality-select-mp4')
-        : document.getElementById('quality-select-mp3');
-      if (selectElement) {
-        let value;
-        if (preferences.selectedFormat === 'mp4') {
-          const videoQuality = preferences.videoQuality || '720p';
-          value = (videoQuality === 'webm' || videoQuality === 'mkv')
-            ? videoQuality
-            : `mp4-${videoQuality.replace('p', '')}`;
-        } else {
-          const audioFormat = preferences.audioFormat || 'mp3';
-          value = (audioFormat === 'mp3')
-            ? `mp3-${preferences.audioBitrate || '128'}`
-            : audioFormat;
-        }
-        selectElement.value = value;
-      }
-    }
-    const autoSubmitValue = localStorage.getItem('y2mate_auto_submit');
-    const checkbox = document.getElementById('auto-submit-checkbox');
-    if (checkbox) {
-      checkbox.checked = autoSubmitValue === 'true';
-    }
-  } catch (error) {
-    console.error('Error syncing UI from localStorage in inline script:', error);
-  }
-})();
-</script>
+                    <script>(function(){try{const preferencesJson=localStorage.getItem('y2mate_format_preferences');if(preferencesJson){const preferences=JSON.parse(preferencesJson);const selectElement=preferences.selectedFormat==='mp4'?document.getElementById('quality-select-mp4'):document.getElementById('quality-select-mp3');if(selectElement){let value;if(preferences.selectedFormat==='mp4'){const videoQuality=preferences.videoQuality||'720p';value=(videoQuality==='webm'||videoQuality==='mkv')?videoQuality:`mp4-${videoQuality.replace('p','')}`;}else{const audioFormat=preferences.audioFormat||'mp3';value=(audioFormat==='mp3')?`mp3-${preferences.audioBitrate||'128'}`:audioFormat;}selectElement.value=value;}}const autoSubmitValue=localStorage.getItem('y2mate_auto_submit');const checkbox=document.getElementById('auto-submit-checkbox');if(checkbox){checkbox.checked=autoSubmitValue==='true';}}catch(error){console.error('Error syncing UI from localStorage in inline script:',error);}})();</script>
                     </div>
 
                     <div id="suggestion-container" class="suggesstion-list suggesstion-box"></div>
