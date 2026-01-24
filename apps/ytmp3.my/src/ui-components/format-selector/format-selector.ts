@@ -13,7 +13,6 @@ import {
   type FormatType,
   type AudioFormatType
 } from '../../features/downloader/state';
-import { t } from '@downloader/i18n';
 
 // ==========================================
 // Render Functions
@@ -106,14 +105,7 @@ function renderFormatSelector(): string {
     ? renderVideoQualityDropdown(videoQuality)
     : renderAudioQualityDropdown(audioFormat, audioBitrate);
 
-  // Debug: Check language at render time
-  const htmlLang = document.documentElement.getAttribute('lang');
-  const convertText = t('common.buttons.convert');
-  console.log('[FormatSelector] Rendering:', {
-    htmlLang,
-    convertText,
-    timestamp: new Date().toISOString()
-  });
+  const convertText = 'Convert';
 
   return `
     <div class="format-selector">
@@ -166,7 +158,7 @@ function renderVideoQualityDropdown(selectedQuality: string): string {
   });
 
   return `
-    <select id="quality-select" class="quality-select" aria-label="${t('aria.qualitySelector')}" data-quality-select>
+    <select id="quality-select" class="quality-select" aria-label="Quality selector" data-quality-select>
       ${videoOptions.map(option => {
         const isSelected = option.value === `mp4-${defaultQuality.replace('p', '')}` || option.value === defaultQuality;
         return `<option value="${option.value}"${isSelected ? ' selected' : ''}> ${option.label} </option>`;
@@ -200,7 +192,7 @@ function renderAudioQualityDropdown(selectedAudioFormat: AudioFormatType, select
 
   return `
     <div class="quality-dropdown-wrapper">
-      <select id="quality-select" class="quality-select" aria-label="${t('aria.qualitySelector')}" data-quality-select>
+      <select id="quality-select" class="quality-select" aria-label="Quality selector" data-quality-select>
         ${audioOptions.map(option => {
           const isSelected = option.value === selectedValue;
           return `<option value="${option.value}"${isSelected ? ' selected' : ''}> ${option.label} </option>`;
@@ -347,7 +339,7 @@ function renderAudioDropdownOnly(selectedAudioFormat: AudioFormatType, selectedB
   }
 
   return `
-    <select id="quality-select" class="quality-select" aria-label="${t('aria.qualitySelector')}" data-quality-select>
+    <select id="quality-select" class="quality-select" aria-label="Quality selector" data-quality-select>
       ${audioOptions.map(option => {
         const isSelected = option.value === selectedValue;
         return `<option value="${option.value}"${isSelected ? ' selected' : ''}>${option.label}</option>`;
