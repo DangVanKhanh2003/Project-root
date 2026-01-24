@@ -3,9 +3,6 @@
  * Y2matePro - Rebuilt from webclone.html
  */
 
-// === I18n Import ===
-import { initI18n, loadTranslations, locales, getLanguage, t } from '@downloader/i18n';
-
 // === Utils Import ===
 import { initPreferencesSync } from './utils/preferences-sync';
 
@@ -42,36 +39,6 @@ import './styles/reusable-packages/conversion-status/conversion-status.css';
 
 // Import UI components CSS
 import './ui-components/format-selector/format-selector.css';
-
-// ==========================================
-// Initialize I18n System
-// ==========================================
-
-// Initialize i18n with default language
-initI18n({
-  defaultLanguage: 'en',
-  fallbackLanguage: 'en',
-  debug: true // Enable debug mode for development
-});
-
-// Load all locale data
-Object.entries(locales).forEach(([lang, data]) => {
-  loadTranslations(lang as any, data as any);
-});
-
-console.log('[App] I18n initialized with 19 languages');
-
-console.log('[App] HTML lang attribute:', document.documentElement.getAttribute('lang'));
-console.log('[App] Detected language:', getLanguage());
-
-// Debug: Expose i18n to window for testing
-if (typeof window !== 'undefined') {
-  (window as any).__i18n__ = {
-    getLanguage,
-    t
-  };
-  console.log('[App] i18n exposed to window.__i18n__ for debugging');
-}
 
 /**
  * Initialize downloader UI (lazy loaded)

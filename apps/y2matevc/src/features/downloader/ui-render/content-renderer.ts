@@ -25,7 +25,6 @@ import {
 import { transformSearchItemToVideoData } from '../logic/input-form';
 import { getInfiniteScrollThreshold } from '@downloader/ui-shared/scroll';
 import { api } from '../../../api';
-import { t } from '@downloader/i18n';
 
 let contentArea: HTMLElement | null = null;
 let searchResultsContainer: HTMLElement | null = null;
@@ -340,8 +339,8 @@ export function showLoading(type: 'list' | 'detail' = 'list', append: boolean = 
             </div>
           </div>
           <div class="action-container">
-            <button class="download-btn" id="conversion-download-btn">${t('common.buttons.download')}</button>
-            <button class="retry-btn" id="conversion-retry-btn">${t('common.buttons.retry')}</button>
+            <button class="download-btn" id="conversion-download-btn">Download</button>
+            <button class="retry-btn" id="conversion-retry-btn">Retry</button>
           </div>
         </div>
       `;
@@ -432,8 +431,8 @@ export function renderPreviewCard(_data: any): void {
           </div>
         </div>
         <div class="action-container">
-          <button class="download-btn" id="conversion-download-btn">${t('common.buttons.download')}</button>
-          <button class="retry-btn" id="conversion-retry-btn">${t('common.buttons.retry')}</button>
+          <button class="download-btn" id="conversion-download-btn">Download</button>
+          <button class="retry-btn" id="conversion-retry-btn">Retry</button>
         </div>
       </div>
     `;
@@ -505,8 +504,8 @@ export function renderPreviewCard(_data: any): void {
         </div>
       </div>
       <div class="action-container">
-        <button class="download-btn" id="conversion-download-btn">${t('common.buttons.download')}</button>
-        <button class="retry-btn" id="conversion-retry-btn">${t('common.buttons.retry')}</button>
+        <button class="download-btn" id="conversion-download-btn">Download</button>
+        <button class="retry-btn" id="conversion-retry-btn">Retry</button>
       </div>
     </div>
   `;
