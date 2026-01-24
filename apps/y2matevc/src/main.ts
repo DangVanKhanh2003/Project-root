@@ -2,14 +2,12 @@
  * Main Entry Point - TypeScript
  * Y2matePro - Rebuilt from webclone.html
  */
-import './firebase';
 
 // === I18n Import ===
 import { initI18n, loadTranslations, locales, getLanguage, t } from '@downloader/i18n';
 
 // === Utils Import ===
 import { initPreferencesSync } from './utils/preferences-sync';
-import { initAnalytics } from './utils/analytics-loader';
 
 // Import Core Styles (From @downloader/core)
 import '@downloader/core/styles/ripple-effect.css';
@@ -273,12 +271,37 @@ function initLanguageDropdown(): void {
 }
 
 /**
+ * Initialize Firebase Analytics (lazy loaded with delay)
+ *
+ * ⚡ PERFORMANCE STRATEGY:
+ * 1. Initial delay: 5s after page load (ensures critical rendering complete)
+ * 2. Then requestIdleCallback waits for browser idle
+ * 3. Never blocks initial page render or user interactions
+ * 4. Analytics uses 0ms timeout (fire-and-forget pattern)
+ *
+ * Timeline: Page Load → 5s delay → requestIdleCallback → Firebase loads
+ */
+function initFirebaseAnalytics() {
+  // Delay 5s before even starting to load Firebase
+  // This ensures all critical rendering and interactions are complete
+  setTimeout(() => {
+    import('./libs/firebase/firebase-loader')
+      .then(({ loadFirebaseWhenIdle }) => {
+        loadFirebaseWhenIdle();
+      })
+      .catch(() => {
+        // Silent fail - app works without analytics
+      });
+  }, 5000);
+}
+
+/**
  * Initialize app
  */
 function loadFeatures() {
   fixScrollRestoration(); // Fix scroll restoration issue
   initPreferencesSync(); // Sync user preferences from localStorage
-  initAnalytics(); // Lazy load Google Analytics
+  initFirebaseAnalytics(); // Lazy load Firebase Analytics (5s delay + idle)
   initMobileMenu(); // Initialize mobile menu first
   initLanguageDropdown();
   initDownloaderUI();
