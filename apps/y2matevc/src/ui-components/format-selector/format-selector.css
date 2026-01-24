@@ -113,7 +113,7 @@ html[data-format="mp3"] .quality-select--mp3 { display: block; }
 
 .format-label {
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 700;
   white-space: nowrap;
 }
 
@@ -325,10 +325,6 @@ input[type="checkbox"]:focus-visible + .toggle-slider {
 
   .format-icon {
     font-size: 16px;
-  }
-
-  .format-label {
-    font-size: 13px;
   }
 
   .quality-select {
