@@ -27,7 +27,6 @@ import { transformSearchItemToVideoData } from '../logic/input-form';
 import { getInfiniteScrollThreshold } from '@downloader/ui-shared/scroll';
 import { api } from '../../../api';
 import { showResultView, showSearchView, isResultViewVisible } from './view-switcher';
-import { t } from '@downloader/i18n';
 
 let contentArea: HTMLElement | null = null;
 let searchResultsContainer: HTMLElement | null = null;
@@ -455,9 +454,9 @@ function createConversionStateWrapper(): string {
         </div>
       </div>
       <div class="action-container" id="action-container">
-        <button class="btn-new-convert" id="btn-new-convert">${t('common.buttons.startOver')}</button>
-        <button class="download-btn" id="conversion-download-btn">${t('common.buttons.download')}</button>
-        <button class="retry-btn" id="conversion-retry-btn">${t('common.buttons.retry')}</button>
+        <button class="btn-new-convert" id="btn-new-convert">Start Over</button>
+        <button class="download-btn" id="conversion-download-btn">Download</button>
+        <button class="retry-btn" id="conversion-retry-btn">Retry</button>
       </div>
     </div>
   `;

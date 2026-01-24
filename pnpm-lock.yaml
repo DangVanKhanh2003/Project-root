@@ -72,9 +72,6 @@ importers:
       '@downloader/core':
         specifier: workspace:*
         version: link:../../packages/core
-      '@downloader/i18n':
-        specifier: workspace:*
-        version: link:../../packages/i18n
       '@downloader/ui-components':
         specifier: workspace:*
         version: link:../../packages/ui-components
@@ -109,9 +106,6 @@ importers:
       '@downloader/core':
         specifier: workspace:*
         version: link:../../packages/core
-      '@downloader/i18n':
-        specifier: workspace:*
-        version: link:../../packages/i18n
       '@downloader/ui-components':
         specifier: workspace:*
         version: link:../../packages/ui-components
@@ -146,9 +140,6 @@ importers:
       '@downloader/core':
         specifier: workspace:*
         version: link:../../packages/core
-      '@downloader/i18n':
-        specifier: workspace:*
-        version: link:../../packages/i18n
       '@downloader/ui-components':
         specifier: workspace:*
         version: link:../../packages/ui-components
@@ -183,9 +174,6 @@ importers:
       '@downloader/core':
         specifier: workspace:*
         version: link:../../packages/core
-      '@downloader/i18n':
-        specifier: workspace:*
-        version: link:../../packages/i18n
       '@downloader/ui-components':
         specifier: workspace:*
         version: link:../../packages/ui-components
@@ -220,9 +208,6 @@ importers:
       '@downloader/core':
         specifier: workspace:*
         version: link:../../packages/core
-      '@downloader/i18n':
-        specifier: workspace:*
-        version: link:../../packages/i18n
       '@downloader/ui-components':
         specifier: workspace:*
         version: link:../../packages/ui-components
@@ -313,9 +298,6 @@ importers:
       '@downloader/core':
         specifier: workspace:*
         version: link:../../packages/core
-      '@downloader/i18n':
-        specifier: workspace:*
-        version: link:../../packages/i18n
       '@downloader/ui-components':
         specifier: workspace:*
         version: link:../../packages/ui-components
@@ -350,9 +332,6 @@ importers:
       '@downloader/core':
         specifier: workspace:*
         version: link:../../packages/core
-      '@downloader/i18n':
-        specifier: workspace:*
-        version: link:../../packages/i18n
       '@downloader/ui-components':
         specifier: workspace:*
         version: link:../../packages/ui-components
@@ -387,9 +366,6 @@ importers:
       '@downloader/core':
         specifier: workspace:*
         version: link:../../packages/core
-      '@downloader/i18n':
-        specifier: workspace:*
-        version: link:../../packages/i18n
       '@downloader/ui-components':
         specifier: workspace:*
         version: link:../../packages/ui-components
@@ -421,9 +397,6 @@ importers:
       '@downloader/history':
         specifier: workspace:*
         version: link:../../packages/history
-      '@downloader/i18n':
-        specifier: workspace:*
-        version: link:../../packages/i18n
       '@downloader/ui-components':
         specifier: workspace:*
         version: link:../../packages/ui-components
@@ -486,9 +459,6 @@ importers:
       '@downloader/core':
         specifier: workspace:*
         version: link:../../packages/core
-      '@downloader/i18n':
-        specifier: workspace:*
-        version: link:../../packages/i18n
       '@downloader/ui-components':
         specifier: workspace:*
         version: link:../../packages/ui-components

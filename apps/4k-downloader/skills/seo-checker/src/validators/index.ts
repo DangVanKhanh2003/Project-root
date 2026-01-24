@@ -8,7 +8,6 @@ export { alternateValidator } from './alternate.js';
 export { metaTagsValidator } from './meta-tags.js';
 export { structuredDataValidator } from './structured-data.js';
 export { sitemapValidator } from './sitemap.js';
-export { i18nCompletenessValidator } from './i18n-completeness.js';
 export { urlFormatValidator } from './url-format.js';
 export { langDropdownsValidator } from './lang-dropdowns.js';
 export { jsonldContentValidator } from './jsonld-content.js';
@@ -18,7 +17,6 @@ import { alternateValidator } from './alternate.js';
 import { metaTagsValidator } from './meta-tags.js';
 import { structuredDataValidator } from './structured-data.js';
 import { sitemapValidator } from './sitemap.js';
-import { i18nCompletenessValidator } from './i18n-completeness.js';
 import { urlFormatValidator } from './url-format.js';
 import { langDropdownsValidator } from './lang-dropdowns.js';
 import { jsonldContentValidator } from './jsonld-content.js';
@@ -34,7 +32,6 @@ export const allValidators: Validator[] = [
   metaTagsValidator,
   structuredDataValidator,
   sitemapValidator,
-  i18nCompletenessValidator,
   urlFormatValidator,
   langDropdownsValidator,
   jsonldContentValidator,

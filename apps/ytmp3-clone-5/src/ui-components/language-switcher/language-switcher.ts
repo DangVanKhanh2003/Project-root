@@ -1,9 +1,43 @@
 /**
  * Language Switcher Component
- * Redirects users to language-specific pages (no dynamic language change)
+ * Redirects users to language-specific pages (no i18n package dependency)
  */
 
-import { navigateToLanguage, getLanguage, getSupportedLanguages } from '@downloader/i18n';
+const LANGUAGES = [
+  { code: 'en', nativeName: 'English' },
+  { code: 'ar', nativeName: 'Arabic' },
+  { code: 'bn', nativeName: 'Bengali' },
+  { code: 'de', nativeName: 'German' },
+  { code: 'es', nativeName: 'Spanish' },
+  { code: 'fr', nativeName: 'French' },
+  { code: 'hi', nativeName: 'Hindi' },
+  { code: 'id', nativeName: 'Indonesian' },
+  { code: 'it', nativeName: 'Italian' },
+  { code: 'ja', nativeName: 'Japanese' },
+  { code: 'ko', nativeName: 'Korean' },
+  { code: 'ms', nativeName: 'Malay' },
+  { code: 'my', nativeName: 'Burmese' },
+  { code: 'pt', nativeName: 'Portuguese' },
+  { code: 'ru', nativeName: 'Russian' },
+  { code: 'th', nativeName: 'Thai' },
+  { code: 'tr', nativeName: 'Turkish' },
+  { code: 'ur', nativeName: 'Urdu' },
+  { code: 'vi', nativeName: 'Vietnamese' }
+] as const;
+
+function getCurrentLanguage(): string {
+  const htmlLang = document.documentElement.getAttribute('lang') || 'en';
+  return htmlLang.toLowerCase().split('-')[0] || 'en';
+}
+
+function navigateToLanguage(code: string): void {
+  const path = window.location.pathname || '/';
+  const basePath = path.replace(/^\/([a-z]{2})(\/|$)/, '/');
+  const normalized = basePath.startsWith('/') ? basePath : `/${basePath}`;
+  const suffix = normalized === '/' ? '' : normalized;
+  const target = code === 'en' ? (suffix || '/') : `/${code}${suffix}`;
+  window.location.href = target;
+}
 
 /**
  * Render language switcher dropdown
@@ -15,8 +49,8 @@ export function renderLanguageSwitcher(containerId: string): void {
     return;
   }
 
-  const currentLang = getLanguage();
-  const languages = getSupportedLanguages();
+  const currentLang = getCurrentLanguage();
+  const languages = LANGUAGES;
 
   const html = `
     <div class="language-switcher">

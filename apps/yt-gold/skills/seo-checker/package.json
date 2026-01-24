@@ -14,7 +14,6 @@
     "check:meta": "npm run build && cd ../.. && node skills/seo-checker/dist/index.js meta-tags",
     "check:jsonld": "npm run build && cd ../.. && node skills/seo-checker/dist/index.js structured-data",
     "check:sitemap": "npm run build && cd ../.. && node skills/seo-checker/dist/index.js sitemap",
-    "check:i18n": "npm run build && cd ../.. && node skills/seo-checker/dist/index.js i18n-completeness",
     "check:url": "npm run build && cd ../.. && node skills/seo-checker/dist/index.js url-format",
     "check:lang-dropdown": "npm run build && cd ../.. && node skills/seo-checker/dist/index.js lang-dropdowns",
     "check:jsonld-content": "npm run build && cd ../.. && node skills/seo-checker/dist/index.js jsonld-content",

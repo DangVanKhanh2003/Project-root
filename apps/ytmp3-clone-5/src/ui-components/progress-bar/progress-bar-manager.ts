@@ -5,7 +5,6 @@
  * Phase 2: DOWNLOADING (RAM) or POLLING (with real/estimated progress)
  */
 
-import { t } from '@downloader/i18n';
 
 const DEFAULTS = {
   UPDATE_INTERVAL: 500,
@@ -74,18 +73,9 @@ export class ProgressBarManager {
       return;
     }
 
-    // Debug: Check language at render time
-    const htmlLang = document.documentElement.getAttribute('lang');
-    const translatedText = t('status.processingProgress', { progress: 0 });
-    console.log('[ProgressBar] Rendering:', {
-      htmlLang,
-      translatedText,
-      timestamp: new Date().toISOString()
-    });
-
     const html = `
       <div class="status-text-container">
-        <div class="main-status-text">${translatedText}</div>
+        <div class="main-status-text">Processing 0%</div>
         <div class="progress-detail-text"></div>
       </div>
     `;
@@ -218,7 +208,7 @@ export class ProgressBarManager {
       ? `${Math.max(1, Math.ceil(options.totalSize / (1024 * 1024 * 1024)))} GB`
       : `${totalMB} MB`;
 
-    this.updateVisualProgress(0, t('status.convertingProgress', { loaded: '0 MB', total: totalDisplay }));
+    this.updateVisualProgress(0, `Converting... 0 MB / ${totalDisplay}`);
 
     // Start real download progress
     const onProgressCallback = (loaded: number, total: number) => {
@@ -236,7 +226,7 @@ export class ProgressBarManager {
       // Handle unknown total size (no content-length header AND no size from extract)
       if (actualTotal === 0) {
         // Indeterminate progress - show only loaded size
-        this.updateVisualProgress(0, t('status.convertingSize', { size: loadedSize }));
+        this.updateVisualProgress(0, `Converting... ${loadedSize}`);
         return;
       }
 
@@ -246,7 +236,7 @@ export class ProgressBarManager {
         ? `${Math.max(1, Math.ceil(actualTotal / (1024 * 1024 * 1024)))} GB`
         : `${totalMB} MB`;
 
-      this.updateVisualProgress(progressPercent, t('status.convertingProgress', { loaded: loadedSize, total: totalSize }));
+      this.updateVisualProgress(progressPercent, `Converting... ${loadedSize} / ${totalSize}`);
     };
 
     options.onProgress(onProgressCallback).then(() => {
@@ -273,7 +263,7 @@ export class ProgressBarManager {
   startPollingPhase(): void {
     // Reset to 0%
     this.currentProgress = 0;
-    this.updateVisualProgress(0, t('status.processingProgress', { progress: 0 }));
+    this.updateVisualProgress(0, 'Processing 0%');
   }
 
   /**

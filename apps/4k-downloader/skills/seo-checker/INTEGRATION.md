@@ -85,7 +85,6 @@ const files = await scanHtmlFiles({
 #### i18n Completeness - Trang không cần dịch:
 
 ```typescript
-// src/validators/i18n-completeness.ts
 const SKIP_I18N_PAGES = [
   'about-us',
   'contact',
@@ -197,7 +196,6 @@ export const allValidators: Validator[] = [
 Hoặc dùng CLI option:
 
 ```bash
-npm run dev -- --skip i18n-completeness,lang-dropdowns
 ```
 
 ---

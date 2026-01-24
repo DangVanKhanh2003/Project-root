@@ -29,7 +29,6 @@ npm run check:alternate        # Kiểm tra hreflang tags
 npm run check:meta             # Kiểm tra title & meta description
 npm run check:jsonld           # Kiểm tra JSON-LD syntax
 npm run check:sitemap          # Kiểm tra sitemap.xml
-npm run check:i18n             # Kiểm tra đầy đủ ngôn ngữ
 npm run check:url              # Kiểm tra URL format
 npm run check:lang-dropdown    # Kiểm tra language selector
 npm run check:jsonld-content   # Kiểm tra nội dung JSON-LD
@@ -51,7 +50,6 @@ npx tsx src/index.ts [options]
 
 # Ví dụ:
 npx tsx src/index.ts --only canonical,meta-tags
-npx tsx src/index.ts --skip lang-dropdowns,i18n-completeness
 ```
 
 ## Danh sách Validators
@@ -63,7 +61,6 @@ npx tsx src/index.ts --skip lang-dropdowns,i18n-completeness
 | `meta-tags` | Meta Tags | Kiểm tra `<title>` và `<meta name="description">` |
 | `structured-data` | JSON-LD Syntax | Kiểm tra cú pháp JSON-LD |
 | `sitemap` | Sitemap | Kiểm tra file sitemap.xml |
-| `i18n-completeness` | i18n | Kiểm tra đầy đủ trang cho các ngôn ngữ |
 | `url-format` | URL Format | Kiểm tra clean URLs (không .html, /index) |
 | `lang-dropdowns` | Language Dropdown | Kiểm tra có language selector UI |
 | `jsonld-content` | JSON-LD Content | Kiểm tra nội dung JSON-LD (không HTML, placeholder) |
@@ -124,7 +121,6 @@ skills/seo-checker/
 │   │   ├── meta-tags.ts
 │   │   ├── structured-data.ts
 │   │   ├── sitemap.ts
-│   │   ├── i18n-completeness.ts
 │   │   ├── url-format.ts
 │   │   ├── lang-dropdowns.ts
 │   │   └── jsonld-content.ts

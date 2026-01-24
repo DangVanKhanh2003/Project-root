@@ -20,14 +20,12 @@
     "seo:meta": "cd skills/seo-checker && npm run check:meta",
     "seo:jsonld": "cd skills/seo-checker && npm run check:jsonld",
     "seo:sitemap": "cd skills/seo-checker && npm run check:sitemap",
-    "seo:i18n": "cd skills/seo-checker && npm run check:i18n",
     "seo:url": "cd skills/seo-checker && npm run check:url",
     "seo:lang-dropdown": "cd skills/seo-checker && npm run check:lang-dropdown",
     "seo:jsonld-content": "cd skills/seo-checker && npm run check:jsonld-content"
   },
   "dependencies": {
     "@downloader/core": "workspace:*",
-    "@downloader/i18n": "workspace:*",
     "@downloader/ui-components": "workspace:*",
     "@downloader/ui-shared": "workspace:*",
     "@downloader/vidtool-popup": "workspace:*",

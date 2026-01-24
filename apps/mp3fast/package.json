@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "@downloader/core": "workspace:*",
-    "@downloader/i18n": "workspace:*",
     "@downloader/ui-shared": "workspace:*",
     "@downloader/ui-components": "workspace:*",
     "@downloader/vidtool-popup": "workspace:*"
