@@ -146,6 +146,26 @@
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-lg);
     background-clip: padding-box;
+    max-height: 450px;
+    overflow-y: auto;
+}
+
+.dropdown-menu .lang-menu::-webkit-scrollbar {
+    width: 2px;
+}
+
+.dropdown-menu .lang-menu::-webkit-scrollbar-track {
+    background: #f2f2f2;
+}
+
+.dropdown-menu .lang-menu::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.35);
+    border-radius: 2px;
+}
+
+.dropdown-menu .lang-menu {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.35) transparent;
 }
 
 .lang-menu {
