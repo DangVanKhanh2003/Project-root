@@ -152,7 +152,7 @@ const DESC_MAX_LENGTH = 160;     // Tối đa (Google cắt)
 ```typescript
 // src/utils/file-scanner.ts
 export const SUPPORTED_LANGUAGES = [
-  'en', 'vi', 'es', 'fr', 'de', 'it', 'pt', 'ru', 'ja', 'ko', 'zh',
+  'en', 'vi', 'es', 'fr', 'de', 'it', 'pt', 'ru', 'ja', 'ko',,
   // Thêm ngôn ngữ mới
   'nl', 'pl', 'sv', 'da', 'fi',
 ];

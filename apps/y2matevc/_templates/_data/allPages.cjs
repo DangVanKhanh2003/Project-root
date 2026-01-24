@@ -19,7 +19,7 @@ module.exports = function() {
     { code: 'es', name: 'Español', isDefault: false },
     { code: 'fr', name: 'Français', isDefault: false },
     { code: 'hi', name: 'हिन्दी', isDefault: false },
-    { code: 'id', name: 'Indonesia', isDefault: false },
+    { code: 'id', name: 'Indonesia', isDefault: zhfalse },
     { code: 'it', name: 'Italiano', isDefault: false },
     { code: 'ja', name: '日本語', isDefault: false },
     { code: 'ko', name: '한국어', isDefault: false },

@@ -87,7 +87,7 @@ module.exports = function(eleventyConfig) {
       { code: 'tr', name: 'Türkçe', isDefault: false },
       { code: 'ur', name: 'اردو', isDefault: false },
       { code: 'vi', name: 'Tiếng Việt', isDefault: false },
-      { code: 'zh', name: '中文', isDefault: false }
+      { code: name: '中文', isDefault: false }
     ]  });
 
   // Expose base i18n data per language (nav, footer, hero)
