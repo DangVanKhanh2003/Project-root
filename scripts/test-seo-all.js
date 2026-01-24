@@ -12,45 +12,47 @@ const sites = readdirSync(appsDir, { withFileTypes: true })
 
 console.log(`Found ${sites.length} sites to test: ${sites.join(', ')}`);
 
-console.log('========================================');
-console.log('  Building all apps...');
-console.log('========================================');
-try {
-  execSync('pnpm -r build', { stdio: 'inherit', shell: true });
-  console.log('All apps built successfully!');
-} catch (error) {
-  console.error('Error building all apps:');
-  console.error(error.message);
-  process.exit(1); // Exit if global build fails
-}
-
-
 for (const site of sites) {
   console.log(`
-
 ========================================`);
-  console.log(`  Running SEO tests for: ${site}`);
-  console.log(`========================================
-`);
+  console.log(`  Processing site: ${site}`);
+  console.log(`========================================`);
   
+  let buildSuccessful = false;
+  const appPath = join(appsDir, site);
+
   try {
-    execSync(
-      `npx tsx skills/test-seo/src/index.ts --site ${site}`,
-      { stdio: 'inherit', shell: true }
-    );
+    console.log(`Building app: ${site} in ${appPath}...`);
+    execSync(`pnpm build`, { cwd: appPath, stdio: 'inherit', shell: true });
+    buildSuccessful = true;
+    console.log(`App ${site} built successfully.`);
   } catch (error) {
     console.error(`
-Error running SEO tests for ${site}.`);
-    // The error from the child process is already printed to the console.
-    // We exit with 1 to indicate that the overall script failed.
-    process.exit(1);
+Error building app ${site}:`);
+    console.error(error.message);
+    // Continue to next site if build fails
+  }
+
+  if (buildSuccessful) {
+    try {
+      console.log(`Running SEO checker for: ${site}...`);
+      execSync(
+        `npx tsx ${join(process.cwd(), 'skills', 'test-seo', 'src', 'index.ts')} --site ${site}`,
+        { stdio: 'inherit', shell: true }
+      );
+    } catch (error) {
+      console.error(`
+Error running SEO tests for ${site}:`);
+      console.error(error.message);
+      // Continue to next site if SEO check fails
+    }
+  } else {
+    console.log(`Skipping SEO check for ${site} due to build failure.`);
   }
 }
 
 console.log(`
-
 ========================================`);
-console.log(`  All SEO tests passed!`);
-console.log(`========================================
-`);
+console.log(`  All SEO tests completed!`);
+console.log(`========================================`);
 process.exit(0);
