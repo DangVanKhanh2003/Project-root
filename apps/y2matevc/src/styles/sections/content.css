@@ -41,7 +41,8 @@ h2 {
 }
 
 .y2mate-content-pro a {
-    color: var(--color-primary);
+    color: black;
+    font-weight: 700;
     text-decoration: none;
 }
 
