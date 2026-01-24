@@ -31,7 +31,6 @@ module.exports = function() {
     { code: 'tr', name: 'Türkçe', isDefault: false },
     { code: 'ur', name: 'اردو', isDefault: false },
     { code: 'vi', name: 'Tiếng Việt', isDefault: false },
-    { code: 'zh', name: '中文', isDefault: false }
   ];
 
   // Define page configs with their URL slugs
