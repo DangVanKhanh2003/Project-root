@@ -87,7 +87,6 @@ module.exports = function(eleventyConfig) {
       { code: 'tr', name: 'Türkçe', isDefault: false },
       { code: 'ur', name: 'اردو', isDefault: false },
       { code: 'vi', name: 'Tiếng Việt', isDefault: false },
-      { code: name: '中文', isDefault: false }
     ]  });
 
   // Expose base i18n data per language (nav, footer, hero)
@@ -184,7 +183,7 @@ module.exports = function(eleventyConfig) {
     }
 
     // Get all language codes (except 'en')
-    const langCodes = ['ar', 'bn', 'de', 'es', 'fr', 'hi', 'id', 'it', 'ja', 'ko', 'my', 'ms', 'pt', 'ru', 'th', 'tr', 'ur', 'vi', 'zh'];
+    const langCodes = ['ar', 'bn', 'de', 'es', 'fr', 'hi', 'id', 'it', 'ja', 'ko', 'my', 'ms', 'pt', 'ru', 'th', 'tr', 'ur', 'vi'];
 
     // Read output directory
     const items = fs.readdirSync(outputDir, { withFileTypes: true });
