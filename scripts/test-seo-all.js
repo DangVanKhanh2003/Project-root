@@ -12,6 +12,19 @@ const sites = readdirSync(appsDir, { withFileTypes: true })
 
 console.log(`Found ${sites.length} sites to test: ${sites.join(', ')}`);
 
+console.log('========================================');
+console.log('  Building all apps...');
+console.log('========================================');
+try {
+  execSync('pnpm -r build', { stdio: 'inherit', shell: true });
+  console.log('All apps built successfully!');
+} catch (error) {
+  console.error('Error building all apps:');
+  console.error(error.message);
+  process.exit(1); // Exit if global build fails
+}
+
+
 for (const site of sites) {
   console.log(`
 
