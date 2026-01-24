@@ -74,6 +74,18 @@
         }
     </style>
 
+    <!-- Critical: Prevent default form submit before app init (avoid /search 404) -->
+    <script>
+        (function() {
+            document.addEventListener('submit', function(event) {
+                var target = event.target;
+                if (target && target.id === 'downloadForm') {
+                    event.preventDefault();
+                }
+            }, true);
+        })();
+    </script>
+
     <!-- Critical CSS imported via Vite -->
     <script type="module" src="/src/main.ts"></script>
 
@@ -620,7 +632,7 @@
             <a href="/privacy-policy">ကိုယ်ရေးကိုယ်တာ မူဝါဒ</a>
         </li>
         <li class="fnav-menu">
-            <a href="/copyright-claims"></a>
+            <a href="/copyright-claims">မူပိုင်ခွင့် တောင်းဆိုမှုများ</a>
         </li>
         <li class="fnav-menu">
             <a href="/my/youtube-short-downloader">YouTube Shorts Downloader</a>

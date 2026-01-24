@@ -74,6 +74,18 @@
         }
     </style>
 
+    <!-- Critical: Prevent default form submit before app init (avoid /search 404) -->
+    <script>
+        (function() {
+            document.addEventListener('submit', function(event) {
+                var target = event.target;
+                if (target && target.id === 'downloadForm') {
+                    event.preventDefault();
+                }
+            }, true);
+        })();
+    </script>
+
     <!-- Critical CSS imported via Vite -->
     <script type="module" src="/src/main.ts"></script>
 
@@ -526,7 +538,7 @@
             <a href="/privacy-policy">Politique de confidentialité</a>
         </li>
         <li class="fnav-menu">
-            <a href="/copyright-claims"></a>
+            <a href="/copyright-claims">Réclamations pour atteinte aux droits d&#39;auteur</a>
         </li>
         <li class="fnav-menu">
             <a href="/fr/youtube-short-downloader">Téléchargeur de Shorts YouTube</a>
