@@ -177,6 +177,7 @@ async function main(): Promise<void> {
   }
 
   if (!siteId) {
+    console.log('Exiting early: siteId is missing');
     console.error(colors.error(`${icons.error} Error: --site argument is required.`));
     printHelp();
     process.exit(1);
@@ -235,14 +236,8 @@ ${colors.highlight('Examples:')}
 `);
 }
 
-// Run main if this is the entry point
-if (import.meta.url.startsWith('file:')) {
-  const modulePath = new URL(import.meta.url).pathname;
-  const scriptPath = process.argv[1];
-  if (modulePath === scriptPath) {
-    main();
-  }
-}
+// Run main
+main();
 
 // Export for programmatic use
 export { allValidators, getValidatorBySlug } from './validators/index.js';

@@ -22,17 +22,17 @@ export const colors = {
 };
 
 export const icons = {
-  error: '❌',      // ❌
-  warning: '⚠️',  // ⚠️
-  success: '✅',    // ✅
-  info: 'ℹ️',     // ℹ️
-  file: '📄',     // 📄
-  location: '📍', // 📍
-  component: '🔧', // 🔧
-  fix: '💡',      // 💡
-  clock: '⏱️',    // ⏱️
-  check: '✔️',    // ✔️
-  cross: '✖️',    // ✖️
+  error: '\u274C',      // ❌
+  warning: '\u26A0\uFE0F',  // ⚠️
+  success: '\u2705',    // ✅
+  info: '\u2139\uFE0F',     // ℹ️
+  file: '\uD83D\uDCC4',     // 📄
+  location: '\uD83D\uDCCD', // 📍
+  component: '\uD83D\uDD27', // 🔧
+  fix: '\uD83D\uDCA1',      // 💡
+  clock: '\u23F1\uFE0F',    // ⏱️
+  check: '\u2714\uFE0F',    // ✔️
+  cross: '\u2716\uFE0F',    // ✖️
 };
 
 // ============================================
@@ -40,26 +40,26 @@ export const icons = {
 // ============================================
 
 const box = {
-  topLeft: '┌',
-  topRight: '┐',
-  bottomLeft: '└',
-  bottomRight: '┘',
-  horizontal: '─',
-  vertical: '│',
-  teeRight: '├',
-  teeLeft: '┤',
+  topLeft: '\u250C',
+  topRight: '\u2510',
+  bottomLeft: '\u2514',
+  bottomRight: '\u2518',
+  horizontal: '\u2500',
+  vertical: '\u2502',
+  teeRight: '\u251C',
+  teeLeft: '\u2524',
 };
 
 // ============================================
 // Formatting Functions
 // ============================================
 
-export function divider(char = '─', length = 60): string {
+export function divider(char = '\u2500', length = 60): string {
   return char.repeat(length);
 }
 
 export function boxHeader(title: string, width = 60): string {
-  const padding = width - title.length - 4;
+  const padding = title.length > width - 4 ? 0 : width - title.length - 4;
   const leftPad = Math.floor(padding / 2);
   const rightPad = padding - leftPad;
 

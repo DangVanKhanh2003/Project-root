@@ -26,7 +26,7 @@ export const urlFormatValidator: Validator = {
     const files = await scanHtmlFiles({
       rootDir: targetDir,
       include: ['**/*.html'],
-      exclude: ['**/node_modules/**', '**/_templates/**'],
+      exclude: ['**/node_modules/**', '**/_templates/**', '**/404.html'],
     });
 
     for (const file of files) {

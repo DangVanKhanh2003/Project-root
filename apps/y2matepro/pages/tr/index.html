@@ -65,8 +65,147 @@
     <!-- Critical CSS imported via Vite -->
     <script type="module" src="/src/main.ts"></script>
 
-    <!-- JSON-LD Structured Data (TEMPORARILY DISABLED FOR TESTING) -->
-    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://y2matepro.com/tr/#webpage",
+      "url": "https://y2matepro.com/tr/",
+      "name": "Y2mate - YouTube İndirici",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/#website"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "@id": "https://y2matepro.com/tr/#application"
+      },
+      "inLanguage": "tr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://y2matepro.com/tr/#application",
+      "name": "Y2mate - YouTube İndirici",
+      "url": "https://y2matepro.com/tr/",
+      "description": "YouTube videolarını çevrimiçi olarak ücretsiz indirin. Videoları veya sesleri tercih ettiğiniz kalitede kaydedin. Kurulum gerektirmeden her cihazda hızlı bir şekilde çalışır.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "tr",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://y2matepro.com/tr/#faq",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/tr/#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Y2mate nedir?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Y2mate, kullanıcıların bir YouTube bağlantısını yapıştırarak videoları indirmelerine veya sese dönüştürmelerine olanak tanıyan bir çevrimiçi YouTube video indiricisidir. Araç doğrudan tarayıcıda çalışır ve kurulum gerektirmez."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Yazılım yüklemeden YouTube videolarını çevrimiçi olarak indirebilir miyim?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Evet. Y2mate tamamen çevrimiçi çalışır, bu nedenle herhangi bir uygulama veya tarayıcı uzantısı yüklemeniz gerekmez."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Y2mate hangi video çözünürlüklerini destekliyor?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Y2mate, 144p'den 1080p'ye kadar birden fazla video çözünürlüğünü destekleyerek cihazınıza ve depolama ihtiyaçlarınıza uygun kaliteyi seçmenize olanak tanır."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "YouTube videolarını MP3 dosyaları olarak nasıl indirebilirim?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "YouTube video bağlantısını Y2mate'e yapıştırın, Ses seçeneğini seçin, tercih ettiğiniz bit hızını seçin ve MP3 dosyasını indirmek için Dönüştür'e tıklayın."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Y2mate, YouTube Shorts indirmeyi destekliyor mu?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Evet. Y2mate, çevrimdışı görüntüleme veya dinleme için YouTube Shorts'u video veya ses dosyaları olarak indirmenize olanak tanır."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Y2mate kullanarak video indirmek güvenli midir?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Y2mate, basit ve temiz bir indirme deneyimi sağlamak için tasarlanmıştır ve kişisel bilgi gerektirmez."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Y2mate'ten indirilen videoları nasıl kullanmalıyım?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Y2mate ile indirilen videolar ve ses dosyaları, çevrimdışı görüntüleme veya dinleme gibi kişisel amaçlar için kullanılmalıdır. İndirilen içeriğin nasıl kullanıldığından kullanıcılar sorumludur ve YouTube'daki içerik sahiplerinin haklarına saygı göstermelidir."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Uzun videolar için en iyi kalite seçeneği nedir?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Uzun videolar için 720p genellikle video kalitesi ve dosya boyutu arasında iyi bir denge sağlar."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://y2matepro.com/tr/#howto",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/tr/#webpage"
+      },
+      "name": "Saniyeler İçinde YouTube Videoları Nasıl İndirilir",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "text": "YouTube bağlantısını yapıştırın: Bir YouTube videosunun veya YouTube Shorts'un URL'sini kopyalayın ve indirme kutusuna yapıştırın."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "text": "Bağlantıyı analiz edin: Mevcut formatları ve kalite seçeneklerini görüntülemek için başlat düğmesine tıklayın."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "text": "Video veya ses seçin: Video için MP4'ü veya ses için MP3'ü seçin, ardından tercih ettiğiniz çözünürlüğü veya bit hızını seçin."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "text": "İndirin: \"Dönüştür\"e tıklayın ve dosyayı oturum açmadan doğrudan cihazınıza indirin."
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body>

@@ -65,8 +65,158 @@
     <!-- Critical CSS imported via Vite -->
     <script type="module" src="/src/main.ts"></script>
 
-    <!-- JSON-LD Structured Data (TEMPORARILY DISABLED FOR TESTING) -->
-    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://y2matepro.com/tr/youtube-to-mp4#webpage",
+      "url": "https://y2matepro.com/tr/youtube-to-mp4",
+      "name": "YouTube'dan MP4'e Dönüştürücü",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/#website"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "@id": "https://y2matepro.com/tr/youtube-to-mp4#application"
+      },
+      "inLanguage": "tr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://y2matepro.com/tr/youtube-to-mp4#application",
+      "name": "YouTube'dan MP4'e Dönüştürücü",
+      "url": "https://y2matepro.com/tr/youtube-to-mp4",
+      "description": "YouTube videolarını birden fazla çözünürlük seçeneği ve tamamen entegre ses ile MP4 formatına dönüştüren çevrimiçi bir sistem.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "tr",
+      "publisher": {
+        "@id": "https://y2matepro.com/#organization"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://y2matepro.com/tr/youtube-to-mp4#faq",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/tr/youtube-to-mp4#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Bir YouTube videosunu MP4'e nasıl dönüştürürüm?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "YouTube video bağlantısını giriş kutusuna yapıştırın, Başlat'a tıklayın, bir MP4 çözünürlüğü seçin ve videoyu doğrudan cihazınıza indirin."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Y2Mate ücretsiz mi?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Evet. YouTube videolarını kayıt veya ödeme olmadan ücretsiz olarak MP4'e dönüştürebilir ve indirebilirsiniz."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Herhangi bir yazılım veya tarayıcı uzantısı yüklemem gerekiyor mu?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Hayır. Y2Mate tamamen web tarayıcınızda çevrimiçi çalışır. Uygulama veya uzantı gerekmez."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Hangi MP4 çözünürlükleri destekleniyor?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Y2Mate, orijinal video kalitesine bağlı olarak 144p'den 1080p Full HD'ye kadar MP4 çözünürlüklerini destekler."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Bu YouTube'dan MP4'e dönüştürücüyü mobil cihazlarda kullanabilir miyim?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Evet. Y2Mate, herhangi bir modern web tarayıcısı aracılığıyla iPhone, Android, tabletler ve masaüstü bilgisayarlarda çalışır."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Neden bazı YouTube videolarını indiremiyorum?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Özel videolar çevrimiçi dönüştürücüler tarafından işlenemez."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Y2Mate kullanarak YouTube videoları indirmek güvenli mi?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Evet. Y2Mate hesap girişi, yazılım yüklemesi veya özel izinler gerektirmez."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "İndirme limiti var mı?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Hayır. İstediğiniz kadar YouTube videosunu MP4'e dönüştürebilir ve indirebilirsiniz."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "İndirilen MP4 dosyası tüm cihazlarda çalışacak mı?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Evet. MP4, yaygın olarak desteklenen bir formattır ve akıllı telefonlar, bilgisayarlar, akıllı TV'ler ve çoğu medya oynatıcıda çalışır."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://y2matepro.com/tr/youtube-to-mp4#howto",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/tr/youtube-to-mp4#webpage"
+      },
+      "name": "YouTube'u MP4'e Nasıl Dönüştürülür",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "text": "Video bağlantısını girin: YouTube URL'sini kopyalayın ve giriş alanına yapıştırın."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "text": "Kaynağı analiz edin: Mevcut MP4 akışlarını almak için \"Başlat\"a tıklayın."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "text": "Çözünürlük seçin: 144p, 360p, 480p, 720p HD veya 1080p Full HD'yi seçin."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "text": "Dönüştür ve İndir: MP4 dosyasını oluşturmak ve doğrudan cihazınıza indirmek için \"Dönüştür\"e tıklayın."
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body>

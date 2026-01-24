@@ -65,8 +65,147 @@
     <!-- Critical CSS imported via Vite -->
     <script type="module" src="/src/main.ts"></script>
 
-    <!-- JSON-LD Structured Data (TEMPORARILY DISABLED FOR TESTING) -->
-    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://y2matepro.com/ja/#webpage",
+      "url": "https://y2matepro.com/ja/",
+      "name": "Y2mate - YouTubeダウンローダー",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/#website"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "@id": "https://y2matepro.com/ja/#application"
+      },
+      "inLanguage": "ja"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://y2matepro.com/ja/#application",
+      "name": "Y2mate - YouTubeダウンローダー",
+      "url": "https://y2matepro.com/ja/",
+      "description": "YouTube動画をオンラインで無料でダウンロードします。お好みの品質で動画や音声を保存します。インストールなしでどのデバイスでも高速に動作します。",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "ja",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://y2matepro.com/ja/#faq",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/ja/#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Y2mateとは何ですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Y2mateは、ユーザーがYouTubeリンクを貼り付けることで動画をダウンロードしたり、音声に変換したりできるオンラインYouTube動画ダウンローダーです。このツールはブラウザで直接動作し、インストールは必要ありません。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "ソフトウェアをインストールせずにオンラインでYouTube動画をダウンロードできますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "はい。Y2mateは完全にオンラインで動作するため、アプリやブラウザ拡張機能をインストールする必要はありません。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Y2mateはどの動画解像度をサポートしていますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Y2mateは144pから1080pまでの複数の動画解像度をサポートしており、お使いのデバイスとストレージのニーズに合った品質を選択できます。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "YouTube動画をMP3ファイルとしてダウンロードするにはどうすればよいですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "YouTube動画のリンクをY2mateに貼り付け、音声オプションを選択し、希望のビットレートを選択して、変換をクリックしてMP3ファイルをダウンロードします。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Y2mateはYouTubeショートのダウンロードをサポートしていますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "はい。Y2mateを使用すると、オフラインでの視聴やリスニングのためにYouTubeショートを動画または音声ファイルとしてダウンロードできます。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Y2mateを使用して動画をダウンロードするのは安全ですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Y2mateは、シンプルでクリーンなダウンロード体験を提供することを目的としており、個人情報は必要ありません。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Y2mateからダウンロードした動画はどのように使用すればよいですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Y2mateでダウンロードした動画や音声ファイルは、オフラインでの視聴やリスニングなどの個人的な目的で使用する必要があります。ダウンロードしたコンテンツの使用方法についてはユーザーが責任を負い、YouTubeのコンテンツ所有者の権利を尊重する必要があります。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "長い動画に最適な品質オプションは何ですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "長い動画の場合、通常は720pが画質とファイルサイズのバランスが良いです。"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://y2matepro.com/ja/#howto",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/ja/#webpage"
+      },
+      "name": "数秒でYouTube動画をダウンロードする方法",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "text": "YouTubeリンクを貼り付けます: YouTube動画またはYouTubeショートのURLをコピーして、ダウンロードボックスに貼り付けます。"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "text": "リンクを分析します: 開始ボタンをクリックして、利用可能な形式と品質オプションを表示します。"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "text": "動画または音声を選択します: 動画の場合はMP4、音声の場合はMP3を選択し、次に希望の解像度またはビットレートを選択します。"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "text": "ダウンロード: 「変換」をクリックして、サインインせずにデバイスに直接ファイルをダウンロードします。"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body>

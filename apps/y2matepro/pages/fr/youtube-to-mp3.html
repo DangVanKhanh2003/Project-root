@@ -65,8 +65,121 @@
     <!-- Critical CSS imported via Vite -->
     <script type="module" src="/src/main.ts"></script>
 
-    <!-- JSON-LD Structured Data (TEMPORARILY DISABLED FOR TESTING) -->
-    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://y2matepro.com/fr/youtube-to-mp3#webpage",
+      "url": "https://y2matepro.com/fr/youtube-to-mp3",
+      "name": "Convertisseur YouTube en MP3",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/#website"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "@id": "https://y2matepro.com/fr/youtube-to-mp3#application"
+      },
+      "inLanguage": "fr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://y2matepro.com/fr/youtube-to-mp3#application",
+      "name": "Convertisseur YouTube en MP3",
+      "url": "https://y2matepro.com/fr/youtube-to-mp3",
+      "description": "Un outil de conversion YouTube en MP3 en ligne prenant en charge plusieurs options de débit binaire avec une intégrité audio préservée.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "fr",
+      "publisher": {
+        "@id": "https://y2matepro.com/#organization"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://y2matepro.com/fr/youtube-to-mp3#faq",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/fr/youtube-to-mp3#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Quelle est la différence entre les MP3 128kbps, 192kbps et 320kbps?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Le débit binaire MP3 définit la quantité de données audio encodées par seconde. Un débit binaire plus élevé conserve plus de détails audio mais entraîne une taille de fichier plus importante. 128kbps convient aux contenus basés sur la parole tels que les conférences ou les interviews. 192kbps offre un niveau équilibré de compression et de qualité sonore pour une écoute générale. 320kbps est le débit binaire MP3 standard le plus élevé et préserve le plus d'informations audio, ce qui le rend adapté à la lecture de musique sur des équipements audio de haute qualité."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Comment Y2mate préserve-t-il l'intégrité audio pendant la conversion?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Le système traite le flux audio original en continu, en maintenant la chronologie et la structure d'échantillonnage correctes. Cette approche empêche les sections perdues, la dérive temporelle ou les trames audio manquantes, garantissant que le MP3 final correspond à la durée complète de l'audio source."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Les vidéos longues ou les podcasts peuvent-ils être convertis en MP3 de manière fiable?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui. Y2mate prend en charge les contenus de longue durée, y compris les podcasts de plusieurs heures et les conférences prolongées. Le système est conçu pour traiter les flux audio continus sans interruption ni troncature."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "La conversion de YouTube en MP3 réduit-elle la qualité audio?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Le MP3 est un format de compression avec perte, ce qui signifie que certaines données audio sont réduites pendant l'encodage. Cependant, des débits binaires plus élevés tels que 192kbps et 320kbps minimisent la perte de qualité perceptible. Y2mate n'applique pas de compression supplémentaire au-delà du débit binaire sélectionné."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Les vidéos YouTube privées peuvent-elles être converties?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Non. Seules les vidéos YouTube publiques ou non répertoriées peuvent être traitées en raison des restrictions d'accès."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://y2matepro.com/fr/youtube-to-mp3#howto",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/fr/youtube-to-mp3#webpage"
+      },
+      "name": "Comment convertir YouTube en MP3",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "text": "Collez le lien de la vidéo: Copiez l'URL YouTube et collez-la dans le champ de saisie."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "text": "Sélectionnez le débit binaire: Cliquez sur \"Démarrer\" et choisissez MP3 avec une qualité de 128kbps, 192kbps ou 320kbps."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "text": "Convertir et télécharger: Cliquez sur \"Convertir\" pour générer le fichier MP3 et le télécharger directement sur votre appareil."
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body>

@@ -65,8 +65,121 @@
     <!-- Critical CSS imported via Vite -->
     <script type="module" src="/src/main.ts"></script>
 
-    <!-- JSON-LD Structured Data (TEMPORARILY DISABLED FOR TESTING) -->
-    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://y2matepro.com/id/youtube-to-mp3#webpage",
+      "url": "https://y2matepro.com/id/youtube-to-mp3",
+      "name": "Konverter YouTube ke MP3",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/#website"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "@id": "https://y2matepro.com/id/youtube-to-mp3#application"
+      },
+      "inLanguage": "id"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://y2matepro.com/id/youtube-to-mp3#application",
+      "name": "Konverter YouTube ke MP3",
+      "url": "https://y2matepro.com/id/youtube-to-mp3",
+      "description": "Alat konversi YouTube ke MP3 online yang mendukung beberapa opsi bitrate dengan integritas audio yang terjaga.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "id",
+      "publisher": {
+        "@id": "https://y2matepro.com/#organization"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://y2matepro.com/id/youtube-to-mp3#faq",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/id/youtube-to-mp3#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Apa perbedaan antara MP3 128kbps, 192kbps, dan 320kbps?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Bitrate MP3 menentukan berapa banyak data audio yang dikodekan per detik. Bitrate yang lebih tinggi mempertahankan lebih banyak detail audio tetapi menghasilkan ukuran file yang lebih besar. 128kbps cocok untuk konten berbasis ucapan seperti ceramah atau wawancara. 192kbps memberikan tingkat kompresi dan kualitas suara yang seimbang untuk pendengaran umum. 320kbps adalah bitrate MP3 standar tertinggi dan mempertahankan sebagian besar informasi audio, membuatnya cocok untuk pemutaran musik pada peralatan audio berkualitas tinggi."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Bagaimana Y2mate menjaga integritas audio selama konversi?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sistem memproses aliran audio asli secara terus-menerus, menjaga garis waktu dan struktur pengambilan sampel yang benar. Pendekatan ini mencegah bagian yang hilang, penyimpangan waktu, atau bingkai audio yang hilang, memastikan MP3 akhir cocok dengan durasi penuh audio sumber."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Bisakah video panjang atau podcast dikonversi ke MP3 dengan andal?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ya. Y2mate mendukung konten berdurasi panjang, termasuk podcast multi-jam dan ceramah yang diperpanjang. Sistem ini dirancang untuk memproses aliran audio berkelanjutan tanpa gangguan atau pemotongan."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Apakah mengonversi YouTube ke MP3 mengurangi kualitas audio?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "MP3 adalah format kompresi lossy, yang berarti beberapa data audio dikurangi selama pengkodean. Namun, bitrate yang lebih tinggi seperti 192kbps dan 320kbps meminimalkan kehilangan kualitas yang terlihat. Y2mate tidak menerapkan kompresi tambahan di luar bitrate yang dipilih."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Bisakah video YouTube pribadi dikonversi?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tidak. Hanya video YouTube Publik atau Tidak Terdaftar yang dapat diproses karena pembatasan akses."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://y2matepro.com/id/youtube-to-mp3#howto",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/id/youtube-to-mp3#webpage"
+      },
+      "name": "Cara Mengonversi YouTube ke MP3",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "text": "Tempel tautan video: Salin URL YouTube dan tempelkan ke kolom input."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "text": "Pilih bitrate: Klik \"Mulai\" dan pilih MP3 dengan kualitas 128kbps, 192kbps, atau 320kbps."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "text": "Konversi dan unduh: Klik \"Konversi\" untuk menghasilkan file MP3 dan mengunduhnya langsung ke perangkat Anda."
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body>

@@ -65,8 +65,147 @@
     <!-- Critical CSS imported via Vite -->
     <script type="module" src="/src/main.ts"></script>
 
-    <!-- JSON-LD Structured Data (TEMPORARILY DISABLED FOR TESTING) -->
-    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://y2matepro.com/de/#webpage",
+      "url": "https://y2matepro.com/de/",
+      "name": "Y2mate - YouTube Downloader",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/#website"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "@id": "https://y2matepro.com/de/#application"
+      },
+      "inLanguage": "de"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://y2matepro.com/de/#application",
+      "name": "Y2mate - YouTube Downloader",
+      "url": "https://y2matepro.com/de/",
+      "description": "Laden Sie YouTube-Videos kostenlos online herunter. Speichern Sie Videos oder Audio in der von Ihnen bevorzugten Qualität. Funktioniert schnell auf jedem Gerät ohne Installation.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "de",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://y2matepro.com/de/#faq",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/de/#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Was ist Y2mate?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Y2mate ist ein Online-YouTube-Video-Downloader, mit dem Benutzer Videos herunterladen oder in Audio umwandeln können, indem sie einen YouTube-Link einfügen. Das Tool funktioniert direkt im Browser und erfordert keine Installation."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Kann ich YouTube-Videos online herunterladen, ohne Software zu installieren?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ja. Y2mate funktioniert vollständig online, sodass Sie keine Apps oder Browser-Erweiterungen installieren müssen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Welche Videoauflösungen unterstützt Y2mate?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Y2mate unterstützt mehrere Videoauflösungen von 144p bis 1080p, sodass Sie die Qualität wählen können, die zu Ihrem Gerät und Ihren Speicheranforderungen passt."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wie kann ich YouTube-Videos als MP3-Dateien herunterladen?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Fügen Sie den YouTube-Videolink in Y2mate ein, wählen Sie die Audiooption, wählen Sie Ihre bevorzugte Bitrate und klicken Sie auf „Konvertieren“, um die MP3-Datei herunterzuladen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Unterstützt Y2mate das Herunterladen von YouTube Shorts?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ja. Mit Y2mate können Sie YouTube Shorts als Video- oder Audiodateien zur Offline-Ansicht oder zum Anhören herunterladen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Ist es sicher, Videos mit Y2mate herunterzuladen?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Y2mate wurde entwickelt, um ein einfaches und sauberes Download-Erlebnis zu bieten und erfordert keine persönlichen Informationen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wie sollte ich mit Y2mate heruntergeladene Videos verwenden?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mit Y2mate heruntergeladene Videos und Audiodateien sollten für persönliche Zwecke wie Offline-Ansicht oder Anhören verwendet werden. Die Benutzer sind für die Verwendung der heruntergeladenen Inhalte verantwortlich und sollten die Rechte der Inhaltseigentümer auf YouTube respektieren."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Was ist die beste Qualitätsoption für lange Videos?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Für lange Videos ist 720p normalerweise ein guter Kompromiss zwischen Videoqualität und Dateigröße."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://y2matepro.com/de/#howto",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/de/#webpage"
+      },
+      "name": "So laden Sie YouTube-Videos in Sekunden herunter",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "text": "YouTube-Link einfügen: Kopieren Sie die URL eines YouTube-Videos oder YouTube Shorts und fügen Sie sie in das Download-Feld ein."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "text": "Link analysieren: Klicken Sie auf die Start-Schaltfläche, um verfügbare Formate und Qualitätsoptionen anzuzeigen."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "text": "Video oder Audio auswählen: Wählen Sie MP4 für Video oder MP3 für Audio und dann Ihre bevorzugte Auflösung oder Bitrate."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "text": "Herunterladen: Klicken Sie auf „Konvertieren“ und laden Sie die Datei direkt auf Ihr Gerät herunter, ohne sich anzumelden."
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body>

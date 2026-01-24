@@ -65,8 +65,121 @@
     <!-- Critical CSS imported via Vite -->
     <script type="module" src="/src/main.ts"></script>
 
-    <!-- JSON-LD Structured Data (TEMPORARILY DISABLED FOR TESTING) -->
-    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://y2matepro.com/th/youtube-to-mp3#webpage",
+      "url": "https://y2matepro.com/th/youtube-to-mp3",
+      "name": "เครื่องมือแปลง YouTube เป็น MP3",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/#website"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "@id": "https://y2matepro.com/th/youtube-to-mp3#application"
+      },
+      "inLanguage": "th"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://y2matepro.com/th/youtube-to-mp3#application",
+      "name": "เครื่องมือแปลง YouTube เป็น MP3",
+      "url": "https://y2matepro.com/th/youtube-to-mp3",
+      "description": "เครื่องมือแปลง YouTube เป็น MP3 ออนไลน์ที่รองรับตัวเลือกบิตเรตหลายแบบพร้อมคุณภาพเสียงที่คงไว้",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "th",
+      "publisher": {
+        "@id": "https://y2matepro.com/#organization"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://y2matepro.com/th/youtube-to-mp3#faq",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/th/youtube-to-mp3#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "ความแตกต่างระหว่าง MP3 128kbps, 192kbps และ 320kbps คืออะไร?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "บิตเรต MP3 กำหนดปริมาณข้อมูลเสียงที่เข้ารหัสต่อวินาที บิตเรตที่สูงขึ้นจะเก็บรายละเอียดเสียงได้มากขึ้น แต่ส่งผลให้ขนาดไฟล์ใหญ่ขึ้น 128kbps เหมาะสำหรับเนื้อหาที่เน้นเสียงพูด เช่น การบรรยายหรือการสัมภาษณ์ 192kbps ให้ระดับการบีบอัดและคุณภาพเสียงที่สมดุลสำหรับการฟังทั่วไป 320kbps เป็นบิตเรต MP3 มาตรฐานสูงสุดและรักษาข้อมูลเสียงส่วนใหญ่ ทำให้เหมาะสำหรับการเล่นเพลงบนอุปกรณ์เสียงคุณภาพสูง"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Y2mate รักษาคุณภาพเสียงระหว่างการแปลงได้อย่างไร?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ระบบจะประมวลผลสตรีมเสียงต้นฉบับอย่างต่อเนื่อง โดยรักษาไทม์ไลน์และโครงสร้างการสุ่มตัวอย่างที่ถูกต้อง วิธีการนี้จะป้องกันส่วนที่หายไป การเลื่อนเวลา หรือเฟรมเสียงที่หายไป ทำให้มั่นใจได้ว่า MP3 สุดท้ายจะตรงกับระยะเวลาเต็มของเสียงต้นฉบับ"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "วิดีโอหรือพอดแคสต์ขนาดยาวสามารถแปลงเป็น MP3 ได้อย่างน่าเชื่อถือหรือไม่?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ได้ Y2mate รองรับเนื้อหาที่มีระยะเวลานาน รวมถึงพอดแคสต์หลายชั่วโมงและการบรรยายที่ยาวนาน ระบบได้รับการออกแบบมาเพื่อประมวลผลสตรีมเสียงต่อเนื่องโดยไม่หยุดชะงักหรือถูกตัดทอน"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "การแปลง YouTube เป็น MP3 ลดคุณภาพเสียงหรือไม่?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "MP3 เป็นรูปแบบการบีบอัดแบบสูญเสีย ซึ่งหมายความว่าข้อมูลเสียงบางส่วนจะลดลงระหว่างการเข้ารหัส อย่างไรก็ตาม บิตเรตที่สูงขึ้น เช่น 192kbps และ 320kbps จะลดการสูญเสียคุณภาพที่รับรู้ได้ Y2mate ไม่ใช้การบีบอัดเพิ่มเติมเกินกว่าบิตเรตที่เลือก"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "สามารถแปลงวิดีโอ YouTube ส่วนตัวได้หรือไม่?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ไม่ สามารถประมวลผลได้เฉพาะวิดีโอ YouTube สาธารณะหรือที่ไม่ได้อยู่ในรายการเท่านั้น เนื่องจากข้อจำกัดในการเข้าถึง"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://y2matepro.com/th/youtube-to-mp3#howto",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/th/youtube-to-mp3#webpage"
+      },
+      "name": "วิธีแปลง YouTube เป็น MP3",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "text": "วางลิงก์วิดีโอ: คัดลอก URL ของ YouTube แล้ววางลงในช่องป้อนข้อมูล"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "text": "เลือกบิตเรต: คลิก \"เริ่ม\" แล้วเลือก MP3 ที่มีคุณภาพ 128kbps, 192kbps หรือ 320kbps"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "text": "แปลงและดาวน์โหลด: คลิก \"แปลง\" เพื่อสร้างไฟล์ MP3 และดาวน์โหลดโดยตรงไปยังอุปกรณ์ของคุณ"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body>

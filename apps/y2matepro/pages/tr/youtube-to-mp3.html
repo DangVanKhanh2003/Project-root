@@ -65,8 +65,121 @@
     <!-- Critical CSS imported via Vite -->
     <script type="module" src="/src/main.ts"></script>
 
-    <!-- JSON-LD Structured Data (TEMPORARILY DISABLED FOR TESTING) -->
-    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://y2matepro.com/tr/youtube-to-mp3#webpage",
+      "url": "https://y2matepro.com/tr/youtube-to-mp3",
+      "name": "YouTube'dan MP3'e Dönüştürücü",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/#website"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "@id": "https://y2matepro.com/tr/youtube-to-mp3#application"
+      },
+      "inLanguage": "tr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://y2matepro.com/tr/youtube-to-mp3#application",
+      "name": "YouTube'dan MP3'e Dönüştürücü",
+      "url": "https://y2matepro.com/tr/youtube-to-mp3",
+      "description": "Ses bütünlüğü korunarak birden fazla bit hızı seçeneğini destekleyen çevrimiçi bir YouTube'dan MP3'e dönüştürme aracı.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "tr",
+      "publisher": {
+        "@id": "https://y2matepro.com/#organization"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://y2matepro.com/tr/youtube-to-mp3#faq",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/tr/youtube-to-mp3#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "128kbps, 192kbps ve 320kbps MP3 arasındaki fark nedir?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "MP3 bit hızı, saniyede kodlanan ses verisi miktarını tanımlar. Daha yüksek bir bit hızı daha fazla ses ayrıntısını korur ancak daha büyük bir dosya boyutuyla sonuçlanır. 128kbps, dersler veya röportajlar gibi konuşma tabanlı içerikler için uygundur. 192kbps, genel dinleme için dengeli bir sıkıştırma ve ses kalitesi seviyesi sağlar. 320kbps, en yüksek standart MP3 bit hızıdır ve çoğu ses bilgisini korur, bu da onu yüksek kaliteli ses ekipmanlarında müzik çalmak için uygun hale getirir."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Y2mate, dönüştürme sırasında ses bütünlüğünü nasıl korur?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sistem, orijinal ses akışını sürekli olarak işler, doğru zaman çizelgesini ve örnekleme yapısını korur. Bu yaklaşım, kayıp bölümleri, zaman kaymasını veya eksik ses karelerini önleyerek, son MP3'ün kaynak sesin tam süresiyle eşleşmesini sağlar."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Uzun videolar veya podcast'ler güvenilir bir şekilde MP3'e dönüştürülebilir mi?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Evet. Y2mate, çok saatlik podcast'ler ve uzun dersler dahil olmak üzere uzun süreli içerikleri destekler. Sistem, kesintisiz veya kesilmeden sürekli ses akışlarını işlemek için tasarlanmıştır."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "YouTube'u MP3'e dönüştürmek ses kalitesini düşürür mü?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "MP3, kayıplı bir sıkıştırma formatıdır, yani kodlama sırasında bazı ses verileri azaltılır. Ancak, 192kbps ve 320kbps gibi daha yüksek bit hızları, algılanabilir kalite kaybını en aza indirir. Y2mate, seçilen bit hızının ötesinde ek sıkıştırma uygulamaz."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Özel YouTube videoları dönüştürülebilir mi?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Hayır. Erişim kısıtlamaları nedeniyle yalnızca Genel veya Listelenmemiş YouTube videoları işlenebilir."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://y2matepro.com/tr/youtube-to-mp3#howto",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/tr/youtube-to-mp3#webpage"
+      },
+      "name": "YouTube'u MP3'e Nasıl Dönüştürülür",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "text": "Video bağlantısını yapıştırın: YouTube URL'sini kopyalayın ve giriş alanına yapıştırın."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "text": "Bit hızını seçin: \"Başlat\"a tıklayın ve 128kbps, 192kbps veya 320kbps kalitesinde MP3'ü seçin."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "text": "Dönüştür ve indir: MP3 dosyasını oluşturmak ve doğrudan cihazınıza indirmek için \"Dönüştür\"e tıklayın."
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body>

@@ -65,8 +65,158 @@
     <!-- Critical CSS imported via Vite -->
     <script type="module" src="/src/main.ts"></script>
 
-    <!-- JSON-LD Structured Data (TEMPORARILY DISABLED FOR TESTING) -->
-    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://y2matepro.com/ko/youtube-to-mp4#webpage",
+      "url": "https://y2matepro.com/ko/youtube-to-mp4",
+      "name": "YouTube를 MP4로 변환",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/#website"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "@id": "https://y2matepro.com/ko/youtube-to-mp4#application"
+      },
+      "inLanguage": "ko"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://y2matepro.com/ko/youtube-to-mp4#application",
+      "name": "YouTube를 MP4로 변환",
+      "url": "https://y2matepro.com/ko/youtube-to-mp4",
+      "description": "여러 해상도 옵션과 완전히 통합된 오디오로 YouTube 비디오를 MP4 형식으로 변환하는 온라인 시스템.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "ko",
+      "publisher": {
+        "@id": "https://y2matepro.com/#organization"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://y2matepro.com/ko/youtube-to-mp4#faq",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/ko/youtube-to-mp4#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "YouTube 비디오를 MP4로 어떻게 변환하나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "YouTube 비디오 링크를 입력 상자에 붙여넣고 시작을 클릭한 다음 MP4 해상도를 선택하고 비디오를 기기로 직접 다운로드합니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Y2Mate는 무료인가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "예. 등록이나 결제 없이 무료로 YouTube 비디오를 MP4로 변환하고 다운로드할 수 있습니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "소프트웨어나 브라우저 확장 프로그램을 설치해야 하나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "아니요. Y2Mate는 웹 브라우저에서 완전히 온라인으로 작동합니다. 앱이나 확장 프로그램이 필요하지 않습니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "어떤 MP4 해상도가 지원되나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Y2Mate는 원본 비디오 품질에 따라 144p에서 1080p Full HD까지의 MP4 해상도를 지원합니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "모바일 기기에서 이 YouTube to MP4 변환기를 사용할 수 있나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "예. Y2Mate는 모든 최신 웹 브라우저를 통해 iPhone, Android, 태블릿 및 데스크톱 컴퓨터에서 작동합니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "일부 YouTube 비디오를 다운로드할 수 없는 이유는 무엇인가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "비공개 비디오는 온라인 변환기에서 처리할 수 없습니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Y2Mate를 사용하여 YouTube 비디오를 다운로드하는 것이 안전한가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "예. Y2Mate는 계정 로그인, 소프트웨어 설치 또는 특별한 권한이 필요하지 않습니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "다운로드 제한이 있나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "아니요. 원하는 만큼 YouTube 비디오를 MP4로 변환하고 다운로드할 수 있습니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "다운로드한 MP4 파일이 모든 기기에서 작동하나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "예. MP4는 널리 지원되는 형식으로 스마트폰, 컴퓨터, 스마트 TV 및 대부분의 미디어 플레이어에서 작동합니다."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://y2matepro.com/ko/youtube-to-mp4#howto",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/ko/youtube-to-mp4#webpage"
+      },
+      "name": "YouTube를 MP4로 변환하는 방법",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "text": "비디오 링크 입력: YouTube URL을 복사하여 입력 필드에 붙여넣습니다."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "text": "소스 분석: 사용 가능한 MP4 스트림을 검색하려면 \"시작\"을 클릭합니다."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "text": "해상도 선택: 144p, 360p, 480p, 720p HD 또는 1080p Full HD를 선택합니다."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "text": "변환 및 다운로드: MP4 파일을 생성하고 장치에 직접 다운로드하려면 \"변환\"을 클릭합니다."
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body>

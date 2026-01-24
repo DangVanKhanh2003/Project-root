@@ -65,8 +65,158 @@
     <!-- Critical CSS imported via Vite -->
     <script type="module" src="/src/main.ts"></script>
 
-    <!-- JSON-LD Structured Data (TEMPORARILY DISABLED FOR TESTING) -->
-    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://y2matepro.com/my/youtube-to-mp4#webpage",
+      "url": "https://y2matepro.com/my/youtube-to-mp4",
+      "name": "YouTube မှ MP4 သို့ ပြောင်းစက်",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/#website"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "@id": "https://y2matepro.com/my/youtube-to-mp4#application"
+      },
+      "inLanguage": "my"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://y2matepro.com/my/youtube-to-mp4#application",
+      "name": "YouTube မှ MP4 သို့ ပြောင်းစက်",
+      "url": "https://y2matepro.com/my/youtube-to-mp4",
+      "description": "YouTube ဗီဒီယိုများကို ရုပ်ထွက်ရွေးချယ်စရာများစွာနှင့် အပြည့်အဝပေါင်းစည်းထားသော အသံဖြင့် MP4 ဖော်မတ်သို့ ပြောင်းလဲသော အွန်လိုင်းစနစ်တစ်ခု။",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "my",
+      "publisher": {
+        "@id": "https://y2matepro.com/#organization"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://y2matepro.com/my/youtube-to-mp4#faq",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/my/youtube-to-mp4#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "YouTube ဗီဒီယိုကို MP4 သို့ ဘယ်လိုပြောင်းမလဲ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "YouTube ဗီဒီယိုလင့်ခ်ကို input box တွင် ကူးထည့်ပါ၊ Start ကို နှိပ်ပါ၊ MP4 ရုပ်ထွက်ကို ရွေးချယ်ပြီး ဗီဒီယိုကို သင့်စက်ပစ္စည်းသို့ တိုက်ရိုက်ဒေါင်းလုဒ်လုပ်ပါ။"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Y2Mate ကို အခမဲ့အသုံးပြုနိုင်ပါသလား?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ဟုတ်ကဲ့။ မှတ်ပုံတင်ခြင်း သို့မဟုတ် ငွေပေးချေခြင်းမရှိဘဲ YouTube ဗီဒီယိုများကို MP4 သို့ အခမဲ့ပြောင်းလဲပြီး ဒေါင်းလုဒ်လုပ်နိုင်ပါသည်။"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "ဆော့ဖ်ဝဲ သို့မဟုတ် ဘရောက်ဆာ extension တပ်ဆင်ရန် လိုအပ်ပါသလား?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "မလိုအပ်ပါ။ Y2Mate သည် သင့်ဝဘ်ဘရောက်ဆာတွင် လုံးဝအွန်လိုင်းတွင် အလုပ်လုပ်ပါသည်။ အက်ပ် သို့မဟုတ် extension မလိုအပ်ပါ။"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "မည်သည့် MP4 ရုပ်ထွက်များကို ပံ့ပိုးပေးပါသနည်း?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Y2Mate သည် မူရင်းဗီဒီယိုအရည်အသွေးပေါ် မူတည်၍ 144p မှ 1080p Full HD အထိ MP4 ရုပ်ထွက်များကို ပံ့ပိုးပေးပါသည်။"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "ဤ YouTube မှ MP4 သို့ ပြောင်းစက်ကို မိုဘိုင်းစက်ပစ္စည်းများတွင် အသုံးပြုနိုင်ပါသလား?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ဟုတ်ကဲ့။ Y2Mate သည် မည်သည့်ခေတ်မီဝဘ်ဘရောက်ဆာမှတဆင့် iPhone၊ Android၊ tablet များနှင့် desktop ကွန်ပျူတာများတွင် အလုပ်လုပ်ပါသည်။"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "အချို့ YouTube ဗီဒီယိုများကို အဘယ်ကြောင့် ဒေါင်းလုဒ်မလုပ်နိုင်သနည်း?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ကိုယ်ပိုင်ဗီဒီယိုများကို အွန်လိုင်း converter များမှ လုပ်ဆောင်၍ မရပါ။"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Y2Mate ကို အသုံးပြု၍ YouTube ဗီဒီယိုများဒေါင်းလုဒ်လုပ်ခြင်း လုံခြုံပါသလား?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ဟုတ်ကဲ့။ Y2Mate သည် အကောင့်ဝင်ခြင်း၊ ဆော့ဖ်ဝဲတပ်ဆင်ခြင်း သို့မဟုတ် အထူးခွင့်ပြုချက်များ မလိုအပ်ပါ။"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "ဒေါင်းလုဒ်ကန့်သတ်ချက်များ ရှိပါသလား?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "မရှိပါ။ သင်လိုချင်သလောက် YouTube ဗီဒီယိုများကို MP4 သို့ ပြောင်းလဲပြီး ဒေါင်းလုဒ်လုပ်နိုင်ပါသည်။"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "ဒေါင်းလုဒ်လုပ်ထားသော MP4 ဖိုင်သည် စက်ပစ္စည်းအားလုံးတွင် အလုပ်လုပ်ပါသလား?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ဟုတ်ကဲ့။ MP4 သည် ကျယ်ပြန့်စွာ ပံ့ပိုးထားသော ဖော်မတ်ဖြစ်ပြီး smartphone များ၊ ကွန်ပျူတာများ၊ smart TV များနှင့် media player အများစုတွင် အလုပ်လုပ်ပါသည်။"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://y2matepro.com/my/youtube-to-mp4#howto",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/my/youtube-to-mp4#webpage"
+      },
+      "name": "YouTube ကို MP4 သို့ ဘယ်လိုပြောင်းမလဲ",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "text": "ဗီဒီယိုလင့်ခ်ကို ထည့်သွင်းပါ: YouTube URL ကို ကူးယူပြီး input field တွင် ကူးထည့်ပါ။"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "text": "ရင်းမြစ်ကို ခွဲခြမ်းစိတ်ဖြာပါ: ရရှိနိုင်သော MP4 stream များကို ထုတ်ယူရန် \"Start\" ကို နှိပ်ပါ။"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "text": "ရုပ်ထွက်ကို ရွေးချယ်ပါ: 144p၊ 360p၊ 480p၊ 720p HD သို့မဟုတ် 1080p Full HD ကို ရွေးချယ်ပါ။"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "text": "ပြောင်းလဲပြီး ဒေါင်းလုဒ်လုပ်ပါ: MP4 ဖိုင်ကို ဖန်တီးပြီး သင့်စက်ပစ္စည်းသို့ တိုက်ရိုက်ဒေါင်းလုဒ်လုပ်ရန် \"Convert\" ကို နှိပ်ပါ။"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body>

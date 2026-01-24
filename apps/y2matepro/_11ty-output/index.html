@@ -65,8 +65,173 @@
     <!-- Critical CSS imported via Vite -->
     <script type="module" src="/src/main.ts"></script>
 
-    <!-- JSON-LD Structured Data (TEMPORARILY DISABLED FOR TESTING) -->
-    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://y2matepro.com/#organization",
+      "name": "Y2mate",
+      "url": "https://y2matepro.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://y2matepro.com/logo.png"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "email": "y2matepro@gmail.com"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://y2matepro.com/#website",
+      "name": "Y2mate",
+      "url": "https://y2matepro.com",
+      "description": "Quickly download videos and audio from YouTube. Supports MP4, MP3, SD and Full HD. A simple and easy-to-use online YouTube downloader.",
+      "inLanguage": "en",
+      "publisher": {
+        "@id": "https://y2matepro.com/#organization"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://y2matepro.com/#webpage",
+      "url": "https://y2matepro.com/",
+      "name": "Y2mate - YouTube Downloader",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/#website"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "@id": "https://y2matepro.com/#application"
+      },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://y2matepro.com/#application",
+      "name": "Y2mate - YouTube Downloader",
+      "url": "https://y2matepro.com/",
+      "description": "Download YouTube videos online for free. Save videos or audio in the quality you prefer. Works quickly on any device without installation.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "en",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://y2matepro.com/#faq",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Y2mate?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Y2mate is an online YouTube video downloader that allows users to download videos or convert them to audio by pasting a YouTube link. The tool works directly in the browser and does not require installation."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I download YouTube videos online without installing software?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Y2mate works entirely online, so you do not need to install any apps or browser extensions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What video resolutions does Y2mate support?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Y2mate supports multiple video resolutions ranging from 144p up to 1080p, allowing you to choose the quality that fits your device and storage needs."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How can I download YouTube videos as MP3 files?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Paste the YouTube video link into Y2mate, select the Audio option, choose your preferred bitrate, and click Convert to download the MP3 file."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Y2mate support downloading YouTube Shorts?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Y2mate allows you to download YouTube Shorts as video or audio files for offline viewing or listening."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is it safe to download videos using Y2mate?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Y2mate is designed to provide a simple and clean download experience and does not require personal information."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How should I use videos downloaded from Y2mate?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Videos and audio files downloaded with Y2mate should be used for personal purposes such as offline viewing or listening. Users are responsible for how the downloaded content is used and should respect the rights of content owners on YouTube."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the best quality option for long videos?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For long videos, 720p is usually a good balance between video quality and file size."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://y2matepro.com/#howto",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/#webpage"
+      },
+      "name": "How to Download YouTube Videos in Seconds",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "text": "Paste the YouTube link: Copy the URL of a YouTube video or YouTube Shorts and paste it into the download box."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "text": "Analyze the link: Click the start button to display available formats and quality options."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "text": "Choose video or audio: Select MP4 for video or MP3 for audio, then choose your preferred resolution or bitrate."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "text": "Download: Click \"Convert\" and download the file directly to your device without signing in."
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body>

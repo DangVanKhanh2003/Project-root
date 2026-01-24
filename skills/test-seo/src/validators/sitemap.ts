@@ -111,7 +111,7 @@ export const sitemapValidator: Validator = {
         logger.error({
           file: relativePath,
           component: 'Sitemap',
-          issue: `Sitemap has too many URLs (${urls.length})`,
+          issue: `Too many URLs (${urls.length})`,
           reason: 'A single sitemap file can have a maximum of 50,000 URLs.',
           fix: 'Split the sitemap into multiple smaller files using a sitemap index.',
         });

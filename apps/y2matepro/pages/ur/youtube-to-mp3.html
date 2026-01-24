@@ -65,8 +65,129 @@
     <!-- Critical CSS imported via Vite -->
     <script type="module" src="/src/main.ts"></script>
 
-    <!-- JSON-LD Structured Data (TEMPORARILY DISABLED FOR TESTING) -->
-    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://y2matepro.com/ur/youtube-to-mp3#webpage",
+      "url": "https://y2matepro.com/ur/youtube-to-mp3",
+      "name": "یوٹیوب سے MP3 کنورٹر",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/#website"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "@id": "https://y2matepro.com/ur/youtube-to-mp3#application"
+      },
+      "inLanguage": "ur"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://y2matepro.com/ur/youtube-to-mp3#application",
+      "name": "یوٹیوب سے MP3 کنورٹر",
+      "url": "https://y2matepro.com/ur/youtube-to-mp3",
+      "description": "ایک آن لائن یوٹیوب سے MP3 کنورژن ٹول جو محفوظ آڈیو سالمیت کے ساتھ متعدد بٹ ریٹ کے اختیارات کو سپورٹ کرتا ہے۔",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "ur",
+      "publisher": {
+        "@id": "https://y2matepro.com/#organization"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://y2matepro.com/ur/youtube-to-mp3#faq",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/ur/youtube-to-mp3#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "128kbps، 192kbps، اور 320kbps MP3 کے درمیان کیا فرق ہے؟",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "MP3 بٹ ریٹ فی سیکنڈ انکوڈ کیے گئے آڈیو ڈیٹا کی مقدار کی وضاحت کرتا ہے۔ ایک اعلی بٹ ریٹ زیادہ آڈیو تفصیلات کو برقرار رکھتا ہے لیکن اس کے نتیجے میں فائل کا سائز بڑا ہوتا ہے۔ 128kbps لیکچرز یا انٹرویوز جیسے تقریر پر مبنی مواد کے لیے موزوں ہے۔ 192kbps عام سننے کے لیے کمپریشن اور آواز کی کوالٹی کا ایک متوازن سطح فراہم کرتا ہے۔ 320kbps سب سے زیادہ معیاری MP3 بٹ ریٹ ہے اور زیادہ تر آڈیو معلومات کو محفوظ رکھتا ہے، جو اسے اعلی کوالٹی کے آڈیو آلات پر موسیقی پلے بیک کے لیے موزوں بناتا ہے۔"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "کنورژن کے دوران Y2mate آڈیو سالمیت کو کیسے محفوظ رکھتا ہے؟",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "سسٹم اصل آڈیو اسٹریم کو مسلسل پروسیس کرتا ہے، درست ٹائم لائن اور سیمپلنگ ڈھانچے کو برقرار رکھتا ہے۔ یہ طریقہ کار گمشدہ حصوں، ٹائمنگ ڈرفٹ، یا گمشدہ آڈیو فریموں کو روکتا ہے، اس بات کو یقینی بناتا ہے کہ حتمی MP3 ماخذ آڈیو کی مکمل مدت سے میل کھاتا ہے۔"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "کیا طویل ویڈیوز یا پوڈ کاسٹ کو MP3 میں قابل اعتماد طریقے سے تبدیل کیا جا سکتا ہے؟",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ہاں۔ Y2mate طویل دورانیے کے مواد کو سپورٹ کرتا ہے، جس میں کئی گھنٹے کے پوڈ کاسٹ اور توسیع شدہ لیکچرز شامل ہیں۔ سسٹم کو بغیر کسی رکاوٹ یا کٹائی کے مسلسل آڈیو اسٹریمز کو پروسیس کرنے کے لیے ڈیزائن کیا گیا ہے۔"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "کیا یوٹیوب کو MP3 میں تبدیل کرنے سے آڈیو کوالٹی کم ہو جاتی ہے؟",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "MP3 ایک لوسی کمپریشن فارمیٹ ہے، جس کا مطلب ہے کہ انکوڈنگ کے دوران کچھ آڈیو ڈیٹا کم ہو جاتا ہے۔ تاہم، 192kbps اور 320kbps جیسے اعلی بٹ ریٹ قابل ادراک کوالٹی کے نقصان کو کم کرتے ہیں۔ Y2mate منتخب بٹ ریٹ سے آگے اضافی کمپریشن لاگو نہیں کرتا ہے۔"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "کیا کنورژن کے دوران اشتہارات یا پاپ اپ دکھائے جاتے ہیں؟",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "نہیں Y2mate کنورژن یا ڈاؤن لوڈ کے عمل کے کسی بھی مرحلے پر اشتہارات یا پاپ اپ ظاہر نہیں کرتا ہے۔"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "کیا نجی یوٹیوب ویڈیوز کو تبدیل کیا جا سکتا ہے؟",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "نہیں رسائی کی پابندیوں کی وجہ سے صرف عوامی یا غیر فہرست شدہ یوٹیوب ویڈیوز کو پروسیس کیا جا سکتا ہے۔"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://y2matepro.com/ur/youtube-to-mp3#howto",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/ur/youtube-to-mp3#webpage"
+      },
+      "name": "یوٹیوب کو MP3 میں کیسے تبدیل کریں",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "text": "ویڈیو لنک پیسٹ کریں: یوٹیوب URL کاپی کریں اور اسے ان پٹ فیلڈ میں پیسٹ کریں۔"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "text": "بٹ ریٹ منتخب کریں: \"اسٹارٹ\" پر کلک کریں اور 128kbps، 192kbps، یا 320kbps کوالٹی کے ساتھ MP3 منتخب کریں۔"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "text": "تبدیل کریں اور ڈاؤن لوڈ کریں: MP3 فائل تیار کرنے اور اسے براہ راست اپنے آلے پر ڈاؤن لوڈ کرنے کے لیے \"کنورٹ\" پر کلک کریں۔"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body>

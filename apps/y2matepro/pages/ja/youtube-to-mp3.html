@@ -65,8 +65,121 @@
     <!-- Critical CSS imported via Vite -->
     <script type="module" src="/src/main.ts"></script>
 
-    <!-- JSON-LD Structured Data (TEMPORARILY DISABLED FOR TESTING) -->
-    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://y2matepro.com/ja/youtube-to-mp3#webpage",
+      "url": "https://y2matepro.com/ja/youtube-to-mp3",
+      "name": "YouTubeからMP3へのコンバーター",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/#website"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "@id": "https://y2matepro.com/ja/youtube-to-mp3#application"
+      },
+      "inLanguage": "ja"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://y2matepro.com/ja/youtube-to-mp3#application",
+      "name": "YouTubeからMP3へのコンバーター",
+      "url": "https://y2matepro.com/ja/youtube-to-mp3",
+      "description": "音質の整合性を保ちながら複数のビットレートオプションをサポートするオンラインYouTubeからMP3への変換ツール。",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "ja",
+      "publisher": {
+        "@id": "https://y2matepro.com/#organization"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://y2matepro.com/ja/youtube-to-mp3#faq",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/ja/youtube-to-mp3#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "128kbps、192kbps、320kbps MP3の違いは何ですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "MP3ビットレートは、1秒あたりにエンコードされるオーディオデータの量を定義します。ビットレートが高いほどオーディオの詳細が保持されますが、ファイルサイズは大きくなります。128kbpsは、講義やインタビューなどの音声ベースのコンテンツに適しています。192kbpsは、一般的なリスニングに適した圧縮と音質のバランスの取れたレベルを提供します。320kbpsは最高の標準MP3ビットレートであり、ほとんどのオーディオ情報を保持するため、高品質のオーディオ機器での音楽再生に適しています。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Y2mateは変換中にオーディオの整合性をどのように維持しますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "システムは元のオーディオストリームを継続的に処理し、正しいタイムラインとサンプリング構造を維持します。このアプローチにより、欠落したセクション、タイミングのずれ、または欠落したオーディオフレームが防止され、最終的なMP3がソースオーディオの全期間と一致することが保証されます。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "長尺動画やポッドキャストはMP3に確実に変換できますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "はい。Y2mateは、数時間のポッドキャストや長時間の講義を含む長尺コンテンツをサポートしています。システムは、中断や切り詰めなしに連続したオーディオストリームを処理するように設計されています。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "YouTubeをMP3に変換すると音質が低下しますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "MP3は非可逆圧縮形式であり、エンコード中に一部のオーディオデータが削減されます。ただし、192kbpsや320kbpsなどの高いビットレートは、知覚できる音質低下を最小限に抑えます。Y2mateは、選択したビットレートを超えて追加の圧縮を適用しません。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "プライベートなYouTube動画は変換できますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "いいえ。アクセス制限のため、公開または非公開のYouTube動画のみ処理できます。"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://y2matepro.com/ja/youtube-to-mp3#howto",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/ja/youtube-to-mp3#webpage"
+      },
+      "name": "YouTubeをMP3に変換する方法",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "text": "動画リンクを貼り付け: YouTubeのURLをコピーして入力フィールドに貼り付けます。"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "text": "ビットレートを選択: 「開始」をクリックし、128kbps、192kbps、または320kbpsの品質でMP3を選択します。"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "text": "変換してダウンロード: 「変換」をクリックしてMP3ファイルを生成し、デバイスに直接ダウンロードします。"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body>

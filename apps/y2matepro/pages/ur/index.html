@@ -65,8 +65,147 @@
     <!-- Critical CSS imported via Vite -->
     <script type="module" src="/src/main.ts"></script>
 
-    <!-- JSON-LD Structured Data (TEMPORARILY DISABLED FOR TESTING) -->
-    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://y2matepro.com/ur/#webpage",
+      "url": "https://y2matepro.com/ur/",
+      "name": "Y2mate - یوٹیوب ڈاؤنلوڈر",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/#website"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "@id": "https://y2matepro.com/ur/#application"
+      },
+      "inLanguage": "ur"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://y2matepro.com/ur/#application",
+      "name": "Y2mate - یوٹیوب ڈاؤنلوڈر",
+      "url": "https://y2matepro.com/ur/",
+      "description": "یوٹیوب ویڈیوز آن لائن مفت میں ڈاؤن لوڈ کریں۔ اپنی پسند کے معیار میں ویڈیوز یا آڈیو محفوظ کریں۔ کسی بھی ڈیوائس پر بغیر انسٹالیشن کے تیزی سے کام کرتا ہے۔",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "ur",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://y2matepro.com/ur/#faq",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/ur/#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Y2mate کیا ہے؟",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Y2mate ایک آن لائن یوٹیوب ویڈیو ڈاؤنلوڈر ہے جو صارفین کو یوٹیوب لنک پیسٹ کرکے ویڈیوز ڈاؤن لوڈ کرنے یا انہیں آڈیو میں تبدیل کرنے کی اجازت دیتا ہے۔ یہ ٹول براہ راست براؤزر میں کام کرتا ہے اور اسے انسٹالیشن کی ضرورت نہیں ہے۔"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "کیا میں سافٹ ویئر انسٹال کیے بغیر یوٹیوب ویڈیوز آن لائن ڈاؤن لوڈ کر سکتا ہوں؟",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "جی ہاں۔ Y2mate مکمل طور پر آن لائن کام کرتا ہے، لہذا آپ کو کوئی ایپس یا براؤزر ایکسٹینشن انسٹال کرنے کی ضرورت نہیں ہے۔"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Y2mate کونسی ویڈیو ریزولوشنز کو سپورٹ کرتا ہے؟",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Y2mate 144p سے 1080p تک متعدد ویڈیو ریزولوشنز کو سپورٹ کرتا ہے، جس سے آپ کو وہ معیار منتخب کرنے کی اجازت ملتی ہے جو آپ کے آلے اور اسٹوریج کی ضروریات کے مطابق ہو۔"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "میں یوٹیوب ویڈیوز کو MP3 فائلوں کے طور پر کیسے ڈاؤن لوڈ کر سکتا ہوں؟",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "یوٹیوب ویڈیو لنک کو Y2mate میں پیسٹ کریں، آڈیو آپشن کو منتخب کریں، اپنی ترجیحی بٹ ریٹ کا انتخاب کریں، اور MP3 فائل ڈاؤن لوڈ کرنے کے لیے کنورٹ پر کلک کریں۔"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "کیا Y2mate یوٹیوب شارٹس ڈاؤن لوڈ کرنے کی حمایت کرتا ہے؟",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "جی ہاں۔ Y2mate آپ کو آف لائن دیکھنے یا سننے کے لیے یوٹیوب شارٹس کو ویڈیو یا آڈیو فائلوں کے طور پر ڈاؤن لوڈ کرنے کی اجازت دیتا ہے۔"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "کیا Y2mate کا استعمال کرتے ہوئے ویڈیوز ڈاؤن لوڈ کرنا محفوظ ہے؟",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Y2mate کو ایک سادہ اور صاف ڈاؤن لوڈ کا تجربہ فراہم کرنے کے لیے ڈیزائن کیا گیا ہے اور اسے ذاتی معلومات کی ضرورت نہیں ہے۔"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "مجھے Y2mate سے ڈاؤن لوڈ کی گئی ویڈیوز کو کیسے استعمال کرنا چاہئے؟",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Y2mate کے ساتھ ڈاؤن لوڈ کی گئی ویڈیوز اور آڈیو فائلوں کو ذاتی مقاصد جیسے آف لائن دیکھنے یا سننے کے لیے استعمال کیا جانا چاہئے۔ ڈاؤن لوڈ کردہ مواد کو کس طرح استعمال کیا جاتا ہے اس کے لیے صارفین ذمہ دار ہیں اور انہیں یوٹیوب پر مواد کے مالکان کے حقوق کا احترام کرنا چاہئے۔"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "لمبی ویڈیوز کے لیے بہترین کوالٹی کا آپشن کیا ہے؟",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "لمبی ویڈیوز کے لیے، 720p عام طور پر ویڈیو کے معیار اور فائل کے سائز کے درمیان ایک اچھا توازن ہے۔"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://y2matepro.com/ur/#howto",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/ur/#webpage"
+      },
+      "name": "سیکنڈوں میں یوٹیوب ویڈیوز کیسے ڈاؤن لوڈ کریں",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "text": "یوٹیوب لنک پیسٹ کریں: یوٹیوب ویڈیو یا یوٹیوب شارٹس کا یو آر ایل کاپی کریں اور اسے ڈاؤن لوڈ باکس میں پیسٹ کریں۔"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "text": "لنک کا تجزیہ کریں: دستیاب فارمیٹس اور کوالٹی کے اختیارات کو ظاہر کرنے کے لیے اسٹارٹ بٹن پر کلک کریں۔"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "text": "ویڈیو یا آڈیو منتخب کریں: ویڈیو کے لیے MP4 یا آڈیو کے لیے MP3 منتخب کریں، پھر اپنی ترجیحی ریزولوشن یا بٹ ریٹ کا انتخاب کریں۔"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "text": "ڈاؤن لوڈ کریں: \"کنورٹ\" پر کلک کریں اور سائن ان کیے بغیر فائل کو براہ راست اپنے آلے پر ڈاؤن لوڈ کریں۔"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body>

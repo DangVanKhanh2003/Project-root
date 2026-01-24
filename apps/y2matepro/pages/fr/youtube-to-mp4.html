@@ -65,8 +65,158 @@
     <!-- Critical CSS imported via Vite -->
     <script type="module" src="/src/main.ts"></script>
 
-    <!-- JSON-LD Structured Data (TEMPORARILY DISABLED FOR TESTING) -->
-    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://y2matepro.com/fr/youtube-to-mp4#webpage",
+      "url": "https://y2matepro.com/fr/youtube-to-mp4",
+      "name": "Convertisseur YouTube en MP4",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/#website"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "@id": "https://y2matepro.com/fr/youtube-to-mp4#application"
+      },
+      "inLanguage": "fr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://y2matepro.com/fr/youtube-to-mp4#application",
+      "name": "Convertisseur YouTube en MP4",
+      "url": "https://y2matepro.com/fr/youtube-to-mp4",
+      "description": "Un système en ligne qui convertit les vidéos YouTube au format MP4 avec plusieurs options de résolution et un audio entièrement intégré.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "fr",
+      "publisher": {
+        "@id": "https://y2matepro.com/#organization"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://y2matepro.com/fr/youtube-to-mp4#faq",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/fr/youtube-to-mp4#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Comment convertir une vidéo YouTube en MP4?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Collez le lien de la vidéo YouTube dans la zone de saisie, cliquez sur Démarrer, choisissez une résolution MP4 et téléchargez la vidéo directement sur votre appareil."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Y2Mate est-il gratuit?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui. Vous pouvez convertir et télécharger des vidéos YouTube en MP4 gratuitement sans inscription ni paiement."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Dois-je installer un logiciel ou une extension de navigateur?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Non. Y2Mate fonctionne entièrement en ligne dans votre navigateur web. Aucune application ni extension n'est requise."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quelles résolutions MP4 sont prises en charge?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Y2Mate prend en charge les résolutions MP4 de 144p à 1080p Full HD, selon la qualité de la vidéo originale."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Puis-je utiliser ce convertisseur YouTube en MP4 sur des appareils mobiles?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui. Y2Mate fonctionne sur iPhone, Android, tablettes et ordinateurs de bureau via n'importe quel navigateur web moderne."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Pourquoi ne puis-je pas télécharger certaines vidéos YouTube?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Les vidéos privées ne peuvent pas être traitées par les convertisseurs en ligne."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Est-il sûr de télécharger des vidéos YouTube avec Y2Mate?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui. Y2Mate ne nécessite pas de connexion à un compte, d'installation de logiciel ou de permissions spéciales."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Y a-t-il des limites de téléchargement?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Non. Vous pouvez convertir et télécharger autant de vidéos YouTube en MP4 que vous le souhaitez."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Le fichier MP4 téléchargé fonctionnera-t-il sur tous les appareils?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui. MP4 est un format largement pris en charge et fonctionne sur les smartphones, ordinateurs, téléviseurs intelligents et la plupart des lecteurs multimédias."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://y2matepro.com/fr/youtube-to-mp4#howto",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/fr/youtube-to-mp4#webpage"
+      },
+      "name": "Comment convertir YouTube en MP4",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "text": "Entrez le lien de la vidéo: Copiez l'URL YouTube et collez-la dans le champ de saisie."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "text": "Analysez la source: Cliquez sur \"Démarrer\" pour récupérer les flux MP4 disponibles."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "text": "Sélectionnez la résolution: Choisissez 144p, 360p, 480p, 720p HD ou 1080p Full HD."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "text": "Convertir et télécharger: Cliquez sur \"Convertir\" pour générer et télécharger le fichier MP4 directement sur votre appareil."
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body>

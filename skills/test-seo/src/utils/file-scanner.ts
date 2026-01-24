@@ -125,7 +125,7 @@ export async function scanLanguagePages(
  */
 function parseFilePath(relativePath: string): { language?: string; pageType?: string } {
   // Pattern: pages/{lang}/{page}.html
-  const pagesMatch = relativePath.match(/^pages\/([a-z]{2}(?:-[A-Z]{2})?)\/([^/]+)\.html$/);
+  const pagesMatch = relativePath.match(/^pages\/([a-z]{2}(?:-[A-Z]{2})?)\/(.+)\.html$/);
 
   if (pagesMatch) {
     return {

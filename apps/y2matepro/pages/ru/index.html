@@ -65,8 +65,147 @@
     <!-- Critical CSS imported via Vite -->
     <script type="module" src="/src/main.ts"></script>
 
-    <!-- JSON-LD Structured Data (TEMPORARILY DISABLED FOR TESTING) -->
-    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://y2matepro.com/ru/#webpage",
+      "url": "https://y2matepro.com/ru/",
+      "name": "Y2mate - загрузчик с YouTube",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/#website"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "@id": "https://y2matepro.com/ru/#application"
+      },
+      "inLanguage": "ru"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://y2matepro.com/ru/#application",
+      "name": "Y2mate - загрузчик с YouTube",
+      "url": "https://y2matepro.com/ru/",
+      "description": "Загружайте видео с YouTube онлайн бесплатно. Сохраняйте видео или аудио в предпочитаемом качестве. Быстро работает на любом устройстве без установки.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "ru",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://y2matepro.com/ru/#faq",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/ru/#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Что такое Y2mate?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Y2mate — это онлайн-загрузчик видео с YouTube, который позволяет пользователям загружать видео или конвертировать их в аудио, вставив ссылку на YouTube. Инструмент работает прямо в браузере и не требует установки."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Могу ли я скачивать видео с YouTube онлайн без установки программного обеспечения?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да. Y2mate работает полностью онлайн, поэтому вам не нужно устанавливать какие-либо приложения или расширения для браузера."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Какие разрешения видео поддерживает Y2mate?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Y2mate поддерживает несколько разрешений видео в диапазоне от 144p до 1080p, что позволяет вам выбрать качество, соответствующее вашему устройству и потребностям в хранилище."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Как я могу скачать видео с YouTube в виде файлов MP3?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Вставьте ссылку на видео YouTube в Y2mate, выберите опцию «Аудио», выберите предпочитаемый битрейт и нажмите «Конвертировать», чтобы загрузить файл MP3."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Поддерживает ли Y2mate загрузку YouTube Shorts?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да. Y2mate позволяет загружать YouTube Shorts в виде видео- или аудиофайлов для просмотра или прослушивания в автономном режиме."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Безопасно ли скачивать видео с помощью Y2mate?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Y2mate разработан для обеспечения простого и чистого процесса загрузки и не требует личной информации."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Как мне следует использовать видео, загруженные с Y2mate?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Видео и аудиофайлы, загруженные с помощью Y2mate, следует использовать в личных целях, таких как просмотр или прослушивание в автономном режиме. Пользователи несут ответственность за то, как используется загруженный контент, и должны уважать права владельцев контента на YouTube."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Какой вариант качества лучше всего подходит для длинных видео?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Для длинных видео 720p обычно является хорошим балансом между качеством видео и размером файла."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://y2matepro.com/ru/#howto",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/ru/#webpage"
+      },
+      "name": "Как скачать видео с YouTube за несколько секунд",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "text": "Вставьте ссылку на YouTube: скопируйте URL-адрес видео с YouTube или YouTube Shorts и вставьте его в поле загрузки."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "text": "Проанализируйте ссылку: нажмите кнопку «Пуск», чтобы отобразить доступные форматы и параметры качества."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "text": "Выберите видео или аудио: выберите MP4 для видео или MP3 для аудио, затем выберите предпочитаемое разрешение или битрейт."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "text": "Загрузить: нажмите «Конвертировать» и загрузите файл прямо на свое устройство без входа в систему."
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body>

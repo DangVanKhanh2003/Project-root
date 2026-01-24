@@ -30,19 +30,73 @@ export const sites: Record<string, SiteConfig> = {
     baseUrl: 'https://4k-downloader.com', // Placeholder
     defaultLanguage: 'en',
     supportedLanguages: ['en', 'de', 'es', 'fr', 'it', 'pt', 'ru', 'ja', 'zh'],
-    skipI18nPages: ['contact', 'privacy-policy', 'terms-of-use'],
+    skipI18nPages: ['contact', 'copyright-claims', 'privacy-policy', 'terms-of-use'],
   },
   '4kvideopro': {
     baseUrl: 'https://4kvideopro.com', // Placeholder
     defaultLanguage: 'en',
     supportedLanguages: ['en', 'de', 'es', 'fr', 'it', 'pt', 'ru', 'ja', 'zh'],
-    skipI18nPages: ['contact', 'privacy-policy', 'terms-of-use'],
+    skipI18nPages: ['contact', 'copyright-claims', 'privacy-policy', 'terms-of-use'],
   },
   ytmp3fast: {
     baseUrl: 'https://ytmp3fast.com', // Placeholder
     defaultLanguage: 'en',
     supportedLanguages: ['en', 'es', 'de', 'fr', 'pt', 'it', 'ru', 'id', 'tr', 'vi'],
     skipI18nPages: ['contact', 'privacy', 'terms'],
+  },
+  'clone-7': {
+    baseUrl: 'https://clone-7.com', // Placeholder
+    defaultLanguage: 'en',
+    supportedLanguages: ['en', 'es', 'de', 'fr', 'pt', 'it', 'ru', 'id', 'tr', 'vi'],
+    skipI18nPages: ['contact', 'copyright-claims', 'privacy-policy', 'terms-of-use'],
+  },
+  'clone_ytmp3_6': {
+    baseUrl: 'https://clone-ytmp3-6.com', // Placeholder
+    defaultLanguage: 'en',
+    supportedLanguages: ['en', 'es', 'de', 'fr', 'pt', 'it', 'ru', 'id', 'tr', 'vi'],
+    skipI18nPages: ['about', 'contact', 'copyright-claims', 'privacy-policy', 'terms-of-use'],
+  },
+  mp3fast: {
+    baseUrl: 'https://mp3fast.com', // Placeholder
+    defaultLanguage: 'en',
+    supportedLanguages: ['en', 'es', 'de', 'fr', 'pt', 'it', 'ru', 'id', 'tr', 'vi'],
+    skipI18nPages: [],
+  },
+  'y2matevc': {
+    baseUrl: 'https://y2matevc.com', // Placeholder
+    defaultLanguage: 'en',
+    supportedLanguages: ['en', 'es', 'de', 'fr', 'pt', 'it', 'ru', 'id', 'tr', 'vi'],
+    skipI18nPages: [],
+  },
+  'yt-downloader': {
+    baseUrl: 'https://yt-downloader.com', // Placeholder
+    defaultLanguage: 'en',
+    supportedLanguages: ['en', 'es', 'de', 'fr', 'pt', 'it', 'ru', 'id', 'tr', 'vi'],
+    skipI18nPages: [],
+  },
+  'yt-gold': {
+    baseUrl: 'https://yt-gold.com', // Placeholder
+    defaultLanguage: 'en',
+    supportedLanguages: ['en', 'es', 'de', 'fr', 'pt', 'it', 'ru', 'id', 'tr', 'vi'],
+    skipI18nPages: [],
+  },
+  'ytmp3-clone-3': {
+    baseUrl: 'https://ytmp3-clone-3.com', // Placeholder
+    defaultLanguage: 'en',
+    supportedLanguages: ['en', 'es', 'de', 'fr', 'pt', 'it', 'ru', 'id', 'tr', 'vi'],
+    skipI18nPages: [],
+  },
+  'ytmp3-clone-5': {
+    baseUrl: 'https://ytmp3-clone-5.com', // Placeholder
+    defaultLanguage: 'en',
+    supportedLanguages: ['en', 'es', 'de', 'fr', 'pt', 'it', 'ru', 'id', 'tr', 'vi'],
+    skipI18nPages: [],
+  },
+  'ytmp3.my': {
+    baseUrl: 'https://ytmp3.my', // Placeholder
+    defaultLanguage: 'en',
+    supportedLanguages: ['en', 'es', 'de', 'fr', 'pt', 'it', 'ru', 'id', 'tr', 'vi'],
+    skipI18nPages: [],
   },
   // Add other site configurations here as needed
 };

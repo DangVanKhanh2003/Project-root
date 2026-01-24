@@ -65,8 +65,121 @@
     <!-- Critical CSS imported via Vite -->
     <script type="module" src="/src/main.ts"></script>
 
-    <!-- JSON-LD Structured Data (TEMPORARILY DISABLED FOR TESTING) -->
-    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://y2matepro.com/ja/youtube-short-downloader#webpage",
+      "url": "https://y2matepro.com/ja/youtube-short-downloader",
+      "name": "Y2mate - YouTubeショートダウンローダー",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/#website"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "@id": "https://y2matepro.com/ja/youtube-short-downloader#application"
+      },
+      "inLanguage": "ja"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://y2matepro.com/ja/youtube-short-downloader#application",
+      "name": "Y2mate - YouTubeショートダウンローダー",
+      "url": "https://y2matepro.com/ja/youtube-short-downloader",
+      "description": "YouTubeショートを即座にダウンロード。モバイルとデスクトップ用の無料縦型動画ダウンローダー。",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "ja",
+      "publisher": {
+        "@id": "https://y2matepro.com/#organization"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://y2matepro.com/ja/youtube-short-downloader#faq",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/ja/youtube-short-downloader#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "ダウンロードできるショートの数に制限はありますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "いいえ。Y2mateは、使用制限なしで無制限のYouTubeショートダウンロードを許可します。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "ショートを携帯電話に直接保存するにはどうすればよいですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Android: ダウンロードしたショートは、ダウンロードフォルダとギャラリーアプリに表示されます。iPhone: Safariを使用してダウンロードし、ダウンロードを開き、「ビデオを保存」をタップしてショートを写真に移動します。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "ショートからオーディオのみをダウンロードできますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "はい。リンクが処理された後、複数のビットレートオプションでオーディオのみの変換を選択できます。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "ショートが通常の動画よりも速くダウンロードされるのはなぜですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ショートは再生時間が短く、個別に処理されるため、分析と変換の時間が短縮されます。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "ダウンロードしたショートはどのように使用すべきですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ダウンロードしたショートは、オフラインでの視聴や保存などの個人的な目的で使用することを目的としています。ユーザーは、元のコンテンツ作成者の権利を尊重する責任があります。"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://y2matepro.com/ja/youtube-short-downloader#howto",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/ja/youtube-short-downloader#webpage"
+      },
+      "name": "YouTubeショートを数秒でダウンロードする方法",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "text": "ショートのリンクをコピー: YouTubeショートの「共有」ボタンをタップしてURLをコピーします。"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "text": "貼り付けて分析: Y2mateにリンクを貼り付け、「開始」をクリックしてショートを処理します。"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "text": "ビデオまたはオーディオを選択: ビデオまたはオーディオ形式を選択し、希望の品質を選択してから、「変換」をクリックしてファイルをデバイスにダウンロードを開始します。"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body>

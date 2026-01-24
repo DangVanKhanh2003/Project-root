@@ -65,8 +65,147 @@
     <!-- Critical CSS imported via Vite -->
     <script type="module" src="/src/main.ts"></script>
 
-    <!-- JSON-LD Structured Data (TEMPORARILY DISABLED FOR TESTING) -->
-    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://y2matepro.com/id/#webpage",
+      "url": "https://y2matepro.com/id/",
+      "name": "Y2mate - Pengunduh YouTube",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/#website"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "@id": "https://y2matepro.com/id/#application"
+      },
+      "inLanguage": "id"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://y2matepro.com/id/#application",
+      "name": "Y2mate - Pengunduh YouTube",
+      "url": "https://y2matepro.com/id/",
+      "description": "Unduh video YouTube online secara gratis. Simpan video atau audio dalam kualitas yang Anda sukai. Bekerja cepat di perangkat apa pun tanpa instalasi.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "id",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://y2matepro.com/id/#faq",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/id/#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Apa itu Y2mate?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Y2mate adalah pengunduh video YouTube online yang memungkinkan pengguna mengunduh video atau mengubahnya menjadi audio dengan menempelkan tautan YouTube. Alat ini bekerja langsung di browser dan tidak memerlukan instalasi."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Bisakah saya mengunduh video YouTube online tanpa menginstal perangkat lunak?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ya. Y2mate bekerja sepenuhnya online, jadi Anda tidak perlu menginstal aplikasi atau ekstensi browser apa pun."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Resolusi video apa yang didukung Y2mate?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Y2mate mendukung beberapa resolusi video mulai dari 144p hingga 1080p, memungkinkan Anda memilih kualitas yang sesuai dengan perangkat dan kebutuhan penyimpanan Anda."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Bagaimana cara mengunduh video YouTube sebagai file MP3?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Tempel tautan video YouTube ke Y2mate, pilih opsi Audio, pilih bitrate pilihan Anda, dan klik Konversi untuk mengunduh file MP3."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Apakah Y2mate mendukung pengunduhan YouTube Shorts?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ya. Y2mate memungkinkan Anda mengunduh YouTube Shorts sebagai file video atau audio untuk ditonton atau didengarkan secara offline."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Apakah aman mengunduh video menggunakan Y2mate?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Y2mate dirancang untuk memberikan pengalaman unduhan yang sederhana dan bersih dan tidak memerlukan informasi pribadi."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Bagaimana saya harus menggunakan video yang diunduh dari Y2mate?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Video dan file audio yang diunduh dengan Y2mate harus digunakan untuk tujuan pribadi seperti menonton atau mendengarkan secara offline. Pengguna bertanggung jawab atas cara konten yang diunduh digunakan dan harus menghormati hak-hak pemilik konten di YouTube."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Apa opsi kualitas terbaik untuk video panjang?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Untuk video panjang, 720p biasanya merupakan keseimbangan yang baik antara kualitas video dan ukuran file."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://y2matepro.com/id/#howto",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/id/#webpage"
+      },
+      "name": "Cara Mengunduh Video YouTube dalam Hitungan Detik",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "text": "Tempel tautan YouTube: Salin URL video YouTube atau YouTube Shorts dan tempelkan ke dalam kotak unduhan."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "text": "Analisis tautan: Klik tombol mulai untuk menampilkan format dan opsi kualitas yang tersedia."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "text": "Pilih video atau audio: Pilih MP4 untuk video atau MP3 untuk audio, lalu pilih resolusi atau bitrate pilihan Anda."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "text": "Unduh: Klik \"Konversi\" dan unduh file langsung ke perangkat Anda tanpa masuk."
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body>

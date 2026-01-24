@@ -65,8 +65,147 @@
     <!-- Critical CSS imported via Vite -->
     <script type="module" src="/src/main.ts"></script>
 
-    <!-- JSON-LD Structured Data (TEMPORARILY DISABLED FOR TESTING) -->
-    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://y2matepro.com/fr/#webpage",
+      "url": "https://y2matepro.com/fr/",
+      "name": "Y2mate - Téléchargeur YouTube",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/#website"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "@id": "https://y2matepro.com/fr/#application"
+      },
+      "inLanguage": "fr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://y2matepro.com/fr/#application",
+      "name": "Y2mate - Téléchargeur YouTube",
+      "url": "https://y2matepro.com/fr/",
+      "description": "Téléchargez des vidéos YouTube en ligne gratuitement. Enregistrez des vidéos ou de l'audio dans la qualité que vous préférez. Fonctionne rapidement sur n'importe quel appareil sans installation.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "fr",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://y2matepro.com/fr/#faq",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/fr/#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Qu'est-ce que Y2mate ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Y2mate est un téléchargeur de vidéos YouTube en ligne qui permet aux utilisateurs de télécharger des vidéos ou de les convertir en audio en collant un lien YouTube. L'outil fonctionne directly dans le navigateur et ne nécessite aucune installation."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Puis-je télécharger des vidéos YouTube en ligne sans installer de logiciel ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui. Y2mate fonctionne entièrement en ligne, vous n'avez donc pas besoin d'installer d'applications ou d'extensions de navigateur."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quelles résolutions vidéo Y2mate prend-il en charge ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Y2mate prend en charge plusieurs résolutions vidéo allant de 144p à 1080p, vous permettant de choisir la qualité qui correspond à votre appareil et à vos besoins de stockage."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Comment puis-je télécharger des vidéos YouTube en tant que fichiers MP3 ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Collez le lien de la vidéo YouTube dans Y2mate, sélectionnez l'option Audio, choisissez votre débit binaire préféré et cliquez sur Convertir pour télécharger le fichier MP3."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Y2mate prend-il en charge le téléchargement de YouTube Shorts ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Oui. Y2mate vous permet de télécharger des YouTube Shorts sous forme de fichiers vidéo ou audio pour les visionner ou les écouter hors ligne."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Est-il sûr de télécharger des vidéos avec Y2mate ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Y2mate est conçu pour offrir une expérience de téléchargement simple et propre et ne nécessite aucune information personnelle."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Comment dois-je utiliser les vidéos téléchargées depuis Y2mate ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Les vidéos et les fichiers audio téléchargés avec Y2mate doivent être utilisés à des fins personnelles, telles que le visionnage ou l'écoute hors ligne. Les utilisateurs sont responsables de la manière dont le contenu téléchargé est utilisé et doivent respecter les droits des propriétaires de contenu sur YouTube."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quelle est la meilleure option de qualité pour les longues vidéos ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pour les longues vidéos, 720p est généralement un bon équilibre entre la qualité vidéo et la taille du fichier."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://y2matepro.com/fr/#howto",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/fr/#webpage"
+      },
+      "name": "Comment télécharger des vidéos YouTube en quelques secondes",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "text": "Collez le lien YouTube : Copiez l'URL d'une vidéo YouTube ou d'un YouTube Shorts et collez-la dans la zone de téléchargement."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "text": "Analysez le lien : Cliquez sur le bouton de démarrage pour afficher les formats et les options de qualité disponibles."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "text": "Choisissez vidéo ou audio : Sélectionnez MP4 pour la vidéo ou MP3 pour l'audio, puis choisissez votre résolution ou votre débit binaire préféré."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "text": "Téléchargez : Cliquez sur « Convertir » et téléchargez le fichier directement sur votre appareil sans vous connecter."
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body>

@@ -65,8 +65,121 @@
     <!-- Critical CSS imported via Vite -->
     <script type="module" src="/src/main.ts"></script>
 
-    <!-- JSON-LD Structured Data (TEMPORARILY DISABLED FOR TESTING) -->
-    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://y2matepro.com/de/youtube-short-downloader#webpage",
+      "url": "https://y2matepro.com/de/youtube-short-downloader",
+      "name": "Y2mate - YouTube Shorts Herunterladen",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/#website"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "@id": "https://y2matepro.com/de/youtube-short-downloader#application"
+      },
+      "inLanguage": "de"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://y2matepro.com/de/youtube-short-downloader#application",
+      "name": "Y2mate - YouTube Shorts Herunterladen",
+      "url": "https://y2matepro.com/de/youtube-short-downloader",
+      "description": "Laden Sie YouTube Shorts sofort herunter. Kostenloser vertikaler Video-Downloader für Mobilgeräte und Desktops.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "de",
+      "publisher": {
+        "@id": "https://y2matepro.com/#organization"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://y2matepro.com/de/youtube-short-downloader#faq",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/de/youtube-short-downloader#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Gibt es eine Begrenzung, wie viele Shorts ich herunterladen kann?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nein. Y2mate ermöglicht unbegrenzte YouTube Shorts-Downloads ohne Nutzungslimits."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wie kann ich Shorts direkt auf meinem Telefon speichern?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Android: Heruntergeladene Shorts erscheinen im Downloads-Ordner und Ihrer Galerie-App.iPhone: Verwenden Sie Safari zum Herunterladen, öffnen Sie Downloads und tippen Sie auf „Video speichern“, um den Short in Fotos zu verschieben."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Kann ich nur Audio von einem Short herunterladen?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ja. Sie können nach der Verarbeitung des Links eine reine Audiokonvertierung mit mehreren Bitratenoptionen wählen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Warum werden Shorts schneller heruntergeladen als normale Videos?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Shorts haben eine kürzere Dauer und werden separat verarbeitet, was die Analyse- und Konvertierungszeit reduziert."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Wie sollte ich heruntergeladene Shorts verwenden?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Heruntergeladene Shorts sind für den persönlichen Gebrauch wie das Offline-Ansehen oder Speichern bestimmt. Benutzer sind dafür verantwortlich, die Rechte der ursprünglichen Inhaltsersteller zu respektieren."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://y2matepro.com/de/youtube-short-downloader#howto",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/de/youtube-short-downloader#webpage"
+      },
+      "name": "So laden Sie YouTube Shorts in Sekunden herunter",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "text": "Shorts-Link kopieren: Tippen Sie auf die Schaltfläche „Teilen“ bei einem beliebigen YouTube Short und kopieren Sie die URL."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "text": "Einfügen & analysieren: Fügen Sie den Link in Y2mate ein und klicken Sie auf „Start“, um den Short zu verarbeiten."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "text": "Video oder Audio auswählen: Wählen Sie das Video- oder Audioformat, wählen Sie die gewünschte Qualität und klicken Sie dann auf „Konvertieren“, um die Datei auf Ihr Gerät herunterzuladen."
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body>
