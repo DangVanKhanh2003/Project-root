@@ -1,181 +1,250 @@
-#!/usr/bin/env npx tsx
 /**
- * Interactive SEO Tester
- * Cho phep chon site nao de test SEO
+ * SEO Checker - Main Orchestrator
+ * Chạy tất cả validators và tạo báo cáo tổng hợp
  */
 
-import { checkbox, confirm } from '@inquirer/prompts';
-import * as fs from 'node:fs';
-import * as path from 'node:path';
-import { spawn } from 'node:child_process';
+import { CentralLogger } from './logger/index.js';
+import { allValidators, getValidatorBySlug } from './validators/index.js';
+import type { ValidatorResult, AuditSummary, SiteConfig } from './types.js';
+import { colors, icons, boxHeader } from './logger/formats.js';
+import { getTargetDir, getAppRoot } from './config.js';
+import { getSiteConfig, sites } from './sites.config.js';
 
 // ============================================
 // Configuration
 // ============================================
 
-interface SiteConfig {
-  name: string;
-  path: string;
-  seoCheckerPath: string;
+export interface SEOCheckerOptions {
+  /** ID của site cần check (tên thư mục trong `apps/`) */
+  siteId: string;
+  /** Thư mục chứa logs */
+  logDir?: string;
+  /** Có log ra console không */
+  console?: boolean;
+  /** Có ghi log ra file không */
+  file?: boolean;
+  /** Chỉ chạy các validators cụ thể (by slug) */
+  only?: string[];
+  /** Bỏ qua các validators cụ thể (by slug) */
+  skip?: string[];
 }
 
 // ============================================
-// Helper Functions
+// Main Function
 // ============================================
 
 /**
- * Tim tat ca apps co seo-checker skill
+ * Chạy SEO audit với tất cả validators
  */
-function findAppsWithSeoChecker(rootDir: string): SiteConfig[] {
-  const appsDir = path.join(rootDir, 'apps');
-  const sites: SiteConfig[] = [];
+export async function runSEOAudit(options: SEOCheckerOptions): Promise<AuditSummary> {
+  const { siteId } = options;
+  const siteConfig = getSiteConfig(siteId);
+  const appRoot = getAppRoot(siteId);
+  const targetDir = getTargetDir(appRoot);
 
-  if (!fs.existsSync(appsDir)) {
-    console.log('Khong tim thay thu muc apps/');
-    return sites;
+  const logger = new CentralLogger({
+    logDir: options.logDir || './logs/seo-checks',
+    console: options.console ?? true,
+    file: options.file ?? true,
+  });
+
+  // Determine which validators to run
+  let validatorsToRun = [...allValidators];
+  if (options.only?.length) {
+    validatorsToRun = validatorsToRun.filter((v) => options.only!.includes(v.slug));
+  }
+  if (options.skip?.length) {
+    validatorsToRun = validatorsToRun.filter((v) => !options.skip!.includes(v.slug));
   }
 
-  const apps = fs.readdirSync(appsDir, { withFileTypes: true });
+  // Print header
+  console.log(colors.bold(boxHeader(`SEO AUDIT: ${siteId}`)));
+  console.log(colors.muted(`Site: ${siteConfig.baseUrl}`));
+  console.log(colors.muted(`Target: ${targetDir}`));
+  console.log(colors.muted(`Running ${validatorsToRun.length} validators...
+`));
 
-  for (const app of apps) {
-    if (!app.isDirectory()) continue;
-
-    const appPath = path.join(appsDir, app.name);
-    const seoCheckerPath = path.join(appPath, 'skills', 'seo-checker');
-
-    if (fs.existsSync(seoCheckerPath)) {
-      sites.push({
-        name: app.name,
-        path: appPath,
-        seoCheckerPath,
+  // Run validators
+  const results: ValidatorResult[] = [];
+  for (const validator of validatorsToRun) {
+    console.log(colors.highlight(`
+${icons.clock} Running: ${validator.name}...`));
+    const validatorLogger = logger.createValidatorLogger(validator.name, validator.slug);
+    try {
+      const result = await validator.run(validatorLogger, siteConfig, targetDir, appRoot);
+      results.push(result);
+      logger.logValidatorResult(result);
+    } catch (error) {
+      console.error(colors.error(`${icons.error} Validator "${validator.name}" crashed:`));
+      console.error(error);
+      results.push({
+        name: validator.name,
+        slug: validator.slug,
+        passed: false,
+        errorCount: 1,
+        warningCount: 0,
+        filesChecked: 0,
+        duration: 0,
       });
     }
   }
 
-  return sites;
+  // Finalize and get summary
+  return logger.finalize(results);
 }
 
 /**
- * Chay SEO checker cho 1 site
+ * Chạy một validator cụ thể
  */
-function runSeoChecker(site: SiteConfig): Promise<{ passed: boolean; output: string }> {
-  return new Promise((resolve) => {
-    console.log(`\n${'='.repeat(60)}`);
-    console.log(`  Testing: ${site.name}`);
-    console.log(`${'='.repeat(60)}\n`);
+export async function runSingleValidator(
+  slug: string,
+  options: SEOCheckerOptions
+): Promise<ValidatorResult | null> {
+  const { siteId } = options;
+  const siteConfig = getSiteConfig(siteId);
+  const appRoot = getAppRoot(siteId);
+  const targetDir = getTargetDir(appRoot);
 
-    const isWindows = process.platform === 'win32';
-    const npmCmd = isWindows ? 'npm.cmd' : 'npm';
+  const validator = getValidatorBySlug(slug);
+  if (!validator) {
+    console.error(colors.error(`${icons.error} Unknown validator: ${slug}`));
+    console.log(colors.muted(`Available validators: ${allValidators.map((v) => v.slug).join(', ')}`));
+    return null;
+  }
 
-    const child = spawn(npmCmd, ['run', 'dev'], {
-      cwd: site.seoCheckerPath,
-      stdio: 'inherit',
-      shell: true,
-    });
-
-    let output = '';
-
-    child.on('close', (code) => {
-      resolve({
-        passed: code === 0,
-        output,
-      });
-    });
-
-    child.on('error', (err) => {
-      console.error(`Error running seo-checker for ${site.name}:`, err.message);
-      resolve({
-        passed: false,
-        output: err.message,
-      });
-    });
+  const logger = new CentralLogger({
+    logDir: options.logDir || './logs/seo-checks',
+    console: options.console ?? true,
+    file: options.file ?? true,
   });
+
+  console.log(colors.bold(`
+${icons.clock} Running: ${validator.name} for ${siteId}
+`));
+  const validatorLogger = logger.createValidatorLogger(validator.name, validator.slug);
+  const result = await validator.run(validatorLogger, siteConfig, targetDir, appRoot);
+
+  logger.logValidatorResult(result);
+  logger.finalize([result]);
+
+  return result;
 }
 
 // ============================================
-// Main
+// CLI Entry Point
 // ============================================
 
 async function main(): Promise<void> {
-  const rootDir = process.cwd();
+  const args = process.argv.slice(2);
 
-  console.log('\n');
-  console.log('  ╔══════════════════════════════════════════╗');
-  console.log('  ║       SEO TESTER - Interactive Mode      ║');
-  console.log('  ╚══════════════════════════════════════════╝');
-  console.log('\n');
+  // Parse arguments
+  const options: Partial<SEOCheckerOptions> = {
+    console: true,
+    file: true,
+  };
+  let specificValidator: string | null = null;
+  let siteId: string | null = null;
 
-  // Tim cac sites co seo-checker
-  const sites = findAppsWithSeoChecker(rootDir);
+  for (let i = 0; i < args.length; i++) {
+    const arg = args[i];
+    const nextArg = args[i + 1];
 
-  if (sites.length === 0) {
-    console.log('Khong tim thay site nao co seo-checker skill.');
-    console.log('Dam bao ban dang chay tu thu muc root cua project.');
+    if (arg === '--site' && nextArg) {
+      siteId = nextArg;
+      i++;
+    } else if (arg === '--no-console') {
+      options.console = false;
+    } else if (arg === '--no-file') {
+      options.file = false;
+    } else if (arg === '--log-dir' && nextArg) {
+      options.logDir = nextArg;
+      i++;
+    } else if (arg === '--only' && nextArg) {
+      options.only = nextArg.split(',');
+      i++;
+    } else if (arg === '--skip' && nextArg) {
+      options.skip = nextArg.split(',');
+      i++;
+    } else if (arg === '--target' && nextArg) {
+      process.env.SEO_CHECK_TARGET = nextArg;
+      i++;
+    } else if (arg === '--help' || arg === '-h') {
+      printHelp();
+      process.exit(0);
+    } else if (!arg.startsWith('-')) {
+      specificValidator = arg;
+    }
+  }
+
+  if (!siteId) {
+    console.error(colors.error(`${icons.error} Error: --site argument is required.`));
+    printHelp();
     process.exit(1);
   }
 
-  console.log(`Tim thay ${sites.length} site(s) co seo-checker:\n`);
+  const fullOptions: SEOCheckerOptions = { ...options, siteId };
 
-  // Hien thi checkbox de nguoi dung chon
-  const selectedSites = await checkbox({
-    message: 'Chon site(s) de test SEO (Space de chon, Enter de confirm):',
-    choices: sites.map((site) => ({
-      name: site.name,
-      value: site,
-      checked: false,
-    })),
-    required: true,
-  });
-
-  if (selectedSites.length === 0) {
-    console.log('\nKhong co site nao duoc chon. Thoat.');
-    process.exit(0);
+  try {
+    let exitCode = 0;
+    if (specificValidator) {
+      const result = await runSingleValidator(specificValidator, fullOptions);
+      exitCode = result?.passed ? 0 : 1;
+    } else {
+      const summary = await runSEOAudit(fullOptions);
+      exitCode = summary.passed ? 0 : 1;
+    }
+    process.exit(exitCode);
+  } catch (error) {
+    console.error(colors.error(`
+${icons.error} Fatal error:`));
+    console.error(error);
+    process.exit(1);
   }
-
-  // Xac nhan truoc khi chay
-  const confirmed = await confirm({
-    message: `Ban se test ${selectedSites.length} site(s). Tiep tuc?`,
-    default: true,
-  });
-
-  if (!confirmed) {
-    console.log('\nDa huy. Thoat.');
-    process.exit(0);
-  }
-
-  // Chay SEO checker cho tung site
-  const results: Array<{ site: string; passed: boolean }> = [];
-
-  for (const site of selectedSites) {
-    const result = await runSeoChecker(site);
-    results.push({
-      site: site.name,
-      passed: result.passed,
-    });
-  }
-
-  // Hien thi ket qua tong hop
-  console.log('\n');
-  console.log('  ╔══════════════════════════════════════════╗');
-  console.log('  ║              KET QUA TONG HOP            ║');
-  console.log('  ╚══════════════════════════════════════════╝');
-  console.log('\n');
-
-  let allPassed = true;
-
-  for (const result of results) {
-    const status = result.passed ? '✓ PASSED' : '✗ FAILED';
-    const color = result.passed ? '\x1b[32m' : '\x1b[31m';
-    console.log(`  ${color}${status}\x1b[0m  ${result.site}`);
-    if (!result.passed) allPassed = false;
-  }
-
-  console.log('\n');
-
-  process.exit(allPassed ? 0 : 1);
 }
 
-main().catch((err) => {
-  console.error('Error:', err);
-  process.exit(1);
-});
+function printHelp(): void {
+  console.log(`
+${colors.bold('SEO Checker')} - Validate SEO elements in HTML files
+
+${colors.highlight('Usage:')}
+  npx tsx src/index.ts --site <siteId> [validator] [options]
+
+${colors.highlight('Required:')}
+  --site <siteId>     ID of the site to test (e.g., y2matepro, 4k-downloader)
+
+${colors.highlight('Available Sites:')}
+  ${Object.keys(sites).join(', ')}
+
+${colors.highlight('Validators:')}
+  (run without a validator to run all)
+  ${allValidators.map((v) => `${v.slug.padEnd(20)} ${v.description}`).join('\n  ')}
+
+${colors.highlight('Options:')}
+  --only <slugs>      Only run specific validators (comma-separated)
+  --skip <slugs>      Skip specific validators (comma-separated)
+  --target <path>     Override build output directory (relative to app root)
+  --log-dir <path>    Directory for log files (default: ./logs/seo-checks)
+  --no-console        Disable console output
+  --no-file           Disable file logging
+  -h, --help          Show this help message
+
+${colors.highlight('Examples:')}
+  npx tsx src/index.ts --site y2matepro
+  npx tsx src/index.ts --site 4k-downloader canonical
+  npx tsx src/index.ts --site ytmp3fast --only meta-tags,sitemap
+`);
+}
+
+// Run main if this is the entry point
+if (import.meta.url.startsWith('file:')) {
+  const modulePath = new URL(import.meta.url).pathname;
+  const scriptPath = process.argv[1];
+  if (modulePath === scriptPath) {
+    main();
+  }
+}
+
+// Export for programmatic use
+export { allValidators, getValidatorBySlug } from './validators/index.js';
+export { CentralLogger } from './logger/index.js';
+export type * from './types.js';

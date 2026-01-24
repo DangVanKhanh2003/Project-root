@@ -26,18 +26,9 @@ export function getFormatPreferences(): FormatPreferences | null {
 }
 
 /**
- * Set format dataset attribute on document element (prevents FOUC)
- * This should run as early as possible in <head>
- */
-export function setFormatDataset(): void {
-  const preferences = getFormatPreferences();
-  const format = preferences?.selectedFormat || 'mp4';
-  document.documentElement.dataset.format = format;
-}
-
-/**
  * Sync format preferences to select elements
- * This runs after DOM is ready
+ * Note: data-format attribute is set by inline script in <head> to prevent FOUC
+ * This function only syncs the select dropdowns after DOM is ready
  */
 export function syncFormatSelectors(): void {
   try {
@@ -72,6 +63,8 @@ export function syncFormatSelectors(): void {
 
 /**
  * Sync auto-submit checkbox state
+ * Note: data-auto-submit attribute is set by inline script in <head> to prevent FOUC
+ * This function only syncs the checkbox.checked state after DOM is ready
  */
 export function syncAutoSubmitCheckbox(): void {
   try {

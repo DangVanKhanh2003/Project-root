@@ -64,7 +64,7 @@
     <!-- Google Analytics: Lazy loaded via analytics-loader.ts for better performance -->
 
     <!-- Critical: Set format and auto-submit preferences before render to prevent FOUC -->
-    <script>(function(){var f='mp4';try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p&&p.selectedFormat)f=p.selectedFormat}catch(e){}document.documentElement.dataset.format=f;})()</script>
+    <script>(function(){var f='mp4',a='false';try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p&&p.selectedFormat)f=p.selectedFormat;var s=localStorage.getItem('y2mate_auto_submit');if(s)a=s;}catch(e){}document.documentElement.dataset.format=f;document.documentElement.dataset.autoSubmit=a;})()</script>
 
     <!-- Critical: Hide auto-submit tooltip before CSS loads -->
     <style>
@@ -421,7 +421,7 @@
                                 data-tooltip="URL বা কীওয়ার্ড পেস্ট করার সময় স্বয়ংক্রিয়ভাবে জমা দিন">
                                 <strong class="toggle-label">স্বয়ংক্রিয় জমা দিন</strong>
                                 <label class="toggle-switch" for="auto-submit-checkbox">
-                                    <input type="checkbox" id="auto-submit-checkbox" data-auto-submit-toggle aria-label="Auto submit after selecting format"/>
+                                    <input type="checkbox" id="auto-submit-checkbox" data-auto-submit-toggle aria-label="Auto submit after selecting format" />
                                     <span class="toggle-slider"></span>
                                 </label>
                                 <span class="custom-tooltip"></span>
@@ -524,6 +524,9 @@
         </li>
         <li class="fnav-menu">
             <a href="/privacy-policy">গোপনীয়তা নীতি</a>
+        </li>
+        <li class="fnav-menu">
+            <a href="/copyright-claims"></a>
         </li>
         <li class="fnav-menu">
             <a href="/bn/youtube-short-downloader">ইউটিউব শর্টস ডাউনলোডার</a>

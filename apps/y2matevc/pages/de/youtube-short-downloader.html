@@ -64,7 +64,7 @@
     <!-- Google Analytics: Lazy loaded via analytics-loader.ts for better performance -->
 
     <!-- Critical: Set format and auto-submit preferences before render to prevent FOUC -->
-    <script>(function(){var f='mp4';try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p&&p.selectedFormat)f=p.selectedFormat}catch(e){}document.documentElement.dataset.format=f;})()</script>
+    <script>(function(){var f='mp4',a='false';try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p&&p.selectedFormat)f=p.selectedFormat;var s=localStorage.getItem('y2mate_auto_submit');if(s)a=s;}catch(e){}document.documentElement.dataset.format=f;document.documentElement.dataset.autoSubmit=a;})()</script>
 
     <!-- Critical: Hide auto-submit tooltip before CSS loads -->
     <style>
@@ -85,7 +85,7 @@
       "@type": "WebPage",
       "@id": "https://y2mate.vc/de/youtube-short-downloader#webpage",
       "url": "https://y2mate.vc/de/youtube-short-downloader",
-      "name": "Y2Mate - YouTube Shorts Downloader",
+      "name": "Y2Mate - Downloader für YouTube Shorts",
       "isPartOf": {
         "@id": "https://y2mate.vc/#website"
       },
@@ -98,7 +98,7 @@
     {
       "@type": "SoftwareApplication",
       "@id": "https://y2mate.vc/de/youtube-short-downloader#application",
-      "name": "Y2Mate - YouTube Shorts Downloader",
+      "name": "Y2Mate - Downloader für YouTube Shorts",
       "url": "https://y2mate.vc/de/youtube-short-downloader",
       "description": "Laden Sie YouTube Shorts sofort herunter. Kostenloser vertikaler Video-Downloader für Mobilgeräte.",
       "applicationCategory": "MultimediaApplication",
@@ -401,7 +401,7 @@
     <section class="y2mate-download-pro">
         <div class="y2mate-search-form-pro d-flex">
             <div class="form-wrap">
-                <h1 class="y2mate_title-pro">Y2Mate - YouTube Shorts Downloader</h1>
+                <h1 class="y2mate_title-pro">Y2Mate - Downloader für YouTube Shorts</h1>
                 <form id="downloadForm" class="search_form" method="POST" action="/search/">
                     <div class="input-container">
                         <div class=" input-wrapper">
@@ -618,6 +618,9 @@
         </li>
         <li class="fnav-menu">
             <a href="/privacy-policy">Datenschutzrichtlinie</a>
+        </li>
+        <li class="fnav-menu">
+            <a href="/copyright-claims"></a>
         </li>
         <li class="fnav-menu">
             <a href="/de/youtube-short-downloader">YouTube-Shorts-Downloader</a>

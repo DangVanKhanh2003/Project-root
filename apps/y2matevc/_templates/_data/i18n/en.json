@@ -81,7 +81,8 @@
     "about": "About",
     "contact": "Contact",
     "terms": "Terms of Service",
-    "privacy": "Privacy Policy"
+    "privacy": "Privacy Policy",
+    "copyrightClaims": "Copyright Claims"
   },
   "errors": {
     "invalidUrl": "Please enter a valid URL",

@@ -2,6 +2,7 @@
  * Main Entry Point - TypeScript
  * Y2matePro - Rebuilt from webclone.html
  */
+import './firebase';
 
 // === I18n Import ===
 import { initI18n, loadTranslations, locales, getLanguage, t } from '@downloader/i18n';

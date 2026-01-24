@@ -24,9 +24,8 @@ import {
  *
  * HTML is already rendered with both MP3/MP4 dropdowns.
  * CSS controls visibility via html[data-format] attribute.
- * This function:
- * 1. Syncs UI with state from localStorage
- * 2. Attaches event listeners
+ * Note: UI state sync from localStorage is handled by preferences-sync.ts
+ * This function only attaches event listeners.
  */
 export function renderFormatSelectorToForm(): void {
   const container = document.getElementById('format-selector-container');
@@ -35,13 +34,9 @@ export function renderFormatSelectorToForm(): void {
     return;
   }
 
-  
-
   // Attach event listeners
   initFormatSelector('#format-selector-container');
 }
-
-
 
 // ==========================================
 // Event Handlers

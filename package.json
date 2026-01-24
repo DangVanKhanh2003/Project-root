@@ -13,7 +13,9 @@
     "build:packages": "pnpm -r --filter \"./packages/**\" run build",
     "lint": "pnpm -r run lint",
     "type-check": "pnpm -r exec tsc --noEmit",
-    "clean": "pnpm -r run clean"
+    "clean": "pnpm -r run clean",
+    "test:seo": "tsx skills/test-seo/src/index.ts",
+    "test:seo:all": "node scripts/test-seo-all.js"
   },
   "repository": {
     "type": "git",
@@ -46,5 +48,8 @@
     "vite": "^7.1.10",
     "vite-plugin-purgecss": "^0.2.13",
     "vite-plugin-static-copy": "^3.1.4"
+  },
+  "dependencies": {
+    "firebase": "^12.8.0"
   }
 }

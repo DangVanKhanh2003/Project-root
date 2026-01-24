@@ -325,7 +325,7 @@ input[type="checkbox"]:focus-visible + .toggle-slider {
 
   .format-icon {
     font-size: 16px;
-  }
+}
 
   .quality-select {
     height: 40px;
