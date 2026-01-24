@@ -62,7 +62,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'pnpm'
+          # cache: 'pnpm'  # Temporarily disabled due to cache corruption
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
