@@ -68,6 +68,14 @@ export default defineConfig({
         server.middlewares.use((req, res, next) => {
           const url = req.url || '';
 
+          // Handle /search route - serve index.html
+          if (url.startsWith('/search')) {
+            console.log(`[SPA Fallback] ${url} → /index.html`);
+            req.url = '/index.html';
+            next();
+            return;
+          }
+
           // Match /vi, /ar, /es, etc. or /vi/, /ar/, /es/, etc.
           const langMatch = url.match(/^\/([a-z]{2})(\/|$)/);
 

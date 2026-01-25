@@ -29,13 +29,13 @@ export const sites: Record<string, SiteConfig> = {
   '4k-downloader': {
     baseUrl: 'https://4k-downloader.com', // Placeholder
     defaultLanguage: 'en',
-    supportedLanguages: ['en', 'de', 'es', 'fr', 'it', 'pt', 'ru', 'ja', 'zh'],
+    supportedLanguages: ['en', 'de', 'es', 'fr', 'it', 'pt', 'ru', 'ja'],
     skipI18nPages: ['contact', 'copyright-claims', 'privacy-policy', 'terms-of-use'],
   },
   '4kvideopro': {
     baseUrl: 'https://4kvideopro.com', // Placeholder
     defaultLanguage: 'en',
-    supportedLanguages: ['en', 'de', 'es', 'fr', 'it', 'pt', 'ru', 'ja', 'zh'],
+    supportedLanguages: ['en', 'de', 'es', 'fr', 'it', 'pt', 'ru', 'ja'],
     skipI18nPages: ['contact', 'copyright-claims', 'privacy-policy', 'terms-of-use'],
   },
   ytmp3fast: {

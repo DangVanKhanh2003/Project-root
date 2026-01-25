@@ -6,7 +6,7 @@
 Please read and translate the JSON file at this location:
 F:\downloader\Project-root\apps\y2matevc\_templates\_data\pages\index\en.json
 
-Create separate translated JSON files for each of these language codes: vi.json (Vietnamese), ar.json (Arabic), es.json (Spanish), fr.json (French), de.json (German), it.json (Italian), pt.json (Portuguese), ja.json (Japanese), ko.json (Korean), zh.json (Chinese Simplified), ru.json (Russian), hi.json (Hindi), id.json (Indonesian), th.json (Thai), tr.json (Turkish).
+Create separate translated JSON files for each of these language codes: vi.json (Vietnamese), ar.json (Arabic), es.json (Spanish), fr.json (French), de.json (German), it.json (Italian), pt.json (Portuguese), ja.json (Japanese), ko.json (Korean), , ru.json (Russian), hi.json (Hindi), id.json (Indonesian), th.json (Thai), tr.json (Turkish).
 
 IMPORTANT TRANSLATION RULES:
 1. Keep ALL JSON structure, keys, and formatting exactly the same
@@ -30,7 +30,7 @@ Save each translated file in the same directory with the corresponding language 
 Please read and translate the JSON file at this location:
 F:\downloader\Project-root\apps\y2matevc\_templates\_data\pages\youtube-to-mp3\en.json
 
-Create separate translated JSON files for each of these language codes: vi.json (Vietnamese), ar.json (Arabic), es.json (Spanish), fr.json (French), de.json (German), it.json (Italian), pt.json (Portuguese), ja.json (Japanese), ko.json (Korean), zh.json (Chinese Simplified), ru.json (Russian), hi.json (Hindi), id.json (Indonesian), th.json (Thai), tr.json (Turkish).
+Create separate translated JSON files for each of these language codes: vi.json (Vietnamese), ar.json (Arabic), es.json (Spanish), fr.json (French), de.json (German), it.json (Italian), pt.json (Portuguese), ja.json (Japanese), ko.json (Korean), , ru.json (Russian), hi.json (Hindi), id.json (Indonesian), th.json (Thai), tr.json (Turkish).
 
 IMPORTANT TRANSLATION RULES:
 1. Keep ALL JSON structure, keys, and formatting exactly the same
@@ -55,7 +55,7 @@ Save each translated file in the same directory with the corresponding language 
 Please read and translate the JSON file at this location:
 F:\downloader\Project-root\apps\y2matevc\_templates\_data\pages\youtube-to-mp4\en.json
 
-Create separate translated JSON files for each of these language codes: vi.json (Vietnamese), ar.json (Arabic), es.json (Spanish), fr.json (French), de.json (German), it.json (Italian), pt.json (Portuguese), ja.json (Japanese), ko.json (Korean), zh.json (Chinese Simplified), ru.json (Russian), hi.json (Hindi), id.json (Indonesian), th.json (Thai), tr.json (Turkish).
+Create separate translated JSON files for each of these language codes: vi.json (Vietnamese), ar.json (Arabic), es.json (Spanish), fr.json (French), de.json (German), it.json (Italian), pt.json (Portuguese), ja.json (Japanese), ko.json (Korean), , ru.json (Russian), hi.json (Hindi), id.json (Indonesian), th.json (Thai), tr.json (Turkish).
 
 IMPORTANT TRANSLATION RULES:
 1. Keep ALL JSON structure, keys, and formatting exactly the same
@@ -81,7 +81,7 @@ Save each translated file in the same directory with the corresponding language 
 Please read and translate the JSON file at this location:
 F:\downloader\Project-root\apps\y2matevc\_templates\_data\pages\youtube-short-downloader\en.json
 
-Create separate translated JSON files for each of these language codes: vi.json (Vietnamese), ar.json (Arabic), es.json (Spanish), fr.json (French), de.json (German), it.json (Italian), pt.json (Portuguese), ja.json (Japanese), ko.json (Korean), zh.json (Chinese Simplified), ru.json (Russian), hi.json (Hindi), id.json (Indonesian), th.json (Thai), tr.json (Turkish).
+Create separate translated JSON files for each of these language codes: vi.json (Vietnamese), ar.json (Arabic), es.json (Spanish), fr.json (French), de.json (German), it.json (Italian), pt.json (Portuguese), ja.json (Japanese), ko.json (Korean), , ru.json (Russian), hi.json (Hindi), id.json (Indonesian), th.json (Thai), tr.json (Turkish).
 
 IMPORTANT TRANSLATION RULES:
 1. Keep ALL JSON structure, keys, and formatting exactly the same
@@ -126,7 +126,6 @@ Save each translated file in the same directory with the corresponding language 
    - `pt.json` - Portuguese (Português)
    - `ja.json` - Japanese (日本語)
    - `ko.json` - Korean (한국어)
-   - `zh.json` - Chinese Simplified (简体中文)
    - `ru.json` - Russian (Русский)
    - `hi.json` - Hindi (हिन्दी)
    - `id.json` - Indonesian (Bahasa Indonesia)
