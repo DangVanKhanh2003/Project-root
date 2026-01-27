@@ -790,7 +790,7 @@ async function handleSubmit(event: Event): Promise<void> {
       setTimeout(() => {
         // Only scroll on mobile for keyword searches
         if (scrollManager.isMobile()) {
-          scrollManager.scrollToElement('#videoUrl');
+          scrollManager.scrollToElement('.hero-card');
         }
       }, 50);
 

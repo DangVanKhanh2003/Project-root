@@ -547,9 +547,12 @@ async function handleSubmit(event: Event): Promise<void> {
     }
 
     // Scroll to hero-card after skeleton renders (50ms delay), with 20px offset
-    setTimeout(() => {
-      scrollManager.scrollToElement('.hero-card', { customOffset: 20 });
-    }, 50);
+      setTimeout(() => {
+        const target = scrollManager.isMobile() ? '.hero-card' : '#videoUrl';
+        if (scrollManager.isMobile()) {
+           scrollManager.scrollToElement('.hero-card', { customOffset: 20 });
+        }
+      }, 50);
 
     // Execute the appropriate action
     if (state.inputType === 'url') {

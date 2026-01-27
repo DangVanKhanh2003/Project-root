@@ -269,7 +269,7 @@ async function handleAutoDownload(url: string, videoId: string): Promise<void> {
       const isExplicitFormat = ['webm', 'mkv'].includes(videoQuality);
 
       if (isExplicitFormat) {
-         if (videoQuality === 'webm') {
+        if (videoQuality === 'webm') {
           targetContainer = 'webm';
         } else if (videoQuality === 'mkv') {
           targetContainer = 'mkv';
@@ -789,7 +789,7 @@ async function handleSubmit(event: Event): Promise<void> {
       setTimeout(() => {
         // Only scroll on mobile for keyword searches
         if (scrollManager.isMobile()) {
-          scrollManager.scrollToElement('#videoUrl');
+          scrollManager.scrollToElement('.hero-card');
         }
       }, 50);
 
