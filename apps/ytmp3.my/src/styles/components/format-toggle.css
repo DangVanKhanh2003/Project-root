@@ -31,7 +31,7 @@
     height: 100%;
     border-radius: 10px;
     cursor: pointer;
-    transition: all 0.3s;
+    /* transition: all 0.3s; REMOVED per user request */
 }
 
 .format-btn.active {
@@ -43,5 +43,5 @@
 [data-theme="light"] .format-btn.active {
     background: var(--pkg-color-gray-50);
     color: var(--pkg-color-gray-800);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }

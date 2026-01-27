@@ -15,7 +15,7 @@
     text-transform: uppercase;
     letter-spacing: 0.05em;
     border: 1px solid var(--border-secondary);
-    transition: background-color 0.2s ease;
+    /* transition: background-color 0.2s ease; REMOVED per user request */
     cursor: pointer;
 }
 
@@ -47,8 +47,8 @@
     border-radius: 0.75rem;
     font-weight: 700;
     font-size: 1rem;
-    transition: all 0.2s ease;
-    transform: scale(1);
+    /* transition: all 0.2s ease; REMOVED per user request */
+    /* transform: scale(1); REMOVED per user request */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -84,7 +84,7 @@
     background-color: transparent;
     padding: 0.25rem;
     border-radius: 9999px;
-    transition: all 0.2s ease;
+    /* transition: all 0.2s ease; REMOVED per user request */
 }
 
 .btn-submit:hover .btn-icon,
@@ -109,7 +109,7 @@
     justify-content: center;
     gap: 0.5rem;
     box-shadow: 0 2px 8px rgba(29, 186, 201, 0.3);
-    transition: all 0.2s ease;
+    /* transition: all 0.2s ease; REMOVED per user request */
 }
 
 .btn-download:hover {
@@ -127,7 +127,7 @@
     border-radius: 0.75rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s ease;
+    /* transition: all 0.2s ease; REMOVED per user request */
 }
 
 .btn-secondary:hover {

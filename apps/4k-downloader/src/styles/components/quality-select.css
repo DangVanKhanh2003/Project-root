@@ -21,7 +21,7 @@
     appearance: none;
     cursor: pointer;
     font-weight: 500;
-    transition: all 0.3s;
+    /* transition: all 0.3s; REMOVED per user request */
 }
 
 [data-theme="light"] .quality-select {
@@ -70,6 +70,7 @@
 
 /* ===== MOBILE ===== */
 @media (max-width: 480px) {
+
     .quality-select,
     .unified-format-select {
         width: 140px;

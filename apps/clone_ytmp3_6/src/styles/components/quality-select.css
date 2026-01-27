@@ -35,10 +35,11 @@
     padding: 12px 16px;
     padding-right: 40px;
     border-radius: var(--radius-md);
-    font-size: max(16px, 14px); /* min 16px to prevent iOS auto-zoom */
+    font-size: max(16px, 14px);
+    /* min 16px to prevent iOS auto-zoom */
     font-weight: 500;
     cursor: pointer;
-    transition: border-color 0.2s;
+    /* transition: border-color 0.2s; REMOVED per user request */
 }
 
 .quality-select:focus {

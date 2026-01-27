@@ -15,7 +15,7 @@
     text-transform: uppercase;
     letter-spacing: 0.05em;
     border: 1px solid var(--border-secondary);
-    transition: background-color 0.2s ease;
+    /* transition: background-color 0.2s ease; REMOVED per user request */
     cursor: pointer;
 }
 
@@ -30,6 +30,7 @@
 }
 
 @media (min-width: 640px) {
+
     .btn-paste span,
     .btn-clear span {
         display: inline;
@@ -58,7 +59,7 @@
     border-radius: 0.5rem;
     font-size: 0.875rem;
     font-weight: 700;
-    transition: all 0.2s ease;
+    /* transition: all 0.2s ease; REMOVED per user request */
     text-transform: uppercase;
     letter-spacing: 0.05em;
     background-color: transparent;
@@ -96,8 +97,8 @@
     border-radius: 0.75rem;
     font-weight: 700;
     font-size: 1rem;
-    transition: all 0.2s ease;
-    transform: scale(1);
+    /* transition: all 0.2s ease; REMOVED per user request */
+    /* transform: scale(1); REMOVED per user request */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -109,6 +110,7 @@
 }
 
 @media (min-width: 768px) {
+
     .btn-submit,
     .btn-convert,
     .convert-button {
@@ -133,7 +135,7 @@
     background-color: transparent;
     padding: 0.25rem;
     border-radius: 9999px;
-    transition: all 0.2s ease;
+    /* transition: all 0.2s ease; REMOVED per user request */
 }
 
 .btn-submit:hover .btn-icon,
@@ -158,7 +160,7 @@
     justify-content: center;
     gap: 0.5rem;
     box-shadow: var(--shadow-button);
-    transition: all 0.2s ease;
+    /* transition: all 0.2s ease; REMOVED per user request */
 }
 
 .btn-download:hover {
@@ -176,7 +178,7 @@
     border-radius: 0.75rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s ease;
+    /* transition: all 0.2s ease; REMOVED per user request */
 }
 
 .btn-secondary:hover {

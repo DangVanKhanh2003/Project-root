@@ -26,11 +26,11 @@
     height: 100%;
     border-radius: 10px;
     cursor: pointer;
-    transition: all 0.3s;
+    /* transition: all 0.3s; REMOVED per user request */
 }
 
 .format-btn.active {
     background: var(--color-accent);
     color: var(--color-white);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }

@@ -12,7 +12,7 @@
     font-size: 14px;
     font-weight: 500;
     color: var(--text-secondary);
-    transition: all 0.2s;
+    /* transition: all 0.2s; REMOVED per user request */
     white-space: nowrap;
     cursor: pointer;
 }
@@ -45,7 +45,7 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    transition: background-color 0.2s;
+    /* transition: background-color 0.2s; REMOVED per user request */
     box-shadow: var(--shadow-button);
     width: 100%;
     border: none;
@@ -105,7 +105,7 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    transition: background-color 0.2s;
+    /* transition: background-color 0.2s; REMOVED per user request */
     border: none;
     cursor: pointer;
 }
@@ -124,7 +124,7 @@
     color: var(--text-main);
     border-radius: var(--radius-md);
     font-weight: 600;
-    transition: background-color 0.2s;
+    /* transition: background-color 0.2s; REMOVED per user request */
     text-align: center;
     cursor: pointer;
 }

@@ -16,7 +16,7 @@
     position: relative;
     z-index: 10;
     box-shadow: var(--shadow-glass);
-    transition: transform 0.3s ease, background 0.3s, border-color 0.3s;
+    /* transition: transform 0.3s ease, background 0.3s, border-color 0.3s; REMOVED per user request */
 }
 
 @media (min-width: 768px) {
@@ -62,7 +62,8 @@
 }
 
 .hero-subtitle p {
-    font-size: 1rem; /* 14px on mobile base */
+    font-size: 1rem;
+    /* 14px on mobile base */
 }
 
 [data-theme="dark"] .hero-subtitle {

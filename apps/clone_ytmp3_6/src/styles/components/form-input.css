@@ -60,7 +60,7 @@
 /* View Transitions */
 .view-container {
     width: 100%;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    /* transition: opacity 0.3s ease, transform 0.3s ease; REMOVED per user request */
 }
 
 .view-input.hidden-state {
