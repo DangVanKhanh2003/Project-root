@@ -75,8 +75,8 @@ class V3DownloadServiceImpl extends BaseService implements IV3DownloadService {
     if (this.isErrorResponse(response)) {
       throw new Error(response.error.message || response.error.code);
     }
-
-    return response as StatusResponse;
+    const data = response as StatusResponse;
+    return data;
   }
 
   /**

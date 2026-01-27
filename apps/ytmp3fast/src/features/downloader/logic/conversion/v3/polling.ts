@@ -92,6 +92,13 @@ export async function startPolling(options: PollingOptions): Promise<void> {
         continue;
       }
 
+      // Check for Job Error (from service) - Stop immediately
+      if ((error as any).isJobError) {
+        log('Job failed logic error, stopping:', (error as any).message);
+        onError((error as any).message);
+        return;
+      }
+
       // Network/API error - increment consecutive errors
       consecutiveErrors++;
       log(`Error (${consecutiveErrors}/${maxConsecutiveErrors}):`, error);

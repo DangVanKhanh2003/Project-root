@@ -86,6 +86,13 @@ export async function startPolling(options: PollingOptions): Promise<void> {
         continue;
       }
 
+      // Check for Job Error (from service) - Stop immediately
+      if ((error as any).isJobError) {
+        console.log('[V3 Polling] Job failed logic error, stopping:', (error as any).message);
+        onError((error as any).message);
+        return;
+      }
+
       // Real network error - count it
       consecutiveErrors++;
       console.log(`[V3 Polling] Network error (${consecutiveErrors}/${maxConsecutiveErrors}):`, error);

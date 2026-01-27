@@ -92,6 +92,13 @@ export async function startPolling(options: PollingOptions): Promise<void> {
         console.log('[V3 Polling] Timeout, retrying (does not count as error)...');
         continue;
       }
+
+      // Check for Job Error (from service) - Stop immediately
+      if ((error as any).isJobError) {
+        console.log('[V3 Polling] Job failed logic error, stopping:', (error as any).message);
+        onError((error as any).message);
+        return;
+      }
       // Network errors and other retryable errors - count towards limit
       else if (error instanceof NetworkError) {
         consecutiveErrors++;

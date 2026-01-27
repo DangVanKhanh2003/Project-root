@@ -37,7 +37,7 @@ export const RETRY_CONFIGS = {
 
   // Polling phase (checking progress)
   polling: {
-    maxConsecutiveErrors: 10, // 10 consecutive errors before failing
+    maxConsecutiveErrors: 5, // 5 consecutive errors before failing
     retryDelay: 0, // NO delay - retry immediately
     // Timeout does NOT count as error - can retry unlimited times
   }
