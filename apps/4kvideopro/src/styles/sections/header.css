@@ -12,10 +12,19 @@
     position: relative;
     top: 0;
     z-index: 100;
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(8px);
+    /* Reduced from 12px for mobile performance */
     border-bottom: var(--border-glass);
     background: var(--bg-header);
     transition: background 0.3s, box-shadow 0.3s;
+    will-change: background, box-shadow;
+}
+
+/* Increase blur on desktop where performance is better */
+@media (min-width: 768px) {
+    .header {
+        backdrop-filter: blur(12px);
+    }
 }
 
 /* Auto-hide header on mobile when scrolling down */
