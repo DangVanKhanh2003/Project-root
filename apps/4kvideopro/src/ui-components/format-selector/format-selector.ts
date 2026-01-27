@@ -51,7 +51,7 @@ export function renderUnifiedDropdown(selectedValue: string): string {
         <path d="M6 9l6 6 6-6" />
       </svg>
     </button>
-    <div class="custom-dropdown-menu" role="listbox">
+    <div class="custom-dropdown-menu" role="listbox" hidden>
       <div class="dropdown-group">
         <div class="dropdown-group-label">Video</div>
         ${videoOptions.map(option => `
@@ -148,6 +148,11 @@ export function initFormatSelector(containerSelector: string = '#previewCard'): 
     console.warn('Format selector container not found:', containerSelector);
     return;
   }
+
+  // Prevent initial flash before CSS loads.
+  container.querySelectorAll('.custom-dropdown-menu[hidden]').forEach(menu => {
+    menu.removeAttribute('hidden');
+  });
 
   container.addEventListener('click', handleDropdownClick);
   container.addEventListener('keydown', handleDropdownKeydown);

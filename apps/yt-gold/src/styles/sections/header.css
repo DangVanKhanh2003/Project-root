@@ -9,7 +9,7 @@
     height: var(--header-height);
     display: flex;
     align-items: center;
-    position: sticky;
+    position: relative;
     top: 0;
     z-index: 100;
     backdrop-filter: blur(12px);
@@ -80,12 +80,14 @@
     position: relative;
 }
 
-.nav-link:hover, .nav-link.active {
+.nav-link:hover,
+.nav-link.active {
     color: var(--text-main);
 }
 
-[data-theme="dark"] .nav-link:hover, [data-theme="dark"] .nav-link.active {
-    text-shadow: 0 0 10px rgba(255,255,255,0.5);
+[data-theme="dark"] .nav-link:hover,
+[data-theme="dark"] .nav-link.active {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .icon-btn {

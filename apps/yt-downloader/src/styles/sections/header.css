@@ -9,7 +9,7 @@
     height: var(--header-height);
     display: flex;
     align-items: center;
-    position: sticky;
+    position: relative;
     top: 0;
     z-index: 100;
     backdrop-filter: blur(12px);

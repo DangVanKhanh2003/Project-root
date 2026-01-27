@@ -1,7 +1,7 @@
 {%- set base = i18nBase[lang] or i18nBase['en'] -%}
 {%- set langPrefix = '' if (lang == 'en' or not lang) else '/' + lang -%}
 <!-- MOBILE DRAWER -->
-<div id="mobile-drawer" class="mobile-drawer">
+<div id="mobile-drawer" class="mobile-drawer" hidden>
     <div id="mobile-drawer-content" class="drawer-content">
         <div class="drawer-header">
             <span class="drawer-logo">{{ site.name | lower }}</span>

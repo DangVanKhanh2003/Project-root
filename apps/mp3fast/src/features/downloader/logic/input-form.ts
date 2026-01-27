@@ -550,7 +550,7 @@ async function handleSubmit(event: Event): Promise<void> {
       setTimeout(() => {
         const target = scrollManager.isMobile() ? '.hero-card' : '#videoUrl';
         if (scrollManager.isMobile()) {
-           scrollManager.scrollToElement('.hero-card', { customOffset: 20 });
+           scrollManager.scrollToElement('.hero-card');
         }
       }, 50);
 

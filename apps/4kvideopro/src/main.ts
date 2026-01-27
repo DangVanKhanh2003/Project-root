@@ -37,6 +37,9 @@ function initMobileMenu() {
     return;
   }
 
+  // Prevent initial flash before CSS loads.
+  mobileDrawer.removeAttribute('hidden');
+
   const openDrawer = () => {
     mobileDrawer.classList.add('open');
     document.body.style.overflow = 'hidden'; // Prevent background scrolling

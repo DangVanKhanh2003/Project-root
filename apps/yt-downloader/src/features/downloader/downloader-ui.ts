@@ -21,8 +21,8 @@ import { initViewSwitcher, showSearchView } from './ui-render/view-switcher';
  */
 export async function init(): Promise<void> {
   // Step 0: Initialize shared services
-  // Configure scroll manager for ytmp3-clone-3 (header is fixed at 80px)
-  scrollManager.setHeaderConfig({ isFixed: true, height: 80 });
+  // Configure scroll manager for yt-downloader (header is static)
+  scrollManager.setHeaderConfig({ isFixed: false, height: 0 });
   scrollManager.init();
 
   // ==========================================
