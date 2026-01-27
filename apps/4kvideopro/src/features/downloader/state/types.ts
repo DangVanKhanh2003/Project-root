@@ -27,7 +27,7 @@ export interface CoreUIState {
 // ==========================================
 // Format Selector State Types (UNIFIED DROPDOWN)
 // ==========================================
-export type FormatType = 'mp3' | 'mp4';
+export type FormatType = 'mp3' | 'mp4' | 'webm' | 'mkv';
 export type DownloadMode = 'video' | 'audio';
 export type VideoFormatType = 'mp4' | 'webm' | 'mkv';
 export type AudioFormatType = 'mp3' | 'wav' | 'm4a' | 'opus' | 'ogg' | 'flac';
@@ -326,15 +326,15 @@ export interface YouTubePreviewState {
 // ==========================================
 export interface AppState
   extends CoreUIState,
-          FormatSelectorState,
-          SuggestionsState,
-          SearchResultsState,
-          MediaDetailState,
-          DownloadState,
-          ConversionState,
-          MultifileState,
-          MultifileReuseState,
-          YouTubePreviewState {}
+  FormatSelectorState,
+  SuggestionsState,
+  SearchResultsState,
+  MediaDetailState,
+  DownloadState,
+  ConversionState,
+  MultifileState,
+  MultifileReuseState,
+  YouTubePreviewState { }
 
 // ==========================================
 // State Manager Types

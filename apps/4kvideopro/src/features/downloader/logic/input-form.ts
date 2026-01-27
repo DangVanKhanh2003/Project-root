@@ -163,7 +163,7 @@ function generateFakeYouTubeData(videoId: string, url: string): any {
           isFakeData: true,
           extractV2Options: {
             downloadMode: 'video',
-            videoQuality: '144',
+            videoQuality: '144p',
             youtubeVideoContainer: 'mp4'
           }
         },
@@ -261,25 +261,39 @@ async function handleAutoDownload(url: string, videoId: string): Promise<void> {
     let formatId: string;
 
     if (selectedFormat === 'mp4') {
-      // Video format
-      const qualityNumber = videoQuality.replace('p', ''); // '720p' → '720'
+      // Default to MP4 parameters
+      const qualityNumber = videoQuality.replace('p', '');
+      let targetContainer = 'mp4';
+      let finalQuality = videoQuality === '144p' ? '144p' : qualityNumber;
+
+      // Override for explicit WEBM or MKV
+      const isExplicitFormat = ['webm', 'mkv'].includes(videoQuality);
+
+      if (isExplicitFormat) {
+        if (videoQuality === 'webm') {
+          targetContainer = 'webm';
+        } else if (videoQuality === 'mkv') {
+          targetContainer = 'mkv';
+        }
+        finalQuality = '';
+      }
 
       formatData = {
-        id: `video|mp4-${videoQuality}`,
+        id: `video|${targetContainer}-${videoQuality}`,
         vid: videoId,
         category: 'video',
         type: 'VIDEO',
-        format: 'mp4',
+        format: targetContainer,
         quality: videoQuality,
         sizeText: 'Processing...',
         isFakeData: true,
         extractV2Options: {
           downloadMode: 'video',
-          videoQuality: qualityNumber,
-          youtubeVideoContainer: 'mp4'
+          videoQuality: finalQuality,
+          youtubeVideoContainer: targetContainer
         }
       };
-      formatId = `video|mp4-${videoQuality}`;
+      formatId = `video|${targetContainer}-${videoQuality}`;
 
     } else {
       // Audio format - All formats need audioBitrate
@@ -817,79 +831,79 @@ async function handleExtractMedia(url: string): Promise<void> {
 
     const videoId = extractYouTubeVideoId(url);
 
-      if (!videoId) {
-        throw new Error('Invalid YouTube URL - cannot extract video ID');
-      }
+    if (!videoId) {
+      throw new Error('Invalid YouTube URL - cannot extract video ID');
+    }
 
-      // ✅ Push URL to browser history (enables back navigation)
-      navigateToVideo(videoId);
+    // ✅ Push URL to browser history (enables back navigation)
+    navigateToVideo(videoId);
 
-      // ✅ Update SEO meta tags (noindex for result pages)
-      setVideoPageSEO();
+    // ✅ Update SEO meta tags (noindex for result pages)
+    setVideoPageSEO();
 
-      // 1. Create thumbnail URL from video ID
-      const thumbnail = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+    // 1. Create thumbnail URL from video ID
+    const thumbnail = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
 
-      // 2. Set initial preview with loading state (show skeleton)
-      setYouTubePreview({
-        videoId,
-        title: 'Loading video information...',
-        author: '',  // Empty initially - will be filled if API succeeds
-        thumbnail,
-        url,
-        isLoading: true
-      });
+    // 2. Set initial preview with loading state (show skeleton)
+    setYouTubePreview({
+      videoId,
+      title: 'Loading video information...',
+      author: '',  // Empty initially - will be filled if API succeeds
+      thumbnail,
+      url,
+      isLoading: true
+    });
 
-      // 3. Render preview immediately with skeleton
-      renderPreviewCard(null);
+    // 3. Render preview immediately with skeleton
+    renderPreviewCard(null);
 
-      // 4. Fetch metadata from YouTube Public API (async, hides skeleton when done)
-      (async () => {
-        try {
-          console.log('[YouTube Metadata] Fetching metadata for:', url);
+    // 4. Fetch metadata from YouTube Public API (async, hides skeleton when done)
+    (async () => {
+      try {
+        console.log('[YouTube Metadata] Fetching metadata for:', url);
 
-          const metadata = await coreServices.youtubePublicApi.getMetadata(url);
-          console.log('[YouTube Metadata] Response:', metadata);
+        const metadata = await coreServices.youtubePublicApi.getMetadata(url);
+        console.log('[YouTube Metadata] Response:', metadata);
 
-          if (metadata && metadata.title) {
-            // Success: Update preview with real metadata
-            console.log('[YouTube Metadata] Success - Title:', metadata.title, 'Author:', metadata.authorName);
-            updateYouTubePreviewMetadata(metadata.title, metadata.authorName || '');
-          } else {
-            // API returned but no data - fallback to URL as title, no author
-            console.log('[YouTube Metadata] No data returned');
-            updateYouTubePreviewMetadata(url, '');
-          }
-        } catch (error) {
-          // API failed - fallback to URL as title, no author
-          console.error('[YouTube Metadata] Error:', error);
+        if (metadata && metadata.title) {
+          // Success: Update preview with real metadata
+          console.log('[YouTube Metadata] Success - Title:', metadata.title, 'Author:', metadata.authorName);
+          updateYouTubePreviewMetadata(metadata.title, metadata.authorName || '');
+        } else {
+          // API returned but no data - fallback to URL as title, no author
+          console.log('[YouTube Metadata] No data returned');
           updateYouTubePreviewMetadata(url, '');
         }
+      } catch (error) {
+        // API failed - fallback to URL as title, no author
+        console.error('[YouTube Metadata] Error:', error);
+        updateYouTubePreviewMetadata(url, '');
+      }
 
-        // Hide skeleton and show real data
-        setYouTubePreview({
-          videoId,
-          title: getState().youtubePreview?.title || url,
-          author: getState().youtubePreview?.author || '',
-          thumbnail,
-          url,
-          isLoading: false  // Hide skeleton
-        });
-        renderPreviewCard(null);
-      })();
-
-      // 5. Auto-download: Extract formats and trigger conversion (fire-and-forget)
-      handleAutoDownload(url, videoId).then(() => {
-        // Reset isFromListItemClick flag after conversion starts
-        const currentState = getState();
-        if (currentState.isFromListItemClick) {
-          setIsFromListItemClick(false);
-        }
-      }).catch((error) => {
-        console.error('[Auto Download] Error:', error);
+      // Hide skeleton and show real data
+      setYouTubePreview({
+        videoId,
+        title: getState().youtubePreview?.title || url,
+        author: getState().youtubePreview?.author || '',
+        thumbnail,
+        url,
+        isLoading: false  // Hide skeleton
       });
+      renderPreviewCard(null);
+    })();
 
-      // Return immediately to enable input (don't wait for conversion)
+    // 5. Auto-download: Extract formats and trigger conversion (fire-and-forget)
+    handleAutoDownload(url, videoId).then(() => {
+      // Reset isFromListItemClick flag after conversion starts
+      const currentState = getState();
+      if (currentState.isFromListItemClick) {
+        setIsFromListItemClick(false);
+      }
+    }).catch((error) => {
+      console.error('[Auto Download] Error:', error);
+    });
+
+    // Return immediately to enable input (don't wait for conversion)
 
   } catch (error) {
     throw error;

@@ -431,7 +431,7 @@ function renderDetailSkeleton(): string {
 
           <!-- Quality List - 2 columns only (left + right) -->
           <div class="quality-list">
-            ${Array(6).fill(null).map(() => `
+            ${Array(5).fill(null).map(() => `
               <div class="quality-item">
                 <div class="quality-row">
                   <div class="quality-col-left">

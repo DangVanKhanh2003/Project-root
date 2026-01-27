@@ -118,7 +118,12 @@ export async function retryWithBackoff<T>(
  * Timeout errors should NOT be counted as errors in polling
  */
 export function isTimeoutError(error: any): boolean {
-  return error?.name === 'AbortError' || error?.error?.name === 'AbortError';
+  return (
+    error?.name === 'AbortError' ||
+    error?.error?.name === 'AbortError' ||
+    error?.name === 'TimeoutError' ||
+    error?.code === 'ECONNABORTED'
+  );
 }
 
 /**

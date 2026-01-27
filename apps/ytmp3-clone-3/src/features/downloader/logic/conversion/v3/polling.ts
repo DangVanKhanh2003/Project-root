@@ -99,6 +99,18 @@ export async function startPolling(options: PollingOptions): Promise<void> {
         return;
       }
 
+      // Check for API-level Job Error (thrown by HttpClient)
+      // HttpClient throws ApiError when response.status === 'error'
+      // This is NOT a network error, it's a valid job failure response
+      // Fix: Stop polling if API returns "status": "error"
+      const apiResponse = (error as any).response;
+      if (apiResponse && apiResponse.status === 'error') {
+        const errorMessage = apiResponse.jobError || (error as any).message || 'Conversion failed';
+        log('Job failed (API returned error status), stopping:', errorMessage);
+        onError(errorMessage);
+        return;
+      }
+
       // Network/API error - increment consecutive errors
       consecutiveErrors++;
       log(`Error (${consecutiveErrors}/${maxConsecutiveErrors}):`, error);

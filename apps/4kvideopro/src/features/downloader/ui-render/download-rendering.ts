@@ -19,8 +19,8 @@ import { logEvent } from '../../../libs/firebase';
 // ============================================================
 
 interface VideoMeta {
-    title?: string;
-    originalUrl?: string;
+  title?: string;
+  originalUrl?: string;
 }
 
 // ============================================================
@@ -155,10 +155,15 @@ function getCurrentFormatId(state: AppState): string | null {
     return null;
   }
 
-  // Build formatId (same logic as in input-form.ts)
-  // IMPORTANT: Must use same fallback values to match formatId
+  // Build formatId (same logic as in input-form.ts result)
   if (selectedFormat === 'mp4') {
-    return `video|mp4-${state.videoQuality || '720p'}`;
+    const videoQuality = state.videoQuality || '720p';
+
+    // Check if explicit format (webm/mkv)
+    const isExplicitFormat = ['webm', 'mkv'].includes(videoQuality);
+    const container = isExplicitFormat ? videoQuality : 'mp4';
+
+    return `video|${container}-${videoQuality}`;
   } else {
     // Audio formats - apply same fallback as input-form.ts
     const audioFormat = state.audioFormat || 'mp3';
@@ -264,7 +269,7 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
 
         // 4. Mark estimator as running for complete() to work
         const estimator = getMergingEstimator(formatId);
-        estimator.start(() => {}); // CSS @keyframes handles animation
+        estimator.start(() => { }); // CSS @keyframes handles animation
       });
     });
 
@@ -523,20 +528,20 @@ async function handleNewConvertButtonClick(): Promise<void> {
  * @param meta - Video metadata
  */
 export function updateVideoTitle(meta: VideoMeta): void {
-    const titleElement = document.getElementById('videoTitle');
-    if (!meta || !titleElement) return;
+  const titleElement = document.getElementById('videoTitle');
+  if (!meta || !titleElement) return;
 
-    const displayTitle = meta.title || meta.originalUrl || 'Video không có tiêu đề';
-    const escapedTitle = escapeHtml(displayTitle);
+  const displayTitle = meta.title || meta.originalUrl || 'Video không có tiêu đề';
+  const escapedTitle = escapeHtml(displayTitle);
 
-    titleElement.textContent = escapedTitle;
-    titleElement.setAttribute('title', escapedTitle);
+  titleElement.textContent = escapedTitle;
+  titleElement.setAttribute('title', escapedTitle);
 
-    // Re-activate expandable text logic (see more/collapse)
-    const container = titleElement.closest('#previewCard, #downloadOptionsContainer');
-    if (container) {
-        initExpandableText(container as HTMLElement, '.video-title');
-    }
+  // Re-activate expandable text logic (see more/collapse)
+  const container = titleElement.closest('#previewCard, #downloadOptionsContainer');
+  if (container) {
+    initExpandableText(container as HTMLElement, '.video-title');
+  }
 }
 
 // ============================================================
@@ -547,9 +552,9 @@ export function updateVideoTitle(meta: VideoMeta): void {
  * Escape HTML to prevent XSS
  */
 function escapeHtml(text: string): string {
-    if (typeof text !== 'string') return '';
+  if (typeof text !== 'string') return '';
 
-    const div = document.createElement('div');
-    div.textContent = text;
-    return div.innerHTML;
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
 }
