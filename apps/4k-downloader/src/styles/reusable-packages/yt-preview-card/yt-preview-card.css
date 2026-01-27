@@ -91,7 +91,7 @@
   margin: 0;
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
   text-align: start;
@@ -167,6 +167,7 @@
     flex-direction: column;
     gap: 16px;
     padding: 16px;
+    min-height: 280px;
   }
 
   .yt-preview-thumbnail {

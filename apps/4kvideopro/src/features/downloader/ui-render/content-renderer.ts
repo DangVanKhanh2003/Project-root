@@ -396,6 +396,7 @@ export function showLoading(type: 'list' | 'detail' = 'list', append: boolean = 
 
       // Show content area (may be hidden from search results)
       contentArea.style.display = 'block';
+      showResultView();
 
       // Hide search section
       hideSearchResultsSection();
@@ -498,6 +499,8 @@ export function renderPreviewCard(_data: any): void {
   }
 
   const { title, thumbnail, author } = youtubePreview;
+  contentArea.classList.remove('showing-loading');
+  
   const selectedFormat = state.selectedFormat; // 'mp3' or 'mp4'
 
   // Get quality info based on selected format
