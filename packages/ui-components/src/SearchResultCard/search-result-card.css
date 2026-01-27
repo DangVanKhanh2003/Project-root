@@ -29,35 +29,26 @@
     width: 100%;
     padding-top: 0 !important;
     padding-bottom: 40px !important;
-    min-height: 0; /* Allow section to collapse when empty */
+    min-height: 0;
+    /* Allow section to collapse when empty */
 }
 
 /* ======= Responsive Breakpoints (Mobile First) ======= */
 
 /* Tablet (600px+) - Section padding */
-@media (min-width: 600px) {
-
-}
+@media (min-width: 600px) {}
 
 /* Desktop (840px+) - Section padding */
-@media (min-width: 840px) {
-
-}
+@media (min-width: 840px) {}
 
 /* Wide Desktop (1240px+) - Section padding */
-@media (min-width: 1240px) {
-
-}
+@media (min-width: 1240px) {}
 
 /* 2K Display (1920px+) - Section padding */
-@media (min-width: 1920px) {
-
-}
+@media (min-width: 1920px) {}
 
 /* 4K Display (2560px+) - Section padding */
-@media (min-width: 2560px) {
-
-}
+@media (min-width: 2560px) {}
 
 /* Tablet (600px+) - 3 columns */
 @media (min-width: 600px) {
@@ -92,7 +83,8 @@
     }
 
     .card-metadata {
-        font-size: 14px; /* Desktop: 14px */
+        font-size: 14px;
+        /* Desktop: 14px */
     }
 }
 
@@ -221,7 +213,8 @@
     align-items: center;
     flex-wrap: nowrap;
     gap: var(--pkg-space-1);
-    font-size: 12px; /* Mobile: 12px */
+    font-size: 12px;
+    /* Mobile: 12px */
     font-weight: var(--pkg-label-medium-weight);
     color: #666;
     line-height: 1;
@@ -270,7 +263,9 @@
 }
 
 @keyframes spinner-rotate {
-    to { transform: rotate(360deg); }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .loader-text {
@@ -365,7 +360,7 @@
 .skeleton-card .skeleton-segment {
     background: linear-gradient(90deg, #d7d7d7 25%, #c7c7c7, #d7d7d7 75%);
     background-size: 200% 100%;
-    animation: shimmer 1.5s linear infinite;
+    animation: shimmer 1s linear infinite;
 }
 
 /* Ensure skeleton card-content is visible */
@@ -387,7 +382,7 @@
     left: 0;
     background: linear-gradient(90deg, #d7d7d7 25%, #c7c7c7, #d7d7d7 75%);
     background-size: 200% 100%;
-    animation: shimmer 1.5s linear infinite;
+    animation: shimmer 1s linear infinite;
     border-radius: 0px;
     aspect-ratio: 16 / 9;
 }
@@ -425,7 +420,7 @@
     height: 13px;
     background: linear-gradient(90deg, #d7d7d7 25%, #c7c7c7 50%, #d7d7d7 75%);
     background-size: 200% 100%;
-    animation: shimmer 1.5s linear infinite;
+    animation: shimmer 1s linear infinite;
     border-radius: var(--pkg-radius-xs);
     margin-bottom: 6px;
     color: transparent;
@@ -462,18 +457,19 @@
     width: 50px;
     background: linear-gradient(90deg, #d7d7d7 25%, #c7c7c7 50%, #d7d7d7 75%);
     background-size: 200% 100%;
-    animation: shimmer 1.5s linear infinite;
+    animation: shimmer 1s linear infinite;
     border-radius: var(--pkg-radius-xs);
 }
 
 /* Note: @keyframes shimmer is defined in base.css or skeleton.css */
 @keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
 }
 
 /* ======= Empty State ======= */

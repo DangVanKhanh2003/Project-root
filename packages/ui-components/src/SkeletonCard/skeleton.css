@@ -44,6 +44,7 @@
   0% {
     background-position: -200% 0;
   }
+
   100% {
     background-position: 200% 0;
   }
@@ -58,7 +59,7 @@
   display: block;
   line-height: 1;
   width: 100%;
-  animation: shimmer 1.5s linear infinite;
+  animation: shimmer 1s linear infinite;
   position: relative;
   overflow: hidden;
   will-change: background-position;
@@ -72,7 +73,7 @@
   border-radius: var(--skeleton-radius-sm);
   background: linear-gradient(90deg, #d7d7d7 25%, #c7c7c7 50%, #d7d7d7 75%);
   background-size: 200% 100%;
-  animation: shimmer 1.5s linear infinite;
+  animation: shimmer 1s linear infinite;
   will-change: background-position;
 }
 
@@ -137,7 +138,7 @@
   border-radius: var(--skeleton-radius-md);
   background: linear-gradient(90deg, #d7d7d7 25%, #c7c7c7 50%, #d7d7d7 75%);
   background-size: 200% 100%;
-  animation: shimmer 1.5s linear infinite;
+  animation: shimmer 1s linear infinite;
   will-change: background-position;
 }
 
@@ -177,7 +178,7 @@
   border-radius: var(--skeleton-radius-sm);
   background: linear-gradient(90deg, #d7d7d7 25%, #c7c7c7 50%, #d7d7d7 75%);
   background-size: 200% 100%;
-  animation: shimmer 1.5s linear infinite;
+  animation: shimmer 1s linear infinite;
   will-change: background-position;
 }
 
@@ -188,7 +189,7 @@
   border-radius: var(--skeleton-radius-lg);
   background: linear-gradient(90deg, #d7d7d7 25%, #c7c7c7 50%, #d7d7d7 75%);
   background-size: 200% 100%;
-  animation: shimmer 1.5s linear infinite;
+  animation: shimmer 1s linear infinite;
   will-change: background-position;
 }
 
@@ -200,7 +201,7 @@
   border-radius: var(--skeleton-radius-lg);
   background: linear-gradient(90deg, #d7d7d7 25%, #c7c7c7 50%, #d7d7d7 75%);
   background-size: 200% 100%;
-  animation: shimmer 1.5s linear infinite;
+  animation: shimmer 1s linear infinite;
   will-change: background-position;
 }
 
@@ -212,7 +213,7 @@
   border-radius: var(--skeleton-radius-xl);
   background: linear-gradient(90deg, #d7d7d7 25%, #c7c7c7 50%, #d7d7d7 75%);
   background-size: 200% 100%;
-  animation: shimmer 1.5s linear infinite;
+  animation: shimmer 1s linear infinite;
   will-change: background-position;
 }
 
@@ -256,7 +257,7 @@
   border-radius: var(--skeleton-radius-full);
   background: linear-gradient(90deg, #d7d7d7 25%, #c7c7c7 50%, #d7d7d7 75%);
   background-size: 200% 100%;
-  animation: shimmer 1.5s linear infinite;
+  animation: shimmer 1s linear infinite;
   will-change: background-position;
   flex-shrink: 0;
 }
@@ -328,6 +329,7 @@
 /* ========== ACCESSIBILITY ========== */
 /* Disable animations for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
+
   .skeleton,
   .skeleton-text,
   .skeleton-title,

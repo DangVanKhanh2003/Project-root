@@ -113,7 +113,8 @@
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  animation: none !important; /* Stop shimmer animation to prevent flicker */
+  animation: none !important;
+  /* Stop shimmer animation to prevent flicker */
   /* NO transition - instant hide prevents flicker */
 }
 
@@ -136,7 +137,7 @@
 .skeleton-convert-btn {
   background: linear-gradient(90deg, #d7d7d7 25%, #c7c7c7 50%, #d7d7d7 75%);
   background-size: 200% 100%;
-  animation: shimmer 1.5s linear infinite;
+  animation: shimmer 1s linear infinite;
 }
 
 .video-title-skeleton {
@@ -455,7 +456,8 @@
 /* ======= Mobile Only (0-600px): Hide text, show icon only ======= */
 @media (max-width: 600px) {
   .btn-convert {
-    padding: 10px 12px; /* Square-like padding for icon-only */
+    padding: 10px 12px;
+    /* Square-like padding for icon-only */
     min-width: 44px;
   }
 
@@ -510,16 +512,19 @@
     height: 28px;
   }
 }
+
 .see-more-btn {
-    background: none;
-    border: none;
-    color: rgba(0, 0, 0, 0.512);
-    cursor: pointer;
-    font-weight: var(--md-sys-typescale-label-medium-weight);
-    font-size: var(--md-sys-typescale-label-medium-size);
-    padding: 0;
-    margin-top: 2px; /* A bit of space above the button */
+  background: none;
+  border: none;
+  color: rgba(0, 0, 0, 0.512);
+  cursor: pointer;
+  font-weight: var(--md-sys-typescale-label-medium-weight);
+  font-size: var(--md-sys-typescale-label-medium-size);
+  padding: 0;
+  margin-top: 2px;
+  /* A bit of space above the button */
 }
+
 /* ======= Expanded Desktop (840px-1239px) ======= */
 @media (min-width: 840px) {
   .video-layout {

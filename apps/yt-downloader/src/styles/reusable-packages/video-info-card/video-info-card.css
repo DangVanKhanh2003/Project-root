@@ -113,7 +113,8 @@
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  animation: none !important; /* Stop shimmer animation to prevent flicker */
+  animation: none !important;
+  /* Stop shimmer animation to prevent flicker */
   /* NO transition - instant hide prevents flicker */
 }
 
@@ -143,7 +144,7 @@
   border-radius: 4px;
   background: linear-gradient(90deg, var(--color-skeleton-dark) 25%, var(--color-skeleton-light) 50%, var(--color-skeleton-dark) 75%);
   background-size: 200% 100%;
-  animation: shimmer 1.5s linear infinite;
+  animation: shimmer 1s linear infinite;
 }
 
 .video-title-skeleton .skeleton-line:first-child {
@@ -162,7 +163,7 @@
   border-radius: 4px;
   background: linear-gradient(90deg, var(--color-skeleton-dark) 25%, var(--color-skeleton-light) 50%, var(--color-skeleton-dark) 75%);
   background-size: 200% 100%;
-  animation: shimmer 1.5s linear infinite;
+  animation: shimmer 1s linear infinite;
 }
 
 /* Video Title */
@@ -349,7 +350,7 @@
 }
 
 .btn-convert:hover {
-    background: var(--color-accent-hover);
+  background: var(--color-accent-hover);
 }
 
 
@@ -383,8 +384,13 @@
 }
 
 @keyframes btn-spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Skeleton Convert Button - MUST match .btn-convert dimensions */
@@ -395,7 +401,7 @@
   border-radius: 8px;
   background: linear-gradient(90deg, var(--color-skeleton-dark) 25%, var(--color-skeleton-light) 50%, var(--color-skeleton-dark) 75%);
   background-size: 200% 100%;
-  animation: shimmer 1.5s linear infinite;
+  animation: shimmer 1s linear infinite;
 }
 
 /* Content Message (Error/Info) */
@@ -500,16 +506,19 @@
     height: 28px;
   }
 }
+
 .see-more-btn {
-    background: none;
-    border: none;
-    color: var(--color-gray-550);
-    cursor: pointer;
-    font-weight: var(--md-sys-typescale-label-medium-weight);
-    font-size: var(--md-sys-typescale-label-medium-size);
-    padding: 0;
-    margin-top: 2px; /* A bit of space above the button */
+  background: none;
+  border: none;
+  color: var(--color-gray-550);
+  cursor: pointer;
+  font-weight: var(--md-sys-typescale-label-medium-weight);
+  font-size: var(--md-sys-typescale-label-medium-size);
+  padding: 0;
+  margin-top: 2px;
+  /* A bit of space above the button */
 }
+
 /* ======= Expanded Desktop (840px-1239px) ======= */
 @media (min-width: 840px) {
   .video-layout {
