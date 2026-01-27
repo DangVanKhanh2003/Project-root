@@ -14,7 +14,7 @@ export interface OutputConfig {
   format: 'mp4' | 'webm' | 'mkv' | 'mp3' | 'm4a' | 'wav' | 'opus' | 'flac';
 
   /** Video quality (only for video type) */
-  quality?: '2160p' | '1440p' | '1080p' | '720p' | '480p' | '360p';
+  quality?: '2160p' | '1440p' | '1080p' | '720p' | '480p' | '360p' | '144p';
 }
 
 /**

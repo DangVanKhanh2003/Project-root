@@ -62,6 +62,9 @@ export function detectOsType(): OsType {
 function mapVideoQuality(quality?: string): OutputConfig['quality'] | undefined {
   if (!quality) return undefined;
 
+  // Normalize: remove 'p' suffix to handle both "144" and "144p"
+  const key = quality.replace(/p$/i, '');
+
   const qualityMap: Record<string, OutputConfig['quality']> = {
     '2160': '2160p',
     '1440': '1440p',
@@ -69,9 +72,10 @@ function mapVideoQuality(quality?: string): OutputConfig['quality'] | undefined 
     '720': '720p',
     '480': '480p',
     '360': '360p',
+    '144': '144p',
   };
 
-  return qualityMap[quality] || undefined;
+  return qualityMap[key] || undefined;
 }
 
 /**
