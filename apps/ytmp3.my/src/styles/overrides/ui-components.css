@@ -14,3 +14,10 @@
 #suggestion-container.suggestion-container--visible {
   top: 60px !important;
 }
+
+@media (min-width: 768px) {
+  #suggestion-container.suggestion-container--visible {
+    top: 85px !important;
+  }
+}
+
