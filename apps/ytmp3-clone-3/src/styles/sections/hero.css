@@ -7,10 +7,20 @@
 
 .hero {
     position: relative;
-    padding: 30px 0;
-    padding-bottom: 30px;
+    padding-top: 8rem;
+    padding-bottom: 4rem;
+    padding-left: 0;
+    padding-right: 0;
     display: flex;
     justify-content: center;
+}
+
+@media (max-width: 768px) {
+
+    .hero-section,
+    .hero {
+        padding-top: 5rem;
+    }
 }
 
 .hero-glow {
@@ -25,7 +35,8 @@
     pointer-events: none;
     z-index: 0;
     transition: background 0.3s, opacity 0.3s;
-    display: none; /* Ẩn mặc định */
+    display: none;
+    /* Ẩn mặc định */
 }
 
 /* Chỉ hiển thị ở dark theme + desktop (> 1200px) */

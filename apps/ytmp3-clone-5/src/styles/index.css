@@ -185,6 +185,13 @@ a {
   align-items: center;
   justify-content: center;
   width: 100%;
+  padding-bottom: 4rem;
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding-top: 5rem;
+  }
 }
 
 /* ===== LOGO (Google) ===== */
@@ -396,7 +403,7 @@ a {
   margin-top: auto;
 }
 
-.content-section > .container {
+.content-section>.container {
   max-width: var(--content-max-width);
 }
 
@@ -585,7 +592,8 @@ a {
   }
 
   .search-input {
-    font-size: 16px; /* prevent iOS auto-zoom on focus */
+    font-size: 16px;
+    /* prevent iOS auto-zoom on focus */
     padding: 0 12px;
   }
 
