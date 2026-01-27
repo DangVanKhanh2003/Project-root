@@ -1,3 +1,4 @@
+
 /* ===== RESET & BASE ===== */
 * {
     margin: 0;
@@ -1398,4 +1399,8 @@ footer {
 /* ===== UTILITY CLASSES ===== */
 .hidden {
     display: none !important;
+}
+
+.card-title {
+    color: #0f0f0f;
 }

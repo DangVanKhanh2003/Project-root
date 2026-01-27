@@ -35,6 +35,7 @@ import { getInputValue as getInputValueFromRenderer, setInputValue as setInputVa
 import type { VideoData } from '@downloader/ui-components';
 import { navigateToVideo } from '../routing/url-manager';
 import { setVideoPageSEO } from '../routing/seo-manager';
+import { showResultView } from '../ui-render/view-switcher';
 
 // ============================================
 // YOUTUBE HELPERS
@@ -265,7 +266,7 @@ async function handleAutoDownload(url: string, videoId: string): Promise<void> {
       let finalQuality = videoQuality === '144p' ? '144p' : qualityNumber;
       const isExplicitFormat = ['webm', 'mkv'].includes(videoQuality);
       if (isExplicitFormat) {
-         if (videoQuality === 'webm') targetContainer = 'webm';
+        if (videoQuality === 'webm') targetContainer = 'webm';
         else if (videoQuality === 'mkv') targetContainer = 'mkv';
         finalQuality = '';
       }
@@ -765,12 +766,10 @@ async function handleSubmit(event: Event): Promise<void> {
   try {
     if (state.inputType === 'url') {
       // Show detail skeleton for video extraction
-      showLoading('detail');
+      // showLoading('detail');
 
       // Scroll to hero-card after skeleton renders (50ms delay)
-      setTimeout(() => {
-        scrollManager.scrollToElement('.hero-card');
-      }, 50);
+
 
       await handleExtractMedia(value);
     } else {
@@ -845,6 +844,12 @@ async function handleExtractMedia(url: string): Promise<void> {
     });
 
     // 3. Render preview immediately with skeleton
+    showLoading('detail');
+    showResultView();
+    // Scroll to hero-card after skeleton renders (50ms delay)
+    setTimeout(() => {
+      scrollManager.scrollToElement('.hero-card');
+    }, 50);
     renderPreviewCard(null);
 
     // 4. Fetch metadata from YouTube Public API (async, hides skeleton when done)

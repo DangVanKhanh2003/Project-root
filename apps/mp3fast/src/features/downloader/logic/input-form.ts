@@ -35,6 +35,7 @@ import { getInputValue as getInputValueFromRenderer, setInputValue as setInputVa
 import type { VideoData } from '@downloader/ui-components';
 import { navigateToVideo } from '../routing/url-manager';
 import { setVideoPageSEO } from '../routing/seo-manager';
+import { showResultView } from '../ui-render/view-switcher';
 
 // Import YouTube helpers from @downloader/core (TODO: remove local duplicates)
 import {
@@ -541,18 +542,13 @@ async function handleSubmit(event: Event): Promise<void> {
   try {
     // Show appropriate skeleton based on input type
     if (state.inputType === 'url') {
-      showLoading('detail');
+      // showLoading('detail');
     } else {
       showLoading('list');
     }
 
     // Scroll to hero-card after skeleton renders (50ms delay), with 20px offset
-      setTimeout(() => {
-        const target = scrollManager.isMobile() ? '.hero-card' : '#videoUrl';
-        if (scrollManager.isMobile()) {
-           scrollManager.scrollToElement('.hero-card');
-        }
-      }, 50);
+
 
     // Execute the appropriate action
     if (state.inputType === 'url') {
@@ -618,6 +614,16 @@ async function handleExtractMedia(url: string): Promise<void> {
       });
 
       // 3. Render preview immediately with skeleton
+      showLoading('detail');
+      showResultView();
+    // Scroll to hero-card after skeleton renders (50ms delay)
+    setTimeout(() => {
+      scrollManager.scrollToElement('.hero-card');
+    }, 50);
+    // Scroll to hero-card after skeleton renders (50ms delay)
+    setTimeout(() => {
+      scrollManager.scrollToElement('.hero-card');
+    }, 50);
       renderPreviewCard(null);
 
       // 4. Fetch metadata from YouTube Public API (async, hides skeleton when done)

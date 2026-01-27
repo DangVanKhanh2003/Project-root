@@ -30,7 +30,8 @@
     padding: var(--pkg-space-6) 0;
     padding-top: 40px !important;
     padding-bottom: 40px !important;
-    min-height: 0; /* Allow section to collapse when empty */
+    min-height: 0;
+    /* Allow section to collapse when empty */
 }
 
 /* ======= Responsive Breakpoints (Mobile First) ======= */
@@ -210,8 +211,8 @@
 
 /* Channel Name */
 .card-channel {
-    font-size: var(--pkg-body-medium-size);
-    font-weight: var(--pkg-body-medium-weight);
+    font-size: 14px;
+    font-weight: 400;
     color: var(--pkg-search-results-channel-color);
     line-height: var(--pkg-body-medium-line-height);
     margin: 0;
@@ -228,8 +229,8 @@
     align-items: center;
     flex-wrap: nowrap;
     gap: var(--pkg-space-1);
-    font-size: var(--pkg-label-medium-size);
-    font-weight: var(--pkg-label-medium-weight);
+    font-size: 14px;
+    font-weight: 400px;
     color: var(--pkg-search-results-metadata-color);
     line-height: 1;
     text-align: left;
@@ -277,7 +278,9 @@
 }
 
 @keyframes spinner-rotate {
-    to { transform: rotate(360deg); }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .loader-text {
@@ -375,9 +378,9 @@
     top: 0;
     left: 0;
     background: linear-gradient(90deg,
-        var(--pkg-skeleton-color-dark) 25%,
-        var(--pkg-skeleton-color-light),
-        var(--pkg-skeleton-color-dark) 75%);
+            var(--pkg-skeleton-color-dark) 25%,
+            var(--pkg-skeleton-color-light),
+            var(--pkg-skeleton-color-dark) 75%);
     background-size: 200% 100%;
     animation: shimmer 1.0s linear infinite;
 }
@@ -414,9 +417,9 @@
     height: 1em;
     height: 13px;
     background: linear-gradient(90deg,
-        var(--pkg-skeleton-color-dark) 25%,
-        var(--pkg-skeleton-color-light),
-        var(--pkg-skeleton-color-dark) 75%);
+            var(--pkg-skeleton-color-dark) 25%,
+            var(--pkg-skeleton-color-light),
+            var(--pkg-skeleton-color-dark) 75%);
     background-size: 200% 100%;
     animation: shimmer 1.0s linear infinite;
     border-radius: var(--pkg-radius-xs);
@@ -454,9 +457,9 @@
     height: 0.75em;
     width: 50px;
     background: linear-gradient(90deg,
-        var(--pkg-skeleton-color-dark) 25%,
-        var(--pkg-skeleton-color-light),
-        var(--pkg-skeleton-color-dark) 75%);
+            var(--pkg-skeleton-color-dark) 25%,
+            var(--pkg-skeleton-color-light),
+            var(--pkg-skeleton-color-dark) 75%);
     background-size: 200% 100%;
     animation: shimmer 1.0s linear infinite;
     border-radius: var(--pkg-radius-xs);
@@ -464,12 +467,13 @@
 
 /* Note: @keyframes shimmer is defined in base.css or skeleton.css */
 @keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
 }
 
 /* ======= Empty State ======= */

@@ -36,6 +36,7 @@ import { getInputValue as getInputValueFromRenderer, setInputValue as setInputVa
 import type { VideoData } from '@downloader/ui-components';
 import { navigateToVideo } from '../routing/url-manager';
 import { setVideoPageSEO } from '../routing/seo-manager';
+import { showResultView } from '../ui-render/view-switcher';
 
 // ============================================
 // YOUTUBE HELPERS
@@ -774,8 +775,6 @@ async function handleSubmit(event: Event): Promise<void> {
   try {
     if (state.inputType === 'url') {
       // Show detail skeleton for video extraction
-      showLoading('detail');
-
       // Scroll to hero-card after skeleton renders (50ms delay)
       setTimeout(() => {
         scrollManager.scrollToElement('.hero-card');
@@ -854,8 +853,9 @@ async function handleExtractMedia(url: string): Promise<void> {
       isLoading: true
     });
 
-    // 3. Render preview immediately with skeleton
-    renderPreviewCard(null);
+
+    showLoading('detail');
+    showResultView();
 
     // 4. Fetch metadata from YouTube Public API (async, hides skeleton when done)
     (async () => {
