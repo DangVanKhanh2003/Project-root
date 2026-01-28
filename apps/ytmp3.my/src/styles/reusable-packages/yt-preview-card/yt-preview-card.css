@@ -108,12 +108,16 @@
   align-items: flex-start;
   font-size: 0.9rem;
   color: var(--text-muted);
+  width: 100%;
+  max-width: 100%;
 }
 
 .yt-preview-format {
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-wrap: wrap;
+  max-width: 100%;
 }
 
 .audio-track-badge {

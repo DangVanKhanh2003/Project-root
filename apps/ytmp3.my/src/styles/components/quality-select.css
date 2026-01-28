@@ -385,6 +385,7 @@
     /* Hide text/arrow when collapsed */
     .audio-dropdown-wrapper .selected-content,
     .audio-dropdown-wrapper .dropdown-arrow {
+        display: none;
         opacity: 0;
         width: 0;
         overflow: hidden;
@@ -394,6 +395,7 @@
     /* Show text/arrow when expanded */
     .audio-dropdown-wrapper:has(.custom-dropdown.active) .selected-content,
     .audio-dropdown-wrapper:has(.custom-dropdown.active) .dropdown-arrow {
+        display: inline-flex;
         opacity: 1;
         width: auto;
         transition: opacity 0.5s 0.25s, width 0.5s;
@@ -401,8 +403,9 @@
 
     /* Trigger Styles - Collapsed: center icon */
     .audio-dropdown-wrapper .dropdown-trigger {
-        padding: 0;
+        padding: 0 0 0 1px;
         justify-content: center;
+        gap: 0;
         transition: padding 0.75s, justify-content 0.75s;
     }
 
