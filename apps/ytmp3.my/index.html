@@ -434,13 +434,50 @@
                                             <option value="webm">WEBM</option>
                                             <option value="mkv">MKV</option>
                                         </select>
+                                        <div class="select-arrow">
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M6 9l6 6 6-6" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div class="audio-dropdown-wrapper">
+                                        <!-- Custom Searchable Audio Track Dropdown -->
+                                        <div class="custom-dropdown" id="audio-track-dropdown">
+                                            <div class="dropdown-trigger" tabindex="0" role="button"
+                                                aria-haspopup="listbox" aria-expanded="false">
+                                                <!-- Absolute Icon (Languages) -->
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="dropdown-trigger-icon"><path d="m5 8 6 6"></path><path d="m4 14 6-6 2-3"></path><path d="M2 5h12"></path><path d="M7 2h1"></path><path d="m22 22-5-10-5 10"></path><path d="M14 18h6"></path></svg>
+                                                
+                                                <div class="selected-content">
+                                                    <span class="selected-text">Original</span>
+                                                </div>
+                                                <svg class="dropdown-arrow" width="16" height="16"
+                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                                    stroke-width="2">
+                                                    <path d="M6 9l6 6 6-6" />
+                                                </svg>
+                                            </div>
+
+                                            <div class="dropdown-menu hidden">
+                                                <div class="dropdown-search">
+                                                    <input type="text" placeholder="Search language..."
+                                                        aria-label="Search language">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                                        stroke="currentColor" stroke-width="2"
+                                                        class="search-icon">
+                                                        <circle cx="11" cy="11" r="8"></circle>
+                                                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                                    </svg>
+                                                </div>
+                                                <div class="dropdown-options" role="listbox">
+                                                    <!-- Options populated via JS -->
+                                                </div>
+                                            </div>
+                                            <input type="hidden" id="audio-track-value" value="original"
+                                                name="audioTrack">
+                                        </div>
                                     </div>
                                     <script>(function(){try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(!p)return;var s=p.selectedFormat==='mp4'?document.getElementById('quality-select-mp4'):document.getElementById('quality-select-mp3');if(!s)return;var v;if(p.selectedFormat==='mp4'){var vq=p.videoQuality||'720p';v=(vq==='webm'||vq==='mkv')?vq:'mp4-'+vq.replace('p','')}else{var af=p.audioFormat||'mp3';v=(af==='mp3')?'mp3-'+(p.audioBitrate||'128'):af}s.value=v}catch(e){}})()</script>
-                                    <div class="select-arrow">
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M6 9l6 6 6-6" />
-                                        </svg>
-                                    </div>
                                 </div>
                                 <button type="submit" class="btn-convert">
                                     <span>Convert</span>
