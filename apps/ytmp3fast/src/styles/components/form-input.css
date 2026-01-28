@@ -98,13 +98,12 @@
 
 /* Quality Selector */
 .quality-wrapper {
-    width: 100%;
     position: relative;
 }
 
 @media (min-width: 768px) {
     .quality-wrapper {
-        width: 18rem;
+        /* width removed */
     }
 }
 

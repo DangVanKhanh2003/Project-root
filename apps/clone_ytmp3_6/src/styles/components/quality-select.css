@@ -11,12 +11,10 @@
     grid-column: span 2;
     order: 1;
     display: flex;
-    width: 100%;
 }
 
 @media (min-width: 640px) {
     .quality-wrapper {
-        width: auto;
         order: 2;
     }
 }
@@ -59,7 +57,7 @@
 .select-arrow {
     position: absolute;
     right: 14px;
-    top: 50%;
+    top: 55%;
     transform: translateY(-50%);
     pointer-events: none;
     color: var(--text-secondary);

@@ -7,8 +7,10 @@
 .format-selector-wrapper {
   margin-top: 8px;
   margin-bottom: 8px;
-  min-height: 48px; /* Reserve space to prevent layout shift */
-  display: block; /* Always visible */
+  min-height: 48px;
+  /* Reserve space to prevent layout shift */
+  display: block;
+  /* Always visible */
 }
 
 .format-selector {
@@ -17,8 +19,10 @@
   justify-content: space-between;
   gap: 12px;
   width: 100%;
-  min-height: 44px; /* Fixed height to prevent layout shift */
-  flex-wrap: wrap; /* Allow wrapping on mobile */
+  min-height: 44px;
+  /* Fixed height to prevent layout shift */
+  flex-wrap: wrap;
+  /* Allow wrapping on mobile */
 }
 
 /* Convert button in format selector */
@@ -28,9 +32,12 @@
 /* Desktop: all 3 items in one row */
 @media (min-width: 600px) {
   .format-selector {
-    flex-wrap: nowrap; /* No wrapping on desktop */
-    justify-content: flex-start; /* Align items to left */
-    gap: 12px; /* Gap between format and quality */
+    flex-wrap: nowrap;
+    /* No wrapping on desktop */
+    justify-content: flex-start;
+    /* Align items to left */
+    gap: 12px;
+    /* Gap between format and quality */
   }
 
 
@@ -88,7 +95,7 @@
 [data-theme="light"] .format-btn.active {
   background: rgb(104 93 185);
   color: white;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 /* ==========================================
@@ -103,19 +110,20 @@
 /* Mobile: quality dropdown full width on line 1, format+convert on line 2 */
 @media (max-width: 599px) {
   .quality-wrapper {
-    width: 100%;
     order: 1;
   }
 
   .format-toggle {
     order: 2;
     flex: 1;
-    max-width: 150px; /* Limit width on mobile */
+    max-width: 150px;
+    /* Limit width on mobile */
   }
 
   .format-selector .btn-convert {
     order: 2;
-    flex: 0 0 auto; /* Don't grow, fit content */
+    flex: 0 0 auto;
+    /* Don't grow, fit content */
     width: fit-content;
   }
 }
@@ -123,20 +131,23 @@
 /* Desktop: quality dropdown fixed 250px width, aligned left with format */
 @media (min-width: 600px) {
   .quality-wrapper {
-    width: 250px;
     flex-grow: 0;
     flex-shrink: 0;
-    margin-right: 0; /* No margin, let convert button use margin-left: auto */
+    margin-right: 0;
+    /* No margin, let convert button use margin-left: auto */
   }
 
   .format-toggle {
-    flex-shrink: 0; /* Don't shrink format toggle */
+    flex-shrink: 0;
+    /* Don't shrink format toggle */
   }
 
   .format-selector .btn-convert {
-    flex: 0 0 auto; /* Don't grow or shrink */
+    flex: 0 0 auto;
+    /* Don't grow or shrink */
     width: fit-content;
-    margin-left: auto; /* Push to the right */
+    margin-left: auto;
+    /* Push to the right */
   }
 }
 
@@ -150,7 +161,8 @@
   padding: 0 20px;
   appearance: none;
   cursor: pointer;
-  font-size: 16px; /* prevent iOS auto-zoom */
+  font-size: 16px;
+  /* prevent iOS auto-zoom */
   font-weight: 500;
   transition: all 0.3s;
   box-sizing: border-box;
@@ -179,7 +191,7 @@
 .select-arrow {
   position: absolute;
   right: 16px;
-  top: 50%;
+  top: 55%;
   transform: translateY(-50%);
   pointer-events: none;
   color: var(--text-muted, #666);
@@ -207,7 +219,8 @@
   }
 
   .format-selector .btn-convert {
-    height: 40px; /* Match format-toggle height */
+    height: 40px;
+    /* Match format-toggle height */
   }
 
   .format-btn {
@@ -218,7 +231,8 @@
   .quality-select {
     height: 40px;
     padding: 8px 12px;
-    font-size: 16px; /* prevent iOS auto-zoom */
+    font-size: 16px;
+    /* prevent iOS auto-zoom */
     padding-right: 32px;
   }
 }
@@ -226,7 +240,8 @@
 /* Very small devices - stack vertically */
 @media (max-width: 360px) {
   .format-selector-wrapper {
-    min-height: 136px; /* 40px + 40px + 48px + gaps */
+    min-height: 136px;
+    /* 40px + 40px + 48px + gaps */
   }
 
   .format-selector {
@@ -270,6 +285,7 @@
 
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
+
   .format-toggle,
   .format-btn,
   .quality-select {

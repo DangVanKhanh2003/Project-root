@@ -1,4 +1,3 @@
-
 /* ===== RESET & BASE ===== */
 * {
     margin: 0;
@@ -701,15 +700,9 @@ h1 {
 
 /* Quality Selector */
 .quality-wrapper {
-    width: 100%;
     position: relative;
 }
 
-@media (min-width: 768px) {
-    .quality-wrapper {
-        width: 18rem;
-    }
-}
 
 .quality-select {
     width: 100%;
@@ -955,6 +948,7 @@ h1 {
     margin-bottom: 0.5rem;
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     line-height: 1.2;
@@ -1401,5 +1395,3 @@ footer {
 .hidden {
     display: none !important;
 }
-
-

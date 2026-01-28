@@ -489,13 +489,11 @@ main {
 /* Quality Selector */
 .quality-wrapper {
   position: relative;
-  width: 100%;
   flex-grow: 1;
 }
 
 @media (min-width: 640px) {
   .quality-wrapper {
-    width: auto;
     flex-grow: 0;
   }
 }
@@ -526,7 +524,7 @@ main {
   content: '▾';
   position: absolute;
   right: 10px;
-  top: 50%;
+  top: 55%;
   transform: translateY(-50%);
   pointer-events: none;
   color: var(--color-text-secondary);

@@ -150,7 +150,7 @@ html[data-format="mp4"] .format-btn[data-format="mp4"]:hover {
 .select-arrow {
   position: absolute;
   right: 16px;
-  top: 50%;
+  top: 55%;
   transform: translateY(-50%);
   pointer-events: none;
   color: var(--text-muted, var(--color-gray-550));
@@ -169,7 +169,6 @@ html[data-format="mp4"] .quality-select--mp4 { display: block; }
 /* Mobile: quality full width, format+convert below */
 @media (max-width: 799px) {
   .quality-wrapper {
-    width: 100%;
     order: 1;
   }
 
@@ -194,7 +193,6 @@ html[data-format="mp4"] .quality-select--mp4 { display: block; }
   }
 
   .quality-wrapper {
-    width: 250px;
     flex-grow: 0;
     flex-shrink: 0;
   }
