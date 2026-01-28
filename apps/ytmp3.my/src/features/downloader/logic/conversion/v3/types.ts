@@ -62,5 +62,6 @@ export interface V3ConversionParams {
     youtubeVideoContainer?: string;
     audioBitrate?: string;
     audioFormat?: string;
+    trackId?: string;
   };
 }

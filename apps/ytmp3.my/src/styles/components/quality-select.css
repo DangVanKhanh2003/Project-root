@@ -8,21 +8,24 @@
 .quality-wrapper {
     position: relative;
     flex-grow: 1;
+    display: flex;
+    gap: 10px;
+    align-items: center;
 }
 
-.quality-select {
+.quality-dropdown-wrapper {
+    position: relative;
     width: 100%;
-    height: 56px;
-    background: var(--bg-card);
-    border: var(--border-glass);
-    border-radius: var(--radius-md);
-    color: var(--text-main);
-    padding: 0 20px;
-    appearance: none;
-    cursor: pointer;
-    font-weight: 500;
-    /* transition: all 0.3s; REMOVED per user request */
+    /* Ensure it spans flex space if needed */
+    flex: 1;
+    /* Make both dropdowns share space efficiently */
 }
+
+/* On mobile, if user wants them equal height/style, flex handles width. 
+   Height is fixed 56px. 
+*/
+
+
 
 [data-theme="light"] .quality-select {
     background: #fff;
@@ -51,8 +54,8 @@
 
 .select-arrow {
     position: absolute;
-    right: 16px;
-    top: 50%;
+    right: 8px;
+    top: 55%;
     transform: translateY(-50%);
     pointer-events: none;
     color: var(--text-muted);
@@ -62,4 +65,433 @@
 [dir="rtl"] .select-arrow {
     right: auto;
     left: 16px;
+}
+
+/* ===== CUSTOM SEARCHABLE DROPDOWN ===== */
+.custom-dropdown {
+    position: relative;
+    width: 100%;
+    color: var(--text-main);
+    user-select: none;
+}
+
+.audio-dropdown-wrapper .dropdown-trigger {
+    padding: 0 10px;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.audio-dropdown-wrapper .dropdown-arrow {
+    margin-left: auto;
+}
+
+.audio-dropdown-wrapper .icon-audio-language-horizontal {
+    width: 32px;
+    height: 18px;
+    flex-shrink: 0;
+    display: block;
+}
+
+.dropdown-trigger {
+    height: 56px;
+    background: var(--bg-card);
+    border: var(--border-glass);
+    border-radius: var(--radius-md);
+    padding: 0 16px 0 40px;
+    /* Left padding for absolute icon */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    position: relative;
+}
+
+[data-theme="light"] .dropdown-trigger {
+    background: #fff;
+    border: 1px solid #cbd5e1;
+}
+
+.dropdown-trigger:hover,
+.dropdown-trigger:focus,
+.custom-dropdown.active .dropdown-trigger {
+    border-color: rgba(139, 92, 246, 0.8);
+    outline: none;
+}
+
+.dropdown-trigger-icon {
+    position: absolute;
+    left: 12px;
+    top: 55%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    pointer-events: none;
+}
+
+.selected-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.selected-flag {
+    font-size: 1.25rem;
+    line-height: 1;
+}
+
+.selected-text {
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dropdown-arrow {
+    flex-shrink: 0;
+    color: var(--text-muted);
+    transition: transform 0.2s;
+}
+
+.custom-dropdown.active .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    width: 100%;
+    background: var(--bg-card);
+    border: var(--border-glass);
+    border-radius: var(--radius-md);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    z-index: 50;
+    overflow: hidden;
+    animation: fadeIn 0.2s ease-out;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+}
+
+[data-theme="light"] .dropdown-menu {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.custom-dropdown .hidden {
+    display: none;
+}
+
+.dropdown-search {
+    padding: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+}
+
+[data-theme="light"] .dropdown-search {
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.dropdown-search input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    padding: 8px 12px 8px 36px;
+    color: var(--text-main);
+    font-size: 0.9rem;
+    outline: none;
+}
+
+[data-theme="light"] .dropdown-search input {
+    background: #f1f5f9;
+    color: #334155;
+}
+
+.dropdown-search input:focus {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(139, 92, 246, 0.5);
+}
+
+[data-theme="light"] .dropdown-search input:focus {
+    background: #fff;
+    border-color: rgba(139, 92, 246, 0.5);
+}
+
+.dropdown-search .search-icon {
+    position: absolute;
+    left: 20px;
+    top: 55%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    pointer-events: none;
+}
+
+.dropdown-options {
+    max-height: 240px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    contain: layout style;
+    -webkit-overflow-scrolling: touch;
+}
+
+.dropdown-option {
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.dropdown-option:hover,
+.dropdown-option.focused {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="light"] .dropdown-option:hover,
+[data-theme="light"] .dropdown-option.focused {
+    background: #f8fafc;
+}
+
+.dropdown-option.selected {
+    background: rgba(139, 92, 246, 0.15);
+    color: #a78bfa;
+}
+
+[data-theme="light"] .dropdown-option.selected {
+    background: #eff6ff;
+    color: #6366f1;
+}
+
+.flag-wrapper {
+    flex-shrink: 0;
+}
+
+.dropdown-option .flag {
+    font-size: 1.25rem;
+}
+
+/* Scrollbar Styles */
+.dropdown-options::-webkit-scrollbar {
+    width: 6px;
+}
+
+.dropdown-options::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.dropdown-options::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+[data-theme="light"] .dropdown-options::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mobile Responsiveness */
+.dropdown-menu {
+    position: absolute;
+    /* Standard dropdown positioning */
+    top: calc(100% + 8px);
+    left: 0;
+    width: 100%;
+    border-radius: var(--radius-md);
+    max-height: 240px;
+    /* Limit height like desktop */
+    display: none;
+    /* Relies on .active class toggling visibility via utility or specific rule */
+    flex-direction: column;
+    z-index: 50;
+    border: var(--border-glass);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    transform: none;
+    /* No translation animation from bottom */
+    animation: fadeIn 0.2s ease-out;
+}
+
+[data-theme="light"] .dropdown-menu {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* Override hidden utility if needed, or rely on JS toggling 'hidden' class */
+.custom-dropdown .hidden {
+    display: none !important;
+}
+
+.custom-dropdown.active .dropdown-menu {
+    display: block;
+    /* Or flex if needed */
+}
+
+/* Ensure no transform transition on menu itself */
+.custom-dropdown.active .dropdown-menu {
+    transform: none;
+}
+
+/* No overlay needed for standard dropdown */
+
+/* ===== MOBILE TRIGGER EXPANSION ANIMATION ===== */
+@media (max-width: 640px) {
+
+    /* Ensure quality wrapper takes full width on mobile */
+    .quality-wrapper {
+        flex-grow: 1;
+    }
+
+
+    /* Default State: Quality takes available space, Audio is icon-only */
+    .quality-dropdown-wrapper:nth-child(1) {
+        flex: 1;
+        transition: flex-basis 0.75s ease, flex-grow 0.75s ease, min-width 0.75s ease, opacity 0.5s;
+        min-width: 0;
+    }
+
+    .audio-dropdown-wrapper {
+        flex: 0 0 56px;
+        transition: flex-basis 0.75s ease, flex-grow 0.75s ease, width 0.75s ease;
+        z-index: 20;
+    }
+
+    /* Active State: Audio expands to ~200px, Quality remains */
+    .quality-wrapper:has(.custom-dropdown.active) .quality-dropdown-wrapper:nth-child(1) {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .audio-dropdown-wrapper:has(.custom-dropdown.active) {
+        flex: 0 0 200px;
+        width: 200px;
+    }
+
+    /* Hide text/arrow when collapsed */
+    .audio-dropdown-wrapper .selected-content,
+    .audio-dropdown-wrapper .dropdown-arrow {
+        opacity: 0;
+        width: 0;
+        overflow: hidden;
+        transition: opacity 0.5s, width 0.5s;
+    }
+
+    /* Show text/arrow when expanded */
+    .audio-dropdown-wrapper:has(.custom-dropdown.active) .selected-content,
+    .audio-dropdown-wrapper:has(.custom-dropdown.active) .dropdown-arrow {
+        opacity: 1;
+        width: auto;
+        transition: opacity 0.5s 0.25s, width 0.5s;
+    }
+
+    /* Trigger Styles - Collapsed: center icon */
+    .audio-dropdown-wrapper .dropdown-trigger {
+        padding: 0;
+        justify-content: center;
+        transition: padding 0.75s, justify-content 0.75s;
+    }
+
+    /* Center icon when collapsed */
+    .audio-dropdown-wrapper .dropdown-trigger-icon {
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: left 0.75s, transform 0.75s;
+    }
+
+    /* Trigger Styles - Expanded */
+    .audio-dropdown-wrapper:has(.custom-dropdown.active) .dropdown-trigger {
+        padding: 0 10px;
+        justify-content: flex-start;
+    }
+
+    /* Move icon to left when expanded */
+    .audio-dropdown-wrapper:has(.custom-dropdown.active) .dropdown-trigger-icon {
+        left: 12px;
+        transform: translateY(-50%);
+    }
+}
+
+/* Desktop Styles (Override Mobile Defaults) */
+@media (min-width: 641px) {
+    .quality-wrapper {
+        flex-grow: 0;
+    }
+
+    .quality-dropdown-wrapper {
+        flex: 1;
+    }
+
+    .audio-dropdown-wrapper {
+        flex: 0 0 auto;
+        min-width: 200px;
+    }
+
+    .dropdown-trigger {
+        padding: 0 16px 0 40px;
+    }
+
+    .dropdown-trigger-icon {
+        left: 12px;
+        transform: translateY(-50%);
+    }
+}
+
+/* Tiny Mobile Adjustments (User Request: Height 40px) */
+@media (max-width: 480px) {
+
+    .quality-select,
+    .dropdown-trigger {
+        height: 40px;
+        font-size: 13px;
+        /* User requested padding: 8px 12px; padding-right: 32px; 
+           We preserve left padding 40px for icon in expanded state, 
+           otherwise use their params but ensuring icon space.
+        */
+    }
+
+    /* Adjust collapsed width to match new height */
+    .audio-dropdown-wrapper {
+        flex: 0 0 40px;
+    }
+
+    /* Update centering for collapsed icon */
+    .audio-dropdown-wrapper .dropdown-trigger {
+        padding: 0;
+    }
+
+    /* Expanded State specific padding */
+    .audio-dropdown-wrapper:has(.custom-dropdown.active) .dropdown-trigger {
+        padding: 0 10px;
+    }
+
+    /* Adjust Icon position for shorter height */
+    .dropdown-trigger-icon {
+        width: 14px;
+        /* Optional: smaller icon? User didn't ask, but safe to keep 16px */
+    }
+
+    /* Quality Select Padding to match */
+    .quality-select {
+        padding: 0 30px 0 20px;
+    }
+
+    .quality-wrapper {
+        gap: 8px;
+        /* Slightly tighter gap */
+    }
 }

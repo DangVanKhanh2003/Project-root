@@ -58,7 +58,7 @@ function initMobileMenu() {
   };
 
   // Open mobile menu when hamburger icon is clicked
-  mobileMenuBtn.addEventListener('click', function(e) {
+  mobileMenuBtn.addEventListener('click', function (e) {
     e.preventDefault();
     openDrawer();
   });
@@ -69,7 +69,7 @@ function initMobileMenu() {
   }
 
   // Close mobile menu when clicking on overlay
-  mobileDrawer.addEventListener('click', function(e) {
+  mobileDrawer.addEventListener('click', function (e) {
     if (e.target === mobileDrawer) {
       closeDrawer();
     }
@@ -82,7 +82,7 @@ function initMobileMenu() {
   });
 
   // Add keyboard support - close menu with Escape key
-  document.addEventListener('keydown', function(e) {
+  document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && mobileDrawer.classList.contains('open')) {
       closeDrawer();
     }
@@ -105,7 +105,7 @@ function initLogoClickHandler() {
           document.body.classList.remove('drawer-open');
           document.body.style.overflow = '';
         }
-        
+
         // Optional: Scroll to top
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
@@ -226,6 +226,11 @@ function loadFeatures() {
   initDownloaderUI(); // Initialize downloader (async/lazy loaded)
   initLogoClickHandler(); // Prevent logo reload issue
   initFirebaseAnalytics(); // Initialize Firebase Analytics (lazy loaded after 5s)
+
+  // Initialize custom audio dropdown
+  import('./features/downloader/ui-render/dropdown-logic').then(({ initAudioDropdown }) => {
+    initAudioDropdown();
+  });
 }
 
 // DOM Ready

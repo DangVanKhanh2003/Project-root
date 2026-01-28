@@ -251,6 +251,9 @@ async function handleAutoDownload(url: string, videoId: string): Promise<void> {
     const videoQuality = state.videoQuality; // e.g., '720p'
     const audioFormat = state.audioFormat; // e.g., 'mp3'
     const audioBitrate = state.audioBitrate; // e.g., '128'
+    const audioTrackInput = document.getElementById('audio-track-value') as HTMLInputElement | null;
+    const rawTrackId = audioTrackInput?.value?.trim();
+    const trackId = rawTrackId && rawTrackId !== 'original' ? rawTrackId : undefined;
 
     console.log('[Auto-Download] Selected format:', selectedFormat);
     console.log('[Auto-Download] Video quality:', videoQuality);
@@ -265,6 +268,7 @@ async function handleAutoDownload(url: string, videoId: string): Promise<void> {
       const qualityNumber = videoQuality.replace('p', '');
       let targetContainer = 'mp4';
       let finalQuality = videoQuality === '144p' ? '144p' : qualityNumber;
+      const videoAudioBitrate = '128';
 
       // Override for explicit WEBM or MKV (Case A)
       const isExplicitFormat = ['webm', 'mkv'].includes(videoQuality);
@@ -291,7 +295,9 @@ async function handleAutoDownload(url: string, videoId: string): Promise<void> {
         extractV2Options: {
           downloadMode: 'video',
           videoQuality: finalQuality,
-          youtubeVideoContainer: targetContainer
+          youtubeVideoContainer: targetContainer,
+          audioBitrate: videoAudioBitrate,
+          trackId
         }
       };
       formatId = `video|${targetContainer}-${videoQuality}`;
@@ -316,7 +322,8 @@ async function handleAutoDownload(url: string, videoId: string): Promise<void> {
         extractV2Options: {
           downloadMode: 'audio',
           audioBitrate: finalBitrate,  // '128' for M4A/OGG/WAV/Opus, user choice for MP3
-          audioFormat: audioFormat
+          audioFormat: audioFormat,
+          trackId
         }
       };
       formatId = formatData.id;

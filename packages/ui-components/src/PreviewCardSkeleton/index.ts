@@ -36,6 +36,7 @@ export function createPreviewCardSkeleton(): string {
       <div class="yt-preview-details">
         <div class="skeleton-line skeleton-title"></div>
         <div class="skeleton-line skeleton-format"></div>
+        <div class="skeleton-line skeleton-audio-track"></div>
         <div class="skeleton-line skeleton-author"></div>
       </div>
     </div>

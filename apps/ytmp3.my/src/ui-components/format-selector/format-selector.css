@@ -15,12 +15,19 @@
   color: var(--color-black);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
+
 [data-theme="light"] .format-btn[data-format="mp3"],
 [data-theme="light"] .format-btn[data-format="mp3"]:hover {
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
-.quality-select--mp3 { display: block; }
-.quality-select--mp4 { display: none; }
+
+.quality-select--mp3 {
+  display: block;
+}
+
+.quality-select--mp4 {
+  display: none;
+}
 
 /* When data-format="mp4": MP4 active, MP3 inactive */
 html[data-format="mp4"] .format-btn[data-format="mp3"] {
@@ -28,18 +35,26 @@ html[data-format="mp4"] .format-btn[data-format="mp3"] {
   color: var(--text-muted, var(--color-gray-550));
   box-shadow: none;
 }
+
 html[data-format="mp4"] .format-btn[data-format="mp4"],
 html[data-format="mp4"] .format-btn[data-format="mp4"]:hover {
   background: var(--color-accent);
   color: var(--color-black);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
+
 html[data-format="mp4"][data-theme="light"] .format-btn[data-format="mp4"],
 html[data-format="mp4"][data-theme="light"] .format-btn[data-format="mp4"]:hover {
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
-html[data-format="mp4"] .quality-select--mp3 { display: none; }
-html[data-format="mp4"] .quality-select--mp4 { display: block; }
+
+html[data-format="mp4"] .quality-select--mp3 {
+  display: none;
+}
+
+html[data-format="mp4"] .quality-select--mp4 {
+  display: block;
+}
 
 /* ==========================================
    End Critical section
@@ -49,8 +64,10 @@ html[data-format="mp4"] .quality-select--mp4 { display: block; }
 .format-selector-wrapper {
   margin-top: 8px;
   margin-bottom: 8px;
-  min-height: 48px; /* Reserve space to prevent layout shift */
-  display: block; /* Always visible */
+  min-height: 48px;
+  /* Reserve space to prevent layout shift */
+  display: block;
+  /* Always visible */
 }
 
 .format-selector {
@@ -59,8 +76,10 @@ html[data-format="mp4"] .quality-select--mp4 { display: block; }
   justify-content: space-between;
   gap: 12px;
   width: 100%;
-  min-height: 44px; /* Fixed height to prevent layout shift */
-  flex-wrap: wrap; /* Allow wrapping on mobile */
+  min-height: 44px;
+  /* Fixed height to prevent layout shift */
+  flex-wrap: wrap;
+  /* Allow wrapping on mobile */
 }
 
 /* Convert button in format selector */
@@ -70,9 +89,12 @@ html[data-format="mp4"] .quality-select--mp4 { display: block; }
 /* Desktop: all 3 items in one row */
 @media (min-width: 800px) {
   .format-selector {
-    flex-wrap: nowrap; /* No wrapping on desktop */
-    justify-content: flex-start; /* Align items to left */
-    gap: 12px; /* Gap between format and quality */
+    flex-wrap: nowrap;
+    /* No wrapping on desktop */
+    justify-content: flex-start;
+    /* Align items to left */
+    gap: 12px;
+    /* Gap between format and quality */
   }
 
 
@@ -135,19 +157,21 @@ html[data-format="mp4"] .quality-select--mp4 { display: block; }
 /* Mobile: quality dropdown full width on line 1, format+convert on line 2 */
 @media (max-width: 799px) {
   .quality-wrapper {
-    width: 100%;
     order: 1;
+    width: 100%; /* Force to take full width of first row */
   }
 
   .format-toggle {
     order: 2;
     flex: 1;
-    max-width: 150px; /* Limit width on mobile */
+    max-width: 150px;
+    /* Take available space on the second row */
   }
 
   .format-selector .btn-convert {
     order: 2;
-    flex: 0 0 auto; /* Don't grow, fit content */
+    flex: 0 0 auto;
+    /* Don't grow, fit content on second row */
     width: fit-content;
   }
 }
@@ -155,20 +179,24 @@ html[data-format="mp4"] .quality-select--mp4 { display: block; }
 /* Desktop: quality dropdown fixed 250px width, aligned left with format */
 @media (min-width: 800px) {
   .quality-wrapper {
-    width: 250px;
     flex-grow: 0;
     flex-shrink: 0;
-    margin-right: 0; /* No margin, let convert button use margin-left: auto */
+    margin-right: 0;
+    /* No margin, let convert button use margin-left: auto */
   }
 
   .format-toggle {
-    flex-shrink: 0; /* Don't shrink format toggle */
+    flex-shrink: 0;
+    max-width: 180px;
+    /* Don't shrink format toggle */
   }
 
   .format-selector .btn-convert {
-    flex: 0 0 auto; /* Don't grow or shrink */
+    flex: 0 0 auto;
+    /* Don't grow or shrink */
     width: fit-content;
-    margin-left: auto; /* Push to the right */
+    margin-left: auto;
+    /* Push to the right */
   }
 }
 
@@ -179,7 +207,7 @@ html[data-format="mp4"] .quality-select--mp4 { display: block; }
   border: var(--border-glass, 1px solid var(--text-step-num));
   border-radius: var(--radius-md, 12px);
   color: var(--text-main, var(--color-gray-850));
-  padding: 0 20px;
+  padding: 0 30px 0 20px;
   appearance: none;
   cursor: pointer;
   font-weight: 500;
@@ -209,8 +237,8 @@ html[data-format="mp4"] .quality-select--mp4 { display: block; }
 
 .select-arrow {
   position: absolute;
-  right: 16px;
-  top: 50%;
+  right: 8px;
+  top: 55%;
   transform: translateY(-50%);
   pointer-events: none;
   color: var(--text-muted, var(--color-gray-550));
@@ -235,10 +263,12 @@ html[data-format="mp4"] .quality-select--mp4 { display: block; }
 
   .format-toggle {
     height: 40px;
+    max-width: 130px;
   }
 
   .format-selector .btn-convert {
-    height: 40px; /* Match format-toggle height */
+    height: 40px;
+    /* Match format-toggle height */
     padding: 5px 12px;
   }
 
@@ -258,7 +288,8 @@ html[data-format="mp4"] .quality-select--mp4 { display: block; }
 /* Very small devices - quality on line 1, format + convert on line 2 */
 @media (max-width: 360px) {
   .format-selector-wrapper {
-    min-height: 96px; /* 40px + 40px + gap */
+    min-height: 96px;
+    /* 40px + 40px + gap */
   }
 
   .format-selector {
@@ -268,14 +299,15 @@ html[data-format="mp4"] .quality-select--mp4 { display: block; }
   }
 
   .quality-wrapper {
-    width: 100%;
     order: 1;
+    width: 100%;
   }
 
   .format-toggle {
     order: 2;
     flex: 1;
     height: 40px;
+    max-width: 150px;
   }
 
   .format-selector .btn-convert {
@@ -311,6 +343,7 @@ html[data-format="mp4"] .quality-select--mp4 { display: block; }
 
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
+
   .format-toggle,
   .format-btn,
   .quality-select {

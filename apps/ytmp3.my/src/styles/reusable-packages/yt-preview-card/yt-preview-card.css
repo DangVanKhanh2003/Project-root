@@ -116,6 +116,37 @@
   gap: 8px;
 }
 
+.audio-track-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px;
+  background: var(--bg-badge);
+  color: var(--text-accent);
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.audio-track-badge .audio-track-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: currentColor;
+}
+
+.audio-track-badge .audio-track-icon svg {
+  display: block;
+  width: 28px;
+  height: 16px;
+}
+
+.audio-track-badge .audio-track-value {
+  color: currentColor;
+}
+
 .format-badge {
   display: inline-flex;
   align-items: center;

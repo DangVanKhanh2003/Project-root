@@ -48,6 +48,13 @@
   margin: 0px !important;
 }
 
+.yt-preview-card.skeleton .skeleton-line.skeleton-audio-track {
+  width: 35%;
+  height: var(--skeleton-audio-track-height, 20px);
+  padding: 0px !important;
+  margin: 0px !important;
+}
+
 .yt-preview-card.skeleton .skeleton-line.skeleton-author {
   width: 40%;
   height: var(--skeleton-author-height, 18px);

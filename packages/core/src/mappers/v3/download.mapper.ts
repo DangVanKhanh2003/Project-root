@@ -14,6 +14,7 @@ export interface ExtractV2Options {
   youtubeVideoContainer?: string;
   audioBitrate?: string;
   audioFormat?: string;
+  trackId?: string;
 }
 
 /**
@@ -151,12 +152,11 @@ export function mapToV3DownloadRequest(
       },
     };
 
-    // Add audio bitrate if specified
-    if (options.audioBitrate) {
-      request.audio = {
-        bitrate: mapAudioBitrate(options.audioBitrate),
-      };
-    }
+    // Always include audio config for video (default 128k)
+    request.audio = {
+      bitrate: mapAudioBitrate(options.audioBitrate || '128'),
+      ...(options.trackId ? { trackId: options.trackId } : {}),
+    };
 
     return request;
   } else {
@@ -171,9 +171,10 @@ export function mapToV3DownloadRequest(
     };
 
     // Add audio bitrate
-    if (options.audioBitrate) {
+    if (options.audioBitrate || options.trackId) {
       request.audio = {
-        bitrate: mapAudioBitrate(options.audioBitrate),
+        ...(options.audioBitrate ? { bitrate: mapAudioBitrate(options.audioBitrate) } : {}),
+        ...(options.trackId ? { trackId: options.trackId } : {}),
       };
     }
 
