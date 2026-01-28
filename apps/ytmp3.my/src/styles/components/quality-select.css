@@ -403,7 +403,7 @@
 
     /* Trigger Styles - Collapsed: center icon */
     .audio-dropdown-wrapper .dropdown-trigger {
-        padding: 0 0 0 1px;
+        padding: 0 0 0 2px;
         justify-content: center;
         gap: 0;
         transition: padding 0.75s, justify-content 0.75s;
@@ -474,7 +474,7 @@
 
     /* Update centering for collapsed icon */
     .audio-dropdown-wrapper .dropdown-trigger {
-        padding: 0;
+        padding-left: 2px;
     }
 
     /* Expanded State specific padding */

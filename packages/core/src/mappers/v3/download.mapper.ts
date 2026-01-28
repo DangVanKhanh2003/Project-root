@@ -153,9 +153,10 @@ export function mapToV3DownloadRequest(
     };
 
     // Always include audio config for video (default 128k)
+    const normalizedTrackId = options.trackId && options.trackId !== 'original' ? options.trackId : undefined;
     request.audio = {
       bitrate: mapAudioBitrate(options.audioBitrate || '128'),
-      ...(options.trackId ? { trackId: options.trackId } : {}),
+      ...(normalizedTrackId ? { trackId: normalizedTrackId } : {}),
     };
 
     return request;
@@ -171,10 +172,11 @@ export function mapToV3DownloadRequest(
     };
 
     // Add audio bitrate
-    if (options.audioBitrate || options.trackId) {
+    const normalizedTrackId = options.trackId && options.trackId !== 'original' ? options.trackId : undefined;
+    if (options.audioBitrate || normalizedTrackId) {
       request.audio = {
         ...(options.audioBitrate ? { bitrate: mapAudioBitrate(options.audioBitrate) } : {}),
-        ...(options.trackId ? { trackId: options.trackId } : {}),
+        ...(normalizedTrackId ? { trackId: normalizedTrackId } : {}),
       };
     }
 
