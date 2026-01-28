@@ -703,14 +703,7 @@ async function handleExtractMedia(url: string): Promise<void> {
     saveToHistoryWithMetadata(url, videoId, thumbnail);
 
     // 2. Set initial preview with loading state (show skeleton)
-    setYouTubePreview({
-      videoId,
-      title: 'Loading video information...',
-      author: '',  // Empty initially - will be filled if API succeeds
-      thumbnail,
-      url,
-      isLoading: true
-    });
+
 
     // 3. Render preview immediately with skeleton
     showLoading('detail');

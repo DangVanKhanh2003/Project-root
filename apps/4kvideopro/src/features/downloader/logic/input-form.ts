@@ -844,14 +844,7 @@ async function handleExtractMedia(url: string): Promise<void> {
     const thumbnail = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
 
     // 2. Set initial preview with loading state (show skeleton)
-    setYouTubePreview({
-      videoId,
-      title: 'Loading video information...',
-      author: '',  // Empty initially - will be filled if API succeeds
-      thumbnail,
-      url,
-      isLoading: true
-    });
+
 
 
     showLoading('detail');

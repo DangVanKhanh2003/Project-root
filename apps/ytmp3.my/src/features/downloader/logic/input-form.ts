@@ -270,7 +270,8 @@ async function handleAutoDownload(url: string, videoId: string): Promise<void> {
       const isExplicitFormat = ['webm', 'mkv'].includes(videoQuality);
 
       if (isExplicitFormat) {
-         if (videoQuality === 'webm') {
+
+        if (videoQuality === 'webm') {
           targetContainer = 'webm';
         } else if (videoQuality === 'mkv') {
           targetContainer = 'mkv';
@@ -841,15 +842,6 @@ async function handleExtractMedia(url: string): Promise<void> {
     // 1. Create thumbnail URL from video ID
     const thumbnail = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
 
-    // 2. Set initial preview with loading state (show skeleton)
-    setYouTubePreview({
-      videoId,
-      title: 'Loading video information...',
-      author: '',  // Empty initially - will be filled if API succeeds
-      thumbnail,
-      url,
-      isLoading: true
-    });
 
     // 3. Render preview immediately with skeleton
     showLoading('detail');
