@@ -521,6 +521,7 @@ async function handleNewConvertButtonClick(): Promise<void> {
 
   const { showSearchView } = await import('./view-switcher');
   const { setInputValue, focusInput } = await import('./ui-renderer');
+  const { clearYouTubePreview } = await import('../state');
 
   // Switch to search view
   showSearchView();
@@ -530,6 +531,9 @@ async function handleNewConvertButtonClick(): Promise<void> {
 
   // Clear URL
   clearSearchUrl();
+
+  // Clear YouTube preview data
+  clearYouTubePreview();
 
   // Focus input for better UX
   focusInput();
