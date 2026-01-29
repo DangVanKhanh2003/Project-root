@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Format Selector Component Styles (UNIFIED DROPDOWN)
  * Mobile-first responsive design
  *
@@ -262,7 +262,7 @@
   background: #fff;
   border: 1px solid #e2e8f0;
   border-radius: 12px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+  box-shadow: none;
   z-index: 100;
   margin-top: 4px;
   opacity: 0;

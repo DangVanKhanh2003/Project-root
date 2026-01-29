@@ -1,4 +1,4 @@
-/* =========================================================
+﻿/* =========================================================
    Section - Header
    ---------------------------------------------------------
    New header with glassmorphism design
@@ -52,13 +52,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 15px rgba(201, 166, 107, 0.5);
+    box-shadow: none;
     transition: box-shadow 0.3s;
 }
 
 /* Reduce glow in light theme */
 [data-theme="light"] .logo-icon {
-    box-shadow: 0 2px 8px rgba(201, 166, 107, 0.2);
+    box-shadow: none;
 }
 
 .desktop-nav {
@@ -87,7 +87,7 @@
 
 [data-theme="dark"] .nav-link:hover,
 [data-theme="dark"] .nav-link.active {
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    text-shadow: none;
 }
 
 .icon-btn {

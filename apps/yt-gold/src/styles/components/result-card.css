@@ -1,4 +1,4 @@
-/* =========================================================
+﻿/* =========================================================
    Component - Result Card
    ---------------------------------------------------------
    Result/preview card with thumbnail and details
@@ -13,7 +13,7 @@
     display: flex;
     flex-direction: column;
     gap: 24px;
-    box-shadow: inset 0 0 20px rgba(201, 166, 107, 0.05);
+    box-shadow: none;
 }
 
 [data-theme="light"] .result-card-container {
@@ -34,7 +34,7 @@
     object-fit: cover;
     border-radius: var(--radius-md);
     border: var(--border-glass);
-    box-shadow: var(--thumb-shadow);
+    box-shadow: none;
 }
 
 @media (min-width: 600px) {

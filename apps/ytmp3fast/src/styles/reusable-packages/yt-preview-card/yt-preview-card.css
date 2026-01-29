@@ -1,4 +1,4 @@
-/**
+﻿/**
  * YT Preview Card Component Styles
  * Updated with glassmorphism design - Phase 2.5
  * Based on demo result-card-container design
@@ -16,7 +16,7 @@
   border: 1px solid #e2e8f0;
   border-radius: var(--radius-lg);
   padding: 24px;
-  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+  box-shadow: none;
   margin: 20px 0;
   transition: background 0.3s, border-color 0.3s;
 }
@@ -43,7 +43,7 @@
   align-items: center;
   justify-content: center;
   border: var(--border-glass);
-  box-shadow: var(--thumb-shadow);
+  box-shadow: none;
 }
 
 @media (min-width: 600px) {

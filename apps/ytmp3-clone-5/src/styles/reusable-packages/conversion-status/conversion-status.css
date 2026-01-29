@@ -62,7 +62,7 @@
   width: var(--progress-width, 0%);
   background: rgba(139, 92, 246, 0.35); /* Purple tint - 35% opacity for visibility */
   border-right: 1px solid rgba(139, 92, 246, 0.6);
-  box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+  box-shadow: none;
   transition: width 0.2s linear;
   z-index: 1;
 }
@@ -248,18 +248,17 @@
   background: #1f2937;
   color: white;
   border: none;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+  box-shadow: none;
 }
 
 .action-container .download-btn:hover {
   background: #111827;
-  box-shadow: 0 6px 10px -2px rgba(0, 0, 0, 0.3), 0 3px 6px -2px rgba(0, 0, 0, 0.2);
-  transform: translateY(-1px);
+  box-shadow: none;
 }
 
 .action-container .download-btn:active {
   transform: scale(0.98) translateY(0);
-  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  box-shadow: none;
 }
 
 /* Retry Button - Red error style */
@@ -267,12 +266,12 @@
   background: #dc2626;
   color: white;
   border: none;
-  box-shadow: 0 4px 6px -1px rgba(220, 38, 38, 0.3), 0 2px 4px -1px rgba(220, 38, 38, 0.2);
+  box-shadow: none;
 }
 
 .action-container .retry-btn:hover {
   background: #b91c1c;
-  box-shadow: 0 6px 10px -2px rgba(220, 38, 38, 0.4);
+  box-shadow: none;
   transform: translateY(-1px);
 }
 
@@ -285,7 +284,7 @@
   background: white;
   color: #374151;
   border: 1px solid #d1d5db !important;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: none;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -294,7 +293,6 @@
 .action-container .btn-new-convert:hover {
   background: #f9fafb;
   border-color: #9ca3af;
-  transform: translateY(-1px);
 }
 
 .action-container .btn-new-convert:active {
@@ -318,5 +316,5 @@
     font-size: 15px;
   }
 
-
 }
+

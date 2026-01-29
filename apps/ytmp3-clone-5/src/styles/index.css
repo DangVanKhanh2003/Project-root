@@ -1,4 +1,4 @@
-/* =========================================================
+﻿/* =========================================================
    CSS Entry Point - Google-Style Clean Theme
    ---------------------------------------------------------
    Cloned from clone.html (GetTube design)
@@ -227,7 +227,7 @@ a {
   background: #fff !important;
   border: none !important;
   border-radius: var(--search-bar-radius) !important;
-  box-shadow: var(--shadow-search);
+  box-shadow: none;
   /* transition: box-shadow var(--transition-base); REMOVED per user request */
   padding: 0 6px !important;
 }
@@ -330,7 +330,7 @@ a {
   overflow-y: auto;
   z-index: 100;
   top: 0px !important;
-  box-shadow: var(--shadow-dropdown);
+  box-shadow: none;
   border: 1px solid var(--color-gray-100);
 }
 
@@ -369,7 +369,7 @@ a {
   border: 1px solid var(--color-gray-200);
   border-radius: 16px;
   padding: 16px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  box-shadow: none;
 }
 
 @media (min-width: 768px) {

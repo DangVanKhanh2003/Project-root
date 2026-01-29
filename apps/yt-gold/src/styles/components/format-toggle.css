@@ -1,4 +1,4 @@
-/* =========================================================
+﻿/* =========================================================
    Component - Format Toggle
    ---------------------------------------------------------
    MP3/MP4 format toggle button - Dark card with Gold accent
@@ -31,6 +31,6 @@
 .format-btn.active {
     background: var(--color-accent);
     color: var(--color-black);
-    box-shadow: 0 2px 10px rgba(201, 166, 107, 0.3);
+    box-shadow: none;
 }
 

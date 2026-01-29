@@ -31,6 +31,12 @@ export interface CreateJobResponse {
 
   /** True if video needs re-encoding */
   needsReencode?: boolean;
+
+  /** True if audio language was changed from requested */
+  audioLanguageChanged?: boolean;
+
+  /** Available audio language codes returned by API */
+  availableAudioLanguages?: string[];
 }
 
 /**

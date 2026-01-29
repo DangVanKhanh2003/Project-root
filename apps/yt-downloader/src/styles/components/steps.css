@@ -1,4 +1,4 @@
-/* =========================================================
+﻿/* =========================================================
    Component - Steps (How to Use)
    ---------------------------------------------------------
    Step-by-step instruction cards
@@ -36,7 +36,7 @@
 
 [data-theme="light"] .step:hover {
     border-color: #cbd5e1;
-    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+    box-shadow: none;
 }
 
 .step-number {

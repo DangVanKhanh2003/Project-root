@@ -1,4 +1,4 @@
-/* ===== BUTTONS ===== */
+﻿/* ===== BUTTONS ===== */
 
 /* Paste/Clear Button (Toggle Button) */
 .btn-paste,
@@ -54,7 +54,7 @@
     align-items: center;
     justify-content: center;
     gap: 0.75rem;
-    box-shadow: 0 2px 8px rgba(29, 186, 201, 0.3);
+    box-shadow: none;
     border: none;
     min-width: 140px;
     cursor: pointer;
@@ -73,7 +73,7 @@
 .btn-convert:hover,
 .convert-button:hover {
     background-color: var(--color-accent-hover);
-    box-shadow: 0 0 30px var(--glow-accent);
+    box-shadow: none;
 }
 
 .btn-submit:active,
@@ -110,13 +110,13 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    box-shadow: 0 2px 8px rgba(29, 186, 201, 0.3);
+    box-shadow: none;
     /* transition: all 0.2s ease; REMOVED per user request */
 }
 
 .btn-download:hover {
     background-color: var(--color-accent-hover);
-    box-shadow: 0 0 30px var(--glow-accent);
+    box-shadow: none;
 }
 
 /* Secondary Button */

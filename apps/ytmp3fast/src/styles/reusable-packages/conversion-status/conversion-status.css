@@ -57,7 +57,7 @@
   width: var(--progress-width, 0%);
   background: #8abdff;
   border-right: 1px solid #1d4ed8;
-  box-shadow: 0 0 20px rgba(138, 189, 255, 0.3), 2px 0 4px rgba(29, 78, 216, 0.15);
+  box-shadow: none;
   transition: width 0.2s linear;
   z-index: 1;
 }
@@ -230,11 +230,6 @@
 
 .download-btn:hover {
   background-color: var(--color-accent-hover);
-  transform: translateY(-2px);
-}
-
-.download-btn:active {
-  transform: translateY(0);
 }
 
 .retry-btn {
@@ -278,11 +273,6 @@
   border-color: var(--color-gray-300);
   color: var(--text-main);
   background: var(--color-gray-100);
-  transform: translateY(-1px);
-}
-
-.btn-new-convert:active {
-  transform: translateY(0);
 }
 
 /* ===== RESPONSIVE ===== */
@@ -304,3 +294,4 @@
     min-height: 52px; /* Desktop: 52px height */
   }
 }
+

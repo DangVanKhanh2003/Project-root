@@ -1,4 +1,4 @@
-/* =========================================================
+﻿/* =========================================================
    Component - Quality Select
    ---------------------------------------------------------
    Quality dropdown selector - Dark card with Gold accent
@@ -32,7 +32,7 @@
 .quality-select:focus {
     border-color: var(--color-accent);
     outline: none;
-    box-shadow: var(--glow-input);
+    box-shadow: none;
 }
 
 .quality-select option {

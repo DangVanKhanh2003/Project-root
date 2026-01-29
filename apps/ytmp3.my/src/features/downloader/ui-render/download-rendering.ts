@@ -7,6 +7,7 @@
  */
 
 import { initExpandableText } from '../../../utils';
+import { LANGUAGES } from '../data/languages';
 import { addRippleEffect } from '@downloader/core/utils';
 import { TaskState } from '../logic/conversion/types';
 import type { AppState, ConversionTask } from '../state/types';
@@ -244,6 +245,13 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
   const progress = task.progress ?? 0;
   const isMergingPhase = task.state === 'processing' && progress >= 100;
 
+  // Audio language warning (insert after .status)
+  if (task.audioLanguageChanged) {
+    showAudioLanguageWarning(statusContainer, task.availableAudioLanguages || []);
+  } else {
+    hideAudioLanguageWarning(statusContainer);
+  }
+
   // Detect transition from processing → merging phase
   const wasMergingPhase = previousMergingPhase.get(formatId) || false;
   const isTransitionToMerging = !wasMergingPhase && isMergingPhase;
@@ -422,6 +430,45 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
     lastUpdateTimes.delete(formatId);
     transitionInProgress.delete(formatId);
   }
+}
+
+function mapAudioLanguageLabel(code: string): string {
+  const normalized = code.trim().toLowerCase();
+  const match = LANGUAGES.find((lang) => lang.code.toLowerCase() === normalized);
+  return match?.name || code;
+}
+
+function showAudioLanguageWarning(statusContainer: HTMLElement, availableLanguages: string[]): void {
+  const statusElement = statusContainer.querySelector('.status');
+  if (!statusElement) return;
+
+  const existing = statusContainer.querySelector('.audio-language-warning');
+  if (existing) {
+    existing.remove();
+  }
+
+  const languageLabels = availableLanguages
+    .filter(Boolean)
+    .map(mapAudioLanguageLabel)
+    .join(', ');
+
+  const warningDiv = document.createElement('div');
+  warningDiv.className = 'audio-language-warning';
+  warningDiv.innerHTML = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="10"></circle>
+      <line x1="12" y1="16" x2="12" y2="12"></line>
+      <line x1="12" y1="8" x2="12.01" y2="8"></line>
+    </svg>
+    <span>This video only has audio in <strong>${escapeHtml(languageLabels || 'Original')}</strong> — automatically using original audio.</span>
+  `;
+
+  statusElement.insertAdjacentElement('afterend', warningDiv);
+}
+
+function hideAudioLanguageWarning(statusContainer: HTMLElement): void {
+  const warning = statusContainer.querySelector('.audio-language-warning');
+  if (warning) warning.remove();
 }
 
 /**

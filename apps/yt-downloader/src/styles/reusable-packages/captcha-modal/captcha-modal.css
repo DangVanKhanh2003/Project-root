@@ -1,6 +1,6 @@
-/* ========== CSS CUSTOM PROPERTIES ========== */
+﻿/* ========== CSS CUSTOM PROPERTIES ========== */
 /*
-  ⚠️ IMPORTANT: Import package-root.css BEFORE this file!
+  âš ï¸ IMPORTANT: Import package-root.css BEFORE this file!
 
   Variables used from package-root.css:
   - --pkg-captcha-modal-z-index
@@ -50,7 +50,7 @@
     padding: var(--pkg-captcha-modal-padding);
     width: 90%;
     max-width: 420px;
-    box-shadow: var(--pkg-captcha-modal-shadow);
+    box-shadow: none;
 
     /* Default: normal scale, NO transition for instant hide */
     transform: scale(1);

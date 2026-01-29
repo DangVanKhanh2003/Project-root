@@ -78,6 +78,8 @@ export async function startConversion(params: V3ConversionParams): Promise<void>
       statusText: 'Processing...',
       showProgressBar: true,
       sourceId: jobResponse.statusUrl,
+      audioLanguageChanged: jobResponse.audioLanguageChanged,
+      availableAudioLanguages: jobResponse.availableAudioLanguages,
     });
 
     // Phase 2: Poll for status using statusUrl

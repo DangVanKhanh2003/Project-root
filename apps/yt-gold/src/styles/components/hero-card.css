@@ -1,4 +1,4 @@
-/* =========================================================
+﻿/* =========================================================
    Component - Hero Card
    ---------------------------------------------------------
    Gold + Dark card theme - Midnight Navy with Gold accents
@@ -60,10 +60,7 @@ h1,
     width: 100%;
     background: linear-gradient(180deg, #434343 0%, #191919 100%);
     border-radius: 20px;
-    box-shadow:
-        0 25px 50px -12px rgba(0, 0, 0, 0.5),
-        0 0 0 1px rgba(255, 255, 255, 0.05),
-        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    box-shadow: none;
     border: 1px solid rgba(201, 166, 107, 0.15);
     padding: 1.5rem;
     /* transition: all 0.3s ease; REMOVED per user request */

@@ -1,4 +1,4 @@
-/* =========================================================
+﻿/* =========================================================
    Section - Content
    ---------------------------------------------------------
    Content section with info cards
@@ -16,7 +16,7 @@
     padding: 30px;
     margin-bottom: 40px;
     transition: background 0.3s;
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    box-shadow: none;
 }
 
 @media (min-width: 768px) {

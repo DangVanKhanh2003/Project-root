@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Format Selector Component Styles
  * Google-style dropdown design (pill search bar)
  * Mobile-first responsive design
@@ -85,7 +85,7 @@ html[data-format="mp4"] .format-current--mp4 { display: inline; }
   left: 0;
   background: white;
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  box-shadow: none;
   border: 1px solid #f3f4f6;
   padding: 8px 0;
   z-index: 200;
@@ -338,7 +338,7 @@ html[data-format="mp4"] .format-current--mp4 { display: inline; }
   right: 0;
   background: white;
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  box-shadow: none;
   border: 1px solid #f3f4f6;
   padding: 8px 0;
   z-index: 200;

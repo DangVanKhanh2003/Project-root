@@ -1,4 +1,4 @@
-/* ===== MOBILE DRAWER ===== */
+﻿/* ===== MOBILE DRAWER ===== */
 .mobile-drawer {
     position: fixed;
     inset: 0;
@@ -29,7 +29,7 @@
     width: 280px;
     background-color: #0F1219;
     border-left: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    box-shadow: none;
     transition: transform 0.3s ease-out;
     transform: translateX(100%);
     display: flex;
@@ -162,7 +162,7 @@
     margin-top: 0.5rem;
     background-color: #1A1F2E;
     border-radius: 0.5rem;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    box-shadow: none;
     border: 1px solid rgba(255, 255, 255, 0.1);
     padding: 0.5rem 0;
     display: none;

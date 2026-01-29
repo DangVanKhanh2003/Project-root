@@ -1,4 +1,4 @@
-/* ===== HEADER ===== */
+﻿/* ===== HEADER ===== */
 #main-header {
     top: 0;
     left: 0;
@@ -139,7 +139,7 @@
     width: 12rem;
     background-color: var(--bg-header);
     border-radius: 0.5rem;
-    box-shadow: var(--shadow-dropdown);
+    box-shadow: none;
     border: 1px solid var(--border-primary);
     overflow-y: auto;
     z-index: 20;

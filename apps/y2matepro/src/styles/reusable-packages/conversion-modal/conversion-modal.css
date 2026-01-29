@@ -1,4 +1,4 @@
-/* =========================================================
+﻿/* =========================================================
    REUSABLE PACKAGE: Conversion Modal
    ---------------------------------------------------------
    Version: 1.0.0
@@ -18,13 +18,13 @@
    - Zero layout shift architecture
 
    Breakpoints:
-   • Extra Small Mobile (0-350px)
-   • Small Mobile (351-599px)
-   • Medium (Tablet) - 600-839px
-   • Expanded (Desktop) - 840-1239px
-   • Large (Wide Desktop) - 1240-1919px
-   • Extra Large (2K) - 1920-2559px
-   • Ultra Large (4K) - 2560px+
+   â€¢ Extra Small Mobile (0-350px)
+   â€¢ Small Mobile (351-599px)
+   â€¢ Medium (Tablet) - 600-839px
+   â€¢ Expanded (Desktop) - 840-1239px
+   â€¢ Large (Wide Desktop) - 1240-1919px
+   â€¢ Extra Large (2K) - 1920-2559px
+   â€¢ Ultra Large (4K) - 2560px+
    ========================================================= */
 
 /* ======= Base Styles (0-350px) - Extra Small Mobile ======= */
@@ -58,7 +58,7 @@
 .conversion-modal-content {
     background: var(--pkg-conversion-modal-bg);
     border-radius: var(--pkg-radius-md);
-    box-shadow: var(--pkg-conversion-modal-shadow);
+    box-shadow: none;
     width: 100%;
     max-width: 400px; /* Mobile base - specific value for optimal UX */
     display: flex;
@@ -691,12 +691,12 @@
 
 .btn-conversion--download:hover, .btn-convert--success:hover, .btn-convert--direct-download:hover {
     transform: translateY(-1px);
-    box-shadow: var(--pkg-conversion-btn-success-hover-shadow);
+    box-shadow: none;
 }
 
 .btn-conversion--download:active, .btn-convert--success:active, .btn-convert--direct-download:active {
     transform: translateY(0);
-    box-shadow: var(--pkg-conversion-btn-success-active-shadow);
+    box-shadow: none;
 }
 
 /* Retry button (ERROR/EXPIRED state) - Warning color to emphasize action needed */
@@ -705,18 +705,18 @@
     color: #ffffff;
     min-width: 140px;
     font-weight: 600;
-    box-shadow: var(--pkg-conversion-btn-retry-shadow);
+    box-shadow: none;
 }
 
 .btn-conversion--retry:hover {
     background: var(--pkg-conversion-btn-retry-hover-bg);
     transform: translateY(-2px);
-    box-shadow: var(--pkg-conversion-btn-retry-hover-shadow);
+    box-shadow: none;
 }
 
 .btn-conversion--retry:active {
     transform: translateY(0);
-    box-shadow: var(--pkg-conversion-btn-retry-active-shadow);
+    box-shadow: none;
 }
 
 /* Single button layout (SUCCESS state) */
@@ -774,12 +774,12 @@
 .btn-retry:hover {
     background: linear-gradient(135deg, #fbbf24 0%, #b45309 100%);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+    box-shadow: none;
 }
 
 .btn-retry:active {
     transform: translateY(0);
-    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+    box-shadow: none;
 }
 
 .btn-retry:focus-visible {

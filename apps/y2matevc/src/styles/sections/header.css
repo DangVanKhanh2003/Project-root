@@ -1,4 +1,4 @@
-/* =========================================================
+﻿/* =========================================================
    Header Section - Navigation
    ---------------------------------------------------------
    Desktop & mobile navigation with hamburger menu
@@ -144,7 +144,7 @@
     background-color: var(--color-bg-white);
     border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: var(--radius-md);
-    box-shadow: var(--shadow-lg);
+    box-shadow: none;
     background-clip: padding-box;
     max-height: 450px;
     overflow-y: auto;
@@ -213,7 +213,7 @@
         text-align: left;
         float: initial;
         background-color: var(--color-bg-page);
-        box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.12);
+        box-shadow: none;
     }
 
     .header-menu {
@@ -294,7 +294,7 @@
     background: white;
     z-index: 9999; /* Higher than the overlay */
     padding: 0;
-    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: none;
     transform: translateX(100%);
     transition: transform 0.3s ease;
     height: 100%;

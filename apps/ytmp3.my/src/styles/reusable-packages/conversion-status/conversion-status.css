@@ -46,6 +46,11 @@
   transition: background 0.3s, border-color 0.3s;
 }
 
+/* Stack status + warning vertically when warning is present */
+.status-container:has(.audio-language-warning) {
+  flex-direction: column;
+}
+
 /* Progress bar fill - shown during processing and success states */
 .status--processing::before,
 .status--success::before {
@@ -57,7 +62,7 @@
   width: var(--progress-width, 0%);
   background: rgba(212, 255, 0, 0.35); /* Lime/yellow - 35% opacity for visibility */
   border-right: 1px solid rgba(212, 255, 0, 0.6);
-  box-shadow: 0 0 20px rgba(212, 255, 0, 0.3);
+  box-shadow: none;
   transition: width 0.2s linear;
   z-index: 1;
 }
@@ -122,6 +127,30 @@
   align-items: center;
   justify-content: center;
   min-width: 160px;
+}
+
+/* Audio Language Warning (match ytmp3.gg) */
+.audio-language-warning {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 4px 16px;
+  margin: 6px auto 0;
+  max-width: 500px;
+  background: #fef3c7;
+  border: 1px solid #f59e0b;
+  border-radius: var(--radius-small, 8px);
+  color: #ff8800;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.audio-language-warning strong {
+  font-weight: 700;
+  color: #92400e;
 }
 
 /* ===== ICON STATES ===== */
@@ -230,11 +259,6 @@
 
 .download-btn:hover {
   background-color: var(--color-accent-hover);
-  transform: translateY(-2px);
-}
-
-.download-btn:active {
-  transform: translateY(0);
 }
 
 .retry-btn {
@@ -283,17 +307,12 @@
   border-color: var(--color-white);
   color: var(--color-white);
   background: var(--color-accent-dark);
-  transform: translateY(-1px);
 }
 
 [data-theme="light"] .btn-new-convert:hover {
   background: var(--pkg-color-gray-50);
   color: var(--text-main);
   border-color: var(--pkg-color-gray-300);
-}
-
-.btn-new-convert:active {
-  transform: translateY(0);
 }
 
 /* ===== RESPONSIVE ===== */
@@ -315,3 +334,4 @@
     min-height: 52px; /* Desktop: 52px height */
   }
 }
+

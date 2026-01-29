@@ -1,4 +1,4 @@
-/* =========================================================
+﻿/* =========================================================
    Section - Content
    ---------------------------------------------------------
    Content section with info cards
@@ -21,7 +21,7 @@
 [data-theme="light"] .info-card {
     background: #fff;
     border: 1px solid #e2e8f0;
-    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    box-shadow: none;
 }
 
 @media (min-width: 768px) {

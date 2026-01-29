@@ -57,7 +57,7 @@
   width: var(--progress-width, 0%);
   background: rgba(139, 92, 246, 0.35); /* Purple tint - 35% opacity for visibility */
   border-right: 1px solid rgba(139, 92, 246, 0.6);
-  box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+  box-shadow: none;
   transition: width 0.2s linear;
   z-index: 1;
 }
@@ -201,11 +201,6 @@
 }
 
 .download-btn:hover {
-  transform: translateY(-2px);
-}
-
-.download-btn:active {
-  transform: translateY(0);
 }
 
 .retry-btn {
@@ -254,17 +249,12 @@
   border-color: #fff;
   color: #fff;
   background: rgba(255, 255, 255, 0.05);
-  transform: translateY(-1px);
 }
 
 [data-theme="light"] .btn-new-convert:hover {
   background: #f1f5f9;
   color: var(--text-main);
   border-color: #94a3b8;
-}
-
-.btn-new-convert:active {
-  transform: translateY(0);
 }
 
 /* ===== RESPONSIVE ===== */
@@ -286,3 +276,4 @@
     min-height: 52px; /* Desktop: 52px height */
   }
 }
+

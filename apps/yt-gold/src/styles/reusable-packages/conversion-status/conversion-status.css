@@ -57,7 +57,7 @@
   width: var(--progress-width, 0%);
   background: rgba(201, 166, 107, 0.35); /* Cyan - 35% opacity for visibility */
   border-right: 1px solid rgba(201, 166, 107, 0.6);
-  box-shadow: 0 0 20px rgba(201, 166, 107, 0.3);
+  box-shadow: none;
   transition: width 0.2s linear;
   z-index: 1;
 }
@@ -228,11 +228,6 @@
 
 .download-btn:hover {
   background-color: var(--color-accent-hover);
-  transform: translateY(-2px);
-}
-
-.download-btn:active {
-  transform: translateY(0);
 }
 
 .retry-btn {
@@ -276,11 +271,6 @@
   border-color: #C9A66B;
   color: #C9A66B;
   background: rgba(201, 166, 107, 0.1);
-  transform: translateY(-1px);
-}
-
-.btn-new-convert:active {
-  transform: translateY(0);
 }
 
 /* ===== RESPONSIVE ===== */
@@ -316,3 +306,4 @@
     min-height: 52px; /* Desktop: 52px height */
   }
 }
+

@@ -1,4 +1,4 @@
-/* =========================================================
+﻿/* =========================================================
    Component - Format Toggle
    ---------------------------------------------------------
    MP3/MP4 format toggle button
@@ -75,7 +75,7 @@
 .format-btn.active {
     background-color: var(--bg-surface);
     color: var(--color-accent);
-    box-shadow: var(--shadow-sm);
+    box-shadow: none;
 }
 
 .format-btn:not(.active):hover {

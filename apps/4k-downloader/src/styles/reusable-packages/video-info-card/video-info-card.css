@@ -1,14 +1,14 @@
-/* =========================================================
+﻿/* =========================================================
    Video Info Card CSS - Y2matePro
    ---------------------------------------------------------
    Responsive Breakpoints (MOBILE-FIRST):
-   • Extra Small Mobile (0-350px)
-   • Small Mobile (351-599px)
-   • Medium (Tablet) - 600-839px
-   • Expanded (Desktop) - 840-1239px
-   • Large (Wide Desktop) - 1240-1919px
-   • Extra Large (2K) - 1920-2559px
-   • Ultra Large (4K) - 2560px+
+   â€¢ Extra Small Mobile (0-350px)
+   â€¢ Small Mobile (351-599px)
+   â€¢ Medium (Tablet) - 600-839px
+   â€¢ Expanded (Desktop) - 840-1239px
+   â€¢ Large (Wide Desktop) - 1240-1919px
+   â€¢ Extra Large (2K) - 1920-2559px
+   â€¢ Ultra Large (4K) - 2560px+
    ========================================================= */
 
 /* ======= Base Styles (0-350px) - Extra Small Mobile ======= */
@@ -127,8 +127,8 @@
 
 /* Video Title Skeleton - MUST match .video-title + see-more height to prevent CLS
    Height calculation:
-   - Title: font-size(17px) × line-height(1.4) × 2 lines ≈ 48px
-   - See more: margin-top(4px) + line-height(~17px) + buffer ≈ 26px
+   - Title: font-size(17px) Ã— line-height(1.4) Ã— 2 lines â‰ˆ 48px
+   - See more: margin-top(4px) + line-height(~17px) + buffer â‰ˆ 26px
    - Total: ~74px */
 .video-title-skeleton {
   display: flex;
@@ -346,7 +346,7 @@
   white-space: nowrap;
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
-  box-shadow: 0 2px 8px rgba(29, 186, 201, 0.3);
+  box-shadow: none;
 }
 
 .btn-convert:hover {

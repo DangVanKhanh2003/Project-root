@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Language Switcher Styles
  */
 
@@ -30,7 +30,7 @@
 .language-select:focus {
   outline: none;
   border-color: var(--color-accent, #4CAF50);
-  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+  box-shadow: none;
 }
 
 .language-icon {

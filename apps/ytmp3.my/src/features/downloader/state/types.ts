@@ -202,6 +202,8 @@ export interface ConversionTask {
   streamMetadata?: any;
   warningMessage?: string;
   extractResponse?: any;
+  audioLanguageChanged?: boolean;
+  availableAudioLanguages?: string[];
 }
 
 export interface ActiveConversion {

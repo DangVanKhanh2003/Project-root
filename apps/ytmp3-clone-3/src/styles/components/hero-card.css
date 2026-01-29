@@ -1,4 +1,4 @@
-/* =========================================================
+﻿/* =========================================================
    Component - Hero Card
    ---------------------------------------------------------
    Main hero card with glassmorphism effect
@@ -15,7 +15,7 @@
     width: 100%;
     position: relative;
     z-index: 10;
-    box-shadow: var(--shadow-glass);
+    box-shadow: none;
     /* transition: transform 0.3s ease, background 0.3s, border-color 0.3s; REMOVED per user request */
 }
 

@@ -10,7 +10,7 @@
     max-width: var(--container-width);
     background-color: var(--bg-card);
     border-radius: 20px;
-    border: 2px solid var(--border-primary);
+    border: 1px solid var(--border-primary);
     padding: 1.5rem;
     margin-top: 2rem;
 }

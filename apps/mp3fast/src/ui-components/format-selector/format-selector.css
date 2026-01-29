@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Format Selector Component Styles
  * Mobile-first responsive design
  */
@@ -12,7 +12,7 @@
 .format-btn[data-format="mp3"] {
   background: #000000;
   color: white !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  box-shadow: none;
   transform: translateY(-1px);
 }
 
@@ -35,7 +35,7 @@ html[data-format="mp4"] .format-btn[data-format="mp3"] {
 html[data-format="mp4"] .format-btn[data-format="mp4"] {
   background: #000000;
   color: white !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  box-shadow: none;
   transform: translateY(-1px);
 }
 
@@ -142,7 +142,7 @@ html[data-format="mp4"] .quality-select--mp4 {
 .toggle-btn.active {
   background: #000000;
   color: white !important;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  box-shadow: none;
   transform: translateY(-1px);
 }
 

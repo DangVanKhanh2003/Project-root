@@ -1,4 +1,4 @@
-/* =========================================================
+﻿/* =========================================================
    Component - Quality Select
    ---------------------------------------------------------
    Quality dropdown selector
@@ -39,7 +39,7 @@
 .quality-select:focus {
     border-color: rgba(139, 92, 246, 0.8);
     outline: none;
-    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+    box-shadow: none;
 }
 
 .quality-select option {
@@ -166,7 +166,7 @@
     background: var(--bg-card);
     border: var(--border-glass);
     border-radius: var(--radius-md);
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    box-shadow: none;
     z-index: 50;
     overflow: hidden;
     animation: fadeIn 0.2s ease-out;
@@ -177,7 +177,7 @@
 [data-theme="light"] .dropdown-menu {
     background: #fff;
     border: 1px solid #e2e8f0;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    box-shadow: none;
 }
 
 .custom-dropdown .hidden {
@@ -320,7 +320,7 @@
     flex-direction: column;
     z-index: 50;
     border: var(--border-glass);
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    box-shadow: none;
     transform: none;
     /* No translation animation from bottom */
     animation: fadeIn 0.2s ease-out;
@@ -329,7 +329,7 @@
 [data-theme="light"] .dropdown-menu {
     background: #fff;
     border: 1px solid #e2e8f0;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    box-shadow: none;
 }
 
 /* Override hidden utility if needed, or rely on JS toggling 'hidden' class */

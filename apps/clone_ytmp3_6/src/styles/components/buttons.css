@@ -1,4 +1,4 @@
-/* ===== BUTTONS ===== */
+﻿/* ===== BUTTONS ===== */
 
 /* Paste/Clear Button */
 .btn-paste {
@@ -46,7 +46,7 @@
     justify-content: center;
     gap: 8px;
     /* transition: background-color 0.2s; REMOVED per user request */
-    box-shadow: var(--shadow-button);
+    box-shadow: none;
     width: 100%;
     border: none;
     cursor: pointer;

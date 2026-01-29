@@ -1,12 +1,12 @@
-/* ===== HERO CARD ===== */
+﻿/* ===== HERO CARD ===== */
 
 /* Main Card Container */
 .hero-card {
     width: 100%;
     background-color: var(--bg-card);
     border-radius: 20px;
-    box-shadow: var(--shadow-card);
-    border: 2px solid var(--border-primary);
+    box-shadow: none;
+    border: 1px solid var(--border-primary);
     padding: 1.5rem;
     /* transition: all 0.3s ease; REMOVED per user request */
     position: relative;

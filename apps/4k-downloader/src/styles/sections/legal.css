@@ -1,4 +1,4 @@
-/* =========================================================
+﻿/* =========================================================
    Legal Pages - Terms of Use, Privacy Policy, Copyright Claims, Contact
    ========================================================= */
 
@@ -55,7 +55,7 @@
     border-radius: var(--radius-xl);
     border: 1px solid var(--border-primary);
     padding: 1.5rem;
-    box-shadow: var(--shadow-card);
+    box-shadow: none;
 }
 
 @media (min-width: 768px) {

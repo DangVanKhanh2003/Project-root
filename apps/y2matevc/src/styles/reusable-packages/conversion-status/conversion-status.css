@@ -68,7 +68,7 @@
   width: var(--progress-width, 0%);
   background: #f20a5194; /* White overlay - 70% opacity đậm hơn */
   border-right: 1px solid #d80947;
-  box-shadow: 0 0 20px #f20a50c4;
+  box-shadow: none;
   transition: width 0.2s linear;
   z-index: 1;
 }
@@ -221,12 +221,6 @@
   color: var(--status-white);
 }
 
-
-
-.download-btn:active {
-  transform: translateY(0);
-}
-
 .retry-btn {
   background: var(--status-error);
   color: var(--status-white);
@@ -256,3 +250,4 @@
     font-size: 17px;
   }
 }
+

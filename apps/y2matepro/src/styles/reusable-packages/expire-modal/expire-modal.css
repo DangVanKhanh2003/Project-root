@@ -1,10 +1,10 @@
-/* ==========================================================================
+﻿/* ==========================================================================
    Expire Modal Styles (Redesigned)
    ========================================================================== */
 
 /* ========== CSS CUSTOM PROPERTIES ========== */
 /*
-  ⚠️ IMPORTANT: Import package-root.css BEFORE this file!
+  âš ï¸ IMPORTANT: Import package-root.css BEFORE this file!
 
   Variables used from package-root.css:
   - --pkg-expire-modal-overlay-bg
@@ -42,7 +42,7 @@
 .expire-modal {
     background-color: var(--pkg-expire-modal-bg);
     border-radius: var(--pkg-expire-modal-radius);
-    box-shadow: var(--pkg-expire-modal-shadow);
+    box-shadow: none;
     padding: var(--pkg-expire-modal-padding);
     width: 90%;
     max-width: 420px;

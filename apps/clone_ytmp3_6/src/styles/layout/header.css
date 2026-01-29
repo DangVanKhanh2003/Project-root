@@ -1,4 +1,4 @@
-/* ===== HEADER ===== */
+﻿/* ===== HEADER ===== */
 .header-container {
     position: relative;
     top: 0;
@@ -120,7 +120,7 @@
     background: var(--bg-surface);
     border: 1px solid var(--border-primary);
     border-radius: var(--radius-md);
-    box-shadow: var(--shadow-lg);
+    box-shadow: none;
     width: 140px;
     padding: 4px;
     z-index: 101;

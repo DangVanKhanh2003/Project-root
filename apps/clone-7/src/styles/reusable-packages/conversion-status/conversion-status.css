@@ -57,7 +57,7 @@
   width: var(--progress-width, 0%);
   background: color-mix(in srgb, var(--color-accent) 35%, transparent);
   border-right: 1px solid color-mix(in srgb, var(--color-accent) 60%, transparent);
-  box-shadow: 0 0 20px color-mix(in srgb, var(--color-accent) 30%, transparent);
+  box-shadow: none;
   transition: width 0.2s linear;
   z-index: 1;
 }
@@ -228,11 +228,6 @@
 
 .download-btn:hover {
   background-color: var(--color-accent-hover);
-  transform: translateY(-2px);
-}
-
-.download-btn:active {
-  transform: translateY(0);
 }
 
 .retry-btn {
@@ -281,11 +276,6 @@
   border-color: var(--color-accent);
   color: var(--color-accent);
   background: rgba(29, 186, 201, 0.1);
-  transform: translateY(-1px);
-}
-
-.btn-new-convert:active {
-  transform: translateY(0);
 }
 
 /* ===== RESPONSIVE ===== */
@@ -321,3 +311,4 @@
     min-height: 52px; /* Desktop: 52px height */
   }
 }
+

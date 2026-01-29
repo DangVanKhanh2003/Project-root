@@ -1,4 +1,4 @@
-/* =========================================================
+﻿/* =========================================================
    Component - Quality Select
    ---------------------------------------------------------
    Quality dropdown selector
@@ -36,7 +36,7 @@
 .quality-select:focus {
     border-color: rgba(29, 186, 201, 0.8);
     outline: none;
-    box-shadow: 0 0 0 3px rgba(29, 186, 201, 0.1);
+    box-shadow: none;
 }
 
 .quality-select option {

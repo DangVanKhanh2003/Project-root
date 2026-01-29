@@ -1,4 +1,4 @@
-/* ===== FORM INPUT ===== */
+﻿/* ===== FORM INPUT ===== */
 
 /* Form Container */
 .convert-form,
@@ -62,7 +62,7 @@
 
 .video-input:focus {
     border-color: #e2b85e;
-    box-shadow: 0 0 0 1px rgba(201, 162, 77, 0.35);
+    box-shadow: none;
 }
 
 .video-input::placeholder {
@@ -129,7 +129,7 @@
 
 .quality-select:focus {
     border-color: #e2b85e;
-    box-shadow: 0 0 0 1px rgba(201, 162, 77, 0.35);
+    box-shadow: none;
 }
 
 .quality-select:hover {
