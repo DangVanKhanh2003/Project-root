@@ -1,4 +1,4 @@
-/* ===== RESET & BASE ===== */
+﻿/* ===== RESET & BASE ===== */
 * {
     margin: 0;
     padding: 0;
@@ -227,7 +227,7 @@ body {
     display: block;
 }
 
-`.lang-option {
+.lang-option {
     display: flex;
     padding: 0.625rem 1.25rem;
     font-size: 0.875rem;
