@@ -96,6 +96,15 @@ function openDropdown(wrapper: Element): void {
     trigger.setAttribute('aria-expanded', 'true');
   }
 
+  // Support legacy HTML that uses .custom-dropdown-menu + hidden attribute.
+  const menu = wrapper.querySelector('.dropdown-menu, .custom-dropdown-menu') as HTMLElement | null;
+  if (menu) {
+    menu.classList.add('dropdown-menu');
+    menu.removeAttribute('hidden');
+    menu.classList.remove('hidden');
+    menu.style.display = '';
+  }
+
   clickOutsideHandler = (e: MouseEvent) => {
     if (!wrapper.contains(e.target as Node)) {
       closeDropdown(wrapper);
@@ -115,6 +124,13 @@ function closeDropdown(wrapper: Element): void {
   const trigger = wrapper.querySelector('.custom-dropdown-trigger');
   if (trigger) {
     trigger.setAttribute('aria-expanded', 'false');
+  }
+
+  const menu = wrapper.querySelector('.dropdown-menu, .custom-dropdown-menu') as HTMLElement | null;
+  if (menu) {
+    menu.setAttribute('hidden', '');
+    menu.classList.add('hidden');
+    menu.style.display = '';
   }
 
   if (clickOutsideHandler) {

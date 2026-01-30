@@ -20,7 +20,8 @@
     padding: 0 20px;
     appearance: none;
     cursor: pointer;
-    font-size: 16px; /* prevent iOS auto-zoom */
+    font-size: 16px;
+    /* prevent iOS auto-zoom */
     font-weight: 500;
     /* transition: all 0.3s; REMOVED per user request */
 }
@@ -35,7 +36,7 @@
 }
 
 .quality-select:focus {
-    border-color: rgba(139, 92, 246, 0.8);
+    border-color: var(--border-input-focus);
     outline: none;
     box-shadow: none;
 }
