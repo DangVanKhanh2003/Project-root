@@ -160,7 +160,7 @@ export function initFormatSelector(containerSelector: string = '#previewCard'): 
 
 function handleDropdownClick(event: Event): void {
   const target = event.target as HTMLElement;
-  const wrapper = target.closest('.quality-wrapper');
+  const wrapper = target.closest('.setting-wrapper');
 
   if (!wrapper) return;
 
@@ -185,7 +185,7 @@ function handleDropdownClick(event: Event): void {
 
 function handleDropdownKeydown(event: KeyboardEvent): void {
   const target = event.target as HTMLElement;
-  const wrapper = target.closest('.quality-wrapper');
+  const wrapper = target.closest('.setting-wrapper');
 
   if (!wrapper) return;
 

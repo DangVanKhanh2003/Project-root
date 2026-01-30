@@ -82,7 +82,7 @@ export function initAudioDropdown(): void {
         menu.classList.remove('hidden');
         dropdown.classList.add('active');
         trigger.setAttribute('aria-expanded', 'true');
-        searchInput.focus();
+        // searchInput.focus();
     }
 
     function closeDropdown() {

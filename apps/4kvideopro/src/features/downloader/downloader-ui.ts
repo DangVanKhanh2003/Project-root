@@ -14,6 +14,7 @@ import type { AppState } from './state';
 import { getRouteFromUrl, initRouting, cleanUrl } from './routing/url-manager';
 import { setVideoPageSEO } from './routing/seo-manager';
 import { renderFormatSelectorToForm } from '../../ui-components/format-selector/format-selector';
+import { initAudioDropdown } from './ui-render/audio-dropdown';
 import { initViewSwitcher, showSearchView } from './ui-render/view-switcher';
 
 /**
@@ -34,6 +35,9 @@ export async function init(): Promise<void> {
   // Result: User sees FormatSelector instantly with correct values
   initializeFormatSelector();
   renderFormatSelectorToForm();
+
+  // Initialize Audio Dropdown (New feature)
+  initAudioDropdown();
 
   // Step 1: Initialize renderers (views)
   const rendererInitialized = initRenderer();

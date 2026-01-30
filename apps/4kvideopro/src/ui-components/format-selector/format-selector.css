@@ -324,3 +324,275 @@
 [dir="rtl"] .custom-dropdown-trigger {
   text-align: right;
 }
+
+/* ==========================================
+   8. AUDIO TRACK DROPDOWN (Added)
+   ========================================== */
+
+.quality-dropdown-wrapper {
+  flex: 1;
+  /* Allow flexible width */
+}
+
+/* Flex container for the wrapper that holds both dropdowns (format and audio) */
+.setting-wrapper {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.audio-dropdown-wrapper {
+  /* Default Desktop */
+  width: auto;
+  min-width: 200px;
+}
+
+/* Custom Dropdown Styling (Ported from ytmp3) */
+.custom-dropdown {
+  position: relative;
+  width: 100%;
+}
+
+.dropdown-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 50px;
+  padding: 0 12px;
+  background: var(--bg-card, #fff);
+  border: var(--border-glass, 1px solid #e2e8f0);
+  border-radius: var(--radius-md, 12px);
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s;
+  color: var(--text-main, #333);
+}
+
+[data-theme="dark"] .dropdown-trigger {
+  background: #000;
+  border-color: #3f3f46;
+  color: #fff;
+}
+
+.dropdown-trigger:hover,
+.dropdown-trigger.active {
+  border-color: var(--color-accent-primary, #D4FF00);
+}
+
+.selected-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  width: 28px;
+  height: 20px;
+}
+
+.selected-content {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  margin-top: 4px;
+  background: var(--bg-card, #fff);
+  border: 1px solid var(--border-glass, #e2e8f0);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  z-index: 50;
+  /* Ensure on top */
+  overflow: hidden;
+  transition: opacity 0.2s, transform 0.2s;
+  transform: translateY(0);
+  opacity: 1;
+}
+
+[data-theme="dark"] .dropdown-menu {
+  background: #000;
+  border-color: #3f3f46;
+}
+
+.dropdown-menu.hidden {
+  display: none !important;
+  /* Force hide */
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.dropdown-search {
+  padding: 8px;
+  border-bottom: 1px solid var(--border-glass, #e2e8f0);
+  position: relative;
+}
+
+[data-theme="dark"] .dropdown-search {
+  border-bottom-color: #3f3f46;
+}
+
+.dropdown-search input {
+  width: 100%;
+  padding: 8px 12px 8px 32px;
+  border: 1px solid var(--border-glass, #e2e8f0);
+  border-radius: 6px;
+  font-size: 0.875rem;
+  outline: none;
+  background: transparent;
+  color: inherit;
+}
+
+[data-theme="dark"] .dropdown-search input {
+  border-color: #3f3f46;
+}
+
+.dropdown-search input:focus {
+  border-color: var(--color-accent-primary, #D4FF00);
+}
+
+.search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted, #94a3b8);
+  pointer-events: none;
+}
+
+.dropdown-options {
+  max-height: 240px;
+  overflow-y: auto;
+  padding: 4px 0;
+}
+
+.dropdown-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background 0.15s;
+  font-size: 0.875rem;
+}
+
+.dropdown-option:hover {
+  background: var(--bg-hover, #f1f5f9);
+}
+
+[data-theme="dark"] .dropdown-option:hover {
+  background: #18181b;
+}
+
+.dropdown-option.selected {
+  background: var(--color-accent-primary, #D4FF00);
+  color: #000;
+}
+
+/* ==========================================
+   RESPONSIVE BEHAVIOR (Mobile < 640px)
+   ========================================== */
+
+@media (max-width: 640px) {
+  .setting-wrapper {
+    position: relative;
+    justify-content: space-between;
+    gap: 8px;
+    width: 100%;
+    /* Force full row */
+    margin-bottom: 12px;
+    /* Space between rows */
+  }
+
+  /* Default State: Quality takes available space, Audio is icon-only */
+  .quality-dropdown-wrapper {
+    flex: 1;
+    transition: flex-basis 0.75s ease, flex-grow 0.75s ease, min-width 0.75s ease, opacity 0.5s;
+    min-width: 0;
+  }
+
+  /* Audio dropdown container */
+  .audio-dropdown-wrapper {
+    width: auto;
+    min-width: 0;
+    flex: 0 0 50px;
+    /* Base width for icon */
+    transition: flex-basis 0.75s ease, flex-grow 0.75s ease, width 0.75s ease;
+    z-index: 20;
+    position: relative;
+  }
+
+  /* Active State: Audio expands to ~200px, Quality shrinks */
+  /* Using :has selector to detect if dropdown inside is active */
+  .setting-wrapper:has(.custom-dropdown.active) .quality-dropdown-wrapper {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .audio-dropdown-wrapper:has(.custom-dropdown.active) {
+    flex: 0 0 200px;
+    width: 200px;
+  }
+
+  /* When dropdown is CLOSED: Show only icon */
+  .audio-dropdown-wrapper .dropdown-trigger {
+    padding: 0;
+    justify-content: center;
+    transition: width 0.75s cubic-bezier(0.4, 0, 0.2, 1), padding 0.75s ease;
+    overflow: hidden;
+  }
+
+  /* Center icon when collapsed */
+  .audio-dropdown-wrapper .selected-icon {
+    margin-right: 0;
+    transition: margin 0.75s ease;
+  }
+
+  .audio-dropdown-wrapper .selected-content,
+  .audio-dropdown-wrapper .dropdown-arrow {
+    opacity: 0;
+    display: none;
+    transition: opacity 0.5s ease 0.25s;
+  }
+
+  /* When dropdown is OPEN */
+  .audio-dropdown-wrapper:has(.custom-dropdown.active) .dropdown-trigger {
+    padding: 0 12px;
+    justify-content: space-between;
+  }
+
+  .audio-dropdown-wrapper:has(.custom-dropdown.active) .selected-icon {
+    margin-right: 8px;
+  }
+
+  /* Show text and arrow when open */
+  .audio-dropdown-wrapper:has(.custom-dropdown.active) .selected-content,
+  .audio-dropdown-wrapper:has(.custom-dropdown.active) .dropdown-arrow {
+    display: block;
+    opacity: 1;
+  }
+  /* Force button to next row */
+  .format-selector .btn-convert {
+      width: 100%;
+      margin-top: 0;
+  }
+}
+
+/* Tiny < 480px */
+@media (max-width: 480px) {
+  .dropdown-trigger {
+    height: 40px;
+    /* Match typical mobile input height */
+    font-size: 0.8125rem;
+  }
+
+  .quality-select {
+    height: 40px;
+  }
+}
