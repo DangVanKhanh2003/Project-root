@@ -515,6 +515,12 @@ main {
   /* transition: border-color 0.2s, box-shadow 0.2s; REMOVED per user request */
 }
 
+@media (min-width: 600px) {
+  .quality-select {
+    height: 50px;
+  }
+}
+
 .quality-select:focus {
   border-color: var(--color-primary);
   box-shadow: none;

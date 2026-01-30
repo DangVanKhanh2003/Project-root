@@ -149,6 +149,12 @@ html[data-format="mp3"] .quality-select--mp3 { display: block; }
   box-sizing: border-box; /* Include border in height calculation */
 }
 
+@media (min-width: 768px) {
+  .quality-select {
+    height: 50px;
+  }
+}
+
 .quality-select:hover {
   border-color: #f20a51;
   background-color: #f8f9fa;
