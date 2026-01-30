@@ -13,7 +13,7 @@ import { scrollManager } from '@downloader/ui-shared';
 import type { AppState } from './state';
 import { getRouteFromUrl, initRouting, cleanUrl } from './routing/url-manager';
 import { setVideoPageSEO } from './routing/seo-manager';
-import { initFormatSelector } from '';
+import { initFormatSelector } from '../../ui-components/format-selector/format-selector';
 
 /**
  * Initialize downloader UI
@@ -118,4 +118,5 @@ export async function init(): Promise<void> {
   initRouting();
 
 }
+
 

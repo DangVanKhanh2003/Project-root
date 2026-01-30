@@ -314,7 +314,8 @@ document.addEventListener('click', (e) => {
 // ==========================================
 
 export function initFormatSelector(): void {
-  // Legacy - now handled by renderFormatSelectorToForm
+  initFormatDropdown();
+  initQualitySelector();
 }
 
 export function cleanupFormatSelector(): void {
