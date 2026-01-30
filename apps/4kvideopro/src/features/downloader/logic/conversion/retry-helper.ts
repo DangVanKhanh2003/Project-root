@@ -25,8 +25,10 @@ export interface RetryConfig {
 export const RETRY_CONFIGS = {
   // Extracting phase (API calls to get download URL)
   extracting: {
-    maxRetries: 10, // Max 11 attempts total (1 original + 10 retries)
-    delays: [], // NO delays - retry immediately
+    maxRetries: 10, // Max retries matching the delays array length
+    // Custom progressive delays as requested:
+    // [1s, 1s, 3s, 5s, 6s, 7s, 8s, 15s, 15s, 20s]
+    delays: [1000, 1000, 3000, 5000, 6000, 7000, 8000, 15000, 15000, 20000],
     retryOnError: (error: any) => {
       // Retry ALL errors except user cancellation
       if (error.name === 'AbortError') return false; // User cancelled - don't retry
@@ -36,8 +38,10 @@ export const RETRY_CONFIGS = {
 
   // Polling phase (checking progress)
   polling: {
-    maxConsecutiveErrors: 5, // Allow 5 consecutive network/API errors before failing
-    retryDelay: 0, // NO delay - retry immediately
+    maxConsecutiveErrors: 10, // Increased from 5 to 10 to match ytmp3.gg resilience
+    // Progressive delays for polling retries: [1s, 1s, 1s, 1s, 1s, 2s, 2s, 3s, 3s, 4s]
+    delays: [1000, 1000, 1000, 1000, 1000, 2000, 2000, 3000, 3000, 4000], 
+    retryDelay: 0, // Fallback if delays array usage is not implemented
     retryOnTimeout: true, // Timeout is NOT an error - continue polling
   }
 } as const;
@@ -104,8 +108,15 @@ export async function retryWithBackoff<T>(
         throw error;
       }
 
-      // Log retry info - will retry IMMEDIATELY
-      log(`⚠️ Will retry IMMEDIATELY (next attempt: ${attempt + 2}/${maxRetries + 1})...`);
+      // Log retry info
+      if (config.delays && config.delays.length > 0) {
+        // Use delay from config (or last delay if index out of bounds, though maxRetries should match)
+        const delay = config.delays[attempt] || config.delays[config.delays.length - 1] || 1000;
+        log(`⚠️ Will retry after ${delay}ms... (next attempt: ${attempt + 2}/${maxRetries + 1})`);
+        await sleep(delay);
+      } else {
+        log(`⚠️ Will retry IMMEDIATELY (next attempt: ${attempt + 2}/${maxRetries + 1})...`);
+      }
     }
   }
 

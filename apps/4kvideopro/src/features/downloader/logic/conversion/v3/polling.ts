@@ -115,6 +115,15 @@ export async function startPolling(options: PollingOptions): Promise<void> {
         onError(`Network error after ${maxConsecutiveErrors} retries`);
         return;
       }
+
+      // Wait with progressive backoff before retrying
+      const backoffDelay = RETRY_CONFIGS.polling.delays 
+        ? (RETRY_CONFIGS.polling.delays[consecutiveErrors - 1] || 1000)
+        : pollingInterval;
+        
+      console.log(`[V3 Polling] Retrying in ${backoffDelay}ms...`);
+      await sleep(backoffDelay);
+      continue; // Skip standard interval wait
     }
 
     // Wait before next poll

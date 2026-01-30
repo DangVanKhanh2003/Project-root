@@ -154,7 +154,7 @@ const environment: Environment = {
             addQueue: 5000, // 5 seconds for queue API (fire-and-forget)
             // V3 API timeouts
             v3CreateJob: 3600000, // 1 hour for creating download job
-            v3GetStatus: 2500, // 2.5 seconds for get status (polling timeout)
+            v3GetStatus: 20000,
             v3PollingInterval: 1000, // 1 second delay between polls
             v3MaxPollingDuration: 18000000, // 5 hours max polling duration
         },

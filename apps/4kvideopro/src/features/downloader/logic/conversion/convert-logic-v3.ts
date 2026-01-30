@@ -23,6 +23,7 @@ import { triggerDownload } from '../../../../utils';
 import { TaskState, type V3ConversionParams } from './v3/types';
 import { startPolling } from './v3/polling';
 import { getErrorMessage } from './v3/error-messages';
+import { retryWithBackoff, RETRY_CONFIGS } from './retry-helper';
 
 // Debug logger
 const LOG_PREFIX = '[ConvertLogicV3]';
@@ -78,7 +79,10 @@ export async function startConversion(params: V3ConversionParams): Promise<void>
     log('V3 Request:', JSON.stringify(request, null, 2));
 
     // Cast response to CreateJobResponse to access audio fields
-    const jobResponse = await apiV3.createJob(request, abortController.signal) as any;
+    const jobResponse = await retryWithBackoff(
+      () => apiV3.createJob(request, abortController.signal),
+      RETRY_CONFIGS.extracting
+    ) as any;
     log('Job created:', JSON.stringify(jobResponse, null, 2));
 
     // Stop rotating messages when job is created
