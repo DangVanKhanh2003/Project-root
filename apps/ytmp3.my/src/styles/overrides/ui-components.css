@@ -17,7 +17,7 @@
 
 @media (min-width: 768px) {
   #suggestion-container.suggestion-container--visible {
-    top: 85px !important;
+    top: 65px !important;
   }
 }
 
@@ -28,4 +28,3 @@
 .search-result-card {
   background: #f7f7f7;
 }
-
