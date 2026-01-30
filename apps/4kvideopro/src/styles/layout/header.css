@@ -188,7 +188,7 @@
 }
 
 .lang-option:hover {
-    background-color: var(--bg-white);
+    background-color: var(--color-accent-light);
     color: var(--color-black);
 }
 

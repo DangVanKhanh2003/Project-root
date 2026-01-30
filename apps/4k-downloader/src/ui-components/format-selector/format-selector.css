@@ -114,7 +114,7 @@ html[data-format="mp4"] .format-btn[data-format="mp4"]:hover {
 
 .quality-select {
   width: 100%;
-  height: 56px;
+  height: 50px;
   padding: 0 20px;
   background: var(--bg-card, var(--color-white));
   border: var(--border-glass, 1px solid var(--text-step-num));

@@ -185,7 +185,7 @@ html[data-format="mp4"] .quality-select--mp4 {
 
 .quality-select {
   width: 100%;
-  height: 56px;
+  height: 50px;
   background: var(--color-white);
   border: 1px solid var(--pkg-color-gray-200);
   border-radius: var(--radius-md, 12px);

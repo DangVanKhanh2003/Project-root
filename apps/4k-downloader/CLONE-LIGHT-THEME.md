@@ -111,7 +111,7 @@ Copy file dưới đây để thay thế `variables.css`:
     --border-secondary: var(--color-gray-300);
     --border-hover: var(--color-gray-400);
     --border-glass: 1px solid var(--color-gray-200);
-    --border-input: 2px solid var(--color-gray-300);
+    --border-input: 1px solid var(--color-gray-300);
     --border-input-hover: var(--color-accent-primary);
     --border-input-focus: var(--color-accent-primary);
     --border-active: 1px solid var(--color-accent-primary);

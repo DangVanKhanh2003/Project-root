@@ -69,7 +69,7 @@
     --border-secondary: var(--color-gray-300);
     --border-hover: var(--color-gray-400);
     --border-glass: 1px solid var(--color-gray-200);
-    --border-input: 2px solid var(--color-gray-300);
+    --border-input: 1px solid var(--color-gray-300);
     --border-input-hover: var(--color-gray-900);
     --border-input-focus: var(--color-primary);
     --border-active: 1px solid var(--color-gray-900);

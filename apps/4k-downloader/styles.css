@@ -230,7 +230,7 @@ body {
 }
 
 .lang-option:hover {
-    background-color: white;
+    background-color: var(--color-accent-light);
     color: black;
 }
 
