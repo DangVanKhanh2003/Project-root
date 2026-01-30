@@ -40,9 +40,9 @@ export function renderFormatSelectorToForm(): void {
                    ${renderUnifiedDropdown('mp4-720')}
                 </div>
 
-                <div class="audio-dropdown-wrapper">
+                <div class="audio-dropdown-wrapper" id="audio-track-dropdown">
                     <!-- Custom Searchable Audio Track Dropdown -->
-                    <div class="custom-dropdown" id="audio-track-dropdown">
+                    <div class="custom-dropdown">
                         <div class="dropdown-trigger" tabindex="0" role="button" aria-haspopup="listbox"
                             aria-expanded="false">
                             <!-- Absolute Icon (Languages) -->
@@ -74,7 +74,7 @@ export function renderFormatSelectorToForm(): void {
 
                         <div class="dropdown-menu hidden">
                             <div class="dropdown-search">
-                                <input type="text" placeholder="Search language..." aria-label="Search language">
+                                <input type="text" placeholder="Search..." aria-label="Search language">
                                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                     stroke-width="2" class="search-icon">
                                     <circle cx="11" cy="11" r="8"></circle>
@@ -109,19 +109,19 @@ export function renderFormatSelectorToForm(): void {
  * Render the unified format selector (keeping existing logic for format selection)
  */
 export function renderUnifiedDropdown(selectedValue: string): string {
-    // Keep using the existing unified dropdown logic for the format selector part
-    // but wrapped inside our new structure.
-    // Note: We might want to review if we should still use the 'custom-dropdown' class here
-    // as it might conflict with the audio 'custom-dropdown' if they are nested or share styles unexpectedly.
-    // Based on CSS analysis, they seem compatible as siblings.
+  // Keep using the existing unified dropdown logic for the format selector part
+  // but wrapped inside our new structure.
+  // Note: We might want to review if we should still use the 'custom-dropdown' class here
+  // as it might conflict with the audio 'custom-dropdown' if they are nested or share styles unexpectedly.
+  // Based on CSS analysis, they seem compatible as siblings.
 
-    const videoOptions = UNIFIED_OPTIONS.video;
-    const audioOptions = UNIFIED_OPTIONS.audio;
+  const videoOptions = UNIFIED_OPTIONS.video;
+  const audioOptions = UNIFIED_OPTIONS.audio;
 
-    const selectedOption = [...videoOptions, ...audioOptions].find(o => o.value === selectedValue);
-    const selectedLabel = selectedOption?.label || 'MP4 - 720p'; // Default fall back
+  const selectedOption = [...videoOptions, ...audioOptions].find(o => o.value === selectedValue);
+  const selectedLabel = selectedOption?.label || 'MP4 - 720p'; // Default fall back
 
-    return `
+  return `
     <input type="hidden" id="unified-format-select" name="format" value="${selectedValue}" data-unified-select>
     <button type="button" class="quality-select custom-dropdown-trigger" aria-haspopup="listbox" aria-expanded="false">
       <span class="dropdown-selected-text">${selectedLabel}</span>

@@ -4,6 +4,165 @@
    Quality dropdown selector
    Extracted from index.html - Phase 2
    ========================================================= */
+/* ===== MOBILE TRIGGER EXPANSION ANIMATION ===== */
+@media (0px <=width <=640px) {
+
+    /* Ensure quality wrapper takes full width on mobile */
+    /* Ensure quality wrapper takes full width on mobile */
+    .quality-wrapper {
+        flex-grow: 1;
+    }
+
+    /* Default State: Quality takes available space, Audio is icon-only */
+    .quality-dropdown-wrapper:nth-child(1) {
+        flex: 1;
+        transition: flex-basis 0.5s ease, flex-grow 0.5s ease, min-width 0.5s ease, opacity 0.5s;
+        min-width: 130px;
+    }
+
+    .audio-dropdown-wrapper {
+        flex: 0 0 56px;
+        transition: flex-basis 0.5s ease, flex-grow 0.5s ease, width 0.5s ease;
+        z-index: 20;
+    }
+
+    /* Active State: Audio expands to ~200px, Quality remains */
+    .quality-wrapper:has(.custom-dropdown.active) .quality-dropdown-wrapper:nth-child(1) {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .audio-dropdown-wrapper:has(.custom-dropdown.active) {
+        flex: 0 0 180px;
+        width: 180px;
+    }
+
+    .audio-dropdown-wrapper:has(.custom-dropdown.active) .custom-tooltip {
+        display: none;
+    }
+
+    /* Hide text/arrow when collapsed */
+    .audio-dropdown-wrapper .selected-content,
+    .audio-dropdown-wrapper .dropdown-arrow {
+        display: none;
+        opacity: 0;
+        width: 0;
+        overflow: hidden;
+        transition: opacity 0.5s, width 0.5s;
+    }
+
+    /* Trigger Styles - Collapsed: center icon */
+    .audio-dropdown-wrapper .dropdown-trigger {
+        padding: 0 0 0 2px;
+        justify-content: center;
+        transition: padding 0.5s, justify-content 0.5s;
+    }
+}
+
+/* Show text/arrow when expanded */
+.audio-dropdown-wrapper:has(.custom-dropdown.active) .selected-content,
+.audio-dropdown-wrapper:has(.custom-dropdown.active) .dropdown-arrow {
+    display: inline-flex;
+    opacity: 1;
+    width: auto;
+    transition: opacity 0.5s 0.25s, width 0.5s;
+}
+
+
+
+/* Center icon when collapsed */
+.audio-dropdown-wrapper .dropdown-trigger-icon {
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: left 0.5s, transform 0.5s;
+}
+
+/* Trigger Styles - Expanded */
+.audio-dropdown-wrapper:has(.custom-dropdown.active) .dropdown-trigger {
+    padding: 0 10px;
+    justify-content: flex-start;
+}
+
+/* Move icon to left when expanded */
+.audio-dropdown-wrapper:has(.custom-dropdown.active) .dropdown-trigger-icon {
+    left: 12px;
+    transform: translateY(-50%);
+}
+
+/* Desktop Styles (Override Mobile Defaults) */
+@media (min-width: 641px) {
+    .quality-wrapper {
+        flex-grow: 0;
+    }
+
+    .quality-dropdown-wrapper {
+        flex: 1;
+    }
+
+    .audio-dropdown-wrapper {
+        flex: 0 0 auto;
+    }
+
+    .dropdown-trigger {
+        padding: 0 40px 0 16px;
+        min-width: 180px;
+    }
+
+    .dropdown-trigger-icon {
+        left: 12px;
+        transform: translateY(-50%);
+    }
+
+    .audio-dropdown-wrapper .dropdown-trigger {
+        padding: 0 16px;
+        gap: 10px;
+    }
+}
+
+/* Tiny Mobile Adjustments (User Request: Height 40px) */
+@media (max-width: 480px) {
+
+    .quality-select,
+    .dropdown-trigger {
+        height: 40px;
+        font-size: 13px;
+        /* User requested padding: 8px 12px; padding-right: 32px; 
+           We preserve left padding 40px for icon in expanded state, 
+           otherwise use their params but ensuring icon space.
+        */
+    }
+
+    /* Adjust collapsed width to match new height */
+    .audio-dropdown-wrapper {
+        flex: 0 0 40px;
+    }
+
+    /* Update centering for collapsed icon */
+    .audio-dropdown-wrapper .dropdown-trigger {
+        padding-left: 2px;
+    }
+
+    /* Expanded State specific padding */
+    .audio-dropdown-wrapper:has(.custom-dropdown.active) .dropdown-trigger {
+        padding: 0 10px;
+    }
+
+    /* Adjust Icon position for shorter height */
+    .dropdown-trigger-icon {
+        width: 14px;
+        /* Optional: smaller icon? User didn't ask, but safe to keep 16px */
+    }
+
+    /* Quality Select Padding to match */
+    .quality-select {
+        padding: 0 30px 0 20px;
+    }
+
+    .quality-wrapper {
+        gap: 8px;
+        /* Slightly tighter gap */
+    }
+}
 
 .quality-wrapper {
     position: relative;
@@ -211,7 +370,7 @@
     border-radius: var(--radius-sm);
     padding: 8px 12px 8px 36px;
     color: var(--text-main);
-    font-size: 0.9rem;
+    font-size: 16px;
     outline: none;
 }
 
@@ -355,159 +514,4 @@
 /* Ensure no transform transition on menu itself */
 .custom-dropdown.active .dropdown-menu {
     transform: none;
-}
-
-/* No overlay needed for standard dropdown */
-
-/* ===== MOBILE TRIGGER EXPANSION ANIMATION ===== */
-@media (max-width: 640px) {
-
-    /* Ensure quality wrapper takes full width on mobile */
-    /* Ensure quality wrapper takes full width on mobile */
-    .quality-wrapper {
-        flex-grow: 1;
-    }
-
-    /* Default State: Quality takes available space, Audio is icon-only */
-    .quality-dropdown-wrapper:nth-child(1) {
-        flex: 1;
-        transition: flex-basis 0.5s ease, flex-grow 0.5s ease, min-width 0.5s ease, opacity 0.5s;
-        min-width: 130px;
-    }
-
-    .audio-dropdown-wrapper {
-        flex: 0 0 56px;
-        transition: flex-basis 0.5s ease, flex-grow 0.5s ease, width 0.5s ease;
-        z-index: 20;
-    }
-
-    /* Active State: Audio expands to ~200px, Quality remains */
-    .quality-wrapper:has(.custom-dropdown.active) .quality-dropdown-wrapper:nth-child(1) {
-        flex: 1;
-        min-width: 0;
-    }
-
-    .audio-dropdown-wrapper:has(.custom-dropdown.active) {
-        flex: 0 0 180px;
-        width: 180px;
-    }
-
-    .audio-dropdown-wrapper:has(.custom-dropdown.active) .custom-tooltip {
-        display: none;
-    }
-
-    /* Hide text/arrow when collapsed */
-    .audio-dropdown-wrapper .selected-content,
-    .audio-dropdown-wrapper .dropdown-arrow {
-        display: none;
-        opacity: 0;
-        width: 0;
-        overflow: hidden;
-        transition: opacity 0.5s, width 0.5s;
-    }
-}
-
-/* Show text/arrow when expanded */
-.audio-dropdown-wrapper:has(.custom-dropdown.active) .selected-content,
-.audio-dropdown-wrapper:has(.custom-dropdown.active) .dropdown-arrow {
-    display: inline-flex;
-    opacity: 1;
-    width: auto;
-    transition: opacity 0.5s 0.25s, width 0.5s;
-}
-
-/* Trigger Styles - Collapsed: center icon */
-.audio-dropdown-wrapper .dropdown-trigger {
-    padding: 0 0 0 2px;
-    justify-content: center;
-    gap: 0;
-    transition: padding 0.5s, justify-content 0.5s;
-}
-
-/* Center icon when collapsed */
-.audio-dropdown-wrapper .dropdown-trigger-icon {
-    left: 50%;
-    transform: translate(-50%, -50%);
-    transition: left 0.5s, transform 0.5s;
-}
-
-/* Trigger Styles - Expanded */
-.audio-dropdown-wrapper:has(.custom-dropdown.active) .dropdown-trigger {
-    padding: 0 10px;
-    justify-content: flex-start;
-}
-
-/* Move icon to left when expanded */
-.audio-dropdown-wrapper:has(.custom-dropdown.active) .dropdown-trigger-icon {
-    left: 12px;
-    transform: translateY(-50%);
-}
-
-/* Desktop Styles (Override Mobile Defaults) */
-@media (min-width: 641px) {
-    .quality-wrapper {
-        flex-grow: 0;
-    }
-
-    .quality-dropdown-wrapper {
-        flex: 1;
-    }
-
-    .audio-dropdown-wrapper {
-        flex: 0 0 auto;
-    }
-
-    .dropdown-trigger {
-        padding: 0 16px 0 40px;
-    }
-
-    .dropdown-trigger-icon {
-        left: 12px;
-        transform: translateY(-50%);
-    }
-}
-
-/* Tiny Mobile Adjustments (User Request: Height 40px) */
-@media (max-width: 480px) {
-
-    .quality-select,
-    .dropdown-trigger {
-        height: 40px;
-        font-size: 13px;
-        /* User requested padding: 8px 12px; padding-right: 32px; 
-           We preserve left padding 40px for icon in expanded state, 
-           otherwise use their params but ensuring icon space.
-        */
-    }
-
-    /* Adjust collapsed width to match new height */
-    .audio-dropdown-wrapper {
-        flex: 0 0 40px;
-    }
-
-    /* Update centering for collapsed icon */
-    .audio-dropdown-wrapper .dropdown-trigger {
-        padding-left: 2px;
-    }
-
-    /* Expanded State specific padding */
-    .audio-dropdown-wrapper:has(.custom-dropdown.active) .dropdown-trigger {
-        padding: 0 10px;
-    }
-
-    /* Adjust Icon position for shorter height */
-    .dropdown-trigger-icon {
-        width: 14px;
-        /* Optional: smaller icon? User didn't ask, but safe to keep 16px */
-    }
-
-    /* Quality Select Padding to match */
-    .quality-select {
-        padding: 0 30px 0 20px;
-    }
-
-    .quality-wrapper {
-        gap: 8px;
-        /* Slightly tighter gap */
-    }
 }

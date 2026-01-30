@@ -168,7 +168,7 @@ Add inside `.quality-wrapper`:
 
             <div class="dropdown-menu hidden">
                 <div class="dropdown-search">
-                    <input type="text" placeholder="Search language..." aria-label="Search language">
+                    <input type="text" placeholder="Search..." aria-label="Search language">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="search-icon">
                         <circle cx="11" cy="11" r="8"></circle>
                         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
