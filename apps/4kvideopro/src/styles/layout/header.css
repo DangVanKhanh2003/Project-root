@@ -114,6 +114,14 @@
     cursor: pointer;
 }
 
+.lang-flag {
+    width: 18px;
+    height: 14px;
+    border-radius: 2px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
 .lang-button:hover {
     background-color: var(--bg-button-hover);
     border-color: var(--border-hover);
@@ -178,7 +186,9 @@
 }
 
 .lang-option {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     padding: 0.625rem 1.25rem;
     font-size: 0.875rem;
     color: var(--text-muted);

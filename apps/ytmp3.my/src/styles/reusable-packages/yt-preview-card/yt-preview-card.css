@@ -74,7 +74,8 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  min-width: 0; /* Allow text truncation */
+  min-width: 0;
+  /* Allow text truncation */
 }
 
 .yt-preview-details.skeleton-line {
@@ -120,41 +121,12 @@
   max-width: 100%;
 }
 
-.audio-track-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 4px 10px;
-  background: var(--bg-badge);
-  color: var(--text-accent);
-  border-radius: 6px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-}
-
-.audio-track-badge .audio-track-icon {
+/* Unified Badge Styles */
+.meta-badge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: currentColor;
-}
-
-.audio-track-badge .audio-track-icon svg {
-  display: block;
-  width: 28px;
-  height: 16px;
-}
-
-.audio-track-badge .audio-track-value {
-  color: currentColor;
-}
-
-.format-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  gap: 6px;
   padding: 4px 10px;
   background: var(--bg-badge);
   color: var(--text-accent);
@@ -165,17 +137,8 @@
   letter-spacing: 0.5px;
 }
 
-.quality-info {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4px 10px;
-  background: var(--bg-badge);
-  color: var(--text-accent);
-  border-radius: 6px;
+.audio-track-value {
   font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.5px;
 }
 
 .yt-preview-author {

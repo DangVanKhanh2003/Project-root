@@ -11,8 +11,11 @@ Chỉ đọc đúng các section cần thiết (không load full file):
 
 Nhiệm vụ:
 1) Trong preview meta (row format/quality), thêm **audio track badge**.
-2) Badge gồm icon audio track + text.
-3) Label mặc định **Origin**.
+2) Badge dùng class `.meta-badge` chung.
+3) Badge gồm icon audio track (SVG tĩnh, không dùng dynamic flag) + text.
+4) HTML update logic: dùng class helper cụ thể (VD: `.badge-format`, `.badge-audio`, `.audio-track-value`) để target.
+5) Audio track value font-size: 0.8rem.
+6) Label mặc định **Origin**.
 
 Tham chiếu:
 - Copy cấu trúc badge từ project tham chiếu ở các section trên.

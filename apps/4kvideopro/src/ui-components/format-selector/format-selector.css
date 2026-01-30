@@ -513,7 +513,7 @@
   /* Default State: Quality takes available space, Audio is icon-only */
   .quality-dropdown-wrapper {
     flex: 1;
-    transition: flex-basis 0.75s ease, flex-grow 0.75s ease, min-width 0.75s ease, opacity 0.5s;
+    transition: flex-basis 0.5s ease, flex-grow 0.5s ease, min-width 0.5s ease, opacity 0.5s;
     min-width: 0;
   }
 
@@ -523,7 +523,7 @@
     min-width: 0;
     flex: 0 0 50px;
     /* Base width for icon */
-    transition: flex-basis 0.75s ease, flex-grow 0.75s ease, width 0.75s ease;
+    transition: flex-basis 0.5s ease, flex-grow 0.5s ease, width 0.5s ease;
     z-index: 20;
     position: relative;
   }
@@ -544,14 +544,14 @@
   .audio-dropdown-wrapper .dropdown-trigger {
     padding: 0;
     justify-content: center;
-    transition: width 0.75s cubic-bezier(0.4, 0, 0.2, 1), padding 0.75s ease;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1), padding 0.5s ease;
     overflow: hidden;
   }
 
   /* Center icon when collapsed */
   .audio-dropdown-wrapper .selected-icon {
     margin-right: 0;
-    transition: margin 0.75s ease;
+    transition: margin 0.5s ease;
   }
 
   .audio-dropdown-wrapper .selected-content,
@@ -577,10 +577,11 @@
     display: block;
     opacity: 1;
   }
+
   /* Force button to next row */
   .format-selector .btn-convert {
-      width: 100%;
-      margin-top: 0;
+    width: 100%;
+    margin-top: 0;
   }
 }
 
@@ -595,4 +596,46 @@
   .quality-select {
     height: 40px;
   }
+}
+
+/* Custom Tooltip */
+[data-tooltip] {
+  position: relative;
+}
+
+.custom-tooltip {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(5px);
+  background-color: #1e293b;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+  z-index: 50;
+  pointer-events: none;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.custom-tooltip::after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #1e293b transparent;
+}
+
+[data-tooltip].show-tooltip .custom-tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
 }

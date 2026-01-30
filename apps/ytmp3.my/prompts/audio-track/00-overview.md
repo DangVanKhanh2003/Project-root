@@ -15,9 +15,10 @@ Hành vi cần khớp (không đưa code vào prompt):
 - Mobile <640px khi mở: dropdown mở rộng ~200px, text + arrow fade in.
 - Tiny <480px: chiều cao control 40px.
 - Desktop >=641px: dropdown audio min-width ~200px; icon + text hiển thị.
-- Transition: width/padding/justify ~0.75s; text/arrow opacity ~0.5s, delay ~0.25s khi mở.
+- Transition: width/padding/justify ~0.5s; text/arrow opacity ~0.5s, delay ~0.25s khi mở.
 - Z-index: audio dropdown wrapper phải nổi lên trên UI khác ở mobile.
 - Preview meta phải wrap để không tràn.
+- Badge: dùng class `.meta-badge` chung cho layout, icon audio dùng SVG tĩnh (không flag).
 
 Quy tắc:
 - Chỉ sửa những file cần thiết.

@@ -4,7 +4,6 @@
     inset: 0;
     z-index: 110;
     background-color: var(--backdrop-drawer);
-    backdrop-filter: blur(2px);
     /* Reduced for mobile performance */
     transition: opacity 0.3s;
     opacity: 0;
@@ -197,7 +196,9 @@
 }
 
 .drawer-lang-option {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     padding: 0.625rem 1.25rem;
     font-size: 0.875rem;
     color: var(--text-muted);

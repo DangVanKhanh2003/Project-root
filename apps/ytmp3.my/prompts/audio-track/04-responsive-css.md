@@ -21,14 +21,18 @@ Nhiệm vụ:
 3) Preview meta không tràn:
    - meta width 100%
    - format row `flex-wrap: wrap`
+4) Custom Tooltip và Preview Badge CSS:
+   - Tooltip: `position: absolute`, `top: 100%` (hiển thị bên dưới).
+   - Tooltip: xóa native `title` attribute trong JS.
+   - Preview Badge: dùng class `.meta-badge` thống nhất (thay vì .format-badge/.quality-info riêng lẻ).
 
 Hành vi animation (không đưa code):
-- Collapsed → expanded: width/padding/justify transition ~0.75s.
+- Collapsed → expanded: width/padding/justify transition ~0.5s.
 - Text/arrow opacity ~0.5s và delay ~0.25s khi mở.
 - Collapsed phải ẩn text/arrow hoàn toàn (không chỉ opacity).
 - Mobile: wrapper có z-index cao để menu nổi lên trên UI khác.
 
 Ràng buộc:
-- Giữ đúng design token hiện có (color, radius, shadow).
+- Giữ đúng design token hiện có (color, radius).
 - Chỉ sửa CSS liên quan.
 - Báo rõ file đã sửa và thay đổi gì.

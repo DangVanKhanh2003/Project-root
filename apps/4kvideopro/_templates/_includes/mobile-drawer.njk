@@ -1,5 +1,28 @@
 {%- set base = i18nBase[lang] or i18nBase['en'] -%}
 {%- set langPrefix = '' if (lang == 'en' or not lang) else '/' + lang -%}
+{%- set flagMap = {
+  'en': 'us',
+  'ar': 'sa',
+  'bn': 'bd',
+  'de': 'de',
+  'es': 'es',
+  'fr': 'fr',
+  'hi': 'in',
+  'id': 'id',
+  'it': 'it',
+  'ja': 'jp',
+  'ko': 'kr',
+  'my': 'mm',
+  'ms': 'my',
+  'pt': 'pt',
+  'ru': 'ru',
+  'th': 'th',
+  'tr': 'tr',
+  'ur': 'pk',
+  'vi': 'vn'
+} -%}
+{%- set currentLang = lang or 'en' -%}
+{%- set currentFlag = flagMap[currentLang] or 'us' -%}
 <!-- MOBILE DRAWER -->
 <div id="mobile-drawer" class="mobile-drawer" hidden>
     <div id="mobile-drawer-content" class="drawer-content">
@@ -19,13 +42,9 @@
             <div class="drawer-divider"></div>
             <div class="drawer-lang-selector">
                 <button class="drawer-lang-button">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10" />
-                        <line x1="2" y1="12" x2="22" y2="12" />
-                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-                    </svg>
-                    <span>{{ lang | upper if lang else 'EN' }}</span>
+                    <img class="lang-flag" src="/assest/flat-svg/{{ currentFlag }}.svg" alt="" aria-hidden="true"
+                        loading="lazy" width="18" height="14">
+                    <span>{{ currentLang | upper }}</span>
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="chevron">
                         <polyline points="6 9 12 15 18 9" />
@@ -34,7 +53,12 @@
                 <div class="drawer-lang-dropdown">
                     {%- for langItem in site.languages %}
                     {%- set langUrl = '/' if langItem.isDefault else '/' + langItem.code + '/' %}
-                    <a href="{{ langUrl }}" class="drawer-lang-option{% if lang == langItem.code or (langItem.isDefault and not lang) %} active{% endif %}">{{ langItem.name }}</a>
+                    {%- set optionFlag = flagMap[langItem.code] or 'us' %}
+                    <a href="{{ langUrl }}" class="drawer-lang-option{% if lang == langItem.code or (langItem.isDefault and not lang) %} active{% endif %}">
+                        <img class="lang-flag" src="/assest/flat-svg/{{ optionFlag }}.svg" alt="" aria-hidden="true"
+                            loading="lazy" width="18" height="14">
+                        <span>{{ langItem.name }}</span>
+                    </a>
                     {%- endfor %}
                 </div>
             </div>

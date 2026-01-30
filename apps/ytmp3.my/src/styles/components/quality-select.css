@@ -361,13 +361,13 @@
     /* Default State: Quality takes available space, Audio is icon-only */
     .quality-dropdown-wrapper:nth-child(1) {
         flex: 1;
-        transition: flex-basis 0.75s ease, flex-grow 0.75s ease, min-width 0.75s ease, opacity 0.5s;
+        transition: flex-basis 0.5s ease, flex-grow 0.5s ease, min-width 0.5s ease, opacity 0.5s;
         min-width: 0;
     }
 
     .audio-dropdown-wrapper {
         flex: 0 0 56px;
-        transition: flex-basis 0.75s ease, flex-grow 0.75s ease, width 0.75s ease;
+        transition: flex-basis 0.5s ease, flex-grow 0.5s ease, width 0.5s ease;
         z-index: 20;
     }
 
@@ -406,14 +406,14 @@
         padding: 0 0 0 2px;
         justify-content: center;
         gap: 0;
-        transition: padding 0.75s, justify-content 0.75s;
+        transition: padding 0.5s, justify-content 0.5s;
     }
 
     /* Center icon when collapsed */
     .audio-dropdown-wrapper .dropdown-trigger-icon {
         left: 50%;
         transform: translate(-50%, -50%);
-        transition: left 0.75s, transform 0.75s;
+        transition: left 0.5s, transform 0.5s;
     }
 
     /* Trigger Styles - Expanded */

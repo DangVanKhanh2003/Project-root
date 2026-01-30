@@ -4,7 +4,6 @@
     inset: 0;
     z-index: 110;
     background-color: var(--backdrop-drawer);
-    backdrop-filter: blur(4px);
     transition: opacity 0.3s;
     opacity: 0;
     pointer-events: none;

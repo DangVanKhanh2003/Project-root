@@ -5,7 +5,17 @@ export function initAudioDropdown(): void {
     if (!dropdown) return;
 
     const trigger = dropdown.querySelector('.dropdown-trigger') as HTMLElement;
-    if (trigger) trigger.setAttribute('title', 'Select available audio track from YouTube video');
+    if (trigger) {
+        trigger.removeAttribute('title');
+        trigger.setAttribute('data-tooltip', 'Select available audio track from YouTube video');
+        // Inject tooltip element if not present
+        if (!trigger.querySelector('.custom-tooltip')) {
+            const tooltipSpan = document.createElement('span');
+            tooltipSpan.className = 'custom-tooltip';
+            tooltipSpan.textContent = 'Select available audio track from YouTube video';
+            trigger.appendChild(tooltipSpan);
+        }
+    }
     const menu = dropdown.querySelector('.dropdown-menu') as HTMLElement;
     const optionsContainer = dropdown.querySelector('.dropdown-options') as HTMLElement;
     const searchInput = dropdown.querySelector('.dropdown-search input') as HTMLInputElement;
@@ -17,6 +27,9 @@ export function initAudioDropdown(): void {
 
     // Initial Render
     renderOptions(LANGUAGES);
+
+    // Initialize Custom Tooltip
+    initCustomTooltips(trigger);
 
     // Toggle Dropdown
     trigger.addEventListener('click', (e) => {
@@ -136,4 +149,25 @@ export function initAudioDropdown(): void {
             });
         });
     }
+}
+
+/**
+ * Initialize custom tooltip with delay
+ */
+function initCustomTooltips(element: HTMLElement): void {
+    let tooltipTimer: number | null = null;
+
+    element.addEventListener('mouseenter', () => {
+        tooltipTimer = window.setTimeout(() => {
+            element.classList.add('show-tooltip');
+        }, 500); // 0.5s delay
+    });
+
+    element.addEventListener('mouseleave', () => {
+        if (tooltipTimer) {
+            clearTimeout(tooltipTimer);
+            tooltipTimer = null;
+        }
+        element.classList.remove('show-tooltip');
+    });
 }
