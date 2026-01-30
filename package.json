@@ -16,7 +16,7 @@
     "clean": "pnpm -r run clean",
     "test:seo": "tsx skills/test-seo/src/index.ts",
     "test:seo:all": "node scripts/test-seo-all.js",
-    "deploy": "powershell -ExecutionPolicy Bypass -File ./deploy-menu.ps1",
+    "deploy:menu": "powershell -ExecutionPolicy Bypass -File ./deploy-menu.ps1",
     "deploy:bash": "bash ./deploy-menu.sh"
   },
   "repository": {
