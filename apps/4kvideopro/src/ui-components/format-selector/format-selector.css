@@ -43,7 +43,6 @@
 
 .quality-wrapper {
   position: relative;
-  min-width: 120px;
   flex: 0 0 auto;
 }
 
@@ -122,7 +121,6 @@
 @media (max-width: 799px) {
   .quality-wrapper {
     flex: 0 0 auto;
-    min-width: 100px;
     order: 1;
   }
 
@@ -348,12 +346,12 @@
   display: flex;
   gap: 12px;
   align-items: center;
+  width: fit-content;
 }
 
 .audio-dropdown-wrapper {
   /* Default Desktop */
   width: auto;
-  min-width: 200px;
 }
 
 [dir="rtl"] .audio-dropdown-wrapper .dropdown-arrow {

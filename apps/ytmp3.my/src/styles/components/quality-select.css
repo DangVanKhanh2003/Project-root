@@ -442,7 +442,6 @@
     left: 12px;
     transform: translateY(-50%);
 }
-}
 
 /* Desktop Styles (Override Mobile Defaults) */
 @media (min-width: 641px) {
