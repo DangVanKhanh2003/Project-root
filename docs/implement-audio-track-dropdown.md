@@ -30,7 +30,7 @@ export interface Language {
 
 export const LANGUAGES: Language[] = [
   { code: 'original', name: 'Original', flag: '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-languages text-gray-400" aria-hidden="true"><path d="m5 8 6 6"></path><path d="m4 14 6-6 2-3"></path><path d="M2 5h12"></path><path d="M7 2h1"></path><path d="m22 22-5-10-5 10"></path><path d="M14 18h6"></path></svg>' },
-  { code: 'en', name: 'English', flag: '/assest/flat-svg/us.svg' },
+  { code: 'en', name: 'English', flag: '/assest/flat-svg/us.png' },
   { code: 'vi', name: 'Vietnamese', flag: '/assest/flat-svg/vn.svg' },
   // ... add more languages as needed
 ];
@@ -394,7 +394,7 @@ function loadFeatures() {
 **Path:** `public/assest/flat-svg/`
 
 Download country flag SVGs from a repository like `hampusborgos/country-flags` and rename them to match language codes:
-- `us.svg` for English (en)
+- `us.png` for English (en)
 - `vn.svg` for Vietnamese (vi)
 - `jp.svg` for Japanese (ja)
 - etc.

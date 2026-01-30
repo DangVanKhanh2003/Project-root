@@ -515,6 +515,7 @@
     flex: 1;
     transition: flex-basis 0.5s ease, flex-grow 0.5s ease, min-width 0.5s ease, opacity 0.5s;
     min-width: 0;
+    order: 0 !important; /* Force quality to left */
   }
 
   /* Audio dropdown container */
@@ -530,12 +531,12 @@
 
   /* Active State: Audio expands to ~200px, Quality shrinks */
   /* Using :has selector to detect if dropdown inside is active */
-  .setting-wrapper:has(.custom-dropdown.active) .quality-dropdown-wrapper {
+  .setting-wrapper:has(.audio-dropdown-wrapper.active) .quality-dropdown-wrapper {
     flex: 1;
     min-width: 0;
   }
 
-  .audio-dropdown-wrapper:has(.custom-dropdown.active) {
+  .audio-dropdown-wrapper.active {
     flex: 0 0 200px;
     width: 200px;
   }
@@ -562,18 +563,18 @@
   }
 
   /* When dropdown is OPEN */
-  .audio-dropdown-wrapper:has(.custom-dropdown.active) .dropdown-trigger {
+  .audio-dropdown-wrapper.active .dropdown-trigger {
     padding: 0 12px;
     justify-content: space-between;
   }
 
-  .audio-dropdown-wrapper:has(.custom-dropdown.active) .selected-icon {
+  .audio-dropdown-wrapper.active .selected-icon {
     margin-right: 8px;
   }
 
   /* Show text and arrow when open */
-  .audio-dropdown-wrapper:has(.custom-dropdown.active) .selected-content,
-  .audio-dropdown-wrapper:has(.custom-dropdown.active) .dropdown-arrow {
+  .audio-dropdown-wrapper.active .selected-content,
+  .audio-dropdown-wrapper.active .dropdown-arrow {
     display: block;
     opacity: 1;
   }
