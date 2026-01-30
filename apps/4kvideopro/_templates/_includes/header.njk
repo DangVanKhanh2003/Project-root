@@ -43,7 +43,7 @@
             <!-- Language Selector -->
             <div class="lang-selector">
                 <button class="lang-button">
-                    <img class="lang-flag" src="/assest/flat-svg/{{ currentFlag }}.svg" alt="" aria-hidden="true"
+                    <img class="lang-flag" src="/assest/flat-svg/{{ currentFlag }}.{{ 'png' if currentFlag == 'us' else 'svg' }}" alt="" aria-hidden="true"
                         loading="lazy" width="18" height="14">
                     <span>{{ currentLang | upper }}</span>
                     <!-- Chevron Icon -->
@@ -58,7 +58,7 @@
                     {%- set langUrl = '/' if langItem.isDefault else '/' + langItem.code + '/' %}
                     {%- set optionFlag = flagMap[langItem.code] or 'us' %}
                     <a href="{{ langUrl }}" class="lang-option{% if lang == langItem.code or (langItem.isDefault and not lang) %} active{% endif %}">
-                        <img class="lang-flag" src="/assest/flat-svg/{{ optionFlag }}.svg" alt="" aria-hidden="true"
+                        <img class="lang-flag" src="/assest/flat-svg/{{ optionFlag }}.{{ 'png' if optionFlag == 'us' else 'svg' }}" alt="" aria-hidden="true"
                             loading="lazy" width="18" height="14">
                         <span>{{ langItem.name }}</span>
                     </a>

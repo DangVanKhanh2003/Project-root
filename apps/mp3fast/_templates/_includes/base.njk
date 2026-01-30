@@ -48,6 +48,7 @@
 {%- set rtlLanguages = ['ar', 'ur'] -%}
 {%- set currentLang = lang or 'en' -%}
 {%- set currentFlag = flagMap[currentLang] or 'us' -%}
+{%- macro flagExt(flag) -%}{%- if flag == 'us' -%}png{%- else -%}svg{%- endif -%}{%- endmacro -%}
 <!DOCTYPE html>
 <html lang="{{ lang or 'en' }}"{% if lang in rtlLanguages %} dir="rtl"{% endif %}>
 <head>
@@ -109,32 +110,32 @@
             <a href="/faq/" class="nav-link">{{ base.nav.faq }}</a>
             <div class="language-selector">
                 <button type="button" class="lang-btn" aria-haspopup="true" aria-expanded="false">
-                    <img class="lang-flag" src="/assest/flat-svg/{{ currentFlag }}.svg" alt="" aria-hidden="true"
+                    <img class="lang-flag" src="/assest/flat-svg/{{ currentFlag }}.{{ flagExt(currentFlag) }}" alt="" aria-hidden="true"
                         loading="lazy" width="18" height="14">
                     {%- if lang == 'en' %}English{% elif lang == 'ar' %}العربية{% elif lang == 'bn' %}বাংলা{% elif lang == 'de' %}Deutsch{% elif lang == 'es' %}Español{% elif lang == 'fr' %}Français{% elif lang == 'hi' %}हिन्दी{% elif lang == 'id' %}Indonesia{% elif lang == 'it' %}Italiano{% elif lang == 'ja' %}日本語{% elif lang == 'ko' %}한국어{% elif lang == 'my' %}မြန်မာ{% elif lang == 'ms' %}Melayu{% elif lang == 'pt' %}Português{% elif lang == 'ru' %}Русский{% elif lang == 'th' %}ไทย{% elif lang == 'tr' %}Türkçe{% elif lang == 'ur' %}اردو{% elif lang == 'vi' %}Tiếng Việt{% else %}English{% endif -%}
                     <span class="arrow"></span>
                 </button>
                 <div class="dropdown-menu">
                     <ul class="lang-menu">
-                        <li><a data-lang="en" href="/"{% if lang == 'en' %} class="active"{% endif %}><img class="lang-flag" src="/assest/flat-svg/{{ flagMap.en }}.svg" alt="" aria-hidden="true" loading="lazy" width="18" height="14"><span>English</span></a></li>
-                        <li><a data-lang="ar" href="/ar/"{% if lang == 'ar' %} class="active"{% endif %}><img class="lang-flag" src="/assest/flat-svg/{{ flagMap.ar }}.svg" alt="" aria-hidden="true" loading="lazy" width="18" height="14"><span>العربية</span></a></li>
-                        <li><a data-lang="bn" href="/bn/"{% if lang == 'bn' %} class="active"{% endif %}><img class="lang-flag" src="/assest/flat-svg/{{ flagMap.bn }}.svg" alt="" aria-hidden="true" loading="lazy" width="18" height="14"><span>বাংলা</span></a></li>
-                        <li><a data-lang="de" href="/de/"{% if lang == 'de' %} class="active"{% endif %}><img class="lang-flag" src="/assest/flat-svg/{{ flagMap.de }}.svg" alt="" aria-hidden="true" loading="lazy" width="18" height="14"><span>Deutsch</span></a></li>
-                        <li><a data-lang="es" href="/es/"{% if lang == 'es' %} class="active"{% endif %}><img class="lang-flag" src="/assest/flat-svg/{{ flagMap.es }}.svg" alt="" aria-hidden="true" loading="lazy" width="18" height="14"><span>Español</span></a></li>
-                        <li><a data-lang="fr" href="/fr/"{% if lang == 'fr' %} class="active"{% endif %}><img class="lang-flag" src="/assest/flat-svg/{{ flagMap.fr }}.svg" alt="" aria-hidden="true" loading="lazy" width="18" height="14"><span>Français</span></a></li>
-                        <li><a data-lang="hi" href="/hi/"{% if lang == 'hi' %} class="active"{% endif %}><img class="lang-flag" src="/assest/flat-svg/{{ flagMap.hi }}.svg" alt="" aria-hidden="true" loading="lazy" width="18" height="14"><span>हिन्दी</span></a></li>
-                        <li><a data-lang="id" href="/id/"{% if lang == 'id' %} class="active"{% endif %}><img class="lang-flag" src="/assest/flat-svg/{{ flagMap.id }}.svg" alt="" aria-hidden="true" loading="lazy" width="18" height="14"><span>Indonesia</span></a></li>
-                        <li><a data-lang="it" href="/it/"{% if lang == 'it' %} class="active"{% endif %}><img class="lang-flag" src="/assest/flat-svg/{{ flagMap.it }}.svg" alt="" aria-hidden="true" loading="lazy" width="18" height="14"><span>Italiano</span></a></li>
-                        <li><a data-lang="ja" href="/ja/"{% if lang == 'ja' %} class="active"{% endif %}><img class="lang-flag" src="/assest/flat-svg/{{ flagMap.ja }}.svg" alt="" aria-hidden="true" loading="lazy" width="18" height="14"><span>日本語</span></a></li>
-                        <li><a data-lang="ko" href="/ko/"{% if lang == 'ko' %} class="active"{% endif %}><img class="lang-flag" src="/assest/flat-svg/{{ flagMap.ko }}.svg" alt="" aria-hidden="true" loading="lazy" width="18" height="14"><span>한국어</span></a></li>
-                        <li><a data-lang="my" href="/my/"{% if lang == 'my' %} class="active"{% endif %}><img class="lang-flag" src="/assest/flat-svg/{{ flagMap.my }}.svg" alt="" aria-hidden="true" loading="lazy" width="18" height="14"><span>မြန်မာ</span></a></li>
-                        <li><a data-lang="ms" href="/ms/"{% if lang == 'ms' %} class="active"{% endif %}><img class="lang-flag" src="/assest/flat-svg/{{ flagMap.ms }}.svg" alt="" aria-hidden="true" loading="lazy" width="18" height="14"><span>Melayu</span></a></li>
-                        <li><a data-lang="pt" href="/pt/"{% if lang == 'pt' %} class="active"{% endif %}><img class="lang-flag" src="/assest/flat-svg/{{ flagMap.pt }}.svg" alt="" aria-hidden="true" loading="lazy" width="18" height="14"><span>Português</span></a></li>
-                        <li><a data-lang="ru" href="/ru/"{% if lang == 'ru' %} class="active"{% endif %}><img class="lang-flag" src="/assest/flat-svg/{{ flagMap.ru }}.svg" alt="" aria-hidden="true" loading="lazy" width="18" height="14"><span>Русский</span></a></li>
-                        <li><a data-lang="th" href="/th/"{% if lang == 'th' %} class="active"{% endif %}><img class="lang-flag" src="/assest/flat-svg/{{ flagMap.th }}.svg" alt="" aria-hidden="true" loading="lazy" width="18" height="14"><span>ไทย</span></a></li>
-                        <li><a data-lang="tr" href="/tr/"{% if lang == 'tr' %} class="active"{% endif %}><img class="lang-flag" src="/assest/flat-svg/{{ flagMap.tr }}.svg" alt="" aria-hidden="true" loading="lazy" width="18" height="14"><span>Türkçe</span></a></li>
-                        <li><a data-lang="ur" href="/ur/"{% if lang == 'ur' %} class="active"{% endif %}><img class="lang-flag" src="/assest/flat-svg/{{ flagMap.ur }}.svg" alt="" aria-hidden="true" loading="lazy" width="18" height="14"><span>اردو</span></a></li>
-                        <li><a data-lang="vi" href="/vi/"{% if lang == 'vi' %} class="active"{% endif %}><img class="lang-flag" src="/assest/flat-svg/{{ flagMap.vi }}.svg" alt="" aria-hidden="true" loading="lazy" width="18" height="14"><span>Tiếng Việt</span></a></li>
+                        <li><a data-lang="en" href="/"{% if lang == 'en' %} class="active"{% endif %}><img class="lang-flag" src="/assest/flat-svg/{{ flagMap.en }}.{{ flagExt(flagMap.en) }}" alt="" aria-hidden="true" loading="lazy" width="18" height="14"><span>English</span></a></li>
+                        <li><a data-lang="ar" href="/ar/"{% if lang == 'ar' %} class="active"{% endif %}><img class="lang-flag" src="/assest/flat-svg/{{ flagMap.ar }}.{{ flagExt(flagMap.ar) }}" alt="" aria-hidden="true" loading="lazy" width="18" height="14"><span>العربية</span></a></li>
+                        <li><a data-lang="bn" href="/bn/"{% if lang == 'bn' %} class="active"{% endif %}><img class="lang-flag" src="/assest/flat-svg/{{ flagMap.bn }}.{{ flagExt(flagMap.bn) }}" alt="" aria-hidden="true" loading="lazy" width="18" height="14"><span>বাংলা</span></a></li>
+                        <li><a data-lang="de" href="/de/"{% if lang == 'de' %} class="active"{% endif %}><img class="lang-flag" src="/assest/flat-svg/{{ flagMap.de }}.{{ flagExt(flagMap.de) }}" alt="" aria-hidden="true" loading="lazy" width="18" height="14"><span>Deutsch</span></a></li>
+                        <li><a data-lang="es" href="/es/"{% if lang == 'es' %} class="active"{% endif %}><img class="lang-flag" src="/assest/flat-svg/{{ flagMap.es }}.{{ flagExt(flagMap.es) }}" alt="" aria-hidden="true" loading="lazy" width="18" height="14"><span>Español</span></a></li>
+                        <li><a data-lang="fr" href="/fr/"{% if lang == 'fr' %} class="active"{% endif %}><img class="lang-flag" src="/assest/flat-svg/{{ flagMap.fr }}.{{ flagExt(flagMap.fr) }}" alt="" aria-hidden="true" loading="lazy" width="18" height="14"><span>Français</span></a></li>
+                        <li><a data-lang="hi" href="/hi/"{% if lang == 'hi' %} class="active"{% endif %}><img class="lang-flag" src="/assest/flat-svg/{{ flagMap.hi }}.{{ flagExt(flagMap.hi) }}" alt="" aria-hidden="true" loading="lazy" width="18" height="14"><span>हिन्दी</span></a></li>
+                        <li><a data-lang="id" href="/id/"{% if lang == 'id' %} class="active"{% endif %}><img class="lang-flag" src="/assest/flat-svg/{{ flagMap.id }}.{{ flagExt(flagMap.id) }}" alt="" aria-hidden="true" loading="lazy" width="18" height="14"><span>Indonesia</span></a></li>
+                        <li><a data-lang="it" href="/it/"{% if lang == 'it' %} class="active"{% endif %}><img class="lang-flag" src="/assest/flat-svg/{{ flagMap.it }}.{{ flagExt(flagMap.it) }}" alt="" aria-hidden="true" loading="lazy" width="18" height="14"><span>Italiano</span></a></li>
+                        <li><a data-lang="ja" href="/ja/"{% if lang == 'ja' %} class="active"{% endif %}><img class="lang-flag" src="/assest/flat-svg/{{ flagMap.ja }}.{{ flagExt(flagMap.ja) }}" alt="" aria-hidden="true" loading="lazy" width="18" height="14"><span>日本語</span></a></li>
+                        <li><a data-lang="ko" href="/ko/"{% if lang == 'ko' %} class="active"{% endif %}><img class="lang-flag" src="/assest/flat-svg/{{ flagMap.ko }}.{{ flagExt(flagMap.ko) }}" alt="" aria-hidden="true" loading="lazy" width="18" height="14"><span>한국어</span></a></li>
+                        <li><a data-lang="my" href="/my/"{% if lang == 'my' %} class="active"{% endif %}><img class="lang-flag" src="/assest/flat-svg/{{ flagMap.my }}.{{ flagExt(flagMap.my) }}" alt="" aria-hidden="true" loading="lazy" width="18" height="14"><span>မြန်မာ</span></a></li>
+                        <li><a data-lang="ms" href="/ms/"{% if lang == 'ms' %} class="active"{% endif %}><img class="lang-flag" src="/assest/flat-svg/{{ flagMap.ms }}.{{ flagExt(flagMap.ms) }}" alt="" aria-hidden="true" loading="lazy" width="18" height="14"><span>Melayu</span></a></li>
+                        <li><a data-lang="pt" href="/pt/"{% if lang == 'pt' %} class="active"{% endif %}><img class="lang-flag" src="/assest/flat-svg/{{ flagMap.pt }}.{{ flagExt(flagMap.pt) }}" alt="" aria-hidden="true" loading="lazy" width="18" height="14"><span>Português</span></a></li>
+                        <li><a data-lang="ru" href="/ru/"{% if lang == 'ru' %} class="active"{% endif %}><img class="lang-flag" src="/assest/flat-svg/{{ flagMap.ru }}.{{ flagExt(flagMap.ru) }}" alt="" aria-hidden="true" loading="lazy" width="18" height="14"><span>Русский</span></a></li>
+                        <li><a data-lang="th" href="/th/"{% if lang == 'th' %} class="active"{% endif %}><img class="lang-flag" src="/assest/flat-svg/{{ flagMap.th }}.{{ flagExt(flagMap.th) }}" alt="" aria-hidden="true" loading="lazy" width="18" height="14"><span>ไทย</span></a></li>
+                        <li><a data-lang="tr" href="/tr/"{% if lang == 'tr' %} class="active"{% endif %}><img class="lang-flag" src="/assest/flat-svg/{{ flagMap.tr }}.{{ flagExt(flagMap.tr) }}" alt="" aria-hidden="true" loading="lazy" width="18" height="14"><span>Türkçe</span></a></li>
+                        <li><a data-lang="ur" href="/ur/"{% if lang == 'ur' %} class="active"{% endif %}><img class="lang-flag" src="/assest/flat-svg/{{ flagMap.ur }}.{{ flagExt(flagMap.ur) }}" alt="" aria-hidden="true" loading="lazy" width="18" height="14"><span>اردو</span></a></li>
+                        <li><a data-lang="vi" href="/vi/"{% if lang == 'vi' %} class="active"{% endif %}><img class="lang-flag" src="/assest/flat-svg/{{ flagMap.vi }}.{{ flagExt(flagMap.vi) }}" alt="" aria-hidden="true" loading="lazy" width="18" height="14"><span>Tiếng Việt</span></a></li>
                     </ul>
                 </div>
             </div>
@@ -203,4 +204,5 @@
     </script>
 </body>
 </html>
+
 
