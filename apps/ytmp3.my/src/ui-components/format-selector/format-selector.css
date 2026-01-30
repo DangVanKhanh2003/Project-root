@@ -158,7 +158,8 @@ html[data-format="mp4"] .quality-select--mp4 {
 @media (max-width: 799px) {
   .quality-wrapper {
     order: 1;
-    width: 100%; /* Force to take full width of first row */
+    width: 100%;
+    /* Force to take full width of first row */
   }
 
   .format-toggle {
@@ -247,6 +248,15 @@ html[data-format="mp4"] .quality-select--mp4 {
 [dir="rtl"] .select-arrow {
   right: auto;
   left: 8px;
+}
+
+.selected-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  width: 28px;
+  height: 20px;
 }
 
 /* ==========================================

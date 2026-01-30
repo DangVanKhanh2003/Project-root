@@ -515,54 +515,26 @@
 @media (max-width: 640px) {
   .setting-wrapper {
     position: relative;
-    justify-content: space-between;
+    /* justify-content: space-between; REMOVED to allow wrapping if needed, but flex-direction row is default */
     gap: 8px;
     width: 100%;
-    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1), padding 0.5s ease;
+    /* transition: width ... REMOVED */
     overflow: visible;
+    flex-wrap: wrap; /* Allow wrapping */
   }
 
-  /* Center icon when collapsed */
-  .audio-dropdown-wrapper .selected-icon {
-    margin-right: 0;
-    transition: margin 0.5s ease;
+  .quality-dropdown-wrapper {
+      min-width: 140px; /* Ensure it has some width */
+      flex: 1;
   }
 
-  .audio-dropdown-wrapper .selected-content,
-  .audio-dropdown-wrapper .dropdown-arrow {
-    opacity: 0;
-    display: none;
-    transition: opacity 0.5s ease 0.25s;
-  }
-
-  [dir="rtl"] .audio-dropdown-wrapper .dropdown-arrow {
-    margin-left: 0;
-    margin-right: auto;
-  }
-
-  /* When dropdown is OPEN */
-  .audio-dropdown-wrapper:has(.custom-dropdown.active) .dropdown-trigger {
-    padding: 0 12px;
-    justify-content: space-between;
-  }
-
-  .audio-dropdown-wrapper:has(.custom-dropdown.active) .selected-icon {
-    margin-right: 8px;
-  }
-
-  /* Show text and arrow when open */
-  .audio-dropdown-wrapper:has(.custom-dropdown.active) .selected-content,
-  .audio-dropdown-wrapper:has(.custom-dropdown.active) .dropdown-arrow {
-    display: block;
-    opacity: 1;
-  }
-
-  /* Force button to next row */
-  .format-selector .btn-convert {
-    width: 100%;
-    margin-top: 0;
+  .audio-dropdown-wrapper {
+      flex: 1;
+      min-width: 140px;
   }
 }
+
+
 
 /* Tiny < 480px */
 @media (max-width: 480px) {

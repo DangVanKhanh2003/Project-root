@@ -628,32 +628,31 @@ async function handleExtractMedia(url: string): Promise<void> {
 
       // 4. Fetch metadata from YouTube Public API (async, hides skeleton when done)
       (async () => {
-        try {
+      let metadata: { title?: string; authorName?: string } | null = null;
+
+      try {
           console.log('[YouTube Metadata] Fetching metadata for:', url);
 
-          const metadata = await coreServices.youtubePublicApi.getMetadata(url);
+          metadata = await coreServices.youtubePublicApi.getMetadata(url);
           console.log('[YouTube Metadata] Response:', metadata);
 
           if (metadata && metadata.title) {
             // Success: Update preview with real metadata
             console.log('[YouTube Metadata] Success - Title:', metadata.title, 'Author:', metadata.authorName);
-            updateYouTubePreviewMetadata(metadata.title, metadata.authorName || '');
           } else {
             // API returned but no data - fallback to URL as title, no author
             console.log('[YouTube Metadata] No data returned');
-            updateYouTubePreviewMetadata(url, '');
           }
         } catch (error) {
           // API failed - fallback to URL as title, no author
           console.error('[YouTube Metadata] Error:', error);
-          updateYouTubePreviewMetadata(url, '');
         }
 
         // Hide skeleton and show real data
         setYouTubePreview({
           videoId,
-          title: getState().youtubePreview?.title || url,
-          author: getState().youtubePreview?.author || '',
+          title: metadata?.title || url,
+          author: metadata?.authorName || '',
           thumbnail,
           url,
           isLoading: false  // Hide skeleton
@@ -977,3 +976,5 @@ export function setInputValue(value: string): void {
     input.value = value;
   }
 }
+
+

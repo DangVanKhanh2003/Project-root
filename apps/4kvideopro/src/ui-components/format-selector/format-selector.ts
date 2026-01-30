@@ -40,9 +40,9 @@ export function renderFormatSelectorToForm(): void {
                    ${renderUnifiedDropdown('mp4-720')}
                 </div>
 
-                <div class="audio-dropdown-wrapper" id="audio-track-dropdown">
+                <div class="audio-dropdown-wrapper">
                     <!-- Custom Searchable Audio Track Dropdown -->
-                    <div class="custom-dropdown">
+                    <div class="custom-dropdown" id="audio-track-dropdown">
                         <div class="dropdown-trigger" tabindex="0" role="button" aria-haspopup="listbox"
                             aria-expanded="false">
                             <!-- Absolute Icon (Languages) -->
