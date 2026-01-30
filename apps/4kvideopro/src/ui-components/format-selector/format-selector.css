@@ -1,109 +1,73 @@
 ﻿/**
- * Format Selector Component Styles (UNIFIED DROPDOWN)
+ * Format Selector Component Styles
  * Mobile-first responsive design
- *
- * Structure:
- * 1. Format Selector Container
- * 2. Quality Select (Unified Dropdown)
- * 3. Optgroup Styling
- * 4. Layout & Responsive
- * 5. Accessibility
  */
 
 /* ==========================================
-   MOBILE TRIGGER EXPANSION ANIMATION
+   Critical: Format switching via data-format
+   Prevents FOUC by using CSS instead of JS
    ========================================== */
-@media (0px <=width <=640px) {
 
-  /* Ensure quality wrapper takes full width on mobile */
-  .quality-wrapper {
-    flex-grow: 1;
-  }
-
-  /* Default State: Quality takes available space, Audio is icon-only */
-  .quality-dropdown-wrapper:nth-child(1) {
-    flex: 1;
-    transition: flex-basis 0.5s ease, flex-grow 0.5s ease, min-width 0.5s ease, opacity 0.5s;
-    min-width: 130px;
-  }
-
-  .audio-dropdown-wrapper {
-    flex: 0 0 56px;
-    transition: flex-basis 0.5s ease, flex-grow 0.5s ease, width 0.5s ease;
-    z-index: 20;
-  }
-
-  /* Active State: Audio expands to ~180px, Quality remains */
-  .quality-wrapper:has(.audio-dropdown-wrapper.active) .quality-dropdown-wrapper:nth-child(1) {
-    flex: 1;
-    min-width: 0;
-  }
-
-  .audio-dropdown-wrapper.active {
-    flex: 0 0 180px;
-    width: 180px;
-  }
-
-  .audio-dropdown-wrapper.active .custom-tooltip {
-    display: none;
-  }
-
-  /* Hide text/arrow when collapsed (no display toggle to avoid snap) */
-  .audio-dropdown-wrapper .selected-content,
-  .audio-dropdown-wrapper .dropdown-arrow {
-    opacity: 0;
-    max-width: 0;
-    overflow: hidden;
-    transition: opacity 0.5s, max-width 0.5s;
-    pointer-events: none;
-  }
-
-  /* Trigger Styles - Collapsed: center icon */
-  .audio-dropdown-wrapper .dropdown-trigger {
-    padding: 0 0 0 2px;
-    justify-content: center;
-    transition: padding 0.5s, justify-content 0.5s;
-  }
+/* Default state (no data-format or mp3): MP3 active */
+.format-btn[data-format="mp3"],
+.format-btn[data-format="mp3"]:hover {
+  background: var(--color-accent);
+  color: var(--color-black);
+  box-shadow: none;
 }
 
-/* Show text/arrow when expanded */
-.audio-dropdown-wrapper.active .selected-content,
-.audio-dropdown-wrapper.active .dropdown-arrow {
-  opacity: 1;
-  max-width: 200px;
-  transition: opacity 0.5s, max-width 0.5s;
-  pointer-events: auto;
+[data-theme="light"] .format-btn[data-format="mp3"],
+[data-theme="light"] .format-btn[data-format="mp3"]:hover {
+  box-shadow: none;
 }
 
-/* Center icon when collapsed */
-.audio-dropdown-wrapper .dropdown-trigger-icon {
-  left: 50%;
-  transform: translate(-50%, -50%);
-  transition: left 0.5s, transform 0.5s;
+.quality-select--mp3 {
+  display: block;
 }
 
-/* Trigger Styles - Expanded */
-.audio-dropdown-wrapper.active .dropdown-trigger {
-  padding: 0 10px;
-  justify-content: flex-start;
+.quality-select--mp4 {
+  display: none;
 }
 
-/* Move icon to left when expanded */
-.audio-dropdown-wrapper.active .dropdown-trigger-icon {
-  left: 12px;
-  transform: translateY(-50%);
+/* When data-format="mp4": MP4 active, MP3 inactive */
+html[data-format="mp4"] .format-btn[data-format="mp3"] {
+  background: transparent;
+  color: var(--text-muted, var(--color-gray-550));
+  box-shadow: none;
+}
+
+html[data-format="mp4"] .format-btn[data-format="mp4"],
+html[data-format="mp4"] .format-btn[data-format="mp4"]:hover {
+  background: var(--color-accent);
+  color: var(--color-black);
+  box-shadow: none;
+}
+
+html[data-format="mp4"][data-theme="light"] .format-btn[data-format="mp4"],
+html[data-format="mp4"][data-theme="light"] .format-btn[data-format="mp4"]:hover {
+  box-shadow: none;
+}
+
+html[data-format="mp4"] .quality-select--mp3 {
+  display: none;
+}
+
+html[data-format="mp4"] .quality-select--mp4 {
+  display: block;
 }
 
 /* ==========================================
-   1. FORMAT SELECTOR CONTAINER
+   End Critical section
    ========================================== */
 
+/* Wrapper in input form */
 .format-selector-wrapper {
-  margin: 12px 0;
-  padding-top: 0;
-  padding-bottom: 0;
+  margin-top: 8px;
+  margin-bottom: 8px;
   min-height: 48px;
+  /* Reserve space to prevent layout shift */
   display: block;
+  /* Always visible */
 }
 
 .format-selector {
@@ -113,35 +77,151 @@
   gap: 12px;
   width: 100%;
   min-height: 44px;
+  /* Fixed height to prevent layout shift */
   flex-wrap: wrap;
+  /* Allow wrapping on mobile */
 }
 
+/* Convert button in format selector */
+
+/* This breakpoint is now handled in the quality-wrapper section below */
+
+/* Desktop: all 3 items in one row */
+@media (min-width: 800px) {
+  .format-selector {
+    flex-wrap: nowrap;
+    /* No wrapping on desktop */
+    justify-content: flex-start;
+    /* Align items to left */
+    gap: 12px;
+    /* Gap between format and quality */
+  }
+
+
+}
+
+/* Group 1: Format + Quality */
+.format-quality-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
 
 /* ==========================================
-   2. QUALITY SELECT (UNIFIED DROPDOWN)
+   Format Toggle (Two separate buttons)
+   ========================================== */
+
+.format-toggle {
+  background: var(--bg-card, var(--color-gray-100));
+  padding: 4px;
+  border-radius: var(--radius-md, 12px);
+  display: flex;
+  border: var(--border-glass, 1px solid var(--text-step-num));
+  height: 56px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+[data-theme="light"] .format-toggle {
+  background: var(--color-white);
+  border: 1px solid var(--pkg-color-gray-200);
+}
+
+.format-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text-muted, var(--color-gray-550));
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0 20px;
+  height: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+/* .format-btn.active moved to CSS-based switching at top of file */
+
+/* ==========================================
+   Quality Select Dropdown
    ========================================== */
 
 .quality-wrapper {
   position: relative;
-  flex: 0 0 auto;
+  flex-grow: 1;
+}
+
+/* Mobile: quality dropdown full width on line 1, format+convert on line 2 */
+@media (max-width: 799px) {
+  .quality-wrapper {
+    order: 1;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .format-toggle {
+    order: 1;
+    flex: 0 0 auto;
+    max-width: 150px;
+  }
+
+  .format-selector .btn-convert {
+    order: 2;
+    flex: 0 0 100%;
+    width: 100%;
+  }
+
+  .quality-select.custom-dropdown-trigger .dropdown-selected-text {
+    display: block;
+    flex: 1 1 auto;
+    min-width: 0;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+/* Desktop: quality dropdown fixed 250px width, aligned left with format */
+@media (min-width: 800px) {
+  .quality-wrapper {
+    flex-grow: 0;
+    flex-shrink: 0;
+    margin-right: 0;
+    /* No margin, let convert button use margin-left: auto */
+  }
+
+  .format-toggle {
+    flex-shrink: 0;
+    max-width: 180px;
+    /* Don't shrink format toggle */
+  }
+
+  .format-selector .btn-convert {
+    flex: 0 0 auto;
+    /* Don't grow or shrink */
+    width: fit-content;
+    margin-left: auto;
+    /* Push to the right */
+  }
 }
 
 .quality-select {
   width: 100%;
   height: 50px;
-  padding: 0 12px;
-  padding-right: 32px;
   background: var(--bg-card, var(--color-white));
   border: var(--border-glass, 1px solid var(--text-step-num));
   border-radius: var(--radius-md, 12px);
   color: var(--text-main, var(--color-gray-850));
-  font-weight: 500;
+  padding: 0  20px;
+  appearance: none;
   cursor: pointer;
+  font-weight: 500;
   transition: all 0.3s;
   box-sizing: border-box;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
 }
 
 [data-theme="light"] .quality-select {
@@ -157,7 +237,6 @@
 .quality-select option {
   background: var(--pkg-color-gray-800);
   color: var(--color-white);
-  padding: 8px 12px;
 }
 
 [data-theme="light"] .quality-select option {
@@ -165,311 +244,24 @@
   color: var(--pkg-color-gray-800);
 }
 
-
-/* Unified dropdown specific */
-.unified-format-select {
-  width: 100%;
-}
-
-/* ==========================================
-   3. OPTGROUP STYLING
-   ========================================== */
-
-.quality-select optgroup {
-  background: var(--pkg-color-gray-900, #0f172a);
-  color: var(--text-muted, #94a3b8);
-  font-weight: 600;
-  font-size: 0.85rem;
-  padding: 8px 0;
-}
-
-[data-theme="light"] .quality-select optgroup {
-  background: var(--pkg-color-gray-50, #f8fafc);
-  color: var(--pkg-color-gray-500, #64748b);
-}
-
-.quality-select optgroup option {
-  font-weight: 500;
-  padding-left: 16px;
-}
-
-/* ==========================================
-   4. LAYOUT & RESPONSIVE
-   ========================================== */
-
-/* Mobile: quality and convert button side by side */
-@media (max-width: 799px) {
-  .quality-wrapper {
-    flex: 0 0 auto;
-    order: 1;
-  }
-
-  .quality-select {
-    font-size: 16px;
-  }
-
-  .format-selector .btn-convert {
-    order: 2;
-    flex: 0 0 auto;
-    width: auto;
-    padding: 5px 15px;
-  }
-}
-
-/* Desktop: all items in one row */
-@media (min-width: 800px) {
-  .format-selector {
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-  }
-
-  .format-selector .btn-convert {
-    flex: 0 0 auto;
-    width: fit-content;
-    margin-left: auto;
-  }
-}
-
-/* Small mobile */
-@media (max-width: 480px) {
-  .format-selector-wrapper {
-    min-height: 42px;
-  }
-
-  .format-selector {
-    gap: 8px;
-    min-height: 40px;
-  }
-
-  .format-selector .btn-convert {
-    height: 40px;
-  }
-
-  .quality-select {
-    height: 40px;
-    padding: 8px 12px;
-    padding-right: 32px;
-    font-size: 13px;
-  }
-}
-
-/* ==========================================
-   5. ACCESSIBILITY
-   ========================================== */
-
-@media (prefers-contrast: high) {
-  .quality-select {
-    border-width: 3px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .quality-select {
-    transition: none;
-  }
-}
-
-.quality-select:focus-visible {
-  outline-offset: 3px;
-}
-
-/* RTL Support */
-
-
-[dir="rtl"] .quality-select {
-  padding-right: 12px;
-  padding-left: 32px;
-}
-
-/* ==========================================
-   6. CUSTOM DROPDOWN (LIGHT MODE)
-   ========================================== */
-
-/* Trigger button */
-.custom-dropdown-trigger {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  text-align: left;
-  background: #fff;
-  border: 1px solid #e2e8f0;
-  color: #1e293b;
-  padding-right: 20px;
-}
-
-.custom-dropdown-trigger:hover {
-  border-color: rgb(213, 152, 171);
-}
-
-.dropdown-selected-text {
-  width: 100px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-@media (min-width: 800px) {
-  .dropdown-selected-text {
-    width: 120px;
-  }
-}
-
-.dropdown-arrow {
-  position: absolute;
-  right: 8px;
-  top: 50%;
-  transform: translateY(-50%);
-  transition: transform 0.2s ease;
-  color: #64748b;
-}
-
-[dir="rtl"] .dropdown-arrow {
-  right: auto;
-  left: 8px;
-}
-
-.quality-dropdown-wrapper.open .dropdown-arrow {
-  transform: translateY(-50%) rotate(180deg);
-}
-
-/* Dropdown menu - Light mode */
-.custom-dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
-  min-width: 160px;
-  max-height: 320px;
-  overflow-y: auto;
-  background: #fff;
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
-  box-shadow: none;
-  z-index: 100;
-  margin-top: 4px;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-8px);
-  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
-}
-
-.quality-dropdown-wrapper.open .custom-dropdown-menu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-/* Dropdown group */
-.dropdown-group {
-  padding: 4px 0;
-}
-
-.dropdown-group+.dropdown-group {
-  border-top: 1px solid #e2e8f0;
-}
-
-.dropdown-group-label {
-  padding: 8px 12px 4px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: #64748b;
-}
-
-/* Dropdown options */
-.dropdown-option {
-  padding: 10px 12px;
-  cursor: pointer;
-  transition: background 0.15s ease;
-  color: #1e293b;
-  font-size: 0.9rem;
-}
-
-.dropdown-option:hover {
-  background: var(--color-accent-light);
-}
-
-.dropdown-option.selected {
-  background: var(--color-accent-primary);
-  color: #fff;
-}
-
-.dropdown-option.selected:hover {
-  background: var(--color-acid-lime-hover);
-}
-
-/* ==========================================
-   7. RTL SUPPORT FOR CUSTOM DROPDOWN
-   ========================================== */
-
-[dir="rtl"] .custom-dropdown-trigger {
-  text-align: right;
-}
-
-[dir="rtl"] .selected-content {
-  text-align: right;
-}
-
-/* ==========================================
-   8. AUDIO TRACK DROPDOWN (Added)
-   ========================================== */
-
-.quality-dropdown-wrapper {
-  flex: 1;
-  /* Allow flexible width */
-}
-
-/* Flex container for the wrapper that holds both dropdowns (format and audio) */
-.setting-wrapper {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  width: fit-content;
-}
-
-.audio-dropdown-wrapper {
-  /* Default Desktop */
-  width: auto;
-}
-
-[dir="rtl"] .audio-dropdown-wrapper .dropdown-arrow {
-  margin-left: 0;
-  margin-right: auto;
-}
-
-/* Custom Dropdown Styling (Ported from ytmp3) */
-.custom-dropdown {
-  position: relative;
-  width: 100%;
-}
-
-.dropdown-trigger {
-  display: flex;
+.quality-select.custom-dropdown-trigger {
+  display: flex !important;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
-  height: 50px;
-  padding: 0 12px;
-  background: var(--bg-card, #fff);
-  border: var(--border-glass, 1px solid #e2e8f0);
-  border-radius: var(--radius-md, 12px);
-  cursor: pointer;
-  user-select: none;
-  transition: all 0.2s;
-  color: var(--text-main, #333);
 }
 
-[data-theme="dark"] .dropdown-trigger {
-  background: #000;
-  border-color: #3f3f46;
-  color: #fff;
+.select-arrow {
+  position: absolute;
+  right: 8px;
+  top: 55%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--text-muted, var(--color-gray-550));
 }
 
-.dropdown-trigger:hover,
-.dropdown-trigger.active {
-  border-color: var(--color-accent-primary, #D4FF00);
+[dir="rtl"] .select-arrow {
+  right: auto;
+  left: 8px;
 }
 
 .selected-icon {
@@ -482,149 +274,84 @@
   height: 20px;
 }
 
-.selected-content {
-  flex: 1;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  font-weight: 500;
-  font-size: 0.875rem;
-  text-align: left;
+.audio-track-value {
+  font-size: 0.8rem;
 }
 
-.dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 100%;
-  margin-top: 4px;
-  background: var(--bg-card, #fff);
-  border: 1px solid var(--border-glass, #e2e8f0);
-  border-radius: 12px;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  z-index: 50;
-  /* Ensure on top */
-  overflow: hidden;
-  transition: opacity 0.2s, transform 0.2s;
-  transform: translateY(0);
-  opacity: 1;
-}
 
-[data-theme="dark"] .dropdown-menu {
-  background: #000;
-  border-color: #3f3f46;
-}
-
-.dropdown-menu.hidden {
-  display: none !important;
-  /* Force hide */
-  opacity: 0;
-  transform: translateY(-10px);
-}
-
-.dropdown-search {
-  padding: 8px;
-  border-bottom: 1px solid var(--border-glass, #e2e8f0);
-  position: relative;
-}
-
-[data-theme="dark"] .dropdown-search {
-  border-bottom-color: #3f3f46;
-}
-
-.dropdown-search input {
-  width: 100%;
-  padding: 8px 12px 8px 32px;
-  border: 1px solid var(--border-glass, #e2e8f0);
-  border-radius: 6px;
-  font-size: 16px;
-  outline: none;
-  background: transparent;
-  color: inherit;
-}
-
-[data-theme="dark"] .dropdown-search input {
-  border-color: #3f3f46;
-}
-
-.dropdown-search input:focus {
-  border-color: var(--color-accent-primary, #D4FF00);
-}
-
-.search-icon {
-  position: absolute;
-  left: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--text-muted, #94a3b8);
-  pointer-events: none;
-}
-
-.dropdown-options {
-  max-height: 240px;
-  overflow-y: auto;
-  padding: 4px 0;
-}
-
-.dropdown-option {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 8px 12px;
-  cursor: pointer;
-  transition: background 0.15s;
-  font-size: 0.875rem;
-}
-
-.dropdown-option:hover {
-  background: var(--bg-hover, #f1f5f9);
-}
-
-[data-theme="dark"] .dropdown-option:hover {
-  background: #18181b;
-}
-
-.dropdown-option.selected {
-  background: var(--color-accent-primary, #D4FF00);
-  color: #000;
-}
 
 /* ==========================================
-   RESPONSIVE BEHAVIOR (Mobile < 640px)
+   Responsive Design
    ========================================== */
 
-@media (max-width: 640px) {
-  .setting-wrapper {
-    position: relative;
-    /* justify-content: space-between; REMOVED to allow wrapping if needed, but flex-direction row is default */
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .format-selector-wrapper {
+    min-height: 42px;
+  }
+
+  .format-selector {
     gap: 8px;
-    width: 100%;
-    /* transition: width ... REMOVED */
-    overflow: visible;
+    min-height: 40px;
     flex-wrap: wrap;
-    /* Allow wrapping */
+    justify-content: space-between;
   }
 
-  .quality-dropdown-wrapper {
-    min-width: 140px;
-    /* Ensure it has some width */
-    flex: 1;
+  .format-toggle {
+    height: 40px;
+    max-width: 130px;
   }
 
-  .audio-dropdown-wrapper {
-    flex: 1;
-    min-width: 140px;
+  .format-selector .btn-convert {
+    height: 40px;
+    /* Match format-toggle height */
+    padding: 5px 12px;
+    width: 100%;
+  }
+
+  .format-btn {
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+
+  .quality-select {
+    height: 40px;
+    padding: 8px 12px;
+    font-size: 13px;
   }
 }
 
+/* Very small devices - quality on line 1, format + convert on line 2 */
+@media (max-width: 360px) {
+  .format-selector-wrapper {
+    min-height: 96px;
+    /* 40px + 40px + gap */
+  }
 
+  .format-selector {
+    flex-wrap: wrap;
+    gap: 8px;
+    min-height: 88px;
+  }
 
-/* Tiny < 480px */
-@media (max-width: 480px) {
-  .dropdown-trigger {
+  .quality-wrapper {
+    order: 1;
+    width: 100%;
+  }
+
+  .format-toggle {
+    order: 2;
+    flex: 1;
     height: 40px;
-    /* Match typical mobile input height */
-    font-size: 0.8125rem;
+    max-width: 150px;
+  }
+
+  .format-selector .btn-convert {
+    order: 2;
+    flex: 0 0 100%;
+    height: 40px;
+    padding: 5px 12px;
+    width: 100%;
   }
 
   .quality-select {
@@ -632,44 +359,40 @@
   }
 }
 
-/* Custom Tooltip */
-[data-tooltip] {
-  position: relative;
+/* ==========================================
+   Accessibility
+   ========================================== */
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .format-toggle {
+    border-width: 3px;
+  }
+
+  .format-btn.active {
+    border: 2px solid white;
+  }
+
+  .quality-select {
+    border-width: 3px;
+  }
 }
 
-.custom-tooltip {
-  position: absolute;
-  top: calc(100% + 10px);
-  left: 50%;
-  transform: translateX(-50%) translateY(5px);
-  background-color: #1e293b;
-  color: #fff;
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  white-space: nowrap;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
-  z-index: 50;
-  pointer-events: none;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+
+  .format-toggle,
+  .format-btn,
+  .quality-select {
+    transition: none;
+  }
 }
 
-.custom-tooltip::after {
-  content: '';
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  border-width: 5px;
-  border-style: solid;
-  border-color: transparent transparent #1e293b transparent;
+/* Focus visible (keyboard navigation) */
+.format-btn:focus-visible {
+  outline-offset: 3px;
 }
 
-[data-tooltip].show-tooltip .custom-tooltip {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(-50%) translateY(0);
+.quality-select:focus-visible {
+  outline-offset: 3px;
 }

@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Downloader State - Public API
  * Central export point for all state modules
  */
@@ -24,11 +24,9 @@ export type {
   InputType,
   CoreUIState,
   FormatType,
-  DownloadMode,
   AudioFormatType,
   FormatSelectorState,
   QualityPreferences,
-  ParsedSelection,
   SuggestionsState,
   SearchResultsState,
   SearchPagination,
@@ -73,3 +71,4 @@ export * from './conversion-state';
 export * from './multifile-state';
 export * from './multifile-reuse-state';
 export * from './youtube-preview-state';
+

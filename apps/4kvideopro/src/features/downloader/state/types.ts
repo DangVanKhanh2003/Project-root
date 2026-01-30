@@ -1,4 +1,4 @@
-/**
+﻿/**
  * State Type Definitions
  * Central type definitions for all state modules
  */
@@ -25,10 +25,9 @@ export interface CoreUIState {
 }
 
 // ==========================================
-// Format Selector State Types (UNIFIED DROPDOWN)
+// Format Selector State Types (NEW FLOW)
 // ==========================================
 export type FormatType = 'mp3' | 'mp4' | 'webm' | 'mkv';
-export type DownloadMode = 'video' | 'audio';
 export type VideoFormatType = 'mp4' | 'webm' | 'mkv';
 export type AudioFormatType = 'mp3' | 'wav' | 'm4a' | 'opus' | 'ogg' | 'flac';
 
@@ -37,29 +36,15 @@ export interface QualityPreferences {
   mp4: string;  // e.g., '1080p'
 }
 
-/**
- * Parsed result from unified selection value
- * Value format: {mode}|{format}[-{quality/bitrate}]
- * Examples: "video|mp4-720", "video|webm", "audio|mp3-128", "audio|wav"
- */
-export interface ParsedSelection {
-  mode: DownloadMode;
-  format: string;
-  quality?: string;   // For video: '2160', '1080', '720', etc.
-  bitrate?: string;   // For audio MP3: '320', '256', '128', '64'
-}
-
 export interface FormatSelectorState {
-  // UNIFIED: Single string for dropdown selection
-  unifiedSelection: string;  // e.g., "video|mp4-720", "audio|mp3-128"
-
-  // Legacy fields - kept for backward compatibility during migration
   selectedFormat: FormatType;
-  selectedQuality: string; // Deprecated
+  selectedQuality: string; // Deprecated - kept for backward compatibility
   qualityPreferences: QualityPreferences;
-  videoQuality: string;
-  audioFormat: AudioFormatType;
-  audioBitrate: string;
+
+  // NEW: Separate quality tracking for each format
+  videoQuality: string;      // For mp4: '1080p', '720p', '480p', '360p', etc.
+  audioFormat: AudioFormatType;  // For mp3 mode: 'mp3', 'wav', 'aac', etc.
+  audioBitrate: string;      // For mp3 mode: '320', '256', '192', '128', '64', etc.
 
   // Track if user has made a selection (for auto-fill logic)
   hasUserSelectedFormat: boolean;
@@ -217,6 +202,8 @@ export interface ConversionTask {
   streamMetadata?: any;
   warningMessage?: string;
   extractResponse?: any;
+  audioLanguageChanged?: boolean;
+  availableAudioLanguages?: string[];
 }
 
 export interface ActiveConversion {
@@ -341,3 +328,4 @@ export interface AppState
 // ==========================================
 export type StateChangeCallback = (currentState: AppState, prevState: AppState) => void;
 export type PartialState = Partial<AppState>;
+

@@ -1,4 +1,4 @@
-import { LANGUAGES, type Language } from '../data/languages';
+﻿import { LANGUAGES, type Language } from '../data/languages';
 
 /**
  * Initialize custom audio dropdown logic
@@ -158,3 +158,5 @@ export function initAudioDropdown(): void {
         }).join('');
     }
 }
+
+

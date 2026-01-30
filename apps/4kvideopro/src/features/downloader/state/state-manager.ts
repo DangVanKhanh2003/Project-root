@@ -1,4 +1,4 @@
-/**
+﻿/**
  * State Manager - Core State Management
  * Centralized state storage and callback management
  */
@@ -17,8 +17,7 @@ const initialState: AppState = {
   showPasteButton: true,
   showClearButton: false,
 
-  // Format Selector (UNIFIED DROPDOWN)
-  unifiedSelection: 'video|mp4-2160', // Default to 4K video
+  // Format Selector (NEW FLOW)
   selectedFormat: 'mp4',
   selectedQuality: '720p', // Deprecated - kept for backward compatibility
   qualityPreferences: {
@@ -26,8 +25,8 @@ const initialState: AppState = {
     mp4: '720p'
   },
 
-  // Legacy: Separate quality tracking (kept for backward compatibility)
-  videoQuality: '2160p',      // Default to 4K for mp4
+  // NEW: Separate quality tracking
+  videoQuality: '720p',       // Default to 720p for mp4
   audioFormat: 'mp3',         // Default audio format
   audioBitrate: '128',        // Default to 128 for mp3
   hasUserSelectedFormat: false, // Track if user has made a selection
@@ -142,3 +141,4 @@ export function replaceState(newState: AppState): void {
     renderCallback(currentState, prevState);
   }
 }
+

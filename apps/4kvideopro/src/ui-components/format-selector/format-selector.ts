@@ -1,76 +1,95 @@
-/**
+﻿/**
  * Format Selector Component
- * Reusable MP3/MP4 toggle + Quality dropdown + Audio Track Dropdown
+ * MP3/MP4 toggle + unified quality dropdown + audio track dropdown
  */
 
 import {
-  setUnifiedSelection,
-  UNIFIED_OPTIONS
+  getState,
+  setSelectedFormat,
+  setVideoQuality,
+  setAudioFormat,
+  setAudioBitrate,
+  type FormatType,
+  type AudioFormatType
 } from '../../features/downloader/state';
-import { initAudioDropdown } from '../../features/downloader/ui-render/dropdown-logic';
+import { initAudioDropdown } from '../../features/downloader/ui-render/audio-dropdown';
 
 // ==========================================
-// Render Functions
+// Helpers
 // ==========================================
 
+function updateFormatButtonState(container: HTMLElement, selectedFormat: FormatType): void {
+  const formatButtons = container.querySelectorAll('.format-btn');
+  formatButtons.forEach((btn) => {
+    const format = (btn as HTMLElement).dataset.format;
+    if (format === selectedFormat) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+}
 
-/**
- * Render the unified format selector (keeping existing logic for format selection)
- */
-export function renderUnifiedDropdown(selectedValue: string): string {
-  // Keep using the existing unified dropdown logic for the format selector part
-  // but wrapped inside our new structure.
-  // Note: We might want to review if we should still use the 'custom-dropdown' class here
-  // as it might conflict with the audio 'custom-dropdown' if they are nested or share styles unexpectedly.
-  // Based on CSS analysis, they seem compatible as siblings.
+function setHiddenUnifiedValue(container: Element, value: string): void {
+  const hiddenInput = container.querySelector('#unified-format-select') as HTMLInputElement | null;
+  if (hiddenInput) {
+    hiddenInput.value = value;
+  }
+}
 
-  const videoOptions = UNIFIED_OPTIONS.video;
-  const audioOptions = UNIFIED_OPTIONS.audio;
+function applySelectionToDropdown(container: Element, value: string): void {
+  const selectedText = container.querySelector('.dropdown-selected-text') as HTMLElement | null;
+  const options = container.querySelectorAll('.quality-dropdown-wrapper .dropdown-option');
+  let label = '';
 
-  const selectedOption = [...videoOptions, ...audioOptions].find(o => o.value === selectedValue);
-  const selectedLabel = selectedOption?.label || 'MP4 - 720p'; // Default fall back
+  options.forEach(opt => {
+    const optEl = opt as HTMLElement;
+    const isSelected = optEl.dataset.value === value;
+    optEl.classList.toggle('selected', isSelected);
+    if (isSelected) {
+      label = optEl.textContent?.trim() || '';
+    }
+  });
 
-  return `
-    <input type="hidden" id="unified-format-select" name="format" value="${selectedValue}" data-unified-select>
-    <button type="button" class="quality-select custom-dropdown-trigger" aria-haspopup="listbox" aria-expanded="false">
-      <span class="dropdown-selected-text">${selectedLabel}</span>
-      <svg class="dropdown-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <path d="M6 9l6 6 6-6" />
-      </svg>
-    </button>
-    <div class="custom-dropdown-menu" role="listbox" hidden>
-      <div class="dropdown-group">
-        <div class="dropdown-group-label">Video</div>
-        ${videoOptions.map(option => `
-          <div class="dropdown-option${option.value === selectedValue ? ' selected' : ''}" data-value="${option.value}" role="option">${option.label}</div>
-        `).join('')}
-      </div>
-      <div class="dropdown-group">
-        <div class="dropdown-group-label">Audio</div>
-        ${audioOptions.map(option => `
-          <div class="dropdown-option${option.value === selectedValue ? ' selected' : ''}" data-value="${option.value}" role="option">${option.label}</div>
-        `).join('')}
-      </div>
-    </div>
-  `;
+  if (selectedText && label) {
+    selectedText.textContent = label;
+  }
+
+  setHiddenUnifiedValue(container, value);
+}
+
+function getValueFromState(state: ReturnType<typeof getState>): string {
+  if (state.selectedFormat === 'mp4') {
+    const vq = state.videoQuality || '720p';
+    if (vq === 'webm' || vq === 'mkv') {
+      return `video|${vq}`;
+    }
+    return `video|mp4-${vq.replace('p', '')}`;
+  }
+
+  const af = state.audioFormat || 'mp3';
+  if (af === 'mp3') {
+    return `audio|mp3-${state.audioBitrate || '128'}`;
+  }
+  return `audio|${af}`;
+}
+
+function applyStateToDropdown(container: Element): void {
+  const value = getValueFromState(getState());
+  applySelectionToDropdown(container, value);
 }
 
 // ==========================================
-// State
+// Dropdown control
 // ==========================================
 
 let isDropdownOpen = false;
 let clickOutsideHandler: ((e: MouseEvent) => void) | null = null;
 
-// ==========================================
-// Dropdown Control
-// ==========================================
-
 function openDropdown(wrapper: Element): void {
   if (isDropdownOpen) return;
-
   isDropdownOpen = true;
-  wrapper.classList.add('open'); // This toggles the 'open' class on quality-dropdown-wrapper
+  wrapper.classList.add('open');
 
   const trigger = wrapper.querySelector('.custom-dropdown-trigger');
   if (trigger) {
@@ -82,6 +101,7 @@ function openDropdown(wrapper: Element): void {
       closeDropdown(wrapper);
     }
   };
+
   setTimeout(() => {
     document.addEventListener('click', clickOutsideHandler!);
   }, 0);
@@ -89,7 +109,6 @@ function openDropdown(wrapper: Element): void {
 
 function closeDropdown(wrapper: Element): void {
   if (!isDropdownOpen) return;
-
   isDropdownOpen = false;
   wrapper.classList.remove('open');
 
@@ -112,101 +131,114 @@ function toggleDropdown(wrapper: Element): void {
   }
 }
 
-function selectOption(wrapper: Element, value: string, label: string): void {
-  const hiddenInput = wrapper.querySelector('[data-unified-select]') as HTMLInputElement;
-  if (hiddenInput) {
-    hiddenInput.value = value;
+// ==========================================
+// Event handlers
+// ==========================================
+
+function handleUnifiedValueSelection(value: string, container: HTMLElement): void {
+  if (value.startsWith('video|')) {
+    const rest = value.replace('video|', '');
+    setSelectedFormat('mp4');
+    document.documentElement.dataset.format = 'mp4';
+    updateFormatButtonState(container, 'mp4');
+
+    if (rest === 'webm' || rest === 'mkv') {
+      setVideoQuality(rest);
+    } else {
+      const q = rest.replace('mp4-', '');
+      setVideoQuality(`${q}p`);
+    }
+    return;
   }
 
-  const selectedText = wrapper.querySelector('.dropdown-selected-text');
-  if (selectedText) {
-    selectedText.textContent = label;
+  const rest = value.replace('audio|', '');
+  setSelectedFormat('mp3');
+  document.documentElement.dataset.format = 'mp3';
+  updateFormatButtonState(container, 'mp3');
+
+  if (rest.startsWith('mp3-')) {
+    const bitrate = rest.replace('mp3-', '');
+    setAudioFormat('mp3');
+    setAudioBitrate(bitrate);
+  } else {
+    setAudioFormat(rest as AudioFormatType);
+    setAudioBitrate('');
+  }
+}
+
+function handleFormatChange(format: FormatType, container: HTMLElement): void {
+  setSelectedFormat(format);
+  document.documentElement.dataset.format = format;
+  updateFormatButtonState(container, format);
+  applyStateToDropdown(container);
+}
+
+function handleDropdownClick(event: Event): void {
+  const target = event.target as HTMLElement;
+  const container = target.closest('#format-selector-container') as HTMLElement | null;
+  if (!container) return;
+
+  const formatBtn = target.closest('.format-btn') as HTMLElement | null;
+  if (formatBtn) {
+    const format = formatBtn.dataset.format as FormatType;
+    if (format) {
+      handleFormatChange(format, container);
+    }
+    return;
   }
 
-  const options = wrapper.querySelectorAll('.dropdown-option');
-  options.forEach(opt => {
-    opt.classList.toggle('selected', opt.getAttribute('data-value') === value);
-  });
+  const trigger = target.closest('.custom-dropdown-trigger') as HTMLElement | null;
+  if (trigger) {
+    event.preventDefault();
+    const wrapper = trigger.closest('.quality-dropdown-wrapper') as HTMLElement | null;
+    if (!wrapper) return;
+    toggleDropdown(wrapper);
+    return;
+  }
 
-  setUnifiedSelection(value);
-  closeDropdown(wrapper);
+  const option = target.closest('.quality-dropdown-wrapper .dropdown-option') as HTMLElement | null;
+  if (option && option.dataset.value) {
+    applySelectionToDropdown(container, option.dataset.value);
+    handleUnifiedValueSelection(option.dataset.value, container);
+
+    const wrapper = option.closest('.quality-dropdown-wrapper');
+    if (wrapper) {
+      closeDropdown(wrapper);
+    }
+  }
+}
+
+function handleDropdownKeydown(event: KeyboardEvent): void {
+  if (event.key !== 'Escape') return;
+  const target = event.target as HTMLElement;
+  const wrapper = target.closest('.quality-dropdown-wrapper');
+  if (wrapper) {
+    closeDropdown(wrapper);
+  }
 }
 
 // ==========================================
-// Event Handlers
+// Public API
 // ==========================================
 
 export function initFormatSelector(containerSelector: string = '#format-selector-container'): void {
-  const container = document.querySelector(containerSelector);
+  const container = document.querySelector(containerSelector) as HTMLElement | null;
   if (!container) {
     console.warn('Format selector container not found:', containerSelector);
     return;
   }
 
-  // Prevent initial flash before CSS loads.
-  container.querySelectorAll('.custom-dropdown-menu[hidden]').forEach(menu => {
-    menu.removeAttribute('hidden');
-  });
+  const state = getState();
+  document.documentElement.dataset.format = state.selectedFormat;
+  updateFormatButtonState(container, state.selectedFormat);
+  applyStateToDropdown(container);
 
-  // Attach listeners for the Quality/Format dropdown
-  // We attach to the container but scope checks to .quality-dropdown-wrapper
   container.addEventListener('click', handleDropdownClick);
   container.addEventListener('keydown', handleDropdownKeydown);
 
-  // Initialize Audio Dropdown Logic
+  initCustomTooltips(container);
   initAudioDropdown();
 }
-
-function handleDropdownClick(event: Event): void {
-  const target = event.target as HTMLElement;
-  // Make sure we are interacting with the unified quality dropdown, not the audio dropdown
-  // The audio dropdown has its own listeners in initAudioDropdown
-  const wrapper = target.closest('.quality-dropdown-wrapper');
-
-  if (!wrapper) return;
-
-  // Click on trigger button -> toggle dropdown
-  if (target.closest('.custom-dropdown-trigger')) {
-    event.preventDefault();
-    toggleDropdown(wrapper);
-    return;
-  }
-
-  // Click on option -> select it
-  const option = target.closest('.dropdown-option') as HTMLElement;
-  if (option) {
-    const value = option.getAttribute('data-value');
-    const label = option.textContent?.trim();
-    if (value && label) {
-      selectOption(wrapper, value, label);
-    }
-    return;
-  }
-}
-
-function handleDropdownKeydown(event: KeyboardEvent): void {
-  const target = event.target as HTMLElement;
-  const wrapper = target.closest('.quality-dropdown-wrapper');
-
-  if (!wrapper) return;
-
-  switch (event.key) {
-    case 'Enter':
-    case ' ':
-      if (target.classList.contains('custom-dropdown-trigger')) {
-        event.preventDefault();
-        toggleDropdown(wrapper);
-      }
-      break;
-    case 'Escape':
-      closeDropdown(wrapper);
-      break;
-  }
-}
-
-// ==========================================
-// Cleanup
-// ==========================================
 
 export function cleanupFormatSelector(): void {
   if (clickOutsideHandler) {
@@ -214,4 +246,36 @@ export function cleanupFormatSelector(): void {
     clickOutsideHandler = null;
   }
   isDropdownOpen = false;
+}
+
+/**
+ * Initialize custom tooltips with 0.5s delay
+ */
+function initCustomTooltips(container: Element): void {
+  const tooltipElements = container.querySelectorAll('[data-tooltip]');
+
+  tooltipElements.forEach((element) => {
+    let tooltipTimer: number | null = null;
+
+    const tooltipText = element.getAttribute('data-tooltip');
+    const tooltipElement = element.querySelector('.custom-tooltip');
+
+    if (tooltipElement && tooltipText) {
+      tooltipElement.textContent = tooltipText;
+    }
+
+    element.addEventListener('mouseenter', () => {
+      tooltipTimer = window.setTimeout(() => {
+        element.classList.add('show-tooltip');
+      }, 500);
+    });
+
+    element.addEventListener('mouseleave', () => {
+      if (tooltipTimer) {
+        clearTimeout(tooltipTimer);
+        tooltipTimer = null;
+      }
+      element.classList.remove('show-tooltip');
+    });
+  });
 }
