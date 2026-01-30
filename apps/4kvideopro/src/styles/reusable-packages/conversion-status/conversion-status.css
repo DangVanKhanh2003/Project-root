@@ -58,9 +58,9 @@
   left: 0;
   height: 100%;
   width: var(--progress-width, 0%);
-  background: rgba(212, 255, 0, 0.35);
-  /* Lime/yellow - 35% opacity for visibility */
-  border-right: 1px solid rgba(212, 255, 0, 0.6);
+
+  background: var(--color-accent-light);
+  border-right: 1px solid var(--color-accent);
   box-shadow: none;
   transition: width 0.2s linear;
   z-index: 1;
@@ -113,6 +113,7 @@
   position: relative;
   z-index: 2;
   width: 100%;
+  background: #f5f5f5;
   /* Fill full width of status-container */
   display: flex;
   align-items: center;
@@ -144,7 +145,7 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 4px 16px;
+  padding: 10px 16px;
   margin: 10px auto 0;
   background: #fef3c7;
   border: 1px solid #f59e0b;
