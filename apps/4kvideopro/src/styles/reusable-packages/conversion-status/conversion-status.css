@@ -313,9 +313,8 @@
 }
 
 .btn-new-convert:hover {
-  border-color: var(--color-white);
-  color: var(--color-white);
-  background: var(--color-accent-dark);
+  border-color: black;
+  color: black;
 }
 
 [data-theme="light"] .btn-new-convert:hover {
