@@ -423,7 +423,7 @@
     }
 
     .quality-dropdown-wrapper {
-        flex: 1;
+        flex: 0 0 150px;
     }
 
     .audio-dropdown-wrapper {

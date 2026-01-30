@@ -13,6 +13,7 @@ import type { AppState, ConversionTask } from '../state/types';
 import { getMergingEstimator, clearMergingEstimator } from './merging-progress-estimator';
 import { showVidToolPopup } from '@downloader/vidtool-popup';
 import { logEvent } from '../../../libs/firebase';
+import { LANGUAGES } from '../../downloader/data/languages';
 
 // ============================================================
 // TYPE DEFINITIONS
@@ -114,6 +115,13 @@ export function renderConversionStatus(state: AppState, _prevState?: AppState): 
   statusContainer.style.display = 'flex';
   // Update status bar UI (with throttling)
   updateStatusBarUI(statusContainer, task, formatId);
+
+  // Handle audio language warning
+  if (task.audioLanguageChanged) {
+    showAudioLanguageWarning(statusContainer, task.availableAudioLanguages || []);
+  } else {
+    hideAudioLanguageWarning(statusContainer);
+  }
 }
 
 // ============================================================
@@ -561,4 +569,64 @@ function escapeHtml(text: string): string {
   const div = document.createElement('div');
   div.textContent = text;
   return div.innerHTML;
+}
+
+/**
+ * Map language code to human readable label
+ */
+function mapAudioLanguageLabel(code: string): string {
+  if (!code || code === 'original') return 'Original';
+
+  const lang = LANGUAGES.find(l => l.code === code);
+  return lang ? lang.name : code;
+}
+
+/**
+ * Show audio language warning message
+ */
+function showAudioLanguageWarning(statusContainer: HTMLElement, availableLanguages: string[]): void {
+  // Find the wrapper (parent of status container)
+  const wrapper = statusContainer.closest('.conversion-state-wrapper') as HTMLElement;
+  if (!wrapper) return;
+
+  // Check if warning already exists
+  let warningDiv = wrapper.querySelector('.audio-language-warning') as HTMLElement;
+
+  if (!warningDiv) {
+    warningDiv = document.createElement('div');
+    warningDiv.className = 'audio-language-warning';
+    // Insert after status container
+    statusContainer.insertAdjacentElement('afterend', warningDiv);
+  }
+
+  // Format available languages
+  const languageLabels = availableLanguages
+    .map(code => mapAudioLanguageLabel(code))
+    .join(', ');
+
+  warningDiv.innerHTML = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="10"></circle>
+      <line x1="12" y1="8" x2="12" y2="12"></line>
+      <line x1="12" y1="16" x2="12.01" y2="16"></line>
+    </svg>
+    <span>This video only has audio in <strong>${escapeHtml(languageLabels || 'Original')}</strong> — automatically using original audio.</span>
+  `;
+
+  // Ensure visible
+  warningDiv.style.display = 'flex';
+}
+
+/**
+ * Hide audio language warning message
+ */
+function hideAudioLanguageWarning(statusContainer: HTMLElement): void {
+  const wrapper = statusContainer.closest('.conversion-state-wrapper') as HTMLElement;
+  if (!wrapper) return;
+
+  const warningDiv = wrapper.querySelector('.audio-language-warning') as HTMLElement;
+  if (warningDiv) {
+    warningDiv.style.display = 'none';
+    warningDiv.remove();
+  }
 }

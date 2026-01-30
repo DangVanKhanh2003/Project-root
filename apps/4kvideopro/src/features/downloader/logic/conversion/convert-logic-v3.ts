@@ -77,7 +77,8 @@ export async function startConversion(params: V3ConversionParams): Promise<void>
     const request = mapToV3DownloadRequest(videoUrl, extractV2Options);
     log('V3 Request:', JSON.stringify(request, null, 2));
 
-    const jobResponse = await apiV3.createJob(request, abortController.signal);
+    // Cast response to CreateJobResponse to access audio fields
+    const jobResponse = await apiV3.createJob(request, abortController.signal) as any;
     log('Job created:', JSON.stringify(jobResponse, null, 2));
 
     // Stop rotating messages when job is created
@@ -94,6 +95,8 @@ export async function startConversion(params: V3ConversionParams): Promise<void>
       statusText: 'Processing...',
       showProgressBar: true,
       sourceId: jobResponse.statusUrl,
+      audioLanguageChanged: jobResponse.audioLanguageChanged,
+      availableAudioLanguages: jobResponse.availableAudioLanguages,
     });
 
     // Phase 2: Poll for status using statusUrl
