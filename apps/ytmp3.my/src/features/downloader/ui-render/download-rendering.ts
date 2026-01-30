@@ -439,7 +439,18 @@ function mapAudioLanguageLabel(code: string): string {
 }
 
 function showAudioLanguageWarning(statusContainer: HTMLElement, availableLanguages: string[]): void {
-  const existing = statusContainer.querySelector('.audio-language-warning');
+  // Logic:
+  // 1. Try to find parent wrapper (.conversion-state-wrapper)
+  // 2. If wrapper exists:
+  //    a. Check if warning already exists inside wrapper -> remove it
+  //    b. Use statusContainer as reference (it IS the status element passed in)
+  //    c. If statusContainer is in wrapper, inject AFTER statusContainer
+  //    d. If not, inject at BEGINNING of wrapper
+
+  const wrapper = statusContainer.closest('.conversion-state-wrapper') || statusContainer.parentElement;
+  if (!wrapper) return;
+
+  const existing = wrapper.querySelector('.audio-language-warning');
   if (existing) {
     existing.remove();
   }
@@ -460,11 +471,20 @@ function showAudioLanguageWarning(statusContainer: HTMLElement, availableLanguag
     <span>This video only has audio in <strong>${escapeHtml(languageLabels || 'Original')}</strong> — automatically using original audio.</span>
   `;
 
-  statusContainer.appendChild(warningDiv);
+  // Check if statusContainer is actually a child of this wrapper
+  if (wrapper.contains(statusContainer)) {
+    // Inject AFTER status-container
+    statusContainer.insertAdjacentElement('afterend', warningDiv);
+  } else {
+    // Inject at START of wrapper
+    wrapper.insertAdjacentElement('afterbegin', warningDiv);
+  }
 }
 
 function hideAudioLanguageWarning(statusContainer: HTMLElement): void {
-  const warning = statusContainer.querySelector('.audio-language-warning');
+  const wrapper = statusContainer.closest('.conversion-state-wrapper') || statusContainer.parentElement;
+  if (!wrapper) return;
+  const warning = wrapper.querySelector('.audio-language-warning');
   if (warning) warning.remove();
 }
 

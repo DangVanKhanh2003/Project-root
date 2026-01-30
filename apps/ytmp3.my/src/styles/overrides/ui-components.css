@@ -25,6 +25,11 @@
    Search Result Card Override
    ========================================== */
 
+
 .search-result-card {
   background: #f7f7f7;
+}
+
+.search-result-card .card-title {
+  color: #0f0f0f;
 }
