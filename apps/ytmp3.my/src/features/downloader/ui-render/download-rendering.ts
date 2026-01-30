@@ -439,9 +439,6 @@ function mapAudioLanguageLabel(code: string): string {
 }
 
 function showAudioLanguageWarning(statusContainer: HTMLElement, availableLanguages: string[]): void {
-  const statusElement = statusContainer.querySelector('.status');
-  if (!statusElement) return;
-
   const existing = statusContainer.querySelector('.audio-language-warning');
   if (existing) {
     existing.remove();
@@ -463,7 +460,7 @@ function showAudioLanguageWarning(statusContainer: HTMLElement, availableLanguag
     <span>This video only has audio in <strong>${escapeHtml(languageLabels || 'Original')}</strong> — automatically using original audio.</span>
   `;
 
-  statusElement.insertAdjacentElement('afterend', warningDiv);
+  statusContainer.appendChild(warningDiv);
 }
 
 function hideAudioLanguageWarning(statusContainer: HTMLElement): void {

@@ -1,6 +1,6 @@
 /**
  * API V3 Setup - YouTube Download API
- * https://load-balancer.ytconvert.org
+ * https://hub.ytconvert.org
  *
  * Completely isolated from V2 - no cross-imports
  */

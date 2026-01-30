@@ -109,7 +109,7 @@ const environment: Environment = {
         baseUrlV2: import.meta.env.VITE_API_BASE_URL_V2 || 'https://hub.y2mp3.co',
 
         // V3 API Base URL (YouTube Download API)
-        baseUrlV3: import.meta.env.VITE_API_BASE_URL_V3 || 'https://load-balancer.ytconvert.org',
+        baseUrlV3: import.meta.env.VITE_API_BASE_URL_V3 || 'https://hub.ytconvert.org',
 
         // Main API (currently uses V1 - for extract, convert, playlist, etc.)
         // Both dev and prod use production API (no local backend)
