@@ -564,11 +564,7 @@ h1 {
     transition: all 0.2s;
 }
 
-@media (min-width: 768px) {
-    .video-input {
-        height: 5rem;
-    }
-}
+
 
 .video-input:focus {
     border-color: white;
@@ -723,6 +719,12 @@ h1 {
     appearance: none;
 }
 
+@media (min-width: 768px) {
+    .quality-select {
+        height: 50px;
+    }
+}
+
 .quality-select:focus {
     border-color: white;
 }
@@ -762,7 +764,7 @@ h1 {
 
 @media (min-width: 768px) {
     .btn-submit {
-        height: 52px;
+        height: 50px;
     }
 }
 

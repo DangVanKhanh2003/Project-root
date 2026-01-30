@@ -563,11 +563,7 @@ h1 {
     transition: all 0.2s;
 }
 
-@media (min-width: 768px) {
-    .video-input {
-        height: 5rem;
-    }
-}
+
 
 .video-input:focus {
     border-color: white;

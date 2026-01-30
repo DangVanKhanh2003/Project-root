@@ -54,11 +54,7 @@
     -webkit-tap-highlight-color: transparent;
 }
 
-@media (min-width: 768px) {
-    .video-input {
-        height: 5rem;
-    }
-}
+
 
 .video-input:focus {
     border-color: var(--border-input-focus);

@@ -272,7 +272,6 @@
 .action-container .retry-btn:hover {
   background: #b91c1c;
   box-shadow: none;
-  transform: translateY(-1px);
 }
 
 .action-container .retry-btn:active {

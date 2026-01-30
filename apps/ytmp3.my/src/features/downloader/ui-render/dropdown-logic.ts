@@ -13,9 +13,11 @@ export function initAudioDropdown(): void {
     const searchInput = dropdown.querySelector('.dropdown-search input') as HTMLInputElement;
     const hiddenInput = document.getElementById('audio-track-value') as HTMLInputElement;
     const selectedText = dropdown.querySelector('.selected-text') as HTMLElement;
-    const selectedFlag = dropdown.querySelector('.selected-flag') as HTMLElement;
 
-    if (!trigger || !menu || !optionsContainer || !searchInput || !hiddenInput) return;
+    // New: wrapper for the dynamic icon
+    const selectedIconContainer = dropdown.querySelector('.selected-icon') as HTMLElement;
+
+    if (!trigger || !menu || !optionsContainer || !searchInput || !hiddenInput || !selectedIconContainer) return;
 
     // Render initial options
     renderOptions(LANGUAGES);
@@ -50,10 +52,10 @@ export function initAudioDropdown(): void {
 
         const code = option.dataset.code;
         const name = option.dataset.name;
-        const flag = option.dataset.flag;
+        // const flag = option.dataset.flag; // We'll look up from LANGUAGES data to be safe/clean
 
-        if (code && name && flag) {
-            selectOption(code, name, flag);
+        if (code && name) {
+            selectOption(code, name);
             closeDropdown();
         }
     });
@@ -94,11 +96,25 @@ export function initAudioDropdown(): void {
         }
     }
 
-    function selectOption(code: string, name: string, _flag: string) {
+    function selectOption(code: string, name: string) {
         hiddenInput.value = code;
         selectedText.textContent = name;
-        // Flag hidden in trigger as per new design
-        // selectedFlag.textContent = flag; 
+
+        // Find the language object to get the flag
+        const langData = LANGUAGES.find(l => l.code === code);
+        if (langData) {
+            // Update the icon
+            // If it starts with <svg, it's the original/default icon
+            // Otherwise, it's an image path
+            if (langData.flag.trim().startsWith('<svg')) {
+                selectedIconContainer.innerHTML = langData.flag;
+            } else {
+                // It's an image path (country flag)
+                // Use style to match the size we want (e.g. 24x16 or similar to the list item)
+                // The container .selected-icon might need flex centering if not already
+                selectedIconContainer.innerHTML = `<img src="${langData.flag}" alt="${langData.name}" class="current-flag-img" style="width: 28px; height: 20px; object-fit: cover; border-radius: 2px;">`;
+            }
+        }
 
         // Highlight selected option
         const options = optionsContainer.querySelectorAll('.dropdown-option');
@@ -132,7 +148,6 @@ export function initAudioDropdown(): void {
             <div class="dropdown-option ${lang.code === currentVal ? 'selected' : ''}" 
                  data-code="${lang.code}" 
                  data-name="${lang.name}"
-                 data-flag="${isOriginal ? 'original' : lang.flag}"
                  role="option"
                  aria-selected="${lang.code === currentVal}">
                 <div class="flag-wrapper" style="width: 24px; height: 16px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 2px; background: rgba(255,255,255,0.05);">
@@ -143,3 +158,4 @@ export function initAudioDropdown(): void {
         }).join('');
     }
 }
+
