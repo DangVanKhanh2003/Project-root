@@ -134,8 +134,9 @@ rm -f "$APP_TAR"
 echo "✅ Deployed $PROJECT_NAME successfully!"
 ```
 
-### Deploy ytmp3.my
+### Deploy ytmp3.my (Đã SSH vào server)
 ```bash
+# ⚠️ Chạy TỪNG DÒNG sau khi đã: ssh root@85.10.196.119
 PROJECT_NAME="ytmp3.my"
 APP_TAR="/tmp/ytmp3.my-dist.tar.gz"
 RUN_DIR="/var/www/KhanhHAUI/CICD/run/$PROJECT_NAME"
@@ -148,6 +149,12 @@ find "$RUN_DIR" -type f -exec chmod 644 {} +
 chgrp -R nginx "$RUN_DIR" || true
 rm -f "$APP_TAR"
 echo "✅ Deployed $PROJECT_NAME successfully!"
+```
+
+### Deploy ytmp3.my (ONE LINE - trên server)
+```bash
+# ⚠️ Sau khi đã SSH vào server, chạy 1 dòng:
+PROJECT_NAME="ytmp3.my" && RUN_DIR="/var/www/KhanhHAUI/CICD/run/$PROJECT_NAME" && mkdir -p "$RUN_DIR" && find "$RUN_DIR" -mindepth 1 -maxdepth 1 -exec rm -rf {} + && tar -xzf "/tmp/ytmp3.my-dist.tar.gz" -C "$RUN_DIR" && find "$RUN_DIR" -type d -exec chmod 755 {} + && find "$RUN_DIR" -type f -exec chmod 644 {} + && chgrp -R nginx "$RUN_DIR" && rm -f "/tmp/ytmp3.my-dist.tar.gz" && echo "✅ Deployed!"
 ```
 
 ### Deploy các app khác
@@ -261,15 +268,13 @@ echo '✅ Deployed!'
 rm -f 4kvideopro-dist.tar.gz
 ```
 
-### Deploy ytmp3.my (Full)
+### Deploy ytmp3.my (Full - ONE LINER từ local)
 ```bash
-# Local
+# Chạy TẤT CẢ từ máy local (không cần SSH vào trước)
 pnpm --filter ./apps/ytmp3.my run build && \
 tar -czf ytmp3.my-dist.tar.gz -C apps/ytmp3.my/dist . && \
-scp ytmp3.my-dist.tar.gz YOUR_USER@YOUR_SERVER:/tmp/
-
-# Server
-ssh YOUR_USER@YOUR_SERVER "
+scp ytmp3.my-dist.tar.gz root@85.10.196.119:/tmp/ && \
+ssh root@85.10.196.119 "
 PROJECT_NAME='ytmp3.my';
 RUN_DIR='/var/www/KhanhHAUI/CICD/run/\$PROJECT_NAME';
 mkdir -p \$RUN_DIR;
