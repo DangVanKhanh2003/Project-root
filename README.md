@@ -7,8 +7,9 @@ Project docs
 ### Run all sites
 
 ```bash
-pnpm dev:all
+pnpm dev:all 
 ```
+
 
 Hoặc:
 
