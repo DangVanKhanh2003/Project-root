@@ -179,9 +179,10 @@ body {
   border-radius: 3px;
 }
 
-``.language-selector .lang-menu li a {
-  align-items: center;`n    gap: 0.5rem;`
-display: flex;
+.language-selector .lang-menu li a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   padding: 10px 16px;
   font-size: 0.875rem;
   font-weight: 400;

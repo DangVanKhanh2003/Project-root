@@ -200,7 +200,7 @@
     scrollbar-color: var(--border-primary) transparent;
 }
 
-`.drawer-lang-option {
+.drawer-lang-option {
     display: flex;
     padding: 0.625rem 1.25rem;
     font-size: 0.875rem;
