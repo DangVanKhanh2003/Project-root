@@ -48,15 +48,8 @@
             <!-- Language Selector -->
             <div class="lang-selector">
                 <button class="lang-button">
-                    <img class="lang-flag" src="/assest/flat-svg/{{ currentFlag }}.svg" alt="" aria-hidden="true"
-                        loading="lazy" width="18" height="14">
-                    <span>{{ currentLang | upper }}</span>
-                    <!-- Chevron Icon -->
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="chevron">
-                        <polyline points="6 9 12 15 18 9" />
-                    </svg>
-                </button>
+<span>{{ currentLang | upper }}</span>
+</button>
                 <!-- Language Dropdown -->
                 <div class="lang-dropdown">
                     {%- for langItem in site.languages %}
@@ -87,3 +80,4 @@
         </button>
     </div>
 </header>
+
