@@ -1,4 +1,4 @@
-﻿/* ===== MOBILE DRAWER ===== */
+/* ===== MOBILE DRAWER ===== */
 .mobile-drawer {
     position: fixed;
     inset: 0;
@@ -139,6 +139,14 @@
     width: 100%;
 }
 
+
+.lang-flag {
+    width: 18px;
+    height: 14px;
+    border-radius: 2px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
 .drawer-lang-button:hover {
     background-color: var(--bg-button-hover);
     border-color: var(--border-hover);
@@ -192,8 +200,8 @@
     scrollbar-color: var(--border-primary) transparent;
 }
 
-.drawer-lang-option {
-    display: block;
+`.drawer-lang-option {
+    display: flex;
     padding: 0.625rem 1.25rem;
     font-size: 0.875rem;
     color: var(--text-muted);
@@ -229,3 +237,4 @@
     margin-left: 0;
     margin-right: auto;
 }
+

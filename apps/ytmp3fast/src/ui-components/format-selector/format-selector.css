@@ -217,6 +217,11 @@ html[data-format="mp4"] .quality-select--mp4 {
   color: var(--text-muted, var(--color-gray-550));
 }
 
+[dir="rtl"] .select-arrow {
+  right: auto;
+  left: 16px;
+}
+
 /* ==========================================
    Responsive Design
    ========================================== */

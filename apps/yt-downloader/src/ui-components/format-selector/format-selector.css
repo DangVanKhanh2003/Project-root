@@ -156,6 +156,11 @@ html[data-format="mp4"] .format-btn[data-format="mp4"]:hover {
   color: var(--text-muted, var(--color-gray-550));
 }
 
+[dir="rtl"] .select-arrow {
+  right: auto;
+  left: 16px;
+}
+
 /* Quality visibility based on format */
 .quality-select--mp3 { display: block; }
 .quality-select--mp4 { display: none; }

@@ -1,4 +1,4 @@
-﻿/* =========================================================
+/* =========================================================
    CSS Entry Point - Clean White Theme
    ---------------------------------------------------------
    Cloned from template-clone.html
@@ -107,6 +107,15 @@ body {
   transition: opacity 0.2s;
 }
 
+
+.language-selector .lang-flag {
+    width: 18px;
+    height: 14px;
+    border-radius: 2px;
+    object-fit: cover;
+    flex-shrink: 0;
+    margin-right: 0.5rem;
+}
 .language-selector .lang-btn:hover {
   opacity: 0.75;
 }
@@ -170,8 +179,9 @@ body {
   border-radius: 3px;
 }
 
-.language-selector .lang-menu li a {
-  display: block;
+``.language-selector .lang-menu li a {
+  align-items: center;`n    gap: 0.5rem;`
+display: flex;
   padding: 10px 16px;
   font-size: 0.875rem;
   font-weight: 400;
@@ -527,7 +537,7 @@ main {
 }
 
 .select-arrow {
-  content: 'â–¾';
+  content: '▾';
   position: absolute;
   right: 10px;
   top: 55%;
@@ -725,3 +735,4 @@ select:disabled {
 #result-view.hidden {
   display: none;
 }
+

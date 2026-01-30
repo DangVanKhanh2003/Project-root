@@ -246,6 +246,11 @@
   color: #64748b;
 }
 
+[dir="rtl"] .dropdown-arrow {
+  right: auto;
+  left: 8px;
+}
+
 .quality-wrapper.open .dropdown-arrow {
   transform: translateY(-50%) rotate(180deg);
 }
@@ -325,6 +330,10 @@
   text-align: right;
 }
 
+[dir="rtl"] .selected-content {
+  text-align: right;
+}
+
 /* ==========================================
    8. AUDIO TRACK DROPDOWN (Added)
    ========================================== */
@@ -345,6 +354,11 @@
   /* Default Desktop */
   width: auto;
   min-width: 200px;
+}
+
+[dir="rtl"] .audio-dropdown-wrapper .dropdown-arrow {
+  margin-left: 0;
+  margin-right: auto;
 }
 
 /* Custom Dropdown Styling (Ported from ytmp3) */
@@ -396,6 +410,7 @@
   white-space: nowrap;
   font-weight: 500;
   font-size: 0.875rem;
+  text-align: left;
 }
 
 .dropdown-menu {
@@ -505,46 +520,6 @@
     justify-content: space-between;
     gap: 8px;
     width: 100%;
-    /* Force full row */
-    margin-bottom: 12px;
-    /* Space between rows */
-  }
-
-  /* Default State: Quality takes available space, Audio is icon-only */
-  .quality-dropdown-wrapper {
-    flex: 1;
-    transition: flex-basis 0.5s ease, flex-grow 0.5s ease, min-width 0.5s ease, opacity 0.5s;
-    min-width: 0;
-    order: 0 !important; /* Force quality to left */
-  }
-
-  /* Audio dropdown container */
-  .audio-dropdown-wrapper {
-    width: auto;
-    min-width: 0;
-    flex: 0 0 50px;
-    /* Base width for icon */
-    transition: flex-basis 0.5s ease, flex-grow 0.5s ease, width 0.5s ease;
-    z-index: 20;
-    position: relative;
-  }
-
-  /* Active State: Audio expands to ~200px, Quality shrinks */
-  /* Using :has selector to detect if dropdown inside is active */
-  .setting-wrapper:has(.audio-dropdown-wrapper.active) .quality-dropdown-wrapper {
-    flex: 1;
-    min-width: 0;
-  }
-
-  .audio-dropdown-wrapper.active {
-    flex: 0 0 200px;
-    width: 200px;
-  }
-
-  /* When dropdown is CLOSED: Show only icon */
-  .audio-dropdown-wrapper .dropdown-trigger {
-    padding: 0;
-    justify-content: center;
     transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1), padding 0.5s ease;
     overflow: hidden;
   }
@@ -560,6 +535,11 @@
     opacity: 0;
     display: none;
     transition: opacity 0.5s ease 0.25s;
+  }
+
+  [dir="rtl"] .audio-dropdown-wrapper .dropdown-arrow {
+    margin-left: 0;
+    margin-right: auto;
   }
 
   /* When dropdown is OPEN */

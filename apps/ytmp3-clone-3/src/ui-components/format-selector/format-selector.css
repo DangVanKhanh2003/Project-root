@@ -197,6 +197,11 @@
   color: var(--text-muted, #666);
 }
 
+[dir="rtl"] .select-arrow {
+  right: auto;
+  left: 16px;
+}
+
 /* ==========================================
    Responsive Design
    ========================================== */

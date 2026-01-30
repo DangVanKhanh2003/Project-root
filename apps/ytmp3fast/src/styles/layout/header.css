@@ -1,4 +1,4 @@
-﻿/* ===== HEADER ===== */
+/* ===== HEADER ===== */
 #main-header {
     top: 0;
     left: 0;
@@ -113,6 +113,14 @@
     cursor: pointer;
 }
 
+
+.lang-flag {
+    width: 18px;
+    height: 14px;
+    border-radius: 2px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
 .lang-button:hover {
     background-color: var(--bg-button-hover);
     border-color: var(--border-hover);
@@ -177,8 +185,8 @@
     scrollbar-color: var(--border-primary) transparent;
 }
 
-.lang-option {
-    display: block;
+`.lang-option {
+    display: flex;
     padding: 0.625rem 1.25rem;
     font-size: 0.875rem;
     color: var(--text-muted);

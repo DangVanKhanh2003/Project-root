@@ -1,4 +1,4 @@
-﻿/* ===== MOBILE DRAWER ===== */
+/* ===== MOBILE DRAWER ===== */
 
 /* Backdrop */
 .drawer-backdrop {
@@ -110,3 +110,4 @@
 [dir="rtl"] .mobile-drawer.open {
     transform: translateX(0);
 }
+

@@ -1,4 +1,4 @@
-﻿/* ===== MOBILE DRAWER ===== */
+/* ===== MOBILE DRAWER ===== */
 .mobile-drawer {
     position: fixed;
     inset: 0;
@@ -142,6 +142,14 @@
     width: 100%;
 }
 
+
+.lang-flag {
+    width: 18px;
+    height: 14px;
+    border-radius: 2px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
 .drawer-lang-button:hover {
     background-color: var(--bg-button-hover);
     border-color: var(--border-hover);
@@ -234,3 +242,4 @@
     margin-left: 0;
     margin-right: auto;
 }
+

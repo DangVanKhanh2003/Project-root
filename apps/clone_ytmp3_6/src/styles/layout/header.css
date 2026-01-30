@@ -1,4 +1,4 @@
-﻿/* ===== HEADER ===== */
+/* ===== HEADER ===== */
 .header-container {
     position: relative;
     top: 0;
@@ -107,6 +107,14 @@
     transition: all 0.2s;
 }
 
+
+.lang-flag {
+    width: 18px;
+    height: 14px;
+    border-radius: 2px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
 .lang-button:hover {
     background-color: var(--bg-button);
     color: var(--text-main);
@@ -132,8 +140,8 @@
     display: none;
 }
 
-.lang-option {
-    display: block;
+`.lang-option {
+    display: flex;
     width: 100%;
     text-align: left;
     padding: 8px 12px;
@@ -174,3 +182,4 @@
     right: auto;
     left: 0;
 }
+

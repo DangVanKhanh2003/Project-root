@@ -523,7 +523,7 @@
                                         <script>(function(){try{var h=document.getElementById('unified-format-select');if(!h)return;var d=document.documentElement.dataset.unifiedSelection;if(d){h.value=d;var t=document.querySelector('.dropdown-selected-text');var opts=document.querySelectorAll('.dropdown-option');opts.forEach(function(o){o.classList.remove('selected');if(o.dataset.value===d){o.classList.add('selected');if(t)t.textContent=o.textContent}})}}catch(e){}})()</script>
                                     </div>
 
-                                    <div class="audio-dropdown-wrapper" id="audio-track-dropdown">
+                                    <div class="audio-dropdown-wrapper custom-dropdown" id="audio-track-dropdown">
                                         <input type="hidden" id="audio-track-value" name="audioTrack" value="original">
                                         <button type="button" class="dropdown-trigger simple-dropdown-trigger" aria-haspopup="listbox" aria-expanded="false" data-tooltip="Select available audio track from YouTube video">
                                             <span class="selected-icon dropdown-trigger-icon">
@@ -537,7 +537,7 @@
                                             </svg>
                                             <span class="custom-tooltip">Select available audio track from YouTube video</span>
                                         </button>
-                                        <div class="dropdown-menu" role="listbox" hidden>
+                                        <div class="dropdown-menu hidden" role="listbox">
                                             <div class="dropdown-search">
                                                 <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                                     <circle cx="11" cy="11" r="8"></circle>
