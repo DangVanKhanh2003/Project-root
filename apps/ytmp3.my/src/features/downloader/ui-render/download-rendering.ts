@@ -476,8 +476,12 @@ function showAudioLanguageWarning(statusContainer: HTMLElement, availableLanguag
   `;
 
   // Check if statusContainer is actually a child of this wrapper
-  if (wrapper.contains(statusContainer)) {
-    // Inject AFTER status-container
+  // Priority: Insert after action-container (if present), else status-container, else start
+  const actionContainer = wrapper.querySelector('.action-container');
+
+  if (actionContainer && wrapper.contains(actionContainer)) {
+    actionContainer.insertAdjacentElement('afterend', warningDiv);
+  } else if (wrapper.contains(statusContainer)) {
     statusContainer.insertAdjacentElement('afterend', warningDiv);
   } else {
     // Inject at START of wrapper
@@ -485,11 +489,18 @@ function showAudioLanguageWarning(statusContainer: HTMLElement, availableLanguag
   }
 }
 
+/**
+ * Hide audio language warning message
+ */
 function hideAudioLanguageWarning(statusContainer: HTMLElement): void {
-  const wrapper = statusContainer.closest('.conversion-state-wrapper') || statusContainer.parentElement;
+  const wrapper = statusContainer.closest('.conversion-state-wrapper') as HTMLElement;
   if (!wrapper) return;
-  const warning = wrapper.querySelector('.audio-language-warning');
-  if (warning) warning.remove();
+
+  const warningDiv = wrapper.querySelector('.audio-language-warning') as HTMLElement;
+  if (warningDiv) {
+    warningDiv.style.display = 'none';
+    warningDiv.remove();
+  }
 }
 
 /**
@@ -497,6 +508,8 @@ function hideAudioLanguageWarning(statusContainer: HTMLElement): void {
  * Logic:
  * 1. If status-container exists -> insert action-container AFTER it
  * 2. If status-container missing -> insert action-container at START of wrapper
+ *
+ * Note: audio-language-warning will be positioned AFTER action-container by showAudioLanguageWarning
  */
 function positionActionContainer(actionContainer: HTMLElement): void {
   const wrapper = actionContainer.closest('.conversion-state-wrapper');
@@ -505,7 +518,8 @@ function positionActionContainer(actionContainer: HTMLElement): void {
   const statusContainer = wrapper.querySelector('.status-container');
 
   if (statusContainer) {
-    // Insert after status-container (moves it if already elsewhere)
+    // Always insert immediately after status-container
+    // Any existing warning will be pushed down or repositioned by showAudioLanguageWarning
     statusContainer.insertAdjacentElement('afterend', actionContainer);
   } else {
     // Insert at beginning of wrapper

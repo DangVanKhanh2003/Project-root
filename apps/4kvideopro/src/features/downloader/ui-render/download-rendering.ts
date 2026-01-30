@@ -617,6 +617,19 @@ function showAudioLanguageWarning(statusContainer: HTMLElement, availableLanguag
     <span>This video only has audio in <strong>${escapeHtml(languageLabels || 'Original')}</strong> — automatically using original audio.</span>
   `;
 
+  // Check if statusContainer is actually a child of this wrapper
+  // Priority: Insert after action-container (if present), else status-container, else start
+  const actionContainer = wrapper.querySelector('.action-container');
+  
+  if (actionContainer && wrapper.contains(actionContainer)) {
+    actionContainer.insertAdjacentElement('afterend', warningDiv);
+  } else if (wrapper.contains(statusContainer)) {
+    statusContainer.insertAdjacentElement('afterend', warningDiv);
+  } else {
+    // Inject at START of wrapper
+    wrapper.insertAdjacentElement('afterbegin', warningDiv);
+  }
+
   // Ensure visible
   warningDiv.style.display = 'flex';
 }
@@ -640,6 +653,8 @@ function hideAudioLanguageWarning(statusContainer: HTMLElement): void {
  * Logic:
  * 1. If status-container exists -> insert action-container AFTER it
  * 2. If status-container missing -> insert action-container at START of wrapper
+ * 
+ * Note: audio-language-warning will be positioned AFTER action-container by showAudioLanguageWarning
  */
 function positionActionContainer(actionContainer: HTMLElement): void {
   const wrapper = actionContainer.closest('.conversion-state-wrapper');
@@ -648,11 +663,11 @@ function positionActionContainer(actionContainer: HTMLElement): void {
   const statusContainer = wrapper.querySelector('.status-container');
 
   if (statusContainer) {
-    // Insert after status-container (moves it if already elsewhere)
+    // Always insert immediately after status-container
+    // Any existing warning will be pushed down or repositioned by showAudioLanguageWarning
     statusContainer.insertAdjacentElement('afterend', actionContainer);
   } else {
     // Insert at beginning of wrapper
     wrapper.insertAdjacentElement('afterbegin', actionContainer);
   }
 }
-
