@@ -41,14 +41,14 @@
         display: none;
     }
 
-    /* Hide text/arrow when collapsed */
+    /* Hide text/arrow when collapsed (no display toggle to avoid snap) */
     .audio-dropdown-wrapper .selected-content,
     .audio-dropdown-wrapper .dropdown-arrow {
-        display: none;
         opacity: 0;
-        width: 0;
+        max-width: 0;
         overflow: hidden;
-        transition: opacity 0.5s, width 0.5s;
+        transition: opacity 0.5s, max-width 0.5s;
+        pointer-events: none;
     }
 
     /* Trigger Styles - Collapsed: center icon */
@@ -62,10 +62,10 @@
 /* Show text/arrow when expanded */
 .audio-dropdown-wrapper:has(.custom-dropdown.active) .selected-content,
 .audio-dropdown-wrapper:has(.custom-dropdown.active) .dropdown-arrow {
-    display: inline-flex;
     opacity: 1;
-    width: auto;
-    transition: opacity 0.5s 0.25s, width 0.5s;
+    max-width: 200px;
+    transition: opacity 0.5s, max-width 0.5s;
+    pointer-events: auto;
 }
 
 

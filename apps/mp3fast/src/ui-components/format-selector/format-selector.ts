@@ -12,25 +12,6 @@ import {
 // Render Functions
 // ==========================================
 
-/**
- * Initialize format selector from static HTML
- * Called once during app initialization
- *
- * HTML inline scripts already handle:
- * 1. data-format attribute on <html> (head script)
- * 2. Dropdown values (body script)
- * TS only needs to attach event listeners
- */
-export function renderFormatSelectorToForm(): void {
-  const container = document.getElementById('format-selector-container');
-  if (!container) {
-    console.warn('Format selector container not found');
-    return;
-  }
-
-  // HTML inline scripts already set UI - just attach event listeners
-  initFormatSelector('#format-selector-container');
-}
 
 // ==========================================
 // Event Handlers

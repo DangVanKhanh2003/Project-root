@@ -32,10 +32,6 @@
   flex-wrap: wrap;
 }
 
-/* Legacy format toggle - hidden for unified dropdown */
-.format-toggle {
-  display: none;
-}
 
 /* ==========================================
    2. QUALITY SELECT (UNIFIED DROPDOWN)
@@ -249,7 +245,7 @@
   left: 8px;
 }
 
-.quality-wrapper.open .dropdown-arrow {
+.quality-dropdown-wrapper.open .dropdown-arrow {
   transform: translateY(-50%) rotate(180deg);
 }
 
@@ -274,7 +270,7 @@
   transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
 }
 
-.quality-wrapper.open .custom-dropdown-menu {
+.quality-dropdown-wrapper.open .custom-dropdown-menu {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);

@@ -13,7 +13,7 @@ import { scrollManager } from '@downloader/ui-shared';
 import type { AppState } from './state';
 import { getRouteFromUrl, initRouting, cleanUrl } from './routing/url-manager';
 import { setVideoPageSEO } from './routing/seo-manager';
-import { renderFormatSelectorToForm } from '../../ui-components/format-selector/format-selector';
+import { initFormatSelector } from '';
 import { initViewSwitcher, showSearchView } from './ui-render/view-switcher';
 
 /**
@@ -33,7 +33,7 @@ export async function init(): Promise<void> {
   // 2. Render UI immediately with loaded state (no skeleton needed)
   // Result: User sees FormatSelector instantly with correct values
   initializeFormatSelector();
-  renderFormatSelectorToForm();
+  initFormatSelector('#format-selector-container');
 
   // Step 1: Initialize renderers (views)
   const rendererInitialized = initRenderer();
@@ -124,3 +124,4 @@ export async function init(): Promise<void> {
   initRouting();
 
 }
+

@@ -1,4 +1,4 @@
-/* ===== RESET & BASE ===== */
+﻿/* ===== RESET & BASE ===== */
 * {
     margin: 0;
     padding: 0;
@@ -653,20 +653,8 @@ h1 {
     }
 }
 
-.format-toggle {
-    display: flex;
-    background-color: #000000;
-    border: 2px solid #27272A;
-    padding: 0.25rem;
-    border-radius: 0.75rem;
-    width: 100%;
-}
 
-@media (min-width: 768px) {
-    .format-toggle {
-        width: auto;
-    }
-}
+
 
 .format-btn {
     flex: 1;

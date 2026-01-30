@@ -18,25 +18,6 @@ import {
 // Render Functions
 // ==========================================
 
-/**
- * Render format selector into the input form
- * Called once during app initialization
- */
-export function renderFormatSelectorToForm(): void {
-  // Render Format Dropdown (left side)
-  const formatContainer = document.getElementById('format-selector-container');
-  if (formatContainer) {
-    formatContainer.innerHTML = renderFormatDropdown();
-    initFormatDropdown();
-  }
-
-  // Render Quality Selector (right side - settings button)
-  const qualityContainer = document.getElementById('quality-selector-container');
-  if (qualityContainer) {
-    qualityContainer.innerHTML = renderQualitySelector();
-    initQualitySelector();
-  }
-}
 
 /**
  * Render Format Dropdown (MP3/MP4 only)

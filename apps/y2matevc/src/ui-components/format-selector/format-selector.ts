@@ -18,25 +18,6 @@ import {
 // Render Functions
 // ==========================================
 
-/**
- * Initialize format selector from static HTML
- * Called once during app initialization
- *
- * HTML is already rendered with both MP3/MP4 dropdowns.
- * CSS controls visibility via html[data-format] attribute.
- * Note: UI state sync from localStorage is handled by preferences-sync.ts
- * This function only attaches event listeners.
- */
-export function renderFormatSelectorToForm(): void {
-  const container = document.getElementById('format-selector-container');
-  if (!container) {
-    console.warn('Format selector container not found');
-    return;
-  }
-
-  // Attach event listeners
-  initFormatSelector('#format-selector-container');
-}
 
 // ==========================================
 // Event Handlers

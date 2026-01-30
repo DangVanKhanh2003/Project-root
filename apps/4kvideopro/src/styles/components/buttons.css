@@ -154,9 +154,7 @@
 
 /* Small mobile screens */
 @media (max-width: 359px) {
-    .format-toggle {
-        max-width: 120px !important;
-    }
+
 
     .btn-submit,
     .btn-convert,

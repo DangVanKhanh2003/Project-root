@@ -18,31 +18,6 @@ import {
 // Render Functions
 // ==========================================
 
-/**
- * Render format selector into the input form
- * Called once during app initialization
- *
- * IMPORTANT: This function MUST be called AFTER initializeFormatSelector()
- * to ensure state is loaded before rendering. This prevents layout shift.
- *
- * Flow:
- * 1. initializeFormatSelector() - Loads state from localStorage or page defaults
- * 2. renderFormatSelectorToForm() - Sets data-format attribute, CSS handles visibility
- * 3. User sees FormatSelector immediately with correct values (no layout shift)
- */
-export function renderFormatSelectorToForm(): void {
-  const container = document.getElementById('format-selector-container');
-  if (!container) {
-    console.warn('Format selector container not found');
-    return;
-  }
-
-  // HTML inline scripts already set:
-  // 1. data-format attribute on <html> (head script)
-  // 2. Dropdown values (body script)
-  // TS only needs to attach event listeners
-  initFormatSelector('#format-selector-container');
-}
 
 /**
  * Update format button active state without replacing HTML
