@@ -87,7 +87,10 @@ export function renderConversionStatus(state: AppState, _prevState?: AppState): 
       const actionContainer = document.getElementById('action-container');
       setTimeout(() => {
         statusContainer.style.display = 'none';  // Ẩn status trước
-        actionContainer?.classList.add('active'); // Hiện action container
+        if (actionContainer) {
+          positionActionContainer(actionContainer);
+          actionContainer.classList.add('active'); // Hiện action container
+        }
 
         // IMPORTANT: Ensure downloadBtn has active class
         // This is needed because updateStatusBarUI might have been skipped
@@ -389,10 +392,10 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
       previousMergingPhase.delete(formatId);
 
       // Show VidTool popup when download fails (after all retries exhausted)
-      showVidToolPopup({
-        lang: document.documentElement.lang || 'en',
-        logEvent
-      });
+      // showVidToolPopup({
+      //   lang: document.documentElement.lang || 'en',
+      //   logEvent
+      // });
       break;
 
     default:
@@ -418,6 +421,7 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
   // Note: For SUCCESS, action-container is shown in renderConversionStatus() after status hides
   // Here we only handle FAILED state (show immediately) and other states (hide)
   if (task.state === TaskState.FAILED) {
+    positionActionContainer(actionContainer);
     actionContainer.classList.add('active');
     // Cleanup throttle map when task completes (prevent memory leak)
     lastUpdateTimes.delete(formatId);
@@ -486,6 +490,27 @@ function hideAudioLanguageWarning(statusContainer: HTMLElement): void {
   if (!wrapper) return;
   const warning = wrapper.querySelector('.audio-language-warning');
   if (warning) warning.remove();
+}
+
+/**
+ * Position action container based on status container presence
+ * Logic:
+ * 1. If status-container exists -> insert action-container AFTER it
+ * 2. If status-container missing -> insert action-container at START of wrapper
+ */
+function positionActionContainer(actionContainer: HTMLElement): void {
+  const wrapper = actionContainer.closest('.conversion-state-wrapper');
+  if (!wrapper) return;
+
+  const statusContainer = wrapper.querySelector('.status-container');
+
+  if (statusContainer) {
+    // Insert after status-container (moves it if already elsewhere)
+    statusContainer.insertAdjacentElement('afterend', actionContainer);
+  } else {
+    // Insert at beginning of wrapper
+    wrapper.insertAdjacentElement('afterbegin', actionContainer);
+  }
 }
 
 /**

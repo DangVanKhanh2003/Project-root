@@ -405,10 +405,10 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
     transitionInProgress.delete(formatId);
 
     // Show VidTool popup when download fails (after all retries exhausted)
-    showVidToolPopup({
-      lang: document.documentElement.lang || 'en',
-      logEvent
-    });
+    // showVidToolPopup({
+    //   lang: document.documentElement.lang || 'en',
+    //   logEvent
+    // });
   } else if (task.state !== TaskState.SUCCESS) {
     // Hide for non-terminal states (SUCCESS is handled separately)
     actionContainer.classList.remove('active');
