@@ -3,6 +3,8 @@
     padding: 60px 0;
 }
 
+
+
 /* Background variants - use these classes for alternating colors */
 .content-section--gray {
     background: var(--surface-weak);
@@ -12,9 +14,17 @@
     background: #fff;
 }
 
-.content-section .container {
-    max-width: 900px;
+/* Two-column pairing for the SSVID intro sections */
+.content-section-pair .container {
+    display: block;
 }
+
+.content-section-pair__col {
+    padding: 0 20px;
+}
+
+ 
+
 
 /* Headings */
 .titles {
@@ -223,5 +233,17 @@
 
     .faq-item {
         padding: 16px;
+    }
+}
+
+@media (min-width: 992px) {
+    .content-section-pair .container {
+        display: flex;
+        gap: 24px;
+    }
+
+    .content-section-pair__col {
+        flex: 1;
+        padding: 0 12px;
     }
 }
