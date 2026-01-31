@@ -48,8 +48,8 @@
             <div class="drawer-divider"></div>
             <div class="drawer-lang-selector">
                 <button class="drawer-lang-button">
-<span>{{ currentLang | upper }}</span>
-</button>
+                    <img class="lang-flag" src="/assest/flat-svg/{{ currentFlag }}.{{ 'png' if currentFlag == 'us' else 'svg' }}" alt="" aria-hidden="true" width="18" height="14">
+                </button>
                 <div class="drawer-lang-dropdown">
                     {%- for langItem in site.languages %}
                     {%- if langItem.isDefault %}

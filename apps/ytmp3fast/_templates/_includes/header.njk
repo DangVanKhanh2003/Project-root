@@ -48,8 +48,8 @@
             <!-- Language Selector -->
             <div class="lang-selector">
                 <button class="lang-button">
-<span>{{ currentLang | upper }}</span>
-</button>
+                    <img class="lang-flag" src="/assest/flat-svg/{{ currentFlag }}.{{ 'png' if currentFlag == 'us' else 'svg' }}" alt="" aria-hidden="true" width="18" height="14">
+                </button>
                 <!-- Language Dropdown -->
                 <div class="lang-dropdown">
                     {%- for langItem in site.languages %}
