@@ -28,6 +28,7 @@
 /* 5. Sections */
 @import './sections/hero.css';
 @import './sections/content.css';
+@import './sections/overview.css';
 
 /* 6. Components */
 @import './components/form.css';
