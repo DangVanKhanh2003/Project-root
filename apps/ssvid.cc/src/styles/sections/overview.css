@@ -49,7 +49,7 @@
 
 /* Typography */
 .overview-title {
-    font-size: 2.5rem;
+    font-size: 32px;
     font-weight: 700;
     color: #1F1F1F;
     /* On Surface */
@@ -76,11 +76,12 @@
 }
 
 .steps-card-title {
-    font-size: 1.5rem;
+    font-size: 32px;
     font-weight: 700;
     color: #1F1F1F;
     margin-bottom: 32px;
     text-align: center;
+    line-height: 1.2;
     /* Mobile: Center */
 }
 
@@ -171,7 +172,8 @@
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    .overview-title {
+    .overview-title,
+    .steps-card-title {
         font-size: 2rem;
     }
 

@@ -10,6 +10,8 @@
 .hero-container {
     position: relative;
     z-index: 1;
+    background-color: #ffffff;
+    border-radius: var(--radius-xl);
 }
 
 .hero-card {
@@ -17,26 +19,11 @@
     padding: 40px  0px;
 }
 
-.title {
-    font-weight: 500;
-    font-size: 48px;
-    margin-bottom: 10px;
-    color: #002438;
-    line-height: 1.1;
-    display: inline-block;
+.title-hero {
+    font-size: 38px;
 }
 
-@media (max-width: 768px) {
-    .title {
-        font-size: 40px;
-    }
-}
 
-@media (max-width: 480px) {
-    .title {
-        font-size: 32px;
-    }
-}
 
 .hero-subtitle {
     font-size: 16px;
