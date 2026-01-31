@@ -4,6 +4,95 @@
     flex-direction: column;
 }
 
+/* Gemini input line animation */
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@keyframes rotate-gradient {
+    to {
+        --angle: 360deg;
+    }
+}
+
+.gemini-input-box {
+    position: relative;
+    border-radius: var(--radius-xl);
+    isolation: isolate;
+}
+
+.gemini-running-border,
+.gemini-focus-glow,
+.static-border {
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    z-index: -1;
+}
+
+.gemini-running-border {
+    filter: blur(2px);
+    background: conic-gradient(
+        from var(--angle),
+        rgba(52, 107, 241, 0) 0%,
+        rgba(52, 107, 241, 0.4) 10%,
+        rgba(52, 107, 241, 0.6) 35%,
+        rgba(52, 107, 241, 0.4) 60%,
+        rgba(52, 107, 241, 0) 70%
+    );
+    animation: rotate-gradient 8s linear infinite;
+    transition: opacity 0.4s ease;
+    opacity: 1;
+}
+
+.gemini-focus-glow {
+    background-image: radial-gradient(
+        75% 181% at 50% 50%,
+        rgba(52, 107, 241, 0.9) 0px,
+        rgba(52, 107, 241, 0.8) 50%,
+        rgba(52, 107, 241, 0) 100%
+    );
+    filter: blur(2px);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.static-border {
+    inset: 0;
+    border: 1px solid rgba(226, 232, 240, 0.6);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.gemini-input-box:focus-within .gemini-running-border {
+    opacity: 0;
+}
+
+.gemini-input-box:focus-within .gemini-focus-glow {
+    opacity: 1;
+}
+
+.gemini-input-box .input-wrapper {
+    border: none;
+    background: transparent;
+    box-shadow: none;
+}
+
+.gemini-input-box .input-content {
+    position: relative;
+    z-index: 1;
+    background: #fff;
+    border-radius: var(--radius-xl);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease;
+}
+
+.gemini-input-box .input-content:focus-within {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+}
+
 /* Input Group */
 .input-group {
     position: relative;
