@@ -173,12 +173,21 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .overview-title,
-    .steps-card-title {
+    .steps-card-title,
+    .overview-steps-card h2 {
         font-size: 2rem;
     }
 
     .overview-steps-card {
         padding: 24px;
         border-radius: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .overview-title,
+    .steps-card-title,
+    .overview-steps-card h2 {
+        font-size: 24px;
     }
 }
