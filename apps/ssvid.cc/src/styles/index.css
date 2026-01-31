@@ -1,11 +1,3 @@
-/* =========================================================
-   CSS Entry Point - Main Stylesheet
-   ---------------------------------------------------------
-   Import order: Variables → Reset → Themes → Layout →
-                 Sections → Components → Packages → Utilities
-   Phase 2: Extracted from index.html inline styles
-   ========================================================= */
-
 /* 0. Core Styles (From @downloader/core) */
 @import '@downloader/core/styles/ripple-effect.css';
 
@@ -23,37 +15,25 @@
 
 /* 2. Reset & Base */
 @import './reset.css';
-@import './base.css';
-@import './typography.css';
 @import './common.css';
 
 /* 3. Themes (after variables) */
-@import './themes/light.css';
+/* @import './themes/light.css'; - Removed as we are using variables.css */
 
 /* 4. Layout */
-@import './layout/grid.css';
 @import './layout/container.css';
 @import './layout/header.css';
+@import './layout/footer.css';
 
 /* 5. Sections */
 @import './sections/hero.css';
 @import './sections/content.css';
-@import './sections/content-prose.css';
-@import './sections/features.css';
-@import './sections/faq.css';
-@import './sections/footer.css';
 
 /* 6. Components */
-@import './components/hero-card.css';
-@import './components/form-input.css';
+@import './components/form.css';
+@import './components/format-selector.css';
+@import './components/dropdown.css';
 @import './components/buttons.css';
-@import './components/format-toggle.css';
-@import './components/quality-select.css';
-@import './components/result-card.css';
-@import './components/status-bar.css';
-@import './components/drawer.css';
-@import './components/steps.css';
-@import './components/badge.css';
 
 /* 7. Reusable Packages (TypeScript features) */
 @import './reusable-packages/package-root.css';
@@ -65,4 +45,3 @@
 /* 8. Utilities (MUST be last) */
 @import './utilities/animations.css';
 @import './utilities/helpers.css';
-

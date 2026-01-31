@@ -1,13 +1,11 @@
-/* =========================================================
-   Utilities - Animations
-   ---------------------------------------------------------
-   Keyframes and animation classes
-   Extracted from index.html - Phase 2
-   ========================================================= */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
 
-/* Animation Classes */
-@keyframes spin {
     to {
-        transform: rotate(360deg);
+        opacity: 1;
+        transform: translateY(0);
     }
 }

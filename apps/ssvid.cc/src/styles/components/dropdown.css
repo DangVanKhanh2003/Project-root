@@ -1,0 +1,245 @@
+/* Audio Dropdown */
+.audio-dropdown-wrapper {
+    position: relative;
+}
+
+.custom-dropdown {
+    position: relative;
+}
+
+.dropdown-trigger {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background: #fff;
+    border: 2px solid #e0e0e0;
+    border-radius: var(--radius-xl);
+    cursor: pointer;
+    transition: border-color 0.3s;
+    min-width: 150px;
+    position: relative;
+    height: 45px;
+}
+
+/* Audio dropdown trigger specific styles */
+.audio-dropdown-wrapper .dropdown-trigger {
+    padding: 0 10px;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.audio-dropdown-wrapper .dropdown-arrow {
+    margin-left: auto;
+}
+
+/* Trigger icon - positioned inside flex trigger */
+.audio-dropdown-wrapper .selected-icon {
+    flex-shrink: 0;
+}
+
+/* Trigger Styles - Expanded */
+.audio-dropdown-wrapper:has(.custom-dropdown.active) .dropdown-trigger {
+    padding: 0 10px;
+    justify-content: flex-start;
+}
+
+/* Show text/arrow when expanded */
+.audio-dropdown-wrapper:has(.custom-dropdown.active) .selected-content,
+.audio-dropdown-wrapper:has(.custom-dropdown.active) .dropdown-arrow {
+    opacity: 1;
+    max-width: 150px;
+    transition: opacity 0.5s, max-width 0.5s;
+    pointer-events: auto;
+}
+
+.dropdown-trigger:hover,
+.dropdown-trigger:focus {
+    border-color: var(--brand);
+    outline: none;
+}
+
+.selected-icon {
+    display: flex;
+    align-items: center;
+    color: var(--text);
+}
+
+.selected-content {
+    flex: 1;
+}
+
+.selected-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 80px;
+}
+
+.dropdown-arrow {
+    color: var(--text);
+    transition: transform 0.3s;
+}
+
+.custom-dropdown.active .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: auto;
+    right: 0;
+    min-width: 0;
+    /* Allow shrinking to 0 */
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    overflow: hidden;
+    white-space: nowrap;
+    /* Prevent text wrap */
+
+    /* Default State (Closed) - No Transition for instant close */
+    max-width: 0;
+    visibility: hidden;
+    transition: none;
+}
+
+/* Active State (Open) - Smooth Width Expansion */
+.custom-dropdown.active .dropdown-menu {
+    max-width: 300px;
+    /* Expand to fit content */
+    visibility: visible;
+    transition: max-width 0.5s ease, visibility 0.5s ease;
+}
+
+.dropdown-search {
+    position: relative;
+    padding: 12px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.dropdown-search input {
+    width: 100%;
+    padding: 10px 36px 10px 14px;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.dropdown-search input:focus {
+    border-color: var(--brand);
+}
+
+.dropdown-search .search-icon {
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+}
+
+.dropdown-options {
+    max-height: 240px;
+    overflow-y: auto;
+    padding: 8px 0;
+    width: 100%;
+    scrollbar-width: thin;
+    scrollbar-color: var(--muted) transparent;
+}
+
+.dropdown-options::-webkit-scrollbar {
+    width: 2px;
+}
+
+.dropdown-options::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.dropdown-options::-webkit-scrollbar-thumb {
+    background: var(--muted);
+    border-radius: 2px;
+}
+
+.dropdown-option {
+    padding: 12px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--text);
+    transition: background 0.2s;
+}
+
+.dropdown-option:hover {
+    background: var(--surface-weak);
+}
+
+.dropdown-option.active {
+    background: var(--surface-weak);
+    color: var(--brand);
+    font-weight: 600;
+}
+
+/* ===== MOBILE STYLES ===== */
+@media (max-width: 768px) {
+    /* Audio dropdown: only show icon when closed (fixed width for transition) */
+    .audio-dropdown-wrapper {
+        flex: 0 0 auto;
+        width: 42px;
+        margin-left: auto;
+        transition: width 0.5s ease;
+        z-index: 20;
+    }
+
+    /* Active State: Audio expands to 150px */
+    .audio-dropdown-wrapper:has(.custom-dropdown.active) {
+        width: 150px;
+    }
+
+    /* Hide text/arrow when collapsed (smooth transition) */
+    .audio-dropdown-wrapper .selected-content,
+    .audio-dropdown-wrapper .dropdown-arrow {
+        opacity: 0;
+        max-width: 0;
+        overflow: hidden;
+        transition: opacity 0.5s, max-width 0.5s;
+        pointer-events: none;
+    }
+
+    /* Show text/arrow when expanded */
+    .audio-dropdown-wrapper:has(.custom-dropdown.active) .selected-content,
+    .audio-dropdown-wrapper:has(.custom-dropdown.active) .dropdown-arrow {
+        opacity: 1;
+        max-width: 150px;
+        transition: opacity 0.5s, max-width 0.5s;
+        pointer-events: auto;
+    }
+
+    /* Trigger Styles - Collapsed: center icon */
+    .audio-dropdown-wrapper .dropdown-trigger {
+        justify-content: center;
+        gap: 0;
+        transition: padding 0.5s, gap 0.5s;
+        min-width: 42px;
+        height: 42px;
+    }
+
+    /* Trigger Styles - Expanded: align left */
+    .audio-dropdown-wrapper:has(.custom-dropdown.active) .dropdown-trigger {
+        justify-content: flex-start;
+        gap: 10px;
+        padding: 0 10px;
+    }
+
+    /* Dropdown Menu - anchor right, expand left */
+    .audio-dropdown-wrapper .dropdown-menu {
+        left: auto;
+        right: 0;
+    }
+}

@@ -1,13 +1,5 @@
-/* =========================================================
-   Layout - Container Utility
-   ---------------------------------------------------------
-   Max-width container for content
-   Extracted from index.html - Phase 2
-   ========================================================= */
-
 .container {
-    width: 100%;
-    max-width: var(--container-width);
+    max-width: 1140px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 15px;
 }

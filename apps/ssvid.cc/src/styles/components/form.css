@@ -1,0 +1,129 @@
+/* Form Container */
+.form-container {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Input Group */
+.input-group {
+    position: relative;
+}
+
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border: 3px solid #ccc;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-wrapper:focus-within {
+    border-color: var(--brand);
+    box-shadow: 0 0 0 4px rgba(141, 2, 31, 0.15);
+}
+
+.video-input {
+    flex: 1;
+    height: 60px;
+    padding: 0 20px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    background: transparent;
+}
+
+.input-actions {
+    padding-right: 12px;
+}
+
+.btn-paste {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #495057;
+    border: 2px solid #6c757d;
+    border-radius: calc(var(--radius-xl) - 8px);
+    background: #fff;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-paste:hover {
+    background: #6c757d;
+    color: #fff;
+}
+
+.btn-paste .paste-icon,
+.btn-paste .btn-state--paste {
+    display: inline;
+}
+
+.btn-paste .clear-icon,
+.btn-paste .btn-state--clear {
+    display: none;
+}
+
+.btn-paste[data-action="clear"] .paste-icon,
+.btn-paste[data-action="clear"] .btn-state--paste {
+    display: none;
+}
+
+.btn-paste[data-action="clear"] .clear-icon,
+.btn-paste[data-action="clear"] .btn-state--clear {
+    display: inline;
+}
+
+/* Suggestion Container */
+.suggestion-container {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
+
+/* Error Message */
+.error-message {
+    display: none;
+    color: #dc3545;
+    font-size: 14px;
+    margin-top: 12px;
+    min-height: 20px;
+}
+
+.error-message.show {
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .video-input {
+        height: 54px;
+        font-size: 15px;
+    }
+
+    .btn-paste {
+        padding: 8px 14px;
+        font-size: 13px;
+    }
+
+    .btn-paste .btn-state--paste,
+    .btn-paste .btn-state--clear {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .video-input {
+        height: 48px;
+        font-size: 14px;
+    }
+
+    .input-wrapper {
+        border-radius: calc(var(--radius-xl) - 10px);
+    }
+}

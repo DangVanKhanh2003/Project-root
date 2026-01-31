@@ -1,6 +1,6 @@
 /**
  * UI Components Overrides
- * Override styles from @downloader/ui-components for ytmp3-clone-darkmode-3
+ * Override styles from @downloader/ui-components and main.ts imports for ssvid.cc (Light Theme)
  */
 
 /* ==========================================
@@ -8,8 +8,9 @@
    ========================================== */
 
 /**
- * Override suggestion container position
- * Default from package uses top: calc(...), we need fixed top: 150px
+ * Override suggestion container position and theme
+ * Default from package uses top: calc(...), we need fixed top.
+ * Also enforcing light theme backgrounds.
  */
 #suggestion-container.suggestion-container--visible {
   top: 60px !important;
@@ -21,15 +22,80 @@
   }
 }
 
+/* Force Light Theme for Suggestion Container */
+.suggestion-container {
+  background-color: #ffffff !important;
+  border: 1px solid #e0e0e0 !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+  border-radius: 0 0 12px 12px !important;
+  overflow: hidden !important;
+}
+
+.suggestion-item {
+  background-color: #ffffff !important;
+  color: #333333 !important;
+  border-bottom: 1px solid #f0f0f0 !important;
+  transition: background-color 0.2s;
+}
+
+.suggestion-item:last-child {
+  border-bottom: none !important;
+}
+
+.suggestion-item:hover, 
+.suggestion-item.active,
+.suggestion-item:focus {
+  background-color: #f5f5f5 !important;
+  color: #000000 !important;
+}
+
+/* Suggestions text highlights if any */
+.suggestion-item strong {
+  color: #d32f2f !important; /* specific brand accent or just bold black */
+}
+
+/* ==========================================
+   Quality Dropdown Override
+   Override dark mode styles from src/ui-components/.../format-selector.css
+   ========================================== */
+
+.quality-select {
+  background-color: #ffffff !important;
+  color: #333333 !important;
+  border: 2px solid #e0e0e0 !important;
+}
+
+/* Force options to catch light theme */
+.quality-select option {
+  background-color: #ffffff !important; 
+  color: #333333 !important;
+}
+
+.quality-select:hover,
+.quality-select:focus {
+  border-color: #CB0E35 !important; /* Brand color */
+}
+
 /* ==========================================
    Search Result Card Override
    ========================================== */
 
-
 .search-result-card {
-  background: #f7f7f7;
+  background: #ffffff !important;
+  border: 1px solid #e0e0e0 !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05) !important;
+  border-radius: 12px !important;
 }
 
 .search-result-card .card-title {
-  color: #0f0f0f;
+  color: #0f0f0f !important;
+}
+
+.search-result-card .meta-info {
+  color: #666666 !important;
+}
+
+/* Ensure skeleton loading states are also light if visible */
+.skeleton-card {
+  background-color: #ffffff !important;
 }

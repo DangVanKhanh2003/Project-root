@@ -1,0 +1,119 @@
+/* Format Selector Container */
+#format-selector-container {
+    margin-top: 8px;
+}
+
+.format-selector-wrapper {
+    border-radius: var(--radius-xl);
+}
+
+.format-selector {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* Quality Wrapper */
+.quality-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: auto;
+}
+
+.quality-dropdown-wrapper {
+    position: relative;
+}
+
+.quality-select {
+    height: 45px;
+    padding: 0 40px 0 18px;
+    border: 2px solid #e0e0e0;
+    border-radius: var(--radius-xl);
+    background: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    outline: none;
+    appearance: none;
+    transition: border-color 0.3s;
+    min-width: 150px;
+}
+
+.quality-select:hover,
+.quality-select:focus {
+    border-color: var(--brand);
+}
+
+.quality-select--mp4 {
+    display: block;
+}
+
+.quality-select--mp3 {
+    display: none;
+}
+
+.select-arrow {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--text);
+}
+
+@media (max-width: 768px) {
+    .format-selector {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    /* Row 1: Quality + Audio */
+    .quality-wrapper {
+        width: 100%;
+        order: 1;
+        padding-right: 0;
+    }
+
+    .quality-dropdown-wrapper {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .quality-select {
+        width: 100%;
+        min-width: 0;
+    }
+
+    /* Row 2: Format Toggle left, Submit right */
+    .format-toggle {
+        order: 2;
+        flex: 0 0 auto;
+    }
+
+    .btn-convert {
+        order: 3;
+        flex: 0 0 auto;
+        margin-left: auto;
+    }
+
+    .btn-convert span {
+        display: inline;
+    }
+}
+
+@media (max-width: 480px) {
+    .quality-select {
+        height: 42px;
+        font-size: 13px;
+        border-radius: calc(var(--radius-xl) - 10px);
+    }
+
+    .format-selector-wrapper {
+        border-radius: calc(var(--radius-xl) - 10px);
+    }
+}
