@@ -13,7 +13,7 @@
     display: flex;
     align-items: center;
     background: #fff;
-    border: 3px solid #ccc;
+    border: 1px solid #8080803b;
     border-radius: var(--radius-xl);
     overflow: hidden;
     transition: border-color 0.3s, box-shadow 0.3s;
@@ -21,7 +21,6 @@
 
 .input-wrapper:focus-within {
     border-color: var(--brand);
-    box-shadow: 0 0 0 4px rgba(141, 2, 31, 0.15);
 }
 
 .video-input {
@@ -45,8 +44,8 @@
     padding: 10px 18px;
     font-size: 14px;
     font-weight: 600;
-    color: #495057;
-    border: 2px solid #6c757d;
+    color: #495057e0;
+    border: 1px solid #8080803b;
     border-radius: calc(var(--radius-xl) - 8px);
     background: #fff;
     cursor: pointer;
@@ -54,7 +53,7 @@
 }
 
 .btn-paste:hover {
-    background: #6c757d;
+    background: #6c757dc4;
     color: #fff;
 }
 
@@ -98,6 +97,15 @@
 
 .error-message.show {
     display: block;
+}
+
+/* Shared Button Styles */
+.btn-convert {
+    background: var(--brand);
+    border: none;
+    color: #fff;
+    border-radius: var(--radius-xl);
+    cursor: pointer;
 }
 
 @media (max-width: 768px) {

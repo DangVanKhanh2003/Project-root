@@ -335,13 +335,8 @@
   justify-content: center;
   gap: var(--space-xs, 4px);
   padding: var(--space-sm, 6px) var(--space-xl, 20px);
-  background: var(--brand);
-  color: #fff;
-  border: none;
-  border-radius: var(--radius-md, 12px);
   font-size: 13px;
   font-weight: var(--font-weight-semibold, 600);
-  cursor: pointer;
   transition: all 0.2s ease;
   white-space: nowrap;
   box-sizing: border-box;

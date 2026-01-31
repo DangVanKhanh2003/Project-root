@@ -22,7 +22,7 @@
 .action-container {
   padding: 0px !important;
   margin: 0px;
-  border-radius: var(--radius-md, 12px);
+  border-radius: var(--radius-xl);
   min-height: 40px;
   /* Mobile-first: 40px height */
 }
@@ -39,9 +39,9 @@
 .status-container {
   position: relative;
   width: 100%;
-  background: var(--bg-input);
+  background: white;
   border: 1px solid var(--border-secondary);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-xl);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -63,9 +63,9 @@
   left: 0;
   height: 100%;
   width: var(--progress-width, 0%);
-  background: rgba(212, 255, 0, 0.35);
-  /* Lime/yellow - 35% opacity for visibility */
-  border-right: 1px solid rgba(212, 255, 0, 0.6);
+  background: rgba(141, 2, 31, 0.18);
+  /* Primary color with lighter opacity */
+  border-right: 1px solid rgba(141, 2, 31, 0.4);
   box-shadow: none;
   transition: width 0.2s linear;
   z-index: 1;
@@ -248,7 +248,7 @@
   padding: 5px 24px;
   font-size: 16px;
   font-weight: 600;
-  border-radius: var(--radius-md, 8px);
+  border-radius: var(--radius-xl);
   border: none;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -260,7 +260,7 @@
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
   user-select: none;
-  width: fit-content;
+  width: 130px;
 }
 
 .download-btn.active,
@@ -297,10 +297,10 @@
   padding: 5px 12px;
   font-size: 16px;
   font-weight: 600;
-  border-radius: var(--radius-md, 8px);
-  border: 1px solid var(--border-secondary);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--color-black);
   background: transparent;
-  color: var(--text-muted);
+  color: var(--color-black);
   cursor: pointer;
   transition: all 0.2s ease;
   display: flex;
@@ -313,24 +313,24 @@
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
   user-select: none;
-  width: fit-content;
+  width: 130px;
 }
 
 [data-theme="light"] .btn-new-convert {
-  border: 1px solid var(--pkg-color-gray-200);
-  color: var(--text-muted);
+  border: 1px solid var(--color-black);
+  color: var(--color-black);
 }
 
 .btn-new-convert:hover {
-  border-color: var(--color-white);
+  border-color: var(--color-black);
   color: var(--color-white);
-  background: var(--color-accent-dark);
+  background: var(--color-black);
 }
 
 [data-theme="light"] .btn-new-convert:hover {
-  background: var(--pkg-color-gray-50);
-  color: var(--text-main);
-  border-color: var(--pkg-color-gray-300);
+  background: var(--color-black);
+  color: var(--color-white);
+  border-color: var(--color-black);
 }
 
 /* ===== RESPONSIVE ===== */

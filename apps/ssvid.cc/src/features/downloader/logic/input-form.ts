@@ -853,9 +853,13 @@ async function handleExtractMedia(url: string): Promise<void> {
     // 3. Render preview immediately with skeleton
     showLoading('detail');
     showResultView();
-    // Scroll to hero-card after skeleton renders (50ms delay)
+    // Scroll after skeleton renders (50ms delay)
     setTimeout(() => {
-      scrollManager.scrollToElement('.hero-card');
+      if (scrollManager.isDesktop()) {
+        scrollManager.scrollToTop();
+      } else {
+        scrollManager.scrollToElement('.hero-card');
+      }
     }, 50);
     // Keep skeleton until API returns
 

@@ -780,7 +780,7 @@ function renderDownloadOptionsList(formats: any[], selectedFormat: string): stri
 
     < !--Right Column: Download Button-- >
       <div class="quality-col-right" >
-        <button
+    <button
               type="button"
   class="btn-convert"
   data - format - id="${formatId}"
@@ -788,9 +788,6 @@ function renderDownloadOptionsList(formats: any[], selectedFormat: string): stri
   data - format="${escapeHtml(format)}"
     >
     <span class="btn-text" > Download </span>
-      < svg class="btn-icon" xmlns = "http://www.w3.org/2000/svg" viewBox = "0 0 24 24" fill = "currentColor" >
-        <path d="M19 12v7H5v-7H3v7c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zm-6 .67l2.59-2.58L17 11.5l-5 5-5-5 1.41-1.41L11 12.67V3h2z" />
-          </svg>
           </button>
           </div>
           </div>

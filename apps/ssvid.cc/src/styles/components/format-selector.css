@@ -5,6 +5,7 @@
 
 .format-selector-wrapper {
     border-radius: var(--radius-xl);
+    margin-top: 5px;
 }
 
 .format-selector {
@@ -48,6 +49,12 @@ html[data-format="mp3"] .format-btn[data-format="mp4"] {
   box-shadow: none;
 }
 
+/* When mp3 is inactive: remove hover background */
+html:not([data-format="mp3"]) .format-btn[data-format="mp3"]:hover {
+  background: transparent;
+  color: var(--text);
+}
+
 html[data-format="mp3"] .format-btn[data-format="mp3"],
 html[data-format="mp3"] .format-btn[data-format="mp3"]:hover {
   background: var(--brand); /* Primary Color */
@@ -71,7 +78,7 @@ html[data-format="mp3"] .quality-select--mp3 {
 /* Format Toggle */
 .format-toggle {
     display: flex;
-    background: #e9ecef;
+    background: white;
     border-radius: var(--radius-xl);
     padding: 4px;
     border: 1px solid #8080803b;
@@ -115,7 +122,7 @@ html[data-format="mp3"] .quality-select--mp3 {
 .quality-select {
     height: 45px;
     padding: 0 40px 0 18px;
-    border: 2px solid #e0e0e0;
+    border: 1px solid #f0f0f0;
     border-radius: var(--radius-xl);
     background: #fff;
     cursor: pointer;
@@ -152,14 +159,8 @@ html[data-format="mp3"] .quality-select--mp3 {
 
 /* Submit Button */
 .btn-convert {
-    background: var(--brand);
-    /* Primary Color */
-    border: none;
-    color: #fff;
     font-size: 16px;
     font-weight: 700;
-    cursor: pointer;
-    border-radius: var(--radius-xl);
     height: 45px;
     padding: 0 28px;
     transition: all 0.3s;
@@ -241,6 +242,7 @@ html[data-format="mp3"] .quality-select--mp3 {
 
     .format-selector-wrapper {
         border-radius: calc(var(--radius-xl) - 10px);
+        margin-top: 0;
     }
 
     .btn-convert {
