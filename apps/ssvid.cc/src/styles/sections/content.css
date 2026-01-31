@@ -1,69 +1,227 @@
 /* Content Sections */
-.second-section,
-.our-tool {
+.content-section {
     padding: 60px 0;
-    text-align: center;
 }
 
-.howdown,
-.whyshould {
-    padding: 60px 0;
+/* Background variants - use these classes for alternating colors */
+.content-section--gray {
     background: var(--surface-weak);
 }
 
+.content-section--white {
+    background: #fff;
+}
+
+.content-section .container {
+    max-width: 900px;
+}
+
+/* Headings */
 .titles {
     font-size: 28px;
     font-weight: 700;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
+    color: var(--text);
+    text-align: center;
 }
 
-.second-section p {
-    max-width: 900px;
-    margin: 0 auto;
+.content-section h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    margin-top: 32px;
+    color: var(--text);
+}
+
+/* Paragraphs */
+.content-section p {
     color: var(--muted);
     line-height: 1.8;
-}
-
-.row {
-    display: flex;
-    align-items: center;
-    gap: 40px;
-    flex-wrap: wrap;
-}
-
-.howdown ul {
-    list-style: none;
-}
-
-.howdown li {
-    padding: 15px 0 15px 30px;
+    margin-bottom: 16px;
     font-size: 16px;
-    position: relative;
 }
 
-.howdown li:before {
-    content: "✓";
+.content-section p:last-child {
+    margin-bottom: 0;
+}
+
+/* Links */
+.content-section a {
+    color: var(--brand);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+.content-section a:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}
+
+/* Ordered List (How to Download section) */
+.content-section ol {
+    list-style: none;
+    counter-reset: step-counter;
+    padding: 0;
+    margin: 24px 0;
+}
+
+.content-section ol li {
+    counter-increment: step-counter;
+    padding: 16px 0 16px 50px;
+    font-size: 16px;
+    color: var(--text);
+    position: relative;
+    line-height: 1.6;
+}
+
+.content-section ol li::before {
+    content: counter(step-counter);
     position: absolute;
     left: 0;
-    color: var(--brand);
-    font-weight: bold;
+    top: 16px;
+    width: 32px;
+    height: 32px;
+    background: var(--brand);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+/* Subsections */
+.subsection {
+    margin-top: 32px;
+    padding: 24px;
+    background: white;
+    border-radius: 12px;
+    border-left: 4px solid var(--brand);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Subsection background on gray sections */
+.content-section--gray .subsection {
+    background: white;
+}
+
+/* Subsection background on white sections */
+.content-section--white .subsection {
+    background: var(--surface-weak);
+}
+
+.subsection:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(141, 2, 31, 0.1);
+}
+
+.subsection h3 {
+    margin-top: 0;
     font-size: 20px;
 }
 
+.subsection p {
+    margin-bottom: 0;
+}
+
+/* FAQ Section */
+.faq-section {
+    background: var(--surface-weak);
+}
+
+.faq-item {
+    margin-bottom: 24px;
+    padding: 24px;
+    background: white;
+    border-radius: 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.faq-item:last-child {
+    margin-bottom: 0;
+}
+
+.faq-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(141, 2, 31, 0.08);
+}
+
+.faq-item h3 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.faq-item p {
+    margin-bottom: 0;
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+/* Mobile Responsive */
 @media (max-width: 768px) {
+    .content-section {
+        padding: 40px 0;
+    }
+
+    .titles {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .content-section h3 {
+        font-size: 18px;
+    }
+
+    .content-section p,
+    .content-section ol li {
+        font-size: 15px;
+    }
+
+    .content-section ol li {
+        padding: 14px 0 14px 45px;
+    }
+
+    .content-section ol li::before {
+        width: 28px;
+        height: 28px;
+        top: 14px;
+        font-size: 14px;
+    }
+
+    .subsection {
+        padding: 20px;
+        margin-top: 24px;
+    }
+
+    .faq-item {
+        padding: 20px;
+        margin-bottom: 16px;
+    }
+
+    .faq-item h3 {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .content-section {
+        padding: 32px 0;
+    }
+
     .titles {
         font-size: 22px;
     }
 
-    .row {
-        flex-direction: column;
-        gap: 20px;
+    .subsection {
+        padding: 16px;
+        border-left-width: 3px;
     }
 
-    .second-section,
-    .howdown,
-    .our-tool,
-    .whyshould {
-        padding: 40px 0;
+    .faq-item {
+        padding: 16px;
     }
 }

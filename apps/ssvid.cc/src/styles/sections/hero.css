@@ -5,7 +5,6 @@
     margin: 0 0 30px;
     text-align: center;
     position: relative;
-    overflow: hidden;
 }
 
 .decorative-glow {
@@ -20,7 +19,7 @@
 }
 
 .hero-container {
-    max-width: 900px;
+    max-width: 950px;
     margin: 0 auto;
     padding: 0 15px;
     position: relative;

@@ -88,7 +88,7 @@ function getPageDefaults(): { format: FormatType; videoQuality: string; audioFor
   // Fallback defaults (App-level defaults)
   // IMPORTANT: Must match HTML defaults to prevent FOUC
   return {
-    format: 'mp3',
+    format: 'mp4',
     videoQuality: '720p',
     audioFormat: 'mp3',
     audioBitrate: '128'
@@ -133,7 +133,7 @@ function loadFormatPreferences(): StoredPreferences | null {
 
     // Validate stored data
     if (!preferences.selectedFormat ||
-        (preferences.selectedFormat !== 'mp3' && preferences.selectedFormat !== 'mp4')) {
+      (preferences.selectedFormat !== 'mp3' && preferences.selectedFormat !== 'mp4')) {
       return null;
     }
 

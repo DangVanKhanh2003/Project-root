@@ -17,7 +17,7 @@
     border-radius: var(--radius-xl);
     cursor: pointer;
     transition: border-color 0.3s;
-    min-width: 150px;
+    min-width: 160px;
     position: relative;
     height: 45px;
 }
@@ -174,6 +174,8 @@
     font-size: 14px;
     color: var(--text);
     transition: background 0.2s;
+    display: flex;
+    gap: 10px;
 }
 
 .dropdown-option:hover {
@@ -184,6 +186,11 @@
     background: var(--surface-weak);
     color: var(--brand);
     font-weight: 600;
+}
+
+/* Utility class for hiding elements */
+.hidden {
+    display: none !important;
 }
 
 /* ===== MOBILE STYLES ===== */

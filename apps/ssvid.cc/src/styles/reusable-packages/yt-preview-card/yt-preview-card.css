@@ -137,6 +137,19 @@
   letter-spacing: 0.5px;
 }
 
+.audio-track-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.audio-track-icon .icon-audio-language-horizontal {
+  width: 28px;
+  height: 16px;
+  display: block;
+}
+
 .audio-track-value {
   font-size: 0.8rem;
 }

@@ -7,8 +7,7 @@
 // Single entry point for all styles (Phase 2: CSS Refactor)
 import './styles/index.css';
 
-// Import format-selector CSS immediately (contains critical styles to prevent FOUC)
-import './ui-components/format-selector/format-selector.css';
+
 
 if (typeof window !== 'undefined') {
   // Debug: Expose conversion state functions for testing merging UI

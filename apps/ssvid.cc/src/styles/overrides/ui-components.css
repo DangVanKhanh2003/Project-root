@@ -26,8 +26,9 @@
 .suggestion-container {
   background-color: #ffffff !important;
   border: 1px solid #e0e0e0 !important;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
-  border-radius: 0 0 12px 12px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  border-radius: 0 0 16px 16px !important;
+  /* Update radius to match radius-xl roughly if needed, or keep generic */
   overflow: hidden !important;
 }
 
@@ -42,16 +43,17 @@
   border-bottom: none !important;
 }
 
-.suggestion-item:hover, 
+.suggestion-item:hover,
 .suggestion-item.active,
 .suggestion-item:focus {
-  background-color: #f5f5f5 !important;
-  color: #000000 !important;
+  background-color: var(--surface-weak) !important;
+  color: var(--brand) !important;
+  /* Optional: text becomes brand color on hover */
 }
 
 /* Suggestions text highlights if any */
 .suggestion-item strong {
-  color: #d32f2f !important; /* specific brand accent or just bold black */
+  color: var(--brand) !important;
 }
 
 /* ==========================================
@@ -67,13 +69,13 @@
 
 /* Force options to catch light theme */
 .quality-select option {
-  background-color: #ffffff !important; 
+  background-color: #ffffff !important;
   color: #333333 !important;
 }
 
 .quality-select:hover,
 .quality-select:focus {
-  border-color: #CB0E35 !important; /* Brand color */
+  border-color: var(--brand) !important;
 }
 
 /* ==========================================
@@ -83,7 +85,7 @@
 .search-result-card {
   background: #ffffff !important;
   border: 1px solid #e0e0e0 !important;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
   border-radius: 12px !important;
 }
 
