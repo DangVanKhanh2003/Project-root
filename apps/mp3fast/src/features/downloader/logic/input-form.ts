@@ -624,10 +624,6 @@ async function handleExtractMedia(url: string): Promise<void> {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }, 50);
-    // Scroll to hero-card after skeleton renders (50ms delay)
-    setTimeout(() => {
-      scrollManager.scrollToElement('.hero-card');
-    }, 50);
       renderPreviewCard(null);
 
       // 4. Fetch metadata from YouTube Public API (async, hides skeleton when done)
