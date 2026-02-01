@@ -67,7 +67,7 @@
   /* Primary color with lighter opacity */
   border-right: 1px solid rgba(141, 2, 31, 0.4);
   box-shadow: none;
-  transition: width 0.5s ease-out;
+  transition: width 0.4s ease-out;
   z-index: 1;
 }
 
@@ -101,10 +101,10 @@
   }
 }
 
-/* When API completes, stop animation and transition to 100% in 0.5s */
+/* When API completes, stop animation and transition to 100% in 0.4s */
 .status--completing::before {
   animation: none !important;
-  transition: width 0.5s ease-out !important;
+  transition: width 0.4s ease-out !important;
 }
 
 /* Hide status bar on success and error - controlled by JavaScript */

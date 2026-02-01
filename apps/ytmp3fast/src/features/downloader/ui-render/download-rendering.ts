@@ -100,7 +100,7 @@ export function renderConversionStatus(state: AppState, _prevState?: AppState): 
         }
 
         delete statusContainer.dataset.completionState;
-      }, 350);
+      }, 400);
     }
     // FAILED: Keep showing error, don't hide
 

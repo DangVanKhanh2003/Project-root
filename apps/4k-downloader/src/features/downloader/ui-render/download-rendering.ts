@@ -82,7 +82,7 @@ export function renderConversionStatus(state: AppState, _prevState?: AppState): 
         statusContainer.style.display = 'none';  // Ẩn status trước
         actionContainer?.classList.add('active'); // Rồi mới hiện button
         delete statusContainer.dataset.completionState;
-      }, 350);
+      }, 400);
     }
     // FAILED: Keep showing error, don't hide
 

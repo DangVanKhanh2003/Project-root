@@ -387,7 +387,7 @@ function updateStatusBarUI(wrapper: HTMLElement, task: ConversionTask, formatId:
         statusContainer.style.display = 'none';
         actionContainer.classList.add('active');
         delete statusContainer.dataset.completionState;
-      }, 350);
+      }, 400);
     } else {
       // FAILED: Keep showing error, show action buttons immediately
       actionContainer.classList.add('active');

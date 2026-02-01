@@ -104,7 +104,7 @@ export function renderConversionStatus(state: AppState, _prevState?: AppState): 
         }
 
         delete statusContainer.dataset.completionState;
-      }, 350);
+      }, 400);
     }
     // FAILED: Keep showing error, don't hide
 
@@ -270,6 +270,18 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
     iconElement.style.display = 'none';
 
     smoothTransitionTo100(statusContainer, () => {
+      // FIX: Check if task completed during the transition delay
+      // completionState is set in renderConversionStatus when state is SUCCESS or FAILED
+      if (statusContainer.dataset.completionState) {
+        // Task completed while we were waiting for transition
+        // Abort merging transition to prevent overwriting success state
+        if (process.env.NODE_ENV === 'development') {
+          console.log('[renderConversionStatus] Transition to merging aborted - task completed');
+        }
+        transitionInProgress.set(formatId, false);
+        return;
+      }
+
       // After transition, update text and reset gradient to 0%
       statusTextElement.textContent = 'Merging... 0%';
 
@@ -282,6 +294,9 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
 
       // Setup for CSS @keyframes animation (0%→50% in 20s, 50%→98% in 30s)
       requestAnimationFrame(() => {
+        // Re-check completion just in case (though unlikely in this frame)
+        if (statusContainer.dataset.completionState) return;
+
         // 1. Reset progress to 0% so animation starts from 0
         statusContainer.style.setProperty('--progress-width', '0%');
 
