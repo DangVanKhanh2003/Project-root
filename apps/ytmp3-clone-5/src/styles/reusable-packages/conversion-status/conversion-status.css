@@ -6,12 +6,14 @@
 
 /* ===== WRAPPER TO PREVENT LAYOUT SHIFT ===== */
 .conversion-state-wrapper {
-  min-height: 52px; /* Reserve space for status OR action container (mobile: 40px + 12px margin) */
+  min-height: 52px;
+  /* Reserve space for status OR action container (mobile: 40px + 12px margin) */
 }
 
 @media (min-width: 768px) {
   .conversion-state-wrapper {
-    min-height: 64px; /* Desktop: 52px + 12px margin */
+    min-height: 64px;
+    /* Desktop: 52px + 12px margin */
   }
 }
 
@@ -21,7 +23,8 @@
   padding: 0px !important;
   margin: 0px !important;
   border-radius: 12px;
-  min-height: 40px; /* Mobile-first: 40px height */
+  min-height: 40px;
+  /* Mobile-first: 40px height */
 }
 
 .status-container {
@@ -60,10 +63,11 @@
   left: 0;
   height: 100%;
   width: var(--progress-width, 0%);
-  background: rgba(139, 92, 246, 0.35); /* Purple tint - 35% opacity for visibility */
+  background: rgba(139, 92, 246, 0.35);
+  /* Purple tint - 35% opacity for visibility */
   border-right: 1px solid rgba(139, 92, 246, 0.6);
   box-shadow: none;
-  transition: width 0.2s linear;
+  transition: width 0.5s ease-out;
   z-index: 1;
 }
 
@@ -82,9 +86,17 @@
 }
 
 @keyframes merging-progress {
-  from { width: 0%; }
-  37.5% { width: 50%; }
-  to { width: 98%; }
+  from {
+    width: 0%;
+  }
+
+  37.5% {
+    width: 50%;
+  }
+
+  to {
+    width: 98%;
+  }
 }
 
 /* API complete → 100% in 0.5s */
@@ -105,8 +117,10 @@
 .status {
   position: relative;
   z-index: 2;
-  width: 100%; /* Fill full width of status-container */
-  height: 40px; /* Mobile: match status-container min-height */
+  width: 100%;
+  /* Fill full width of status-container */
+  height: 40px;
+  /* Mobile: match status-container min-height */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -120,8 +134,10 @@
   font-weight: 600;
   color: var(--text-main);
   text-transform: capitalize;
-  height: 18px; /* Match icon height to prevent layout shift */
-  line-height: 18px; /* Center text vertically */
+  height: 18px;
+  /* Match icon height to prevent layout shift */
+  line-height: 18px;
+  /* Center text vertically */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -134,12 +150,15 @@
   z-index: 2;
   width: 18px;
   height: 18px;
-  flex-shrink: 0; /* Prevent icon from shrinking */
-  display: inline-flex; /* Always reserve space (visibility will be controlled by opacity/content) */
+  flex-shrink: 0;
+  /* Prevent icon from shrinking */
+  display: inline-flex;
+  /* Always reserve space (visibility will be controlled by opacity/content) */
   align-items: center;
   justify-content: center;
   transition: opacity 0.2s ease;
-  visibility: hidden; /* Hide from screen readers */
+  visibility: hidden;
+  /* Hide from screen readers */
 }
 
 /* Spinner (extracting, processing) - Purple theme */
@@ -226,6 +245,7 @@
 }
 
 @media (min-width: 640px) {
+
   .action-container .download-btn,
   .action-container .retry-btn,
   .action-container .btn-new-convert {
@@ -302,13 +322,16 @@
 /* ===== RESPONSIVE ===== */
 
 @media (min-width: 768px) {
+
   .status-container,
   .action-container {
-    min-height: 52px; /* Desktop: 52px height */
+    min-height: 52px;
+    /* Desktop: 52px height */
   }
 
   .status {
-    height: 52px; /* Desktop: match status-container min-height */
+    height: 52px;
+    /* Desktop: match status-container min-height */
   }
 
   .status-text {
@@ -316,4 +339,3 @@
   }
 
 }
-

@@ -34,10 +34,12 @@
 /* ===== SHARED DIMENSIONS (both containers must match to prevent layout shift) ===== */
 .status-container,
 .action-container {
-  padding: 0; /* Bỏ padding để giống button download */
+  padding: 0;
+  /* Bỏ padding để giống button download */
   margin-bottom: var(--status-gap);
   border-radius: var(--status-border-radius);
-  min-height: 44px; /* Touch-friendly */
+  min-height: 44px;
+  /* Touch-friendly */
   margin: 0px;
 }
 
@@ -45,10 +47,13 @@
 .status-container {
   position: relative;
   width: 100%;
-  background: #ff6ba3; /* Màu hồng nhạt hơn */
-  border: none; /* Bỏ border để giống button download */
+  background: #ff6ba3;
+  /* Màu hồng nhạt hơn */
+  border: none;
+  /* Bỏ border để giống button download */
   border-radius: 8px;
-  margin: 8px 0px; /* Vertical margin 8px, horizontal 0px */
+  margin: 8px 0px;
+  /* Vertical margin 8px, horizontal 0px */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -66,10 +71,11 @@
   left: 0;
   height: 100%;
   width: var(--progress-width, 0%);
-  background: #f20a5194; /* White overlay - 70% opacity đậm hơn */
+  background: #f20a5194;
+  /* White overlay - 70% opacity đậm hơn */
   border-right: 1px solid #d80947;
   box-shadow: none;
-  transition: width 0.2s linear;
+  transition: width 0.5s ease-out;
   z-index: 1;
 }
 
@@ -89,9 +95,17 @@
 }
 
 @keyframes merging-progress {
-  from { width: 0%; }
-  37.5% { width: 50%; }
-  to { width: 98%; }
+  from {
+    width: 0%;
+  }
+
+  37.5% {
+    width: 50%;
+  }
+
+  to {
+    width: 98%;
+  }
 }
 
 /* When API completes, stop animation and transition to 100% in 0.5s */
@@ -105,12 +119,15 @@
 
 /* Override to red background on error */
 .status-container:has(.status--error) {
-  background: var(--status-error); /* Red background for error */
+  background: var(--status-error);
+  /* Red background for error */
 }
 
 .status {
-  width: 100%; /* Fill full width of status-container */
-  height: 50px; /* Match parent height */
+  width: 100%;
+  /* Fill full width of status-container */
+  height: 50px;
+  /* Match parent height */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -121,8 +138,10 @@
   position: relative;
   z-index: 2;
   font-size: 14px;
-  font-weight: 600; /* Giống button download - font-weight bold hơn */
-  color: var(--status-white); /* Text màu trắng giống button download */
+  font-weight: 600;
+  /* Giống button download - font-weight bold hơn */
+  color: var(--status-white);
+  /* Text màu trắng giống button download */
 }
 
 /* ===== ICON STATES ===== */
@@ -140,26 +159,35 @@
 
 /* Spinner (extracting, processing) */
 .icon.spinner {
-  border: 3px solid rgba(255, 255, 255, 0.3); /* Border màu trắng mờ */
-  border-top: 3px solid var(--status-white); /* Top border màu trắng đậm */
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  /* Border màu trắng mờ */
+  border-top: 3px solid var(--status-white);
+  /* Top border màu trắng đậm */
   border-radius: 50%;
   animation: spin 0.35s linear infinite;
   margin: 0px;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Checkmark (success) - Hidden */
 .icon.checkmark {
-  display: none; /* Hide checkmark on success */
+  display: none;
+  /* Hide checkmark on success */
 }
 
 /* Error icon - Hidden */
 .icon.error {
-  display: none; /* Hide error icon on failed */
+  display: none;
+  /* Hide error icon on failed */
 }
 
 /* ===== STATUS STATES ===== */
@@ -167,23 +195,28 @@
 /* Success: keep white text color */
 
 .status--error .status-text {
-  color: var(--status-white); /* Keep white text even on error */
+  color: var(--status-white);
+  /* Keep white text even on error */
 }
 
 /* ===== PROGRESS BAR ===== */
 /* Progress bar is completely hidden - only show % in text */
 .progress-bar {
-  display: none !important; /* Always hidden */
+  display: none !important;
+  /* Always hidden */
 }
 
 /* ===== ACTION CONTAINER ===== */
 .action-container {
-  display: none; /* Hide by default */
-  padding: 8px 0px; /* Override: no horizontal padding */
+  display: none;
+  /* Hide by default */
+  padding: 8px 0px;
+  /* Override: no horizontal padding */
 }
 
 .action-container.active {
-  display: block; /* Show when success or failed */
+  display: block;
+  /* Show when success or failed */
   margin: 0px;
 }
 
@@ -197,7 +230,8 @@
   border: none;
   cursor: pointer;
   transition: all 0.2s ease;
-  display: none; /* Hide buttons by default */
+  display: none;
+  /* Hide buttons by default */
   width: 100%;
 
   /* Touch-friendly */
@@ -213,7 +247,8 @@
 
 .download-btn.active,
 .retry-btn.active {
-  display: block; /* Show button when active */
+  display: block;
+  /* Show button when active */
 }
 
 .download-btn {
@@ -249,4 +284,3 @@
     font-size: 17px;
   }
 }
-

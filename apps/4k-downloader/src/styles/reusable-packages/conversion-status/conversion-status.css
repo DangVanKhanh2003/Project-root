@@ -6,12 +6,14 @@
 
 /* ===== WRAPPER TO PREVENT LAYOUT SHIFT ===== */
 .conversion-state-wrapper {
-  min-height: 100px; /* Reserve space for status OR action container (mobile: 40px + 12px margin) */
+  min-height: 100px;
+  /* Reserve space for status OR action container (mobile: 40px + 12px margin) */
 }
 
 @media (min-width: 768px) {
   .conversion-state-wrapper {
-    min-height: 110px; /* Desktop: 52px + 12px margin */
+    min-height: 110px;
+    /* Desktop: 52px + 12px margin */
   }
 }
 
@@ -19,9 +21,10 @@
 .status-container,
 .action-container {
   padding: 0px !important;
-  margin: 0px ;
+  margin: 0px;
   border-radius: var(--radius-md, 12px);
-  min-height: 40px; /* Mobile-first: 40px height */
+  min-height: 40px;
+  /* Mobile-first: 40px height */
 }
 
 .status-container {
@@ -58,7 +61,7 @@
   background: color-mix(in srgb, var(--color-accent) 35%, transparent);
   border-right: 1px solid color-mix(in srgb, var(--color-accent) 60%, transparent);
   box-shadow: none;
-  transition: width 0.2s linear;
+  transition: width 0.5s ease-out;
   z-index: 1;
 }
 
@@ -77,9 +80,17 @@
 }
 
 @keyframes merging-progress {
-  from { width: 0%; }
-  37.5% { width: 50%; }
-  to { width: 98%; }
+  from {
+    width: 0%;
+  }
+
+  37.5% {
+    width: 50%;
+  }
+
+  to {
+    width: 98%;
+  }
 }
 
 /* API complete → 100% in 0.5s */
@@ -100,7 +111,8 @@
 .status {
   position: relative;
   z-index: 2;
-  width: 100%; /* Fill full width of status-container */
+  width: 100%;
+  /* Fill full width of status-container */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -114,8 +126,10 @@
   font-weight: 600;
   color: var(--text-main);
   text-transform: capitalize;
-  height: 18px; /* Match icon height to prevent layout shift */
-  line-height: 18px; /* Center text vertically */
+  height: 18px;
+  /* Match icon height to prevent layout shift */
+  line-height: 18px;
+  /* Center text vertically */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -128,12 +142,15 @@
   z-index: 2;
   width: 18px;
   height: 18px;
-  flex-shrink: 0; /* Prevent icon from shrinking */
-  display: inline-flex; /* Always reserve space (visibility will be controlled by opacity/content) */
+  flex-shrink: 0;
+  /* Prevent icon from shrinking */
+  display: inline-flex;
+  /* Always reserve space (visibility will be controlled by opacity/content) */
   align-items: center;
   justify-content: center;
   transition: opacity 0.2s ease;
-  visibility: hidden; /* Hide from screen readers */
+  visibility: hidden;
+  /* Hide from screen readers */
 }
 
 /* Spinner (extracting, processing) - Purple theme */
@@ -205,7 +222,8 @@
   cursor: pointer;
   transition: all 0.2s ease;
   display: none;
-  min-height: 40px; /* Mobile: 40px height to match status-container */
+  min-height: 40px;
+  /* Mobile: 40px height to match status-container */
   position: relative;
   overflow: hidden;
   -webkit-tap-highlight-color: transparent;
@@ -257,7 +275,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 40px; /* Mobile: 40px height to match status-container */
+  min-height: 40px;
+  /* Mobile: 40px height to match status-container */
   position: relative;
   overflow: hidden;
   -webkit-tap-highlight-color: transparent;
@@ -294,9 +313,11 @@
 }
 
 @media (min-width: 768px) {
+
   .status-container,
   .action-container {
-    min-height: 52px; /* Desktop: 52px height */
+    min-height: 52px;
+    /* Desktop: 52px height */
   }
 
   .status-text {
@@ -307,7 +328,7 @@
   .retry-btn,
   .btn-new-convert {
     font-size: 17px;
-    min-height: 52px; /* Desktop: 52px height */
+    min-height: 52px;
+    /* Desktop: 52px height */
   }
 }
-

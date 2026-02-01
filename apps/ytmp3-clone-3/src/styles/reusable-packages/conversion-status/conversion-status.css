@@ -6,12 +6,14 @@
 
 /* ===== WRAPPER TO PREVENT LAYOUT SHIFT ===== */
 .conversion-state-wrapper {
-  min-height: 52px; /* Reserve space for status OR action container (mobile: 40px + 12px margin) */
+  min-height: 52px;
+  /* Reserve space for status OR action container (mobile: 40px + 12px margin) */
 }
 
 @media (min-width: 768px) {
   .conversion-state-wrapper {
-    min-height: 64px; /* Desktop: 52px + 12px margin */
+    min-height: 64px;
+    /* Desktop: 52px + 12px margin */
   }
 }
 
@@ -21,7 +23,8 @@
   padding: 0px !important;
   margin: 0px !important;
   border-radius: var(--radius-md, 12px);
-  min-height: 40px; /* Mobile-first: 40px height */
+  min-height: 40px;
+  /* Mobile-first: 40px height */
 }
 
 .status-container {
@@ -55,10 +58,11 @@
   left: 0;
   height: 100%;
   width: var(--progress-width, 0%);
-  background: rgba(139, 92, 246, 0.35); /* Purple tint - 35% opacity for visibility */
+  background: rgba(139, 92, 246, 0.35);
+  /* Purple tint - 35% opacity for visibility */
   border-right: 1px solid rgba(139, 92, 246, 0.6);
   box-shadow: none;
-  transition: width 0.2s linear;
+  transition: width 0.5s ease-out;
   z-index: 1;
 }
 
@@ -74,7 +78,8 @@
 .status {
   position: relative;
   z-index: 2;
-  width: 100%; /* Fill full width of status-container */
+  width: 100%;
+  /* Fill full width of status-container */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -88,8 +93,10 @@
   font-weight: 600;
   color: var(--text-main);
   text-transform: capitalize;
-  height: 18px; /* Match icon height to prevent layout shift */
-  line-height: 18px; /* Center text vertically */
+  height: 18px;
+  /* Match icon height to prevent layout shift */
+  line-height: 18px;
+  /* Center text vertically */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -102,12 +109,15 @@
   z-index: 2;
   width: 18px;
   height: 18px;
-  flex-shrink: 0; /* Prevent icon from shrinking */
-  display: inline-flex; /* Always reserve space (visibility will be controlled by opacity/content) */
+  flex-shrink: 0;
+  /* Prevent icon from shrinking */
+  display: inline-flex;
+  /* Always reserve space (visibility will be controlled by opacity/content) */
   align-items: center;
   justify-content: center;
   transition: opacity 0.2s ease;
-  visibility: hidden; /* Hide from screen readers */
+  visibility: hidden;
+  /* Hide from screen readers */
 }
 
 /* Spinner (extracting, processing) - Purple theme */
@@ -179,7 +189,8 @@
   cursor: pointer;
   transition: all 0.2s ease;
   display: none;
-  min-height: 40px; /* Mobile: 40px height to match status-container */
+  min-height: 40px;
+  /* Mobile: 40px height to match status-container */
   position: relative;
   overflow: hidden;
   -webkit-tap-highlight-color: transparent;
@@ -200,8 +211,7 @@
   color: #fff;
 }
 
-.download-btn:hover {
-}
+.download-btn:hover {}
 
 .retry-btn {
   background: var(--status-error, #e74c3c);
@@ -230,7 +240,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 40px; /* Mobile: 40px height to match status-container */
+  min-height: 40px;
+  /* Mobile: 40px height to match status-container */
   position: relative;
   overflow: hidden;
   -webkit-tap-highlight-color: transparent;
@@ -259,9 +270,11 @@
 /* ===== RESPONSIVE ===== */
 
 @media (min-width: 768px) {
+
   .status-container,
   .action-container {
-    min-height: 52px; /* Desktop: 52px height */
+    min-height: 52px;
+    /* Desktop: 52px height */
   }
 
   .status-text {
@@ -272,7 +285,7 @@
   .retry-btn,
   .btn-new-convert {
     font-size: 17px;
-    min-height: 52px; /* Desktop: 52px height */
+    min-height: 52px;
+    /* Desktop: 52px height */
   }
 }
-
