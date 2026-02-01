@@ -8,7 +8,7 @@
     "build:test": "NODE_ENV=test npm run 11ty:build && NODE_ENV=test tsc && NODE_ENV=test vite build --config vite.config.ts && NODE_ENV=test TARGET_DIR=dist node ../../modify-robots-meta.js",
     "preview": "vite preview --config vite.config.ts",
     "11ty:build": "eleventy --config=.eleventy.cjs --input=_templates --output=_11ty-output && npm run 11ty:copy",
-    "11ty:copy": "shx cp _11ty-output/index.html ./index.html && shx cp _11ty-output/youtube-to-mp3.html ./youtube-to-mp3.html && shx cp _11ty-output/youtube-to-mp4.html ./youtube-to-mp4.html && shx cp _11ty-output/youtube-shorts-downloader.html ./youtube-shorts-downloader.html",
+    "11ty:copy": "shx cp _11ty-output/index.html ./index.html && shx cp _11ty-output/download-youtube-mp3.html ./download-youtube-mp3.html && shx cp _11ty-output/download-youtube-mp4.html ./download-youtube-mp4.html && shx cp _11ty-output/download-youtube-shorts.html ./download-youtube-shorts.html",
     "11ty:watch": "eleventy --config=.eleventy.cjs --watch",
     "11ty:serve": "eleventy --config=.eleventy.cjs --serve",
     "remove-logs": "tsx remove-console-logs.ts",

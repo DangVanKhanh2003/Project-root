@@ -59,9 +59,9 @@ function rewriteUrl(url: string, isDev: boolean = true): string {
     '/faq': '/faq.html',
     '/404': '/404.html',
     // Tool pages
-    '/youtube-to-mp3': isDev ? `${eleventyPrefix}/youtube-to-mp3.html` : '/youtube-to-mp3.html',
-    '/youtube-to-mp4': isDev ? `${eleventyPrefix}/youtube-to-mp4.html` : '/youtube-to-mp4.html',
-    '/youtube-shorts-downloader': isDev ? `${eleventyPrefix}/youtube-shorts-downloader.html` : '/youtube-shorts-downloader.html'
+    '/download-youtube-mp3': isDev ? `${eleventyPrefix}/download-youtube-mp3.html` : '/download-youtube-mp3.html',
+    '/download-youtube-mp4': isDev ? `${eleventyPrefix}/download-youtube-mp4.html` : '/download-youtube-mp4.html',
+    '/download-youtube-shorts': isDev ? `${eleventyPrefix}/download-youtube-shorts.html` : '/download-youtube-shorts.html'
   };
 
   if (staticPages[url]) {
