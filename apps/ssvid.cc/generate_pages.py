@@ -4,7 +4,7 @@ import re
 import os
 
 BASE_DIR = r"f:\downloader\Project-root\apps\ssvid.cc"
-INDEX_PATH = os.path.join(BASE_DIR, "index.html")
+INDEX_PATH = os.path.join(BASE_DIR, "index")
 EN_DIR = os.path.join(BASE_DIR, "en")
 
 def load_json(filename):
@@ -144,7 +144,7 @@ if __name__ == "__main__":
         mp3_html = update_html(template, mp3_data, 'youtube-to-mp3')
         with open(os.path.join(BASE_DIR, 'youtube-to-mp3.html'), 'w', encoding='utf-8') as f:
             f.write(mp3_html)
-        print("Created youtube-to-mp3.html")
+        print("Created youtube-to-mp3")
     except Exception as e:
         print(f"Error creating mp3: {e}")
 
@@ -154,7 +154,7 @@ if __name__ == "__main__":
         mp4_html = update_html(template, mp4_data, 'youtube-to-mp4')
         with open(os.path.join(BASE_DIR, 'youtube-to-mp4.html'), 'w', encoding='utf-8') as f:
             f.write(mp4_html)
-        print("Created youtube-to-mp4.html")
+        print("Created youtube-to-mp4")
     except Exception as e:
         print(f"Error creating mp4: {e}")
         
@@ -164,6 +164,6 @@ if __name__ == "__main__":
         short_html = update_html(template, short_data, 'youtube-shorts-downloader')
         with open(os.path.join(BASE_DIR, 'youtube-shorts-downloader.html'), 'w', encoding='utf-8') as f:
             f.write(short_html)
-        print("Created youtube-shorts-downloader.html")
+        print("Created youtube-shorts-downloader")
     except Exception as e:
         print(f"Error creating shorts: {e}")

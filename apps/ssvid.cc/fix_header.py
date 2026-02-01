@@ -5,24 +5,24 @@ import re
 BASE_DIR = r"f:\downloader\Project-root\apps\ssvid.cc"
 
 MAIN_PAGES = [
-    "index.html",
-    "youtube-to-mp3.html",
-    "youtube-to-mp4.html",
-    "youtube-shorts-downloader.html"
+    "index",
+    "youtube-to-mp3",
+    "youtube-to-mp4",
+    "youtube-shorts-downloader"
 ]
 
 INFO_PAGES = [
-    "about.html",
-    "contact.html",
-    "terms.html",
-    "policy.html",
-    "dmca.html",
-    "faq.html"
+    "about",
+    "contact",
+    "terms",
+    "policy",
+    "dmca",
+    "faq"
 ]
 
 DESKTOP_LINKS = """
                 <a href="/" class="header-link">Home</a>
-                <a href="/about.html" class="header-link">About</a>
+                <a href="/about" class="header-link">About</a>
 """
 
 def fix_file(filename):

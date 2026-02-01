@@ -5,35 +5,35 @@ import re
 BASE_DIR = r"f:\downloader\Project-root\apps\ssvid.cc"
 
 MAIN_PAGES = [
-    "index.html",
-    "youtube-to-mp3.html",
-    "youtube-to-mp4.html",
-    "youtube-shorts-downloader.html"
+    "index",
+    "youtube-to-mp3",
+    "youtube-to-mp4",
+    "youtube-shorts-downloader"
 ]
 
 INFO_PAGES = [
-    "about.html",
-    "contact.html",
-    "terms.html",
-    "policy.html",
-    "dmca.html",
-    "faq.html"
+    "about",
+    "contact",
+    "terms",
+    "policy",
+    "dmca",
+    "faq"
 ]
 
 # Drawer: Add Converter Links
 DRAWER_LINKS = """
                 <nav class="drawer-nav" aria-label="Mobile">
                     <a href="/" class="drawer-link">Home</a>
-                    <a href="/youtube-to-mp3.html" class="drawer-link">YouTube to MP3</a>
-                    <a href="/youtube-to-mp4.html" class="drawer-link">YouTube to MP4</a>
-                    <a href="/youtube-shorts-downloader.html" class="drawer-link">YouTube Shorts</a>
+                    <a href="/youtube-to-mp3" class="drawer-link">YouTube to MP3</a>
+                    <a href="/youtube-to-mp4" class="drawer-link">YouTube to MP4</a>
+                    <a href="/youtube-shorts-downloader" class="drawer-link">YouTube Shorts</a>
                     <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
-                    <a href="/about.html" class="drawer-link">About</a>
-                    <a href="/faq.html" class="drawer-link">FAQ</a>
-                    <a href="/contact.html" class="drawer-link">Contact</a>
-                    <a href="/terms.html" class="drawer-link">Terms</a>
-                    <a href="/policy.html" class="drawer-link">Privacy</a>
-                    <a href="/dmca.html" class="drawer-link">DMCA</a>
+                    <a href="/about" class="drawer-link">About</a>
+                    <a href="/faq" class="drawer-link">FAQ</a>
+                    <a href="/contact" class="drawer-link">Contact</a>
+                    <a href="/terms" class="drawer-link">Terms</a>
+                    <a href="/policy" class="drawer-link">Privacy</a>
+                    <a href="/dmca" class="drawer-link">DMCA</a>
                 </nav>
 """
 
@@ -42,17 +42,17 @@ FOOTER_CONTENT = """
     <footer>
         <div class="container">
             <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
-                <a href="/youtube-to-mp3.html" style="color: inherit; text-decoration: none;">YouTube to MP3</a>
-                <a href="/youtube-to-mp4.html" style="color: inherit; text-decoration: none;">YouTube to MP4</a>
-                <a href="/youtube-shorts-downloader.html" style="color: inherit; text-decoration: none;">YouTube Shorts</a>
+                <a href="/youtube-to-mp3" style="color: inherit; text-decoration: none;">YouTube to MP3</a>
+                <a href="/youtube-to-mp4" style="color: inherit; text-decoration: none;">YouTube to MP4</a>
+                <a href="/youtube-shorts-downloader" style="color: inherit; text-decoration: none;">YouTube Shorts</a>
             </div>
             <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
-                <a href="/about.html" style="color: inherit; text-decoration: none;">About</a>
-                <a href="/contact.html" style="color: inherit; text-decoration: none;">Contact</a>
-                <a href="/terms.html" style="color: inherit; text-decoration: none;">Terms</a>
-                <a href="/policy.html" style="color: inherit; text-decoration: none;">Privacy Policy</a>
-                <a href="/dmca.html" style="color: inherit; text-decoration: none;">DMCA</a>
-                <a href="/faq.html" style="color: inherit; text-decoration: none;">FAQ</a>
+                <a href="/about" style="color: inherit; text-decoration: none;">About</a>
+                <a href="/contact" style="color: inherit; text-decoration: none;">Contact</a>
+                <a href="/terms" style="color: inherit; text-decoration: none;">Terms</a>
+                <a href="/policy" style="color: inherit; text-decoration: none;">Privacy Policy</a>
+                <a href="/dmca" style="color: inherit; text-decoration: none;">DMCA</a>
+                <a href="/faq" style="color: inherit; text-decoration: none;">FAQ</a>
             </div>
             <div class="copyright">© 2026 SSVid. All rights reserved.</div>
         </div>
