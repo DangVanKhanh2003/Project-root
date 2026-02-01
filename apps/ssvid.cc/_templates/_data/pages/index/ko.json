@@ -42,15 +42,15 @@
     "sections": [
       {
         "title": "YouTube 동영상(MP4)",
-        "description": "SSVID를 사용하면 모든 기기에서 오프라인으로 시청할 수 있도록 <strong><a href=\"/youtube-to-mp4.html\">YouTube 동영상을 MP4로 다운로드</a></strong>할 수 있습니다. 이는 튜토리얼, 뮤직 비디오, 브이로그 및 널리 지원되는 비디오 형식의 긴 형식의 YouTube 콘텐츠를 저장하는 데 이상적입니다."
+        "description": "SSVID를 사용하면 모든 기기에서 오프라인으로 시청할 수 있도록 <strong><a href=\"/youtube-to-mp4\">YouTube 동영상을 MP4로 다운로드</a></strong>할 수 있습니다. 이는 튜토리얼, 뮤직 비디오, 브이로그 및 널리 지원되는 비디오 형식의 긴 형식의 YouTube 콘텐츠를 저장하는 데 이상적입니다."
       },
       {
         "title": "YouTube 오디오(MP3)",
-        "description": "SSVID를 사용하면 동영상에서 직접 사운드를 추출하여 <strong><a href=\"/youtube-to-mp3.html\">YouTube 오디오를 MP3로 다운로드</a></strong>할 수 있습니다. 이 옵션은 언제든지 듣고 싶은 음악, 팟캐스트, 인터뷰 및 기타 오디오 콘텐츠에 적합합니다."
+        "description": "SSVID를 사용하면 동영상에서 직접 사운드를 추출하여 <strong><a href=\"/youtube-to-mp3\">YouTube 오디오를 MP3로 다운로드</a></strong>할 수 있습니다. 이 옵션은 언제든지 듣고 싶은 음악, 팟캐스트, 인터뷰 및 기타 오디오 콘텐츠에 적합합니다."
       },
       {
         "title": "YouTube 쇼츠",
-        "description": "원본 품질을 유지하면서 올바른 세로 형식으로 <strong><a href=\"/youtube-shorts-downloader.html\">YouTube 쇼츠 동영상을 다운로드</a></strong>할 수도 있습니다. SSVID를 사용하면 오프라인 시청 또는 공유를 위해 짧은 형식의 YouTube 동영상을 쉽게 저장할 수 있습니다."
+        "description": "원본 품질을 유지하면서 올바른 세로 형식으로 <strong><a href=\"/youtube-shorts-downloader\">YouTube 쇼츠 동영상을 다운로드</a></strong>할 수도 있습니다. SSVID를 사용하면 오프라인 시청 또는 공유를 위해 짧은 형식의 YouTube 동영상을 쉽게 저장할 수 있습니다."
       }
     ]
   },

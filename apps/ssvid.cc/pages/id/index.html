@@ -59,6 +59,130 @@
     <script>
         (function () { var f = 'mp4'; try { var p = JSON.parse(localStorage.getItem('ssvid_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat } catch (e) { } document.documentElement.dataset.format = f; document.write('<style>html[data-format="mp3"] .quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4{display:block!important}</style>') })()
     </script>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://ssvid.cc/id/#webpage",
+      "url": "https://ssvid.cc/id/",
+      "name": "Unduh Video YouTube",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/#website"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "@id": "https://ssvid.cc/id/#application"
+      },
+      "inLanguage": "id"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://ssvid.cc/id/#application",
+      "name": "Unduh Video YouTube",
+      "url": "https://ssvid.cc/id/",
+      "description": "Unduh video YouTube online dengan SSVID. Gratis, cepat, dan tanpa batas.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "id",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://ssvid.cc/id/#faq",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/id/#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Apakah SSVID gratis untuk digunakan?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ya. SSVID sepenuhnya gratis untuk digunakan tanpa biaya tersembunyi, langganan, atau batas unduhan."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Bisakah saya mengunduh video YouTube online tanpa menginstal perangkat lunak?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ya. SSVID berfungsi sepenuhnya online di browser Anda, jadi tidak perlu menginstal aplikasi atau perangkat lunak apa pun."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Bisakah saya mengunduh video YouTube sebagai MP4 atau MP3?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ya. SSVID memungkinkan Anda mengunduh video YouTube sebagai MP4 atau mengekstrak audio sebagai MP3, tergantung pada kebutuhan Anda."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Apakah SSVID mendukung pengunduhan Video Pendek YouTube?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ya. Anda dapat mengunduh video YouTube Shorts dengan mudah sambil menjaga format vertikal yang benar dan kualitas asli."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Apakah SSVID aman untuk digunakan?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ya. SSVID aman untuk digunakan dan tidak memerlukan pendaftaran akun atau informasi pribadi."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Apakah SSVID berfungsi di perangkat seluler?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ya. SSVID berfungsi dengan lancar di perangkat desktop dan seluler, termasuk browser Android dan iOS."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://ssvid.cc/id/#howto",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/id/#webpage"
+      },
+      "name": "Cara Mengunduh",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Salin Tautan",
+          "text": "Buka YouTube dan salin URL video yang ingin Anda simpan."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Tempel & Pilih",
+          "text": "Tempel tautan ke bilah pencarian SSVID dan pilih format pilihan Anda (MP4/MP3)."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Unduh",
+          "text": "Klik tombol konversi dan tunggu beberapa detik hingga file Anda siap."
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body>
@@ -79,7 +203,7 @@
             </a>
             <nav class="header-nav" aria-label="Primary">
                 <a href="/id/" class="header-link">Beranda</a>
-                <a href="/id/about.html" class="header-link">Tentang</a>
+                <a href="/id/about" class="header-link">Tentang</a>
                 <div class="lang-selector">
                     <button class="lang-button" type="button" aria-label="Bahasa">
                         <span>ID</span>
@@ -217,16 +341,16 @@
         <div class="drawer-scroll">
             <nav class="drawer-nav" aria-label="Mobile">
                 <a href="/id/" class="drawer-link">Beranda</a>
-                <a href="/id/youtube-to-mp3.html" class="drawer-link">YouTube ke MP3</a>
-                <a href="/id/youtube-to-mp4.html" class="drawer-link">YouTube ke MP4</a>
-                <a href="/id/youtube-shorts-downloader.html" class="drawer-link">YouTube Shorts</a>
+                <a href="/id/youtube-to-mp3" class="drawer-link">YouTube ke MP3</a>
+                <a href="/id/youtube-to-mp4" class="drawer-link">YouTube ke MP4</a>
+                <a href="/id/youtube-shorts-downloader" class="drawer-link">YouTube Shorts</a>
                 <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
-                <a href="/id/about.html" class="drawer-link">Tentang</a>
-                <a href="/id/faq.html" class="drawer-link">FAQ</a>
-                <a href="/id/contact.html" class="drawer-link">Kontak</a>
-                <a href="/id/terms.html" class="drawer-link">Ketentuan</a>
-                <a href="/id/policy.html" class="drawer-link">Privasi</a>
-                <a href="/id/dmca.html" class="drawer-link">DMCA</a>
+                <a href="/id/about" class="drawer-link">Tentang</a>
+                <a href="/id/faq" class="drawer-link">FAQ</a>
+                <a href="/id/contact" class="drawer-link">Kontak</a>
+                <a href="/id/terms" class="drawer-link">Ketentuan</a>
+                <a href="/id/policy" class="drawer-link">Privasi</a>
+                <a href="/id/dmca" class="drawer-link">DMCA</a>
             </nav>
             <div class="drawer-lang-selector">
                 <button class="drawer-lang-button" type="button" aria-label="Choose language">
@@ -481,17 +605,17 @@
         
         <div class="subsection">
             <h3>Video YouTube (MP4)</h3>
-            <p>Dengan SSVID, Anda dapat <strong><a href="/id/youtube-to-mp4.html">mengunduh video YouTube sebagai MP4</a></strong> untuk ditonton secara offline di perangkat apa pun. Ini sangat ideal untuk menyimpan tutorial, video musik, vlog, dan konten YouTube berdurasi panjang dalam format video yang didukung secara luas.</p>
+            <p>Dengan SSVID, Anda dapat <strong><a href="/id/youtube-to-mp4">mengunduh video YouTube sebagai MP4</a></strong> untuk ditonton secara offline di perangkat apa pun. Ini sangat ideal untuk menyimpan tutorial, video musik, vlog, dan konten YouTube berdurasi panjang dalam format video yang didukung secara luas.</p>
         </div>
         
         <div class="subsection">
             <h3>Audio YouTube (MP3)</h3>
-            <p>SSVID memungkinkan Anda untuk <strong><a href="/id/youtube-to-mp3.html">mengunduh audio YouTube sebagai MP3</a></strong> dengan mengekstrak suara langsung dari video. Opsi ini sangat cocok untuk musik, podcast, wawancara, dan konten audio lainnya yang ingin Anda dengarkan kapan saja.</p>
+            <p>SSVID memungkinkan Anda untuk <strong><a href="/id/youtube-to-mp3">mengunduh audio YouTube sebagai MP3</a></strong> dengan mengekstrak suara langsung dari video. Opsi ini sangat cocok untuk musik, podcast, wawancara, dan konten audio lainnya yang ingin Anda dengarkan kapan saja.</p>
         </div>
         
         <div class="subsection">
             <h3>Video Pendek YouTube</h3>
-            <p>Anda juga dapat <strong><a href="/id/youtube-shorts-downloader.html">mengunduh video YouTube Shorts</a></strong> dalam format vertikal yang benar dengan tetap menjaga kualitas aslinya. SSVID memudahkan untuk menyimpan video YouTube berdurasi pendek untuk ditonton atau dibagikan secara offline.</p>
+            <p>Anda juga dapat <strong><a href="/id/youtube-shorts-downloader">mengunduh video YouTube Shorts</a></strong> dalam format vertikal yang benar dengan tetap menjaga kualitas aslinya. SSVID memudahkan untuk menyimpan video YouTube berdurasi pendek untuk ditonton atau dibagikan secara offline.</p>
         </div>
         
     </div>
@@ -550,17 +674,17 @@
     <footer>
     <div class="container">
         <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
-            <a href="/id/youtube-to-mp3.html" style="color: inherit; text-decoration: none;">YouTube ke MP3</a>
-            <a href="/id/youtube-to-mp4.html" style="color: inherit; text-decoration: none;">YouTube ke MP4</a>
-            <a href="/id/youtube-shorts-downloader.html" style="color: inherit; text-decoration: none;">YouTube Shorts</a>
+            <a href="/id/youtube-to-mp3" style="color: inherit; text-decoration: none;">YouTube ke MP3</a>
+            <a href="/id/youtube-to-mp4" style="color: inherit; text-decoration: none;">YouTube ke MP4</a>
+            <a href="/id/youtube-shorts-downloader" style="color: inherit; text-decoration: none;">YouTube Shorts</a>
         </div>
         <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
-            <a href="/id/about.html" style="color: inherit; text-decoration: none;">Tentang</a>
-            <a href="/id/contact.html" style="color: inherit; text-decoration: none;">Kontak</a>
-            <a href="/id/terms.html" style="color: inherit; text-decoration: none;">Ketentuan</a>
-            <a href="/id/policy.html" style="color: inherit; text-decoration: none;">Kebijakan Privasi</a>
-            <a href="/id/dmca.html" style="color: inherit; text-decoration: none;">DMCA</a>
-            <a href="/id/faq.html" style="color: inherit; text-decoration: none;">FAQ</a>
+            <a href="/id/about" style="color: inherit; text-decoration: none;">Tentang</a>
+            <a href="/id/contact" style="color: inherit; text-decoration: none;">Kontak</a>
+            <a href="/id/terms" style="color: inherit; text-decoration: none;">Ketentuan</a>
+            <a href="/id/policy" style="color: inherit; text-decoration: none;">Kebijakan Privasi</a>
+            <a href="/id/dmca" style="color: inherit; text-decoration: none;">DMCA</a>
+            <a href="/id/faq" style="color: inherit; text-decoration: none;">FAQ</a>
         </div>
         <div class="copyright">© 2026 SSVid. Hak cipta dilindungi undang-undang.</div>
     </div>
@@ -569,130 +693,6 @@
 
     <!-- Main TypeScript Entry -->
     <script type="module" src="/src/main.ts"></script>
-
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebPage",
-      "@id": "https://ssvid.cc/id/#webpage",
-      "url": "https://ssvid.cc/id/",
-      "name": "Unduh Video YouTube",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/#website"
-      },
-      "about": {
-        "@type": "SoftwareApplication",
-        "@id": "https://ssvid.cc/id/#application"
-      },
-      "inLanguage": "id"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "@id": "https://ssvid.cc/id/#application",
-      "name": "Unduh Video YouTube",
-      "url": "https://ssvid.cc/id/",
-      "description": "Unduh video YouTube online dengan SSVID. Gratis, cepat, dan tanpa batas.",
-      "applicationCategory": "MultimediaApplication",
-      "operatingSystem": "All",
-      "browserRequirements": "Requires JavaScript. Requires HTML5.",
-      "inLanguage": "id",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://ssvid.cc/id/#faq",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/id/#webpage"
-      },
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Apakah SSVID gratis untuk digunakan?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Ya. SSVID sepenuhnya gratis untuk digunakan tanpa biaya tersembunyi, langganan, atau batas unduhan."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Bisakah saya mengunduh video YouTube online tanpa menginstal perangkat lunak?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Ya. SSVID berfungsi sepenuhnya online di browser Anda, jadi tidak perlu menginstal aplikasi atau perangkat lunak apa pun."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Bisakah saya mengunduh video YouTube sebagai MP4 atau MP3?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Ya. SSVID memungkinkan Anda mengunduh video YouTube sebagai MP4 atau mengekstrak audio sebagai MP3, tergantung pada kebutuhan Anda."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Apakah SSVID mendukung pengunduhan Video Pendek YouTube?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Ya. Anda dapat mengunduh video YouTube Shorts dengan mudah sambil menjaga format vertikal yang benar dan kualitas asli."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Apakah SSVID aman untuk digunakan?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Ya. SSVID aman untuk digunakan dan tidak memerlukan pendaftaran akun atau informasi pribadi."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Apakah SSVID berfungsi di perangkat seluler?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Ya. SSVID berfungsi dengan lancar di perangkat desktop dan seluler, termasuk browser Android dan iOS."
-          }
-        }
-      ]
-    },
-    {
-      "@type": "HowTo",
-      "@id": "https://ssvid.cc/id/#howto",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/id/#webpage"
-      },
-      "name": "Cara Mengunduh",
-      "step": [
-        {
-          "@type": "HowToStep",
-          "position": 1,
-          "name": "Salin Tautan",
-          "text": "Buka YouTube dan salin URL video yang ingin Anda simpan."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 2,
-          "name": "Tempel & Pilih",
-          "text": "Tempel tautan ke bilah pencarian SSVID dan pilih format pilihan Anda (MP4/MP3)."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 3,
-          "name": "Unduh",
-          "text": "Klik tombol konversi dan tunggu beberapa detik hingga file Anda siap."
-        }
-      ]
-    }
-  ]
-}
-</script>
-
 </body>
 
 </html>

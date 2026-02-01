@@ -59,6 +59,133 @@
     <script>
         (function () { var f = 'mp4'; try { var p = JSON.parse(localStorage.getItem('ssvid_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat } catch (e) { } document.documentElement.dataset.format = f; document.write('<style>html[data-format="mp3"] .quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4{display:block!important}</style>') })()
     </script>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://ssvid.cc/ja/youtube-to-mp4#webpage",
+      "url": "https://ssvid.cc/ja/youtube-to-mp4",
+      "name": "SSVID - YouTube MP4ビデオをダウンロード",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/#website"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "@id": "https://ssvid.cc/ja/youtube-to-mp4#application"
+      },
+      "inLanguage": "ja"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://ssvid.cc/ja/youtube-to-mp4#application",
+      "name": "SSVID - YouTube MP4ビデオをダウンロード",
+      "url": "https://ssvid.cc/ja/youtube-to-mp4",
+      "description": "SSVIDでYouTubeビデオをMP4としてダウンロードします。無料で高速、無制限。",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "ja",
+      "publisher": {
+        "@id": "https://ssvid.cc/#organization"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://ssvid.cc/ja/youtube-to-mp4#faq",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/ja/youtube-to-mp4#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "YouTube MP4とMP3の違いは何ですか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "MP4にはビデオとオーディオの両方が含まれていますが、MP3はサウンドのみを抽出します。MP4はオフラインでの視聴やビジュアルコンテンツに適しています。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "YouTube MP4ビデオをオンラインでダウンロードできますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "はい。SSVIDは完全にオンラインで動作し、ブラウザで直接YouTube MP4ビデオをダウンロードできます。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "SSVIDはHDおよび4K MP4のダウンロードをサポートしていますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "はい。SSVIDは、元のYouTubeビデオがそれらの解像度で利用可能な場合、HDおよび4K MP4のダウンロードをサポートしています。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "長いYouTubeビデオをMP4としてダウンロードできますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "はい。SSVIDは、時間制限なしで長いYouTubeビデオのダウンロードをサポートしています。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "SSVIDは無料で使用できますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "はい。SSVIDは完全に無料で、登録は不要です。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "モバイルデバイスでSSVIDを使用できますか？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "はい。SSVIDは、AndroidやiOSを含むデスクトップおよびモバイルブラウザの両方で動作します。"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://ssvid.cc/ja/youtube-to-mp4#howto",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/ja/youtube-to-mp4#webpage"
+      },
+      "name": "SSVIDでYouTube MP4ビデオをダウンロードする方法",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "リンクをコピー",
+          "text": "YouTubeビデオのリンクをコピーします。"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "貼り付けて選択",
+          "text": "SSVIDにリンクを貼り付けます。"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "ダウンロード",
+          "text": "数秒でビデオをMP4としてダウンロードします。"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body>
@@ -79,7 +206,7 @@
             </a>
             <nav class="header-nav" aria-label="Primary">
                 <a href="/ja/" class="header-link">ホーム</a>
-                <a href="/ja/about.html" class="header-link">概要</a>
+                <a href="/ja/about" class="header-link">概要</a>
                 <div class="lang-selector">
                     <button class="lang-button" type="button" aria-label="言語">
                         <span>JA</span>
@@ -217,16 +344,16 @@
         <div class="drawer-scroll">
             <nav class="drawer-nav" aria-label="Mobile">
                 <a href="/ja/" class="drawer-link">ホーム</a>
-                <a href="/ja/youtube-to-mp3.html" class="drawer-link">YouTubeからMP3へ</a>
-                <a href="/ja/youtube-to-mp4.html" class="drawer-link">YouTubeからMP4へ</a>
-                <a href="/ja/youtube-shorts-downloader.html" class="drawer-link">YouTubeショート</a>
+                <a href="/ja/youtube-to-mp3" class="drawer-link">YouTubeからMP3へ</a>
+                <a href="/ja/youtube-to-mp4" class="drawer-link">YouTubeからMP4へ</a>
+                <a href="/ja/youtube-shorts-downloader" class="drawer-link">YouTubeショート</a>
                 <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
-                <a href="/ja/about.html" class="drawer-link">概要</a>
-                <a href="/ja/faq.html" class="drawer-link">よくある質問</a>
-                <a href="/ja/contact.html" class="drawer-link">お問い合わせ</a>
-                <a href="/ja/terms.html" class="drawer-link">利用規約</a>
-                <a href="/ja/policy.html" class="drawer-link">プライバシー</a>
-                <a href="/ja/dmca.html" class="drawer-link">DMCA</a>
+                <a href="/ja/about" class="drawer-link">概要</a>
+                <a href="/ja/faq" class="drawer-link">よくある質問</a>
+                <a href="/ja/contact" class="drawer-link">お問い合わせ</a>
+                <a href="/ja/terms" class="drawer-link">利用規約</a>
+                <a href="/ja/policy" class="drawer-link">プライバシー</a>
+                <a href="/ja/dmca" class="drawer-link">DMCA</a>
             </nav>
             <div class="drawer-lang-selector">
                 <button class="drawer-lang-button" type="button" aria-label="Choose language">
@@ -551,17 +678,17 @@
     <footer>
     <div class="container">
         <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
-            <a href="/ja/youtube-to-mp3.html" style="color: inherit; text-decoration: none;">YouTubeからMP3へ</a>
-            <a href="/ja/youtube-to-mp4.html" style="color: inherit; text-decoration: none;">YouTubeからMP4へ</a>
-            <a href="/ja/youtube-shorts-downloader.html" style="color: inherit; text-decoration: none;">YouTubeショート</a>
+            <a href="/ja/youtube-to-mp3" style="color: inherit; text-decoration: none;">YouTubeからMP3へ</a>
+            <a href="/ja/youtube-to-mp4" style="color: inherit; text-decoration: none;">YouTubeからMP4へ</a>
+            <a href="/ja/youtube-shorts-downloader" style="color: inherit; text-decoration: none;">YouTubeショート</a>
         </div>
         <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
-            <a href="/ja/about.html" style="color: inherit; text-decoration: none;">概要</a>
-            <a href="/ja/contact.html" style="color: inherit; text-decoration: none;">お問い合わせ</a>
-            <a href="/ja/terms.html" style="color: inherit; text-decoration: none;">利用規約</a>
-            <a href="/ja/policy.html" style="color: inherit; text-decoration: none;">プライバシーポリシー</a>
-            <a href="/ja/dmca.html" style="color: inherit; text-decoration: none;">DMCA</a>
-            <a href="/ja/faq.html" style="color: inherit; text-decoration: none;">よくある質問</a>
+            <a href="/ja/about" style="color: inherit; text-decoration: none;">概要</a>
+            <a href="/ja/contact" style="color: inherit; text-decoration: none;">お問い合わせ</a>
+            <a href="/ja/terms" style="color: inherit; text-decoration: none;">利用規約</a>
+            <a href="/ja/policy" style="color: inherit; text-decoration: none;">プライバシーポリシー</a>
+            <a href="/ja/dmca" style="color: inherit; text-decoration: none;">DMCA</a>
+            <a href="/ja/faq" style="color: inherit; text-decoration: none;">よくある質問</a>
         </div>
         <div class="copyright">© 2026 SSVid. 無断複写・転載を禁じます。</div>
     </div>
@@ -570,133 +697,6 @@
 
     <!-- Main TypeScript Entry -->
     <script type="module" src="/src/main.ts"></script>
-
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebPage",
-      "@id": "https://ssvid.cc/ja/youtube-to-mp4#webpage",
-      "url": "https://ssvid.cc/ja/youtube-to-mp4",
-      "name": "SSVID - YouTube MP4ビデオをダウンロード",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/#website"
-      },
-      "about": {
-        "@type": "SoftwareApplication",
-        "@id": "https://ssvid.cc/ja/youtube-to-mp4#application"
-      },
-      "inLanguage": "ja"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "@id": "https://ssvid.cc/ja/youtube-to-mp4#application",
-      "name": "SSVID - YouTube MP4ビデオをダウンロード",
-      "url": "https://ssvid.cc/ja/youtube-to-mp4",
-      "description": "SSVIDでYouTubeビデオをMP4としてダウンロードします。無料で高速、無制限。",
-      "applicationCategory": "MultimediaApplication",
-      "operatingSystem": "All",
-      "browserRequirements": "Requires JavaScript. Requires HTML5.",
-      "inLanguage": "ja",
-      "publisher": {
-        "@id": "https://ssvid.cc/#organization"
-      },
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://ssvid.cc/ja/youtube-to-mp4#faq",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/ja/youtube-to-mp4#webpage"
-      },
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "YouTube MP4とMP3の違いは何ですか？",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "MP4にはビデオとオーディオの両方が含まれていますが、MP3はサウンドのみを抽出します。MP4はオフラインでの視聴やビジュアルコンテンツに適しています。"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "YouTube MP4ビデオをオンラインでダウンロードできますか？",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "はい。SSVIDは完全にオンラインで動作し、ブラウザで直接YouTube MP4ビデオをダウンロードできます。"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "SSVIDはHDおよび4K MP4のダウンロードをサポートしていますか？",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "はい。SSVIDは、元のYouTubeビデオがそれらの解像度で利用可能な場合、HDおよび4K MP4のダウンロードをサポートしています。"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "長いYouTubeビデオをMP4としてダウンロードできますか？",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "はい。SSVIDは、時間制限なしで長いYouTubeビデオのダウンロードをサポートしています。"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "SSVIDは無料で使用できますか？",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "はい。SSVIDは完全に無料で、登録は不要です。"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "モバイルデバイスでSSVIDを使用できますか？",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "はい。SSVIDは、AndroidやiOSを含むデスクトップおよびモバイルブラウザの両方で動作します。"
-          }
-        }
-      ]
-    },
-    {
-      "@type": "HowTo",
-      "@id": "https://ssvid.cc/ja/youtube-to-mp4#howto",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/ja/youtube-to-mp4#webpage"
-      },
-      "name": "SSVIDでYouTube MP4ビデオをダウンロードする方法",
-      "step": [
-        {
-          "@type": "HowToStep",
-          "position": 1,
-          "name": "リンクをコピー",
-          "text": "YouTubeビデオのリンクをコピーします。"
-        },
-        {
-          "@type": "HowToStep",
-          "position": 2,
-          "name": "貼り付けて選択",
-          "text": "SSVIDにリンクを貼り付けます。"
-        },
-        {
-          "@type": "HowToStep",
-          "position": 3,
-          "name": "ダウンロード",
-          "text": "数秒でビデオをMP4としてダウンロードします。"
-        }
-      ]
-    }
-  ]
-}
-</script>
-
 </body>
 
 </html>

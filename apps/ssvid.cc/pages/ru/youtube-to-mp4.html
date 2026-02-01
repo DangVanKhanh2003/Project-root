@@ -59,6 +59,133 @@
     <script>
         (function () { var f = 'mp4'; try { var p = JSON.parse(localStorage.getItem('ssvid_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat } catch (e) { } document.documentElement.dataset.format = f; document.write('<style>html[data-format="mp3"] .quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4{display:block!important}</style>') })()
     </script>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://ssvid.cc/ru/youtube-to-mp4#webpage",
+      "url": "https://ssvid.cc/ru/youtube-to-mp4",
+      "name": "SSVID - Скачать видео YouTube MP4",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/#website"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "@id": "https://ssvid.cc/ru/youtube-to-mp4#application"
+      },
+      "inLanguage": "ru"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://ssvid.cc/ru/youtube-to-mp4#application",
+      "name": "SSVID - Скачать видео YouTube MP4",
+      "url": "https://ssvid.cc/ru/youtube-to-mp4",
+      "description": "Скачивайте видео YouTube в формате MP4 с помощью SSVID. Бесплатно, быстро и неограниченно.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "ru",
+      "publisher": {
+        "@id": "https://ssvid.cc/#organization"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://ssvid.cc/ru/youtube-to-mp4#faq",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/ru/youtube-to-mp4#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "В чем разница между YouTube MP4 и MP3?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "MP4 включает как видео, так и аудио, в то время как MP3 извлекает только звук. MP4 лучше подходит для автономного просмотра и визуального контента."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Могу ли я скачать видео YouTube MP4 онлайн?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да. SSVID работает полностью онлайн, позволяя загружать видео YouTube MP4 прямо в браузере."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Поддерживает ли SSVID загрузку MP4 в HD и 4K?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да. SSVID поддерживает загрузку MP4 в HD и 4K, если исходное видео YouTube доступно в этих разрешениях."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Могу ли я скачать длинные видео YouTube в формате MP4?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да. SSVID поддерживает загрузку длинных видео YouTube без ограничений по времени."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Бесплатно ли использовать SSVID?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да. SSVID полностью бесплатен и не требует регистрации."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Могу ли я использовать SSVID на мобильных устройствах?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Да. SSVID работает как в настольных, так и в мобильных браузерах, включая Android и iOS."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://ssvid.cc/ru/youtube-to-mp4#howto",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/ru/youtube-to-mp4#webpage"
+      },
+      "name": "Как скачать видео YouTube MP4 с помощью SSVID",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Скопируйте ссылку",
+          "text": "Скопируйте ссылку на видео YouTube."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Вставьте и выберите",
+          "text": "Вставьте ссылку в SSVID."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Скачать",
+          "text": "Скачайте видео в формате MP4 за считанные секунды."
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body>
@@ -79,7 +206,7 @@
             </a>
             <nav class="header-nav" aria-label="Primary">
                 <a href="/ru/" class="header-link">Главная</a>
-                <a href="/ru/about.html" class="header-link">О нас</a>
+                <a href="/ru/about" class="header-link">О нас</a>
                 <div class="lang-selector">
                     <button class="lang-button" type="button" aria-label="Язык">
                         <span>RU</span>
@@ -217,16 +344,16 @@
         <div class="drawer-scroll">
             <nav class="drawer-nav" aria-label="Mobile">
                 <a href="/ru/" class="drawer-link">Главная</a>
-                <a href="/ru/youtube-to-mp3.html" class="drawer-link">YouTube в MP3</a>
-                <a href="/ru/youtube-to-mp4.html" class="drawer-link">YouTube в MP4</a>
-                <a href="/ru/youtube-shorts-downloader.html" class="drawer-link">YouTube Shorts</a>
+                <a href="/ru/youtube-to-mp3" class="drawer-link">YouTube в MP3</a>
+                <a href="/ru/youtube-to-mp4" class="drawer-link">YouTube в MP4</a>
+                <a href="/ru/youtube-shorts-downloader" class="drawer-link">YouTube Shorts</a>
                 <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
-                <a href="/ru/about.html" class="drawer-link">О нас</a>
-                <a href="/ru/faq.html" class="drawer-link">Часто задаваемые вопросы</a>
-                <a href="/ru/contact.html" class="drawer-link">Контакты</a>
-                <a href="/ru/terms.html" class="drawer-link">Условия</a>
-                <a href="/ru/policy.html" class="drawer-link">Конфиденциальность</a>
-                <a href="/ru/dmca.html" class="drawer-link">DMCA</a>
+                <a href="/ru/about" class="drawer-link">О нас</a>
+                <a href="/ru/faq" class="drawer-link">Часто задаваемые вопросы</a>
+                <a href="/ru/contact" class="drawer-link">Контакты</a>
+                <a href="/ru/terms" class="drawer-link">Условия</a>
+                <a href="/ru/policy" class="drawer-link">Конфиденциальность</a>
+                <a href="/ru/dmca" class="drawer-link">DMCA</a>
             </nav>
             <div class="drawer-lang-selector">
                 <button class="drawer-lang-button" type="button" aria-label="Choose language">
@@ -551,17 +678,17 @@
     <footer>
     <div class="container">
         <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
-            <a href="/ru/youtube-to-mp3.html" style="color: inherit; text-decoration: none;">YouTube в MP3</a>
-            <a href="/ru/youtube-to-mp4.html" style="color: inherit; text-decoration: none;">YouTube в MP4</a>
-            <a href="/ru/youtube-shorts-downloader.html" style="color: inherit; text-decoration: none;">YouTube Shorts</a>
+            <a href="/ru/youtube-to-mp3" style="color: inherit; text-decoration: none;">YouTube в MP3</a>
+            <a href="/ru/youtube-to-mp4" style="color: inherit; text-decoration: none;">YouTube в MP4</a>
+            <a href="/ru/youtube-shorts-downloader" style="color: inherit; text-decoration: none;">YouTube Shorts</a>
         </div>
         <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
-            <a href="/ru/about.html" style="color: inherit; text-decoration: none;">О нас</a>
-            <a href="/ru/contact.html" style="color: inherit; text-decoration: none;">Контакты</a>
-            <a href="/ru/terms.html" style="color: inherit; text-decoration: none;">Условия</a>
-            <a href="/ru/policy.html" style="color: inherit; text-decoration: none;">Политика конфиденциальности</a>
-            <a href="/ru/dmca.html" style="color: inherit; text-decoration: none;">DMCA</a>
-            <a href="/ru/faq.html" style="color: inherit; text-decoration: none;">Часто задаваемые вопросы</a>
+            <a href="/ru/about" style="color: inherit; text-decoration: none;">О нас</a>
+            <a href="/ru/contact" style="color: inherit; text-decoration: none;">Контакты</a>
+            <a href="/ru/terms" style="color: inherit; text-decoration: none;">Условия</a>
+            <a href="/ru/policy" style="color: inherit; text-decoration: none;">Политика конфиденциальности</a>
+            <a href="/ru/dmca" style="color: inherit; text-decoration: none;">DMCA</a>
+            <a href="/ru/faq" style="color: inherit; text-decoration: none;">Часто задаваемые вопросы</a>
         </div>
         <div class="copyright">© 2026 SSVid. Все права защищены.</div>
     </div>
@@ -570,133 +697,6 @@
 
     <!-- Main TypeScript Entry -->
     <script type="module" src="/src/main.ts"></script>
-
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebPage",
-      "@id": "https://ssvid.cc/ru/youtube-to-mp4#webpage",
-      "url": "https://ssvid.cc/ru/youtube-to-mp4",
-      "name": "SSVID - Скачать видео YouTube MP4",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/#website"
-      },
-      "about": {
-        "@type": "SoftwareApplication",
-        "@id": "https://ssvid.cc/ru/youtube-to-mp4#application"
-      },
-      "inLanguage": "ru"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "@id": "https://ssvid.cc/ru/youtube-to-mp4#application",
-      "name": "SSVID - Скачать видео YouTube MP4",
-      "url": "https://ssvid.cc/ru/youtube-to-mp4",
-      "description": "Скачивайте видео YouTube в формате MP4 с помощью SSVID. Бесплатно, быстро и неограниченно.",
-      "applicationCategory": "MultimediaApplication",
-      "operatingSystem": "All",
-      "browserRequirements": "Requires JavaScript. Requires HTML5.",
-      "inLanguage": "ru",
-      "publisher": {
-        "@id": "https://ssvid.cc/#organization"
-      },
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://ssvid.cc/ru/youtube-to-mp4#faq",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/ru/youtube-to-mp4#webpage"
-      },
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "В чем разница между YouTube MP4 и MP3?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "MP4 включает как видео, так и аудио, в то время как MP3 извлекает только звук. MP4 лучше подходит для автономного просмотра и визуального контента."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Могу ли я скачать видео YouTube MP4 онлайн?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Да. SSVID работает полностью онлайн, позволяя загружать видео YouTube MP4 прямо в браузере."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Поддерживает ли SSVID загрузку MP4 в HD и 4K?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Да. SSVID поддерживает загрузку MP4 в HD и 4K, если исходное видео YouTube доступно в этих разрешениях."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Могу ли я скачать длинные видео YouTube в формате MP4?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Да. SSVID поддерживает загрузку длинных видео YouTube без ограничений по времени."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Бесплатно ли использовать SSVID?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Да. SSVID полностью бесплатен и не требует регистрации."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Могу ли я использовать SSVID на мобильных устройствах?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Да. SSVID работает как в настольных, так и в мобильных браузерах, включая Android и iOS."
-          }
-        }
-      ]
-    },
-    {
-      "@type": "HowTo",
-      "@id": "https://ssvid.cc/ru/youtube-to-mp4#howto",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/ru/youtube-to-mp4#webpage"
-      },
-      "name": "Как скачать видео YouTube MP4 с помощью SSVID",
-      "step": [
-        {
-          "@type": "HowToStep",
-          "position": 1,
-          "name": "Скопируйте ссылку",
-          "text": "Скопируйте ссылку на видео YouTube."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 2,
-          "name": "Вставьте и выберите",
-          "text": "Вставьте ссылку в SSVID."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 3,
-          "name": "Скачать",
-          "text": "Скачайте видео в формате MP4 за считанные секунды."
-        }
-      ]
-    }
-  ]
-}
-</script>
-
 </body>
 
 </html>

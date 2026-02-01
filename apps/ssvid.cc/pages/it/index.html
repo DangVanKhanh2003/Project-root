@@ -59,6 +59,130 @@
     <script>
         (function () { var f = 'mp4'; try { var p = JSON.parse(localStorage.getItem('ssvid_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat } catch (e) { } document.documentElement.dataset.format = f; document.write('<style>html[data-format="mp3"] .quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4{display:block!important}</style>') })()
     </script>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://ssvid.cc/it/#webpage",
+      "url": "https://ssvid.cc/it/",
+      "name": "Scarica video di YouTube",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/#website"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "@id": "https://ssvid.cc/it/#application"
+      },
+      "inLanguage": "it"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://ssvid.cc/it/#application",
+      "name": "Scarica video di YouTube",
+      "url": "https://ssvid.cc/it/",
+      "description": "Scarica video di YouTube online con SSVID. Gratuito, veloce e illimitato.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "it",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://ssvid.cc/it/#faq",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/it/#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "L'uso di SSVID è gratuito?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sì. L'uso di SSVID è completamente gratuito, senza costi nascosti, abbonamenti o limiti di download."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Posso scaricare video di YouTube online senza installare software?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sì. SSVID funziona completamente online nel tuo browser, quindi non è necessario installare alcuna app o software."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Posso scaricare video di YouTube come MP4 o MP3?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sì. SSVID ti consente di scaricare video di YouTube come MP4 o estrarre l'audio come MP3, a seconda delle tue esigenze."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "SSVID supporta il download di cortometraggi di YouTube?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sì. Puoi scaricare facilmente video di YouTube Shorts mantenendo il formato verticale corretto e la qualità originale."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "L'uso di SSVID è sicuro?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sì. L'uso di SSVID è sicuro e non richiede la registrazione di un account o informazioni personali."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "SSVID funziona su dispositivi mobili?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sì. SSVID funziona senza problemi sia su dispositivi desktop che mobili, inclusi i browser Android e iOS."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://ssvid.cc/it/#howto",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/it/#webpage"
+      },
+      "name": "Come scaricare",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Copia il link",
+          "text": "Vai su YouTube e copia l'URL del video che desideri salvare."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Incolla e seleziona",
+          "text": "Incolla il link nella barra di ricerca di SSVID e scegli il tuo formato preferito (MP4/MP3)."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Scarica",
+          "text": "Fai clic sul pulsante di conversione e attendi qualche secondo che il tuo file sia pronto."
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body>
@@ -79,7 +203,7 @@
             </a>
             <nav class="header-nav" aria-label="Primary">
                 <a href="/it/" class="header-link">Home</a>
-                <a href="/it/about.html" class="header-link">Chi siamo</a>
+                <a href="/it/about" class="header-link">Chi siamo</a>
                 <div class="lang-selector">
                     <button class="lang-button" type="button" aria-label="Lingua">
                         <span>IT</span>
@@ -217,16 +341,16 @@
         <div class="drawer-scroll">
             <nav class="drawer-nav" aria-label="Mobile">
                 <a href="/it/" class="drawer-link">Home</a>
-                <a href="/it/youtube-to-mp3.html" class="drawer-link">Da YouTube a MP3</a>
-                <a href="/it/youtube-to-mp4.html" class="drawer-link">Da YouTube a MP4</a>
-                <a href="/it/youtube-shorts-downloader.html" class="drawer-link">YouTube Shorts</a>
+                <a href="/it/youtube-to-mp3" class="drawer-link">Da YouTube a MP3</a>
+                <a href="/it/youtube-to-mp4" class="drawer-link">Da YouTube a MP4</a>
+                <a href="/it/youtube-shorts-downloader" class="drawer-link">YouTube Shorts</a>
                 <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
-                <a href="/it/about.html" class="drawer-link">Chi siamo</a>
-                <a href="/it/faq.html" class="drawer-link">FAQ</a>
-                <a href="/it/contact.html" class="drawer-link">Contatti</a>
-                <a href="/it/terms.html" class="drawer-link">Termini</a>
-                <a href="/it/policy.html" class="drawer-link">Privacy</a>
-                <a href="/it/dmca.html" class="drawer-link">DMCA</a>
+                <a href="/it/about" class="drawer-link">Chi siamo</a>
+                <a href="/it/faq" class="drawer-link">FAQ</a>
+                <a href="/it/contact" class="drawer-link">Contatti</a>
+                <a href="/it/terms" class="drawer-link">Termini</a>
+                <a href="/it/policy" class="drawer-link">Privacy</a>
+                <a href="/it/dmca" class="drawer-link">DMCA</a>
             </nav>
             <div class="drawer-lang-selector">
                 <button class="drawer-lang-button" type="button" aria-label="Choose language">
@@ -481,17 +605,17 @@
         
         <div class="subsection">
             <h3>Video di YouTube (MP4)</h3>
-            <p>Con SSVID, puoi <strong><a href="/it/youtube-to-mp4.html">scaricare video di YouTube come MP4</a></strong> per la visualizzazione offline su qualsiasi dispositivo. Questo è l'ideale per salvare tutorial, video musicali, vlog e contenuti di YouTube di lunga durata in un formato video ampiamente supportato.</p>
+            <p>Con SSVID, puoi <strong><a href="/it/youtube-to-mp4">scaricare video di YouTube come MP4</a></strong> per la visualizzazione offline su qualsiasi dispositivo. Questo è l'ideale per salvare tutorial, video musicali, vlog e contenuti di YouTube di lunga durata in un formato video ampiamente supportato.</p>
         </div>
         
         <div class="subsection">
             <h3>Audio di YouTube (MP3)</h3>
-            <p>SSVID ti consente di <strong><a href="/it/youtube-to-mp3.html">scaricare l'audio di YouTube come MP3</a></strong> estraendo il suono direttamente dai video. Questa opzione è perfetta per musica, podcast, interviste e altri contenuti audio che desideri ascoltare in qualsiasi momento.</p>
+            <p>SSVID ti consente di <strong><a href="/it/youtube-to-mp3">scaricare l'audio di YouTube come MP3</a></strong> estraendo il suono direttamente dai video. Questa opzione è perfetta per musica, podcast, interviste e altri contenuti audio che desideri ascoltare in qualsiasi momento.</p>
         </div>
         
         <div class="subsection">
             <h3>Cortometraggi di YouTube</h3>
-            <p>Puoi anche <strong><a href="/it/youtube-shorts-downloader.html">scaricare video di YouTube Shorts</a></strong> nel formato verticale corretto mantenendo la qualità originale. SSVID semplifica il salvataggio di video di YouTube di breve durata per la visualizzazione o la condivisione offline.</p>
+            <p>Puoi anche <strong><a href="/it/youtube-shorts-downloader">scaricare video di YouTube Shorts</a></strong> nel formato verticale corretto mantenendo la qualità originale. SSVID semplifica il salvataggio di video di YouTube di breve durata per la visualizzazione o la condivisione offline.</p>
         </div>
         
     </div>
@@ -550,17 +674,17 @@
     <footer>
     <div class="container">
         <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
-            <a href="/it/youtube-to-mp3.html" style="color: inherit; text-decoration: none;">Da YouTube a MP3</a>
-            <a href="/it/youtube-to-mp4.html" style="color: inherit; text-decoration: none;">Da YouTube a MP4</a>
-            <a href="/it/youtube-shorts-downloader.html" style="color: inherit; text-decoration: none;">YouTube Shorts</a>
+            <a href="/it/youtube-to-mp3" style="color: inherit; text-decoration: none;">Da YouTube a MP3</a>
+            <a href="/it/youtube-to-mp4" style="color: inherit; text-decoration: none;">Da YouTube a MP4</a>
+            <a href="/it/youtube-shorts-downloader" style="color: inherit; text-decoration: none;">YouTube Shorts</a>
         </div>
         <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
-            <a href="/it/about.html" style="color: inherit; text-decoration: none;">Chi siamo</a>
-            <a href="/it/contact.html" style="color: inherit; text-decoration: none;">Contatti</a>
-            <a href="/it/terms.html" style="color: inherit; text-decoration: none;">Termini</a>
-            <a href="/it/policy.html" style="color: inherit; text-decoration: none;">Informativa sulla privacy</a>
-            <a href="/it/dmca.html" style="color: inherit; text-decoration: none;">DMCA</a>
-            <a href="/it/faq.html" style="color: inherit; text-decoration: none;">FAQ</a>
+            <a href="/it/about" style="color: inherit; text-decoration: none;">Chi siamo</a>
+            <a href="/it/contact" style="color: inherit; text-decoration: none;">Contatti</a>
+            <a href="/it/terms" style="color: inherit; text-decoration: none;">Termini</a>
+            <a href="/it/policy" style="color: inherit; text-decoration: none;">Informativa sulla privacy</a>
+            <a href="/it/dmca" style="color: inherit; text-decoration: none;">DMCA</a>
+            <a href="/it/faq" style="color: inherit; text-decoration: none;">FAQ</a>
         </div>
         <div class="copyright">© 2026 SSVid. Tutti i diritti riservati.</div>
     </div>
@@ -569,130 +693,6 @@
 
     <!-- Main TypeScript Entry -->
     <script type="module" src="/src/main.ts"></script>
-
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebPage",
-      "@id": "https://ssvid.cc/it/#webpage",
-      "url": "https://ssvid.cc/it/",
-      "name": "Scarica video di YouTube",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/#website"
-      },
-      "about": {
-        "@type": "SoftwareApplication",
-        "@id": "https://ssvid.cc/it/#application"
-      },
-      "inLanguage": "it"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "@id": "https://ssvid.cc/it/#application",
-      "name": "Scarica video di YouTube",
-      "url": "https://ssvid.cc/it/",
-      "description": "Scarica video di YouTube online con SSVID. Gratuito, veloce e illimitato.",
-      "applicationCategory": "MultimediaApplication",
-      "operatingSystem": "All",
-      "browserRequirements": "Requires JavaScript. Requires HTML5.",
-      "inLanguage": "it",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://ssvid.cc/it/#faq",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/it/#webpage"
-      },
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "L'uso di SSVID è gratuito?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Sì. L'uso di SSVID è completamente gratuito, senza costi nascosti, abbonamenti o limiti di download."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Posso scaricare video di YouTube online senza installare software?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Sì. SSVID funziona completamente online nel tuo browser, quindi non è necessario installare alcuna app o software."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Posso scaricare video di YouTube come MP4 o MP3?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Sì. SSVID ti consente di scaricare video di YouTube come MP4 o estrarre l'audio come MP3, a seconda delle tue esigenze."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "SSVID supporta il download di cortometraggi di YouTube?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Sì. Puoi scaricare facilmente video di YouTube Shorts mantenendo il formato verticale corretto e la qualità originale."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "L'uso di SSVID è sicuro?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Sì. L'uso di SSVID è sicuro e non richiede la registrazione di un account o informazioni personali."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "SSVID funziona su dispositivi mobili?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Sì. SSVID funziona senza problemi sia su dispositivi desktop che mobili, inclusi i browser Android e iOS."
-          }
-        }
-      ]
-    },
-    {
-      "@type": "HowTo",
-      "@id": "https://ssvid.cc/it/#howto",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/it/#webpage"
-      },
-      "name": "Come scaricare",
-      "step": [
-        {
-          "@type": "HowToStep",
-          "position": 1,
-          "name": "Copia il link",
-          "text": "Vai su YouTube e copia l'URL del video che desideri salvare."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 2,
-          "name": "Incolla e seleziona",
-          "text": "Incolla il link nella barra di ricerca di SSVID e scegli il tuo formato preferito (MP4/MP3)."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 3,
-          "name": "Scarica",
-          "text": "Fai clic sul pulsante di conversione e attendi qualche secondo che il tuo file sia pronto."
-        }
-      ]
-    }
-  ]
-}
-</script>
-
 </body>
 
 </html>

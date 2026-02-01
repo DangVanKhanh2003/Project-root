@@ -59,6 +59,133 @@
     <script>
         (function () { var f = 'mp4'; try { var p = JSON.parse(localStorage.getItem('ssvid_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat } catch (e) { } document.documentElement.dataset.format = f; document.write('<style>html[data-format="mp3"] .quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4{display:block!important}</style>') })()
     </script>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://ssvid.cc/pt/youtube-shorts-downloader#webpage",
+      "url": "https://ssvid.cc/pt/youtube-shorts-downloader",
+      "name": "SSVID - Baixar YouTube Shorts",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/#website"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "@id": "https://ssvid.cc/pt/youtube-shorts-downloader#application"
+      },
+      "inLanguage": "pt"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://ssvid.cc/pt/youtube-shorts-downloader#application",
+      "name": "SSVID - Baixar YouTube Shorts",
+      "url": "https://ssvid.cc/pt/youtube-shorts-downloader",
+      "description": "Baixe YouTube Shorts com SSVID. Gratuito, rápido e ilimitado.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "pt",
+      "publisher": {
+        "@id": "https://ssvid.cc/#organization"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://ssvid.cc/pt/youtube-shorts-downloader#faq",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/pt/youtube-shorts-downloader#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Qual a diferença entre YouTube Shorts e vídeos normais do YouTube?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "YouTube Shorts são vídeos de formato curto projetados para visualização vertical (geralmente 9:16). Vídeos normais do YouTube são tipicamente mais longos e frequentemente em formatos horizontais."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Posso baixar YouTube Shorts online sem instalar software?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim. O SSVID funciona totalmente online em seu navegador — sem software, sem extensões e sem necessidade de registro."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "O SSVID mantém os Shorts no formato vertical original?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim. O SSVID se concentra em preservar o layout vertical 9:16 para que os Shorts sejam reproduzidos corretamente em dispositivos móveis."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Posso baixar Shorts no iPhone e Android?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim. O SSVID funciona em navegadores móveis e de desktop, então você pode baixar Shorts no iOS, Android, Windows ou macOS."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "O SSVID é gratuito e ilimitado para downloads de Shorts?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sim. O SSVID é gratuito para usar e permite downloads ilimitados de YouTube Shorts."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "O SSVID pode baixar Shorts privados ou restritos?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Não. Conteúdo privado ou restrito não pode ser processado por ferramentas de download online."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://ssvid.cc/pt/youtube-shorts-downloader#howto",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/pt/youtube-shorts-downloader#webpage"
+      },
+      "name": "Como baixar YouTube Shorts com SSVID",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Copiar o Link",
+          "text": "Copie o link do YouTube Shorts."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Colar e Selecionar",
+          "text": "Cole o link no SSVID."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Baixar",
+          "text": "Baixe o Short em segundos."
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body>
@@ -79,7 +206,7 @@
             </a>
             <nav class="header-nav" aria-label="Primary">
                 <a href="/pt/" class="header-link">Início</a>
-                <a href="/pt/about.html" class="header-link">Sobre</a>
+                <a href="/pt/about" class="header-link">Sobre</a>
                 <div class="lang-selector">
                     <button class="lang-button" type="button" aria-label="Idioma">
                         <span>PT</span>
@@ -217,16 +344,16 @@
         <div class="drawer-scroll">
             <nav class="drawer-nav" aria-label="Mobile">
                 <a href="/pt/" class="drawer-link">Início</a>
-                <a href="/pt/youtube-to-mp3.html" class="drawer-link">YouTube para MP3</a>
-                <a href="/pt/youtube-to-mp4.html" class="drawer-link">YouTube para MP4</a>
-                <a href="/pt/youtube-shorts-downloader.html" class="drawer-link">YouTube Shorts</a>
+                <a href="/pt/youtube-to-mp3" class="drawer-link">YouTube para MP3</a>
+                <a href="/pt/youtube-to-mp4" class="drawer-link">YouTube para MP4</a>
+                <a href="/pt/youtube-shorts-downloader" class="drawer-link">YouTube Shorts</a>
                 <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
-                <a href="/pt/about.html" class="drawer-link">Sobre</a>
-                <a href="/pt/faq.html" class="drawer-link">FAQ</a>
-                <a href="/pt/contact.html" class="drawer-link">Contato</a>
-                <a href="/pt/terms.html" class="drawer-link">Termos</a>
-                <a href="/pt/policy.html" class="drawer-link">Privacidade</a>
-                <a href="/pt/dmca.html" class="drawer-link">DMCA</a>
+                <a href="/pt/about" class="drawer-link">Sobre</a>
+                <a href="/pt/faq" class="drawer-link">FAQ</a>
+                <a href="/pt/contact" class="drawer-link">Contato</a>
+                <a href="/pt/terms" class="drawer-link">Termos</a>
+                <a href="/pt/policy" class="drawer-link">Privacidade</a>
+                <a href="/pt/dmca" class="drawer-link">DMCA</a>
             </nav>
             <div class="drawer-lang-selector">
                 <button class="drawer-lang-button" type="button" aria-label="Choose language">
@@ -503,7 +630,7 @@
         <p style="text-align: center;">Baixar Shorts permite que você assista seus clipes favoritos offline, salve inspiração para mais tarde e mantenha tutoriais ou trechos úteis sem depender de dados móveis. Como os Shorts são curtos e verticais, eles são ideais para visualização rápida em telefones.</p>
         <br><br>
         <h2 class="titles">Formato Vertical 9:16 (Sem Problemas de Rotação)</h2>
-        <p style="text-align: center;">Muitas ferramentas tratam os Shorts como vídeos normais, o que pode causar reprodução lateral ou enquadramento incorreto. O SSVID é construído para Shorts, ajudando você a manter o layout <strong>vertical 9:16</strong> para uma reprodução mais suave em dispositivos móveis. Se você quiser baixar vídeos padrão do YouTube, use <a href="/pt/youtube-to-mp4.html" title="Download YouTube MP4"><strong>Baixar YouTube MP4</strong></a>.</p>
+        <p style="text-align: center;">Muitas ferramentas tratam os Shorts como vídeos normais, o que pode causar reprodução lateral ou enquadramento incorreto. O SSVID é construído para Shorts, ajudando você a manter o layout <strong>vertical 9:16</strong> para uma reprodução mais suave em dispositivos móveis. Se você quiser baixar vídeos padrão do YouTube, use <a href="/pt/youtube-to-mp4" title="Download YouTube MP4"><strong>Baixar YouTube MP4</strong></a>.</p>
     </div>
 </section>
 
@@ -551,17 +678,17 @@
     <footer>
     <div class="container">
         <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
-            <a href="/pt/youtube-to-mp3.html" style="color: inherit; text-decoration: none;">YouTube para MP3</a>
-            <a href="/pt/youtube-to-mp4.html" style="color: inherit; text-decoration: none;">YouTube para MP4</a>
-            <a href="/pt/youtube-shorts-downloader.html" style="color: inherit; text-decoration: none;">YouTube Shorts</a>
+            <a href="/pt/youtube-to-mp3" style="color: inherit; text-decoration: none;">YouTube para MP3</a>
+            <a href="/pt/youtube-to-mp4" style="color: inherit; text-decoration: none;">YouTube para MP4</a>
+            <a href="/pt/youtube-shorts-downloader" style="color: inherit; text-decoration: none;">YouTube Shorts</a>
         </div>
         <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
-            <a href="/pt/about.html" style="color: inherit; text-decoration: none;">Sobre</a>
-            <a href="/pt/contact.html" style="color: inherit; text-decoration: none;">Contato</a>
-            <a href="/pt/terms.html" style="color: inherit; text-decoration: none;">Termos</a>
-            <a href="/pt/policy.html" style="color: inherit; text-decoration: none;">Política de Privacidade</a>
-            <a href="/pt/dmca.html" style="color: inherit; text-decoration: none;">DMCA</a>
-            <a href="/pt/faq.html" style="color: inherit; text-decoration: none;">FAQ</a>
+            <a href="/pt/about" style="color: inherit; text-decoration: none;">Sobre</a>
+            <a href="/pt/contact" style="color: inherit; text-decoration: none;">Contato</a>
+            <a href="/pt/terms" style="color: inherit; text-decoration: none;">Termos</a>
+            <a href="/pt/policy" style="color: inherit; text-decoration: none;">Política de Privacidade</a>
+            <a href="/pt/dmca" style="color: inherit; text-decoration: none;">DMCA</a>
+            <a href="/pt/faq" style="color: inherit; text-decoration: none;">FAQ</a>
         </div>
         <div class="copyright">© 2026 SSVid. Todos os direitos reservados.</div>
     </div>
@@ -570,133 +697,6 @@
 
     <!-- Main TypeScript Entry -->
     <script type="module" src="/src/main.ts"></script>
-
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebPage",
-      "@id": "https://ssvid.cc/pt/youtube-shorts-downloader#webpage",
-      "url": "https://ssvid.cc/pt/youtube-shorts-downloader",
-      "name": "SSVID - Baixar YouTube Shorts",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/#website"
-      },
-      "about": {
-        "@type": "SoftwareApplication",
-        "@id": "https://ssvid.cc/pt/youtube-shorts-downloader#application"
-      },
-      "inLanguage": "pt"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "@id": "https://ssvid.cc/pt/youtube-shorts-downloader#application",
-      "name": "SSVID - Baixar YouTube Shorts",
-      "url": "https://ssvid.cc/pt/youtube-shorts-downloader",
-      "description": "Baixe YouTube Shorts com SSVID. Gratuito, rápido e ilimitado.",
-      "applicationCategory": "MultimediaApplication",
-      "operatingSystem": "All",
-      "browserRequirements": "Requires JavaScript. Requires HTML5.",
-      "inLanguage": "pt",
-      "publisher": {
-        "@id": "https://ssvid.cc/#organization"
-      },
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://ssvid.cc/pt/youtube-shorts-downloader#faq",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/pt/youtube-shorts-downloader#webpage"
-      },
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Qual a diferença entre YouTube Shorts e vídeos normais do YouTube?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "YouTube Shorts são vídeos de formato curto projetados para visualização vertical (geralmente 9:16). Vídeos normais do YouTube são tipicamente mais longos e frequentemente em formatos horizontais."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Posso baixar YouTube Shorts online sem instalar software?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Sim. O SSVID funciona totalmente online em seu navegador — sem software, sem extensões e sem necessidade de registro."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "O SSVID mantém os Shorts no formato vertical original?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Sim. O SSVID se concentra em preservar o layout vertical 9:16 para que os Shorts sejam reproduzidos corretamente em dispositivos móveis."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Posso baixar Shorts no iPhone e Android?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Sim. O SSVID funciona em navegadores móveis e de desktop, então você pode baixar Shorts no iOS, Android, Windows ou macOS."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "O SSVID é gratuito e ilimitado para downloads de Shorts?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Sim. O SSVID é gratuito para usar e permite downloads ilimitados de YouTube Shorts."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "O SSVID pode baixar Shorts privados ou restritos?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Não. Conteúdo privado ou restrito não pode ser processado por ferramentas de download online."
-          }
-        }
-      ]
-    },
-    {
-      "@type": "HowTo",
-      "@id": "https://ssvid.cc/pt/youtube-shorts-downloader#howto",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/pt/youtube-shorts-downloader#webpage"
-      },
-      "name": "Como baixar YouTube Shorts com SSVID",
-      "step": [
-        {
-          "@type": "HowToStep",
-          "position": 1,
-          "name": "Copiar o Link",
-          "text": "Copie o link do YouTube Shorts."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 2,
-          "name": "Colar e Selecionar",
-          "text": "Cole o link no SSVID."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 3,
-          "name": "Baixar",
-          "text": "Baixe o Short em segundos."
-        }
-      ]
-    }
-  ]
-}
-</script>
-
 </body>
 
 </html>

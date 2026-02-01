@@ -59,6 +59,133 @@
     <script>
         (function () { var f = 'mp4'; try { var p = JSON.parse(localStorage.getItem('ssvid_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat } catch (e) { } document.documentElement.dataset.format = f; document.write('<style>html[data-format="mp3"] .quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4{display:block!important}</style>') })()
     </script>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://ssvid.cc/it/youtube-to-mp3#webpage",
+      "url": "https://ssvid.cc/it/youtube-to-mp3",
+      "name": "SSVID - Scarica MP3 da YouTube",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/#website"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "@id": "https://ssvid.cc/it/youtube-to-mp3#application"
+      },
+      "inLanguage": "it"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://ssvid.cc/it/youtube-to-mp3#application",
+      "name": "SSVID - Scarica MP3 da YouTube",
+      "url": "https://ssvid.cc/it/youtube-to-mp3",
+      "description": "Scarica l'audio di YouTube come MP3 con SSVID. Gratuito, veloce e illimitato.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "it",
+      "publisher": {
+        "@id": "https://ssvid.cc/#organization"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://ssvid.cc/it/youtube-to-mp3#faq",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/it/youtube-to-mp3#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Qual è la differenza tra YouTube MP3 e MP4?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "MP3 è solo audio, mentre MP4 include sia video che audio. Scegli MP3 se hai bisogno solo del suono e desideri file più piccoli."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Posso scaricare MP3 da YouTube online senza installare software?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sì. SSVID funziona completamente online nel tuo browser—nessun software, nessuna estensione e nessuna registrazione richiesta."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quale qualità MP3 dovrei scegliere: 128kbps o 320kbps?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "128kbps è buono per il parlato e file più piccoli. 320kbps è migliore per la musica e maggiori dettagli audio se desideri la migliore qualità MP3."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Posso scaricare video lunghi di YouTube come MP3?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sì. SSVID supporta la conversione di video lunghi di YouTube in MP3 per l'ascolto offline senza limiti di durata."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "SSVID è gratuito e illimitato per i download MP3?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sì. SSVID è gratuito da usare e consente download MP3 illimitati da YouTube."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "SSVID funziona su iPhone e Android?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sì. SSVID funziona sui browser mobili e desktop, quindi puoi scaricare MP3 su iOS, Android, Windows o macOS."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://ssvid.cc/it/youtube-to-mp3#howto",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/it/youtube-to-mp3#webpage"
+      },
+      "name": "Come scaricare MP3 da YouTube con SSVID",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Copia il link",
+          "text": "Copia il link del video di YouTube."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Incolla e seleziona",
+          "text": "Incolla il link in SSVID."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Scarica",
+          "text": "Seleziona la qualità MP3 e scarica in pochi secondi."
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body>
@@ -79,7 +206,7 @@
             </a>
             <nav class="header-nav" aria-label="Primary">
                 <a href="/it/" class="header-link">Home</a>
-                <a href="/it/about.html" class="header-link">Chi siamo</a>
+                <a href="/it/about" class="header-link">Chi siamo</a>
                 <div class="lang-selector">
                     <button class="lang-button" type="button" aria-label="Lingua">
                         <span>IT</span>
@@ -217,16 +344,16 @@
         <div class="drawer-scroll">
             <nav class="drawer-nav" aria-label="Mobile">
                 <a href="/it/" class="drawer-link">Home</a>
-                <a href="/it/youtube-to-mp3.html" class="drawer-link">Da YouTube a MP3</a>
-                <a href="/it/youtube-to-mp4.html" class="drawer-link">Da YouTube a MP4</a>
-                <a href="/it/youtube-shorts-downloader.html" class="drawer-link">YouTube Shorts</a>
+                <a href="/it/youtube-to-mp3" class="drawer-link">Da YouTube a MP3</a>
+                <a href="/it/youtube-to-mp4" class="drawer-link">Da YouTube a MP4</a>
+                <a href="/it/youtube-shorts-downloader" class="drawer-link">YouTube Shorts</a>
                 <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
-                <a href="/it/about.html" class="drawer-link">Chi siamo</a>
-                <a href="/it/faq.html" class="drawer-link">FAQ</a>
-                <a href="/it/contact.html" class="drawer-link">Contatti</a>
-                <a href="/it/terms.html" class="drawer-link">Termini</a>
-                <a href="/it/policy.html" class="drawer-link">Privacy</a>
-                <a href="/it/dmca.html" class="drawer-link">DMCA</a>
+                <a href="/it/about" class="drawer-link">Chi siamo</a>
+                <a href="/it/faq" class="drawer-link">FAQ</a>
+                <a href="/it/contact" class="drawer-link">Contatti</a>
+                <a href="/it/terms" class="drawer-link">Termini</a>
+                <a href="/it/policy" class="drawer-link">Privacy</a>
+                <a href="/it/dmca" class="drawer-link">DMCA</a>
             </nav>
             <div class="drawer-lang-selector">
                 <button class="drawer-lang-button" type="button" aria-label="Choose language">
@@ -503,7 +630,7 @@
         <p style="text-align: center;">L&#39;MP3 è uno dei formati audio più compatibili su telefoni, computer, sistemi di auto e lettori musicali. Se hai bisogno solo del suono (non del video), l&#39;MP3 risparmia spazio di archiviazione e facilita l&#39;ascolto offline, specialmente per contenuti lunghi come lezioni o podcast.</p>
         <br><br>
         <h2 class="titles">Opzioni di qualità MP3 (128–320kbps)</h2>
-        <p style="text-align: center;">SSVID supporta più opzioni di qualità MP3 in modo da poter bilanciare la qualità del suono e le dimensioni del file. <strong>128kbps</strong> è ottimo per il parlato e download più piccoli, mentre <strong>320kbps</strong> è ideale per la musica e l'ascolto ad alta fedeltà. Se desideri un video, usa <a href="/it/youtube-to-mp4.html" title="Scarica MP4 da YouTube"><strong>Scarica MP4 da YouTube</strong></a>.</p>
+        <p style="text-align: center;">SSVID supporta più opzioni di qualità MP3 in modo da poter bilanciare la qualità del suono e le dimensioni del file. <strong>128kbps</strong> è ottimo per il parlato e download più piccoli, mentre <strong>320kbps</strong> è ideale per la musica e l'ascolto ad alta fedeltà. Se desideri un video, usa <a href="/it/youtube-to-mp4" title="Scarica MP4 da YouTube"><strong>Scarica MP4 da YouTube</strong></a>.</p>
     </div>
 </section>
 
@@ -551,17 +678,17 @@
     <footer>
     <div class="container">
         <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
-            <a href="/it/youtube-to-mp3.html" style="color: inherit; text-decoration: none;">Da YouTube a MP3</a>
-            <a href="/it/youtube-to-mp4.html" style="color: inherit; text-decoration: none;">Da YouTube a MP4</a>
-            <a href="/it/youtube-shorts-downloader.html" style="color: inherit; text-decoration: none;">YouTube Shorts</a>
+            <a href="/it/youtube-to-mp3" style="color: inherit; text-decoration: none;">Da YouTube a MP3</a>
+            <a href="/it/youtube-to-mp4" style="color: inherit; text-decoration: none;">Da YouTube a MP4</a>
+            <a href="/it/youtube-shorts-downloader" style="color: inherit; text-decoration: none;">YouTube Shorts</a>
         </div>
         <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
-            <a href="/it/about.html" style="color: inherit; text-decoration: none;">Chi siamo</a>
-            <a href="/it/contact.html" style="color: inherit; text-decoration: none;">Contatti</a>
-            <a href="/it/terms.html" style="color: inherit; text-decoration: none;">Termini</a>
-            <a href="/it/policy.html" style="color: inherit; text-decoration: none;">Informativa sulla privacy</a>
-            <a href="/it/dmca.html" style="color: inherit; text-decoration: none;">DMCA</a>
-            <a href="/it/faq.html" style="color: inherit; text-decoration: none;">FAQ</a>
+            <a href="/it/about" style="color: inherit; text-decoration: none;">Chi siamo</a>
+            <a href="/it/contact" style="color: inherit; text-decoration: none;">Contatti</a>
+            <a href="/it/terms" style="color: inherit; text-decoration: none;">Termini</a>
+            <a href="/it/policy" style="color: inherit; text-decoration: none;">Informativa sulla privacy</a>
+            <a href="/it/dmca" style="color: inherit; text-decoration: none;">DMCA</a>
+            <a href="/it/faq" style="color: inherit; text-decoration: none;">FAQ</a>
         </div>
         <div class="copyright">© 2026 SSVid. Tutti i diritti riservati.</div>
     </div>
@@ -570,133 +697,6 @@
 
     <!-- Main TypeScript Entry -->
     <script type="module" src="/src/main.ts"></script>
-
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebPage",
-      "@id": "https://ssvid.cc/it/youtube-to-mp3#webpage",
-      "url": "https://ssvid.cc/it/youtube-to-mp3",
-      "name": "SSVID - Scarica MP3 da YouTube",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/#website"
-      },
-      "about": {
-        "@type": "SoftwareApplication",
-        "@id": "https://ssvid.cc/it/youtube-to-mp3#application"
-      },
-      "inLanguage": "it"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "@id": "https://ssvid.cc/it/youtube-to-mp3#application",
-      "name": "SSVID - Scarica MP3 da YouTube",
-      "url": "https://ssvid.cc/it/youtube-to-mp3",
-      "description": "Scarica l'audio di YouTube come MP3 con SSVID. Gratuito, veloce e illimitato.",
-      "applicationCategory": "MultimediaApplication",
-      "operatingSystem": "All",
-      "browserRequirements": "Requires JavaScript. Requires HTML5.",
-      "inLanguage": "it",
-      "publisher": {
-        "@id": "https://ssvid.cc/#organization"
-      },
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://ssvid.cc/it/youtube-to-mp3#faq",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/it/youtube-to-mp3#webpage"
-      },
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Qual è la differenza tra YouTube MP3 e MP4?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "MP3 è solo audio, mentre MP4 include sia video che audio. Scegli MP3 se hai bisogno solo del suono e desideri file più piccoli."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Posso scaricare MP3 da YouTube online senza installare software?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Sì. SSVID funziona completamente online nel tuo browser—nessun software, nessuna estensione e nessuna registrazione richiesta."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Quale qualità MP3 dovrei scegliere: 128kbps o 320kbps?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "128kbps è buono per il parlato e file più piccoli. 320kbps è migliore per la musica e maggiori dettagli audio se desideri la migliore qualità MP3."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Posso scaricare video lunghi di YouTube come MP3?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Sì. SSVID supporta la conversione di video lunghi di YouTube in MP3 per l'ascolto offline senza limiti di durata."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "SSVID è gratuito e illimitato per i download MP3?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Sì. SSVID è gratuito da usare e consente download MP3 illimitati da YouTube."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "SSVID funziona su iPhone e Android?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Sì. SSVID funziona sui browser mobili e desktop, quindi puoi scaricare MP3 su iOS, Android, Windows o macOS."
-          }
-        }
-      ]
-    },
-    {
-      "@type": "HowTo",
-      "@id": "https://ssvid.cc/it/youtube-to-mp3#howto",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/it/youtube-to-mp3#webpage"
-      },
-      "name": "Come scaricare MP3 da YouTube con SSVID",
-      "step": [
-        {
-          "@type": "HowToStep",
-          "position": 1,
-          "name": "Copia il link",
-          "text": "Copia il link del video di YouTube."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 2,
-          "name": "Incolla e seleziona",
-          "text": "Incolla il link in SSVID."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 3,
-          "name": "Scarica",
-          "text": "Seleziona la qualità MP3 e scarica in pochi secondi."
-        }
-      ]
-    }
-  ]
-}
-</script>
-
 </body>
 
 </html>

@@ -59,6 +59,130 @@
     <script>
         (function () { var f = 'mp4'; try { var p = JSON.parse(localStorage.getItem('ssvid_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat } catch (e) { } document.documentElement.dataset.format = f; document.write('<style>html[data-format="mp3"] .quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4{display:block!important}</style>') })()
     </script>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://ssvid.cc/th/#webpage",
+      "url": "https://ssvid.cc/th/",
+      "name": "ดาวน์โหลดวิดีโอ YouTube",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/#website"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "@id": "https://ssvid.cc/th/#application"
+      },
+      "inLanguage": "th"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://ssvid.cc/th/#application",
+      "name": "ดาวน์โหลดวิดีโอ YouTube",
+      "url": "https://ssvid.cc/th/",
+      "description": "ดาวน์โหลดวิดีโอ YouTube ออนไลน์ด้วย SSVID ฟรี รวดเร็ว และไม่จำกัด",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "th",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://ssvid.cc/th/#faq",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/th/#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "SSVID ใช้งานฟรีหรือไม่?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ใช่ SSVID ใช้งานได้ฟรีโดยสมบูรณ์ ไม่มีค่าธรรมเนียมแอบแฝง การสมัครสมาชิก หรือข้อจำกัดในการดาวน์โหลด"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "ฉันสามารถดาวน์โหลดวิดีโอ YouTube ออนไลน์โดยไม่ต้องติดตั้งซอฟต์แวร์ได้หรือไม่?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ใช่ SSVID ทำงานออนไลน์ได้อย่างสมบูรณ์ในเบราว์เซอร์ของคุณ จึงไม่จำเป็นต้องติดตั้งแอปหรือซอฟต์แวร์ใดๆ"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "ฉันสามารถดาวน์โหลดวิดีโอ YouTube เป็น MP4 หรือ MP3 ได้หรือไม่?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ใช่ SSVID ช่วยให้คุณดาวน์โหลดวิดีโอ YouTube เป็น MP4 หรือแยกเสียงเป็น MP3 ได้ตามความต้องการของคุณ"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "SSVID รองรับการดาวน์โหลด YouTube Shorts หรือไม่?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ใช่ คุณสามารถดาวน์โหลดวิดีโอ YouTube Shorts ได้อย่างง่ายดาย โดยยังคงรูปแบบแนวตั้งที่ถูกต้องและคุณภาพดั้งเดิมไว้"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "SSVID ปลอดภัยในการใช้งานหรือไม่?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ใช่ SSVID ปลอดภัยในการใช้งานและไม่จำเป็นต้องลงทะเบียนบัญชีหรือข้อมูลส่วนบุคคล"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "SSVID ใช้งานได้บนอุปกรณ์มือถือหรือไม่?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ใช่ SSVID ทำงานได้อย่างราบรื่นทั้งบนเดสก์ท็อปและอุปกรณ์มือถือ รวมถึงเบราว์เซอร์ Android และ iOS"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://ssvid.cc/th/#howto",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/th/#webpage"
+      },
+      "name": "วิธีการดาวน์โหลด",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "คัดลอกลิงก์",
+          "text": "ไปที่ YouTube และคัดลอก URL ของวิดีโอที่คุณต้องการบันทึก"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "วางและเลือก",
+          "text": "วางลิงก์ลงในแถบค้นหา SSVID และเลือกรูปแบบที่คุณต้องการ (MP4/MP3)"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "ดาวน์โหลด",
+          "text": "คลิกปุ่มแปลงและรอสักครู่เพื่อให้ไฟล์ของคุณพร้อม"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body>
@@ -79,7 +203,7 @@
             </a>
             <nav class="header-nav" aria-label="Primary">
                 <a href="/th/" class="header-link">หน้าแรก</a>
-                <a href="/th/about.html" class="header-link">เกี่ยวกับ</a>
+                <a href="/th/about" class="header-link">เกี่ยวกับ</a>
                 <div class="lang-selector">
                     <button class="lang-button" type="button" aria-label="ภาษา">
                         <span>TH</span>
@@ -217,16 +341,16 @@
         <div class="drawer-scroll">
             <nav class="drawer-nav" aria-label="Mobile">
                 <a href="/th/" class="drawer-link">หน้าแรก</a>
-                <a href="/th/youtube-to-mp3.html" class="drawer-link">YouTube เป็น MP3</a>
-                <a href="/th/youtube-to-mp4.html" class="drawer-link">YouTube เป็น MP4</a>
-                <a href="/th/youtube-shorts-downloader.html" class="drawer-link">YouTube Shorts</a>
+                <a href="/th/youtube-to-mp3" class="drawer-link">YouTube เป็น MP3</a>
+                <a href="/th/youtube-to-mp4" class="drawer-link">YouTube เป็น MP4</a>
+                <a href="/th/youtube-shorts-downloader" class="drawer-link">YouTube Shorts</a>
                 <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
-                <a href="/th/about.html" class="drawer-link">เกี่ยวกับ</a>
-                <a href="/th/faq.html" class="drawer-link">คำถามที่พบบ่อย</a>
-                <a href="/th/contact.html" class="drawer-link">ติดต่อ</a>
-                <a href="/th/terms.html" class="drawer-link">ข้อกำหนด</a>
-                <a href="/th/policy.html" class="drawer-link">ความเป็นส่วนตัว</a>
-                <a href="/th/dmca.html" class="drawer-link">DMCA</a>
+                <a href="/th/about" class="drawer-link">เกี่ยวกับ</a>
+                <a href="/th/faq" class="drawer-link">คำถามที่พบบ่อย</a>
+                <a href="/th/contact" class="drawer-link">ติดต่อ</a>
+                <a href="/th/terms" class="drawer-link">ข้อกำหนด</a>
+                <a href="/th/policy" class="drawer-link">ความเป็นส่วนตัว</a>
+                <a href="/th/dmca" class="drawer-link">DMCA</a>
             </nav>
             <div class="drawer-lang-selector">
                 <button class="drawer-lang-button" type="button" aria-label="Choose language">
@@ -481,17 +605,17 @@
         
         <div class="subsection">
             <h3>วิดีโอ YouTube (MP4)</h3>
-            <p>ด้วย SSVID คุณสามารถ <strong><a href="/th/youtube-to-mp4.html">ดาวน์โหลดวิดีโอ YouTube เป็น MP4</a></strong> เพื่อดูแบบออฟไลน์บนอุปกรณ์ใดก็ได้ เหมาะสำหรับการบันทึกบทเรียน มิวสิกวิดีโอ วล็อก และเนื้อหา YouTube แบบยาวในรูปแบบวิดีโอที่รองรับอย่างกว้างขวาง</p>
+            <p>ด้วย SSVID คุณสามารถ <strong><a href="/th/youtube-to-mp4">ดาวน์โหลดวิดีโอ YouTube เป็น MP4</a></strong> เพื่อดูแบบออฟไลน์บนอุปกรณ์ใดก็ได้ เหมาะสำหรับการบันทึกบทเรียน มิวสิกวิดีโอ วล็อก และเนื้อหา YouTube แบบยาวในรูปแบบวิดีโอที่รองรับอย่างกว้างขวาง</p>
         </div>
         
         <div class="subsection">
             <h3>เสียง YouTube (MP3)</h3>
-            <p>SSVID ช่วยให้คุณ <strong><a href="/th/youtube-to-mp3.html">ดาวน์โหลดเสียง YouTube เป็น MP3</a></strong> โดยการแยกเสียงโดยตรงจากวิดีโอ ตัวเลือกนี้เหมาะสำหรับเพลง พอดแคสต์ การสัมภาษณ์ และเนื้อหาเสียงอื่นๆ ที่คุณต้องการฟังได้ทุกเมื่อ</p>
+            <p>SSVID ช่วยให้คุณ <strong><a href="/th/youtube-to-mp3">ดาวน์โหลดเสียง YouTube เป็น MP3</a></strong> โดยการแยกเสียงโดยตรงจากวิดีโอ ตัวเลือกนี้เหมาะสำหรับเพลง พอดแคสต์ การสัมภาษณ์ และเนื้อหาเสียงอื่นๆ ที่คุณต้องการฟังได้ทุกเมื่อ</p>
         </div>
         
         <div class="subsection">
             <h3>YouTube Shorts</h3>
-            <p>คุณยังสามารถ <strong><a href="/th/youtube-shorts-downloader.html">ดาวน์โหลดวิดีโอ YouTube Shorts</a></strong> ในรูปแบบแนวตั้งที่ถูกต้องโดยยังคงคุณภาพดั้งเดิมไว้ SSVID ทำให้การบันทึกวิดีโอ YouTube แบบสั้นสำหรับการดูหรือแชร์แบบออฟไลน์เป็นเรื่องง่าย</p>
+            <p>คุณยังสามารถ <strong><a href="/th/youtube-shorts-downloader">ดาวน์โหลดวิดีโอ YouTube Shorts</a></strong> ในรูปแบบแนวตั้งที่ถูกต้องโดยยังคงคุณภาพดั้งเดิมไว้ SSVID ทำให้การบันทึกวิดีโอ YouTube แบบสั้นสำหรับการดูหรือแชร์แบบออฟไลน์เป็นเรื่องง่าย</p>
         </div>
         
     </div>
@@ -550,17 +674,17 @@
     <footer>
     <div class="container">
         <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
-            <a href="/th/youtube-to-mp3.html" style="color: inherit; text-decoration: none;">YouTube เป็น MP3</a>
-            <a href="/th/youtube-to-mp4.html" style="color: inherit; text-decoration: none;">YouTube เป็น MP4</a>
-            <a href="/th/youtube-shorts-downloader.html" style="color: inherit; text-decoration: none;">YouTube Shorts</a>
+            <a href="/th/youtube-to-mp3" style="color: inherit; text-decoration: none;">YouTube เป็น MP3</a>
+            <a href="/th/youtube-to-mp4" style="color: inherit; text-decoration: none;">YouTube เป็น MP4</a>
+            <a href="/th/youtube-shorts-downloader" style="color: inherit; text-decoration: none;">YouTube Shorts</a>
         </div>
         <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
-            <a href="/th/about.html" style="color: inherit; text-decoration: none;">เกี่ยวกับ</a>
-            <a href="/th/contact.html" style="color: inherit; text-decoration: none;">ติดต่อ</a>
-            <a href="/th/terms.html" style="color: inherit; text-decoration: none;">ข้อกำหนด</a>
-            <a href="/th/policy.html" style="color: inherit; text-decoration: none;">นโยบายความเป็นส่วนตัว</a>
-            <a href="/th/dmca.html" style="color: inherit; text-decoration: none;">DMCA</a>
-            <a href="/th/faq.html" style="color: inherit; text-decoration: none;">คำถามที่พบบ่อย</a>
+            <a href="/th/about" style="color: inherit; text-decoration: none;">เกี่ยวกับ</a>
+            <a href="/th/contact" style="color: inherit; text-decoration: none;">ติดต่อ</a>
+            <a href="/th/terms" style="color: inherit; text-decoration: none;">ข้อกำหนด</a>
+            <a href="/th/policy" style="color: inherit; text-decoration: none;">นโยบายความเป็นส่วนตัว</a>
+            <a href="/th/dmca" style="color: inherit; text-decoration: none;">DMCA</a>
+            <a href="/th/faq" style="color: inherit; text-decoration: none;">คำถามที่พบบ่อย</a>
         </div>
         <div class="copyright">© 2026 SSVid. สงวนลิขสิทธิ์.</div>
     </div>
@@ -569,130 +693,6 @@
 
     <!-- Main TypeScript Entry -->
     <script type="module" src="/src/main.ts"></script>
-
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebPage",
-      "@id": "https://ssvid.cc/th/#webpage",
-      "url": "https://ssvid.cc/th/",
-      "name": "ดาวน์โหลดวิดีโอ YouTube",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/#website"
-      },
-      "about": {
-        "@type": "SoftwareApplication",
-        "@id": "https://ssvid.cc/th/#application"
-      },
-      "inLanguage": "th"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "@id": "https://ssvid.cc/th/#application",
-      "name": "ดาวน์โหลดวิดีโอ YouTube",
-      "url": "https://ssvid.cc/th/",
-      "description": "ดาวน์โหลดวิดีโอ YouTube ออนไลน์ด้วย SSVID ฟรี รวดเร็ว และไม่จำกัด",
-      "applicationCategory": "MultimediaApplication",
-      "operatingSystem": "All",
-      "browserRequirements": "Requires JavaScript. Requires HTML5.",
-      "inLanguage": "th",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://ssvid.cc/th/#faq",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/th/#webpage"
-      },
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "SSVID ใช้งานฟรีหรือไม่?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "ใช่ SSVID ใช้งานได้ฟรีโดยสมบูรณ์ ไม่มีค่าธรรมเนียมแอบแฝง การสมัครสมาชิก หรือข้อจำกัดในการดาวน์โหลด"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "ฉันสามารถดาวน์โหลดวิดีโอ YouTube ออนไลน์โดยไม่ต้องติดตั้งซอฟต์แวร์ได้หรือไม่?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "ใช่ SSVID ทำงานออนไลน์ได้อย่างสมบูรณ์ในเบราว์เซอร์ของคุณ จึงไม่จำเป็นต้องติดตั้งแอปหรือซอฟต์แวร์ใดๆ"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "ฉันสามารถดาวน์โหลดวิดีโอ YouTube เป็น MP4 หรือ MP3 ได้หรือไม่?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "ใช่ SSVID ช่วยให้คุณดาวน์โหลดวิดีโอ YouTube เป็น MP4 หรือแยกเสียงเป็น MP3 ได้ตามความต้องการของคุณ"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "SSVID รองรับการดาวน์โหลด YouTube Shorts หรือไม่?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "ใช่ คุณสามารถดาวน์โหลดวิดีโอ YouTube Shorts ได้อย่างง่ายดาย โดยยังคงรูปแบบแนวตั้งที่ถูกต้องและคุณภาพดั้งเดิมไว้"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "SSVID ปลอดภัยในการใช้งานหรือไม่?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "ใช่ SSVID ปลอดภัยในการใช้งานและไม่จำเป็นต้องลงทะเบียนบัญชีหรือข้อมูลส่วนบุคคล"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "SSVID ใช้งานได้บนอุปกรณ์มือถือหรือไม่?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "ใช่ SSVID ทำงานได้อย่างราบรื่นทั้งบนเดสก์ท็อปและอุปกรณ์มือถือ รวมถึงเบราว์เซอร์ Android และ iOS"
-          }
-        }
-      ]
-    },
-    {
-      "@type": "HowTo",
-      "@id": "https://ssvid.cc/th/#howto",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/th/#webpage"
-      },
-      "name": "วิธีการดาวน์โหลด",
-      "step": [
-        {
-          "@type": "HowToStep",
-          "position": 1,
-          "name": "คัดลอกลิงก์",
-          "text": "ไปที่ YouTube และคัดลอก URL ของวิดีโอที่คุณต้องการบันทึก"
-        },
-        {
-          "@type": "HowToStep",
-          "position": 2,
-          "name": "วางและเลือก",
-          "text": "วางลิงก์ลงในแถบค้นหา SSVID และเลือกรูปแบบที่คุณต้องการ (MP4/MP3)"
-        },
-        {
-          "@type": "HowToStep",
-          "position": 3,
-          "name": "ดาวน์โหลด",
-          "text": "คลิกปุ่มแปลงและรอสักครู่เพื่อให้ไฟล์ของคุณพร้อม"
-        }
-      ]
-    }
-  ]
-}
-</script>
-
 </body>
 
 </html>

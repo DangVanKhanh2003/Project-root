@@ -59,6 +59,133 @@
     <script>
         (function () { var f = 'mp4'; try { var p = JSON.parse(localStorage.getItem('ssvid_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat } catch (e) { } document.documentElement.dataset.format = f; document.write('<style>html[data-format="mp3"] .quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4{display:block!important}</style>') })()
     </script>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://ssvid.cc/my/youtube-to-mp4#webpage",
+      "url": "https://ssvid.cc/my/youtube-to-mp4",
+      "name": "SSVID - YouTube MP4 ဗီဒီယိုများကို ဒေါင်းလုဒ်လုပ်ပါ",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/#website"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "@id": "https://ssvid.cc/my/youtube-to-mp4#application"
+      },
+      "inLanguage": "my"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://ssvid.cc/my/youtube-to-mp4#application",
+      "name": "SSVID - YouTube MP4 ဗီဒီယိုများကို ဒေါင်းလုဒ်လုပ်ပါ",
+      "url": "https://ssvid.cc/my/youtube-to-mp4",
+      "description": "SSVID ဖြင့် YouTube ဗီဒီယိုများကို MP4 အဖြစ် ဒေါင်းလုဒ်လုပ်ပါ။ အခမဲ့၊ မြန်ဆန်ပြီး အကန့်အသတ်မရှိ။",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "my",
+      "publisher": {
+        "@id": "https://ssvid.cc/#organization"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://ssvid.cc/my/youtube-to-mp4#faq",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/my/youtube-to-mp4#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "YouTube MP4 နှင့် MP3 အကြား ကွာခြားချက်ကဘာလဲ။",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "MP4 တွင် ဗီဒီယိုနှင့် အသံနှစ်ခုလုံး ပါဝင်ပြီး MP3 သည် အသံကိုသာ ထုတ်ယူသည်။ MP4 သည် အော့ဖ်လိုင်းကြည့်ရှုခြင်းနှင့် ရုပ်ပုံအကြောင်းအရာများအတွက် ပိုကောင်းသည်။"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "YouTube MP4 ဗီဒီယိုများကို အွန်လိုင်းမှ ဒေါင်းလုဒ်လုပ်နိုင်ပါသလား။",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ဟုတ်ကဲ့။ SSVID သည် အွန်လိုင်းတွင် အပြည့်အဝ အလုပ်လုပ်သည်၊ သင့်ဘရောက်ဆာတွင် YouTube MP4 ဗီဒီယိုများကို တိုက်ရိုက် ဒေါင်းလုဒ်လုပ်နိုင်စေသည်။"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "SSVID သည် HD နှင့် 4K MP4 ဒေါင်းလုဒ်များကို ထောက်ပံ့ပါသလား။",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ဟုတ်ကဲ့။ SSVID သည် မူရင်း YouTube ဗီဒီယိုကို ထိုရုပ်ထွက်များဖြင့် ရရှိနိုင်သည့်အခါ HD နှင့် 4K MP4 ဒေါင်းလုဒ်များကို ထောက်ပံ့သည်။"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "YouTube ဗီဒီယိုရှည်များကို MP4 အဖြစ် ဒေါင်းလုဒ်လုပ်နိုင်ပါသလား။",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ဟုတ်ကဲ့။ SSVID သည် အချိန်ကန့်သတ်ချက်မရှိဘဲ YouTube ဗီဒီယိုရှည်များကို ဒေါင်းလုဒ်လုပ်ခြင်းကို ထောက်ပံ့သည်။"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "SSVID ကို အခမဲ့ အသုံးပြုနိုင်ပါသလား။",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ဟုတ်ကဲ့။ SSVID သည် လုံးဝအခမဲ့ဖြစ်ပြီး မှတ်ပုံတင်ရန်မလိုအပ်ပါ။"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "မိုဘိုင်းလ်ဖုန်းများတွင် SSVID ကို အသုံးပြုနိုင်ပါသလား။",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ဟုတ်ကဲ့။ SSVID သည် Android နှင့် iOS အပါအဝင် desktop နှင့် mobile browser နှစ်ခုလုံးတွင် အလုပ်လုပ်သည်။"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://ssvid.cc/my/youtube-to-mp4#howto",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/my/youtube-to-mp4#webpage"
+      },
+      "name": "SSVID ဖြင့် YouTube MP4 ဗီဒီယိုများကို ဒေါင်းလုဒ်လုပ်နည်း",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "လင့်ခ်ကို ကူးယူပါ",
+          "text": "YouTube ဗီဒီယိုလင့်ခ်ကို ကူးယူပါ။"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "ကူးထည့်ပြီး ရွေးချယ်ပါ",
+          "text": "လင့်ခ်ကို SSVID တွင် ကူးထည့်ပါ။"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "ဒေါင်းလုဒ်လုပ်ပါ",
+          "text": "ဗီဒီယိုကို စက္ကန့်ပိုင်းအတွင်း MP4 အဖြစ် ဒေါင်းလုဒ်လုပ်ပါ။"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body>
@@ -79,7 +206,7 @@
             </a>
             <nav class="header-nav" aria-label="Primary">
                 <a href="/my/" class="header-link">ပင်မစာမျက်နှာ</a>
-                <a href="/my/about.html" class="header-link">ကျွန်ုပ်တို့အကြောင်း</a>
+                <a href="/my/about" class="header-link">ကျွန်ုပ်တို့အကြောင်း</a>
                 <div class="lang-selector">
                     <button class="lang-button" type="button" aria-label="ဘာသာစကား">
                         <span>MY</span>
@@ -217,16 +344,16 @@
         <div class="drawer-scroll">
             <nav class="drawer-nav" aria-label="Mobile">
                 <a href="/my/" class="drawer-link">ပင်မစာမျက်နှာ</a>
-                <a href="/my/youtube-to-mp3.html" class="drawer-link">YouTube မှ MP3</a>
-                <a href="/my/youtube-to-mp4.html" class="drawer-link">YouTube မှ MP4</a>
-                <a href="/my/youtube-shorts-downloader.html" class="drawer-link">YouTube Shorts</a>
+                <a href="/my/youtube-to-mp3" class="drawer-link">YouTube မှ MP3</a>
+                <a href="/my/youtube-to-mp4" class="drawer-link">YouTube မှ MP4</a>
+                <a href="/my/youtube-shorts-downloader" class="drawer-link">YouTube Shorts</a>
                 <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
-                <a href="/my/about.html" class="drawer-link">ကျွန်ုပ်တို့အကြောင်း</a>
-                <a href="/my/faq.html" class="drawer-link">အမေးများသောမေးခွန်းများ</a>
-                <a href="/my/contact.html" class="drawer-link">ဆက်သွယ်ရန်</a>
-                <a href="/my/terms.html" class="drawer-link">စည်းမျဉ်းများ</a>
-                <a href="/my/policy.html" class="drawer-link">ကိုယ်ရေးကိုယ်တာ</a>
-                <a href="/my/dmca.html" class="drawer-link">DMCA</a>
+                <a href="/my/about" class="drawer-link">ကျွန်ုပ်တို့အကြောင်း</a>
+                <a href="/my/faq" class="drawer-link">အမေးများသောမေးခွန်းများ</a>
+                <a href="/my/contact" class="drawer-link">ဆက်သွယ်ရန်</a>
+                <a href="/my/terms" class="drawer-link">စည်းမျဉ်းများ</a>
+                <a href="/my/policy" class="drawer-link">ကိုယ်ရေးကိုယ်တာ</a>
+                <a href="/my/dmca" class="drawer-link">DMCA</a>
             </nav>
             <div class="drawer-lang-selector">
                 <button class="drawer-lang-button" type="button" aria-label="Choose language">
@@ -551,17 +678,17 @@
     <footer>
     <div class="container">
         <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
-            <a href="/my/youtube-to-mp3.html" style="color: inherit; text-decoration: none;">YouTube မှ MP3</a>
-            <a href="/my/youtube-to-mp4.html" style="color: inherit; text-decoration: none;">YouTube မှ MP4</a>
-            <a href="/my/youtube-shorts-downloader.html" style="color: inherit; text-decoration: none;">YouTube Shorts</a>
+            <a href="/my/youtube-to-mp3" style="color: inherit; text-decoration: none;">YouTube မှ MP3</a>
+            <a href="/my/youtube-to-mp4" style="color: inherit; text-decoration: none;">YouTube မှ MP4</a>
+            <a href="/my/youtube-shorts-downloader" style="color: inherit; text-decoration: none;">YouTube Shorts</a>
         </div>
         <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
-            <a href="/my/about.html" style="color: inherit; text-decoration: none;">ကျွန်ုပ်တို့အကြောင်း</a>
-            <a href="/my/contact.html" style="color: inherit; text-decoration: none;">ဆက်သွယ်ရန်</a>
-            <a href="/my/terms.html" style="color: inherit; text-decoration: none;">စည်းမျဉ်းများ</a>
-            <a href="/my/policy.html" style="color: inherit; text-decoration: none;">ကိုယ်ရေးကိုယ်တာမူဝါဒ</a>
-            <a href="/my/dmca.html" style="color: inherit; text-decoration: none;">DMCA</a>
-            <a href="/my/faq.html" style="color: inherit; text-decoration: none;">အမေးများသောမေးခွန်းများ</a>
+            <a href="/my/about" style="color: inherit; text-decoration: none;">ကျွန်ုပ်တို့အကြောင်း</a>
+            <a href="/my/contact" style="color: inherit; text-decoration: none;">ဆက်သွယ်ရန်</a>
+            <a href="/my/terms" style="color: inherit; text-decoration: none;">စည်းမျဉ်းများ</a>
+            <a href="/my/policy" style="color: inherit; text-decoration: none;">ကိုယ်ရေးကိုယ်တာမူဝါဒ</a>
+            <a href="/my/dmca" style="color: inherit; text-decoration: none;">DMCA</a>
+            <a href="/my/faq" style="color: inherit; text-decoration: none;">အမေးများသောမေးခွန်းများ</a>
         </div>
         <div class="copyright">© 2026 SSVid. မူပိုင်ခွင့်များရယူပြီး။</div>
     </div>
@@ -570,133 +697,6 @@
 
     <!-- Main TypeScript Entry -->
     <script type="module" src="/src/main.ts"></script>
-
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebPage",
-      "@id": "https://ssvid.cc/my/youtube-to-mp4#webpage",
-      "url": "https://ssvid.cc/my/youtube-to-mp4",
-      "name": "SSVID - YouTube MP4 ဗီဒီယိုများကို ဒေါင်းလုဒ်လုပ်ပါ",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/#website"
-      },
-      "about": {
-        "@type": "SoftwareApplication",
-        "@id": "https://ssvid.cc/my/youtube-to-mp4#application"
-      },
-      "inLanguage": "my"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "@id": "https://ssvid.cc/my/youtube-to-mp4#application",
-      "name": "SSVID - YouTube MP4 ဗီဒီယိုများကို ဒေါင်းလုဒ်လုပ်ပါ",
-      "url": "https://ssvid.cc/my/youtube-to-mp4",
-      "description": "SSVID ဖြင့် YouTube ဗီဒီယိုများကို MP4 အဖြစ် ဒေါင်းလုဒ်လုပ်ပါ။ အခမဲ့၊ မြန်ဆန်ပြီး အကန့်အသတ်မရှိ။",
-      "applicationCategory": "MultimediaApplication",
-      "operatingSystem": "All",
-      "browserRequirements": "Requires JavaScript. Requires HTML5.",
-      "inLanguage": "my",
-      "publisher": {
-        "@id": "https://ssvid.cc/#organization"
-      },
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://ssvid.cc/my/youtube-to-mp4#faq",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/my/youtube-to-mp4#webpage"
-      },
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "YouTube MP4 နှင့် MP3 အကြား ကွာခြားချက်ကဘာလဲ။",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "MP4 တွင် ဗီဒီယိုနှင့် အသံနှစ်ခုလုံး ပါဝင်ပြီး MP3 သည် အသံကိုသာ ထုတ်ယူသည်။ MP4 သည် အော့ဖ်လိုင်းကြည့်ရှုခြင်းနှင့် ရုပ်ပုံအကြောင်းအရာများအတွက် ပိုကောင်းသည်။"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "YouTube MP4 ဗီဒီယိုများကို အွန်လိုင်းမှ ဒေါင်းလုဒ်လုပ်နိုင်ပါသလား။",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "ဟုတ်ကဲ့။ SSVID သည် အွန်လိုင်းတွင် အပြည့်အဝ အလုပ်လုပ်သည်၊ သင့်ဘရောက်ဆာတွင် YouTube MP4 ဗီဒီယိုများကို တိုက်ရိုက် ဒေါင်းလုဒ်လုပ်နိုင်စေသည်။"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "SSVID သည် HD နှင့် 4K MP4 ဒေါင်းလုဒ်များကို ထောက်ပံ့ပါသလား။",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "ဟုတ်ကဲ့။ SSVID သည် မူရင်း YouTube ဗီဒီယိုကို ထိုရုပ်ထွက်များဖြင့် ရရှိနိုင်သည့်အခါ HD နှင့် 4K MP4 ဒေါင်းလုဒ်များကို ထောက်ပံ့သည်။"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "YouTube ဗီဒီယိုရှည်များကို MP4 အဖြစ် ဒေါင်းလုဒ်လုပ်နိုင်ပါသလား။",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "ဟုတ်ကဲ့။ SSVID သည် အချိန်ကန့်သတ်ချက်မရှိဘဲ YouTube ဗီဒီယိုရှည်များကို ဒေါင်းလုဒ်လုပ်ခြင်းကို ထောက်ပံ့သည်။"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "SSVID ကို အခမဲ့ အသုံးပြုနိုင်ပါသလား။",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "ဟုတ်ကဲ့။ SSVID သည် လုံးဝအခမဲ့ဖြစ်ပြီး မှတ်ပုံတင်ရန်မလိုအပ်ပါ။"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "မိုဘိုင်းလ်ဖုန်းများတွင် SSVID ကို အသုံးပြုနိုင်ပါသလား။",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "ဟုတ်ကဲ့။ SSVID သည် Android နှင့် iOS အပါအဝင် desktop နှင့် mobile browser နှစ်ခုလုံးတွင် အလုပ်လုပ်သည်။"
-          }
-        }
-      ]
-    },
-    {
-      "@type": "HowTo",
-      "@id": "https://ssvid.cc/my/youtube-to-mp4#howto",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/my/youtube-to-mp4#webpage"
-      },
-      "name": "SSVID ဖြင့် YouTube MP4 ဗီဒီယိုများကို ဒေါင်းလုဒ်လုပ်နည်း",
-      "step": [
-        {
-          "@type": "HowToStep",
-          "position": 1,
-          "name": "လင့်ခ်ကို ကူးယူပါ",
-          "text": "YouTube ဗီဒီယိုလင့်ခ်ကို ကူးယူပါ။"
-        },
-        {
-          "@type": "HowToStep",
-          "position": 2,
-          "name": "ကူးထည့်ပြီး ရွေးချယ်ပါ",
-          "text": "လင့်ခ်ကို SSVID တွင် ကူးထည့်ပါ။"
-        },
-        {
-          "@type": "HowToStep",
-          "position": 3,
-          "name": "ဒေါင်းလုဒ်လုပ်ပါ",
-          "text": "ဗီဒီယိုကို စက္ကန့်ပိုင်းအတွင်း MP4 အဖြစ် ဒေါင်းလုဒ်လုပ်ပါ။"
-        }
-      ]
-    }
-  ]
-}
-</script>
-
 </body>
 
 </html>

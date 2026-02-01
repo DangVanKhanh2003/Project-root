@@ -59,7 +59,7 @@
   },
   "qualityOptions": {
     "title": "MP3品質オプション (128～320kbps)",
-    "description": "SSVIDは複数のMP3品質オプションをサポートしているため、音質とファイルサイズのバランスを取ることができます。<strong>128kbps</strong>は音声や小さなダウンロードに最適ですが、<strong>320kbps</strong>は音楽や高音質リスニングに最適です。代わりにビデオが必要な場合は、<a href=\"/youtube-to-mp4.html\" title=\"YouTube MP4をダウンロード\"><strong>YouTube MP4をダウンロード</strong></a>を使用してください。"
+    "description": "SSVIDは複数のMP3品質オプションをサポートしているため、音質とファイルサイズのバランスを取ることができます。<strong>128kbps</strong>は音声や小さなダウンロードに最適ですが、<strong>320kbps</strong>は音楽や高音質リスニングに最適です。代わりにビデオが必要な場合は、<a href=\"/youtube-to-mp4\" title=\"YouTube MP4をダウンロード\"><strong>YouTube MP4をダウンロード</strong></a>を使用してください。"
   },
   "faqs": {
     "title": "よくある質問",

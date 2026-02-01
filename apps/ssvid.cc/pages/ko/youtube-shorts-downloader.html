@@ -59,6 +59,133 @@
     <script>
         (function () { var f = 'mp4'; try { var p = JSON.parse(localStorage.getItem('ssvid_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat } catch (e) { } document.documentElement.dataset.format = f; document.write('<style>html[data-format="mp3"] .quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4{display:block!important}</style>') })()
     </script>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://ssvid.cc/ko/youtube-shorts-downloader#webpage",
+      "url": "https://ssvid.cc/ko/youtube-shorts-downloader",
+      "name": "SSVID - YouTube Shorts 다운로드",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/#website"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "@id": "https://ssvid.cc/ko/youtube-shorts-downloader#application"
+      },
+      "inLanguage": "ko"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://ssvid.cc/ko/youtube-shorts-downloader#application",
+      "name": "SSVID - YouTube Shorts 다운로드",
+      "url": "https://ssvid.cc/ko/youtube-shorts-downloader",
+      "description": "SSVID로 YouTube Shorts를 다운로드하세요. 무료, 빠르고 무제한.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "ko",
+      "publisher": {
+        "@id": "https://ssvid.cc/#organization"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://ssvid.cc/ko/youtube-shorts-downloader#faq",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/ko/youtube-shorts-downloader#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "YouTube Shorts와 일반 YouTube 동영상의 차이점은 무엇인가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "YouTube Shorts는 세로 시청(종종 9:16)을 위해 설계된 짧은 형식의 동영상입니다. 일반 YouTube 동영상은 일반적으로 더 길고 종종 가로 형식입니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "소프트웨어를 설치하지 않고 온라인으로 YouTube Shorts를 다운로드할 수 있나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "예. SSVID는 브라우저에서 완전히 온라인으로 작동합니다. 소프트웨어, 확장 프로그램, 가입이 필요 없습니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "SSVID는 Shorts를 원본 세로 형식으로 유지하나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "예. SSVID는 Shorts가 모바일 장치에서 올바르게 재생되도록 세로 9:16 레이아웃을 보존하는 데 중점을 둡니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "iPhone 및 Android에서 Shorts를 다운로드할 수 있나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "예. SSVID는 모바일 및 데스크톱 브라우저에서 작동하므로 iOS, Android, Windows 또는 macOS에서 Shorts를 다운로드할 수 있습니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "SSVID는 Shorts 다운로드에 무료이며 무제한인가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "예. SSVID는 무료로 사용할 수 있으며 무제한 YouTube Shorts 다운로드를 허용합니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "SSVID는 비공개 또는 제한된 Shorts를 다운로드할 수 있나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "아니요. 비공개 또는 제한된 콘텐츠는 온라인 다운로드 도구로 처리할 수 없습니다."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://ssvid.cc/ko/youtube-shorts-downloader#howto",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/ko/youtube-shorts-downloader#webpage"
+      },
+      "name": "SSVID로 YouTube Shorts를 다운로드하는 방법",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "링크 복사",
+          "text": "YouTube Shorts 링크를 복사하세요."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "붙여넣기 및 선택",
+          "text": "SSVID에 링크를 붙여넣으세요."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "다운로드",
+          "text": "몇 초 안에 Shorts를 다운로드하세요."
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body>
@@ -79,7 +206,7 @@
             </a>
             <nav class="header-nav" aria-label="Primary">
                 <a href="/ko/" class="header-link">홈</a>
-                <a href="/ko/about.html" class="header-link">소개</a>
+                <a href="/ko/about" class="header-link">소개</a>
                 <div class="lang-selector">
                     <button class="lang-button" type="button" aria-label="언어">
                         <span>KO</span>
@@ -217,16 +344,16 @@
         <div class="drawer-scroll">
             <nav class="drawer-nav" aria-label="Mobile">
                 <a href="/ko/" class="drawer-link">홈</a>
-                <a href="/ko/youtube-to-mp3.html" class="drawer-link">유튜브를 MP3로</a>
-                <a href="/ko/youtube-to-mp4.html" class="drawer-link">유튜브를 MP4로</a>
-                <a href="/ko/youtube-shorts-downloader.html" class="drawer-link">유튜브 쇼츠</a>
+                <a href="/ko/youtube-to-mp3" class="drawer-link">유튜브를 MP3로</a>
+                <a href="/ko/youtube-to-mp4" class="drawer-link">유튜브를 MP4로</a>
+                <a href="/ko/youtube-shorts-downloader" class="drawer-link">유튜브 쇼츠</a>
                 <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
-                <a href="/ko/about.html" class="drawer-link">소개</a>
-                <a href="/ko/faq.html" class="drawer-link">자주 묻는 질문</a>
-                <a href="/ko/contact.html" class="drawer-link">문의하기</a>
-                <a href="/ko/terms.html" class="drawer-link">이용약관</a>
-                <a href="/ko/policy.html" class="drawer-link">개인정보 보호</a>
-                <a href="/ko/dmca.html" class="drawer-link">DMCA</a>
+                <a href="/ko/about" class="drawer-link">소개</a>
+                <a href="/ko/faq" class="drawer-link">자주 묻는 질문</a>
+                <a href="/ko/contact" class="drawer-link">문의하기</a>
+                <a href="/ko/terms" class="drawer-link">이용약관</a>
+                <a href="/ko/policy" class="drawer-link">개인정보 보호</a>
+                <a href="/ko/dmca" class="drawer-link">DMCA</a>
             </nav>
             <div class="drawer-lang-selector">
                 <button class="drawer-lang-button" type="button" aria-label="Choose language">
@@ -503,7 +630,7 @@
         <p style="text-align: center;">Shorts를 다운로드하면 좋아하는 클립을 오프라인으로 시청하고, 나중에 영감을 저장하고, 모바일 데이터에 의존하지 않고 유용한 튜토리얼이나 스니펫을 보관할 수 있습니다. Shorts는 짧고 세로형이므로 휴대폰에서 빠르게 시청하기에 이상적입니다.</p>
         <br><br>
         <h2 class="titles">세로 9:16 형식 (회전 문제 없음)</h2>
-        <p style="text-align: center;">많은 도구는 Shorts를 일반 동영상처럼 취급하여 옆으로 재생되거나 프레임이 잘못될 수 있습니다. SSVID는 Shorts를 위해 제작되었으며, 모바일 장치에서 더 부드러운 재생을 위해 <strong>세로 9:16</strong> 레이아웃을 유지하는 데 도움이 됩니다. 대신 표준 YouTube 동영상을 다운로드하려면 <a href="/ko/youtube-to-mp4.html" title="Download YouTube MP4"><strong>YouTube MP4 다운로드</strong></a>를 사용하세요.</p>
+        <p style="text-align: center;">많은 도구는 Shorts를 일반 동영상처럼 취급하여 옆으로 재생되거나 프레임이 잘못될 수 있습니다. SSVID는 Shorts를 위해 제작되었으며, 모바일 장치에서 더 부드러운 재생을 위해 <strong>세로 9:16</strong> 레이아웃을 유지하는 데 도움이 됩니다. 대신 표준 YouTube 동영상을 다운로드하려면 <a href="/ko/youtube-to-mp4" title="Download YouTube MP4"><strong>YouTube MP4 다운로드</strong></a>를 사용하세요.</p>
     </div>
 </section>
 
@@ -551,17 +678,17 @@
     <footer>
     <div class="container">
         <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
-            <a href="/ko/youtube-to-mp3.html" style="color: inherit; text-decoration: none;">유튜브를 MP3로</a>
-            <a href="/ko/youtube-to-mp4.html" style="color: inherit; text-decoration: none;">유튜브를 MP4로</a>
-            <a href="/ko/youtube-shorts-downloader.html" style="color: inherit; text-decoration: none;">유튜브 쇼츠</a>
+            <a href="/ko/youtube-to-mp3" style="color: inherit; text-decoration: none;">유튜브를 MP3로</a>
+            <a href="/ko/youtube-to-mp4" style="color: inherit; text-decoration: none;">유튜브를 MP4로</a>
+            <a href="/ko/youtube-shorts-downloader" style="color: inherit; text-decoration: none;">유튜브 쇼츠</a>
         </div>
         <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
-            <a href="/ko/about.html" style="color: inherit; text-decoration: none;">소개</a>
-            <a href="/ko/contact.html" style="color: inherit; text-decoration: none;">문의하기</a>
-            <a href="/ko/terms.html" style="color: inherit; text-decoration: none;">이용약관</a>
-            <a href="/ko/policy.html" style="color: inherit; text-decoration: none;">개인정보처리방침</a>
-            <a href="/ko/dmca.html" style="color: inherit; text-decoration: none;">DMCA</a>
-            <a href="/ko/faq.html" style="color: inherit; text-decoration: none;">자주 묻는 질문</a>
+            <a href="/ko/about" style="color: inherit; text-decoration: none;">소개</a>
+            <a href="/ko/contact" style="color: inherit; text-decoration: none;">문의하기</a>
+            <a href="/ko/terms" style="color: inherit; text-decoration: none;">이용약관</a>
+            <a href="/ko/policy" style="color: inherit; text-decoration: none;">개인정보처리방침</a>
+            <a href="/ko/dmca" style="color: inherit; text-decoration: none;">DMCA</a>
+            <a href="/ko/faq" style="color: inherit; text-decoration: none;">자주 묻는 질문</a>
         </div>
         <div class="copyright">© 2026 SSVid. 모든 권리 보유.</div>
     </div>
@@ -570,133 +697,6 @@
 
     <!-- Main TypeScript Entry -->
     <script type="module" src="/src/main.ts"></script>
-
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebPage",
-      "@id": "https://ssvid.cc/ko/youtube-shorts-downloader#webpage",
-      "url": "https://ssvid.cc/ko/youtube-shorts-downloader",
-      "name": "SSVID - YouTube Shorts 다운로드",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/#website"
-      },
-      "about": {
-        "@type": "SoftwareApplication",
-        "@id": "https://ssvid.cc/ko/youtube-shorts-downloader#application"
-      },
-      "inLanguage": "ko"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "@id": "https://ssvid.cc/ko/youtube-shorts-downloader#application",
-      "name": "SSVID - YouTube Shorts 다운로드",
-      "url": "https://ssvid.cc/ko/youtube-shorts-downloader",
-      "description": "SSVID로 YouTube Shorts를 다운로드하세요. 무료, 빠르고 무제한.",
-      "applicationCategory": "MultimediaApplication",
-      "operatingSystem": "All",
-      "browserRequirements": "Requires JavaScript. Requires HTML5.",
-      "inLanguage": "ko",
-      "publisher": {
-        "@id": "https://ssvid.cc/#organization"
-      },
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://ssvid.cc/ko/youtube-shorts-downloader#faq",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/ko/youtube-shorts-downloader#webpage"
-      },
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "YouTube Shorts와 일반 YouTube 동영상의 차이점은 무엇인가요?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "YouTube Shorts는 세로 시청(종종 9:16)을 위해 설계된 짧은 형식의 동영상입니다. 일반 YouTube 동영상은 일반적으로 더 길고 종종 가로 형식입니다."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "소프트웨어를 설치하지 않고 온라인으로 YouTube Shorts를 다운로드할 수 있나요?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "예. SSVID는 브라우저에서 완전히 온라인으로 작동합니다. 소프트웨어, 확장 프로그램, 가입이 필요 없습니다."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "SSVID는 Shorts를 원본 세로 형식으로 유지하나요?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "예. SSVID는 Shorts가 모바일 장치에서 올바르게 재생되도록 세로 9:16 레이아웃을 보존하는 데 중점을 둡니다."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "iPhone 및 Android에서 Shorts를 다운로드할 수 있나요?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "예. SSVID는 모바일 및 데스크톱 브라우저에서 작동하므로 iOS, Android, Windows 또는 macOS에서 Shorts를 다운로드할 수 있습니다."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "SSVID는 Shorts 다운로드에 무료이며 무제한인가요?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "예. SSVID는 무료로 사용할 수 있으며 무제한 YouTube Shorts 다운로드를 허용합니다."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "SSVID는 비공개 또는 제한된 Shorts를 다운로드할 수 있나요?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "아니요. 비공개 또는 제한된 콘텐츠는 온라인 다운로드 도구로 처리할 수 없습니다."
-          }
-        }
-      ]
-    },
-    {
-      "@type": "HowTo",
-      "@id": "https://ssvid.cc/ko/youtube-shorts-downloader#howto",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/ko/youtube-shorts-downloader#webpage"
-      },
-      "name": "SSVID로 YouTube Shorts를 다운로드하는 방법",
-      "step": [
-        {
-          "@type": "HowToStep",
-          "position": 1,
-          "name": "링크 복사",
-          "text": "YouTube Shorts 링크를 복사하세요."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 2,
-          "name": "붙여넣기 및 선택",
-          "text": "SSVID에 링크를 붙여넣으세요."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 3,
-          "name": "다운로드",
-          "text": "몇 초 안에 Shorts를 다운로드하세요."
-        }
-      ]
-    }
-  ]
-}
-</script>
-
 </body>
 
 </html>

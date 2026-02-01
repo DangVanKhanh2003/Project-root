@@ -59,6 +59,133 @@
     <script>
         (function () { var f = 'mp4'; try { var p = JSON.parse(localStorage.getItem('ssvid_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat } catch (e) { } document.documentElement.dataset.format = f; document.write('<style>html[data-format="mp3"] .quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4{display:block!important}</style>') })()
     </script>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://ssvid.cc/ar/youtube-to-mp4#webpage",
+      "url": "https://ssvid.cc/ar/youtube-to-mp4",
+      "name": "SSVID - تنزيل فيديوهات يوتيوب MP4",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/#website"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "@id": "https://ssvid.cc/ar/youtube-to-mp4#application"
+      },
+      "inLanguage": "ar"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://ssvid.cc/ar/youtube-to-mp4#application",
+      "name": "SSVID - تنزيل فيديوهات يوتيوب MP4",
+      "url": "https://ssvid.cc/ar/youtube-to-mp4",
+      "description": "قم بتنزيل فيديوهات يوتيوب بصيغة MP4 باستخدام SSVID. مجاني وسريع وغير محدود.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "ar",
+      "publisher": {
+        "@id": "https://ssvid.cc/#organization"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://ssvid.cc/ar/youtube-to-mp4#faq",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/ar/youtube-to-mp4#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "ما الفرق بين يوتيوب MP4 و MP3؟",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "يتضمن MP4 كلاً من الفيديو والصوت، بينما يستخرج MP3 الصوت فقط. MP4 أفضل للمشاهدة في وضع عدم الاتصال والمحتوى المرئي."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "هل يمكنني تنزيل فيديوهات يوتيوب MP4 عبر الإنترنت؟",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "نعم. يعمل SSVID بالكامل عبر الإنترنت، مما يتيح لك تنزيل فيديوهات يوتيوب MP4 مباشرة في متصفحك."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "هل يدعم SSVID تنزيلات MP4 عالية الدقة و 4K؟",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "نعم. يدعم SSVID تنزيلات MP4 عالية الدقة و 4K عندما يكون فيديو يوتيوب الأصلي متاحًا بهذه الدقة."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "هل يمكنني تنزيل فيديوهات يوتيوب الطويلة بصيغة MP4؟",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "نعم. يدعم SSVID تنزيل فيديوهات يوتيوب الطويلة دون حدود زمنية."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "هل استخدام SSVID مجاني؟",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "نعم. SSVID مجاني تمامًا ولا يتطلب تسجيلًا."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "هل يمكنني استخدام SSVID على الأجهزة المحمولة؟",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "نعم. يعمل SSVID على كل من متصفحات سطح المكتب والجوال، بما في ذلك Android و iOS."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://ssvid.cc/ar/youtube-to-mp4#howto",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/ar/youtube-to-mp4#webpage"
+      },
+      "name": "كيفية تنزيل فيديوهات يوتيوب MP4 باستخدام SSVID",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "انسخ الرابط",
+          "text": "انسخ رابط فيديو يوتيوب."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "الصق واختر",
+          "text": "الصق الرابط في SSVID."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "تنزيل",
+          "text": "قم بتنزيل الفيديو بصيغة MP4 في ثوانٍ."
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body>
@@ -79,7 +206,7 @@
             </a>
             <nav class="header-nav" aria-label="Primary">
                 <a href="/ar/" class="header-link">الرئيسية</a>
-                <a href="/ar/about.html" class="header-link">حول</a>
+                <a href="/ar/about" class="header-link">حول</a>
                 <div class="lang-selector">
                     <button class="lang-button" type="button" aria-label="اللغة">
                         <span>AR</span>
@@ -217,16 +344,16 @@
         <div class="drawer-scroll">
             <nav class="drawer-nav" aria-label="Mobile">
                 <a href="/ar/" class="drawer-link">الرئيسية</a>
-                <a href="/ar/youtube-to-mp3.html" class="drawer-link">يوتيوب إلى MP3</a>
-                <a href="/ar/youtube-to-mp4.html" class="drawer-link">يوتيوب إلى MP4</a>
-                <a href="/ar/youtube-shorts-downloader.html" class="drawer-link">يوتيوب شورتس</a>
+                <a href="/ar/youtube-to-mp3" class="drawer-link">يوتيوب إلى MP3</a>
+                <a href="/ar/youtube-to-mp4" class="drawer-link">يوتيوب إلى MP4</a>
+                <a href="/ar/youtube-shorts-downloader" class="drawer-link">يوتيوب شورتس</a>
                 <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
-                <a href="/ar/about.html" class="drawer-link">حول</a>
-                <a href="/ar/faq.html" class="drawer-link">الأسئلة الشائعة</a>
-                <a href="/ar/contact.html" class="drawer-link">اتصل بنا</a>
-                <a href="/ar/terms.html" class="drawer-link">الشروط</a>
-                <a href="/ar/policy.html" class="drawer-link">الخصوصية</a>
-                <a href="/ar/dmca.html" class="drawer-link">DMCA</a>
+                <a href="/ar/about" class="drawer-link">حول</a>
+                <a href="/ar/faq" class="drawer-link">الأسئلة الشائعة</a>
+                <a href="/ar/contact" class="drawer-link">اتصل بنا</a>
+                <a href="/ar/terms" class="drawer-link">الشروط</a>
+                <a href="/ar/policy" class="drawer-link">الخصوصية</a>
+                <a href="/ar/dmca" class="drawer-link">DMCA</a>
             </nav>
             <div class="drawer-lang-selector">
                 <button class="drawer-lang-button" type="button" aria-label="Choose language">
@@ -551,17 +678,17 @@
     <footer>
     <div class="container">
         <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
-            <a href="/ar/youtube-to-mp3.html" style="color: inherit; text-decoration: none;">يوتيوب إلى MP3</a>
-            <a href="/ar/youtube-to-mp4.html" style="color: inherit; text-decoration: none;">يوتيوب إلى MP4</a>
-            <a href="/ar/youtube-shorts-downloader.html" style="color: inherit; text-decoration: none;">يوتيوب شورتس</a>
+            <a href="/ar/youtube-to-mp3" style="color: inherit; text-decoration: none;">يوتيوب إلى MP3</a>
+            <a href="/ar/youtube-to-mp4" style="color: inherit; text-decoration: none;">يوتيوب إلى MP4</a>
+            <a href="/ar/youtube-shorts-downloader" style="color: inherit; text-decoration: none;">يوتيوب شورتس</a>
         </div>
         <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
-            <a href="/ar/about.html" style="color: inherit; text-decoration: none;">حول</a>
-            <a href="/ar/contact.html" style="color: inherit; text-decoration: none;">اتصل بنا</a>
-            <a href="/ar/terms.html" style="color: inherit; text-decoration: none;">الشروط</a>
-            <a href="/ar/policy.html" style="color: inherit; text-decoration: none;">سياسة الخصوصية</a>
-            <a href="/ar/dmca.html" style="color: inherit; text-decoration: none;">DMCA</a>
-            <a href="/ar/faq.html" style="color: inherit; text-decoration: none;">الأسئلة الشائعة</a>
+            <a href="/ar/about" style="color: inherit; text-decoration: none;">حول</a>
+            <a href="/ar/contact" style="color: inherit; text-decoration: none;">اتصل بنا</a>
+            <a href="/ar/terms" style="color: inherit; text-decoration: none;">الشروط</a>
+            <a href="/ar/policy" style="color: inherit; text-decoration: none;">سياسة الخصوصية</a>
+            <a href="/ar/dmca" style="color: inherit; text-decoration: none;">DMCA</a>
+            <a href="/ar/faq" style="color: inherit; text-decoration: none;">الأسئلة الشائعة</a>
         </div>
         <div class="copyright">© 2026 SSVid. جميع الحقوق محفوظة.</div>
     </div>
@@ -570,133 +697,6 @@
 
     <!-- Main TypeScript Entry -->
     <script type="module" src="/src/main.ts"></script>
-
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebPage",
-      "@id": "https://ssvid.cc/ar/youtube-to-mp4#webpage",
-      "url": "https://ssvid.cc/ar/youtube-to-mp4",
-      "name": "SSVID - تنزيل فيديوهات يوتيوب MP4",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/#website"
-      },
-      "about": {
-        "@type": "SoftwareApplication",
-        "@id": "https://ssvid.cc/ar/youtube-to-mp4#application"
-      },
-      "inLanguage": "ar"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "@id": "https://ssvid.cc/ar/youtube-to-mp4#application",
-      "name": "SSVID - تنزيل فيديوهات يوتيوب MP4",
-      "url": "https://ssvid.cc/ar/youtube-to-mp4",
-      "description": "قم بتنزيل فيديوهات يوتيوب بصيغة MP4 باستخدام SSVID. مجاني وسريع وغير محدود.",
-      "applicationCategory": "MultimediaApplication",
-      "operatingSystem": "All",
-      "browserRequirements": "Requires JavaScript. Requires HTML5.",
-      "inLanguage": "ar",
-      "publisher": {
-        "@id": "https://ssvid.cc/#organization"
-      },
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://ssvid.cc/ar/youtube-to-mp4#faq",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/ar/youtube-to-mp4#webpage"
-      },
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "ما الفرق بين يوتيوب MP4 و MP3؟",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "يتضمن MP4 كلاً من الفيديو والصوت، بينما يستخرج MP3 الصوت فقط. MP4 أفضل للمشاهدة في وضع عدم الاتصال والمحتوى المرئي."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "هل يمكنني تنزيل فيديوهات يوتيوب MP4 عبر الإنترنت؟",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "نعم. يعمل SSVID بالكامل عبر الإنترنت، مما يتيح لك تنزيل فيديوهات يوتيوب MP4 مباشرة في متصفحك."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "هل يدعم SSVID تنزيلات MP4 عالية الدقة و 4K؟",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "نعم. يدعم SSVID تنزيلات MP4 عالية الدقة و 4K عندما يكون فيديو يوتيوب الأصلي متاحًا بهذه الدقة."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "هل يمكنني تنزيل فيديوهات يوتيوب الطويلة بصيغة MP4؟",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "نعم. يدعم SSVID تنزيل فيديوهات يوتيوب الطويلة دون حدود زمنية."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "هل استخدام SSVID مجاني؟",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "نعم. SSVID مجاني تمامًا ولا يتطلب تسجيلًا."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "هل يمكنني استخدام SSVID على الأجهزة المحمولة؟",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "نعم. يعمل SSVID على كل من متصفحات سطح المكتب والجوال، بما في ذلك Android و iOS."
-          }
-        }
-      ]
-    },
-    {
-      "@type": "HowTo",
-      "@id": "https://ssvid.cc/ar/youtube-to-mp4#howto",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/ar/youtube-to-mp4#webpage"
-      },
-      "name": "كيفية تنزيل فيديوهات يوتيوب MP4 باستخدام SSVID",
-      "step": [
-        {
-          "@type": "HowToStep",
-          "position": 1,
-          "name": "انسخ الرابط",
-          "text": "انسخ رابط فيديو يوتيوب."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 2,
-          "name": "الصق واختر",
-          "text": "الصق الرابط في SSVID."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 3,
-          "name": "تنزيل",
-          "text": "قم بتنزيل الفيديو بصيغة MP4 في ثوانٍ."
-        }
-      ]
-    }
-  ]
-}
-</script>
-
 </body>
 
 </html>

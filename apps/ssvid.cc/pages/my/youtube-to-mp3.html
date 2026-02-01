@@ -59,6 +59,133 @@
     <script>
         (function () { var f = 'mp4'; try { var p = JSON.parse(localStorage.getItem('ssvid_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat } catch (e) { } document.documentElement.dataset.format = f; document.write('<style>html[data-format="mp3"] .quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4{display:block!important}</style>') })()
     </script>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://ssvid.cc/my/youtube-to-mp3#webpage",
+      "url": "https://ssvid.cc/my/youtube-to-mp3",
+      "name": "SSVID - YouTube MP3 ကို ဒေါင်းလုဒ်လုပ်ပါ",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/#website"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "@id": "https://ssvid.cc/my/youtube-to-mp3#application"
+      },
+      "inLanguage": "my"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://ssvid.cc/my/youtube-to-mp3#application",
+      "name": "SSVID - YouTube MP3 ကို ဒေါင်းလုဒ်လုပ်ပါ",
+      "url": "https://ssvid.cc/my/youtube-to-mp3",
+      "description": "SSVID ဖြင့် YouTube အသံကို MP3 အဖြစ် ဒေါင်းလုဒ်လုပ်ပါ။ အခမဲ့၊ မြန်ဆန်ပြီး အကန့်အသတ်မဲ့။",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "my",
+      "publisher": {
+        "@id": "https://ssvid.cc/#organization"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://ssvid.cc/my/youtube-to-mp3#faq",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/my/youtube-to-mp3#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "YouTube MP3 နှင့် MP4 အကြား ကွာခြားချက်ကဘာလဲ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "MP3 သည် အသံသက်သက်ဖြစ်ပြီး MP4 တွင် ဗီဒီယိုနှင့် အသံနှစ်မျိုးလုံး ပါဝင်သည်။ အသံသာ လိုအပ်ပြီး ဖိုင်သေးသေးလေးများ လိုချင်ပါက MP3 ကို ရွေးချယ်ပါ။"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "ဆော့ဖ်ဝဲလ် ထည့်သွင်းစရာမလိုဘဲ YouTube MP3 ကို အွန်လိုင်းမှ ဒေါင်းလုဒ်လုပ်နိုင်ပါသလား?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ဟုတ်ကဲ့။ SSVID သည် သင့်ဘရောက်ဆာတွင် အွန်လိုင်းမှ အပြည့်အဝ အလုပ်လုပ်သည်—ဆော့ဖ်ဝဲလ်မလို၊ အက်ဒ်အွန်မလို၊ မှတ်ပုံတင်ရန်မလိုပါ။"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "ဘယ် MP3 အရည်အသွေးကို ရွေးချယ်သင့်လဲ- 128kbps ဒါမှမဟုတ် 320kbps?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "128kbps သည် စကားပြောနှင့် ဖိုင်သေးသေးလေးများအတွက် ကောင်းမွန်သည်။ အကောင်းဆုံး MP3 အရည်အသွေးကို လိုချင်ပါက 320kbps သည် ဂီတနှင့် ပိုမိုမြင့်မားသော အသံအသေးစိတ်အတွက် ပိုကောင်းသည်။"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "ရှည်လျားသော YouTube ဗီဒီယိုများကို MP3 အဖြစ် ဒေါင်းလုဒ်လုပ်နိုင်ပါသလား?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ဟုတ်ကဲ့။ SSVID သည် အော့ဖ်လိုင်းနားဆင်ရန်အတွက် ရှည်လျားသော YouTube ဗီဒီယိုများကို MP3 အဖြစ် ပြောင်းလဲခြင်းကို အချိန်ကန့်သတ်ချက်မရှိဘဲ ပံ့ပိုးပေးပါသည်။"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "SSVID သည် MP3 ဒေါင်းလုဒ်များအတွက် အခမဲ့နှင့် အကန့်အသတ်မဲ့လား?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ဟုတ်ကဲ့။ SSVID သည် အခမဲ့အသုံးပြုနိုင်ပြီး အကန့်အသတ်မဲ့ YouTube MP3 ဒေါင်းလုဒ်များကို ခွင့်ပြုပါသည်။"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "SSVID သည် iPhone နှင့် Android တွင် အလုပ်လုပ်ပါသလား?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ဟုတ်ကဲ့။ SSVID သည် မိုဘိုင်းဘရောက်ဆာများနှင့် ဒက်စ်စ်တော့ဘရောက်ဆာများတွင် အလုပ်လုပ်သည်၊ ထို့ကြောင့် သင်သည် iOS၊ Android၊ Windows သို့မဟုတ် macOS တွင် MP3 ကို ဒေါင်းလုဒ်လုပ်နိုင်ပါသည်။"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://ssvid.cc/my/youtube-to-mp3#howto",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/my/youtube-to-mp3#webpage"
+      },
+      "name": "SSVID ဖြင့် YouTube MP3 ကို ဒေါင်းလုဒ်လုပ်နည်း",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "လင့်ခ်ကို ကူးယူပါ",
+          "text": "YouTube ဗီဒီယိုလင့်ခ်ကို ကူးယူပါ။"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "ကူးထည့်ပြီး ရွေးချယ်ပါ",
+          "text": "လင့်ခ်ကို SSVID ထဲသို့ ကူးထည့်ပါ။"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "ဒေါင်းလုဒ်လုပ်ပါ",
+          "text": "MP3 အရည်အသွေးကို ရွေးချယ်ပြီး စက္ကန့်ပိုင်းအတွင်း ဒေါင်းလုဒ်လုပ်ပါ။"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body>
@@ -79,7 +206,7 @@
             </a>
             <nav class="header-nav" aria-label="Primary">
                 <a href="/my/" class="header-link">ပင်မစာမျက်နှာ</a>
-                <a href="/my/about.html" class="header-link">ကျွန်ုပ်တို့အကြောင်း</a>
+                <a href="/my/about" class="header-link">ကျွန်ုပ်တို့အကြောင်း</a>
                 <div class="lang-selector">
                     <button class="lang-button" type="button" aria-label="ဘာသာစကား">
                         <span>MY</span>
@@ -217,16 +344,16 @@
         <div class="drawer-scroll">
             <nav class="drawer-nav" aria-label="Mobile">
                 <a href="/my/" class="drawer-link">ပင်မစာမျက်နှာ</a>
-                <a href="/my/youtube-to-mp3.html" class="drawer-link">YouTube မှ MP3</a>
-                <a href="/my/youtube-to-mp4.html" class="drawer-link">YouTube မှ MP4</a>
-                <a href="/my/youtube-shorts-downloader.html" class="drawer-link">YouTube Shorts</a>
+                <a href="/my/youtube-to-mp3" class="drawer-link">YouTube မှ MP3</a>
+                <a href="/my/youtube-to-mp4" class="drawer-link">YouTube မှ MP4</a>
+                <a href="/my/youtube-shorts-downloader" class="drawer-link">YouTube Shorts</a>
                 <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
-                <a href="/my/about.html" class="drawer-link">ကျွန်ုပ်တို့အကြောင်း</a>
-                <a href="/my/faq.html" class="drawer-link">အမေးများသောမေးခွန်းများ</a>
-                <a href="/my/contact.html" class="drawer-link">ဆက်သွယ်ရန်</a>
-                <a href="/my/terms.html" class="drawer-link">စည်းမျဉ်းများ</a>
-                <a href="/my/policy.html" class="drawer-link">ကိုယ်ရေးကိုယ်တာ</a>
-                <a href="/my/dmca.html" class="drawer-link">DMCA</a>
+                <a href="/my/about" class="drawer-link">ကျွန်ုပ်တို့အကြောင်း</a>
+                <a href="/my/faq" class="drawer-link">အမေးများသောမေးခွန်းများ</a>
+                <a href="/my/contact" class="drawer-link">ဆက်သွယ်ရန်</a>
+                <a href="/my/terms" class="drawer-link">စည်းမျဉ်းများ</a>
+                <a href="/my/policy" class="drawer-link">ကိုယ်ရေးကိုယ်တာ</a>
+                <a href="/my/dmca" class="drawer-link">DMCA</a>
             </nav>
             <div class="drawer-lang-selector">
                 <button class="drawer-lang-button" type="button" aria-label="Choose language">
@@ -503,7 +630,7 @@
         <p style="text-align: center;">MP3 သည် ဖုန်းများ၊ ကွန်ပျူတာများ၊ ကားစနစ်များနှင့် ဂီတဖွင့်စက်များတွင် အသုံးအများဆုံး အသံဖော်မတ်များထဲမှ တစ်ခုဖြစ်သည်။ အသံ (ဗီဒီယိုမဟုတ်) သာ လိုအပ်ပါက၊ MP3 သည် သိုလှောင်မှုကို သက်သာစေပြီး အော့ဖ်လိုင်းနားဆင်ခြင်းကို လွယ်ကူစေသည်—အထူးသဖြင့် ဟောပြောပွဲများ သို့မဟုတ် ပေါ့တ်ကာစ်များကဲ့သို့သော ရှည်လျားသောအကြောင်းအရာများအတွက်။</p>
         <br><br>
         <h2 class="titles">MP3 အရည်အသွေး ရွေးချယ်စရာများ (128–320kbps)</h2>
-        <p style="text-align: center;">SSVID သည် အသံအရည်အသွေးနှင့် ဖိုင်အရွယ်အစားကို ချိန်ညှိနိုင်ရန် MP3 အရည်အသွေး ရွေးချယ်စရာများစွာကို ပံ့ပိုးပေးပါသည်။ <strong>128kbps</strong> သည် စကားပြောနှင့် ပိုမိုသေးငယ်သော ဒေါင်းလုဒ်များအတွက် ကောင်းမွန်ပြီး <strong>320kbps</strong> သည် ဂီတနှင့် ပိုမိုမြင့်မားသော အသံနားဆင်မှုအတွက် အကောင်းဆုံးဖြစ်သည်။ အကယ်၍ သင်သည် ဗီဒီယိုကို လိုချင်ပါက၊ <a href="/my/youtube-to-mp4.html" title="YouTube MP4 ကို ဒေါင်းလုဒ်လုပ်ပါ"><strong>YouTube MP4 ကို ဒေါင်းလုဒ်လုပ်ပါ</strong></a> ကို အသုံးပြုပါ။</p>
+        <p style="text-align: center;">SSVID သည် အသံအရည်အသွေးနှင့် ဖိုင်အရွယ်အစားကို ချိန်ညှိနိုင်ရန် MP3 အရည်အသွေး ရွေးချယ်စရာများစွာကို ပံ့ပိုးပေးပါသည်။ <strong>128kbps</strong> သည် စကားပြောနှင့် ပိုမိုသေးငယ်သော ဒေါင်းလုဒ်များအတွက် ကောင်းမွန်ပြီး <strong>320kbps</strong> သည် ဂီတနှင့် ပိုမိုမြင့်မားသော အသံနားဆင်မှုအတွက် အကောင်းဆုံးဖြစ်သည်။ အကယ်၍ သင်သည် ဗီဒီယိုကို လိုချင်ပါက၊ <a href="/my/youtube-to-mp4" title="YouTube MP4 ကို ဒေါင်းလုဒ်လုပ်ပါ"><strong>YouTube MP4 ကို ဒေါင်းလုဒ်လုပ်ပါ</strong></a> ကို အသုံးပြုပါ။</p>
     </div>
 </section>
 
@@ -551,17 +678,17 @@
     <footer>
     <div class="container">
         <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
-            <a href="/my/youtube-to-mp3.html" style="color: inherit; text-decoration: none;">YouTube မှ MP3</a>
-            <a href="/my/youtube-to-mp4.html" style="color: inherit; text-decoration: none;">YouTube မှ MP4</a>
-            <a href="/my/youtube-shorts-downloader.html" style="color: inherit; text-decoration: none;">YouTube Shorts</a>
+            <a href="/my/youtube-to-mp3" style="color: inherit; text-decoration: none;">YouTube မှ MP3</a>
+            <a href="/my/youtube-to-mp4" style="color: inherit; text-decoration: none;">YouTube မှ MP4</a>
+            <a href="/my/youtube-shorts-downloader" style="color: inherit; text-decoration: none;">YouTube Shorts</a>
         </div>
         <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
-            <a href="/my/about.html" style="color: inherit; text-decoration: none;">ကျွန်ုပ်တို့အကြောင်း</a>
-            <a href="/my/contact.html" style="color: inherit; text-decoration: none;">ဆက်သွယ်ရန်</a>
-            <a href="/my/terms.html" style="color: inherit; text-decoration: none;">စည်းမျဉ်းများ</a>
-            <a href="/my/policy.html" style="color: inherit; text-decoration: none;">ကိုယ်ရေးကိုယ်တာမူဝါဒ</a>
-            <a href="/my/dmca.html" style="color: inherit; text-decoration: none;">DMCA</a>
-            <a href="/my/faq.html" style="color: inherit; text-decoration: none;">အမေးများသောမေးခွန်းများ</a>
+            <a href="/my/about" style="color: inherit; text-decoration: none;">ကျွန်ုပ်တို့အကြောင်း</a>
+            <a href="/my/contact" style="color: inherit; text-decoration: none;">ဆက်သွယ်ရန်</a>
+            <a href="/my/terms" style="color: inherit; text-decoration: none;">စည်းမျဉ်းများ</a>
+            <a href="/my/policy" style="color: inherit; text-decoration: none;">ကိုယ်ရေးကိုယ်တာမူဝါဒ</a>
+            <a href="/my/dmca" style="color: inherit; text-decoration: none;">DMCA</a>
+            <a href="/my/faq" style="color: inherit; text-decoration: none;">အမေးများသောမေးခွန်းများ</a>
         </div>
         <div class="copyright">© 2026 SSVid. မူပိုင်ခွင့်များရယူပြီး။</div>
     </div>
@@ -570,133 +697,6 @@
 
     <!-- Main TypeScript Entry -->
     <script type="module" src="/src/main.ts"></script>
-
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebPage",
-      "@id": "https://ssvid.cc/my/youtube-to-mp3#webpage",
-      "url": "https://ssvid.cc/my/youtube-to-mp3",
-      "name": "SSVID - YouTube MP3 ကို ဒေါင်းလုဒ်လုပ်ပါ",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/#website"
-      },
-      "about": {
-        "@type": "SoftwareApplication",
-        "@id": "https://ssvid.cc/my/youtube-to-mp3#application"
-      },
-      "inLanguage": "my"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "@id": "https://ssvid.cc/my/youtube-to-mp3#application",
-      "name": "SSVID - YouTube MP3 ကို ဒေါင်းလုဒ်လုပ်ပါ",
-      "url": "https://ssvid.cc/my/youtube-to-mp3",
-      "description": "SSVID ဖြင့် YouTube အသံကို MP3 အဖြစ် ဒေါင်းလုဒ်လုပ်ပါ။ အခမဲ့၊ မြန်ဆန်ပြီး အကန့်အသတ်မဲ့။",
-      "applicationCategory": "MultimediaApplication",
-      "operatingSystem": "All",
-      "browserRequirements": "Requires JavaScript. Requires HTML5.",
-      "inLanguage": "my",
-      "publisher": {
-        "@id": "https://ssvid.cc/#organization"
-      },
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://ssvid.cc/my/youtube-to-mp3#faq",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/my/youtube-to-mp3#webpage"
-      },
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "YouTube MP3 နှင့် MP4 အကြား ကွာခြားချက်ကဘာလဲ?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "MP3 သည် အသံသက်သက်ဖြစ်ပြီး MP4 တွင် ဗီဒီယိုနှင့် အသံနှစ်မျိုးလုံး ပါဝင်သည်။ အသံသာ လိုအပ်ပြီး ဖိုင်သေးသေးလေးများ လိုချင်ပါက MP3 ကို ရွေးချယ်ပါ။"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "ဆော့ဖ်ဝဲလ် ထည့်သွင်းစရာမလိုဘဲ YouTube MP3 ကို အွန်လိုင်းမှ ဒေါင်းလုဒ်လုပ်နိုင်ပါသလား?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "ဟုတ်ကဲ့။ SSVID သည် သင့်ဘရောက်ဆာတွင် အွန်လိုင်းမှ အပြည့်အဝ အလုပ်လုပ်သည်—ဆော့ဖ်ဝဲလ်မလို၊ အက်ဒ်အွန်မလို၊ မှတ်ပုံတင်ရန်မလိုပါ။"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "ဘယ် MP3 အရည်အသွေးကို ရွေးချယ်သင့်လဲ- 128kbps ဒါမှမဟုတ် 320kbps?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "128kbps သည် စကားပြောနှင့် ဖိုင်သေးသေးလေးများအတွက် ကောင်းမွန်သည်။ အကောင်းဆုံး MP3 အရည်အသွေးကို လိုချင်ပါက 320kbps သည် ဂီတနှင့် ပိုမိုမြင့်မားသော အသံအသေးစိတ်အတွက် ပိုကောင်းသည်။"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "ရှည်လျားသော YouTube ဗီဒီယိုများကို MP3 အဖြစ် ဒေါင်းလုဒ်လုပ်နိုင်ပါသလား?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "ဟုတ်ကဲ့။ SSVID သည် အော့ဖ်လိုင်းနားဆင်ရန်အတွက် ရှည်လျားသော YouTube ဗီဒီယိုများကို MP3 အဖြစ် ပြောင်းလဲခြင်းကို အချိန်ကန့်သတ်ချက်မရှိဘဲ ပံ့ပိုးပေးပါသည်။"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "SSVID သည် MP3 ဒေါင်းလုဒ်များအတွက် အခမဲ့နှင့် အကန့်အသတ်မဲ့လား?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "ဟုတ်ကဲ့။ SSVID သည် အခမဲ့အသုံးပြုနိုင်ပြီး အကန့်အသတ်မဲ့ YouTube MP3 ဒေါင်းလုဒ်များကို ခွင့်ပြုပါသည်။"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "SSVID သည် iPhone နှင့် Android တွင် အလုပ်လုပ်ပါသလား?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "ဟုတ်ကဲ့။ SSVID သည် မိုဘိုင်းဘရောက်ဆာများနှင့် ဒက်စ်စ်တော့ဘရောက်ဆာများတွင် အလုပ်လုပ်သည်၊ ထို့ကြောင့် သင်သည် iOS၊ Android၊ Windows သို့မဟုတ် macOS တွင် MP3 ကို ဒေါင်းလုဒ်လုပ်နိုင်ပါသည်။"
-          }
-        }
-      ]
-    },
-    {
-      "@type": "HowTo",
-      "@id": "https://ssvid.cc/my/youtube-to-mp3#howto",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/my/youtube-to-mp3#webpage"
-      },
-      "name": "SSVID ဖြင့် YouTube MP3 ကို ဒေါင်းလုဒ်လုပ်နည်း",
-      "step": [
-        {
-          "@type": "HowToStep",
-          "position": 1,
-          "name": "လင့်ခ်ကို ကူးယူပါ",
-          "text": "YouTube ဗီဒီယိုလင့်ခ်ကို ကူးယူပါ။"
-        },
-        {
-          "@type": "HowToStep",
-          "position": 2,
-          "name": "ကူးထည့်ပြီး ရွေးချယ်ပါ",
-          "text": "လင့်ခ်ကို SSVID ထဲသို့ ကူးထည့်ပါ။"
-        },
-        {
-          "@type": "HowToStep",
-          "position": 3,
-          "name": "ဒေါင်းလုဒ်လုပ်ပါ",
-          "text": "MP3 အရည်အသွေးကို ရွေးချယ်ပြီး စက္ကန့်ပိုင်းအတွင်း ဒေါင်းလုဒ်လုပ်ပါ။"
-        }
-      ]
-    }
-  ]
-}
-</script>
-
 </body>
 
 </html>

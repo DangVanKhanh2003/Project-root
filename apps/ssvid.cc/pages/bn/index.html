@@ -59,6 +59,130 @@
     <script>
         (function () { var f = 'mp4'; try { var p = JSON.parse(localStorage.getItem('ssvid_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat } catch (e) { } document.documentElement.dataset.format = f; document.write('<style>html[data-format="mp3"] .quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4{display:block!important}</style>') })()
     </script>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://ssvid.cc/bn/#webpage",
+      "url": "https://ssvid.cc/bn/",
+      "name": "ইউটিউব ভিডিও ডাউনলোড করুন",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/#website"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "@id": "https://ssvid.cc/bn/#application"
+      },
+      "inLanguage": "bn"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://ssvid.cc/bn/#application",
+      "name": "ইউটিউব ভিডিও ডাউনলোড করুন",
+      "url": "https://ssvid.cc/bn/",
+      "description": "SSVID দিয়ে অনলাইনে ইউটিউব ভিডিও ডাউনলোড করুন। বিনামূল্যে, দ্রুত এবং সীমাহীন।",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "bn",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://ssvid.cc/bn/#faq",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/bn/#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "SSVID ব্যবহার করা কি বিনামূল্যে?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "হ্যাঁ। SSVID কোনও লুকানো ফি, সাবস্ক্রিপশন বা ডাউনলোড সীমা ছাড়াই সম্পূর্ণ বিনামূল্যে ব্যবহার করা যায়।"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "আমি কি সফ্টওয়্যার ইনস্টল না করে অনলাইনে ইউটিউব ভিডিও ডাউনলোড করতে পারি?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "হ্যাঁ। SSVID আপনার ব্রাউজারে সম্পূর্ণ অনলাইনে কাজ করে, তাই কোনও অ্যাপ বা সফ্টওয়্যার ইনস্টল করার প্রয়োজন নেই।"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "আমি কি ইউটিউব ভিডিও MP4 বা MP3 হিসাবে ডাউনলোড করতে পারি?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "হ্যাঁ। SSVID আপনাকে আপনার প্রয়োজন অনুসারে ইউটিউব ভিডিও MP4 হিসাবে ডাউনলোড করতে বা MP3 হিসাবে অডিও বের করতে দেয়।"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "SSVID কি ইউটিউব শর্টস ডাউনলোড সমর্থন করে?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "হ্যাঁ। আপনি সঠিক উল্লম্ব বিন্যাস এবং মূল গুণমান বজায় রেখে সহজেই ইউটিউব শর্টস ভিডিও ডাউনলোড করতে পারেন।"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "SSVID ব্যবহার করা কি নিরাপদ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "হ্যাঁ। SSVID ব্যবহার করা নিরাপদ এবং এর জন্য অ্যাকাউন্ট নিবন্ধকরণ বা ব্যক্তিগত তথ্যের প্রয়োজন নেই।"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "SSVID কি মোবাইল ডিভাইসে কাজ করে?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "হ্যাঁ। SSVID অ্যান্ড্রয়েড এবং আইওএস ব্রাউজার সহ ডেস্কটপ এবং মোবাইল উভয় ডিভাইসেই মসৃণভাবে কাজ করে।"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://ssvid.cc/bn/#howto",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/bn/#webpage"
+      },
+      "name": "কিভাবে ডাউনলোড করবেন",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "লিঙ্কটি অনুলিপি করুন",
+          "text": "ইউটিউবে যান এবং আপনি যে ভিডিওটি সংরক্ষণ করতে চান তার URL অনুলিপি করুন।"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "পেস্ট করুন এবং নির্বাচন করুন",
+          "text": "SSVID অনুসন্ধান বারে লিঙ্কটি পেস্ট করুন এবং আপনার পছন্দের ফর্ম্যাট (MP4/MP3) চয়ন করুন।"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "ডাউনলোড করুন",
+          "text": "রূপান্তর বোতামে ক্লিক করুন এবং আপনার ফাইল প্রস্তুত হওয়ার জন্য কয়েক সেকেন্ড অপেক্ষা করুন।"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body>
@@ -79,7 +203,7 @@
             </a>
             <nav class="header-nav" aria-label="Primary">
                 <a href="/bn/" class="header-link">হোম</a>
-                <a href="/bn/about.html" class="header-link">সম্পর্কে</a>
+                <a href="/bn/about" class="header-link">সম্পর্কে</a>
                 <div class="lang-selector">
                     <button class="lang-button" type="button" aria-label="ভাষা">
                         <span>BN</span>
@@ -217,16 +341,16 @@
         <div class="drawer-scroll">
             <nav class="drawer-nav" aria-label="Mobile">
                 <a href="/bn/" class="drawer-link">হোম</a>
-                <a href="/bn/youtube-to-mp3.html" class="drawer-link">ইউটিউব থেকে MP3</a>
-                <a href="/bn/youtube-to-mp4.html" class="drawer-link">ইউটিউব থেকে MP4</a>
-                <a href="/bn/youtube-shorts-downloader.html" class="drawer-link">ইউটিউব শর্টস</a>
+                <a href="/bn/youtube-to-mp3" class="drawer-link">ইউটিউব থেকে MP3</a>
+                <a href="/bn/youtube-to-mp4" class="drawer-link">ইউটিউব থেকে MP4</a>
+                <a href="/bn/youtube-shorts-downloader" class="drawer-link">ইউটিউব শর্টস</a>
                 <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
-                <a href="/bn/about.html" class="drawer-link">সম্পর্কে</a>
-                <a href="/bn/faq.html" class="drawer-link">FAQ</a>
-                <a href="/bn/contact.html" class="drawer-link">যোগাযোগ</a>
-                <a href="/bn/terms.html" class="drawer-link">শর্তাবলী</a>
-                <a href="/bn/policy.html" class="drawer-link">গোপনীয়তা</a>
-                <a href="/bn/dmca.html" class="drawer-link">DMCA</a>
+                <a href="/bn/about" class="drawer-link">সম্পর্কে</a>
+                <a href="/bn/faq" class="drawer-link">FAQ</a>
+                <a href="/bn/contact" class="drawer-link">যোগাযোগ</a>
+                <a href="/bn/terms" class="drawer-link">শর্তাবলী</a>
+                <a href="/bn/policy" class="drawer-link">গোপনীয়তা</a>
+                <a href="/bn/dmca" class="drawer-link">DMCA</a>
             </nav>
             <div class="drawer-lang-selector">
                 <button class="drawer-lang-button" type="button" aria-label="Choose language">
@@ -481,17 +605,17 @@
         
         <div class="subsection">
             <h3>ইউটিউব ভিডিও (MP4)</h3>
-            <p>SSVID দিয়ে, আপনি যেকোনো ডিভাইসে অফলাইন দেখার জন্য <strong><a href="/bn/youtube-to-mp4.html">ইউটিউব ভিডিও MP4 হিসাবে ডাউনলোড করতে পারেন</a></strong>। এটি একটি বহুল সমর্থিত ভিডিও ফর্ম্যাটে টিউটোরিয়াল, সঙ্গীত ভিডিও, ভ্লগ এবং দীর্ঘ-ফর্মের ইউটিউব সামগ্রী সংরক্ষণের জন্য আদর্শ।</p>
+            <p>SSVID দিয়ে, আপনি যেকোনো ডিভাইসে অফলাইন দেখার জন্য <strong><a href="/bn/youtube-to-mp4">ইউটিউব ভিডিও MP4 হিসাবে ডাউনলোড করতে পারেন</a></strong>। এটি একটি বহুল সমর্থিত ভিডিও ফর্ম্যাটে টিউটোরিয়াল, সঙ্গীত ভিডিও, ভ্লগ এবং দীর্ঘ-ফর্মের ইউটিউব সামগ্রী সংরক্ষণের জন্য আদর্শ।</p>
         </div>
         
         <div class="subsection">
             <h3>ইউটিউব অডিও (MP3)</h3>
-            <p>SSVID আপনাকে সরাসরি ভিডিও থেকে শব্দ বের করে <strong><a href="/bn/youtube-to-mp3.html">ইউটিউব অডিও MP3 হিসাবে ডাউনলোড করতে দেয়</a></strong>। এই বিকল্পটি সঙ্গীত, পডকাস্ট, সাক্ষাৎকার এবং অন্যান্য অডিও সামগ্রীর জন্য উপযুক্ত যা আপনি যেকোনো সময় শুনতে চান।</p>
+            <p>SSVID আপনাকে সরাসরি ভিডিও থেকে শব্দ বের করে <strong><a href="/bn/youtube-to-mp3">ইউটিউব অডিও MP3 হিসাবে ডাউনলোড করতে দেয়</a></strong>। এই বিকল্পটি সঙ্গীত, পডকাস্ট, সাক্ষাৎকার এবং অন্যান্য অডিও সামগ্রীর জন্য উপযুক্ত যা আপনি যেকোনো সময় শুনতে চান।</p>
         </div>
         
         <div class="subsection">
             <h3>ইউটিউব শর্টস</h3>
-            <p>আপনি মূল গুণমান বজায় রেখে সঠিক উল্লম্ব বিন্যাসে <strong><a href="/bn/youtube-shorts-downloader.html">ইউটিউব শর্টস ভিডিও ডাউনলোড করতে পারেন</a></strong>। SSVID অফলাইন দেখা বা ভাগ করে নেওয়ার জন্য স্বল্প-ফর্মের ইউটিউব ভিডিও সংরক্ষণ করা সহজ করে তোলে।</p>
+            <p>আপনি মূল গুণমান বজায় রেখে সঠিক উল্লম্ব বিন্যাসে <strong><a href="/bn/youtube-shorts-downloader">ইউটিউব শর্টস ভিডিও ডাউনলোড করতে পারেন</a></strong>। SSVID অফলাইন দেখা বা ভাগ করে নেওয়ার জন্য স্বল্প-ফর্মের ইউটিউব ভিডিও সংরক্ষণ করা সহজ করে তোলে।</p>
         </div>
         
     </div>
@@ -550,17 +674,17 @@
     <footer>
     <div class="container">
         <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
-            <a href="/bn/youtube-to-mp3.html" style="color: inherit; text-decoration: none;">ইউটিউব থেকে MP3</a>
-            <a href="/bn/youtube-to-mp4.html" style="color: inherit; text-decoration: none;">ইউটিউব থেকে MP4</a>
-            <a href="/bn/youtube-shorts-downloader.html" style="color: inherit; text-decoration: none;">ইউটিউব শর্টস</a>
+            <a href="/bn/youtube-to-mp3" style="color: inherit; text-decoration: none;">ইউটিউব থেকে MP3</a>
+            <a href="/bn/youtube-to-mp4" style="color: inherit; text-decoration: none;">ইউটিউব থেকে MP4</a>
+            <a href="/bn/youtube-shorts-downloader" style="color: inherit; text-decoration: none;">ইউটিউব শর্টস</a>
         </div>
         <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
-            <a href="/bn/about.html" style="color: inherit; text-decoration: none;">সম্পর্কে</a>
-            <a href="/bn/contact.html" style="color: inherit; text-decoration: none;">যোগাযোগ</a>
-            <a href="/bn/terms.html" style="color: inherit; text-decoration: none;">শর্তাবলী</a>
-            <a href="/bn/policy.html" style="color: inherit; text-decoration: none;">গোপনীয়তা নীতি</a>
-            <a href="/bn/dmca.html" style="color: inherit; text-decoration: none;">DMCA</a>
-            <a href="/bn/faq.html" style="color: inherit; text-decoration: none;">FAQ</a>
+            <a href="/bn/about" style="color: inherit; text-decoration: none;">সম্পর্কে</a>
+            <a href="/bn/contact" style="color: inherit; text-decoration: none;">যোগাযোগ</a>
+            <a href="/bn/terms" style="color: inherit; text-decoration: none;">শর্তাবলী</a>
+            <a href="/bn/policy" style="color: inherit; text-decoration: none;">গোপনীয়তা নীতি</a>
+            <a href="/bn/dmca" style="color: inherit; text-decoration: none;">DMCA</a>
+            <a href="/bn/faq" style="color: inherit; text-decoration: none;">FAQ</a>
         </div>
         <div class="copyright">© 2026 SSVid. সর্বস্বত্ব সংরক্ষিত।</div>
     </div>
@@ -569,130 +693,6 @@
 
     <!-- Main TypeScript Entry -->
     <script type="module" src="/src/main.ts"></script>
-
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebPage",
-      "@id": "https://ssvid.cc/bn/#webpage",
-      "url": "https://ssvid.cc/bn/",
-      "name": "ইউটিউব ভিডিও ডাউনলোড করুন",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/#website"
-      },
-      "about": {
-        "@type": "SoftwareApplication",
-        "@id": "https://ssvid.cc/bn/#application"
-      },
-      "inLanguage": "bn"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "@id": "https://ssvid.cc/bn/#application",
-      "name": "ইউটিউব ভিডিও ডাউনলোড করুন",
-      "url": "https://ssvid.cc/bn/",
-      "description": "SSVID দিয়ে অনলাইনে ইউটিউব ভিডিও ডাউনলোড করুন। বিনামূল্যে, দ্রুত এবং সীমাহীন।",
-      "applicationCategory": "MultimediaApplication",
-      "operatingSystem": "All",
-      "browserRequirements": "Requires JavaScript. Requires HTML5.",
-      "inLanguage": "bn",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://ssvid.cc/bn/#faq",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/bn/#webpage"
-      },
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "SSVID ব্যবহার করা কি বিনামূল্যে?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "হ্যাঁ। SSVID কোনও লুকানো ফি, সাবস্ক্রিপশন বা ডাউনলোড সীমা ছাড়াই সম্পূর্ণ বিনামূল্যে ব্যবহার করা যায়।"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "আমি কি সফ্টওয়্যার ইনস্টল না করে অনলাইনে ইউটিউব ভিডিও ডাউনলোড করতে পারি?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "হ্যাঁ। SSVID আপনার ব্রাউজারে সম্পূর্ণ অনলাইনে কাজ করে, তাই কোনও অ্যাপ বা সফ্টওয়্যার ইনস্টল করার প্রয়োজন নেই।"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "আমি কি ইউটিউব ভিডিও MP4 বা MP3 হিসাবে ডাউনলোড করতে পারি?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "হ্যাঁ। SSVID আপনাকে আপনার প্রয়োজন অনুসারে ইউটিউব ভিডিও MP4 হিসাবে ডাউনলোড করতে বা MP3 হিসাবে অডিও বের করতে দেয়।"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "SSVID কি ইউটিউব শর্টস ডাউনলোড সমর্থন করে?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "হ্যাঁ। আপনি সঠিক উল্লম্ব বিন্যাস এবং মূল গুণমান বজায় রেখে সহজেই ইউটিউব শর্টস ভিডিও ডাউনলোড করতে পারেন।"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "SSVID ব্যবহার করা কি নিরাপদ?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "হ্যাঁ। SSVID ব্যবহার করা নিরাপদ এবং এর জন্য অ্যাকাউন্ট নিবন্ধকরণ বা ব্যক্তিগত তথ্যের প্রয়োজন নেই।"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "SSVID কি মোবাইল ডিভাইসে কাজ করে?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "হ্যাঁ। SSVID অ্যান্ড্রয়েড এবং আইওএস ব্রাউজার সহ ডেস্কটপ এবং মোবাইল উভয় ডিভাইসেই মসৃণভাবে কাজ করে।"
-          }
-        }
-      ]
-    },
-    {
-      "@type": "HowTo",
-      "@id": "https://ssvid.cc/bn/#howto",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/bn/#webpage"
-      },
-      "name": "কিভাবে ডাউনলোড করবেন",
-      "step": [
-        {
-          "@type": "HowToStep",
-          "position": 1,
-          "name": "লিঙ্কটি অনুলিপি করুন",
-          "text": "ইউটিউবে যান এবং আপনি যে ভিডিওটি সংরক্ষণ করতে চান তার URL অনুলিপি করুন।"
-        },
-        {
-          "@type": "HowToStep",
-          "position": 2,
-          "name": "পেস্ট করুন এবং নির্বাচন করুন",
-          "text": "SSVID অনুসন্ধান বারে লিঙ্কটি পেস্ট করুন এবং আপনার পছন্দের ফর্ম্যাট (MP4/MP3) চয়ন করুন।"
-        },
-        {
-          "@type": "HowToStep",
-          "position": 3,
-          "name": "ডাউনলোড করুন",
-          "text": "রূপান্তর বোতামে ক্লিক করুন এবং আপনার ফাইল প্রস্তুত হওয়ার জন্য কয়েক সেকেন্ড অপেক্ষা করুন।"
-        }
-      ]
-    }
-  ]
-}
-</script>
-
 </body>
 
 </html>

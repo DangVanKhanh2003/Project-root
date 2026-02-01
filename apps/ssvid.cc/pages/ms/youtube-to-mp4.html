@@ -59,6 +59,133 @@
     <script>
         (function () { var f = 'mp4'; try { var p = JSON.parse(localStorage.getItem('ssvid_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat } catch (e) { } document.documentElement.dataset.format = f; document.write('<style>html[data-format="mp3"] .quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4{display:block!important}</style>') })()
     </script>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://ssvid.cc/ms/youtube-to-mp4#webpage",
+      "url": "https://ssvid.cc/ms/youtube-to-mp4",
+      "name": "SSVID - Muat Turun Video YouTube MP4",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/#website"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "@id": "https://ssvid.cc/ms/youtube-to-mp4#application"
+      },
+      "inLanguage": "ms"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://ssvid.cc/ms/youtube-to-mp4#application",
+      "name": "SSVID - Muat Turun Video YouTube MP4",
+      "url": "https://ssvid.cc/ms/youtube-to-mp4",
+      "description": "Muat turun video YouTube sebagai MP4 dengan SSVID. Percuma, pantas dan tanpa had.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "ms",
+      "publisher": {
+        "@id": "https://ssvid.cc/#organization"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://ssvid.cc/ms/youtube-to-mp4#faq",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/ms/youtube-to-mp4#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Apakah perbezaan antara YouTube MP4 dan MP3?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "MP4 termasuk video dan audio, manakala MP3 hanya mengekstrak bunyi. MP4 lebih baik untuk tontonan luar talian dan kandungan visual."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Bolehkah saya memuat turun video YouTube MP4 dalam talian?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ya. SSVID berfungsi sepenuhnya dalam talian, membolehkan anda memuat turun video YouTube MP4 terus dalam pelayar anda."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Adakah SSVID menyokong muat turun MP4 HD dan 4K?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ya. SSVID menyokong muat turun MP4 HD dan 4K apabila video YouTube asal tersedia dalam resolusi tersebut."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Bolehkah saya memuat turun video YouTube panjang sebagai MP4?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ya. SSVID menyokong muat turun video YouTube panjang tanpa had masa."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Adakah SSVID percuma untuk digunakan?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ya. SSVID adalah percuma sepenuhnya dan tidak memerlukan pendaftaran."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Bolehkah saya menggunakan SSVID pada peranti mudah alih?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ya. SSVID berfungsi pada pelayar desktop dan mudah alih, termasuk Android dan iOS."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://ssvid.cc/ms/youtube-to-mp4#howto",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/ms/youtube-to-mp4#webpage"
+      },
+      "name": "Cara Memuat Turun Video YouTube MP4 dengan SSVID",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Salin Pautan",
+          "text": "Salin pautan video YouTube."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Tampal & Pilih",
+          "text": "Tampal pautan ke SSVID."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Muat Turun",
+          "text": "Muat turun video sebagai MP4 dalam beberapa saat."
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body>
@@ -79,7 +206,7 @@
             </a>
             <nav class="header-nav" aria-label="Primary">
                 <a href="/ms/" class="header-link">Laman Utama</a>
-                <a href="/ms/about.html" class="header-link">Tentang Kami</a>
+                <a href="/ms/about" class="header-link">Tentang Kami</a>
                 <div class="lang-selector">
                     <button class="lang-button" type="button" aria-label="Bahasa">
                         <span>MS</span>
@@ -217,16 +344,16 @@
         <div class="drawer-scroll">
             <nav class="drawer-nav" aria-label="Mobile">
                 <a href="/ms/" class="drawer-link">Laman Utama</a>
-                <a href="/ms/youtube-to-mp3.html" class="drawer-link">YouTube ke MP3</a>
-                <a href="/ms/youtube-to-mp4.html" class="drawer-link">YouTube ke MP4</a>
-                <a href="/ms/youtube-shorts-downloader.html" class="drawer-link">YouTube Shorts</a>
+                <a href="/ms/youtube-to-mp3" class="drawer-link">YouTube ke MP3</a>
+                <a href="/ms/youtube-to-mp4" class="drawer-link">YouTube ke MP4</a>
+                <a href="/ms/youtube-shorts-downloader" class="drawer-link">YouTube Shorts</a>
                 <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
-                <a href="/ms/about.html" class="drawer-link">Tentang Kami</a>
-                <a href="/ms/faq.html" class="drawer-link">Soalan Lazim</a>
-                <a href="/ms/contact.html" class="drawer-link">Hubungi Kami</a>
-                <a href="/ms/terms.html" class="drawer-link">Syarat-syarat</a>
-                <a href="/ms/policy.html" class="drawer-link">Privasi</a>
-                <a href="/ms/dmca.html" class="drawer-link">DMCA</a>
+                <a href="/ms/about" class="drawer-link">Tentang Kami</a>
+                <a href="/ms/faq" class="drawer-link">Soalan Lazim</a>
+                <a href="/ms/contact" class="drawer-link">Hubungi Kami</a>
+                <a href="/ms/terms" class="drawer-link">Syarat-syarat</a>
+                <a href="/ms/policy" class="drawer-link">Privasi</a>
+                <a href="/ms/dmca" class="drawer-link">DMCA</a>
             </nav>
             <div class="drawer-lang-selector">
                 <button class="drawer-lang-button" type="button" aria-label="Choose language">
@@ -551,17 +678,17 @@
     <footer>
     <div class="container">
         <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
-            <a href="/ms/youtube-to-mp3.html" style="color: inherit; text-decoration: none;">YouTube ke MP3</a>
-            <a href="/ms/youtube-to-mp4.html" style="color: inherit; text-decoration: none;">YouTube ke MP4</a>
-            <a href="/ms/youtube-shorts-downloader.html" style="color: inherit; text-decoration: none;">YouTube Shorts</a>
+            <a href="/ms/youtube-to-mp3" style="color: inherit; text-decoration: none;">YouTube ke MP3</a>
+            <a href="/ms/youtube-to-mp4" style="color: inherit; text-decoration: none;">YouTube ke MP4</a>
+            <a href="/ms/youtube-shorts-downloader" style="color: inherit; text-decoration: none;">YouTube Shorts</a>
         </div>
         <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
-            <a href="/ms/about.html" style="color: inherit; text-decoration: none;">Tentang Kami</a>
-            <a href="/ms/contact.html" style="color: inherit; text-decoration: none;">Hubungi Kami</a>
-            <a href="/ms/terms.html" style="color: inherit; text-decoration: none;">Syarat-syarat</a>
-            <a href="/ms/policy.html" style="color: inherit; text-decoration: none;">Dasar Privasi</a>
-            <a href="/ms/dmca.html" style="color: inherit; text-decoration: none;">DMCA</a>
-            <a href="/ms/faq.html" style="color: inherit; text-decoration: none;">Soalan Lazim</a>
+            <a href="/ms/about" style="color: inherit; text-decoration: none;">Tentang Kami</a>
+            <a href="/ms/contact" style="color: inherit; text-decoration: none;">Hubungi Kami</a>
+            <a href="/ms/terms" style="color: inherit; text-decoration: none;">Syarat-syarat</a>
+            <a href="/ms/policy" style="color: inherit; text-decoration: none;">Dasar Privasi</a>
+            <a href="/ms/dmca" style="color: inherit; text-decoration: none;">DMCA</a>
+            <a href="/ms/faq" style="color: inherit; text-decoration: none;">Soalan Lazim</a>
         </div>
         <div class="copyright">© 2026 SSVid. Hak cipta terpelihara.</div>
     </div>
@@ -570,133 +697,6 @@
 
     <!-- Main TypeScript Entry -->
     <script type="module" src="/src/main.ts"></script>
-
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebPage",
-      "@id": "https://ssvid.cc/ms/youtube-to-mp4#webpage",
-      "url": "https://ssvid.cc/ms/youtube-to-mp4",
-      "name": "SSVID - Muat Turun Video YouTube MP4",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/#website"
-      },
-      "about": {
-        "@type": "SoftwareApplication",
-        "@id": "https://ssvid.cc/ms/youtube-to-mp4#application"
-      },
-      "inLanguage": "ms"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "@id": "https://ssvid.cc/ms/youtube-to-mp4#application",
-      "name": "SSVID - Muat Turun Video YouTube MP4",
-      "url": "https://ssvid.cc/ms/youtube-to-mp4",
-      "description": "Muat turun video YouTube sebagai MP4 dengan SSVID. Percuma, pantas dan tanpa had.",
-      "applicationCategory": "MultimediaApplication",
-      "operatingSystem": "All",
-      "browserRequirements": "Requires JavaScript. Requires HTML5.",
-      "inLanguage": "ms",
-      "publisher": {
-        "@id": "https://ssvid.cc/#organization"
-      },
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://ssvid.cc/ms/youtube-to-mp4#faq",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/ms/youtube-to-mp4#webpage"
-      },
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Apakah perbezaan antara YouTube MP4 dan MP3?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "MP4 termasuk video dan audio, manakala MP3 hanya mengekstrak bunyi. MP4 lebih baik untuk tontonan luar talian dan kandungan visual."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Bolehkah saya memuat turun video YouTube MP4 dalam talian?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Ya. SSVID berfungsi sepenuhnya dalam talian, membolehkan anda memuat turun video YouTube MP4 terus dalam pelayar anda."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Adakah SSVID menyokong muat turun MP4 HD dan 4K?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Ya. SSVID menyokong muat turun MP4 HD dan 4K apabila video YouTube asal tersedia dalam resolusi tersebut."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Bolehkah saya memuat turun video YouTube panjang sebagai MP4?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Ya. SSVID menyokong muat turun video YouTube panjang tanpa had masa."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Adakah SSVID percuma untuk digunakan?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Ya. SSVID adalah percuma sepenuhnya dan tidak memerlukan pendaftaran."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Bolehkah saya menggunakan SSVID pada peranti mudah alih?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Ya. SSVID berfungsi pada pelayar desktop dan mudah alih, termasuk Android dan iOS."
-          }
-        }
-      ]
-    },
-    {
-      "@type": "HowTo",
-      "@id": "https://ssvid.cc/ms/youtube-to-mp4#howto",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/ms/youtube-to-mp4#webpage"
-      },
-      "name": "Cara Memuat Turun Video YouTube MP4 dengan SSVID",
-      "step": [
-        {
-          "@type": "HowToStep",
-          "position": 1,
-          "name": "Salin Pautan",
-          "text": "Salin pautan video YouTube."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 2,
-          "name": "Tampal & Pilih",
-          "text": "Tampal pautan ke SSVID."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 3,
-          "name": "Muat Turun",
-          "text": "Muat turun video sebagai MP4 dalam beberapa saat."
-        }
-      ]
-    }
-  ]
-}
-</script>
-
 </body>
 
 </html>

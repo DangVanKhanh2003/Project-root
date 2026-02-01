@@ -59,6 +59,133 @@
     <script>
         (function () { var f = 'mp4'; try { var p = JSON.parse(localStorage.getItem('ssvid_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat } catch (e) { } document.documentElement.dataset.format = f; document.write('<style>html[data-format="mp3"] .quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4{display:block!important}</style>') })()
     </script>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://ssvid.cc/hi/youtube-to-mp4#webpage",
+      "url": "https://ssvid.cc/hi/youtube-to-mp4",
+      "name": "SSVID - यूट्यूब MP4 वीडियो डाउनलोड करें",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/#website"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "@id": "https://ssvid.cc/hi/youtube-to-mp4#application"
+      },
+      "inLanguage": "hi"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://ssvid.cc/hi/youtube-to-mp4#application",
+      "name": "SSVID - यूट्यूब MP4 वीडियो डाउनलोड करें",
+      "url": "https://ssvid.cc/hi/youtube-to-mp4",
+      "description": "SSVID के साथ यूट्यूब वीडियो को MP4 के रूप में डाउनलोड करें। मुफ्त, तेज और असीमित।",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "hi",
+      "publisher": {
+        "@id": "https://ssvid.cc/#organization"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://ssvid.cc/hi/youtube-to-mp4#faq",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/hi/youtube-to-mp4#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "यूट्यूब MP4 और MP3 में क्या अंतर है?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "MP4 में वीडियो और ऑडियो दोनों शामिल हैं, जबकि MP3 केवल ध्वनि निकालता है। MP4 ऑफ़लाइन देखने और दृश्य सामग्री के लिए बेहतर है।"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "क्या मैं यूट्यूब MP4 वीडियो ऑनलाइन डाउनलोड कर सकता हूं?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "हाँ। SSVID पूरी तरह से ऑनलाइन काम करता है, जिससे आप सीधे अपने ब्राउज़र में यूट्यूब MP4 वीडियो डाउनलोड कर सकते हैं।"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "क्या SSVID एचडी और 4K MP4 डाउनलोड का समर्थन करता है?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "हाँ। SSVID एचडी और 4K MP4 डाउनलोड का समर्थन करता है जब मूल यूट्यूब वीडियो उन रिज़ॉल्यूशन में उपलब्ध होता है।"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "क्या मैं लंबे यूट्यूब वीडियो को MP4 के रूप में डाउनलोड कर सकता हूं?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "हाँ। SSVID बिना समय सीमा के लंबे यूट्यूब वीडियो डाउनलोड करने का समर्थन करता है।"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "क्या SSVID का उपयोग मुफ्त है?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "हाँ। SSVID पूरी तरह से मुफ्त है और इसके लिए पंजीकरण की आवश्यकता नहीं है।"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "क्या मैं मोबाइल उपकरणों पर SSVID का उपयोग कर सकता हूं?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "हाँ। SSVID एंड्रॉइड और आईओएस सहित डेस्कटॉप और मोबाइल दोनों ब्राउज़रों पर काम करता है।"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://ssvid.cc/hi/youtube-to-mp4#howto",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/hi/youtube-to-mp4#webpage"
+      },
+      "name": "SSVID के साथ यूट्यूब MP4 वीडियो कैसे डाउनलोड करें",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "लिंक कॉपी करें",
+          "text": "यूट्यूब वीडियो लिंक कॉपी करें।"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "पेस्ट करें और चुनें",
+          "text": "SSVID में लिंक पेस्ट करें।"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "डाउनलोड करें",
+          "text": "वीडियो को सेकंड में MP4 के रूप में डाउनलोड करें।"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body>
@@ -79,7 +206,7 @@
             </a>
             <nav class="header-nav" aria-label="Primary">
                 <a href="/hi/" class="header-link">होम</a>
-                <a href="/hi/about.html" class="header-link">हमारे बारे में</a>
+                <a href="/hi/about" class="header-link">हमारे बारे में</a>
                 <div class="lang-selector">
                     <button class="lang-button" type="button" aria-label="भाषा">
                         <span>HI</span>
@@ -217,16 +344,16 @@
         <div class="drawer-scroll">
             <nav class="drawer-nav" aria-label="Mobile">
                 <a href="/hi/" class="drawer-link">होम</a>
-                <a href="/hi/youtube-to-mp3.html" class="drawer-link">यूट्यूब से एमपी3</a>
-                <a href="/hi/youtube-to-mp4.html" class="drawer-link">यूट्यूब से एमपी4</a>
-                <a href="/hi/youtube-shorts-downloader.html" class="drawer-link">यूट्यूब शॉर्ट्स</a>
+                <a href="/hi/youtube-to-mp3" class="drawer-link">यूट्यूब से एमपी3</a>
+                <a href="/hi/youtube-to-mp4" class="drawer-link">यूट्यूब से एमपी4</a>
+                <a href="/hi/youtube-shorts-downloader" class="drawer-link">यूट्यूब शॉर्ट्स</a>
                 <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
-                <a href="/hi/about.html" class="drawer-link">हमारे बारे में</a>
-                <a href="/hi/faq.html" class="drawer-link">सामान्य प्रश्न</a>
-                <a href="/hi/contact.html" class="drawer-link">संपर्क करें</a>
-                <a href="/hi/terms.html" class="drawer-link">शर्तें</a>
-                <a href="/hi/policy.html" class="drawer-link">गोपनीयता</a>
-                <a href="/hi/dmca.html" class="drawer-link">DMCA</a>
+                <a href="/hi/about" class="drawer-link">हमारे बारे में</a>
+                <a href="/hi/faq" class="drawer-link">सामान्य प्रश्न</a>
+                <a href="/hi/contact" class="drawer-link">संपर्क करें</a>
+                <a href="/hi/terms" class="drawer-link">शर्तें</a>
+                <a href="/hi/policy" class="drawer-link">गोपनीयता</a>
+                <a href="/hi/dmca" class="drawer-link">DMCA</a>
             </nav>
             <div class="drawer-lang-selector">
                 <button class="drawer-lang-button" type="button" aria-label="Choose language">
@@ -551,17 +678,17 @@
     <footer>
     <div class="container">
         <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
-            <a href="/hi/youtube-to-mp3.html" style="color: inherit; text-decoration: none;">यूट्यूब से एमपी3</a>
-            <a href="/hi/youtube-to-mp4.html" style="color: inherit; text-decoration: none;">यूट्यूब से एमपी4</a>
-            <a href="/hi/youtube-shorts-downloader.html" style="color: inherit; text-decoration: none;">यूट्यूब शॉर्ट्स</a>
+            <a href="/hi/youtube-to-mp3" style="color: inherit; text-decoration: none;">यूट्यूब से एमपी3</a>
+            <a href="/hi/youtube-to-mp4" style="color: inherit; text-decoration: none;">यूट्यूब से एमपी4</a>
+            <a href="/hi/youtube-shorts-downloader" style="color: inherit; text-decoration: none;">यूट्यूब शॉर्ट्स</a>
         </div>
         <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
-            <a href="/hi/about.html" style="color: inherit; text-decoration: none;">हमारे बारे में</a>
-            <a href="/hi/contact.html" style="color: inherit; text-decoration: none;">संपर्क करें</a>
-            <a href="/hi/terms.html" style="color: inherit; text-decoration: none;">शर्तें</a>
-            <a href="/hi/policy.html" style="color: inherit; text-decoration: none;">गोपनीयता नीति</a>
-            <a href="/hi/dmca.html" style="color: inherit; text-decoration: none;">DMCA</a>
-            <a href="/hi/faq.html" style="color: inherit; text-decoration: none;">सामान्य प्रश्न</a>
+            <a href="/hi/about" style="color: inherit; text-decoration: none;">हमारे बारे में</a>
+            <a href="/hi/contact" style="color: inherit; text-decoration: none;">संपर्क करें</a>
+            <a href="/hi/terms" style="color: inherit; text-decoration: none;">शर्तें</a>
+            <a href="/hi/policy" style="color: inherit; text-decoration: none;">गोपनीयता नीति</a>
+            <a href="/hi/dmca" style="color: inherit; text-decoration: none;">DMCA</a>
+            <a href="/hi/faq" style="color: inherit; text-decoration: none;">सामान्य प्रश्न</a>
         </div>
         <div class="copyright">© 2026 SSVid. सर्वाधिकार सुरक्षित।</div>
     </div>
@@ -570,133 +697,6 @@
 
     <!-- Main TypeScript Entry -->
     <script type="module" src="/src/main.ts"></script>
-
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebPage",
-      "@id": "https://ssvid.cc/hi/youtube-to-mp4#webpage",
-      "url": "https://ssvid.cc/hi/youtube-to-mp4",
-      "name": "SSVID - यूट्यूब MP4 वीडियो डाउनलोड करें",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/#website"
-      },
-      "about": {
-        "@type": "SoftwareApplication",
-        "@id": "https://ssvid.cc/hi/youtube-to-mp4#application"
-      },
-      "inLanguage": "hi"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "@id": "https://ssvid.cc/hi/youtube-to-mp4#application",
-      "name": "SSVID - यूट्यूब MP4 वीडियो डाउनलोड करें",
-      "url": "https://ssvid.cc/hi/youtube-to-mp4",
-      "description": "SSVID के साथ यूट्यूब वीडियो को MP4 के रूप में डाउनलोड करें। मुफ्त, तेज और असीमित।",
-      "applicationCategory": "MultimediaApplication",
-      "operatingSystem": "All",
-      "browserRequirements": "Requires JavaScript. Requires HTML5.",
-      "inLanguage": "hi",
-      "publisher": {
-        "@id": "https://ssvid.cc/#organization"
-      },
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://ssvid.cc/hi/youtube-to-mp4#faq",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/hi/youtube-to-mp4#webpage"
-      },
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "यूट्यूब MP4 और MP3 में क्या अंतर है?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "MP4 में वीडियो और ऑडियो दोनों शामिल हैं, जबकि MP3 केवल ध्वनि निकालता है। MP4 ऑफ़लाइन देखने और दृश्य सामग्री के लिए बेहतर है।"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "क्या मैं यूट्यूब MP4 वीडियो ऑनलाइन डाउनलोड कर सकता हूं?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "हाँ। SSVID पूरी तरह से ऑनलाइन काम करता है, जिससे आप सीधे अपने ब्राउज़र में यूट्यूब MP4 वीडियो डाउनलोड कर सकते हैं।"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "क्या SSVID एचडी और 4K MP4 डाउनलोड का समर्थन करता है?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "हाँ। SSVID एचडी और 4K MP4 डाउनलोड का समर्थन करता है जब मूल यूट्यूब वीडियो उन रिज़ॉल्यूशन में उपलब्ध होता है।"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "क्या मैं लंबे यूट्यूब वीडियो को MP4 के रूप में डाउनलोड कर सकता हूं?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "हाँ। SSVID बिना समय सीमा के लंबे यूट्यूब वीडियो डाउनलोड करने का समर्थन करता है।"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "क्या SSVID का उपयोग मुफ्त है?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "हाँ। SSVID पूरी तरह से मुफ्त है और इसके लिए पंजीकरण की आवश्यकता नहीं है।"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "क्या मैं मोबाइल उपकरणों पर SSVID का उपयोग कर सकता हूं?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "हाँ। SSVID एंड्रॉइड और आईओएस सहित डेस्कटॉप और मोबाइल दोनों ब्राउज़रों पर काम करता है।"
-          }
-        }
-      ]
-    },
-    {
-      "@type": "HowTo",
-      "@id": "https://ssvid.cc/hi/youtube-to-mp4#howto",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/hi/youtube-to-mp4#webpage"
-      },
-      "name": "SSVID के साथ यूट्यूब MP4 वीडियो कैसे डाउनलोड करें",
-      "step": [
-        {
-          "@type": "HowToStep",
-          "position": 1,
-          "name": "लिंक कॉपी करें",
-          "text": "यूट्यूब वीडियो लिंक कॉपी करें।"
-        },
-        {
-          "@type": "HowToStep",
-          "position": 2,
-          "name": "पेस्ट करें और चुनें",
-          "text": "SSVID में लिंक पेस्ट करें।"
-        },
-        {
-          "@type": "HowToStep",
-          "position": 3,
-          "name": "डाउनलोड करें",
-          "text": "वीडियो को सेकंड में MP4 के रूप में डाउनलोड करें।"
-        }
-      ]
-    }
-  ]
-}
-</script>
-
 </body>
 
 </html>

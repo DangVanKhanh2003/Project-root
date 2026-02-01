@@ -59,6 +59,133 @@
     <script>
         (function () { var f = 'mp4'; try { var p = JSON.parse(localStorage.getItem('ssvid_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat } catch (e) { } document.documentElement.dataset.format = f; document.write('<style>html[data-format="mp3"] .quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4{display:block!important}</style>') })()
     </script>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://ssvid.cc/vi/youtube-to-mp4#webpage",
+      "url": "https://ssvid.cc/vi/youtube-to-mp4",
+      "name": "SSVID - Tải xuống video YouTube MP4",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/#website"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "@id": "https://ssvid.cc/vi/youtube-to-mp4#application"
+      },
+      "inLanguage": "vi"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://ssvid.cc/vi/youtube-to-mp4#application",
+      "name": "SSVID - Tải xuống video YouTube MP4",
+      "url": "https://ssvid.cc/vi/youtube-to-mp4",
+      "description": "Tải xuống video YouTube dưới dạng MP4 với SSVID. Miễn phí, nhanh chóng và không giới hạn.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "vi",
+      "publisher": {
+        "@id": "https://ssvid.cc/#organization"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://ssvid.cc/vi/youtube-to-mp4#faq",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/vi/youtube-to-mp4#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Sự khác biệt giữa YouTube MP4 và MP3 là gì?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "MP4 bao gồm cả video và âm thanh, trong khi MP3 chỉ trích xuất âm thanh. MP4 tốt hơn cho việc xem ngoại tuyến và nội dung hình ảnh."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Tôi có thể tải xuống video YouTube MP4 trực tuyến không?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Có. SSVID hoạt động hoàn toàn trực tuyến, cho phép bạn tải xuống video YouTube MP4 trực tiếp trong trình duyệt của mình."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "SSVID có hỗ trợ tải xuống MP4 HD và 4K không?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Có. SSVID hỗ trợ tải xuống MP4 HD và 4K khi video YouTube gốc có sẵn ở các độ phân giải đó."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Tôi có thể tải xuống video YouTube dài dưới dạng MP4 không?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Có. SSVID hỗ trợ tải xuống video YouTube dài mà không giới hạn thời gian."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "SSVID có miễn phí để sử dụng không?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Có. SSVID hoàn toàn miễn phí và không yêu cầu đăng ký."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Tôi có thể sử dụng SSVID trên thiết bị di động không?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Có. SSVID hoạt động trên cả trình duyệt máy tính để bàn và di động, bao gồm Android và iOS."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://ssvid.cc/vi/youtube-to-mp4#howto",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/vi/youtube-to-mp4#webpage"
+      },
+      "name": "Cách tải xuống video YouTube MP4 bằng SSVID",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Sao chép liên kết",
+          "text": "Sao chép liên kết video YouTube."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Dán & Chọn",
+          "text": "Dán liên kết vào SSVID."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "Tải xuống",
+          "text": "Tải xuống video dưới dạng MP4 trong vài giây."
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body>
@@ -79,7 +206,7 @@
             </a>
             <nav class="header-nav" aria-label="Primary">
                 <a href="/vi/" class="header-link">Trang chủ</a>
-                <a href="/vi/about.html" class="header-link">Giới thiệu</a>
+                <a href="/vi/about" class="header-link">Giới thiệu</a>
                 <div class="lang-selector">
                     <button class="lang-button" type="button" aria-label="Ngôn ngữ">
                         <span>VI</span>
@@ -217,16 +344,16 @@
         <div class="drawer-scroll">
             <nav class="drawer-nav" aria-label="Mobile">
                 <a href="/vi/" class="drawer-link">Trang chủ</a>
-                <a href="/vi/youtube-to-mp3.html" class="drawer-link">YouTube sang MP3</a>
-                <a href="/vi/youtube-to-mp4.html" class="drawer-link">YouTube sang MP4</a>
-                <a href="/vi/youtube-shorts-downloader.html" class="drawer-link">YouTube Shorts</a>
+                <a href="/vi/youtube-to-mp3" class="drawer-link">YouTube sang MP3</a>
+                <a href="/vi/youtube-to-mp4" class="drawer-link">YouTube sang MP4</a>
+                <a href="/vi/youtube-shorts-downloader" class="drawer-link">YouTube Shorts</a>
                 <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
-                <a href="/vi/about.html" class="drawer-link">Giới thiệu</a>
-                <a href="/vi/faq.html" class="drawer-link">FAQ</a>
-                <a href="/vi/contact.html" class="drawer-link">Liên hệ</a>
-                <a href="/vi/terms.html" class="drawer-link">Điều khoản</a>
-                <a href="/vi/policy.html" class="drawer-link">Bảo mật</a>
-                <a href="/vi/dmca.html" class="drawer-link">DMCA</a>
+                <a href="/vi/about" class="drawer-link">Giới thiệu</a>
+                <a href="/vi/faq" class="drawer-link">FAQ</a>
+                <a href="/vi/contact" class="drawer-link">Liên hệ</a>
+                <a href="/vi/terms" class="drawer-link">Điều khoản</a>
+                <a href="/vi/policy" class="drawer-link">Bảo mật</a>
+                <a href="/vi/dmca" class="drawer-link">DMCA</a>
             </nav>
             <div class="drawer-lang-selector">
                 <button class="drawer-lang-button" type="button" aria-label="Choose language">
@@ -551,17 +678,17 @@
     <footer>
     <div class="container">
         <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
-            <a href="/vi/youtube-to-mp3.html" style="color: inherit; text-decoration: none;">YouTube sang MP3</a>
-            <a href="/vi/youtube-to-mp4.html" style="color: inherit; text-decoration: none;">YouTube sang MP4</a>
-            <a href="/vi/youtube-shorts-downloader.html" style="color: inherit; text-decoration: none;">YouTube Shorts</a>
+            <a href="/vi/youtube-to-mp3" style="color: inherit; text-decoration: none;">YouTube sang MP3</a>
+            <a href="/vi/youtube-to-mp4" style="color: inherit; text-decoration: none;">YouTube sang MP4</a>
+            <a href="/vi/youtube-shorts-downloader" style="color: inherit; text-decoration: none;">YouTube Shorts</a>
         </div>
         <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
-            <a href="/vi/about.html" style="color: inherit; text-decoration: none;">Giới thiệu</a>
-            <a href="/vi/contact.html" style="color: inherit; text-decoration: none;">Liên hệ</a>
-            <a href="/vi/terms.html" style="color: inherit; text-decoration: none;">Điều khoản</a>
-            <a href="/vi/policy.html" style="color: inherit; text-decoration: none;">Chính sách bảo mật</a>
-            <a href="/vi/dmca.html" style="color: inherit; text-decoration: none;">DMCA</a>
-            <a href="/vi/faq.html" style="color: inherit; text-decoration: none;">FAQ</a>
+            <a href="/vi/about" style="color: inherit; text-decoration: none;">Giới thiệu</a>
+            <a href="/vi/contact" style="color: inherit; text-decoration: none;">Liên hệ</a>
+            <a href="/vi/terms" style="color: inherit; text-decoration: none;">Điều khoản</a>
+            <a href="/vi/policy" style="color: inherit; text-decoration: none;">Chính sách bảo mật</a>
+            <a href="/vi/dmca" style="color: inherit; text-decoration: none;">DMCA</a>
+            <a href="/vi/faq" style="color: inherit; text-decoration: none;">FAQ</a>
         </div>
         <div class="copyright">© 2026 SSVid. Bảo lưu mọi quyền.</div>
     </div>
@@ -570,133 +697,6 @@
 
     <!-- Main TypeScript Entry -->
     <script type="module" src="/src/main.ts"></script>
-
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebPage",
-      "@id": "https://ssvid.cc/vi/youtube-to-mp4#webpage",
-      "url": "https://ssvid.cc/vi/youtube-to-mp4",
-      "name": "SSVID - Tải xuống video YouTube MP4",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/#website"
-      },
-      "about": {
-        "@type": "SoftwareApplication",
-        "@id": "https://ssvid.cc/vi/youtube-to-mp4#application"
-      },
-      "inLanguage": "vi"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "@id": "https://ssvid.cc/vi/youtube-to-mp4#application",
-      "name": "SSVID - Tải xuống video YouTube MP4",
-      "url": "https://ssvid.cc/vi/youtube-to-mp4",
-      "description": "Tải xuống video YouTube dưới dạng MP4 với SSVID. Miễn phí, nhanh chóng và không giới hạn.",
-      "applicationCategory": "MultimediaApplication",
-      "operatingSystem": "All",
-      "browserRequirements": "Requires JavaScript. Requires HTML5.",
-      "inLanguage": "vi",
-      "publisher": {
-        "@id": "https://ssvid.cc/#organization"
-      },
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://ssvid.cc/vi/youtube-to-mp4#faq",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/vi/youtube-to-mp4#webpage"
-      },
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Sự khác biệt giữa YouTube MP4 và MP3 là gì?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "MP4 bao gồm cả video và âm thanh, trong khi MP3 chỉ trích xuất âm thanh. MP4 tốt hơn cho việc xem ngoại tuyến và nội dung hình ảnh."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Tôi có thể tải xuống video YouTube MP4 trực tuyến không?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Có. SSVID hoạt động hoàn toàn trực tuyến, cho phép bạn tải xuống video YouTube MP4 trực tiếp trong trình duyệt của mình."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "SSVID có hỗ trợ tải xuống MP4 HD và 4K không?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Có. SSVID hỗ trợ tải xuống MP4 HD và 4K khi video YouTube gốc có sẵn ở các độ phân giải đó."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Tôi có thể tải xuống video YouTube dài dưới dạng MP4 không?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Có. SSVID hỗ trợ tải xuống video YouTube dài mà không giới hạn thời gian."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "SSVID có miễn phí để sử dụng không?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Có. SSVID hoàn toàn miễn phí và không yêu cầu đăng ký."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Tôi có thể sử dụng SSVID trên thiết bị di động không?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Có. SSVID hoạt động trên cả trình duyệt máy tính để bàn và di động, bao gồm Android và iOS."
-          }
-        }
-      ]
-    },
-    {
-      "@type": "HowTo",
-      "@id": "https://ssvid.cc/vi/youtube-to-mp4#howto",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/vi/youtube-to-mp4#webpage"
-      },
-      "name": "Cách tải xuống video YouTube MP4 bằng SSVID",
-      "step": [
-        {
-          "@type": "HowToStep",
-          "position": 1,
-          "name": "Sao chép liên kết",
-          "text": "Sao chép liên kết video YouTube."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 2,
-          "name": "Dán & Chọn",
-          "text": "Dán liên kết vào SSVID."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 3,
-          "name": "Tải xuống",
-          "text": "Tải xuống video dưới dạng MP4 trong vài giây."
-        }
-      ]
-    }
-  ]
-}
-</script>
-
 </body>
 
 </html>

@@ -98,6 +98,12 @@ export const sites: Record<string, SiteConfig> = {
     supportedLanguages: ['en', 'es', 'de', 'fr', 'pt', 'it', 'ru', 'id', 'tr', 'vi'],
     skipI18nPages: [],
   },
+  'ssvid.cc': {
+    baseUrl: 'https://ssvid.cc',
+    defaultLanguage: 'en',
+    supportedLanguages: ['ar', 'bn', 'de', 'en', 'es', 'fr', 'hi', 'id', 'it', 'ja', 'ko', 'ms', 'my', 'pt', 'ru', 'th', 'tr', 'ur', 'vi'],
+    skipI18nPages: [],
+  },
   // Add other site configurations here as needed
 };
 

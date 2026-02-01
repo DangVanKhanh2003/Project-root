@@ -59,6 +59,133 @@
     <script>
         (function () { var f = 'mp4'; try { var p = JSON.parse(localStorage.getItem('ssvid_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat } catch (e) { } document.documentElement.dataset.format = f; document.write('<style>html[data-format="mp3"] .quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4{display:block!important}</style>') })()
     </script>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://ssvid.cc/th/youtube-shorts-downloader#webpage",
+      "url": "https://ssvid.cc/th/youtube-shorts-downloader",
+      "name": "SSVID - ดาวน์โหลด YouTube Shorts",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/#website"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "@id": "https://ssvid.cc/th/youtube-shorts-downloader#application"
+      },
+      "inLanguage": "th"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://ssvid.cc/th/youtube-shorts-downloader#application",
+      "name": "SSVID - ดาวน์โหลด YouTube Shorts",
+      "url": "https://ssvid.cc/th/youtube-shorts-downloader",
+      "description": "ดาวน์โหลด YouTube Shorts ด้วย SSVID ฟรี รวดเร็ว และไม่จำกัด",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "th",
+      "publisher": {
+        "@id": "https://ssvid.cc/#organization"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://ssvid.cc/th/youtube-shorts-downloader#faq",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/th/youtube-shorts-downloader#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "YouTube Shorts และวิดีโอ YouTube ปกติแตกต่างกันอย่างไร?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "YouTube Shorts เป็นวิดีโอสั้นที่ออกแบบมาสำหรับการดูแนวตั้ง (มักจะเป็น 9:16) วิดีโอ YouTube ปกติมักจะยาวกว่าและมักอยู่ในรูปแบบแนวนอน"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "ฉันสามารถดาวน์โหลด YouTube Shorts ออนไลน์โดยไม่ต้องติดตั้งซอฟต์แวร์ได้หรือไม่?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ได้ SSVID ทำงานออนไลน์ได้อย่างสมบูรณ์ในเบราว์เซอร์ของคุณ—ไม่ต้องใช้ซอฟต์แวร์ ไม่ต้องใช้ส่วนขยาย และไม่ต้องลงทะเบียน"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "SSVID เก็บ Shorts ในรูปแบบแนวตั้งดั้งเดิมหรือไม่?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ได้ SSVID มุ่งเน้นการรักษา เค้าโครงแนวตั้ง 9:16 เพื่อให้ Shorts เล่นได้อย่างถูกต้องบนอุปกรณ์มือถือ"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "ฉันสามารถดาวน์โหลด Shorts บน iPhone และ Android ได้หรือไม่?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ได้ SSVID ทำงานบนเบราว์เซอร์มือถือและเดสก์ท็อป ดังนั้นคุณสามารถดาวน์โหลด Shorts บน iOS, Android, Windows หรือ macOS ได้"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "SSVID ฟรีและไม่จำกัดสำหรับการดาวน์โหลด Shorts หรือไม่?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ได้ SSVID ใช้งานได้ฟรีและอนุญาตให้ดาวน์โหลด YouTube Shorts ได้ไม่จำกัด"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "SSVID สามารถดาวน์โหลด Shorts ส่วนตัวหรือที่ถูกจำกัดได้หรือไม่?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ไม่ เนื้อหาส่วนตัวหรือที่ถูกจำกัดไม่สามารถประมวลผลโดยเครื่องมือดาวน์โหลดออนไลน์ได้"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://ssvid.cc/th/youtube-shorts-downloader#howto",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/th/youtube-shorts-downloader#webpage"
+      },
+      "name": "วิธีดาวน์โหลด YouTube Shorts ด้วย SSVID",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "คัดลอกลิงก์",
+          "text": "คัดลอกลิงก์ YouTube Shorts"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "วาง & เลือก",
+          "text": "วางลิงก์ลงใน SSVID"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "ดาวน์โหลด",
+          "text": "ดาวน์โหลด Short ได้ในไม่กี่วินาที"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body>
@@ -79,7 +206,7 @@
             </a>
             <nav class="header-nav" aria-label="Primary">
                 <a href="/th/" class="header-link">หน้าแรก</a>
-                <a href="/th/about.html" class="header-link">เกี่ยวกับ</a>
+                <a href="/th/about" class="header-link">เกี่ยวกับ</a>
                 <div class="lang-selector">
                     <button class="lang-button" type="button" aria-label="ภาษา">
                         <span>TH</span>
@@ -217,16 +344,16 @@
         <div class="drawer-scroll">
             <nav class="drawer-nav" aria-label="Mobile">
                 <a href="/th/" class="drawer-link">หน้าแรก</a>
-                <a href="/th/youtube-to-mp3.html" class="drawer-link">YouTube เป็น MP3</a>
-                <a href="/th/youtube-to-mp4.html" class="drawer-link">YouTube เป็น MP4</a>
-                <a href="/th/youtube-shorts-downloader.html" class="drawer-link">YouTube Shorts</a>
+                <a href="/th/youtube-to-mp3" class="drawer-link">YouTube เป็น MP3</a>
+                <a href="/th/youtube-to-mp4" class="drawer-link">YouTube เป็น MP4</a>
+                <a href="/th/youtube-shorts-downloader" class="drawer-link">YouTube Shorts</a>
                 <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
-                <a href="/th/about.html" class="drawer-link">เกี่ยวกับ</a>
-                <a href="/th/faq.html" class="drawer-link">คำถามที่พบบ่อย</a>
-                <a href="/th/contact.html" class="drawer-link">ติดต่อ</a>
-                <a href="/th/terms.html" class="drawer-link">ข้อกำหนด</a>
-                <a href="/th/policy.html" class="drawer-link">ความเป็นส่วนตัว</a>
-                <a href="/th/dmca.html" class="drawer-link">DMCA</a>
+                <a href="/th/about" class="drawer-link">เกี่ยวกับ</a>
+                <a href="/th/faq" class="drawer-link">คำถามที่พบบ่อย</a>
+                <a href="/th/contact" class="drawer-link">ติดต่อ</a>
+                <a href="/th/terms" class="drawer-link">ข้อกำหนด</a>
+                <a href="/th/policy" class="drawer-link">ความเป็นส่วนตัว</a>
+                <a href="/th/dmca" class="drawer-link">DMCA</a>
             </nav>
             <div class="drawer-lang-selector">
                 <button class="drawer-lang-button" type="button" aria-label="Choose language">
@@ -503,7 +630,7 @@
         <p style="text-align: center;">การดาวน์โหลด Shorts ช่วยให้คุณดูคลิปโปรดแบบออฟไลน์ บันทึกแรงบันดาลใจไว้ดูภายหลัง และเก็บบทเรียนหรือข้อมูลที่เป็นประโยชน์โดยไม่ต้องพึ่งพาข้อมูลมือถือ เนื่องจาก Shorts สั้นและเป็นแนวตั้ง จึงเหมาะสำหรับการดูอย่างรวดเร็วบนโทรศัพท์</p>
         <br><br>
         <h2 class="titles">รูปแบบแนวตั้ง 9:16 (ไม่มีปัญหาการหมุน)</h2>
-        <p style="text-align: center;">เครื่องมือหลายอย่างถือว่า Shorts เป็นวิดีโอปกติ ซึ่งอาจทำให้เกิดการเล่นด้านข้างหรือการจัดเฟรมที่ไม่ถูกต้อง SSVID สร้างขึ้นสำหรับ Shorts ช่วยให้คุณรักษา <strong>เค้าโครงแนวตั้ง 9:16</strong> เพื่อการเล่นที่ราบรื่นยิ่งขึ้นบนอุปกรณ์มือถือ หากคุณต้องการดาวน์โหลดวิดีโอ YouTube มาตรฐานแทน ให้ใช้ <a href="/th/youtube-to-mp4.html" title="Download YouTube MP4"><strong>ดาวน์โหลด YouTube MP4</strong></a></p>
+        <p style="text-align: center;">เครื่องมือหลายอย่างถือว่า Shorts เป็นวิดีโอปกติ ซึ่งอาจทำให้เกิดการเล่นด้านข้างหรือการจัดเฟรมที่ไม่ถูกต้อง SSVID สร้างขึ้นสำหรับ Shorts ช่วยให้คุณรักษา <strong>เค้าโครงแนวตั้ง 9:16</strong> เพื่อการเล่นที่ราบรื่นยิ่งขึ้นบนอุปกรณ์มือถือ หากคุณต้องการดาวน์โหลดวิดีโอ YouTube มาตรฐานแทน ให้ใช้ <a href="/th/youtube-to-mp4" title="Download YouTube MP4"><strong>ดาวน์โหลด YouTube MP4</strong></a></p>
     </div>
 </section>
 
@@ -551,17 +678,17 @@
     <footer>
     <div class="container">
         <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
-            <a href="/th/youtube-to-mp3.html" style="color: inherit; text-decoration: none;">YouTube เป็น MP3</a>
-            <a href="/th/youtube-to-mp4.html" style="color: inherit; text-decoration: none;">YouTube เป็น MP4</a>
-            <a href="/th/youtube-shorts-downloader.html" style="color: inherit; text-decoration: none;">YouTube Shorts</a>
+            <a href="/th/youtube-to-mp3" style="color: inherit; text-decoration: none;">YouTube เป็น MP3</a>
+            <a href="/th/youtube-to-mp4" style="color: inherit; text-decoration: none;">YouTube เป็น MP4</a>
+            <a href="/th/youtube-shorts-downloader" style="color: inherit; text-decoration: none;">YouTube Shorts</a>
         </div>
         <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
-            <a href="/th/about.html" style="color: inherit; text-decoration: none;">เกี่ยวกับ</a>
-            <a href="/th/contact.html" style="color: inherit; text-decoration: none;">ติดต่อ</a>
-            <a href="/th/terms.html" style="color: inherit; text-decoration: none;">ข้อกำหนด</a>
-            <a href="/th/policy.html" style="color: inherit; text-decoration: none;">นโยบายความเป็นส่วนตัว</a>
-            <a href="/th/dmca.html" style="color: inherit; text-decoration: none;">DMCA</a>
-            <a href="/th/faq.html" style="color: inherit; text-decoration: none;">คำถามที่พบบ่อย</a>
+            <a href="/th/about" style="color: inherit; text-decoration: none;">เกี่ยวกับ</a>
+            <a href="/th/contact" style="color: inherit; text-decoration: none;">ติดต่อ</a>
+            <a href="/th/terms" style="color: inherit; text-decoration: none;">ข้อกำหนด</a>
+            <a href="/th/policy" style="color: inherit; text-decoration: none;">นโยบายความเป็นส่วนตัว</a>
+            <a href="/th/dmca" style="color: inherit; text-decoration: none;">DMCA</a>
+            <a href="/th/faq" style="color: inherit; text-decoration: none;">คำถามที่พบบ่อย</a>
         </div>
         <div class="copyright">© 2026 SSVid. สงวนลิขสิทธิ์.</div>
     </div>
@@ -570,133 +697,6 @@
 
     <!-- Main TypeScript Entry -->
     <script type="module" src="/src/main.ts"></script>
-
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebPage",
-      "@id": "https://ssvid.cc/th/youtube-shorts-downloader#webpage",
-      "url": "https://ssvid.cc/th/youtube-shorts-downloader",
-      "name": "SSVID - ดาวน์โหลด YouTube Shorts",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/#website"
-      },
-      "about": {
-        "@type": "SoftwareApplication",
-        "@id": "https://ssvid.cc/th/youtube-shorts-downloader#application"
-      },
-      "inLanguage": "th"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "@id": "https://ssvid.cc/th/youtube-shorts-downloader#application",
-      "name": "SSVID - ดาวน์โหลด YouTube Shorts",
-      "url": "https://ssvid.cc/th/youtube-shorts-downloader",
-      "description": "ดาวน์โหลด YouTube Shorts ด้วย SSVID ฟรี รวดเร็ว และไม่จำกัด",
-      "applicationCategory": "MultimediaApplication",
-      "operatingSystem": "All",
-      "browserRequirements": "Requires JavaScript. Requires HTML5.",
-      "inLanguage": "th",
-      "publisher": {
-        "@id": "https://ssvid.cc/#organization"
-      },
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://ssvid.cc/th/youtube-shorts-downloader#faq",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/th/youtube-shorts-downloader#webpage"
-      },
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "YouTube Shorts และวิดีโอ YouTube ปกติแตกต่างกันอย่างไร?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "YouTube Shorts เป็นวิดีโอสั้นที่ออกแบบมาสำหรับการดูแนวตั้ง (มักจะเป็น 9:16) วิดีโอ YouTube ปกติมักจะยาวกว่าและมักอยู่ในรูปแบบแนวนอน"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "ฉันสามารถดาวน์โหลด YouTube Shorts ออนไลน์โดยไม่ต้องติดตั้งซอฟต์แวร์ได้หรือไม่?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "ได้ SSVID ทำงานออนไลน์ได้อย่างสมบูรณ์ในเบราว์เซอร์ของคุณ—ไม่ต้องใช้ซอฟต์แวร์ ไม่ต้องใช้ส่วนขยาย และไม่ต้องลงทะเบียน"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "SSVID เก็บ Shorts ในรูปแบบแนวตั้งดั้งเดิมหรือไม่?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "ได้ SSVID มุ่งเน้นการรักษา เค้าโครงแนวตั้ง 9:16 เพื่อให้ Shorts เล่นได้อย่างถูกต้องบนอุปกรณ์มือถือ"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "ฉันสามารถดาวน์โหลด Shorts บน iPhone และ Android ได้หรือไม่?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "ได้ SSVID ทำงานบนเบราว์เซอร์มือถือและเดสก์ท็อป ดังนั้นคุณสามารถดาวน์โหลด Shorts บน iOS, Android, Windows หรือ macOS ได้"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "SSVID ฟรีและไม่จำกัดสำหรับการดาวน์โหลด Shorts หรือไม่?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "ได้ SSVID ใช้งานได้ฟรีและอนุญาตให้ดาวน์โหลด YouTube Shorts ได้ไม่จำกัด"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "SSVID สามารถดาวน์โหลด Shorts ส่วนตัวหรือที่ถูกจำกัดได้หรือไม่?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "ไม่ เนื้อหาส่วนตัวหรือที่ถูกจำกัดไม่สามารถประมวลผลโดยเครื่องมือดาวน์โหลดออนไลน์ได้"
-          }
-        }
-      ]
-    },
-    {
-      "@type": "HowTo",
-      "@id": "https://ssvid.cc/th/youtube-shorts-downloader#howto",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/th/youtube-shorts-downloader#webpage"
-      },
-      "name": "วิธีดาวน์โหลด YouTube Shorts ด้วย SSVID",
-      "step": [
-        {
-          "@type": "HowToStep",
-          "position": 1,
-          "name": "คัดลอกลิงก์",
-          "text": "คัดลอกลิงก์ YouTube Shorts"
-        },
-        {
-          "@type": "HowToStep",
-          "position": 2,
-          "name": "วาง & เลือก",
-          "text": "วางลิงก์ลงใน SSVID"
-        },
-        {
-          "@type": "HowToStep",
-          "position": 3,
-          "name": "ดาวน์โหลด",
-          "text": "ดาวน์โหลด Short ได้ในไม่กี่วินาที"
-        }
-      ]
-    }
-  ]
-}
-</script>
-
 </body>
 
 </html>

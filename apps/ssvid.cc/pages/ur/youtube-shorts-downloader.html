@@ -59,6 +59,133 @@
     <script>
         (function () { var f = 'mp4'; try { var p = JSON.parse(localStorage.getItem('ssvid_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat } catch (e) { } document.documentElement.dataset.format = f; document.write('<style>html[data-format="mp3"] .quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4{display:block!important}</style>') })()
     </script>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://ssvid.cc/ur/youtube-shorts-downloader#webpage",
+      "url": "https://ssvid.cc/ur/youtube-shorts-downloader",
+      "name": "SSVID - یوٹیوب شارٹس ڈاؤن لوڈ کریں",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/#website"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "@id": "https://ssvid.cc/ur/youtube-shorts-downloader#application"
+      },
+      "inLanguage": "ur"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://ssvid.cc/ur/youtube-shorts-downloader#application",
+      "name": "SSVID - یوٹیوب شارٹس ڈاؤن لوڈ کریں",
+      "url": "https://ssvid.cc/ur/youtube-shorts-downloader",
+      "description": "SSVID کے ساتھ یوٹیوب شارٹس ڈاؤن لوڈ کریں۔ مفت، تیز اور لامحدود۔",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "ur",
+      "publisher": {
+        "@id": "https://ssvid.cc/#organization"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://ssvid.cc/ur/youtube-shorts-downloader#faq",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/ur/youtube-shorts-downloader#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "یوٹیوب شارٹس اور عام یوٹیوب ویڈیوز میں کیا فرق ہے؟",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "یوٹیوب شارٹس مختصر فارم کی ویڈیوز ہیں جو عمودی دیکھنے کے لیے ڈیزائن کی گئی ہیں (اکثر 9:16)۔ عام یوٹیوب ویڈیوز عام طور پر لمبے ہوتے ہیں اور اکثر افقی فارمیٹس میں ہوتے ہیں۔"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "کیا میں سافٹ ویئر انسٹال کیے بغیر یوٹیوب شارٹس آن لائن ڈاؤن لوڈ کر سکتا ہوں؟",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ہاں۔ SSVID آپ کے براؤزر میں مکمل طور پر آن لائن کام کرتا ہے — کوئی سافٹ ویئر نہیں، کوئی ایکسٹینشن نہیں، اور کوئی سائن اپ کی ضرورت نہیں۔"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "کیا SSVID شارٹس کو اصل عمودی فارمیٹ میں رکھتا ہے؟",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ہاں۔ SSVID عمودی 9:16 لے آؤٹ کو محفوظ رکھنے پر توجہ مرکوز کرتا ہے تاکہ شارٹس موبائل آلات پر صحیح طریقے سے چلیں۔"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "کیا میں آئی فون اور اینڈرائیڈ پر شارٹس ڈاؤن لوڈ کر سکتا ہوں؟",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ہاں۔ SSVID موبائل اور ڈیسک ٹاپ براؤزرز پر کام کرتا ہے، لہذا آپ iOS، Android، Windows، یا macOS پر شارٹس ڈاؤن لوڈ کر سکتے ہیں۔"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "کیا SSVID شارٹس ڈاؤن لوڈز کے لیے مفت اور لامحدود ہے؟",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ہاں۔ SSVID استعمال کرنے کے لیے مفت ہے اور لامحدود یوٹیوب شارٹس ڈاؤن لوڈز کی اجازت دیتا ہے۔"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "کیا SSVID نجی یا محدود شارٹس ڈاؤن لوڈ کر سکتا ہے؟",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "نہیں. نجی یا محدود مواد کو آن لائن ڈاؤن لوڈ ٹولز کے ذریعے پروسیس نہیں کیا جا سکتا۔"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://ssvid.cc/ur/youtube-shorts-downloader#howto",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/ur/youtube-shorts-downloader#webpage"
+      },
+      "name": "SSVID کے ساتھ یوٹیوب شارٹس کیسے ڈاؤن لوڈ کریں",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "لنک کاپی کریں",
+          "text": "یوٹیوب شارٹس کا لنک کاپی کریں۔"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "پیسٹ کریں اور منتخب کریں",
+          "text": "لنک کو SSVID میں پیسٹ کریں۔"
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "ڈاؤن لوڈ کریں",
+          "text": "شارٹ کو سیکنڈوں میں ڈاؤن لوڈ کریں۔"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body>
@@ -79,7 +206,7 @@
             </a>
             <nav class="header-nav" aria-label="Primary">
                 <a href="/ur/" class="header-link">صفحہ اول</a>
-                <a href="/ur/about.html" class="header-link">ہمارے بارے میں</a>
+                <a href="/ur/about" class="header-link">ہمارے بارے میں</a>
                 <div class="lang-selector">
                     <button class="lang-button" type="button" aria-label="زبان">
                         <span>UR</span>
@@ -217,16 +344,16 @@
         <div class="drawer-scroll">
             <nav class="drawer-nav" aria-label="Mobile">
                 <a href="/ur/" class="drawer-link">صفحہ اول</a>
-                <a href="/ur/youtube-to-mp3.html" class="drawer-link">یوٹیوب سے MP3</a>
-                <a href="/ur/youtube-to-mp4.html" class="drawer-link">یوٹیوب سے MP4</a>
-                <a href="/ur/youtube-shorts-downloader.html" class="drawer-link">یوٹیوب شارٹس</a>
+                <a href="/ur/youtube-to-mp3" class="drawer-link">یوٹیوب سے MP3</a>
+                <a href="/ur/youtube-to-mp4" class="drawer-link">یوٹیوب سے MP4</a>
+                <a href="/ur/youtube-shorts-downloader" class="drawer-link">یوٹیوب شارٹس</a>
                 <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
-                <a href="/ur/about.html" class="drawer-link">ہمارے بارے में</a>
-                <a href="/ur/faq.html" class="drawer-link">اکثر پوچھے گئے سوالات</a>
-                <a href="/ur/contact.html" class="drawer-link">رابطہ کریں</a>
-                <a href="/ur/terms.html" class="drawer-link">شرائط</a>
-                <a href="/ur/policy.html" class="drawer-link">رازداری</a>
-                <a href="/ur/dmca.html" class="drawer-link">DMCA</a>
+                <a href="/ur/about" class="drawer-link">ہمارے بارے में</a>
+                <a href="/ur/faq" class="drawer-link">اکثر پوچھے گئے سوالات</a>
+                <a href="/ur/contact" class="drawer-link">رابطہ کریں</a>
+                <a href="/ur/terms" class="drawer-link">شرائط</a>
+                <a href="/ur/policy" class="drawer-link">رازداری</a>
+                <a href="/ur/dmca" class="drawer-link">DMCA</a>
             </nav>
             <div class="drawer-lang-selector">
                 <button class="drawer-lang-button" type="button" aria-label="Choose language">
@@ -503,7 +630,7 @@
         <p style="text-align: center;">شارٹس ڈاؤن لوڈ کرنے سے آپ اپنے پسندیدہ کلپس کو آف لائن دیکھ سکتے ہیں، بعد کے لیے تحریک محفوظ کر سکتے ہیں، اور موبائل ڈیٹا پر انحصار کیے بغیر مفید ٹیوٹوریلز یا ٹکڑوں کو رکھ سکتے ہیں۔ چونکہ شارٹس مختصر اور عمودی ہوتے ہیں، وہ فون پر فوری دیکھنے کے لیے مثالی ہوتے ہیں۔</p>
         <br><br>
         <h2 class="titles">عمودی 9:16 فارمیٹ (کوئی گردش کا مسئلہ نہیں)</h2>
-        <p style="text-align: center;">بہت سے ٹولز شارٹس کو عام ویڈیوز کی طرح سمجھتے ہیں، جس سے سائیڈ وے پلے بیک یا غلط فریمنگ ہو سکتی ہے۔ SSVID شارٹس کے لیے بنایا گیا ہے، جو آپ کو موبائل آلات پر ہموار پلے بیک کے لیے <strong>عمودی 9:16</strong> لے آؤٹ کو برقرار رکھنے میں مدد کرتا ہے۔ اگر آپ اس کے بجائے معیاری یوٹیوب ویڈیوز ڈاؤن لوڈ کرنا چاہتے ہیں، تو <a href="/ur/youtube-to-mp4.html" title="Download YouTube MP4"><strong>یوٹیوب MP4 ڈاؤن لوڈ کریں</strong></a> کا استعمال کریں۔</p>
+        <p style="text-align: center;">بہت سے ٹولز شارٹس کو عام ویڈیوز کی طرح سمجھتے ہیں، جس سے سائیڈ وے پلے بیک یا غلط فریمنگ ہو سکتی ہے۔ SSVID شارٹس کے لیے بنایا گیا ہے، جو آپ کو موبائل آلات پر ہموار پلے بیک کے لیے <strong>عمودی 9:16</strong> لے آؤٹ کو برقرار رکھنے میں مدد کرتا ہے۔ اگر آپ اس کے بجائے معیاری یوٹیوب ویڈیوز ڈاؤن لوڈ کرنا چاہتے ہیں، تو <a href="/ur/youtube-to-mp4" title="Download YouTube MP4"><strong>یوٹیوب MP4 ڈاؤن لوڈ کریں</strong></a> کا استعمال کریں۔</p>
     </div>
 </section>
 
@@ -551,17 +678,17 @@
     <footer>
     <div class="container">
         <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
-            <a href="/ur/youtube-to-mp3.html" style="color: inherit; text-decoration: none;">یوٹیوب سے MP3</a>
-            <a href="/ur/youtube-to-mp4.html" style="color: inherit; text-decoration: none;">یوٹیوب سے MP4</a>
-            <a href="/ur/youtube-shorts-downloader.html" style="color: inherit; text-decoration: none;">یوٹیوب شارٹس</a>
+            <a href="/ur/youtube-to-mp3" style="color: inherit; text-decoration: none;">یوٹیوب سے MP3</a>
+            <a href="/ur/youtube-to-mp4" style="color: inherit; text-decoration: none;">یوٹیوب سے MP4</a>
+            <a href="/ur/youtube-shorts-downloader" style="color: inherit; text-decoration: none;">یوٹیوب شارٹس</a>
         </div>
         <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
-            <a href="/ur/about.html" style="color: inherit; text-decoration: none;">ہمارے بارے में</a>
-            <a href="/ur/contact.html" style="color: inherit; text-decoration: none;">رابطہ کریں</a>
-            <a href="/ur/terms.html" style="color: inherit; text-decoration: none;">شرائط</a>
-            <a href="/ur/policy.html" style="color: inherit; text-decoration: none;">رازداری کی پالیسی</a>
-            <a href="/ur/dmca.html" style="color: inherit; text-decoration: none;">DMCA</a>
-            <a href="/ur/faq.html" style="color: inherit; text-decoration: none;">اکثر پوچھے گئے سوالات</a>
+            <a href="/ur/about" style="color: inherit; text-decoration: none;">ہمارے بارے में</a>
+            <a href="/ur/contact" style="color: inherit; text-decoration: none;">رابطہ کریں</a>
+            <a href="/ur/terms" style="color: inherit; text-decoration: none;">شرائط</a>
+            <a href="/ur/policy" style="color: inherit; text-decoration: none;">رازداری کی پالیسی</a>
+            <a href="/ur/dmca" style="color: inherit; text-decoration: none;">DMCA</a>
+            <a href="/ur/faq" style="color: inherit; text-decoration: none;">اکثر پوچھے گئے سوالات</a>
         </div>
         <div class="copyright">© 2026 SSVid. جملہ حقوق محفوظ ہیں.</div>
     </div>
@@ -570,133 +697,6 @@
 
     <!-- Main TypeScript Entry -->
     <script type="module" src="/src/main.ts"></script>
-
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebPage",
-      "@id": "https://ssvid.cc/ur/youtube-shorts-downloader#webpage",
-      "url": "https://ssvid.cc/ur/youtube-shorts-downloader",
-      "name": "SSVID - یوٹیوب شارٹس ڈاؤن لوڈ کریں",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/#website"
-      },
-      "about": {
-        "@type": "SoftwareApplication",
-        "@id": "https://ssvid.cc/ur/youtube-shorts-downloader#application"
-      },
-      "inLanguage": "ur"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "@id": "https://ssvid.cc/ur/youtube-shorts-downloader#application",
-      "name": "SSVID - یوٹیوب شارٹس ڈاؤن لوڈ کریں",
-      "url": "https://ssvid.cc/ur/youtube-shorts-downloader",
-      "description": "SSVID کے ساتھ یوٹیوب شارٹس ڈاؤن لوڈ کریں۔ مفت، تیز اور لامحدود۔",
-      "applicationCategory": "MultimediaApplication",
-      "operatingSystem": "All",
-      "browserRequirements": "Requires JavaScript. Requires HTML5.",
-      "inLanguage": "ur",
-      "publisher": {
-        "@id": "https://ssvid.cc/#organization"
-      },
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://ssvid.cc/ur/youtube-shorts-downloader#faq",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/ur/youtube-shorts-downloader#webpage"
-      },
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "یوٹیوب شارٹس اور عام یوٹیوب ویڈیوز میں کیا فرق ہے؟",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "یوٹیوب شارٹس مختصر فارم کی ویڈیوز ہیں جو عمودی دیکھنے کے لیے ڈیزائن کی گئی ہیں (اکثر 9:16)۔ عام یوٹیوب ویڈیوز عام طور پر لمبے ہوتے ہیں اور اکثر افقی فارمیٹس میں ہوتے ہیں۔"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "کیا میں سافٹ ویئر انسٹال کیے بغیر یوٹیوب شارٹس آن لائن ڈاؤن لوڈ کر سکتا ہوں؟",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "ہاں۔ SSVID آپ کے براؤزر میں مکمل طور پر آن لائن کام کرتا ہے — کوئی سافٹ ویئر نہیں، کوئی ایکسٹینشن نہیں، اور کوئی سائن اپ کی ضرورت نہیں۔"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "کیا SSVID شارٹس کو اصل عمودی فارمیٹ میں رکھتا ہے؟",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "ہاں۔ SSVID عمودی 9:16 لے آؤٹ کو محفوظ رکھنے پر توجہ مرکوز کرتا ہے تاکہ شارٹس موبائل آلات پر صحیح طریقے سے چلیں۔"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "کیا میں آئی فون اور اینڈرائیڈ پر شارٹس ڈاؤن لوڈ کر سکتا ہوں؟",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "ہاں۔ SSVID موبائل اور ڈیسک ٹاپ براؤزرز پر کام کرتا ہے، لہذا آپ iOS، Android، Windows، یا macOS پر شارٹس ڈاؤن لوڈ کر سکتے ہیں۔"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "کیا SSVID شارٹس ڈاؤن لوڈز کے لیے مفت اور لامحدود ہے؟",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "ہاں۔ SSVID استعمال کرنے کے لیے مفت ہے اور لامحدود یوٹیوب شارٹس ڈاؤن لوڈز کی اجازت دیتا ہے۔"
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "کیا SSVID نجی یا محدود شارٹس ڈاؤن لوڈ کر سکتا ہے؟",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "نہیں. نجی یا محدود مواد کو آن لائن ڈاؤن لوڈ ٹولز کے ذریعے پروسیس نہیں کیا جا سکتا۔"
-          }
-        }
-      ]
-    },
-    {
-      "@type": "HowTo",
-      "@id": "https://ssvid.cc/ur/youtube-shorts-downloader#howto",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/ur/youtube-shorts-downloader#webpage"
-      },
-      "name": "SSVID کے ساتھ یوٹیوب شارٹس کیسے ڈاؤن لوڈ کریں",
-      "step": [
-        {
-          "@type": "HowToStep",
-          "position": 1,
-          "name": "لنک کاپی کریں",
-          "text": "یوٹیوب شارٹس کا لنک کاپی کریں۔"
-        },
-        {
-          "@type": "HowToStep",
-          "position": 2,
-          "name": "پیسٹ کریں اور منتخب کریں",
-          "text": "لنک کو SSVID میں پیسٹ کریں۔"
-        },
-        {
-          "@type": "HowToStep",
-          "position": 3,
-          "name": "ڈاؤن لوڈ کریں",
-          "text": "شارٹ کو سیکنڈوں میں ڈاؤن لوڈ کریں۔"
-        }
-      ]
-    }
-  ]
-}
-</script>
-
 </body>
 
 </html>

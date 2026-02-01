@@ -59,6 +59,130 @@
     <script>
         (function () { var f = 'mp4'; try { var p = JSON.parse(localStorage.getItem('ssvid_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat } catch (e) { } document.documentElement.dataset.format = f; document.write('<style>html[data-format="mp3"] .quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4{display:block!important}</style>') })()
     </script>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://ssvid.cc/tr/#webpage",
+      "url": "https://ssvid.cc/tr/",
+      "name": "YouTube Videosu İndir",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/#website"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "@id": "https://ssvid.cc/tr/#application"
+      },
+      "inLanguage": "tr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://ssvid.cc/tr/#application",
+      "name": "YouTube Videosu İndir",
+      "url": "https://ssvid.cc/tr/",
+      "description": "SSVID ile YouTube videolarını çevrimiçi indirin. Ücretsiz, hızlı ve sınırsız.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "tr",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://ssvid.cc/tr/#faq",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/tr/#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "SSVID'i kullanmak ücretsiz mi?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Evet. SSVID, gizli ücretler, abonelikler veya indirme limitleri olmadan tamamen ücretsizdir."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Yazılım yüklemeden YouTube videolarını çevrimiçi indirebilir miyim?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Evet. SSVID tarayıcınızda tamamen çevrimiçi çalışır, bu nedenle herhangi bir uygulama veya yazılım yüklemeye gerek yoktur."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "YouTube videolarını MP4 veya MP3 olarak indirebilir miyim?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Evet. SSVID, ihtiyaçlarınıza bağlı olarak YouTube videolarını MP4 olarak indirmenize veya sesi MP3 olarak çıkarmanıza olanak tanır."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "SSVID, YouTube Shorts indirmeyi destekliyor mu?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Evet. Doğru dikey formatı ve orijinal kaliteyi korurken YouTube Shorts videolarını kolayca indirebilirsiniz."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "SSVID'i kullanmak güvenli mi?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Evet. SSVID'i kullanmak güvenlidir ve hesap kaydı veya kişisel bilgi gerektirmez."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "SSVID mobil cihazlarda çalışıyor mu?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Evet. SSVID, Android ve iOS tarayıcıları dahil olmak üzere hem masaüstü hem de mobil cihazlarda sorunsuz çalışır."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://ssvid.cc/tr/#howto",
+      "isPartOf": {
+        "@id": "https://ssvid.cc/tr/#webpage"
+      },
+      "name": "Nasıl İndirilir",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "name": "Bağlantıyı Kopyala",
+          "text": "YouTube'a gidin ve kaydetmek istediğiniz videonun URL'sini kopyalayın."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "name": "Yapıştır ve Seç",
+          "text": "Bağlantıyı SSVID arama çubuğuna yapıştırın ve tercih ettiğiniz formatı (MP4/MP3) seçin."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "name": "İndir",
+          "text": "Dönüştür düğmesine tıklayın ve dosyanızın hazır olması için birkaç saniye bekleyin."
+        }
+      ]
+    }
+  ]
+}
+</script>
+
 </head>
 
 <body>
@@ -79,7 +203,7 @@
             </a>
             <nav class="header-nav" aria-label="Primary">
                 <a href="/tr/" class="header-link">Ana Sayfa</a>
-                <a href="/tr/about.html" class="header-link">Hakkında</a>
+                <a href="/tr/about" class="header-link">Hakkında</a>
                 <div class="lang-selector">
                     <button class="lang-button" type="button" aria-label="Dil">
                         <span>TR</span>
@@ -217,16 +341,16 @@
         <div class="drawer-scroll">
             <nav class="drawer-nav" aria-label="Mobile">
                 <a href="/tr/" class="drawer-link">Ana Sayfa</a>
-                <a href="/tr/youtube-to-mp3.html" class="drawer-link">YouTube&#39;dan MP3&#39;e</a>
-                <a href="/tr/youtube-to-mp4.html" class="drawer-link">YouTube&#39;dan MP4&#39;e</a>
-                <a href="/tr/youtube-shorts-downloader.html" class="drawer-link">YouTube Shorts</a>
+                <a href="/tr/youtube-to-mp3" class="drawer-link">YouTube&#39;dan MP3&#39;e</a>
+                <a href="/tr/youtube-to-mp4" class="drawer-link">YouTube&#39;dan MP4&#39;e</a>
+                <a href="/tr/youtube-shorts-downloader" class="drawer-link">YouTube Shorts</a>
                 <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
-                <a href="/tr/about.html" class="drawer-link">Hakkında</a>
-                <a href="/tr/faq.html" class="drawer-link">SSS</a>
-                <a href="/tr/contact.html" class="drawer-link">İletişim</a>
-                <a href="/tr/terms.html" class="drawer-link">Şartlar</a>
-                <a href="/tr/policy.html" class="drawer-link">Gizlilik</a>
-                <a href="/tr/dmca.html" class="drawer-link">DMCA</a>
+                <a href="/tr/about" class="drawer-link">Hakkında</a>
+                <a href="/tr/faq" class="drawer-link">SSS</a>
+                <a href="/tr/contact" class="drawer-link">İletişim</a>
+                <a href="/tr/terms" class="drawer-link">Şartlar</a>
+                <a href="/tr/policy" class="drawer-link">Gizlilik</a>
+                <a href="/tr/dmca" class="drawer-link">DMCA</a>
             </nav>
             <div class="drawer-lang-selector">
                 <button class="drawer-lang-button" type="button" aria-label="Choose language">
@@ -481,17 +605,17 @@
         
         <div class="subsection">
             <h3>YouTube Videoları (MP4)</h3>
-            <p>SSVID ile, herhangi bir cihazda çevrimdışı izlemek için <strong><a href="/tr/youtube-to-mp4.html">YouTube videolarını MP4 olarak indirebilirsiniz</a></strong>. Bu, eğitimleri, müzik videolarını, vlog'ları ve uzun biçimli YouTube içeriğini yaygın olarak desteklenen bir video formatında kaydetmek için idealdir.</p>
+            <p>SSVID ile, herhangi bir cihazda çevrimdışı izlemek için <strong><a href="/tr/youtube-to-mp4">YouTube videolarını MP4 olarak indirebilirsiniz</a></strong>. Bu, eğitimleri, müzik videolarını, vlog'ları ve uzun biçimli YouTube içeriğini yaygın olarak desteklenen bir video formatında kaydetmek için idealdir.</p>
         </div>
         
         <div class="subsection">
             <h3>YouTube Ses (MP3)</h3>
-            <p>SSVID, videolarından doğrudan ses çıkararak <strong><a href="/tr/youtube-to-mp3.html">YouTube sesini MP3 olarak indirmenize</a></strong> olanak tanır. Bu seçenek, istediğiniz zaman dinlemek istediğiniz müzik, podcast'ler, röportajlar ve diğer ses içerikleri için mükemmeldir.</p>
+            <p>SSVID, videolarından doğrudan ses çıkararak <strong><a href="/tr/youtube-to-mp3">YouTube sesini MP3 olarak indirmenize</a></strong> olanak tanır. Bu seçenek, istediğiniz zaman dinlemek istediğiniz müzik, podcast'ler, röportajlar ve diğer ses içerikleri için mükemmeldir.</p>
         </div>
         
         <div class="subsection">
             <h3>YouTube Shorts</h3>
-            <p>Orijinal kaliteyi korurken doğru dikey formatta <strong><a href="/tr/youtube-shorts-downloader.html">YouTube Shorts videolarını da indirebilirsiniz</a></strong>. SSVID, kısa biçimli YouTube videolarını çevrimdışı izlemek veya paylaşmak için kaydetmeyi kolaylaştırır.</p>
+            <p>Orijinal kaliteyi korurken doğru dikey formatta <strong><a href="/tr/youtube-shorts-downloader">YouTube Shorts videolarını da indirebilirsiniz</a></strong>. SSVID, kısa biçimli YouTube videolarını çevrimdışı izlemek veya paylaşmak için kaydetmeyi kolaylaştırır.</p>
         </div>
         
     </div>
@@ -550,17 +674,17 @@
     <footer>
     <div class="container">
         <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
-            <a href="/tr/youtube-to-mp3.html" style="color: inherit; text-decoration: none;">YouTube&#39;dan MP3&#39;e</a>
-            <a href="/tr/youtube-to-mp4.html" style="color: inherit; text-decoration: none;">YouTube&#39;dan MP4&#39;e</a>
-            <a href="/tr/youtube-shorts-downloader.html" style="color: inherit; text-decoration: none;">YouTube Shorts</a>
+            <a href="/tr/youtube-to-mp3" style="color: inherit; text-decoration: none;">YouTube&#39;dan MP3&#39;e</a>
+            <a href="/tr/youtube-to-mp4" style="color: inherit; text-decoration: none;">YouTube&#39;dan MP4&#39;e</a>
+            <a href="/tr/youtube-shorts-downloader" style="color: inherit; text-decoration: none;">YouTube Shorts</a>
         </div>
         <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
-            <a href="/tr/about.html" style="color: inherit; text-decoration: none;">Hakkında</a>
-            <a href="/tr/contact.html" style="color: inherit; text-decoration: none;">İletişim</a>
-            <a href="/tr/terms.html" style="color: inherit; text-decoration: none;">Şartlar</a>
-            <a href="/tr/policy.html" style="color: inherit; text-decoration: none;">Gizlilik Politikası</a>
-            <a href="/tr/dmca.html" style="color: inherit; text-decoration: none;">DMCA</a>
-            <a href="/tr/faq.html" style="color: inherit; text-decoration: none;">SSS</a>
+            <a href="/tr/about" style="color: inherit; text-decoration: none;">Hakkında</a>
+            <a href="/tr/contact" style="color: inherit; text-decoration: none;">İletişim</a>
+            <a href="/tr/terms" style="color: inherit; text-decoration: none;">Şartlar</a>
+            <a href="/tr/policy" style="color: inherit; text-decoration: none;">Gizlilik Politikası</a>
+            <a href="/tr/dmca" style="color: inherit; text-decoration: none;">DMCA</a>
+            <a href="/tr/faq" style="color: inherit; text-decoration: none;">SSS</a>
         </div>
         <div class="copyright">© 2026 SSVid. Tüm hakları saklıdır.</div>
     </div>
@@ -569,130 +693,6 @@
 
     <!-- Main TypeScript Entry -->
     <script type="module" src="/src/main.ts"></script>
-
-    <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebPage",
-      "@id": "https://ssvid.cc/tr/#webpage",
-      "url": "https://ssvid.cc/tr/",
-      "name": "YouTube Videosu İndir",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/#website"
-      },
-      "about": {
-        "@type": "SoftwareApplication",
-        "@id": "https://ssvid.cc/tr/#application"
-      },
-      "inLanguage": "tr"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "@id": "https://ssvid.cc/tr/#application",
-      "name": "YouTube Videosu İndir",
-      "url": "https://ssvid.cc/tr/",
-      "description": "SSVID ile YouTube videolarını çevrimiçi indirin. Ücretsiz, hızlı ve sınırsız.",
-      "applicationCategory": "MultimediaApplication",
-      "operatingSystem": "All",
-      "browserRequirements": "Requires JavaScript. Requires HTML5.",
-      "inLanguage": "tr",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
-    },
-    {
-      "@type": "FAQPage",
-      "@id": "https://ssvid.cc/tr/#faq",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/tr/#webpage"
-      },
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "SSVID'i kullanmak ücretsiz mi?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Evet. SSVID, gizli ücretler, abonelikler veya indirme limitleri olmadan tamamen ücretsizdir."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Yazılım yüklemeden YouTube videolarını çevrimiçi indirebilir miyim?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Evet. SSVID tarayıcınızda tamamen çevrimiçi çalışır, bu nedenle herhangi bir uygulama veya yazılım yüklemeye gerek yoktur."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "YouTube videolarını MP4 veya MP3 olarak indirebilir miyim?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Evet. SSVID, ihtiyaçlarınıza bağlı olarak YouTube videolarını MP4 olarak indirmenize veya sesi MP3 olarak çıkarmanıza olanak tanır."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "SSVID, YouTube Shorts indirmeyi destekliyor mu?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Evet. Doğru dikey formatı ve orijinal kaliteyi korurken YouTube Shorts videolarını kolayca indirebilirsiniz."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "SSVID'i kullanmak güvenli mi?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Evet. SSVID'i kullanmak güvenlidir ve hesap kaydı veya kişisel bilgi gerektirmez."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "SSVID mobil cihazlarda çalışıyor mu?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Evet. SSVID, Android ve iOS tarayıcıları dahil olmak üzere hem masaüstü hem de mobil cihazlarda sorunsuz çalışır."
-          }
-        }
-      ]
-    },
-    {
-      "@type": "HowTo",
-      "@id": "https://ssvid.cc/tr/#howto",
-      "isPartOf": {
-        "@id": "https://ssvid.cc/tr/#webpage"
-      },
-      "name": "Nasıl İndirilir",
-      "step": [
-        {
-          "@type": "HowToStep",
-          "position": 1,
-          "name": "Bağlantıyı Kopyala",
-          "text": "YouTube'a gidin ve kaydetmek istediğiniz videonun URL'sini kopyalayın."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 2,
-          "name": "Yapıştır ve Seç",
-          "text": "Bağlantıyı SSVID arama çubuğuna yapıştırın ve tercih ettiğiniz formatı (MP4/MP3) seçin."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 3,
-          "name": "İndir",
-          "text": "Dönüştür düğmesine tıklayın ve dosyanızın hazır olması için birkaç saniye bekleyin."
-        }
-      ]
-    }
-  ]
-}
-</script>
-
 </body>
 
 </html>
