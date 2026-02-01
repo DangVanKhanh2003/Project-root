@@ -1,8 +1,8 @@
 /* Hero Section */
 .hero-section {
-    background-color: var(--primary-color);
-    padding: 120px 0 60px 0;
-    /* Updated to 200px top padding as requested */
+    background-color: var(--bg-secondary);
+    /* Changed to Gray (Secondary) */
+    padding: 120px 0 40px 0;
     color: var(--color-white);
     text-align: center;
     position: relative;
@@ -10,45 +10,26 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* Isolate stacking context for pseudo-element */
     z-index: 1;
 }
 
-/* Background Mask for "Split" Effect
-   Creates the illusion of the form overlapping into the next section
-   by covering the bottom of the red hero with the secondary gray color.
-*/
-.hero-section::after {
+/* Pseudo-element for the fixed-height Red Header/Hero BG */
+.hero-section::before {
     content: '';
     position: absolute;
-    bottom: -1px;
-    /* Overlap slightly to prevent sub-pixel red line gaps */
+    top: 0;
     left: 0;
     width: 100%;
-    height: 200px;
-    /* Increased height to ensure full coverage behind form */
-    /* Approx half the form height */
-    background-color: var(--bg-secondary);
+    height: 450px;
+    /* Fixed height for the red area */
+    background-color: var(--primary-color);
+    /* Red */
     z-index: -1;
-    /* Behind content but above background-color (if z-index works that way on stacking context) */
-    /* Actually: pseudo-elements are children.
-       .hero-section has z-index: 1.
-       Content (Form) needs z-index: 2.
-       ::after needs z-index: 0 or -1 relative to content?
-       If ::after is z-index: -1, it goes behind the .hero-section background if not careful.
-       But .hero-section creates stacking context? No, opacity/transform not set.
-       Let's stick to safe z-indexing.
-    */
 }
 
 .hero-section>* {
     z-index: 2;
-    /* Ensure content sits above the mask */
-}
-
-.hero-section::after {
-    z-index: 0;
-    /* Mask sits behind content */
+    /* Ensure content sits above the bg */
 }
 
 .hero-container {
@@ -200,9 +181,10 @@
         /* Smaller logo text */
     }
 
-    /* Reduce mask height on mobile to match shorter form height */
-    .hero-section::after {
-        height: 100px;
+    /* Adjust Red Background Height on Mobile */
+    .hero-section::before {
+        height: 300px;
+        /* Adjusted for mobile */
     }
 }
 
@@ -215,5 +197,14 @@
 
 /* Search Results Container */
 #search-results-container {
-    margin-top: 50px;
+    margin-top: 30px;
+}
+
+#hero-inline-message {
+    margin-top: 12px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--primary-color);
+    font-weight: 500;
+    min-height: 20px;
 }
