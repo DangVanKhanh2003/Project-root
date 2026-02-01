@@ -1,0 +1,30 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "youtubeToMp3": "YouTube to MP3",
+    "youtubeToMp4": "YouTube to MP4",
+    "youtubeShorts": "YouTube Shorts",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "terms": "Terms",
+    "privacy": "Privacy Policy",
+    "dmca": "DMCA",
+    "language": "English"
+  },
+  "hero": {
+    "placeholder": "Paste YouTube link here...",
+    "pasteButton": "Paste",
+    "clearButton": "Clear",
+    "submitButton": "Convert"
+  },
+  "footer": {
+    "copyright": "© 2026 SSVid. All rights reserved.",
+    "about": "About",
+    "contact": "Contact",
+    "terms": "Terms",
+    "privacy": "Privacy Policy",
+    "dmca": "DMCA",
+    "faq": "FAQ"
+  }
+}

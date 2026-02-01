@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ – SSVID | Frequently Asked Questions</title>
+    <meta name="description"
+        content="Find answers to common questions about SSVID. Learn how our YouTube downloader works, supported formats, safety, and usage rules.">
+
+    <!-- Critical: Read format preference before render to prevent FOUC (Copied from ytmp3.my) -->
+    <script>
+        (function () { var f = 'mp4'; try { var p = JSON.parse(localStorage.getItem('y2mate_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat } catch (e) { } document.documentElement.dataset.format = f; document.write('<style>html[data-format="mp3"] .quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4{display:block!important}</style>') })()
+    </script>
+    
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header class="site-header ">
+        <div class="container">
+                     <div class="header-inner">
+            <a href="/" class="header-logo" aria-label="SSVid home">
+                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 58 58" fill="none"
+                    aria-hidden="true" focusable="false">
+                    <rect x="4.1676" y="0" width="53.8323" height="53.8323" rx="8" ry="8" fill="#CB0E35" />
+                    <rect x="0" y="4.16766" width="53.8323" height="53.8323" rx="8" ry="8" fill="white" />
+                    <path
+                        d="M39.2054 46.1916H14.6268C10.3869 46.1866 6.95113 42.7687 6.94604 38.5509V23.2695C6.95113 19.0517 10.3869 15.6338 14.6268 15.6287H39.2054C43.4453 15.6338 46.8811 19.0517 46.8862 23.2695V38.5509C46.8811 42.7687 43.4453 46.1866 39.2054 46.1916ZM14.6268 18.685C12.0816 18.685 10.0184 20.7375 10.0184 23.2695V38.5509C10.0184 41.0828 12.0816 43.1353 14.6268 43.1353H39.2054C41.7506 43.1353 43.8138 41.0828 43.8138 38.5509V23.2695C43.8138 20.7375 41.7506 18.685 39.2054 18.685H14.6268Z"
+                        fill="#8D021F" />
+                    <path
+                        d="M24.0174 38.965C22.3238 38.9575 20.9527 37.5935 20.9451 35.9087V25.9162C20.9451 24.2283 22.3207 22.8599 24.0175 22.86C24.5568 22.86 25.0866 23.0013 25.5535 23.2694L34.2467 28.2634C35.7161 29.1074 36.2195 30.9766 35.371 32.4384C35.1014 32.903 34.7137 33.2886 34.2467 33.5569L25.5535 38.5509C25.0872 38.8214 24.5572 38.9642 24.0174 38.965ZM32.712 30.9102L24.0174 25.9162V35.9041L32.712 30.9102Z"
+                        fill="#8D021F" />
+                </svg>
+                <span class="header-logo-text">SSVid.cc</span>
+            </a>
+            <nav class="header-nav" aria-label="Primary">
+                <a href="/" class="header-link">Home</a>
+                <a href="/about.html" class="header-link">About</a>
+</nav>
+            <button id="mobile-menu-btn" class="mobile-menu-btn" type="button" aria-label="Open menu">
+                <span class="mobile-menu-bars" aria-hidden="true"></span>
+            </button>
+        </div>
+        </div>
+
+    </header>
+
+    <!-- MOBILE DRAWER (Kept if needed, but trigger is gone with header. Hiding for now effectively) -->
+    <div id="mobile-drawer" class="mobile-drawer" hidden>
+        <div id="mobile-drawer-content" class="drawer-content" role="dialog" aria-modal="true" aria-label="Mobile menu">
+            <div class="drawer-header">
+                <a href="/" class="drawer-logo" aria-label="SSVid home">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 58 58" fill="none"
+                        aria-hidden="true" focusable="false">
+                        <rect x="4.1676" y="0" width="53.8323" height="53.8323" rx="8" ry="8" fill="#CB0E35" />
+                        <rect x="0" y="4.16766" width="53.8323" height="53.8323" rx="8" ry="8" fill="white" />
+                        <path
+                            d="M39.2054 46.1916H14.6268C10.3869 46.1866 6.95113 42.7687 6.94604 38.5509V23.2695C6.95113 19.0517 10.3869 15.6338 14.6268 15.6287H39.2054C43.4453 15.6338 46.8811 19.0517 46.8862 23.2695V38.5509C46.8811 42.7687 43.4453 46.1866 39.2054 46.1916ZM14.6268 18.685C12.0816 18.685 10.0184 20.7375 10.0184 23.2695V38.5509C10.0184 41.0828 12.0816 43.1353 14.6268 43.1353H39.2054C41.7506 43.1353 43.8138 41.0828 43.8138 38.5509V23.2695C43.8138 20.7375 41.7506 18.685 39.2054 18.685H14.6268Z"
+                            fill="#8D021F" />
+                        <path
+                            d="M24.0174 38.965C22.3238 38.9575 20.9527 37.5935 20.9451 35.9087V25.9162C20.9451 24.2283 22.3207 22.8599 24.0175 22.86C24.5568 22.86 25.0866 23.0013 25.5535 23.2694L34.2467 28.2634C35.7161 29.1074 36.2195 30.9766 35.371 32.4384C35.1014 32.903 34.7137 33.2886 34.2467 33.5569L25.5535 38.5509C25.0872 38.8214 24.5572 38.9642 24.0174 38.965ZM32.712 30.9102L24.0174 25.9162V35.9041L32.712 30.9102Z"
+                            fill="#8D021F" />
+                    </svg>
+                    <span class="drawer-logo-text">SSVid.cc</span>
+                </a>
+                <button id="close-drawer-btn" class="drawer-close" type="button" aria-label="Close menu">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="drawer-scroll">
+                <nav class="drawer-nav" aria-label="Mobile">
+                    <a href="/" class="drawer-link">Home</a>
+                    <a href="/youtube-to-mp3.html" class="drawer-link">YouTube to MP3</a>
+                    <a href="/youtube-to-mp4.html" class="drawer-link">YouTube to MP4</a>
+                    <a href="/youtube-shorts-downloader.html" class="drawer-link">YouTube Shorts</a>
+                    <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
+                    <a href="/about.html" class="drawer-link">About</a>
+                    <a href="/faq.html" class="drawer-link">FAQ</a>
+                    <a href="/contact.html" class="drawer-link">Contact</a>
+                    <a href="/terms.html" class="drawer-link">Terms</a>
+                    <a href="/policy.html" class="drawer-link">Privacy</a>
+                    <a href="/dmca.html" class="drawer-link">DMCA</a>
+                </nav>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main>
+
+    <section class="hero-section">
+        <div class="container hero-container">
+            <div class="hero-header">
+                <h1 class="title-hero">Frequently Asked Questions</h1>
+                <p class="subtitle-hero">Answers to common questions about using SSVID</p>
+            </div>
+            <!-- No Hero Card for info pages -->
+            <div style="margin-bottom: 40px;"></div> 
+        </div>
+    </section>
+    <section class="content-section content-section--white"><div class="container"><h2 class="titles">General Questions</h2>
+                    <div class="subsection">
+                        <h3>What is SSVID?</h3>
+                        <p>SSVID is a free online tool that allows users to download YouTube videos for offline use. It works directly in your browser and does not require registration or software installation.</p>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>Is SSVID free to use?</h3>
+                        <p>Yes. SSVID is completely free and does not require payment, subscriptions, or account creation.</p>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>Do I need to install any software or extension?</h3>
+                        <p>No. SSVID works entirely online. You only need a modern web browser to use the service.</p>
+                    </div>
+                    <h2 class="titles">Usage & Formats</h2>
+                    <div class="subsection">
+                        <h3>What formats does SSVID support?</h3>
+                        <p>SSVID supports downloading YouTube content in popular formats such as MP4 for video and MP3 for audio, depending on the selected option.</p>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>Can I download long YouTube videos?</h3>
+                        <p>Yes. SSVID supports downloading long YouTube videos as long as the content is publicly accessible.</p>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>Does SSVID support HD or high-quality downloads?</h3>
+                        <p>When available from the source, SSVID allows users to download videos in higher quality formats such as HD.</p>
+                    </div>
+                    <h2 class="titles">Privacy & Safety</h2>
+                    <div class="subsection">
+                        <h3>Does SSVID store downloaded videos or files?</h3>
+                        <p>No. SSVID does not store, archive, or retain any downloaded files. All processing is temporary and files are delivered directly to the user's device.</p>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>Is SSVID safe to use?</h3>
+                        <p>Yes. SSVID does not require personal information and does not store user data related to downloads. Users can use the service anonymously.</p>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>Does SSVID track my download history?</h3>
+                        <p>No. SSVID does not track or store download history.</p>
+                    </div>
+                    <h2 class="titles">Copyright & Legal</h2>
+                    <div class="subsection">
+                        <h3>Is downloading YouTube videos legal?</h3>
+                        <p>Users are responsible for ensuring that their use of downloaded content complies with applicable copyright laws and the terms of the original platform.</p>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>Does SSVID host or upload videos?</h3>
+                        <p>No. SSVID does not host, upload, or distribute any video or audio content. It only processes user-submitted links.</p>
+                    </div>
+                    
+                    <div class="subsection">
+                        <h3>How can copyright owners contact SSVID?</h3>
+                        <p>Copyright owners or authorized representatives may contact SSVID via email at contact.ssvidcc@gmail.com to submit a copyright or DMCA-related request.</p>
+                    </div>
+                    <h2 class="titles">Getting Started</h2><p>To start using SSVID, simply visit the <a href="/" title="SSVID Online YouTube Downloader"><strong>SSVID homepage</strong></a>, paste a YouTube link, and choose your preferred download option.</p>
+<br></div></section>
+</main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
+                <a href="/youtube-to-mp3.html" style="color: inherit; text-decoration: none;">YouTube to MP3</a>
+                <a href="/youtube-to-mp4.html" style="color: inherit; text-decoration: none;">YouTube to MP4</a>
+                <a href="/youtube-shorts-downloader.html" style="color: inherit; text-decoration: none;">YouTube Shorts</a>
+            </div>
+            <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
+                <a href="/about.html" style="color: inherit; text-decoration: none;">About</a>
+                <a href="/contact.html" style="color: inherit; text-decoration: none;">Contact</a>
+                <a href="/terms.html" style="color: inherit; text-decoration: none;">Terms</a>
+                <a href="/policy.html" style="color: inherit; text-decoration: none;">Privacy Policy</a>
+                <a href="/dmca.html" style="color: inherit; text-decoration: none;">DMCA</a>
+                <a href="/faq.html" style="color: inherit; text-decoration: none;">FAQ</a>
+            </div>
+            <div class="copyright">© 2026 SSVid. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>
