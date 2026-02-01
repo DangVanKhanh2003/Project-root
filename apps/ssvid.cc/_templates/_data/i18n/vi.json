@@ -12,9 +12,9 @@
     "logoText": "SSVid.cc",
     "links": {
       "home": "Trang chủ",
-      "youtubeToMp3": "YouTube sang MP3",
-      "youtubeToMp4": "YouTube sang MP4",
-      "youtubeShorts": "YouTube Shorts",
+      "youtubeToMp3": "Download youtube Mp3",
+      "youtubeToMp4": "Download youtube Mp4",
+      "youtubeShorts": "Download Youtube Shorts",
       "about": "Giới thiệu",
       "faq": "FAQ",
       "contact": "Liên hệ",
@@ -38,9 +38,9 @@
   },
   "footer": {
     "linksRow1": {
-      "youtubeToMp3": "YouTube sang MP3",
-      "youtubeToMp4": "YouTube sang MP4",
-      "youtubeShorts": "YouTube Shorts"
+      "youtubeToMp3": "Download youtube Mp3",
+      "youtubeToMp4": "Download youtube Mp4",
+      "youtubeShorts": "Download Youtube Shorts"
     },
     "linksRow2": {
       "about": "Giới thiệu",
