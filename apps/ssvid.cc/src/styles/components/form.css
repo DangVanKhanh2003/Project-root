@@ -34,26 +34,22 @@
 
 .input-running-border {
     filter: blur(2px);
-    background: conic-gradient(
-        from var(--angle),
-        rgba(52, 107, 241, 0) 0%,
-        rgba(52, 107, 241, 0.4) 10%,
-        rgba(52, 107, 241, 0.6) 35%,
-        rgba(52, 107, 241, 0.4) 60%,
-        rgba(52, 107, 241, 0) 70%
-    );
+    background: conic-gradient(from var(--angle),
+            rgba(52, 107, 241, 0) 0%,
+            rgba(52, 107, 241, 0.4) 10%,
+            rgba(52, 107, 241, 0.6) 35%,
+            rgba(52, 107, 241, 0.4) 60%,
+            rgba(52, 107, 241, 0) 70%);
     animation: rotate-gradient 8s linear infinite;
     transition: opacity 0.4s ease;
     opacity: 1;
 }
 
 .input-focus-glow {
-    background-image: radial-gradient(
-        75% 181% at 50% 50%,
-        rgba(52, 107, 241, 0.9) 0px,
-        rgba(52, 107, 241, 0.8) 50%,
-        rgba(52, 107, 241, 0) 100%
-    );
+    background-image: radial-gradient(75% 181% at 50% 50%,
+            rgba(52, 107, 241, 0.9) 0px,
+            rgba(52, 107, 241, 0.8) 50%,
+            rgba(52, 107, 241, 0) 100%);
     filter: blur(2px);
     opacity: 0;
     transition: opacity 0.4s ease;
@@ -75,7 +71,7 @@
 }
 
 .input-shell .input-wrapper {
-    border: none;
+    border: 1px solid #f0f0f4;
     background: transparent;
     box-shadow: none;
 }
@@ -85,13 +81,9 @@
     z-index: 1;
     background: #fff;
     border-radius: var(--radius-xl);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
     transition: box-shadow 0.3s ease;
 }
 
-.input-shell .input-content:focus-within {
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
-}
 
 /* Input Group */
 .input-group {
@@ -109,7 +101,7 @@
 }
 
 .input-wrapper:focus-within {
-    border-color: var(--brand);
+    border-color: #3b82f6;
 }
 
 .video-input {

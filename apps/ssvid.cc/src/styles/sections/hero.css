@@ -10,17 +10,20 @@
 .hero-container {
     position: relative;
     z-index: 1;
-    background-color: #ffffff;
-    border-radius: var(--radius-xl);
+
 }
 
 .hero-card {
     border-radius: var(--radius-xl);
-    padding: 40px  0px;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: var(--radius-xl);
 }
 
 .title-hero {
     font-size: 38px;
+    margin-bottom: 20px;
+    font-weight: 700;
 }
 
 
@@ -43,7 +46,7 @@
 
 @media (max-width: 768px) {
     .hero-section {
-        padding: 40px 0 0;
+        padding: 40px 0 40px;
     }
 
     .title-hero {
@@ -51,7 +54,7 @@
     }
 
     .hero-card {
-        padding: 30px 0px;
+        padding: 30px 20px;
     }
 }
 
@@ -65,7 +68,12 @@
     }
 
     .hero-card {
-        padding: 24px 0px;
+        padding: 24px 14px;
         border-radius: calc(var(--radius-xl) - 10px);
     }
+}
+
+/* Search Results Container */
+#search-results-container {
+    margin-top: 50px;
 }
