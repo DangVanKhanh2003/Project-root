@@ -1,0 +1,21 @@
+{%- set base = i18nBase[lang] or i18nBase['en'] -%}
+{%- set langPrefix = '' if (lang == 'en' or not lang) else '/' + lang -%}
+
+<footer>
+    <div class="container">
+        <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
+            <a href="{{ langPrefix }}/youtube-to-mp3.html" style="color: inherit; text-decoration: none;">{{ base.footer.linksRow1.youtubeToMp3 }}</a>
+            <a href="{{ langPrefix }}/youtube-to-mp4.html" style="color: inherit; text-decoration: none;">{{ base.footer.linksRow1.youtubeToMp4 }}</a>
+            <a href="{{ langPrefix }}/youtube-shorts-downloader.html" style="color: inherit; text-decoration: none;">{{ base.footer.linksRow1.youtubeShorts }}</a>
+        </div>
+        <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
+            <a href="{{ langPrefix }}/about.html" style="color: inherit; text-decoration: none;">{{ base.footer.linksRow2.about }}</a>
+            <a href="{{ langPrefix }}/contact.html" style="color: inherit; text-decoration: none;">{{ base.footer.linksRow2.contact }}</a>
+            <a href="{{ langPrefix }}/terms.html" style="color: inherit; text-decoration: none;">{{ base.footer.linksRow2.terms }}</a>
+            <a href="{{ langPrefix }}/policy.html" style="color: inherit; text-decoration: none;">{{ base.footer.linksRow2.privacyPolicy }}</a>
+            <a href="{{ langPrefix }}/dmca.html" style="color: inherit; text-decoration: none;">{{ base.footer.linksRow2.dmca }}</a>
+            <a href="{{ langPrefix }}/faq.html" style="color: inherit; text-decoration: none;">{{ base.footer.linksRow2.faq }}</a>
+        </div>
+        <div class="copyright">{{ base.footer.copyright }}</div>
+    </div>
+</footer>

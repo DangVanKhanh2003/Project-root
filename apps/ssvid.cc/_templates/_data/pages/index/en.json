@@ -1,0 +1,91 @@
+{
+  "seo": {
+    "title": "SSVID - Download YouTube Videos Online Free – Fast & Unlimited",
+    "description": "Download YouTube videos online with SSVID. Free, fast, and unlimited. Support HD & 4K quality, long YouTube videos. No app, no software, no registration.",
+    "schemaName": "SSVID - YouTube Video Downloader",
+    "schemaDescription": "Download YouTube videos online with SSVID. Free, fast, and unlimited.",
+    "ogTitle": "SSVID - Download YouTube Videos Online Free",
+    "ogDescription": "Download YouTube videos online with SSVID. Free, fast, and unlimited. Support HD & 4K quality."
+  },
+  "defaultFormat": "mp4",
+  "hero": {
+    "title": "Download YouTube Video",
+    "subtitle": "Free, fast & unlimited YouTube video downloader"
+  },
+  "overview": {
+    "title": "What is SSVID?",
+    "description": "SSVID is a cutting-edge online tool engineered to simplify the way you save YouTube content. Designed with Material Design principles, we offer a seamless, ad-free experience that respects your time and privacy.<br><br>Whether you need offline playback for travel, archival purposes, or content creation, SSVID processes high-quality video and audio directly in your browser without requiring complex software installations.",
+    "howTo": {
+      "title": "How to Download",
+      "steps": [
+        {
+          "number": "1",
+          "title": "Copy the Link",
+          "description": "Navigate to YouTube and copy the URL of the video you want to save."
+        },
+        {
+          "number": "2",
+          "title": "Paste & Select",
+          "description": "Paste the link into the SSVID search bar and choose your preferred format (MP4/MP3)."
+        },
+        {
+          "number": "3",
+          "title": "Download",
+          "description": "Click the convert button and wait a few seconds for your file to be ready."
+        }
+      ]
+    }
+  },
+  "whatCanDownload": {
+    "title": "What Can You Download with SSVID?",
+    "intro": "SSVID is designed to help you download different types of YouTube content easily, all in one place, without limits or complicated steps.",
+    "sections": [
+      {
+        "title": "YouTube Videos (MP4)",
+        "description": "With SSVID, you can <strong><a href=\"/youtube-to-mp4.html\">download YouTube videos as MP4</a></strong> for offline viewing on any device. This is ideal for saving tutorials, music videos, vlogs, and long-form YouTube content in a widely supported video format."
+      },
+      {
+        "title": "YouTube Audio (MP3)",
+        "description": "SSVID allows you to <strong><a href=\"/youtube-to-mp3.html\">download YouTube audio as MP3</a></strong> by extracting sound directly from videos. This option is perfect for music, podcasts, interviews, and other audio content you want to listen to anytime."
+      },
+      {
+        "title": "YouTube Shorts",
+        "description": "You can also <strong><a href=\"/youtube-shorts-downloader.html\">download YouTube Shorts videos</a></strong> in the correct vertical format while keeping the original quality. SSVID makes it easy to save short-form YouTube videos for offline viewing or sharing."
+      }
+    ]
+  },
+  "quality": {
+    "title": "Quality & Long YouTube Videos",
+    "description1": "SSVID supports downloading YouTube videos in high quality, including HD and 4K resolution, while preserving the original clarity of the video. This makes it suitable for users who want the best offline viewing experience on high-resolution screens.",
+    "description2": "In addition, SSVID can handle long YouTube videos without time limits. You can download full-length tutorials, lectures, podcasts, and extended videos without worrying about restrictions or interruptions."
+  },
+  "faqs": {
+    "title": "Frequently Asked Questions (FAQ)",
+    "items": [
+      {
+        "question": "Is SSVID free to use?",
+        "answer": "Yes. SSVID is completely free to use with no hidden fees, subscriptions, or download limits."
+      },
+      {
+        "question": "Can I download YouTube videos online without installing software?",
+        "answer": "Yes. SSVID works fully online in your browser, so there's no need to install any apps or software."
+      },
+      {
+        "question": "Can I download YouTube videos as MP4 or MP3?",
+        "answer": "Yes. SSVID allows you to download YouTube videos as MP4 or extract audio as MP3, depending on your needs."
+      },
+      {
+        "question": "Does SSVID support downloading YouTube Shorts?",
+        "answer": "Yes. You can download YouTube Shorts videos easily while keeping the correct vertical format and original quality."
+      },
+      {
+        "question": "Is SSVID safe to use?",
+        "answer": "Yes. SSVID is safe to use and does not require account registration or personal information."
+      },
+      {
+        "question": "Does SSVID work on mobile devices?",
+        "answer": "Yes. SSVID works smoothly on both desktop and mobile devices, including Android and iOS browsers."
+      }
+    ]
+  }
+}
