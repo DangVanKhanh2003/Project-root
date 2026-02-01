@@ -234,6 +234,43 @@ importers:
         specifier: ^7.1.10
         version: 7.2.2(@types/node@20.19.25)(terser@5.44.1)(tsx@4.20.6)
 
+  apps/ssvid.cc:
+    dependencies:
+      '@downloader/core':
+        specifier: workspace:*
+        version: link:../../packages/core
+      '@downloader/ui-components':
+        specifier: workspace:*
+        version: link:../../packages/ui-components
+      '@downloader/ui-shared':
+        specifier: workspace:*
+        version: link:../../packages/ui-shared
+      '@downloader/vidtool-popup':
+        specifier: workspace:*
+        version: link:../../packages/vidtool-popup
+      firebase:
+        specifier: ^12.8.0
+        version: 12.8.0
+    devDependencies:
+      '@11ty/eleventy':
+        specifier: ^3.0.0
+        version: 3.1.2
+      '@types/node':
+        specifier: ^20.19.25
+        version: 20.19.25
+      shx:
+        specifier: ^0.3.4
+        version: 0.3.4
+      tsx:
+        specifier: ^4.20.6
+        version: 4.20.6
+      typescript:
+        specifier: ^5.3.3
+        version: 5.9.3
+      vite:
+        specifier: ^7.1.10
+        version: 7.2.2(@types/node@20.19.25)(terser@5.44.1)(tsx@4.20.6)
+
   apps/y2matepro:
     dependencies:
       '@downloader/core':
@@ -2871,6 +2908,10 @@ packages:
     engines: {node: '>=18.18'}
     hasBin: true
 
+  interpret@1.4.0:
+    resolution: {integrity: sha512-agE4QfB2Lkp9uICn7BAqoscw4SZP9kTE2hxiFI3jBPmXJfdqiahTbUuKGsMoN2GtqL9AxhYioAcVvgsb1HvRbA==}
+    engines: {node: '>= 0.10'}
+
   is-alphabetical@2.0.1:
     resolution: {integrity: sha512-FWyyY60MeTNyeSRpkM2Iry0G9hpr7/9kD40mD/cGQEuilcZYS4okz8SN2Q6rLCJ8gbCt6fN+rC+6tMGS99LaxQ==}
 
@@ -3708,6 +3749,10 @@ packages:
     resolution: {integrity: sha512-VqtmjtpRh3XwBQTLM/KbgV2ERBr4jXwY+8hkcNXNCeGb2uY4KQNigAbHDTLGrDm9tIYiczG4ADI5/1z4teRRjQ==}
     hasBin: true
 
+  rechoir@0.6.2:
+    resolution: {integrity: sha512-HFM8rkZ+i3zrV+4LQjwQ0W+ez98pApMGM3HUrN04j3CqzPOzl9nmP15Y8YXNm8QHGv/eacOVEjqhmWpkRV0NAw==}
+    engines: {node: '>= 0.10'}
+
   redent@3.0.0:
     resolution: {integrity: sha512-6tDA8g98We0zd0GvVeMT9arEOnTw9qM03L9cJXaCjrip1OO764RDBLBfrB4cwzNGDj5OA5ioymC9GkizgWJDUg==}
     engines: {node: '>=8'}
@@ -3850,6 +3895,16 @@ packages:
   shebang-regex@3.0.0:
     resolution: {integrity: sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==}
     engines: {node: '>=8'}
+
+  shelljs@0.8.5:
+    resolution: {integrity: sha512-TiwcRcrkhHvbrZbnRcFYMLl30Dfov3HKqzp5tO5b4pt6G/SezKcYhmDg15zXVBswHmctSAQKznqNW2LO5tTDow==}
+    engines: {node: '>=4'}
+    hasBin: true
+
+  shx@0.3.4:
+    resolution: {integrity: sha512-N6A9MLVqjxZYcVn8hLmtneQWIJtp8IKzMP4eMnx+nqkvXoqinUPCbUFLp2UcWTEIUONhlk0ewxr/jaVGlc+J+g==}
+    engines: {node: '>=6'}
+    hasBin: true
 
   siginfo@2.0.0:
     resolution: {integrity: sha512-ybx0WO1/8bSBLEWXZvEd7gMW3Sn3JFlW3TvX1nREbDLRNQNaeNN8WK0meBwPdAaOI7TtRRRJn/Es1zhrrCHu7g==}
@@ -7019,6 +7074,8 @@ snapshots:
       - supports-color
       - utf-8-validate
 
+  interpret@1.4.0: {}
+
   is-alphabetical@2.0.1: {}
 
   is-alphanumerical@2.0.1:
@@ -7839,6 +7896,10 @@ snapshots:
     dependencies:
       minimist: 1.2.8
 
+  rechoir@0.6.2:
+    dependencies:
+      resolve: 1.22.11
+
   redent@3.0.0:
     dependencies:
       indent-string: 4.0.0
@@ -8022,6 +8083,17 @@ snapshots:
       shebang-regex: 3.0.0
 
   shebang-regex@3.0.0: {}
+
+  shelljs@0.8.5:
+    dependencies:
+      glob: 7.2.3
+      interpret: 1.4.0
+      rechoir: 0.6.2
+
+  shx@0.3.4:
+    dependencies:
+      minimist: 1.2.8
+      shelljs: 0.8.5
 
   siginfo@2.0.0: {}
 

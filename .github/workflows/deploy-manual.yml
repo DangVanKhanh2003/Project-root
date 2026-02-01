@@ -14,6 +14,7 @@ on:
           - 'mp3fast'
           - 'ytmp3-clone-5'
           - 'ytmp3.my'
+          - 'ssvid.cc'
       environment:
         description: 'Target environment'
         required: true
@@ -68,6 +69,11 @@ jobs:
               echo "directory=apps/ytmp3.my" >> $GITHUB_OUTPUT
               echo "filter_path=./apps/ytmp3.my" >> $GITHUB_OUTPUT
               echo "domain=${{ vars.YTMP3_MY_DOMAIN || 'ytmp3.my' }}" >> $GITHUB_OUTPUT
+              ;;
+            "ssvid.cc")
+              echo "directory=apps/ssvid.cc" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/ssvid.cc" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.SSVID_DOMAIN || 'ssvid.cc' }}" >> $GITHUB_OUTPUT
               ;;
           esac
 

@@ -1,0 +1,187 @@
+name: Build and Deploy ssvid.cc (Vite, CI → Server)
+
+on:
+  push:
+    branches: [ main, test-production ]
+    paths:
+      - 'apps/ssvid.cc/**'
+      - 'packages/**'
+      - 'modify-robots-meta.js'
+      - '.github/workflows/deploy-ssvid.yml'
+  workflow_dispatch:
+
+env:
+  PROJECT_NAME: ${{ github.ref_name == 'test-production' && format('{0}-test', vars.SSVID_PROJECT_NAME || 'ssvid.cc') || vars.SSVID_PROJECT_NAME || 'ssvid.cc' }}
+  PROJECT_ROOT: ${{ vars.PROJECT_ROOT || '/var/www/KhanhHAUI/CICD' }}
+  RUN_DIR:      ${{ vars.RUN_DIR || format('/var/www/KhanhHAUI/CICD/run/{0}', github.ref_name == 'test-production' && format('{0}-test', vars.SSVID_PROJECT_NAME || 'ssvid.cc') || vars.SSVID_PROJECT_NAME || 'ssvid.cc') }}
+  DEPLOY_USER:  ${{ vars.SSH_USERNAME  || 'githubaction' }}
+  DEPLOY_GROUP: ${{ vars.DEPLOY_GROUP || 'nginx' }}
+
+concurrency:
+  group: deploy-${{ github.repository }}-${{ github.ref }}-ssvid
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      # Cần devDependencies để có Vite
+      - name: Install deps (with devDependencies)
+        run: |
+          set -euo pipefail
+          pnpm install --frozen-lockfile
+
+      - name: Verify Vite exists
+        working-directory: ./apps/ssvid.cc
+        run: |
+          set -euo pipefail
+          npx vite --version
+          node -e "const p=require('./package.json'); if(!((p.devDependencies&&p.devDependencies.vite)||(p.dependencies&&p.dependencies.vite))){console.error('❌ Vite chưa có trong package.json'); process.exit(1)}"
+
+      - name: Build (Vite)
+        env:
+          NODE_ENV: ${{ github.ref_name == 'test-production' && 'test' || 'production' }}
+        run: |
+          set -euo pipefail
+          if [[ "${{ github.ref_name }}" == "test-production" ]]; then
+            echo "🔧 Building for test environment with noindex meta tags..."
+            echo "NODE_ENV=$NODE_ENV"
+            pnpm --filter ssvid.cc run build:test
+          else
+            echo "🏗️ Building for production environment with normal indexing..."
+            echo "NODE_ENV=$NODE_ENV"
+            pnpm --filter ssvid.cc run build
+          fi
+          test -d apps/ssvid.cc/dist
+
+      - name: Replace robots.txt for test environment
+        if: github.ref_name == 'test-production'
+        run: |
+          echo "User-agent: *" > apps/ssvid.cc/dist/robots.txt
+          echo "Disallow: /" >> apps/ssvid.cc/dist/robots.txt
+          echo "✅ Replaced robots.txt to block all crawlers for test environment"
+
+      - name: Verify robots meta tags
+        env:
+          NODE_ENV: ${{ github.ref_name == 'test-production' && 'test' || 'production' }}
+        run: |
+          echo "🔍 Verifying meta robots tags in HTML files..."
+          find apps/ssvid.cc/dist -name "*.html" -exec grep 'meta name="robots"' {} \; | head -5 || true
+          if [[ "${{ github.ref_name }}" == "test-production" ]]; then
+            echo "Expected: noindex for test environment"
+            # Verify noindex is present
+            if grep -r 'content="noindex"' apps/ssvid.cc/dist/ > /dev/null; then
+              echo "✅ SUCCESS: Found noindex meta tags for test environment"
+            else
+              echo "❌ ERROR: noindex meta tags not found in test environment"
+              exit 1
+            fi
+          else
+            echo "Expected: index, follow for production"
+            # Verify index,follow is present
+            if grep -r 'content="index, follow"' apps/ssvid.cc/dist/ > /dev/null; then
+              echo "✅ SUCCESS: Found index,follow meta tags for production"
+            else
+              echo "⚠️  WARNING: index,follow meta tags not found in production"
+            fi
+          fi
+
+      - name: Archive dist (tar.gz)
+        run: |
+          set -euo pipefail
+          tar -C apps/ssvid.cc/dist -czf dist.tar.gz .
+
+      # Upload đúng vào THƯ MỤC /tmp
+      - name: Upload artifact to server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}      # ví dụ: gitdeploy
+          key: ${{ secrets.SSH_PRIVATE_KEY }}        # private key ed25519
+          # port: ${{ secrets.SSH_PORT }}            # bỏ nếu dùng 22
+          source: "dist.tar.gz"
+          target: "/tmp"
+          overwrite: true
+
+      - name: Activate on server
+        uses: appleboy/ssh-action@v1.2.2
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          # port: ${{ secrets.SSH_PORT }}
+          envs: PROJECT_NAME,PROJECT_ROOT,RUN_DIR,DEPLOY_USER,DEPLOY_GROUP
+          script: |
+            set -euo pipefail
+            : "${PROJECT_ROOT:?}"; : "${RUN_DIR:?}"; : "${PROJECT_NAME:?}"
+            : "${DEPLOY_USER:?}"; : "${DEPLOY_GROUP:?}"
+
+            SRC_TAR="/tmp/dist.tar.gz"
+            TMP_TAR="/tmp/${PROJECT_NAME}-dist.tar.gz"
+
+            echo "== /tmp listing for debug =="
+            ls -l /tmp || true
+
+            # Xoá thư mục rác trùng tên file tar (nếu có từ cấu hình cũ)
+            if [ -d "$TMP_TAR" ]; then
+              echo "Found leftover dir $TMP_TAR → removing"
+              rm -rf "$TMP_TAR"
+            fi
+
+            # Fallback nếu ai đó từng upload vào /tmp/${PROJECT_NAME}-dist.tar.gz/dist.tar.gz
+            if [ ! -f "$SRC_TAR" ] && [ -f "/tmp/${PROJECT_NAME}-dist.tar.gz/dist.tar.gz" ]; then
+              SRC_TAR="/tmp/${PROJECT_NAME}-dist.tar.gz/dist.tar.gz"
+            fi
+            [ -f "$SRC_TAR" ] || { echo "Artifact not found: $SRC_TAR" >&2; exit 1; }
+
+            # Chuẩn hoá tên file artifact
+            mv -f "$SRC_TAR" "$TMP_TAR"
+
+            # Chỉ cho phép deploy trong PROJECT_ROOT
+            case "$RUN_DIR" in "$PROJECT_ROOT"/*) ;; *)
+              echo "Unsafe RUN_DIR: $RUN_DIR" >&2; exit 1;;
+            esac
+
+            # Tự tạo thư mục dự án
+            mkdir -p "$RUN_DIR" || {
+              echo "❌ mkdir -p $RUN_DIR failed. Kiểm tra quyền x trên /var/www và /var/www/KhanhHAUI, hoặc dùng ACL cho gitdeploy."; exit 1;
+            }
+
+            # Kiểm tra quyền ghi
+            if ! ( : > "$RUN_DIR/.writetest" 2>/dev/null ); then
+              echo "❌ $RUN_DIR không ghi được bởi $(whoami). Nhờ admin chown/chmod hoặc setfacl cho gitdeploy."; exit 1
+            fi
+            rm -f "$RUN_DIR/.writetest" || true
+
+            # Dọn bản cũ & bung bản mới
+            find "$RUN_DIR" -mindepth 1 -maxdepth 1 -exec rm -rf {} +
+            tar -xzf "$TMP_TAR" -C "$RUN_DIR"
+
+            # Quyền đọc cho web
+            find "$RUN_DIR" -type d -exec chmod 755 {} +
+            find "$RUN_DIR" -type f -exec chmod 644 {} +
+
+            # Nếu gitdeploy thuộc DEPLOY_GROUP → đổi group (chgrp), không chown
+            if id -nG "$USER" | grep -qw "$DEPLOY_GROUP"; then
+              chgrp -R "$DEPLOY_GROUP" "$RUN_DIR" || true
+            fi
+
+            # Xoá artifact tạm
+            rm -f "$TMP_TAR" || true
+
+            echo "✅ Deployed ssvid.cc successfully!"
