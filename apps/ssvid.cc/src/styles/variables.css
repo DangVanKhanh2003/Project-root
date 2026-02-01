@@ -1,5 +1,5 @@
 :root {
-    --brand: #8D021F;
+    --brand: #B3261E;
     --text: #374957;
     --muted: #7F8890;
     --surface-weak: #F9F2F4;
@@ -7,12 +7,19 @@
     --container-width: 1100px;
 
     /* Theme tokens needed by reusable packages (light theme) */
-    --color-black: #0b0b0b;
+    /* Colors */
+    --primary-color: #B3261E;
+    --primary-color-hover: #9f1e16;
+    /* Slightly darker for hover */
+    --secondary-color: #ffffff;
+    --color-black: #000000;
+    /* Defined as requested */
     --color-white: #ffffff;
 
-    --bg-body: #ffffff;
-    --bg-card: #ffffff;
-    --bg-input: #f6f7f9;
+    --bg-primary: #ffffff;
+    --bg-secondary: #f5f5f5;
+    /* Light gray for content sections */
+    --text-primary: #333333;
     --bg-badge: #f2f4f7;
 
     --text-main: var(--text);
@@ -31,5 +38,5 @@
     --radius-md: 12px;
     --radius-lg: 16px;
 
-    --font-display: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    --font-display: 'Roboto', system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
 }

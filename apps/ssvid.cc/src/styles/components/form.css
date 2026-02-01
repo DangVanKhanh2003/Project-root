@@ -182,7 +182,7 @@
 
 /* Shared Button Styles */
 .btn-convert {
-    background: var(--brand);
+    background: var(--primary-color);
     border: none;
     color: #fff;
     border-radius: var(--radius-xl);

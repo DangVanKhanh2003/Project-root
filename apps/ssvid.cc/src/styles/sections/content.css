@@ -1,17 +1,19 @@
-/* Content Sections */
+/* Content Section */
 .content-section {
-    padding: 60px 0;
-}
-
-
-
-/* Background variants - use these classes for alternating colors */
-.content-section--gray {
-    background: var(--surface-weak);
+    padding: 40px 0 80px;
+    /* Reset top padding. Hero has mask. */
+    position: relative;
+    background-color: var(--bg-secondary);
 }
 
 .content-section--white {
-    background: #fff;
+    background-color: var(--bg-secondary);
+    /* Override to ensure it's gray now */
+}
+
+/* Background variants - use these classes for alternating colors */
+.content-section--gray {
+    background-color: var(--bg-secondary);
 }
 
 /* Two-column pairing for the SSVID intro sections */
@@ -141,7 +143,7 @@ h2.titles {
 
 /* FAQ Section */
 .faq-section {
-    background: var(--surface-weak);
+    background: var(--bg-secondary);
 }
 
 .faq-item {

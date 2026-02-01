@@ -12,162 +12,21 @@
     <script>
         (function () { var f = 'mp4'; try { var p = JSON.parse(localStorage.getItem('y2mate_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat } catch (e) { } document.documentElement.dataset.format = f; document.write('<style>html[data-format="mp3"] .quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4{display:block!important}</style>') })()
     </script>
+    <!-- Google Fonts: Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <!-- HEADER -->
-    <header id="main-header">
-        <div class="container header-container">
-            <!-- Logo -->
-            <a href="/" class="logo">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 58 58" fill="none">
-                    <rect x="4.1676" y="0" width="53.8323" height="53.8323" rx="8" ry="8" fill="#CB0E35" />
-                    <rect x="0" y="4.16766" width="53.8323" height="53.8323" rx="8" ry="8" fill="white" />
+    <!-- HEADER REMOVED -->
 
-                    <path
-                        d="M39.2054 46.1916H14.6268C10.3869 46.1866 6.95113 42.7687 6.94604 38.5509V23.2695C6.95113 19.0517 10.3869 15.6338 14.6268 15.6287H39.2054C43.4453 15.6338 46.8811 19.0517 46.8862 23.2695V38.5509C46.8811 42.7687 43.4453 46.1866 39.2054 46.1916ZM14.6268 18.685C12.0816 18.685 10.0184 20.7375 10.0184 23.2695V38.5509C10.0184 41.0828 12.0816 43.1353 14.6268 43.1353H39.2054C41.7506 43.1353 43.8138 41.0828 43.8138 38.5509V23.2695C43.8138 20.7375 41.7506 18.685 39.2054 18.685H14.6268Z"
-                        fill="#8D021F" />
-
-                    <path
-                        d="M24.0174 38.965C22.3238 38.9575 20.9527 37.5935 20.9451 35.9087V25.9162C20.9451 24.2283 22.3207 22.8599 24.0175 22.86C24.5568 22.86 25.0866 23.0013 25.5535 23.2694L34.2467 28.2634C35.7161 29.1074 36.2195 30.9766 35.371 32.4384C35.1014 32.903 34.7137 33.2886 34.2467 33.5569L25.5535 38.5509C25.0872 38.8214 24.5572 38.9642 24.0174 38.965ZM32.712 30.9102L24.0174 25.9162V35.9041L32.712 30.9102Z"
-                        fill="#8D021F" />
-                </svg>
-                <span class="logo-text">SSVid.cc</span>
-            </a>
-
-            <!-- Desktop Nav -->
-            <div class="desktop-nav">
-                <!-- Language Selector -->
-                <div class="lang-selector">
-                    <button class="lang-button">
-                        <span>English</span>
-                        <svg class="lang-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2">
-                            <path d="M6 9l6 6 6-6" />
-                        </svg>
-                    </button>
-                    <!-- Language Dropdown -->
-                    <div class="lang-dropdown">
-                        <a href="/" class="lang-option active">English</a>
-                        <a href="#" class="lang-option">العربية</a>
-                        <a href="#" class="lang-option">বাংলা</a>
-                        <a href="#" class="lang-option">Deutsch</a>
-                        <a href="#" class="lang-option">Español</a>
-                        <a href="#" class="lang-option">Français</a>
-                        <a href="#" class="lang-option">हिन्दी</a>
-                        <a href="#" class="lang-option">Indonesia</a>
-                        <a href="#" class="lang-option">Italiano</a>
-                        <a href="#" class="lang-option">日本語</a>
-                        <a href="#" class="lang-option">한국어</a>
-                        <a href="#" class="lang-option">မြန်မာ</a>
-                        <a href="#" class="lang-option">Melayu</a>
-                        <a href="#" class="lang-option">Português</a>
-                        <a href="#" class="lang-option">Русский</a>
-                        <a href="#" class="lang-option">ไทย</a>
-                        <a href="#" class="lang-option">Türkçe</a>
-                        <a href="#" class="lang-option">اردو</a>
-                        <a href="#" class="lang-option">Tiếng Việt</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Mobile Menu Button -->
-            <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Open menu">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="3" y1="12" x2="21" y2="12" />
-                    <line x1="3" y1="6" x2="21" y2="6" />
-                    <line x1="3" y1="18" x2="21" y2="18" />
-                </svg>
-            </button>
-        </div>
-    </header>
-
-    <!-- MOBILE DRAWER -->
+    <!-- MOBILE DRAWER (Kept if needed, but trigger is gone with header. Hiding for now effectively) -->
     <div id="mobile-drawer" class="mobile-drawer" hidden>
+        <!-- Content same as before, but unreachable without button -->
         <div id="mobile-drawer-content" class="drawer-content">
-            <div class="drawer-header">
-                <span class="drawer-logo">SSVid.cc</span>
-                <button id="close-drawer-btn" class="close-drawer-btn" aria-label="Close menu">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                        stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="18" y1="6" x2="6" y2="18" />
-                        <line x1="6" y1="6" x2="18" y2="18" />
-                    </svg>
-                </button>
-            </div>
-            <div class="drawer-menu">
-                <a href="/" class="drawer-sublink">Home</a>
-                <a href="#" class="drawer-sublink">YouTube Downloader</a>
-                <a href="#" class="drawer-sublink">Facebook Downloader</a>
-                <a href="#" class="drawer-sublink">Instagram Downloader</a>
-                <a href="#" class="drawer-sublink">TikTok Downloader</a>
-                <div class="drawer-divider"></div>
-                <div class="drawer-lang-selector">
-                    <button class="drawer-lang-button">
-                        <span>EN</span>
-                    </button>
-                    <div class="drawer-lang-dropdown">
-                        <a href="/" class="drawer-lang-option active">
-                            <span>English</span>
-                        </a>
-                        <a href="#" class="drawer-lang-option">
-                            <span>العربية</span>
-                        </a>
-                        <a href="#" class="drawer-lang-option">
-                            <span>বাংলা</span>
-                        </a>
-                        <a href="#" class="drawer-lang-option">
-                            <span>Deutsch</span>
-                        </a>
-                        <a href="#" class="drawer-lang-option">
-                            <span>Español</span>
-                        </a>
-                        <a href="#" class="drawer-lang-option">
-                            <span>Français</span>
-                        </a>
-                        <a href="#" class="drawer-lang-option">
-                            <span>हिन्दी</span>
-                        </a>
-                        <a href="#" class="drawer-lang-option">
-                            <span>Indonesia</span>
-                        </a>
-                        <a href="#" class="drawer-lang-option">
-                            <span>Italiano</span>
-                        </a>
-                        <a href="#" class="drawer-lang-option">
-                            <span>日本語</span>
-                        </a>
-                        <a href="#" class="drawer-lang-option">
-                            <span>한국어</span>
-                        </a>
-                        <a href="#" class="drawer-lang-option">
-                            <span>မြန်မာ</span>
-                        </a>
-                        <a href="#" class="drawer-lang-option">
-                            <span>Melayu</span>
-                        </a>
-                        <a href="#" class="drawer-lang-option">
-                            <span>Português</span>
-                        </a>
-                        <a href="#" class="drawer-lang-option">
-                            <span>Русский</span>
-                        </a>
-                        <a href="#" class="drawer-lang-option">
-                            <span>ไทย</span>
-                        </a>
-                        <a href="#" class="drawer-lang-option">
-                            <span>Türkçe</span>
-                        </a>
-                        <a href="#" class="drawer-lang-option">
-                            <span>اردو</span>
-                        </a>
-                        <a href="#" class="drawer-lang-option">
-                            <span>Tiếng Việt</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
+            <!-- ... content ... -->
         </div>
     </div>
 
@@ -175,19 +34,35 @@
         <!-- HERO SECTION -->
         <section class="hero-section">
             <div class="container hero-container">
+
+                <div id="hero-header" class="hero-header">
+                    <a href="/" class="logo-hero">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 58 58" fill="none">
+                            <rect x="4.1676" y="0" width="53.8323" height="53.8323" rx="8" ry="8" fill="#CB0E35" />
+                            <rect x="0" y="4.16766" width="53.8323" height="53.8323" rx="8" ry="8" fill="white" />
+                            <path
+                                d="M39.2054 46.1916H14.6268C10.3869 46.1866 6.95113 42.7687 6.94604 38.5509V23.2695C6.95113 19.0517 10.3869 15.6338 14.6268 15.6287H39.2054C43.4453 15.6338 46.8811 19.0517 46.8862 23.2695V38.5509C46.8811 42.7687 43.4453 46.1866 39.2054 46.1916ZM14.6268 18.685C12.0816 18.685 10.0184 20.7375 10.0184 23.2695V38.5509C10.0184 41.0828 12.0816 43.1353 14.6268 43.1353H39.2054C41.7506 43.1353 43.8138 41.0828 43.8138 38.5509V23.2695C43.8138 20.7375 41.7506 18.685 39.2054 18.685H14.6268Z"
+                                fill="#8D021F" />
+                            <path
+                                d="M24.0174 38.965C22.3238 38.9575 20.9527 37.5935 20.9451 35.9087V25.9162C20.9451 24.2283 22.3207 22.8599 24.0175 22.86C24.5568 22.86 25.0866 23.0013 25.5535 23.2694L34.2467 28.2634C35.7161 29.1074 36.2195 30.9766 35.371 32.4384C35.1014 32.903 34.7137 33.2886 34.2467 33.5569L25.5535 38.5509C25.0872 38.8214 24.5572 38.9642 24.0174 38.965ZM32.712 30.9102L24.0174 25.9162V35.9041L32.712 30.9102Z"
+                                fill="#8D021F" />
+                        </svg>
+                        <span class="logo-text-hero">SSVid</span>
+                    </a>
+                    <h1 class="title-hero">Download YouTube Video</h1>
+                    <p class="subtitle-hero">Free, fast & unlimited YouTube video downloader</p>
+                </div>
                 <div class="hero-card">
-                    <div id="hero-header" class="hero-header">
-                        <h1 class="title-hero">Download YouTube Video</h1>
-                    </div>
+
 
                     <div id="search-view" class="">
 
                         <form id="downloadForm" class="form-container">
                             <div class="input-group">
                                 <div class="input-shell" id="input-wrapper">
-                                    <div class="input-running-border"></div>
+                                    <!-- <div class="input-running-border"></div>
                                     <div class="input-focus-glow"></div>
-                                    <div class="input-static-border"></div>
+                                    <div class="input-static-border"></div> -->
 
                                     <div class="input-wrapper input-content">
                                         <input type="text" id="videoUrl" class="video-input"
@@ -334,14 +209,14 @@
 
 
 
-            <!-- Search Results Section (Hidden until populated) -->
-            <section id="search-results-section" style="display: none;">
-                <div class="container">
-                    <div id="search-results-container"></div>
-                </div>
-            </section>
-        </section>
 
+        </section>
+        <!-- Search Results Section (Hidden until populated) -->
+        <section id="search-results-section" style="display: none;">
+            <div class="container">
+                <div id="search-results-container"></div>
+            </div>
+        </section>
         <!-- OVERVIEW SECTION -->
         <section class="overview-section" aria-label="SSVID overview">
             <div class="container overview-container">
