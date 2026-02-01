@@ -18,7 +18,7 @@
       "about": "ကျွန်ုပ်တို့အကြောင်း",
       "faq": "အမေးများသောမေးခွန်းများ",
       "contact": "ဆက်သွယ်ရန်",
-      "terms": "စည်းမျဉ်းများ",
+      "terms": "Terms of Use",
       "privacy": "ကိုယ်ရေးကိုယ်တာ",
       "dmca": "DMCA"
     }
@@ -30,7 +30,7 @@
     "convertBtn": "ပြောင်းရန်",
     "formatMp4": "MP4",
     "formatMp3": "MP3",
-    "audioTrackDefault": "မူရင်း",
+    "audioTrackDefault": "Audio track",
     "searchPlaceholder": "ရှာဖွေရန်..."
   },
   "overview": {
@@ -45,7 +45,7 @@
     "linksRow2": {
       "about": "ကျွန်ုပ်တို့အကြောင်း",
       "contact": "ဆက်သွယ်ရန်",
-      "terms": "စည်းမျဉ်းများ",
+      "terms": "Terms of Use",
       "privacyPolicy": "ကိုယ်ရေးကိုယ်တာမူဝါဒ",
       "dmca": "DMCA",
       "faq": "အမေးများသောမေးခွန်းများ"

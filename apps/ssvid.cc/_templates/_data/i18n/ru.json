@@ -18,7 +18,7 @@
       "about": "О нас",
       "faq": "Часто задаваемые вопросы",
       "contact": "Контакты",
-      "terms": "Условия",
+      "terms": "Terms of Use",
       "privacy": "Конфиденциальность",
       "dmca": "DMCA"
     }
@@ -30,7 +30,7 @@
     "convertBtn": "Конвертировать",
     "formatMp4": "MP4",
     "formatMp3": "MP3",
-    "audioTrackDefault": "Оригинал",
+    "audioTrackDefault": "Audio track",
     "searchPlaceholder": "Поиск..."
   },
   "overview": {
@@ -45,7 +45,7 @@
     "linksRow2": {
       "about": "О нас",
       "contact": "Контакты",
-      "terms": "Условия",
+      "terms": "Terms of Use",
       "privacyPolicy": "Политика конфиденциальности",
       "dmca": "DMCA",
       "faq": "Часто задаваемые вопросы"

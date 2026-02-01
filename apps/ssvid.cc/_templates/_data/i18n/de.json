@@ -6,7 +6,7 @@
   "langSelector": {
     "buttonText": "DE",
     "buttonLabel": "Sprache",
-    "currentLangFull": "Deutsch" 
+    "currentLangFull": "Deutsch"
   },
   "drawer": {
     "logoText": "SSVid.cc",
@@ -18,7 +18,7 @@
       "about": "Über uns",
       "faq": "FAQ",
       "contact": "Kontakt",
-      "terms": "Nutzungsbedingungen",
+      "terms": "Terms of Use",
       "privacy": "Datenschutz",
       "dmca": "DMCA"
     }
@@ -30,7 +30,7 @@
     "convertBtn": "Konvertieren",
     "formatMp4": "MP4",
     "formatMp3": "MP3",
-    "audioTrackDefault": "Original",
+    "audioTrackDefault": "Audio track",
     "searchPlaceholder": "Suchen..."
   },
   "overview": {
@@ -45,7 +45,7 @@
     "linksRow2": {
       "about": "Über uns",
       "contact": "Kontakt",
-      "terms": "Nutzungsbedingungen",
+      "terms": "Terms of Use",
       "privacyPolicy": "Datenschutzrichtlinie",
       "dmca": "DMCA",
       "faq": "FAQ"

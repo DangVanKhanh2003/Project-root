@@ -18,7 +18,7 @@
       "about": "소개",
       "faq": "자주 묻는 질문",
       "contact": "문의하기",
-      "terms": "이용약관",
+      "terms": "Terms of Use",
       "privacy": "개인정보 보호",
       "dmca": "DMCA"
     }
@@ -30,7 +30,7 @@
     "convertBtn": "변환",
     "formatMp4": "MP4",
     "formatMp3": "MP3",
-    "audioTrackDefault": "원본",
+    "audioTrackDefault": "Audio track",
     "searchPlaceholder": "검색..."
   },
   "overview": {
@@ -45,7 +45,7 @@
     "linksRow2": {
       "about": "소개",
       "contact": "문의하기",
-      "terms": "이용약관",
+      "terms": "Terms of Use",
       "privacyPolicy": "개인정보처리방침",
       "dmca": "DMCA",
       "faq": "자주 묻는 질문"

@@ -18,7 +18,7 @@
       "about": "概要",
       "faq": "よくある質問",
       "contact": "お問い合わせ",
-      "terms": "利用規約",
+      "terms": "Terms of Use",
       "privacy": "プライバシー",
       "dmca": "DMCA"
     }
@@ -30,7 +30,7 @@
     "convertBtn": "変換",
     "formatMp4": "MP4",
     "formatMp3": "MP3",
-    "audioTrackDefault": "オリジナル",
+    "audioTrackDefault": "Audio track",
     "searchPlaceholder": "検索..."
   },
   "overview": {
@@ -45,7 +45,7 @@
     "linksRow2": {
       "about": "概要",
       "contact": "お問い合わせ",
-      "terms": "利用規約",
+      "terms": "Terms of Use",
       "privacyPolicy": "プライバシーポリシー",
       "dmca": "DMCA",
       "faq": "よくある質問"

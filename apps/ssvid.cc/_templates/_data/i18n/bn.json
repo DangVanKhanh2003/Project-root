@@ -18,7 +18,7 @@
       "about": "সম্পর্কে",
       "faq": "FAQ",
       "contact": "যোগাযোগ",
-      "terms": "শর্তাবলী",
+      "terms": "Terms of Use",
       "privacy": "গোপনীয়তা",
       "dmca": "DMCA"
     }
@@ -30,7 +30,7 @@
     "convertBtn": "রূপান্তর",
     "formatMp4": "MP4",
     "formatMp3": "MP3",
-    "audioTrackDefault": "মূল",
+    "audioTrackDefault": "Audio track",
     "searchPlaceholder": "অনুসন্ধান..."
   },
   "overview": {
@@ -45,7 +45,7 @@
     "linksRow2": {
       "about": "সম্পর্কে",
       "contact": "যোগাযোগ",
-      "terms": "শর্তাবলী",
+      "terms": "Terms of Use",
       "privacyPolicy": "গোপনীয়তা নীতি",
       "dmca": "DMCA",
       "faq": "FAQ"

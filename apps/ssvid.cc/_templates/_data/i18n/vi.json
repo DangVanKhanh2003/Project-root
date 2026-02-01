@@ -18,7 +18,7 @@
       "about": "Giới thiệu",
       "faq": "FAQ",
       "contact": "Liên hệ",
-      "terms": "Điều khoản",
+      "terms": "Terms of Use",
       "privacy": "Bảo mật",
       "dmca": "DMCA"
     }
@@ -30,7 +30,7 @@
     "convertBtn": "Chuyển đổi",
     "formatMp4": "MP4",
     "formatMp3": "MP3",
-    "audioTrackDefault": "Gốc",
+    "audioTrackDefault": "Audio track",
     "searchPlaceholder": "Tìm kiếm..."
   },
   "overview": {
@@ -45,7 +45,7 @@
     "linksRow2": {
       "about": "Giới thiệu",
       "contact": "Liên hệ",
-      "terms": "Điều khoản",
+      "terms": "Terms of Use",
       "privacyPolicy": "Chính sách bảo mật",
       "dmca": "DMCA",
       "faq": "FAQ"

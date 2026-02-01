@@ -18,7 +18,7 @@
       "about": "हमारे बारे में",
       "faq": "सामान्य प्रश्न",
       "contact": "संपर्क करें",
-      "terms": "शर्तें",
+      "terms": "Terms of Use",
       "privacy": "गोपनीयता",
       "dmca": "DMCA"
     }
@@ -30,7 +30,7 @@
     "convertBtn": "बदलें",
     "formatMp4": "MP4",
     "formatMp3": "MP3",
-    "audioTrackDefault": "मूल",
+    "audioTrackDefault": "Audio track",
     "searchPlaceholder": "खोजें..."
   },
   "overview": {
@@ -45,7 +45,7 @@
     "linksRow2": {
       "about": "हमारे बारे में",
       "contact": "संपर्क करें",
-      "terms": "शर्तें",
+      "terms": "Terms of Use",
       "privacyPolicy": "गोपनीयता नीति",
       "dmca": "DMCA",
       "faq": "सामान्य प्रश्न"

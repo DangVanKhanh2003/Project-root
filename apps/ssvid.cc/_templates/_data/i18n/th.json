@@ -18,7 +18,7 @@
       "about": "เกี่ยวกับ",
       "faq": "คำถามที่พบบ่อย",
       "contact": "ติดต่อ",
-      "terms": "ข้อกำหนด",
+      "terms": "Terms of Use",
       "privacy": "ความเป็นส่วนตัว",
       "dmca": "DMCA"
     }
@@ -30,7 +30,7 @@
     "convertBtn": "แปลง",
     "formatMp4": "MP4",
     "formatMp3": "MP3",
-    "audioTrackDefault": "ต้นฉบับ",
+    "audioTrackDefault": "Audio track",
     "searchPlaceholder": "ค้นหา..."
   },
   "overview": {
@@ -45,7 +45,7 @@
     "linksRow2": {
       "about": "เกี่ยวกับ",
       "contact": "ติดต่อ",
-      "terms": "ข้อกำหนด",
+      "terms": "Terms of Use",
       "privacyPolicy": "นโยบายความเป็นส่วนตัว",
       "dmca": "DMCA",
       "faq": "คำถามที่พบบ่อย"

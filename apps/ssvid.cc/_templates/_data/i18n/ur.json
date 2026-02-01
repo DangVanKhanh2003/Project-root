@@ -18,7 +18,7 @@
       "about": "ہمارے بارے में",
       "faq": "اکثر پوچھے گئے سوالات",
       "contact": "رابطہ کریں",
-      "terms": "شرائط",
+      "terms": "Terms of Use",
       "privacy": "رازداری",
       "dmca": "DMCA"
     }
@@ -30,7 +30,7 @@
     "convertBtn": "تبدیل کریں",
     "formatMp4": "MP4",
     "formatMp3": "MP3",
-    "audioTrackDefault": "اصل",
+    "audioTrackDefault": "Audio track",
     "searchPlaceholder": "تلاش کریں..."
   },
   "overview": {
@@ -45,7 +45,7 @@
     "linksRow2": {
       "about": "ہمارے بارے में",
       "contact": "رابطہ کریں",
-      "terms": "شرائط",
+      "terms": "Terms of Use",
       "privacyPolicy": "رازداری کی پالیسی",
       "dmca": "DMCA",
       "faq": "اکثر پوچھے گئے سوالات"

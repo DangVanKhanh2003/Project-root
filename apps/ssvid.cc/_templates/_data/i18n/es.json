@@ -18,7 +18,7 @@
       "about": "Acerca de",
       "faq": "FAQ",
       "contact": "Contacto",
-      "terms": "Términos",
+      "terms": "Terms of Use",
       "privacy": "Privacidad",
       "dmca": "DMCA"
     }
@@ -30,7 +30,7 @@
     "convertBtn": "Convertir",
     "formatMp4": "MP4",
     "formatMp3": "MP3",
-    "audioTrackDefault": "Original",
+    "audioTrackDefault": "Audio track",
     "searchPlaceholder": "Buscar..."
   },
   "overview": {
@@ -45,7 +45,7 @@
     "linksRow2": {
       "about": "Acerca de",
       "contact": "Contacto",
-      "terms": "Términos",
+      "terms": "Terms of Use",
       "privacyPolicy": "Política de Privacidad",
       "dmca": "DMCA",
       "faq": "FAQ"

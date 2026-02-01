@@ -18,7 +18,7 @@
       "about": "حول",
       "faq": "الأسئلة الشائعة",
       "contact": "اتصل بنا",
-      "terms": "الشروط",
+      "terms": "Terms of Use",
       "privacy": "الخصوصية",
       "dmca": "DMCA"
     }
@@ -30,7 +30,7 @@
     "convertBtn": "تحويل",
     "formatMp4": "MP4",
     "formatMp3": "MP3",
-    "audioTrackDefault": "أصلي",
+    "audioTrackDefault": "Audio track",
     "searchPlaceholder": "بحث..."
   },
   "overview": {
@@ -45,7 +45,7 @@
     "linksRow2": {
       "about": "حول",
       "contact": "اتصل بنا",
-      "terms": "الشروط",
+      "terms": "Terms of Use",
       "privacyPolicy": "سياسة الخصوصية",
       "dmca": "DMCA",
       "faq": "الأسئلة الشائعة"

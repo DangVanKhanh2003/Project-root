@@ -18,7 +18,7 @@
       "about": "Tentang Kami",
       "faq": "Soalan Lazim",
       "contact": "Hubungi Kami",
-      "terms": "Syarat-syarat",
+      "terms": "Terms of Use",
       "privacy": "Privasi",
       "dmca": "DMCA"
     }
@@ -30,7 +30,7 @@
     "convertBtn": "Tukar",
     "formatMp4": "MP4",
     "formatMp3": "MP3",
-    "audioTrackDefault": "Asal",
+    "audioTrackDefault": "Audio track",
     "searchPlaceholder": "Cari..."
   },
   "overview": {
@@ -45,7 +45,7 @@
     "linksRow2": {
       "about": "Tentang Kami",
       "contact": "Hubungi Kami",
-      "terms": "Syarat-syarat",
+      "terms": "Terms of Use",
       "privacyPolicy": "Dasar Privasi",
       "dmca": "DMCA",
       "faq": "Soalan Lazim"
