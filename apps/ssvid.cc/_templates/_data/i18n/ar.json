@@ -1,0 +1,55 @@
+{
+  "nav": {
+    "home": "الرئيسية",
+    "about": "حول"
+  },
+  "langSelector": {
+    "buttonText": "AR",
+    "buttonLabel": "اللغة",
+    "currentLangFull": "العربية"
+  },
+  "drawer": {
+    "logoText": "SSVid.cc",
+    "links": {
+      "home": "الرئيسية",
+      "youtubeToMp3": "يوتيوب إلى MP3",
+      "youtubeToMp4": "يوتيوب إلى MP4",
+      "youtubeShorts": "يوتيوب شورتس",
+      "about": "حول",
+      "faq": "الأسئلة الشائعة",
+      "contact": "اتصل بنا",
+      "terms": "الشروط",
+      "privacy": "الخصوصية",
+      "dmca": "DMCA"
+    }
+  },
+  "hero": {
+    "placeholder": "الصق رابط يوتيوب هنا...",
+    "pasteBtn": "لصق",
+    "clearBtn": "مسح",
+    "convertBtn": "تحويل",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "أصلي",
+    "searchPlaceholder": "بحث..."
+  },
+  "overview": {
+    "badge": "سريع ومجاني"
+  },
+  "footer": {
+    "linksRow1": {
+      "youtubeToMp3": "يوتيوب إلى MP3",
+      "youtubeToMp4": "يوتيوب إلى MP4",
+      "youtubeShorts": "يوتيوب شورتس"
+    },
+    "linksRow2": {
+      "about": "حول",
+      "contact": "اتصل بنا",
+      "terms": "الشروط",
+      "privacyPolicy": "سياسة الخصوصية",
+      "dmca": "DMCA",
+      "faq": "الأسئلة الشائعة"
+    },
+    "copyright": "© 2026 SSVid. جميع الحقوق محفوظة."
+  }
+}

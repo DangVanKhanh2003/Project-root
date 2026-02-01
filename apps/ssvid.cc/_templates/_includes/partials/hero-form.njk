@@ -122,7 +122,7 @@
                                         name="audioTrack">
                                 </div>
                             </div>
-                            <script>(function () { try { var p = JSON.parse(localStorage.getItem('y2mate_format_preferences')); if (!p) return; var s = p.selectedFormat === 'mp4' ? document.getElementById('quality-select-mp4') : document.getElementById('quality-select-mp3'); if (!s) return; var v; if (p.selectedFormat === 'mp4') { var vq = p.videoQuality || '720p'; v = (vq === 'webm' || vq === 'mkv') ? vq : 'mp4-' + vq.replace('p', '') } else { var af = p.audioFormat || 'mp3'; v = (af === 'mp3') ? 'mp3-' + (p.audioBitrate || '128') : af } s.value = v } catch (e) { } })()</script>
+                            <script>(function () { try { var p = JSON.parse(localStorage.getItem('ssvid_format_preferences')); if (!p) return; var s = p.selectedFormat === 'mp4' ? document.getElementById('quality-select-mp4') : document.getElementById('quality-select-mp3'); if (!s) return; var v; if (p.selectedFormat === 'mp4') { var vq = p.videoQuality || '720p'; v = (vq === 'webm' || vq === 'mkv') ? vq : 'mp4-' + vq.replace('p', '') } else { var af = p.audioFormat || 'mp3'; v = (af === 'mp3') ? 'mp3-' + (p.audioBitrate || '128') : af } s.value = v } catch (e) { } })()</script>
                         </div>
                         <button type="submit" class="btn-convert">
                             <span>{{ base.hero.convertBtn }}</span>

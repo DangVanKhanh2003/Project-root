@@ -1,0 +1,55 @@
+{
+  "nav": {
+    "home": "หน้าแรก",
+    "about": "เกี่ยวกับ"
+  },
+  "langSelector": {
+    "buttonText": "TH",
+    "buttonLabel": "ภาษา",
+    "currentLangFull": "ไทย"
+  },
+  "drawer": {
+    "logoText": "SSVid.cc",
+    "links": {
+      "home": "หน้าแรก",
+      "youtubeToMp3": "YouTube เป็น MP3",
+      "youtubeToMp4": "YouTube เป็น MP4",
+      "youtubeShorts": "YouTube Shorts",
+      "about": "เกี่ยวกับ",
+      "faq": "คำถามที่พบบ่อย",
+      "contact": "ติดต่อ",
+      "terms": "ข้อกำหนด",
+      "privacy": "ความเป็นส่วนตัว",
+      "dmca": "DMCA"
+    }
+  },
+  "hero": {
+    "placeholder": "วางลิงก์ YouTube ที่นี่...",
+    "pasteBtn": "วาง",
+    "clearBtn": "ล้าง",
+    "convertBtn": "แปลง",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "ต้นฉบับ",
+    "searchPlaceholder": "ค้นหา..."
+  },
+  "overview": {
+    "badge": "รวดเร็วและฟรี"
+  },
+  "footer": {
+    "linksRow1": {
+      "youtubeToMp3": "YouTube เป็น MP3",
+      "youtubeToMp4": "YouTube เป็น MP4",
+      "youtubeShorts": "YouTube Shorts"
+    },
+    "linksRow2": {
+      "about": "เกี่ยวกับ",
+      "contact": "ติดต่อ",
+      "terms": "ข้อกำหนด",
+      "privacyPolicy": "นโยบายความเป็นส่วนตัว",
+      "dmca": "DMCA",
+      "faq": "คำถามที่พบบ่อย"
+    },
+    "copyright": "© 2026 SSVid. สงวนลิขสิทธิ์."
+  }
+}

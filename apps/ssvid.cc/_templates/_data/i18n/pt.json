@@ -1,0 +1,55 @@
+{
+  "nav": {
+    "home": "Início",
+    "about": "Sobre"
+  },
+  "langSelector": {
+    "buttonText": "PT",
+    "buttonLabel": "Idioma",
+    "currentLangFull": "Português"
+  },
+  "drawer": {
+    "logoText": "SSVid.cc",
+    "links": {
+      "home": "Início",
+      "youtubeToMp3": "YouTube para MP3",
+      "youtubeToMp4": "YouTube para MP4",
+      "youtubeShorts": "YouTube Shorts",
+      "about": "Sobre",
+      "faq": "FAQ",
+      "contact": "Contato",
+      "terms": "Termos",
+      "privacy": "Privacidade",
+      "dmca": "DMCA"
+    }
+  },
+  "hero": {
+    "placeholder": "Cole o link do YouTube aqui...",
+    "pasteBtn": "Colar",
+    "clearBtn": "Limpar",
+    "convertBtn": "Converter",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "Original",
+    "searchPlaceholder": "Pesquisar..."
+  },
+  "overview": {
+    "badge": "Rápido e Grátis"
+  },
+  "footer": {
+    "linksRow1": {
+      "youtubeToMp3": "YouTube para MP3",
+      "youtubeToMp4": "YouTube para MP4",
+      "youtubeShorts": "YouTube Shorts"
+    },
+    "linksRow2": {
+      "about": "Sobre",
+      "contact": "Contato",
+      "terms": "Termos",
+      "privacyPolicy": "Política de Privacidade",
+      "dmca": "DMCA",
+      "faq": "FAQ"
+    },
+    "copyright": "© 2026 SSVid. Todos os direitos reservados."
+  }
+}

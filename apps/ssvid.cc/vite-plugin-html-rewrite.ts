@@ -52,15 +52,23 @@ function rewriteUrl(url: string, isDev: boolean = true): string {
   // Handle root-level static pages (not translated)
   const staticPages: Record<string, string> = {
     '/about': '/about.html',
-    '/terms-of-use': '/terms-of-use.html',
-    '/404': '/404.html'
+    '/contact': '/contact.html',
+    '/terms': '/terms.html',
+    '/policy': '/policy.html',
+    '/dmca': '/dmca.html',
+    '/faq': '/faq.html',
+    '/404': '/404.html',
+    // Tool pages
+    '/youtube-to-mp3': isDev ? `${eleventyPrefix}/youtube-to-mp3.html` : '/youtube-to-mp3.html',
+    '/youtube-to-mp4': isDev ? `${eleventyPrefix}/youtube-to-mp4.html` : '/youtube-to-mp4.html',
+    '/youtube-shorts-downloader': isDev ? `${eleventyPrefix}/youtube-shorts-downloader.html` : '/youtube-shorts-downloader.html'
   };
 
   if (staticPages[url]) {
     return staticPages[url];
   }
 
-  // Handle Eleventy-generated pages (tool pages)
+  // Handle Eleventy-generated pages (tool pages) - fallback
   const cleanPath = url.substring(1); // Remove leading slash
   if (eleventyPages.includes(cleanPath)) {
     return isDev ? `${eleventyPrefix}/${cleanPath}.html` : `/${cleanPath}.html`;

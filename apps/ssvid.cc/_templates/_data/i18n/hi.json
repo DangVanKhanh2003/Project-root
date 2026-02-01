@@ -1,0 +1,55 @@
+{
+  "nav": {
+    "home": "होम",
+    "about": "हमारे बारे में"
+  },
+  "langSelector": {
+    "buttonText": "HI",
+    "buttonLabel": "भाषा",
+    "currentLangFull": "हिन्दी"
+  },
+  "drawer": {
+    "logoText": "SSVid.cc",
+    "links": {
+      "home": "होम",
+      "youtubeToMp3": "यूट्यूब से एमपी3",
+      "youtubeToMp4": "यूट्यूब से एमपी4",
+      "youtubeShorts": "यूट्यूब शॉर्ट्स",
+      "about": "हमारे बारे में",
+      "faq": "सामान्य प्रश्न",
+      "contact": "संपर्क करें",
+      "terms": "शर्तें",
+      "privacy": "गोपनीयता",
+      "dmca": "DMCA"
+    }
+  },
+  "hero": {
+    "placeholder": "यूट्यूब लिंक यहां पेस्ट करें...",
+    "pasteBtn": "पेस्ट करें",
+    "clearBtn": "साफ़ करें",
+    "convertBtn": "बदलें",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "मूल",
+    "searchPlaceholder": "खोजें..."
+  },
+  "overview": {
+    "badge": "तेज और मुफ्त"
+  },
+  "footer": {
+    "linksRow1": {
+      "youtubeToMp3": "यूट्यूब से एमपी3",
+      "youtubeToMp4": "यूट्यूब से एमपी4",
+      "youtubeShorts": "यूट्यूब शॉर्ट्स"
+    },
+    "linksRow2": {
+      "about": "हमारे बारे में",
+      "contact": "संपर्क करें",
+      "terms": "शर्तें",
+      "privacyPolicy": "गोपनीयता नीति",
+      "dmca": "DMCA",
+      "faq": "सामान्य प्रश्न"
+    },
+    "copyright": "© 2026 SSVid. सर्वाधिकार सुरक्षित।"
+  }
+}

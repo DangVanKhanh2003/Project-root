@@ -89,7 +89,7 @@ const queueApiConfig = {
 
 // 2. Create JWT Store (namespaced to prevent collision) - MUST be created before verifier
 const jwtStore = new LocalStorageJwtStore(
-  createNamespacedKey('y2matepro', 'downloader')
+  createNamespacedKey('ssvid', 'downloader')
 );
 
 // 3. Create Core Services (JWT handling moved to Domain Layer - Verifier)

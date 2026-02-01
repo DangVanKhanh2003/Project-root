@@ -10,7 +10,7 @@ import type { FormatType, AudioFormatType } from './types';
 // Constants
 // ==========================================
 
-const STORAGE_KEY = 'y2mate_format_preferences';
+const STORAGE_KEY = 'ssvid_format_preferences';
 
 /**
  * Available quality options for each format

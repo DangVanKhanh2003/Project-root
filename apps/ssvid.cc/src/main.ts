@@ -1,6 +1,6 @@
 /**
  * Main Entry Point - TypeScript
- * Y2matePro - Rebuilt from webclone.html
+ * SSVID.cc - Video Downloader
  */
 
 // === CSS Import ===

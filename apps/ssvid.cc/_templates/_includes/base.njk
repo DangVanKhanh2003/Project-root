@@ -83,7 +83,7 @@
 
     <!-- Critical: Read format preference before render to prevent FOUC -->
     <script>
-        (function () { var f = 'mp4'; try { var p = JSON.parse(localStorage.getItem('y2mate_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat } catch (e) { } document.documentElement.dataset.format = f; document.write('<style>html[data-format="mp3"] .quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4{display:block!important}</style>') })()
+        (function () { var f = 'mp4'; try { var p = JSON.parse(localStorage.getItem('ssvid_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat } catch (e) { } document.documentElement.dataset.format = f; document.write('<style>html[data-format="mp3"] .quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4{display:block!important}</style>') })()
     </script>
 </head>
 
@@ -102,24 +102,8 @@
     <!-- Main TypeScript Entry -->
     <script type="module" src="/src/main.ts"></script>
 
-    <!-- JSON-LD Structured Data (2-char language code) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "{{ seo.schemaName | jsonString }}",
-      "description": "{{ seo.schemaDescription | jsonString }}",
-      "url": "{{ site.url }}{{ cleanUrl }}",
-      "applicationCategory": "MultimediaApplication",
-      "operatingSystem": "Any",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
-      "inLanguage": "{{ langCode }}"
-    }
-    </script>
+    <!-- JSON-LD Structured Data -->
+    {% include "json-ld.njk" %}
 </body>
 
 </html>
