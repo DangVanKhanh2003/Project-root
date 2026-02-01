@@ -12,9 +12,9 @@
     "logoText": "SSVid.cc",
     "links": {
       "home": "Home",
-      "youtubeToMp3": "YouTube to MP3",
-      "youtubeToMp4": "YouTube to MP4",
-      "youtubeShorts": "YouTube Shorts",
+      "youtubeToMp3": "Download youtube Mp3",
+      "youtubeToMp4": "Download youtube Mp4",
+      "youtubeShorts": "Download Youtube Shorts",
       "about": "About",
       "faq": "FAQ",
       "contact": "Contact",
@@ -38,9 +38,9 @@
   },
   "footer": {
     "linksRow1": {
-      "youtubeToMp3": "YouTube to MP3",
-      "youtubeToMp4": "YouTube to MP4",
-      "youtubeShorts": "YouTube Shorts"
+      "youtubeToMp3": "Download youtube Mp3",
+      "youtubeToMp4": "Download youtube Mp4",
+      "youtubeShorts": "Download Youtube Shorts"
     },
     "linksRow2": {
       "about": "About",

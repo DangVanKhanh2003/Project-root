@@ -22,6 +22,7 @@ Dự án sử dụng công nghệ web chuẩn với kiến trúc hiện đại:
 ### Input Fields
 - **Font size**: Minimum và default là `16px` cho tất cả input fields (bao gồm cả mobile)
 - Lý do: Tránh auto-zoom trên iOS khi focus vào input có font-size < 16px
+- Text ở ô input không bao giờ nhỏ hơn 16px
 
 ### Mobile Tap Highlight
 - **Tap highlight**: Sử dụng `-webkit-tap-highlight-color: transparent` để bỏ hiệu ứng nền mờ khi chạm vào các element trên mobile

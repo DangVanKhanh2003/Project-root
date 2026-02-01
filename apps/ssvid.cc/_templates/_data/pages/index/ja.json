@@ -42,15 +42,15 @@
     "sections": [
       {
         "title": "YouTube動画（MP4）",
-        "description": "SSVIDを使用すると、<strong><a href=\"/youtube-to-mp4\">YouTube動画をMP4としてダウンロード</a></strong>して、どのデバイスでもオフラインで視聴できます。これは、チュートリアル、ミュージックビデオ、vlog、および長編のYouTubeコンテンツを、広くサポートされているビデオ形式で保存するのに最適です。"
+        "description": "SSVIDを使用すると、<strong><a href=\"/download-youtube-mp4\">YouTube動画をMP4としてダウンロード</a></strong>して、どのデバイスでもオフラインで視聴できます。これは、チュートリアル、ミュージックビデオ、vlog、および長編のYouTubeコンテンツを、広くサポートされているビデオ形式で保存するのに最適です。"
       },
       {
         "title": "YouTubeオーディオ（MP3）",
-        "description": "SSVIDを使用すると、動画から直接音声を抽出して<strong><a href=\"/youtube-to-mp3\">YouTubeオーディオをMP3としてダウンロード</a></strong>できます。このオプションは、いつでも聴きたい音楽、ポッドキャスト、インタビュー、その他のオーディオコンテンツに最適です。"
+        "description": "SSVIDを使用すると、動画から直接音声を抽出して<strong><a href=\"/download-youtube-mp3\">YouTubeオーディオをMP3としてダウンロード</a></strong>できます。このオプションは、いつでも聴きたい音楽、ポッドキャスト、インタビュー、その他のオーディオコンテンツに最適です。"
       },
       {
         "title": "YouTubeショート",
-        "description": "また、元の品質を維持しながら、正しい縦型形式で<strong><a href=\"/youtube-shorts-downloader\">YouTubeショート動画をダウンロード</a></strong>することもできます。SSVIDを使用すると、オフラインでの視聴や共有のために、短編のYouTube動画を簡単に保存できます。"
+        "description": "また、元の品質を維持しながら、正しい縦型形式で<strong><a href=\"/download-youtube-shorts\">YouTubeショート動画をダウンロード</a></strong>することもできます。SSVIDを使用すると、オフラインでの視聴や共有のために、短編のYouTube動画を簡単に保存できます。"
       }
     ]
   },

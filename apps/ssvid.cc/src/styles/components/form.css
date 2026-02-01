@@ -192,7 +192,7 @@
 @media (max-width: 768px) {
     .video-input {
         height: 54px;
-        font-size: 15px;
+        font-size: 16px;
     }
 
     .btn-paste {
@@ -211,7 +211,7 @@
 @media (max-width: 480px) {
     .video-input {
         height: 48px;
-        font-size: 14px;
+        font-size: 16px;
     }
 
     .input-wrapper {
