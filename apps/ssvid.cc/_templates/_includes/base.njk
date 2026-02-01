@@ -45,8 +45,8 @@
     <!-- SEO Metadata -->
     <title>{{ seo.title }}</title>
     <meta name="description" content="{{ seo.description }}">
-    {#- cleanUrl: always ends with / (e.g., /, /vi/, /youtube-to-mp3/, /vi/youtube-to-mp3/) -#}
-    {%- set cleanUrl = page.url | replace('/index.html', '/') | replace('.html', '/') -%}
+    {#- cleanUrl: only index ends with / (e.g., /, /vi/, but /youtube-to-mp3, /vi/youtube-to-mp3) -#}
+    {%- set cleanUrl = page.url | replace('/index.html', '/') | replace('.html', '') -%}
     <link rel="canonical" href="{{ site.url }}{{ cleanUrl }}">
 
     <!-- hreflang tags for multilingual SEO (2-char language codes) -->
