@@ -1,6 +1,5 @@
-/* Footer */
 footer {
-    background: var(--text);
+    background: var(--primary-color);
     color: #fff;
     padding: 40px 0 20px;
 }

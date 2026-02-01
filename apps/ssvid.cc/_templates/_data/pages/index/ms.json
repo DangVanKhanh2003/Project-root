@@ -1,0 +1,91 @@
+{
+  "seo": {
+    "title": "SSVID - Muat Turun Video YouTube Dalam Talian Percuma – Pantas & Tanpa Had",
+    "description": "Muat turun video YouTube dalam talian dengan SSVID. Percuma, pantas dan tanpa had. Menyokong kualiti HD & 4K, video YouTube yang panjang. Tiada aplikasi, tiada perisian, tiada pendaftaran.",
+    "schemaName": "SSVID - Pemuat Turun Video YouTube",
+    "schemaDescription": "Muat turun video YouTube dalam talian dengan SSVID. Percuma, pantas dan tanpa had.",
+    "ogTitle": "SSVID - Muat Turun Video YouTube Dalam Talian Percuma",
+    "ogDescription": "Muat turun video YouTube dalam talian dengan SSVID. Percuma, pantas dan tanpa had. Menyokong kualiti HD & 4K."
+  },
+  "defaultFormat": "mp4",
+  "hero": {
+    "title": "Muat Turun Video YouTube",
+    "subtitle": "Pemuat turun video YouTube percuma, pantas & tanpa had"
+  },
+  "overview": {
+    "title": "Apakah itu SSVID?",
+    "description": "SSVID ialah alat dalam talian canggih yang direka untuk memudahkan cara anda menyimpan kandungan YouTube. Direka bentuk dengan prinsip Reka Bentuk Bahan, kami menawarkan pengalaman yang lancar dan bebas iklan yang menghormati masa dan privasi anda.<br><br>Sama ada anda memerlukan main balik luar talian untuk perjalanan, tujuan pengarkiban atau penciptaan kandungan, SSVID memproses video dan audio berkualiti tinggi terus dalam penyemak imbas anda tanpa memerlukan pemasangan perisian yang rumit.",
+    "howTo": {
+      "title": "Cara Muat Turun",
+      "steps": [
+        {
+          "number": "1",
+          "title": "Salin Pautan",
+          "description": "Navigasi ke YouTube dan salin URL video yang ingin anda simpan."
+        },
+        {
+          "number": "2",
+          "title": "Tampal & Pilih",
+          "description": "Tampal pautan ke dalam bar carian SSVID dan pilih format pilihan anda (MP4/MP3)."
+        },
+        {
+          "number": "3",
+          "title": "Muat Turun",
+          "description": "Klik butang tukar dan tunggu beberapa saat untuk fail anda sedia."
+        }
+      ]
+    }
+  },
+  "whatCanDownload": {
+    "title": "Apa yang Boleh Anda Muat Turun dengan SSVID?",
+    "intro": "SSVID direka untuk membantu anda memuat turun pelbagai jenis kandungan YouTube dengan mudah, semuanya di satu tempat, tanpa had atau langkah yang rumit.",
+    "sections": [
+      {
+        "title": "Video YouTube (MP4)",
+        "description": "Dengan SSVID, anda boleh <strong><a href=\"/youtube-to-mp4.html\">memuat turun video YouTube sebagai MP4<\/a><\/strong> untuk tontonan luar talian pada mana-mana peranti. Ini sesuai untuk menyimpan tutorial, video muzik, vlog dan kandungan YouTube bentuk panjang dalam format video yang disokong secara meluas."
+      },
+      {
+        "title": "Audio YouTube (MP3)",
+        "description": "SSVID membolehkan anda <strong><a href=\"/youtube-to-mp3.html\">memuat turun audio YouTube sebagai MP3<\/a><\/strong> dengan mengekstrak bunyi terus daripada video. Pilihan ini sesuai untuk muzik, podcast, temu bual dan kandungan audio lain yang ingin anda dengar pada bila-bila masa."
+      },
+      {
+        "title": "Seluar Pendek YouTube",
+        "description": "Anda juga boleh <strong><a href=\"/youtube-shorts-downloader.html\">memuat turun video Seluar Pendek YouTube<\/a><\/strong> dalam format menegak yang betul sambil mengekalkan kualiti asal. SSVID memudahkan untuk menyimpan video YouTube bentuk pendek untuk tontonan atau perkongsian luar talian."
+      }
+    ]
+  },
+  "quality": {
+    "title": "Kualiti & Video YouTube Panjang",
+    "description1": "SSVID menyokong muat turun video YouTube dalam kualiti tinggi, termasuk resolusi HD dan 4K, sambil mengekalkan kejelasan asal video. Ini menjadikannya sesuai untuk pengguna yang mahukan pengalaman tontonan luar talian terbaik pada skrin resolusi tinggi.",
+    "description2": "Selain itu, SSVID boleh mengendalikan video YouTube yang panjang tanpa had masa. Anda boleh memuat turun tutorial penuh, kuliah, podcast dan video lanjutan tanpa perlu risau tentang sekatan atau gangguan."
+  },
+  "faqs": {
+    "title": "Soalan Lazim (FAQ)",
+    "items": [
+      {
+        "question": "Adakah SSVID percuma untuk digunakan?",
+        "answer": "Ya. SSVID adalah percuma sepenuhnya untuk digunakan tanpa yuran tersembunyi, langganan atau had muat turun."
+      },
+      {
+        "question": "Bolehkah saya memuat turun video YouTube dalam talian tanpa memasang perisian?",
+        "answer": "Ya. SSVID berfungsi sepenuhnya dalam talian dalam penyemak imbas anda, jadi tidak perlu memasang sebarang aplikasi atau perisian."
+      },
+      {
+        "question": "Bolehkah saya memuat turun video YouTube sebagai MP4 atau MP3?",
+        "answer": "Ya. SSVID membolehkan anda memuat turun video YouTube sebagai MP4 atau mengekstrak audio sebagai MP3, bergantung pada keperluan anda."
+      },
+      {
+        "question": "Adakah SSVID menyokong muat turun Seluar Pendek YouTube?",
+        "answer": "Ya. Anda boleh memuat turun video Seluar Pendek YouTube dengan mudah sambil mengekalkan format menegak yang betul dan kualiti asal."
+      },
+      {
+        "question": "Adakah SSVID selamat digunakan?",
+        "answer": "Ya. SSVID selamat digunakan dan tidak memerlukan pendaftaran akaun atau maklumat peribadi."
+      },
+      {
+        "question": "Adakah SSVID berfungsi pada peranti mudah alih?",
+        "answer": "Ya. SSVID berfungsi dengan lancar pada kedua-dua peranti desktop dan mudah alih, termasuk penyemak imbas Android dan iOS."
+      }
+    ]
+  }
+}

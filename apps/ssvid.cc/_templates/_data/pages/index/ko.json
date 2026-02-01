@@ -1,0 +1,91 @@
+{
+  "seo": {
+    "title": "SSVID - YouTube 동영상을 온라인에서 무료로 다운로드 – 빠르고 무제한",
+    "description": "SSVID로 YouTube 동영상을 온라인으로 다운로드하세요. 무료, 빠르고 무제한. HD 및 4K 화질, 긴 YouTube 동영상을 지원합니다. 앱, 소프트웨어, 등록이 필요 없습니다.",
+    "schemaName": "SSVID - YouTube 동영상 다운로더",
+    "schemaDescription": "SSVID로 YouTube 동영상을 온라인으로 다운로드하세요. 무료, 빠르고 무제한.",
+    "ogTitle": "SSVID - YouTube 동영상을 온라인에서 무료로 다운로드",
+    "ogDescription": "SSVID로 YouTube 동영상을 온라인으로 다운로드하세요. 무료, 빠르고 무제한. HD 및 4K 화질을 지원합니다."
+  },
+  "defaultFormat": "mp4",
+  "hero": {
+    "title": "YouTube 동영상 다운로드",
+    "subtitle": "무료, 빠르고 무제한 YouTube 동영상 다운로더"
+  },
+  "overview": {
+    "title": "SSVID란 무엇인가요?",
+    "description": "SSVID는 YouTube 콘텐츠를 저장하는 방식을 단순화하기 위해 설계된 최첨단 온라인 도구입니다. 머티리얼 디자인 원칙으로 설계되어 시간과 개인 정보를 존중하는 원활하고 광고 없는 경험을 제공합니다.<br><br>여행, 보관 목적 또는 콘텐츠 제작을 위해 오프라인 재생이 필요한 경우 SSVID는 복잡한 소프트웨어 설치 없이 브라우저에서 직접 고품질 비디오 및 오디오를 처리합니다.",
+    "howTo": {
+      "title": "다운로드 방법",
+      "steps": [
+        {
+          "number": "1",
+          "title": "링크 복사",
+          "description": "YouTube로 이동하여 저장하려는 동영상의 URL을 복사합니다."
+        },
+        {
+          "number": "2",
+          "title": "붙여넣기 및 선택",
+          "description": "SSVID 검색 창에 링크를 붙여넣고 원하는 형식(MP4/MP3)을 선택합니다."
+        },
+        {
+          "number": "3",
+          "title": "다운로드",
+          "description": "변환 버튼을 클릭하고 파일이 준비될 때까지 몇 초간 기다립니다."
+        }
+      ]
+    }
+  },
+  "whatCanDownload": {
+    "title": "SSVID로 무엇을 다운로드할 수 있나요?",
+    "intro": "SSVID는 제한이나 복잡한 단계 없이 한 곳에서 다양한 유형의 YouTube 콘텐츠를 쉽게 다운로드할 수 있도록 설계되었습니다.",
+    "sections": [
+      {
+        "title": "YouTube 동영상(MP4)",
+        "description": "SSVID를 사용하면 모든 기기에서 오프라인으로 시청할 수 있도록 <strong><a href=\"/youtube-to-mp4.html\">YouTube 동영상을 MP4로 다운로드</a></strong>할 수 있습니다. 이는 튜토리얼, 뮤직 비디오, 브이로그 및 널리 지원되는 비디오 형식의 긴 형식의 YouTube 콘텐츠를 저장하는 데 이상적입니다."
+      },
+      {
+        "title": "YouTube 오디오(MP3)",
+        "description": "SSVID를 사용하면 동영상에서 직접 사운드를 추출하여 <strong><a href=\"/youtube-to-mp3.html\">YouTube 오디오를 MP3로 다운로드</a></strong>할 수 있습니다. 이 옵션은 언제든지 듣고 싶은 음악, 팟캐스트, 인터뷰 및 기타 오디오 콘텐츠에 적합합니다."
+      },
+      {
+        "title": "YouTube 쇼츠",
+        "description": "원본 품질을 유지하면서 올바른 세로 형식으로 <strong><a href=\"/youtube-shorts-downloader.html\">YouTube 쇼츠 동영상을 다운로드</a></strong>할 수도 있습니다. SSVID를 사용하면 오프라인 시청 또는 공유를 위해 짧은 형식의 YouTube 동영상을 쉽게 저장할 수 있습니다."
+      }
+    ]
+  },
+  "quality": {
+    "title": "화질 및 긴 YouTube 동영상",
+    "description1": "SSVID는 동영상의 원본 선명도를 유지하면서 HD 및 4K 해상도를 포함한 고화질로 YouTube 동영상을 다운로드하는 것을 지원합니다. 따라서 고해상도 화면에서 최고의 오프라인 시청 경험을 원하는 사용자에게 적합합니다.",
+    "description2": "또한 SSVID는 시간 제한 없이 긴 YouTube 동영상을 처리할 수 있습니다. 제한이나 중단에 대한 걱정 없이 전체 길이의 튜토리얼, 강의, 팟캐스트 및 확장된 동영상을 다운로드할 수 있습니다."
+  },
+  "faqs": {
+    "title": "자주 묻는 질문(FAQ)",
+    "items": [
+      {
+        "question": "SSVID는 무료로 사용할 수 있나요?",
+        "answer": "예. SSVID는 숨겨진 수수료, 구독 또는 다운로드 제한 없이 완전히 무료로 사용할 수 있습니다."
+      },
+      {
+        "question": "소프트웨어를 설치하지 않고 온라인으로 YouTube 동영상을 다운로드할 수 있나요?",
+        "answer": "예. SSVID는 브라우저에서 완전히 온라인으로 작동하므로 앱이나 소프트웨어를 설치할 필요가 없습니다."
+      },
+      {
+        "question": "YouTube 동영상을 MP4 또는 MP3로 다운로드할 수 있나요?",
+        "answer": "예. SSVID를 사용하면 필요에 따라 YouTube 동영상을 MP4로 다운로드하거나 오디오를 MP3로 추출할 수 있습니다."
+      },
+      {
+        "question": "SSVID는 YouTube 쇼츠 다운로드를 지원하나요?",
+        "answer": "예. 올바른 세로 형식과 원본 품질을 유지하면서 YouTube 쇼츠 동영상을 쉽게 다운로드할 수 있습니다."
+      },
+      {
+        "question": "SSVID는 사용하기에 안전한가요?",
+        "answer": "예. SSVID는 사용하기에 안전하며 계정 등록이나 개인 정보가 필요하지 않습니다."
+      },
+      {
+        "question": "SSVID는 모바일 기기에서 작동하나요?",
+        "answer": "예. SSVID는 Android 및 iOS 브라우저를 포함한 데스크톱 및 모바일 기기 모두에서 원활하게 작동합니다."
+      }
+    ]
+  }
+}

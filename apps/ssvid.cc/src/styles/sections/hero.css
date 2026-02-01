@@ -46,6 +46,7 @@
 
 /* Header within Hero */
 .hero-header {
+    margin-top: 30px;
     margin-bottom: 40px;
     display: flex;
     flex-direction: column;
@@ -161,6 +162,7 @@
     }
 
     .hero-header {
+        margin-top: 0;
         margin-bottom: 30px;
         /* Reduce gap between header and form */
         gap: 12px;
