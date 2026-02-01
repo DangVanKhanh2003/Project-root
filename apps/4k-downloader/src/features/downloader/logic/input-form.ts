@@ -748,7 +748,6 @@ async function handleSubmit(event: Event): Promise<void> {
     return;
   }
 
-
   // Blur input to hide keyboard on mobile
   if (input) {
     input.blur();
@@ -847,9 +846,13 @@ async function handleExtractMedia(url: string): Promise<void> {
     // 3. Render preview immediately with skeleton
     showLoading('detail');
     showResultView();
-    // Scroll to hero-card after skeleton renders (50ms delay)
+    // Scroll after skeleton renders (50ms delay)
     setTimeout(() => {
-      scrollManager.scrollToElement('.hero-card');
+      if (scrollManager.isMobile()) {
+        scrollManager.scrollToElement('.hero-card');
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
     }, 50);
     renderPreviewCard(null);
 

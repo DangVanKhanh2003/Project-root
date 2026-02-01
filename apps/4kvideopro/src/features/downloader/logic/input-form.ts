@@ -769,10 +769,14 @@ async function handleSubmit(event: Event): Promise<void> {
   try {
     if (state.inputType === 'url') {
       // Show detail skeleton for video extraction
-      // Scroll to hero-card after skeleton renders (50ms delay)
-      setTimeout(() => {
+    // Scroll after skeleton renders (50ms delay)
+    setTimeout(() => {
+      if (scrollManager.isMobile()) {
         scrollManager.scrollToElement('.hero-card');
-      }, 50);
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }, 50);
 
       await handleExtractMedia(value);
     } else {

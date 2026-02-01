@@ -803,8 +803,11 @@ async function handleSubmit(event: Event): Promise<void> {
 
       // Scroll to content area after skeleton renders (50ms delay)
       setTimeout(() => {
-        const target = scrollManager.isDesktop() ? '.input-container' : '#content-area';
-        scrollManager.scrollToElement(target);
+        if (scrollManager.isDesktop()) {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          scrollManager.scrollToElement('#content-area');
+        }
       }, 50);
 
       await handleExtractMedia(value);
