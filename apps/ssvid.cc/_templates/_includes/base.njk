@@ -45,20 +45,22 @@
     <!-- SEO Metadata -->
     <title>{{ seo.title }}</title>
     <meta name="description" content="{{ seo.description }}">
-    {% set cleanUrl = page.url | replace('/index.html', '/') | replace('.html', '') %}
+    {#- cleanUrl: always ends with / (e.g., /, /vi/, /youtube-to-mp3/, /vi/youtube-to-mp3/) -#}
+    {%- set cleanUrl = page.url | replace('/index.html', '/') | replace('.html', '/') -%}
     <link rel="canonical" href="{{ site.url }}{{ cleanUrl }}">
 
     <!-- hreflang tags for multilingual SEO (2-char language codes) -->
+    {#- All URLs must end with trailing slash for SEO consistency -#}
     {%- set pageSlug = '' if pageKey == 'index' else pageKey -%}
     {%- for langItem in site.languages %}
     {%- if langItem.isDefault %}
-    {%- set altUrl = '/' if pageSlug == '' else '/' + pageSlug %}
+    {%- set altUrl = '/' if pageSlug == '' else '/' + pageSlug + '/' %}
     {%- else %}
-    {%- set altUrl = '/' + langItem.code + '/' if pageSlug == '' else '/' + langItem.code + '/' + pageSlug %}
+    {%- set altUrl = '/' + langItem.code + '/' if pageSlug == '' else '/' + langItem.code + '/' + pageSlug + '/' %}
     {%- endif %}
     <link rel="alternate" hreflang="{{ langItem.code }}" href="{{ site.url }}{{ altUrl }}" />
     {%- endfor %}
-    <link rel="alternate" hreflang="x-default" href="{{ site.url }}{{ '/' if pageSlug == '' else '/' + pageSlug }}" />
+    <link rel="alternate" hreflang="x-default" href="{{ site.url }}{{ '/' if pageSlug == '' else '/' + pageSlug + '/' }}" />
 
     <!-- Schema.org markup (2-char language code) -->
     <meta itemprop="name" content="{{ seo.schemaName }}" />
