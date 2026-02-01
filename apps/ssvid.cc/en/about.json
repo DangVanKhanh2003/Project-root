@@ -1,0 +1,32 @@
+{
+  "seo": {
+    "title": "About SSVID – Free Online YouTube Video Downloader",
+    "meta_description": "Learn more about SSVID, a free online tool that helps users download YouTube videos quickly and easily. No storage, no login, no registration required."
+  },
+  "hero": {
+    "h1": "About SSVID",
+    "subtitle": "A simple and free online tool for downloading YouTube videos"
+  },
+  "sections": [
+    {
+      "h2": "What is SSVID?",
+      "content": "SSVID is a free online video downloader designed to help users download YouTube videos for offline use. The tool focuses on simplicity, speed, and accessibility, allowing anyone to paste a YouTube link and download content in just a few steps."
+    },
+    {
+      "h2": "What does SSVID do?",
+      "content": "SSVID supports downloading YouTube content in different formats such as MP4 and MP3, making it easy to save videos or audio for personal offline viewing. SSVID does not require account registration, software installation, or browser extensions."
+    },
+    {
+      "h2": "How SSVID works",
+      "content": "SSVID acts as a processing tool based on user-submitted links. The platform does not host, upload, or store any video or audio files. All content is provided by users, and files are delivered directly from the source for download."
+    },
+    {
+      "h2": "Our principles",
+      "content": "SSVID is built with a focus on user privacy, ease of use, and transparency. We do not store downloaded files, track user download history, or require personal information to use the service."
+    },
+    {
+      "h2": "Access all SSVID tools",
+      "content": "To start downloading videos, visit the main page: <a href=\"/\" title=\"SSVID Online YouTube Downloader\"><strong>SSVID – Download YouTube Videos</strong></a>."
+    }
+  ]
+}

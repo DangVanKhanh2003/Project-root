@@ -1,0 +1,84 @@
+{
+  "seo": {
+    "title": "FAQ – SSVID | Frequently Asked Questions",
+    "meta_description": "Find answers to common questions about SSVID. Learn how our YouTube downloader works, supported formats, safety, and usage rules."
+  },
+  "hero": {
+    "h1": "Frequently Asked Questions",
+    "subtitle": "Answers to common questions about using SSVID"
+  },
+  "sections": [
+    {
+      "h2": "General Questions",
+      "items": [
+        {
+          "h3": "What is SSVID?",
+          "content": "SSVID is a free online tool that allows users to download YouTube videos for offline use. It works directly in your browser and does not require registration or software installation."
+        },
+        {
+          "h3": "Is SSVID free to use?",
+          "content": "Yes. SSVID is completely free and does not require payment, subscriptions, or account creation."
+        },
+        {
+          "h3": "Do I need to install any software or extension?",
+          "content": "No. SSVID works entirely online. You only need a modern web browser to use the service."
+        }
+      ]
+    },
+    {
+      "h2": "Usage & Formats",
+      "items": [
+        {
+          "h3": "What formats does SSVID support?",
+          "content": "SSVID supports downloading YouTube content in popular formats such as MP4 for video and MP3 for audio, depending on the selected option."
+        },
+        {
+          "h3": "Can I download long YouTube videos?",
+          "content": "Yes. SSVID supports downloading long YouTube videos as long as the content is publicly accessible."
+        },
+        {
+          "h3": "Does SSVID support HD or high-quality downloads?",
+          "content": "When available from the source, SSVID allows users to download videos in higher quality formats such as HD."
+        }
+      ]
+    },
+    {
+      "h2": "Privacy & Safety",
+      "items": [
+        {
+          "h3": "Does SSVID store downloaded videos or files?",
+          "content": "No. SSVID does not store, archive, or retain any downloaded files. All processing is temporary and files are delivered directly to the user's device."
+        },
+        {
+          "h3": "Is SSVID safe to use?",
+          "content": "Yes. SSVID does not require personal information and does not store user data related to downloads. Users can use the service anonymously."
+        },
+        {
+          "h3": "Does SSVID track my download history?",
+          "content": "No. SSVID does not track or store download history."
+        }
+      ]
+    },
+    {
+      "h2": "Copyright & Legal",
+      "items": [
+        {
+          "h3": "Is downloading YouTube videos legal?",
+          "content": "Users are responsible for ensuring that their use of downloaded content complies with applicable copyright laws and the terms of the original platform."
+        },
+        {
+          "h3": "Does SSVID host or upload videos?",
+          "content": "No. SSVID does not host, upload, or distribute any video or audio content. It only processes user-submitted links."
+        },
+        {
+          "h3": "How can copyright owners contact SSVID?",
+          "content": "Copyright owners or authorized representatives may contact SSVID via email at contact.ssvidcc@gmail.com to submit a copyright or DMCA-related request."
+        }
+      ]
+    },
+    {
+      "h2": "Getting Started",
+      "content": "To start using SSVID, simply visit the <a href=\"/\" title=\"SSVID Online YouTube Downloader\"><strong>SSVID homepage</strong></a>, paste a YouTube link, and choose your preferred download option."
+    }
+  ]
+}

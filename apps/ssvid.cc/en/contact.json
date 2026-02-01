@@ -1,0 +1,28 @@
+{
+  "seo": {
+    "title": "Contact SSVID – Get Support & Copyright Assistance",
+    "meta_description": "Contact SSVID for support, questions, or copyright-related requests. Reach us anytime via email for fast assistance."
+  },
+  "hero": {
+    "h1": "Contact SSVID",
+    "subtitle": "Get in touch with our support team"
+  },
+  "sections": [
+    {
+      "h2": "How to Contact Us",
+      "content": "If you have questions, feedback, or need assistance related to SSVID, feel free to contact us via email. We aim to respond as quickly as possible."
+    },
+    {
+      "h2": "Support & General Inquiries",
+      "content": "For general questions or technical issues, please contact us at:<br><strong>Email:</strong> <a href=\"mailto:contact.ssvidcc@gmail.com\">contact.ssvidcc@gmail.com</a>"
+    },
+    {
+      "h2": "Copyright & DMCA Requests",
+      "content": "If you are a copyright owner or authorized representative and believe that content accessed through SSVID infringes your rights, please contact us directly via email with detailed information. We take copyright concerns seriously and will review all valid requests."
+    },
+    {
+      "h2": "About SSVID",
+      "content": "SSVID is a free online tool that helps users download YouTube videos for offline use. To learn more about how SSVID works, visit the <a href=\"/about\" title=\"About SSVID\"><strong>About SSVID</strong></a> page or return to the <a href=\"/\" title=\"SSVID Online YouTube Downloader\"><strong>homepage</strong></a>."
+    }
+  ]
+}
