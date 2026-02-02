@@ -78,9 +78,9 @@
         <div class="drawer-scroll">
             <nav class="drawer-nav" aria-label="Mobile">
                 <a href="{{ langPrefix }}/" class="drawer-link">{{ base.drawer.links.home }}</a>
-                <a href="{{ langPrefix }}/download-youtube-mp3" class="drawer-link">{{ base.drawer.links.downloadYoutubeMp3 }}</a>
-                <a href="{{ langPrefix }}/download-youtube-mp4" class="drawer-link">{{ base.drawer.links.downloadYoutubeMp4 }}</a>
-                <a href="{{ langPrefix }}/download-youtube-shorts" class="drawer-link">{{ base.drawer.links.downloadYoutubeShorts }}</a>
+                <a href="{{ langPrefix }}/download-youtube-mp3" class="drawer-link">{{ base.drawer.links.youtubeToMp3 or 'YouTube to MP3' }}</a>
+                <a href="{{ langPrefix }}/download-youtube-mp4" class="drawer-link">{{ base.drawer.links.youtubeToMp4 or 'YouTube to MP4' }}</a>
+                <a href="{{ langPrefix }}/download-youtube-shorts" class="drawer-link">{{ base.drawer.links.youtubeShorts or 'YouTube Shorts' }}</a>
                 <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
                 <a href="/about" class="drawer-link">{{ base.drawer.links.about }}</a>
                 <a href="/faq" class="drawer-link">{{ base.drawer.links.faq }}</a>

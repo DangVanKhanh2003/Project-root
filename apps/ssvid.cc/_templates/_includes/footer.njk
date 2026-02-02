@@ -4,9 +4,9 @@
 <footer>
     <div class="container">
         <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
-            <a href="{{ langPrefix }}/download-youtube-mp3" style="color: inherit; text-decoration: none;">{{ base.footer.linksRow1.downloadYoutubeMp3 }}</a>
-            <a href="{{ langPrefix }}/download-youtube-mp4" style="color: inherit; text-decoration: none;">{{ base.footer.linksRow1.downloadYoutubeMp4 }}</a>
-            <a href="{{ langPrefix }}/download-youtube-shorts" style="color: inherit; text-decoration: none;">{{ base.footer.linksRow1.downloadYoutubeShorts }}</a>
+            <a href="{{ langPrefix }}/download-youtube-mp3" style="color: inherit; text-decoration: none;">{{ base.footer.linksRow1.youtubeToMp3 or 'YouTube to MP3' }}</a>
+            <a href="{{ langPrefix }}/download-youtube-mp4" style="color: inherit; text-decoration: none;">{{ base.footer.linksRow1.youtubeToMp4 or 'YouTube to MP4' }}</a>
+            <a href="{{ langPrefix }}/download-youtube-shorts" style="color: inherit; text-decoration: none;">{{ base.footer.linksRow1.youtubeShorts or 'YouTube Shorts' }}</a>
         </div>
         <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
             <a href="/about" style="color: inherit; text-decoration: none;">{{ base.footer.linksRow2.about }}</a>
