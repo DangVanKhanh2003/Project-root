@@ -769,14 +769,14 @@ async function handleSubmit(event: Event): Promise<void> {
   try {
     if (state.inputType === 'url') {
       // Show detail skeleton for video extraction
-    // Scroll after skeleton renders (50ms delay)
-    setTimeout(() => {
-      if (scrollManager.isMobile()) {
-        scrollManager.scrollToElement('.hero-card');
-      } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-    }, 50);
+      // Scroll after skeleton renders (50ms delay)
+      setTimeout(() => {
+        if (scrollManager.isMobile()) {
+          scrollManager.scrollToElement('.hero-card');
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      }, 50);
 
       await handleExtractMedia(value);
     } else {
@@ -871,6 +871,9 @@ async function handleExtractMedia(url: string): Promise<void> {
       }
 
       // Hide skeleton and show real data
+      // Delay 1s before update data as requested
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
       setYouTubePreview({
         videoId,
         title: metadata?.title || url,

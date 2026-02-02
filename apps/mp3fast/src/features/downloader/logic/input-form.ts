@@ -590,32 +590,32 @@ async function handleExtractMedia(url: string): Promise<void> {
 
     const videoId = extractYouTubeVideoIdFromCore(url);
 
-      if (!videoId) {
-        throw new Error('Invalid YouTube URL - cannot extract video ID');
-      }
+    if (!videoId) {
+      throw new Error('Invalid YouTube URL - cannot extract video ID');
+    }
 
-      // ✅ Push URL to browser history (enables back navigation)
-      navigateToVideo(videoId);
+    // ✅ Push URL to browser history (enables back navigation)
+    navigateToVideo(videoId);
 
-      // ✅ Update SEO meta tags (noindex for result pages)
-      setVideoPageSEO();
+    // ✅ Update SEO meta tags (noindex for result pages)
+    setVideoPageSEO();
 
-      // 1. Create thumbnail URL from video ID
-      const thumbnail = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+    // 1. Create thumbnail URL from video ID
+    const thumbnail = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
 
-      // 2. Set initial preview with loading state (show skeleton)
-      setYouTubePreview({
-        videoId,
-        title: 'Loading video information...',
-        author: '',  // Empty initially - will be filled if API succeeds
-        thumbnail,
-        url,
-        isLoading: true
-      });
+    // 2. Set initial preview with loading state (show skeleton)
+    setYouTubePreview({
+      videoId,
+      title: 'Loading video information...',
+      author: '',  // Empty initially - will be filled if API succeeds
+      thumbnail,
+      url,
+      isLoading: true
+    });
 
-      // 3. Render preview immediately with skeleton
-      showLoading('detail');
-      showResultView();
+    // 3. Render preview immediately with skeleton
+    showLoading('detail');
+    showResultView();
     // Scroll after skeleton renders (50ms delay)
     setTimeout(() => {
       if (scrollManager.isMobile()) {
@@ -624,54 +624,57 @@ async function handleExtractMedia(url: string): Promise<void> {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
     }, 50);
-      renderPreviewCard(null);
+    renderPreviewCard(null);
 
-      // 4. Fetch metadata from YouTube Public API (async, hides skeleton when done)
-      (async () => {
+    // 4. Fetch metadata from YouTube Public API (async, hides skeleton when done)
+    (async () => {
       let metadata: { title?: string; authorName?: string } | null = null;
 
       try {
-          console.log('[YouTube Metadata] Fetching metadata for:', url);
+        console.log('[YouTube Metadata] Fetching metadata for:', url);
 
-          metadata = await coreServices.youtubePublicApi.getMetadata(url);
-          console.log('[YouTube Metadata] Response:', metadata);
+        metadata = await coreServices.youtubePublicApi.getMetadata(url);
+        console.log('[YouTube Metadata] Response:', metadata);
 
-          if (metadata && metadata.title) {
-            // Success: Update preview with real metadata
-            console.log('[YouTube Metadata] Success - Title:', metadata.title, 'Author:', metadata.authorName);
-          } else {
-            // API returned but no data - fallback to URL as title, no author
-            console.log('[YouTube Metadata] No data returned');
-          }
-        } catch (error) {
-          // API failed - fallback to URL as title, no author
-          console.error('[YouTube Metadata] Error:', error);
+        if (metadata && metadata.title) {
+          // Success: Update preview with real metadata
+          console.log('[YouTube Metadata] Success - Title:', metadata.title, 'Author:', metadata.authorName);
+        } else {
+          // API returned but no data - fallback to URL as title, no author
+          console.log('[YouTube Metadata] No data returned');
         }
+      } catch (error) {
+        // API failed - fallback to URL as title, no author
+        console.error('[YouTube Metadata] Error:', error);
+      }
 
-        // Hide skeleton and show real data
-        setYouTubePreview({
-          videoId,
-          title: metadata?.title || url,
-          author: metadata?.authorName || '',
-          thumbnail,
-          url,
-          isLoading: false  // Hide skeleton
-        });
-        renderPreviewCard(null);
-      })();
+      // Hide skeleton and show real data
+      // Delay 1s before update data as requested
+      await new Promise(resolve => setTimeout(resolve, 1000));
 
-      // 5. Auto-download: Extract formats and trigger conversion (fire-and-forget)
-      handleAutoDownload(url, videoId).then(() => {
-        // Reset isFromListItemClick flag after conversion starts
-        const currentState = getState();
-        if (currentState.isFromListItemClick) {
-          setIsFromListItemClick(false);
-        }
-      }).catch((error) => {
-        console.error('[Auto Download] Error:', error);
+      setYouTubePreview({
+        videoId,
+        title: metadata?.title || url,
+        author: metadata?.authorName || '',
+        thumbnail,
+        url,
+        isLoading: false  // Hide skeleton
       });
+      renderPreviewCard(null);
+    })();
 
-      // Return immediately to enable input (don't wait for conversion)
+    // 5. Auto-download: Extract formats and trigger conversion (fire-and-forget)
+    handleAutoDownload(url, videoId).then(() => {
+      // Reset isFromListItemClick flag after conversion starts
+      const currentState = getState();
+      if (currentState.isFromListItemClick) {
+        setIsFromListItemClick(false);
+      }
+    }).catch((error) => {
+      console.error('[Auto Download] Error:', error);
+    });
+
+    // Return immediately to enable input (don't wait for conversion)
 
   } catch (error) {
     throw error;

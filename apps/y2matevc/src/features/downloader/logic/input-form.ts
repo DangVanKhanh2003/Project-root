@@ -266,7 +266,7 @@ async function handleAutoDownload(url: string, videoId: string): Promise<void> {
       let finalQuality = videoQuality === '144p' ? '144p' : qualityNumber;
       const isExplicitFormat = ['webm', 'mkv'].includes(videoQuality);
       if (isExplicitFormat) {
-         if (videoQuality === 'webm') targetContainer = 'webm';
+        if (videoQuality === 'webm') targetContainer = 'webm';
         else if (videoQuality === 'mkv') targetContainer = 'mkv';
         finalQuality = '';
       }
@@ -908,6 +908,9 @@ async function handleExtractMedia(url: string): Promise<void> {
       }
 
       // Hide skeleton and show real data
+      // Delay 1s before update data as requested
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
       setYouTubePreview({
         videoId,
         title: metadata?.title || url,
