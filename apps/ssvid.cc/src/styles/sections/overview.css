@@ -8,7 +8,8 @@
 /* Ensure Search Results match the background */
 #search-results-section {
     background-color: var(--bg-secondary);
-    padding-bottom: 60px; /* Consistent spacing */
+    padding-bottom: 60px;
+    /* Consistent spacing */
 }
 
 /* Layout */
@@ -140,7 +141,7 @@
 }
 
 /* Text Content */
-.step-text h4 {
+.step-text h3 {
     font-size: 1.125rem;
     font-weight: 700;
     color: #1F1F1F;

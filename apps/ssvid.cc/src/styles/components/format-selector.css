@@ -81,7 +81,7 @@ html[data-format="mp3"] .quality-select--mp3 {
     background: white;
     border-radius: var(--radius-xl);
     padding: 4px;
-    border: 1px solid #8080803b;
+    border: 1px solid #b0b0b0;
 }
 
 .format-btn {
@@ -122,7 +122,7 @@ html[data-format="mp3"] .quality-select--mp3 {
 .quality-select {
     height: 45px;
     padding: 0 40px 0 18px;
-    border: 1px solid #f0f0f0;
+    border: 1px solid #b0b0b0;
     border-radius: var(--radius-xl);
     background: #fff;
     cursor: pointer;
