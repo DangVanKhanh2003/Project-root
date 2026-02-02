@@ -63,7 +63,7 @@
   left: 0;
   height: 100%;
   width: var(--progress-width, 0%);
-  background: rgba(141, 2, 31, 0.18);
+  background: #F8B6B6;
   /* Primary color with lighter opacity */
   border-right: 1px solid rgba(141, 2, 31, 0.4);
   box-shadow: none;
