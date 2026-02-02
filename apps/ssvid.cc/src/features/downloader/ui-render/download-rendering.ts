@@ -135,6 +135,67 @@ const previousMergingPhase = new Map<string, boolean>();
 // Flag to prevent updates during smooth transition animation
 const transitionInProgress = new Map<string, boolean>();
 
+// ============================================================
+// EXTRACTING PHASE ROTATION STATE
+// ============================================================
+
+const EXTRACTING_MESSAGES = [
+  'Creating download job...',
+  'Analyzing video information...',
+  'Preparing conversion...',
+  'Please wait a moment...'
+];
+
+// Track start time for extracting phase to rotate messages deterministically
+const extractingStartTimes = new Map<string, number>();
+// Track active intervals for rotation
+const extractingIntervals = new Map<string, number>();
+
+/**
+ * Stop extracting rotator for a format
+ */
+function stopExtractingRotator(formatId: string) {
+  const interval = extractingIntervals.get(formatId);
+  if (interval) {
+    window.clearInterval(interval);
+    extractingIntervals.delete(formatId);
+  }
+}
+
+/**
+ * Start extracting rotator for a format
+ */
+function startExtractingRotator(formatId: string, statusContainer: HTMLElement) {
+    if (extractingIntervals.has(formatId)) return; // Already running
+
+    const statusTextElement = statusContainer.querySelector('.status-text');
+    if (!statusTextElement) return;
+
+    // Set initial start time if needed
+    if (!extractingStartTimes.has(formatId)) {
+        extractingStartTimes.set(formatId, Date.now());
+    }
+
+    const interval = window.setInterval(() => {
+        const startTime = extractingStartTimes.get(formatId) || Date.now();
+        const elapsed = Date.now() - startTime;
+        const msgIndex = Math.floor(elapsed / 2000) % EXTRACTING_MESSAGES.length;
+        
+        // Check if element still exists
+        try {
+            if (document.body.contains(statusTextElement)) {
+                statusTextElement.textContent = EXTRACTING_MESSAGES[msgIndex];
+            } else {
+                stopExtractingRotator(formatId);
+            }
+        } catch(e) {
+            stopExtractingRotator(formatId);
+        }
+    }, 1000); // Check every second
+
+    extractingIntervals.set(formatId, interval);
+}
+
 /**
  * Smooth transition helper - tween gradient to 100% before phase change
  * Mimics ytmp3.gg behavior for smooth UX when transitioning to merging phase
@@ -230,6 +291,18 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
 
   // Update last update time
   lastUpdateTimes.set(formatId, now);
+  
+  // Track extracting start time
+  if (task.state === TaskState.EXTRACTING) {
+      if (!extractingStartTimes.has(formatId)) {
+          extractingStartTimes.set(formatId, now);
+      }
+  } else {
+      // Cleanup if not extracting
+      if (extractingStartTimes.has(formatId)) {
+          extractingStartTimes.delete(formatId);
+      }
+  }
 
   // Get DOM elements
   const statusElement = statusContainer.querySelector('.status') as HTMLElement | null;
@@ -312,7 +385,11 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
 
         // 4. Mark estimator as running for complete() to work
         const estimator = getMergingEstimator(formatId);
-        estimator.start(() => { }); // CSS @keyframes handles animation
+        estimator.start((p) => { 
+           if (statusTextElement) {
+             statusTextElement.textContent = `Merging... ${p}%`;
+           }
+        }); 
       });
     });
 
@@ -331,7 +408,29 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
     }
     // Don't update progress bar here - estimator handles it
   } else {
-    statusTextElement.textContent = task.statusText || 'Processing...';
+    // Show percentage for processing phase unless it's extracting
+    const text = task.statusText || 'Processing...';
+    // Only show % if we have valid progress and NOT extracting (extracting usually 0 or indeterminate)
+    // Actually user wants % for processing. Extracting is a specific state.
+    
+    // Only show % if we have valid progress and NOT extracting (extracting usually 0 or indeterminate)
+    // Actually user wants % for processing. Extracting is a specific state.
+    
+    if (task.state === TaskState.EXTRACTING) {
+        // Start rotator if not running
+        startExtractingRotator(formatId, statusContainer);
+        
+        // Immediate update
+        const startTime = extractingStartTimes.get(formatId) || Date.now();
+        const elapsed = Date.now() - startTime;
+        const msgIndex = Math.floor(elapsed / 2000) % EXTRACTING_MESSAGES.length;
+        statusTextElement.textContent = EXTRACTING_MESSAGES[msgIndex];
+    } else {
+        // Stop rotator if running
+        stopExtractingRotator(formatId);
+        
+        statusTextElement.textContent = `${text} ${Math.round(progress)}%`;
+    }
   }
 
   // Update progress fill background
