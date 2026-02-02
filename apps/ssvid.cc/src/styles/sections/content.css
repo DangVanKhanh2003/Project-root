@@ -152,10 +152,6 @@ h2.titles {
     background: var(--surface-weak);
 }
 
-.subsection:hover {
-    transform: translateX(4px);
-    box-shadow: 0 4px 12px rgba(141, 2, 31, 0.1);
-}
 
 .subsection h3 {
     margin-top: 0;
@@ -183,10 +179,7 @@ h2.titles {
     margin-bottom: 0;
 }
 
-.faq-item:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(141, 2, 31, 0.08);
-}
+
 
 .faq-item h3 {
     margin-top: 0;
