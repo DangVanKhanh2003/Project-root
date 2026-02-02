@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-module.exports = function(eleventyConfig) {
+module.exports = function (eleventyConfig) {
   // ============================================
   // 1. PASS THROUGH STATIC ASSETS
   // ============================================
@@ -104,14 +104,14 @@ module.exports = function(eleventyConfig) {
   // ============================================
 
   // Strip HTML tags from string (for JSON-LD)
-  eleventyConfig.addFilter('stripHtml', function(str) {
+  eleventyConfig.addFilter('stripHtml', function (str) {
     if (!str) return '';
     return str.replace(/<[^>]*>/g, '');
   });
 
   // Properly escape string for JSON-LD (no HTML entity encoding)
   // Use this for JSON-LD content inside <script> tags
-  eleventyConfig.addFilter('jsonString', function(str) {
+  eleventyConfig.addFilter('jsonString', function (str) {
     if (!str) return '';
     // 1. Strip HTML tags
     let clean = str.replace(/<[^>]*>/g, '');
@@ -127,7 +127,7 @@ module.exports = function(eleventyConfig) {
 
   // Get alternate URL for different language
   // Example: /youtube-to-mp3/ → /vi/youtube-to-mp3/ (for Vietnamese)
-  eleventyConfig.addFilter('getAlternateUrl', function(url, targetLang) {
+  eleventyConfig.addFilter('getAlternateUrl', function (url, targetLang) {
     // Remove any existing language prefix
     const cleanUrl = url.replace(/^\/(vi|es|fr|de|ja|ar|bn|hi|id|it|ko|ms|my|pt|ru|th|tr|ur)/, '');
 
@@ -139,13 +139,13 @@ module.exports = function(eleventyConfig) {
   });
 
   // Dump object as JSON (for inline <script> tags)
-  eleventyConfig.addFilter('dump', function(obj) {
+  eleventyConfig.addFilter('dump', function (obj) {
     return JSON.stringify(obj, null, 2);
   });
 
   // Localize internal links with language prefix
-  // Example: href="/youtube-to-mp3" → href="/vi/youtube-to-mp3" (for Vietnamese)
-  eleventyConfig.addFilter('localizeLinks', function(html, langPrefix) {
+  // Example: href="/download-youtube-mp3" → href="/vi/download-youtube-mp3" (for Vietnamese)
+  eleventyConfig.addFilter('localizeLinks', function (html, langPrefix) {
     if (!html) return '';
     // Only add prefix if it exists (not empty for English)
     if (!langPrefix) return html;

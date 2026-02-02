@@ -85,7 +85,7 @@ Mỗi page có structure như sau:
 **allPages.cjs**
 - Generate tất cả page variants (mỗi page × mỗi ngôn ngữ)
 - Hiện tại: 4 pages × 1 language (English) = 4 variants
-- Output permalink: `/index.html`, `/youtube-to-mp3.html`, `/youtube-to-mp4.html`, `/youtube-shorts-downloader.html`
+- Output permalink: `/index.html`, `/youtube-to-mp3.html`, `/download-youtube-mp4.html`, `/download-youtube-shorts.html`
 
 **Filter files**
 - `indexPages.cjs` - Filter ra index page variants
@@ -120,8 +120,8 @@ Nếu muốn sử dụng hệ thống tương tự y2matepro:
    - `_templates/_includes/footer.njk` - Footer component
    - `_templates/pages/index.njk` - Index template
    - `_templates/pages/youtube-to-mp3.njk` - MP3 template
-   - `_templates/pages/youtube-to-mp4.njk` - MP4 template
-   - `_templates/pages/youtube-shorts-downloader.njk` - Shorts template
+   - `_templates/pages/download-youtube-mp4.njk` - MP4 template
+   - `_templates/pages/download-youtube-shorts.njk` - Shorts template
 
 3. **Cài đặt dependencies:**
    ```bash

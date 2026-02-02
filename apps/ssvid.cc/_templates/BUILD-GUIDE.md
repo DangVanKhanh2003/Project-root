@@ -226,8 +226,8 @@ Các links trong data JSON **đã tự động localize** nhờ filter `localize
 ```
 
 **Output:**
-- Tiếng Anh: `<a href="/youtube-to-mp3">`
-- Tiếng Việt: `<a href="/vi/youtube-to-mp3">`
+- Tiếng Anh: `<a href="/download-youtube-mp3">`
+- Tiếng Việt: `<a href="/vi/download-youtube-mp3">`
 
 ---
 
