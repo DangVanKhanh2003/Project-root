@@ -80,7 +80,7 @@ ${urls.join('\n')}
 /**
  * Files to exclude from sitemap
  */
-const EXCLUDE_FILES = ['404.html'];
+const EXCLUDE_FILES = ['404.html', 'google68e5433e346059c9.html'];
 
 /**
  * Patterns to exclude from sitemap (regex)
