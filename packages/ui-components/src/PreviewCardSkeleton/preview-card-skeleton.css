@@ -17,7 +17,7 @@
     var(--skeleton-base, #d7d7d7) 75%
   );
   background-size: 200% 100%;
-  animation: skeleton-loading 1.5s linear infinite;
+  animation: skeleton-loading 1s linear infinite;
 }
 
 /* Namespace skeleton lines specifically for YT preview card */
@@ -29,7 +29,7 @@
     var(--skeleton-base, #d7d7d7) 75%
   );
   background-size: 200% 100%;
-  animation: skeleton-loading 1.5s linear infinite;
+  animation: skeleton-loading 1s linear infinite;
   border-radius: 4px;
 }
 
@@ -41,9 +41,9 @@
   margin: 0px !important;
 }
 
-.yt-preview-card.skeleton .skeleton-line.skeleton-format {
-  width: 50%;
-  height: var(--skeleton-format-height, 24px);
+.yt-preview-card.skeleton .skeleton-line.skeleton-badge {
+  height: 24px;
+  border-radius: 36px;
   padding: 0px !important;
   margin: 0px !important;
 }
@@ -56,7 +56,7 @@
 }
 
 .yt-preview-card.skeleton .skeleton-line.skeleton-author {
-  width: 40%;
+  width: 20%;
   height: var(--skeleton-author-height, 18px);
   padding: 0px !important;
   margin: 0px !important;
@@ -64,10 +64,10 @@
 
 @keyframes skeleton-loading {
   0% {
-    background-position: 200% 0;
+    background-position: -200% 0;
   }
   100% {
-    background-position: -200% 0;
+    background-position: 200% 0;
   }
 }
 
@@ -84,6 +84,7 @@
 
   .yt-preview-card.skeleton .skeleton-line.skeleton-author {
     height: 17px;
+    width: 50%;
   }
 }
 
