@@ -306,7 +306,7 @@ async function handleAutoDownload(url: string, videoId: string): Promise<void> {
       // Audio format - All formats need audioBitrate
       // M4A, OGG, WAV, Opus: Fixed '128'
       // MP3: User selection (64/128/192/256/320)
-      const isNonBitrateFormat = ['m4a', 'ogg', 'wav', 'opus'].includes(audioFormat.toLowerCase());
+      const isNonBitrateFormat = ['m4a', 'ogg', 'wav', 'opus', 'flac'].includes(audioFormat.toLowerCase());
       const finalBitrate = isNonBitrateFormat ? '128' : audioBitrate;
       const finalQuality = isNonBitrateFormat ? audioFormat.toUpperCase() : `${audioBitrate}kbps`;
 
