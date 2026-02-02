@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite';
+﻿import { defineConfig } from 'vite';
 import { resolve } from 'path';
 import { readdirSync, existsSync } from 'fs';
 import { htmlRewritePlugin } from './vite-plugin-html-rewrite';
@@ -6,9 +6,11 @@ import { movePagesPlugin } from './vite-plugin-move-pages';
 import { sitemapPlugin } from './vite-plugin-sitemap';
 
 // Auto-detect all HTML pages from Eleventy output directory
+const excludedPageNames = new Set(['youtube-to-mp3','youtube-to-mp4','youtube-shorts-downloader']);
+
 const eleventyOutputDir = resolve(__dirname, '_11ty-output');
 const eleventyHtmlFiles = existsSync(eleventyOutputDir)
-  ? readdirSync(eleventyOutputDir).filter(file => file.endsWith('.html') && file !== 'index.html')
+  ? readdirSync(eleventyOutputDir).filter(file => file.endsWith('.html') && file !== 'index.html' && !excludedPageNames.has(file.replace('.html', '')) )
   : [];
 
 // Generate input entries for Eleventy-generated pages
@@ -21,7 +23,7 @@ const eleventyPageEntries = eleventyHtmlFiles.reduce((entries, file) => {
 // Auto-detect all HTML pages in src/page (if directory exists)
 const pageDir = resolve(__dirname, 'src/page');
 const pageFiles = existsSync(pageDir)
-  ? readdirSync(pageDir).filter(file => file.endsWith('.html'))
+  ? readdirSync(pageDir).filter(file => file.endsWith('.html') && !excludedPageNames.has(file.replace('.html', '')) )
   : [];
 
 // Generate input entries for src/page pages
@@ -31,18 +33,18 @@ const srcPageEntries = pageFiles.reduce((entries, file) => {
   return entries;
 }, {} as Record<string, string>);
 
-// 📄 Static pages in root directory (not translated)
+// ðŸ“„ Static pages in root directory (not translated)
 const staticPages = ['about', 'contact', 'terms-of-use', 'policy', 'dmca', 'faq', '404'];
 const staticPageEntries = staticPages.reduce((entries, name) => {
   const filePath = resolve(__dirname, `${name}.html`);
   if (existsSync(filePath)) {
     entries[name] = filePath;
-    console.log(`📄 Static page: ${name}.html`);
+    console.log(`ðŸ“„ Static page: ${name}.html`);
   }
   return entries;
 }, {} as Record<string, string>);
 
-// 🌍 Auto-detect language folders in pages/ directory
+// ðŸŒ Auto-detect language folders in pages/ directory
 const pagesDir = resolve(__dirname, 'pages');
 const languagePageEntries: Record<string, string> = {};
 
@@ -52,14 +54,14 @@ if (existsSync(pagesDir)) {
   items.forEach(item => {
     if (item.isDirectory()) {
       const langDir = resolve(pagesDir, item.name);
-      const langFiles = readdirSync(langDir).filter(file => file.endsWith('.html'));
+      const langFiles = readdirSync(langDir).filter(file => file.endsWith('.html') && !excludedPageNames.has(file.replace('.html', '')) );
 
       langFiles.forEach(file => {
         const pageName = file.replace('.html', '');
         // Key format: lang-pagename (e.g., vi-index, vi-youtube-to-mp3)
         const entryKey = `${item.name}-${pageName}`;
         languagePageEntries[entryKey] = resolve(langDir, file);
-        console.log(`🌍 Auto-detected: pages/${item.name}/${file}`);
+        console.log(`ðŸŒ Auto-detected: pages/${item.name}/${file}`);
       });
     }
   });
@@ -121,3 +123,4 @@ export default defineConfig({
     open: '/'
   }
 });
+
