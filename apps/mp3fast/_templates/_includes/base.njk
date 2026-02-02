@@ -109,12 +109,7 @@
             <a href="{{ homeUrl }}" class="nav-link">{{ base.nav.home }}</a>
             <a href="/faq/" class="nav-link">{{ base.nav.faq }}</a>
             <div class="language-selector">
-                <button type="button" class="lang-btn" aria-haspopup="true" aria-expanded="false">
-                    <img class="lang-flag" src="/assest/flat-svg/{{ currentFlag }}.{{ flagExt(currentFlag) }}" alt="" aria-hidden="true"
-                        loading="lazy" width="18" height="14">
-                    {%- if lang == 'en' %}English{% elif lang == 'ar' %}العربية{% elif lang == 'bn' %}বাংলা{% elif lang == 'de' %}Deutsch{% elif lang == 'es' %}Español{% elif lang == 'fr' %}Français{% elif lang == 'hi' %}हिन्दी{% elif lang == 'id' %}Indonesia{% elif lang == 'it' %}Italiano{% elif lang == 'ja' %}日本語{% elif lang == 'ko' %}한국어{% elif lang == 'my' %}မြန်မာ{% elif lang == 'ms' %}Melayu{% elif lang == 'pt' %}Português{% elif lang == 'ru' %}Русский{% elif lang == 'th' %}ไทย{% elif lang == 'tr' %}Türkçe{% elif lang == 'ur' %}اردو{% elif lang == 'vi' %}Tiếng Việt{% else %}English{% endif -%}
-                    <span class="arrow"></span>
-                </button>
+                <button type="button" class="lang-btn" aria-haspopup="true" aria-expanded="false">{%- if lang == 'en' %}English{% elif lang == 'ar' %}العربية{% elif lang == 'bn' %}বাংলা{% elif lang == 'de' %}Deutsch{% elif lang == 'es' %}Español{% elif lang == 'fr' %}Français{% elif lang == 'hi' %}हिन्दी{% elif lang == 'id' %}Indonesia{% elif lang == 'it' %}Italiano{% elif lang == 'ja' %}日本語{% elif lang == 'ko' %}한국어{% elif lang == 'my' %}မြန်မာ{% elif lang == 'ms' %}Melayu{% elif lang == 'pt' %}Português{% elif lang == 'ru' %}Русский{% elif lang == 'th' %}ไทย{% elif lang == 'tr' %}Türkçe{% elif lang == 'ur' %}اردو{% elif lang == 'vi' %}Tiếng Việt{% else %}English{% endif -%}<span class="arrow"></span></button>
                 <div class="dropdown-menu">
                     <ul class="lang-menu">
                         <li><a data-lang="en" href="/"{% if lang == 'en' %} class="active"{% endif %}><img class="lang-flag" src="/assest/flat-svg/{{ flagMap.en }}.{{ flagExt(flagMap.en) }}" alt="" aria-hidden="true" loading="lazy" width="18" height="14"><span>English</span></a></li>
@@ -204,5 +199,7 @@
     </script>
 </body>
 </html>
+
+
 
 
