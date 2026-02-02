@@ -167,49 +167,7 @@
     text-align: center;
   }
 
-  /* Skeleton adjustments for mobile */
-  .yt-preview-card.skeleton .skeleton-line.skeleton-title {
-    height: 21px; /* Match 14px font */
-  }
 
-  .yt-preview-card.skeleton .skeleton-line.skeleton-author {
-    height: 21px; /* Match 13px font */
-  }
-}
-
-/* Small mobile devices */
-@media (max-width: 400px) {
-  .yt-preview-card {
-    padding: 10px;
-  }
-
-  .yt-preview-details {
-    align-items: center;
-    text-align: center;
-  }
-
-  .yt-preview-format {
-    justify-content: center;
-  }
-
-  .yt-preview-title {
-    font-size: 13px;
-    text-align: center;
-  }
-
-  .yt-preview-author {
-    font-size: 12px;
-    text-align: center;
-  }
-
-  /* Skeleton adjustments for small mobile */
-  .yt-preview-card.skeleton .skeleton-line.skeleton-title {
-    height: 18px; /* Match 13px font */
-  }
-
-  .yt-preview-card.skeleton .skeleton-line.skeleton-author {
-    height: 20px; /* Match 12px font */
-  }
 }
 
 /* Tablet and up */

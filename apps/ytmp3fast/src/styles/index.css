@@ -12,6 +12,7 @@
 /* 0.1. UI Components Styles (From @downloader/ui-components) */
 @import '@downloader/ui-components/ExpireModal/expire-modal.css';
 @import '@downloader/ui-components/SkeletonCard/skeleton.css';
+@import '@downloader/ui-components/PreviewCardSkeleton/preview-card-skeleton.css';
 @import '@downloader/ui-components/SearchResultCard/search-result-card.css';
 @import '@downloader/ui-components/SuggestionDropdown/suggestion-dropdown.css';
 
@@ -62,4 +63,3 @@
 /* 8. Utilities (MUST be last) */
 @import './utilities/animations.css';
 @import './utilities/helpers.css';
-

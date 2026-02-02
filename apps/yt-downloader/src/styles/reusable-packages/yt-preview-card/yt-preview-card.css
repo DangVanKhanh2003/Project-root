@@ -192,38 +192,7 @@
     text-align: center;
   }
 
-  /* Skeleton adjustments for mobile */
-  .yt-preview-card.skeleton .skeleton-line.skeleton-title {
-    height: 21px;
-  }
 
-  .yt-preview-card.skeleton .skeleton-line.skeleton-author {
-    height: 17px;
-  }
-}
-
-/* Small mobile devices */
-@media (max-width: 400px) {
-  .yt-preview-card {
-    padding: 12px;
-  }
-
-  .yt-preview-title {
-    font-size: 0.95rem;
-  }
-
-  .yt-preview-author {
-    font-size: 0.8rem;
-  }
-
-  /* Skeleton adjustments for small mobile */
-  .yt-preview-card.skeleton .skeleton-line.skeleton-title {
-    height: 19px;
-  }
-
-  .yt-preview-card.skeleton .skeleton-line.skeleton-author {
-    height: 16px;
-  }
 }
 
 /* Tablet and up */
