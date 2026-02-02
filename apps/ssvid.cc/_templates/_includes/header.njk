@@ -29,14 +29,19 @@
                     </button>
                     <div class="lang-dropdown" role="menu" aria-label="Languages">
                         <div class="lang-dropdown-scroll">
+                            {%- set singleLangPages = ['about', 'contact', 'dmca', 'faq', 'policy', 'terms-of-use'] -%}
                             {%- for langItem in site.languages %}
                             {%- if langItem.isDefault %}
-                            {%- set langUrl = '/' if pageSlug == '' else '/' + pageSlug %}
+                                {%- set langUrl = '/' if pageSlug == '' else '/' + pageSlug %}
                             {%- else %}
-                            {%- set langUrl = '/' + langItem.code + '/' if pageSlug == '' else '/' + langItem.code + '/' + pageSlug %}
+                                {%- if pageKey in singleLangPages %}
+                                    {%- set langUrl = '/' + langItem.code + '/' %}
+                                {%- else %}
+                                    {%- set langUrl = '/' + langItem.code + '/' if pageSlug == '' else '/' + langItem.code + '/' + pageSlug %}
+                                {%- endif %}
                             {%- endif %}
                             <a href="{{ langUrl }}" class="lang-option{% if langItem.code == lang %} active{% endif %}" role="menuitem">
-                                <img class="lang-flag" src="/assest/flat-svg/{{ langItem.flag }}" alt="" aria-hidden="true"
+                                <img class="lang-flag" src="/assest/flat-svg/{{ langItem.flag }}" alt="{{ langItem.name }}" aria-hidden="true"
                                     loading="lazy" width="18" height="14">
                                 <span>{{ langItem.name }}</span>
                             </a>
@@ -93,11 +98,16 @@
                     </svg>
                 </button>
                 <div class="drawer-lang-menu" role="menu" aria-label="Languages">
+                    {%- set singleLangPages = ['about', 'contact', 'dmca', 'faq', 'policy', 'terms-of-use'] -%}
                     {%- for langItem in site.languages %}
                     {%- if langItem.isDefault %}
-                    {%- set langUrl = '/' if pageSlug == '' else '/' + pageSlug %}
+                        {%- set langUrl = '/' if pageSlug == '' else '/' + pageSlug %}
                     {%- else %}
-                    {%- set langUrl = '/' + langItem.code + '/' if pageSlug == '' else '/' + langItem.code + '/' + pageSlug %}
+                        {%- if pageKey in singleLangPages %}
+                            {%- set langUrl = '/' + langItem.code + '/' %}
+                        {%- else %}
+                            {%- set langUrl = '/' + langItem.code + '/' if pageSlug == '' else '/' + langItem.code + '/' + pageSlug %}
+                        {%- endif %}
                     {%- endif %}
                     <a href="{{ langUrl }}" class="drawer-sublink{% if langItem.code == lang %} active{% endif %}" role="menuitem">{{ langItem.name }}</a>
                     {%- endfor %}
