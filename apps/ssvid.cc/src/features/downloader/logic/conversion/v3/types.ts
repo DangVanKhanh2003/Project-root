@@ -56,6 +56,7 @@ export interface V3ConversionParams {
   formatId: string;
   videoUrl: string;
   videoTitle: string;
+  maxJobAttempts?: number; // Total attempts (initial + retries)
   extractV2Options: {
     downloadMode?: 'video' | 'audio';
     videoQuality?: string;

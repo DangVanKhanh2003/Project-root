@@ -37,6 +37,7 @@ const logError = (...args: unknown[]) => console.error(LOG_PREFIX, ...args);
  */
 export async function startConversion(params: V3ConversionParams): Promise<void> {
   const { formatId, videoUrl, videoTitle, extractV2Options } = params;
+  const maxJobAttempts = Math.max(1, params.maxJobAttempts ?? 2);
 
   log('=== START CONVERSION V3 ===');
   log('formatId:', formatId);
@@ -55,49 +56,102 @@ export async function startConversion(params: V3ConversionParams): Promise<void>
     abortController,
   });
 
-  try {
-    // Phase 1: Create job (with retry)
-    log('Phase 1: Creating job...');
-    const request = mapToV3DownloadRequest(videoUrl, extractV2Options);
-    log('V3 Request:', JSON.stringify(request, null, 2));
+  const FAKE_PROGRESS_MAX = 95;
+  const FAKE_PROGRESS_STEP = 1;
+  const FAKE_PROGRESS_INTERVAL_MS = 3000;
+  let fakeProgress = 0;
+  let fakeProgressInterval: number | null = null;
+  let fakeProgressActive = false;
 
-    const jobResponse = await retryWithBackoff(
-      () => apiV3.createJob(request, abortController.signal),
-      RETRY_CONFIGS.extracting
-    ) as CreateJobResponse;
-    log('Job created:', JSON.stringify(jobResponse, null, 2));
+  const stopFakeProgress = () => {
+    if (fakeProgressInterval !== null) {
+      window.clearInterval(fakeProgressInterval);
+      fakeProgressInterval = null;
+    }
+    fakeProgressActive = false;
+  };
 
-    if (abortController.signal.aborted) {
-      log('Aborted after job creation');
-      return;
+  const startFakeProgress = () => {
+    if (fakeProgressActive) return;
+    const currentTask = getConversionTask(formatId);
+    fakeProgress = Math.min(currentTask?.progress ?? 0, FAKE_PROGRESS_MAX);
+    fakeProgressActive = true;
+
+    if (fakeProgressInterval !== null) {
+      window.clearInterval(fakeProgressInterval);
     }
 
-    // Update state with job info
+    fakeProgressInterval = window.setInterval(() => {
+      if (!fakeProgressActive) return;
+      if (fakeProgress >= FAKE_PROGRESS_MAX) return;
+      fakeProgress = Math.min(fakeProgress + FAKE_PROGRESS_STEP, FAKE_PROGRESS_MAX);
+      updateConversionTask(formatId, { progress: fakeProgress });
+    }, FAKE_PROGRESS_INTERVAL_MS);
+  };
+
+  const handleProgressUpdate = (progress: number, detail?: { video: number; audio: number }) => {
+    if (fakeProgressActive) {
+      if (progress <= fakeProgress) {
+        return;
+      }
+      stopFakeProgress();
+    }
+
+    log('Progress:', progress, detail);
     updateConversionTask(formatId, {
-      state: TaskState.PROCESSING,
-      statusText: 'Processing...',
-      showProgressBar: true,
-      sourceId: jobResponse.statusUrl,
-      audioLanguageChanged: jobResponse.audioLanguageChanged,
-      availableAudioLanguages: jobResponse.availableAudioLanguages,
+      progress,
+      statusText: progress < 100 ? 'Processing...' : 'Finalizing...',
     });
+  };
 
-    // Phase 2: Poll for status using statusUrl
-    log('Phase 2: Starting polling with statusUrl:', jobResponse.statusUrl);
+  try {
+    let lastError: unknown = null;
 
-    await startPolling({
-      statusUrl: jobResponse.statusUrl,
+    for (let attempt = 1; attempt <= maxJobAttempts; attempt++) {
+      if (abortController.signal.aborted) {
+        log('Aborted before attempt', attempt);
+        stopFakeProgress();
+        return;
+      }
+      debugger;
+      try {
+        // Phase 1: Create job (with retry)
+        log('Phase 1: Creating job...');
+        const request = mapToV3DownloadRequest(videoUrl, extractV2Options);
+        log('V3 Request:', JSON.stringify(request, null, 2));
 
-      onProgress: (progress, detail) => {
-        log('Progress:', progress, detail);
+        const jobResponse = await retryWithBackoff(
+          () => apiV3.createJob(request, abortController.signal),
+          RETRY_CONFIGS.extracting
+        ) as CreateJobResponse;
+        log('Job created:', JSON.stringify(jobResponse, null, 2));
+
+        if (abortController.signal.aborted) {
+          log('Aborted after job creation');
+          return;
+        }
+
+        // Update state with job info
         updateConversionTask(formatId, {
-          progress,
-          statusText: progress < 100 ? 'Processing...' : 'Finalizing...',
+          state: TaskState.PROCESSING,
+          statusText: 'Processing...',
+          showProgressBar: true,
+          sourceId: jobResponse.statusUrl,
+          audioLanguageChanged: jobResponse.audioLanguageChanged,
+          availableAudioLanguages: jobResponse.availableAudioLanguages,
         });
-      },
 
-      onComplete: (downloadUrl) => {
+        // Phase 2: Poll for status using statusUrl
+        log('Phase 2: Starting polling with statusUrl:', jobResponse.statusUrl);
+
+        const downloadUrl = await pollOnce({
+          statusUrl: jobResponse.statusUrl,
+          signal: abortController.signal,
+          onProgress: handleProgressUpdate,
+        });
+
         log('Completed! Download URL:', downloadUrl);
+        stopFakeProgress();
         updateConversionTask(formatId, {
           state: TaskState.SUCCESS,
           statusText: 'Merging...',
@@ -106,29 +160,28 @@ export async function startConversion(params: V3ConversionParams): Promise<void>
           filename: generateFilename(videoTitle, extractV2Options),
           completedAt: Date.now(),
         });
-      },
 
-      onError: (error) => {
-        logError('Polling error:', error);
-        updateConversionTask(formatId, {
-          state: TaskState.FAILED,
-          statusText: `Error: ${getErrorMessage(error)}`,
-          error: getErrorMessage(error),
-          completedAt: Date.now(),
-        });
-      },
+        return;
+      } catch (error) {
+        if (abortController.signal.aborted) {
+          log('Caught error but was aborted, ignoring');
+          stopFakeProgress();
+          return;
+        }
 
-      signal: abortController.signal,
-    });
+        lastError = error;
+        logError(`Job attempt ${attempt} failed:`, error);
 
-  } catch (error) {
-    if (abortController.signal.aborted) {
-      log('Caught error but was aborted, ignoring');
-      return;
+        if (attempt < maxJobAttempts) {
+          startFakeProgress();
+          continue;
+        }
+      }
     }
 
-    const errorMessage = getErrorMessage(error);
+    const errorMessage = getErrorMessage(lastError);
     logError('Error in conversion:', errorMessage);
+    stopFakeProgress();
 
     updateConversionTask(formatId, {
       state: TaskState.FAILED,
@@ -139,6 +192,26 @@ export async function startConversion(params: V3ConversionParams): Promise<void>
   } finally {
     log('=== END CONVERSION V3 ===');
   }
+}
+
+interface PollOnceOptions {
+  statusUrl: string;
+  signal: AbortSignal;
+  onProgress: (progress: number, detail?: { video: number; audio: number }) => void;
+}
+
+function pollOnce(options: PollOnceOptions): Promise<string> {
+  const { statusUrl, signal, onProgress } = options;
+
+  return new Promise((resolve, reject) => {
+    startPolling({
+      statusUrl,
+      signal,
+      onProgress,
+      onComplete: (downloadUrl) => resolve(downloadUrl),
+      onError: (error) => reject(error),
+    }).catch(reject);
+  });
 }
 
 /**
