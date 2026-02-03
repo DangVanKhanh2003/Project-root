@@ -113,7 +113,6 @@ export async function startConversion(params: V3ConversionParams): Promise<void>
         stopFakeProgress();
         return;
       }
-      debugger;
       try {
         // Phase 1: Create job (with retry)
         log('Phase 1: Creating job...');
