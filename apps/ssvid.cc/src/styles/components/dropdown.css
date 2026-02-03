@@ -48,7 +48,7 @@
 .audio-dropdown-wrapper:has(.custom-dropdown.active) .selected-content,
 .audio-dropdown-wrapper:has(.custom-dropdown.active) .dropdown-arrow {
     opacity: 1;
-    max-width: 150px;
+    max-width: 200px;
     transition: opacity 0.5s, max-width 0.5s;
     pointer-events: auto;
 }
@@ -206,7 +206,7 @@
 
     /* Active State: Audio expands to 150px */
     .audio-dropdown-wrapper:has(.custom-dropdown.active) {
-        width: 150px;
+        width: 200px;
     }
 
     /* Hide text/arrow when collapsed (smooth transition) */
@@ -223,7 +223,7 @@
     .audio-dropdown-wrapper:has(.custom-dropdown.active) .selected-content,
     .audio-dropdown-wrapper:has(.custom-dropdown.active) .dropdown-arrow {
         opacity: 1;
-        max-width: 150px;
+        max-width: 200px;
         transition: opacity 0.5s, max-width 0.5s;
         pointer-events: auto;
     }
