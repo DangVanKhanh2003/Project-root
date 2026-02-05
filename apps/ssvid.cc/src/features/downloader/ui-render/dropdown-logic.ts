@@ -159,3 +159,53 @@ export function initAudioDropdown(): void {
     }
 }
 
+/**
+ * Programmatically set the audio track
+ * @param code - Language code to select
+ */
+export function setAudioTrack(code: string): void {
+    const dropdown = document.getElementById('audio-track-dropdown');
+    if (!dropdown) return;
+
+    const optionsContainer = dropdown.querySelector('.dropdown-options') as HTMLElement;
+    const hiddenInput = document.getElementById('audio-track-value') as HTMLInputElement;
+    const selectedText = dropdown.querySelector('.selected-text') as HTMLElement;
+    const selectedIconContainer = dropdown.querySelector('.selected-icon') as HTMLElement;
+
+    if (!optionsContainer || !hiddenInput || !selectedText || !selectedIconContainer) return;
+
+    // Helper logic duplicated from internal selectOption to avoid major refactor
+    // In a larger refactor, we'd extract this logic fully.
+
+    hiddenInput.value = code;
+
+    // Find the language object
+    const langData = LANGUAGES.find(l => l.code === code);
+    if (langData) {
+        selectedText.textContent = langData.name;
+
+        if (langData.flag.trim().startsWith('<svg')) {
+            selectedIconContainer.innerHTML = langData.flag;
+        } else {
+            selectedIconContainer.innerHTML = `<img src="${langData.flag}" alt="${langData.name}" class="current-flag-img" style="width: 28px; height: 20px; object-fit: cover; border-radius: 2px;">`;
+        }
+    } else if (code === 'original') {
+        // Fallback for 'original' if not found in list (though it should be)
+        selectedText.textContent = "Original Audio"; // Default text
+        // Reset icon if needed, but 'original' usually exists in LANGUAGES
+    }
+
+    // Highlight selected option
+    const options = optionsContainer.querySelectorAll('.dropdown-option');
+    options.forEach(opt => {
+        if ((opt as HTMLElement).dataset.code === code) {
+            opt.classList.add('selected');
+        } else {
+            opt.classList.remove('selected');
+        }
+    });
+
+    // Trigger change event
+    hiddenInput.dispatchEvent(new Event('change', { bubbles: true }));
+}
+

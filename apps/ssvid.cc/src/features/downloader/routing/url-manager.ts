@@ -15,6 +15,9 @@
 export interface Route {
   type: 'home' | 'video';
   videoId?: string;
+  format?: string;
+  quality?: string;
+  audioTrack?: string;
 }
 
 /**
@@ -45,12 +48,18 @@ export function getRouteFromUrl(): Route {
   try {
     const searchParams = new URLSearchParams(window.location.search);
     const videoId = searchParams.get('v');
+    const format = searchParams.get('format') || undefined;
+    const quality = searchParams.get('quality') || undefined;
+    const audioTrack = searchParams.get('audioTrack') || undefined;
 
     // Validate videoId format if present
     if (videoId && isValidVideoId(videoId)) {
       return {
         type: 'video',
-        videoId
+        videoId,
+        format,
+        quality,
+        audioTrack
       };
     }
 
