@@ -104,12 +104,28 @@ export function getCurrentVideoId(): string | null {
  *
  * @param videoId - YouTube video ID
  */
-export function navigateToVideo(videoId: string): void {
-  const currentRoute = getRouteFromUrl();
+export function navigateToVideo(videoId: string, params?: { format?: string; quality?: string; audioTrack?: string }): void {
   const langPrefix = getLanguagePrefix(); // e.g., '/vi' or ''
-  const newUrl = `${langPrefix}/search?v=${videoId}`;
-  const state = { type: 'video', videoId };
 
+  // Build new URL with video ID
+  const urlParams = new URLSearchParams();
+  urlParams.set('v', videoId);
+
+  // Add optional parameters if provided
+  if (params?.format) urlParams.set('format', params.format);
+  if (params?.quality) urlParams.set('quality', params.quality);
+  if (params?.audioTrack) urlParams.set('audioTrack', params.audioTrack);
+
+  const newUrl = `${langPrefix}/search?${urlParams.toString()}`;
+  const state = {
+    type: 'video',
+    videoId,
+    format: params?.format,
+    quality: params?.quality,
+    audioTrack: params?.audioTrack
+  };
+
+  const currentRoute = getRouteFromUrl();
   if (currentRoute.type === 'video') {
     // Already on video page → Replace current entry
     history.replaceState(state, '', newUrl);
@@ -150,7 +166,15 @@ export function replaceUrl(route: Route): void {
   const state = { type: route.type };
 
   if (route.type === 'video' && route.videoId) {
-    url = `${langPrefix}/search?v=${route.videoId}`;
+    const params = new URLSearchParams();
+    params.set('v', route.videoId);
+
+    // Add optional parameters if present
+    if (route.format) params.set('format', route.format);
+    if (route.quality) params.set('quality', route.quality);
+    if (route.audioTrack) params.set('audioTrack', route.audioTrack);
+    debugger
+    url = `${langPrefix}/search?${params.toString()}`;
   }
 
   history.replaceState(state, '', url);
@@ -189,17 +213,37 @@ export function initRouting(onRouteChange?: RouteChangeHandler): void {
  * @returns true if URL was cleaned (had extra params)
  */
 export function cleanUrl(): boolean {
-  const params = new URLSearchParams(window.location.search);
-  const videoId = params.get('v');
+  // Logic simplified:
+  // We want to keep the URL as is if it's a valid video route with supported params.
+  // The 'getUrlFromRoute' logic inside replaceUrl effectively "cleans" 
+  // by only including known parameters from the Route object.
+  // So we just need to re-apply the current route to ensure consistency and strip unknown params.
 
-  // Check if there are extra params
-  if (params.size > 1 || (params.size === 1 && !videoId)) {
-    // Has extra params → Clean URL
-    if (videoId) {
-      replaceUrl({ type: 'video', videoId });
-    } else {
-      replaceUrl({ type: 'home' });
+  const currentRoute = getRouteFromUrl();
+  const searchParams = new URLSearchParams(window.location.search);
+
+  // Minimal check: if we have params but no videoId, go home
+  if (searchParams.size > 0 && !currentRoute.videoId) {
+    if (searchParams.has('v')) {
+      // has 'v' but getRouteFromUrl returned home? invalid ID probably.
+      // getRouteFromUrl handles validation.
+      if (currentRoute.type === 'home') {
+        replaceUrl({ type: 'home' });
+        return true;
+      }
     }
+  }
+
+  // If we are on a video route under any circumstance, replaceUrl will re-serialize standard params
+  // stripping anything else (like fbclid, etc.)
+  if (currentRoute.type === 'video') {
+    replaceUrl(currentRoute);
+    return true; // We always "clean" to ensure normalized order/params
+  }
+
+  // If home and has params (that aren't ignored above)
+  if (currentRoute.type === 'home' && searchParams.size > 0) {
+    replaceUrl({ type: 'home' });
     return true;
   }
 
