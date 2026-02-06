@@ -116,6 +116,6 @@ export function handleVideoRoute(route: Route): void {
         // Small delay to let UI settle before submitting
         setTimeout(() => {
             form.requestSubmit();
-        }, 300);
+        }, 100);
     }
 }
