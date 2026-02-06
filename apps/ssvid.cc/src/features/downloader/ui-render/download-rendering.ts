@@ -692,6 +692,7 @@ function setupButtonHandlers(formatId: string): void {
  */
 async function handleDownloadButtonClick(formatId: string): Promise<void> {
   console.log('[renderConversionStatus] Download button clicked for:', formatId);
+  logEvent('download_button_click', { format_id: formatId });
 
   const { handleDownloadClick } = await import('../logic/conversion');
   const result = handleDownloadClick(formatId);
@@ -706,6 +707,7 @@ async function handleDownloadButtonClick(formatId: string): Promise<void> {
  */
 function handleRetryButtonClick(_formatId: string): void {
   console.log('[renderConversionStatus] Retry button clicked, resubmitting URL');
+  logEvent('retry_button_click', { format_id: _formatId });
 
   const form = document.getElementById('downloadForm') as HTMLFormElement | null;
   if (form) {
@@ -735,6 +737,7 @@ function clearSearchUrl(): void {
  */
 async function handleNewConvertButtonClick(): Promise<void> {
   console.log('[renderConversionStatus] Next button clicked');
+  logEvent('next_button_click');
 
   const { showSearchView } = await import('./view-switcher');
   const { setInputValue, focusInput } = await import('./ui-renderer');

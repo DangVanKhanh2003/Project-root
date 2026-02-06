@@ -13,6 +13,7 @@ import {
   type FormatType,
   type AudioFormatType
 } from '../../features/downloader/state';
+import { logEvent } from '../../libs/firebase';
 
 // ==========================================
 // Render Functions
@@ -135,9 +136,9 @@ function renderVideoQualityDropdown(selectedQuality: string): string {
   return `
     <select id="quality-select" class="quality-select" aria-label="Quality selector" data-quality-select>
       ${videoOptions.map(option => {
-        const isSelected = option.value === `mp4-${defaultQuality.replace('p', '')}` || option.value === defaultQuality;
-        return `<option value="${option.value}"${isSelected ? ' selected' : ''}> ${option.label} </option>`;
-      }).join('')}
+    const isSelected = option.value === `mp4-${defaultQuality.replace('p', '')}` || option.value === defaultQuality;
+    return `<option value="${option.value}"${isSelected ? ' selected' : ''}> ${option.label} </option>`;
+  }).join('')}
     </select>
   `;
 }
@@ -169,9 +170,9 @@ function renderAudioQualityDropdown(selectedAudioFormat: AudioFormatType, select
     <div class="quality-dropdown-wrapper">
       <select id="quality-select" class="quality-select" aria-label="Quality selector" data-quality-select>
         ${audioOptions.map(option => {
-          const isSelected = option.value === selectedValue;
-          return `<option value="${option.value}"${isSelected ? ' selected' : ''}> ${option.label} </option>`;
-        }).join('')}
+    const isSelected = option.value === selectedValue;
+    return `<option value="${option.value}"${isSelected ? ' selected' : ''}> ${option.label} </option>`;
+  }).join('')}
       </select>
     </div>
   `;
@@ -213,6 +214,7 @@ function handleFormatSelectorClick(event: Event): void {
   if (formatBtn) {
     const format = formatBtn.dataset.format as FormatType;
     if (format) {
+      logEvent('format_change', { format });
       handleFormatChange(format);
     }
     return;
@@ -231,6 +233,7 @@ function handleQualityChange(event: Event): void {
   }
 
   const value = target.value;
+  logEvent('quality_change', { quality: value });
   const state = getState();
 
   if (state.selectedFormat === 'mp4') {
@@ -316,9 +319,9 @@ function renderAudioDropdownOnly(selectedAudioFormat: AudioFormatType, selectedB
   return `
     <select id="quality-select" class="quality-select" aria-label="Quality selector" data-quality-select>
       ${audioOptions.map(option => {
-        const isSelected = option.value === selectedValue;
-        return `<option value="${option.value}"${isSelected ? ' selected' : ''}>${option.label}</option>`;
-      }).join('')}
+    const isSelected = option.value === selectedValue;
+    return `<option value="${option.value}"${isSelected ? ' selected' : ''}>${option.label}</option>`;
+  }).join('')}
     </select>
   `;
 }

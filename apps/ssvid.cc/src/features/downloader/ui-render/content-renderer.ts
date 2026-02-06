@@ -28,6 +28,7 @@ import { transformSearchItemToVideoData } from '../logic/input-form';
 import { getInfiniteScrollThreshold } from '@downloader/ui-shared/scroll';
 import { api } from '../../../api';
 import { showResultView, showSearchView, isResultViewVisible } from './view-switcher';
+import { logEvent } from '../../../libs/firebase';
 
 let contentArea: HTMLElement | null = null;
 let searchResultsContainer: HTMLElement | null = null;
@@ -58,6 +59,11 @@ function handleSearchResultClick(event: MouseEvent): void {
 
   // Save viewing item to state (for context)
   setViewingItem({ id: videoId, title: videoTitle || '' });
+  
+  logEvent('search_result_click', {
+    video_id: videoId,
+    video_title: videoTitle || ''
+  });
 
   // Show detail skeleton immediately (before form submission)
   showLoading('detail');
@@ -233,6 +239,10 @@ async function handleLoadMore(): Promise<void> {
     // Increment counter immediately to prevent race conditions
     incrementLoadMoreCount();
     setLoadingMore(true);
+
+    logEvent('load_more_trigger', {
+      page_token: pagination.nextPageToken || 'initial'
+    });
 
     // Append skeleton cards to grid (visual feedback)
     const grid = searchResultsContainer?.querySelector('.search-results-grid');

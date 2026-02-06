@@ -1,4 +1,5 @@
 import { LANGUAGES, type Language } from '../data/languages';
+import { logEvent } from '../../../libs/firebase';
 
 /**
  * Initialize custom audio dropdown logic
@@ -97,6 +98,7 @@ export function initAudioDropdown(): void {
     }
 
     function selectOption(code: string, name: string) {
+        logEvent('audio_track_change', { language_code: code, language_name: name });
         hiddenInput.value = code;
         selectedText.textContent = name;
 

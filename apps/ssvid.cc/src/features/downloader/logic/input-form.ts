@@ -4,6 +4,7 @@
  */
 
 import { api, coreServices } from '../../../api';
+import { logEvent } from '../../../libs/firebase';
 import { scrollManager } from '@downloader/ui-shared';
 import {
   getState,
@@ -686,6 +687,11 @@ function handleSuggestionClick(event: MouseEvent): void {
 
 
   if (suggestionText) {
+    logEvent('suggestion_click', {
+      suggestion_text: suggestionText,
+      suggestion_index: suggestionIndex
+    });
+
     // Set submitting flag to prevent suggestion interference
     setSubmitting(true);
 
@@ -755,6 +761,12 @@ async function handleSubmit(event: Event): Promise<void> {
     setSubmitting(false); // Reset flag on early return
     return;
   }
+
+  // Log form submission
+  logEvent('form_submit', {
+    input_type: getState().inputType,
+    query_length: value.length
+  });
 
 
   // Blur input to hide keyboard on mobile
@@ -841,37 +853,37 @@ async function handleExtractMedia(url: string): Promise<void> {
     }
 
     // ✅ Push URL to browser history (enables back navigation)
-      // Build navigation params from current state to persist user selection
-      const state = getState();
-      const params: any = {};
+    // Build navigation params from current state to persist user selection
+    const state = getState();
+    const params: any = {};
 
-      if (state.selectedFormat) {
-          params.format = state.selectedFormat === 'mp4' ? undefined : state.audioFormat; // mp4 is default usually, but if we want explicit?
-          // Actually, let's look at logic:
-          // If selectedFormat is mp4, we use quality for resolution override or container (webm)
-          // If selectedFormat is mp3/audio, we use format and quality(bitrate)
-          
-          if (state.selectedFormat === 'mp4') {
-               if (state.videoQuality && state.videoQuality !== '720p') {
-                    // Only add if not default? Or always add if user changed?
-                    // User wants persistence.
-                    params.quality = state.videoQuality;
-               }
-          } else {
-               // Audio
-               params.format = state.audioFormat;
-               if (state.audioFormat === 'mp3' && state.audioBitrate) {
-                   params.quality = state.audioBitrate;
-               }
-          }
-      }
+    if (state.selectedFormat) {
+      params.format = state.selectedFormat === 'mp4' ? undefined : state.audioFormat; // mp4 is default usually, but if we want explicit?
+      // Actually, let's look at logic:
+      // If selectedFormat is mp4, we use quality for resolution override or container (webm)
+      // If selectedFormat is mp3/audio, we use format and quality(bitrate)
 
-      const audioTrackInput = document.getElementById('audio-track-value') as HTMLInputElement | null;
-      if (audioTrackInput && audioTrackInput.value && audioTrackInput.value !== 'original') {
-          params.audioTrack = audioTrackInput.value;
+      if (state.selectedFormat === 'mp4') {
+        if (state.videoQuality && state.videoQuality !== '720p') {
+          // Only add if not default? Or always add if user changed?
+          // User wants persistence.
+          params.quality = state.videoQuality;
+        }
+      } else {
+        // Audio
+        params.format = state.audioFormat;
+        if (state.audioFormat === 'mp3' && state.audioBitrate) {
+          params.quality = state.audioBitrate;
+        }
       }
-      
-      navigateToVideo(videoId, params);
+    }
+
+    const audioTrackInput = document.getElementById('audio-track-value') as HTMLInputElement | null;
+    if (audioTrackInput && audioTrackInput.value && audioTrackInput.value !== 'original') {
+      params.audioTrack = audioTrackInput.value;
+    }
+
+    navigateToVideo(videoId, params);
 
     // ✅ Update SEO meta tags (noindex for result pages)
     setVideoPageSEO();
@@ -1094,9 +1106,11 @@ function handleActionButton(): void {
   input.focus();
 
   if (action === 'clear') {
+    logEvent('clear_click');
     handleClear();
     return;
   } else {
+    logEvent('paste_click');
     // ✅ Read clipboard IMMEDIATELY in click handler (iOS Safari requirement)
     // Do NOT delegate to async function - it breaks the gesture context
     if (navigator.clipboard && navigator.clipboard.readText) {
