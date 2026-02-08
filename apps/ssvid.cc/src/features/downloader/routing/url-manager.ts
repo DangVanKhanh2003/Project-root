@@ -30,16 +30,6 @@ export type RouteChangeHandler = (route: Route) => void;
 // ==========================================
 
 /**
- * Get language prefix from current URL
- * @returns Language prefix (e.g., '/vi', '/ar') or empty string for default language
- */
-function getLanguagePrefix(): string {
-  const pathname = window.location.pathname;
-  const match = pathname.match(/^\/([a-z]{2})\//);
-  return match ? `/${match[1]}` : '';
-}
-
-/**
  * Parse current URL and return route information
  *
  * @returns Route object with type and videoId (if applicable)
@@ -105,9 +95,24 @@ export function getCurrentVideoId(): string | null {
  * @param videoId - YouTube video ID
  */
 export function navigateToVideo(videoId: string, params?: { format?: string; quality?: string; audioTrack?: string }): void {
-  const langPrefix = getLanguagePrefix(); // e.g., '/vi' or ''
+  // Get current pathname and preserve it
+  let basePath = window.location.pathname;
 
-  // Build new URL with video ID
+  // Remove .html extension if present
+  basePath = basePath.replace(/\.html$/, '');
+
+  // Remove trailing slash (but keep root /)
+  basePath = basePath.replace(/\/$/, '') || '/';
+
+  // Remove existing /search suffix (legacy URLs)
+  basePath = basePath.replace(/\/search$/, '');
+
+  // Normalize root paths
+  if (basePath === '' || basePath === '/index') {
+    basePath = '/';
+  }
+
+  // Build query params
   const urlParams = new URLSearchParams();
   urlParams.set('v', videoId);
 
@@ -116,7 +121,9 @@ export function navigateToVideo(videoId: string, params?: { format?: string; qua
   if (params?.quality) urlParams.set('quality', params.quality);
   if (params?.audioTrack) urlParams.set('audioTrack', params.audioTrack);
 
-  const newUrl = `${langPrefix}/search?${urlParams.toString()}`;
+  // Keep current path + /search + query params
+  // e.g. /download-youtube-mp4/search?v=xxx, /vi/download-youtube-mp3/search?v=xxx
+  const newUrl = `${basePath}/search?${urlParams.toString()}`;
   const state = {
     type: 'video',
     videoId,
@@ -142,14 +149,14 @@ export function navigateToVideo(videoId: string, params?: { format?: string; qua
  * @param replace - Use replaceState instead of pushState (optional)
  */
 export function navigateToHome(replace: boolean = false): void {
-  const langPrefix = getLanguagePrefix(); // e.g., '/vi' or ''
-  const homeUrl = langPrefix ? `${langPrefix}/` : '/';
   const state = { type: 'home' };
+  // Keep current page path, just remove query params
+  const basePath = window.location.pathname.replace(/\/search$/, '') || '/';
 
   if (replace) {
-    history.replaceState(state, '', homeUrl);
+    history.replaceState(state, '', basePath);
   } else {
-    history.pushState(state, '', homeUrl);
+    history.pushState(state, '', basePath);
   }
 }
 
@@ -161,23 +168,27 @@ export function navigateToHome(replace: boolean = false): void {
  * @param route - Route to set
  */
 export function replaceUrl(route: Route): void {
-  const langPrefix = getLanguagePrefix(); // e.g., '/vi' or ''
-  let url = langPrefix ? `${langPrefix}/` : '/';
   const state = { type: route.type };
 
   if (route.type === 'video' && route.videoId) {
+    // Keep current path, only update query params
+    let basePath = window.location.pathname.replace(/\.html$/, '').replace(/\/$/, '').replace(/\/search$/, '');
+    if (basePath === '' || basePath === '/index') {
+      basePath = '/';
+    }
+
     const params = new URLSearchParams();
     params.set('v', route.videoId);
-
-    // Add optional parameters if present
     if (route.format) params.set('format', route.format);
     if (route.quality) params.set('quality', route.quality);
     if (route.audioTrack) params.set('audioTrack', route.audioTrack);
-    debugger
-    url = `${langPrefix}/search?${params.toString()}`;
-  }
 
-  history.replaceState(state, '', url);
+    history.replaceState(state, '', `${basePath}/search?${params.toString()}`);
+  } else {
+    // Home: keep current path without query params
+    const basePath = window.location.pathname.replace(/\/search$/, '');
+    history.replaceState(state, '', basePath || '/');
+  }
 }
 
 // ==========================================

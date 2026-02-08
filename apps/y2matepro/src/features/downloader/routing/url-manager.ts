@@ -104,12 +104,11 @@ export function navigateToVideo(videoId: string): void {
   // Remove trailing slash
   basePath = basePath.replace(/\/$/, '');
 
-  // Remove existing /search suffix to prevent /search/search duplication
+  // Remove existing /search suffix (legacy URLs)
   basePath = basePath.replace(/\/search$/, '');
 
-  // Build new URL:
-  // - If on home page (/ or /index) → /search?v=xxx
-  // - If on specific page (/youtube-to-mp4) → /youtube-to-mp4/search?v=xxx
+  // Build new URL: keep current path + /search + query param
+  // e.g. /youtube-to-mp4/search?v=xxx, /es/youtube-to-mp3/search?v=xxx
   const newUrl = (basePath === '' || basePath === '/' || basePath === '/index')
     ? `/search?v=${videoId}`
     : `${basePath}/search?v=${videoId}`;
@@ -132,11 +131,13 @@ export function navigateToVideo(videoId: string): void {
  */
 export function navigateToHome(replace: boolean = false): void {
   const state = { type: 'home' };
+  // Keep current page path, just remove query params
+  const basePath = window.location.pathname.replace(/\/search$/, '') || '/';
 
   if (replace) {
-    history.replaceState(state, '', '/');
+    history.replaceState(state, '', basePath);
   } else {
-    history.pushState(state, '', '/');
+    history.pushState(state, '', basePath);
   }
 }
 
@@ -147,14 +148,21 @@ export function navigateToHome(replace: boolean = false): void {
  * @param route - Route to set
  */
 export function replaceUrl(route: Route): void {
-  let url = '/';
   const state = { type: route.type };
 
   if (route.type === 'video' && route.videoId) {
-    url = `/search?v=${route.videoId}`;
+    // Keep current path, only update query param
+    let basePath = window.location.pathname.replace(/\.html$/, '').replace(/\/$/, '').replace(/\/search$/, '');
+    if (basePath === '' || basePath === '/' || basePath === '/index') {
+      basePath = '/';
+    }
+    const url = `${basePath}/search?v=${route.videoId}`;
+    history.replaceState(state, '', url);
+  } else {
+    // Home: keep current path without query params
+    const basePath = window.location.pathname.replace(/\/search$/, '');
+    history.replaceState(state, '', basePath || '/');
   }
-
-  history.replaceState(state, '', url);
 }
 
 // ==========================================
