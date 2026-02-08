@@ -841,7 +841,12 @@ async function handleExtractMedia(url: string): Promise<void> {
     }
 
     // ✅ Push URL to browser history (enables back navigation)
-    navigateToVideo(videoId);
+    const state = getState();
+    if (state.selectedFormat === 'mp4') {
+      navigateToVideo(videoId, { format: 'mp4', quality: state.videoQuality || undefined });
+    } else {
+      navigateToVideo(videoId, { format: state.audioFormat || 'mp3', quality: state.audioBitrate || undefined });
+    }
 
     // ✅ Update SEO meta tags (noindex for result pages)
     setVideoPageSEO();

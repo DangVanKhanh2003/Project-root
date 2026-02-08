@@ -15,6 +15,8 @@ import { getRouteFromUrl, initRouting, cleanUrl } from './routing/url-manager';
 import { setVideoPageSEO } from './routing/seo-manager';
 import { initFormatSelector } from '../../ui-components/format-selector/format-selector';
 import { initViewSwitcher, showSearchView } from './ui-render/view-switcher';
+import { setSelectedFormat, setVideoQuality, setAudioFormat, setAudioBitrate } from './state/format-selector-state';
+import type { AudioFormatType } from './state/types';
 
 /**
  * Initialize downloader UI
@@ -98,6 +100,19 @@ export async function init(): Promise<void> {
     // Deep link or page refresh with video URL
     // Update SEO meta tags for video page
     setVideoPageSEO();
+
+    // Apply format/quality from URL params to format selector state
+    if (route.format) {
+      const audioFormats = ['mp3', 'wav', 'm4a', 'opus', 'ogg', 'flac'];
+      if (route.format === 'mp4') {
+        setSelectedFormat('mp4');
+        if (route.quality) setVideoQuality(route.quality);
+      } else if (audioFormats.includes(route.format)) {
+        setSelectedFormat('mp3');
+        setAudioFormat(route.format as AudioFormatType);
+        if (route.quality) setAudioBitrate(route.quality);
+      }
+    }
 
     // Auto-submit form to load video
     const youtubeUrl = `https://www.youtube.com/watch?v=${route.videoId}`;

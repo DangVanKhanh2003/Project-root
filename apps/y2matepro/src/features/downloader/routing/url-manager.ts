@@ -131,11 +131,13 @@ export function navigateToVideo(videoId: string): void {
  */
 export function navigateToHome(replace: boolean = false): void {
   const state = { type: 'home' };
+  // Keep current page path, just remove query params
+  const basePath = window.location.pathname.replace(/\/search$/, '') || '/';
 
   if (replace) {
-    history.replaceState(state, '', '/');
+    history.replaceState(state, '', basePath);
   } else {
-    history.pushState(state, '', '/');
+    history.pushState(state, '', basePath);
   }
 }
 
@@ -146,14 +148,18 @@ export function navigateToHome(replace: boolean = false): void {
  * @param route - Route to set
  */
 export function replaceUrl(route: Route): void {
-  let url = '/';
   const state = { type: route.type };
 
   if (route.type === 'video' && route.videoId) {
-    url = `/?v=${route.videoId}`;
+    // Keep current path, only update query param
+    let basePath = window.location.pathname.replace(/\.html$/, '').replace(/\/$/, '').replace(/\/search$/, '');
+    if (basePath === '' || basePath === '/index') basePath = '/';
+    history.replaceState(state, '', `${basePath}?v=${route.videoId}`);
+  } else {
+    // Home: keep current path without query params
+    const basePath = window.location.pathname.replace(/\/search$/, '');
+    history.replaceState(state, '', basePath || '/');
   }
-
-  history.replaceState(state, '', url);
 }
 
 // ==========================================

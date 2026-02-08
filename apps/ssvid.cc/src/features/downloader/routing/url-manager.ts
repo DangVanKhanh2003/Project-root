@@ -111,8 +111,6 @@ export function navigateToVideo(videoId: string, params?: { format?: string; qua
   if (params?.quality) urlParams.set('quality', params.quality);
   if (params?.audioTrack) urlParams.set('audioTrack', params.audioTrack);
 
-  // Keep current path + query params
-  // e.g. /download-youtube-mp4?v=xxx&format=mp3, /vi/download-youtube-mp3?v=xxx
   const newUrl = `${basePath}?${urlParams.toString()}`;
   const state = { type: 'video', videoId };
 
