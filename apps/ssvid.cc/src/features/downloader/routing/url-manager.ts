@@ -15,6 +15,9 @@
 export interface Route {
   type: 'home' | 'video';
   videoId?: string;
+  format?: string;
+  quality?: string;
+  audioTrack?: string;
 }
 
 /**
@@ -35,12 +38,18 @@ export function getRouteFromUrl(): Route {
   try {
     const searchParams = new URLSearchParams(window.location.search);
     const videoId = searchParams.get('v');
+    const format = searchParams.get('format') || undefined;
+    const quality = searchParams.get('quality') || undefined;
+    const audioTrack = searchParams.get('audioTrack') || undefined;
 
     // Validate videoId format if present
     if (videoId && isValidVideoId(videoId)) {
       return {
         type: 'video',
-        videoId
+        videoId,
+        format,
+        quality,
+        audioTrack
       };
     }
 
@@ -85,7 +94,7 @@ export function getCurrentVideoId(): string | null {
  *
  * @param videoId - YouTube video ID
  */
-export function navigateToVideo(videoId: string): void {
+export function navigateToVideo(videoId: string, params?: { format?: string; quality?: string; audioTrack?: string }): void {
   const currentRoute = getRouteFromUrl();
 
   // Get current pathname and preserve it
@@ -95,9 +104,16 @@ export function navigateToVideo(videoId: string): void {
   basePath = basePath.replace(/\/search$/, '');
   if (basePath === '' || basePath === '/index') basePath = '/';
 
-  // Keep current path + ?v= query param
-  // e.g. /download-youtube-mp4?v=xxx, /vi/download-youtube-mp3?v=xxx
-  const newUrl = `${basePath}?v=${videoId}`;
+  // Build query params
+  const urlParams = new URLSearchParams();
+  urlParams.set('v', videoId);
+  if (params?.format) urlParams.set('format', params.format);
+  if (params?.quality) urlParams.set('quality', params.quality);
+  if (params?.audioTrack) urlParams.set('audioTrack', params.audioTrack);
+
+  // Keep current path + query params
+  // e.g. /download-youtube-mp4?v=xxx&format=mp3, /vi/download-youtube-mp3?v=xxx
+  const newUrl = `${basePath}?${urlParams.toString()}`;
   const state = { type: 'video', videoId };
 
   if (currentRoute.type === 'video') {
@@ -138,10 +154,17 @@ export function replaceUrl(route: Route): void {
   const state = { type: route.type };
 
   if (route.type === 'video' && route.videoId) {
-    // Keep current path, only update query param
+    // Keep current path, only update query params
     let basePath = window.location.pathname.replace(/\.html$/, '').replace(/\/$/, '').replace(/\/search$/, '');
     if (basePath === '' || basePath === '/index') basePath = '/';
-    history.replaceState(state, '', `${basePath}?v=${route.videoId}`);
+
+    const params = new URLSearchParams();
+    params.set('v', route.videoId);
+    if (route.format) params.set('format', route.format);
+    if (route.quality) params.set('quality', route.quality);
+    if (route.audioTrack) params.set('audioTrack', route.audioTrack);
+
+    history.replaceState(state, '', `${basePath}?${params.toString()}`);
   } else {
     // Home: keep current path without query params
     const basePath = window.location.pathname.replace(/\/search$/, '');
@@ -199,7 +222,8 @@ export function cleanUrl(): boolean {
 
   if (cleaned) {
     if (videoId) {
-      replaceUrl({ type: 'video', videoId });
+      const route = getRouteFromUrl();
+      replaceUrl(route);
     } else {
       replaceUrl({ type: 'home' });
     }
