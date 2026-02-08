@@ -101,7 +101,7 @@ export async function init(): Promise<void> {
     // Update SEO meta tags for video page
     setVideoPageSEO();
 
-    // Apply format/quality from URL params to format selector state
+    // Apply format/quality/audioTrack from URL params to state
     if (route.format) {
       const audioFormats = ['mp3', 'wav', 'm4a', 'opus', 'ogg', 'flac'];
       if (route.format === 'mp4') {
@@ -111,6 +111,14 @@ export async function init(): Promise<void> {
         setSelectedFormat('mp3');
         setAudioFormat(route.format as AudioFormatType);
         if (route.quality) setAudioBitrate(route.quality);
+      }
+    }
+
+    // Apply audioTrack from URL params to hidden input
+    if (route.audioTrack) {
+      const audioTrackInput = document.getElementById('audio-track-value') as HTMLInputElement | null;
+      if (audioTrackInput) {
+        audioTrackInput.value = route.audioTrack;
       }
     }
 

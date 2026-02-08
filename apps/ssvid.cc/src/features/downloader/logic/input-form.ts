@@ -842,10 +842,14 @@ async function handleExtractMedia(url: string): Promise<void> {
 
     // ✅ Push URL to browser history (enables back navigation)
     const state = getState();
+    const audioTrackInput = document.getElementById('audio-track-value') as HTMLInputElement | null;
+    const audioTrack = audioTrackInput?.value?.trim();
+    const urlAudioTrack = (audioTrack && audioTrack !== 'original' && audioTrack !== 'default') ? audioTrack : undefined;
+
     if (state.selectedFormat === 'mp4') {
-      navigateToVideo(videoId, { format: 'mp4', quality: state.videoQuality || undefined });
+      navigateToVideo(videoId, { format: 'mp4', quality: state.videoQuality || undefined, audioTrack: urlAudioTrack });
     } else {
-      navigateToVideo(videoId, { format: state.audioFormat || 'mp3', quality: state.audioBitrate || undefined });
+      navigateToVideo(videoId, { format: state.audioFormat || 'mp3', quality: state.audioBitrate || undefined, audioTrack: urlAudioTrack });
     }
 
     // ✅ Update SEO meta tags (noindex for result pages)
