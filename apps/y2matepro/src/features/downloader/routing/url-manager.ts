@@ -104,15 +104,14 @@ export function navigateToVideo(videoId: string): void {
   // Remove trailing slash
   basePath = basePath.replace(/\/$/, '');
 
-  // Remove existing /search suffix to prevent /search/search duplication
+  // Remove existing /search suffix (legacy URLs)
   basePath = basePath.replace(/\/search$/, '');
 
-  // Build new URL:
-  // - If on home page (/ or /index) → /search?v=xxx
-  // - If on specific page (/youtube-to-mp4) → /youtube-to-mp4/search?v=xxx
+  // Build new URL: keep current path + ?v= query param
+  // e.g. /youtube-to-mp4?v=xxx, /es/youtube-to-mp3?v=xxx
   const newUrl = (basePath === '' || basePath === '/' || basePath === '/index')
-    ? `/search?v=${videoId}`
-    : `${basePath}/search?v=${videoId}`;
+    ? `/?v=${videoId}`
+    : `${basePath}?v=${videoId}`;
 
   const state = { type: 'video', videoId };
 
@@ -151,7 +150,7 @@ export function replaceUrl(route: Route): void {
   const state = { type: route.type };
 
   if (route.type === 'video' && route.videoId) {
-    url = `/search?v=${route.videoId}`;
+    url = `/?v=${route.videoId}`;
   }
 
   history.replaceState(state, '', url);
@@ -192,10 +191,20 @@ export function initRouting(onRouteChange?: RouteChangeHandler): void {
 export function cleanUrl(): boolean {
   const params = new URLSearchParams(window.location.search);
   const videoId = params.get('v');
+  const hasSearchInPath = /\/search(\/|$)/.test(window.location.pathname);
+  let cleaned = false;
+
+  // Strip /search from pathname (legacy URLs)
+  if (hasSearchInPath) {
+    cleaned = true;
+  }
 
   // Check if there are extra params
   if (params.size > 1 || (params.size === 1 && !videoId)) {
-    // Has extra params → Clean URL
+    cleaned = true;
+  }
+
+  if (cleaned) {
     if (videoId) {
       replaceUrl({ type: 'video', videoId });
     } else {

@@ -27,16 +27,6 @@ export type RouteChangeHandler = (route: Route) => void;
 // ==========================================
 
 /**
- * Get language prefix from current URL
- * @returns Language prefix (e.g., '/vi', '/ar') or empty string for default language
- */
-function getLanguagePrefix(): string {
-  const pathname = window.location.pathname;
-  const match = pathname.match(/^\/([a-z]{2})\//);
-  return match ? `/${match[1]}` : '';
-}
-
-/**
  * Parse current URL and return route information
  *
  * @returns Route object with type and videoId (if applicable)
@@ -97,8 +87,17 @@ export function getCurrentVideoId(): string | null {
  */
 export function navigateToVideo(videoId: string): void {
   const currentRoute = getRouteFromUrl();
-  const langPrefix = getLanguagePrefix(); // e.g., '/vi' or ''
-  const newUrl = `${langPrefix}/search?v=${videoId}`;
+
+  // Get current pathname and preserve it
+  let basePath = window.location.pathname;
+  basePath = basePath.replace(/\.html$/, '');
+  basePath = basePath.replace(/\/$/, '');
+  basePath = basePath.replace(/\/search$/, '');
+  if (basePath === '' || basePath === '/index') basePath = '/';
+
+  // Keep current path + ?v= query param
+  // e.g. /download-youtube-mp4?v=xxx, /vi/download-youtube-mp3?v=xxx
+  const newUrl = `${basePath}?v=${videoId}`;
   const state = { type: 'video', videoId };
 
   if (currentRoute.type === 'video') {
@@ -117,14 +116,14 @@ export function navigateToVideo(videoId: string): void {
  * @param replace - Use replaceState instead of pushState (optional)
  */
 export function navigateToHome(replace: boolean = false): void {
-  const langPrefix = getLanguagePrefix(); // e.g., '/vi' or ''
-  const homeUrl = langPrefix ? `${langPrefix}/` : '/';
   const state = { type: 'home' };
+  // Keep current page path, just remove query params
+  const basePath = window.location.pathname.replace(/\/search$/, '') || '/';
 
   if (replace) {
-    history.replaceState(state, '', homeUrl);
+    history.replaceState(state, '', basePath);
   } else {
-    history.pushState(state, '', homeUrl);
+    history.pushState(state, '', basePath);
   }
 }
 
@@ -136,15 +135,18 @@ export function navigateToHome(replace: boolean = false): void {
  * @param route - Route to set
  */
 export function replaceUrl(route: Route): void {
-  const langPrefix = getLanguagePrefix(); // e.g., '/vi' or ''
-  let url = langPrefix ? `${langPrefix}/` : '/';
   const state = { type: route.type };
 
   if (route.type === 'video' && route.videoId) {
-    url = `${langPrefix}/search?v=${route.videoId}`;
+    // Keep current path, only update query param
+    let basePath = window.location.pathname.replace(/\.html$/, '').replace(/\/$/, '').replace(/\/search$/, '');
+    if (basePath === '' || basePath === '/index') basePath = '/';
+    history.replaceState(state, '', `${basePath}?v=${route.videoId}`);
+  } else {
+    // Home: keep current path without query params
+    const basePath = window.location.pathname.replace(/\/search$/, '');
+    history.replaceState(state, '', basePath || '/');
   }
-
-  history.replaceState(state, '', url);
 }
 
 // ==========================================
@@ -182,10 +184,20 @@ export function initRouting(onRouteChange?: RouteChangeHandler): void {
 export function cleanUrl(): boolean {
   const params = new URLSearchParams(window.location.search);
   const videoId = params.get('v');
+  const hasSearchInPath = /\/search(\/|$)/.test(window.location.pathname);
+  let cleaned = false;
+
+  // Strip /search from pathname (legacy URLs)
+  if (hasSearchInPath) {
+    cleaned = true;
+  }
 
   // Check if there are extra params
   if (params.size > 1 || (params.size === 1 && !videoId)) {
-    // Has extra params → Clean URL
+    cleaned = true;
+  }
+
+  if (cleaned) {
     if (videoId) {
       replaceUrl({ type: 'video', videoId });
     } else {
