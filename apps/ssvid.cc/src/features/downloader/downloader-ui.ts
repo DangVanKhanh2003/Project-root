@@ -14,6 +14,8 @@ import type { AppState } from './state';
 import { getRouteFromUrl, initRouting, cleanUrl } from './routing/url-manager';
 import { initFormatSelector } from '../../ui-components/format-selector/format-selector';
 import { initViewSwitcher, showSearchView } from './ui-render/view-switcher';
+import { setSelectedFormat, setVideoQuality, setAudioFormat, setAudioBitrate } from './state/format-selector-state';
+import type { AudioFormatType } from './state/types';
 
 import { setupUrlSync } from './routing/url-sync';
 import { handleVideoRoute } from './logic/route-init';
@@ -92,11 +94,32 @@ export async function init(): Promise<void> {
 
   // Step 6: Setup routing (check URL on page load)
   const route = getRouteFromUrl();
-  debugger
-  // Clean URL (remove extra params)
+
+  // Clean URL (remove extra/unknown params, strip /search from path)
   cleanUrl();
 
   if (route.type === 'video' && route.videoId) {
+    // Apply format/quality/audioTrack from URL params to state
+    if (route.format) {
+      const audioFormats = ['mp3', 'wav', 'm4a', 'opus', 'ogg', 'flac'];
+      if (route.format === 'mp4') {
+        setSelectedFormat('mp4');
+        if (route.quality) setVideoQuality(route.quality);
+      } else if (audioFormats.includes(route.format)) {
+        setSelectedFormat('mp3');
+        setAudioFormat(route.format as AudioFormatType);
+        if (route.quality) setAudioBitrate(route.quality);
+      }
+    }
+
+    // Apply audioTrack from URL params to hidden input
+    if (route.audioTrack) {
+      const audioTrackInput = document.getElementById('audio-track-value') as HTMLInputElement | null;
+      if (audioTrackInput) {
+        audioTrackInput.value = route.audioTrack;
+      }
+    }
+
     // Auto-submit form to load video
     handleVideoRoute(route);
   }
@@ -108,6 +131,3 @@ export async function init(): Promise<void> {
   // ============================================================
   setupUrlSync();
 }
-
-
-

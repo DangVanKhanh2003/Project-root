@@ -853,37 +853,16 @@ async function handleExtractMedia(url: string): Promise<void> {
     }
 
     // ✅ Push URL to browser history (enables back navigation)
-    // Build navigation params from current state to persist user selection
     const state = getState();
-    const params: any = {};
-
-    if (state.selectedFormat) {
-      params.format = state.selectedFormat === 'mp4' ? undefined : state.audioFormat; // mp4 is default usually, but if we want explicit?
-      // Actually, let's look at logic:
-      // If selectedFormat is mp4, we use quality for resolution override or container (webm)
-      // If selectedFormat is mp3/audio, we use format and quality(bitrate)
-
-      if (state.selectedFormat === 'mp4') {
-        if (state.videoQuality && state.videoQuality !== '720p') {
-          // Only add if not default? Or always add if user changed?
-          // User wants persistence.
-          params.quality = state.videoQuality;
-        }
-      } else {
-        // Audio
-        params.format = state.audioFormat;
-        if (state.audioFormat === 'mp3' && state.audioBitrate) {
-          params.quality = state.audioBitrate;
-        }
-      }
-    }
-
     const audioTrackInput = document.getElementById('audio-track-value') as HTMLInputElement | null;
-    if (audioTrackInput && audioTrackInput.value && audioTrackInput.value !== 'original') {
-      params.audioTrack = audioTrackInput.value;
-    }
+    const audioTrack = audioTrackInput?.value?.trim();
+    const urlAudioTrack = (audioTrack && audioTrack !== 'original' && audioTrack !== 'default') ? audioTrack : undefined;
 
-    navigateToVideo(videoId, params);
+    if (state.selectedFormat === 'mp4') {
+      navigateToVideo(videoId, { format: 'mp4', quality: state.videoQuality || undefined, audioTrack: urlAudioTrack });
+    } else {
+      navigateToVideo(videoId, { format: state.audioFormat || 'mp3', quality: state.audioBitrate || undefined, audioTrack: urlAudioTrack });
+    }
 
     // ✅ Update SEO meta tags (noindex for result pages)
     setVideoPageSEO();
