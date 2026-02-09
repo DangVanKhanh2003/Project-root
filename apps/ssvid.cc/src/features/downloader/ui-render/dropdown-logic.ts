@@ -1,18 +1,26 @@
 import { LANGUAGES, type Language } from '../data/languages';
 import { logEvent } from '../../../libs/firebase';
 
+interface AudioDropdownConfig {
+    dropdownId?: string;
+    hiddenInputId?: string;
+}
+
 /**
  * Initialize custom audio dropdown logic
  */
-export function initAudioDropdown(): void {
-    const dropdown = document.getElementById('audio-track-dropdown');
+export function initAudioDropdown(config?: AudioDropdownConfig): void {
+    const dropdownId = config?.dropdownId || 'audio-track-dropdown';
+    const hiddenInputId = config?.hiddenInputId || 'audio-track-value';
+
+    const dropdown = document.getElementById(dropdownId);
     if (!dropdown) return;
 
     const trigger = dropdown.querySelector('.dropdown-trigger') as HTMLElement;
     const menu = dropdown.querySelector('.dropdown-menu') as HTMLElement;
     const optionsContainer = dropdown.querySelector('.dropdown-options') as HTMLElement;
     const searchInput = dropdown.querySelector('.dropdown-search input') as HTMLInputElement;
-    const hiddenInput = document.getElementById('audio-track-value') as HTMLInputElement;
+    const hiddenInput = document.getElementById(hiddenInputId) as HTMLInputElement;
     const selectedText = dropdown.querySelector('.selected-text') as HTMLElement;
 
     // New: wrapper for the dynamic icon
@@ -164,13 +172,17 @@ export function initAudioDropdown(): void {
 /**
  * Programmatically set the audio track
  * @param code - Language code to select
+ * @param config - Optional config with custom element IDs
  */
-export function setAudioTrack(code: string): void {
-    const dropdown = document.getElementById('audio-track-dropdown');
+export function setAudioTrack(code: string, config?: AudioDropdownConfig): void {
+    const dropdownId = config?.dropdownId || 'audio-track-dropdown';
+    const hiddenInputId = config?.hiddenInputId || 'audio-track-value';
+
+    const dropdown = document.getElementById(dropdownId);
     if (!dropdown) return;
 
     const optionsContainer = dropdown.querySelector('.dropdown-options') as HTMLElement;
-    const hiddenInput = document.getElementById('audio-track-value') as HTMLInputElement;
+    const hiddenInput = document.getElementById(hiddenInputId) as HTMLInputElement;
     const selectedText = dropdown.querySelector('.selected-text') as HTMLElement;
     const selectedIconContainer = dropdown.querySelector('.selected-icon') as HTMLElement;
 

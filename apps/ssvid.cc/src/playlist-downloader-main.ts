@@ -12,6 +12,7 @@ import { multipleDownloadRenderer } from './features/downloader/ui-render/multip
 import { setMultipleDownloadMode, addVideoItems } from './features/downloader/state/multiple-download-actions';
 import { VideoItem } from './features/downloader/state/multiple-download-types';
 import { isPlaylistUrl, extractPlaylistId, PlaylistDto, VerifiedResult } from '@downloader/core';
+import { initAudioDropdown } from './features/downloader/ui-render/dropdown-logic';
 
 /**
  * Initialize mobile menu functionality
@@ -166,41 +167,6 @@ function getCurrentSettings() {
 }
 
 /**
- * Initialize audio dropdown
- */
-function initAudioDropdown() {
-    const dropdown = document.getElementById('multi-audio-track-dropdown');
-    if (!dropdown) return;
-
-    const trigger = dropdown.querySelector('.dropdown-trigger');
-    const menu = dropdown.querySelector('.dropdown-menu');
-
-    if (!trigger || !menu) return;
-
-    // Toggle dropdown
-    trigger.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const isHidden = menu.classList.contains('hidden');
-
-        if (isHidden) {
-            menu.classList.remove('hidden');
-            trigger.setAttribute('aria-expanded', 'true');
-        } else {
-            menu.classList.add('hidden');
-            trigger.setAttribute('aria-expanded', 'false');
-        }
-    });
-
-    // Close on click outside
-    document.addEventListener('click', (e) => {
-        if (!dropdown.contains(e.target as Node)) {
-            menu.classList.add('hidden');
-            trigger.setAttribute('aria-expanded', 'false');
-        }
-    });
-}
-
-/**
  * Initialize playlist download form
  */
 function initPlaylistForm() {
@@ -334,7 +300,7 @@ function init() {
     initMobileMenu();
     initFormatToggle();
     initInputActions();
-    initAudioDropdown();
+    initAudioDropdown({ dropdownId: 'multi-audio-track-dropdown', hiddenInputId: 'multi-audio-track-value' });
 
     // Initialize the renderer
     multipleDownloadRenderer.init();
