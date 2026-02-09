@@ -26,15 +26,15 @@ export function createStoreChangeHandler(config: StoreChangeHandlerConfig) {
                     let groupEl = listContainer.querySelector(`[data-group-id="${item.groupId}"]`) as HTMLElement;
                     if (!groupEl) {
                         groupEl = createGroupElement(item.groupId, item.groupTitle || 'Playlist');
-                        listContainer.appendChild(groupEl);
+                        listContainer.prepend(groupEl);
                     }
                     const groupList = groupEl.querySelector('.group-items');
                     if (groupList) {
-                        groupList.appendChild(el);
+                        groupList.prepend(el);
                     }
                     updateGroupCount(groupEl);
                 } else {
-                    listContainer.appendChild(el);
+                    listContainer.prepend(el);
                 }
 
                 // Remove empty state if exists
@@ -78,8 +78,15 @@ export function createStoreChangeHandler(config: StoreChangeHandlerConfig) {
             case 'item:updated': {
                 // data is the full VideoItem (already updated in store)
                 const item = data as VideoItem;
+                console.log('[handleStoreChange] item:updated received for:', item.id, 'status:', item.status);
+
                 const el = getVideoItemElement(listContainer, item.id);
-                if (!el) return;
+                if (!el) {
+                    console.log('[handleStoreChange] DOM element NOT found for:', item.id);
+                    return;
+                }
+
+                console.log('[handleStoreChange] DOM element found, updating...', 'has skeleton:', el.classList.contains('skeleton-loading'));
 
                 VideoItemRenderer.updateVideoItemElement(el, item, strategy);
 

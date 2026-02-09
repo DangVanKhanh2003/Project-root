@@ -22,13 +22,11 @@ export class MultiDownloadService {
 
         if (parsed.length === 0) return;
 
-        // Filter out URLs already in store
-        const newParsed = parsed.filter(p => !videoStore.hasUrl(p.url));
-        console.log('[MultiDownloadService] New URLs (after dedup):', newParsed.length);
-        if (newParsed.length === 0) return;
+        // No deduplication - accept all URLs
+        console.log('[MultiDownloadService] Adding all URLs:', parsed.length);
 
         // 1. Create skeleton items
-        const newItems: VideoItem[] = newParsed.map(p => ({
+        const newItems: VideoItem[] = parsed.map(p => ({
             id: generateItemId(p.videoId),
             url: p.url,
             meta: {

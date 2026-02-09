@@ -8,21 +8,33 @@ export interface ParsedUrl {
 }
 
 export function parseYouTubeURLs(inputText: string): ParsedUrl[] {
-    const tokens = inputText.split(/[\s,]+/).filter(Boolean);
-    const seen = new Set<string>();
+    console.log('[parseYouTubeURLs] Raw input:', JSON.stringify(inputText));
+    console.log('[parseYouTubeURLs] Input length:', inputText.length);
+
+    // Normalize: replace all types of line endings and whitespace
+    const normalized = inputText
+        .replace(/\r\n/g, '\n')  // Windows line endings
+        .replace(/\r/g, '\n')    // Old Mac line endings
+        .replace(/\t/g, ' ')     // Tabs to spaces
+        .trim();
+
+    console.log('[parseYouTubeURLs] Normalized:', JSON.stringify(normalized));
+
+    // Split by newlines, spaces, or commas (one or more)
+    const tokens = normalized.split(/[\n\s,]+/).filter(Boolean);
+    console.log('[parseYouTubeURLs] Tokens after split:', tokens.length, tokens);
+
     const results: ParsedUrl[] = [];
 
     for (const token of tokens) {
-        if (!isYouTubeUrl(token)) continue;
+        const isValid = isYouTubeUrl(token);
+        console.log('[parseYouTubeURLs] Token:', token, '| isYouTubeUrl:', isValid);
+        if (!isValid) continue;
 
         const videoId = extractVideoId(token);
         const playlistId = extractPlaylistId(token);
 
-        // Deduplicate by videoId
-        const key = videoId || token;
-        if (seen.has(key)) continue;
-        seen.add(key);
-
+        // No deduplication - accept all valid URLs
         results.push({
             url: videoId ? normalizeURL(videoId) : token,
             videoId,

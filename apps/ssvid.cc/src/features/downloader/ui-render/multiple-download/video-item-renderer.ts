@@ -29,16 +29,27 @@ export class VideoItemRenderer {
      * Update existing element (granular, no re-create)
      */
     static updateVideoItemElement(el: HTMLElement, item: VideoItem, strategy: RendererStrategy): void {
-        // Status class
-        VideoItemRenderer.applyStatusClass(el, item);
+        console.log('[VideoItemRenderer] updateVideoItemElement called:', item.id, 'status:', item.status);
+        console.log('[VideoItemRenderer] el.classList:', el.classList.toString());
+
+        // Check for skeleton BEFORE applyStatusClass (which removes skeleton-loading class)
+        const hasSkeleton = el.classList.contains('skeleton-loading');
+        const shouldTransition = hasSkeleton && item.status !== 'fetching_metadata';
+        console.log('[VideoItemRenderer] hasSkeleton:', hasSkeleton, 'shouldTransition:', shouldTransition);
 
         // Skeleton → full transition
-        if (el.classList.contains('skeleton-loading') && item.status !== 'fetching_metadata') {
+        if (shouldTransition) {
+            console.log('[VideoItemRenderer] Transitioning from skeleton to full content...');
             el.innerHTML = '';
             el.classList.remove('skeleton-loading');
             VideoItemRenderer.buildStructure(el, item, strategy);
+            VideoItemRenderer.applyStatusClass(el, item);
+            console.log('[VideoItemRenderer] Transition complete!');
             return;
         }
+
+        // Apply status class for non-skeleton updates
+        VideoItemRenderer.applyStatusClass(el, item);
 
         if (item.status === 'fetching_metadata') return;
 

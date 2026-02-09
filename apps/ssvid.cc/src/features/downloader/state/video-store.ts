@@ -220,13 +220,20 @@ class VideoStore {
      */
     updateMetadata(id: string, meta: Partial<VideoMeta>): void {
         const item = this.items.get(id);
-        if (!item) return;
+        if (!item) {
+            console.log('[VideoStore] updateMetadata failed - item not found:', id);
+            return;
+        }
+
+        console.log('[VideoStore] updateMetadata:', id, 'status before:', item.status);
         item.meta = { ...item.meta, ...meta };
 
         // Auto-transition from loading → ready (like ytmp3.gg)
         if (item.status === 'pending' || item.status === 'fetching_metadata') {
             item.status = 'ready';
         }
+
+        console.log('[VideoStore] updateMetadata:', id, 'status after:', item.status, 'firing item:updated');
 
         this.notify('item:updated', item);
     }
