@@ -8,8 +8,9 @@
 
     <!-- SEO Metadata -->
     <title>Télécharger des Vidéos YouTube en Ligne – MP4 &amp; MP3 | Y2Mate</title>
-    <meta name="description" content="Téléchargez des vidéos YouTube en ligne gratuitement avec Y2Mate. Téléchargez des vidéos YouTube en tant que vidéo ou audio (MP4, MP3) — sans filigrane, sans publicité, utilisez directement dans votre navigateur.">
-    
+    <meta name="description"
+        content="Téléchargez des vidéos YouTube en ligne gratuitement avec Y2Mate. Téléchargez des vidéos YouTube en tant que vidéo ou audio (MP4, MP3) — sans filigrane, sans publicité, utilisez directement dans votre navigateur.">
+
     <link rel="canonical" href="https://y2mate.vc/fr/">
 
     <!-- hreflang tags for multilingual SEO -->
@@ -36,15 +37,18 @@
 
     <!-- Schema.org markup -->
     <meta itemprop="name" content="Y2mate - Téléchargeur de Vidéos YouTube" />
-    <meta itemprop="description" content="Y2mate YouTube Downloader - convertissez en MP3 128-320kbps ou en MP4 360p-1080p rapidement. Sans limites, sans application.">
+    <meta itemprop="description"
+        content="Y2mate YouTube Downloader - convertissez en MP3 128-320kbps ou en MP4 360p-1080p rapidement. Sans limites, sans application.">
     <meta itemprop="inLanguage" content="fr" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Y2Mate" />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:title" content="Y2mate - Téléchargeur YouTube Gratuit - Télécharger des Vidéos YouTube Gratuitement" />
-    <meta property="og:description" content="Y2mate YouTube Downloader - conversions gratuites en MP3/MP4 (128-320kbps, 360p-1080p). Rapide, sans limites, sans application." />
+    <meta property="og:title"
+        content="Y2mate - Téléchargeur YouTube Gratuit - Télécharger des Vidéos YouTube Gratuitement" />
+    <meta property="og:description"
+        content="Y2mate YouTube Downloader - conversions gratuites en MP3/MP4 (128-320kbps, 360p-1080p). Rapide, sans limites, sans application." />
     <meta property="og:image" content="https://y2mate.vc/logo.png" />
     <meta property="og:url" content="https://y2mate.vc/fr/" />
 
@@ -64,7 +68,7 @@
     <!-- Google Analytics: Lazy loaded via analytics-loader.ts for better performance -->
 
     <!-- Critical: Set format and auto-submit preferences before render to prevent FOUC -->
-    <script>(function(){var f='mp4',a='false';try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p&&p.selectedFormat)f=p.selectedFormat;var s=localStorage.getItem('y2mate_auto_submit');if(s)a=s;}catch(e){}document.documentElement.dataset.format=f;document.documentElement.dataset.autoSubmit=a;})()</script>
+    <script>(function () { var f = 'mp4', a = 'false'; try { var p = JSON.parse(localStorage.getItem('y2mate_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat; var s = localStorage.getItem('y2mate_auto_submit'); if (s) a = s; } catch (e) { } document.documentElement.dataset.format = f; document.documentElement.dataset.autoSubmit = a; })()</script>
 
     <!-- Critical: Hide auto-submit tooltip before CSS loads -->
     <style>
@@ -75,7 +79,7 @@
     </style>
 
     <!-- Critical: Prevent default form submit before app init (avoid /search 404) -->
-    <script>(function(){document.addEventListener('submit',function(event){var target=event.target;if(target&&target.id==='downloadForm'){event.preventDefault();}},true);})();</script>
+    <script>(function () { document.addEventListener('submit', function (event) { var target = event.target; if (target && target.id === 'downloadForm') { event.preventDefault(); } }, true); })();</script>
 
     <!-- Critical CSS imported via Vite -->
     <script type="module" src="/src/main.ts"></script>
@@ -152,125 +156,36 @@
 
 <body>
     <header class="nav-header">
-    <div class="container">
-        <div class="nav_head">
-            <div class="navbar-logo">
-                <a href="/fr/">
-                    <img height="46px" width="46px" src="/logo.png" alt="Y2Mate logo">
-                    <span class="logo-name">Y2mate</span>
-                </a>
-            </div>
-            <button type="button" class="navbar-toggler" id="mobileMenuToggle" aria-label="Ouvrir le menu de navigation">
-                <span class="toggle-icon"></span>
-                <span class="toggle-icon"></span>
-                <span class="toggle-icon"></span>
-            </button>
-        </div>
-        <div class="header-menu">
-            <ul class="menu-navbar">
-              
-                <li class="navbar">
-                    <a href="/fr/youtube-to-mp4">Convertisseur YouTube en MP4</a>
-                </li>
-                <li class="navbar">
-                    <a href="/fr/youtube-to-mp3">Convertisseur YouTube en MP3</a>
-                </li>
-                <li class="navbar language">
-                    <a href="/">
-                        Français<span class="shape"></span>
-                    </a>
-                    <div class="dropdown-menu">
-                        <ul class="lang-menu">
-                            <li>
-                                <a data-lang="en" href="/">English</a>
-                            </li>
-                            <li>
-                                <a data-lang="ar" href="/ar/">العربية</a>
-                            </li>
-                            <li>
-                                <a data-lang="bn" href="/bn/">বাংলা</a>
-                            </li>
-                            <li>
-                                <a data-lang="de" href="/de/">Deutsch</a>
-                            </li>
-                            <li>
-                                <a data-lang="es" href="/es/">Español</a>
-                            </li>
-                            <li>
-                                <a data-lang="fr" href="/fr/">Français</a>
-                            </li>
-                            <li>
-                                <a data-lang="hi" href="/hi/">हिन्दी</a>
-                            </li>
-                            <li>
-                                <a data-lang="id" href="/id/">Indonesia</a>
-                            </li>
-                            <li>
-                                <a data-lang="it" href="/it/">Italiano</a>
-                            </li>
-                            <li>
-                                <a data-lang="ja" href="/ja/">日本語</a>
-                            </li>
-                            <li>
-                                <a data-lang="ko" href="/ko/">한국어</a>
-                            </li>
-                            <li>
-                                <a data-lang="my" href="/my/">မြန်မာ</a>
-                            </li>
-                            <li>
-                                <a data-lang="ms" href="/ms/">Melayu</a>
-                            </li>
-                            <li>
-                                <a data-lang="pt" href="/pt/">Português</a>
-                            </li>
-                            <li>
-                                <a data-lang="ru" href="/ru/">Русский</a>
-                            </li>
-                            <li>
-                                <a data-lang="th" href="/th/">ไทย</a>
-                            </li>
-                            <li>
-                                <a data-lang="tr" href="/tr/">Türkçe</a>
-                            </li>
-                            <li>
-                                <a data-lang="ur" href="/ur/">اردو</a>
-                            </li>
-                            <li>
-                                <a data-lang="vi" href="/vi/">Tiếng Việt</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
-        </div>
-
-        <!-- Mobile Menu Overlay -->
-        <div class="mobile-menu-overlay" id="mobileMenuOverlay">
-            <div class="mobile-menu-content">
-                <div class="mobile-header-top">
+        <div class="container">
+            <div class="nav_head">
+                <div class="navbar-logo">
                     <a href="/fr/">
-                        <div class="mobile-logo">
-                            <img height="36px" width="36px" src="/logo.png" alt="Y2Mate logo">
-                            <span class="logo-name">Y2mate</span>
-                        </div>
+                        <img height="46px" width="46px" src="/logo.png" alt="Y2Mate logo">
+                        <span class="logo-name">Y2mate</span>
                     </a>
-                    <button type="button" class="mobile-close-btn" id="mobileCloseBtn" aria-label="Fermer le menu de navigation">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                    </button>
                 </div>
-                <nav class="mobile-nav">
-                    <ul class="mobile-menu">
-                        <li><a href="/fr/">Téléchargeur YouTube</a></li>
-                        <li><a href="/fr/youtube-to-mp4">Convertisseur YouTube en MP4</a></li>
-                        <li><a href="/fr/youtube-to-mp3">Convertisseur YouTube en MP3</a></li>
-                        <li><a href="/fr/youtube-short-downloader">Téléchargeur de Shorts YouTube</a></li>
-                        <li class="mobile-language">
-                            <button type="button" class="mobile-language-toggle" aria-expanded="false">
-                                Français<span class="shape"></span>
-                            </button>
-                            <ul class="mobile-lang-menu">
+                <button type="button" class="navbar-toggler" id="mobileMenuToggle"
+                    aria-label="Ouvrir le menu de navigation">
+                    <span class="toggle-icon"></span>
+                    <span class="toggle-icon"></span>
+                    <span class="toggle-icon"></span>
+                </button>
+            </div>
+            <div class="header-menu">
+                <ul class="menu-navbar">
+
+                    <li class="navbar">
+                        <a href="/fr/youtube-to-mp4">Convertisseur YouTube en MP4</a>
+                    </li>
+                    <li class="navbar">
+                        <a href="/fr/youtube-to-mp3">Convertisseur YouTube en MP3</a>
+                    </li>
+                    <li class="navbar language">
+                        <a href="/">
+                            Français<span class="shape"></span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <ul class="lang-menu">
                                 <li>
                                     <a data-lang="en" href="/">English</a>
                                 </li>
@@ -329,213 +244,326 @@
                                     <a data-lang="vi" href="/vi/">Tiếng Việt</a>
                                 </li>
                             </ul>
-                        </li>
-                    </ul>
-                </nav>
+                        </div>
+                    </li>
+                </ul>
             </div>
+
+            <!-- Mobile Menu Overlay -->
+            <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+                <div class="mobile-menu-content">
+                    <div class="mobile-header-top">
+                        <a href="/fr/">
+                            <div class="mobile-logo">
+                                <img height="36px" width="36px" src="/logo.png" alt="Y2Mate logo">
+                                <span class="logo-name">Y2mate</span>
+                            </div>
+                        </a>
+                        <button type="button" class="mobile-close-btn" id="mobileCloseBtn"
+                            aria-label="Fermer le menu de navigation">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" />
+                            </svg>
+                        </button>
+                    </div>
+                    <nav class="mobile-nav">
+                        <ul class="mobile-menu">
+                            <li><a href="/fr/">Téléchargeur YouTube</a></li>
+                            <li><a href="/fr/youtube-to-mp4">Convertisseur YouTube en MP4</a></li>
+                            <li><a href="/fr/youtube-to-mp3">Convertisseur YouTube en MP3</a></li>
+                            <li><a href="/fr/youtube-short-downloader">Téléchargeur de Shorts YouTube</a></li>
+                            <li class="mobile-language">
+                                <button type="button" class="mobile-language-toggle" aria-expanded="false">
+                                    Français<span class="shape"></span>
+                                </button>
+                                <ul class="mobile-lang-menu">
+                                    <li>
+                                        <a data-lang="en" href="/">English</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="ar" href="/ar/">العربية</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="bn" href="/bn/">বাংলা</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="de" href="/de/">Deutsch</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="es" href="/es/">Español</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="fr" href="/fr/">Français</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="hi" href="/hi/">हिन्दी</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="id" href="/id/">Indonesia</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="it" href="/it/">Italiano</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="ja" href="/ja/">日本語</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="ko" href="/ko/">한국어</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="my" href="/my/">မြန်မာ</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="ms" href="/ms/">Melayu</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="pt" href="/pt/">Português</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="ru" href="/ru/">Русский</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="th" href="/th/">ไทย</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="tr" href="/tr/">Türkçe</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="ur" href="/ur/">اردو</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="vi" href="/vi/">Tiếng Việt</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- End Mobile Menu Overlay -->
         </div>
-        <!-- End Mobile Menu Overlay -->
-    </div>
-</header>
+    </header>
 
 
     <main>
-    <div class="container">
-    <section class="y2mate-download-pro">
-        <div class="y2mate-search-form-pro d-flex">
-            <div class="form-wrap">
-                <h1 class="y2mate_title-pro">Y2Mate - Télécharger des Vidéos YouTube</h1>
-                <form id="downloadForm" class="search_form" method="POST" action="/search/">
-                    <div class="input-container">
-                        <div class=" input-wrapper">
-                            <input id="videoUrl" class="y2mate_query-pro keyword" type="text" name="q"
-                                placeholder="Rechercher ou coller le lien ici..." autocomplete="off" autofocus=""
-                                role="combobox" aria-autocomplete="list" aria-controls="suggestion-container" aria-expanded="false">
-                            <button id="input-action-button" type="button" class="input-action-btn" data-action="paste"
-                                aria-label="Coller depuis le presse-papiers">
-                                <svg class="paste-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                                    viewBox="0 0 24 24">
-                                    <path fill="currentColor"
-                                        d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm7 16H5V5h2v3h10V5h2v14z" />
-                                </svg>
-                                <svg class="clear-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                                    viewBox="0 0 24 24">
-                                    <path fill="currentColor"
-                                        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                    <button id="submit" type="submit" name="form_submit" class="submit-btn" aria-label="Search">
-                        <div class="converter-btn">Démarrer</div>
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                            width="14px" height="14px" fill="#fff" id="Layer_1"
-                            style="enable-background:new 0 0 16 16;" version="1.1" viewBox="0 0 16 16"
-                            xml:space="preserve">
-                            <path
-                                d="M15.375,7L10,2.54C9.695,2.287,9.461,2,9,2C8.375,2,8,2.516,8,3v3H1C0.45,6,0,6.45,0,7v2c0,0.55,0.45,1,1,1h7v3  c0,0.484,0.375,1,1,1c0.461,0,0.695-0.287,1-0.54L15.375,9C15.758,8.688,16,8.445,16,8S15.758,7.313,15.375,7z">
-                            </path>
-                        </svg>
-                    </button>
-
-                    <!-- Format Selector -->
-                    <div id="format-selector-container" class="format-selector-wrapper">
-                        <div class="format-selector">
-                            <!-- Group 1: Format + Quality -->
-                            <div class="format-quality-group">
-                                <!-- Format Toggle -->
-                                <button type="button" class="format-toggle-btn" data-toggle-format>
-                                    <span class="toggle-side" data-format="mp4">
-                                        <span class="format-label">MP4</span>
-                                    </span>
-                                    <span class="toggle-side" data-format="mp3">
-                                        <span class="format-label">MP3</span>
-                                    </span>
-                                </button>
-                                <!-- Quality Dropdowns -->
-                                <div class="quality-selector">
-                                    <!-- MP4 Options -->
-                                    <select id="quality-select-mp4" class="quality-select quality-select--mp4"
-                                        aria-label="Qualité vidéo" data-quality-select>
-                                        <option value="mp4-1080">MP4 - 1080p</option>
-                                        <option value="mp4-720" selected>MP4 - 720p</option>
-                                        <option value="mp4-480">MP4 - 480p</option>
-                                        <option value="mp4-360">MP4 - 360p</option>
-                                        <option value="mp4-240">MP4 - 240p</option>
-                                        <option value="mp4-144">MP4 - 144p</option>
-                                        <option value="webm">WEBM</option>
-                                        <option value="mkv">MKV</option>
-                                    </select>
-                                    <!-- MP3 Options -->
-                                    <select id="quality-select-mp3" class="quality-select quality-select--mp3"
-                                        aria-label="Qualité audio" data-quality-select>
-                                        <option value="mp3-320">MP3 - 320kbps</option>
-                                        <option value="mp3-256">MP3 - 256kbps</option>
-                                        <option value="mp3-192">MP3 - 192kbps</option>
-                                        <option value="mp3-128" selected>MP3 - 128kbps</option>
-                                        <option value="ogg">OGG</option>
-                                        <option value="opus">OPUS</option>
-                                        <option value="wav">WAV</option>
-                                    </select>
+        <div class="container">
+            <section class="y2mate-download-pro">
+                <div class="y2mate-search-form-pro d-flex">
+                    <div class="form-wrap">
+                        <h1 class="y2mate_title-pro">Y2Mate - Télécharger des Vidéos YouTube</h1>
+                        <form id="downloadForm" class="search_form" method="POST" action="/search/">
+                            <div class="input-container">
+                                <div class=" input-wrapper">
+                                    <input id="videoUrl" class="y2mate_query-pro keyword" type="text" name="q"
+                                        placeholder="Rechercher ou coller le lien ici..." autocomplete="off"
+                                        autofocus="" role="combobox" aria-autocomplete="list"
+                                        aria-controls="suggestion-container" aria-expanded="false">
+                                    <button id="input-action-button" type="button" class="input-action-btn"
+                                        data-action="paste" aria-label="Coller depuis le presse-papiers">
+                                        <svg class="paste-icon" xmlns="http://www.w3.org/2000/svg" width="18"
+                                            height="18" viewBox="0 0 24 24">
+                                            <path fill="currentColor"
+                                                d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm7 16H5V5h2v3h10V5h2v14z" />
+                                        </svg>
+                                        <svg class="clear-icon" xmlns="http://www.w3.org/2000/svg" width="18"
+                                            height="18" viewBox="0 0 24 24">
+                                            <path fill="currentColor"
+                                                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                                        </svg>
+                                    </button>
                                 </div>
                             </div>
-                            <!-- Group 2: Auto Submit Toggle -->
-                            <div class="auto-submit-toggle"
-                                data-tooltip="Soumettre automatiquement lors du collage d&#39;une URL ou d&#39;un mot-clé">
-                                <strong class="toggle-label">Soumission automatique</strong>
-                                <label class="toggle-switch" for="auto-submit-checkbox">
-                                    <input type="checkbox" id="auto-submit-checkbox" data-auto-submit-toggle aria-label="Auto submit after selecting format" />
-                                    <span class="toggle-slider"></span>
-                                </label>
-                                <span class="custom-tooltip"></span>
-                        </div>
+                            <button id="submit" type="submit" name="form_submit" class="submit-btn" aria-label="Search">
+                                <div class="converter-btn">Démarrer</div>
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    width="14px" height="14px" fill="#fff" id="Layer_1"
+                                    style="enable-background:new 0 0 16 16;" version="1.1" viewBox="0 0 16 16"
+                                    xml:space="preserve">
+                                    <path
+                                        d="M15.375,7L10,2.54C9.695,2.287,9.461,2,9,2C8.375,2,8,2.516,8,3v3H1C0.45,6,0,6.45,0,7v2c0,0.55,0.45,1,1,1h7v3  c0,0.484,0.375,1,1,1c0.461,0,0.695-0.287,1-0.54L15.375,9C15.758,8.688,16,8.445,16,8S15.758,7.313,15.375,7z">
+                                    </path>
+                                </svg>
+                            </button>
+
+                            <!-- Format Selector -->
+                            <div id="format-selector-container" class="format-selector-wrapper">
+                                <div class="format-selector">
+                                    <!-- Group 1: Format + Quality -->
+                                    <div class="format-quality-group">
+                                        <!-- Format Toggle -->
+                                        <button type="button" class="format-toggle-btn" data-toggle-format>
+                                            <span class="toggle-side" data-format="mp4">
+                                                <span class="format-label">MP4</span>
+                                            </span>
+                                            <span class="toggle-side" data-format="mp3">
+                                                <span class="format-label">MP3</span>
+                                            </span>
+                                        </button>
+                                        <!-- Quality Dropdowns -->
+                                        <div class="quality-selector">
+                                            <!-- MP4 Options -->
+                                            <select id="quality-select-mp4" class="quality-select quality-select--mp4"
+                                                aria-label="Qualité vidéo" data-quality-select>
+                                                <option value="mp4-1080">MP4 - 1080p</option>
+                                                <option value="mp4-720" selected>MP4 - 720p</option>
+                                                <option value="mp4-480">MP4 - 480p</option>
+                                                <option value="mp4-360">MP4 - 360p</option>
+                                                <option value="mp4-144">MP4 - 144p</option>
+                                                <option value="webm">WEBM</option>
+                                                <option value="mkv">MKV</option>
+                                            </select>
+                                            <!-- MP3 Options -->
+                                            <select id="quality-select-mp3" class="quality-select quality-select--mp3"
+                                                aria-label="Qualité audio" data-quality-select>
+                                                <option value="mp3-320">MP3 - 320kbps</option>
+                                                <option value="mp3-256">MP3 - 256kbps</option>
+                                                <option value="mp3-192">MP3 - 192kbps</option>
+                                                <option value="mp3-128" selected>MP3 - 128kbps</option>
+                                                <option value="ogg">OGG</option>
+                                                <option value="opus">OPUS</option>
+                                                <option value="wav">WAV</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!-- Group 2: Auto Submit Toggle -->
+                                    <div class="auto-submit-toggle"
+                                        data-tooltip="Soumettre automatiquement lors du collage d&#39;une URL ou d&#39;un mot-clé">
+                                        <strong class="toggle-label">Soumission automatique</strong>
+                                        <label class="toggle-switch" for="auto-submit-checkbox">
+                                            <input type="checkbox" id="auto-submit-checkbox" data-auto-submit-toggle
+                                                aria-label="Auto submit after selecting format" />
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                        <span class="custom-tooltip"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="suggestion-container" class="suggesstion-list suggesstion-box"></div>
+                        </form>
+
+                        <!-- Video Detail Area -->
+                        <div id="content-area"></div>
                     </div>
-                    </div>
+                </div>
+            </section>
 
-                    <div id="suggestion-container" class="suggesstion-list suggesstion-box"></div>
-                </form>
+            <!-- Search Results Section -->
+            <section id="search-results-section" class="search-results-section" style="display: none;">
+                <div id="search-results-container"></div>
+            </section>
 
-                <!-- Video Detail Area -->
-                <div id="content-area"></div>
-            </div>
-        </div>
-    </section>
+            <!-- Content Sections -->
+            <section class="y2mate-content-pro d-flex">
+                <div class="col-sm-12">
+                    <h2>Qu&#39;est-ce que Y2Mate – Téléchargeur de Vidéos YouTube</h2>
+                    <p>Y2Mate est un outil en ligne qui permet aux utilisateurs de télécharger des vidéos YouTube dans
+                        différents formats et résolutions. L'outil est conçu pour les personnes qui ont besoin de
+                        sauvegarder du contenu YouTube pour le visionner hors ligne ou pour un usage personnel.</p>
+                    <p>L'outil fonctionne directement dans votre navigateur et est compatible avec les ordinateurs, les
+                        smartphones et les tablettes, ce qui le rend adapté aux cas d'utilisation courants de
+                        téléchargement de vidéos YouTube aujourd'hui.</p>
+                </div>
+            </section>
+            <section class="y2mate-content-pro d-flex">
+                <div class="col-sm-12">
+                    <h2>Téléchargeur de Vidéos YouTube en Ligne</h2>
+                    <p>Y2Mate fonctionne comme un téléchargeur YouTube en ligne, vous permettant de télécharger du
+                        contenu de YouTube sans installer d'applications ou d'extensions de navigateur.</p>
+                    <p>Après avoir collé un lien vidéo, le système analyse le contenu et affiche les options de
+                        téléchargement appropriées. Vous pouvez choisir de télécharger la vidéo pour la visionner hors
+                        ligne ou d'extraire l'audio pour un usage personnel.</p>
+                </div>
+            </section>
+            <section class="y2mate-content-pro d-flex">
+                <div class="col-sm-12">
+                    <h2>Plus d&#39;Options de Téléchargement de Y2Mate</h2>
+                    <p>Si vous avez besoin d'options plus spécialisées, Y2Mate propose également des outils dédiés pour
+                        des cas d'utilisation spécifiques.</p>
+                    <p>Vous pouvez utiliser l'outil <a href="/fr/youtube-to-mp4">YouTube en MP4</a> pour télécharger des
+                        vidéos et sélectionner la résolution appropriée pour le visionnage hors ligne.</p>
+                    <p>Si vous n'avez besoin que de l'audio, l'outil <a href="/fr/youtube-to-mp3">YouTube en MP3</a>
+                        permet de convertir rapidement des vidéos au format MP3.</p>
+                    <p>Pour le contenu de format court, le <a href="/fr/youtube-short-downloader">Téléchargeur de
+                            YouTube Shorts</a> est spécialement conçu pour télécharger des vidéos Shorts verticales.</p>
+                    <p><em>Chaque outil est conçu séparément pour servir un objectif spécifique, ce qui rend
+                            l'expérience globale claire et facile à comprendre.</em></p>
+                </div>
+            </section>
+            <section class="y2mate-content-pro d-flex">
+                <div class="col-sm-12">
+                    <h2>Est-il Sûr de Télécharger du Contenu YouTube avec Y2Mate ?</h2>
+                    <p>Y2Mate ne nécessite aucune installation de logiciel, ne demande aucune information de connexion
+                        et ne collecte aucune information personnelle. Tous les téléchargements sont gérés directement
+                        dans votre navigateur.</p>
+                    <p>Les utilisateurs ne doivent télécharger du contenu que pour un usage personnel et respecter les
+                        droits des créateurs de contenu sur YouTube.</p>
+                </div>
+            </section>
 
-    <!-- Search Results Section -->
-    <section id="search-results-section" class="search-results-section" style="display: none;">
-        <div id="search-results-container"></div>
-    </section>
+            <!-- Why Choose Section -->
+            <section class="y2mate-instruction-pro">
+                <div class="y2mate-in-ad-pro">
+                    <h2>Pourquoi Choisir Y2Mate pour Télécharger du Contenu YouTube</h2>
+                    <p>Il existe de nombreux sites Web qui permettent aux utilisateurs de télécharger du contenu de
+                        YouTube, mais tous n&#39;offrent pas une expérience claire et stable. Y2Mate est conçu pour
+                        résoudre les problèmes courants que les gens rencontrent lors du téléchargement de vidéos
+                        YouTube.</p>
+                    <ul>
+                        <li>Pas de filigrane – le contenu téléchargé reste fidèle à la source d&#39;origine</li>
+                        <li>Pas de publicités intrusives – pas de pop-ups ou de redirections inattendues</li>
+                        <li>Téléchargements propres – les fichiers sont clairs et faciles à utiliser</li>
+                        <li>Aucune inscription requise – accédez et utilisez instantanément</li>
+                        <li>Performances stables – fonctionne bien avec différents types de contenu YouTube</li>
+                    </ul>
+                </div>
+            </section>
 
-    <!-- Content Sections -->
-    <section class="y2mate-content-pro d-flex">
-        <div class="col-sm-12">
-            <h2>Qu&#39;est-ce que Y2Mate – Téléchargeur de Vidéos YouTube</h2>
-            <p>Y2Mate est un outil en ligne qui permet aux utilisateurs de télécharger des vidéos YouTube dans différents formats et résolutions. L'outil est conçu pour les personnes qui ont besoin de sauvegarder du contenu YouTube pour le visionner hors ligne ou pour un usage personnel.</p>
-            <p>L'outil fonctionne directement dans votre navigateur et est compatible avec les ordinateurs, les smartphones et les tablettes, ce qui le rend adapté aux cas d'utilisation courants de téléchargement de vidéos YouTube aujourd'hui.</p>
-        </div>
-    </section>
-    <section class="y2mate-content-pro d-flex">
-        <div class="col-sm-12">
-            <h2>Téléchargeur de Vidéos YouTube en Ligne</h2>
-            <p>Y2Mate fonctionne comme un téléchargeur YouTube en ligne, vous permettant de télécharger du contenu de YouTube sans installer d'applications ou d'extensions de navigateur.</p>
-            <p>Après avoir collé un lien vidéo, le système analyse le contenu et affiche les options de téléchargement appropriées. Vous pouvez choisir de télécharger la vidéo pour la visionner hors ligne ou d'extraire l'audio pour un usage personnel.</p>
-        </div>
-    </section>
-    <section class="y2mate-content-pro d-flex">
-        <div class="col-sm-12">
-            <h2>Plus d&#39;Options de Téléchargement de Y2Mate</h2>
-            <p>Si vous avez besoin d'options plus spécialisées, Y2Mate propose également des outils dédiés pour des cas d'utilisation spécifiques.</p>
-            <p>Vous pouvez utiliser l'outil <a href="/fr/youtube-to-mp4">YouTube en MP4</a> pour télécharger des vidéos et sélectionner la résolution appropriée pour le visionnage hors ligne.</p>
-            <p>Si vous n'avez besoin que de l'audio, l'outil <a href="/fr/youtube-to-mp3">YouTube en MP3</a> permet de convertir rapidement des vidéos au format MP3.</p>
-            <p>Pour le contenu de format court, le <a href="/fr/youtube-short-downloader">Téléchargeur de YouTube Shorts</a> est spécialement conçu pour télécharger des vidéos Shorts verticales.</p>
-            <p><em>Chaque outil est conçu séparément pour servir un objectif spécifique, ce qui rend l'expérience globale claire et facile à comprendre.</em></p>
-        </div>
-    </section>
-    <section class="y2mate-content-pro d-flex">
-        <div class="col-sm-12">
-            <h2>Est-il Sûr de Télécharger du Contenu YouTube avec Y2Mate ?</h2>
-            <p>Y2Mate ne nécessite aucune installation de logiciel, ne demande aucune information de connexion et ne collecte aucune information personnelle. Tous les téléchargements sont gérés directement dans votre navigateur.</p>
-            <p>Les utilisateurs ne doivent télécharger du contenu que pour un usage personnel et respecter les droits des créateurs de contenu sur YouTube.</p>
-        </div>
-    </section>
+            <!-- Instructions Section -->
+            <section class="y2mate-instruction-pro">
+                <div class="y2mate-in-ad-pro">
+                    <h2>Comment Télécharger des Vidéos YouTube avec Y2Mate</h2>
+                    <ol>
+                        <li>Copiez le lien de la vidéo depuis YouTube.</li>
+                        <li>Collez le lien dans le champ de saisie sur la page.</li>
+                        <li>Cliquez sur le bouton de démarrage pour laisser le système analyser le contenu.</li>
+                        <li>Choisissez le format dont vous avez besoin et téléchargez-le sur votre appareil.</li>
+                    </ol>
+                    <p><em>L&#39;ensemble du processus s&#39;exécute directement dans votre navigateur et ne nécessite
+                            l&#39;installation d&#39;aucun logiciel.</em></p>
+                </div>
+            </section>
 
-    <!-- Why Choose Section -->
-    <section class="y2mate-instruction-pro">
-        <div class="y2mate-in-ad-pro">
-            <h2>Pourquoi Choisir Y2Mate pour Télécharger du Contenu YouTube</h2>
-            <p>Il existe de nombreux sites Web qui permettent aux utilisateurs de télécharger du contenu de YouTube, mais tous n&#39;offrent pas une expérience claire et stable. Y2Mate est conçu pour résoudre les problèmes courants que les gens rencontrent lors du téléchargement de vidéos YouTube.</p>
-            <ul>
-                <li>Pas de filigrane – le contenu téléchargé reste fidèle à la source d&#39;origine</li>
-                <li>Pas de publicités intrusives – pas de pop-ups ou de redirections inattendues</li>
-                <li>Téléchargements propres – les fichiers sont clairs et faciles à utiliser</li>
-                <li>Aucune inscription requise – accédez et utilisez instantanément</li>
-                <li>Performances stables – fonctionne bien avec différents types de contenu YouTube</li>
-            </ul>
+            <!-- FAQs Section -->
         </div>
-    </section>
-
-    <!-- Instructions Section -->
-    <section class="y2mate-instruction-pro">
-        <div class="y2mate-in-ad-pro">
-            <h2>Comment Télécharger des Vidéos YouTube avec Y2Mate</h2>
-            <ol>
-                <li>Copiez le lien de la vidéo depuis YouTube.</li>
-                <li>Collez le lien dans le champ de saisie sur la page.</li>
-                <li>Cliquez sur le bouton de démarrage pour laisser le système analyser le contenu.</li>
-                <li>Choisissez le format dont vous avez besoin et téléchargez-le sur votre appareil.</li>
-            </ol>
-            <p><em>L&#39;ensemble du processus s&#39;exécute directement dans votre navigateur et ne nécessite l&#39;installation d&#39;aucun logiciel.</em></p>
-        </div>
-    </section>
-
-    <!-- FAQs Section -->
-</div>
 
     </main>
 
     <footer class="footer">
-    <p>© 2026 y2mate</p>
-    <ul class="footer_nav">
-        <li class="fnav-menu">
-            <a href="/about-us">À propos</a>
-        </li>
-        <li class="fnav-menu">
-            <a href="/contact">Contact</a>
-        </li>
-        <li class="fnav-menu">
-            <a href="/terms-condition">Conditions d&#39;utilisation</a>
-        </li>
-        <li class="fnav-menu">
-            <a href="/privacy-policy">Politique de confidentialité</a>
-        </li>
-        <li class="fnav-menu">
-            <a href="/copyright-claims">Réclamations pour atteinte aux droits d&#39;auteur</a>
-        </li>
-        <li class="fnav-menu">
-            <a href="/fr/youtube-short-downloader">Téléchargeur de Shorts YouTube</a>
-        </li>
-    </ul>
-</footer>
+        <p>© 2026 y2mate</p>
+        <ul class="footer_nav">
+            <li class="fnav-menu">
+                <a href="/about-us">À propos</a>
+            </li>
+            <li class="fnav-menu">
+                <a href="/contact">Contact</a>
+            </li>
+            <li class="fnav-menu">
+                <a href="/terms-condition">Conditions d&#39;utilisation</a>
+            </li>
+            <li class="fnav-menu">
+                <a href="/privacy-policy">Politique de confidentialité</a>
+            </li>
+            <li class="fnav-menu">
+                <a href="/copyright-claims">Réclamations pour atteinte aux droits d&#39;auteur</a>
+            </li>
+            <li class="fnav-menu">
+                <a href="/fr/youtube-short-downloader">Téléchargeur de Shorts YouTube</a>
+            </li>
+        </ul>
+    </footer>
 
 
     <!-- Conversion Modal Wrapper -->

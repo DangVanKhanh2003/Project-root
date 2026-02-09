@@ -8,8 +8,9 @@
 
     <!-- SEO Metadata -->
     <title>YouTube в MP3 – извлечение аудио из видео YouTube | Y2Mate</title>
-    <meta name="description" content="Извлекайте аудио из видео YouTube в формате MP3 с помощью Y2Mate. Конвертируйте видео YouTube в MP3 для прослушивания в автономном режиме — оптимизировано для музыки, подкастов и длинных видео.">
-    
+    <meta name="description"
+        content="Извлекайте аудио из видео YouTube в формате MP3 с помощью Y2Mate. Конвертируйте видео YouTube в MP3 для прослушивания в автономном режиме — оптимизировано для музыки, подкастов и длинных видео.">
+
     <link rel="canonical" href="https://y2mate.vc/ru/youtube-to-mp3">
 
     <!-- hreflang tags for multilingual SEO -->
@@ -36,7 +37,8 @@
 
     <!-- Schema.org markup -->
     <meta itemprop="name" content="Y2mate - конвертер YouTube в MP3" />
-    <meta itemprop="description" content="Y2mate в MP3: 128/192/320 кбит/с. Быстро, бесплатно, без ограничений, без приложения.">
+    <meta itemprop="description"
+        content="Y2mate в MP3: 128/192/320 кбит/с. Быстро, бесплатно, без ограничений, без приложения.">
     <meta itemprop="inLanguage" content="ru" />
 
     <!-- Open Graph / Facebook -->
@@ -44,7 +46,8 @@
     <meta property="og:site_name" content="Y2Mate" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:title" content="Y2mate - бесплатный конвертер YouTube в MP3" />
-    <meta property="og:description" content="Y2mate в MP3: 128/192/320 кбит/с. Быстро, бесплатно, без ограничений, без приложения." />
+    <meta property="og:description"
+        content="Y2mate в MP3: 128/192/320 кбит/с. Быстро, бесплатно, без ограничений, без приложения." />
     <meta property="og:image" content="https://y2mate.vc/logo.png" />
     <meta property="og:url" content="https://y2mate.vc/ru/youtube-to-mp3" />
 
@@ -64,7 +67,7 @@
     <!-- Google Analytics: Lazy loaded via analytics-loader.ts for better performance -->
 
     <!-- Critical: Set format and auto-submit preferences before render to prevent FOUC -->
-    <script>(function(){var f='mp4',a='false';try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p&&p.selectedFormat)f=p.selectedFormat;var s=localStorage.getItem('y2mate_auto_submit');if(s)a=s;}catch(e){}document.documentElement.dataset.format=f;document.documentElement.dataset.autoSubmit=a;})()</script>
+    <script>(function () { var f = 'mp4', a = 'false'; try { var p = JSON.parse(localStorage.getItem('y2mate_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat; var s = localStorage.getItem('y2mate_auto_submit'); if (s) a = s; } catch (e) { } document.documentElement.dataset.format = f; document.documentElement.dataset.autoSubmit = a; })()</script>
 
     <!-- Critical: Hide auto-submit tooltip before CSS loads -->
     <style>
@@ -75,7 +78,7 @@
     </style>
 
     <!-- Critical: Prevent default form submit before app init (avoid /search 404) -->
-    <script>(function(){document.addEventListener('submit',function(event){var target=event.target;if(target&&target.id==='downloadForm'){event.preventDefault();}},true);})();</script>
+    <script>(function () { document.addEventListener('submit', function (event) { var target = event.target; if (target && target.id === 'downloadForm') { event.preventDefault(); } }, true); })();</script>
 
     <!-- Critical CSS imported via Vite -->
     <script type="module" src="/src/main.ts"></script>
@@ -212,125 +215,35 @@
 
 <body>
     <header class="nav-header">
-    <div class="container">
-        <div class="nav_head">
-            <div class="navbar-logo">
-                <a href="/ru/">
-                    <img height="46px" width="46px" src="/logo.png" alt="Y2Mate logo">
-                    <span class="logo-name">Y2mate</span>
-                </a>
-            </div>
-            <button type="button" class="navbar-toggler" id="mobileMenuToggle" aria-label="Открыть меню навигации">
-                <span class="toggle-icon"></span>
-                <span class="toggle-icon"></span>
-                <span class="toggle-icon"></span>
-            </button>
-        </div>
-        <div class="header-menu">
-            <ul class="menu-navbar">
-              
-                <li class="navbar">
-                    <a href="/ru/youtube-to-mp4">Конвертер YouTube в MP4</a>
-                </li>
-                <li class="navbar">
-                    <a href="/ru/youtube-to-mp3">Конвертер YouTube в MP3</a>
-                </li>
-                <li class="navbar language">
-                    <a href="/">
-                        Русский<span class="shape"></span>
-                    </a>
-                    <div class="dropdown-menu">
-                        <ul class="lang-menu">
-                            <li>
-                                <a data-lang="en" href="/youtube-to-mp3">English</a>
-                            </li>
-                            <li>
-                                <a data-lang="ar" href="/ar/youtube-to-mp3">العربية</a>
-                            </li>
-                            <li>
-                                <a data-lang="bn" href="/bn/youtube-to-mp3">বাংলা</a>
-                            </li>
-                            <li>
-                                <a data-lang="de" href="/de/youtube-to-mp3">Deutsch</a>
-                            </li>
-                            <li>
-                                <a data-lang="es" href="/es/youtube-to-mp3">Español</a>
-                            </li>
-                            <li>
-                                <a data-lang="fr" href="/fr/youtube-to-mp3">Français</a>
-                            </li>
-                            <li>
-                                <a data-lang="hi" href="/hi/youtube-to-mp3">हिन्दी</a>
-                            </li>
-                            <li>
-                                <a data-lang="id" href="/id/youtube-to-mp3">Indonesia</a>
-                            </li>
-                            <li>
-                                <a data-lang="it" href="/it/youtube-to-mp3">Italiano</a>
-                            </li>
-                            <li>
-                                <a data-lang="ja" href="/ja/youtube-to-mp3">日本語</a>
-                            </li>
-                            <li>
-                                <a data-lang="ko" href="/ko/youtube-to-mp3">한국어</a>
-                            </li>
-                            <li>
-                                <a data-lang="my" href="/my/youtube-to-mp3">မြန်မာ</a>
-                            </li>
-                            <li>
-                                <a data-lang="ms" href="/ms/youtube-to-mp3">Melayu</a>
-                            </li>
-                            <li>
-                                <a data-lang="pt" href="/pt/youtube-to-mp3">Português</a>
-                            </li>
-                            <li>
-                                <a data-lang="ru" href="/ru/youtube-to-mp3">Русский</a>
-                            </li>
-                            <li>
-                                <a data-lang="th" href="/th/youtube-to-mp3">ไทย</a>
-                            </li>
-                            <li>
-                                <a data-lang="tr" href="/tr/youtube-to-mp3">Türkçe</a>
-                            </li>
-                            <li>
-                                <a data-lang="ur" href="/ur/youtube-to-mp3">اردو</a>
-                            </li>
-                            <li>
-                                <a data-lang="vi" href="/vi/youtube-to-mp3">Tiếng Việt</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
-        </div>
-
-        <!-- Mobile Menu Overlay -->
-        <div class="mobile-menu-overlay" id="mobileMenuOverlay">
-            <div class="mobile-menu-content">
-                <div class="mobile-header-top">
+        <div class="container">
+            <div class="nav_head">
+                <div class="navbar-logo">
                     <a href="/ru/">
-                        <div class="mobile-logo">
-                            <img height="36px" width="36px" src="/logo.png" alt="Y2Mate logo">
-                            <span class="logo-name">Y2mate</span>
-                        </div>
+                        <img height="46px" width="46px" src="/logo.png" alt="Y2Mate logo">
+                        <span class="logo-name">Y2mate</span>
                     </a>
-                    <button type="button" class="mobile-close-btn" id="mobileCloseBtn" aria-label="Закрыть меню навигации">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                    </button>
                 </div>
-                <nav class="mobile-nav">
-                    <ul class="mobile-menu">
-                        <li><a href="/ru/">Загрузчик YouTube</a></li>
-                        <li><a href="/ru/youtube-to-mp4">Конвертер YouTube в MP4</a></li>
-                        <li><a href="/ru/youtube-to-mp3">Конвертер YouTube в MP3</a></li>
-                        <li><a href="/ru/youtube-short-downloader">Загрузчик YouTube Shorts</a></li>
-                        <li class="mobile-language">
-                            <button type="button" class="mobile-language-toggle" aria-expanded="false">
-                                Русский<span class="shape"></span>
-                            </button>
-                            <ul class="mobile-lang-menu">
+                <button type="button" class="navbar-toggler" id="mobileMenuToggle" aria-label="Открыть меню навигации">
+                    <span class="toggle-icon"></span>
+                    <span class="toggle-icon"></span>
+                    <span class="toggle-icon"></span>
+                </button>
+            </div>
+            <div class="header-menu">
+                <ul class="menu-navbar">
+
+                    <li class="navbar">
+                        <a href="/ru/youtube-to-mp4">Конвертер YouTube в MP4</a>
+                    </li>
+                    <li class="navbar">
+                        <a href="/ru/youtube-to-mp3">Конвертер YouTube в MP3</a>
+                    </li>
+                    <li class="navbar language">
+                        <a href="/">
+                            Русский<span class="shape"></span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <ul class="lang-menu">
                                 <li>
                                     <a data-lang="en" href="/youtube-to-mp3">English</a>
                                 </li>
@@ -389,260 +302,374 @@
                                     <a data-lang="vi" href="/vi/youtube-to-mp3">Tiếng Việt</a>
                                 </li>
                             </ul>
-                        </li>
-                    </ul>
-                </nav>
+                        </div>
+                    </li>
+                </ul>
             </div>
+
+            <!-- Mobile Menu Overlay -->
+            <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+                <div class="mobile-menu-content">
+                    <div class="mobile-header-top">
+                        <a href="/ru/">
+                            <div class="mobile-logo">
+                                <img height="36px" width="36px" src="/logo.png" alt="Y2Mate logo">
+                                <span class="logo-name">Y2mate</span>
+                            </div>
+                        </a>
+                        <button type="button" class="mobile-close-btn" id="mobileCloseBtn"
+                            aria-label="Закрыть меню навигации">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" />
+                            </svg>
+                        </button>
+                    </div>
+                    <nav class="mobile-nav">
+                        <ul class="mobile-menu">
+                            <li><a href="/ru/">Загрузчик YouTube</a></li>
+                            <li><a href="/ru/youtube-to-mp4">Конвертер YouTube в MP4</a></li>
+                            <li><a href="/ru/youtube-to-mp3">Конвертер YouTube в MP3</a></li>
+                            <li><a href="/ru/youtube-short-downloader">Загрузчик YouTube Shorts</a></li>
+                            <li class="mobile-language">
+                                <button type="button" class="mobile-language-toggle" aria-expanded="false">
+                                    Русский<span class="shape"></span>
+                                </button>
+                                <ul class="mobile-lang-menu">
+                                    <li>
+                                        <a data-lang="en" href="/youtube-to-mp3">English</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="ar" href="/ar/youtube-to-mp3">العربية</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="bn" href="/bn/youtube-to-mp3">বাংলা</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="de" href="/de/youtube-to-mp3">Deutsch</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="es" href="/es/youtube-to-mp3">Español</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="fr" href="/fr/youtube-to-mp3">Français</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="hi" href="/hi/youtube-to-mp3">हिन्दी</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="id" href="/id/youtube-to-mp3">Indonesia</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="it" href="/it/youtube-to-mp3">Italiano</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="ja" href="/ja/youtube-to-mp3">日本語</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="ko" href="/ko/youtube-to-mp3">한국어</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="my" href="/my/youtube-to-mp3">မြန်မာ</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="ms" href="/ms/youtube-to-mp3">Melayu</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="pt" href="/pt/youtube-to-mp3">Português</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="ru" href="/ru/youtube-to-mp3">Русский</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="th" href="/th/youtube-to-mp3">ไทย</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="tr" href="/tr/youtube-to-mp3">Türkçe</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="ur" href="/ur/youtube-to-mp3">اردو</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="vi" href="/vi/youtube-to-mp3">Tiếng Việt</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- End Mobile Menu Overlay -->
         </div>
-        <!-- End Mobile Menu Overlay -->
-    </div>
-</header>
+    </header>
 
 
     <main>
-    <div class="container">
-    <section class="y2mate-download-pro">
-        <div class="y2mate-search-form-pro d-flex">
-            <div class="form-wrap">
-                <h1 class="y2mate_title-pro">Y2Mate – YouTube в MP3</h1>
-                <form id="downloadForm" class="search_form" method="POST" action="/search/">
-                    <div class="input-container">
-                        <div class=" input-wrapper">
-                            <input id="videoUrl" class="y2mate_query-pro keyword" type="text" name="q"
-                                placeholder="Искать или вставить ссылку здесь..." autocomplete="off" autofocus=""
-                                role="combobox" aria-autocomplete="list" aria-controls="suggestion-container" aria-expanded="false">
-                            <button id="input-action-button" type="button" class="input-action-btn" data-action="paste"
-                                aria-label="Вставить из буфера обмена">
-                                <svg class="paste-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                                    viewBox="0 0 24 24">
-                                    <path fill="currentColor"
-                                        d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm7 16H5V5h2v3h10V5h2v14z" />
-                                </svg>
-                                <svg class="clear-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                                    viewBox="0 0 24 24">
-                                    <path fill="currentColor"
-                                        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                    <button id="submit" type="submit" name="form_submit" class="submit-btn" aria-label="Search">
-                        <div class="converter-btn">Начать</div>
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                            width="14px" height="14px" fill="#fff" id="Layer_1"
-                            style="enable-background:new 0 0 16 16;" version="1.1" viewBox="0 0 16 16"
-                            xml:space="preserve">
-                            <path
-                                d="M15.375,7L10,2.54C9.695,2.287,9.461,2,9,2C8.375,2,8,2.516,8,3v3H1C0.45,6,0,6.45,0,7v2c0,0.55,0.45,1,1,1h7v3  c0,0.484,0.375,1,1,1c0.461,0,0.695-0.287,1-0.54L15.375,9C15.758,8.688,16,8.445,16,8S15.758,7.313,15.375,7z">
-                            </path>
-                        </svg>
-                    </button>
-
-                    <!-- Format Selector -->
-                    <div id="format-selector-container" class="format-selector-wrapper">
-                        <div class="format-selector">
-                            <!-- Group 1: Format + Quality -->
-                            <div class="format-quality-group">
-                                <!-- Format Toggle -->
-                                <button type="button" class="format-toggle-btn" data-toggle-format>
-                                    <span class="toggle-side" data-format="mp4">
-                                        <span class="format-label">MP4</span>
-                                    </span>
-                                    <span class="toggle-side" data-format="mp3">
-                                        <span class="format-label">MP3</span>
-                                    </span>
-                                </button>
-                                <!-- Quality Dropdowns -->
-                                <div class="quality-selector">
-                                    <!-- MP4 Options -->
-                                    <select id="quality-select-mp4" class="quality-select quality-select--mp4"
-                                        aria-label="Качество видео" data-quality-select>
-                                        <option value="mp4-1080">MP4 - 1080p</option>
-                                        <option value="mp4-720" selected>MP4 - 720p</option>
-                                        <option value="mp4-480">MP4 - 480p</option>
-                                        <option value="mp4-360">MP4 - 360p</option>
-                                        <option value="mp4-240">MP4 - 240p</option>
-                                        <option value="mp4-144">MP4 - 144p</option>
-                                        <option value="webm">WEBM</option>
-                                        <option value="mkv">MKV</option>
-                                    </select>
-                                    <!-- MP3 Options -->
-                                    <select id="quality-select-mp3" class="quality-select quality-select--mp3"
-                                        aria-label="Качество аудио" data-quality-select>
-                                        <option value="mp3-320">MP3 - 320kbps</option>
-                                        <option value="mp3-256">MP3 - 256kbps</option>
-                                        <option value="mp3-192">MP3 - 192kbps</option>
-                                        <option value="mp3-128" selected>MP3 - 128kbps</option>
-                                        <option value="ogg">OGG</option>
-                                        <option value="opus">OPUS</option>
-                                        <option value="wav">WAV</option>
-                                    </select>
+        <div class="container">
+            <section class="y2mate-download-pro">
+                <div class="y2mate-search-form-pro d-flex">
+                    <div class="form-wrap">
+                        <h1 class="y2mate_title-pro">Y2Mate – YouTube в MP3</h1>
+                        <form id="downloadForm" class="search_form" method="POST" action="/search/">
+                            <div class="input-container">
+                                <div class=" input-wrapper">
+                                    <input id="videoUrl" class="y2mate_query-pro keyword" type="text" name="q"
+                                        placeholder="Искать или вставить ссылку здесь..." autocomplete="off"
+                                        autofocus="" role="combobox" aria-autocomplete="list"
+                                        aria-controls="suggestion-container" aria-expanded="false">
+                                    <button id="input-action-button" type="button" class="input-action-btn"
+                                        data-action="paste" aria-label="Вставить из буфера обмена">
+                                        <svg class="paste-icon" xmlns="http://www.w3.org/2000/svg" width="18"
+                                            height="18" viewBox="0 0 24 24">
+                                            <path fill="currentColor"
+                                                d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm7 16H5V5h2v3h10V5h2v14z" />
+                                        </svg>
+                                        <svg class="clear-icon" xmlns="http://www.w3.org/2000/svg" width="18"
+                                            height="18" viewBox="0 0 24 24">
+                                            <path fill="currentColor"
+                                                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                                        </svg>
+                                    </button>
                                 </div>
                             </div>
-                            <!-- Group 2: Auto Submit Toggle -->
-                            <div class="auto-submit-toggle"
-                                data-tooltip="Автоматически отправлять при вставке URL или ключевого слова">
-                                <strong class="toggle-label">Автоматическая отправка</strong>
-                                <label class="toggle-switch" for="auto-submit-checkbox">
-                                    <input type="checkbox" id="auto-submit-checkbox" data-auto-submit-toggle aria-label="Auto submit after selecting format"/>
-                                    <span class="toggle-slider"></span>
-                                </label>
-                                <span class="custom-tooltip"></span>
-                        </div>
+                            <button id="submit" type="submit" name="form_submit" class="submit-btn" aria-label="Search">
+                                <div class="converter-btn">Начать</div>
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    width="14px" height="14px" fill="#fff" id="Layer_1"
+                                    style="enable-background:new 0 0 16 16;" version="1.1" viewBox="0 0 16 16"
+                                    xml:space="preserve">
+                                    <path
+                                        d="M15.375,7L10,2.54C9.695,2.287,9.461,2,9,2C8.375,2,8,2.516,8,3v3H1C0.45,6,0,6.45,0,7v2c0,0.55,0.45,1,1,1h7v3  c0,0.484,0.375,1,1,1c0.461,0,0.695-0.287,1-0.54L15.375,9C15.758,8.688,16,8.445,16,8S15.758,7.313,15.375,7z">
+                                    </path>
+                                </svg>
+                            </button>
+
+                            <!-- Format Selector -->
+                            <div id="format-selector-container" class="format-selector-wrapper">
+                                <div class="format-selector">
+                                    <!-- Group 1: Format + Quality -->
+                                    <div class="format-quality-group">
+                                        <!-- Format Toggle -->
+                                        <button type="button" class="format-toggle-btn" data-toggle-format>
+                                            <span class="toggle-side" data-format="mp4">
+                                                <span class="format-label">MP4</span>
+                                            </span>
+                                            <span class="toggle-side" data-format="mp3">
+                                                <span class="format-label">MP3</span>
+                                            </span>
+                                        </button>
+                                        <!-- Quality Dropdowns -->
+                                        <div class="quality-selector">
+                                            <!-- MP4 Options -->
+                                            <select id="quality-select-mp4" class="quality-select quality-select--mp4"
+                                                aria-label="Качество видео" data-quality-select>
+                                                <option value="mp4-1080">MP4 - 1080p</option>
+                                                <option value="mp4-720" selected>MP4 - 720p</option>
+                                                <option value="mp4-480">MP4 - 480p</option>
+                                                <option value="mp4-360">MP4 - 360p</option>
+                                                <option value="mp4-144">MP4 - 144p</option>
+                                                <option value="webm">WEBM</option>
+                                                <option value="mkv">MKV</option>
+                                            </select>
+                                            <!-- MP3 Options -->
+                                            <select id="quality-select-mp3" class="quality-select quality-select--mp3"
+                                                aria-label="Качество аудио" data-quality-select>
+                                                <option value="mp3-320">MP3 - 320kbps</option>
+                                                <option value="mp3-256">MP3 - 256kbps</option>
+                                                <option value="mp3-192">MP3 - 192kbps</option>
+                                                <option value="mp3-128" selected>MP3 - 128kbps</option>
+                                                <option value="ogg">OGG</option>
+                                                <option value="opus">OPUS</option>
+                                                <option value="wav">WAV</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!-- Group 2: Auto Submit Toggle -->
+                                    <div class="auto-submit-toggle"
+                                        data-tooltip="Автоматически отправлять при вставке URL или ключевого слова">
+                                        <strong class="toggle-label">Автоматическая отправка</strong>
+                                        <label class="toggle-switch" for="auto-submit-checkbox">
+                                            <input type="checkbox" id="auto-submit-checkbox" data-auto-submit-toggle
+                                                aria-label="Auto submit after selecting format" />
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                        <span class="custom-tooltip"></span>
+                                    </div>
+                                </div>
+                                <script>(function () { try { const preferencesJson = localStorage.getItem('y2mate_format_preferences'); if (preferencesJson) { const preferences = JSON.parse(preferencesJson); const selectElement = preferences.selectedFormat === 'mp4' ? document.getElementById('quality-select-mp4') : document.getElementById('quality-select-mp3'); if (selectElement) { let value; if (preferences.selectedFormat === 'mp4') { const videoQuality = preferences.videoQuality || '720p'; value = (videoQuality === 'webm' || videoQuality === 'mkv') ? videoQuality : `mp4-${videoQuality.replace('p', '')}`; } else { const audioFormat = preferences.audioFormat || 'mp3'; value = (audioFormat === 'mp3') ? `mp3-${preferences.audioBitrate || '128'}` : audioFormat; } selectElement.value = value; } } const autoSubmitValue = localStorage.getItem('y2mate_auto_submit'); const checkbox = document.getElementById('auto-submit-checkbox'); if (checkbox) { checkbox.checked = autoSubmitValue === 'true'; } } catch (error) { console.error('Error syncing UI from localStorage in inline script:', error); } })();</script>
+                            </div>
+
+                            <div id="suggestion-container" class="suggesstion-list suggesstion-box"></div>
+                        </form>
+
+                        <!-- Video Detail Area -->
+                        <div id="content-area"></div>
                     </div>
-                    <script>(function(){try{const preferencesJson=localStorage.getItem('y2mate_format_preferences');if(preferencesJson){const preferences=JSON.parse(preferencesJson);const selectElement=preferences.selectedFormat==='mp4'?document.getElementById('quality-select-mp4'):document.getElementById('quality-select-mp3');if(selectElement){let value;if(preferences.selectedFormat==='mp4'){const videoQuality=preferences.videoQuality||'720p';value=(videoQuality==='webm'||videoQuality==='mkv')?videoQuality:`mp4-${videoQuality.replace('p','')}`;}else{const audioFormat=preferences.audioFormat||'mp3';value=(audioFormat==='mp3')?`mp3-${preferences.audioBitrate||'128'}`:audioFormat;}selectElement.value=value;}}const autoSubmitValue=localStorage.getItem('y2mate_auto_submit');const checkbox=document.getElementById('auto-submit-checkbox');if(checkbox){checkbox.checked=autoSubmitValue==='true';}}catch(error){console.error('Error syncing UI from localStorage in inline script:',error);}})();</script>
+                </div>
+            </section>
+
+            <!-- Search Results Section -->
+            <section id="search-results-section" class="search-results-section" style="display: none;">
+                <div id="search-results-container"></div>
+            </section>
+
+            <!-- Content Sections -->
+            <section class="y2mate-content-pro d-flex">
+                <div class="col-sm-12">
+                    <h2>Что такое YouTube в MP3 на Y2Mate?</h2>
+                    <p>Страница <strong>YouTube в MP3</strong> от <a href="/ru/">Y2Mate</a> разработана специально для
+                        извлечения аудио из видео YouTube и сохранения его в виде файлов MP3.</p>
+                    <p>Эта страница не фокусируется на визуальных эффектах видео. Вместо этого она обрабатывает только
+                        аудиопоток для поддержки случаев использования прослушивания в автономном режиме.</p>
+                </div>
+            </section>
+            <section class="y2mate-content-pro d-flex">
+                <div class="col-sm-12">
+                    <h2>Когда следует использовать YouTube в MP3?</h2>
+                    <p>YouTube в MP3 подходит для музыкальных клипов, подкастов, лекций, интервью и длинного контента,
+                        где пользователям нужен только звук, а не видео.</p>
+                    <p>Извлекая только аудио, файлы MP3 становятся значительно меньше видеофайлов, что упрощает их
+                        хранение и воспроизведение на мобильных устройствах.</p>
+                </div>
+            </section>
+            <section class="y2mate-content-pro d-flex">
+                <div class="col-sm-12">
+                    <h2>Распространенные проблемы при извлечении аудио с YouTube</h2>
+                    <p>Многие инструменты для преобразования YouTube в MP3 испытывают трудности с длинными видео, видео
+                        с несколькими аудиопотоками или нестабильным качеством звука.</p>
+                    <p>В результате файлы MP3 могут содержать шум, пропущенные сегменты или неверную продолжительность.
+                    </p>
+                </div>
+            </section>
+            <section class="y2mate-content-pro d-flex">
+                <div class="col-sm-12">
+                    <h2>Как инструмент обрабатывает и генерирует файлы MP3</h2>
+                    <p>Когда вы вставляете ссылку на видео YouTube, система анализирует исходный аудиопоток и генерирует
+                        соответствующий файл MP3.</p>
+                    <p>Качество звука зависит от исходного видео. При наличии инструмент отображает подходящие варианты
+                        битрейта для загрузки.</p>
+                </div>
+            </section>
+            <section class="y2mate-content-pro d-flex">
+                <div class="col-sm-12">
+                    <h2>Почему извлечение аудио эффективнее, чем загрузка видео</h2>
+                    <p>Отделение аудио от видео значительно уменьшает размер файла по сравнению с загрузкой файлов MP4.
+                    </p>
+                    <p>Это особенно полезно для пользователей, которые слушают музыку или подкасты на мобильных
+                        устройствах и хотят сэкономить место на диске.</p>
+                </div>
+            </section>
+            <section class="y2mate-content-pro d-flex">
+                <div class="col-sm-12">
+                    <h2>Разница между MP3 и MP4</h2>
+                    <p>Файлы MP3 содержат только аудио, в то время как файлы MP4 включают как видео, так и аудио.</p>
+                    <p>Если вам нужно посмотреть видеоконтент, вам следует использовать страницу <a
+                            href="/ru/youtube-to-mp4">YouTube в MP4</a> вместо извлечения аудио в формате MP3.</p>
+                </div>
+            </section>
+            <section class="y2mate-content-pro d-flex">
+                <div class="col-sm-12">
+                    <h2>Выбор между загрузкой аудио или видео</h2>
+                    <p>Если вы не уверены, нужно ли вам аудио или видео, вы можете посетить страницу <a
+                            href="/ru/">Загрузить видео с YouTube</a>, чтобы изучить доступные варианты загрузки.</p>
+                </div>
+            </section>
+
+            <!-- Why Choose Section -->
+            <section class="y2mate-instruction-pro">
+                <div class="y2mate-in-ad-pro">
+                    <h2>Почему стоит выбрать Y2Mate для конвертации YouTube в MP3</h2>
+                    <p>Многие конвертеры YouTube в MP3 не могут правильно извлечь аудио, что приводит к низкому качеству
+                        или неполным файлам. Y2Mate обеспечивает надежное извлечение MP3 с постоянным качеством звука.
+                    </p>
+                    <ul>
+                        <li>Высококачественное извлечение аудио – сохраняет исходное качество звука</li>
+                        <li>Несколько вариантов битрейта – выберите от 128 до 320 кбит/с</li>
+                        <li>Быстрая обработка аудио – быстрое извлечение аудио из любого видео на YouTube</li>
+                        <li>Программное обеспечение не требуется – работает полностью в вашем браузере</li>
+                        <li>Оптимизировано для музыки и подкастов – идеально подходит для прослушивания в автономном
+                            режиме</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Instructions Section -->
+            <section class="y2mate-instruction-pro">
+                <div class="y2mate-in-ad-pro">
+                    <h2>Как извлечь аудио из видео YouTube в формате MP3</h2>
+                    <ol>
+                        <li>Скопируйте ссылку на видео YouTube, содержащее аудио, которое вы хотите извлечь.</li>
+                        <li>Вставьте ссылку в поле ввода на этой странице.</li>
+                        <li>Нажмите кнопку «Пуск», чтобы проанализировать аудиопоток видео.</li>
+                        <li>Выберите предпочитаемый битрейт MP3 и загрузите аудиофайл на свое устройство.</li>
+                    </ol>
+                    <p><em>Весь процесс извлечения аудио выполняется в вашем браузере без необходимости установки
+                            какого-либо программного обеспечения.</em></p>
+                </div>
+            </section>
+
+            <!-- FAQs Section -->
+            <section class="yt-content">
+                <h2>Часто задаваемые вопросы о YouTube в MP3</h2>
+                <div class="download-uses">
+                    <div class="guide-data">
+                        <h3>Что делает конвертация YouTube в MP3?</h3>
+                        <p>Он извлекает аудиопоток из видео YouTube и сохраняет его в виде файла MP3 для прослушивания в
+                            автономном режиме.</p>
                     </div>
-
-                    <div id="suggestion-container" class="suggesstion-list suggesstion-box"></div>
-                </form>
-
-                <!-- Video Detail Area -->
-                <div id="content-area"></div>
-            </div>
+                    <div class="guide-data">
+                        <h3>Какое качество MP3 мне выбрать?</h3>
+                        <p>Более низкие битрейты подходят для речи, в то время как более высокие битрейты обеспечивают
+                            лучшее качество звука для музыки и детализированного аудио.</p>
+                    </div>
+                    <div class="guide-data">
+                        <h3>Включает ли MP3 полный звук из видео?</h3>
+                        <p>Да. Преобразованный MP3 содержит полную звуковую дорожку из исходного видео.</p>
+                    </div>
+                    <div class="guide-data">
+                        <h3>Могу ли я конвертировать длинные видео YouTube в MP3?</h3>
+                        <p>Да. Извлечение аудио работает с длинными видео, если исходное видео является общедоступным
+                            или незарегистрированным.</p>
+                    </div>
+                    <div class="guide-data">
+                        <h3>Выполняется ли конвертация в MP3 онлайн?</h3>
+                        <p>Да. Весь процесс выполняется в вашем браузere без установки какого-либо программного
+                            обеспечения.</p>
+                    </div>
+                    <div class="guide-data">
+                        <h3>Можно ли конвертировать частные видео YouTube в MP3?</h3>
+                        <p>Нет. Частные видео не могут быть доступны или обработаны системой.</p>
+                    </div>
+                </div>
+            </section>
         </div>
-    </section>
-
-    <!-- Search Results Section -->
-    <section id="search-results-section" class="search-results-section" style="display: none;">
-        <div id="search-results-container"></div>
-    </section>
-
-    <!-- Content Sections -->
-    <section class="y2mate-content-pro d-flex">
-        <div class="col-sm-12">
-            <h2>Что такое YouTube в MP3 на Y2Mate?</h2>
-            <p>Страница <strong>YouTube в MP3</strong> от <a href="/ru/">Y2Mate</a> разработана специально для извлечения аудио из видео YouTube и сохранения его в виде файлов MP3.</p>
-            <p>Эта страница не фокусируется на визуальных эффектах видео. Вместо этого она обрабатывает только аудиопоток для поддержки случаев использования прослушивания в автономном режиме.</p>
-        </div>
-    </section>
-    <section class="y2mate-content-pro d-flex">
-        <div class="col-sm-12">
-            <h2>Когда следует использовать YouTube в MP3?</h2>
-            <p>YouTube в MP3 подходит для музыкальных клипов, подкастов, лекций, интервью и длинного контента, где пользователям нужен только звук, а не видео.</p>
-            <p>Извлекая только аудио, файлы MP3 становятся значительно меньше видеофайлов, что упрощает их хранение и воспроизведение на мобильных устройствах.</p>
-        </div>
-    </section>
-    <section class="y2mate-content-pro d-flex">
-        <div class="col-sm-12">
-            <h2>Распространенные проблемы при извлечении аудио с YouTube</h2>
-            <p>Многие инструменты для преобразования YouTube в MP3 испытывают трудности с длинными видео, видео с несколькими аудиопотоками или нестабильным качеством звука.</p>
-            <p>В результате файлы MP3 могут содержать шум, пропущенные сегменты или неверную продолжительность.</p>
-        </div>
-    </section>
-    <section class="y2mate-content-pro d-flex">
-        <div class="col-sm-12">
-            <h2>Как инструмент обрабатывает и генерирует файлы MP3</h2>
-            <p>Когда вы вставляете ссылку на видео YouTube, система анализирует исходный аудиопоток и генерирует соответствующий файл MP3.</p>
-            <p>Качество звука зависит от исходного видео. При наличии инструмент отображает подходящие варианты битрейта для загрузки.</p>
-        </div>
-    </section>
-    <section class="y2mate-content-pro d-flex">
-        <div class="col-sm-12">
-            <h2>Почему извлечение аудио эффективнее, чем загрузка видео</h2>
-            <p>Отделение аудио от видео значительно уменьшает размер файла по сравнению с загрузкой файлов MP4.</p>
-            <p>Это особенно полезно для пользователей, которые слушают музыку или подкасты на мобильных устройствах и хотят сэкономить место на диске.</p>
-        </div>
-    </section>
-    <section class="y2mate-content-pro d-flex">
-        <div class="col-sm-12">
-            <h2>Разница между MP3 и MP4</h2>
-            <p>Файлы MP3 содержат только аудио, в то время как файлы MP4 включают как видео, так и аудио.</p>
-            <p>Если вам нужно посмотреть видеоконтент, вам следует использовать страницу <a href="/ru/youtube-to-mp4">YouTube в MP4</a> вместо извлечения аудио в формате MP3.</p>
-        </div>
-    </section>
-    <section class="y2mate-content-pro d-flex">
-        <div class="col-sm-12">
-            <h2>Выбор между загрузкой аудио или видео</h2>
-            <p>Если вы не уверены, нужно ли вам аудио или видео, вы можете посетить страницу <a href="/ru/">Загрузить видео с YouTube</a>, чтобы изучить доступные варианты загрузки.</p>
-        </div>
-    </section>
-
-    <!-- Why Choose Section -->
-    <section class="y2mate-instruction-pro">
-        <div class="y2mate-in-ad-pro">
-            <h2>Почему стоит выбрать Y2Mate для конвертации YouTube в MP3</h2>
-            <p>Многие конвертеры YouTube в MP3 не могут правильно извлечь аудио, что приводит к низкому качеству или неполным файлам. Y2Mate обеспечивает надежное извлечение MP3 с постоянным качеством звука.</p>
-            <ul>
-                <li>Высококачественное извлечение аудио – сохраняет исходное качество звука</li>
-                <li>Несколько вариантов битрейта – выберите от 128 до 320 кбит/с</li>
-                <li>Быстрая обработка аудио – быстрое извлечение аудио из любого видео на YouTube</li>
-                <li>Программное обеспечение не требуется – работает полностью в вашем браузере</li>
-                <li>Оптимизировано для музыки и подкастов – идеально подходит для прослушивания в автономном режиме</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- Instructions Section -->
-    <section class="y2mate-instruction-pro">
-        <div class="y2mate-in-ad-pro">
-            <h2>Как извлечь аудио из видео YouTube в формате MP3</h2>
-            <ol>
-                <li>Скопируйте ссылку на видео YouTube, содержащее аудио, которое вы хотите извлечь.</li>
-                <li>Вставьте ссылку в поле ввода на этой странице.</li>
-                <li>Нажмите кнопку «Пуск», чтобы проанализировать аудиопоток видео.</li>
-                <li>Выберите предпочитаемый битрейт MP3 и загрузите аудиофайл на свое устройство.</li>
-            </ol>
-            <p><em>Весь процесс извлечения аудио выполняется в вашем браузере без необходимости установки какого-либо программного обеспечения.</em></p>
-        </div>
-    </section>
-
-    <!-- FAQs Section -->
-    <section class="yt-content">
-        <h2>Часто задаваемые вопросы о YouTube в MP3</h2>
-        <div class="download-uses">
-            <div class="guide-data">
-                <h3>Что делает конвертация YouTube в MP3?</h3>
-                <p>Он извлекает аудиопоток из видео YouTube и сохраняет его в виде файла MP3 для прослушивания в автономном режиме.</p>
-            </div>
-            <div class="guide-data">
-                <h3>Какое качество MP3 мне выбрать?</h3>
-                <p>Более низкие битрейты подходят для речи, в то время как более высокие битрейты обеспечивают лучшее качество звука для музыки и детализированного аудио.</p>
-            </div>
-            <div class="guide-data">
-                <h3>Включает ли MP3 полный звук из видео?</h3>
-                <p>Да. Преобразованный MP3 содержит полную звуковую дорожку из исходного видео.</p>
-            </div>
-            <div class="guide-data">
-                <h3>Могу ли я конвертировать длинные видео YouTube в MP3?</h3>
-                <p>Да. Извлечение аудио работает с длинными видео, если исходное видео является общедоступным или незарегистрированным.</p>
-            </div>
-            <div class="guide-data">
-                <h3>Выполняется ли конвертация в MP3 онлайн?</h3>
-                <p>Да. Весь процесс выполняется в вашем браузere без установки какого-либо программного обеспечения.</p>
-            </div>
-            <div class="guide-data">
-                <h3>Можно ли конвертировать частные видео YouTube в MP3?</h3>
-                <p>Нет. Частные видео не могут быть доступны или обработаны системой.</p>
-            </div>
-        </div>
-    </section>
-</div>
 
     </main>
 
     <footer class="footer">
-    <p>© 2026 y2mate</p>
-    <ul class="footer_nav">
-        <li class="fnav-menu">
-            <a href="/about-us">О нас</a>
-        </li>
-        <li class="fnav-menu">
-            <a href="/contact">Контакты</a>
-        </li>
-        <li class="fnav-menu">
-            <a href="/terms-condition">Условия предоставления услуг</a>
-        </li>
-        <li class="fnav-menu">
-            <a href="/privacy-policy">Политика конфиденциальности</a>
-        </li>
-        <li class="fnav-menu">
-            <a href="/copyright-claims">Заявления об авторских правах</a>
-        </li>
-        <li class="fnav-menu">
-            <a href="/ru/youtube-short-downloader">Загрузчик YouTube Shorts</a>
-        </li>
-    </ul>
-</footer>
+        <p>© 2026 y2mate</p>
+        <ul class="footer_nav">
+            <li class="fnav-menu">
+                <a href="/about-us">О нас</a>
+            </li>
+            <li class="fnav-menu">
+                <a href="/contact">Контакты</a>
+            </li>
+            <li class="fnav-menu">
+                <a href="/terms-condition">Условия предоставления услуг</a>
+            </li>
+            <li class="fnav-menu">
+                <a href="/privacy-policy">Политика конфиденциальности</a>
+            </li>
+            <li class="fnav-menu">
+                <a href="/copyright-claims">Заявления об авторских правах</a>
+            </li>
+            <li class="fnav-menu">
+                <a href="/ru/youtube-short-downloader">Загрузчик YouTube Shorts</a>
+            </li>
+        </ul>
+    </footer>
 
 
     <!-- Conversion Modal Wrapper -->

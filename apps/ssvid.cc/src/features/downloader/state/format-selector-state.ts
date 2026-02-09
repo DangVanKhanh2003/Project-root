@@ -18,7 +18,7 @@ const STORAGE_KEY = 'ssvid_format_preferences';
 export const QUALITY_OPTIONS = {
   mp4: {
     formats: ['mp4', 'webm', 'mkv'] as const,
-    qualities: ['1080p', '720p', '480p', '360p', '240p', '144p'] as const
+    qualities: ['1080p', '720p', '480p', '360p', '144p'] as const
   },
   mp3: {
     formats: ['mp3', 'wav', 'm4a', 'opus', 'ogg', 'flac'] as AudioFormatType[],

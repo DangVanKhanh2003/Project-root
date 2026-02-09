@@ -7,7 +7,7 @@
  */
 
 import { initExpandableText } from '../../../utils';
-import { LANGUAGES } from '../data/languages';
+import { LANGUAGES } from '../logic/data/languages';
 import { addRippleEffect } from '@downloader/core/utils';
 import { TaskState } from '../logic/conversion/types';
 import type { AppState, ConversionTask } from '../state/types';

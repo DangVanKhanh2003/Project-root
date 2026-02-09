@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -10,7 +11,8 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700&display=swap"
+        rel="stylesheet">
 
     <!-- Local Fonts -->
     <link rel="stylesheet" href="/assest/fonts/fonts.css">
@@ -26,12 +28,13 @@
 
     <!-- Critical: Read format preference before render to prevent FOUC -->
     <script>
-      (function(){try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p&&p.selectedFormat){document.documentElement.dataset.format=p.selectedFormat}}catch(e){}}())
+        (function () { try { var p = JSON.parse(localStorage.getItem('y2mate_format_preferences')); if (p && p.selectedFormat) { document.documentElement.dataset.format = p.selectedFormat } } catch (e) { } }())
     </script>
 
     <!-- TypeScript Module -->
     <script type="module" src="/src/main.ts"></script>
 </head>
+
 <body>
 
     <!-- HEADER (Top Right) -->
@@ -39,7 +42,8 @@
         <a href="/tools/" class="header-link">Tools</a>
         <a href="/faq/" class="header-link">FAQ</a>
         <button class="menu-icon-btn" id="mobile-menu-btn" aria-label="Menu">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
                 <line x1="4" y1="12" x2="20" y2="12"></line>
                 <line x1="4" y1="6" x2="20" y2="6"></line>
                 <line x1="4" y1="18" x2="20" y2="18"></line>
@@ -55,7 +59,19 @@
 
             <!-- Logo (Google) -->
             <h1 class="logo">
-                <svg xmlns="http://www.w3.org/2000/svg" width="272" height="92"><path fill="#EA4335" d="M115.75 47.18c0 12.77-9.99 22.18-22.25 22.18s-22.25-9.41-22.25-22.18C71.25 34.32 81.24 25 93.5 25s22.25 9.32 22.25 22.18zm-9.74 0c0-7.98-5.79-13.44-12.51-13.44S80.99 39.2 80.99 47.18c0 7.9 5.79 13.44 12.51 13.44s12.51-5.55 12.51-13.44z"/><path fill="#FBBC05" d="M163.75 47.18c0 12.77-9.99 22.18-22.25 22.18s-22.25-9.41-22.25-22.18c0-12.85 9.99-22.18 22.25-22.18s22.25 9.32 22.25 22.18zm-9.74 0c0-7.98-5.79-13.44-12.51-13.44s-12.51 5.46-12.51 13.44c0 7.9 5.79 13.44 12.51 13.44s12.51-5.55 12.51-13.44z"/><path fill="#4285F4" d="M209.75 26.34v39.82c0 16.38-9.66 23.07-21.08 23.07-10.75 0-17.22-7.19-19.66-13.07l8.48-3.53c1.51 3.61 5.21 7.87 11.17 7.87 7.31 0 11.84-4.51 11.84-13v-3.19h-.34c-2.18 2.69-6.38 5.04-11.68 5.04-11.09 0-21.25-9.66-21.25-22.09 0-12.52 10.16-22.26 21.25-22.26 5.29 0 9.49 2.35 11.68 4.96h.34v-3.61h9.25zm-8.56 20.92c0-7.81-5.21-13.52-11.84-13.52-6.72 0-12.35 5.71-12.35 13.52 0 7.73 5.63 13.36 12.35 13.36 6.63 0 11.84-5.63 11.84-13.36z"/><path fill="#34A853" d="M225 3v65h-9.5V3h9.5z"/><path fill="#EA4335" d="m262.02 54.48 7.56 5.04c-2.44 3.61-8.32 9.83-18.48 9.83-12.6 0-22.01-9.74-22.01-22.18 0-13.19 9.49-22.18 20.92-22.18 11.51 0 17.14 9.16 18.98 14.11l1.01 2.52-29.65 12.28c2.27 4.45 5.8 6.72 10.75 6.72 4.96 0 8.4-2.44 10.92-6.14zm-23.27-7.98 19.82-8.23c-1.09-2.77-4.37-4.7-8.23-4.7-4.95 0-11.84 4.37-11.59 12.93z"/><path fill="#4285F4" d="M35.29 41.41V32H67c.31 1.64.47 3.58.47 5.68 0 7.06-1.93 15.79-8.15 22.01-6.05 6.3-13.78 9.66-24.02 9.66C16.32 69.35.36 53.89.36 34.91.36 15.93 16.32.47 35.3.47c10.5 0 17.98 4.12 23.6 9.49l-6.64 6.64c-4.03-3.78-9.49-6.72-16.97-6.72-13.86 0-24.7 11.17-24.7 25.03 0 13.86 10.84 25.03 24.7 25.03 8.99 0 14.11-3.61 17.39-6.89 2.66-2.66 4.41-6.46 5.1-11.65l-22.49.01z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="272" height="92">
+                    <path fill="#EA4335"
+                        d="M115.75 47.18c0 12.77-9.99 22.18-22.25 22.18s-22.25-9.41-22.25-22.18C71.25 34.32 81.24 25 93.5 25s22.25 9.32 22.25 22.18zm-9.74 0c0-7.98-5.79-13.44-12.51-13.44S80.99 39.2 80.99 47.18c0 7.9 5.79 13.44 12.51 13.44s12.51-5.55 12.51-13.44z" />
+                    <path fill="#FBBC05"
+                        d="M163.75 47.18c0 12.77-9.99 22.18-22.25 22.18s-22.25-9.41-22.25-22.18c0-12.85 9.99-22.18 22.25-22.18s22.25 9.32 22.25 22.18zm-9.74 0c0-7.98-5.79-13.44-12.51-13.44s-12.51 5.46-12.51 13.44c0 7.9 5.79 13.44 12.51 13.44s12.51-5.55 12.51-13.44z" />
+                    <path fill="#4285F4"
+                        d="M209.75 26.34v39.82c0 16.38-9.66 23.07-21.08 23.07-10.75 0-17.22-7.19-19.66-13.07l8.48-3.53c1.51 3.61 5.21 7.87 11.17 7.87 7.31 0 11.84-4.51 11.84-13v-3.19h-.34c-2.18 2.69-6.38 5.04-11.68 5.04-11.09 0-21.25-9.66-21.25-22.09 0-12.52 10.16-22.26 21.25-22.26 5.29 0 9.49 2.35 11.68 4.96h.34v-3.61h9.25zm-8.56 20.92c0-7.81-5.21-13.52-11.84-13.52-6.72 0-12.35 5.71-12.35 13.52 0 7.73 5.63 13.36 12.35 13.36 6.63 0 11.84-5.63 11.84-13.36z" />
+                    <path fill="#34A853" d="M225 3v65h-9.5V3h9.5z" />
+                    <path fill="#EA4335"
+                        d="m262.02 54.48 7.56 5.04c-2.44 3.61-8.32 9.83-18.48 9.83-12.6 0-22.01-9.74-22.01-22.18 0-13.19 9.49-22.18 20.92-22.18 11.51 0 17.14 9.16 18.98 14.11l1.01 2.52-29.65 12.28c2.27 4.45 5.8 6.72 10.75 6.72 4.96 0 8.4-2.44 10.92-6.14zm-23.27-7.98 19.82-8.23c-1.09-2.77-4.37-4.7-8.23-4.7-4.95 0-11.84 4.37-11.59 12.93z" />
+                    <path fill="#4285F4"
+                        d="M35.29 41.41V32H67c.31 1.64.47 3.58.47 5.68 0 7.06-1.93 15.79-8.15 22.01-6.05 6.3-13.78 9.66-24.02 9.66C16.32 69.35.36 53.89.36 34.91.36 15.93 16.32.47 35.3.47c10.5 0 17.98 4.12 23.6 9.49l-6.64 6.64c-4.03-3.78-9.49-6.72-16.97-6.72-13.86 0-24.7 11.17-24.7 25.03 0 13.86 10.84 25.03 24.7 25.03 8.99 0 14.11-3.61 17.39-6.89 2.66-2.66 4.41-6.46 5.1-11.65l-22.49.01z" />
+                </svg>
             </h1>
 
             <!-- Search Component Wrapper -->
@@ -77,8 +93,10 @@
                                     <button type="button" class="format-dropdown-btn">
                                         <span class="format-current format-current--mp3">MP3</span>
                                         <span class="format-current format-current--mp4">MP4</span>
-                                        <svg class="chevron-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="m6 9 6 6 6-6"/>
+                                        <svg class="chevron-icon" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path d="m6 9 6 6 6-6" />
                                         </svg>
                                     </button>
                                 </div>
@@ -88,16 +106,9 @@
                             <div class="input-group">
                                 <div class="input-wrapper" id="input-wrapper">
                                     <!-- REQUIRED: #videoUrl input -->
-                                    <input
-                                        type="text"
-                                        id="videoUrl"
-                                        class="search-input"
-                                        placeholder="Paste YouTube link or search..."
-                                        autocomplete="off"
-                                        autocapitalize="off"
-                                        autocorrect="off"
-                                        spellcheck="false"
-                                    />
+                                    <input type="text" id="videoUrl" class="search-input"
+                                        placeholder="Paste YouTube link or search..." autocomplete="off"
+                                        autocapitalize="off" autocorrect="off" spellcheck="false" />
                                 </div>
                             </div>
 
@@ -107,9 +118,12 @@
                                 <div id="quality-selector-container" class="settings-container">
                                     <!-- Placeholder - TypeScript will replace with full dropdown -->
                                     <button type="button" class="settings-btn" title="Quality Settings">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/>
-                                            <circle cx="12" cy="12" r="3"/>
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path
+                                                d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
+                                            <circle cx="12" cy="12" r="3" />
                                         </svg>
                                     </button>
                                 </div>
@@ -118,9 +132,10 @@
 
                                 <!-- Submit Button (Arrow) -->
                                 <button type="submit" class="search-submit-btn" title="Convert">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M5 12h14"/>
-                                        <path d="m12 5 7 7-7 7"/>
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M5 12h14" />
+                                        <path d="m12 5 7 7-7 7" />
                                     </svg>
                                 </button>
                             </div>
@@ -165,78 +180,92 @@
         <section class="history-section">
             <div id="history-card-container"></div>
             <script>
-            (function(){try{var d=localStorage.getItem('downloader_history');if(!d)return;var items=(JSON.parse(d).items||[]);var c=Math.min(items.length,5);if(c===0)return;var s='';for(var i=0;i<c;i++){s+='<li class="history-card__item history-card__item--skeleton"><div class="skeleton-thumbnail"></div><div class="skeleton-content"><div class="skeleton-title"></div><div class="skeleton-meta"></div></div></li>';}var m=items.length>5?'<div class="history-card__footer"><button class="history-card__view-all skeleton-btn">See more</button></div>':'';document.getElementById('history-card-container').innerHTML='<div class="history-card"><div class="history-card__header"><h3 class="history-card__title">Recent Downloads</h3></div><div class="history-card__details"><ul class="history-card__list">'+s+'</ul>'+m+'</div></div>';}catch(e){}})();
+                    (function () { try { var d = localStorage.getItem('downloader_history'); if (!d) return; var items = (JSON.parse(d).items || []); var c = Math.min(items.length, 5); if (c === 0) return; var s = ''; for (var i = 0; i < c; i++) { s += '<li class="history-card__item history-card__item--skeleton"><div class="skeleton-thumbnail"></div><div class="skeleton-content"><div class="skeleton-title"></div><div class="skeleton-meta"></div></div></li>'; } var m = items.length > 5 ? '<div class="history-card__footer"><button class="history-card__view-all skeleton-btn">See more</button></div>' : ''; document.getElementById('history-card-container').innerHTML = '<div class="history-card"><div class="history-card__header"><h3 class="history-card__title">Recent Downloads</h3></div><div class="history-card__details"><ul class="history-card__list">' + s + '</ul>' + m + '</div></div>'; } catch (e) { } })();
             </script>
         </section>
 
         <!-- SEO / TEXT CONTENT -->
         <section class="content-section">
             <div class="container">
-            <div class="content-wrapper">
-                <h2>YTMP3 - The best Youtube to MP3 Converter</h2>
-                <p>
-                    ytmp3.gg converts YouTube to high-quality audio in MP3, WAV, OGG, and Opus - plus stunning 4K, 2K, and 1080p video - in a simple, ad-free way.
-                </p>
-                <p>
-                    Convert any YouTube video to MP3 or MP4 in seconds with YTMP3.gg - the fast, ad-free, and secure way
-                    to download YouTube content. Just paste your link, choose the format and quality, and let YTMP3 do
-                    the work. No pop-ups, no registration, no distractions - simply smooth conversions that finish
-                    before you can blink.
-                </p>
-
-                <h3>How to Convert YouTube to MP3 or MP4</h3>
-                <p>
-                    Using YTMP3 is simple: Copy your YouTube link, paste it into the field above, pick either MP3 for
-                    audio or MP4 for video, select your preferred quality, and click Convert. Most downloads are ready
-                    within a few seconds, depending on video length and resolution.
-                </p>
-
-                <h3>Why People Choose YTMP3</h3>
-                <p>
-                    Free, ad-free, and fast. Download unlimited YouTube videos and audio without sign-ups or pop-ups. The interface is clean and focused, the 3-step flow is simple, and files are ready to play on any device. Paste a link, choose quality, and you're done-on phone or desktop.
-                </p>
-
-                <h3>Supported Formats and Quality</h3>
-                <ul>
-                    <li><strong>Audio:</strong> MP3 (128kbps, 192 kbps, 320kbps), OPUS, OGG, and WAV for lossless or high-clarity sound.</li>
-                    <li><strong>Video:</strong> MP4 at 144p, 240p, 360p, 480p, 720p HD, 1080p Full HD, and 2160p 4K.</li>
-                    <li><strong>Light mode:</strong> Optional 144p / 3GP video available in some regions like India for ultra-fast downloads.</li>
-                </ul>
-
-                <h3>Frequently Asked Questions</h3>
-                <div>
-                    <div>
-                        <h3>Is YTMP3 free to use?</h3>
-                        <p>Yes - YTMP3 is completely free to use. You can convert and download unlimited YouTube videos in MP3 or MP4 formats-free and ad-free.</p>
-                    </div>
-                    <div>
-                        <h3>Can I use YTMP3 on my phone or tablet?</h3>
-                        <p>Absolutely. YTMP3 is mobile-friendly and works perfectly on iPhone, Android, iPad, or any modern device with a browser.</p>
-                    </div>
-                    <div>
-                        <h3>Do I need to install any software?</h3>
-                        <p>Not at all. YTMP3 runs entirely in your browser-free, ad-free, and fast-no extensions or installation required.</p>
-                    </div>
-                </div>
-
-                <div class="final-thoughts">
-                    <h3>Final Thoughts</h3>
+                <div class="content-wrapper">
+                    <h2>YTMP3 - The best Youtube to MP3 Converter</h2>
                     <p>
-                        YTMP3.gg isn't just another YouTube converter - it's a refined, secure, and ad-free platform built
-                        for people who value quality and simplicity. Convert YouTube to MP3 or MP4 in seconds, enjoy your
-                        content anywhere, and stay safe while doing it.
+                        ytmp3.gg converts YouTube to high-quality audio in MP3, WAV, OGG, and Opus - plus stunning 4K,
+                        2K, and 1080p video - in a simple, ad-free way.
                     </p>
+                    <p>
+                        Convert any YouTube video to MP3 or MP4 in seconds with YTMP3.gg - the fast, ad-free, and secure
+                        way
+                        to download YouTube content. Just paste your link, choose the format and quality, and let YTMP3
+                        do
+                        the work. No pop-ups, no registration, no distractions - simply smooth conversions that finish
+                        before you can blink.
+                    </p>
+
+                    <h3>How to Convert YouTube to MP3 or MP4</h3>
+                    <p>
+                        Using YTMP3 is simple: Copy your YouTube link, paste it into the field above, pick either MP3
+                        for
+                        audio or MP4 for video, select your preferred quality, and click Convert. Most downloads are
+                        ready
+                        within a few seconds, depending on video length and resolution.
+                    </p>
+
+                    <h3>Why People Choose YTMP3</h3>
+                    <p>
+                        Free, ad-free, and fast. Download unlimited YouTube videos and audio without sign-ups or
+                        pop-ups. The interface is clean and focused, the 3-step flow is simple, and files are ready to
+                        play on any device. Paste a link, choose quality, and you're done-on phone or desktop.
+                    </p>
+
+                    <h3>Supported Formats and Quality</h3>
+                    <ul>
+                        <li><strong>Audio:</strong> MP3 (128kbps, 192 kbps, 320kbps), OPUS, OGG, and WAV for lossless or
+                            high-clarity sound.</li>
+                        <li><strong>Video:</strong> MP4 at 144p, 360p, 480p, 720p HD, 1080p Full HD, and 2160p 4K.</li>
+                        <li><strong>Light mode:</strong> Optional 144p / 3GP video available in some regions like India
+                            for ultra-fast downloads.</li>
+                    </ul>
+
+                    <h3>Frequently Asked Questions</h3>
+                    <div>
+                        <div>
+                            <h3>Is YTMP3 free to use?</h3>
+                            <p>Yes - YTMP3 is completely free to use. You can convert and download unlimited YouTube
+                                videos in MP3 or MP4 formats-free and ad-free.</p>
+                        </div>
+                        <div>
+                            <h3>Can I use YTMP3 on my phone or tablet?</h3>
+                            <p>Absolutely. YTMP3 is mobile-friendly and works perfectly on iPhone, Android, iPad, or any
+                                modern device with a browser.</p>
+                        </div>
+                        <div>
+                            <h3>Do I need to install any software?</h3>
+                            <p>Not at all. YTMP3 runs entirely in your browser-free, ad-free, and fast-no extensions or
+                                installation required.</p>
+                        </div>
+                    </div>
+
+                    <div class="final-thoughts">
+                        <h3>Final Thoughts</h3>
+                        <p>
+                            YTMP3.gg isn't just another YouTube converter - it's a refined, secure, and ad-free platform
+                            built
+                            for people who value quality and simplicity. Convert YouTube to MP3 or MP4 in seconds, enjoy
+                            your
+                            content anywhere, and stay safe while doing it.
+                        </p>
+                    </div>
                 </div>
-            </div>
             </div>
         </section>
 
     </main>
 
     <!-- FOOTER -->
-    <footer >
+    <footer>
     </footer>
 
 </body>
-</html>
 
+</html>

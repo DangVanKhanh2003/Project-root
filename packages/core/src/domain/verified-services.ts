@@ -91,7 +91,7 @@ export function createVerifiedServices(
    */
   const methodRegistry: Record<string, (...args: any[]) => Promise<any>> = {
     // Search V1
-   
+
 
     // Feedback
     [POLICY_NAME.SEND_FEEDBACK]: (params: any) =>
@@ -105,10 +105,12 @@ export function createVerifiedServices(
     [POLICY_NAME.ADD_VIDEO_TO_QUEUE]: (videoId: string) =>
       services.queue.addVideoToQueue(videoId),
 
-  
+
     // YouTube Public API
     [POLICY_NAME.GET_METADATA_YOUTUBE]: (url: string) =>
       services.youtubePublicApi.getMetadata(url),
+    [POLICY_NAME.GET_SUGGESTIONS]: (query: string) =>
+      services.youtubePublicApi.getSuggestions(query),
 
     // Playlist V3
     'playlistV3.extractPlaylist': (url: string, signal?: AbortSignal) =>
@@ -298,7 +300,7 @@ export function createVerifiedServices(
     // Search V1
     // ========================================
 
-   
+
     // ========================================
     // Decrypt (WITH auto JWT injection)
     // ========================================
@@ -334,6 +336,9 @@ export function createVerifiedServices(
     // YouTube Public API
     // ========================================
 
+    getSuggestions: (params: { q: string }) =>
+      wrap<string[]>(POLICY_NAME.GET_SUGGESTIONS, params.q),
+
     getMetadataYoutube: (url: string) =>
       wrap(POLICY_NAME.GET_METADATA_YOUTUBE, url),
 
@@ -356,7 +361,7 @@ export function createVerifiedServices(
       getStatusByUrl: (url: string) =>
         wrap('downloadV3.getStatusByUrl', url),
     },
-    
+
     // ========================================
     // ZIP Download
     // ========================================

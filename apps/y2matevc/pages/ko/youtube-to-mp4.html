@@ -8,8 +8,9 @@
 
     <!-- SEO Metadata -->
     <title>YouTube를 MP4로 – 긴 YouTube 동영상을 MP4로 다운로드 | Y2Mate</title>
-    <meta name="description" content="Y2Mate로 YouTube 동영상을 MP4로 다운로드하세요. 긴 동영상, 강의 및 다시보기에 최적화되어 있습니다. 오프라인 시청을 위해 전체 동영상과 오디오를 브라우저에서 직접 보관하세요.">
-    
+    <meta name="description"
+        content="Y2Mate로 YouTube 동영상을 MP4로 다운로드하세요. 긴 동영상, 강의 및 다시보기에 최적화되어 있습니다. 오프라인 시청을 위해 전체 동영상과 오디오를 브라우저에서 직접 보관하세요.">
+
     <link rel="canonical" href="https://y2mate.vc/ko/youtube-to-mp4">
 
     <!-- hreflang tags for multilingual SEO -->
@@ -64,7 +65,7 @@
     <!-- Google Analytics: Lazy loaded via analytics-loader.ts for better performance -->
 
     <!-- Critical: Set format and auto-submit preferences before render to prevent FOUC -->
-    <script>(function(){var f='mp4',a='false';try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p&&p.selectedFormat)f=p.selectedFormat;var s=localStorage.getItem('y2mate_auto_submit');if(s)a=s;}catch(e){}document.documentElement.dataset.format=f;document.documentElement.dataset.autoSubmit=a;})()</script>
+    <script>(function () { var f = 'mp4', a = 'false'; try { var p = JSON.parse(localStorage.getItem('y2mate_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat; var s = localStorage.getItem('y2mate_auto_submit'); if (s) a = s; } catch (e) { } document.documentElement.dataset.format = f; document.documentElement.dataset.autoSubmit = a; })()</script>
 
     <!-- Critical: Hide auto-submit tooltip before CSS loads -->
     <style>
@@ -75,7 +76,7 @@
     </style>
 
     <!-- Critical: Prevent default form submit before app init (avoid /search 404) -->
-    <script>(function(){document.addEventListener('submit',function(event){var target=event.target;if(target&&target.id==='downloadForm'){event.preventDefault();}},true);})();</script>
+    <script>(function () { document.addEventListener('submit', function (event) { var target = event.target; if (target && target.id === 'downloadForm') { event.preventDefault(); } }, true); })();</script>
 
     <!-- Critical CSS imported via Vite -->
     <script type="module" src="/src/main.ts"></script>
@@ -212,125 +213,35 @@
 
 <body>
     <header class="nav-header">
-    <div class="container">
-        <div class="nav_head">
-            <div class="navbar-logo">
-                <a href="/ko/">
-                    <img height="46px" width="46px" src="/logo.png" alt="Y2Mate logo">
-                    <span class="logo-name">Y2mate</span>
-                </a>
-            </div>
-            <button type="button" class="navbar-toggler" id="mobileMenuToggle" aria-label="탐색 메뉴 열기">
-                <span class="toggle-icon"></span>
-                <span class="toggle-icon"></span>
-                <span class="toggle-icon"></span>
-            </button>
-        </div>
-        <div class="header-menu">
-            <ul class="menu-navbar">
-              
-                <li class="navbar">
-                    <a href="/ko/youtube-to-mp4">유튜브 MP4 변환기</a>
-                </li>
-                <li class="navbar">
-                    <a href="/ko/youtube-to-mp3">유튜브 MP3 변환기</a>
-                </li>
-                <li class="navbar language">
-                    <a href="/">
-                        한국어<span class="shape"></span>
-                    </a>
-                    <div class="dropdown-menu">
-                        <ul class="lang-menu">
-                            <li>
-                                <a data-lang="en" href="/youtube-to-mp4">English</a>
-                            </li>
-                            <li>
-                                <a data-lang="ar" href="/ar/youtube-to-mp4">العربية</a>
-                            </li>
-                            <li>
-                                <a data-lang="bn" href="/bn/youtube-to-mp4">বাংলা</a>
-                            </li>
-                            <li>
-                                <a data-lang="de" href="/de/youtube-to-mp4">Deutsch</a>
-                            </li>
-                            <li>
-                                <a data-lang="es" href="/es/youtube-to-mp4">Español</a>
-                            </li>
-                            <li>
-                                <a data-lang="fr" href="/fr/youtube-to-mp4">Français</a>
-                            </li>
-                            <li>
-                                <a data-lang="hi" href="/hi/youtube-to-mp4">हिन्दी</a>
-                            </li>
-                            <li>
-                                <a data-lang="id" href="/id/youtube-to-mp4">Indonesia</a>
-                            </li>
-                            <li>
-                                <a data-lang="it" href="/it/youtube-to-mp4">Italiano</a>
-                            </li>
-                            <li>
-                                <a data-lang="ja" href="/ja/youtube-to-mp4">日本語</a>
-                            </li>
-                            <li>
-                                <a data-lang="ko" href="/ko/youtube-to-mp4">한국어</a>
-                            </li>
-                            <li>
-                                <a data-lang="my" href="/my/youtube-to-mp4">မြန်မာ</a>
-                            </li>
-                            <li>
-                                <a data-lang="ms" href="/ms/youtube-to-mp4">Melayu</a>
-                            </li>
-                            <li>
-                                <a data-lang="pt" href="/pt/youtube-to-mp4">Português</a>
-                            </li>
-                            <li>
-                                <a data-lang="ru" href="/ru/youtube-to-mp4">Русский</a>
-                            </li>
-                            <li>
-                                <a data-lang="th" href="/th/youtube-to-mp4">ไทย</a>
-                            </li>
-                            <li>
-                                <a data-lang="tr" href="/tr/youtube-to-mp4">Türkçe</a>
-                            </li>
-                            <li>
-                                <a data-lang="ur" href="/ur/youtube-to-mp4">اردو</a>
-                            </li>
-                            <li>
-                                <a data-lang="vi" href="/vi/youtube-to-mp4">Tiếng Việt</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
-        </div>
-
-        <!-- Mobile Menu Overlay -->
-        <div class="mobile-menu-overlay" id="mobileMenuOverlay">
-            <div class="mobile-menu-content">
-                <div class="mobile-header-top">
+        <div class="container">
+            <div class="nav_head">
+                <div class="navbar-logo">
                     <a href="/ko/">
-                        <div class="mobile-logo">
-                            <img height="36px" width="36px" src="/logo.png" alt="Y2Mate logo">
-                            <span class="logo-name">Y2mate</span>
-                        </div>
+                        <img height="46px" width="46px" src="/logo.png" alt="Y2Mate logo">
+                        <span class="logo-name">Y2mate</span>
                     </a>
-                    <button type="button" class="mobile-close-btn" id="mobileCloseBtn" aria-label="탐색 메뉴 닫기">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                    </button>
                 </div>
-                <nav class="mobile-nav">
-                    <ul class="mobile-menu">
-                        <li><a href="/ko/">유튜브 다운로더</a></li>
-                        <li><a href="/ko/youtube-to-mp4">유튜브 MP4 변환기</a></li>
-                        <li><a href="/ko/youtube-to-mp3">유튜브 MP3 변환기</a></li>
-                        <li><a href="/ko/youtube-short-downloader">유튜브 쇼츠 다운로ダー</a></li>
-                        <li class="mobile-language">
-                            <button type="button" class="mobile-language-toggle" aria-expanded="false">
-                                한국어<span class="shape"></span>
-                            </button>
-                            <ul class="mobile-lang-menu">
+                <button type="button" class="navbar-toggler" id="mobileMenuToggle" aria-label="탐색 메뉴 열기">
+                    <span class="toggle-icon"></span>
+                    <span class="toggle-icon"></span>
+                    <span class="toggle-icon"></span>
+                </button>
+            </div>
+            <div class="header-menu">
+                <ul class="menu-navbar">
+
+                    <li class="navbar">
+                        <a href="/ko/youtube-to-mp4">유튜브 MP4 변환기</a>
+                    </li>
+                    <li class="navbar">
+                        <a href="/ko/youtube-to-mp3">유튜브 MP3 변환기</a>
+                    </li>
+                    <li class="navbar language">
+                        <a href="/">
+                            한국어<span class="shape"></span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <ul class="lang-menu">
                                 <li>
                                     <a data-lang="en" href="/youtube-to-mp4">English</a>
                                 </li>
@@ -389,261 +300,360 @@
                                     <a data-lang="vi" href="/vi/youtube-to-mp4">Tiếng Việt</a>
                                 </li>
                             </ul>
-                        </li>
-                    </ul>
-                </nav>
+                        </div>
+                    </li>
+                </ul>
             </div>
+
+            <!-- Mobile Menu Overlay -->
+            <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+                <div class="mobile-menu-content">
+                    <div class="mobile-header-top">
+                        <a href="/ko/">
+                            <div class="mobile-logo">
+                                <img height="36px" width="36px" src="/logo.png" alt="Y2Mate logo">
+                                <span class="logo-name">Y2mate</span>
+                            </div>
+                        </a>
+                        <button type="button" class="mobile-close-btn" id="mobileCloseBtn" aria-label="탐색 메뉴 닫기">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" />
+                            </svg>
+                        </button>
+                    </div>
+                    <nav class="mobile-nav">
+                        <ul class="mobile-menu">
+                            <li><a href="/ko/">유튜브 다운로더</a></li>
+                            <li><a href="/ko/youtube-to-mp4">유튜브 MP4 변환기</a></li>
+                            <li><a href="/ko/youtube-to-mp3">유튜브 MP3 변환기</a></li>
+                            <li><a href="/ko/youtube-short-downloader">유튜브 쇼츠 다운로ダー</a></li>
+                            <li class="mobile-language">
+                                <button type="button" class="mobile-language-toggle" aria-expanded="false">
+                                    한국어<span class="shape"></span>
+                                </button>
+                                <ul class="mobile-lang-menu">
+                                    <li>
+                                        <a data-lang="en" href="/youtube-to-mp4">English</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="ar" href="/ar/youtube-to-mp4">العربية</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="bn" href="/bn/youtube-to-mp4">বাংলা</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="de" href="/de/youtube-to-mp4">Deutsch</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="es" href="/es/youtube-to-mp4">Español</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="fr" href="/fr/youtube-to-mp4">Français</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="hi" href="/hi/youtube-to-mp4">हिन्दी</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="id" href="/id/youtube-to-mp4">Indonesia</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="it" href="/it/youtube-to-mp4">Italiano</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="ja" href="/ja/youtube-to-mp4">日本語</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="ko" href="/ko/youtube-to-mp4">한국어</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="my" href="/my/youtube-to-mp4">မြန်မာ</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="ms" href="/ms/youtube-to-mp4">Melayu</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="pt" href="/pt/youtube-to-mp4">Português</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="ru" href="/ru/youtube-to-mp4">Русский</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="th" href="/th/youtube-to-mp4">ไทย</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="tr" href="/tr/youtube-to-mp4">Türkçe</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="ur" href="/ur/youtube-to-mp4">اردو</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="vi" href="/vi/youtube-to-mp4">Tiếng Việt</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- End Mobile Menu Overlay -->
         </div>
-        <!-- End Mobile Menu Overlay -->
-    </div>
-</header>
+    </header>
 
 
     <main>
-    <div class="container">
-    <section class="y2mate-download-pro">
-        <div class="y2mate-search-form-pro d-flex">
-            <div class="form-wrap">
-                <h1 class="y2mate_title-pro">Y2Mate – YouTube를 MP4로</h1>
-                <form id="downloadForm" class="search_form" method="POST" action="/search/">
-                    <div class="input-container">
-                        <div class=" input-wrapper">
-                            <input id="videoUrl" class="y2mate_query-pro keyword" type="text" name="q"
-                                placeholder="여기에 링크 검색 또는 붙여넣기..." autocomplete="off" autofocus=""
-                                role="combobox" aria-autocomplete="list" aria-controls="suggestion-container" aria-expanded="false">
-                            <button id="input-action-button" type="button" class="input-action-btn" data-action="paste"
-                                aria-label="클립보드에서 붙여넣기">
-                                <svg class="paste-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                                    viewBox="0 0 24 24">
-                                    <path fill="currentColor"
-                                        d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm7 16H5V5h2v3h10V5h2v14z" />
-                                </svg>
-                                <svg class="clear-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                                    viewBox="0 0 24 24">
-                                    <path fill="currentColor"
-                                        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                    <button id="submit" type="submit" name="form_submit" class="submit-btn" aria-label="Search">
-                        <div class="converter-btn">시작</div>
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                            width="14px" height="14px" fill="#fff" id="Layer_1"
-                            style="enable-background:new 0 0 16 16;" version="1.1" viewBox="0 0 16 16"
-                            xml:space="preserve">
-                            <path
-                                d="M15.375,7L10,2.54C9.695,2.287,9.461,2,9,2C8.375,2,8,2.516,8,3v3H1C0.45,6,0,6.45,0,7v2c0,0.55,0.45,1,1,1h7v3  c0,0.484,0.375,1,1,1c0.461,0,0.695-0.287,1-0.54L15.375,9C15.758,8.688,16,8.445,16,8S15.758,7.313,15.375,7z">
-                            </path>
-                        </svg>
-                    </button>
-
-                    <!-- Format Selector -->
-                    <div id="format-selector-container" class="format-selector-wrapper">
-                        <div class="format-selector">
-                            <!-- Group 1: Format + Quality -->
-                            <div class="format-quality-group">
-                                <!-- Format Toggle -->
-                                <button type="button" class="format-toggle-btn" data-toggle-format>
-                                    <span class="toggle-side" data-format="mp4">
-                                        <span class="format-label">MP4</span>
-                                    </span>
-                                    <span class="toggle-side" data-format="mp3">
-                                        <span class="format-label">MP3</span>
-                                    </span>
-                                </button>
-                                <!-- Quality Dropdowns -->
-                                <div class="quality-selector">
-                                    <!-- MP4 Options -->
-                                    <select id="quality-select-mp4" class="quality-select quality-select--mp4"
-                                        aria-label="비디오 품질" data-quality-select>
-                                        <option value="mp4-1080">MP4 - 1080p</option>
-                                        <option value="mp4-720" selected>MP4 - 720p</option>
-                                        <option value="mp4-480">MP4 - 480p</option>
-                                        <option value="mp4-360">MP4 - 360p</option>
-                                        <option value="mp4-240">MP4 - 240p</option>
-                                        <option value="mp4-144">MP4 - 144p</option>
-                                        <option value="webm">WEBM</option>
-                                        <option value="mkv">MKV</option>
-                                    </select>
-                                    <!-- MP3 Options -->
-                                    <select id="quality-select-mp3" class="quality-select quality-select--mp3"
-                                        aria-label="오디오 품질" data-quality-select>
-                                        <option value="mp3-320">MP3 - 320kbps</option>
-                                        <option value="mp3-256">MP3 - 256kbps</option>
-                                        <option value="mp3-192">MP3 - 192kbps</option>
-                                        <option value="mp3-128" selected>MP3 - 128kbps</option>
-                                        <option value="ogg">OGG</option>
-                                        <option value="opus">OPUS</option>
-                                        <option value="wav">WAV</option>
-                                    </select>
+        <div class="container">
+            <section class="y2mate-download-pro">
+                <div class="y2mate-search-form-pro d-flex">
+                    <div class="form-wrap">
+                        <h1 class="y2mate_title-pro">Y2Mate – YouTube를 MP4로</h1>
+                        <form id="downloadForm" class="search_form" method="POST" action="/search/">
+                            <div class="input-container">
+                                <div class=" input-wrapper">
+                                    <input id="videoUrl" class="y2mate_query-pro keyword" type="text" name="q"
+                                        placeholder="여기에 링크 검색 또는 붙여넣기..." autocomplete="off" autofocus=""
+                                        role="combobox" aria-autocomplete="list" aria-controls="suggestion-container"
+                                        aria-expanded="false">
+                                    <button id="input-action-button" type="button" class="input-action-btn"
+                                        data-action="paste" aria-label="클립보드에서 붙여넣기">
+                                        <svg class="paste-icon" xmlns="http://www.w3.org/2000/svg" width="18"
+                                            height="18" viewBox="0 0 24 24">
+                                            <path fill="currentColor"
+                                                d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm7 16H5V5h2v3h10V5h2v14z" />
+                                        </svg>
+                                        <svg class="clear-icon" xmlns="http://www.w3.org/2000/svg" width="18"
+                                            height="18" viewBox="0 0 24 24">
+                                            <path fill="currentColor"
+                                                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                                        </svg>
+                                    </button>
                                 </div>
                             </div>
-                            <!-- Group 2: Auto Submit Toggle -->
-                            <div class="auto-submit-toggle"
-                                data-tooltip="URL 또는 키워드를 붙여넣을 때 자동으로 제출">
-                                <strong class="toggle-label">자동 제출</strong>
-                                <label class="toggle-switch" for="auto-submit-checkbox">
-                                    <input type="checkbox" id="auto-submit-checkbox" data-auto-submit-toggle aria-label="Auto submit after selecting format"/>
-                                    <span class="toggle-slider"></span>
-                                </label>
-                                <span class="custom-tooltip"></span>
-                        </div>
+                            <button id="submit" type="submit" name="form_submit" class="submit-btn" aria-label="Search">
+                                <div class="converter-btn">시작</div>
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    width="14px" height="14px" fill="#fff" id="Layer_1"
+                                    style="enable-background:new 0 0 16 16;" version="1.1" viewBox="0 0 16 16"
+                                    xml:space="preserve">
+                                    <path
+                                        d="M15.375,7L10,2.54C9.695,2.287,9.461,2,9,2C8.375,2,8,2.516,8,3v3H1C0.45,6,0,6.45,0,7v2c0,0.55,0.45,1,1,1h7v3  c0,0.484,0.375,1,1,1c0.461,0,0.695-0.287,1-0.54L15.375,9C15.758,8.688,16,8.445,16,8S15.758,7.313,15.375,7z">
+                                    </path>
+                                </svg>
+                            </button>
+
+                            <!-- Format Selector -->
+                            <div id="format-selector-container" class="format-selector-wrapper">
+                                <div class="format-selector">
+                                    <!-- Group 1: Format + Quality -->
+                                    <div class="format-quality-group">
+                                        <!-- Format Toggle -->
+                                        <button type="button" class="format-toggle-btn" data-toggle-format>
+                                            <span class="toggle-side" data-format="mp4">
+                                                <span class="format-label">MP4</span>
+                                            </span>
+                                            <span class="toggle-side" data-format="mp3">
+                                                <span class="format-label">MP3</span>
+                                            </span>
+                                        </button>
+                                        <!-- Quality Dropdowns -->
+                                        <div class="quality-selector">
+                                            <!-- MP4 Options -->
+                                            <select id="quality-select-mp4" class="quality-select quality-select--mp4"
+                                                aria-label="비디오 품질" data-quality-select>
+                                                <option value="mp4-1080">MP4 - 1080p</option>
+                                                <option value="mp4-720" selected>MP4 - 720p</option>
+                                                <option value="mp4-480">MP4 - 480p</option>
+                                                <option value="mp4-360">MP4 - 360p</option>
+                                                <option value="mp4-144">MP4 - 144p</option>
+                                                <option value="webm">WEBM</option>
+                                                <option value="mkv">MKV</option>
+                                            </select>
+                                            <!-- MP3 Options -->
+                                            <select id="quality-select-mp3" class="quality-select quality-select--mp3"
+                                                aria-label="오디오 품질" data-quality-select>
+                                                <option value="mp3-320">MP3 - 320kbps</option>
+                                                <option value="mp3-256">MP3 - 256kbps</option>
+                                                <option value="mp3-192">MP3 - 192kbps</option>
+                                                <option value="mp3-128" selected>MP3 - 128kbps</option>
+                                                <option value="ogg">OGG</option>
+                                                <option value="opus">OPUS</option>
+                                                <option value="wav">WAV</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!-- Group 2: Auto Submit Toggle -->
+                                    <div class="auto-submit-toggle" data-tooltip="URL 또는 키워드를 붙여넣을 때 자동으로 제출">
+                                        <strong class="toggle-label">자동 제출</strong>
+                                        <label class="toggle-switch" for="auto-submit-checkbox">
+                                            <input type="checkbox" id="auto-submit-checkbox" data-auto-submit-toggle
+                                                aria-label="Auto submit after selecting format" />
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                        <span class="custom-tooltip"></span>
+                                    </div>
+                                </div>
+                                <script>(function () { try { const preferencesJson = localStorage.getItem('y2mate_format_preferences'); if (preferencesJson) { const preferences = JSON.parse(preferencesJson); const selectElement = preferences.selectedFormat === 'mp4' ? document.getElementById('quality-select-mp4') : document.getElementById('quality-select-mp3'); if (selectElement) { let value; if (preferences.selectedFormat === 'mp4') { const videoQuality = preferences.videoQuality || '720p'; value = (videoQuality === 'webm' || videoQuality === 'mkv') ? videoQuality : `mp4-${videoQuality.replace('p', '')}`; } else { const audioFormat = preferences.audioFormat || 'mp3'; value = (audioFormat === 'mp3') ? `mp3-${preferences.audioBitrate || '128'}` : audioFormat; } selectElement.value = value; } } const autoSubmitValue = localStorage.getItem('y2mate_auto_submit'); const checkbox = document.getElementById('auto-submit-checkbox'); if (checkbox) { checkbox.checked = autoSubmitValue === 'true'; } } catch (error) { console.error('Error syncing UI from localStorage in inline script:', error); } })();</script>
+                            </div>
+
+                            <div id="suggestion-container" class="suggesstion-list suggesstion-box"></div>
+                        </form>
+
+                        <!-- Video Detail Area -->
+                        <div id="content-area"></div>
                     </div>
-                    <script>(function(){try{const preferencesJson=localStorage.getItem('y2mate_format_preferences');if(preferencesJson){const preferences=JSON.parse(preferencesJson);const selectElement=preferences.selectedFormat==='mp4'?document.getElementById('quality-select-mp4'):document.getElementById('quality-select-mp3');if(selectElement){let value;if(preferences.selectedFormat==='mp4'){const videoQuality=preferences.videoQuality||'720p';value=(videoQuality==='webm'||videoQuality==='mkv')?videoQuality:`mp4-${videoQuality.replace('p','')}`;}else{const audioFormat=preferences.audioFormat||'mp3';value=(audioFormat==='mp3')?`mp3-${preferences.audioBitrate||'128'}`:audioFormat;}selectElement.value=value;}}const autoSubmitValue=localStorage.getItem('y2mate_auto_submit');const checkbox=document.getElementById('auto-submit-checkbox');if(checkbox){checkbox.checked=autoSubmitValue==='true';}}catch(error){console.error('Error syncing UI from localStorage in inline script:',error);}})();</script>
+                </div>
+            </section>
+
+            <!-- Search Results Section -->
+            <section id="search-results-section" class="search-results-section" style="display: none;">
+                <div id="search-results-container"></div>
+            </section>
+
+            <!-- Content Sections -->
+            <section class="y2mate-content-pro d-flex">
+                <div class="col-sm-12">
+                    <h2>Y2Mate의 YouTube-MP4는 무엇입니까?</h2>
+                    <p><a href="/ko/">Y2Mate</a>의 <strong>YouTube-MP4</strong> 페이지는 오프라인 시청을 위해 동영상과 오디오를 모두 보존하면서
+                        YouTube 동영상을 MP4 형식으로 다운로드하기 위해 특별히 제작되었습니다.</p>
+                    <p>일반적인 동영상 다운로드 도구와 달리 이 페이지는 긴 재생 시간의 YouTube 동영상과 여러 품질 수준을 안정적이고 신뢰할 수 있는 방식으로 처리하는 데 중점을 둡니다.
+                    </p>
+                </div>
+            </section>
+            <section class="y2mate-content-pro d-flex">
+                <div class="col-sm-12">
+                    <h2>긴 YouTube 동영상 다운로드용으로 설계됨</h2>
+                    <p>이 YouTube-MP4 도구는 강의, 교육 콘텐츠, 다시보기 라이브 스트림 또는 1시간이 넘는 동영상과 같은 긴 YouTube 동영상을 다운로드하는 데 적합합니다.</p>
+                    <p>표준 동영상 다운로드 도구를 사용할 때 다운로드에 실패하거나 제대로 완료되지 않는 콘텐츠에 특히 유용합니다.</p>
+                </div>
+            </section>
+            <section class="y2mate-content-pro d-flex">
+                <div class="col-sm-12">
+                    <h2>긴 YouTube 동영상 다운로드 시 일반적인 문제</h2>
+                    <p>긴 YouTube 동영상을 다운로드할 때 사용자는 종종 다운로드 중단, 오디오 누락 또는 동영상 품질에 대한 제한된 제어를 경험합니다.</p>
+                    <p>이러한 문제는 일반적으로 불안정한 동영상 스트림 처리 또는 동영상과 오디오 데이터의 잘못된 분리에서 비롯됩니다.</p>
+                </div>
+            </section>
+            <section class="y2mate-content-pro d-flex">
+                <div class="col-sm-12">
+                    <h2>도구가 YouTube 동영상을 MP4로 처리하는 방법</h2>
+                    <p>YouTube 동영상 링크를 붙여넣으면 시스템이 원본 동영상 스트림을 분석하고 장치와 호환되는 MP4 파일을 생성합니다.</p>
+                    <p>이 프로세스는 다운로드한 동영상에 동영상과 오디오가 모두 포함되어 있고 오프라인에서 볼 때 올바르게 재생되도록 합니다.</p>
+                </div>
+            </section>
+            <section class="y2mate-content-pro d-flex">
+                <div class="col-sm-12">
+                    <h2>MP4 동영상 품질 가용성</h2>
+                    <p>다운로드한 MP4 파일의 품질은 원본 YouTube 동영상에서 제공하는 해상도에 따라 다릅니다.</p>
+                    <p>일반적인 옵션에는 SD, HD 또는 Full HD가 포함됩니다. 모든 동영상이 모든 해상도를 제공하는 것은 아니며 도구는 각 특정 동영상에 사용할 수 있는 옵션만 표시합니다.
+                    </p>
+                </div>
+            </section>
+            <section class="y2mate-content-pro d-flex">
+                <div class="col-sm-12">
+                    <h2>MP4 다운로드와 MP3 추출의 차이점</h2>
+                    <p>MP4는 시각적 요소와 오디오를 모두 포함하는 완전한 동영상 형식으로, 동영상 콘텐츠를 시청해야 할 때 적합합니다.</p>
+                    <p>음악, 팟캐스트 또는 배경 청취를 위해 오디오만 필요한 경우 <a href="/ko/youtube-to-mp3">YouTube-MP3</a> 페이지를 사용하여 파일 크기를
+                        줄이고 오프라인 청취를 최적화해야 합니다.</p>
+                </div>
+            </section>
+            <section class="y2mate-content-pro d-flex">
+                <div class="col-sm-12">
+                    <h2>관련 다운로드 옵션</h2>
+                    <p>일반적으로 YouTube 콘텐츠를 다운로드하고 특정 형식을 결정하지 않은 경우 <a href="/ko/">YouTube 동영상 다운로드</a> 페이지를 방문하여 사용 가능한
+                        모든 다운로드 옵션을 탐색할 수 있습니다.</p>
+                    <p>짧은 세로 동영상의 경우 <a href="/ko/youtube-short-downloader">YouTube Shorts 다운로더</a>가 Shorts 콘텐츠를 처리하도록
+                        특별히 설계되었습니다.</p>
+                </div>
+            </section>
+
+            <!-- Why Choose Section -->
+            <section class="y2mate-instruction-pro">
+                <div class="y2mate-in-ad-pro">
+                    <h2>YouTube-MP4 다운로드에 Y2Mate를 선택해야 하는 이유</h2>
+                    <p>많은 YouTube 동영상 다운로더는 긴 동영상, 품질 선택 또는 오디오 동기화에 어려움을 겪습니다. Y2Mate는 긴 형식의 콘텐츠에 최적화된 신뢰할 수 있는 MP4
+                        다운로드를 제공합니다.</p>
+                    <ul>
+                        <li>긴 동영상을 안정적으로 처리 – 강의 및 확장 콘텐츠에 최적화됨</li>
+                        <li>다중 품질 옵션 – 360p에서 1080p 이상(사용 가능한 경우)</li>
+                        <li>오디오 및 동영상 동기화 유지 – 오디오/동영상 불일치 문제 없음</li>
+                        <li>빠른 처리 – 효율적인 동영상 스트림 처리</li>
+                        <li>모든 장치에서 작동 – 데스크톱 또는 모바일에서 다운로드</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Instructions Section -->
+            <section class="y2mate-instruction-pro">
+                <div class="y2mate-in-ad-pro">
+                    <h2>YouTube 동영상을 MP4로 다운로드하는 방법</h2>
+                    <ol>
+                        <li>다운로드하려는 YouTube 동영상 링크를 복사합니다.</li>
+                        <li>이 페이지의 입력 필드에 링크를 붙여넣습니다.</li>
+                        <li>시작 버튼을 클릭하여 동영상 스트림을 분석합니다.</li>
+                        <li>원하는 MP4 품질을 선택하고 동영상을 장치에 다운로드합니다.</li>
+                    </ol>
+                    <p><em>전체 다운로드 프로세스는 소프트웨어 설치 없이 브라우저에서 실행됩니다.</em></p>
+                </div>
+            </section>
+
+            <!-- FAQs Section -->
+            <section class="yt-content">
+                <h2>YouTube-MP4에 대한 자주 묻는 질문</h2>
+                <div class="download-uses">
+                    <div class="guide-data">
+                        <h3>YouTube 동영상을 MP4로 어떻게 다운로드합니까?</h3>
+                        <p>YouTube 동영상 링크를 입력 상자에 붙여넣고 프로세스를 시작하고 사용 가능한 MP4 품질을 선택한 다음 동영상을 장치에 다운로드합니다.</p>
                     </div>
-
-                    <div id="suggestion-container" class="suggesstion-list suggesstion-box"></div>
-                </form>
-
-                <!-- Video Detail Area -->
-                <div id="content-area"></div>
-            </div>
+                    <div class="guide-data">
+                        <h3>이 MP4 도구를 사용하려면 소프트웨어를 설치해야 합니까?</h3>
+                        <p>아니요. YouTube-MP4 변환기는 웹 브라우저에서 완전히 작동하며 소프트웨어나 확장 프로그램이 필요하지 않습니다.</p>
+                    </div>
+                    <div class="guide-data">
+                        <h3>어떤 동영상 품질 옵션을 사용할 수 있습니까?</h3>
+                        <p>사용 가능한 MP4 해상도는 원본 동영상에 따라 다르며 SD, HD 또는 Full HD 옵션이 포함될 수 있습니다.</p>
+                    </div>
+                    <div class="guide-data">
+                        <h3>긴 YouTube 동영상을 MP4로 다운로드할 수 있습니까?</h3>
+                        <p>예. 이 도구는 동영상이 공개적으로 액세스할 수 있는 한 강의 또는 확장 콘텐츠를 포함한 긴 동영상을 처리하도록 설계되었습니다.</p>
+                    </div>
+                    <div class="guide-data">
+                        <h3>일부 동영상을 다운로드할 수 없는 이유는 무엇입니까?</h3>
+                        <p>비공개 또는 제한된 동영상은 온라인 다운로드 도구로 처리할 수 없습니다.</p>
+                    </div>
+                    <div class="guide-data">
+                        <h3>MP4 파일이 내 휴대폰이나 컴퓨터에서 작동합니까?</h3>
+                        <p>예. MP4는 널리 지원되는 형식이며 대부분의 스마트폰, 컴퓨터 및 미디어 플레이어에서 작동합니다.</p>
+                    </div>
+                </div>
+            </section>
         </div>
-    </section>
-
-    <!-- Search Results Section -->
-    <section id="search-results-section" class="search-results-section" style="display: none;">
-        <div id="search-results-container"></div>
-    </section>
-
-    <!-- Content Sections -->
-    <section class="y2mate-content-pro d-flex">
-        <div class="col-sm-12">
-            <h2>Y2Mate의 YouTube-MP4는 무엇입니까?</h2>
-            <p><a href="/ko/">Y2Mate</a>의 <strong>YouTube-MP4</strong> 페이지는 오프라인 시청을 위해 동영상과 오디오를 모두 보존하면서 YouTube 동영상을 MP4 형식으로 다운로드하기 위해 특별히 제작되었습니다.</p>
-            <p>일반적인 동영상 다운로드 도구와 달리 이 페이지는 긴 재생 시간의 YouTube 동영상과 여러 품질 수준을 안정적이고 신뢰할 수 있는 방식으로 처리하는 데 중점을 둡니다.</p>
-        </div>
-    </section>
-    <section class="y2mate-content-pro d-flex">
-        <div class="col-sm-12">
-            <h2>긴 YouTube 동영상 다운로드용으로 설계됨</h2>
-            <p>이 YouTube-MP4 도구는 강의, 교육 콘텐츠, 다시보기 라이브 스트림 또는 1시간이 넘는 동영상과 같은 긴 YouTube 동영상을 다운로드하는 데 적합합니다.</p>
-            <p>표준 동영상 다운로드 도구를 사용할 때 다운로드에 실패하거나 제대로 완료되지 않는 콘텐츠에 특히 유용합니다.</p>
-        </div>
-    </section>
-    <section class="y2mate-content-pro d-flex">
-        <div class="col-sm-12">
-            <h2>긴 YouTube 동영상 다운로드 시 일반적인 문제</h2>
-            <p>긴 YouTube 동영상을 다운로드할 때 사용자는 종종 다운로드 중단, 오디오 누락 또는 동영상 품질에 대한 제한된 제어를 경험합니다.</p>
-            <p>이러한 문제는 일반적으로 불안정한 동영상 스트림 처리 또는 동영상과 오디오 데이터의 잘못된 분리에서 비롯됩니다.</p>
-        </div>
-    </section>
-    <section class="y2mate-content-pro d-flex">
-        <div class="col-sm-12">
-            <h2>도구가 YouTube 동영상을 MP4로 처리하는 방법</h2>
-            <p>YouTube 동영상 링크를 붙여넣으면 시스템이 원본 동영상 스트림을 분석하고 장치와 호환되는 MP4 파일을 생성합니다.</p>
-            <p>이 프로세스는 다운로드한 동영상에 동영상과 오디오가 모두 포함되어 있고 오프라인에서 볼 때 올바르게 재생되도록 합니다.</p>
-        </div>
-    </section>
-    <section class="y2mate-content-pro d-flex">
-        <div class="col-sm-12">
-            <h2>MP4 동영상 품질 가용성</h2>
-            <p>다운로드한 MP4 파일의 품질은 원본 YouTube 동영상에서 제공하는 해상도에 따라 다릅니다.</p>
-            <p>일반적인 옵션에는 SD, HD 또는 Full HD가 포함됩니다. 모든 동영상이 모든 해상도를 제공하는 것은 아니며 도구는 각 특정 동영상에 사용할 수 있는 옵션만 표시합니다.</p>
-        </div>
-    </section>
-    <section class="y2mate-content-pro d-flex">
-        <div class="col-sm-12">
-            <h2>MP4 다운로드와 MP3 추출의 차이점</h2>
-            <p>MP4는 시각적 요소와 오디오를 모두 포함하는 완전한 동영상 형식으로, 동영상 콘텐츠를 시청해야 할 때 적합합니다.</p>
-            <p>음악, 팟캐스트 또는 배경 청취를 위해 오디오만 필요한 경우 <a href="/ko/youtube-to-mp3">YouTube-MP3</a> 페이지를 사용하여 파일 크기를 줄이고 오프라인 청취를 최적화해야 합니다.</p>
-        </div>
-    </section>
-    <section class="y2mate-content-pro d-flex">
-        <div class="col-sm-12">
-            <h2>관련 다운로드 옵션</h2>
-            <p>일반적으로 YouTube 콘텐츠를 다운로드하고 특정 형식을 결정하지 않은 경우 <a href="/ko/">YouTube 동영상 다운로드</a> 페이지를 방문하여 사용 가능한 모든 다운로드 옵션을 탐색할 수 있습니다.</p>
-            <p>짧은 세로 동영상의 경우 <a href="/ko/youtube-short-downloader">YouTube Shorts 다운로더</a>가 Shorts 콘텐츠를 처리하도록 특별히 설계되었습니다.</p>
-        </div>
-    </section>
-
-    <!-- Why Choose Section -->
-    <section class="y2mate-instruction-pro">
-        <div class="y2mate-in-ad-pro">
-            <h2>YouTube-MP4 다운로드에 Y2Mate를 선택해야 하는 이유</h2>
-            <p>많은 YouTube 동영상 다운로더는 긴 동영상, 품질 선택 또는 오디오 동기화에 어려움을 겪습니다. Y2Mate는 긴 형식의 콘텐츠에 최적화된 신뢰할 수 있는 MP4 다운로드를 제공합니다.</p>
-            <ul>
-                <li>긴 동영상을 안정적으로 처리 – 강의 및 확장 콘텐츠에 최적화됨</li>
-                <li>다중 품질 옵션 – 360p에서 1080p 이상(사용 가능한 경우)</li>
-                <li>오디오 및 동영상 동기화 유지 – 오디오/동영상 불일치 문제 없음</li>
-                <li>빠른 처리 – 효율적인 동영상 스트림 처리</li>
-                <li>모든 장치에서 작동 – 데스크톱 또는 모바일에서 다운로드</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- Instructions Section -->
-    <section class="y2mate-instruction-pro">
-        <div class="y2mate-in-ad-pro">
-            <h2>YouTube 동영상을 MP4로 다운로드하는 방법</h2>
-            <ol>
-                <li>다운로드하려는 YouTube 동영상 링크를 복사합니다.</li>
-                <li>이 페이지의 입력 필드에 링크를 붙여넣습니다.</li>
-                <li>시작 버튼을 클릭하여 동영상 스트림을 분석합니다.</li>
-                <li>원하는 MP4 품질을 선택하고 동영상을 장치에 다운로드합니다.</li>
-            </ol>
-            <p><em>전체 다운로드 프로세스는 소프트웨어 설치 없이 브라우저에서 실행됩니다.</em></p>
-        </div>
-    </section>
-
-    <!-- FAQs Section -->
-    <section class="yt-content">
-        <h2>YouTube-MP4에 대한 자주 묻는 질문</h2>
-        <div class="download-uses">
-            <div class="guide-data">
-                <h3>YouTube 동영상을 MP4로 어떻게 다운로드합니까?</h3>
-                <p>YouTube 동영상 링크를 입력 상자에 붙여넣고 프로세스를 시작하고 사용 가능한 MP4 품질을 선택한 다음 동영상을 장치에 다운로드합니다.</p>
-            </div>
-            <div class="guide-data">
-                <h3>이 MP4 도구를 사용하려면 소프트웨어를 설치해야 합니까?</h3>
-                <p>아니요. YouTube-MP4 변환기는 웹 브라우저에서 완전히 작동하며 소프트웨어나 확장 프로그램이 필요하지 않습니다.</p>
-            </div>
-            <div class="guide-data">
-                <h3>어떤 동영상 품질 옵션을 사용할 수 있습니까?</h3>
-                <p>사용 가능한 MP4 해상도는 원본 동영상에 따라 다르며 SD, HD 또는 Full HD 옵션이 포함될 수 있습니다.</p>
-            </div>
-            <div class="guide-data">
-                <h3>긴 YouTube 동영상을 MP4로 다운로드할 수 있습니까?</h3>
-                <p>예. 이 도구는 동영상이 공개적으로 액세스할 수 있는 한 강의 또는 확장 콘텐츠를 포함한 긴 동영상을 처리하도록 설계되었습니다.</p>
-            </div>
-            <div class="guide-data">
-                <h3>일부 동영상을 다운로드할 수 없는 이유는 무엇입니까?</h3>
-                <p>비공개 또는 제한된 동영상은 온라인 다운로드 도구로 처리할 수 없습니다.</p>
-            </div>
-            <div class="guide-data">
-                <h3>MP4 파일이 내 휴대폰이나 컴퓨터에서 작동합니까?</h3>
-                <p>예. MP4는 널리 지원되는 형식이며 대부분의 스마트폰, 컴퓨터 및 미디어 플레이어에서 작동합니다.</p>
-            </div>
-        </div>
-    </section>
-</div>
 
     </main>
 
     <footer class="footer">
-    <p>© 2026 y2mate</p>
-    <ul class="footer_nav">
-        <li class="fnav-menu">
-            <a href="/about-us">소개</a>
-        </li>
-        <li class="fnav-menu">
-            <a href="/contact">문의</a>
-        </li>
-        <li class="fnav-menu">
-            <a href="/terms-condition">서비스 약관</a>
-        </li>
-        <li class="fnav-menu">
-            <a href="/privacy-policy">개인정보 보호정책</a>
-        </li>
-        <li class="fnav-menu">
-            <a href="/copyright-claims">저작권 주장</a>
-        </li>
-        <li class="fnav-menu">
-            <a href="/ko/youtube-short-downloader">유튜브 쇼츠 다운로ダー</a>
-        </li>
-    </ul>
-</footer>
+        <p>© 2026 y2mate</p>
+        <ul class="footer_nav">
+            <li class="fnav-menu">
+                <a href="/about-us">소개</a>
+            </li>
+            <li class="fnav-menu">
+                <a href="/contact">문의</a>
+            </li>
+            <li class="fnav-menu">
+                <a href="/terms-condition">서비스 약관</a>
+            </li>
+            <li class="fnav-menu">
+                <a href="/privacy-policy">개인정보 보호정책</a>
+            </li>
+            <li class="fnav-menu">
+                <a href="/copyright-claims">저작권 주장</a>
+            </li>
+            <li class="fnav-menu">
+                <a href="/ko/youtube-short-downloader">유튜브 쇼츠 다운로ダー</a>
+            </li>
+        </ul>
+    </footer>
 
 
     <!-- Conversion Modal Wrapper -->

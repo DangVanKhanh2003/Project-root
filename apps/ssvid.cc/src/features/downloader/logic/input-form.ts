@@ -143,7 +143,7 @@ function generateFakeYouTubeData(videoId: string, url: string): any {
           }
         },
         {
-          quality: '240p',
+          quality: '720p',
           format: 'mp4',
           vid: videoId,
           type: 'VIDEO',
@@ -151,7 +151,7 @@ function generateFakeYouTubeData(videoId: string, url: string): any {
           isFakeData: true,
           extractV2Options: {
             downloadMode: 'video',
-            videoQuality: '240',
+            videoQuality: '720',
             youtubeVideoContainer: 'mp4'
           }
         },

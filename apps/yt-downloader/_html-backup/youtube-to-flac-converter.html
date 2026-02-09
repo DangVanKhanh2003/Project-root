@@ -23,7 +23,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
     <!-- Critical: Read format preference before render to prevent FOUC -->
-    <script>(function(){var f='mp3';try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p&&p.selectedFormat)f=p.selectedFormat}catch(e){}document.documentElement.dataset.format=f;document.write('<style>html[data-format="mp3"] .quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4{display:block!important}</style>')})()</script>
+    <script>(function () { var f = 'mp3'; try { var p = JSON.parse(localStorage.getItem('y2mate_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat } catch (e) { } document.documentElement.dataset.format = f; document.write('<style>html[data-format="mp3"] .quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4{display:block!important}</style>') })()</script>
 
     <!-- TypeScript Module -->
     <script type="module" src="/src/main.ts"></script>
@@ -157,7 +157,8 @@
                                         <div class="quality-wrapper">
                                             <div class="quality-dropdown-wrapper">
                                                 <!-- MP3 Options (default visible) -->
-                                                <select id="quality-select-mp3" class="quality-select quality-select--mp3"
+                                                <select id="quality-select-mp3"
+                                                    class="quality-select quality-select--mp3"
                                                     aria-label="Audio quality" data-quality-select>
                                                     <option value="mp3-320">MP3 - 320kbps</option>
                                                     <option value="mp3-192">MP3 - 192kbps</option>
@@ -170,19 +171,19 @@
                                                     <option value="ogg">OGG</option>
                                                 </select>
                                                 <!-- MP4 Options (hidden by default) -->
-                                                <select id="quality-select-mp4" class="quality-select quality-select--mp4"
+                                                <select id="quality-select-mp4"
+                                                    class="quality-select quality-select--mp4"
                                                     aria-label="Video quality" data-quality-select>
                                                     <option value="mp4-1080">MP4 - 1080p</option>
                                                     <option value="mp4-720" selected>MP4 - 720p</option>
                                                     <option value="mp4-480">MP4 - 480p</option>
                                                     <option value="mp4-360">MP4 - 360p</option>
-                                                    <option value="mp4-240">MP4 - 240p</option>
                                                     <option value="mp4-144">MP4 - 144p</option>
                                                     <option value="webm">WEBM</option>
                                                     <option value="mkv">MKV</option>
                                                 </select>
                                             </div>
-                                            <script>(function(){try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(!p)return;var s=p.selectedFormat==='mp4'?document.getElementById('quality-select-mp4'):document.getElementById('quality-select-mp3');if(!s)return;var v;if(p.selectedFormat==='mp4'){var vq=p.videoQuality||'720p';v=(vq==='webm'||vq==='mkv')?vq:'mp4-'+vq.replace('p','')}else{var af=p.audioFormat||'mp3';v=(af==='mp3')?'mp3-'+(p.audioBitrate||'128'):af}s.value=v}catch(e){}})()</script>
+                                            <script>(function () { try { var p = JSON.parse(localStorage.getItem('y2mate_format_preferences')); if (!p) return; var s = p.selectedFormat === 'mp4' ? document.getElementById('quality-select-mp4') : document.getElementById('quality-select-mp3'); if (!s) return; var v; if (p.selectedFormat === 'mp4') { var vq = p.videoQuality || '720p'; v = (vq === 'webm' || vq === 'mkv') ? vq : 'mp4-' + vq.replace('p', '') } else { var af = p.audioFormat || 'mp3'; v = (af === 'mp3') ? 'mp3-' + (p.audioBitrate || '128') : af } s.value = v } catch (e) { } })()</script>
                                             <div class="select-arrow">
                                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
                                                     stroke="currentColor" stroke-width="2">
@@ -268,7 +269,8 @@
                             <div class="faq-item">
                                 <h3 class="faq-question">Is FLAC better than MP3?</h3>
                                 <p class="faq-answer">Yes, for quality. FLAC preserves 100% of the original audio while
-                                    MP3 discards data. However, FLAC files are larger than <a href="/youtube-to-mp3-320kbps-converter">MP3 320kbps</a>.</p>
+                                    MP3 discards data. However, FLAC files are larger than <a
+                                        href="/youtube-to-mp3-320kbps-converter">MP3 320kbps</a>.</p>
                             </div>
                             <div class="faq-item">
                                 <h3 class="faq-question">What's the difference between 16-bit and 24-bit FLAC?</h3>
@@ -279,12 +281,14 @@
                                 <h3 class="faq-question">Can I play FLAC on my device?</h3>
                                 <p class="faq-answer">Yes. FLAC is natively supported on Windows 10, macOS, iOS,
                                     Android, and most modern audio players. For wider compatibility, consider
-                                    <a href="/youtube-to-m4a-converter">M4A</a>.</p>
+                                    <a href="/youtube-to-m4a-converter">M4A</a>.
+                                </p>
                             </div>
                             <div class="faq-item">
                                 <h3 class="faq-question">How much smaller is FLAC than WAV?</h3>
                                 <p class="faq-answer">FLAC typically reduces file size by 40-50% compared to
-                                    uncompressed <a href="/youtube-to-wav-converter">WAV</a> while maintaining identical audio quality.</p>
+                                    uncompressed <a href="/youtube-to-wav-converter">WAV</a> while maintaining identical
+                                    audio quality.</p>
                             </div>
                             <div class="faq-item">
                                 <h3 class="faq-question">Does YTMP3 store my data?</h3>

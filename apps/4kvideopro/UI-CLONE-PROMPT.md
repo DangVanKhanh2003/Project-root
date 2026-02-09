@@ -163,7 +163,7 @@ Trang web gồm các phần theo thứ tự từ trên xuống:
               <option value="mp4-720" selected>MP4 - 720p</option>
               <option value="mp4-480">MP4 - 480p</option>
               <option value="mp4-360">MP4 - 360p</option>
-              <option value="mp4-240">MP4 - 240p</option>
+              
               <option value="mp4-144">MP4 - 144p</option>
               <option value="webm">WEBM</option>
               <option value="mkv">MKV</option>

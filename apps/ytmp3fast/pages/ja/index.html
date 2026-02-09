@@ -8,8 +8,9 @@
 
     <!-- SEO Metadata -->
     <title>YouTubeからMP3へ – YTMP3 | 高速＆無料コンバーター</title>
-    <meta name="description" content="YTMP3を使ってオンラインでYouTubeをMP3に無料で変換。MP3 128–320kbps、FLAC（ロスレス）、WAV（非圧縮）、M4Aに対応。制限なし、インストール不要。">
-    
+    <meta name="description"
+        content="YTMP3を使ってオンラインでYouTubeをMP3に無料で変換。MP3 128–320kbps、FLAC（ロスレス）、WAV（非圧縮）、M4Aに対応。制限なし、インストール不要。">
+
     <link rel="canonical" href="https://ytmp3fast.com/ja/">
 
     <!-- hreflang tags for multilingual SEO -->
@@ -58,7 +59,7 @@
 
     <!-- Critical: Read format preference before render to prevent FOUC -->
     <script>
-      (function(){var f='mp3';try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p&&p.selectedFormat)f=p.selectedFormat}catch(e){}document.documentElement.dataset.format=f;document.write('<style>html[data-format="mp3"] .quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4{display:block!important}</style>')})()
+        (function () { var f = 'mp3'; try { var p = JSON.parse(localStorage.getItem('y2mate_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat } catch (e) { } document.documentElement.dataset.format = f; document.write('<style>html[data-format="mp3"] .quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4{display:block!important}</style>') })()
     </script>
 
     <!-- TypeScript Module -->
@@ -206,321 +207,344 @@
 
 <body class="bg-tech-grid">
     <!-- HEADER -->
-<header id="main-header">
-    <div class="container max-w-5xl header-container">
-        <!-- Logo -->
-        <a href="/ja/" class="logo">
-            <div class="logo-text">YTMP3fast</div>
-        </a>
+    <header id="main-header">
+        <div class="container max-w-5xl header-container">
+            <!-- Logo -->
+            <a href="/ja/" class="logo">
+                <div class="logo-text">YTMP3fast</div>
+            </a>
 
-        <!-- Desktop Nav -->
-        <div class="desktop-nav">
-            <nav class="nav-links">
-                <a href="/ja/" class="nav-link active">Home</a>
-                <a href="/about" class="nav-link">About</a>
-            </nav>
+            <!-- Desktop Nav -->
+            <div class="desktop-nav">
+                <nav class="nav-links">
+                    <a href="/ja/" class="nav-link active">Home</a>
+                    <a href="/about" class="nav-link">About</a>
+                </nav>
 
-            <div class="nav-divider"></div>
+                <div class="nav-divider"></div>
 
-            <!-- Language Selector -->
-            <div class="lang-selector">
-                <button class="lang-button">
-<span>JA</span>
-</button>
-                <!-- Language Dropdown -->
-                <div class="lang-dropdown">
-                    <a href="/" class="lang-option">English</a>
-                    <a href="/ar/" class="lang-option">العربية</a>
-                    <a href="/bn/" class="lang-option">বাংলা</a>
-                    <a href="/de/" class="lang-option">Deutsch</a>
-                    <a href="/es/" class="lang-option">Español</a>
-                    <a href="/fr/" class="lang-option">Français</a>
-                    <a href="/hi/" class="lang-option">हिन्दी</a>
-                    <a href="/id/" class="lang-option">Indonesia</a>
-                    <a href="/it/" class="lang-option">Italiano</a>
-                    <a href="/ja/" class="lang-option active">日本語</a>
-                    <a href="/ko/" class="lang-option">한국어</a>
-                    <a href="/my/" class="lang-option">မြန်မာ</a>
-                    <a href="/ms/" class="lang-option">Melayu</a>
-                    <a href="/pt/" class="lang-option">Português</a>
-                    <a href="/ru/" class="lang-option">Русский</a>
-                    <a href="/th/" class="lang-option">ไทย</a>
-                    <a href="/tr/" class="lang-option">Türkçe</a>
-                    <a href="/ur/" class="lang-option">اردو</a>
-                    <a href="/vi/" class="lang-option">Tiếng Việt</a>
+                <!-- Language Selector -->
+                <div class="lang-selector">
+                    <button class="lang-button">
+                        <span>JA</span>
+                    </button>
+                    <!-- Language Dropdown -->
+                    <div class="lang-dropdown">
+                        <a href="/" class="lang-option">English</a>
+                        <a href="/ar/" class="lang-option">العربية</a>
+                        <a href="/bn/" class="lang-option">বাংলা</a>
+                        <a href="/de/" class="lang-option">Deutsch</a>
+                        <a href="/es/" class="lang-option">Español</a>
+                        <a href="/fr/" class="lang-option">Français</a>
+                        <a href="/hi/" class="lang-option">हिन्दी</a>
+                        <a href="/id/" class="lang-option">Indonesia</a>
+                        <a href="/it/" class="lang-option">Italiano</a>
+                        <a href="/ja/" class="lang-option active">日本語</a>
+                        <a href="/ko/" class="lang-option">한국어</a>
+                        <a href="/my/" class="lang-option">မြန်မာ</a>
+                        <a href="/ms/" class="lang-option">Melayu</a>
+                        <a href="/pt/" class="lang-option">Português</a>
+                        <a href="/ru/" class="lang-option">Русский</a>
+                        <a href="/th/" class="lang-option">ไทย</a>
+                        <a href="/tr/" class="lang-option">Türkçe</a>
+                        <a href="/ur/" class="lang-option">اردو</a>
+                        <a href="/vi/" class="lang-option">Tiếng Việt</a>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Mobile Menu Button -->
-        <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Open menu">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <line x1="3" y1="12" x2="21" y2="12" />
-                <line x1="3" y1="6" x2="21" y2="6" />
-                <line x1="3" y1="18" x2="21" y2="18" />
-            </svg>
-        </button>
-    </div>
-</header>
-
-    <!-- MOBILE DRAWER -->
-<div id="mobile-drawer" class="mobile-drawer" hidden>
-    <div id="mobile-drawer-content" class="drawer-content">
-        <div class="drawer-header">
-            <span class="drawer-logo">ytmp3fast.com</span>
-            <button id="close-drawer-btn" class="close-drawer-btn" aria-label="Close menu">
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Open menu">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                     stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="18" y1="6" x2="6" y2="18" />
-                    <line x1="6" y1="6" x2="18" y2="18" />
+                    <line x1="3" y1="12" x2="21" y2="12" />
+                    <line x1="3" y1="6" x2="21" y2="6" />
+                    <line x1="3" y1="18" x2="21" y2="18" />
                 </svg>
             </button>
         </div>
-        <div class="drawer-menu">
-            <a href="/ja/youtube-to-mp3-320kbps-converter" class="drawer-sublink">YouTube to MP3 320kbps</a>
-            <a href="/ja/youtube-to-wav-converter" class="drawer-sublink">YouTube to WAV</a>
-            <a href="/ja/youtube-to-flac-converter" class="drawer-sublink">YouTube to FLAC</a>
-            <a href="/ja/youtube-to-m4a-converter" class="drawer-sublink">YouTube to M4A</a>
-            <div class="drawer-divider"></div>
-            <a href="/ja/" class="drawer-sublink">Home</a>
-            <a href="/about" class="drawer-sublink">About</a>
-            <div class="drawer-divider"></div>
-            <div class="drawer-lang-selector">
-                <button class="drawer-lang-button">
-<span>JA</span>
-</button>
-                <div class="drawer-lang-dropdown">
-                    <a href="/" class="drawer-lang-option">English</a>
-                    <a href="/ar/" class="drawer-lang-option">العربية</a>
-                    <a href="/bn/" class="drawer-lang-option">বাংলা</a>
-                    <a href="/de/" class="drawer-lang-option">Deutsch</a>
-                    <a href="/es/" class="drawer-lang-option">Español</a>
-                    <a href="/fr/" class="drawer-lang-option">Français</a>
-                    <a href="/hi/" class="drawer-lang-option">हिन्दी</a>
-                    <a href="/id/" class="drawer-lang-option">Indonesia</a>
-                    <a href="/it/" class="drawer-lang-option">Italiano</a>
-                    <a href="/ja/" class="drawer-lang-option active">日本語</a>
-                    <a href="/ko/" class="drawer-lang-option">한국어</a>
-                    <a href="/my/" class="drawer-lang-option">မြန်မာ</a>
-                    <a href="/ms/" class="drawer-lang-option">Melayu</a>
-                    <a href="/pt/" class="drawer-lang-option">Português</a>
-                    <a href="/ru/" class="drawer-lang-option">Русский</a>
-                    <a href="/th/" class="drawer-lang-option">ไทย</a>
-                    <a href="/tr/" class="drawer-lang-option">Türkçe</a>
-                    <a href="/ur/" class="drawer-lang-option">اردو</a>
-                    <a href="/vi/" class="drawer-lang-option">Tiếng Việt</a>
+    </header>
+
+    <!-- MOBILE DRAWER -->
+    <div id="mobile-drawer" class="mobile-drawer" hidden>
+        <div id="mobile-drawer-content" class="drawer-content">
+            <div class="drawer-header">
+                <span class="drawer-logo">ytmp3fast.com</span>
+                <button id="close-drawer-btn" class="close-drawer-btn" aria-label="Close menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                </button>
+            </div>
+            <div class="drawer-menu">
+                <a href="/ja/youtube-to-mp3-320kbps-converter" class="drawer-sublink">YouTube to MP3 320kbps</a>
+                <a href="/ja/youtube-to-wav-converter" class="drawer-sublink">YouTube to WAV</a>
+                <a href="/ja/youtube-to-flac-converter" class="drawer-sublink">YouTube to FLAC</a>
+                <a href="/ja/youtube-to-m4a-converter" class="drawer-sublink">YouTube to M4A</a>
+                <div class="drawer-divider"></div>
+                <a href="/ja/" class="drawer-sublink">Home</a>
+                <a href="/about" class="drawer-sublink">About</a>
+                <div class="drawer-divider"></div>
+                <div class="drawer-lang-selector">
+                    <button class="drawer-lang-button">
+                        <span>JA</span>
+                    </button>
+                    <div class="drawer-lang-dropdown">
+                        <a href="/" class="drawer-lang-option">English</a>
+                        <a href="/ar/" class="drawer-lang-option">العربية</a>
+                        <a href="/bn/" class="drawer-lang-option">বাংলা</a>
+                        <a href="/de/" class="drawer-lang-option">Deutsch</a>
+                        <a href="/es/" class="drawer-lang-option">Español</a>
+                        <a href="/fr/" class="drawer-lang-option">Français</a>
+                        <a href="/hi/" class="drawer-lang-option">हिन्दी</a>
+                        <a href="/id/" class="drawer-lang-option">Indonesia</a>
+                        <a href="/it/" class="drawer-lang-option">Italiano</a>
+                        <a href="/ja/" class="drawer-lang-option active">日本語</a>
+                        <a href="/ko/" class="drawer-lang-option">한국어</a>
+                        <a href="/my/" class="drawer-lang-option">မြန်မာ</a>
+                        <a href="/ms/" class="drawer-lang-option">Melayu</a>
+                        <a href="/pt/" class="drawer-lang-option">Português</a>
+                        <a href="/ru/" class="drawer-lang-option">Русский</a>
+                        <a href="/th/" class="drawer-lang-option">ไทย</a>
+                        <a href="/tr/" class="drawer-lang-option">Türkçe</a>
+                        <a href="/ur/" class="drawer-lang-option">اردو</a>
+                        <a href="/vi/" class="drawer-lang-option">Tiếng Việt</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 
     <main>
         <!-- HERO SECTION -->
-<section class="hero-section">
-    <div class="decorative-glow"></div>
-    <div class="hero-container">
-        <div class="hero-card">
-            <div id="hero-header" class="hero-header">
-                <h1>YouTubeから MP3へ</h1>
-            </div>
-
-            <div id="search-view" class="fade-in">
-                <p class="hero-subtitle">無料で高速なYouTubeからMP3へのダウンロード</p>
-
-                <form id="downloadForm" class="form-container">
-                    <div class="input-group">
-                        <div class="input-wrapper" id="input-wrapper">
-                            <input type="text" id="videoUrl" class="video-input"
-                                placeholder="Paste YouTube link here..." autocomplete="off">
-                            <div class="input-actions">
-                                <button type="button" id="input-action-button" class="btn-paste" data-action="paste">
-                                    <svg class="paste-icon" width="14" height="14" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2">
-                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                                    </svg>
-                                    <span class="btn-state--paste">Paste</span>
-                                    <svg class="clear-icon hidden" width="18" height="18" viewBox="0 0 24 24"
-                                        fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-                                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                                    </svg>
-                                    <span class="btn-state--clear hidden">Clear</span>
-                                </button>
-                            </div>
-                        </div>
-                        <div id="suggestion-container" class="suggestion-container"></div>
+        <section class="hero-section">
+            <div class="decorative-glow"></div>
+            <div class="hero-container">
+                <div class="hero-card">
+                    <div id="hero-header" class="hero-header">
+                        <h1>YouTubeから MP3へ</h1>
                     </div>
 
-                    <div id="format-selector-container">
-                        <div class="format-selector-wrapper">
-                            <div class="format-selector">
-                                <div class="format-toggle">
-                                    <button type="button" class="format-btn" data-format="mp3">MP3</button>
-                                    <button type="button" class="format-btn" data-format="mp4">MP4</button>
-                                </div>
-                                <div class="quality-wrapper">
-                                    <div class="quality-dropdown-wrapper">
-                                        <select id="quality-select-mp3" class="quality-select quality-select--mp3"
-                                            aria-label="Audio quality" data-quality-select>
-                                            <option value="mp3-128" selected>MP3 - 128kbps</option>
-                                            <option value="mp3-192">MP3 - 192kbps</option>
-                                            <option value="mp3-320">MP3 - 320kbps</option>
-                                            <option value="ogg">OGG</option>
-                                            <option value="wav">WAV - Lossless</option>
-                                            <option value="opus">Opus</option>
-                                            <option value="m4a">M4A</option>
-                                        </select>
-                                        <select id="quality-select-mp4" class="quality-select quality-select--mp4"
-                                            aria-label="Video quality" data-quality-select>
-                                            <option value="mp4-1080">MP4 - 1080p</option>
-                                            <option value="mp4-720" selected>MP4 - 720p</option>
-                                            <option value="mp4-480">MP4 - 480p</option>
-                                            <option value="mp4-360">MP4 - 360p</option>
-                                            <option value="mp4-240">MP4 - 240p</option>
-                                            <option value="mp4-144">MP4 - 144p</option>
-                                            <option value="webm">WEBM</option>
-                                            <option value="mkv">MKV</option>
-                                        </select>
-                                    </div>
-                                    <script>(function(){try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(!p)return;var s=p.selectedFormat==='mp4'?document.getElementById('quality-select-mp4'):document.getElementById('quality-select-mp3');if(!s)return;var v;if(p.selectedFormat==='mp4'){var vq=p.videoQuality||'720p';v=(vq==='webm'||vq==='mkv')?vq:'mp4-'+vq.replace('p','')}else{var af=p.audioFormat||'mp3';v=(af==='mp3')?'mp3-'+(p.audioBitrate||'128'):af}s.value=v}catch(e){}})()</script>
-                                    <div class="select-arrow">
-                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M6 9l6 6 6-6" />
-                                        </svg>
+                    <div id="search-view" class="fade-in">
+                        <p class="hero-subtitle">無料で高速なYouTubeからMP3へのダウンロード</p>
+
+                        <form id="downloadForm" class="form-container">
+                            <div class="input-group">
+                                <div class="input-wrapper" id="input-wrapper">
+                                    <input type="text" id="videoUrl" class="video-input"
+                                        placeholder="Paste YouTube link here..." autocomplete="off">
+                                    <div class="input-actions">
+                                        <button type="button" id="input-action-button" class="btn-paste"
+                                            data-action="paste">
+                                            <svg class="paste-icon" width="14" height="14" viewBox="0 0 24 24"
+                                                fill="none" stroke="currentColor" stroke-width="2">
+                                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                                </path>
+                                            </svg>
+                                            <span class="btn-state--paste">Paste</span>
+                                            <svg class="clear-icon hidden" width="18" height="18" viewBox="0 0 24 24"
+                                                fill="none" stroke="currentColor" stroke-width="2.5"
+                                                stroke-linecap="round">
+                                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                                            </svg>
+                                            <span class="btn-state--clear hidden">Clear</span>
+                                        </button>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn-convert">
-                                    <span>Convert</span>
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <path d="M5 12h14" />
-                                        <path d="M12 5l7 7-7 7" />
-                                    </svg>
-                                </button>
+                                <div id="suggestion-container" class="suggestion-container"></div>
                             </div>
-                        </div>
+
+                            <div id="format-selector-container">
+                                <div class="format-selector-wrapper">
+                                    <div class="format-selector">
+                                        <div class="format-toggle">
+                                            <button type="button" class="format-btn" data-format="mp3">MP3</button>
+                                            <button type="button" class="format-btn" data-format="mp4">MP4</button>
+                                        </div>
+                                        <div class="quality-wrapper">
+                                            <div class="quality-dropdown-wrapper">
+                                                <select id="quality-select-mp3"
+                                                    class="quality-select quality-select--mp3"
+                                                    aria-label="Audio quality" data-quality-select>
+                                                    <option value="mp3-128" selected>MP3 - 128kbps</option>
+                                                    <option value="mp3-192">MP3 - 192kbps</option>
+                                                    <option value="mp3-320">MP3 - 320kbps</option>
+                                                    <option value="ogg">OGG</option>
+                                                    <option value="wav">WAV - Lossless</option>
+                                                    <option value="opus">Opus</option>
+                                                    <option value="m4a">M4A</option>
+                                                </select>
+                                                <select id="quality-select-mp4"
+                                                    class="quality-select quality-select--mp4"
+                                                    aria-label="Video quality" data-quality-select>
+                                                    <option value="mp4-1080">MP4 - 1080p</option>
+                                                    <option value="mp4-720" selected>MP4 - 720p</option>
+                                                    <option value="mp4-480">MP4 - 480p</option>
+                                                    <option value="mp4-360">MP4 - 360p</option>
+                                                    <option value="mp4-144">MP4 - 144p</option>
+                                                    <option value="webm">WEBM</option>
+                                                    <option value="mkv">MKV</option>
+                                                </select>
+                                            </div>
+                                            <script>(function () { try { var p = JSON.parse(localStorage.getItem('y2mate_format_preferences')); if (!p) return; var s = p.selectedFormat === 'mp4' ? document.getElementById('quality-select-mp4') : document.getElementById('quality-select-mp3'); if (!s) return; var v; if (p.selectedFormat === 'mp4') { var vq = p.videoQuality || '720p'; v = (vq === 'webm' || vq === 'mkv') ? vq : 'mp4-' + vq.replace('p', '') } else { var af = p.audioFormat || 'mp3'; v = (af === 'mp3') ? 'mp3-' + (p.audioBitrate || '128') : af } s.value = v } catch (e) { } })()</script>
+                                            <div class="select-arrow">
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2">
+                                                    <path d="M6 9l6 6 6-6" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn-convert">
+                                            <span>Convert</span>
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2">
+                                                <path d="M5 12h14" />
+                                                <path d="M12 5l7 7-7 7" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <div id="error-message" class="error-message"></div>
                     </div>
-                </form>
-                <div id="error-message" class="error-message"></div>
-            </div>
 
-            <div id="result-view" class="hidden fade-in">
-                <div id="content-area"></div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Search Results Section -->
-<section id="search-results-section" style="display: none;">
-    <div class="container">
-        <div id="search-results-container"></div>
-    </div>
-</section>
-
-<!-- SEO / TEXT CONTENT -->
-<section class="seo-section container">
-    <div class="seo-container">
-        <article class="prose">
-            <h2 id="about">YTMP3 – 高速YouTubeからMP3へのコンバーター</h2>
-            <p><a href="/ja">YTMP3</a>は、数秒で高音質の音声をダウンロードできる、高速で使いやすいYouTubeからMP3へのコンバーターです。このウェブサイトは、スムーズで簡単な使用のために設計されたシンプルでモダンなインターフェースを備えています。デスクトップ、iOS、Androidを含むすべてのデバイスとオペレーティングシステムを完全にサポートしています。インストール不要で完全に無料です - リンクを貼り付けて即座にダウンロードできます。</p>
-
-            <h2>YouTubeからMP3へとは？</h2>
-            <p>YouTubeからMP3へとは、YouTube動画から音声を抽出し、MP3形式に変換して、スマートフォン、パソコン、カーオーディオシステム、その他の音楽プレーヤーでオフラインで聴くためのプロセスです。MP3は、ファイルサイズが小さく、品質が安定しており、デバイス間の互換性が優れているため、最も広く使用されている音声形式です。</p>
-
-            <h2>YouTubeからMP3への変換にYTMP3を選ぶ理由は？</h2>
-            <p>YTMP3は、YouTube動画をMP3に変換するためのシンプルで信頼性の高い方法を提供します。このサービスは完全に無料で、ブラウザで直接動作し、登録は不要です。どんな長さの動画でも、高音質を維持しながらわずか数秒で処理できます。</p>
-
-            <h2>YouTubeダウンロードで利用可能な形式</h2>
-            <p><ul><li><strong>MP3 (128–320kbps):</strong> 最も人気のある音声形式。<a href="/ja/youtube-to-mp3-320kbps-converter">MP3 320kbps</a>は最高のMP3品質を提供します。</li><li><strong>FLAC (ロスレス):</strong> 元の音質を保持 – <a href="/ja/youtube-to-flac-converter">YouTubeからFLACへ</a>。</li><li><strong>WAV (非圧縮):</strong> 最高の音質 – <a href="/ja/youtube-to-wav-converter">YouTubeからWAVへ</a>。</li><li><strong>M4A (AAC):</strong> Appleデバイスに最適化 – <a href="/ja/youtube-to-m4a-converter">YouTubeからM4Aへ</a>。</li></ul></p>
-
-            <h2>YTMP3でYouTubeをMP3に変換する方法</h2>
-            <ol>
-                <li>変換したいYouTube動画のURLをコピーします。</li>
-                <li>YTMP3の入力ボックスにリンクを貼り付けます。</li>
-                <li>お好みの音声形式と品質を選択します。</li>
-                <li>変換ボタンをクリックしてプロセスを開始します。</li>
-                <li>変換が完了したら音声ファイルをダウンロードします。</li>
-            </ol>
-            <p>登録不要、インストール不要、使用制限なし。</p>
-
-            <h2>YTMP3を選ぶ理由</h2>
-            <ul>
-                <li><strong>100%無料:</strong> 隠れた料金はなく、登録も不要です。</li>
-                <li><strong>高速変換:</strong> YouTube動画をわずか数秒で処理します。</li>
-                <li><strong>制限なし:</strong> どんな長さのYouTube動画にも対応しています。</li>
-                <li><strong>高音質:</strong> MP3音声は128kbpsから320kbpsまで利用可能です。</li>
-                <li><strong>安全＆プライベート:</strong> 履歴の保存や個人データの追跡はありません。</li>
-            </ul>
-            <div id="faq" class="faq-section">
-                <h2 class="faq-title">
-                    <span class="faq-icon">?</span>
-                    よくある質問 (FAQ)
-                </h2>
-                <div class="faq-grid">
-                    <div class="faq-item">
-                        <h3 class="faq-question">YTMP3は無料のYouTubeからMP3へのコンバーターですか？</h3>
-                        <p class="faq-answer">はい、YTMP3は完全に無料で使用できます。隠れた料金、サブスクリプション、変換回数の制限はありません。</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3 class="faq-question">ソフトウェアをインストールせずにオンラインでYouTubeをMP3に変換できますか？</h3>
-                        <p class="faq-answer">もちろんです。YTMP3は完全にオンラインで動作します。動画を変換するためにソフトウェアをインストールしたり、アカウントを作成したりする必要はありません。</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3 class="faq-question">YTMP3はどの形式をサポートしていますか？</h3>
-                        <p class="faq-answer">YTMP3は音声形式：MP3（最大320kbps）、FLAC、WAV、M4Aをサポートしています。動画用：MP4、WebM、MKV（最大1080pの品質）。</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3 class="faq-question">YTMP3はモバイルとデスクトップで安全に使用できますか？</h3>
-                        <p class="faq-answer">YTMP3は安全です。HTTPS暗号化を使用し、個人データを収集しません。デスクトップ、iOS、Androidなど、どのデバイスでも動作します。</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3 class="faq-question">YTMP3と他のYouTubeからMP3へのサイトとの違いは何ですか？</h3>
-                        <p class="faq-answer">YTMP3は、速度、無制限のダウンロード、高音質の音声、そしてクリーンなインターフェースに重点を置いています。</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3 class="faq-question">どんな長さのYouTube動画もダウンロードできますか？</h3>
-                        <p class="faq-answer">はい、YTMP3ではどんな長さのYouTube動画でも変換してダウンロードできます。時間制限はありません。</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3 class="faq-question">どの形式を選べばよいですか？</h3>
-                        <p class="faq-answer">一般的なリスニングには、MP3またはM4Aが適しています。ロスレス品質を求めるならFLACを選択してください。非圧縮の音声を求めるならWAVを使用してください。</p>
+                    <div id="result-view" class="hidden fade-in">
+                        <div id="content-area"></div>
                     </div>
                 </div>
             </div>
-        </article>
-    </div>
-</section>
+        </section>
+
+        <!-- Search Results Section -->
+        <section id="search-results-section" style="display: none;">
+            <div class="container">
+                <div id="search-results-container"></div>
+            </div>
+        </section>
+
+        <!-- SEO / TEXT CONTENT -->
+        <section class="seo-section container">
+            <div class="seo-container">
+                <article class="prose">
+                    <h2 id="about">YTMP3 – 高速YouTubeからMP3へのコンバーター</h2>
+                    <p><a
+                            href="/ja">YTMP3</a>は、数秒で高音質の音声をダウンロードできる、高速で使いやすいYouTubeからMP3へのコンバーターです。このウェブサイトは、スムーズで簡単な使用のために設計されたシンプルでモダンなインターフェースを備えています。デスクトップ、iOS、Androidを含むすべてのデバイスとオペレーティングシステムを完全にサポートしています。インストール不要で完全に無料です
+                        - リンクを貼り付けて即座にダウンロードできます。</p>
+
+                    <h2>YouTubeからMP3へとは？</h2>
+                    <p>YouTubeからMP3へとは、YouTube動画から音声を抽出し、MP3形式に変換して、スマートフォン、パソコン、カーオーディオシステム、その他の音楽プレーヤーでオフラインで聴くためのプロセスです。MP3は、ファイルサイズが小さく、品質が安定しており、デバイス間の互換性が優れているため、最も広く使用されている音声形式です。
+                    </p>
+
+                    <h2>YouTubeからMP3への変換にYTMP3を選ぶ理由は？</h2>
+                    <p>YTMP3は、YouTube動画をMP3に変換するためのシンプルで信頼性の高い方法を提供します。このサービスは完全に無料で、ブラウザで直接動作し、登録は不要です。どんな長さの動画でも、高音質を維持しながらわずか数秒で処理できます。
+                    </p>
+
+                    <h2>YouTubeダウンロードで利用可能な形式</h2>
+                    <p>
+                    <ul>
+                        <li><strong>MP3 (128–320kbps):</strong> 最も人気のある音声形式。<a
+                                href="/ja/youtube-to-mp3-320kbps-converter">MP3 320kbps</a>は最高のMP3品質を提供します。</li>
+                        <li><strong>FLAC (ロスレス):</strong> 元の音質を保持 – <a
+                                href="/ja/youtube-to-flac-converter">YouTubeからFLACへ</a>。</li>
+                        <li><strong>WAV (非圧縮):</strong> 最高の音質 – <a
+                                href="/ja/youtube-to-wav-converter">YouTubeからWAVへ</a>。</li>
+                        <li><strong>M4A (AAC):</strong> Appleデバイスに最適化 – <a
+                                href="/ja/youtube-to-m4a-converter">YouTubeからM4Aへ</a>。</li>
+                    </ul>
+                    </p>
+
+                    <h2>YTMP3でYouTubeをMP3に変換する方法</h2>
+                    <ol>
+                        <li>変換したいYouTube動画のURLをコピーします。</li>
+                        <li>YTMP3の入力ボックスにリンクを貼り付けます。</li>
+                        <li>お好みの音声形式と品質を選択します。</li>
+                        <li>変換ボタンをクリックしてプロセスを開始します。</li>
+                        <li>変換が完了したら音声ファイルをダウンロードします。</li>
+                    </ol>
+                    <p>登録不要、インストール不要、使用制限なし。</p>
+
+                    <h2>YTMP3を選ぶ理由</h2>
+                    <ul>
+                        <li><strong>100%無料:</strong> 隠れた料金はなく、登録も不要です。</li>
+                        <li><strong>高速変換:</strong> YouTube動画をわずか数秒で処理します。</li>
+                        <li><strong>制限なし:</strong> どんな長さのYouTube動画にも対応しています。</li>
+                        <li><strong>高音質:</strong> MP3音声は128kbpsから320kbpsまで利用可能です。</li>
+                        <li><strong>安全＆プライベート:</strong> 履歴の保存や個人データの追跡はありません。</li>
+                    </ul>
+                    <div id="faq" class="faq-section">
+                        <h2 class="faq-title">
+                            <span class="faq-icon">?</span>
+                            よくある質問 (FAQ)
+                        </h2>
+                        <div class="faq-grid">
+                            <div class="faq-item">
+                                <h3 class="faq-question">YTMP3は無料のYouTubeからMP3へのコンバーターですか？</h3>
+                                <p class="faq-answer">はい、YTMP3は完全に無料で使用できます。隠れた料金、サブスクリプション、変換回数の制限はありません。</p>
+                            </div>
+                            <div class="faq-item">
+                                <h3 class="faq-question">ソフトウェアをインストールせずにオンラインでYouTubeをMP3に変換できますか？</h3>
+                                <p class="faq-answer">
+                                    もちろんです。YTMP3は完全にオンラインで動作します。動画を変換するためにソフトウェアをインストールしたり、アカウントを作成したりする必要はありません。</p>
+                            </div>
+                            <div class="faq-item">
+                                <h3 class="faq-question">YTMP3はどの形式をサポートしていますか？</h3>
+                                <p class="faq-answer">
+                                    YTMP3は音声形式：MP3（最大320kbps）、FLAC、WAV、M4Aをサポートしています。動画用：MP4、WebM、MKV（最大1080pの品質）。</p>
+                            </div>
+                            <div class="faq-item">
+                                <h3 class="faq-question">YTMP3はモバイルとデスクトップで安全に使用できますか？</h3>
+                                <p class="faq-answer">
+                                    YTMP3は安全です。HTTPS暗号化を使用し、個人データを収集しません。デスクトップ、iOS、Androidなど、どのデバイスでも動作します。</p>
+                            </div>
+                            <div class="faq-item">
+                                <h3 class="faq-question">YTMP3と他のYouTubeからMP3へのサイトとの違いは何ですか？</h3>
+                                <p class="faq-answer">YTMP3は、速度、無制限のダウンロード、高音質の音声、そしてクリーンなインターフェースに重点を置いています。</p>
+                            </div>
+                            <div class="faq-item">
+                                <h3 class="faq-question">どんな長さのYouTube動画もダウンロードできますか？</h3>
+                                <p class="faq-answer">はい、YTMP3ではどんな長さのYouTube動画でも変換してダウンロードできます。時間制限はありません。</p>
+                            </div>
+                            <div class="faq-item">
+                                <h3 class="faq-question">どの形式を選べばよいですか？</h3>
+                                <p class="faq-answer">
+                                    一般的なリスニングには、MP3またはM4Aが適しています。ロスレス品質を求めるならFLACを選択してください。非圧縮の音声を求めるならWAVを使用してください。</p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
 
     </main>
 
     <!-- FOOTER -->
-<footer>
-    <div class="footer-container">
-        <a href="/ja/" class="footer-logo">ytmp3fast.com</a>
-        <nav class="footer-nav">
-            <a href="/ja/" class="footer-link">YouTube to MP3</a>
-            <a href="/ja/youtube-to-mp3-320kbps-converter" class="footer-link">YouTube to MP3 320kbps</a>
-            <a href="/ja/youtube-to-wav-converter" class="footer-link">YouTube to WAV</a>
-            <a href="/ja/youtube-to-flac-converter" class="footer-link">YouTube to FLAC</a>
-            <a href="/ja/youtube-to-m4a-converter" class="footer-link">YouTube to M4A</a>
-        </nav>
-        <div class="footer-links">
-            <a href="/contact" class="footer-link">Contact</a>
-            <a href="/faq" class="footer-link">FAQ</a>
-            <a href="/privacy-policy" class="footer-link">Privacy Policy</a>
-            <a href="/copyright-claims" class="footer-link">Copyright Claims</a>
-            <a href="/terms-of-use" class="footer-link">Terms of Use</a>
+    <footer>
+        <div class="footer-container">
+            <a href="/ja/" class="footer-logo">ytmp3fast.com</a>
+            <nav class="footer-nav">
+                <a href="/ja/" class="footer-link">YouTube to MP3</a>
+                <a href="/ja/youtube-to-mp3-320kbps-converter" class="footer-link">YouTube to MP3 320kbps</a>
+                <a href="/ja/youtube-to-wav-converter" class="footer-link">YouTube to WAV</a>
+                <a href="/ja/youtube-to-flac-converter" class="footer-link">YouTube to FLAC</a>
+                <a href="/ja/youtube-to-m4a-converter" class="footer-link">YouTube to M4A</a>
+            </nav>
+            <div class="footer-links">
+                <a href="/contact" class="footer-link">Contact</a>
+                <a href="/faq" class="footer-link">FAQ</a>
+                <a href="/privacy-policy" class="footer-link">Privacy Policy</a>
+                <a href="/copyright-claims" class="footer-link">Copyright Claims</a>
+                <a href="/terms-of-use" class="footer-link">Terms of Use</a>
+            </div>
+            <p class="footer-copyright">© 2025 YTMP3fast</p>
         </div>
-        <p class="footer-copyright">© 2025 YTMP3fast</p>
-    </div>
-</footer>
+    </footer>
 
 </body>
 
 </html>
-
-

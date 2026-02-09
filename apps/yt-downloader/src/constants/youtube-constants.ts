@@ -17,7 +17,7 @@ export const YOUTUBE_API_CONSTANTS = {
   MAX_FREE_DURATION: 3600, // 1 hour
 
   // Quality preferences
-  QUALITY_PRIORITY: ['2160p', '1440p', '1080p', '720p', '480p', '360p', '240p', '144p'],
+  QUALITY_PRIORITY: ['2160p', '1440p', '1080p', '720p', '480p', '360p', '144p'],
 
   // Format types
   FORMAT_TYPES: {

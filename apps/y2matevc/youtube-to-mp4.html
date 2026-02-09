@@ -8,8 +8,9 @@
 
     <!-- SEO Metadata -->
     <title>YouTube to MP4 – Download Long YouTube Videos as MP4 | Y2Mate</title>
-    <meta name="description" content="Download YouTube videos as MP4 with Y2Mate. Optimized for long videos, lectures, and replays. Keep full video and audio for offline viewing, directly in your browser.">
-    
+    <meta name="description"
+        content="Download YouTube videos as MP4 with Y2Mate. Optimized for long videos, lectures, and replays. Keep full video and audio for offline viewing, directly in your browser.">
+
     <link rel="canonical" href="https://y2mate.vc/youtube-to-mp4">
 
     <!-- hreflang tags for multilingual SEO -->
@@ -44,7 +45,8 @@
     <meta property="og:site_name" content="Y2Mate" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:title" content="Y2mate - Free YouTube to MP4 Converter (1080p, 2k, 4k)" />
-    <meta property="og:description" content="Y2mate to MP4: 360p-1080p, up to 2K/4K when available. Fast, free, no limits, no app." />
+    <meta property="og:description"
+        content="Y2mate to MP4: 360p-1080p, up to 2K/4K when available. Fast, free, no limits, no app." />
     <meta property="og:image" content="https://y2mate.vc/logo.png" />
     <meta property="og:url" content="https://y2mate.vc/youtube-to-mp4" />
 
@@ -64,7 +66,7 @@
     <!-- Google Analytics: Lazy loaded via analytics-loader.ts for better performance -->
 
     <!-- Critical: Set format and auto-submit preferences before render to prevent FOUC -->
-    <script>(function(){var f='mp4',a='false';try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p&&p.selectedFormat)f=p.selectedFormat;var s=localStorage.getItem('y2mate_auto_submit');if(s)a=s;}catch(e){}document.documentElement.dataset.format=f;document.documentElement.dataset.autoSubmit=a;})()</script>
+    <script>(function () { var f = 'mp4', a = 'false'; try { var p = JSON.parse(localStorage.getItem('y2mate_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat; var s = localStorage.getItem('y2mate_auto_submit'); if (s) a = s; } catch (e) { } document.documentElement.dataset.format = f; document.documentElement.dataset.autoSubmit = a; })()</script>
 
     <!-- Critical: Hide auto-submit tooltip before CSS loads -->
     <style>
@@ -75,7 +77,7 @@
     </style>
 
     <!-- Critical: Prevent default form submit before app init (avoid /search 404) -->
-    <script>(function(){document.addEventListener('submit',function(event){var target=event.target;if(target&&target.id==='downloadForm'){event.preventDefault();}},true);})();</script>
+    <script>(function () { document.addEventListener('submit', function (event) { var target = event.target; if (target && target.id === 'downloadForm') { event.preventDefault(); } }, true); })();</script>
 
     <!-- Critical CSS imported via Vite -->
     <script type="module" src="/src/main.ts"></script>
@@ -212,125 +214,35 @@
 
 <body>
     <header class="nav-header">
-    <div class="container">
-        <div class="nav_head">
-            <div class="navbar-logo">
-                <a href="/">
-                    <img height="46px" width="46px" src="/logo.png" alt="Y2Mate logo">
-                    <span class="logo-name">Y2mate</span>
-                </a>
-            </div>
-            <button type="button" class="navbar-toggler" id="mobileMenuToggle" aria-label="Open navigation menu">
-                <span class="toggle-icon"></span>
-                <span class="toggle-icon"></span>
-                <span class="toggle-icon"></span>
-            </button>
-        </div>
-        <div class="header-menu">
-            <ul class="menu-navbar">
-              
-                <li class="navbar">
-                    <a href="/youtube-to-mp4">YouTube to MP4 Converter</a>
-                </li>
-                <li class="navbar">
-                    <a href="/youtube-to-mp3">YouTube to MP3 Converter</a>
-                </li>
-                <li class="navbar language">
+        <div class="container">
+            <div class="nav_head">
+                <div class="navbar-logo">
                     <a href="/">
-                        English<span class="shape"></span>
+                        <img height="46px" width="46px" src="/logo.png" alt="Y2Mate logo">
+                        <span class="logo-name">Y2mate</span>
                     </a>
-                    <div class="dropdown-menu">
-                        <ul class="lang-menu">
-                            <li>
-                                <a data-lang="en" href="/youtube-to-mp4">English</a>
-                            </li>
-                            <li>
-                                <a data-lang="ar" href="/ar/youtube-to-mp4">العربية</a>
-                            </li>
-                            <li>
-                                <a data-lang="bn" href="/bn/youtube-to-mp4">বাংলা</a>
-                            </li>
-                            <li>
-                                <a data-lang="de" href="/de/youtube-to-mp4">Deutsch</a>
-                            </li>
-                            <li>
-                                <a data-lang="es" href="/es/youtube-to-mp4">Español</a>
-                            </li>
-                            <li>
-                                <a data-lang="fr" href="/fr/youtube-to-mp4">Français</a>
-                            </li>
-                            <li>
-                                <a data-lang="hi" href="/hi/youtube-to-mp4">हिन्दी</a>
-                            </li>
-                            <li>
-                                <a data-lang="id" href="/id/youtube-to-mp4">Indonesia</a>
-                            </li>
-                            <li>
-                                <a data-lang="it" href="/it/youtube-to-mp4">Italiano</a>
-                            </li>
-                            <li>
-                                <a data-lang="ja" href="/ja/youtube-to-mp4">日本語</a>
-                            </li>
-                            <li>
-                                <a data-lang="ko" href="/ko/youtube-to-mp4">한국어</a>
-                            </li>
-                            <li>
-                                <a data-lang="my" href="/my/youtube-to-mp4">မြန်မာ</a>
-                            </li>
-                            <li>
-                                <a data-lang="ms" href="/ms/youtube-to-mp4">Melayu</a>
-                            </li>
-                            <li>
-                                <a data-lang="pt" href="/pt/youtube-to-mp4">Português</a>
-                            </li>
-                            <li>
-                                <a data-lang="ru" href="/ru/youtube-to-mp4">Русский</a>
-                            </li>
-                            <li>
-                                <a data-lang="th" href="/th/youtube-to-mp4">ไทย</a>
-                            </li>
-                            <li>
-                                <a data-lang="tr" href="/tr/youtube-to-mp4">Türkçe</a>
-                            </li>
-                            <li>
-                                <a data-lang="ur" href="/ur/youtube-to-mp4">اردو</a>
-                            </li>
-                            <li>
-                                <a data-lang="vi" href="/vi/youtube-to-mp4">Tiếng Việt</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
-        </div>
-
-        <!-- Mobile Menu Overlay -->
-        <div class="mobile-menu-overlay" id="mobileMenuOverlay">
-            <div class="mobile-menu-content">
-                <div class="mobile-header-top">
-                    <a href="/">
-                        <div class="mobile-logo">
-                            <img height="36px" width="36px" src="/logo.png" alt="Y2Mate logo">
-                            <span class="logo-name">Y2mate</span>
-                        </div>
-                    </a>
-                    <button type="button" class="mobile-close-btn" id="mobileCloseBtn" aria-label="Close navigation menu">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                    </button>
                 </div>
-                <nav class="mobile-nav">
-                    <ul class="mobile-menu">
-                        <li><a href="/">YouTube Downloader</a></li>
-                        <li><a href="/youtube-to-mp4">YouTube to MP4 Converter</a></li>
-                        <li><a href="/youtube-to-mp3">YouTube to MP3 Converter</a></li>
-                        <li><a href="/youtube-short-downloader">YouTube Shorts Downloader</a></li>
-                        <li class="mobile-language">
-                            <button type="button" class="mobile-language-toggle" aria-expanded="false">
-                                English<span class="shape"></span>
-                            </button>
-                            <ul class="mobile-lang-menu">
+                <button type="button" class="navbar-toggler" id="mobileMenuToggle" aria-label="Open navigation menu">
+                    <span class="toggle-icon"></span>
+                    <span class="toggle-icon"></span>
+                    <span class="toggle-icon"></span>
+                </button>
+            </div>
+            <div class="header-menu">
+                <ul class="menu-navbar">
+
+                    <li class="navbar">
+                        <a href="/youtube-to-mp4">YouTube to MP4 Converter</a>
+                    </li>
+                    <li class="navbar">
+                        <a href="/youtube-to-mp3">YouTube to MP3 Converter</a>
+                    </li>
+                    <li class="navbar language">
+                        <a href="/">
+                            English<span class="shape"></span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <ul class="lang-menu">
                                 <li>
                                     <a data-lang="en" href="/youtube-to-mp4">English</a>
                                 </li>
@@ -389,261 +301,379 @@
                                     <a data-lang="vi" href="/vi/youtube-to-mp4">Tiếng Việt</a>
                                 </li>
                             </ul>
-                        </li>
-                    </ul>
-                </nav>
+                        </div>
+                    </li>
+                </ul>
             </div>
+
+            <!-- Mobile Menu Overlay -->
+            <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+                <div class="mobile-menu-content">
+                    <div class="mobile-header-top">
+                        <a href="/">
+                            <div class="mobile-logo">
+                                <img height="36px" width="36px" src="/logo.png" alt="Y2Mate logo">
+                                <span class="logo-name">Y2mate</span>
+                            </div>
+                        </a>
+                        <button type="button" class="mobile-close-btn" id="mobileCloseBtn"
+                            aria-label="Close navigation menu">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" />
+                            </svg>
+                        </button>
+                    </div>
+                    <nav class="mobile-nav">
+                        <ul class="mobile-menu">
+                            <li><a href="/">YouTube Downloader</a></li>
+                            <li><a href="/youtube-to-mp4">YouTube to MP4 Converter</a></li>
+                            <li><a href="/youtube-to-mp3">YouTube to MP3 Converter</a></li>
+                            <li><a href="/youtube-short-downloader">YouTube Shorts Downloader</a></li>
+                            <li class="mobile-language">
+                                <button type="button" class="mobile-language-toggle" aria-expanded="false">
+                                    English<span class="shape"></span>
+                                </button>
+                                <ul class="mobile-lang-menu">
+                                    <li>
+                                        <a data-lang="en" href="/youtube-to-mp4">English</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="ar" href="/ar/youtube-to-mp4">العربية</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="bn" href="/bn/youtube-to-mp4">বাংলা</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="de" href="/de/youtube-to-mp4">Deutsch</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="es" href="/es/youtube-to-mp4">Español</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="fr" href="/fr/youtube-to-mp4">Français</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="hi" href="/hi/youtube-to-mp4">हिन्दी</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="id" href="/id/youtube-to-mp4">Indonesia</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="it" href="/it/youtube-to-mp4">Italiano</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="ja" href="/ja/youtube-to-mp4">日本語</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="ko" href="/ko/youtube-to-mp4">한국어</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="my" href="/my/youtube-to-mp4">မြန်မာ</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="ms" href="/ms/youtube-to-mp4">Melayu</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="pt" href="/pt/youtube-to-mp4">Português</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="ru" href="/ru/youtube-to-mp4">Русский</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="th" href="/th/youtube-to-mp4">ไทย</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="tr" href="/tr/youtube-to-mp4">Türkçe</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="ur" href="/ur/youtube-to-mp4">اردو</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="vi" href="/vi/youtube-to-mp4">Tiếng Việt</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- End Mobile Menu Overlay -->
         </div>
-        <!-- End Mobile Menu Overlay -->
-    </div>
-</header>
+    </header>
 
 
     <main>
-    <div class="container">
-    <section class="y2mate-download-pro">
-        <div class="y2mate-search-form-pro d-flex">
-            <div class="form-wrap">
-                <h1 class="y2mate_title-pro">Y2Mate – YouTube to MP4</h1>
-                <form id="downloadForm" class="search_form" method="POST" action="/search/">
-                    <div class="input-container">
-                        <div class=" input-wrapper">
-                            <input id="videoUrl" class="y2mate_query-pro keyword" type="text" name="q"
-                                placeholder="Search or paste link here..." autocomplete="off" autofocus=""
-                                role="combobox" aria-autocomplete="list" aria-controls="suggestion-container" aria-expanded="false">
-                            <button id="input-action-button" type="button" class="input-action-btn" data-action="paste"
-                                aria-label="Paste from clipboard">
-                                <svg class="paste-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                                    viewBox="0 0 24 24">
-                                    <path fill="currentColor"
-                                        d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm7 16H5V5h2v3h10V5h2v14z" />
-                                </svg>
-                                <svg class="clear-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                                    viewBox="0 0 24 24">
-                                    <path fill="currentColor"
-                                        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                    <button id="submit" type="submit" name="form_submit" class="submit-btn" aria-label="Search">
-                        <div class="converter-btn">Start</div>
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                            width="14px" height="14px" fill="#fff" id="Layer_1"
-                            style="enable-background:new 0 0 16 16;" version="1.1" viewBox="0 0 16 16"
-                            xml:space="preserve">
-                            <path
-                                d="M15.375,7L10,2.54C9.695,2.287,9.461,2,9,2C8.375,2,8,2.516,8,3v3H1C0.45,6,0,6.45,0,7v2c0,0.55,0.45,1,1,1h7v3  c0,0.484,0.375,1,1,1c0.461,0,0.695-0.287,1-0.54L15.375,9C15.758,8.688,16,8.445,16,8S15.758,7.313,15.375,7z">
-                            </path>
-                        </svg>
-                    </button>
-
-                    <!-- Format Selector -->
-                    <div id="format-selector-container" class="format-selector-wrapper">
-                        <div class="format-selector">
-                            <!-- Group 1: Format + Quality -->
-                            <div class="format-quality-group">
-                                <!-- Format Toggle -->
-                                <button type="button" class="format-toggle-btn" data-toggle-format>
-                                    <span class="toggle-side" data-format="mp4">
-                                        <span class="format-label">MP4</span>
-                                    </span>
-                                    <span class="toggle-side" data-format="mp3">
-                                        <span class="format-label">MP3</span>
-                                    </span>
-                                </button>
-                                <!-- Quality Dropdowns -->
-                                <div class="quality-selector">
-                                    <!-- MP4 Options -->
-                                    <select id="quality-select-mp4" class="quality-select quality-select--mp4"
-                                        aria-label="Video quality" data-quality-select>
-                                        <option value="mp4-1080">MP4 - 1080p</option>
-                                        <option value="mp4-720" selected>MP4 - 720p</option>
-                                        <option value="mp4-480">MP4 - 480p</option>
-                                        <option value="mp4-360">MP4 - 360p</option>
-                                        <option value="mp4-240">MP4 - 240p</option>
-                                        <option value="mp4-144">MP4 - 144p</option>
-                                        <option value="webm">WEBM</option>
-                                        <option value="mkv">MKV</option>
-                                    </select>
-                                    <!-- MP3 Options -->
-                                    <select id="quality-select-mp3" class="quality-select quality-select--mp3"
-                                        aria-label="Audio quality" data-quality-select>
-                                        <option value="mp3-320">MP3 - 320kbps</option>
-                                        <option value="mp3-256">MP3 - 256kbps</option>
-                                        <option value="mp3-192">MP3 - 192kbps</option>
-                                        <option value="mp3-128" selected>MP3 - 128kbps</option>
-                                        <option value="ogg">OGG</option>
-                                        <option value="opus">OPUS</option>
-                                        <option value="wav">WAV</option>
-                                    </select>
+        <div class="container">
+            <section class="y2mate-download-pro">
+                <div class="y2mate-search-form-pro d-flex">
+                    <div class="form-wrap">
+                        <h1 class="y2mate_title-pro">Y2Mate – YouTube to MP4</h1>
+                        <form id="downloadForm" class="search_form" method="POST" action="/search/">
+                            <div class="input-container">
+                                <div class=" input-wrapper">
+                                    <input id="videoUrl" class="y2mate_query-pro keyword" type="text" name="q"
+                                        placeholder="Search or paste link here..." autocomplete="off" autofocus=""
+                                        role="combobox" aria-autocomplete="list" aria-controls="suggestion-container"
+                                        aria-expanded="false">
+                                    <button id="input-action-button" type="button" class="input-action-btn"
+                                        data-action="paste" aria-label="Paste from clipboard">
+                                        <svg class="paste-icon" xmlns="http://www.w3.org/2000/svg" width="18"
+                                            height="18" viewBox="0 0 24 24">
+                                            <path fill="currentColor"
+                                                d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm7 16H5V5h2v3h10V5h2v14z" />
+                                        </svg>
+                                        <svg class="clear-icon" xmlns="http://www.w3.org/2000/svg" width="18"
+                                            height="18" viewBox="0 0 24 24">
+                                            <path fill="currentColor"
+                                                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                                        </svg>
+                                    </button>
                                 </div>
                             </div>
-                            <!-- Group 2: Auto Submit Toggle -->
-                            <div class="auto-submit-toggle"
-                                data-tooltip="Automatically submit when pasting URL or keyword">
-                                <strong class="toggle-label">Auto submit</strong>
-                                <label class="toggle-switch" for="auto-submit-checkbox">
-                                    <input type="checkbox" id="auto-submit-checkbox" data-auto-submit-toggle aria-label="Auto submit after selecting format"/>
-                                    <span class="toggle-slider"></span>
-                                </label>
-                                <span class="custom-tooltip"></span>
-                        </div>
+                            <button id="submit" type="submit" name="form_submit" class="submit-btn" aria-label="Search">
+                                <div class="converter-btn">Start</div>
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    width="14px" height="14px" fill="#fff" id="Layer_1"
+                                    style="enable-background:new 0 0 16 16;" version="1.1" viewBox="0 0 16 16"
+                                    xml:space="preserve">
+                                    <path
+                                        d="M15.375,7L10,2.54C9.695,2.287,9.461,2,9,2C8.375,2,8,2.516,8,3v3H1C0.45,6,0,6.45,0,7v2c0,0.55,0.45,1,1,1h7v3  c0,0.484,0.375,1,1,1c0.461,0,0.695-0.287,1-0.54L15.375,9C15.758,8.688,16,8.445,16,8S15.758,7.313,15.375,7z">
+                                    </path>
+                                </svg>
+                            </button>
+
+                            <!-- Format Selector -->
+                            <div id="format-selector-container" class="format-selector-wrapper">
+                                <div class="format-selector">
+                                    <!-- Group 1: Format + Quality -->
+                                    <div class="format-quality-group">
+                                        <!-- Format Toggle -->
+                                        <button type="button" class="format-toggle-btn" data-toggle-format>
+                                            <span class="toggle-side" data-format="mp4">
+                                                <span class="format-label">MP4</span>
+                                            </span>
+                                            <span class="toggle-side" data-format="mp3">
+                                                <span class="format-label">MP3</span>
+                                            </span>
+                                        </button>
+                                        <!-- Quality Dropdowns -->
+                                        <div class="quality-selector">
+                                            <!-- MP4 Options -->
+                                            <select id="quality-select-mp4" class="quality-select quality-select--mp4"
+                                                aria-label="Video quality" data-quality-select>
+                                                <option value="mp4-1080">MP4 - 1080p</option>
+                                                <option value="mp4-720" selected>MP4 - 720p</option>
+                                                <option value="mp4-480">MP4 - 480p</option>
+                                                <option value="mp4-360">MP4 - 360p</option>
+                                                <option value="mp4-144">MP4 - 144p</option>
+                                                <option value="webm">WEBM</option>
+                                                <option value="mkv">MKV</option>
+                                            </select>
+                                            <!-- MP3 Options -->
+                                            <select id="quality-select-mp3" class="quality-select quality-select--mp3"
+                                                aria-label="Audio quality" data-quality-select>
+                                                <option value="mp3-320">MP3 - 320kbps</option>
+                                                <option value="mp3-256">MP3 - 256kbps</option>
+                                                <option value="mp3-192">MP3 - 192kbps</option>
+                                                <option value="mp3-128" selected>MP3 - 128kbps</option>
+                                                <option value="ogg">OGG</option>
+                                                <option value="opus">OPUS</option>
+                                                <option value="wav">WAV</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!-- Group 2: Auto Submit Toggle -->
+                                    <div class="auto-submit-toggle"
+                                        data-tooltip="Automatically submit when pasting URL or keyword">
+                                        <strong class="toggle-label">Auto submit</strong>
+                                        <label class="toggle-switch" for="auto-submit-checkbox">
+                                            <input type="checkbox" id="auto-submit-checkbox" data-auto-submit-toggle
+                                                aria-label="Auto submit after selecting format" />
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                        <span class="custom-tooltip"></span>
+                                    </div>
+                                </div>
+                                <script>(function () { try { const preferencesJson = localStorage.getItem('y2mate_format_preferences'); if (preferencesJson) { const preferences = JSON.parse(preferencesJson); const selectElement = preferences.selectedFormat === 'mp4' ? document.getElementById('quality-select-mp4') : document.getElementById('quality-select-mp3'); if (selectElement) { let value; if (preferences.selectedFormat === 'mp4') { const videoQuality = preferences.videoQuality || '720p'; value = (videoQuality === 'webm' || videoQuality === 'mkv') ? videoQuality : `mp4-${videoQuality.replace('p', '')}`; } else { const audioFormat = preferences.audioFormat || 'mp3'; value = (audioFormat === 'mp3') ? `mp3-${preferences.audioBitrate || '128'}` : audioFormat; } selectElement.value = value; } } const autoSubmitValue = localStorage.getItem('y2mate_auto_submit'); const checkbox = document.getElementById('auto-submit-checkbox'); if (checkbox) { checkbox.checked = autoSubmitValue === 'true'; } } catch (error) { console.error('Error syncing UI from localStorage in inline script:', error); } })();</script>
+                            </div>
+
+                            <div id="suggestion-container" class="suggesstion-list suggesstion-box"></div>
+                        </form>
+
+                        <!-- Video Detail Area -->
+                        <div id="content-area"></div>
                     </div>
-                    <script>(function(){try{const preferencesJson=localStorage.getItem('y2mate_format_preferences');if(preferencesJson){const preferences=JSON.parse(preferencesJson);const selectElement=preferences.selectedFormat==='mp4'?document.getElementById('quality-select-mp4'):document.getElementById('quality-select-mp3');if(selectElement){let value;if(preferences.selectedFormat==='mp4'){const videoQuality=preferences.videoQuality||'720p';value=(videoQuality==='webm'||videoQuality==='mkv')?videoQuality:`mp4-${videoQuality.replace('p','')}`;}else{const audioFormat=preferences.audioFormat||'mp3';value=(audioFormat==='mp3')?`mp3-${preferences.audioBitrate||'128'}`:audioFormat;}selectElement.value=value;}}const autoSubmitValue=localStorage.getItem('y2mate_auto_submit');const checkbox=document.getElementById('auto-submit-checkbox');if(checkbox){checkbox.checked=autoSubmitValue==='true';}}catch(error){console.error('Error syncing UI from localStorage in inline script:',error);}})();</script>
+                </div>
+            </section>
+
+            <!-- Search Results Section -->
+            <section id="search-results-section" class="search-results-section" style="display: none;">
+                <div id="search-results-container"></div>
+            </section>
+
+            <!-- Content Sections -->
+            <section class="y2mate-content-pro d-flex">
+                <div class="col-sm-12">
+                    <h2>What Is YouTube to MP4 on Y2Mate?</h2>
+                    <p>The <strong>YouTube to MP4</strong> page from <a href="/">Y2Mate</a> is built specifically for
+                        downloading YouTube videos in MP4 format while preserving both video and audio for offline
+                        viewing.</p>
+                    <p>Unlike general video download tools, this page focuses on handling long-duration YouTube videos
+                        and multiple quality levels in a stable and reliable way.</p>
+                </div>
+            </section>
+            <section class="y2mate-content-pro d-flex">
+                <div class="col-sm-12">
+                    <h2>Designed for Downloading Long YouTube Videos</h2>
+                    <p>This YouTube to MP4 tool is suitable for downloading long YouTube videos such as lectures,
+                        educational content, replayed livestreams, or videos longer than one hour.</p>
+                    <p>It is especially useful for content that often fails to download or does not complete properly
+                        when using standard video download tools.</p>
+                </div>
+            </section>
+            <section class="y2mate-content-pro d-flex">
+                <div class="col-sm-12">
+                    <h2>Common Issues When Downloading Long YouTube Videos</h2>
+                    <p>When downloading long YouTube videos, users often experience interrupted downloads, missing
+                        audio, or limited control over video quality.</p>
+                    <p>These issues usually come from unstable video stream handling or incorrect separation of video
+                        and audio data.</p>
+                </div>
+            </section>
+            <section class="y2mate-content-pro d-flex">
+                <div class="col-sm-12">
+                    <h2>How the Tool Processes YouTube Videos into MP4</h2>
+                    <p>After you paste a YouTube video link, the system analyzes the original video streams and
+                        generates an MP4 file compatible with your device.</p>
+                    <p>This process ensures that the downloaded video contains both video and audio and plays correctly
+                        when viewed offline.</p>
+                </div>
+            </section>
+            <section class="y2mate-content-pro d-flex">
+                <div class="col-sm-12">
+                    <h2>MP4 Video Quality Availability</h2>
+                    <p>The quality of the downloaded MP4 file depends on the resolutions provided by the original
+                        YouTube video.</p>
+                    <p>Common options include SD, HD, or Full HD. Not all videos offer every resolution, and the tool
+                        displays only the options available for each specific video.</p>
+                </div>
+            </section>
+            <section class="y2mate-content-pro d-flex">
+                <div class="col-sm-12">
+                    <h2>Difference Between Downloading MP4 and Extracting MP3</h2>
+                    <p>MP4 is a complete video format that includes both visuals and audio, making it suitable when you
+                        need to watch the video content.</p>
+                    <p>If you only need the audio for music, podcasts, or background listening, you should use the <a
+                            href="/youtube-to-mp3">YouTube to MP3</a> page to reduce file size and optimize offline
+                        listening.</p>
+                </div>
+            </section>
+            <section class="y2mate-content-pro d-flex">
+                <div class="col-sm-12">
+                    <h2>Related Download Options</h2>
+                    <p>If you are looking to download YouTube content in general and have not decided on a specific
+                        format, you can visit the <a href="/">Download Video YouTube</a> page to explore all available
+                        download options.</p>
+                    <p>For short vertical videos, the <a href="/youtube-short-downloader">YouTube Shorts Downloader</a>
+                        is designed specifically for handling Shorts content.</p>
+                </div>
+            </section>
+
+            <!-- Why Choose Section -->
+            <section class="y2mate-instruction-pro">
+                <div class="y2mate-in-ad-pro">
+                    <h2>Why Choose Y2Mate for YouTube to MP4 Downloads</h2>
+                    <p>Many YouTube video downloaders struggle with long videos, quality selection, or audio
+                        synchronization. Y2Mate provides reliable MP4 downloads optimized for long-form content.</p>
+                    <ul>
+                        <li>Handles long videos reliably – optimized for lectures and extended content</li>
+                        <li>Multiple quality options – from 360p to 1080p or higher when available</li>
+                        <li>Preserves audio and video sync – no audio/video mismatch issues</li>
+                        <li>Fast processing – efficient video stream handling</li>
+                        <li>Works on all devices – download on desktop or mobile</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Instructions Section -->
+            <section class="y2mate-instruction-pro">
+                <div class="y2mate-in-ad-pro">
+                    <h2>How to Download YouTube Videos as MP4</h2>
+                    <ol>
+                        <li>Copy the YouTube video link you want to download.</li>
+                        <li>Paste the link into the input field on this page.</li>
+                        <li>Click the start button to analyze the video streams.</li>
+                        <li>Select your preferred MP4 quality and download the video to your device.</li>
+                    </ol>
+                    <p><em>The entire download process runs in your browser without requiring any software
+                            installation.</em></p>
+                </div>
+            </section>
+
+            <!-- FAQs Section -->
+            <section class="yt-content">
+                <h2>Frequently Asked Questions About YouTube to MP4</h2>
+                <div class="download-uses">
+                    <div class="guide-data">
+                        <h3>How do I download a YouTube video as MP4?</h3>
+                        <p>Paste the YouTube video link into the input box, start the process, choose an available MP4
+                            quality, and download the video to your device.</p>
                     </div>
-
-                    <div id="suggestion-container" class="suggesstion-list suggesstion-box"></div>
-                </form>
-
-                <!-- Video Detail Area -->
-                <div id="content-area"></div>
-            </div>
+                    <div class="guide-data">
+                        <h3>Do I need to install any software to use this MP4 tool?</h3>
+                        <p>No. The YouTube to MP4 converter works entirely in your web browser and does not require
+                            software or extensions.</p>
+                    </div>
+                    <div class="guide-data">
+                        <h3>What video quality options are available?</h3>
+                        <p>Available MP4 resolutions depend on the original video and may include SD, HD, or Full HD
+                            options.</p>
+                    </div>
+                    <div class="guide-data">
+                        <h3>Can I download long YouTube videos as MP4?</h3>
+                        <p>Yes. The tool is designed to handle long videos, including lectures or extended content, as
+                            long as the video is publicly accessible.</p>
+                    </div>
+                    <div class="guide-data">
+                        <h3>Why are some videos unavailable for download?</h3>
+                        <p>Private or restricted videos cannot be processed by online download tools.</p>
+                    </div>
+                    <div class="guide-data">
+                        <h3>Will the MP4 file work on my phone or computer?</h3>
+                        <p>Yes. MP4 is a widely supported format and works on most smartphones, computers, and media
+                            players.</p>
+                    </div>
+                </div>
+            </section>
         </div>
-    </section>
-
-    <!-- Search Results Section -->
-    <section id="search-results-section" class="search-results-section" style="display: none;">
-        <div id="search-results-container"></div>
-    </section>
-
-    <!-- Content Sections -->
-    <section class="y2mate-content-pro d-flex">
-        <div class="col-sm-12">
-            <h2>What Is YouTube to MP4 on Y2Mate?</h2>
-            <p>The <strong>YouTube to MP4</strong> page from <a href="/">Y2Mate</a> is built specifically for downloading YouTube videos in MP4 format while preserving both video and audio for offline viewing.</p>
-            <p>Unlike general video download tools, this page focuses on handling long-duration YouTube videos and multiple quality levels in a stable and reliable way.</p>
-        </div>
-    </section>
-    <section class="y2mate-content-pro d-flex">
-        <div class="col-sm-12">
-            <h2>Designed for Downloading Long YouTube Videos</h2>
-            <p>This YouTube to MP4 tool is suitable for downloading long YouTube videos such as lectures, educational content, replayed livestreams, or videos longer than one hour.</p>
-            <p>It is especially useful for content that often fails to download or does not complete properly when using standard video download tools.</p>
-        </div>
-    </section>
-    <section class="y2mate-content-pro d-flex">
-        <div class="col-sm-12">
-            <h2>Common Issues When Downloading Long YouTube Videos</h2>
-            <p>When downloading long YouTube videos, users often experience interrupted downloads, missing audio, or limited control over video quality.</p>
-            <p>These issues usually come from unstable video stream handling or incorrect separation of video and audio data.</p>
-        </div>
-    </section>
-    <section class="y2mate-content-pro d-flex">
-        <div class="col-sm-12">
-            <h2>How the Tool Processes YouTube Videos into MP4</h2>
-            <p>After you paste a YouTube video link, the system analyzes the original video streams and generates an MP4 file compatible with your device.</p>
-            <p>This process ensures that the downloaded video contains both video and audio and plays correctly when viewed offline.</p>
-        </div>
-    </section>
-    <section class="y2mate-content-pro d-flex">
-        <div class="col-sm-12">
-            <h2>MP4 Video Quality Availability</h2>
-            <p>The quality of the downloaded MP4 file depends on the resolutions provided by the original YouTube video.</p>
-            <p>Common options include SD, HD, or Full HD. Not all videos offer every resolution, and the tool displays only the options available for each specific video.</p>
-        </div>
-    </section>
-    <section class="y2mate-content-pro d-flex">
-        <div class="col-sm-12">
-            <h2>Difference Between Downloading MP4 and Extracting MP3</h2>
-            <p>MP4 is a complete video format that includes both visuals and audio, making it suitable when you need to watch the video content.</p>
-            <p>If you only need the audio for music, podcasts, or background listening, you should use the <a href="/youtube-to-mp3">YouTube to MP3</a> page to reduce file size and optimize offline listening.</p>
-        </div>
-    </section>
-    <section class="y2mate-content-pro d-flex">
-        <div class="col-sm-12">
-            <h2>Related Download Options</h2>
-            <p>If you are looking to download YouTube content in general and have not decided on a specific format, you can visit the <a href="/">Download Video YouTube</a> page to explore all available download options.</p>
-            <p>For short vertical videos, the <a href="/youtube-short-downloader">YouTube Shorts Downloader</a> is designed specifically for handling Shorts content.</p>
-        </div>
-    </section>
-
-    <!-- Why Choose Section -->
-    <section class="y2mate-instruction-pro">
-        <div class="y2mate-in-ad-pro">
-            <h2>Why Choose Y2Mate for YouTube to MP4 Downloads</h2>
-            <p>Many YouTube video downloaders struggle with long videos, quality selection, or audio synchronization. Y2Mate provides reliable MP4 downloads optimized for long-form content.</p>
-            <ul>
-                <li>Handles long videos reliably – optimized for lectures and extended content</li>
-                <li>Multiple quality options – from 360p to 1080p or higher when available</li>
-                <li>Preserves audio and video sync – no audio/video mismatch issues</li>
-                <li>Fast processing – efficient video stream handling</li>
-                <li>Works on all devices – download on desktop or mobile</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- Instructions Section -->
-    <section class="y2mate-instruction-pro">
-        <div class="y2mate-in-ad-pro">
-            <h2>How to Download YouTube Videos as MP4</h2>
-            <ol>
-                <li>Copy the YouTube video link you want to download.</li>
-                <li>Paste the link into the input field on this page.</li>
-                <li>Click the start button to analyze the video streams.</li>
-                <li>Select your preferred MP4 quality and download the video to your device.</li>
-            </ol>
-            <p><em>The entire download process runs in your browser without requiring any software installation.</em></p>
-        </div>
-    </section>
-
-    <!-- FAQs Section -->
-    <section class="yt-content">
-        <h2>Frequently Asked Questions About YouTube to MP4</h2>
-        <div class="download-uses">
-            <div class="guide-data">
-                <h3>How do I download a YouTube video as MP4?</h3>
-                <p>Paste the YouTube video link into the input box, start the process, choose an available MP4 quality, and download the video to your device.</p>
-            </div>
-            <div class="guide-data">
-                <h3>Do I need to install any software to use this MP4 tool?</h3>
-                <p>No. The YouTube to MP4 converter works entirely in your web browser and does not require software or extensions.</p>
-            </div>
-            <div class="guide-data">
-                <h3>What video quality options are available?</h3>
-                <p>Available MP4 resolutions depend on the original video and may include SD, HD, or Full HD options.</p>
-            </div>
-            <div class="guide-data">
-                <h3>Can I download long YouTube videos as MP4?</h3>
-                <p>Yes. The tool is designed to handle long videos, including lectures or extended content, as long as the video is publicly accessible.</p>
-            </div>
-            <div class="guide-data">
-                <h3>Why are some videos unavailable for download?</h3>
-                <p>Private or restricted videos cannot be processed by online download tools.</p>
-            </div>
-            <div class="guide-data">
-                <h3>Will the MP4 file work on my phone or computer?</h3>
-                <p>Yes. MP4 is a widely supported format and works on most smartphones, computers, and media players.</p>
-            </div>
-        </div>
-    </section>
-</div>
 
     </main>
 
     <footer class="footer">
-    <p>© 2026 y2mate</p>
-    <ul class="footer_nav">
-        <li class="fnav-menu">
-            <a href="/about-us">About</a>
-        </li>
-        <li class="fnav-menu">
-            <a href="/contact">Contact</a>
-        </li>
-        <li class="fnav-menu">
-            <a href="/terms-condition">Terms of Service</a>
-        </li>
-        <li class="fnav-menu">
-            <a href="/privacy-policy">Privacy Policy</a>
-        </li>
-        <li class="fnav-menu">
-            <a href="/copyright-claims">Copyright Claims</a>
-        </li>
-        <li class="fnav-menu">
-            <a href="/youtube-short-downloader">YouTube Shorts Downloader</a>
-        </li>
-    </ul>
-</footer>
+        <p>© 2026 y2mate</p>
+        <ul class="footer_nav">
+            <li class="fnav-menu">
+                <a href="/about-us">About</a>
+            </li>
+            <li class="fnav-menu">
+                <a href="/contact">Contact</a>
+            </li>
+            <li class="fnav-menu">
+                <a href="/terms-condition">Terms of Service</a>
+            </li>
+            <li class="fnav-menu">
+                <a href="/privacy-policy">Privacy Policy</a>
+            </li>
+            <li class="fnav-menu">
+                <a href="/copyright-claims">Copyright Claims</a>
+            </li>
+            <li class="fnav-menu">
+                <a href="/youtube-short-downloader">YouTube Shorts Downloader</a>
+            </li>
+        </ul>
+    </footer>
 
 
     <!-- Conversion Modal Wrapper -->

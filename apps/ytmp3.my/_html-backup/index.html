@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- SEO Metadata -->
-    <title>YTMP3 - Fast YouTube to MP3 Converter  </title>
+    <title>YTMP3 - Fast YouTube to MP3 Converter </title>
     <meta name="description"
         content="Convert YouTube to MP3, FLAC, WAV, M4A, MP4, WebM, MKV. Download high-quality audio and video free. Unlimited conversions.">
 
@@ -24,7 +24,7 @@
 
     <!-- Critical: Read format preference before render to prevent FOUC -->
     <script>
-      (function(){var f='mp3';try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p&&p.selectedFormat)f=p.selectedFormat}catch(e){}document.documentElement.dataset.format=f;document.write('<style>html[data-format="mp3"] .quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4{display:block!important}</style>')})()
+        (function () { var f = 'mp3'; try { var p = JSON.parse(localStorage.getItem('y2mate_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat } catch (e) { } document.documentElement.dataset.format = f; document.write('<style>html[data-format="mp3"] .quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4{display:block!important}</style>') })()
     </script>
 
     <!-- TypeScript Module -->
@@ -55,8 +55,8 @@
                 <!-- Language Selector -->
                 <div class="lang-selector">
                     <button class="lang-button">
-<span>EN</span>
-</button>
+                        <span>EN</span>
+                    </button>
                     <!-- Dropdown -->
                     <div class="lang-dropdown">
                         <a href="#" class="lang-option">English</a>
@@ -173,7 +173,8 @@
                                         <div class="quality-wrapper">
                                             <div class="quality-dropdown-wrapper">
                                                 <!-- MP3 Options (default visible) -->
-                                                <select id="quality-select-mp3" class="quality-select quality-select--mp3"
+                                                <select id="quality-select-mp3"
+                                                    class="quality-select quality-select--mp3"
                                                     aria-label="Audio quality" data-quality-select>
                                                     <option value="mp3-128" selected>MP3 - 128kbps</option>
                                                     <option value="mp3-192">MP3 - 192kbps</option>
@@ -184,19 +185,19 @@
                                                     <option value="m4a">M4A</option>
                                                 </select>
                                                 <!-- MP4 Options (hidden by default) -->
-                                                <select id="quality-select-mp4" class="quality-select quality-select--mp4"
+                                                <select id="quality-select-mp4"
+                                                    class="quality-select quality-select--mp4"
                                                     aria-label="Video quality" data-quality-select>
                                                     <option value="mp4-1080">MP4 - 1080p</option>
                                                     <option value="mp4-720" selected>MP4 - 720p</option>
                                                     <option value="mp4-480">MP4 - 480p</option>
                                                     <option value="mp4-360">MP4 - 360p</option>
-                                                    <option value="mp4-240">MP4 - 240p</option>
                                                     <option value="mp4-144">MP4 - 144p</option>
                                                     <option value="webm">WEBM</option>
                                                     <option value="mkv">MKV</option>
                                                 </select>
                                             </div>
-                                            <script>(function(){try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(!p)return;var s=p.selectedFormat==='mp4'?document.getElementById('quality-select-mp4'):document.getElementById('quality-select-mp3');if(!s)return;var v;if(p.selectedFormat==='mp4'){var vq=p.videoQuality||'720p';v=(vq==='webm'||vq==='mkv')?vq:'mp4-'+vq.replace('p','')}else{var af=p.audioFormat||'mp3';v=(af==='mp3')?'mp3-'+(p.audioBitrate||'128'):af}s.value=v}catch(e){}})()</script>
+                                            <script>(function () { try { var p = JSON.parse(localStorage.getItem('y2mate_format_preferences')); if (!p) return; var s = p.selectedFormat === 'mp4' ? document.getElementById('quality-select-mp4') : document.getElementById('quality-select-mp3'); if (!s) return; var v; if (p.selectedFormat === 'mp4') { var vq = p.videoQuality || '720p'; v = (vq === 'webm' || vq === 'mkv') ? vq : 'mp4-' + vq.replace('p', '') } else { var af = p.audioFormat || 'mp3'; v = (af === 'mp3') ? 'mp3-' + (p.audioBitrate || '128') : af } s.value = v } catch (e) { } })()</script>
                                             <div class="select-arrow">
                                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
                                                     stroke="currentColor" stroke-width="2">
@@ -256,7 +257,8 @@
                     <h3>Download YouTube in Multiple Formats</h3>
                     <p>
                         YTMP3 supports a wide range of audio and video formats. For audio, choose from MP3
-                        (128-320kbps), FLAC (lossless), WAV (lossless), and M4A. For video, download in MP4, WebM, or MKV
+                        (128-320kbps), FLAC (lossless), WAV (lossless), and M4A. For video, download in MP4, WebM, or
+                        MKV
                         formats with quality options from 360p to 1080p. Select your preferred format and quality before
                         converting.
                     </p>
@@ -309,7 +311,8 @@
                             </div>
                             <div class="faq-item">
                                 <h4 class="faq-question">What formats does YTMP3 support?</h4>
-                                <p class="faq-answer">YTMP3 supports audio formats: <a href="/youtube-to-mp3-320kbps-converter">MP3 (up to 320kbps)</a>,
+                                <p class="faq-answer">YTMP3 supports audio formats: <a
+                                        href="/youtube-to-mp3-320kbps-converter">MP3 (up to 320kbps)</a>,
                                     FLAC, WAV, M4A. For video: MP4, WebM, MKV with quality up to 1080p.
                                 </p>
                             </div>
@@ -332,9 +335,12 @@
                             </div>
                             <div class="faq-item">
                                 <h4 class="faq-question">Which format should I choose?</h4>
-                                <p class="faq-answer">For general listening, MP3 or <a href="/youtube-to-m4a-converter">M4A</a> are suitable. For lossless
-                                    quality, choose <a href="/youtube-to-flac-converter">FLAC</a>. For uncompressed audio, use
-                                    <a href="/youtube-to-wav-converter">WAV</a>.</p>
+                                <p class="faq-answer">For general listening, MP3 or <a
+                                        href="/youtube-to-m4a-converter">M4A</a> are suitable. For lossless
+                                    quality, choose <a href="/youtube-to-flac-converter">FLAC</a>. For uncompressed
+                                    audio, use
+                                    <a href="/youtube-to-wav-converter">WAV</a>.
+                                </p>
                             </div>
                         </div>
                     </div>

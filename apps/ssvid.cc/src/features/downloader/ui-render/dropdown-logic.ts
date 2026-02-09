@@ -1,4 +1,4 @@
-import { LANGUAGES, type Language } from '../data/languages';
+import { LANGUAGES, type Language } from '../logic/data/languages';
 import { logEvent } from '../../../libs/firebase';
 
 interface AudioDropdownConfig {

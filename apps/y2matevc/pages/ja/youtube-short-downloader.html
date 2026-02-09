@@ -8,8 +8,9 @@
 
     <!-- SEO Metadata -->
     <title>YouTubeショートダウンローダー – ショート動画をダウンロード | Y2Mate</title>
-    <meta name="description" content="YouTubeショートダウンローダーを使用すると、ショート動画を正しい縦型9:16形式でダウンロードできます。回転の問題、透かしはなく、ブラウザで直接動作します。">
-    
+    <meta name="description"
+        content="YouTubeショートダウンローダーを使用すると、ショート動画を正しい縦型9:16形式でダウンロードできます。回転の問題、透かしはなく、ブラウザで直接動作します。">
+
     <link rel="canonical" href="https://y2mate.vc/ja/youtube-short-downloader">
 
     <!-- hreflang tags for multilingual SEO -->
@@ -64,7 +65,7 @@
     <!-- Google Analytics: Lazy loaded via analytics-loader.ts for better performance -->
 
     <!-- Critical: Set format and auto-submit preferences before render to prevent FOUC -->
-    <script>(function(){var f='mp4',a='false';try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p&&p.selectedFormat)f=p.selectedFormat;var s=localStorage.getItem('y2mate_auto_submit');if(s)a=s;}catch(e){}document.documentElement.dataset.format=f;document.documentElement.dataset.autoSubmit=a;})()</script>
+    <script>(function () { var f = 'mp4', a = 'false'; try { var p = JSON.parse(localStorage.getItem('y2mate_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat; var s = localStorage.getItem('y2mate_auto_submit'); if (s) a = s; } catch (e) { } document.documentElement.dataset.format = f; document.documentElement.dataset.autoSubmit = a; })()</script>
 
     <!-- Critical: Hide auto-submit tooltip before CSS loads -->
     <style>
@@ -75,7 +76,7 @@
     </style>
 
     <!-- Critical: Prevent default form submit before app init (avoid /search 404) -->
-    <script>(function(){document.addEventListener('submit',function(event){var target=event.target;if(target&&target.id==='downloadForm'){event.preventDefault();}},true);})();</script>
+    <script>(function () { document.addEventListener('submit', function (event) { var target = event.target; if (target && target.id === 'downloadForm') { event.preventDefault(); } }, true); })();</script>
 
     <!-- Critical CSS imported via Vite -->
     <script type="module" src="/src/main.ts"></script>
@@ -212,125 +213,35 @@
 
 <body>
     <header class="nav-header">
-    <div class="container">
-        <div class="nav_head">
-            <div class="navbar-logo">
-                <a href="/ja/">
-                    <img height="46px" width="46px" src="/logo.png" alt="Y2Mate logo">
-                    <span class="logo-name">Y2mate</span>
-                </a>
-            </div>
-            <button type="button" class="navbar-toggler" id="mobileMenuToggle" aria-label="ナビゲーションメニューを開く">
-                <span class="toggle-icon"></span>
-                <span class="toggle-icon"></span>
-                <span class="toggle-icon"></span>
-            </button>
-        </div>
-        <div class="header-menu">
-            <ul class="menu-navbar">
-              
-                <li class="navbar">
-                    <a href="/ja/youtube-to-mp4">YouTubeからMP4へのコンバーター</a>
-                </li>
-                <li class="navbar">
-                    <a href="/ja/youtube-to-mp3">YouTubeからMP3へのコンバーター</a>
-                </li>
-                <li class="navbar language">
-                    <a href="/">
-                        日本語<span class="shape"></span>
-                    </a>
-                    <div class="dropdown-menu">
-                        <ul class="lang-menu">
-                            <li>
-                                <a data-lang="en" href="/youtube-short-downloader">English</a>
-                            </li>
-                            <li>
-                                <a data-lang="ar" href="/ar/youtube-short-downloader">العربية</a>
-                            </li>
-                            <li>
-                                <a data-lang="bn" href="/bn/youtube-short-downloader">বাংলা</a>
-                            </li>
-                            <li>
-                                <a data-lang="de" href="/de/youtube-short-downloader">Deutsch</a>
-                            </li>
-                            <li>
-                                <a data-lang="es" href="/es/youtube-short-downloader">Español</a>
-                            </li>
-                            <li>
-                                <a data-lang="fr" href="/fr/youtube-short-downloader">Français</a>
-                            </li>
-                            <li>
-                                <a data-lang="hi" href="/hi/youtube-short-downloader">हिन्दी</a>
-                            </li>
-                            <li>
-                                <a data-lang="id" href="/id/youtube-short-downloader">Indonesia</a>
-                            </li>
-                            <li>
-                                <a data-lang="it" href="/it/youtube-short-downloader">Italiano</a>
-                            </li>
-                            <li>
-                                <a data-lang="ja" href="/ja/youtube-short-downloader">日本語</a>
-                            </li>
-                            <li>
-                                <a data-lang="ko" href="/ko/youtube-short-downloader">한국어</a>
-                            </li>
-                            <li>
-                                <a data-lang="my" href="/my/youtube-short-downloader">မြန်မာ</a>
-                            </li>
-                            <li>
-                                <a data-lang="ms" href="/ms/youtube-short-downloader">Melayu</a>
-                            </li>
-                            <li>
-                                <a data-lang="pt" href="/pt/youtube-short-downloader">Português</a>
-                            </li>
-                            <li>
-                                <a data-lang="ru" href="/ru/youtube-short-downloader">Русский</a>
-                            </li>
-                            <li>
-                                <a data-lang="th" href="/th/youtube-short-downloader">ไทย</a>
-                            </li>
-                            <li>
-                                <a data-lang="tr" href="/tr/youtube-short-downloader">Türkçe</a>
-                            </li>
-                            <li>
-                                <a data-lang="ur" href="/ur/youtube-short-downloader">اردو</a>
-                            </li>
-                            <li>
-                                <a data-lang="vi" href="/vi/youtube-short-downloader">Tiếng Việt</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
-        </div>
-
-        <!-- Mobile Menu Overlay -->
-        <div class="mobile-menu-overlay" id="mobileMenuOverlay">
-            <div class="mobile-menu-content">
-                <div class="mobile-header-top">
+        <div class="container">
+            <div class="nav_head">
+                <div class="navbar-logo">
                     <a href="/ja/">
-                        <div class="mobile-logo">
-                            <img height="36px" width="36px" src="/logo.png" alt="Y2Mate logo">
-                            <span class="logo-name">Y2mate</span>
-                        </div>
+                        <img height="46px" width="46px" src="/logo.png" alt="Y2Mate logo">
+                        <span class="logo-name">Y2mate</span>
                     </a>
-                    <button type="button" class="mobile-close-btn" id="mobileCloseBtn" aria-label="ナビゲーションメニューを閉じる">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                    </button>
                 </div>
-                <nav class="mobile-nav">
-                    <ul class="mobile-menu">
-                        <li><a href="/ja/">YouTubeダウンローダー</a></li>
-                        <li><a href="/ja/youtube-to-mp4">YouTubeからMP4へのコンバーター</a></li>
-                        <li><a href="/ja/youtube-to-mp3">YouTubeからMP3へのコンバーター</a></li>
-                        <li><a href="/ja/youtube-short-downloader">YouTubeショートダウンローダー</a></li>
-                        <li class="mobile-language">
-                            <button type="button" class="mobile-language-toggle" aria-expanded="false">
-                                日本語<span class="shape"></span>
-                            </button>
-                            <ul class="mobile-lang-menu">
+                <button type="button" class="navbar-toggler" id="mobileMenuToggle" aria-label="ナビゲーションメニューを開く">
+                    <span class="toggle-icon"></span>
+                    <span class="toggle-icon"></span>
+                    <span class="toggle-icon"></span>
+                </button>
+            </div>
+            <div class="header-menu">
+                <ul class="menu-navbar">
+
+                    <li class="navbar">
+                        <a href="/ja/youtube-to-mp4">YouTubeからMP4へのコンバーター</a>
+                    </li>
+                    <li class="navbar">
+                        <a href="/ja/youtube-to-mp3">YouTubeからMP3へのコンバーター</a>
+                    </li>
+                    <li class="navbar language">
+                        <a href="/">
+                            日本語<span class="shape"></span>
+                        </a>
+                        <div class="dropdown-menu">
+                            <ul class="lang-menu">
                                 <li>
                                     <a data-lang="en" href="/youtube-short-downloader">English</a>
                                 </li>
@@ -389,247 +300,342 @@
                                     <a data-lang="vi" href="/vi/youtube-short-downloader">Tiếng Việt</a>
                                 </li>
                             </ul>
-                        </li>
-                    </ul>
-                </nav>
+                        </div>
+                    </li>
+                </ul>
             </div>
+
+            <!-- Mobile Menu Overlay -->
+            <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+                <div class="mobile-menu-content">
+                    <div class="mobile-header-top">
+                        <a href="/ja/">
+                            <div class="mobile-logo">
+                                <img height="36px" width="36px" src="/logo.png" alt="Y2Mate logo">
+                                <span class="logo-name">Y2mate</span>
+                            </div>
+                        </a>
+                        <button type="button" class="mobile-close-btn" id="mobileCloseBtn" aria-label="ナビゲーションメニューを閉じる">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" />
+                            </svg>
+                        </button>
+                    </div>
+                    <nav class="mobile-nav">
+                        <ul class="mobile-menu">
+                            <li><a href="/ja/">YouTubeダウンローダー</a></li>
+                            <li><a href="/ja/youtube-to-mp4">YouTubeからMP4へのコンバーター</a></li>
+                            <li><a href="/ja/youtube-to-mp3">YouTubeからMP3へのコンバーター</a></li>
+                            <li><a href="/ja/youtube-short-downloader">YouTubeショートダウンローダー</a></li>
+                            <li class="mobile-language">
+                                <button type="button" class="mobile-language-toggle" aria-expanded="false">
+                                    日本語<span class="shape"></span>
+                                </button>
+                                <ul class="mobile-lang-menu">
+                                    <li>
+                                        <a data-lang="en" href="/youtube-short-downloader">English</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="ar" href="/ar/youtube-short-downloader">العربية</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="bn" href="/bn/youtube-short-downloader">বাংলা</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="de" href="/de/youtube-short-downloader">Deutsch</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="es" href="/es/youtube-short-downloader">Español</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="fr" href="/fr/youtube-short-downloader">Français</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="hi" href="/hi/youtube-short-downloader">हिन्दी</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="id" href="/id/youtube-short-downloader">Indonesia</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="it" href="/it/youtube-short-downloader">Italiano</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="ja" href="/ja/youtube-short-downloader">日本語</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="ko" href="/ko/youtube-short-downloader">한국어</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="my" href="/my/youtube-short-downloader">မြန်မာ</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="ms" href="/ms/youtube-short-downloader">Melayu</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="pt" href="/pt/youtube-short-downloader">Português</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="ru" href="/ru/youtube-short-downloader">Русский</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="th" href="/th/youtube-short-downloader">ไทย</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="tr" href="/tr/youtube-short-downloader">Türkçe</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="ur" href="/ur/youtube-short-downloader">اردو</a>
+                                    </li>
+                                    <li>
+                                        <a data-lang="vi" href="/vi/youtube-short-downloader">Tiếng Việt</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <!-- End Mobile Menu Overlay -->
         </div>
-        <!-- End Mobile Menu Overlay -->
-    </div>
-</header>
+    </header>
 
 
     <main>
-    <div class="container">
-    <section class="y2mate-download-pro">
-        <div class="y2mate-search-form-pro d-flex">
-            <div class="form-wrap">
-                <h1 class="y2mate_title-pro">Y2Mate - YouTubeショートダウンローダー</h1>
-                <form id="downloadForm" class="search_form" method="POST" action="/search/">
-                    <div class="input-container">
-                        <div class=" input-wrapper">
-                            <input id="videoUrl" class="y2mate_query-pro keyword" type="text" name="q"
-                                placeholder="ここにリンクを検索または貼り付け..." autocomplete="off" autofocus=""
-                                role="combobox" aria-autocomplete="list" aria-controls="suggestion-container" aria-expanded="false">
-                            <button id="input-action-button" type="button" class="input-action-btn" data-action="paste"
-                                aria-label="クリップボードから貼り付け">
-                                <svg class="paste-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                                    viewBox="0 0 24 24">
-                                    <path fill="currentColor"
-                                        d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm7 16H5V5h2v3h10V5h2v14z" />
-                                </svg>
-                                <svg class="clear-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                                    viewBox="0 0 24 24">
-                                    <path fill="currentColor"
-                                        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                    <button id="submit" type="submit" name="form_submit" class="submit-btn" aria-label="Search">
-                        <div class="converter-btn">開始</div>
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                            width="14px" height="14px" fill="#fff" id="Layer_1"
-                            style="enable-background:new 0 0 16 16;" version="1.1" viewBox="0 0 16 16"
-                            xml:space="preserve">
-                            <path
-                                d="M15.375,7L10,2.54C9.695,2.287,9.461,2,9,2C8.375,2,8,2.516,8,3v3H1C0.45,6,0,6.45,0,7v2c0,0.55,0.45,1,1,1h7v3  c0,0.484,0.375,1,1,1c0.461,0,0.695-0.287,1-0.54L15.375,9C15.758,8.688,16,8.445,16,8S15.758,7.313,15.375,7z">
-                            </path>
-                        </svg>
-                    </button>
-
-                    <!-- Format Selector -->
-                    <div id="format-selector-container" class="format-selector-wrapper">
-                        <div class="format-selector">
-                            <!-- Group 1: Format + Quality -->
-                            <div class="format-quality-group">
-                                <!-- Format Toggle -->
-                                <button type="button" class="format-toggle-btn" data-toggle-format>
-                                    <span class="toggle-side" data-format="mp4">
-                                        <span class="format-label">MP4</span>
-                                    </span>
-                                    <span class="toggle-side" data-format="mp3">
-                                        <span class="format-label">MP3</span>
-                                    </span>
-                                </button>
-                                <!-- Quality Dropdowns -->
-                                <div class="quality-selector">
-                                    <!-- MP4 Options -->
-                                    <select id="quality-select-mp4" class="quality-select quality-select--mp4"
-                                        aria-label="ビデオ品質" data-quality-select>
-                                        <option value="mp4-1080">MP4 - 1080p</option>
-                                        <option value="mp4-720" selected>MP4 - 720p</option>
-                                        <option value="mp4-480">MP4 - 480p</option>
-                                        <option value="mp4-360">MP4 - 360p</option>
-                                        <option value="mp4-240">MP4 - 240p</option>
-                                        <option value="mp4-144">MP4 - 144p</option>
-                                        <option value="webm">WEBM</option>
-                                        <option value="mkv">MKV</option>
-                                    </select>
-                                    <!-- MP3 Options -->
-                                    <select id="quality-select-mp3" class="quality-select quality-select--mp3"
-                                        aria-label="オーディオ品質" data-quality-select>
-                                        <option value="mp3-320">MP3 - 320kbps</option>
-                                        <option value="mp3-256">MP3 - 256kbps</option>
-                                        <option value="mp3-192">MP3 - 192kbps</option>
-                                        <option value="mp3-128" selected>MP3 - 128kbps</option>
-                                        <option value="ogg">OGG</option>
-                                        <option value="opus">OPUS</option>
-                                        <option value="wav">WAV</option>
-                                    </select>
+        <div class="container">
+            <section class="y2mate-download-pro">
+                <div class="y2mate-search-form-pro d-flex">
+                    <div class="form-wrap">
+                        <h1 class="y2mate_title-pro">Y2Mate - YouTubeショートダウンローダー</h1>
+                        <form id="downloadForm" class="search_form" method="POST" action="/search/">
+                            <div class="input-container">
+                                <div class=" input-wrapper">
+                                    <input id="videoUrl" class="y2mate_query-pro keyword" type="text" name="q"
+                                        placeholder="ここにリンクを検索または貼り付け..." autocomplete="off" autofocus=""
+                                        role="combobox" aria-autocomplete="list" aria-controls="suggestion-container"
+                                        aria-expanded="false">
+                                    <button id="input-action-button" type="button" class="input-action-btn"
+                                        data-action="paste" aria-label="クリップボードから貼り付け">
+                                        <svg class="paste-icon" xmlns="http://www.w3.org/2000/svg" width="18"
+                                            height="18" viewBox="0 0 24 24">
+                                            <path fill="currentColor"
+                                                d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm7 16H5V5h2v3h10V5h2v14z" />
+                                        </svg>
+                                        <svg class="clear-icon" xmlns="http://www.w3.org/2000/svg" width="18"
+                                            height="18" viewBox="0 0 24 24">
+                                            <path fill="currentColor"
+                                                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                                        </svg>
+                                    </button>
                                 </div>
                             </div>
-                            <!-- Group 2: Auto Submit Toggle -->
-                            <div class="auto-submit-toggle"
-                                data-tooltip="URLまたはキーワードを貼り付けると自動的に送信します">
-                                <strong class="toggle-label">自動送信</strong>
-                                <label class="toggle-switch" for="auto-submit-checkbox">
-                                    <input type="checkbox" id="auto-submit-checkbox" data-auto-submit-toggle aria-label="Auto submit after selecting format" />
-                                    <span class="toggle-slider"></span>
-                                </label>
-                                <span class="custom-tooltip"></span>
-                        </div>
+                            <button id="submit" type="submit" name="form_submit" class="submit-btn" aria-label="Search">
+                                <div class="converter-btn">開始</div>
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    width="14px" height="14px" fill="#fff" id="Layer_1"
+                                    style="enable-background:new 0 0 16 16;" version="1.1" viewBox="0 0 16 16"
+                                    xml:space="preserve">
+                                    <path
+                                        d="M15.375,7L10,2.54C9.695,2.287,9.461,2,9,2C8.375,2,8,2.516,8,3v3H1C0.45,6,0,6.45,0,7v2c0,0.55,0.45,1,1,1h7v3  c0,0.484,0.375,1,1,1c0.461,0,0.695-0.287,1-0.54L15.375,9C15.758,8.688,16,8.445,16,8S15.758,7.313,15.375,7z">
+                                    </path>
+                                </svg>
+                            </button>
+
+                            <!-- Format Selector -->
+                            <div id="format-selector-container" class="format-selector-wrapper">
+                                <div class="format-selector">
+                                    <!-- Group 1: Format + Quality -->
+                                    <div class="format-quality-group">
+                                        <!-- Format Toggle -->
+                                        <button type="button" class="format-toggle-btn" data-toggle-format>
+                                            <span class="toggle-side" data-format="mp4">
+                                                <span class="format-label">MP4</span>
+                                            </span>
+                                            <span class="toggle-side" data-format="mp3">
+                                                <span class="format-label">MP3</span>
+                                            </span>
+                                        </button>
+                                        <!-- Quality Dropdowns -->
+                                        <div class="quality-selector">
+                                            <!-- MP4 Options -->
+                                            <select id="quality-select-mp4" class="quality-select quality-select--mp4"
+                                                aria-label="ビデオ品質" data-quality-select>
+                                                <option value="mp4-1080">MP4 - 1080p</option>
+                                                <option value="mp4-720" selected>MP4 - 720p</option>
+                                                <option value="mp4-480">MP4 - 480p</option>
+                                                <option value="mp4-360">MP4 - 360p</option>
+                                                <option value="mp4-144">MP4 - 144p</option>
+                                                <option value="webm">WEBM</option>
+                                                <option value="mkv">MKV</option>
+                                            </select>
+                                            <!-- MP3 Options -->
+                                            <select id="quality-select-mp3" class="quality-select quality-select--mp3"
+                                                aria-label="オーディオ品質" data-quality-select>
+                                                <option value="mp3-320">MP3 - 320kbps</option>
+                                                <option value="mp3-256">MP3 - 256kbps</option>
+                                                <option value="mp3-192">MP3 - 192kbps</option>
+                                                <option value="mp3-128" selected>MP3 - 128kbps</option>
+                                                <option value="ogg">OGG</option>
+                                                <option value="opus">OPUS</option>
+                                                <option value="wav">WAV</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <!-- Group 2: Auto Submit Toggle -->
+                                    <div class="auto-submit-toggle" data-tooltip="URLまたはキーワードを貼り付けると自動的に送信します">
+                                        <strong class="toggle-label">自動送信</strong>
+                                        <label class="toggle-switch" for="auto-submit-checkbox">
+                                            <input type="checkbox" id="auto-submit-checkbox" data-auto-submit-toggle
+                                                aria-label="Auto submit after selecting format" />
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                        <span class="custom-tooltip"></span>
+                                    </div>
+                                </div>
+                                <script>(function () { try { const preferencesJson = localStorage.getItem('y2mate_format_preferences'); if (preferencesJson) { const preferences = JSON.parse(preferencesJson); const selectElement = preferences.selectedFormat === 'mp4' ? document.getElementById('quality-select-mp4') : document.getElementById('quality-select-mp3'); if (selectElement) { let value; if (preferences.selectedFormat === 'mp4') { const videoQuality = preferences.videoQuality || '720p'; value = (videoQuality === 'webm' || videoQuality === 'mkv') ? videoQuality : `mp4-${videoQuality.replace('p', '')}`; } else { const audioFormat = preferences.audioFormat || 'mp3'; value = (audioFormat === 'mp3') ? `mp3-${preferences.audioBitrate || '128'}` : audioFormat; } selectElement.value = value; } } const autoSubmitValue = localStorage.getItem('y2mate_auto_submit'); const checkbox = document.getElementById('auto-submit-checkbox'); if (checkbox) { checkbox.checked = autoSubmitValue === 'true'; } } catch (error) { console.error('Error syncing UI from localStorage in inline script:', error); } })();</script>
+                            </div>
+
+                            <div id="suggestion-container" class="suggesstion-list suggesstion-box"></div>
+                        </form>
+
+                        <!-- Video Detail Area -->
+                        <div id="content-area"></div>
                     </div>
-                    <script>(function(){try{const preferencesJson=localStorage.getItem('y2mate_format_preferences');if(preferencesJson){const preferences=JSON.parse(preferencesJson);const selectElement=preferences.selectedFormat==='mp4'?document.getElementById('quality-select-mp4'):document.getElementById('quality-select-mp3');if(selectElement){let value;if(preferences.selectedFormat==='mp4'){const videoQuality=preferences.videoQuality||'720p';value=(videoQuality==='webm'||videoQuality==='mkv')?videoQuality:`mp4-${videoQuality.replace('p','')}`;}else{const audioFormat=preferences.audioFormat||'mp3';value=(audioFormat==='mp3')?`mp3-${preferences.audioBitrate||'128'}`:audioFormat;}selectElement.value=value;}}const autoSubmitValue=localStorage.getItem('y2mate_auto_submit');const checkbox=document.getElementById('auto-submit-checkbox');if(checkbox){checkbox.checked=autoSubmitValue==='true';}}catch(error){console.error('Error syncing UI from localStorage in inline script:',error);}})();</script>
+                </div>
+            </section>
+
+            <!-- Search Results Section -->
+            <section id="search-results-section" class="search-results-section" style="display: none;">
+                <div id="search-results-container"></div>
+            </section>
+
+            <!-- Content Sections -->
+            <section class="y2mate-content-pro d-flex">
+                <div class="col-sm-12">
+                    <h2>Y2MateのYouTubeショートダウンローダーとは？</h2>
+                    <p><a href="/ja/">Y2Mate</a>のYouTubeショートダウンローダーは、YouTubeからショート形式のショート動画をダウンロードするために特別に構築されています。</p>
+                    <p>ショートは、長さ、アスペクト比、再生動作の点で、通常のYouTube動画とは根本的に異なります。ショートをダウンロードするには、表示の問題を回避するために専用の処理プロセスが必要です。</p>
+                </div>
+            </section>
+            <section class="y2mate-content-pro d-flex">
+                <div class="col-sm-12">
+                    <h2>YouTubeショートのダウンロードが頻繁に失敗するのはなぜですか？</h2>
+                    <p>多くの動画ダウンロードツールは、ショート動画と標準の長尺YouTube動画を区別しません。</p>
+                    <p>その結果、ショート動画は、水平回転、音声の欠落、または不正なアスペクト比などの一般的な問題でダウンロードされる可能性があります。</p>
+                </div>
+            </section>
+            <section class="y2mate-content-pro d-flex">
+                <div class="col-sm-12">
+                    <h2>ショート動画の専用処理</h2>
+                    <p>ショート動画のリンクを貼り付けると、システムはそれをショート形式のコンテンツとして検出し、縦型動画用に設計された専用の処理方法を適用します。</p>
+                    <p>このアプローチは、より高速なダウンロードを保証し、さまざまなデバイスでの再生の問題を減らすのに役立ちます。</p>
+                </div>
+            </section>
+            <section class="y2mate-content-pro d-flex">
+                <div class="col-sm-12">
+                    <h2>元の縦型アスペクト比を維持</h2>
+                    <p>ダウンロードしたショート動画は、YouTubeで表示されるのと同じ縦型アスペクト比を維持します。動画は回転またはトリミングされません。</p>
+                    <p>これにより、ショート動画はモバイルデバイスでの再生や個人的なオフラインでの使用に適しています。</p>
+                </div>
+            </section>
+            <section class="y2mate-content-pro d-flex">
+                <div class="col-sm-12">
+                    <h2>ショートが通常のYouTube動画と異なる点</h2>
+                    <p>YouTubeショートは短い縦型動画ですが、通常のYouTube動画は通常、水平で長さが長くなります。</p>
+                    <p>オフラインで視聴するために長尺のYouTube動画をダウンロードする必要がある場合は、<a
+                            href="/ja/youtube-to-mp4">YouTubeからMP4</a>ツールを使用するか、<a
+                            href="/ja/">YouTube動画をダウンロード</a>にアクセスして他のダウンロードオプションを調べることができます。</p>
+                </div>
+            </section>
+
+            <!-- Why Choose Section -->
+            <section class="y2mate-instruction-pro">
+                <div class="y2mate-in-ad-pro">
+                    <h2>YouTubeショートのダウンロードにY2Mateを選ぶ理由</h2>
+                    <p>ほとんどのYouTubeダウンローダーはショート動画を適切に処理せず、回転またはトリミングされた動画になります。Y2Mateの専用ショートダウンローダーは、正しい縦型形式を維持します。</p>
+                    <ul>
+                        <li>縦型形式を維持 – 元の9:16アスペクト比を維持</li>
+                        <li>高速処理 – ショートは迅速に検出および処理されます</li>
+                        <li>回転の問題なし – 動画はすべてのデバイスで正しく再生されます</li>
+                        <li>モバイルで動作 – モバイルデバイスのダウンロードに最適化</li>
+                        <li>音声を含む – 元の音声でショートをダウンロード</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Instructions Section -->
+            <section class="y2mate-instruction-pro">
+                <div class="y2mate-in-ad-pro">
+                    <h2>YouTubeショート動画をダウンロードする方法</h2>
+                    <ol>
+                        <li>ダウンロードしたいYouTubeショート動画のリンクをコピーします。</li>
+                        <li>このページの入力フィールドにリンクを貼り付けます。</li>
+                        <li>開始ボタンをクリックしてショート動画を分析します。</li>
+                        <li>希望の品質を選択し、縦型動画をデバイスにダウンロードします。</li>
+                    </ol>
+                    <p><em>ショートダウンローダーは、縦型動画を自動的に検出し、回転の問題なく正しく処理します。</em></p>
+                </div>
+            </section>
+
+            <!-- FAQs Section -->
+            <section class="yt-content">
+                <h2>YouTubeショートに関するよくある質問</h2>
+                <div class="download-uses">
+                    <div class="guide-data">
+                        <h3>YouTubeショートのダウンロードに制限はありますか？</h3>
+                        <p>いいえ。固定された1日または使用量の制限なしでYouTubeショートをダウンロードできます。</p>
                     </div>
-
-                    <div id="suggestion-container" class="suggesstion-list suggesstion-box"></div>
-                </form>
-
-                <!-- Video Detail Area -->
-                <div id="content-area"></div>
-            </div>
+                    <div class="guide-data">
+                        <h3>携帯電話にYouTubeショートを保存するにはどうすればよいですか？</h3>
+                        <p>Androidでは、ダウンロードしたショートはダウンロードフォルダまたはギャラリーに表示されます。iPhoneでは、Safariを使用して動画をダウンロードし、ダウンロードセクションから写真に保存します。
+                        </p>
+                    </div>
+                    <div class="guide-data">
+                        <h3>音声付きでショートをダウンロードできますか？</h3>
+                        <p>はい。ソース動画に音声が含まれている場合、ショートは元の音声でダウンロードされます。</p>
+                    </div>
+                    <div class="guide-data">
+                        <h3>なぜショートは通常のYouTube動画よりも速く処理されるのですか？</h3>
+                        <p>ショートは長さが短く、異なる形式を使用しているため、システムはファイルをより迅速に分析して準備できます。</p>
+                    </div>
+                    <div class="guide-data">
+                        <h3>ダウンロードしたショートは縦型形式を維持しますか？</h3>
+                        <p>はい。このツールは元の縦型アスペクト比を維持するため、動画はモバイルデバイスで正しく表示されます。</p>
+                    </div>
+                    <div class="guide-data">
+                        <h3>ダウンロードしたショートはどのように使用すればよいですか？</h3>
+                        <p>ダウンロードしたショートは、オフラインでの視聴や保存など、個人的な使用を目的としています。ユーザーは、元のコンテンツ作成者の権利を尊重する責任があります。</p>
+                    </div>
+                </div>
+            </section>
         </div>
-    </section>
-
-    <!-- Search Results Section -->
-    <section id="search-results-section" class="search-results-section" style="display: none;">
-        <div id="search-results-container"></div>
-    </section>
-
-    <!-- Content Sections -->
-    <section class="y2mate-content-pro d-flex">
-        <div class="col-sm-12">
-            <h2>Y2MateのYouTubeショートダウンローダーとは？</h2>
-            <p><a href="/ja/">Y2Mate</a>のYouTubeショートダウンローダーは、YouTubeからショート形式のショート動画をダウンロードするために特別に構築されています。</p>
-            <p>ショートは、長さ、アスペクト比、再生動作の点で、通常のYouTube動画とは根本的に異なります。ショートをダウンロードするには、表示の問題を回避するために専用の処理プロセスが必要です。</p>
-        </div>
-    </section>
-    <section class="y2mate-content-pro d-flex">
-        <div class="col-sm-12">
-            <h2>YouTubeショートのダウンロードが頻繁に失敗するのはなぜですか？</h2>
-            <p>多くの動画ダウンロードツールは、ショート動画と標準の長尺YouTube動画を区別しません。</p>
-            <p>その結果、ショート動画は、水平回転、音声の欠落、または不正なアスペクト比などの一般的な問題でダウンロードされる可能性があります。</p>
-        </div>
-    </section>
-    <section class="y2mate-content-pro d-flex">
-        <div class="col-sm-12">
-            <h2>ショート動画の専用処理</h2>
-            <p>ショート動画のリンクを貼り付けると、システムはそれをショート形式のコンテンツとして検出し、縦型動画用に設計された専用の処理方法を適用します。</p>
-            <p>このアプローチは、より高速なダウンロードを保証し、さまざまなデバイスでの再生の問題を減らすのに役立ちます。</p>
-        </div>
-    </section>
-    <section class="y2mate-content-pro d-flex">
-        <div class="col-sm-12">
-            <h2>元の縦型アスペクト比を維持</h2>
-            <p>ダウンロードしたショート動画は、YouTubeで表示されるのと同じ縦型アスペクト比を維持します。動画は回転またはトリミングされません。</p>
-            <p>これにより、ショート動画はモバイルデバイスでの再生や個人的なオフラインでの使用に適しています。</p>
-        </div>
-    </section>
-    <section class="y2mate-content-pro d-flex">
-        <div class="col-sm-12">
-            <h2>ショートが通常のYouTube動画と異なる点</h2>
-            <p>YouTubeショートは短い縦型動画ですが、通常のYouTube動画は通常、水平で長さが長くなります。</p>
-            <p>オフラインで視聴するために長尺のYouTube動画をダウンロードする必要がある場合は、<a href="/ja/youtube-to-mp4">YouTubeからMP4</a>ツールを使用するか、<a href="/ja/">YouTube動画をダウンロード</a>にアクセスして他のダウンロードオプションを調べることができます。</p>
-        </div>
-    </section>
-
-    <!-- Why Choose Section -->
-    <section class="y2mate-instruction-pro">
-        <div class="y2mate-in-ad-pro">
-            <h2>YouTubeショートのダウンロードにY2Mateを選ぶ理由</h2>
-            <p>ほとんどのYouTubeダウンローダーはショート動画を適切に処理せず、回転またはトリミングされた動画になります。Y2Mateの専用ショートダウンローダーは、正しい縦型形式を維持します。</p>
-            <ul>
-                <li>縦型形式を維持 – 元の9:16アスペクト比を維持</li>
-                <li>高速処理 – ショートは迅速に検出および処理されます</li>
-                <li>回転の問題なし – 動画はすべてのデバイスで正しく再生されます</li>
-                <li>モバイルで動作 – モバイルデバイスのダウンロードに最適化</li>
-                <li>音声を含む – 元の音声でショートをダウンロード</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- Instructions Section -->
-    <section class="y2mate-instruction-pro">
-        <div class="y2mate-in-ad-pro">
-            <h2>YouTubeショート動画をダウンロードする方法</h2>
-            <ol>
-                <li>ダウンロードしたいYouTubeショート動画のリンクをコピーします。</li>
-                <li>このページの入力フィールドにリンクを貼り付けます。</li>
-                <li>開始ボタンをクリックしてショート動画を分析します。</li>
-                <li>希望の品質を選択し、縦型動画をデバイスにダウンロードします。</li>
-            </ol>
-            <p><em>ショートダウンローダーは、縦型動画を自動的に検出し、回転の問題なく正しく処理します。</em></p>
-        </div>
-    </section>
-
-    <!-- FAQs Section -->
-    <section class="yt-content">
-        <h2>YouTubeショートに関するよくある質問</h2>
-        <div class="download-uses">
-            <div class="guide-data">
-                <h3>YouTubeショートのダウンロードに制限はありますか？</h3>
-                <p>いいえ。固定された1日または使用量の制限なしでYouTubeショートをダウンロードできます。</p>
-            </div>
-            <div class="guide-data">
-                <h3>携帯電話にYouTubeショートを保存するにはどうすればよいですか？</h3>
-                <p>Androidでは、ダウンロードしたショートはダウンロードフォルダまたはギャラリーに表示されます。iPhoneでは、Safariを使用して動画をダウンロードし、ダウンロードセクションから写真に保存します。</p>
-            </div>
-            <div class="guide-data">
-                <h3>音声付きでショートをダウンロードできますか？</h3>
-                <p>はい。ソース動画に音声が含まれている場合、ショートは元の音声でダウンロードされます。</p>
-            </div>
-            <div class="guide-data">
-                <h3>なぜショートは通常のYouTube動画よりも速く処理されるのですか？</h3>
-                <p>ショートは長さが短く、異なる形式を使用しているため、システムはファイルをより迅速に分析して準備できます。</p>
-            </div>
-            <div class="guide-data">
-                <h3>ダウンロードしたショートは縦型形式を維持しますか？</h3>
-                <p>はい。このツールは元の縦型アスペクト比を維持するため、動画はモバイルデバイスで正しく表示されます。</p>
-            </div>
-            <div class="guide-data">
-                <h3>ダウンロードしたショートはどのように使用すればよいですか？</h3>
-                <p>ダウンロードしたショートは、オフラインでの視聴や保存など、個人的な使用を目的としています。ユーザーは、元のコンテンツ作成者の権利を尊重する責任があります。</p>
-            </div>
-        </div>
-    </section>
-</div>
 
     </main>
 
     <footer class="footer">
-    <p>© 2026 y2mate</p>
-    <ul class="footer_nav">
-        <li class="fnav-menu">
-            <a href="/about-us">概要</a>
-        </li>
-        <li class="fnav-menu">
-            <a href="/contact">お問い合わせ</a>
-        </li>
-        <li class="fnav-menu">
-            <a href="/terms-condition">利用規約</a>
-        </li>
-        <li class="fnav-menu">
-            <a href="/privacy-policy">プライバシーポリシー</a>
-        </li>
-        <li class="fnav-menu">
-            <a href="/copyright-claims">著作権に関する申し立て</a>
-        </li>
-        <li class="fnav-menu">
-            <a href="/ja/youtube-short-downloader">YouTubeショートダウンローダー</a>
-        </li>
-    </ul>
-</footer>
+        <p>© 2026 y2mate</p>
+        <ul class="footer_nav">
+            <li class="fnav-menu">
+                <a href="/about-us">概要</a>
+            </li>
+            <li class="fnav-menu">
+                <a href="/contact">お問い合わせ</a>
+            </li>
+            <li class="fnav-menu">
+                <a href="/terms-condition">利用規約</a>
+            </li>
+            <li class="fnav-menu">
+                <a href="/privacy-policy">プライバシーポリシー</a>
+            </li>
+            <li class="fnav-menu">
+                <a href="/copyright-claims">著作権に関する申し立て</a>
+            </li>
+            <li class="fnav-menu">
+                <a href="/ja/youtube-short-downloader">YouTubeショートダウンローダー</a>
+            </li>
+        </ul>
+    </footer>
 
 
     <!-- Conversion Modal Wrapper -->

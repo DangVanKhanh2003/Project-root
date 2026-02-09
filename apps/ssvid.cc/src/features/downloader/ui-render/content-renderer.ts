@@ -12,7 +12,7 @@ import {
 } from '@downloader/ui-components';
 import { setInputValue } from './ui-renderer';
 import { initExpandableText } from '../../../utils';
-import { LANGUAGES } from '../data/languages';
+import { LANGUAGES } from '../logic/data/languages';
 import {
   setViewingItem,
   setIsFromListItemClick,
@@ -59,7 +59,7 @@ function handleSearchResultClick(event: MouseEvent): void {
 
   // Save viewing item to state (for context)
   setViewingItem({ id: videoId, title: videoTitle || '' });
-  
+
   logEvent('search_result_click', {
     video_id: videoId,
     video_title: videoTitle || ''

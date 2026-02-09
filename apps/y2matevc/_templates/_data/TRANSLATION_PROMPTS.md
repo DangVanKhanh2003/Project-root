@@ -60,7 +60,7 @@ I need you to translate this English i18n JSON file into [LANGUAGE_NAME] ([LANGU
         "720p": "MP4 - 720p",
         "480p": "MP4 - 480p",
         "360p": "MP4 - 360p",
-        "240p": "MP4 - 240p",
+        
         "144p": "MP4 - 144p",
         "webm": "WEBM",
         "mkv": "MKV"

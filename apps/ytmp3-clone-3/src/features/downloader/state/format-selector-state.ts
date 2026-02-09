@@ -18,7 +18,7 @@ const STORAGE_KEY = 'y2mate_format_preferences';
 export const QUALITY_OPTIONS = {
   mp4: {
     formats: ['mp4', 'webm', 'mkv'] as const,
-    qualities: ['1080p', '720p', '480p', '360p', '240p', '144p'] as const
+    qualities: ['1080p', '720p', '480p', '360p', '144p'] as const
   },
   mp3: {
     formats: ['mp3', 'wav', 'm4a', 'opus', 'ogg', 'flac'] as AudioFormatType[],
@@ -131,7 +131,7 @@ function loadFormatPreferences(): StoredPreferences | null {
 
     // Validate stored data
     if (!preferences.selectedFormat ||
-        (preferences.selectedFormat !== 'mp3' && preferences.selectedFormat !== 'mp4')) {
+      (preferences.selectedFormat !== 'mp3' && preferences.selectedFormat !== 'mp4')) {
       return null;
     }
 
