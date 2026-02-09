@@ -33,25 +33,25 @@ export function truncateString(str: string | null | undefined, maxLength: number
  * @param openInNewTab - Whether to open in new tab instead of download
  */
 export function triggerDownload(url: string, filename?: string, openInNewTab: boolean = false): void {
-    try {
-        const anchor = document.createElement('a');
-        anchor.href = url;
+  try {
+    const anchor = document.createElement('a');
+    anchor.href = url;
 
-        if (filename) {
-            anchor.download = filename;
-        }
-
-        if (openInNewTab) {
-            anchor.target = '_blank';
-        }
-
-        anchor.rel = 'noopener noreferrer';
-
-        document.body.appendChild(anchor);
-        anchor.click();
-        document.body.removeChild(anchor);
-    } catch (error) {
+    if (filename) {
+      anchor.download = filename;
     }
+
+    if (openInNewTab) {
+      anchor.target = '_blank';
+    }
+
+    anchor.rel = 'noopener noreferrer';
+
+    document.body.appendChild(anchor);
+    anchor.click();
+    document.body.removeChild(anchor);
+  } catch (error) {
+  }
 }
 
 /**
@@ -116,19 +116,19 @@ export function formatMBSize(sizeInMB: number | null | undefined): string {
  * @param url - The URL to open.
  */
 export function openLinkInNewTab(url: string): void {
-    if (!url) {
-        return;
-    }
+  if (!url) {
+    return;
+  }
 
-    const anchor = document.createElement('a');
-    anchor.href = url;
-    anchor.target = '_blank';
-    anchor.rel = 'noopener noreferrer';
-    anchor.style.display = 'none';
+  const anchor = document.createElement('a');
+  anchor.href = url;
+  anchor.target = '_blank';
+  anchor.rel = 'noopener noreferrer';
+  anchor.style.display = 'none';
 
-    document.body.appendChild(anchor);
-    anchor.click();
-    document.body.removeChild(anchor);
+  document.body.appendChild(anchor);
+  anchor.click();
+  document.body.removeChild(anchor);
 }
 
 /**
@@ -143,74 +143,74 @@ export function openLinkInNewTab(url: string): void {
  * @param textSelector - CSS selector for elements to make expandable (e.g., '.video-title')
  */
 export function initExpandableText(container: HTMLElement | null, textSelector: string = '.expandable-text'): void {
-    if (!container) return;
+  if (!container) return;
 
 
-    // ============================================================
-    // STEP 1: Set up EVENT DELEGATION listener (once per container)
-    // ============================================================
-    if (container.dataset.expandableDelegated !== 'true') {
-        container.addEventListener('click', (event: MouseEvent) => {
-            const target = event.target as HTMLElement;
-            const button = target.closest('.see-more-btn') as HTMLElement;
-            if (!button) return; // Not a "see more" button click
+  // ============================================================
+  // STEP 1: Set up EVENT DELEGATION listener (once per container)
+  // ============================================================
+  if (container.dataset.expandableDelegated !== 'true') {
+    container.addEventListener('click', (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      const button = target.closest('.see-more-btn') as HTMLElement;
+      if (!button) return; // Not a "see more" button click
 
 
-            // Find the associated text element (previous sibling)
-            const textElement = button.previousElementSibling as HTMLElement;
+      // Find the associated text element (previous sibling)
+      const textElement = button.previousElementSibling as HTMLElement;
 
-            if (!textElement) {
-                return;
-            }
+      if (!textElement) {
+        return;
+      }
 
-            // Toggle expanded state
-            const isExpanded = textElement.classList.toggle('expanded');
+      // Toggle expanded state
+      const isExpanded = textElement.classList.toggle('expanded');
 
-            button.textContent = isExpanded ? 'see less' : 'see more';
-            button.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+      button.textContent = isExpanded ? 'see less' : 'see more';
+      button.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
 
-        });
+    });
 
-        container.dataset.expandableDelegated = 'true';
-    }
+    container.dataset.expandableDelegated = 'true';
+  }
 
-    // ============================================================
-    // STEP 2: Create buttons for overflowing elements (with setTimeout)
-    // setTimeout ensures CSS line-clamp is fully applied before measuring
-    // ============================================================
-    setTimeout(() => {
-        const elements = container.querySelectorAll(textSelector);
+  // ============================================================
+  // STEP 2: Create buttons for overflowing elements (with setTimeout)
+  // setTimeout ensures CSS line-clamp is fully applied before measuring
+  // ============================================================
+  setTimeout(() => {
+    const elements = container.querySelectorAll(textSelector);
 
-        elements.forEach((element) => {
-            const htmlElement = element as HTMLElement;
+    elements.forEach((element) => {
+      const htmlElement = element as HTMLElement;
 
-            // Remove existing button to avoid duplicates (idempotent approach)
-            const existingButton = htmlElement.nextElementSibling;
-            if (existingButton && existingButton.classList.contains('see-more-btn')) {
-                existingButton.remove();
-            }
+      // Remove existing button to avoid duplicates (idempotent approach)
+      const existingButton = htmlElement.nextElementSibling;
+      if (existingButton && existingButton.classList.contains('see-more-btn')) {
+        existingButton.remove();
+      }
 
-            // Check if text is overflowing (clamped to 2 lines)
-            const isOverflowing = (htmlElement.scrollHeight - htmlElement.clientHeight) > 10;
+      // Check if text is overflowing (clamped to 2 lines)
+      const isOverflowing = (htmlElement.scrollHeight - htmlElement.clientHeight) > 10;
 
-            if (!isOverflowing) {
-                return;
-            }
+      if (!isOverflowing) {
+        return;
+      }
 
 
-            // Create button (no direct event listener - handled by delegation)
-            const button = document.createElement('span');
-            button.className = 'see-more-btn';
-            button.textContent = 'see more';
-            button.setAttribute('role', 'button');
-            button.setAttribute('tabindex', '0');
-            button.setAttribute('aria-expanded', 'false');
+      // Create button (no direct event listener - handled by delegation)
+      const button = document.createElement('span');
+      button.className = 'see-more-btn';
+      button.textContent = 'see more';
+      button.setAttribute('role', 'button');
+      button.setAttribute('tabindex', '0');
+      button.setAttribute('aria-expanded', 'false');
 
-            // Insert button after element
-            htmlElement.parentNode?.insertBefore(button, htmlElement.nextSibling);
+      // Insert button after element
+      htmlElement.parentNode?.insertBefore(button, htmlElement.nextSibling);
 
-        });
-    }, 100); // 100ms delay to ensure CSS rendering is complete
+    });
+  }, 100); // 100ms delay to ensure CSS rendering is complete
 }
 
 /**
@@ -218,8 +218,6 @@ export function initExpandableText(container: HTMLElement | null, textSelector: 
  * @returns True if the device is identified as mobile or tablet.
  */
 export function isMobileDevice(): boolean {
-  return false;
-  // Unreachable code below kept for reference
   if (typeof navigator === 'undefined' || !navigator.userAgent) {
     return false;
   }

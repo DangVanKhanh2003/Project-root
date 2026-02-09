@@ -37,50 +37,97 @@ export class MultiDownloadService {
             return;
         }
 
-        // Fetch metadata and create items using V3-compatible API
-        const items: VideoItem[] = [];
-        for (const url of urls) {
+        // 1. Create initial items with 'fetching_metadata' status (Skeleton)
+        const newItems: VideoItem[] = urls.map(url => {
+            // Generate ID deterministically or randomly
+            const id = Date.now().toString(36) + Math.random().toString(36).substr(2);
+            return {
+                id,
+                url,
+                meta: {
+                    title: 'Loading...',
+                    originalUrl: url,
+                    status: 'analyzing', // will be used for skeleton
+                    author: '',
+                    thumbnail: '', // Empty thumbnail for skeleton
+                    duration: 0,
+                    url: url,
+                    vid: '',
+                    source: 'youtube',
+                    isFakeData: true
+                },
+                status: 'fetching_metadata',
+                progress: 0,
+                settings: { format: 'mp4', quality: '720p' },
+                isSelected: true
+            };
+        });
+
+        addVideoItems(newItems);
+
+        // 2. Fetch metadata in parallel (with concurrency limit ideally, but simple for now)
+        // We update items as they finish
+        let successCount = 0;
+
+        for (const item of newItems) {
             try {
-                const result = await api.getMetadataYoutube(url);
+                const result = await api.getMetadataYoutube(item.url);
+
                 if (result.ok && result.data) {
                     const data = result.data as any;
+                    // FIX: Handle flat structure (oEmbed-like) or nested meta
+                    // User logs show flat structure with camelCase keys (authorName, thumbnailUrl)
+
+                    const title = data.title || data.meta?.title || 'Unknown Video';
+                    const author = data.authorName || data.author_name || data.meta?.author || 'Unknown Channel';
+                    const thumbnail = data.thumbnailUrl || data.thumbnail_url || data.meta?.thumbnail || '';
+                    const duration = data.duration || data.meta?.duration || 0;
+                    const vid = data.vid || data.meta?.vid || this.extractVideoId(item.url);
+
                     const meta: VideoMeta = {
-                        title: data.meta?.title || 'Unknown Video',
-                        originalUrl: url,
+                        title: title,
+                        originalUrl: item.url,
                         status: 'ready',
-                        author: data.meta?.author || 'Unknown Channel',
-                        thumbnail: data.meta?.thumbnail || '',
-                        duration: data.meta?.duration || 0,
-                        url: url,
-                        vid: data.meta?.vid || '',
+                        author: author,
+                        thumbnail: thumbnail,
+                        duration: duration,
+                        url: item.url,
+                        vid: vid,
                         source: 'youtube',
                         isFakeData: false
                     };
-                    const id = meta.vid || Date.now().toString(36) + Math.random().toString(36).substr(2);
-                    const defaultSettings: VideoItemSettings = { format: 'mp4', quality: '720p' };
-                    items.push({
-                        id,
-                        url,
+
+                    updateVideoItem(item.id, {
                         meta,
                         status: 'ready',
-                        progress: 0,
-                        settings: defaultSettings,
-                        isSelected: true,
-                        formats: data.formats
+                        formats: data.formats // If available
                     });
+                    successCount++;
+                } else {
+                    updateVideoItem(item.id, { status: 'error', error: 'Metadata check failed' });
                 }
-            } catch (error) {
-                console.error(`Error fetching metadata for ${url}:`, error);
+            } catch (error: any) {
+                console.error(`Error fetching metadata for ${item.url}:`, error);
+                updateVideoItem(item.id, { status: 'error', error: error.message || 'Failed to fetch info' });
             }
-            await new Promise(resolve => setTimeout(resolve, 200)); // Rate limit
+            // Small delay to prevent rate limiting
+            await new Promise(resolve => setTimeout(resolve, 100));
         }
 
-        if (items.length > 0) {
-            addVideoItems(items);
+        const state = getAppState();
+        // Update global status based on results
+        if (successCount > 0) {
+            setGlobalStatus('ready');
+        } else if (state.items.filter(i => i.status === 'ready').length > 0) {
             setGlobalStatus('ready');
         } else {
             setGlobalStatus('error');
         }
+    }
+
+    private extractVideoId(url: string): string {
+        const match = url.match(/[?&]v=([^&]+)/);
+        return match ? match[1] : '';
     }
 
     /**
@@ -185,7 +232,7 @@ export class MultiDownloadService {
      */
     private queue: string[] = [];
     private activeDownloads = 0;
-    private readonly MAX_CONCURRENT = 3; 
+    private readonly MAX_CONCURRENT = 5;
 
     /**
      * Start Batch Download (formerly Desktop Zip)
@@ -193,7 +240,12 @@ export class MultiDownloadService {
     private async startDesktopZipSession() {
         const state = getAppState();
         const items = state.items || [];
-        const selectedItems = items.filter(i => i.isSelected && i.status !== 'error');
+        // Filter only items that allow downloading (Ready or Error)
+        // Exclude 'converting', 'downloading' (already active) and 'completed' (already done)
+        const selectedItems = items.filter(i =>
+            i.isSelected &&
+            (i.status === 'ready' || i.status === 'error' || i.status === 'cancelled')
+        );
 
         if (selectedItems.length === 0) {
             return;
@@ -201,9 +253,15 @@ export class MultiDownloadService {
 
         setGlobalStatus('downloading');
 
-        // Reset queue and add items
-        this.queue = selectedItems.map(i => i.id);
-        
+        // Append to queue (avoid duplicates)
+        const newQueueItems = selectedItems.filter(i => !this.queue.includes(i.id));
+        this.queue.push(...newQueueItems.map(i => i.id));
+
+        // Visually set them to queued
+        newQueueItems.forEach(i => {
+            updateVideoItem(i.id, { status: 'queued' });
+        });
+
         // Trigger processing
         this.processQueue();
     }
@@ -230,7 +288,7 @@ export class MultiDownloadService {
      */
     private checkCompletion() {
         if (this.activeDownloads === 0 && this.queue.length === 0) {
-            setGlobalStatus('ready'); 
+            setGlobalStatus('ready');
         }
     }
 
@@ -249,7 +307,7 @@ export class MultiDownloadService {
                 url: item.meta.url,
                 output: {
                     type: 'video' as const,
-                    format: 'mp4' as const 
+                    format: 'mp4' as const
                 }
             };
 
@@ -259,8 +317,8 @@ export class MultiDownloadService {
                 throw new Error(jobResult.message || 'Job creation failed');
             }
 
-            const { statusUrl } = jobResult.data as any; 
-            
+            const { statusUrl } = jobResult.data as any;
+
             if (!statusUrl) {
                 throw new Error('No status URL returned');
             }
@@ -270,9 +328,9 @@ export class MultiDownloadService {
 
         } catch (error: any) {
             console.error('Download error for', itemId, error);
-            updateVideoItem(itemId, { 
-                status: 'error', 
-                error: error.message || 'Download failed' 
+            updateVideoItem(itemId, {
+                status: 'error',
+                error: error.message || 'Download failed'
             });
         }
     }
@@ -294,13 +352,13 @@ export class MultiDownloadService {
 
                 if (result.ok && result.data) {
                     const statusData = result.data as any;
-                    
+
                     if (statusData.progress) {
-                         updateVideoItem(itemId, { progress: statusData.progress });
+                        updateVideoItem(itemId, { progress: statusData.progress });
                     }
 
                     if (statusData.status === 'completed') {
-                        updateVideoItem(itemId, { 
+                        updateVideoItem(itemId, {
                             status: 'completed',
                             progress: 100,
                             downloadUrl: statusData.downloadUrl,

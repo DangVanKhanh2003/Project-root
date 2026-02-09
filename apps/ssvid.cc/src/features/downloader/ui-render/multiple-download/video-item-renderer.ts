@@ -1,48 +1,88 @@
 
 import { VideoItem } from '../../state/multiple-download-types';
+import { RendererStrategy } from './renderer-strategy.interface';
+import { isMobileDevice } from '../../../../utils';
 
 /**
  * Video Item Renderer
- * Renders individual video items for the Multiple/Playlist Download list
+ * Renders individual video items using a strategy pattern behavior
  */
 export class VideoItemRenderer {
 
     /**
      * Render a single video item
      */
-    static render(item: VideoItem): string {
-        const { id, meta, status, progress, error, settings } = item;
+    static render(item: VideoItem, strategy: RendererStrategy): string {
+        const { id, meta, status, progress, error } = item;
+        const isMobile = isMobileDevice();
 
-        const isDownloading = status === 'downloading' || status === 'converting';
-        const isCompleted = status === 'completed';
+        const isDownloading = status === 'downloading' || status === 'converting' || status === 'analyzing';
         const isError = status === 'error';
+        const settingsClass = strategy.getSettingsClass(item);
 
         // Progress bar formatting
         const progressPercent = Math.round(progress || 0);
         const progressBarWidth = `${progressPercent}%`;
 
+        // Strategy content
+        const settingsContent = strategy.buildSettingsContent(item);
+        const actionButton = strategy.getActionButton(item, {});
+        const checkboxHtml = strategy.getCheckboxHtml(item);
+        const statusHtml = strategy.getStatusHtml(item);
+
+        // CSS Classes
+        // .multi-video-item flex layout is handled by CSS
+        // but we might want to add a class if checkbox is present to adjust padding
+        const hasCheckbox = !!checkboxHtml;
+        const itemClasses = `multi-video-item ${status} ${hasCheckbox ? 'has-checkbox' : ''}`;
+
+        // Skeleton / Loading State
+        if (status === 'fetching_metadata') {
+            return `
+                <div class="${itemClasses} skeleton-loading" data-id="${id}">
+                   ${checkboxHtml}
+                   <div class="multi-video-thumb skeleton-box"></div>
+                   <div class="multi-video-info">
+                        <div class="multi-video-title skeleton-text" style="width: 80%;"></div>
+                        <div class="multi-video-meta">
+                             <div class="skeleton-text" style="width: 40%; height: 14px;"></div>
+                        </div>
+                   </div>
+                   <div class="multi-video-actions">
+                        <!-- Spinner or simple placeholder -->
+                        <div class="spinner-border text-muted" style="width: 20px; height: 20px; border-width: 2px;"></div>
+                   </div>
+                </div>
+            `;
+        }
+
         return `
-            <div class="multi-video-item ${status}" data-id="${id}">
+            <div class="${itemClasses}" data-id="${id}">
+                ${checkboxHtml}
+                
                 <div class="multi-video-thumb">
                     <img src="${escapeHtml(meta.thumbnail)}" alt="${escapeHtml(meta.title)}" loading="lazy">
-                    <div class="multi-video-duration">${formatDuration(meta.duration)}</div>
                 </div>
                 
                 <div class="multi-video-info">
                     <div class="multi-video-title" title="${escapeHtml(meta.title)}">${escapeHtml(meta.title)}</div>
+                    
                     <div class="multi-video-meta">
                         ${meta.author ? `<span class="multi-video-author">${escapeHtml(meta.author)}</span>` : ''}
                     </div>
                     
                     ${isError ? `<div class="multi-video-error">${escapeHtml(error || 'Error')}</div>` : ''}
                     
-                    <div class="multi-video-status">
-                        ${this.renderStatus(item)}
+                    <div class="settings-progress-wrapper">
+                         ${settingsContent ? `<div class="item-settings${settingsClass}">${settingsContent}</div>` : ''}
+                         <div class="multi-video-status">
+                            ${statusHtml}
+                        </div>
                     </div>
                 </div>
                 
                 <div class="multi-video-actions">
-                    ${this.renderActions(item)}
+                    ${actionButton}
                 </div>
                 
                 ${isDownloading ? `
@@ -53,48 +93,9 @@ export class VideoItemRenderer {
             </div>
         `;
     }
-
-    private static renderStatus(item: VideoItem): string {
-        switch (item.status) {
-            case 'pending': return '<span class="status-badge pending">Pending</span>';
-            case 'analyzing': return '<span class="status-badge">Analyzing...</span>';
-            case 'ready':
-                return `<span class="status-badge ready">${item.settings.format.toUpperCase()} ${item.settings.quality}</span>`;
-            case 'downloading': return `<span class="status-badge downloading">Downloading... ${Math.round(item.progress)}%</span>`;
-            case 'converting': return `<span class="status-badge converting">Converting...</span>`;
-            case 'completed': return '<span class="status-badge success">Completed</span>';
-            case 'error': return '<span class="status-badge error">Failed</span>';
-            case 'cancelled': return '<span class="status-badge cancelled">Cancelled</span>';
-            default: return '';
-        }
-    }
-
-    private static renderActions(item: VideoItem): string {
-        if (item.status === 'downloading' || item.status === 'converting') {
-            return `
-                <button class="btn-icon btn-cancel" data-action="cancel" data-id="${item.id}" title="Cancel">
-                    <span class="icon-cancel">✕</span>
-                </button>
-            `;
-        }
-
-        if (item.status === 'completed' && item.downloadUrl) {
-            return `
-                <a href="${item.downloadUrl}" class="btn-icon btn-download" download target="_blank" title="Download">
-                    <span class="icon-download">⬇</span>
-                </a>
-            `;
-        }
-
-        return `
-            <button class="btn-icon btn-remove" data-action="remove" data-id="${item.id}" title="Remove">
-                <span class="icon-trash">🗑</span>
-            </button>
-        `;
-    }
 }
 
-// Utility Helpers (duplicated from elsewhere or imported)
+// Utility Helpers
 function escapeHtml(text: string | undefined): string {
     if (!text) return '';
     return text.replace(/[&<>"']/g, function (m) {

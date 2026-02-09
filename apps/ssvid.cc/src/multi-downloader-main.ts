@@ -129,6 +129,35 @@ function initMultiDownloadForm() {
         return;
     }
 
+    // Ctrl+Enter to Submit
+    urlsInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+            e.preventDefault();
+            addUrlsBtn.click();
+        }
+    });
+
+    // Auto-Enter on Paste
+    urlsInput.addEventListener('paste', (e) => {
+        // Allow default paste first, then format
+        setTimeout(() => {
+            const val = urlsInput.value;
+            // 1. Format: Replace multiple spaces/commas with newlines
+            let formatted = val.split(/[\s,]+/).filter(Boolean).join('\n');
+            
+            // 2. Ensure trailing newline for next input (convenience)
+            if (formatted && !formatted.endsWith('\n')) {
+                formatted += '\n';
+            }
+
+            if (formatted !== val) {
+                urlsInput.value = formatted;
+                // Scroll to bottom
+                urlsInput.scrollTop = urlsInput.scrollHeight;
+            }
+        }, 0);
+    });
+
     addUrlsBtn.addEventListener('click', async () => {
         const rawText = urlsInput.value.trim();
 
@@ -162,6 +191,9 @@ function initMultiDownloadForm() {
 
             // Re-render the list
             multipleDownloadRenderer.render();
+
+            // Auto-start download (mimic ytmp3.gg flow)
+            await multiDownloadService.startDownload();
 
         } catch (error) {
             console.error('[Multi Downloader] Error adding URLs:', error);
