@@ -3,3 +3,4 @@
  */
 
 export * from './download.service';
+export * from './playlist.service';

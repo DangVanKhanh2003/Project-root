@@ -8,16 +8,11 @@ import {
   createHttpClient,
 
   // Core Services Factory Functions
-  createSearchService,
-  createMediaService,
-  createConversionService,
-  createPlaylistService,
-  createDecryptService,
-  createFeedbackService,
+
   createSearchV2Service,
   createQueueService,
   createYouTubeDownloadService,
-  createMultifileService,
+
   createYouTubePublicApiService,
 
   // Domain Layer
@@ -51,19 +46,19 @@ const httpClient = createHttpClient({
 
 // API V2 HTTP Client (YouTube download)
 const apiV2HttpClient = createHttpClient({
-  baseUrl: API_V2_BASE_URL,  
+  baseUrl: API_V2_BASE_URL,
   timeout: API_TIMEOUT,
 });
 
 // Search V2 HTTP Client (separate domain for YouTube search)
 const searchV2HttpClient = createHttpClient({
-  baseUrl: SEARCH_V2_BASE_URL,  
+  baseUrl: SEARCH_V2_BASE_URL,
   timeout: getTimeout('searchV2'),
 });
 
 // Queue HTTP Client (separate domain for queue API)
 const queueHttpClient = createHttpClient({
-  baseUrl: QUEUE_API_BASE_URL,  
+  baseUrl: QUEUE_API_BASE_URL,
   timeout: getTimeout('addQueue'),
 });
 
@@ -94,14 +89,8 @@ const jwtStore = new LocalStorageJwtStore(
 
 // 3. Create Core Services (JWT handling moved to Domain Layer - Verifier)
 const coreServices = {
-  // Services using Main API (V1)
-  search: createSearchService(httpClient, apiConfig),
-  media: createMediaService(httpClient, apiConfig),
-  conversion: createConversionService(httpClient, apiConfig),
-  playlist: createPlaylistService(httpClient, apiConfig),
-  decrypt: createDecryptService(httpClient, apiConfig),
-  feedback: createFeedbackService(httpClient, apiConfig),
-  multifile: createMultifileService(httpClient, apiConfig),
+
+
   youtubePublicApi: createYouTubePublicApiService(httpClient, apiConfig),
 
   // YouTube Download using API V2

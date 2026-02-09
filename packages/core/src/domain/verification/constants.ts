@@ -56,9 +56,7 @@ export const POLICY_NAME = {
   DOWNLOAD_YOUTUBE: 'downloadYouTube',
   GET_DOWNLOAD_PROGRESS: 'getDownloadProgress',
 
-  // Multifile
-  START_MULTIFILE_SESSION: 'startMultifileSession',
-  GET_MULTIFILE_STATUS: 'getMultifileStatus',
+
 
   // YouTube Public API
   GET_METADATA_YOUTUBE: 'getMetadataYoutube',

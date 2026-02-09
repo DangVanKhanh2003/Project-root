@@ -33,26 +33,6 @@ export {
 } from './http';
 
 // ========================================
-// Services - V1
-// ========================================
-export {
-  createSearchService,
-  createPlaylistService,
-  createFeedbackService,
-  createDecryptService,
-  createMediaService,
-  createMultifileService,
-  createConversionService,
-  type ISearchService,
-  type IPlaylistService,
-  type IFeedbackService,
-  type IDecryptService,
-  type IMediaService,
-  type IMultifileService,
-  type IConversionService,
-} from './services/v1';
-
-// ========================================
 // Services - V2
 // ========================================
 export {
@@ -70,8 +50,18 @@ export {
 // ========================================
 export {
   createV3DownloadService,
+  createV3PlaylistService,
   type IV3DownloadService,
+  type IV3PlaylistService,
 } from './services/v3';
+
+// ========================================
+// Services - V1 (Feedback)
+// ========================================
+export {
+  createFeedbackService,
+} from './services/v1/implementations/feedback.service';
+export type { IFeedbackService } from './services/v1/interfaces/feedback.interface';
 
 // ========================================
 // Services - Public API

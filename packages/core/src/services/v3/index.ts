@@ -1,7 +1,9 @@
-/**
- * V3 Services
- * YouTube Download API - https://api.ytconvert.org
- */
+export {
+    createV3DownloadService,
+    createV3PlaylistService
+} from './implementations';
 
-export * from './interfaces';
-export * from './implementations';
+export type {
+    IV3DownloadService,
+    IV3PlaylistService
+} from './interfaces';

@@ -71,3 +71,5 @@ export * from './conversion-state';
 export * from './multifile-state';
 export * from './multifile-reuse-state';
 export * from './youtube-preview-state';
+export * from './multiple-download-types';
+export * from './multiple-download-actions';

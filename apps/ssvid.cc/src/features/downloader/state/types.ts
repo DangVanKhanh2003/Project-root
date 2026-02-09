@@ -9,6 +9,7 @@ import type {
   FormatDto,
   SearchV2ItemDto
 } from '@downloader/core';
+import { MultipleDownloadsState } from './multiple-download-types';
 
 // ==========================================
 // Core UI State Types
@@ -321,7 +322,8 @@ export interface AppState
   ConversionState,
   MultifileState,
   MultifileReuseState,
-  YouTubePreviewState { }
+  YouTubePreviewState,
+  MultipleDownloadsState { }
 
 // ==========================================
 // State Manager Types

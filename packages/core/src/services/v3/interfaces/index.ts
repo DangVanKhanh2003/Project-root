@@ -3,3 +3,4 @@
  */
 
 export * from './download.interface';
+export * from './playlist.interface';

@@ -5,6 +5,7 @@
 
 import type { AppState } from '../state';
 import { renderConversionStatus } from './download-rendering';
+import { multipleDownloadRenderer } from './multiple-download/multiple-download-renderer';
 
 // DOM Elements
 interface Elements {
@@ -37,6 +38,7 @@ export function initRenderer(): boolean {
     return false;
   }
 
+  multipleDownloadRenderer.init();
   return true;
 }
 
@@ -58,6 +60,9 @@ export function render(state: AppState, prevState?: AppState): void {
   if (state.conversionTasks !== prevState?.conversionTasks) {
     renderConversionStatus(state, prevState);
   }
+
+  // Update Multiple Download UI
+  multipleDownloadRenderer.render();
 }
 
 /**

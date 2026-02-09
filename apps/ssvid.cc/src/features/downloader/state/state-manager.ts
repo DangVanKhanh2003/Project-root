@@ -70,7 +70,15 @@ const initialState: AppState = {
   recentDownload: null,
 
   // YouTube Preview (NEW FLOW)
-  youtubePreview: null
+  youtubePreview: null,
+
+  // Multiple Downloads (NEW)
+  isEnabled: false,
+  mode: 'batch',
+  items: [],
+  globalStatus: 'idle',
+  totalProgress: 0,
+  isZipAvailable: false
 };
 
 // ==========================================
