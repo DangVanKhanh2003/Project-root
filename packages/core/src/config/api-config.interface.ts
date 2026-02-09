@@ -98,6 +98,23 @@ export interface ApiConfig {
   };
 
   /**
+   * ZIP Download API configuration (optional)
+   */
+  zip?: {
+    /**
+     * Full base URL for ZIP download API
+     * @example 'https://muti-download.ytconvert.org'
+     */
+    baseUrl: string;
+
+    /**
+     * Optional timeout for ZIP requests (ms)
+     * @default 30000
+     */
+    timeout?: number;
+  };
+
+  /**
    * Per-operation timeout overrides (optional)
    * These override the default timeouts for specific operations
    */

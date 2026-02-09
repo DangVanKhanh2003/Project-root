@@ -14,6 +14,7 @@ import {
   createYouTubePublicApiService,
   createV3PlaylistService,
   createV3DownloadService,
+  createV3ZipDownloadService,
 
   // Domain Layer
   createVerifier,
@@ -24,7 +25,7 @@ import {
 } from '@downloader/core';
 
 // Import centralized environment configuration
-import { getApiBaseUrl, getApiBaseUrlV2, getApiBaseUrlV3, getYtMetaBaseUrl, getSearchV2BaseUrl, getQueueApiUrl, getTimeout } from '../environment';
+import { getApiBaseUrl, getApiBaseUrlV2, getApiBaseUrlV3, getYtMetaBaseUrl, getSearchV2BaseUrl, getQueueApiUrl, getMutiDownloadBaseUrl, getTimeout } from '../environment';
 
 // Import CAPTCHA dependencies
 import { CaptchaModal } from '@downloader/ui-shared';
@@ -37,6 +38,7 @@ const API_V3_BASE_URL = getApiBaseUrlV3();
 const YT_META_BASE_URL = getYtMetaBaseUrl();
 const SEARCH_V2_BASE_URL = getSearchV2BaseUrl();
 const QUEUE_API_BASE_URL = getQueueApiUrl();
+const MUTI_DOWNLOAD_BASE_URL = getMutiDownloadBaseUrl();
 const API_TIMEOUT = getTimeout('default');
 
 // 1. Create HTTP Clients
@@ -64,6 +66,12 @@ const v3HttpClient = createHttpClient({
   timeout: getTimeout('v3CreateJob'),
 });
 
+// ZIP Download HTTP Client (muti-download.ytconvert.org)
+const zipHttpClient = createHttpClient({
+  baseUrl: MUTI_DOWNLOAD_BASE_URL,
+  timeout: getTimeout('zipDownload'),
+});
+
 // YT Meta HTTP Client (playlist metadata - yt-meta.ytconvert.org)
 const ytMetaHttpClient = createHttpClient({
   baseUrl: YT_META_BASE_URL,
@@ -71,9 +79,15 @@ const ytMetaHttpClient = createHttpClient({
 });
 
 const apiConfig = {
-  baseUrl: API_BASE_URL,
-  timeout: API_TIMEOUT,
-};
+  v1: {
+    baseUrl: API_BASE_URL,
+    timeout: API_TIMEOUT,
+  },
+  v2: {
+    baseUrl: API_V2_BASE_URL,
+    timeout: getTimeout('pollingV2'),
+  },
+} as any; // Cast for now as it's modified below
 
 const searchV2ApiConfig = {
   baseUrl: SEARCH_V2_BASE_URL,
@@ -88,6 +102,11 @@ const queueApiConfig = {
 const v3ApiConfig = {
   baseUrl: API_V3_BASE_URL,
   timeout: getTimeout('v3CreateJob'),
+};
+
+const zipApiConfig = {
+  baseUrl: MUTI_DOWNLOAD_BASE_URL,
+  timeout: getTimeout('zipDownload'),
 };
 
 const ytMetaApiConfig = {
@@ -120,33 +139,39 @@ const coreServices = {
 
   // Download V3 (uses V3 base URL - hub.ytconvert.org)
   downloadV3: createV3DownloadService(v3HttpClient, v3ApiConfig),
+
+  // ZIP Download
+  zipDownload: createV3ZipDownloadService(zipHttpClient, {
+    ...apiConfig,
+    zip: zipApiConfig
+  }),
 };
 
 // 4. Create Verifier (Domain Layer)
 const verifier = createVerifier({
-    jwtStore,
-    policies: DEFAULT_POLICIES,
-    verbose: true, // Enable logging in development
-  });
+  jwtStore,
+  policies: DEFAULT_POLICIES,
+  verbose: true, // Enable logging in development
+});
 
-  // 5. Create CAPTCHA Handler (Dependency Injection)
-  const captchaHandler = async () => {
-    // Lazy-load CAPTCHA modal CSS
-    await loadCaptchaModalCSS();
+// 5. Create CAPTCHA Handler (Dependency Injection)
+const captchaHandler = async () => {
+  // Lazy-load CAPTCHA modal CSS
+  await loadCaptchaModalCSS();
 
-    // Show CAPTCHA modal and get token
-    const captchaModal = new CaptchaModal();
-    const result = await captchaModal.getCaptchaToken();
+  // Show CAPTCHA modal and get token
+  const captchaModal = new CaptchaModal();
+  const result = await captchaModal.getCaptchaToken();
 
-    return {
-      token: result.token,
-      type: result.type,
-    };
+  return {
+    token: result.token,
+    type: result.type,
   };
+};
 
-  // 6. Create Verified Services with CAPTCHA handler
-  // Domain Layer (Verifier) handles JWT extraction and storage automatically
-  export const api = createVerifiedServices(coreServices, verifier, captchaHandler);
+// 6. Create Verified Services with CAPTCHA handler
+// Domain Layer (Verifier) handles JWT extraction and storage automatically
+export const api = createVerifiedServices(coreServices, verifier, captchaHandler);
 
-  // Export for debugging/advanced use
-  export { coreServices, verifier, jwtStore };
+// Export for debugging/advanced use
+export { coreServices, verifier, jwtStore };

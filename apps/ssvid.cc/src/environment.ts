@@ -30,6 +30,7 @@ interface TimeoutConfig {
     v3GetStatus: number;
     v3PollingInterval: number;
     v3MaxPollingDuration: number;
+    zipDownload: number;
 }
 
 interface ExpiryConfig {
@@ -47,6 +48,7 @@ interface ApiConfig {
     youtubeStreamApiUrl: string;
     youtubeStreamApiEndpoint: string;
     v2ApiUrl: string;
+    mutiDownloadBaseUrl: string;
     queueApiUrl: string;
     searchEndpoint: string;
     timeout: TimeoutConfig;
@@ -138,6 +140,9 @@ const environment: Environment = {
         // Both dev and prod use production API (no local backend)
         queueApiUrl: 'https://hub.y2mp3.co',
 
+        // ZIP Download API
+        mutiDownloadBaseUrl: 'https://muti-download.ytconvert.org',
+
         // Search endpoint (specific for search functionality)
         searchEndpoint: '/index.php',
 
@@ -161,6 +166,7 @@ const environment: Environment = {
             v3GetStatus: 20000,
             v3PollingInterval: 1000, // 1 second delay between polls
             v3MaxPollingDuration: 5 * 60 * 60 * 1000, // 5 hours max polling
+            zipDownload: 30000, // 30 seconds for ZIP download creation
         },
 
         // Data expiry times (in milliseconds)
@@ -244,6 +250,14 @@ export function getApiBaseUrlV2(): string {
  */
 export function getApiBaseUrlV3(): string {
     return environment.api.baseUrlV3;
+}
+
+/**
+ * Get Muti-download API base URL
+ * @returns Muti-download base URL
+ */
+export function getMutiDownloadBaseUrl(): string {
+    return environment.api.mutiDownloadBaseUrl;
 }
 
 /**

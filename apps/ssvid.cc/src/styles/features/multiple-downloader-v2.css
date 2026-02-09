@@ -896,27 +896,44 @@
    ========================================= */
 .playlist-group {
     border-bottom: 2px solid var(--border-secondary, #e5e7eb);
+    background: #fff;
 }
 
 .group-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.75rem 1.5rem;
+    padding: 1rem 1.5rem;
     background: var(--bg-secondary, #f9fafb);
     border-bottom: 1px solid var(--border-secondary, #e5e7eb);
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 .group-header-left {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 12px;
 }
 
-.group-header-right {
+.group-title-info {
     display: flex;
-    align-items: center;
-    gap: 0.5rem;
+    align-items: baseline;
+    gap: 8px;
+}
+
+.group-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--text-main, #333);
+}
+
+.group-count {
+    font-size: 0.9rem;
+    color: var(--text-muted, #666);
+    font-weight: 500;
 }
 
 .group-collapse-btn {
@@ -924,36 +941,48 @@
     border: none;
     cursor: pointer;
     padding: 4px;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     color: var(--text-muted, #666);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: transform 0.2s;
 }
 
-.group-title {
-    font-size: 1rem;
-    font-weight: 600;
-    margin: 0;
-    color: var(--text-main, #333);
+.group-header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
-.group-count {
-    font-size: 0.875rem;
-    color: var(--text-muted, #666);
+.group-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-sm {
+    padding: 6px 14px !important;
+    font-size: 0.85rem !important;
+    height: 32px !important;
 }
 
 .group-checkbox-label {
     display: flex;
     align-items: center;
-    gap: 0.375rem;
-    font-size: 0.875rem;
-    color: var(--text-muted, #666);
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-main, #333);
     cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
 }
 
 .group-checkbox {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
     accent-color: var(--brand, #8F0F20);
+    cursor: pointer;
 }
 
 .playlist-group.collapsed .group-items {

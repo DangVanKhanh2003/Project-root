@@ -123,9 +123,9 @@ export class PlaylistStrategy implements RendererStrategy {
 
         if (item.status === 'completed' && item.downloadUrl) {
             return `
-                <a href="${item.downloadUrl}" class="btn-icon btn-download" download target="_blank" title="Download">
-                    <span class="icon-download">⬇</span>
-                </a>
+                <button class="btn-icon btn-remove" data-action="remove" data-id="${item.id}" title="Remove">
+                    <span class="icon-trash">🗑</span>
+                </button>
             `;
         }
 
@@ -133,8 +133,11 @@ export class PlaylistStrategy implements RendererStrategy {
             return `<button class="btn-icon btn-retry" data-action="retry" data-id="${item.id}" title="Retry">↻</button>`;
         }
 
-        // Ready state on desktop: no individual button (use global Download All)
-        return '';
+        return `
+            <button class="btn-icon btn-remove" data-action="remove" data-id="${item.id}" title="Remove">
+                <span class="icon-trash">🗑</span>
+            </button>
+        `;
     }
 
     private getMobileActionButton(item: VideoItem): string {
@@ -144,7 +147,7 @@ export class PlaylistStrategy implements RendererStrategy {
 
         if (item.status === 'completed' && item.downloadUrl) {
             return `
-                <a href="${item.downloadUrl}" class="btn-icon btn-download" download target="_blank" title="Download">
+                <a href="${item.downloadUrl}" class="btn-icon btn-download" download title="Download">
                     <span class="icon-download">⬇</span>
                 </a>
             `;

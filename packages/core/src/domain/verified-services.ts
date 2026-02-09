@@ -12,13 +12,12 @@ import type { ProtectionPayload } from '../services/base/base-service';
 
 import type { IFeedbackService } from '../services/v1/interfaces/feedback.interface';
 import type { ISearchV2Service } from '../services/v2/interfaces/searchv2.interface';
+import type { IZipDownloadService, ZipDownloadResponse } from '../services/v3/interfaces/zip.interface';
 import type { IQueueService } from '../services/v2/interfaces/queue.interface';
 
 import type { IYouTubePublicApiService } from '../services/public-api/interfaces/public-api.interface';
 import type { IV3PlaylistService } from '../services/v3/interfaces/playlist.interface';
 import type { IV3DownloadService } from '../services/v3/interfaces/download.interface';
-
-// Mappers for data transformation
 import { mapDirectExtractResponse } from '../mappers/v1/media/direct.mapper';
 import { mapInstagramResponse } from '../mappers/v1/media/instagram.mapper';
 
@@ -33,6 +32,7 @@ export interface CoreServices {
   youtubePublicApi: IYouTubePublicApiService;
   playlistV3: IV3PlaylistService;
   downloadV3: IV3DownloadService;
+  zipDownload: IZipDownloadService;
 }
 
 /**
@@ -119,6 +119,8 @@ export function createVerifiedServices(
       services.downloadV3.createJob(request, signal),
     'downloadV3.getStatusByUrl': (url: string) =>
       services.downloadV3.getStatusByUrl(url),
+    'zipDownload.createZipDownload': (request: any) =>
+      services.zipDownload.createZipDownload(request),
   };
 
   /**
@@ -353,6 +355,15 @@ export function createVerifiedServices(
         wrap('downloadV3.createJob', request, signal),
       getStatusByUrl: (url: string) =>
         wrap('downloadV3.getStatusByUrl', url),
+    },
+    
+    // ========================================
+    // ZIP Download
+    // ========================================
+
+    zipDownload: {
+      createZipDownload: (request: Parameters<IZipDownloadService['createZipDownload']>[0]) =>
+        wrap<ZipDownloadResponse>('zipDownload.createZipDownload', request),
     },
 
     // ========================================

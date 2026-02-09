@@ -588,7 +588,7 @@ async function performSingleDownload(item: GalleryItem, qualityId: string): Prom
         }
 
         const filename = selectedFormat.filename || item.filename || `download.${selectedFormat.format || 'mp4'}`;
-        triggerDownload(selectedFormat.url, filename, true); // Open in new tab for gallery downloads
+        triggerDownload(selectedFormat.url, filename); // Keep download in current tab
     } catch (error) {
         // Re-throw the error so the calling function (handleSingleDownload) can update the button state
         throw error;

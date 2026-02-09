@@ -51,8 +51,10 @@ export {
 export {
   createV3DownloadService,
   createV3PlaylistService,
+  createV3ZipDownloadService,
   type IV3DownloadService,
   type IV3PlaylistService,
+  type IZipDownloadService,
 } from './services/v3';
 
 // ========================================

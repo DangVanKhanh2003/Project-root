@@ -95,7 +95,7 @@ export class MultiDownloadService {
         }
 
         const playlist = result.data as PlaylistDto;
-        const groupId = playlistId;
+        const groupId = `${playlistId}_${Date.now()}`;
         const groupTitle = playlist.title || 'Playlist';
 
         // Create items with preloaded metadata
@@ -142,6 +142,37 @@ export class MultiDownloadService {
     }
 
     // ==========================================
+    // ZIP Download
+    // ==========================================
+
+    async createZipDownload(ids: string[]): Promise<string> {
+        const items = ids.map(id => videoStore.getItem(id)).filter(Boolean) as VideoItem[];
+        const urls = items.filter(item => item.status === 'completed' && item.downloadUrl).map(item => item.downloadUrl!);
+
+        if (urls.length === 0) {
+            throw new Error('No completed downloads found to ZIP');
+        }
+
+        const timestamp = Date.now();
+        const zipName = `ssvid_cc_${timestamp}.zip`;
+
+        const result = await api.zipDownload.createZipDownload({
+            files: urls,
+            zipName: zipName
+        });
+
+        if (result.ok && result.data?.downloadUrl) {
+            // Mark items as downloaded after ZIP creation
+            for (const id of ids) {
+                videoStore.markDownloaded(id);
+            }
+            return result.data.downloadUrl;
+        }
+
+        throw new Error(result.message || 'Failed to create ZIP download');
+    }
+
+    // ==========================================
     // Download Control
     // ==========================================
 
@@ -169,6 +200,40 @@ export class MultiDownloadService {
         const items = videoStore.getSelectedDownloadable();
         for (const item of items) {
             this.startDownload(item.id);
+        }
+    }
+
+    startGroupDownloads(groupId: string): void {
+        const items = videoStore.getAllItems().filter(i =>
+            i.groupId === groupId && ['ready', 'error', 'cancelled'].includes(i.status)
+        );
+        for (const item of items) {
+            this.startDownload(item.id);
+        }
+    }
+
+    startSelectedGroupDownloads(groupId: string): void {
+        const items = videoStore.getAllItems().filter(i =>
+            i.groupId === groupId && i.isSelected && ['ready', 'error', 'cancelled'].includes(i.status)
+        );
+        for (const item of items) {
+            this.startDownload(item.id);
+        }
+    }
+
+    cancelGroupDownloads(groupId: string): void {
+        const active = videoStore.getAllItems().filter(i =>
+            i.groupId === groupId && ['queued', 'downloading', 'converting'].includes(i.status)
+        );
+        for (const item of active) {
+            this.cancelDownload(item.id);
+        }
+    }
+
+    removeGroup(groupId: string): void {
+        const items = videoStore.getAllItems().filter(i => i.groupId === groupId);
+        for (const item of items) {
+            videoStore.removeItem(item.id);
         }
     }
 

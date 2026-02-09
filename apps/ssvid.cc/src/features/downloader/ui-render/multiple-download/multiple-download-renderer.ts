@@ -11,9 +11,8 @@ import { isMobileDevice } from '../../../../utils';
 export class MultipleDownloadRenderer {
     private container: HTMLElement | null = null;
     private listContainer: HTMLElement | null = null;
-    private controlsContainer: HTMLElement | null = null;
-    private headerEl: HTMLElement | null = null;
     private isInitialized = false;
+    private isPlaylistMode: boolean = false;
     private strategy: RendererStrategy = new MultiDownloadStrategy();
     private unsubscribe: (() => void) | null = null;
 
@@ -77,33 +76,19 @@ export class MultipleDownloadRenderer {
         if (!this.container) return;
 
         this.container.innerHTML = `
-            <div class="multi-download-header">
-                <div class="multi-download-header-left">
-                    <label class="master-checkbox-label" style="${isMobileDevice() ? 'display:none' : ''}">
-                        <input type="checkbox" class="master-checkbox" checked>
-                    </label>
-                    <h2>Videos</h2>
-                    <span class="item-count-badge"></span>
-                </div>
-                <div class="multi-download-controls" id="multi-controls"></div>
-            </div>
             <div class="multi-download-list" id="multi-list"></div>
             <div class="multi-download-footer" id="multi-footer"></div>
         `;
 
         this.listContainer = this.container.querySelector('#multi-list');
-        this.controlsContainer = this.container.querySelector('#multi-controls');
-        this.headerEl = this.container.querySelector('.multi-download-header');
     }
 
     private subscribeToStore() {
-        if (!this.listContainer || !this.controlsContainer) return;
+        if (!this.listContainer) return;
 
         const handleChange = createStoreChangeHandler({
             listContainer: this.listContainer,
-            controlsContainer: this.controlsContainer,
             strategy: this.strategy,
-            onCountsChanged: () => this.updateControls(),
         });
 
         this.unsubscribe = videoStore.subscribe((eventName, data) => {
@@ -143,12 +128,6 @@ export class MultipleDownloadRenderer {
                 case 'cancel-all':
                     multiDownloadService.cancelAllDownloads();
                     break;
-                case 'download-all':
-                    multiDownloadService.startAllDownloads();
-                    break;
-                case 'download-selected':
-                    multiDownloadService.startSelectedDownloads();
-                    break;
                 case 'retry':
                     if (id) multiDownloadService.retryDownload(id);
                     break;
@@ -157,6 +136,15 @@ export class MultipleDownloadRenderer {
                     break;
                 case 'toggle-group':
                     if (groupId) this.toggleGroup(groupId);
+                    break;
+                case 'download-group':
+                    if (groupId) multiDownloadService.startSelectedGroupDownloads(groupId);
+                    break;
+                case 'download-zip-group':
+                    if (groupId) this.handleDownloadZipGroup(groupId, actionBtn);
+                    break;
+                case 'remove-group':
+                    if (groupId) multiDownloadService.removeGroup(groupId);
                     break;
             }
         });
@@ -169,20 +157,9 @@ export class MultipleDownloadRenderer {
             if (target.classList.contains('item-checkbox')) {
                 const id = (target as HTMLInputElement).dataset.id;
                 if (id) videoStore.toggleSelect(id);
-                this.syncMasterCheckbox();
                 return;
             }
 
-            // Master checkbox
-            if (target.classList.contains('master-checkbox')) {
-                const checked = (target as HTMLInputElement).checked;
-                if (checked) {
-                    videoStore.selectAll();
-                } else {
-                    videoStore.deselectAll();
-                }
-                return;
-            }
 
             // Group checkbox
             if (target.classList.contains('group-checkbox')) {
@@ -226,55 +203,38 @@ export class MultipleDownloadRenderer {
         });
     }
 
-    private updateControls() {
-        if (!this.controlsContainer) return;
+    private async handleDownloadZipGroup(groupId: string, btn: HTMLElement) {
+        if (!(btn instanceof HTMLButtonElement)) return;
 
-        const allItems = videoStore.getAllItems();
-        const count = allItems.length;
-        const selectedCount = videoStore.getSelectedCount();
-        const isMobile = isMobileDevice();
-        const hasActive = allItems.some(i =>
-            i.status === 'downloading' || i.status === 'converting' || i.status === 'queued'
-        );
-        const downloadableCount = videoStore.getDownloadableItems().length;
-        const selectedDownloadableCount = videoStore.getSelectedDownloadable().length;
+        const originalText = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = 'Creating ZIP...';
 
-        // Update count badge
-        const countBadge = this.container?.querySelector('.item-count-badge');
-        if (countBadge) {
-            countBadge.textContent = count > 0 ? `(${count})` : '';
-        }
+        try {
+            const completedIds = videoStore.getItemsByGroup(groupId)
+                .filter(i => i.status === 'completed' && i.isSelected)
+                .map(i => i.id);
 
-        let html = '';
-
-        if (count > 0) {
-            if (hasActive) {
-                html = `<button class="btn btn-danger" data-action="cancel-all">Cancel All</button>`;
-            } else if (!isMobile) {
-                if (selectedDownloadableCount > 0 && selectedDownloadableCount < downloadableCount) {
-                    html = `
-                        <button class="btn btn-primary" data-action="download-selected">Download Selected (${selectedDownloadableCount})</button>
-                        <button class="btn btn-primary" data-action="download-all">Download All (${downloadableCount})</button>
-                    `;
-                } else if (downloadableCount > 0) {
-                    html = `<button class="btn btn-primary" data-action="download-all">Download All (${downloadableCount})</button>`;
-                }
+            if (completedIds.length === 0) {
+                throw new Error('No selected completed items in this group');
             }
+
+            const downloadUrl = await multiDownloadService.createZipDownload(completedIds);
+
+            // Trigger download
+            const link = document.createElement('a');
+            link.href = downloadUrl;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        } catch (error: any) {
+            alert(error.message || 'Failed to create ZIP');
+        } finally {
+            btn.disabled = false;
+            btn.textContent = originalText;
         }
-
-        this.controlsContainer.innerHTML = html;
     }
 
-    private syncMasterCheckbox() {
-        const masterCheckbox = this.container?.querySelector('.master-checkbox') as HTMLInputElement;
-        if (!masterCheckbox) return;
-
-        const allItems = videoStore.getAllItems();
-        const selectedCount = videoStore.getSelectedCount();
-
-        masterCheckbox.checked = selectedCount === allItems.length && allItems.length > 0;
-        masterCheckbox.indeterminate = selectedCount > 0 && selectedCount < allItems.length;
-    }
 
     private toggleGroup(groupId: string) {
         const groupEl = this.listContainer?.querySelector(`[data-group-id="${groupId}"].playlist-group`) as HTMLElement;

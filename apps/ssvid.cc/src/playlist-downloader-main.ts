@@ -182,8 +182,6 @@ function initPlaylistForm() {
     const playlistUrlInput = document.getElementById('playlistUrl') as HTMLInputElement | null;
     const fetchPlaylistBtn = document.getElementById('fetchPlaylistBtn');
     const errorMessage = document.getElementById('error-message');
-    const playlistInfoSection = document.getElementById('playlist-info-section');
-    const playlistInfo = document.getElementById('playlist-info');
 
     if (!playlistUrlInput || !fetchPlaylistBtn) {
         console.error('[Playlist Downloader] Required elements not found');
@@ -226,21 +224,7 @@ function initPlaylistForm() {
             const settings = getCurrentSettings();
 
             // Add playlist through service (store-driven — renderer auto-updates)
-            const info = await multiDownloadService.addPlaylist(url, settings);
-
-            // Show playlist info
-            if (playlistInfoSection && playlistInfo) {
-                playlistInfoSection.style.display = 'block';
-                playlistInfo.innerHTML = `
-                    <div class="playlist-info-content">
-                        <img src="${info.thumbnail || '/placeholder-playlist.png'}" alt="${info.title}" class="playlist-thumbnail">
-                        <div class="playlist-details">
-                            <h3 class="playlist-title">${info.title}</h3>
-                            <p class="playlist-meta">${info.itemCount} videos</p>
-                        </div>
-                    </div>
-                `;
-            }
+            await multiDownloadService.addPlaylist(url, settings);
 
         } catch (error) {
             console.error('[Playlist Downloader] Error fetching playlist:', error);

@@ -6,9 +6,9 @@ import { RendererStrategy } from './renderer-strategy.interface';
 
 export interface StoreChangeHandlerConfig {
     listContainer: HTMLElement;
-    controlsContainer: HTMLElement;
+    controlsContainer?: HTMLElement;
     strategy: RendererStrategy;
-    onCountsChanged: () => void;
+    onCountsChanged?: () => void;
 }
 
 export function createStoreChangeHandler(config: StoreChangeHandlerConfig) {
@@ -41,8 +41,7 @@ export function createStoreChangeHandler(config: StoreChangeHandlerConfig) {
                 const emptyEl = listContainer.querySelector('.empty-list');
                 if (emptyEl) emptyEl.remove();
 
-                updateListHeaderVisibility(listContainer);
-                onCountsChanged();
+                onCountsChanged?.();
                 break;
             }
 
@@ -70,8 +69,7 @@ export function createStoreChangeHandler(config: StoreChangeHandlerConfig) {
                     listContainer.innerHTML = '<div class="empty-list">No videos added yet.</div>';
                 }
 
-                updateListHeaderVisibility(listContainer);
-                onCountsChanged();
+                onCountsChanged?.();
                 break;
             }
 
@@ -96,8 +94,7 @@ export function createStoreChangeHandler(config: StoreChangeHandlerConfig) {
                     if (groupEl) updateGroupCount(groupEl);
                 }
 
-                updateListHeaderVisibility(listContainer);
-                onCountsChanged();
+                onCountsChanged?.();
                 break;
             }
 
@@ -108,13 +105,13 @@ export function createStoreChangeHandler(config: StoreChangeHandlerConfig) {
                 if (!el) return;
 
                 VideoItemRenderer.updateProgressOnly(el, item);
+                onCountsChanged?.();
                 break;
             }
 
             case 'items:cleared': {
                 listContainer.innerHTML = '<div class="empty-list">No videos added yet.</div>';
-                updateListHeaderVisibility(listContainer);
-                onCountsChanged();
+                onCountsChanged?.();
                 break;
             }
 
@@ -127,7 +124,12 @@ export function createStoreChangeHandler(config: StoreChangeHandlerConfig) {
                         checkbox.checked = item.isSelected;
                     }
                 }
-                onCountsChanged();
+
+                // Update all group headers (for ZIP count and Select All state)
+                const groups = listContainer.querySelectorAll('.playlist-group');
+                groups.forEach(group => updateGroupCount(group as HTMLElement));
+
+                onCountsChanged?.();
                 break;
             }
 
@@ -164,10 +166,17 @@ function createGroupElement(groupId: string, groupTitle: string): HTMLElement {
                 <button class="group-collapse-btn" data-action="toggle-group" data-group-id="${groupId}">
                     <span class="collapse-icon">▼</span>
                 </button>
-                <h3 class="group-title">${groupTitle}</h3>
-                <span class="group-count"></span>
+                <div class="group-title-info">
+                    <h3 class="group-title">${groupTitle}</h3>
+                    <span class="group-count"></span>
+                </div>
             </div>
             <div class="group-header-right">
+                <div class="group-actions">
+                    <button class="btn btn-primary btn-sm" data-action="download-group" data-group-id="${groupId}">Download All</button>
+                    <button class="btn btn-success btn-sm" data-action="download-zip-group" data-group-id="${groupId}">Download ZIP</button>
+                    <button class="btn btn-secondary btn-sm" data-action="remove-group" data-group-id="${groupId}">Remove</button>
+                </div>
                 <label class="group-checkbox-label">
                     <input type="checkbox" class="group-checkbox" data-group-id="${groupId}" checked>
                     <span>Select All</span>
@@ -185,7 +194,10 @@ function updateGroupCount(groupEl: HTMLElement): void {
 
     const items = videoStore.getItemsByGroup(groupId);
     const total = items.length;
-    const completed = items.filter(i => i.status === 'completed').length;
+    const completedItems = items.filter(i => i.status === 'completed');
+    const completed = completedItems.length;
+    const downloadableCount = items.filter(i => ['ready', 'error', 'cancelled'].includes(i.status)).length;
+    const selectedCompletedCount = completedItems.filter(i => i.isSelected).length;
 
     const countEl = groupEl.querySelector('.group-count');
     if (countEl) {
@@ -195,11 +207,18 @@ function updateGroupCount(groupEl: HTMLElement): void {
             countEl.textContent = `(${total})`;
         }
     }
-}
 
-function updateListHeaderVisibility(listContainer: HTMLElement): void {
-    const header = listContainer.closest('.multiple-downloads-container')?.querySelector('.multi-download-header') as HTMLElement;
-    if (header) {
-        header.style.display = videoStore.getCount() > 0 ? '' : 'none';
+    // Update group button states
+    const downloadBtn = groupEl.querySelector('[data-action="download-group"]') as HTMLButtonElement;
+    if (downloadBtn) {
+        downloadBtn.disabled = downloadableCount === 0;
+        downloadBtn.textContent = `Download All (${downloadableCount})`;
+    }
+
+    const zipBtn = groupEl.querySelector('[data-action="download-zip-group"]') as HTMLButtonElement;
+    if (zipBtn) {
+        zipBtn.disabled = selectedCompletedCount === 0;
+        zipBtn.textContent = `Download ZIP (${selectedCompletedCount})`;
     }
 }
+

@@ -49,7 +49,7 @@ export class MultiDownloadStrategy implements RendererStrategy {
             case 'downloading': return `<span class="status-badge downloading">Downloading... ${Math.round(item.progress)}%</span>`;
             case 'converting': {
                 const phaseText = item.progressPhase === 'merging' ? 'Merging' :
-                                  item.progressPhase === 'extracting' ? 'Extracting' : 'Converting';
+                    item.progressPhase === 'extracting' ? 'Extracting' : 'Converting';
                 return `<span class="status-badge converting">${phaseText}... ${Math.round(item.progress)}%</span>`;
             }
             case 'completed':
@@ -77,9 +77,9 @@ export class MultiDownloadStrategy implements RendererStrategy {
 
         if (item.status === 'completed' && item.downloadUrl) {
             return `
-                <a href="${item.downloadUrl}" class="btn-icon btn-download" download target="_blank" title="Download">
-                    <span class="icon-download">⬇</span>
-                </a>
+                <button class="btn-icon btn-remove" data-action="remove" data-id="${item.id}" title="Remove">
+                    <span class="icon-trash">🗑</span>
+                </button>
             `;
         }
 
@@ -106,7 +106,7 @@ export class MultiDownloadStrategy implements RendererStrategy {
 
         if (item.status === 'completed' && item.downloadUrl) {
             return `
-                <a href="${item.downloadUrl}" class="btn-icon btn-download" download target="_blank" title="Download">
+                <a href="${item.downloadUrl}" class="btn-icon btn-download" download title="Download">
                     <span class="icon-download">⬇</span>
                 </a>
             `;
@@ -114,10 +114,6 @@ export class MultiDownloadStrategy implements RendererStrategy {
 
         if (item.status === 'error') {
             return `<button class="btn-icon btn-retry" data-action="retry" data-id="${item.id}" title="Retry">↻</button>`;
-        }
-
-        if (item.status === 'ready') {
-            return '';
         }
 
         return '';
