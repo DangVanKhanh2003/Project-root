@@ -100,9 +100,7 @@
     transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.input-wrapper:focus-within {
-    border-color: #3b82f6;
-}
+
 
 .video-input {
     flex: 1;

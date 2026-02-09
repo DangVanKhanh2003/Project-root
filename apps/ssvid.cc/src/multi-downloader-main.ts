@@ -9,7 +9,7 @@ import './styles/index.css';
 // Import services and renderers
 import { multiDownloadService } from './features/downloader/logic/multiple-download/services/multi-download-service';
 import { multipleDownloadRenderer } from './features/downloader/ui-render/multiple-download/multiple-download-renderer';
-import { setMultipleDownloadMode } from './features/downloader/state/multiple-download-actions';
+import { VideoItemSettings } from './features/downloader/state/multiple-download-types';
 import { initAudioDropdown } from './features/downloader/ui-render/dropdown-logic';
 
 /**
@@ -59,9 +59,6 @@ function initMobileMenu() {
 /**
  * Initialize format toggle
  */
-/**
- * Initialize format toggle
- */
 function initFormatToggle() {
     const formatBtns = document.querySelectorAll('.multi-format-toggle .multi-format-btn');
     const qualitySelectMp3 = document.getElementById('multi-quality-select-mp3') as HTMLSelectElement | null;
@@ -71,9 +68,7 @@ function initFormatToggle() {
 
     formatBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            // Remove active from all
             formatBtns.forEach(b => b.classList.remove('active'));
-            // Add active to clicked
             btn.classList.add('active');
 
             const format = btn.getAttribute('data-format');
@@ -89,31 +84,42 @@ function initFormatToggle() {
 }
 
 /**
- * Get current format settings
+ * Get current format settings from UI elements
  */
-function getCurrentSettings() {
+function getCurrentSettings(): Partial<VideoItemSettings> {
     const activeFormatBtn = document.querySelector('.multi-format-toggle .multi-format-btn.active');
-
-    // Get visible quality selector
     const qualitySelectMp3 = document.getElementById('multi-quality-select-mp3') as HTMLSelectElement | null;
     const qualitySelectMp4 = document.getElementById('multi-quality-select-mp4') as HTMLSelectElement | null;
 
-    const format = activeFormatBtn?.getAttribute('data-format') || 'mp4';
+    const format = (activeFormatBtn?.getAttribute('data-format') || 'mp4') as 'mp3' | 'mp4';
 
-    let qualityValue = 'mp4-720';
-    if (format === 'mp3' && qualitySelectMp3) {
-        qualityValue = qualitySelectMp3.value;
-    } else if (qualitySelectMp4) {
-        qualityValue = qualitySelectMp4.value;
-    }
-
-    // Parse quality value
     let quality = '720p';
-    if (qualityValue.includes('-')) {
-        quality = qualityValue.split('-')[1] + (format === 'mp4' ? 'p' : 'kbps');
+    let audioFormat: string | undefined;
+    let audioBitrate: string | undefined;
+    let videoQuality: string | undefined;
+
+    if (format === 'mp3' && qualitySelectMp3) {
+        const val = qualitySelectMp3.value; // e.g. 'mp3-128'
+        if (val.includes('-')) {
+            audioBitrate = val.split('-')[1];
+            quality = audioBitrate + 'kbps';
+        }
+        audioFormat = 'mp3';
+    } else if (qualitySelectMp4) {
+        const val = qualitySelectMp4.value; // e.g. 'mp4-720'
+        if (val.includes('-')) {
+            videoQuality = val.split('-')[1];
+            quality = videoQuality + 'p';
+        }
     }
 
-    return { format: format as 'mp3' | 'mp4', quality };
+    return {
+        format,
+        quality,
+        audioFormat,
+        audioBitrate,
+        videoQuality,
+    };
 }
 
 /**
@@ -139,20 +145,16 @@ function initMultiDownloadForm() {
 
     // Auto-Enter on Paste
     urlsInput.addEventListener('paste', (e) => {
-        // Allow default paste first, then format
         setTimeout(() => {
             const val = urlsInput.value;
-            // 1. Format: Replace multiple spaces/commas with newlines
             let formatted = val.split(/[\s,]+/).filter(Boolean).join('\n');
-            
-            // 2. Ensure trailing newline for next input (convenience)
+
             if (formatted && !formatted.endsWith('\n')) {
                 formatted += '\n';
             }
 
             if (formatted !== val) {
                 urlsInput.value = formatted;
-                // Scroll to bottom
                 urlsInput.scrollTop = urlsInput.scrollHeight;
             }
         }, 0);
@@ -180,20 +182,16 @@ function initMultiDownloadForm() {
         addUrlsBtn.setAttribute('disabled', 'true');
 
         try {
-            // Enable multiple download mode
-            setMultipleDownloadMode(true, 'batch');
+            const settings = getCurrentSettings();
 
-            // Add URLs through the service
-            await multiDownloadService.addUrls(rawText);
+            // Add URLs through the service (store-driven — renderer auto-updates)
+            await multiDownloadService.addUrls(rawText, settings);
 
             // Clear input after successful add
             urlsInput.value = '';
 
-            // Re-render the list
-            multipleDownloadRenderer.render();
-
-            // Auto-start download (mimic ytmp3.gg flow)
-            await multiDownloadService.startDownload();
+            // Auto-start download
+            multiDownloadService.startAllDownloads();
 
         } catch (error) {
             console.error('[Multi Downloader] Error adding URLs:', error);
@@ -219,7 +217,8 @@ function init() {
     initFormatToggle();
     initAudioDropdown({ dropdownId: 'multi-audio-track-dropdown', hiddenInputId: 'multi-audio-track-value' });
 
-    // Initialize the renderer
+    // Initialize the renderer (batch strategy by default)
+    multipleDownloadRenderer.useBatchStrategy();
     multipleDownloadRenderer.init();
 
     // Initialize form handlers

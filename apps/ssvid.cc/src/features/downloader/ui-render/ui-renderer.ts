@@ -61,8 +61,7 @@ export function render(state: AppState, prevState?: AppState): void {
     renderConversionStatus(state, prevState);
   }
 
-  // Update Multiple Download UI
-  multipleDownloadRenderer.render();
+  // Multiple Download UI is now store-driven (no manual render needed)
 }
 
 /**

@@ -1,0 +1,168 @@
+
+import { apiV3, v3Config } from '../../../../api/v3';
+import { mapToV3DownloadRequest } from '@downloader/core';
+import { retryWithBackoff, RETRY_CONFIGS, isTimeoutError } from '../conversion/retry-helper';
+import { VideoItemSettings, ProgressPhase } from '../../state/multiple-download-types';
+
+export interface DownloadCallbacks {
+    onPhaseChange: (phase: ProgressPhase) => void;
+    onProgress: (progress: number, phase?: ProgressPhase) => void;
+    onComplete: (downloadUrl: string, filename?: string) => void;
+    onError: (message: string) => void;
+    onAudioTrackInfo?: (languages: string[], changed: boolean) => void;
+}
+
+export interface DownloadConfig {
+    url: string;
+    settings: VideoItemSettings;
+    signal: AbortSignal;
+    callbacks: DownloadCallbacks;
+}
+
+const POLLING_INTERVAL = 2000;
+const MAX_POLL_ITERATIONS = 5400; // 3 hours at 2s intervals
+const MAX_JOB_RETRIES = 2;
+
+export async function runSingleDownload(config: DownloadConfig): Promise<void> {
+    const { url, settings, signal, callbacks } = config;
+
+    // Phase 1: Extract (create job)
+    callbacks.onPhaseChange('extracting');
+
+    const jobResponse = await extractWithRetries(url, settings, signal);
+
+    if (signal.aborted) return;
+
+    const { statusUrl, title, audioLanguageChanged, availableAudioLanguages } = jobResponse;
+
+    if (!statusUrl) {
+        throw new Error('No status URL returned');
+    }
+
+    // Report audio track info if available
+    if (callbacks.onAudioTrackInfo && availableAudioLanguages) {
+        callbacks.onAudioTrackInfo(availableAudioLanguages, audioLanguageChanged || false);
+    }
+
+    // Phase 2: Poll status
+    callbacks.onPhaseChange('processing');
+    await pollStatus(statusUrl, signal, callbacks);
+}
+
+async function extractWithRetries(
+    url: string,
+    settings: VideoItemSettings,
+    signal: AbortSignal
+): Promise<any> {
+    const request = buildV3Request(url, settings);
+
+    return retryWithBackoff(
+        async () => {
+            if (signal.aborted) throw new DOMException('Aborted', 'AbortError');
+            return apiV3.createJob(request);
+        },
+        RETRY_CONFIGS.extracting
+    );
+}
+
+async function pollStatus(
+    statusUrl: string,
+    signal: AbortSignal,
+    callbacks: DownloadCallbacks
+): Promise<void> {
+    const pollingInterval = v3Config.timeout.pollingInterval || POLLING_INTERVAL;
+    const { maxConsecutiveErrors } = RETRY_CONFIGS.polling;
+    let consecutiveErrors = 0;
+    let jobRetries = 0;
+    let lastProgress = 0;
+
+    for (let i = 0; i < MAX_POLL_ITERATIONS; i++) {
+        if (signal.aborted) return;
+
+        try {
+            const statusData = await apiV3.getStatusByUrl(statusUrl);
+            consecutiveErrors = 0;
+
+            // Progress floor - never go backwards
+            const progress = statusData.progress || 0;
+            if (progress > lastProgress) {
+                lastProgress = progress;
+            }
+
+            // Phase detection
+            let phase: ProgressPhase = 'processing';
+            if (statusData.detail) {
+                if (statusData.detail.video === 100 && statusData.detail.audio === 100) {
+                    phase = 'merging';
+                }
+            }
+
+            callbacks.onProgress(lastProgress, phase);
+
+            if (statusData.status === 'completed') {
+                if (statusData.downloadUrl) {
+                    const filename = statusData.title
+                        ? `${statusData.title}.${getExtension(callbacks)}`
+                        : undefined;
+                    callbacks.onComplete(statusData.downloadUrl, filename);
+                    return;
+                }
+                throw new Error('Completed but no download URL');
+            }
+
+            if (statusData.status === 'error') {
+                if (jobRetries < MAX_JOB_RETRIES) {
+                    jobRetries++;
+                    console.warn(`[DownloadRunner] Job error, retrying (${jobRetries}/${MAX_JOB_RETRIES})`);
+                    // Continue polling - server may recover
+                } else {
+                    throw new Error(statusData.jobError || 'Job failed');
+                }
+            }
+        } catch (error: any) {
+            if (signal.aborted || error.name === 'AbortError') return;
+
+            // Timeout is NOT an error - continue polling
+            if (isTimeoutError(error)) {
+                await sleep(pollingInterval);
+                continue;
+            }
+
+            // Job error from API - check retries
+            if (error.isJobError || error.message?.includes('Job failed')) {
+                throw error;
+            }
+
+            consecutiveErrors++;
+            if (consecutiveErrors >= maxConsecutiveErrors) {
+                throw new Error('Network error - please try again');
+            }
+        }
+
+        await sleep(pollingInterval);
+    }
+
+    throw new Error('Download timed out');
+}
+
+function buildV3Request(url: string, settings: VideoItemSettings) {
+    const isAudio = settings.format === 'mp3';
+
+    return mapToV3DownloadRequest(url, {
+        downloadMode: isAudio ? 'audio' : 'video',
+        videoQuality: settings.videoQuality || settings.quality?.replace('p', '') || '720',
+        youtubeVideoContainer: isAudio ? undefined : 'mp4',
+        audioFormat: isAudio ? (settings.audioFormat || 'mp3') : undefined,
+        audioBitrate: settings.audioBitrate || '128',
+        trackId: settings.audioTrack,
+    });
+}
+
+function getExtension(callbacks: DownloadCallbacks): string {
+    // Default, actual extension comes from server
+    return 'mp4';
+}
+
+function sleep(ms: number): Promise<void> {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}

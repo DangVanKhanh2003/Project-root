@@ -1,413 +1,261 @@
 
 import { api } from '../../../../../api';
-import { apiV3, v3Config } from '../../../../../api/v3';
-import { isYouTubeUrl, mapToV3DownloadRequest } from '@downloader/core';
-import { retryWithBackoff, RETRY_CONFIGS, isTimeoutError } from '../../conversion/retry-helper';
-import { isMobileDevice } from '../../../../../utils';
-import {
-    addVideoItems,
-    updateVideoItem,
-    setGlobalStatus,
-    updateGlobalProgress,
-    setMultipleDownloadMode
-} from '../../../state/multiple-download-actions';
-import { getState as getAppState } from '../../../state/index';
+import { extractPlaylistId, isPlaylistUrl, PlaylistDto } from '@downloader/core';
+import { videoStore } from '../../../state/video-store';
 import { VideoItem, VideoItemSettings } from '../../../state/multiple-download-types';
 import { VideoMeta } from '../../../state/types';
+import { DownloadQueue } from '../download-queue';
+import { runSingleDownload } from '../download-runner';
+import { fetchMetadataBatch } from '../metadata-fetcher';
+import { parseYouTubeURLs, generateItemId, normalizeURL } from '../url-parser';
 
 export class MultiDownloadService {
-    private abortControllers: Map<string, AbortController> = new Map();
-    private isProcessingMobile = false;
+    private queue = new DownloadQueue(5);
 
-    /**
-     * Parse URLs from text
-     */
-    private parseVideoUrls(text: string): string[] {
-        return text.split(/[\s,]+/).filter(url => isYouTubeUrl(url));
-    }
+    // ==========================================
+    // Add URLs (batch mode)
+    // ==========================================
 
-    /**
-     * Add URLs to the list (V3 flow - no validation layer)
-     * Uses youtubePublicApi for metadata fetching
-     */
-    async addUrls(rawText: string) {
-        setGlobalStatus('analyzing');
-        const urls = this.parseVideoUrls(rawText);
+    async addUrls(rawText: string, globalSettings?: Partial<VideoItemSettings>): Promise<void> {
+        const parsed = parseYouTubeURLs(rawText);
+        console.log('[MultiDownloadService] Parsed URLs:', parsed.length, parsed);
 
-        if (urls.length === 0) {
-            setGlobalStatus('idle');
-            return;
-        }
+        if (parsed.length === 0) return;
 
-        // 1. Create initial items with 'fetching_metadata' status (Skeleton)
-        const newItems: VideoItem[] = urls.map(url => {
-            // Generate ID deterministically or randomly
-            const id = Date.now().toString(36) + Math.random().toString(36).substr(2);
-            return {
-                id,
-                url,
-                meta: {
-                    title: 'Loading...',
-                    originalUrl: url,
-                    status: 'analyzing', // will be used for skeleton
-                    author: '',
-                    thumbnail: '', // Empty thumbnail for skeleton
-                    duration: 0,
-                    url: url,
-                    vid: '',
-                    source: 'youtube',
-                    isFakeData: true
-                },
-                status: 'fetching_metadata',
-                progress: 0,
-                settings: { format: 'mp4', quality: '720p' },
-                isSelected: true
-            };
-        });
+        // Filter out URLs already in store
+        const newParsed = parsed.filter(p => !videoStore.hasUrl(p.url));
+        console.log('[MultiDownloadService] New URLs (after dedup):', newParsed.length);
+        if (newParsed.length === 0) return;
 
-        addVideoItems(newItems);
+        // 1. Create skeleton items
+        const newItems: VideoItem[] = newParsed.map(p => ({
+            id: generateItemId(p.videoId),
+            url: p.url,
+            meta: {
+                title: 'Loading...',
+                originalUrl: p.url,
+                status: 'analyzing',
+                author: '',
+                thumbnail: '',
+                duration: 0,
+                url: p.url,
+                vid: p.videoId || '',
+                source: 'youtube',
+                isFakeData: true,
+            },
+            status: 'fetching_metadata' as const,
+            progress: 0,
+            settings: {
+                format: globalSettings?.format || 'mp4',
+                quality: globalSettings?.quality || '720p',
+                audioFormat: globalSettings?.audioFormat,
+                audioBitrate: globalSettings?.audioBitrate,
+                videoQuality: globalSettings?.videoQuality,
+                audioTrack: globalSettings?.audioTrack,
+            },
+            isSelected: true,
+            isDownloaded: false,
+        }));
 
-        // 2. Fetch metadata in parallel (with concurrency limit ideally, but simple for now)
-        // We update items as they finish
-        let successCount = 0;
-
+        // Add to store (triggers 'item:added' per item)
         for (const item of newItems) {
-            try {
-                const result = await api.getMetadataYoutube(item.url);
+            videoStore.addItem(item);
+        }
 
-                if (result.ok && result.data) {
-                    const data = result.data as any;
-                    // FIX: Handle flat structure (oEmbed-like) or nested meta
-                    // User logs show flat structure with camelCase keys (authorName, thumbnailUrl)
-
-                    const title = data.title || data.meta?.title || 'Unknown Video';
-                    const author = data.authorName || data.author_name || data.meta?.author || 'Unknown Channel';
-                    const thumbnail = data.thumbnailUrl || data.thumbnail_url || data.meta?.thumbnail || '';
-                    const duration = data.duration || data.meta?.duration || 0;
-                    const vid = data.vid || data.meta?.vid || this.extractVideoId(item.url);
-
-                    const meta: VideoMeta = {
-                        title: title,
-                        originalUrl: item.url,
-                        status: 'ready',
-                        author: author,
-                        thumbnail: thumbnail,
-                        duration: duration,
-                        url: item.url,
-                        vid: vid,
-                        source: 'youtube',
-                        isFakeData: false
-                    };
-
-                    updateVideoItem(item.id, {
-                        meta,
-                        status: 'ready',
-                        formats: data.formats // If available
-                    });
-                    successCount++;
+        // 2. Fetch metadata in parallel
+        // updateMetadata auto-sets status to 'ready' when current status is 'fetching_metadata'
+        await fetchMetadataBatch(
+            newItems.map(i => ({ id: i.id, url: i.url })),
+            (result) => {
+                if (result.success && result.meta) {
+                    videoStore.updateMetadata(result.id, result.meta);
                 } else {
-                    updateVideoItem(item.id, { status: 'error', error: 'Metadata check failed' });
+                    videoStore.setError(result.id, result.error || 'Failed to fetch info');
                 }
-            } catch (error: any) {
-                console.error(`Error fetching metadata for ${item.url}:`, error);
-                updateVideoItem(item.id, { status: 'error', error: error.message || 'Failed to fetch info' });
             }
-            // Small delay to prevent rate limiting
-            await new Promise(resolve => setTimeout(resolve, 100));
+        );
+    }
+
+    // ==========================================
+    // Add Playlist
+    // ==========================================
+
+    async addPlaylist(playlistUrl: string, globalSettings?: Partial<VideoItemSettings>): Promise<{
+        title: string;
+        thumbnail: string;
+        itemCount: number;
+    }> {
+        const playlistId = extractPlaylistId(playlistUrl);
+        if (!playlistId) {
+            throw new Error('Could not extract playlist ID');
         }
 
-        const state = getAppState();
-        // Update global status based on results
-        if (successCount > 0) {
-            setGlobalStatus('ready');
-        } else if (state.items.filter(i => i.status === 'ready').length > 0) {
-            setGlobalStatus('ready');
-        } else {
-            setGlobalStatus('error');
+        const result = await api.playlistV3.extractPlaylist(playlistId);
+
+        if (!result.ok || !result.data) {
+            throw new Error(result.message || 'Failed to fetch playlist');
+        }
+
+        const playlist = result.data as PlaylistDto;
+        const groupId = playlistId;
+        const groupTitle = playlist.title || 'Playlist';
+
+        // Create items with preloaded metadata
+        const videoItems: VideoItem[] = (playlist.items || []).map((video: any) => ({
+            id: generateItemId(video.id),
+            url: normalizeURL(video.id),
+            meta: {
+                title: video.title || 'Unknown Title',
+                originalUrl: `https://www.youtube.com/watch?v=${video.id}`,
+                status: 'ready',
+                author: video.author || 'Unknown',
+                thumbnail: video.thumbnail || '',
+                duration: video.duration || 0,
+                url: `https://www.youtube.com/watch?v=${video.id}`,
+                vid: video.id,
+                source: 'youtube',
+                isFakeData: false,
+            },
+            status: 'ready' as const,
+            progress: 0,
+            settings: {
+                format: globalSettings?.format || 'mp4',
+                quality: globalSettings?.quality || '720p',
+                audioFormat: globalSettings?.audioFormat,
+                audioBitrate: globalSettings?.audioBitrate,
+                videoQuality: globalSettings?.videoQuality,
+                audioTrack: globalSettings?.audioTrack,
+            },
+            isSelected: true,
+            isDownloaded: false,
+            groupId,
+            groupTitle,
+        }));
+
+        for (const item of videoItems) {
+            videoStore.addItem(item);
+        }
+
+        return {
+            title: groupTitle,
+            thumbnail: playlist.thumbnail || '',
+            itemCount: videoItems.length,
+        };
+    }
+
+    // ==========================================
+    // Download Control
+    // ==========================================
+
+    startDownload(id: string): void {
+        const item = videoStore.getItem(id);
+        if (!item) return;
+
+        videoStore.setStatus(id, 'queued');
+
+        this.queue.add(id, (signal) => {
+            return this.executeDownload(id, signal);
+        }).catch(() => {
+            // Cancelled or error — handled in executeDownload
+        });
+    }
+
+    startAllDownloads(): void {
+        const items = videoStore.getDownloadableItems();
+        for (const item of items) {
+            this.startDownload(item.id);
         }
     }
 
-    private extractVideoId(url: string): string {
-        const match = url.match(/[?&]v=([^&]+)/);
-        return match ? match[1] : '';
+    startSelectedDownloads(): void {
+        const items = videoStore.getSelectedDownloadable();
+        for (const item of items) {
+            this.startDownload(item.id);
+        }
     }
 
-    /**
-     * Start Download
-     * Dispatches based on device type
-     */
-    async startDownload(itemId?: string) {
-        if (isMobileDevice()) {
-            if (itemId) {
-                await this.processSingleMobileItem(itemId);
-            } else {
-                await this.processAllMobileItems();
+    cancelDownload(id: string): void {
+        this.queue.cancel(id);
+        const item = videoStore.getItem(id);
+        if (item && item.abortController) {
+            item.abortController.abort();
+        }
+        videoStore.setCancelled(id);
+    }
+
+    cancelAllDownloads(): void {
+        // Cancel all items that are queued/downloading/converting
+        const active = videoStore.getItemsByStatus('queued', 'downloading', 'converting');
+        for (const item of active) {
+            if (item.abortController) {
+                item.abortController.abort();
             }
-        } else {
-            // Desktop: ZIP Flow (itemId is ignored, we download all "ready" items)
-            await this.startDesktopZipSession();
+            videoStore.setCancelled(item.id);
         }
+        this.queue.cancelAll();
     }
 
-    /**
-     * Cancel Download
-     */
-    cancelDownload(itemId?: string) {
-        if (itemId) {
-            const controller = this.abortControllers.get(itemId);
-            if (controller) {
-                controller.abort();
-                this.abortControllers.delete(itemId);
-                updateVideoItem(itemId, { status: 'cancelled' });
-            }
-        } else {
-            // Cancel All
-            this.abortControllers.forEach(controller => controller.abort());
-            this.abortControllers.clear();
-
-            setGlobalStatus('idle');
-        }
+    retryDownload(id: string): void {
+        videoStore.setStatus(id, 'ready');
+        this.startDownload(id);
     }
 
-    // ============================================================
-    // MOBILE FLOW (Sequential / Individual)
-    // ============================================================
+    // ==========================================
+    // Private
+    // ==========================================
 
-    private async processAllMobileItems() {
-        if (this.isProcessingMobile) return;
-        this.isProcessingMobile = true;
-        setGlobalStatus('downloading');
-
-        const readyItems = this.getReadyItems();
-
-        // Simple sequential processing
-        for (const item of readyItems) {
-            // Check if cancelled or state changed
-            const currentItem = this.getVideoItemById(item.id);
-            if (!currentItem || currentItem.status !== 'ready') continue;
-
-            await this.processSingleMobileItem(item.id);
-        }
-
-        this.isProcessingMobile = false;
-
-        // Check if all done
-        const remaining = this.getReadyItems();
-        if (remaining.length === 0) {
-            setGlobalStatus('completed');
-        } else {
-            setGlobalStatus('ready'); // Partial completion or paused
-        }
-    }
-
-    /**
-     * Process single mobile item using V3 API
-     * Same as desktop V3 flow - Create Job -> Poll Status
-     */
-    private async processSingleMobileItem(itemId: string) {
-        const item = this.getVideoItemById(itemId);
+    private async executeDownload(id: string, signal: AbortSignal): Promise<void> {
+        const item = videoStore.getItem(id);
         if (!item) return;
 
         const controller = new AbortController();
-        this.abortControllers.set(itemId, controller);
+        videoStore.setAbortController(id, controller);
+
+        // Link the queue signal to our controller
+        signal.addEventListener('abort', () => controller.abort(), { once: true });
+
+        videoStore.setStatus(id, 'converting');
 
         try {
-            // Use V3 download flow (same as desktop)
-            await this.processItemV3(itemId);
+            await runSingleDownload({
+                url: item.meta.url || item.url,
+                settings: item.settings,
+                signal: controller.signal,
+                callbacks: {
+                    onPhaseChange: (phase) => {
+                        videoStore.updateProgress(id, item.progress || 0, phase);
+                    },
+                    onProgress: (progress, phase) => {
+                        videoStore.updateProgress(id, progress, phase);
+                    },
+                    onComplete: (downloadUrl, filename) => {
+                        videoStore.setCompleted(id, downloadUrl, filename);
+                    },
+                    onError: (message) => {
+                        videoStore.setError(id, message);
+                    },
+                    onAudioTrackInfo: (languages, changed) => {
+                        videoStore.setAudioLanguages(id, languages);
+                        const currentItem = videoStore.getItem(id);
+                        if (currentItem) {
+                            currentItem.audioLanguageChanged = changed;
+                        }
+                    },
+                },
+            });
         } catch (error: any) {
-            if (error.name === 'AbortError') {
-                updateVideoItem(itemId, { status: 'cancelled' });
+            if (error.name === 'AbortError' || signal.aborted) {
+                videoStore.setCancelled(id);
             } else {
-                updateVideoItem(itemId, { status: 'error', error: error.message });
+                videoStore.setError(id, error.message || 'Download failed');
             }
         } finally {
-            this.abortControllers.delete(itemId);
+            videoStore.setAbortController(id, undefined);
         }
     }
 
-    // ============================================================
-    // DESKTOP FLOW (ZIP / Orchestrator)
-    // ============================================================
-
-    /**
-     * Start Desktop "Zip" Session (now batch V3 download)
-     */
-    private queue: string[] = [];
-    private activeDownloads = 0;
-    private readonly MAX_CONCURRENT = 5;
-
-    /**
-     * Start Batch Download (formerly Desktop Zip)
-     */
-    private async startDesktopZipSession() {
-        const state = getAppState();
-        const items = state.items || [];
-        // Filter only items that allow downloading (Ready or Error)
-        // Exclude 'converting', 'downloading' (already active) and 'completed' (already done)
-        const selectedItems = items.filter(i =>
-            i.isSelected &&
-            (i.status === 'ready' || i.status === 'error' || i.status === 'cancelled')
-        );
-
-        if (selectedItems.length === 0) {
-            return;
-        }
-
-        setGlobalStatus('downloading');
-
-        // Append to queue (avoid duplicates)
-        const newQueueItems = selectedItems.filter(i => !this.queue.includes(i.id));
-        this.queue.push(...newQueueItems.map(i => i.id));
-
-        // Visually set them to queued
-        newQueueItems.forEach(i => {
-            updateVideoItem(i.id, { status: 'queued' });
-        });
-
-        // Trigger processing
-        this.processQueue();
-    }
-
-    /**
-     * Process the download queue
-     */
-    private processQueue() {
-        while (this.activeDownloads < this.MAX_CONCURRENT && this.queue.length > 0) {
-            const itemId = this.queue.shift();
-            if (itemId) {
-                this.activeDownloads++;
-                this.processItemV3(itemId).finally(() => {
-                    this.activeDownloads--;
-                    this.checkCompletion();
-                    this.processQueue();
-                });
-            }
-        }
-    }
-
-    /**
-     * Check if all downloads are complete
-     */
-    private checkCompletion() {
-        if (this.activeDownloads === 0 && this.queue.length === 0) {
-            setGlobalStatus('ready');
-        }
-    }
-
-    /**
-     * Process a single V3 item (with retry on createJob)
-     */
-    private async processItemV3(itemId: string) {
-        const item = this.getVideoItemById(itemId);
-        if (!item || item.status === 'cancelled') return;
-
-        try {
-            updateVideoItem(itemId, { status: 'converting', progress: 0 });
-
-            // 1. Create Job with retry (same as convert-logic-v3)
-            const settings = item.settings || { format: 'mp4', quality: '720p' };
-            const isAudio = settings.format === 'mp3';
-            const request = mapToV3DownloadRequest(item.meta.url, {
-                downloadMode: isAudio ? 'audio' : 'video',
-                videoQuality: settings.quality?.replace('p', '') || '720',
-                youtubeVideoContainer: isAudio ? undefined : settings.format,
-                audioFormat: isAudio ? settings.format : undefined,
-                audioBitrate: '128',
-            });
-
-            const jobResponse = await retryWithBackoff(
-                () => apiV3.createJob(request),
-                RETRY_CONFIGS.extracting
-            );
-
-            const { statusUrl } = jobResponse;
-
-            if (!statusUrl) {
-                throw new Error('No status URL returned');
-            }
-
-            // 2. Poll Status with consecutive error tracking
-            await this.pollV3Status(itemId, statusUrl);
-
-        } catch (error: any) {
-            if (error.name === 'AbortError') return;
-            console.error('Download error for', itemId, error);
-            updateVideoItem(itemId, {
-                status: 'error',
-                error: error.message || 'Download failed'
-            });
-        }
-    }
-
-    /**
-     * Poll V3 Job Status (with consecutive error tracking like convert-logic-v3)
-     */
-    private async pollV3Status(itemId: string, statusUrl: string) {
-        const pollingInterval = v3Config.timeout.pollingInterval;
-        const { maxConsecutiveErrors } = RETRY_CONFIGS.polling;
-        let consecutiveErrors = 0;
-
-        while (true) {
-            const currentItem = this.getVideoItemById(itemId);
-            if (!currentItem || currentItem.status === 'cancelled') return;
-
-            try {
-                const statusData = await apiV3.getStatusByUrl(statusUrl);
-
-                // Reset consecutive errors on success
-                consecutiveErrors = 0;
-
-                if (statusData.progress) {
-                    updateVideoItem(itemId, { progress: statusData.progress });
-                }
-
-                if (statusData.status === 'completed') {
-                    if (statusData.downloadUrl) {
-                        updateVideoItem(itemId, {
-                            status: 'completed',
-                            progress: 100,
-                            downloadUrl: statusData.downloadUrl,
-                            filename: statusData.title ? `${statusData.title}.mp4` : undefined
-                        });
-                        return;
-                    }
-                    throw new Error('Completed but no download URL');
-                } else if (statusData.status === 'error') {
-                    throw new Error(statusData.jobError || 'Job failed');
-                }
-            } catch (error: any) {
-                // Timeout is NOT an error - continue polling
-                if (isTimeoutError(error)) {
-                    continue;
-                }
-
-                // Job error from API - stop immediately
-                if (error.isJobError || error.response?.status === 'error') {
-                    throw error;
-                }
-
-                // Network/API error - track consecutive errors
-                consecutiveErrors++;
-                console.warn(`[MultiDownload] Poll error (${consecutiveErrors}/${maxConsecutiveErrors}):`, error);
-
-                if (consecutiveErrors >= maxConsecutiveErrors) {
-                    throw new Error('Network error - please try again');
-                }
-            }
-
-            await new Promise(resolve => setTimeout(resolve, pollingInterval));
-        }
-    }
-
-    private getVideoItemById(id: string): VideoItem | undefined {
-        const state = getAppState();
-        return state.items?.find(i => i.id === id);
-    }
-
-    private getReadyItems(): VideoItem[] {
-        const state = getAppState();
-        // Filter items that are ready for download
-        return state.items?.filter(i => i.status === 'ready' || i.status === 'error') || [];
+    getQueueStatus() {
+        return this.queue.getStatus();
     }
 }
 

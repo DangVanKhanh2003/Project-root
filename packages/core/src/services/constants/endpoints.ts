@@ -91,8 +91,8 @@ export const V3_ENDPOINTS = {
   /** Create download job - POST /api/download */
   DOWNLOAD: '/api/download',
 
-  /** V3 Playlist extraction - POST /api/playlist */
-  PLAYLIST: '/api/playlist',
+  /** V3 Playlist extraction - GET /playlist?id={playlistId} (yt-meta) */
+  PLAYLIST: '/playlist',
 
   /** Get job status - GET /api/status/:id */
   STATUS: '/api/status',

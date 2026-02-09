@@ -7,11 +7,10 @@
 import './styles/index.css';
 
 // Import API and services
-import { api } from './api';
+import { multiDownloadService } from './features/downloader/logic/multiple-download/services/multi-download-service';
 import { multipleDownloadRenderer } from './features/downloader/ui-render/multiple-download/multiple-download-renderer';
-import { setMultipleDownloadMode, addVideoItems } from './features/downloader/state/multiple-download-actions';
-import { VideoItem } from './features/downloader/state/multiple-download-types';
-import { isPlaylistUrl, extractPlaylistId, PlaylistDto, VerifiedResult } from '@downloader/core';
+import { VideoItemSettings } from './features/downloader/state/multiple-download-types';
+import { isPlaylistUrl } from '@downloader/core';
 import { initAudioDropdown } from './features/downloader/ui-render/dropdown-logic';
 
 /**
@@ -58,9 +57,6 @@ function initMobileMenu() {
     });
 }
 
-/**
- * Initialize format toggle
- */
 /**
  * Initialize format toggle
  */
@@ -141,29 +137,42 @@ function initInputActions() {
 }
 
 /**
- * Get current format settings
+ * Get current format settings from UI
  */
-function getCurrentSettings() {
+function getCurrentSettings(): Partial<VideoItemSettings> {
     const activeFormatBtn = document.querySelector('.multi-format-toggle .multi-format-btn.active');
-
     const qualitySelectMp3 = document.getElementById('multi-quality-select-mp3') as HTMLSelectElement | null;
     const qualitySelectMp4 = document.getElementById('multi-quality-select-mp4') as HTMLSelectElement | null;
 
-    const format = activeFormatBtn?.getAttribute('data-format') || 'mp4';
-
-    let qualityValue = 'mp4-720';
-    if (format === 'mp3' && qualitySelectMp3) {
-        qualityValue = qualitySelectMp3.value;
-    } else if (qualitySelectMp4) {
-        qualityValue = qualitySelectMp4.value;
-    }
+    const format = (activeFormatBtn?.getAttribute('data-format') || 'mp4') as 'mp3' | 'mp4';
 
     let quality = '720p';
-    if (qualityValue.includes('-')) {
-        quality = qualityValue.split('-')[1] + (format === 'mp4' ? 'p' : 'kbps');
+    let audioFormat: string | undefined;
+    let audioBitrate: string | undefined;
+    let videoQuality: string | undefined;
+
+    if (format === 'mp3' && qualitySelectMp3) {
+        const val = qualitySelectMp3.value;
+        if (val.includes('-')) {
+            audioBitrate = val.split('-')[1];
+            quality = audioBitrate + 'kbps';
+        }
+        audioFormat = 'mp3';
+    } else if (qualitySelectMp4) {
+        const val = qualitySelectMp4.value;
+        if (val.includes('-')) {
+            videoQuality = val.split('-')[1];
+            quality = videoQuality + 'p';
+        }
     }
 
-    return { format: format as 'mp3' | 'mp4', quality };
+    return {
+        format,
+        quality,
+        audioFormat,
+        audioBitrate,
+        videoQuality,
+    };
 }
 
 /**
@@ -214,67 +223,24 @@ function initPlaylistForm() {
         fetchPlaylistBtn.innerHTML = '<span>Loading...</span>';
 
         try {
-            const playlistId = extractPlaylistId(url);
-            if (!playlistId) {
-                throw new Error('Could not extract playlist ID');
-            }
+            const settings = getCurrentSettings();
 
-            // Fetch playlist using V3 API
-            const result = await api.playlistV3.extractPlaylist(playlistId);
-
-            if (!result.ok || !result.data) {
-                throw new Error(result.message || 'Failed to fetch playlist');
-            }
-
-            const playlist = result.data as PlaylistDto;
+            // Add playlist through service (store-driven — renderer auto-updates)
+            const info = await multiDownloadService.addPlaylist(url, settings);
 
             // Show playlist info
             if (playlistInfoSection && playlistInfo) {
                 playlistInfoSection.style.display = 'block';
                 playlistInfo.innerHTML = `
-          <div class="playlist-info-content">
-            <img src="${playlist.thumbnail || '/placeholder-playlist.png'}" alt="${playlist.title}" class="playlist-thumbnail">
-            <div class="playlist-details">
-              <h3 class="playlist-title">${playlist.title}</h3>
-              <p class="playlist-meta">${playlist.items?.length || 0} videos</p>
-            </div>
-          </div>
-        `;
+                    <div class="playlist-info-content">
+                        <img src="${info.thumbnail || '/placeholder-playlist.png'}" alt="${info.title}" class="playlist-thumbnail">
+                        <div class="playlist-details">
+                            <h3 class="playlist-title">${info.title}</h3>
+                            <p class="playlist-meta">${info.itemCount} videos</p>
+                        </div>
+                    </div>
+                `;
             }
-
-            // Enable playlist mode
-            setMultipleDownloadMode(true, 'playlist');
-
-            // Get current format settings
-            const settings = getCurrentSettings();
-
-            // Convert playlist videos to VideoItems
-            const videoItems: VideoItem[] = (playlist.items || []).map((video: any, index: number) => ({
-                id: video.id || `video-${index}`,
-                url: `https://www.youtube.com/watch?v=${video.id}`,
-                meta: {
-                    videoId: video.id,
-                    title: video.title || 'Unknown Title',
-                    thumbnail: video.thumbnail || '',
-                    duration: video.duration || 0,
-                    author: video.author || 'Unknown',
-                    originalUrl: `https://www.youtube.com/watch?v=${video.id}`,
-                    status: 'ready',
-                },
-                status: 'ready' as const,
-                progress: 0,
-                settings: {
-                    format: settings.format,
-                    quality: settings.quality,
-                },
-                isSelected: true,
-            }));
-
-            // Add videos to state
-            addVideoItems(videoItems);
-
-            // Re-render
-            multipleDownloadRenderer.render();
 
         } catch (error) {
             console.error('[Playlist Downloader] Error fetching playlist:', error);
@@ -302,7 +268,8 @@ function init() {
     initInputActions();
     initAudioDropdown({ dropdownId: 'multi-audio-track-dropdown', hiddenInputId: 'multi-audio-track-value' });
 
-    // Initialize the renderer
+    // Initialize the renderer with playlist strategy
+    multipleDownloadRenderer.usePlaylistStrategy();
     multipleDownloadRenderer.init();
 
     // Initialize form handlers

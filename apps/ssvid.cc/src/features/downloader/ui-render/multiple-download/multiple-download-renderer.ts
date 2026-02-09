@@ -1,29 +1,28 @@
 
-import { getState, setRenderCallback } from '../../state/index';
-import { MultipleDownloadsState, VideoItem } from '../../state/multiple-download-types';
-import { removeVideoItem, updateVideoItem } from '../../state/multiple-download-actions';
+import { videoStore } from '../../state/video-store';
 import { multiDownloadService } from '../../logic/multiple-download/services/multi-download-service';
 import { VideoItemRenderer } from './video-item-renderer';
 import { MultiDownloadStrategy } from './multi-download-strategy';
+import { PlaylistStrategy } from './playlist-strategy';
+import { RendererStrategy } from './renderer-strategy.interface';
+import { createStoreChangeHandler } from './handle-store-change';
 import { isMobileDevice } from '../../../../utils';
 
 export class MultipleDownloadRenderer {
     private container: HTMLElement | null = null;
     private listContainer: HTMLElement | null = null;
     private controlsContainer: HTMLElement | null = null;
+    private headerEl: HTMLElement | null = null;
     private isInitialized = false;
-    private strategy = new MultiDownloadStrategy();
+    private strategy: RendererStrategy = new MultiDownloadStrategy();
+    private unsubscribe: (() => void) | null = null;
 
     init() {
         if (this.isInitialized) return;
 
-        // Create or find container
-        // We assume we inject into a specific placeholder or append to main content
-        // For now, let's try to find #multiple-downloads-container
         this.container = document.getElementById('multiple-downloads-container');
 
         if (!this.container) {
-            // Fallback: create it and append to main content area if possible
             const mainContent = document.getElementById('content-area') || document.querySelector('.hero-section');
             if (mainContent) {
                 this.container = document.createElement('div');
@@ -37,21 +36,55 @@ export class MultipleDownloadRenderer {
         if (this.container) {
             this.renderStructure();
             this.bindEvents();
+            this.subscribeToStore();
             this.isInitialized = true;
-
-            // Subscribe to state changes
-            setRenderCallback((state) => {
-                this.render();
-            });
         }
     }
+
+    setStrategy(strategy: RendererStrategy) {
+        this.strategy = strategy;
+    }
+
+    usePlaylistStrategy() {
+        this.strategy = new PlaylistStrategy();
+    }
+
+    useBatchStrategy() {
+        this.strategy = new MultiDownloadStrategy();
+    }
+
+    show() {
+        if (this.container) this.container.style.display = 'block';
+    }
+
+    hide() {
+        if (this.container) this.container.style.display = 'none';
+    }
+
+    destroy() {
+        if (this.unsubscribe) {
+            this.unsubscribe();
+            this.unsubscribe = null;
+        }
+        this.isInitialized = false;
+    }
+
+    // ==========================================
+    // Private
+    // ==========================================
 
     private renderStructure() {
         if (!this.container) return;
 
         this.container.innerHTML = `
             <div class="multi-download-header">
-                <h2>Multiple Downloads</h2>
+                <div class="multi-download-header-left">
+                    <label class="master-checkbox-label" style="${isMobileDevice() ? 'display:none' : ''}">
+                        <input type="checkbox" class="master-checkbox" checked>
+                    </label>
+                    <h2>Videos</h2>
+                    <span class="item-count-badge"></span>
+                </div>
                 <div class="multi-download-controls" id="multi-controls"></div>
             </div>
             <div class="multi-download-list" id="multi-list"></div>
@@ -60,11 +93,36 @@ export class MultipleDownloadRenderer {
 
         this.listContainer = this.container.querySelector('#multi-list');
         this.controlsContainer = this.container.querySelector('#multi-controls');
+        this.headerEl = this.container.querySelector('.multi-download-header');
+    }
+
+    private subscribeToStore() {
+        if (!this.listContainer || !this.controlsContainer) return;
+
+        const handleChange = createStoreChangeHandler({
+            listContainer: this.listContainer,
+            controlsContainer: this.controlsContainer,
+            strategy: this.strategy,
+            onCountsChanged: () => this.updateControls(),
+        });
+
+        this.unsubscribe = videoStore.subscribe((eventName, data) => {
+            // Show container when items exist
+            const count = videoStore.getCount();
+            if (count > 0) {
+                this.show();
+            } else if (count === 0) {
+                this.hide();
+            }
+
+            handleChange(eventName, data);
+        });
     }
 
     private bindEvents() {
         if (!this.container) return;
 
+        // Click delegation
         this.container.addEventListener('click', (e) => {
             const target = e.target as HTMLElement;
             const actionBtn = target.closest('[data-action]') as HTMLElement;
@@ -73,87 +131,159 @@ export class MultipleDownloadRenderer {
 
             const action = actionBtn.dataset.action;
             const id = actionBtn.dataset.id;
+            const groupId = actionBtn.dataset.groupId;
 
-            if (action === 'remove' && id) {
-                removeVideoItem(id);
-                // State update triggers render via callback
-            } else if (action === 'cancel' && id) {
-                multiDownloadService.cancelDownload(id);
-            } else if (action === 'download-all') {
-                multiDownloadService.startDownload();
-            } else if (action === 'cancel-all') {
-                multiDownloadService.cancelDownload();
-            } else if (action === 'retry' && id) {
-                // Retry logic (add to service if needed, currently assumes addUrls or startDownload)
-                multiDownloadService.startDownload(id);
-            } else if (action === 'save' && id) {
-                // Mobile explicit download button
-                // In strategy we used <a> tag with download attribute for completed items
-                // But if it's a button with data-action="save", we handle it here
-                multiDownloadService.startDownload(id);
+            switch (action) {
+                case 'remove':
+                    if (id) videoStore.removeItem(id);
+                    break;
+                case 'cancel':
+                    if (id) multiDownloadService.cancelDownload(id);
+                    break;
+                case 'cancel-all':
+                    multiDownloadService.cancelAllDownloads();
+                    break;
+                case 'download-all':
+                    multiDownloadService.startAllDownloads();
+                    break;
+                case 'download-selected':
+                    multiDownloadService.startSelectedDownloads();
+                    break;
+                case 'retry':
+                    if (id) multiDownloadService.retryDownload(id);
+                    break;
+                case 'convert':
+                    if (id) multiDownloadService.startDownload(id);
+                    break;
+                case 'toggle-group':
+                    if (groupId) this.toggleGroup(groupId);
+                    break;
+            }
+        });
+
+        // Change delegation (checkboxes, selects)
+        this.container.addEventListener('change', (e) => {
+            const target = e.target as HTMLElement;
+
+            // Item checkbox
+            if (target.classList.contains('item-checkbox')) {
+                const id = (target as HTMLInputElement).dataset.id;
+                if (id) videoStore.toggleSelect(id);
+                this.syncMasterCheckbox();
+                return;
+            }
+
+            // Master checkbox
+            if (target.classList.contains('master-checkbox')) {
+                const checked = (target as HTMLInputElement).checked;
+                if (checked) {
+                    videoStore.selectAll();
+                } else {
+                    videoStore.deselectAll();
+                }
+                return;
+            }
+
+            // Group checkbox
+            if (target.classList.contains('group-checkbox')) {
+                const groupId = (target as HTMLInputElement).dataset.groupId;
+                const checked = (target as HTMLInputElement).checked;
+                if (groupId) videoStore.setGroupSelection(groupId, checked);
+                return;
+            }
+
+            // Format select (playlist mode)
+            if (target.classList.contains('item-format-select')) {
+                const id = (target as HTMLSelectElement).dataset.id;
+                const value = (target as HTMLSelectElement).value as 'mp3' | 'mp4';
+                if (id) {
+                    videoStore.updateSettings(id, { format: value });
+                    // Re-render settings to swap quality dropdown
+                    const item = videoStore.getItem(id);
+                    if (item) {
+                        const el = this.listContainer?.querySelector(`.multi-video-item[data-id="${id}"]`) as HTMLElement;
+                        if (el) {
+                            const settingsEl = el.querySelector('.item-settings') as HTMLElement;
+                            if (settingsEl) {
+                                settingsEl.innerHTML = this.strategy.buildSettingsContent(item);
+                            }
+                        }
+                    }
+                }
+                return;
+            }
+
+            // Quality select (playlist mode)
+            if (target.classList.contains('item-quality-select')) {
+                const id = (target as HTMLSelectElement).dataset.id;
+                const field = (target as HTMLSelectElement).dataset.field;
+                const value = (target as HTMLSelectElement).value;
+                if (id && field) {
+                    videoStore.updateSettings(id, { [field]: value });
+                }
+                return;
             }
         });
     }
 
-    render() {
-        if (!this.isInitialized || !this.container || !this.listContainer || !this.controlsContainer) return;
-
-        const state = getState();
-        // Check if multiple downloads are enabled/active
-        if (!state.isEnabled && (!state.items || state.items.length === 0)) {
-            this.container.style.display = 'none';
-            return;
-        }
-
-        this.container.style.display = 'block';
-
-        // Render List
-        if (!state.items || state.items.length === 0) {
-            this.listContainer.innerHTML = '<div class="empty-list">No videos added yet.</div>';
-        } else {
-            this.listContainer.innerHTML = state.items.map(item => VideoItemRenderer.render(item, this.strategy)).join('');
-        }
-
-        // Render Controls (Download All button, etc.)
-        this.renderControls(state);
-    }
-
-    private renderControls(state: any) { // Type should be AppState/MultipleDownloadsState
+    private updateControls() {
         if (!this.controlsContainer) return;
 
-        const isDownloading = state.globalStatus === 'downloading' || state.globalStatus === 'analyzing';
-        const hasItems = state.items && state.items.length > 0;
+        const allItems = videoStore.getAllItems();
+        const count = allItems.length;
+        const selectedCount = videoStore.getSelectedCount();
         const isMobile = isMobileDevice();
+        const hasActive = allItems.some(i =>
+            i.status === 'downloading' || i.status === 'converting' || i.status === 'queued'
+        );
+        const downloadableCount = videoStore.getDownloadableItems().length;
+        const selectedDownloadableCount = videoStore.getSelectedDownloadable().length;
+
+        // Update count badge
+        const countBadge = this.container?.querySelector('.item-count-badge');
+        if (countBadge) {
+            countBadge.textContent = count > 0 ? `(${count})` : '';
+        }
 
         let html = '';
 
-        if (hasItems) {
-            if (isDownloading) {
-                // Basic Cancel All
-                html = `
-                    <button class="btn btn-danger" data-action="cancel-all">Cancel All</button>
-                    ${state.isZipAvailable && state.zipUrl ? `<a href="${state.zipUrl}" class="btn btn-success" download>Download ZIP</a>` : ''}
-                 `;
-            } else {
-                // Mobile: Hide "Download All" if we want them to click individual buttons?
-                // Or keep it as "Batch Download"?
-                // ytmp3.gg hides header controls on mobile.
-                if (isMobile) {
-                    html = ''; // Hide controls on mobile as per ytmp3.gg logic
-                } else {
+        if (count > 0) {
+            if (hasActive) {
+                html = `<button class="btn btn-danger" data-action="cancel-all">Cancel All</button>`;
+            } else if (!isMobile) {
+                if (selectedDownloadableCount > 0 && selectedDownloadableCount < downloadableCount) {
                     html = `
-                        <button class="btn btn-primary" data-action="download-all">Download All (${state.items.length})</button>
+                        <button class="btn btn-primary" data-action="download-selected">Download Selected (${selectedDownloadableCount})</button>
+                        <button class="btn btn-primary" data-action="download-all">Download All (${downloadableCount})</button>
                     `;
+                } else if (downloadableCount > 0) {
+                    html = `<button class="btn btn-primary" data-action="download-all">Download All (${downloadableCount})</button>`;
                 }
             }
         }
 
         this.controlsContainer.innerHTML = html;
+    }
 
-        // Hide header if no controls and no title needed? 
-        // ytmp3.gg: "Header (Download All) ... Ẩn hoàn toàn".
-        // If html is empty, maybe hiding the container padding validation?
-        // Let's keep it simple for now.
+    private syncMasterCheckbox() {
+        const masterCheckbox = this.container?.querySelector('.master-checkbox') as HTMLInputElement;
+        if (!masterCheckbox) return;
+
+        const allItems = videoStore.getAllItems();
+        const selectedCount = videoStore.getSelectedCount();
+
+        masterCheckbox.checked = selectedCount === allItems.length && allItems.length > 0;
+        masterCheckbox.indeterminate = selectedCount > 0 && selectedCount < allItems.length;
+    }
+
+    private toggleGroup(groupId: string) {
+        const groupEl = this.listContainer?.querySelector(`[data-group-id="${groupId}"].playlist-group`) as HTMLElement;
+        if (!groupEl) return;
+        groupEl.classList.toggle('collapsed');
+        const icon = groupEl.querySelector('.collapse-icon');
+        if (icon) {
+            icon.textContent = groupEl.classList.contains('collapsed') ? '▶' : '▼';
+        }
     }
 }
 

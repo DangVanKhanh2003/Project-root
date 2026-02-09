@@ -42,6 +42,7 @@ interface ApiConfig {
     baseUrlV1: string;
     baseUrlV2: string;
     baseUrlV3: string;
+    ytMetaBaseUrl: string;
     searchV2BaseUrl: string;
     youtubeStreamApiUrl: string;
     youtubeStreamApiEndpoint: string;
@@ -110,6 +111,9 @@ const environment: Environment = {
 
         // V3 API Base URL (YouTube Download API)
         baseUrlV3: import.meta.env.VITE_API_BASE_URL_V3 || 'https://hub.ytconvert.org',
+
+        // YT Meta API Base URL (playlist metadata)
+        ytMetaBaseUrl: import.meta.env.VITE_YT_META_BASE_URL || 'https://yt-meta.ytconvert.org',
 
         // Main API (currently uses V1 - for extract, convert, playlist, etc.)
         // Both dev and prod use production API (no local backend)
@@ -240,6 +244,14 @@ export function getApiBaseUrlV2(): string {
  */
 export function getApiBaseUrlV3(): string {
     return environment.api.baseUrlV3;
+}
+
+/**
+ * Get YT Meta API base URL (playlist metadata)
+ * @returns YT Meta base URL
+ */
+export function getYtMetaBaseUrl(): string {
+    return environment.api.ytMetaBaseUrl;
 }
 
 /**

@@ -17,18 +17,17 @@ import { mapV3PlaylistResponse } from '../../../mappers/v3/playlist.mapper';
 class V3PlaylistServiceImpl extends BaseService implements IV3PlaylistService {
     /**
      * Extract playlist videos
-     * POST /api/playlist
+     * GET /playlist?id={playlistId}
      */
-    async extractPlaylist(url: string, signal?: AbortSignal): Promise<PlaylistDto> {
-        if (!url || typeof url !== 'string') {
-            throw new Error('Invalid URL: URL must be a non-empty string');
+    async extractPlaylist(playlistId: string, signal?: AbortSignal): Promise<PlaylistDto> {
+        if (!playlistId || typeof playlistId !== 'string') {
+            throw new Error('Invalid playlist ID: must be a non-empty string');
         }
 
         const response = await this.makeRequest<any | V3ErrorResponse>({
-            method: 'POST',
-            url: V3_ENDPOINTS.PLAYLIST,
-            data: { url },
-            timeout: getTimeout(this.config, 'playlist'), // Reuse V1 playlist timeout or add new config
+            method: 'GET',
+            url: `${V3_ENDPOINTS.PLAYLIST}?id=${encodeURIComponent(playlistId)}`,
+            timeout: getTimeout(this.config, 'playlist'),
             signal,
         });
 

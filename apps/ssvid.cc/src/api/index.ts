@@ -24,7 +24,7 @@ import {
 } from '@downloader/core';
 
 // Import centralized environment configuration
-import { getApiBaseUrl, getApiBaseUrlV2, getSearchV2BaseUrl, getQueueApiUrl, getTimeout } from '../environment';
+import { getApiBaseUrl, getApiBaseUrlV2, getApiBaseUrlV3, getYtMetaBaseUrl, getSearchV2BaseUrl, getQueueApiUrl, getTimeout } from '../environment';
 
 // Import CAPTCHA dependencies
 import { CaptchaModal } from '@downloader/ui-shared';
@@ -33,6 +33,8 @@ import { loadCaptchaModalCSS } from '../loaders/css-loader';
 // API Configuration from environment.ts
 const API_BASE_URL = getApiBaseUrl();
 const API_V2_BASE_URL = getApiBaseUrlV2();
+const API_V3_BASE_URL = getApiBaseUrlV3();
+const YT_META_BASE_URL = getYtMetaBaseUrl();
 const SEARCH_V2_BASE_URL = getSearchV2BaseUrl();
 const QUEUE_API_BASE_URL = getQueueApiUrl();
 const API_TIMEOUT = getTimeout('default');
@@ -56,6 +58,18 @@ const queueHttpClient = createHttpClient({
   timeout: getTimeout('addQueue'),
 });
 
+// V3 HTTP Client (YouTube Download API - hub.ytconvert.org)
+const v3HttpClient = createHttpClient({
+  baseUrl: API_V3_BASE_URL,
+  timeout: getTimeout('v3CreateJob'),
+});
+
+// YT Meta HTTP Client (playlist metadata - yt-meta.ytconvert.org)
+const ytMetaHttpClient = createHttpClient({
+  baseUrl: YT_META_BASE_URL,
+  timeout: getTimeout('playlist'),
+});
+
 const apiConfig = {
   baseUrl: API_BASE_URL,
   timeout: API_TIMEOUT,
@@ -69,6 +83,16 @@ const searchV2ApiConfig = {
 const queueApiConfig = {
   baseUrl: QUEUE_API_BASE_URL,
   timeout: getTimeout('addQueue'),
+};
+
+const v3ApiConfig = {
+  baseUrl: API_V3_BASE_URL,
+  timeout: getTimeout('v3CreateJob'),
+};
+
+const ytMetaApiConfig = {
+  baseUrl: YT_META_BASE_URL,
+  timeout: getTimeout('playlist'),
 };
 
 // 2. Create JWT Store (namespaced to prevent collision) - MUST be created before verifier
@@ -91,11 +115,11 @@ const coreServices = {
   // Queue API using separate HTTP client (different domain)
   queue: createQueueService(queueHttpClient, queueApiConfig),
 
-  // Playlist V3
-  playlistV3: createV3PlaylistService(httpClient, apiConfig),
+  // Playlist V3 (uses YT Meta - yt-meta.ytconvert.org)
+  playlistV3: createV3PlaylistService(ytMetaHttpClient, ytMetaApiConfig),
 
-  // Download V3
-  downloadV3: createV3DownloadService(httpClient, apiConfig),
+  // Download V3 (uses V3 base URL - hub.ytconvert.org)
+  downloadV3: createV3DownloadService(v3HttpClient, v3ApiConfig),
 };
 
 // 4. Create Verifier (Domain Layer)
