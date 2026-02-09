@@ -53,10 +53,14 @@ export interface SearchPaginationDto {
  */
 export interface PlaylistDto {
   title: string;
+  thumbnail?: string;
   items: PlaylistItemDto[];
 }
 
 export interface PlaylistItemDto {
   id: string;
   title: string;
+  thumbnail?: string;
+  duration?: number;
+  author?: string;
 }

@@ -9,7 +9,7 @@ import type { IV3PlaylistService } from '../interfaces/playlist.interface';
 import { BaseService } from '../../base/base-service';
 import { V3_ENDPOINTS } from '../../constants/endpoints';
 import { getTimeout } from '../../../config/api-config.interface';
-import { mapPlaylistResponse } from '../../../mappers/v1/playlist.mapper'; // Re-use V1 mapper if compatible
+import { mapV3PlaylistResponse } from '../../../mappers/v3/playlist.mapper';
 
 /**
  * V3 Playlist Service Implementation
@@ -37,10 +37,7 @@ class V3PlaylistServiceImpl extends BaseService implements IV3PlaylistService {
         }
 
         // Adapt response to PlaylistDto
-        // Assuming V3 returns similar structure or we map it
-        // For now, re-using V1 mapper assuming V3 returns compatible data structure
-        // If V3 structure is different, we'll need a new mapper
-        return mapPlaylistResponse(response);
+        return mapV3PlaylistResponse(response);
     }
 
     /**

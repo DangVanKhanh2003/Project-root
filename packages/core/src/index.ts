@@ -130,6 +130,7 @@ export {
   isValidVideoId,
   extractVideoId,
   extractPlaylistId,
+  isPlaylistUrl,
   checkVideoExists,
   type VideoExistsResult,
 } from './utils/youtube-url-validator';

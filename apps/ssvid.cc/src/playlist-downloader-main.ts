@@ -11,7 +11,7 @@ import { api } from './api';
 import { multipleDownloadRenderer } from './features/downloader/ui-render/multiple-download/multiple-download-renderer';
 import { setMultipleDownloadMode, addVideoItems } from './features/downloader/state/multiple-download-actions';
 import { VideoItem } from './features/downloader/state/multiple-download-types';
-import { isPlaylistUrl, extractPlaylistId } from '@downloader/core';
+import { isPlaylistUrl, extractPlaylistId, PlaylistDto, VerifiedResult } from '@downloader/core';
 
 /**
  * Initialize mobile menu functionality
@@ -60,28 +60,15 @@ function initMobileMenu() {
 /**
  * Initialize format toggle
  */
+/**
+ * Initialize format toggle
+ */
 function initFormatToggle() {
-    const formatBtns = document.querySelectorAll('.format-toggle .format-btn');
-    const qualitySelect = document.getElementById('global-quality-select') as HTMLSelectElement | null;
+    const formatBtns = document.querySelectorAll('.multi-format-toggle .multi-format-btn');
+    const qualitySelectMp3 = document.getElementById('multi-quality-select-mp3') as HTMLSelectElement | null;
+    const qualitySelectMp4 = document.getElementById('multi-quality-select-mp4') as HTMLSelectElement | null;
 
-    if (!qualitySelect) return;
-
-    const mp4Options = `
-    <option value="mp4-1080">MP4 - 1080p</option>
-    <option value="mp4-720" selected>MP4 - 720p</option>
-    <option value="mp4-480">MP4 - 480p</option>
-    <option value="mp4-360">MP4 - 360p</option>
-  `;
-
-    const mp3Options = `
-    <option value="mp3-128" selected>MP3 - 128kbps</option>
-    <option value="mp3-192">MP3 - 192kbps</option>
-    <option value="mp3-320">MP3 - 320kbps</option>
-    <option value="ogg">OGG</option>
-    <option value="wav">WAV - Lossless</option>
-    <option value="opus">Opus</option>
-    <option value="m4a">M4A</option>
-  `;
+    if (!qualitySelectMp3 || !qualitySelectMp4) return;
 
     formatBtns.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -90,9 +77,11 @@ function initFormatToggle() {
 
             const format = btn.getAttribute('data-format');
             if (format === 'mp3') {
-                qualitySelect.innerHTML = mp3Options;
+                qualitySelectMp3.style.display = 'block';
+                qualitySelectMp4.style.display = 'none';
             } else {
-                qualitySelect.innerHTML = mp4Options;
+                qualitySelectMp3.style.display = 'none';
+                qualitySelectMp4.style.display = 'block';
             }
         });
     });
@@ -154,11 +143,19 @@ function initInputActions() {
  * Get current format settings
  */
 function getCurrentSettings() {
-    const activeFormatBtn = document.querySelector('.format-toggle .format-btn.active');
-    const qualitySelect = document.getElementById('global-quality-select') as HTMLSelectElement | null;
+    const activeFormatBtn = document.querySelector('.multi-format-toggle .multi-format-btn.active');
+
+    const qualitySelectMp3 = document.getElementById('multi-quality-select-mp3') as HTMLSelectElement | null;
+    const qualitySelectMp4 = document.getElementById('multi-quality-select-mp4') as HTMLSelectElement | null;
 
     const format = activeFormatBtn?.getAttribute('data-format') || 'mp4';
-    const qualityValue = qualitySelect?.value || 'mp4-720';
+
+    let qualityValue = 'mp4-720';
+    if (format === 'mp3' && qualitySelectMp3) {
+        qualityValue = qualitySelectMp3.value;
+    } else if (qualitySelectMp4) {
+        qualityValue = qualitySelectMp4.value;
+    }
 
     let quality = '720p';
     if (qualityValue.includes('-')) {
@@ -166,6 +163,41 @@ function getCurrentSettings() {
     }
 
     return { format: format as 'mp3' | 'mp4', quality };
+}
+
+/**
+ * Initialize audio dropdown
+ */
+function initAudioDropdown() {
+    const dropdown = document.getElementById('multi-audio-track-dropdown');
+    if (!dropdown) return;
+
+    const trigger = dropdown.querySelector('.dropdown-trigger');
+    const menu = dropdown.querySelector('.dropdown-menu');
+
+    if (!trigger || !menu) return;
+
+    // Toggle dropdown
+    trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isHidden = menu.classList.contains('hidden');
+
+        if (isHidden) {
+            menu.classList.remove('hidden');
+            trigger.setAttribute('aria-expanded', 'true');
+        } else {
+            menu.classList.add('hidden');
+            trigger.setAttribute('aria-expanded', 'false');
+        }
+    });
+
+    // Close on click outside
+    document.addEventListener('click', (e) => {
+        if (!dropdown.contains(e.target as Node)) {
+            menu.classList.add('hidden');
+            trigger.setAttribute('aria-expanded', 'false');
+        }
+    });
 }
 
 /**
@@ -222,13 +254,13 @@ function initPlaylistForm() {
             }
 
             // Fetch playlist using V3 API
-            const result = await api.playlistV3(playlistId);
+            const result = await api.playlistV3.extractPlaylist(playlistId);
 
-            if (!result.success || !result.data) {
-                throw new Error(result.error || 'Failed to fetch playlist');
+            if (!result.ok || !result.data) {
+                throw new Error(result.message || 'Failed to fetch playlist');
             }
 
-            const playlist = result.data;
+            const playlist = result.data as PlaylistDto;
 
             // Show playlist info
             if (playlistInfoSection && playlistInfo) {
@@ -238,7 +270,7 @@ function initPlaylistForm() {
             <img src="${playlist.thumbnail || '/placeholder-playlist.png'}" alt="${playlist.title}" class="playlist-thumbnail">
             <div class="playlist-details">
               <h3 class="playlist-title">${playlist.title}</h3>
-              <p class="playlist-meta">${playlist.videos?.length || 0} videos</p>
+              <p class="playlist-meta">${playlist.items?.length || 0} videos</p>
             </div>
           </div>
         `;
@@ -251,15 +283,17 @@ function initPlaylistForm() {
             const settings = getCurrentSettings();
 
             // Convert playlist videos to VideoItems
-            const videoItems: VideoItem[] = (playlist.videos || []).map((video: any, index: number) => ({
-                id: video.videoId || `video-${index}`,
-                url: `https://www.youtube.com/watch?v=${video.videoId}`,
+            const videoItems: VideoItem[] = (playlist.items || []).map((video: any, index: number) => ({
+                id: video.id || `video-${index}`,
+                url: `https://www.youtube.com/watch?v=${video.id}`,
                 meta: {
-                    videoId: video.videoId,
+                    videoId: video.id,
                     title: video.title || 'Unknown Title',
-                    thumbnail: video.thumbnail,
+                    thumbnail: video.thumbnail || '',
                     duration: video.duration || 0,
                     author: video.author || 'Unknown',
+                    originalUrl: `https://www.youtube.com/watch?v=${video.id}`,
+                    status: 'ready',
                 },
                 status: 'ready' as const,
                 progress: 0,
@@ -300,6 +334,7 @@ function init() {
     initMobileMenu();
     initFormatToggle();
     initInputActions();
+    initAudioDropdown();
 
     // Initialize the renderer
     multipleDownloadRenderer.init();

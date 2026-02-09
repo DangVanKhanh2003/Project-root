@@ -58,28 +58,15 @@ function initMobileMenu() {
 /**
  * Initialize format toggle
  */
+/**
+ * Initialize format toggle
+ */
 function initFormatToggle() {
-    const formatBtns = document.querySelectorAll('.format-toggle .format-btn');
-    const qualitySelect = document.getElementById('global-quality-select') as HTMLSelectElement | null;
+    const formatBtns = document.querySelectorAll('.multi-format-toggle .multi-format-btn');
+    const qualitySelectMp3 = document.getElementById('multi-quality-select-mp3') as HTMLSelectElement | null;
+    const qualitySelectMp4 = document.getElementById('multi-quality-select-mp4') as HTMLSelectElement | null;
 
-    if (!qualitySelect) return;
-
-    const mp4Options = `
-    <option value="mp4-1080">MP4 - 1080p</option>
-    <option value="mp4-720" selected>MP4 - 720p</option>
-    <option value="mp4-480">MP4 - 480p</option>
-    <option value="mp4-360">MP4 - 360p</option>
-  `;
-
-    const mp3Options = `
-    <option value="mp3-128" selected>MP3 - 128kbps</option>
-    <option value="mp3-192">MP3 - 192kbps</option>
-    <option value="mp3-320">MP3 - 320kbps</option>
-    <option value="ogg">OGG</option>
-    <option value="wav">WAV - Lossless</option>
-    <option value="opus">Opus</option>
-    <option value="m4a">M4A</option>
-  `;
+    if (!qualitySelectMp3 || !qualitySelectMp4) return;
 
     formatBtns.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -90,9 +77,11 @@ function initFormatToggle() {
 
             const format = btn.getAttribute('data-format');
             if (format === 'mp3') {
-                qualitySelect.innerHTML = mp3Options;
+                qualitySelectMp3.style.display = 'block';
+                qualitySelectMp4.style.display = 'none';
             } else {
-                qualitySelect.innerHTML = mp4Options;
+                qualitySelectMp3.style.display = 'none';
+                qualitySelectMp4.style.display = 'block';
             }
         });
     });
@@ -102,11 +91,20 @@ function initFormatToggle() {
  * Get current format settings
  */
 function getCurrentSettings() {
-    const activeFormatBtn = document.querySelector('.format-toggle .format-btn.active');
-    const qualitySelect = document.getElementById('global-quality-select') as HTMLSelectElement | null;
+    const activeFormatBtn = document.querySelector('.multi-format-toggle .multi-format-btn.active');
+
+    // Get visible quality selector
+    const qualitySelectMp3 = document.getElementById('multi-quality-select-mp3') as HTMLSelectElement | null;
+    const qualitySelectMp4 = document.getElementById('multi-quality-select-mp4') as HTMLSelectElement | null;
 
     const format = activeFormatBtn?.getAttribute('data-format') || 'mp4';
-    const qualityValue = qualitySelect?.value || 'mp4-720';
+
+    let qualityValue = 'mp4-720';
+    if (format === 'mp3' && qualitySelectMp3) {
+        qualityValue = qualitySelectMp3.value;
+    } else if (qualitySelectMp4) {
+        qualityValue = qualitySelectMp4.value;
+    }
 
     // Parse quality value
     let quality = '720p';
@@ -115,6 +113,46 @@ function getCurrentSettings() {
     }
 
     return { format: format as 'mp3' | 'mp4', quality };
+}
+
+/**
+ * Initialize audio dropdown
+ */
+function initAudioDropdown() {
+    const dropdown = document.getElementById('multi-audio-track-dropdown');
+    if (!dropdown) return;
+
+    const trigger = dropdown.querySelector('.dropdown-trigger');
+    const menu = dropdown.querySelector('.dropdown-menu');
+
+    if (!trigger || !menu) return;
+
+    // Toggle dropdown
+    trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isHidden = menu.classList.contains('hidden');
+
+        // Close all other dropdowns first if needed (optional)
+        document.querySelectorAll('.dropdown-menu').forEach(m => {
+            if (m !== menu) m.classList.add('hidden');
+        });
+
+        if (isHidden) {
+            menu.classList.remove('hidden');
+            trigger.setAttribute('aria-expanded', 'true');
+        } else {
+            menu.classList.add('hidden');
+            trigger.setAttribute('aria-expanded', 'false');
+        }
+    });
+
+    // Close on click outside
+    document.addEventListener('click', (e) => {
+        if (!dropdown.contains(e.target as Node)) {
+            menu.classList.add('hidden');
+            trigger.setAttribute('aria-expanded', 'false');
+        }
+    });
 }
 
 /**
@@ -186,6 +224,7 @@ function init() {
     // Initialize UI components
     initMobileMenu();
     initFormatToggle();
+    initAudioDropdown();
 
     // Initialize the renderer
     multipleDownloadRenderer.init();
