@@ -11,6 +11,17 @@ export interface StoreChangeHandlerConfig {
     onCountsChanged?: () => void;
 }
 
+const CONVERT_TAB_STATUSES = new Set(['pending', 'analyzing', 'fetching_metadata', 'ready', 'error', 'cancelled']);
+const DOWNLOAD_TAB_STATUSES = new Set(['queued', 'downloading', 'converting', 'completed']);
+
+function isConvertTabStatus(status: string) {
+    return CONVERT_TAB_STATUSES.has(status);
+}
+
+function isDownloadTabStatus(status: string) {
+    return DOWNLOAD_TAB_STATUSES.has(status);
+}
+
 export function createStoreChangeHandler(config: StoreChangeHandlerConfig) {
     const { listContainer, strategy, onCountsChanged } = config;
 
@@ -30,11 +41,11 @@ export function createStoreChangeHandler(config: StoreChangeHandlerConfig) {
                     }
                     const groupList = groupEl.querySelector('.group-items');
                     if (groupList) {
-                        groupList.prepend(el);
+                        groupList.appendChild(el);
                     }
                     updateGroupCount(groupEl);
                 } else {
-                    listContainer.prepend(el);
+                    listContainer.appendChild(el);
                 }
 
                 // Remove empty state if exists
@@ -160,6 +171,7 @@ function createGroupElement(groupId: string, groupTitle: string): HTMLElement {
     const el = document.createElement('div');
     el.className = 'playlist-group';
     el.dataset.groupId = groupId;
+    el.dataset.activeTab = 'convert'; // Default tab
     el.innerHTML = `
         <div class="group-header">
             <div class="group-header-left">
@@ -168,14 +180,17 @@ function createGroupElement(groupId: string, groupTitle: string): HTMLElement {
                 </button>
                 <div class="group-title-info">
                     <h3 class="group-title">${groupTitle}</h3>
-                    <span class="group-count"></span>
+                    <div class="playlist-header-tabs">
+                        <div class="tab-glider"></div>
+                        <button type="button" class="playlist-tab active" data-action="playlist-tab" data-tab="convert" data-group-id="${groupId}">Convert (0)</button>
+                        <button type="button" class="playlist-tab" data-action="playlist-tab" data-tab="download" data-group-id="${groupId}">Download (0)</button>
+                    </div>
                 </div>
             </div>
             <div class="group-header-right">
                 <div class="group-actions">
-                    <button class="btn btn-primary btn-sm" data-action="download-group" data-group-id="${groupId}">Download All</button>
-                    <button class="btn btn-success btn-sm" data-action="download-zip-group" data-group-id="${groupId}">Download ZIP</button>
-                    <button class="btn btn-secondary btn-sm" data-action="remove-group" data-group-id="${groupId}">Remove</button>
+                    <button class="btn btn-primary btn-sm" data-action="download-group" data-group-id="${groupId}">Convert All (0)</button>
+                    <button class="btn btn-success btn-sm" data-action="download-zip-group" data-group-id="${groupId}" style="display: none;">Download ZIP (0)</button>
                 </div>
                 <label class="group-checkbox-label">
                     <input type="checkbox" class="group-checkbox" data-group-id="${groupId}" checked>
@@ -184,41 +199,77 @@ function createGroupElement(groupId: string, groupTitle: string): HTMLElement {
             </div>
         </div>
         <div class="group-items"></div>
+        <div class="group-empty" style="display: none;">No items in this tab</div>
     `;
     return el;
 }
 
-function updateGroupCount(groupEl: HTMLElement): void {
+export function updateGroupCount(groupEl: HTMLElement): void {
     const groupId = groupEl.dataset.groupId;
     if (!groupId) return;
 
     const items = videoStore.getItemsByGroup(groupId);
-    const total = items.length;
-    const completedItems = items.filter(i => i.status === 'completed');
-    const completed = completedItems.length;
-    const downloadableCount = items.filter(i => ['ready', 'error', 'cancelled'].includes(i.status)).length;
-    const selectedCompletedCount = completedItems.filter(i => i.isSelected).length;
+    const activeTab = groupEl.dataset.activeTab || 'convert';
 
-    const countEl = groupEl.querySelector('.group-count');
-    if (countEl) {
-        if (completed > 0) {
-            countEl.textContent = `(${completed}/${total})`;
-        } else {
-            countEl.textContent = `(${total})`;
+    // Count items for tabs
+    const convertItems = items.filter(i => isConvertTabStatus(i.status));
+    const downloadItems = items.filter(i => isDownloadTabStatus(i.status));
+
+    const cCount = convertItems.length;
+    const dCount = downloadItems.length;
+
+    // Update Tab Counts
+    const convertTab = groupEl.querySelector('.playlist-tab[data-tab="convert"]');
+    const downloadTab = groupEl.querySelector('.playlist-tab[data-tab="download"]');
+
+    if (convertTab) convertTab.textContent = `Convert (${cCount})`;
+    if (downloadTab) downloadTab.textContent = `Download (${dCount})`;
+
+    // Filter Visibility of items
+    const itemElements = groupEl.querySelectorAll('.multi-video-item');
+    let visibleCount = 0;
+
+    itemElements.forEach(itemEl => {
+        const id = (itemEl as HTMLElement).dataset.id;
+        const itemData = items.find(i => i.id === id);
+
+        if (itemData) {
+            const isVisible = activeTab === 'convert'
+                ? isConvertTabStatus(itemData.status)
+                : isDownloadTabStatus(itemData.status);
+
+            (itemEl as HTMLElement).style.display = isVisible ? 'flex' : 'none';
+            if (isVisible) visibleCount++;
         }
+    });
+
+    // Toggle Empty State
+    const emptyState = groupEl.querySelector('.group-empty') as HTMLElement;
+    if (emptyState) {
+        emptyState.style.display = visibleCount === 0 ? 'flex' : 'none';
     }
 
-    // Update group button states
-    const downloadBtn = groupEl.querySelector('[data-action="download-group"]') as HTMLButtonElement;
-    if (downloadBtn) {
-        downloadBtn.disabled = downloadableCount === 0;
-        downloadBtn.textContent = `Download All (${downloadableCount})`;
-    }
+    // Toggle Action Buttons based on Tab
+    const convertAllBtn = groupEl.querySelector('[data-action="download-group"]') as HTMLElement;
+    const zipBtn = groupEl.querySelector('[data-action="download-zip-group"]') as HTMLElement;
 
-    const zipBtn = groupEl.querySelector('[data-action="download-zip-group"]') as HTMLButtonElement;
-    if (zipBtn) {
-        zipBtn.disabled = selectedCompletedCount === 0;
-        zipBtn.textContent = `Download ZIP (${selectedCompletedCount})`;
+    if (convertAllBtn && zipBtn) {
+        if (activeTab === 'convert') {
+            convertAllBtn.style.display = '';
+            zipBtn.style.display = 'none';
+
+            const downloadableCount = convertItems.filter(i => i.isSelected && ['ready', 'error', 'cancelled'].includes(i.status)).length;
+            (convertAllBtn as HTMLButtonElement).disabled = downloadableCount === 0;
+            convertAllBtn.textContent = `Convert All (${downloadableCount})`;
+        } else {
+            convertAllBtn.style.display = 'none';
+            zipBtn.style.display = '';
+
+            const completedItems = downloadItems.filter(i => i.status === 'completed');
+            const selectedCompletedCount = completedItems.filter(i => i.isSelected).length;
+            (zipBtn as HTMLButtonElement).disabled = selectedCompletedCount === 0;
+            zipBtn.textContent = `Download ZIP (${selectedCompletedCount})`;
+        }
     }
 }
 

@@ -124,7 +124,7 @@ export class MultiDownloadService {
                 videoQuality: globalSettings?.videoQuality,
                 audioTrack: globalSettings?.audioTrack,
             },
-            isSelected: true,
+            isSelected: false,
             isDownloaded: false,
             groupId,
             groupTitle,

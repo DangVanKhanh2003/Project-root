@@ -5,7 +5,7 @@ import { VideoItemRenderer } from './video-item-renderer';
 import { MultiDownloadStrategy } from './multi-download-strategy';
 import { PlaylistStrategy } from './playlist-strategy';
 import { RendererStrategy } from './renderer-strategy.interface';
-import { createStoreChangeHandler } from './handle-store-change';
+import { createStoreChangeHandler, updateGroupCount } from './handle-store-change';
 import { isMobileDevice } from '../../../../utils';
 
 export class MultipleDownloadRenderer {
@@ -138,13 +138,19 @@ export class MultipleDownloadRenderer {
                     if (groupId) this.toggleGroup(groupId);
                     break;
                 case 'download-group':
-                    if (groupId) multiDownloadService.startSelectedGroupDownloads(groupId);
+                    if (groupId) {
+                        multiDownloadService.startSelectedGroupDownloads(groupId);
+                        this.switchToTab(groupId, 'download');
+                    }
                     break;
                 case 'download-zip-group':
                     if (groupId) this.handleDownloadZipGroup(groupId, actionBtn);
                     break;
                 case 'remove-group':
                     if (groupId) multiDownloadService.removeGroup(groupId);
+                    break;
+                case 'playlist-tab':
+                    if (groupId) this.handleTabClick(target, groupId);
                     break;
             }
         });
@@ -244,6 +250,39 @@ export class MultipleDownloadRenderer {
         if (icon) {
             icon.textContent = groupEl.classList.contains('collapsed') ? '▶' : '▼';
         }
+    }
+
+    private handleTabClick(tabEl: HTMLElement, groupId: string) {
+        const tabType = tabEl.dataset.tab;
+        if (tabType) {
+            this.switchToTab(groupId, tabType);
+        }
+    }
+
+    private switchToTab(groupId: string, tabType: string) {
+        const groupEl = this.listContainer?.querySelector(`[data-group-id="${groupId}"].playlist-group`) as HTMLElement;
+        if (!groupEl) return;
+
+        const tabEl = groupEl.querySelector(`.playlist-tab[data-tab="${tabType}"]`) as HTMLElement;
+        if (!tabEl) return;
+
+        // Update active class on tabs
+        const tabs = groupEl.querySelectorAll('.playlist-tab');
+        tabs.forEach(t => t.classList.remove('active'));
+        tabEl.classList.add('active');
+
+        // Update active tab on group element
+        groupEl.dataset.activeTab = tabType;
+
+        // Update glider position
+        const glider = groupEl.querySelector('.tab-glider') as HTMLElement;
+        if (glider) {
+            glider.style.width = `${tabEl.offsetWidth}px`;
+            glider.style.transform = `translateX(${tabEl.offsetLeft}px)`;
+        }
+
+        // Trigger re-filtering
+        updateGroupCount(groupEl);
     }
 }
 

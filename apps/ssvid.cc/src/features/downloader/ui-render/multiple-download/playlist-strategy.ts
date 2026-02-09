@@ -53,7 +53,7 @@ export class PlaylistStrategy implements RendererStrategy {
             case 'downloading': return `<span class="status-badge downloading">Downloading... ${Math.round(item.progress)}%</span>`;
             case 'converting': {
                 const phaseText = item.progressPhase === 'merging' ? 'Merging' :
-                                  item.progressPhase === 'extracting' ? 'Extracting' : 'Converting';
+                    item.progressPhase === 'extracting' ? 'Extracting' : 'Converting';
                 return `<span class="status-badge converting">${phaseText}... ${Math.round(item.progress)}%</span>`;
             }
             case 'completed':
@@ -84,32 +84,43 @@ export class PlaylistStrategy implements RendererStrategy {
         if (format === 'mp4') {
             qualitySelect = `
                 <select class="item-quality-select" data-id="${item.id}" data-field="quality">
-                    <option value="2160p" ${quality === '2160p' ? 'selected' : ''}>4K</option>
-                    <option value="1440p" ${quality === '1440p' ? 'selected' : ''}>1440p</option>
                     <option value="1080p" ${quality === '1080p' ? 'selected' : ''}>1080p</option>
                     <option value="720p" ${quality === '720p' ? 'selected' : ''}>720p</option>
                     <option value="480p" ${quality === '480p' ? 'selected' : ''}>480p</option>
                     <option value="360p" ${quality === '360p' ? 'selected' : ''}>360p</option>
+                    <option value="144p" ${quality === '144p' ? 'selected' : ''}>144p</option>
+                    <option value="webm" ${quality === 'webm' ? 'selected' : ''}>WEBM</option>
+                    <option value="mkv" ${quality === 'mkv' ? 'selected' : ''}>MKV</option>
                 </select>`;
         } else {
             const bitrate = item.settings?.audioBitrate || '128';
             qualitySelect = `
                 <select class="item-quality-select" data-id="${item.id}" data-field="audioBitrate">
-                    <option value="320" ${bitrate === '320' ? 'selected' : ''}>320kbps</option>
-                    <option value="256" ${bitrate === '256' ? 'selected' : ''}>256kbps</option>
-                    <option value="192" ${bitrate === '192' ? 'selected' : ''}>192kbps</option>
                     <option value="128" ${bitrate === '128' ? 'selected' : ''}>128kbps</option>
-                    <option value="64" ${bitrate === '64' ? 'selected' : ''}>64kbps</option>
+                    <option value="192" ${bitrate === '192' ? 'selected' : ''}>192kbps</option>
+                    <option value="320" ${bitrate === '320' ? 'selected' : ''}>320kbps</option>
+                    <option value="ogg" ${quality === 'ogg' ? 'selected' : ''}>OGG</option>
+                    <option value="wav" ${quality === 'wav' ? 'selected' : ''}>WAV - Lossless</option>
+                    <option value="opus" ${quality === 'opus' ? 'selected' : ''}>Opus</option>
+                    <option value="m4a" ${quality === 'm4a' ? 'selected' : ''}>M4A</option>
                 </select>`;
         }
 
-        return `${formatSelect}${qualitySelect}`;
+        const track = item.settings?.audioTrack;
+        const trackHtml = (track && track !== 'original') ? `<span class="item-setting-badge">${track.toUpperCase()}</span>` : '';
+
+        return `${formatSelect}${qualitySelect}${trackHtml}`;
     }
 
     private buildLockedSettings(item: VideoItem): string {
         const format = (item.settings?.format || 'mp4').toUpperCase();
         const quality = item.settings?.quality || '720p';
-        return `<span class="item-setting-text">${format} · ${quality}</span>`;
+        const audioTrack = item.settings?.audioTrack;
+
+        // Only show audio track if it's explicitly set and not 'original'
+        const trackLabel = (audioTrack && audioTrack !== 'original') ? ` · ${audioTrack.toUpperCase()}` : '';
+
+        return `<span class="item-setting-text">${format} · ${quality}${trackLabel}</span>`;
     }
 
     private getDesktopActionButton(item: VideoItem): string {

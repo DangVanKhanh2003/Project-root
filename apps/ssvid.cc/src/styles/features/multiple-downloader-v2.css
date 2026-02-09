@@ -4,14 +4,9 @@
    1. Main Layout & Card
    ========================================= */
 .multiple-downloads-container {
-    background: var(--white, #ffffff);
     border-radius: var(--radius-lg, 16px);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     margin-top: 2rem;
-    overflow: hidden;
-    border: 1px solid var(--border-secondary, #e5e7eb);
     display: none;
-    /* Initially hidden until populated */
 }
 
 /* Card Container for Form */
@@ -305,9 +300,7 @@
 }
 
 .multi-download-list {
-    max-height: 600px;
-    overflow-y: auto;
-    background: var(--bg-primary, #ffffff);
+    height: fit-content;
 }
 
 .multi-download-list::-webkit-scrollbar {
@@ -414,10 +407,38 @@
     margin-top: 0.25rem;
 }
 
-.multi-video-status {
-    margin-top: 0.25rem;
+.item-setting-text {
+    font-size: 0.8125rem;
+    color: var(--text-muted, #666);
+    font-weight: 500;
+}
+
+.item-setting-badge {
+    display: inline-flex;
+    padding: 0.125rem 0.375rem;
+    background: #f1f5f9;
+    color: #475569;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-left: 0.25rem;
+    text-transform: uppercase;
+}
+
+.settings-progress-wrapper {
+    width: 100%;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.multi-video-status {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+    width: 100%;
 }
 
 .status-badge {
@@ -507,18 +528,32 @@
 
 /* Progress Bar */
 .multi-video-progress {
-    position: absolute;
-    bottom: 0;
-    left: 0;
     width: 100%;
-    height: 3px;
-    background: #e2e8f0;
+    height: 6px;
+    background: #f1f5f9;
+    margin-top: 0.5rem;
+    border-radius: 10px;
+    overflow: visible; /* Allow percentage to be visible if outside */
+    position: relative;
 }
 
 .progress-bar {
+    width: 0;
     height: 100%;
+    background: #8F0F20; /* Use solid color first for reliability */
     background: var(--brand, #8F0F20);
     transition: width 0.3s ease;
+    border-radius: 10px;
+    display: block;
+}
+
+.progress-percentage {
+    position: absolute;
+    right: 0;
+    top: -16px; /* Place it above/to the right of the bar */
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--brand, #8F0F20);
 }
 
 /* Footer Controls */
@@ -799,6 +834,71 @@
     }
 }
 
+/* =========================================
+   7. Playlist Group Tabs
+   ========================================= */
+.playlist-header-tabs {
+    display: flex;
+    gap: 1.5rem;
+    position: relative;
+    margin-top: 0.5rem;
+    border-bottom: 2px solid #f1f5f9;
+}
+
+.playlist-tab {
+    background: transparent;
+    border: none;
+    padding: 0.5rem 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-muted, #666);
+    cursor: pointer;
+    transition: color 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.playlist-tab.active {
+    color: var(--brand, #8F0F20);
+}
+
+.tab-glider {
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    height: 2px;
+    background: var(--brand, #8F0F20);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 2;
+}
+
+.group-empty {
+    padding: 2rem;
+    text-align: center;
+    color: var(--text-muted, #666);
+    font-style: italic;
+    background: var(--bg-secondary, #fafafa);
+    border-radius: 8px;
+    margin: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.playlist-group {
+    border: 1px solid var(--border-secondary, #e5e7eb);
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+}
+
+.playlist-group.collapsed .group-items {
+    display: none;
+}
+
+.playlist-group.collapsed .group-header {
+    border-bottom: none;
+}
+
 .skeleton-box {
     width: 100%;
     height: 100%;
@@ -867,8 +967,13 @@
    NEW: Extracting Rotator Animation
    ========================================= */
 @keyframes extracting-rotate {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .status-badge.converting::before {
@@ -989,6 +1094,24 @@
     display: none;
 }
 
+.group-items {
+    max-height: 800px;
+    overflow-y: scroll;
+}
+
+.group-items::-webkit-scrollbar {
+    width: 2px;
+}
+
+.group-items::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.group-items::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+
 /* =========================================
    NEW: Item Settings Dropdowns (Playlist)
    ========================================= */
@@ -1087,6 +1210,7 @@
    NEW: Mobile Overrides for New Elements
    ========================================= */
 @media (max-width: 640px) {
+
     .item-checkbox-wrapper,
     .master-checkbox-label,
     .group-checkbox-label {

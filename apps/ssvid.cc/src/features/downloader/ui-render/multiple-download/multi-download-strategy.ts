@@ -11,7 +11,12 @@ export class MultiDownloadStrategy implements RendererStrategy {
     buildSettingsContent(item: VideoItem): string {
         const format = (item.settings?.format || 'mp4').toUpperCase();
         const quality = item.settings?.quality || '720p';
-        return `<span class="item-setting-text">${format} · ${quality}</span>`;
+        const audioTrack = item.settings?.audioTrack;
+
+        // Only show audio track if it's explicitly set and not 'original'
+        const trackLabel = (audioTrack && audioTrack !== 'original') ? ` · ${audioTrack.toUpperCase()}` : '';
+
+        return `<span class="item-setting-text">${format} · ${quality}${trackLabel}</span>`;
     }
 
     getSettingsClass(item: VideoItem): string {

@@ -90,6 +90,7 @@ function getCurrentSettings(): Partial<VideoItemSettings> {
     const activeFormatBtn = document.querySelector('.multi-format-toggle .multi-format-btn.active');
     const qualitySelectMp3 = document.getElementById('multi-quality-select-mp3') as HTMLSelectElement | null;
     const qualitySelectMp4 = document.getElementById('multi-quality-select-mp4') as HTMLSelectElement | null;
+    const audioTrackValue = document.getElementById('multi-audio-track-value') as HTMLInputElement | null;
 
     const format = (activeFormatBtn?.getAttribute('data-format') || 'mp4') as 'mp3' | 'mp4';
 
@@ -97,19 +98,26 @@ function getCurrentSettings(): Partial<VideoItemSettings> {
     let audioFormat: string | undefined;
     let audioBitrate: string | undefined;
     let videoQuality: string | undefined;
+    const audioTrack = audioTrackValue?.value || 'original';
 
     if (format === 'mp3' && qualitySelectMp3) {
         const val = qualitySelectMp3.value; // e.g. 'mp3-128'
         if (val.includes('-')) {
             audioBitrate = val.split('-')[1];
             quality = audioBitrate + 'kbps';
+        } else {
+            audioBitrate = val;
+            quality = val + 'kbps';
         }
         audioFormat = 'mp3';
     } else if (qualitySelectMp4) {
-        const val = qualitySelectMp4.value; // e.g. 'mp4-720'
+        const val = qualitySelectMp4.value; // e.g. 'mp4-720', 'webm', 'mkv'
         if (val.includes('-')) {
             videoQuality = val.split('-')[1];
             quality = videoQuality + 'p';
+        } else {
+            videoQuality = val;
+            quality = val;
         }
     }
 
@@ -119,6 +127,7 @@ function getCurrentSettings(): Partial<VideoItemSettings> {
         audioFormat,
         audioBitrate,
         videoQuality,
+        audioTrack,
     };
 }
 

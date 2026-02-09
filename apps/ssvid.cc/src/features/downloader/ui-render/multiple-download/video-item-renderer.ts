@@ -190,15 +190,18 @@ export class VideoItemRenderer {
                 <div class="multi-video-error" style="${item.status === 'error' ? '' : 'display:none'}">${escapeHtml(item.error || '')}</div>
                 <div class="settings-progress-wrapper">
                     <div class="item-settings${strategy.getSettingsClass(item)}">${strategy.buildSettingsContent(item)}</div>
-                    <div class="multi-video-status">${strategy.getStatusHtml(item)}</div>
+                    <div class="multi-video-status">
+                      ${strategy.getStatusHtml(item)}
+                      ${isDownloading ? `
+                          <div class="multi-video-progress">
+                              <div class="progress-bar" style="width: ${progressPercent}%"></div>
+                              <span class="progress-percentage">${progressPercent}%</span>
+                          </div>
+                      ` : ''}
+                    </div>
                 </div>
             </div>
             <div class="multi-video-actions">${strategy.getActionButton(item, {})}</div>
-            ${isDownloading ? `
-                <div class="multi-video-progress">
-                    <div class="progress-bar" style="width: ${progressPercent}%"></div>
-                </div>
-            ` : ''}
         `;
 
         if (checkboxHtml) {
@@ -212,14 +215,25 @@ export class VideoItemRenderer {
 
         if (isActive) {
             if (!progressContainer) {
-                progressContainer = document.createElement('div');
-                progressContainer.className = 'multi-video-progress';
-                progressContainer.innerHTML = '<div class="progress-bar" style="width: 0%"></div>';
-                el.appendChild(progressContainer);
+                const statusContainer = el.querySelector('.multi-video-status');
+                if (statusContainer) {
+                    progressContainer = document.createElement('div');
+                    progressContainer.className = 'multi-video-progress';
+                    progressContainer.innerHTML = `
+                        <div class="progress-bar" style="width: 0%"></div>
+                        <span class="progress-percentage">0%</span>
+                    `;
+                    statusContainer.appendChild(progressContainer);
+                }
             }
             const bar = progressContainer.querySelector('.progress-bar') as HTMLElement;
+            const percentText = progressContainer.querySelector('.progress-percentage') as HTMLElement;
+            const progress = Math.round(item.progress || 0);
             if (bar) {
-                bar.style.width = `${Math.round(item.progress || 0)}%`;
+                bar.style.width = `${progress}%`;
+            }
+            if (percentText) {
+                percentText.textContent = `${progress}%`;
             }
 
             // Phase-specific color
