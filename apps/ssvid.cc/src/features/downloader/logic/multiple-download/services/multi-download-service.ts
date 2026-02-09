@@ -1,6 +1,8 @@
 
 import { api } from '../../../../../api';
-import { isYouTubeUrl } from '@downloader/core';
+import { apiV3, v3Config } from '../../../../../api/v3';
+import { isYouTubeUrl, mapToV3DownloadRequest } from '@downloader/core';
+import { retryWithBackoff, RETRY_CONFIGS, isTimeoutError } from '../../conversion/retry-helper';
 import { isMobileDevice } from '../../../../../utils';
 import {
     addVideoItems,
@@ -293,7 +295,7 @@ export class MultiDownloadService {
     }
 
     /**
-     * Process a single V3 item
+     * Process a single V3 item (with retry on createJob)
      */
     private async processItemV3(itemId: string) {
         const item = this.getVideoItemById(itemId);
@@ -302,31 +304,33 @@ export class MultiDownloadService {
         try {
             updateVideoItem(itemId, { status: 'converting', progress: 0 });
 
-            // 1. Create Job
-            const request = {
-                url: item.meta.url,
-                output: {
-                    type: 'video' as const,
-                    format: 'mp4' as const
-                }
-            };
+            // 1. Create Job with retry (same as convert-logic-v3)
+            const settings = item.settings || { format: 'mp4', quality: '720p' };
+            const isAudio = settings.format === 'mp3';
+            const request = mapToV3DownloadRequest(item.meta.url, {
+                downloadMode: isAudio ? 'audio' : 'video',
+                videoQuality: settings.quality?.replace('p', '') || '720',
+                youtubeVideoContainer: isAudio ? undefined : settings.format,
+                audioFormat: isAudio ? settings.format : undefined,
+                audioBitrate: '128',
+            });
 
-            const jobResult = await api.downloadV3.createJob(request);
+            const jobResponse = await retryWithBackoff(
+                () => apiV3.createJob(request),
+                RETRY_CONFIGS.extracting
+            );
 
-            if (!jobResult.ok || !jobResult.data) {
-                throw new Error(jobResult.message || 'Job creation failed');
-            }
-
-            const { statusUrl } = jobResult.data as any;
+            const { statusUrl } = jobResponse;
 
             if (!statusUrl) {
                 throw new Error('No status URL returned');
             }
 
-            // 2. Poll Status
+            // 2. Poll Status with consecutive error tracking
             await this.pollV3Status(itemId, statusUrl);
 
         } catch (error: any) {
+            if (error.name === 'AbortError') return;
             console.error('Download error for', itemId, error);
             updateVideoItem(itemId, {
                 status: 'error',
@@ -336,28 +340,29 @@ export class MultiDownloadService {
     }
 
     /**
-     * Poll V3 Job Status
+     * Poll V3 Job Status (with consecutive error tracking like convert-logic-v3)
      */
     private async pollV3Status(itemId: string, statusUrl: string) {
-        const POLL_INTERVAL = 2000;
-        const MAX_RETRIES = 180; // 6 minutes timeout
-        let retries = 0;
+        const pollingInterval = v3Config.timeout.pollingInterval;
+        const { maxConsecutiveErrors } = RETRY_CONFIGS.polling;
+        let consecutiveErrors = 0;
 
-        while (retries < MAX_RETRIES) {
+        while (true) {
             const currentItem = this.getVideoItemById(itemId);
             if (!currentItem || currentItem.status === 'cancelled') return;
 
             try {
-                const result = await api.downloadV3.getStatusByUrl(statusUrl);
+                const statusData = await apiV3.getStatusByUrl(statusUrl);
 
-                if (result.ok && result.data) {
-                    const statusData = result.data as any;
+                // Reset consecutive errors on success
+                consecutiveErrors = 0;
 
-                    if (statusData.progress) {
-                        updateVideoItem(itemId, { progress: statusData.progress });
-                    }
+                if (statusData.progress) {
+                    updateVideoItem(itemId, { progress: statusData.progress });
+                }
 
-                    if (statusData.status === 'completed') {
+                if (statusData.status === 'completed') {
+                    if (statusData.downloadUrl) {
                         updateVideoItem(itemId, {
                             status: 'completed',
                             progress: 100,
@@ -365,19 +370,33 @@ export class MultiDownloadService {
                             filename: statusData.title ? `${statusData.title}.mp4` : undefined
                         });
                         return;
-                    } else if (statusData.status === 'error') {
-                        throw new Error(statusData.jobError || 'Job failed');
                     }
+                    throw new Error('Completed but no download URL');
+                } else if (statusData.status === 'error') {
+                    throw new Error(statusData.jobError || 'Job failed');
                 }
-            } catch (error) {
-                console.warn('Polling error', error);
+            } catch (error: any) {
+                // Timeout is NOT an error - continue polling
+                if (isTimeoutError(error)) {
+                    continue;
+                }
+
+                // Job error from API - stop immediately
+                if (error.isJobError || error.response?.status === 'error') {
+                    throw error;
+                }
+
+                // Network/API error - track consecutive errors
+                consecutiveErrors++;
+                console.warn(`[MultiDownload] Poll error (${consecutiveErrors}/${maxConsecutiveErrors}):`, error);
+
+                if (consecutiveErrors >= maxConsecutiveErrors) {
+                    throw new Error('Network error - please try again');
+                }
             }
 
-            await new Promise(resolve => setTimeout(resolve, POLL_INTERVAL));
-            retries++;
+            await new Promise(resolve => setTimeout(resolve, pollingInterval));
         }
-
-        throw new Error('Polling timed out');
     }
 
     private getVideoItemById(id: string): VideoItem | undefined {
