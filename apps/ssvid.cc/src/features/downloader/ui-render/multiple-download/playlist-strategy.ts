@@ -111,18 +111,14 @@ export class PlaylistStrategy implements RendererStrategy {
         }
 
         const track = item.settings?.audioTrack || 'original';
-        let trackHtml = '';
-
-        if (track && track !== 'original') {
-            const available = item.availableAudioLanguages;
-            const langList = (available && available.length > 1) ? available : LANGUAGES.map(l => l.code);
-            const options = langList.map(code => {
-                const label = LANGUAGES.find(l => l.code.toLowerCase() === code.toLowerCase())?.name || code.toUpperCase();
-                const selected = code.toLowerCase() === track.toLowerCase() ? 'selected' : '';
-                return `<option value="${code}" ${selected}>${label}</option>`;
-            }).join('');
-            trackHtml = `<select class="item-audio-track-select" data-id="${item.id}" data-field="audioTrack">${options}</select>`;
-        }
+        const available = item.availableAudioLanguages;
+        const langList = (available && available.length > 1) ? available : LANGUAGES.map(l => l.code);
+        const options = langList.map(code => {
+            const label = LANGUAGES.find(l => l.code.toLowerCase() === code.toLowerCase())?.name || code.toUpperCase();
+            const selected = code.toLowerCase() === track.toLowerCase() ? 'selected' : '';
+            return `<option value="${code}" ${selected}>${label}</option>`;
+        }).join('');
+        const trackHtml = `<select class="item-audio-track-select" data-id="${item.id}" data-field="audioTrack">${options}</select>`;
 
         return `${formatSelect}${qualitySelect}${trackHtml}`;
     }
