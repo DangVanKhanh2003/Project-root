@@ -126,8 +126,11 @@ export class MultiDownloadStrategy implements RendererStrategy {
 
         if (item.status === 'completed' && item.downloadUrl) {
             const filename = `${item.meta.title} (${item.settings?.quality || item.settings?.audioBitrate || ''}).${item.settings?.format || 'mp4'}`;
+            const isDownloaded = item.isDownloaded;
+            const classes = ['btn-download-multi-download', isDownloaded ? 'is-success' : ''].filter(Boolean).join(' ');
+            const label = isDownloaded ? 'Downloaded' : 'Download';
             return `
-                <button class="btn-download-multi-download" type="button" data-action="save" data-id="${item.id}" data-download-url="${item.downloadUrl}" data-filename="${escapeAttr(filename)}">
+                <button class="${classes}" type="button" data-action="save" data-id="${item.id}" data-download-url="${item.downloadUrl}" data-filename="${escapeAttr(filename)}">
                     <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="12" y1="5" x2="12" y2="15"></line>
                         <polyline points="8 11 12 15 16 11"></polyline>
@@ -137,10 +140,10 @@ export class MultiDownloadStrategy implements RendererStrategy {
                         <circle cx="12" cy="12" r="10" stroke-opacity="0.25"></circle>
                         <path d="M12 2a10 10 0 0 1 10 10" stroke-opacity="1"></path>
                     </svg>
-                    <svg class="btn-icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+                    <svg class="btn-icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="display:none">
                         <polyline points="20 6 9 17 4 12"></polyline>
                     </svg>
-                    <span class="btn-text">Download</span>
+                    <span class="btn-text">${label}</span>
                 </button>
             `;
         }

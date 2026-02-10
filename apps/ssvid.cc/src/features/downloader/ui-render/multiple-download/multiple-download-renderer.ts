@@ -349,12 +349,48 @@ export class MultipleDownloadRenderer {
         const id = btn.dataset.id;
 
         if (!downloadUrl) return;
+        if (btn instanceof HTMLButtonElement && btn.disabled) return;
 
+        const hadSuccess = btn.classList.contains('is-success');
+        btn.classList.remove('is-success');
+        btn.classList.add('is-loading');
+        if (btn instanceof HTMLButtonElement) {
+            btn.disabled = true;
+        }
+
+        this.lockDownloadButtons();
         triggerDownload(downloadUrl, filename || undefined);
 
-        if (id) {
-            videoStore.markDownloaded(id);
-        }
+        window.setTimeout(() => {
+            if (id) {
+                videoStore.markDownloaded(id);
+            }
+            btn.classList.remove('is-loading');
+            if (hadSuccess || (id && videoStore.getItem(id)?.isDownloaded)) {
+                btn.classList.add('is-success');
+            }
+            this.unlockDownloadButtons();
+        }, 5000);
+    }
+
+    private lockDownloadButtons(): void {
+        if (!this.container) return;
+
+        const buttons = this.container.querySelectorAll<HTMLButtonElement>('.btn-download-multi-download[data-action="save"]');
+        buttons.forEach((button) => {
+            button.disabled = true;
+            button.classList.add('is-disabled');
+        });
+    }
+
+    private unlockDownloadButtons(): void {
+        if (!this.container) return;
+
+        const buttons = this.container.querySelectorAll<HTMLButtonElement>('.btn-download-multi-download[data-action="save"]');
+        buttons.forEach((button) => {
+            button.disabled = false;
+            button.classList.remove('is-disabled');
+        });
     }
 
 
