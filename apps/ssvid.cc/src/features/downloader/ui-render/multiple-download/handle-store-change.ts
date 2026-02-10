@@ -174,28 +174,27 @@ function createGroupElement(groupId: string, groupTitle: string): HTMLElement {
     el.dataset.activeTab = 'convert'; // Default tab
     el.innerHTML = `
         <div class="group-header">
-            <div class="group-header-left">
-                <button class="group-collapse-btn" data-action="toggle-group" data-group-id="${groupId}">
-                    <span class="collapse-icon">▼</span>
-                </button>
-                <div class="group-title-info">
+            <div class="group-header-top-row">
+                <div class="group-header-title-area">
+                    <button class="group-collapse-btn" data-action="toggle-group" data-group-id="${groupId}">
+                        <span class="collapse-icon">▼</span>
+                    </button>
                     <h3 class="group-title">${groupTitle}</h3>
-                    <div class="playlist-header-tabs">
-                        <div class="tab-glider"></div>
-                        <button type="button" class="playlist-tab active" data-action="playlist-tab" data-tab="convert" data-group-id="${groupId}">Convert (0)</button>
-                        <button type="button" class="playlist-tab" data-action="playlist-tab" data-tab="download" data-group-id="${groupId}">Download (0)</button>
-                    </div>
+                </div>
+                <div class="playlist-header-tabs">
+                    <button type="button" class="playlist-tab active" data-action="playlist-tab" data-tab="convert" data-group-id="${groupId}">Convert Tab (0)</button>
+                    <button type="button" class="playlist-tab" data-action="playlist-tab" data-tab="download" data-group-id="${groupId}">Download Tab (0)</button>
                 </div>
             </div>
-            <div class="group-header-right">
-                <div class="group-actions">
-                    <button class="btn btn-primary btn-sm" data-action="download-group" data-group-id="${groupId}">Convert All (0)</button>
-                    <button class="btn btn-success btn-sm" data-action="download-zip-group" data-group-id="${groupId}" style="display: none;">Download ZIP (0)</button>
-                </div>
-                <label class="group-checkbox-label">
+            <div class="group-header-bottom-row">
+                <label class="group-selection-label">
                     <input type="checkbox" class="group-checkbox" data-group-id="${groupId}" checked>
-                    <span>Select All</span>
+                    <span class="group-selection-text">0 selected</span>
                 </label>
+                <div class="group-actions">
+                    <button class="btn-playlist-group-action" data-action="download-group" data-group-id="${groupId}">Convert selected (0)</button>
+                    <button class="btn-playlist-group-action btn-success" data-action="download-zip-group" data-group-id="${groupId}" style="display: none;">Download ZIP (0)</button>
+                </div>
             </div>
         </div>
         <div class="group-items"></div>
@@ -222,8 +221,8 @@ export function updateGroupCount(groupEl: HTMLElement): void {
     const convertTab = groupEl.querySelector('.playlist-tab[data-tab="convert"]');
     const downloadTab = groupEl.querySelector('.playlist-tab[data-tab="download"]');
 
-    if (convertTab) convertTab.textContent = `Convert (${cCount})`;
-    if (downloadTab) downloadTab.textContent = `Download (${dCount})`;
+    if (convertTab) convertTab.textContent = `Convert Tab (${cCount})`;
+    if (downloadTab) downloadTab.textContent = `Download Tab (${dCount})`;
 
     // Filter Visibility of items
     const itemElements = groupEl.querySelectorAll('.multi-video-item');
@@ -260,7 +259,7 @@ export function updateGroupCount(groupEl: HTMLElement): void {
 
             const downloadableCount = convertItems.filter(i => i.isSelected && ['ready', 'error', 'cancelled'].includes(i.status)).length;
             (convertAllBtn as HTMLButtonElement).disabled = downloadableCount === 0;
-            convertAllBtn.textContent = `Convert All (${downloadableCount})`;
+            convertAllBtn.textContent = `Convert selected (${downloadableCount})`;
         } else {
             convertAllBtn.style.display = 'none';
             zipBtn.style.display = '';
@@ -270,6 +269,22 @@ export function updateGroupCount(groupEl: HTMLElement): void {
             (zipBtn as HTMLButtonElement).disabled = selectedCompletedCount === 0;
             zipBtn.textContent = `Download ZIP (${selectedCompletedCount})`;
         }
+    }
+
+    // Update Selection Count Text
+    const selectionText = groupEl.querySelector('.group-selection-text');
+    if (selectionText) {
+        const selectedCount = items.filter(i => i.isSelected).length;
+        selectionText.textContent = `${selectedCount} selected`;
+    }
+
+    // Update Group Checkbox State
+    const groupCheckbox = groupEl.querySelector('.group-checkbox') as HTMLInputElement;
+    if (groupCheckbox) {
+        const allSelected = items.length > 0 && items.every(i => i.isSelected);
+        const someSelected = items.some(i => i.isSelected);
+        groupCheckbox.checked = allSelected;
+        groupCheckbox.indeterminate = someSelected && !allSelected;
     }
 }
 

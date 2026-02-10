@@ -46,15 +46,15 @@ export class PlaylistStrategy implements RendererStrategy {
 
     getStatusHtml(item: VideoItem): string {
         switch (item.status) {
-            case 'pending': return '<span class="status-badge is-right pending">Pending</span>';
-            case 'ready': return '<span class="status-badge is-right ready">Ready</span>';
-            case 'queued': return '<span class="status-badge is-right pending">Queued</span>';
+            case 'pending': return '<span class="status-badge pending">Pending</span>';
+            case 'ready': return '<span class="status-badge ready">Ready</span>';
+            case 'queued': return '<span class="status-badge pending">Queued</span>';
             case 'completed':
                 return item.isDownloaded
-                    ? '<span class="status-badge is-right success">Downloaded</span>'
-                    : '<span class="status-badge is-right success">Completed</span>';
-            case 'error': return '<span class="status-badge is-right error">Failed</span>';
-            case 'cancelled': return '<span class="status-badge is-right cancelled">Cancelled</span>';
+                    ? '<span class="status-badge success">Downloaded</span>'
+                    : '<span class="status-badge success">Ready</span>';
+            case 'error': return '<span class="status-badge error">Failed</span>';
+            case 'cancelled': return '<span class="status-badge cancelled">Cancelled</span>';
             default: return '';
         }
     }
@@ -175,27 +175,49 @@ export class PlaylistStrategy implements RendererStrategy {
 
     private getMobileActionButton(item: VideoItem): string {
         if (item.status === 'downloading' || item.status === 'converting') {
-            return '';
+            return `
+                <button class="btn-icon btn-cancel" data-action="cancel" data-id="${item.id}" title="Cancel">
+                    <span class="icon-cancel">✕</span>
+                </button>
+            `;
         }
 
         if (item.status === 'completed' && item.downloadUrl) {
+            const filename = `${item.meta.title} (${item.settings?.quality || item.settings?.audioBitrate || ''}).${item.settings?.format || 'mp4'}`;
             return `
-                <a href="${item.downloadUrl}" class="btn-icon btn-download" download title="Download">
-                    <span class="icon-download">⬇</span>
-                </a>
+                <button class="btn-download-multi-download" type="button" data-action="save" data-id="${item.id}" data-download-url="${item.downloadUrl}" data-filename="${escapeAttr(filename)}">
+                    <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="15"></line>
+                        <polyline points="8 11 12 15 16 11"></polyline>
+                        <line x1="6" y1="19" x2="18" y2="19"></line>
+                    </svg>
+                    <svg class="btn-icon-spinner" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+                        <circle cx="12" cy="12" r="10" stroke-opacity="0.25"></circle>
+                        <path d="M12 2a10 10 0 0 1 10 10" stroke-opacity="1"></path>
+                    </svg>
+                    <svg class="btn-icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span class="btn-text">Download</span>
+                </button>
+            `;
+        }
+
+        if (item.status === 'ready') {
+            return `
+                <button class="btn-download-multi-download is-outline" type="button" data-action="convert" data-id="${item.id}">
+                    <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="15"></line>
+                        <polyline points="8 11 12 15 16 11"></polyline>
+                        <line x1="6" y1="19" x2="18" y2="19"></line>
+                    </svg>
+                    <span class="btn-text">Convert</span>
+                </button>
             `;
         }
 
         if (item.status === 'error') {
             return `<button class="btn-icon btn-retry" data-action="retry" data-id="${item.id}" title="Retry">↻</button>`;
-        }
-
-        if (item.status === 'ready') {
-            return `
-                <button class="btn-icon btn-convert-single" data-action="convert" data-id="${item.id}" title="Convert">
-                    <span>Convert</span>
-                </button>
-            `;
         }
 
         return '';

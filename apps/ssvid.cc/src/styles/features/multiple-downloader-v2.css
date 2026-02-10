@@ -88,26 +88,46 @@
     right: 8px;
     top: 50%;
     transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
+    width: 38px;
+    height: 38px;
     border-radius: 50%;
     border: none;
-    background: #f3f4f6;
-    color: #374151;
+    background: transparent;
+    color: #4b5563;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: all 0.2s ease;
+    z-index: 5;
 }
 
 .input-action-btn:hover {
-    background: #e5e7eb;
-    color: #111;
+    background: var(--color-accent-dark, rgba(141, 2, 31, 0.1));
+    color: var(--brand, #8F0F20);
+    transform: translateY(-50%);
+}
+
+.input-action-btn:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.input-action-btn .btn-icon {
+    width: 18px;
+    height: 18px;
+    display: block;
+    pointer-events: none;
+    color: inherit;
 }
 
 .input-action-btn .hidden {
-    display: none;
+    display: none !important;
+}
+
+.input-action-btn .btn-state {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* =========================================
@@ -284,9 +304,9 @@
    4. Video List & Items
    ========================================= */
 .multi-download-header {
-    background: transparent !important;
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
+    background: #f8fafc !important;
+    border: none !important;
+    border-radius: 0 !important;
     overflow: hidden;
     display: flex !important;
     flex-direction: column !important;
@@ -298,15 +318,13 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding: 1.25rem 1.5rem;
+    padding: 1rem 1.5rem 0.5rem;
     background: #f8fafc;
-    /* Top row background */
-    border-bottom: 1px solid #e2e8f0;
 }
 
 .multi-header-title {
-    font-size: 1.1rem;
-    color: #1a1a1a;
+    font-size: 1rem;
+    color: #1e293b;
     font-weight: 700;
     margin: 0;
 }
@@ -322,9 +340,8 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 0.75rem 1.5rem;
-    background: #ffffff;
-    /* Second row background (white) */
+    padding: 0.5rem 1.5rem 1rem;
+    background: #f8fafc;
 }
 
 .header-select-dropdown {
@@ -375,7 +392,6 @@
 }
 
 .multi-download-header {
-    padding: 1.25rem 1.5rem;
     border-bottom: 1px solid var(--border-secondary, #e5e7eb);
     display: flex;
     justify-content: space-between;
@@ -543,10 +559,47 @@
 
 .multi-video-status {
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 0px;
-    width: 100%;
+    align-items: center;
+    justify-content: center;
+    min-width: 120px;
+    flex-shrink: 0;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.status-badge.pending {
+    background: #f1f5f9;
+    color: #64748b;
+}
+
+.status-badge.ready {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.status-badge.success {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.status-badge.error {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.status-badge.cancelled {
+    background: #f1f5f9;
+    color: #64748b;
 }
 
 .item-active-progress {
@@ -665,7 +718,7 @@
     background: transparent;
     border-radius: 50%;
     cursor: pointer;
-    color: var(--text-muted, #666);
+    color: white;
     transition: all 0.2s ease;
 }
 
@@ -957,28 +1010,30 @@
     }
 
     .multi-video-info {
-        width: auto;
-        padding-top: 0px;
         flex: 1;
         min-width: 0;
+        padding-top: 0px;
+        display: flex;
+        flex-direction: column;
     }
 
-    .multi-video-actions {
-        margin-left: auto;
+    .multi-video-status {
         width: auto;
-        justify-content: flex-end;
-        margin-top: 0px;
-        border-top: none;
-        padding-top: 0px;
+        min-width: unset;
+        flex-shrink: 0;
+        padding: 0 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .multi-download-header {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        padding: 0.75rem 1rem;
         background: #f8f9fa;
         border-bottom: 1px solid #eee;
+        padding: 10px 15px;
     }
 
     .multi-download-header h2,
@@ -989,51 +1044,13 @@
         color: #1a1a1a;
     }
 
-    .item-count-badge {
-        font-size: 0.85rem;
-        color: #666;
-    }
-
-    .multi-video-item {
-        flex-direction: row;
-        align-items: center;
-        padding: 0.75rem 1rem;
-        gap: 0.875rem;
-        border-bottom: 1px solid #f0f0f0;
-    }
-
-    .multi-video-thumb {
-        width: 70px;
-        min-width: 70px;
-        height: 44px;
-        border-radius: 6px;
-    }
-
-    .multi-video-thumb img {
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
-    }
-
-    .multi-video-info {
-        gap: 2px;
-    }
-
-    .multi-video-title {
-        font-size: 0.9rem;
-        font-weight: 600;
-        color: #333;
-        margin-right: 0;
-    }
-
-    .multi-video-author,
-    .item-setting-text {
-        font-size: 0.75rem;
-        color: #777;
-    }
-
     .multi-video-actions {
         margin-left: auto;
+        width: auto;
+        justify-content: flex-end;
+        display: flex;
+        align-items: center;
+        gap: 8px;
     }
 
     .btn-icon.btn-download {
@@ -1103,41 +1120,34 @@
 }
 
 /* =========================================
-   7. Playlist Group Tabs
+   7. Playlist Group Tabs (Pill Style)
    ========================================= */
 .playlist-header-tabs {
     display: flex;
-    gap: 1.5rem;
-    position: relative;
-    margin-top: 0.5rem;
-    border-bottom: 2px solid #f1f5f9;
+    gap: 0.5rem;
+    background: #f8fafc;
+    padding: 0.25rem;
+    border-radius: 8px;
+    border: 1px solid #f1f5f9;
 }
 
 .playlist-tab {
     background: transparent;
     border: none;
-    padding: 0.5rem 0.25rem;
-    font-size: 0.875rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.8125rem;
     font-weight: 600;
-    color: var(--text-muted, #666);
+    color: #64748b;
     cursor: pointer;
-    transition: color 0.3s ease;
-    position: relative;
-    z-index: 1;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
 }
 
 .playlist-tab.active {
-    color: var(--brand, #8F0F20);
-}
-
-.tab-glider {
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    height: 2px;
-    background: var(--brand, #8F0F20);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 2;
+    background: #60a5fa;
+    color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .group-empty {
@@ -1153,9 +1163,9 @@
 }
 
 .playlist-group {
-    border: 1px solid var(--border-secondary, #e5e7eb);
-    border-radius: 12px;
-    margin-bottom: 1.5rem;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 2rem;
     overflow: hidden;
 }
 
@@ -1205,7 +1215,9 @@
     cursor: pointer;
 }
 
-.master-checkbox {
+.master-checkbox,
+.multiple-download-checkbox,
+.group-checkbox {
     width: 18px;
     height: 18px;
     cursor: pointer;
@@ -1223,7 +1235,7 @@
     width: 20px;
     height: 20px;
     cursor: pointer;
-    accent-color: #10b981;
+    accent-color: var(--brand, #8F0F20);
     border: 2px solid #cbd5e1;
     border-radius: 4px;
 }
@@ -1276,39 +1288,31 @@
 
 .group-header {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    padding: 0.75rem 1.25rem;
+    background: #f8fafc;
+    border: none;
+}
+
+.group-header-top-row {
+    display: flex;
     justify-content: space-between;
-    padding: 1rem 1.5rem;
-    background: var(--bg-secondary, #f9fafb);
-    border-bottom: 1px solid var(--border-secondary, #e5e7eb);
-    position: sticky;
-    top: 0;
-    z-index: 10;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 0.75rem;
 }
 
-.group-header-left {
+.group-header-title-area {
     display: flex;
     align-items: center;
-    gap: 12px;
-}
-
-.group-title-info {
-    display: flex;
-    align-items: baseline;
-    gap: 8px;
+    gap: 0.5rem;
 }
 
 .group-title {
-    font-size: 1.15rem;
+    font-size: 1rem;
     font-weight: 700;
     margin: 0;
-    color: var(--text-main, #333);
-}
-
-.group-count {
-    font-size: 0.9rem;
-    color: var(--text-muted, #666);
-    font-weight: 500;
+    color: #1e293b;
 }
 
 .group-collapse-btn {
@@ -1324,41 +1328,61 @@
     transition: transform 0.2s;
 }
 
-.group-header-right {
+.group-header-bottom-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.group-selection-label {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.group-selection-text {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #475569;
 }
 
 .group-actions {
     display: flex;
-    gap: 8px;
+    gap: 0.75rem;
 }
 
-.btn-sm {
-    padding: 6px 14px !important;
-    font-size: 0.85rem !important;
-    height: 32px !important;
-}
-
-.group-checkbox-label {
+.btn-playlist-group-action {
+    background: #eff6ff;
+    color: #2563eb;
+    border: 1px solid #bfdbfe;
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    height: 38px;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: var(--text-main, #333);
-    cursor: pointer;
-    user-select: none;
-    white-space: nowrap;
+    justify-content: center;
 }
 
-.group-checkbox {
-    width: 18px;
-    height: 18px;
-    accent-color: var(--brand, #8F0F20);
-    cursor: pointer;
+.btn-playlist-group-action:hover:not(:disabled) {
+    background: #dbeafe;
+    border-color: #93c5fd;
 }
+
+.btn-playlist-group-action:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: #f8fafc;
+    border-color: #e2e8f0;
+    color: #94a3b8;
+}
+
+
 
 .playlist-group.collapsed .group-items {
     display: none;
@@ -1468,7 +1492,8 @@
 
 /* New Multi-Download Button */
 .btn-download-multi-download {
-    display: inline-flex;
+    display: none;
+    /* Hidden on desktop */
     align-items: center;
     justify-content: center;
     padding: 0.5rem 1.25rem;
@@ -1509,7 +1534,29 @@
 }
 
 .btn-download-multi-download .btn-icon-check {
-    color: white; /* Changed to white */
+    color: white;
+}
+
+/* Outline variant for 'Ready' state */
+.btn-download-multi-download.is-outline {
+    background: transparent;
+    border: 1px solid #e2e8f0;
+    color: #94a3b8;
+}
+
+.btn-download-multi-download.is-outline .btn-icon {
+    display: block !important;
+    color: #94a3b8;
+}
+
+.btn-download-multi-download.is-outline:hover {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+    color: #64748b;
+}
+
+.btn-download-multi-download.is-outline:hover .btn-icon {
+    color: #64748b;
 }
 
 @keyframes spin {
@@ -1540,6 +1587,42 @@
         display: flex !important;
     }
 
+
+
+    /* Ensure input action buttons are shown correctly */
+    .input-action-btn,
+    .btn-paste,
+    #input-action-button {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    /* States should be flex, but respect the .hidden class */
+    #input-action-button .btn-state,
+    .btn-paste .btn-state,
+    .input-action-btn .btn-state {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #input-action-button .btn-state.hidden,
+    .btn-paste .btn-state.hidden,
+    .input-action-btn .btn-state.hidden {
+        display: none !important;
+    }
+
+    /* Make sure icons are visible inside these buttons */
+    .input-action-btn svg,
+    .btn-paste svg,
+    #input-action-button svg {
+        display: block;
+        width: 18px;
+        height: 18px;
+        color: inherit;
+    }
+
     .group-header {
         padding: 0.5rem 1rem;
     }
@@ -1554,6 +1637,8 @@
 
     /* Mobile: Button show only icon */
     .btn-download-multi-download {
+        display: inline-flex !important;
+        /* Visible on mobile */
         width: 36px;
         min-width: 36px;
         height: 36px;

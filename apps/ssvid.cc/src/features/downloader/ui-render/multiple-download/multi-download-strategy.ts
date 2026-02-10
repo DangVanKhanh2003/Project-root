@@ -46,16 +46,16 @@ export class MultiDownloadStrategy implements RendererStrategy {
 
     getStatusHtml(item: VideoItem): string {
         switch (item.status) {
-            case 'pending': return '<span class="status-badge is-right pending">Pending</span>';
+            case 'pending': return '<span class="status-badge pending">Pending</span>';
             case 'ready':
-                return '<span class="status-badge is-right ready">Ready</span>';
-            case 'queued': return '<span class="status-badge is-right pending">Queued</span>';
+                return '<span class="status-badge ready">Ready</span>';
+            case 'queued': return '<span class="status-badge pending">Queued</span>';
             case 'completed':
                 return item.isDownloaded
-                    ? '<span class="status-badge is-right success">Downloaded</span>'
-                    : '<span class="status-badge is-right success">Ready</span>';
-            case 'error': return '<span class="status-badge is-right error">Failed</span>';
-            case 'cancelled': return '<span class="status-badge is-right cancelled">Cancelled</span>';
+                    ? '<span class="status-badge success">Downloaded</span>'
+                    : '<span class="status-badge success">Ready</span>';
+            case 'error': return '<span class="status-badge error">Failed</span>';
+            case 'cancelled': return '<span class="status-badge cancelled">Cancelled</span>';
             default: return '';
         }
     }

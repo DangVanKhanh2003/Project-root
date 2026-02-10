@@ -210,10 +210,10 @@ export class VideoItemRenderer {
                             <div class="progress-bar" style="width: ${progressPercent}%"></div>
                         </div>
                     </div>
-                    <div class="multi-video-status">
-                      ${strategy.getStatusHtml(item)}
-                    </div>
                 </div>
+            </div>
+            <div class="multi-video-status">
+                ${strategy.getStatusHtml(item)}
             </div>
             <div class="multi-video-actions">${strategy.getActionButton(item, {})}</div>
         `;
