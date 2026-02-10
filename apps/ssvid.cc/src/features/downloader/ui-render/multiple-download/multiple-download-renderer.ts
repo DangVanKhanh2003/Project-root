@@ -265,6 +265,16 @@ export class MultipleDownloadRenderer {
                 return;
             }
 
+            // Audio track select (playlist mode)
+            if (target.classList.contains('item-audio-track-select')) {
+                const id = (target as HTMLSelectElement).dataset.id;
+                const value = (target as HTMLSelectElement).value;
+                if (id) {
+                    videoStore.updateSettings(id, { audioTrack: value });
+                }
+                return;
+            }
+
             // Master checkbox for batch
             if (target.id === 'masterCheckbox') {
                 const checked = (target as HTMLInputElement).checked;

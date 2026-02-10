@@ -429,7 +429,6 @@ export class VideoItemRenderer {
     }
 
     private static updateAudioLanguageWarning(el: HTMLElement, item: VideoItem): void {
-       debugger
         const existing = el.querySelector('.multi-audio-language-warning') as HTMLElement | null;
         if (item.audioLanguageChanged) {
             const html = VideoItemRenderer.getAudioLanguageWarningHtml(item);

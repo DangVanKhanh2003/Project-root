@@ -29,8 +29,6 @@ export class MultiDownloadStrategy implements RendererStrategy {
     }
 
     getCheckboxHtml(item: VideoItem): string {
-        if (isMobileDevice()) return '';
-
         const isSelectable = ['ready', 'error', 'cancelled', 'completed'].includes(item.status);
         const disabledAttr = isSelectable ? '' : 'disabled';
         const checkedAttr = item.isSelected ? 'checked' : '';

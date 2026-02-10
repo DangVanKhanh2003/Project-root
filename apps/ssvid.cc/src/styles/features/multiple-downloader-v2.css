@@ -583,7 +583,7 @@
 }
 
 .item-setting-text {
-    font-size: 0.8125rem;
+    font-size: inherit;
     color: var(--text-muted, #666);
     font-weight: 500;
 }
@@ -594,7 +594,7 @@
     background: #f1f5f9;
     color: #475569;
     border-radius: 4px;
-    font-size: 0.75rem;
+    font-size: inherit;
     font-weight: 600;
     margin-left: 0.25rem;
     text-transform: uppercase;
@@ -606,6 +606,7 @@
     flex-direction: column;
     gap: 0px;
     min-height: 40px;
+    font-size: 12px;
 }
 
 .multi-video-status {
@@ -1042,8 +1043,8 @@
     .multi-video-item {
         flex-direction: row;
         align-items: center;
-        padding:15px;
-        gap: 0.75rem;
+        padding: 10px 12px;
+        gap: 0.5rem;
     }
 
     .multi-video-thumb {
@@ -1068,13 +1069,7 @@
     }
 
     .multi-video-status {
-        width: auto;
-        min-width: unset;
-        flex-shrink: 0;
-        padding: 0 4px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        display: none !important;
     }
 
     .multi-download-header {
@@ -1095,12 +1090,12 @@
     }
 
     .multi-video-actions {
-        margin-left: auto;
+        margin-left: 0;
         width: auto;
-        justify-content: flex-end;
+        flex-shrink: 0;
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 4px;
     }
 
     .btn-icon.btn-download {
@@ -1464,11 +1459,12 @@
 }
 
 .item-format-select,
-.item-quality-select {
+.item-quality-select,
+.item-audio-track-select {
     height: 32px;
     border: none;
     background: #fff;
-    font-size: 0.8125rem;
+    font-size: inherit;
     font-weight: 500;
     color: var(--text-main, #333);
     cursor: pointer;
@@ -1476,8 +1472,14 @@
     appearance: auto;
 }
 
+.item-audio-track-select {
+    width: auto;
+    max-width: 120px;
+}
+
 .item-format-select:focus,
-.item-quality-select:focus {
+.item-quality-select:focus,
+.item-audio-track-select:focus {
     border-color: var(--brand, #8F0F20);
 }
 
@@ -1662,7 +1664,6 @@
    ========================================= */
 @media (max-width: 640px) {
 
-    .item-checkbox-wrapper,
     .master-checkbox-wrapper,
     .header-select-dropdown,
     .multiple-download-group-actions,
@@ -1726,10 +1727,9 @@
     /* Mobile: Button show only icon */
     .btn-download-multi-download {
         display: inline-flex !important;
-        /* Visible on mobile */
-        width: 36px;
-        min-width: 36px;
-        height: 36px;
+        width: 32px;
+        min-width: 32px;
+        height: 32px;
         padding: 0;
         border-radius: 50%;
     }

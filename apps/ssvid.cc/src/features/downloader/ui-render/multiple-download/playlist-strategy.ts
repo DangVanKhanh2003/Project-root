@@ -3,6 +3,7 @@ import { RendererStrategy } from './renderer-strategy.interface';
 import { VideoItem } from '../../state/multiple-download-types';
 import { isMobileDevice } from '../../../../utils';
 import { escapeAttr } from './video-item-renderer';
+import { LANGUAGES } from '../../logic/data/languages';
 
 /**
  * Strategy for Playlist Mode
@@ -25,8 +26,6 @@ export class PlaylistStrategy implements RendererStrategy {
     }
 
     getCheckboxHtml(item: VideoItem): string {
-        if (isMobileDevice()) return '';
-
         const isSelectable = ['ready', 'error', 'cancelled', 'completed'].includes(item.status);
         const disabledAttr = isSelectable ? '' : 'disabled';
         const checkedAttr = item.isSelected ? 'checked' : '';
@@ -111,8 +110,19 @@ export class PlaylistStrategy implements RendererStrategy {
                 </select>`;
         }
 
-        const track = item.settings?.audioTrack;
-        const trackHtml = (track && track !== 'original') ? `<span class="item-setting-badge">${track.toUpperCase()}</span>` : '';
+        const track = item.settings?.audioTrack || 'original';
+        let trackHtml = '';
+
+        if (track && track !== 'original') {
+            const available = item.availableAudioLanguages;
+            const langList = (available && available.length > 1) ? available : LANGUAGES.map(l => l.code);
+            const options = langList.map(code => {
+                const label = LANGUAGES.find(l => l.code.toLowerCase() === code.toLowerCase())?.name || code.toUpperCase();
+                const selected = code.toLowerCase() === track.toLowerCase() ? 'selected' : '';
+                return `<option value="${code}" ${selected}>${label}</option>`;
+            }).join('');
+            trackHtml = `<select class="item-audio-track-select" data-id="${item.id}" data-field="audioTrack">${options}</select>`;
+        }
 
         return `${formatSelect}${qualitySelect}${trackHtml}`;
     }
