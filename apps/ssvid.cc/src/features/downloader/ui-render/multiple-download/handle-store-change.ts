@@ -179,7 +179,7 @@ function createGroupElement(groupId: string, groupTitle: string): HTMLElement {
                     <button class="group-collapse-btn" data-action="toggle-group" data-group-id="${groupId}">
                         <span class="collapse-icon">▼</span>
                     </button>
-                    <h3 class="group-title">${groupTitle}</h3>
+                    <p class="group-title">Playlist</p>
                 </div>
                 <div class="playlist-header-tabs">
                     <button type="button" class="playlist-tab active" data-action="playlist-tab" data-tab="convert" data-group-id="${groupId}">Convert Tab (0)</button>

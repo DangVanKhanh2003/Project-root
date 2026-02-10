@@ -170,7 +170,7 @@
 /* ===== ICON STATES ===== */
 .icon {
   position: relative;
-  z-index: 2;
+  z-index: 200;
   width: 18px;
   height: 18px;
   flex-shrink: 0;
