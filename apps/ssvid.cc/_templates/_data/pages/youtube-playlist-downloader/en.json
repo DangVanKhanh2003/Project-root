@@ -1,0 +1,126 @@
+{
+  "seo": {
+    "title": "SSVID - Download MP3 YouTube Playlist Online (No Ads)",
+    "description": "Download MP3 YouTube playlists online with SSVID. Convert full YouTube playlists to MP3 for free, no ads, no limits. ZIP download on desktop, individual files on mobile.",
+    "schemaName": "SSVID - YouTube Playlist Downloader",
+    "schemaDescription": "Download MP3 YouTube playlists online with SSVID. Convert full playlists to MP3 for free.",
+    "ogTitle": "SSVID - Download MP3 YouTube Playlist Online (No Ads)",
+    "ogDescription": "Download MP3 YouTube playlists online with SSVID. Convert full YouTube playlists to MP3 for free, no ads, no limits."
+  },
+  "defaultFormat": "mp3",
+  "hero": {
+    "title": "SSVID - Download MP3 YouTube Playlist",
+    "subtitle": "Free, fast & unlimited Download MP3 YouTube Playlist"
+  },
+  "form": {
+    "title": "MP3 YouTube Playlist Downloader",
+    "placeholder": "Paste playlist URL here...",
+    "convertButton": "Convert"
+  },
+  "overview": {
+    "howTo": {
+      "title": "How to Download MP3 from a YouTube Playlist",
+      "steps": [
+        {
+          "number": "1",
+          "title": "Copy the Link",
+          "description": "Copy the YouTube playlist URL you want to download."
+        },
+        {
+          "number": "2",
+          "title": "Paste the Playlist",
+          "description": "Paste the playlist link into SSVID."
+        },
+        {
+          "number": "3",
+          "title": "Choose MP3 Quality",
+          "description": "Select MP3 and your preferred audio quality."
+        },
+        {
+          "number": "4",
+          "title": "Download",
+          "description": "Click download and save the entire playlist to your device."
+        }
+      ]
+    }
+  },
+  "content": {
+    "intro": {
+      "title": "What Is SSVID MP3 YouTube Playlist Downloader?",
+      "description": "SSVID is a free online tool that helps you <strong>download MP3 YouTube playlists</strong> using a single playlist link. Instead of converting videos one by one, SSVID lets you extract and download all audio tracks from a YouTube playlist at once, making it ideal for music albums, study playlists, podcasts, and long video collections."
+    },
+    "columns": [
+      {
+        "title": "How to Download MP3 from a YouTube Playlist",
+        "description": "1. Copy the YouTube playlist URL you want to download.<br>2. Paste the playlist link into SSVID.<br>3. Select MP3 and your preferred audio quality.<br>4. Click download and save the entire playlist to your device."
+      },
+      {
+        "title": "Playlist MP3 Download on Desktop and Mobile",
+        "description": "SSVID automatically adapts to your device. On <strong>desktop computers</strong>, you can <strong>download the entire MP3 playlist as a single ZIP file</strong> for faster and more convenient storage. On <strong>mobile devices</strong>, MP3 files are downloaded <strong>one by one</strong>, allowing easy access and playback directly from your browser."
+      }
+    ],
+    "whyDownload": {
+      "title": "Why Download MP3 YouTube Playlists?",
+      "description": "MP3 is a lightweight and widely supported audio format that works on almost all devices. If you only need audio, <strong>downloading MP3 YouTube playlists</strong> saves storage space and makes offline listening more efficient compared to downloading full video files."
+    },
+    "quality": {
+      "title": "Supported MP3 Quality Options",
+      "description": "SSVID supports multiple MP3 quality levels, including <strong>128kbps</strong>, <strong>192kbps</strong>, and <strong>320kbps</strong>. You can choose the best balance between file size and sound quality depending on your needs."
+    },
+    "comparison": {
+      "title": "Playlist Downloader vs YouTube Multi Download",
+      "sections": [
+        {
+          "title": "Download MP3 YouTube Playlist",
+          "description": "Best when you already have a YouTube playlist. Just paste <strong>one playlist link</strong> and download all videos as MP3 files automatically."
+        },
+        {
+          "title": "YouTube Multi Download",
+          "description": "Designed for users who have <strong>multiple individual YouTube video links</strong> that are not part of the same playlist. The Multi Downloader supports both <strong>MP3 and MP4</strong> formats. If you already have a custom list of video URLs, try <a href=\"/youtube-multi-downloader\" title=\"SSVID YouTube Multi Download\"><strong>YouTube Multi Download with SSVID</strong></a> for faster batch downloads."
+        }
+      ]
+    },
+    "useCases": {
+      "title": "When Should You Use SSVID Playlist Downloader?",
+      "items": [
+        {
+          "title": "Download YouTube Music Albums",
+          "description": "Convert full YouTube music albums or curated playlists into MP3 for offline listening."
+        },
+        {
+          "title": "Educational and Podcast Playlists",
+          "description": "Turn long playlists of lectures, talks, or podcasts into MP3 files so you can listen anytime without streaming."
+        },
+        {
+          "title": "Unlimited Playlist Downloads",
+          "description": "SSVID supports <strong>unlimited YouTube playlist downloads</strong>, making it suitable for both short and long playlists."
+        }
+      ]
+    }
+  },
+  "faqs": {
+    "title": "Frequently Asked Questions",
+    "items": [
+      {
+        "question": "Is there a limit on playlist size?",
+        "answer": "No. SSVID allows unlimited YouTube playlist to MP3 downloads without restricting the number of videos."
+      },
+      {
+        "question": "Do I need to install any software?",
+        "answer": "No installation is required. SSVID works fully online in your browser."
+      },
+      {
+        "question": "Is SSVID free and ad-free?",
+        "answer": "Yes. SSVID is free to use and offers a no-ads experience for playlist downloads."
+      },
+      {
+        "question": "Can I download playlist MP3 files on my phone?",
+        "answer": "Yes. On mobile devices, MP3 files are downloaded individually for easy access and playback."
+      },
+      {
+        "question": "What is the difference between playlist download and multi download?",
+        "answer": "Playlist download uses one YouTube playlist link, while multi download is used when you have multiple separate video links."
+      }
+    ]
+  }
+}

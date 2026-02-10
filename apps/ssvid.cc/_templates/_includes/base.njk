@@ -101,6 +101,16 @@
 
     <!-- JSON-LD Structured Data -->
     {% include "json-ld.njk" %}
+    {%- if pageStyles and pageStyles.length %}
+    {%- for href in pageStyles %}
+    <link rel="stylesheet" href="{{ href }}">
+    {%- endfor %}
+    {%- endif %}
+    {%- if pageInlineStyles %}
+    <style>
+        {{ pageInlineStyles | safe }}
+    </style>
+    {%- endif %}
 </head>
 
 <body>
@@ -116,7 +126,8 @@
     {% include "footer.njk" %}
 
     <!-- Main TypeScript Entry -->
-    <script type="module" src="/src/main.ts"></script>
+    {%- set pageScriptSrc = pageScript or '/src/main.ts' -%}
+    <script type="module" src="{{ pageScriptSrc }}"></script>
 </body>
 
 </html>
