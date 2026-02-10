@@ -2,6 +2,7 @@
 import { RendererStrategy } from './renderer-strategy.interface';
 import { VideoItem } from '../../state/multiple-download-types';
 import { isMobileDevice } from '../../../../utils';
+import { escapeAttr } from './video-item-renderer';
 
 /**
  * Strategy for Playlist Mode
@@ -45,23 +46,29 @@ export class PlaylistStrategy implements RendererStrategy {
 
     getStatusHtml(item: VideoItem): string {
         switch (item.status) {
-            case 'pending': return '<span class="status-badge pending">Pending</span>';
-            case 'analyzing': return '<span class="status-badge analyzing">Analyzing...</span>';
-            case 'fetching_metadata': return '<span class="status-badge analyzing">Fetching info...</span>';
-            case 'ready': return '<span class="status-badge ready">Ready</span>';
-            case 'queued': return '<span class="status-badge pending">Queued</span>';
-            case 'downloading': return `<span class="status-badge downloading">Downloading... ${Math.round(item.progress)}%</span>`;
+            case 'pending': return '<span class="status-badge is-right pending">Pending</span>';
+            case 'ready': return '<span class="status-badge is-right ready">Ready</span>';
+            case 'queued': return '<span class="status-badge is-right pending">Queued</span>';
+            case 'completed':
+                return item.isDownloaded
+                    ? '<span class="status-badge is-right success">Downloaded</span>'
+                    : '<span class="status-badge is-right success">Completed</span>';
+            case 'error': return '<span class="status-badge is-right error">Failed</span>';
+            case 'cancelled': return '<span class="status-badge is-right cancelled">Cancelled</span>';
+            default: return '';
+        }
+    }
+
+    getPhaseHtml(item: VideoItem): string {
+        switch (item.status) {
+            case 'analyzing': return 'Analyzing...';
+            case 'fetching_metadata': return 'Fetching info...';
+            case 'downloading': return 'Downloading...';
             case 'converting': {
                 const phaseText = item.progressPhase === 'merging' ? 'Merging' :
                     item.progressPhase === 'extracting' ? 'Extracting' : 'Converting';
-                return `<span class="status-badge converting">${phaseText}... ${Math.round(item.progress)}%</span>`;
+                return `${phaseText}...`;
             }
-            case 'completed':
-                return item.isDownloaded
-                    ? '<span class="status-badge success">Downloaded</span>'
-                    : '<span class="status-badge success">Completed</span>';
-            case 'error': return '<span class="status-badge error">Failed</span>';
-            case 'cancelled': return '<span class="status-badge cancelled">Cancelled</span>';
             default: return '';
         }
     }
@@ -133,9 +140,22 @@ export class PlaylistStrategy implements RendererStrategy {
         }
 
         if (item.status === 'completed' && item.downloadUrl) {
+            const filename = `${item.meta.title} (${item.settings?.quality || item.settings?.audioBitrate || ''}).${item.settings?.format || 'mp4'}`;
             return `
-                <button class="btn-icon btn-remove" data-action="remove" data-id="${item.id}" title="Remove">
-                    <span class="icon-trash">🗑</span>
+                <button class="btn-download-multi-download" type="button" data-action="save" data-id="${item.id}" data-download-url="${item.downloadUrl}" data-filename="${escapeAttr(filename)}">
+                    <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="15"></line>
+                        <polyline points="8 11 12 15 16 11"></polyline>
+                        <line x1="6" y1="19" x2="18" y2="19"></line>
+                    </svg>
+                    <svg class="btn-icon-spinner" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+                        <circle cx="12" cy="12" r="10" stroke-opacity="0.25"></circle>
+                        <path d="M12 2a10 10 0 0 1 10 10" stroke-opacity="1"></path>
+                    </svg>
+                    <svg class="btn-icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span class="btn-text">Download</span>
                 </button>
             `;
         }
@@ -146,7 +166,9 @@ export class PlaylistStrategy implements RendererStrategy {
 
         return `
             <button class="btn-icon btn-remove" data-action="remove" data-id="${item.id}" title="Remove">
-                <span class="icon-trash">🗑</span>
+                <span class="icon-trash">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+                </span>
             </button>
         `;
     }

@@ -11,5 +11,6 @@ export interface RendererStrategy {
     getSettingsClass(item: VideoItem): string;
     getCheckboxHtml(item: VideoItem): string;
     getStatusHtml(item: VideoItem): string;
+    getPhaseHtml(item: VideoItem): string;
     afterRender?(el: HTMLElement, item: VideoItem): void;
 }

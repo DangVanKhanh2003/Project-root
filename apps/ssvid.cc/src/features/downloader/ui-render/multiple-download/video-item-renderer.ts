@@ -96,10 +96,16 @@ export class VideoItemRenderer {
             }
         }
 
-        // Status badge
+        // Status badge (terminal states)
         const statusContainer = el.querySelector('.multi-video-status');
         if (statusContainer) {
             statusContainer.innerHTML = strategy.getStatusHtml(item);
+        }
+
+        // Phase text (active states)
+        const phaseEl = el.querySelector('.multi-video-phase-text') as HTMLElement;
+        if (phaseEl) {
+            phaseEl.textContent = strategy.getPhaseHtml(item);
         }
 
         // Settings
@@ -137,14 +143,19 @@ export class VideoItemRenderer {
     /**
      * Lightweight progress-only update
      */
-    static updateProgressOnly(el: HTMLElement, item: VideoItem): void {
+    static updateProgressOnly(el: HTMLElement, item: VideoItem, strategy: RendererStrategy): void {
         VideoItemRenderer.updateProgressBar(el, item);
 
-        // Update status badge progress text
-        const statusBadge = el.querySelector('.status-badge.converting, .status-badge.downloading') as HTMLElement;
-        if (statusBadge && item.progress > 0) {
-            const phaseText = item.progressPhase === 'merging' ? 'Merging' : 'Converting';
-            statusBadge.textContent = `${phaseText}... ${Math.round(item.progress)}%`;
+        // Update phase text
+        const phaseEl = el.querySelector('.multi-video-phase-label') as HTMLElement;
+        if (phaseEl) {
+            phaseEl.textContent = strategy.getPhaseHtml(item);
+        }
+
+        // Update percentage text
+        const percentEl = el.querySelector('.progress-percentage-label') as HTMLElement;
+        if (percentEl) {
+            percentEl.textContent = `${Math.round(item.progress)}%`;
         }
     }
 
@@ -190,14 +201,17 @@ export class VideoItemRenderer {
                 <div class="multi-video-error" style="${item.status === 'error' ? '' : 'display:none'}">${escapeHtml(item.error || '')}</div>
                 <div class="settings-progress-wrapper">
                     <div class="item-settings${strategy.getSettingsClass(item)}">${strategy.buildSettingsContent(item)}</div>
+                    <div class="item-active-progress" style="${isDownloading ? '' : 'display:none'}">
+                        <div class="progress-info-row">
+                            <div class="multi-video-phase-label">${strategy.getPhaseHtml(item)}</div>
+                            <div class="progress-percentage-label">${progressPercent}%</div>
+                        </div>
+                        <div class="multi-video-progress">
+                            <div class="progress-bar" style="width: ${progressPercent}%"></div>
+                        </div>
+                    </div>
                     <div class="multi-video-status">
                       ${strategy.getStatusHtml(item)}
-                      ${isDownloading ? `
-                          <div class="multi-video-progress">
-                              <div class="progress-bar" style="width: ${progressPercent}%"></div>
-                              <span class="progress-percentage">${progressPercent}%</span>
-                          </div>
-                      ` : ''}
                     </div>
                 </div>
             </div>
@@ -211,39 +225,29 @@ export class VideoItemRenderer {
 
     private static updateProgressBar(el: HTMLElement, item: VideoItem): void {
         const isActive = item.status === 'downloading' || item.status === 'converting' || item.status === 'analyzing';
-        let progressContainer = el.querySelector('.multi-video-progress') as HTMLElement;
+        const activeWrapper = el.querySelector('.item-active-progress') as HTMLElement;
+        const progressPercent = Math.round(item.progress || 0);
 
         if (isActive) {
-            if (!progressContainer) {
-                const statusContainer = el.querySelector('.multi-video-status');
-                if (statusContainer) {
-                    progressContainer = document.createElement('div');
-                    progressContainer.className = 'multi-video-progress';
-                    progressContainer.innerHTML = `
-                        <div class="progress-bar" style="width: 0%"></div>
-                        <span class="progress-percentage">0%</span>
-                    `;
-                    statusContainer.appendChild(progressContainer);
-                }
-            }
-            const bar = progressContainer.querySelector('.progress-bar') as HTMLElement;
-            const percentText = progressContainer.querySelector('.progress-percentage') as HTMLElement;
-            const progress = Math.round(item.progress || 0);
-            if (bar) {
-                bar.style.width = `${progress}%`;
-            }
-            if (percentText) {
-                percentText.textContent = `${progress}%`;
-            }
+            if (activeWrapper) activeWrapper.style.display = 'block';
+
+            const bar = el.querySelector('.progress-bar') as HTMLElement;
+            if (bar) bar.style.width = `${progressPercent}%`;
+
+            const percentLabel = el.querySelector('.progress-percentage-label') as HTMLElement;
+            if (percentLabel) percentLabel.textContent = `${progressPercent}%`;
 
             // Phase-specific color
-            if (item.progressPhase === 'merging') {
-                progressContainer.classList.add('phase-merging');
-            } else {
-                progressContainer.classList.remove('phase-merging');
+            const progressContainer = el.querySelector('.multi-video-progress');
+            if (progressContainer) {
+                if (item.progressPhase === 'merging') {
+                    progressContainer.classList.add('phase-merging');
+                } else {
+                    progressContainer.classList.remove('phase-merging');
+                }
             }
-        } else if (progressContainer) {
-            progressContainer.remove();
+        } else {
+            if (activeWrapper) activeWrapper.style.display = 'none';
         }
     }
 
@@ -265,7 +269,7 @@ export class VideoItemRenderer {
 // Utility Helpers
 // ==========================================
 
-function escapeHtml(text: string | undefined): string {
+export function escapeHtml(text: string | undefined): string {
     if (!text) return '';
     return text.replace(/[&<>"']/g, (m) => {
         switch (m) {
@@ -279,7 +283,7 @@ function escapeHtml(text: string | undefined): string {
     });
 }
 
-function escapeAttr(text: string | undefined): string {
+export function escapeAttr(text: string | undefined): string {
     return escapeHtml(text);
 }
 

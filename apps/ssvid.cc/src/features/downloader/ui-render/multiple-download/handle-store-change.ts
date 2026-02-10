@@ -115,7 +115,7 @@ export function createStoreChangeHandler(config: StoreChangeHandlerConfig) {
                 const el = getVideoItemElement(listContainer, item.id);
                 if (!el) return;
 
-                VideoItemRenderer.updateProgressOnly(el, item);
+                VideoItemRenderer.updateProgressOnly(el, item, strategy);
                 onCountsChanged?.();
                 break;
             }
