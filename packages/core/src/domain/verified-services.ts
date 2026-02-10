@@ -11,28 +11,39 @@ import type { VerifiedResult } from './verification/types';
 import type { ProtectionPayload } from '../services/base/base-service';
 
 import type { IFeedbackService } from '../services/v1/interfaces/feedback.interface';
+import type { IDecryptService } from '../services/v1/interfaces/decrypt.interface';
+import type { IMultifileService } from '../services/v1/interfaces/multifile.interface';
 import type { ISearchV2Service } from '../services/v2/interfaces/searchv2.interface';
+import type { IYouTubeDownloadService } from '../services/v2/interfaces/youtube-download.interface';
 import type { IZipDownloadService, ZipDownloadResponse } from '../services/v3/interfaces/zip.interface';
 import type { IQueueService } from '../services/v2/interfaces/queue.interface';
 
 import type { IYouTubePublicApiService } from '../services/public-api/interfaces/public-api.interface';
 import type { IV3PlaylistService } from '../services/v3/interfaces/playlist.interface';
 import type { IV3DownloadService } from '../services/v3/interfaces/download.interface';
-import { mapDirectExtractResponse } from '../mappers/v1/media/direct.mapper';
-import { mapInstagramResponse } from '../mappers/v1/media/instagram.mapper';
 
 /**
  * Core Services Collection
+ * All fields optional except the universal ones (searchV2, queue, youtubePublicApi)
  */
 export interface CoreServices {
-
-  feedback: IFeedbackService;
+  // Universal services (all apps)
   searchV2: ISearchV2Service;
   queue: IQueueService;
   youtubePublicApi: IYouTubePublicApiService;
-  playlistV3: IV3PlaylistService;
-  downloadV3: IV3DownloadService;
-  zipDownload: IZipDownloadService;
+
+  // Optional V1 services
+  feedback?: IFeedbackService;
+  decrypt?: IDecryptService;
+  multifile?: IMultifileService;
+
+  // Optional V2 services
+  youtubeDownload?: IYouTubeDownloadService;
+
+  // Optional V3 services
+  playlistV3?: IV3PlaylistService;
+  downloadV3?: IV3DownloadService;
+  zipDownload?: IZipDownloadService;
 }
 
 /**
@@ -90,13 +101,6 @@ export function createVerifiedServices(
    * KEY NAMES MUST MATCH ACTUAL METHOD NAMES for clarity
    */
   const methodRegistry: Record<string, (...args: any[]) => Promise<any>> = {
-    // Search V1
-
-
-    // Feedback
-    [POLICY_NAME.SEND_FEEDBACK]: (params: any) =>
-      services.feedback.sendFeedback(params),
-
     // Search V2
     [POLICY_NAME.SEARCH_V2]: (query: string, options?: any) =>
       services.searchV2.searchV2(query, options),
@@ -105,25 +109,47 @@ export function createVerifiedServices(
     [POLICY_NAME.ADD_VIDEO_TO_QUEUE]: (videoId: string) =>
       services.queue.addVideoToQueue(videoId),
 
-
     // YouTube Public API
     [POLICY_NAME.GET_METADATA_YOUTUBE]: (url: string) =>
       services.youtubePublicApi.getMetadata(url),
     [POLICY_NAME.GET_SUGGESTIONS]: (query: string) =>
       services.youtubePublicApi.getSuggestions(query),
-
-    // Playlist V3
-    'playlistV3.extractPlaylist': (url: string, signal?: AbortSignal) =>
-      services.playlistV3.extractPlaylist(url, signal),
-
-    // Download V3
-    'downloadV3.createJob': (request: any, signal?: AbortSignal) =>
-      services.downloadV3.createJob(request, signal),
-    'downloadV3.getStatusByUrl': (url: string) =>
-      services.downloadV3.getStatusByUrl(url),
-    'zipDownload.createZipDownload': (request: any) =>
-      services.zipDownload.createZipDownload(request),
   };
+
+  // Conditionally register optional services
+  if (services.feedback) {
+    methodRegistry[POLICY_NAME.SEND_FEEDBACK] = (params: any) =>
+      services.feedback!.sendFeedback(params);
+  }
+
+  if (services.decrypt) {
+    methodRegistry[POLICY_NAME.DECODE_URL] = (params: any) =>
+      services.decrypt!.decodeUrl(params);
+    methodRegistry[POLICY_NAME.DECODE_LIST] = (params: any) =>
+      services.decrypt!.decodeList(params);
+  }
+
+  if (services.multifile) {
+    methodRegistry['startMultifileSession'] = (params: any) =>
+      services.multifile!.startMultifileSession(params);
+  }
+
+  if (services.playlistV3) {
+    methodRegistry['playlistV3.extractPlaylist'] = (url: string, signal?: AbortSignal) =>
+      services.playlistV3!.extractPlaylist(url, signal);
+  }
+
+  if (services.downloadV3) {
+    methodRegistry['downloadV3.createJob'] = (request: any, signal?: AbortSignal) =>
+      services.downloadV3!.createJob(request, signal);
+    methodRegistry['downloadV3.getStatusByUrl'] = (url: string) =>
+      services.downloadV3!.getStatusByUrl(url);
+  }
+
+  if (services.zipDownload) {
+    methodRegistry['zipDownload.createZipDownload'] = (request: any) =>
+      services.zipDownload!.createZipDownload(request);
+  }
 
   /**
    * Generic wrap function
@@ -296,65 +322,43 @@ export function createVerifiedServices(
 
   // Return verified services API
   return {
-    // ========================================
-    // Search V1
-    // ========================================
-
-
-    // ========================================
-    // Decrypt (WITH auto JWT injection)
-    // ========================================
-
-
-    // ========================================
     // Feedback
-    // ========================================
-
     sendFeedback: (params: Parameters<IFeedbackService['sendFeedback']>[0]) =>
       wrap(POLICY_NAME.SEND_FEEDBACK, params),
 
-    // ========================================
     // Search V2
-    // ========================================
-
     searchV2: (query: string, options?: Parameters<ISearchV2Service['searchV2']>[1]) =>
       wrap(POLICY_NAME.SEARCH_V2, query, options),
 
-    // ========================================
     // Queue
-    // ========================================
-
     addVideoToQueue: (videoId: string) =>
       wrap(POLICY_NAME.ADD_VIDEO_TO_QUEUE, videoId),
 
-    // ========================================
-    // YouTube Download
-    // ========================================
-
-
-    // ========================================
     // YouTube Public API
-    // ========================================
-
     getSuggestions: (params: { q: string }) =>
       wrap<string[]>(POLICY_NAME.GET_SUGGESTIONS, params.q),
 
     getMetadataYoutube: (url: string) =>
       wrap(POLICY_NAME.GET_METADATA_YOUTUBE, url),
 
-    // ========================================
-    // Playlist V3
-    // ========================================
+    // Decrypt (V1)
+    decodeUrl: (params: { encrypted_url: string }) =>
+      wrap(POLICY_NAME.DECODE_URL, params),
 
+    decodeList: (params: { encrypted_urls: string[] }) =>
+      wrap(POLICY_NAME.DECODE_LIST, params),
+
+    // Multifile (V1)
+    startMultifileSession: (params: { urls: string[] }) =>
+      wrap('startMultifileSession', params),
+
+    // Playlist V3
     playlistV3: {
       extractPlaylist: (url: string, signal?: AbortSignal) =>
         wrap('playlistV3.extractPlaylist', url, signal),
     },
 
-    // ========================================
     // Download V3
-    // ========================================
-
     downloadV3: {
       createJob: (request: Parameters<IV3DownloadService['createJob']>[0], signal?: AbortSignal) =>
         wrap('downloadV3.createJob', request, signal),
@@ -362,25 +366,15 @@ export function createVerifiedServices(
         wrap('downloadV3.getStatusByUrl', url),
     },
 
-    // ========================================
     // ZIP Download
-    // ========================================
-
     zipDownload: {
       createZipDownload: (request: Parameters<IZipDownloadService['createZipDownload']>[0]) =>
         wrap<ZipDownloadResponse>('zipDownload.createZipDownload', request),
     },
 
-    // ========================================
     // Utility
-    // ========================================
-
     getCurrentJwt: () => verifier.getCurrentJwt(),
     clearJwt: () => verifier.clearJwt(),
-
-    // ========================================
-    // Direct access to core services (if needed)
-    // ========================================
 
     core: services,
   };

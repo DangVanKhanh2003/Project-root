@@ -58,12 +58,22 @@ export {
 } from './services/v3';
 
 // ========================================
-// Services - V1 (Feedback)
+// Services - V1 (Feedback, Decrypt, Multifile)
 // ========================================
 export {
   createFeedbackService,
 } from './services/v1/implementations/feedback.service';
 export type { IFeedbackService } from './services/v1/interfaces/feedback.interface';
+
+export {
+  createDecryptService,
+} from './services/v1/implementations/decrypt.service';
+export type { IDecryptService } from './services/v1/interfaces/decrypt.interface';
+
+export {
+  createMultifileService,
+} from './services/v1/implementations/multifile.service';
+export type { IMultifileService } from './services/v1/interfaces/multifile.interface';
 
 // ========================================
 // Services - Public API
