@@ -6,7 +6,7 @@ import { MultiDownloadStrategy } from './multi-download-strategy';
 import { PlaylistStrategy } from './playlist-strategy';
 import { RendererStrategy } from './renderer-strategy.interface';
 import { createStoreChangeHandler, updateGroupCount } from './handle-store-change';
-import { isMobileDevice } from '../../../../utils';
+import { triggerDownload } from '../../../../utils';
 
 export class MultipleDownloadRenderer {
     private container: HTMLElement | null = null;
@@ -195,6 +195,9 @@ export class MultipleDownloadRenderer {
                 case 'download-zip-batch':
                     this.handleDownloadZipBatch(actionBtn);
                     break;
+                case 'save':
+                    this.handleSaveDownload(actionBtn);
+                    break;
             }
         });
 
@@ -337,6 +340,20 @@ export class MultipleDownloadRenderer {
         } finally {
             btn.disabled = false;
             btn.textContent = originalText;
+        }
+    }
+
+    private handleSaveDownload(btn: HTMLElement) {
+        const downloadUrl = btn.dataset.downloadUrl;
+        const filename = btn.dataset.filename;
+        const id = btn.dataset.id;
+
+        if (!downloadUrl) return;
+
+        triggerDownload(downloadUrl, filename || undefined);
+
+        if (id) {
+            videoStore.markDownloaded(id);
         }
     }
 
