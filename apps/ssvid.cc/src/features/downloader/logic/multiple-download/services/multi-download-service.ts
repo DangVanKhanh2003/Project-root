@@ -51,7 +51,7 @@ export class MultiDownloadService {
                 videoQuality: globalSettings?.videoQuality,
                 audioTrack: globalSettings?.audioTrack,
             },
-            isSelected: true,
+            isSelected: false,
             isDownloaded: false,
         }));
 
@@ -88,15 +88,65 @@ export class MultiDownloadService {
             throw new Error('Could not extract playlist ID');
         }
 
-        const result = await api.playlistV3.extractPlaylist(playlistId);
+        const groupId = `${playlistId}_${Date.now()}`;
+        const groupTitle = 'Playlist';
+
+        // Add skeleton group with 8 items while fetching playlist
+        const skeletonItems: VideoItem[] = Array.from({ length: 8 }).map((_, i) => ({
+            id: generateItemId(`skeleton_${groupId}_${i}`),
+            url: '',
+            meta: {
+                title: 'Loading...',
+                originalUrl: '',
+                status: 'analyzing',
+                author: '',
+                thumbnail: '',
+                duration: 0,
+                url: '',
+                vid: '',
+                source: 'youtube',
+                isFakeData: true,
+            },
+            status: 'fetching_metadata' as const,
+            progress: 0,
+            settings: {
+                format: globalSettings?.format || 'mp4',
+                quality: globalSettings?.quality || '720p',
+                audioFormat: globalSettings?.audioFormat,
+                audioBitrate: globalSettings?.audioBitrate,
+                videoQuality: globalSettings?.videoQuality,
+                audioTrack: globalSettings?.audioTrack,
+            },
+            isSelected: false,
+            isDownloaded: false,
+            groupId,
+            groupTitle,
+        }));
+
+        for (const item of skeletonItems) {
+            videoStore.addItem(item);
+        }
+
+        let result;
+        try {
+            result = await api.playlistV3.extractPlaylist(playlistId);
+        } catch (error) {
+            // Remove skeletons on error
+            for (const item of skeletonItems) {
+                videoStore.removeItem(item.id);
+            }
+            throw error;
+        }
 
         if (!result.ok || !result.data) {
+            for (const item of skeletonItems) {
+                videoStore.removeItem(item.id);
+            }
             throw new Error(result.message || 'Failed to fetch playlist');
         }
 
         const playlist = result.data as PlaylistDto;
-        const groupId = `${playlistId}_${Date.now()}`;
-        const groupTitle = playlist.title || 'Playlist';
+        const realGroupTitle = playlist.title || 'Playlist';
 
         // Create items with preloaded metadata
         const videoItems: VideoItem[] = (playlist.items || []).map((video: any) => ({
@@ -127,15 +177,20 @@ export class MultiDownloadService {
             isSelected: false,
             isDownloaded: false,
             groupId,
-            groupTitle,
+            groupTitle: realGroupTitle,
         }));
 
         for (const item of videoItems) {
             videoStore.addItem(item);
         }
 
+        // Remove skeleton items after real items are added
+        for (const item of skeletonItems) {
+            videoStore.removeItem(item.id);
+        }
+
         return {
-            title: groupTitle,
+            title: realGroupTitle,
             thumbnail: playlist.thumbnail || '',
             itemCount: videoItems.length,
         };

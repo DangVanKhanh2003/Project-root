@@ -41,7 +41,7 @@ export function createStoreChangeHandler(config: StoreChangeHandlerConfig) {
                     }
                     const groupList = groupEl.querySelector('.group-items');
                     if (groupList) {
-                        groupList.prepend(el);
+                        groupList.appendChild(el);
                     }
                     updateGroupCount(groupEl);
                 } else {
@@ -272,20 +272,22 @@ export function updateGroupCount(groupEl: HTMLElement): void {
         }
     }
 
-    // Update Selection Count Text
+    // Update Selection Count Text (tab-scoped)
     const selectionText = groupEl.querySelector('.group-selection-text');
     if (selectionText) {
-        const selectedCount = items.filter(i => i.isSelected).length;
+        const tabItems = activeTab === 'convert' ? convertItems : downloadItems;
+        const selectedCount = tabItems.filter(i => i.isSelected).length;
         selectionText.textContent = `${selectedCount} selected`;
     }
 
-    // Update Group Checkbox State
+    // Update Group Checkbox State (tab-scoped)
     const groupCheckbox = groupEl.querySelector('.group-checkbox') as HTMLInputElement;
     if (groupCheckbox) {
-        const allSelected = items.length > 0 && items.every(i => i.isSelected);
-        const someSelected = items.some(i => i.isSelected);
+        const tabItems = activeTab === 'convert' ? convertItems : downloadItems;
+        const selectableItems = tabItems.filter(i => ['ready', 'error', 'cancelled', 'completed'].includes(i.status));
+        const allSelected = selectableItems.length > 0 && selectableItems.every(i => i.isSelected);
+        const someSelected = selectableItems.some(i => i.isSelected);
         groupCheckbox.checked = allSelected;
         groupCheckbox.indeterminate = someSelected && !allSelected;
     }
 }
-

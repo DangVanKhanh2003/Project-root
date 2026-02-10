@@ -125,7 +125,11 @@ export class PlaylistStrategy implements RendererStrategy {
         // Only show audio track if it's explicitly set and not 'original'
         const trackLabel = (audioTrack && audioTrack !== 'original') ? ` · ${audioTrack.toUpperCase()}` : '';
 
-        return `<span class="item-setting-text">${format} · ${quality}${trackLabel}</span>`;
+        const details = format === 'MP3'
+            ? formatAudioDetail(item.settings?.audioBitrate, item.settings?.audioFormat)
+            : quality;
+
+        return `<span class="item-setting-text">${format} · ${details}${trackLabel}</span>`;
     }
 
     private getDesktopActionButton(item: VideoItem): string {
@@ -221,3 +225,20 @@ export class PlaylistStrategy implements RendererStrategy {
         return '';
     }
 }
+
+function formatAudioDetail(bitrate: string | undefined, audioFormat: string | undefined): string {
+    if (bitrate) {
+        const numeric = Number(bitrate);
+        if (!Number.isNaN(numeric)) {
+            return numeric + 'kbps';
+        }
+        return bitrate.toUpperCase();
+    }
+
+    if (audioFormat && audioFormat !== 'mp3') {
+        return audioFormat.toUpperCase();
+    }
+
+    return '128kbps';
+}
+

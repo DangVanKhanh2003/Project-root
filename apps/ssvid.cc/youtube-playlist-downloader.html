@@ -52,6 +52,40 @@
 
     <link rel="stylesheet" href="/src/styles/index.css">
     <link rel="stylesheet" href="/src/styles/features/multiple-downloader-v2.css">
+    <style>
+        .content-row {
+            display: block;
+            margin: 24px 0 8px;
+        }
+
+        .content-col {
+            min-width: 0;
+        }
+
+        .content-col .titles {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .content-col p {
+            margin: 0;
+            color: #3c1b23;
+            line-height: 1.7;
+        }
+
+        @media (min-width: 992px) {
+            .content-row {
+                display: flex;
+                gap: 24px;
+                align-items: flex-start;
+            }
+
+            .content-col {
+                flex: 1;
+            }
+
+        }
+    </style>
 </head>
 
 <body>
@@ -185,7 +219,6 @@
                                             class="multi-quality-select multi-quality-select--mp3"
                                             aria-label="Audio quality" data-quality-select style="display: none;">
                                             <option value="mp3-128" selected>MP3 - 128kbps</option>
-                                            <option value="mp3-192">MP3 - 192kbps</option>
                                             <option value="mp3-320">MP3 - 320kbps</option>
                                             <option value="ogg">OGG</option>
                                             <option value="wav">WAV - Lossless</option>
@@ -292,16 +325,22 @@
                     download all audio tracks from a YouTube playlist at once, making it ideal for music albums, study
                     playlists, podcasts, and long video collections.</p>
 
-                <h2 class="titles">How to Download MP3 from a YouTube Playlist</h2>
-                <p>1. Copy the YouTube playlist URL you want to download.<br>2. Paste the playlist link into
-                    SSVID.<br>3. Select MP3 and your preferred audio quality.<br>4. Click download and save the
-                    entire playlist to your device.</p>
-
-                <h2 class="titles">Playlist MP3 Download on Desktop and Mobile</h2>
-                <p>SSVID automatically adapts to your device. On <strong>desktop computers</strong>, you can
-                    <strong>download the entire MP3 playlist as a single ZIP file</strong> for faster and more
-                    convenient storage. On <strong>mobile devices</strong>, MP3 files are downloaded <strong>one by
-                        one</strong>, allowing easy access and playback directly from your browser.</p>
+                <div class="content-row">
+                    <div class="content-col">
+                        <h2 class="titles">How to Download MP3 from a YouTube Playlist</h2>
+                        <p>1. Copy the YouTube playlist URL you want to download.<br>2. Paste the playlist link into
+                            SSVID.<br>3. Select MP3 and your preferred audio quality.<br>4. Click download and save the
+                            entire playlist to your device.</p>
+                    </div>
+                    <div class="content-col">
+                        <h2 class="titles">Playlist MP3 Download on Desktop and Mobile</h2>
+                        <p>SSVID automatically adapts to your device. On <strong>desktop computers</strong>, you can
+                            <strong>download the entire MP3 playlist as a single ZIP file</strong> for faster and more
+                            convenient storage. On <strong>mobile devices</strong>, MP3 files are downloaded
+                            <strong>one by one</strong>, allowing easy access and playback directly from your browser.
+                        </p>
+                    </div>
+                </div>
 
                 <h2 class="titles">Why Download MP3 YouTube Playlists?</h2>
                 <p>MP3 is a lightweight and widely supported audio format that works on almost all devices. If you

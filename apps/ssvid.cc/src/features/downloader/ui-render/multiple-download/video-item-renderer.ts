@@ -225,11 +225,21 @@ export class VideoItemRenderer {
             el.classList.add('skeleton-loading');
             el.innerHTML = `
                 ${strategy.getCheckboxHtml(item)}
-                <div class="multi-video-thumb skeleton-box"></div>
+                <div class="multi-video-thumb">
+                    <div class="skeleton-box"></div>
+                </div>
                 <div class="multi-video-info">
                     <div class="multi-video-title skeleton-text" style="width: 80%;"></div>
                     <div class="multi-video-meta">
-                        <div class="skeleton-text" style="width: 40%; height: 14px;"></div>
+                        <div class="skeleton-text" style="width: 100px; height: 14px;"></div>
+                    </div>
+                    <div class="multi-video-error" style="display:none"></div>
+                    <div class="settings-progress-wrapper">
+                        <div class="item-settings">
+                            <div class="skeleton-text" style="width: 60%; height: 14px;"></div>
+                            <div class="skeleton-text" style="width: 45%; height: 14px;"></div>
+                        </div>
+                        <div class="item-active-progress" style="display:none"></div>
                     </div>
                 </div>
                 <div class="multi-video-actions">

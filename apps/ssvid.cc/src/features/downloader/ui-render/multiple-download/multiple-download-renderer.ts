@@ -180,6 +180,7 @@ export class MultipleDownloadRenderer {
                     if (groupId) {
                         multiDownloadService.startSelectedGroupDownloads(groupId);
                         this.switchToTab(groupId, 'download');
+                        videoStore.setGroupSelection(groupId, false);
                     }
                     break;
                 case 'download-zip-group':
@@ -213,7 +214,19 @@ export class MultipleDownloadRenderer {
             if (target.classList.contains('group-checkbox')) {
                 const groupId = (target as HTMLInputElement).dataset.groupId;
                 const checked = (target as HTMLInputElement).checked;
-                if (groupId) videoStore.setGroupSelection(groupId, checked);
+                if (groupId && this.listContainer) {
+                    const groupEl = this.listContainer.querySelector(`[data-group-id="${groupId}"].playlist-group`) as HTMLElement | null;
+                    const activeTab = groupEl?.dataset.activeTab || 'convert';
+                    const items = videoStore.getItemsByGroup(groupId);
+                    const tabItems = items.filter(i =>
+                        activeTab === 'convert' ? isConvertTabStatus(i.status) : isDownloadTabStatus(i.status)
+                    );
+                    tabItems.forEach(item => {
+                        if (item.isSelected !== checked) {
+                            videoStore.toggleSelect(item.id);
+                        }
+                    });
+                }
                 return;
             }
 
@@ -366,6 +379,17 @@ export class MultipleDownloadRenderer {
         // Trigger re-filtering
         updateGroupCount(groupEl);
     }
+}
+
+const CONVERT_TAB_STATUSES = new Set(['pending', 'analyzing', 'fetching_metadata', 'ready', 'error', 'cancelled']);
+const DOWNLOAD_TAB_STATUSES = new Set(['queued', 'downloading', 'converting', 'completed']);
+
+function isConvertTabStatus(status: string) {
+    return CONVERT_TAB_STATUSES.has(status);
+}
+
+function isDownloadTabStatus(status: string) {
+    return DOWNLOAD_TAB_STATUSES.has(status);
 }
 
 export const multipleDownloadRenderer = new MultipleDownloadRenderer();

@@ -34,6 +34,32 @@
     color: var(--brand, #8F0F20);
 }
 
+.content-row {
+    display: block;
+    gap: 24px;
+    margin: 12px 0 6px;
+    position: relative;
+}
+
+.content-col {
+    flex: 1;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
+}
+
+.content-col .titles {
+    margin-top: 0;
+}
+
+.content-col p {
+    margin-bottom: 0;
+    color: #4b5563;
+    line-height: 1.7;
+}
+
 /* =========================================
    2. Input Areas
    ========================================= */
@@ -875,6 +901,14 @@
 }
 
 /* Responsive */
+@media (min-width: 992px) {
+    .content-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 28px;
+    }
+}
+
 @media (max-width: 900px) {
     .multiple-download-card {
         padding: 24px;
