@@ -10,38 +10,6 @@ eleventyComputed:
   pageKey: "{{ pageInfo.pageKey }}"
 pageStyles:
   - "/src/styles/features/multiple-downloader-v2.css"
-pageInlineStyles: |
-  .content-row {
-    display: block;
-    margin: 24px 0 8px;
-  }
-
-  .content-col {
-    min-width: 0;
-  }
-
-  .content-col .titles {
-    margin-top: 0;
-    margin-bottom: 10px;
-  }
-
-  .content-col p {
-    margin: 0;
-    color: #3c1b23;
-    line-height: 1.7;
-  }
-
-  @media (min-width: 992px) {
-    .content-row {
-      display: flex;
-      gap: 24px;
-      align-items: flex-start;
-    }
-
-    .content-col {
-      flex: 1;
-    }
-  }
 pageScript: "/src/playlist-downloader-main.ts"
 ---
 {%- set base = i18nBase[lang] or i18nBase['en'] -%}
@@ -58,10 +26,7 @@ pageScript: "/src/playlist-downloader-main.ts"
 
         <!-- Playlist Download Form -->
         <div id="playlist-download-form" class="multiple-download-card">
-            <div>
-                <h1>{{ page.form.title }}</h1>
-            </div>
-
+          
             <div class="urls-input-container" style="border: none;">
                 <div class="input-wrapper">
                     <input type="text" id="playlistUrl" class="video-input"
@@ -196,20 +161,47 @@ pageScript: "/src/playlist-downloader-main.ts"
     </div>
 </section>
 
+<!-- OVERVIEW SECTION -->
+<section id="about" class="overview-section" aria-label="SSVID overview">
+    <div class="container overview-container">
+        <div class="overview-info">
+            <div class="overview-badge">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-shield-check" aria-hidden="true">
+                    <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
+                    <path d="m9 12 2 2 4-4"></path>
+                </svg>
+                <span>{{ base.overview.badge }}</span>
+            </div>
+            <h2 class="overview-title">{{ page.content.intro.title }}</h2>
+            <p class="overview-desc">{{ page.content.intro.description | safe }}</p>
+        </div>
+
+        <div class="overview-steps-card">
+            <h2 class="steps-card-title">{{ page.overview.howTo.title }}</h2>
+            <div class="stepper">
+                {% for step in page.overview.howTo.steps %}
+                <div class="step-item">
+                    <div class="step-circle">{{ step.number }}</div>
+                    <div class="step-text">
+                        <h3>{{ step.title }}</h3>
+                        <p>{{ step.description }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- Content Section -->
 <section class="content-section content-section--white">
     <div class="container">
-        <h2 class="titles">{{ page.content.intro.title }}</h2>
-        <p>{{ page.content.intro.description | safe }}</p>
-
-        <div class="content-row">
-            {% for column in page.content.columns %}
-            <div class="content-col">
-                <h2 class="titles">{{ column.title }}</h2>
-                <p>{{ column.description | safe }}</p>
-            </div>
-            {% endfor %}
-        </div>
+        {% if page.content.columns and page.content.columns.length > 1 %}
+        <h2 class="titles">{{ page.content.columns[1].title }}</h2>
+        <p>{{ page.content.columns[1].description | safe }}</p>
+        {% endif %}
 
         <h2 class="titles">{{ page.content.whyDownload.title }}</h2>
         <p>{{ page.content.whyDownload.description | safe }}</p>

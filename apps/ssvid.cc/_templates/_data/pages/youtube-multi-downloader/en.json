@@ -22,18 +22,22 @@
       "title": "How to Use YouTube Multi Download with SSVID",
       "steps": [
         {
+          "number": "1",
           "title": "Copy multiple links",
           "description": "Copy multiple YouTube video links you want to download."
         },
         {
+          "number": "2",
           "title": "Paste all links",
           "description": "Paste all links into the SSVID multi download tool."
         },
         {
+          "number": "3",
           "title": "Choose format",
           "description": "Choose your output format (MP3 or MP4)."
         },
         {
+          "number": "4",
           "title": "Download",
           "description": "Click download and save all videos at once."
         }

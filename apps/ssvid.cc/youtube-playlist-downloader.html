@@ -194,40 +194,6 @@
 </script>
 
     <link rel="stylesheet" href="/src/styles/features/multiple-downloader-v2.css">
-    <style>
-        .content-row {
-  display: block;
-  margin: 24px 0 8px;
-}
-
-.content-col {
-  min-width: 0;
-}
-
-.content-col .titles {
-  margin-top: 0;
-  margin-bottom: 10px;
-}
-
-.content-col p {
-  margin: 0;
-  color: #3c1b23;
-  line-height: 1.7;
-}
-
-@media (min-width: 992px) {
-  .content-row {
-    display: flex;
-    gap: 24px;
-    align-items: flex-start;
-  }
-
-  .content-col {
-    flex: 1;
-  }
-}
-
-    </style>
 </head>
 
 <body>
@@ -386,6 +352,8 @@
         <div class="drawer-scroll">
             <nav class="drawer-nav" aria-label="Mobile">
                 <a href="/" class="drawer-link">Home</a>
+                <a href="/youtube-multi-downloader" class="drawer-link">YouTube Multi Downloader</a>
+                <a href="/youtube-playlist-downloader" class="drawer-link">YouTube Playlist Downloader</a>
                 <a href="/download-youtube-mp3" class="drawer-link">Download youtube Mp3</a>
                 <a href="/download-youtube-mp4" class="drawer-link">Download youtube Mp4</a>
                 <a href="/download-youtube-shorts" class="drawer-link">Download Youtube Shorts</a>
@@ -444,10 +412,7 @@
 
         <!-- Playlist Download Form -->
         <div id="playlist-download-form" class="multiple-download-card">
-            <div>
-                <h1>MP3 YouTube Playlist Downloader</h1>
-            </div>
-
+          
             <div class="urls-input-container" style="border: none;">
                 <div class="input-wrapper">
                     <input type="text" id="playlistUrl" class="video-input"
@@ -582,25 +547,71 @@
     </div>
 </section>
 
+<!-- OVERVIEW SECTION -->
+<section id="about" class="overview-section" aria-label="SSVID overview">
+    <div class="container overview-container">
+        <div class="overview-info">
+            <div class="overview-badge">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-shield-check" aria-hidden="true">
+                    <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
+                    <path d="m9 12 2 2 4-4"></path>
+                </svg>
+                <span>Fast &amp; Free</span>
+            </div>
+            <h2 class="overview-title">What Is SSVID MP3 YouTube Playlist Downloader?</h2>
+            <p class="overview-desc">SSVID is a free online tool that helps you <strong>download MP3 YouTube playlists</strong> using a single playlist link. Instead of converting videos one by one, SSVID allows you to extract and download all audio tracks from a YouTube playlist at once, making it ideal for music albums, study playlists, podcasts, and long video collections.</p>
+        </div>
+
+        <div class="overview-steps-card">
+            <h2 class="steps-card-title">How to Download MP3 from a YouTube Playlist</h2>
+            <div class="stepper">
+                
+                <div class="step-item">
+                    <div class="step-circle">1</div>
+                    <div class="step-text">
+                        <h3>Copy the Link</h3>
+                        <p>Copy the YouTube playlist URL you want to download.</p>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-circle">2</div>
+                    <div class="step-text">
+                        <h3>Paste the Playlist</h3>
+                        <p>Paste the playlist link into SSVID.</p>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-circle">3</div>
+                    <div class="step-text">
+                        <h3>Choose MP3 Quality</h3>
+                        <p>Select MP3 and your preferred audio quality.</p>
+                    </div>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-circle">4</div>
+                    <div class="step-text">
+                        <h3>Download</h3>
+                        <p>Click download and save the entire playlist to your device.</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- Content Section -->
 <section class="content-section content-section--white">
     <div class="container">
-        <h2 class="titles">What Is SSVID MP3 YouTube Playlist Downloader?</h2>
-        <p>SSVID is a free online tool that helps you <strong>download MP3 YouTube playlists</strong> using a single playlist link. Instead of converting videos one by one, SSVID lets you extract and download all audio tracks from a YouTube playlist at once, making it ideal for music albums, study playlists, podcasts, and long video collections.</p>
-
-        <div class="content-row">
-            
-            <div class="content-col">
-                <h2 class="titles">How to Download MP3 from a YouTube Playlist</h2>
-                <p>1. Copy the YouTube playlist URL you want to download.<br>2. Paste the playlist link into SSVID.<br>3. Select MP3 and your preferred audio quality.<br>4. Click download and save the entire playlist to your device.</p>
-            </div>
-            
-            <div class="content-col">
-                <h2 class="titles">Playlist MP3 Download on Desktop and Mobile</h2>
-                <p>SSVID automatically adapts to your device. On <strong>desktop computers</strong>, you can <strong>download the entire MP3 playlist as a single ZIP file</strong> for faster and more convenient storage. On <strong>mobile devices</strong>, MP3 files are downloaded <strong>one by one</strong>, allowing easy access and playback directly from your browser.</p>
-            </div>
-            
-        </div>
+        
+        <h2 class="titles">Playlist MP3 Download on Desktop and Mobile</h2>
+        <p>SSVID automatically adapts to your device. On <strong>desktop computers</strong>, you can <strong>download the entire MP3 playlist as a single ZIP file</strong> for faster and more convenient storage. On <strong>mobile devices</strong>, MP3 files are downloaded <strong>one by one</strong>, allowing easy access and playback directly from your browser.</p>
+        
 
         <h2 class="titles">Why Download MP3 YouTube Playlists?</h2>
         <p>MP3 is a lightweight and widely supported audio format that works on almost all devices. If you only need audio, <strong>downloading MP3 YouTube playlists</strong> saves storage space and makes offline listening more efficient compared to downloading full video files.</p>
@@ -680,6 +691,8 @@
     <footer>
     <div class="container">
         <div class="footer-links" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
+            <a href="/youtube-multi-downloader" style="color: inherit; text-decoration: none;">YouTube Multi Downloader</a>
+            <a href="/youtube-playlist-downloader" style="color: inherit; text-decoration: none;">YouTube Playlist Downloader</a>
             <a href="/download-youtube-mp3" style="color: inherit; text-decoration: none;">Download youtube Mp3</a>
             <a href="/download-youtube-mp4" style="color: inherit; text-decoration: none;">Download youtube Mp4</a>
             <a href="/download-youtube-shorts" style="color: inherit; text-decoration: none;">Download Youtube Shorts</a>
