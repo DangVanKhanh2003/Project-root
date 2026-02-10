@@ -179,8 +179,8 @@
 }
 
 .multi-format-btn:hover:not(.active) {
-    background: var(--brand, #8F0F20);
-    color: #fff;
+    background: rgba(197, 197, 197, 0.477);
+    color: #000000;
 }
 
 /* State-based styling (similar to format-selector.css) */
@@ -323,7 +323,7 @@
 }
 
 .multi-header-title {
-    font-size: 1rem;
+    font-size: 16px;
     color: #1e293b;
     font-weight: 700;
     margin: 0;
@@ -340,8 +340,10 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 0.5rem 1.5rem 1rem;
+    padding: 0px 10px 15px 15px;
     background: #f8fafc;
+    border-bottom: 1px solid #eef2f7;
+
 }
 
 .header-select-dropdown {
@@ -399,7 +401,7 @@
     background: var(--bg-secondary, #F6F6F6);
 }
 
-.multi-download-header h2 {
+.multi-header-title{
     font-size: 1.25rem;
     font-weight: 600;
     color: var(--text-main, #333);
@@ -429,10 +431,10 @@
 
 .multi-video-item {
     display: flex;
-    padding: 1rem 1.5rem;
+    padding: 15px;
     border-bottom: 1px solid #f1f5f9;
     align-items: center;
-    gap: 1.25rem;
+    gap: 20px;
     position: relative;
     background: #ffffff;
 }
@@ -992,7 +994,7 @@
     .multi-video-item {
         flex-direction: row;
         align-items: center;
-        padding: 0.75rem 1rem;
+        padding:15px;
         gap: 0.75rem;
     }
 
@@ -1036,10 +1038,10 @@
         padding: 10px 15px;
     }
 
-    .multi-download-header h2,
+    .multi-header-title,
     .multi-download-header .group-title,
     .multi-download-header .master-checkbox-label span {
-        font-size: 0.95rem;
+        font-size: 16px;
         font-weight: 700;
         color: #1a1a1a;
     }
@@ -1125,7 +1127,7 @@
 .playlist-header-tabs {
     display: flex;
     gap: 0.5rem;
-    background: #f8fafc;
+    background: #dfdfdf;
     padding: 0.25rem;
     border-radius: 8px;
     border: 1px solid #f1f5f9;
@@ -1137,7 +1139,7 @@
     padding: 0.5rem 1rem;
     font-size: 0.8125rem;
     font-weight: 600;
-    color: #64748b;
+    color: #313131cf;
     cursor: pointer;
     border-radius: 6px;
     transition: all 0.2s ease;
@@ -1232,8 +1234,8 @@
 }
 
 .item-checkbox {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     cursor: pointer;
     accent-color: var(--brand, #8F0F20);
     border: 2px solid #cbd5e1;
@@ -1289,7 +1291,7 @@
 .group-header {
     display: flex;
     flex-direction: column;
-    padding: 0.75rem 1.25rem;
+    padding: 10px 15px;
     background: #f8fafc;
     border: none;
 }
@@ -1375,11 +1377,10 @@
 }
 
 .btn-playlist-group-action:disabled {
-    opacity: 0.5;
     cursor: not-allowed;
-    background: #f8fafc;
-    border-color: #e2e8f0;
-    color: #94a3b8;
+    background: #dbeafeb1;
+    border-color: #93c4fdd5;
+    color: #246dd4c0;
 }
 
 
@@ -1418,9 +1419,7 @@
 .item-format-select,
 .item-quality-select {
     height: 32px;
-    padding: 0 8px;
-    border: 1px solid #d1d5db;
-    border-radius: 6px;
+    border: none;
     background: #fff;
     font-size: 0.8125rem;
     font-weight: 500;

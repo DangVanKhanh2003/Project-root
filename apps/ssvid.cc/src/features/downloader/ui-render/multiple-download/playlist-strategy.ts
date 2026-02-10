@@ -107,7 +107,7 @@ export class PlaylistStrategy implements RendererStrategy {
                     <option value="192" ${bitrate === '192' ? 'selected' : ''}>192kbps</option>
                     <option value="320" ${bitrate === '320' ? 'selected' : ''}>320kbps</option>
                     <option value="ogg" ${quality === 'ogg' ? 'selected' : ''}>OGG</option>
-                    <option value="wav" ${quality === 'wav' ? 'selected' : ''}>WAV - Lossless</option>
+                    <option value="wav" ${quality === 'wav' ? 'selected' : ''}>WAV</option>
                     <option value="opus" ${quality === 'opus' ? 'selected' : ''}>Opus</option>
                     <option value="m4a" ${quality === 'm4a' ? 'selected' : ''}>M4A</option>
                 </select>`;

@@ -125,7 +125,7 @@ export class MultipleDownloadRenderer {
 
         headerEl.innerHTML = `
             <div class="multi-header-top-row">
-                <h2 class="multi-header-title">Multiple download</h2>
+                <p class="multi-header-title">Multiple download</p>
                 <span class="item-count-total">${items.length} items</span>
             </div>
             <div class="multiple-download-group-actions">
