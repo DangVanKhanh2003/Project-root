@@ -33,15 +33,19 @@ export async function runSingleDownload(config: DownloadConfig): Promise<void> {
 
     if (signal.aborted) return;
 
-    const { statusUrl, title, audioLanguageChanged, availableAudioLanguages } = jobResponse;
+    const response: any = (jobResponse && (jobResponse as any).data) ? (jobResponse as any).data : jobResponse;
+    const statusUrl = response?.statusUrl || jobResponse?.statusUrl;
+    const title = response?.title || jobResponse?.title;
+    const audioLanguageChanged = response?.audioLanguageChanged ?? response?.audio_language_changed ?? jobResponse?.audioLanguageChanged;
+    const availableAudioLanguages = response?.availableAudioLanguages ?? response?.available_audio_languages ?? jobResponse?.availableAudioLanguages;
 
     if (!statusUrl) {
         throw new Error('No status URL returned');
     }
 
     // Report audio track info if available
-    if (callbacks.onAudioTrackInfo && availableAudioLanguages) {
-        callbacks.onAudioTrackInfo(availableAudioLanguages, audioLanguageChanged || false);
+    if (callbacks.onAudioTrackInfo && (availableAudioLanguages || audioLanguageChanged !== undefined)) {
+        callbacks.onAudioTrackInfo(availableAudioLanguages || [], audioLanguageChanged || false);
     }
 
     // Phase 2: Poll status

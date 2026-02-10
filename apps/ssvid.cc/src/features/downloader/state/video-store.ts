@@ -245,6 +245,14 @@ class VideoStore {
         this.notify('item:updated', item);
     }
 
+    setAudioTrackInfo(id: string, languages: string[], changed: boolean): void {
+        const item = this.items.get(id);
+        if (!item) return;
+        item.availableAudioLanguages = languages;
+        item.audioLanguageChanged = changed;
+        this.notify('item:updated', item);
+    }
+
     // ==========================================
     // Query helpers
     // ==========================================

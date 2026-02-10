@@ -353,11 +353,7 @@ export class MultiDownloadService {
                         videoStore.setError(id, message);
                     },
                     onAudioTrackInfo: (languages, changed) => {
-                        videoStore.setAudioLanguages(id, languages);
-                        const currentItem = videoStore.getItem(id);
-                        if (currentItem) {
-                            currentItem.audioLanguageChanged = changed;
-                        }
+                        videoStore.setAudioTrackInfo(id, languages, changed);
                     },
                 },
             });

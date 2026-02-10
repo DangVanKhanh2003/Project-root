@@ -3,6 +3,7 @@ import { VideoItem } from '../../state/multiple-download-types';
 import { RendererStrategy } from './renderer-strategy.interface';
 import { isMobileDevice } from '../../../../utils';
 import { clearMergingEstimator, getMergingEstimator } from '../merging-progress-estimator';
+import { LANGUAGES } from '../../logic/data/languages';
 
 const EXTRACTING_MESSAGES = [
     'Creating download job...',
@@ -155,6 +156,8 @@ export class VideoItemRenderer {
             }
         }
 
+        VideoItemRenderer.updateAudioLanguageWarning(el, item);
+
         // Status badge (terminal states)
         const statusContainer = el.querySelector('.multi-video-status');
         if (statusContainer) {
@@ -267,6 +270,7 @@ export class VideoItemRenderer {
                     ${item.meta.author ? `<span class="multi-video-author">${escapeHtml(item.meta.author)}</span>` : ''}
                 </div>
                 <div class="multi-video-error" style="${item.status === 'error' ? '' : 'display:none'}">${escapeHtml(item.error || '')}</div>
+                ${VideoItemRenderer.getAudioLanguageWarningHtml(item)}
                 <div class="settings-progress-wrapper">
                     <div class="item-settings${strategy.getSettingsClass(item)}">${strategy.buildSettingsContent(item)}</div>
                     <div class="item-active-progress" style="${isDownloading ? '' : 'display:none'}">
@@ -422,6 +426,49 @@ export class VideoItemRenderer {
 
     private static isMergingPhase(item: VideoItem): boolean {
         return item.status === 'converting' && item.progressPhase === 'merging';
+    }
+
+    private static updateAudioLanguageWarning(el: HTMLElement, item: VideoItem): void {
+       debugger
+        const existing = el.querySelector('.multi-audio-language-warning') as HTMLElement | null;
+        if (item.audioLanguageChanged) {
+            const html = VideoItemRenderer.getAudioLanguageWarningHtml(item);
+            if (existing) {
+                existing.outerHTML = html;
+            } else {
+                const infoEl = el.querySelector('.multi-video-info');
+                if (infoEl) {
+                    infoEl.insertAdjacentHTML('beforeend', html);
+                }
+            }
+        } else if (existing) {
+            existing.remove();
+        }
+    }
+
+    private static getAudioLanguageWarningHtml(item: VideoItem): string {
+        if (!item.audioLanguageChanged) return '';
+        const languageLabels = (item.availableAudioLanguages || [])
+            .filter(Boolean)
+            .map(VideoItemRenderer.mapAudioLanguageLabel)
+            .join(', ');
+
+        return `
+            <div class="multi-audio-language-warning">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+                <span>This video only has audio in <strong>${escapeHtml(languageLabels || 'Original')}</strong> — automatically using original audio.</span>
+            </div>
+        `;
+    }
+
+    private static mapAudioLanguageLabel(code: string): string {
+        const normalized = code.trim().toLowerCase();
+        const match = LANGUAGES.find((lang) => lang.code.toLowerCase() === normalized);
+        return match?.name || code;
     }
 }
 

@@ -559,6 +559,29 @@
     margin-top: 0.25rem;
 }
 
+.multi-audio-language-warning {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-top: 0.35rem;
+    padding: 0.5rem 0.65rem;
+    border-radius: 8px;
+    background: #fff7ed;
+    color: #9a3412;
+    font-size: 0.8rem;
+    line-height: 1.2;
+}
+
+.multi-audio-language-warning svg {
+    margin-top: 1px;
+    flex: 0 0 auto;
+    color: #ea580c;
+}
+
+.multi-audio-language-warning strong {
+    font-weight: 700;
+}
+
 .item-setting-text {
     font-size: 0.8125rem;
     color: var(--text-muted, #666);
