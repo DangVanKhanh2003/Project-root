@@ -332,10 +332,6 @@ export class MultipleDownloadRenderer {
         const groupEl = this.listContainer?.querySelector(`[data-group-id="${groupId}"].playlist-group`) as HTMLElement;
         if (!groupEl) return;
         groupEl.classList.toggle('collapsed');
-        const icon = groupEl.querySelector('.collapse-icon');
-        if (icon) {
-            icon.textContent = groupEl.classList.contains('collapsed') ? '▶' : '▼';
-        }
     }
 
     private handleTabClick(tabEl: HTMLElement, groupId: string) {
@@ -373,3 +369,4 @@ export class MultipleDownloadRenderer {
 }
 
 export const multipleDownloadRenderer = new MultipleDownloadRenderer();
+

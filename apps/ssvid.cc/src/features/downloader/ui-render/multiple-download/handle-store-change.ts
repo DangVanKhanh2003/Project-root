@@ -41,11 +41,11 @@ export function createStoreChangeHandler(config: StoreChangeHandlerConfig) {
                     }
                     const groupList = groupEl.querySelector('.group-items');
                     if (groupList) {
-                        groupList.appendChild(el);
+                        groupList.prepend(el);
                     }
                     updateGroupCount(groupEl);
                 } else {
-                    listContainer.appendChild(el);
+                    listContainer.prepend(el);
                 }
 
                 // Remove empty state if exists
@@ -174,11 +174,8 @@ function createGroupElement(groupId: string, groupTitle: string): HTMLElement {
     el.dataset.activeTab = 'convert'; // Default tab
     el.innerHTML = `
         <div class="group-header">
-            <div class="group-header-top-row">
+            <div class="group-header-top-row" data-action="toggle-group" data-group-id="${groupId}">
                 <div class="group-header-title-area">
-                    <button class="group-collapse-btn" data-action="toggle-group" data-group-id="${groupId}">
-                        <span class="collapse-icon">▼</span>
-                    </button>
                     <p class="group-title">Playlist</p>
                 </div>
                 <div class="playlist-header-tabs">

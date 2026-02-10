@@ -66,9 +66,7 @@ export class MultiDownloadStrategy implements RendererStrategy {
             case 'fetching_metadata': return 'Fetching info...';
             case 'downloading': return 'Downloading...';
             case 'converting': {
-                const phaseText = item.progressPhase === 'merging' ? 'Merging' :
-                    item.progressPhase === 'extracting' ? 'Extracting' : 'Converting';
-                return `${phaseText}...`;
+                return 'Processing...';
             }
             default: return '';
         }

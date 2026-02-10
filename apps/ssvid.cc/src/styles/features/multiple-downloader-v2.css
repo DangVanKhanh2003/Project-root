@@ -653,6 +653,7 @@
     height: 100%;
     background: #3b82f6;
     border-radius: 3px;
+    display: block !important;
 }
 
 .multi-video-status:empty {
@@ -782,7 +783,7 @@
     background: var(--brand, #8F0F20);
     transition: width 0.3s ease;
     border-radius: 10px;
-    display: block;
+    display: block !important;
 }
 
 .progress-percentage {

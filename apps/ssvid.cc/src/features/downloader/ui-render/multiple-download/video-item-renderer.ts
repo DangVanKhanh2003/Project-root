@@ -2,6 +2,63 @@
 import { VideoItem } from '../../state/multiple-download-types';
 import { RendererStrategy } from './renderer-strategy.interface';
 import { isMobileDevice } from '../../../../utils';
+import { clearMergingEstimator, getMergingEstimator } from '../merging-progress-estimator';
+
+const EXTRACTING_MESSAGES = [
+    'Creating download job...',
+    'Analyzing video information...',
+    'Preparing conversion...',
+    'Please wait a moment...',
+];
+
+const extractingStartTimes = new Map<string, number>();
+const extractingIntervals = new Map<string, number>();
+const extractingElements = new Map<string, HTMLElement[]>();
+const previousMergingPhase = new Map<string, boolean>();
+const mergingTransitionInProgress = new Map<string, boolean>();
+
+function stopExtractingRotator(itemId: string): void {
+    const interval = extractingIntervals.get(itemId);
+    if (interval) {
+        window.clearInterval(interval);
+        extractingIntervals.delete(itemId);
+    }
+    extractingElements.delete(itemId);
+}
+
+function startExtractingRotator(itemId: string, phaseEls: HTMLElement[]): void {
+    extractingElements.set(itemId, phaseEls);
+
+    if (extractingIntervals.has(itemId)) return;
+
+    if (!extractingStartTimes.has(itemId)) {
+        extractingStartTimes.set(itemId, Date.now());
+    }
+
+    const updateLabel = () => {
+        const startTime = extractingStartTimes.get(itemId) || Date.now();
+        const elapsed = Date.now() - startTime;
+        const msgIndex = Math.floor(elapsed / 2000) % EXTRACTING_MESSAGES.length;
+        const els = extractingElements.get(itemId) || [];
+        els.forEach((el) => {
+            el.textContent = EXTRACTING_MESSAGES[msgIndex];
+        });
+    };
+
+    updateLabel();
+
+    const interval = window.setInterval(() => {
+        const els = extractingElements.get(itemId) || [];
+        const hasLiveEl = els.some((el) => document.body.contains(el));
+        if (!hasLiveEl) {
+            stopExtractingRotator(itemId);
+            return;
+        }
+        updateLabel();
+    }, 1000);
+
+    extractingIntervals.set(itemId, interval);
+}
 
 /**
  * Video Item Renderer
@@ -21,6 +78,8 @@ export class VideoItemRenderer {
         // Build initial structure
         VideoItemRenderer.buildStructure(el, item, strategy);
         VideoItemRenderer.applyStatusClass(el, item);
+        VideoItemRenderer.updatePhaseLabel(el, item, strategy);
+        VideoItemRenderer.updateProgressBar(el, item);
 
         return el;
     }
@@ -103,10 +162,7 @@ export class VideoItemRenderer {
         }
 
         // Phase text (active states)
-        const phaseEl = el.querySelector('.multi-video-phase-text') as HTMLElement;
-        if (phaseEl) {
-            phaseEl.textContent = strategy.getPhaseHtml(item);
-        }
+        VideoItemRenderer.updatePhaseLabel(el, item, strategy);
 
         // Settings
         const settingsEl = el.querySelector('.item-settings') as HTMLElement;
@@ -136,8 +192,9 @@ export class VideoItemRenderer {
             }
         }
 
-        // Progress bar
+        // Progress bar + phase label
         VideoItemRenderer.updateProgressBar(el, item);
+        VideoItemRenderer.updatePhaseLabel(el, item, strategy);
     }
 
     /**
@@ -145,17 +202,17 @@ export class VideoItemRenderer {
      */
     static updateProgressOnly(el: HTMLElement, item: VideoItem, strategy: RendererStrategy): void {
         VideoItemRenderer.updateProgressBar(el, item);
-
-        // Update phase text
-        const phaseEl = el.querySelector('.multi-video-phase-label') as HTMLElement;
-        if (phaseEl) {
-            phaseEl.textContent = strategy.getPhaseHtml(item);
-        }
+        VideoItemRenderer.updatePhaseLabel(el, item, strategy);
 
         // Update percentage text
         const percentEl = el.querySelector('.progress-percentage-label') as HTMLElement;
         if (percentEl) {
-            percentEl.textContent = `${Math.round(item.progress)}%`;
+            if (VideoItemRenderer.isMergingPhase(item)) {
+                const estimator = getMergingEstimator(item.id);
+                percentEl.textContent = `${Math.round(estimator.getProgress())}%`;
+            } else {
+                percentEl.textContent = `${Math.round(item.progress)}%`;
+            }
         }
     }
 
@@ -186,6 +243,7 @@ export class VideoItemRenderer {
         const checkboxHtml = strategy.getCheckboxHtml(item);
         const durationStr = formatDuration(item.meta.duration);
         const progressPercent = Math.round(item.progress || 0);
+        const initialPhaseText = VideoItemRenderer.getPhaseLabelText(item, strategy);
 
         el.innerHTML = `
             ${checkboxHtml}
@@ -203,7 +261,7 @@ export class VideoItemRenderer {
                     <div class="item-settings${strategy.getSettingsClass(item)}">${strategy.buildSettingsContent(item)}</div>
                     <div class="item-active-progress" style="${isDownloading ? '' : 'display:none'}">
                         <div class="progress-info-row">
-                            <div class="multi-video-phase-label">${strategy.getPhaseHtml(item)}</div>
+                            <div class="multi-video-phase-label">${initialPhaseText}</div>
                             <div class="progress-percentage-label">${progressPercent}%</div>
                         </div>
                         <div class="multi-video-progress">
@@ -227,20 +285,59 @@ export class VideoItemRenderer {
         const isActive = item.status === 'downloading' || item.status === 'converting' || item.status === 'analyzing';
         const activeWrapper = el.querySelector('.item-active-progress') as HTMLElement;
         const progressPercent = Math.round(item.progress || 0);
+        const isMergingPhase = VideoItemRenderer.isMergingPhase(item);
+        const wasMerging = previousMergingPhase.get(item.id) || false;
 
         if (isActive) {
             if (activeWrapper) activeWrapper.style.display = 'block';
 
             const bar = el.querySelector('.progress-bar') as HTMLElement;
-            if (bar) bar.style.width = `${progressPercent}%`;
-
             const percentLabel = el.querySelector('.progress-percentage-label') as HTMLElement;
-            if (percentLabel) percentLabel.textContent = `${progressPercent}%`;
+
+            if (isMergingPhase) {
+                if (!wasMerging) {
+                    mergingTransitionInProgress.set(item.id, true);
+                    if (bar) bar.style.width = '100%';
+                    if (percentLabel) percentLabel.textContent = '100%';
+
+                    window.setTimeout(() => {
+                        if (!document.body.contains(el) || !el.classList.contains('converting')) {
+                            mergingTransitionInProgress.set(item.id, false);
+                            return;
+                        }
+
+                        if (bar) bar.style.width = '0%';
+                        if (percentLabel) percentLabel.textContent = '0%';
+
+                        const estimator = getMergingEstimator(item.id);
+                        estimator.start((p) => {
+                            if (!document.body.contains(el) || !el.classList.contains('converting')) return;
+                            if (bar) bar.style.width = `${p}%`;
+                            if (percentLabel) percentLabel.textContent = `${p}%`;
+                        });
+
+                        mergingTransitionInProgress.set(item.id, false);
+                    }, 400);
+                }
+
+                if (!mergingTransitionInProgress.get(item.id)) {
+                    const estimator = getMergingEstimator(item.id);
+                    const mergeProgress = estimator.isRunning()
+                        ? estimator.getProgress()
+                        : Math.min(98, progressPercent);
+                    if (bar) bar.style.width = `${mergeProgress}%`;
+                    if (percentLabel) percentLabel.textContent = `${mergeProgress}%`;
+                }
+            } else {
+                clearMergingEstimator(item.id);
+                if (bar) bar.style.width = `${progressPercent}%`;
+                if (percentLabel) percentLabel.textContent = `${progressPercent}%`;
+            }
 
             // Phase-specific color
             const progressContainer = el.querySelector('.multi-video-progress');
             if (progressContainer) {
-                if (item.progressPhase === 'merging') {
+                if (isMergingPhase) {
                     progressContainer.classList.add('phase-merging');
                 } else {
                     progressContainer.classList.remove('phase-merging');
@@ -248,6 +345,15 @@ export class VideoItemRenderer {
             }
         } else {
             if (activeWrapper) activeWrapper.style.display = 'none';
+            stopExtractingRotator(item.id);
+            clearMergingEstimator(item.id);
+        }
+
+        if (isMergingPhase) {
+            previousMergingPhase.set(item.id, true);
+        } else if (wasMerging) {
+            previousMergingPhase.delete(item.id);
+            mergingTransitionInProgress.delete(item.id);
         }
     }
 
@@ -262,6 +368,50 @@ export class VideoItemRenderer {
         if (item.status === 'fetching_metadata') {
             el.classList.add('skeleton-loading');
         }
+    }
+
+    private static updatePhaseLabel(el: HTMLElement, item: VideoItem, strategy: RendererStrategy): void {
+        const phaseEls = [
+            el.querySelector('.multi-video-phase-label') as HTMLElement | null,
+            el.querySelector('.multi-video-phase-text') as HTMLElement | null,
+        ].filter(Boolean) as HTMLElement[];
+
+        if (!phaseEls.length) return;
+
+        const isExtracting = item.status === 'converting' && item.progressPhase === 'extracting';
+        const isMerging = VideoItemRenderer.isMergingPhase(item);
+
+        if (isExtracting) {
+            startExtractingRotator(item.id, phaseEls);
+            return;
+        }
+
+        stopExtractingRotator(item.id);
+        extractingStartTimes.delete(item.id);
+
+        const labelText = VideoItemRenderer.getPhaseLabelText(item, strategy);
+        phaseEls.forEach((phaseEl) => {
+            phaseEl.textContent = labelText;
+        });
+
+        if (!isMerging && item.status !== 'converting') {
+            clearMergingEstimator(item.id);
+        }
+    }
+
+    private static getPhaseLabelText(item: VideoItem, strategy: RendererStrategy): string {
+        if (item.status === 'converting') {
+            if (item.progressPhase === 'merging') return 'Merging...';
+            if (item.progressPhase === 'extracting') return EXTRACTING_MESSAGES[0];
+            return 'Processing...';
+        }
+
+        const text = strategy.getPhaseHtml(item);
+        return text || '';
+    }
+
+    private static isMergingPhase(item: VideoItem): boolean {
+        return item.status === 'converting' && item.progressPhase === 'merging';
     }
 }
 

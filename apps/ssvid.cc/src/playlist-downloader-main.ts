@@ -229,6 +229,10 @@ function initPlaylistForm() {
         const originalText = fetchPlaylistBtn.textContent;
         fetchPlaylistBtn.innerHTML = '<span>Loading...</span>';
 
+        // Clear input after user submits
+        playlistUrlInput.value = '';
+        playlistUrlInput.dispatchEvent(new Event('input'));
+
         try {
             const settings = getCurrentSettings();
 

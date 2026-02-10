@@ -190,14 +190,14 @@ function initMultiDownloadForm() {
         addUrlsBtn.classList.add('loading');
         addUrlsBtn.setAttribute('disabled', 'true');
 
+        // Clear input after user submits
+        urlsInput.value = '';
+
         try {
             const settings = getCurrentSettings();
 
             // Add URLs through the service (store-driven — renderer auto-updates)
             await multiDownloadService.addUrls(rawText, settings);
-
-            // Clear input after successful add
-            urlsInput.value = '';
 
             // Auto-start download
             multiDownloadService.startAllDownloads();

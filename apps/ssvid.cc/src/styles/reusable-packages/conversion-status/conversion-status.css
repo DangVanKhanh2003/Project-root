@@ -224,8 +224,8 @@
 }
 
 /* ===== PROGRESS BAR ===== */
-/* Progress bar is hidden - only show background gradient */
-.progress-bar {
+/* Progress bar is hidden - only show background gradient (single conversion) */
+.status-container .progress-bar {
   display: none !important;
 }
 
