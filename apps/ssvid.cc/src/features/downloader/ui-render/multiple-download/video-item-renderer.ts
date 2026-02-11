@@ -77,7 +77,7 @@ export class VideoItemRenderer {
         if (item.groupId) el.dataset.groupId = item.groupId;
 
         // Build initial structure
-        VideoItemRenderer.buildStructure(el, item, strategy);
+        VideoItemRenderer.buildStructure(el, item, strategy, { isGlobalLocked: false });
         VideoItemRenderer.applyStatusClass(el, item);
         VideoItemRenderer.updatePhaseLabel(el, item, strategy);
         VideoItemRenderer.updateProgressBar(el, item);
@@ -92,7 +92,7 @@ export class VideoItemRenderer {
     /**
      * Update existing element (granular, no re-create)
      */
-    static updateVideoItemElement(el: HTMLElement, item: VideoItem, strategy: RendererStrategy): void {
+    static updateVideoItemElement(el: HTMLElement, item: VideoItem, strategy: RendererStrategy, context: { isFileDownloading?: boolean, currentDownloadingItemId?: string, isGlobalLocked?: boolean } = {}): void {
         console.log('[VideoItemRenderer] updateVideoItemElement called:', item.id, 'status:', item.status);
         console.log('[VideoItemRenderer] el.classList:', el.classList.toString());
 
@@ -106,7 +106,7 @@ export class VideoItemRenderer {
             console.log('[VideoItemRenderer] Transitioning from skeleton to full content...');
             el.innerHTML = '';
             el.classList.remove('skeleton-loading');
-            VideoItemRenderer.buildStructure(el, item, strategy);
+            VideoItemRenderer.buildStructure(el, item, strategy, context);
             VideoItemRenderer.applyStatusClass(el, item);
             console.log('[VideoItemRenderer] Transition complete!');
             if (strategy.afterRender) {
@@ -185,7 +185,7 @@ export class VideoItemRenderer {
         // Action buttons
         const actionsEl = el.querySelector('.multi-video-actions');
         if (actionsEl) {
-            actionsEl.innerHTML = strategy.getActionButton(item, {});
+            actionsEl.innerHTML = strategy.getActionButton(item, context);
         }
 
         // Checkbox
@@ -234,7 +234,7 @@ export class VideoItemRenderer {
     // Private helpers
     // ==========================================
 
-    private static buildStructure(el: HTMLElement, item: VideoItem, strategy: RendererStrategy): void {
+    private static buildStructure(el: HTMLElement, item: VideoItem, strategy: RendererStrategy, context: { isGlobalLocked?: boolean } = {}): void {
         if (item.status === 'fetching_metadata') {
             el.classList.add('skeleton-loading');
             el.innerHTML = `
@@ -263,7 +263,7 @@ export class VideoItemRenderer {
             return;
         }
 
-        const isDownloading = item.status === 'downloading' || item.status === 'converting' || item.status === 'analyzing';
+        const isDownloading = ['downloading', 'converting', 'analyzing', 'queued'].includes(item.status);
         const checkboxHtml = strategy.getCheckboxHtml(item);
         const durationStr = formatDuration(item.meta.duration);
         const progressPercent = Math.round(item.progress || 0);
@@ -298,7 +298,7 @@ export class VideoItemRenderer {
             <div class="multi-video-status">
                 ${strategy.getStatusHtml(item)}
             </div>
-            <div class="multi-video-actions">${strategy.getActionButton(item, {})}</div>
+            <div class="multi-video-actions">${strategy.getActionButton(item, context)}</div>
         `;
 
         if (checkboxHtml) {
@@ -307,7 +307,7 @@ export class VideoItemRenderer {
     }
 
     private static updateProgressBar(el: HTMLElement, item: VideoItem): void {
-        const isActive = item.status === 'downloading' || item.status === 'converting' || item.status === 'analyzing';
+        const isActive = ['downloading', 'converting', 'analyzing', 'queued'].includes(item.status);
         const activeWrapper = el.querySelector('.item-active-progress') as HTMLElement;
         const progressPercent = Math.round(item.progress || 0);
         const isMergingPhase = VideoItemRenderer.isMergingPhase(item);

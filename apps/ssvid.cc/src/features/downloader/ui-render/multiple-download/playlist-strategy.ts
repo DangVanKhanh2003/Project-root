@@ -49,11 +49,11 @@ export class PlaylistStrategy implements RendererStrategy {
             </div>`;
     }
 
-    getActionButton(item: VideoItem, context: { isFileDownloading?: boolean, currentDownloadingItemId?: string } = {}): string {
+    getActionButton(item: VideoItem, context: { isFileDownloading?: boolean, currentDownloadingItemId?: string, isGlobalLocked?: boolean } = {}): string {
         if (isMobileDevice()) {
-            return this.getMobileActionButton(item);
+            return this.getMobileActionButton(item, context);
         }
-        return this.getDesktopActionButton(item);
+        return this.getDesktopActionButton(item, context);
     }
 
     getStatusHtml(item: VideoItem): string {
@@ -79,6 +79,7 @@ export class PlaylistStrategy implements RendererStrategy {
             case 'converting': {
                 return 'Processing...';
             }
+            case 'queued': return 'Queued...';
             default: return '';
         }
     }
@@ -151,7 +152,7 @@ export class PlaylistStrategy implements RendererStrategy {
         return `<span class="item-setting-text">${format} · ${details}${trackLabel}</span>`;
     }
 
-    private getDesktopActionButton(item: VideoItem): string {
+    private getDesktopActionButton(item: VideoItem, context: { isFileDownloading?: boolean, currentDownloadingItemId?: string, isGlobalLocked?: boolean }): string {
         if (item.status === 'downloading' || item.status === 'converting') {
             return `
                 <button class="btn-icon btn-cancel" data-action="cancel" data-id="${item.id}" title="Cancel">
@@ -163,10 +164,13 @@ export class PlaylistStrategy implements RendererStrategy {
         if (item.status === 'completed' && item.downloadUrl) {
             const filename = `${item.meta.title} (${item.settings?.quality || item.settings?.audioBitrate || ''}).${item.settings?.format || 'mp4'}`;
             const isDownloaded = item.isDownloaded;
-            const classes = ['btn-download-multi-download', isDownloaded ? 'is-success' : ''].filter(Boolean).join(' ');
+            const isLocked = !!context.isGlobalLocked;
+            const isLoading = context.currentDownloadingItemId === item.id;
+            const classes = ['btn-download-multi-download', isDownloaded && !isLoading ? 'is-success' : '', isLocked ? 'is-disabled' : '', isLoading ? 'is-loading' : ''].filter(Boolean).join(' ');
             const label = isDownloaded ? 'Downloaded' : 'Download';
+            const disabledAttr = isLocked ? 'disabled' : '';
             return `
-                <button class="${classes}" type="button" data-action="save" data-id="${item.id}" data-download-url="${item.downloadUrl}" data-filename="${escapeAttr(filename)}">
+                <button class="${classes}" type="button" data-action="save" data-id="${item.id}" data-download-url="${item.downloadUrl}" data-filename="${escapeAttr(filename)}" ${disabledAttr}>
                     <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="12" y1="5" x2="12" y2="15"></line>
                         <polyline points="8 11 12 15 16 11"></polyline>
@@ -197,7 +201,7 @@ export class PlaylistStrategy implements RendererStrategy {
         `;
     }
 
-    private getMobileActionButton(item: VideoItem): string {
+    private getMobileActionButton(item: VideoItem, context: { isFileDownloading?: boolean, currentDownloadingItemId?: string, isGlobalLocked?: boolean }): string {
         if (item.status === 'downloading' || item.status === 'converting') {
             return `
                 <button class="btn-icon btn-cancel" data-action="cancel" data-id="${item.id}" title="Cancel">
@@ -209,10 +213,13 @@ export class PlaylistStrategy implements RendererStrategy {
         if (item.status === 'completed' && item.downloadUrl) {
             const filename = `${item.meta.title} (${item.settings?.quality || item.settings?.audioBitrate || ''}).${item.settings?.format || 'mp4'}`;
             const isDownloaded = item.isDownloaded;
-            const classes = ['btn-download-multi-download', isDownloaded ? 'is-success' : ''].filter(Boolean).join(' ');
+            const isLocked = !!context.isGlobalLocked;
+            const isLoading = context.currentDownloadingItemId === item.id;
+            const classes = ['btn-download-multi-download', isDownloaded && !isLoading ? 'is-success' : '', isLocked ? 'is-disabled' : '', isLoading ? 'is-loading' : ''].filter(Boolean).join(' ');
             const label = isDownloaded ? 'Downloaded' : 'Download';
+            const disabledAttr = isLocked ? 'disabled' : '';
             return `
-                <button class="${classes}" type="button" data-action="save" data-id="${item.id}" data-download-url="${item.downloadUrl}" data-filename="${escapeAttr(filename)}">
+                <button class="${classes}" type="button" data-action="save" data-id="${item.id}" data-download-url="${item.downloadUrl}" data-filename="${escapeAttr(filename)}" ${disabledAttr}>
                     <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="12" y1="5" x2="12" y2="15"></line>
                         <polyline points="8 11 12 15 16 11"></polyline>
@@ -231,8 +238,10 @@ export class PlaylistStrategy implements RendererStrategy {
         }
 
         if (item.status === 'ready') {
+            const isLocked = context.isGlobalLocked;
+            const disabledAttr = isLocked ? 'disabled' : '';
             return `
-                <button class="btn-download-multi-download is-outline" type="button" data-action="convert" data-id="${item.id}">
+                <button class="btn-download-multi-download is-outline" type="button" data-action="convert" data-id="${item.id}" ${disabledAttr}>
                     <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="12" y1="5" x2="12" y2="15"></line>
                         <polyline points="8 11 12 15 16 11"></polyline>

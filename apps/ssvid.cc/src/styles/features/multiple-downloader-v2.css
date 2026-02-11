@@ -1133,6 +1133,16 @@
     [data-action="download-zip-batch"] {
         display: none !important;
     }
+
+    /* Hide checkboxes ONLY in batch mode (no group) on mobile */
+    .multi-video-item:not([data-group-id]) .item-checkbox-wrapper {
+        display: none !important;
+    }
+
+    /* Hide master checkbox in header when in batch mode on mobile */
+    .multi-download-header:not([data-group-id]) .master-checkbox-label {
+        display: none !important;
+    }
 }
 
 /* Skeleton Loading Animation */
@@ -1598,7 +1608,8 @@
     cursor: wait;
 }
 
-.btn-download-multi-download.is-loading .btn-icon {
+.btn-download-multi-download.is-loading .btn-icon,
+.btn-download-multi-download.is-loading .btn-icon-check {
     display: none !important;
 }
 
@@ -1632,6 +1643,7 @@
 .btn-download-multi-download:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+    pointer-events: none;
 }
 
 /* Outline variant for 'Ready' state */

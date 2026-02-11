@@ -39,11 +39,11 @@ export class MultiDownloadStrategy implements RendererStrategy {
             </div>`;
     }
 
-    getActionButton(item: VideoItem, context: { isFileDownloading?: boolean, currentDownloadingItemId?: string } = {}): string {
+    getActionButton(item: VideoItem, context: { isFileDownloading?: boolean, currentDownloadingItemId?: string, isGlobalLocked?: boolean } = {}): string {
         if (isMobileDevice()) {
-            return this.getMobileActionButton(item);
+            return this.getMobileActionButton(item, context);
         }
-        return this.getDesktopActionButton(item);
+        return this.getDesktopActionButton(item, context);
     }
 
     getStatusHtml(item: VideoItem): string {
@@ -70,6 +70,7 @@ export class MultiDownloadStrategy implements RendererStrategy {
             case 'converting': {
                 return 'Processing...';
             }
+            case 'queued': return 'Queued...';
             default: return '';
         }
     }
@@ -78,7 +79,13 @@ export class MultiDownloadStrategy implements RendererStrategy {
     // Private Helpers
     // ==========================================
 
-    private getDesktopActionButton(item: VideoItem): string {
+    private getDesktopActionButton(item: VideoItem, context: { isFileDownloading?: boolean, currentDownloadingItemId?: string, isGlobalLocked?: boolean }): string {
+        const isLocked = !!context.isGlobalLocked;
+        const isLoading = context.currentDownloadingItemId === item.id;
+        const disabledAttr = isLocked ? 'disabled' : '';
+        const disabledClass = isLocked ? 'is-disabled' : '';
+        const loadingClass = isLoading ? 'is-loading' : '';
+
         if (item.status === 'downloading' || item.status === 'converting') {
             return `
                 <button class="btn-icon btn-cancel" data-action="cancel" data-id="${item.id}" title="Cancel">
@@ -88,11 +95,26 @@ export class MultiDownloadStrategy implements RendererStrategy {
         }
 
         if (item.status === 'completed' && item.downloadUrl) {
+            const filename = `${item.meta.title} (${item.settings?.quality || item.settings?.audioBitrate || ''}).${item.settings?.format || 'mp4'}`;
+            const isDownloaded = item.isDownloaded;
+            const classes = ['btn-download-multi-download', (isDownloaded && !isLoading) ? 'is-success' : '', disabledClass, loadingClass].filter(Boolean).join(' ');
+            const label = isDownloaded ? 'Downloaded' : 'Download';
+
             return `
-                <button class="btn-icon btn-remove" data-action="remove" data-id="${item.id}" title="Remove">
-                    <span class="icon-trash">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
-                    </span>
+                <button class="${classes}" type="button" data-action="save" data-id="${item.id}" data-download-url="${item.downloadUrl}" data-filename="${escapeAttr(filename)}" ${disabledAttr}>
+                    <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="15"></line>
+                        <polyline points="8 11 12 15 16 11"></polyline>
+                        <line x1="6" y1="19" x2="18" y2="19"></line>
+                    </svg>
+                    <svg class="btn-icon-spinner" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+                        <circle cx="12" cy="12" r="10" stroke-opacity="0.25"></circle>
+                        <path d="M12 2a10 10 0 0 1 10 10" stroke-opacity="1"></path>
+                    </svg>
+                    <svg class="btn-icon-check" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                    <span class="btn-text">${label}</span>
                 </button>
             `;
         }
@@ -117,7 +139,7 @@ export class MultiDownloadStrategy implements RendererStrategy {
         `;
     }
 
-    private getMobileActionButton(item: VideoItem): string {
+    private getMobileActionButton(item: VideoItem, context: { isFileDownloading?: boolean, currentDownloadingItemId?: string, isGlobalLocked?: boolean }): string {
         if (item.status === 'downloading' || item.status === 'converting') {
             return '';
         }
@@ -125,10 +147,13 @@ export class MultiDownloadStrategy implements RendererStrategy {
         if (item.status === 'completed' && item.downloadUrl) {
             const filename = `${item.meta.title} (${item.settings?.quality || item.settings?.audioBitrate || ''}).${item.settings?.format || 'mp4'}`;
             const isDownloaded = item.isDownloaded;
-            const classes = ['btn-download-multi-download', isDownloaded ? 'is-success' : ''].filter(Boolean).join(' ');
+            const isLocked = !!context.isGlobalLocked;
+            const isLoading = context.currentDownloadingItemId === item.id;
+            const classes = ['btn-download-multi-download', (isDownloaded && !isLoading) ? 'is-success' : '', isLocked ? 'is-disabled' : '', isLoading ? 'is-loading' : ''].filter(Boolean).join(' ');
             const label = isDownloaded ? 'Downloaded' : 'Download';
+            const disabledAttr = isLocked ? 'disabled' : '';
             return `
-                <button class="${classes}" type="button" data-action="save" data-id="${item.id}" data-download-url="${item.downloadUrl}" data-filename="${escapeAttr(filename)}">
+                <button class="${classes}" type="button" data-action="save" data-id="${item.id}" data-download-url="${item.downloadUrl}" data-filename="${escapeAttr(filename)}" ${disabledAttr}>
                     <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="12" y1="5" x2="12" y2="15"></line>
                         <polyline points="8 11 12 15 16 11"></polyline>

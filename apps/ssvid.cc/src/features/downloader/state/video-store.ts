@@ -253,6 +253,10 @@ class VideoStore {
         this.notify('item:updated', item);
     }
 
+    triggerUpdate(): void {
+        this.notify('item:updated', null);
+    }
+
     // ==========================================
     // Query helpers
     // ==========================================
