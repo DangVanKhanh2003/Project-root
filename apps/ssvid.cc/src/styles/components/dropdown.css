@@ -13,7 +13,7 @@
     gap: 8px;
     padding: 10px 14px;
     background: #fff;
-    border: 1px solid #b0b0b0;
+    border: 1px solid #b0b0b0ad;
     border-radius: var(--radius-xl);
     cursor: pointer;
     transition: border-color 0.3s;
@@ -195,6 +195,7 @@
 
 /* ===== MOBILE STYLES ===== */
 @media (max-width: 768px) {
+
     /* Audio dropdown: only show icon when closed (fixed width for transition) */
     .audio-dropdown-wrapper {
         flex: 0 0 auto;

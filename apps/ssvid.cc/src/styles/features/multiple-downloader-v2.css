@@ -64,7 +64,7 @@
 .urls-input-container {
     margin-bottom: 10px;
     background: #fff;
-    border: 1px solid #b0b0b0;
+    border: 1px solid #b0b0b0ad;
     border-radius: 24px;
     transition: all 0.3s ease;
     position: relative;
@@ -95,7 +95,7 @@
     display: flex;
     align-items: center;
     height: 56px;
-    border: 1px solid #b0b0b0;
+    border: 1px solid #b0b0b0ad;
 }
 
 .video-input {
@@ -185,7 +185,7 @@
     background: white;
     border-radius: var(--radius-xl, 24px);
     padding: 4px;
-    border: 1px solid #b0b0b0;
+    border: 1px solid #b0b0b0ad;
 }
 
 .multi-format-btn {
@@ -230,7 +230,7 @@
 .multi-quality-select {
     height: 45px;
     padding: 0 40px 0 18px;
-    border: 1px solid #b0b0b0;
+    border: 1px solid #b0b0b0ad;
     border-radius: var(--radius-xl, 24px);
     background: #fff;
     cursor: pointer;
@@ -1776,5 +1776,14 @@
 @media (max-width: 768px) {
     .playlist-header-tabs {
         display: none;
+    }
+}
+
+@media (max-width: 640px) {
+    /* Hide remove button AND cancel button during processing phases ONLY on mobile */
+    .multi-video-item.analyzing .btn-remove,
+    .multi-video-item.fetching_metadata .btn-remove,
+    .btn-icon.btn-cancel {
+        display: none !important;
     }
 }

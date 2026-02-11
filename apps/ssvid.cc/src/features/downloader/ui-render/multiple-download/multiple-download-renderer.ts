@@ -79,7 +79,6 @@ export class MultipleDownloadRenderer {
         if (!this.container) return;
 
         this.container.innerHTML = `
-            <div class="multi-download-header" id="multi-batch-header" style="display: none;"></div>
             <div class="multi-download-list" id="multi-list"></div>
             <div class="multi-download-footer" id="multi-footer"></div>
         `;
@@ -398,7 +397,7 @@ export class MultipleDownloadRenderer {
         const hadSuccess = btn.classList.contains('is-success');
         btn.classList.remove('is-success');
         btn.classList.add('is-loading'); // Local visual effect
-        
+
         if (id) {
             this.activeLoadingId = id;
         }
@@ -415,10 +414,10 @@ export class MultipleDownloadRenderer {
                 const item = videoStore.getItem(itemId);
                 if (item) {
                     VideoItemRenderer.updateVideoItemElement(
-                        el as HTMLElement, 
-                        item, 
-                        this.strategy, 
-                        { 
+                        el as HTMLElement,
+                        item,
+                        this.strategy,
+                        {
                             isGlobalLocked: true,
                             currentDownloadingItemId: this.activeLoadingId || undefined
                         }
@@ -426,7 +425,7 @@ export class MultipleDownloadRenderer {
                 }
             }
         });
-        
+
         // Update all group headers (Convert Selected, ZIP)
         this.listContainer?.querySelectorAll('.playlist-group').forEach(groupEl => {
             updateGroupCount(groupEl as HTMLElement, true);
