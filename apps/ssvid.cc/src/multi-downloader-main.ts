@@ -57,6 +57,28 @@ function initMobileMenu() {
 }
 
 /**
+ * Save current format/quality to localStorage
+ */
+function saveFormatPreferences() {
+    try {
+        const settings = getCurrentSettings();
+        const audioFmt = settings.audioFormat || 'mp3';
+        const prefs = {
+            selectedFormat: settings.format || 'mp4',
+            videoQuality: settings.videoQuality ? settings.videoQuality + 'p' : '720p',
+            audioFormat: audioFmt,
+            audioBitrate: audioFmt === 'mp3' ? (settings.audioBitrate || '128') : '',
+            timestamp: Date.now()
+        };
+        // Normalize videoQuality: avoid double 'p' (e.g. '720pp')
+        if (prefs.videoQuality === 'webmp' || prefs.videoQuality === 'mkvp') {
+            prefs.videoQuality = settings.videoQuality!;
+        }
+        localStorage.setItem('ssvid_format_preferences', JSON.stringify(prefs));
+    } catch (e) { }
+}
+
+/**
  * Initialize format toggle
  */
 function initFormatToggle() {
@@ -72,15 +94,13 @@ function initFormatToggle() {
             btn.classList.add('active');
 
             const format = btn.getAttribute('data-format');
-            if (format === 'mp3') {
-                qualitySelectMp3.style.display = 'block';
-                qualitySelectMp4.style.display = 'none';
-            } else {
-                qualitySelectMp3.style.display = 'none';
-                qualitySelectMp4.style.display = 'block';
-            }
+            document.documentElement.dataset.format = format || 'mp4';
+            saveFormatPreferences();
         });
     });
+
+    qualitySelectMp3.addEventListener('change', () => saveFormatPreferences());
+    qualitySelectMp4.addEventListener('change', () => saveFormatPreferences());
 }
 
 /**
@@ -101,15 +121,16 @@ function getCurrentSettings(): Partial<VideoItemSettings> {
     const audioTrack = audioTrackValue?.value || 'original';
 
     if (format === 'mp3' && qualitySelectMp3) {
-        const val = qualitySelectMp3.value; // e.g. 'mp3-128'
+        const val = qualitySelectMp3.value; // e.g. 'mp3-128', 'ogg', 'wav'
         if (val.includes('-')) {
-            audioBitrate = val.split('-')[1];
+            audioFormat = val.split('-')[0]; // 'mp3'
+            audioBitrate = val.split('-')[1]; // '128'
             quality = audioBitrate + 'kbps';
         } else {
-            audioBitrate = val;
-            quality = val + 'kbps';
+            audioFormat = val; // 'ogg', 'wav', 'opus', 'm4a'
+            audioBitrate = undefined;
+            quality = val;
         }
-        audioFormat = 'mp3';
     } else if (qualitySelectMp4) {
         const val = qualitySelectMp4.value; // e.g. 'mp4-720', 'webm', 'mkv'
         if (val.includes('-')) {

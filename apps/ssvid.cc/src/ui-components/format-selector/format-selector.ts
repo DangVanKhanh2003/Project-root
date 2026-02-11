@@ -296,7 +296,6 @@ function replaceDropdownOptions(container: HTMLElement, format: FormatType): voi
 function renderAudioDropdownOnly(selectedAudioFormat: AudioFormatType, selectedBitrate: string): string {
   const audioOptions = [
     { value: 'mp3-320', label: 'MP3 - 320kbps' },
-    { value: 'mp3-192', label: 'MP3 - 192kbps' },
     { value: 'mp3-128', label: 'MP3 - 128kbps' },
     { value: 'mp3-64', label: 'MP3 - 64kbps' },
     { value: 'flac', label: 'FLAC - Lossless' },
