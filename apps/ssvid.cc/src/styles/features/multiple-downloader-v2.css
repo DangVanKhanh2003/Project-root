@@ -429,7 +429,7 @@
     background: var(--bg-secondary, #F6F6F6);
 }
 
-.multi-header-title{
+.multi-header-title {
     font-size: 1.25rem;
     font-weight: 600;
     color: var(--text-main, #333);
@@ -867,12 +867,19 @@
 }
 
 .btn-success {
-    background-color: #10b981;
+    background-color: var(--brand, #8F0F20);
     color: white;
 }
 
-.btn-success:hover {
-    background-color: #059669;
+.btn-success:hover:not(:disabled) {
+    background-color: var(--color-accent-hover, #740219);
+}
+
+.btn-success:disabled {
+    cursor: not-allowed;
+    background-color: var(--brand, #8F0F20);
+    opacity: 0.6;
+    color: white;
 }
 
 .btn-danger {
@@ -1188,10 +1195,9 @@
 }
 
 .playlist-tab.active {
-    background: #60a5fa;
+    background: var(--brand, #8F0F20);
     color: #ffffff;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    
 }
 
 .group-empty {
@@ -1397,9 +1403,9 @@
 }
 
 .btn-playlist-group-action {
-    background: #eff6ff;
-    color: #2563eb;
-    border: 1px solid #bfdbfe;
+    background: var(--surface-weak, #F9F2F4);
+    color: var(--brand, #8F0F20);
+    border: 1px solid rgba(143, 15, 32, 0.2);
     padding: 0.5rem 1rem;
     border-radius: 36px;
     font-size: 0.875rem;
@@ -1414,15 +1420,16 @@
 }
 
 .btn-playlist-group-action:hover:not(:disabled) {
-    background: #dbeafe;
-    border-color: #93c5fd;
+    background: rgba(143, 15, 32, 0.1);
+    border-color: rgba(143, 15, 32, 0.3);
 }
 
 .btn-playlist-group-action:disabled {
     cursor: not-allowed;
-    background: #dbeafeb1;
-    border-color: #93c4fdd5;
-    color: #246dd4c0;
+    background: var(--surface-weak, #F9F2F4);
+    border-color: rgba(143, 15, 32, 0.15);
+    color: var(--brand, #8F0F20);
+    opacity: 0.6;
 }
 
 
@@ -1755,7 +1762,7 @@
 }
 
 @media (max-width: 768px) {
-  .playlist-header-tabs {
-    display: none;
-  }
+    .playlist-header-tabs {
+        display: none;
+    }
 }

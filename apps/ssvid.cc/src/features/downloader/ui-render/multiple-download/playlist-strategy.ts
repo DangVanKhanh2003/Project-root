@@ -4,12 +4,25 @@ import { VideoItem } from '../../state/multiple-download-types';
 import { isMobileDevice } from '../../../../utils';
 import { escapeAttr } from './video-item-renderer';
 import { LANGUAGES } from '../../logic/data/languages';
+import { autoResizeSelect } from '../../../../utils/dom-utils';
 
 /**
  * Strategy for Playlist Mode
  * Editable dropdowns when pending/ready/error, locked badges when downloading/completed
  */
 export class PlaylistStrategy implements RendererStrategy {
+
+    afterRender(el: HTMLElement, item: VideoItem): void {
+        const selects = el.querySelectorAll('select') as NodeListOf<HTMLSelectElement>;
+        selects.forEach(select => {
+            autoResizeSelect(select);
+            // Also resize on change
+            if (!(select as any)._hasResizeListener) {
+                select.addEventListener('change', () => autoResizeSelect(select));
+                (select as any)._hasResizeListener = true;
+            }
+        });
+    }
 
     buildSettingsContent(item: VideoItem): string {
         const isEditable = ['pending', 'ready', 'error', 'cancelled'].includes(item.status);

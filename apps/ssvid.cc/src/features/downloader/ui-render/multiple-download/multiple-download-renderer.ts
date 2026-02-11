@@ -7,6 +7,7 @@ import { PlaylistStrategy } from './playlist-strategy';
 import { RendererStrategy } from './renderer-strategy.interface';
 import { createStoreChangeHandler, updateGroupCount } from './handle-store-change';
 import { triggerDownload } from '../../../../utils';
+import { MaterialPopup } from '../../../../ui-components/material-popup/material-popup';
 
 export class MultipleDownloadRenderer {
     private container: HTMLElement | null = null;
@@ -217,18 +218,29 @@ export class MultipleDownloadRenderer {
             if (target.classList.contains('group-checkbox')) {
                 const groupId = (target as HTMLInputElement).dataset.groupId;
                 const checked = (target as HTMLInputElement).checked;
+
                 if (groupId && this.listContainer) {
-                    const groupEl = this.listContainer.querySelector(`[data-group-id="${groupId}"].playlist-group`) as HTMLElement | null;
-                    const activeTab = groupEl?.dataset.activeTab || 'convert';
                     const items = videoStore.getItemsByGroup(groupId);
-                    const tabItems = items.filter(i =>
-                        activeTab === 'convert' ? isConvertTabStatus(i.status) : isDownloadTabStatus(i.status)
-                    );
-                    tabItems.forEach(item => {
-                        if (item.isSelected !== checked) {
-                            videoStore.toggleSelect(item.id);
-                        }
-                    });
+                    const processingItems = items.filter(i => ['analyzing', 'fetching_metadata', 'downloading', 'converting'].includes(i.status));
+
+                    if (checked && processingItems.length > 0) {
+                        // Revert checkbox state temporarily
+                        (target as HTMLInputElement).checked = false;
+
+                        MaterialPopup.show({
+                            title: 'Warning',
+                            type: 'warning',
+                            message: `There are still <strong>${processingItems.length} videos</strong> being processed. Are you sure you want to continue?`,
+                            confirmText: 'OK',
+                            onConfirm: () => {
+                                (target as HTMLInputElement).checked = true;
+                                this.toggleGroupSelection(groupId, true);
+                            }
+                        });
+                        return;
+                    }
+
+                    this.toggleGroupSelection(groupId, checked);
                 }
                 return;
             }
@@ -247,6 +259,9 @@ export class MultipleDownloadRenderer {
                             const settingsEl = el.querySelector('.item-settings') as HTMLElement;
                             if (settingsEl) {
                                 settingsEl.innerHTML = this.strategy.buildSettingsContent(item);
+                                if (this.strategy.afterRender) {
+                                    this.strategy.afterRender(el, item);
+                                }
                             }
                         }
                     }
@@ -279,11 +294,26 @@ export class MultipleDownloadRenderer {
             if (target.id === 'masterCheckbox') {
                 const checked = (target as HTMLInputElement).checked;
                 const items = videoStore.getAllItems().filter(i => !i.groupId);
-                items.forEach(item => {
-                    if (item.isSelected !== checked) {
-                        videoStore.toggleSelect(item.id);
-                    }
-                });
+                const processingItems = items.filter(i => ['analyzing', 'fetching_metadata', 'downloading', 'converting'].includes(i.status));
+
+                if (checked && processingItems.length > 0) {
+                    // Revert checkbox state temporarily
+                    (target as HTMLInputElement).checked = false;
+
+                    MaterialPopup.show({
+                        title: 'Warning',
+                        type: 'warning',
+                        message: `There are still <strong>${processingItems.length} videos</strong> being processed. Are you sure you want to continue?`,
+                        confirmText: 'OK',
+                        onConfirm: () => {
+                            (target as HTMLInputElement).checked = true;
+                            this.toggleBatchSelection(true);
+                        }
+                    });
+                    return;
+                }
+
+                this.toggleBatchSelection(checked);
             }
         });
     }
@@ -441,6 +471,29 @@ export class MultipleDownloadRenderer {
 
         // Trigger re-filtering
         updateGroupCount(groupEl);
+    }
+
+    private toggleGroupSelection(groupId: string, checked: boolean) {
+        const groupEl = this.listContainer?.querySelector(`[data-group-id="${groupId}"].playlist-group`) as HTMLElement | null;
+        const activeTab = groupEl?.dataset.activeTab || 'convert';
+        const items = videoStore.getItemsByGroup(groupId);
+        const tabItems = items.filter(i =>
+            activeTab === 'convert' ? isConvertTabStatus(i.status) : isDownloadTabStatus(i.status)
+        );
+        tabItems.forEach(item => {
+            if (item.isSelected !== checked) {
+                videoStore.toggleSelect(item.id);
+            }
+        });
+    }
+
+    private toggleBatchSelection(checked: boolean) {
+        const items = videoStore.getAllItems().filter(i => !i.groupId);
+        items.forEach(item => {
+            if (item.isSelected !== checked) {
+                videoStore.toggleSelect(item.id);
+            }
+        });
     }
 }
 

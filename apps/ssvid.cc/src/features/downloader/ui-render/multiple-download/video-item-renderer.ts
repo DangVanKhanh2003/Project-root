@@ -82,6 +82,10 @@ export class VideoItemRenderer {
         VideoItemRenderer.updatePhaseLabel(el, item, strategy);
         VideoItemRenderer.updateProgressBar(el, item);
 
+        if (strategy.afterRender) {
+            strategy.afterRender(el, item);
+        }
+
         return el;
     }
 
@@ -105,6 +109,9 @@ export class VideoItemRenderer {
             VideoItemRenderer.buildStructure(el, item, strategy);
             VideoItemRenderer.applyStatusClass(el, item);
             console.log('[VideoItemRenderer] Transition complete!');
+            if (strategy.afterRender) {
+                strategy.afterRender(el, item);
+            }
             return;
         }
 
@@ -198,6 +205,10 @@ export class VideoItemRenderer {
         // Progress bar + phase label
         VideoItemRenderer.updateProgressBar(el, item);
         VideoItemRenderer.updatePhaseLabel(el, item, strategy);
+
+        if (strategy.afterRender) {
+            strategy.afterRender(el, item);
+        }
     }
 
     /**

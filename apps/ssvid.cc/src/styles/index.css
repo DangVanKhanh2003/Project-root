@@ -35,6 +35,7 @@
 @import './components/form.css';
 @import './components/format-selector.css';
 @import './components/dropdown.css';
+@import './components/material-popup.css';
 
 /* 7. Reusable Packages (TypeScript features) */
 @import './reusable-packages/package-root.css';
