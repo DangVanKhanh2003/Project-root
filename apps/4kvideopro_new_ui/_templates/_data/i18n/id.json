@@ -1,0 +1,58 @@
+{
+  "nav": {
+    "home": "Beranda",
+    "youtubeToMp3": "YouTube to MP3",
+    "youtubeToMp4": "YouTube to MP4",
+    "youtubeShorts": "YouTube Shorts",
+    "about": "Tentang"
+  },
+  "langSelector": {
+    "buttonText": "ID",
+    "buttonLabel": "Bahasa",
+    "currentLangFull": "Indonesia"
+  },
+  "drawer": {
+    "logoText": "SSVid.cc",
+    "links": {
+      "home": "Beranda",
+      "youtubeToMp3": "YouTube ke MP3",
+      "youtubeToMp4": "YouTube ke MP4",
+      "youtubeShorts": "YouTube Shorts",
+      "about": "Tentang",
+      "faq": "FAQ",
+      "contact": "Kontak",
+      "terms": "Terms of Use",
+      "privacy": "Privasi",
+      "dmca": "DMCA"
+    }
+  },
+  "hero": {
+    "placeholder": "Tempel tautan YouTube di sini...",
+    "pasteBtn": "Tempel",
+    "clearBtn": "Hapus",
+    "convertBtn": "Konversi",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "Audio track",
+    "searchPlaceholder": "Cari..."
+  },
+  "overview": {
+    "badge": "Cepat & Gratis"
+  },
+  "footer": {
+    "linksRow1": {
+      "youtubeToMp3": "YouTube ke MP3",
+      "youtubeToMp4": "YouTube ke MP4",
+      "youtubeShorts": "YouTube Shorts"
+    },
+    "linksRow2": {
+      "about": "Tentang",
+      "contact": "Kontak",
+      "terms": "Terms of Use",
+      "privacyPolicy": "Kebijakan Privasi",
+      "dmca": "DMCA",
+      "faq": "FAQ"
+    },
+    "copyright": "© 2026 SSVid. Hak cipta dilindungi undang-undang."
+  }
+}

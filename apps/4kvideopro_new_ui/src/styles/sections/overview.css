@@ -1,0 +1,204 @@
+/* Overview Section - Material 3 Style */
+.overview-section {
+    padding: 60px 0;
+    background-color: var(--bg-secondary);
+    /* Uniform light gray background as requested */
+}
+
+/* Ensure Search Results match the background */
+#search-results-section {
+    background-color: var(--bg-secondary);
+    padding-bottom: 60px;
+    /* Consistent spacing */
+}
+
+/* Layout */
+.overview-container {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+    align-items: center;
+}
+
+
+
+/* --- Left Side: Info --- */
+.overview-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    /* Mobile: Center align */
+    align-items: center;
+    text-align: center;
+}
+
+/* Badge */
+.overview-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: rgba(255, 216, 228, 0.5);
+    /* bg-secondary-container/50 */
+    color: #5D0014;
+    /* text-secondary-onContainer (Darker Red/Pink) */
+    padding: 6px 16px;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    width: fit-content;
+}
+
+.overview-badge svg {
+    width: 16px;
+    height: 16px;
+}
+
+/* Typography */
+.overview-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1F1F1F;
+    /* On Surface */
+    line-height: 1.2;
+    margin: 0;
+}
+
+.overview-desc {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #49454F;
+    /* Variant On Surface */
+}
+
+/* --- Right Side: Steps Card --- */
+.overview-steps-card {
+    flex: 1;
+    background: #f5f5f5;
+    padding: 40px;
+    width: 100%;
+    max-width: 500px;
+}
+
+.steps-card-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1F1F1F;
+    margin-bottom: 32px;
+    text-align: center;
+    line-height: 1.2;
+    /* Mobile: Center */
+}
+
+/* Stepper */
+.stepper {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    /* Gap handled by padding for line */
+}
+
+.step-item {
+    display: flex;
+    gap: 20px;
+    position: relative;
+    padding-bottom: 32px;
+}
+
+.step-item:last-child {
+    padding-bottom: 0;
+}
+
+/* Circle Number */
+.step-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #8D021F;
+    /* Primary */
+    color: #FFFFFF;
+    /* On Primary */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.125rem;
+    flex-shrink: 0;
+    z-index: 1;
+}
+
+/* Connector Line */
+.step-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 19px;
+    /* Center of 40px circle (20px) - 1px width */
+    top: 40px;
+    bottom: 0;
+    width: 2px;
+    background-color: #FFD8E4;
+    /* Muted Line */
+}
+
+/* Text Content */
+.step-text h3 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: #1F1F1F;
+    margin: 0 0 8px 0;
+}
+
+.step-text p {
+    font-size: 0.9375rem;
+    color: #49454F;
+    margin: 0;
+    line-height: 1.5;
+}
+
+
+@media (min-width: 992px) {
+    .overview-container {
+        flex-direction: row;
+        align-items: flex-start;
+        /* Align top */
+        justify-content: space-between;
+        gap: 80px;
+    }
+
+    .overview-info {
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .steps-card-title {
+        text-align: left;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+
+    .overview-title,
+    .steps-card-title,
+    .overview-steps-card h2 {
+        font-size: 2rem;
+    }
+
+    .overview-steps-card {
+        padding: 24px;
+        border-radius: 24px;
+    }
+
+    .overview-badge {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .overview-title,
+    .steps-card-title,
+    .overview-steps-card h2 {
+        font-size: 24px;
+    }
+}

@@ -1,0 +1,213 @@
+/* Hero Section */
+.hero-section {
+    background-color: var(--bg-secondary);
+    /* Changed to Gray (Secondary) */
+    padding: 50px 0 40px 0;
+    color: var(--color-white);
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+/* Pseudo-element for the fixed-height Red Header/Hero BG */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    /* Fixed height for the red area */
+    background-color: var(--primary-color);
+    /* Red */
+    z-index: -1;
+}
+
+.hero-section>* {
+    z-index: 2;
+    /* Ensure content sits above the bg */
+}
+
+.hero-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1100px;
+    /* Constrain width for better centering */
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+/* Header within Hero */
+.hero-header {
+    margin-top: 30px;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo-hero {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: white;
+    margin-bottom: 24px;
+}
+
+.logo-hero svg rect[fill="white"] {
+    fill: white;
+}
+
+.logo-hero svg rect[fill="#CB0E35"] {
+    fill: #CB0E35;
+}
+
+.logo-text-hero {
+    font-size: 32px;
+    font-weight: 700;
+    font-family: 'Roboto', sans-serif;
+    /* Updated to Roboto */
+    letter-spacing: -0.5px;
+}
+
+.title-hero {
+    font-size: 3rem;
+    /* 48px */
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.1;
+    color: white;
+}
+
+.subtitle-hero {
+    font-size: 1.25rem;
+    font-weight: 400;
+    opacity: 1;
+    /* Ensure full opacity for pure white */
+    color: #ffffff;
+    /* Explicit white */
+    margin: 0;
+}
+
+.hero-card {
+    background: white;
+    border-radius: 28px;
+    /* Slightly larger radius */
+    padding: 32px;
+    /* Increased padding as requested (was 8px) */
+    /* Softer, spread out shadow */
+    width: 100%;
+    max-width: 1100px;
+    margin-bottom: 0;
+    /* No negative margin needed with mask approach */
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(137, 137, 137, 0.332);
+    /* Space between elements inside form */
+}
+
+/* Override existing form styles if necessary to fit the new look */
+.input-group {
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
+}
+
+/* Result View */
+#result-view {
+    margin-top: 20px;
+}
+
+/* Fade In Animation */
+.fade-in {
+    animation: fadeIn 0.3s ease-out;
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 50px 0 0px;
+        /* Reduced bottom padding to 0 to let mask cover more of the form (half-in/half-out) */
+    }
+
+    /* Remove container padding on mobile as requested */
+    .hero-container {
+        padding: 0;
+    }
+
+    .title-hero {
+        font-size: 26px;
+        /* Explicit 26px as requested */
+        margin-bottom: 8px;
+        /* Slightly reduce gap */
+        padding: 0 20px;
+        /* Added side padding as requested */
+    }
+
+    .subtitle-hero {
+        font-size: 16px;
+        /* Smaller subtitle for mobile */
+        padding: 0 20px;
+        /* Added side padding as requested */
+    }
+
+    .hero-header {
+        margin-top: 0;
+        margin-bottom: 30px;
+        /* Reduce gap between header and form */
+        gap: 12px;
+    }
+
+    .logo-hero {
+        margin-bottom: 16px;
+        gap: 8px;
+    }
+
+    .logo-hero svg {
+        width: 40px;
+        /* Smaller, proportional logo icon */
+        height: 40px;
+    }
+
+    .logo-text-hero {
+        font-size: 20px;
+        /* Smaller logo text */
+    }
+
+    /* Adjust Red Background Height on Mobile */
+    .hero-section::before {
+        height: 300px;
+        /* Adjusted for mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-card {
+        padding: 24px 14px;
+        border-radius: calc(var(--radius-xl) - 10px);
+    }
+}
+
+/* Search Results Container */
+#search-results-container {
+    margin-top: 30px;
+}
+
+#hero-inline-message {
+    margin-top: 12px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--primary-color);
+    font-weight: 500;
+    min-height: 20px;
+}

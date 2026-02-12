@@ -1,0 +1,116 @@
+{
+  "seo": {
+    "title": "SSVID - YouTube Multi Download Online (No Ads)",
+    "description": "Download multiple YouTube videos at once with SSVID. Free YouTube multi download tool, no ads, no limits. Supports MP3 and MP4 formats online.",
+    "schemaName": "SSVID - YouTube Multi Download Online (No Ads)",
+    "schemaDescription": "Download multiple YouTube videos at once with SSVID. Free, fast, and unlimited.",
+    "ogTitle": "SSVID - YouTube Multi Download Online (No Ads)",
+    "ogDescription": "Download multiple YouTube videos at once with SSVID. Free YouTube multi download tool, no ads, no limits. Supports MP3 and MP4 formats online."
+  },
+  "defaultFormat": "mp4",
+  "hero": {
+    "title": "SSVID - YouTube Multi Downloader",
+    "subtitle": "Free, fast & unlimited YouTube Multi Download"
+  },
+  "form": {
+    "textareaPlaceholder": "Paste YouTube URLs here (one per line).\nhttps://youtube.com/watch?v=VID_1\nhttps://youtube.com/watch?v=VID_2",
+    "convertButton": "Convert",
+    "audioTrackLabel": "Audio track"
+  },
+  "overview": {
+    "howTo": {
+      "title": "How to Use YouTube Multi Download with SSVID",
+      "steps": [
+        {
+          "number": "1",
+          "title": "Copy multiple links",
+          "description": "Copy multiple YouTube video links you want to download."
+        },
+        {
+          "number": "2",
+          "title": "Paste all links",
+          "description": "Paste all links into the SSVID multi download tool."
+        },
+        {
+          "number": "3",
+          "title": "Choose format",
+          "description": "Choose your output format (MP3 or MP4)."
+        },
+        {
+          "number": "4",
+          "title": "Download",
+          "description": "Click download and save all videos at once."
+        }
+      ]
+    }
+  },
+  "content": {
+    "intro": {
+      "title": "What Is SSVID YouTube Multi Download?",
+      "description": "SSVID YouTube Multi Download is an online tool that lets you <strong>download multiple YouTube videos at the same time</strong> using a list of individual video links. Instead of downloading videos one by one, you can paste several URLs at once and convert them in a single process."
+    },
+    "whyUse": {
+      "title": "Why Use YouTube Multi Download?",
+      "description": "YouTube Multi Download is perfect when your videos are <strong>not part of the same playlist</strong>. If you already have a custom list of video URLs, this tool saves time by processing them together instead of repeating the download steps for each video."
+    },
+    "supportedFormats": {
+      "title": "Supported Formats: MP3 and MP4",
+      "description": "SSVID Multi Download supports both <strong>MP3</strong> and <strong>MP4</strong> formats. Choose MP3 if you only need audio files, or MP4 if you want to keep the full video. This flexibility makes SSVID suitable for music, podcasts, tutorials, and video collections."
+    },
+    "comparison": {
+      "title": "YouTube Multi Download vs Playlist Downloader",
+      "items": [
+        {
+          "title": "YouTube Multi Download",
+          "description": "Best when you have <strong>multiple separate YouTube video links</strong>. Simply paste many URLs at once and download them together in MP3 or MP4 format."
+        },
+        {
+          "title": "Download MP3 YouTube Playlist",
+          "description": "Best when your videos are already organized in a playlist. With just <strong>one playlist link</strong>, you can download all videos automatically as MP3 files. If you have a playlist, try <a href=\"/download-mp3-youtube-playlist\" title=\"Download MP3 YouTube Playlist\"><strong>Download MP3 YouTube Playlist with SSVID</strong></a>."
+        }
+      ]
+    },
+    "whenUse": {
+      "title": "When Should You Use SSVID Multi Download?",
+      "items": [
+        {
+          "title": "Custom Video Lists",
+          "description": "Ideal when you collect YouTube video links manually from different channels or sources."
+        },
+        {
+          "title": "Batch MP3 or MP4 Downloads",
+          "description": "Download multiple videos in MP3 or MP4 format at once without repeating the same steps."
+        },
+        {
+          "title": "Unlimited Multi Downloads",
+          "description": "SSVID supports <strong>unlimited YouTube multi downloads</strong> with no ads and no restrictions."
+        }
+      ]
+    }
+  },
+  "faqs": {
+    "title": "Frequently Asked Questions",
+    "items": [
+      {
+        "question": "How many YouTube videos can I download at once?",
+        "answer": "SSVID allows unlimited YouTube multi downloads. You can paste as many video links as needed."
+      },
+      {
+        "question": "Do I need a playlist to use multi download?",
+        "answer": "No. YouTube Multi Download is designed for individual video links that are not part of a playlist."
+      },
+      {
+        "question": "Is SSVID YouTube Multi Download free and ad-free?",
+        "answer": "Yes. SSVID offers a free, no-ads experience for downloading multiple YouTube videos."
+      },
+      {
+        "question": "Can I download both MP3 and MP4 using multi download?",
+        "answer": "Yes. SSVID Multi Download supports both audio (MP3) and video (MP4) formats."
+      },
+      {
+        "question": "Does SSVID Multi Download work on mobile devices?",
+        "answer": "Yes. SSVID works on both desktop and mobile browsers, allowing multi downloads across devices."
+      }
+    ]
+  }
+}

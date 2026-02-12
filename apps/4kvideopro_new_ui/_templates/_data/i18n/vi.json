@@ -1,0 +1,58 @@
+{
+  "nav": {
+    "home": "Trang chủ",
+    "youtubeToMp3": "YouTube to MP3",
+    "youtubeToMp4": "YouTube to MP4",
+    "youtubeShorts": "YouTube Shorts",
+    "about": "Giới thiệu"
+  },
+  "langSelector": {
+    "buttonText": "VI",
+    "buttonLabel": "Ngôn ngữ",
+    "currentLangFull": "Tiếng Việt"
+  },
+  "drawer": {
+    "logoText": "SSVid.cc",
+    "links": {
+      "home": "Trang chủ",
+      "youtubeToMp3": "Download youtube Mp3",
+      "youtubeToMp4": "Download youtube Mp4",
+      "youtubeShorts": "Download Youtube Shorts",
+      "about": "Giới thiệu",
+      "faq": "FAQ",
+      "contact": "Liên hệ",
+      "terms": "Terms of Use",
+      "privacy": "Bảo mật",
+      "dmca": "DMCA"
+    }
+  },
+  "hero": {
+    "placeholder": "Dán liên kết YouTube vào đây...",
+    "pasteBtn": "Dán",
+    "clearBtn": "Xóa",
+    "convertBtn": "Chuyển đổi",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "Audio track",
+    "searchPlaceholder": "Tìm kiếm..."
+  },
+  "overview": {
+    "badge": "Nhanh & Miễn phí"
+  },
+  "footer": {
+    "linksRow1": {
+      "youtubeToMp3": "Download youtube Mp3",
+      "youtubeToMp4": "Download youtube Mp4",
+      "youtubeShorts": "Download Youtube Shorts"
+    },
+    "linksRow2": {
+      "about": "Giới thiệu",
+      "contact": "Liên hệ",
+      "terms": "Terms of Use",
+      "privacyPolicy": "Chính sách bảo mật",
+      "dmca": "DMCA",
+      "faq": "FAQ"
+    },
+    "copyright": "© 2026 SSVid. Bảo lưu mọi quyền."
+  }
+}

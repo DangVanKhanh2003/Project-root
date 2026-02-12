@@ -1,0 +1,20 @@
+
+
+.container {
+    max-width: 950px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.max-w-5xl {
+    max-width: 1024px;
+}
+
+/* Background Patterns */
+.bg-tech-grid {
+    background-color: #fff;
+    background-image:
+        linear-gradient(rgba(141, 2, 31, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(141, 2, 31, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+}

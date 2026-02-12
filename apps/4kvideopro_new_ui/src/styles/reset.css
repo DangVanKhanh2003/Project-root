@@ -1,0 +1,22 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: var(--font-display);
+    color: var(--text);
+    background: var(--bg-secondary);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+p {
+    font-size: 18px;
+}
+
+html {
+    overflow-x: hidden;
+}

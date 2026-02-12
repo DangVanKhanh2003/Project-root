@@ -1,0 +1,58 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "youtubeToMp3": "YouTube to MP3",
+    "youtubeToMp4": "YouTube to MP4",
+    "youtubeShorts": "YouTube Shorts",
+    "about": "À propos"
+  },
+  "langSelector": {
+    "buttonText": "FR",
+    "buttonLabel": "Langue",
+    "currentLangFull": "Français"
+  },
+  "drawer": {
+    "logoText": "SSVid.cc",
+    "links": {
+      "home": "Accueil",
+      "youtubeToMp3": "YouTube vers MP3",
+      "youtubeToMp4": "YouTube vers MP4",
+      "youtubeShorts": "YouTube Shorts",
+      "about": "À propos",
+      "faq": "FAQ",
+      "contact": "Contact",
+      "terms": "Terms of Use",
+      "privacy": "Confidentialité",
+      "dmca": "DMCA"
+    }
+  },
+  "hero": {
+    "placeholder": "Collez le lien YouTube ici...",
+    "pasteBtn": "Coller",
+    "clearBtn": "Effacer",
+    "convertBtn": "Convertir",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "Audio track",
+    "searchPlaceholder": "Rechercher..."
+  },
+  "overview": {
+    "badge": "Rapide & Gratuit"
+  },
+  "footer": {
+    "linksRow1": {
+      "youtubeToMp3": "YouTube vers MP3",
+      "youtubeToMp4": "YouTube vers MP4",
+      "youtubeShorts": "YouTube Shorts"
+    },
+    "linksRow2": {
+      "about": "À propos",
+      "contact": "Contact",
+      "terms": "Terms of Use",
+      "privacyPolicy": "Politique de Confidentialité",
+      "dmca": "DMCA",
+      "faq": "FAQ"
+    },
+    "copyright": "© 2026 SSVid. Tous droits réservés."
+  }
+}
