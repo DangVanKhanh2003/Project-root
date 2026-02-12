@@ -74,7 +74,7 @@ function saveFormatPreferences() {
         if (prefs.videoQuality === 'webmp' || prefs.videoQuality === 'mkvp') {
             prefs.videoQuality = settings.videoQuality!;
         }
-        localStorage.setItem('ssvid_format_preferences', JSON.stringify(prefs));
+        localStorage.setItem('4kvideopro_format_preferences', JSON.stringify(prefs));
     } catch (e) { }
 }
 

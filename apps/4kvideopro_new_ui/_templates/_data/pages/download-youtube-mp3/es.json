@@ -1,22 +1,22 @@
 {
   "seo": {
-    "title": "SSVID - Descargar MP3 de YouTube en línea gratis (128kbps, 320kbps)",
-    "description": "Descarga audio de YouTube como MP3 con SSVID. Descargador de MP3 de YouTube gratuito, rápido e ilimitado. Elige una calidad de 128 a 320 kbps. Sin aplicación, sin software, sin registro.",
-    "schemaName": "SSVID - Descargador de MP3 de YouTube",
-    "schemaDescription": "Descarga audio de YouTube como MP3 con SSVID. Gratis, rápido e ilimitado.",
-    "ogTitle": "SSVID - Descargar MP3 de YouTube en línea gratis",
-    "ogDescription": "Descarga audio de YouTube como MP3 con SSVID. Elige una calidad de 128 a 320 kbps. Gratis e ilimitado."
+    "title": "4K Video - Descargar MP3 de YouTube en línea gratis (128kbps, 320kbps)",
+    "description": "Descarga audio de YouTube como MP3 con 4K Video. Descargador de MP3 de YouTube gratuito, rápido e ilimitado. Elige una calidad de 128 a 320 kbps. Sin aplicación, sin software, sin registro.",
+    "schemaName": "4K Video - Descargador de MP3 de YouTube",
+    "schemaDescription": "Descarga audio de YouTube como MP3 con 4K Video. Gratis, rápido e ilimitado.",
+    "ogTitle": "4K Video - Descargar MP3 de YouTube en línea gratis",
+    "ogDescription": "Descarga audio de YouTube como MP3 con 4K Video. Elige una calidad de 128 a 320 kbps. Gratis e ilimitado."
   },
   "defaultFormat": "mp3",
   "hero": {
-    "title": "SSVID - Descargar MP3 de YouTube",
+    "title": "4K Video - Descargar MP3 de YouTube",
     "subtitle": "Descargador de MP3 de YouTube gratuito, rápido e ilimitado"
   },
   "overview": {
-    "title": "¿Qué es el descargador de MP3 de YouTube SSVID?",
-    "description": "SSVID es una herramienta en línea gratuita que te ayuda a <strong>descargar audio de YouTube como MP3</strong> para escucharlo sin conexión. A diferencia de MP4 (video), MP3 se enfoca solo en descargas de audio, lo que hace que los archivos sean más pequeños y rápidos de guardar, perfecto para música, podcasts, entrevistas y contenido de estudio. También puedes usar la <a href=\"/\" title=\"Descargador de YouTube en línea SSVID\"><strong>página de inicio de SSVID</strong></a> para acceder a todas las opciones de descarga (MP4, Shorts y más).",
+    "title": "¿Qué es el descargador de MP3 de YouTube 4K Video?",
+    "description": "4K Video es una herramienta en línea gratuita que te ayuda a <strong>descargar audio de YouTube como MP3</strong> para escucharlo sin conexión. A diferencia de MP4 (video), MP3 se enfoca solo en descargas de audio, lo que hace que los archivos sean más pequeños y rápidos de guardar, perfecto para música, podcasts, entrevistas y contenido de estudio. También puedes usar la <a href=\"/\" title=\"Descargador de YouTube en línea 4K Video\"><strong>página de inicio de 4K Video</strong></a> para acceder a todas las opciones de descarga (MP4, Shorts y más).",
     "howTo": {
-      "title": "Cómo descargar MP3 de YouTube con SSVID",
+      "title": "Cómo descargar MP3 de YouTube con 4K Video",
       "steps": [
         {
           "number": "1",
@@ -26,7 +26,7 @@
         {
           "number": "2",
           "title": "Pega y selecciona",
-          "description": "Pega el enlace en SSVID."
+          "description": "Pega el enlace en 4K Video."
         },
         {
           "number": "3",
@@ -37,7 +37,7 @@
     }
   },
   "whatCanDownload": {
-    "title": "¿Qué puedes descargar como MP3 con SSVID?",
+    "title": "¿Qué puedes descargar como MP3 con 4K Video?",
     "sections": [
       {
         "title": "Música y canciones (MP3)",
@@ -49,7 +49,7 @@
       },
       {
         "title": "MP3 de alta calidad (hasta 320 kbps)",
-        "description": "Elige una calidad de MP3 superior para un sonido más rico. Cuando esté disponible, SSVID te ayuda a descargar audio de hasta <strong>320 kbps</strong> para una mayor claridad en la música y el audio complejo."
+        "description": "Elige una calidad de MP3 superior para un sonido más rico. Cuando esté disponible, 4K Video te ayuda a descargar audio de hasta <strong>320 kbps</strong> para una mayor claridad en la música y el audio complejo."
       }
     ]
   },
@@ -59,7 +59,7 @@
   },
   "qualityOptions": {
     "title": "Opciones de calidad de MP3 (128–320 kbps)",
-    "description": "SSVID admite múltiples opciones de calidad de MP3 para que puedas equilibrar la calidad del sonido y el tamaño del archivo. <strong>128 kbps</strong> es ideal para voz y descargas más pequeñas, mientras que <strong>320 kbps</strong> es ideal para música y escucha de alta fidelidad. Si quieres video en su lugar, usa <a href=\"/download-youtube-mp4\" title=\"Descargar MP4 de YouTube\"><strong>Descargar MP4 de YouTube</strong></a>."
+    "description": "4K Video admite múltiples opciones de calidad de MP3 para que puedas equilibrar la calidad del sonido y el tamaño del archivo. <strong>128 kbps</strong> es ideal para voz y descargas más pequeñas, mientras que <strong>320 kbps</strong> es ideal para música y escucha de alta fidelidad. Si quieres video en su lugar, usa <a href=\"/download-youtube-mp4\" title=\"Descargar MP4 de YouTube\"><strong>Descargar MP4 de YouTube</strong></a>."
   },
   "faqs": {
     "title": "Preguntas frecuentes",
@@ -70,7 +70,7 @@
       },
       {
         "question": "¿Puedo descargar MP3 de YouTube en línea sin instalar software?",
-        "answer": "Sí. SSVID funciona completamente en línea en tu navegador, sin necesidad de software, extensiones ni registro."
+        "answer": "Sí. 4K Video funciona completamente en línea en tu navegador, sin necesidad de software, extensiones ni registro."
       },
       {
         "question": "¿Qué calidad de MP3 debo elegir: 128 kbps o 320 kbps?",
@@ -78,15 +78,15 @@
       },
       {
         "question": "¿Puedo descargar videos largos de YouTube como MP3?",
-        "answer": "Sí. SSVID admite la conversión de videos largos de YouTube a MP3 para escucharlos sin conexión y sin límites de duración."
+        "answer": "Sí. 4K Video admite la conversión de videos largos de YouTube a MP3 para escucharlos sin conexión y sin límites de duración."
       },
       {
-        "question": "¿SSVID es gratuito e ilimitado para descargas de MP3?",
-        "answer": "Sí. SSVID es de uso gratuito y permite descargas ilimitadas de MP3 de YouTube."
+        "question": "¿4K Video es gratuito e ilimitado para descargas de MP3?",
+        "answer": "Sí. 4K Video es de uso gratuito y permite descargas ilimitadas de MP3 de YouTube."
       },
       {
-        "question": "¿Funciona SSVID en iPhone y Android?",
-        "answer": "Sí. SSVID funciona en navegadores móviles y de escritorio, por lo que puedes descargar MP3 en iOS, Android, Windows o macOS."
+        "question": "¿Funciona 4K Video en iPhone y Android?",
+        "answer": "Sí. 4K Video funciona en navegadores móviles y de escritorio, por lo que puedes descargar MP3 en iOS, Android, Windows o macOS."
       }
     ]
   }

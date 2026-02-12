@@ -209,7 +209,7 @@ export class MultiDownloadService {
         }
 
         const timestamp = Date.now();
-        const zipName = `ssvid_cc_${timestamp}.zip`;
+        const zipName = `4kvideopro_cc_${timestamp}.zip`;
 
         const result = await api.zipDownload.createZipDownload({
             files: urls,

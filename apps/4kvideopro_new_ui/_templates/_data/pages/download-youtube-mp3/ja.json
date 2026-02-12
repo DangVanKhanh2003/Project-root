@@ -1,22 +1,22 @@
 {
   "seo": {
-    "title": "SSVID - YouTube MP3をオンラインで無料でダウンロード (128kbps, 320kbps)",
-    "description": "SSVIDでYouTubeオーディオをMP3としてダウンロード。無料、高速、無制限のYouTube MP3ダウンローダー。128～320kbpsの品質を選択。アプリ不要、ソフトウェア不要、登録不要。",
-    "schemaName": "SSVID - YouTube MP3ダウンローダー",
-    "schemaDescription": "SSVIDでYouTubeオーディオをMP3としてダウンロード。無料、高速、無制限。",
-    "ogTitle": "SSVID - YouTube MP3をオンラインで無料でダウンロード",
-    "ogDescription": "SSVIDでYouTubeオーディオをMP3としてダウンロード。128～320kbpsの品質を選択。無料、無制限。"
+    "title": "4K Video - YouTube MP3をオンラインで無料でダウンロード (128kbps, 320kbps)",
+    "description": "4K VideoでYouTubeオーディオをMP3としてダウンロード。無料、高速、無制限のYouTube MP3ダウンローダー。128～320kbpsの品質を選択。アプリ不要、ソフトウェア不要、登録不要。",
+    "schemaName": "4K Video - YouTube MP3ダウンローダー",
+    "schemaDescription": "4K VideoでYouTubeオーディオをMP3としてダウンロード。無料、高速、無制限。",
+    "ogTitle": "4K Video - YouTube MP3をオンラインで無料でダウンロード",
+    "ogDescription": "4K VideoでYouTubeオーディオをMP3としてダウンロード。128～320kbpsの品質を選択。無料、無制限。"
   },
   "defaultFormat": "mp3",
   "hero": {
-    "title": "SSVID - YouTube MP3をダウンロード",
+    "title": "4K Video - YouTube MP3をダウンロード",
     "subtitle": "無料、高速、無制限のYouTube MP3ダウンローダー"
   },
   "overview": {
-    "title": "SSVID YouTube MP3ダウンローダーとは？",
-    "description": "SSVIDは、オフラインで聴くために<strong>YouTubeオーディオをMP3としてダウンロード</strong>するのに役立つ無料のオンラインツールです。MP4（ビデオ）とは異なり、MP3はオーディオのみのダウンロードに焦点を当てており、ファイルサイズが小さく、保存が速くなります。音楽、ポッドキャスト、インタビュー、学習コンテンツに最適です。また、<a href=\"/\" title=\"SSVIDオンラインYouTubeダウンローダー\"><strong>SSVIDホームページ</strong></a>を使用して、すべてのダウンロードオプション（MP4、ショート動画など）にアクセスすることもできます。",
+    "title": "4K Video YouTube MP3ダウンローダーとは？",
+    "description": "4K Videoは、オフラインで聴くために<strong>YouTubeオーディオをMP3としてダウンロード</strong>するのに役立つ無料のオンラインツールです。MP4（ビデオ）とは異なり、MP3はオーディオのみのダウンロードに焦点を当てており、ファイルサイズが小さく、保存が速くなります。音楽、ポッドキャスト、インタビュー、学習コンテンツに最適です。また、<a href=\"/\" title=\"4K VideoオンラインYouTubeダウンローダー\"><strong>4K Videoホームページ</strong></a>を使用して、すべてのダウンロードオプション（MP4、ショート動画など）にアクセスすることもできます。",
     "howTo": {
-      "title": "SSVIDでYouTube MP3をダウンロードする方法",
+      "title": "4K VideoでYouTube MP3をダウンロードする方法",
       "steps": [
         {
           "number": "1",
@@ -26,7 +26,7 @@
         {
           "number": "2",
           "title": "貼り付けと選択",
-          "description": "SSVIDにリンクを貼り付けます。"
+          "description": "4K Videoにリンクを貼り付けます。"
         },
         {
           "number": "3",
@@ -37,7 +37,7 @@
     }
   },
   "whatCanDownload": {
-    "title": "SSVIDでMP3としてダウンロードできるもの",
+    "title": "4K VideoでMP3としてダウンロードできるもの",
     "sections": [
       {
         "title": "音楽と曲 (MP3)",
@@ -49,7 +49,7 @@
       },
       {
         "title": "高音質MP3 (最大320kbps)",
-        "description": "より豊かなサウンドのために、より高いMP3品質を選択してください。利用可能な場合、SSVIDは音楽や複雑なオーディオの明瞭度を高めるために、最大<strong>320kbps</strong>でオーディオをダウンロードするのに役立ちます。"
+        "description": "より豊かなサウンドのために、より高いMP3品質を選択してください。利用可能な場合、4K Videoは音楽や複雑なオーディオの明瞭度を高めるために、最大<strong>320kbps</strong>でオーディオをダウンロードするのに役立ちます。"
       }
     ]
   },
@@ -59,7 +59,7 @@
   },
   "qualityOptions": {
     "title": "MP3品質オプション (128～320kbps)",
-    "description": "SSVIDは複数のMP3品質オプションをサポートしているため、音質とファイルサイズのバランスを取ることができます。<strong>128kbps</strong>は音声や小さなダウンロードに最適ですが、<strong>320kbps</strong>は音楽や高音質リスニングに最適です。代わりにビデオが必要な場合は、<a href=\"/download-youtube-mp4\" title=\"YouTube MP4をダウンロード\"><strong>YouTube MP4をダウンロード</strong></a>を使用してください。"
+    "description": "4K Videoは複数のMP3品質オプションをサポートしているため、音質とファイルサイズのバランスを取ることができます。<strong>128kbps</strong>は音声や小さなダウンロードに最適ですが、<strong>320kbps</strong>は音楽や高音質リスニングに最適です。代わりにビデオが必要な場合は、<a href=\"/download-youtube-mp4\" title=\"YouTube MP4をダウンロード\"><strong>YouTube MP4をダウンロード</strong></a>を使用してください。"
   },
   "faqs": {
     "title": "よくある質問",
@@ -70,7 +70,7 @@
       },
       {
         "question": "ソフトウェアをインストールせずにYouTube MP3をオンラインでダウンロードできますか?",
-        "answer": "はい。SSVIDはブラウザで完全にオンラインで動作します。ソフトウェア、拡張機能、登録は不要です。"
+        "answer": "はい。4K Videoはブラウザで完全にオンラインで動作します。ソフトウェア、拡張機能、登録は不要です。"
       },
       {
         "question": "どのMP3品質を選択すべきですか：128kbpsまたは320kbps?",
@@ -78,15 +78,15 @@
       },
       {
         "question": "長いYouTube動画をMP3としてダウンロードできますか?",
-        "answer": "はい。SSVIDは、期間制限なしでオフラインで聴くために長いYouTube動画をMP3に変換することをサポートしています。"
+        "answer": "はい。4K Videoは、期間制限なしでオフラインで聴くために長いYouTube動画をMP3に変換することをサポートしています。"
       },
       {
-        "question": "SSVIDはMP3ダウンロードに無料で無制限ですか?",
-        "answer": "はい。SSVIDは無料で利用でき、YouTube MP3の無制限ダウンロードを許可しています。"
+        "question": "4K VideoはMP3ダウンロードに無料で無制限ですか?",
+        "answer": "はい。4K Videoは無料で利用でき、YouTube MP3の無制限ダウンロードを許可しています。"
       },
       {
-        "question": "SSVIDはiPhoneとAndroidで動作しますか?",
-        "answer": "はい。SSVIDはモバイルブラウザとデスクトップブラウザで動作するため、iOS、Android、Windows、またはmacOSでMP3をダウンロードできます。"
+        "question": "4K VideoはiPhoneとAndroidで動作しますか?",
+        "answer": "はい。4K Videoはモバイルブラウザとデスクトップブラウザで動作するため、iOS、Android、Windows、またはmacOSでMP3をダウンロードできます。"
       }
     ]
   }

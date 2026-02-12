@@ -1,4 +1,4 @@
-# JSON-LD Checklist cho SSVID
+# JSON-LD Checklist cho 4K Video
 
 ## 1. Cấu trúc cơ bản
 
@@ -93,17 +93,17 @@ WebPage (#webpage)
 
 | Entity | `name` source | Lý do |
 |--------|---------------|-------|
-| Organization | "SSVID" (fixed) | Brand name |
-| WebSite | "SSVID" (fixed) | Site name |
+| Organization | "4K Video" (fixed) | Brand name |
+| WebSite | "4K Video" (fixed) | Site name |
 | WebPage | `hero.title` (H1) | Tên trang/tool cụ thể |
 | SoftwareApplication | `hero.title` (H1) | Tên tool cụ thể |
 
-## SSVID Data Structure
+## 4K Video Data Structure
 
-**Lưu ý**: SSVID sử dụng cấu trúc data khác với y2matepro:
+**Lưu ý**: 4K Video sử dụng cấu trúc data khác với y2matepro:
 
 ```javascript
-// SSVID HowTo path:
+// 4K Video HowTo path:
 pageData.overview.howTo.title
 pageData.overview.howTo.steps[].title
 pageData.overview.howTo.steps[].description

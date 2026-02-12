@@ -1,15 +1,15 @@
 {
   "seo": {
-    "title": "SSVID - YouTube Multi Download Online (No Ads)",
-    "description": "Download multiple YouTube videos at once with SSVID. Free YouTube multi download tool, no ads, no limits. Supports MP3 and MP4 formats online.",
-    "schemaName": "SSVID - YouTube Multi Download Online (No Ads)",
-    "schemaDescription": "Download multiple YouTube videos at once with SSVID. Free, fast, and unlimited.",
-    "ogTitle": "SSVID - YouTube Multi Download Online (No Ads)",
-    "ogDescription": "Download multiple YouTube videos at once with SSVID. Free YouTube multi download tool, no ads, no limits. Supports MP3 and MP4 formats online."
+    "title": "4K Video - YouTube Multi Download Online (No Ads)",
+    "description": "Download multiple YouTube videos at once with 4K Video. Free YouTube multi download tool, no ads, no limits. Supports MP3 and MP4 formats online.",
+    "schemaName": "4K Video - YouTube Multi Download Online (No Ads)",
+    "schemaDescription": "Download multiple YouTube videos at once with 4K Video. Free, fast, and unlimited.",
+    "ogTitle": "4K Video - YouTube Multi Download Online (No Ads)",
+    "ogDescription": "Download multiple YouTube videos at once with 4K Video. Free YouTube multi download tool, no ads, no limits. Supports MP3 and MP4 formats online."
   },
   "defaultFormat": "mp4",
   "hero": {
-    "title": "SSVID - YouTube Multi Downloader",
+    "title": "4K Video - YouTube Multi Downloader",
     "subtitle": "Free, fast & unlimited YouTube Multi Download"
   },
   "form": {
@@ -19,7 +19,7 @@
   },
   "overview": {
     "howTo": {
-      "title": "How to Use YouTube Multi Download with SSVID",
+      "title": "How to Use YouTube Multi Download with 4K Video",
       "steps": [
         {
           "number": "1",
@@ -29,7 +29,7 @@
         {
           "number": "2",
           "title": "Paste all links",
-          "description": "Paste all links into the SSVID multi download tool."
+          "description": "Paste all links into the 4K Video multi download tool."
         },
         {
           "number": "3",
@@ -46,8 +46,8 @@
   },
   "content": {
     "intro": {
-      "title": "What Is SSVID YouTube Multi Download?",
-      "description": "SSVID YouTube Multi Download is an online tool that lets you <strong>download multiple YouTube videos at the same time</strong> using a list of individual video links. Instead of downloading videos one by one, you can paste several URLs at once and convert them in a single process."
+      "title": "What Is 4K Video YouTube Multi Download?",
+      "description": "4K Video YouTube Multi Download is an online tool that lets you <strong>download multiple YouTube videos at the same time</strong> using a list of individual video links. Instead of downloading videos one by one, you can paste several URLs at once and convert them in a single process."
     },
     "whyUse": {
       "title": "Why Use YouTube Multi Download?",
@@ -55,7 +55,7 @@
     },
     "supportedFormats": {
       "title": "Supported Formats: MP3 and MP4",
-      "description": "SSVID Multi Download supports both <strong>MP3</strong> and <strong>MP4</strong> formats. Choose MP3 if you only need audio files, or MP4 if you want to keep the full video. This flexibility makes SSVID suitable for music, podcasts, tutorials, and video collections."
+      "description": "4K Video Multi Download supports both <strong>MP3</strong> and <strong>MP4</strong> formats. Choose MP3 if you only need audio files, or MP4 if you want to keep the full video. This flexibility makes 4K Video suitable for music, podcasts, tutorials, and video collections."
     },
     "comparison": {
       "title": "YouTube Multi Download vs Playlist Downloader",
@@ -66,12 +66,12 @@
         },
         {
           "title": "Download MP3 YouTube Playlist",
-          "description": "Best when your videos are already organized in a playlist. With just <strong>one playlist link</strong>, you can download all videos automatically as MP3 files. If you have a playlist, try <a href=\"/download-mp3-youtube-playlist\" title=\"Download MP3 YouTube Playlist\"><strong>Download MP3 YouTube Playlist with SSVID</strong></a>."
+          "description": "Best when your videos are already organized in a playlist. With just <strong>one playlist link</strong>, you can download all videos automatically as MP3 files. If you have a playlist, try <a href=\"/download-mp3-youtube-playlist\" title=\"Download MP3 YouTube Playlist\"><strong>Download MP3 YouTube Playlist with 4K Video</strong></a>."
         }
       ]
     },
     "whenUse": {
-      "title": "When Should You Use SSVID Multi Download?",
+      "title": "When Should You Use 4K Video Multi Download?",
       "items": [
         {
           "title": "Custom Video Lists",
@@ -83,7 +83,7 @@
         },
         {
           "title": "Unlimited Multi Downloads",
-          "description": "SSVID supports <strong>unlimited YouTube multi downloads</strong> with no ads and no restrictions."
+          "description": "4K Video supports <strong>unlimited YouTube multi downloads</strong> with no ads and no restrictions."
         }
       ]
     }
@@ -93,23 +93,23 @@
     "items": [
       {
         "question": "How many YouTube videos can I download at once?",
-        "answer": "SSVID allows unlimited YouTube multi downloads. You can paste as many video links as needed."
+        "answer": "4K Video allows unlimited YouTube multi downloads. You can paste as many video links as needed."
       },
       {
         "question": "Do I need a playlist to use multi download?",
         "answer": "No. YouTube Multi Download is designed for individual video links that are not part of a playlist."
       },
       {
-        "question": "Is SSVID YouTube Multi Download free and ad-free?",
-        "answer": "Yes. SSVID offers a free, no-ads experience for downloading multiple YouTube videos."
+        "question": "Is 4K Video YouTube Multi Download free and ad-free?",
+        "answer": "Yes. 4K Video offers a free, no-ads experience for downloading multiple YouTube videos."
       },
       {
         "question": "Can I download both MP3 and MP4 using multi download?",
-        "answer": "Yes. SSVID Multi Download supports both audio (MP3) and video (MP4) formats."
+        "answer": "Yes. 4K Video Multi Download supports both audio (MP3) and video (MP4) formats."
       },
       {
-        "question": "Does SSVID Multi Download work on mobile devices?",
-        "answer": "Yes. SSVID works on both desktop and mobile browsers, allowing multi downloads across devices."
+        "question": "Does 4K Video Multi Download work on mobile devices?",
+        "answer": "Yes. 4K Video works on both desktop and mobile browsers, allowing multi downloads across devices."
       }
     ]
   }

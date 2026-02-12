@@ -1,20 +1,20 @@
 {
   "seo": {
-    "title": "SSVID - Scarica video di YouTube online gratuitamente – Veloce e illimitato",
-    "description": "Scarica video di YouTube online con SSVID. Gratuito, veloce e illimitato. Supporta la qualità HD e 4K, video di YouTube lunghi. Nessuna app, nessun software, nessuna registrazione.",
-    "schemaName": "SSVID - Downloader di video di YouTube",
-    "schemaDescription": "Scarica video di YouTube online con SSVID. Gratuito, veloce e illimitato.",
-    "ogTitle": "SSVID - Scarica video di YouTube online gratuitamente",
-    "ogDescription": "Scarica video di YouTube online con SSVID. Gratuito, veloce e illimitato. Supporta la qualità HD e 4K."
+    "title": "4K Video - Scarica video di YouTube online gratuitamente – Veloce e illimitato",
+    "description": "Scarica video di YouTube online con 4K Video. Gratuito, veloce e illimitato. Supporta la qualità HD e 4K, video di YouTube lunghi. Nessuna app, nessun software, nessuna registrazione.",
+    "schemaName": "4K Video - Downloader di video di YouTube",
+    "schemaDescription": "Scarica video di YouTube online con 4K Video. Gratuito, veloce e illimitato.",
+    "ogTitle": "4K Video - Scarica video di YouTube online gratuitamente",
+    "ogDescription": "Scarica video di YouTube online con 4K Video. Gratuito, veloce e illimitato. Supporta la qualità HD e 4K."
   },
   "defaultFormat": "mp4",
   "hero": {
-    "title": "SSVID - Scarica video di YouTube",
+    "title": "4K Video - Scarica video di YouTube",
     "subtitle": "Downloader di video di YouTube gratuito, veloce e illimitato"
   },
   "overview": {
-    "title": "Cos'è SSVID?",
-    "description": "SSVID è uno strumento online all'avanguardia progettato per semplificare il modo in cui salvi i contenuti di YouTube. Progettato secondo i principi del Material Design, offriamo un'esperienza fluida e senza pubblicità che rispetta il tuo tempo e la tua privacy.<br><br>Che tu abbia bisogno di una riproduzione offline per i viaggi, per scopi di archiviazione o per la creazione di contenuti, SSVID elabora video e audio di alta qualità direttamente nel tuo browser senza richiedere complesse installazioni di software.",
+    "title": "Cos'è 4K Video?",
+    "description": "4K Video è uno strumento online all'avanguardia progettato per semplificare il modo in cui salvi i contenuti di YouTube. Progettato secondo i principi del Material Design, offriamo un'esperienza fluida e senza pubblicità che rispetta il tuo tempo e la tua privacy.<br><br>Che tu abbia bisogno di una riproduzione offline per i viaggi, per scopi di archiviazione o per la creazione di contenuti, 4K Video elabora video e audio di alta qualità direttamente nel tuo browser senza richiedere complesse installazioni di software.",
     "howTo": {
       "title": "Come scaricare",
       "steps": [
@@ -26,7 +26,7 @@
         {
           "number": "2",
           "title": "Incolla e seleziona",
-          "description": "Incolla il link nella barra di ricerca di SSVID e scegli il tuo formato preferito (MP4/MP3)."
+          "description": "Incolla il link nella barra di ricerca di 4K Video e scegli il tuo formato preferito (MP4/MP3)."
         },
         {
           "number": "3",
@@ -37,54 +37,54 @@
     }
   },
   "whatCanDownload": {
-    "title": "Cosa puoi scaricare con SSVID?",
-    "intro": "SSVID è progettato per aiutarti a scaricare facilmente diversi tipi di contenuti di YouTube, tutto in un unico posto, senza limiti o passaggi complicati.",
+    "title": "Cosa puoi scaricare con 4K Video?",
+    "intro": "4K Video è progettato per aiutarti a scaricare facilmente diversi tipi di contenuti di YouTube, tutto in un unico posto, senza limiti o passaggi complicati.",
     "sections": [
       {
         "title": "Video di YouTube (MP4)",
-        "description": "Con SSVID, puoi <strong><a href=\"/download-youtube-mp4\">scaricare video di YouTube come MP4</a></strong> per la visualizzazione offline su qualsiasi dispositivo. Questo è l'ideale per salvare tutorial, video musicali, vlog e contenuti di YouTube di lunga durata in un formato video ampiamente supportato."
+        "description": "Con 4K Video, puoi <strong><a href=\"/download-youtube-mp4\">scaricare video di YouTube come MP4</a></strong> per la visualizzazione offline su qualsiasi dispositivo. Questo è l'ideale per salvare tutorial, video musicali, vlog e contenuti di YouTube di lunga durata in un formato video ampiamente supportato."
       },
       {
         "title": "Audio di YouTube (MP3)",
-        "description": "SSVID ti consente di <strong><a href=\"/download-youtube-mp3\">scaricare l'audio di YouTube come MP3</a></strong> estraendo il suono direttamente dai video. Questa opzione è perfetta per musica, podcast, interviste e altri contenuti audio che desideri ascoltare in qualsiasi momento."
+        "description": "4K Video ti consente di <strong><a href=\"/download-youtube-mp3\">scaricare l'audio di YouTube come MP3</a></strong> estraendo il suono direttamente dai video. Questa opzione è perfetta per musica, podcast, interviste e altri contenuti audio che desideri ascoltare in qualsiasi momento."
       },
       {
         "title": "Cortometraggi di YouTube",
-        "description": "Puoi anche <strong><a href=\"/download-youtube-shorts\">scaricare video di YouTube Shorts</a></strong> nel formato verticale corretto mantenendo la qualità originale. SSVID semplifica il salvataggio di video di YouTube di breve durata per la visualizzazione o la condivisione offline."
+        "description": "Puoi anche <strong><a href=\"/download-youtube-shorts\">scaricare video di YouTube Shorts</a></strong> nel formato verticale corretto mantenendo la qualità originale. 4K Video semplifica il salvataggio di video di YouTube di breve durata per la visualizzazione o la condivisione offline."
       }
     ]
   },
   "quality": {
     "title": "Qualità e video di YouTube lunghi",
-    "description1": "SSVID supporta il download di video di YouTube in alta qualità, comprese le risoluzioni HD e 4K, preservando la chiarezza originale del video. Ciò lo rende adatto agli utenti che desiderano la migliore esperienza di visualizzazione offline su schermi ad alta risoluzione.",
-    "description2": "Inoltre, SSVID può gestire video di YouTube lunghi senza limiti di tempo. Puoi scaricare tutorial completi, lezioni, podcast e video estesi senza preoccuparti di restrizioni o interruzioni."
+    "description1": "4K Video supporta il download di video di YouTube in alta qualità, comprese le risoluzioni HD e 4K, preservando la chiarezza originale del video. Ciò lo rende adatto agli utenti che desiderano la migliore esperienza di visualizzazione offline su schermi ad alta risoluzione.",
+    "description2": "Inoltre, 4K Video può gestire video di YouTube lunghi senza limiti di tempo. Puoi scaricare tutorial completi, lezioni, podcast e video estesi senza preoccuparti di restrizioni o interruzioni."
   },
   "faqs": {
     "title": "Domande frequenti (FAQ)",
     "items": [
       {
-        "question": "L'uso di SSVID è gratuito?",
-        "answer": "Sì. L'uso di SSVID è completamente gratuito, senza costi nascosti, abbonamenti o limiti di download."
+        "question": "L'uso di 4K Video è gratuito?",
+        "answer": "Sì. L'uso di 4K Video è completamente gratuito, senza costi nascosti, abbonamenti o limiti di download."
       },
       {
         "question": "Posso scaricare video di YouTube online senza installare software?",
-        "answer": "Sì. SSVID funziona completamente online nel tuo browser, quindi non è necessario installare alcuna app o software."
+        "answer": "Sì. 4K Video funziona completamente online nel tuo browser, quindi non è necessario installare alcuna app o software."
       },
       {
         "question": "Posso scaricare video di YouTube come MP4 o MP3?",
-        "answer": "Sì. SSVID ti consente di scaricare video di YouTube come MP4 o estrarre l'audio come MP3, a seconda delle tue esigenze."
+        "answer": "Sì. 4K Video ti consente di scaricare video di YouTube come MP4 o estrarre l'audio come MP3, a seconda delle tue esigenze."
       },
       {
-        "question": "SSVID supporta il download di cortometraggi di YouTube?",
+        "question": "4K Video supporta il download di cortometraggi di YouTube?",
         "answer": "Sì. Puoi scaricare facilmente video di YouTube Shorts mantenendo il formato verticale corretto e la qualità originale."
       },
       {
-        "question": "L'uso di SSVID è sicuro?",
-        "answer": "Sì. L'uso di SSVID è sicuro e non richiede la registrazione di un account o informazioni personali."
+        "question": "L'uso di 4K Video è sicuro?",
+        "answer": "Sì. L'uso di 4K Video è sicuro e non richiede la registrazione di un account o informazioni personali."
       },
       {
-        "question": "SSVID funziona su dispositivi mobili?",
-        "answer": "Sì. SSVID funziona senza problemi sia su dispositivi desktop che mobili, inclusi i browser Android e iOS."
+        "question": "4K Video funziona su dispositivi mobili?",
+        "answer": "Sì. 4K Video funziona senza problemi sia su dispositivi desktop che mobili, inclusi i browser Android e iOS."
       }
     ]
   }

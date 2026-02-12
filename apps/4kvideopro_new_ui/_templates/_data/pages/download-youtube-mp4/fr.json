@@ -1,22 +1,22 @@
 {
   "seo": {
-    "title": "SSVID - Télécharger des vidéos YouTube MP4 en ligne gratuitement",
-    "description": "Téléchargez des vidéos YouTube au format MP4 avec SSVID. Téléchargeur MP4 YouTube gratuit, rapide et illimité. Prend en charge la qualité HD et 4K et les vidéos longues. Aucune application requise.",
-    "schemaName": "SSVID - Téléchargeur MP4 YouTube",
-    "schemaDescription": "Téléchargez des vidéos YouTube au format MP4 avec SSVID. Gratuit, rapide et illimité.",
-    "ogTitle": "SSVID - Télécharger des vidéos YouTube MP4 en ligne gratuitement",
-    "ogDescription": "Téléchargez des vidéos YouTube au format MP4 avec SSVID. Prend en charge la qualité HD et 4K. Gratuit et illimité."
+    "title": "4K Video - Télécharger des vidéos YouTube MP4 en ligne gratuitement",
+    "description": "Téléchargez des vidéos YouTube au format MP4 avec 4K Video. Téléchargeur MP4 YouTube gratuit, rapide et illimité. Prend en charge la qualité HD et 4K et les vidéos longues. Aucune application requise.",
+    "schemaName": "4K Video - Téléchargeur MP4 YouTube",
+    "schemaDescription": "Téléchargez des vidéos YouTube au format MP4 avec 4K Video. Gratuit, rapide et illimité.",
+    "ogTitle": "4K Video - Télécharger des vidéos YouTube MP4 en ligne gratuitement",
+    "ogDescription": "Téléchargez des vidéos YouTube au format MP4 avec 4K Video. Prend en charge la qualité HD et 4K. Gratuit et illimité."
   },
   "defaultFormat": "mp4",
   "hero": {
-    "title": "SSVID - Télécharger des vidéos YouTube MP4",
+    "title": "4K Video - Télécharger des vidéos YouTube MP4",
     "subtitle": "Téléchargeur MP4 YouTube gratuit, rapide et illimité"
   },
   "overview": {
-    "title": "Qu'est-ce que le téléchargeur MP4 YouTube SSVID ?",
-    "description": "SSVID est un outil en ligne gratuit spécialement conçu pour aider les utilisateurs à <strong>télécharger des vidéos YouTube au format MP4</strong> pour un visionnage hors ligne. Contrairement aux convertisseurs audio, le format MP4 conserve à la fois la vidéo et le son, ce qui le rend idéal pour les tutoriels, les présentations, les clips musicaux et les contenus YouTube de longue durée. Vous pouvez retourner à la <a href=\"/\" title=\"SSVID Online Video Downloader\"><strong>page d'accueil de SSVID</strong></a> pour accéder à tous les outils de téléchargement YouTube.",
+    "title": "Qu'est-ce que le téléchargeur MP4 YouTube 4K Video ?",
+    "description": "4K Video est un outil en ligne gratuit spécialement conçu pour aider les utilisateurs à <strong>télécharger des vidéos YouTube au format MP4</strong> pour un visionnage hors ligne. Contrairement aux convertisseurs audio, le format MP4 conserve à la fois la vidéo et le son, ce qui le rend idéal pour les tutoriels, les présentations, les clips musicaux et les contenus YouTube de longue durée. Vous pouvez retourner à la <a href=\"/\" title=\"4K Video Online Video Downloader\"><strong>page d'accueil de 4K Video</strong></a> pour accéder à tous les outils de téléchargement YouTube.",
     "howTo": {
-      "title": "Comment télécharger des vidéos YouTube MP4 avec SSVID",
+      "title": "Comment télécharger des vidéos YouTube MP4 avec 4K Video",
       "steps": [
         {
           "number": "1",
@@ -26,7 +26,7 @@
         {
           "number": "2",
           "title": "Collez et sélectionnez",
-          "description": "Collez le lien dans SSVID."
+          "description": "Collez le lien dans 4K Video."
         },
         {
           "number": "3",
@@ -37,7 +37,7 @@
     }
   },
   "whatCanDownload": {
-    "title": "Que pouvez-vous télécharger au format MP4 avec SSVID ?",
+    "title": "Que pouvez-vous télécharger au format MP4 avec 4K Video ?",
     "sections": [
       {
         "title": "Vidéos YouTube (MP4)",
@@ -45,11 +45,11 @@
       },
       {
         "title": "Vidéos YouTube HD et 4K",
-        "description": "Lorsque la vidéo originale le prend en charge, SSVID vous permet de télécharger des vidéos YouTube MP4 en qualité HD et 4K pour une lecture d'une clarté cristalline sur de grands écrans."
+        "description": "Lorsque la vidéo originale le prend en charge, 4K Video vous permet de télécharger des vidéos YouTube MP4 en qualité HD et 4K pour une lecture d'une clarté cristalline sur de grands écrans."
       },
       {
         "title": "Vidéos YouTube longues",
-        "description": "SSVID prend en charge le téléchargement de longues vidéos YouTube au format MP4 sans limite de durée, ce qui le rend adapté aux podcasts, aux documentaires et aux cours complets."
+        "description": "4K Video prend en charge le téléchargement de longues vidéos YouTube au format MP4 sans limite de durée, ce qui le rend adapté aux podcasts, aux documentaires et aux cours complets."
       }
     ]
   },
@@ -59,7 +59,7 @@
   },
   "qualityOptions": {
     "title": "Qualité vidéo MP4 et prise en charge des vidéos longues",
-    "description": "SSVID vous permet de télécharger des vidéos YouTube MP4 dans plusieurs résolutions, y compris la <strong>qualité HD et 4K</strong> lorsqu'elle est disponible. L'outil prend également en charge les <strong>longues vidéos YouTube</strong>, telles que les tutoriels complets, les conférences et les contenus étendus, sans limite de temps ni restriction."
+    "description": "4K Video vous permet de télécharger des vidéos YouTube MP4 dans plusieurs résolutions, y compris la <strong>qualité HD et 4K</strong> lorsqu'elle est disponible. L'outil prend également en charge les <strong>longues vidéos YouTube</strong>, telles que les tutoriels complets, les conférences et les contenus étendus, sans limite de temps ni restriction."
   },
   "faqs": {
     "title": "Foire aux questions",
@@ -70,23 +70,23 @@
       },
       {
         "question": "Puis-je télécharger des vidéos YouTube MP4 en ligne ?",
-        "answer": "Oui. SSVID fonctionne entièrement en ligne, vous permettant de télécharger des vidéos YouTube MP4 directement dans votre navigateur."
+        "answer": "Oui. 4K Video fonctionne entièrement en ligne, vous permettant de télécharger des vidéos YouTube MP4 directement dans votre navigateur."
       },
       {
-        "question": "SSVID prend-il en charge les téléchargements MP4 HD et 4K ?",
-        "answer": "Oui. SSVID prend en charge les téléchargements MP4 HD et 4K lorsque la vidéo YouTube originale est disponible dans ces résolutions."
+        "question": "4K Video prend-il en charge les téléchargements MP4 HD et 4K ?",
+        "answer": "Oui. 4K Video prend en charge les téléchargements MP4 HD et 4K lorsque la vidéo YouTube originale est disponible dans ces résolutions."
       },
       {
         "question": "Puis-je télécharger de longues vidéos YouTube au format MP4 ?",
-        "answer": "Oui. SSVID prend en charge le téléchargement de longues vidéos YouTube sans limite de temps."
+        "answer": "Oui. 4K Video prend en charge le téléchargement de longues vidéos YouTube sans limite de temps."
       },
       {
-        "question": "L'utilisation de SSVID est-elle gratuite ?",
-        "answer": "Oui. SSVID est entièrement gratuit et ne nécessite aucune inscription."
+        "question": "L'utilisation de 4K Video est-elle gratuite ?",
+        "answer": "Oui. 4K Video est entièrement gratuit et ne nécessite aucune inscription."
       },
       {
-        "question": "Puis-je utiliser SSVID sur des appareils mobiles ?",
-        "answer": "Oui. SSVID fonctionne sur les navigateurs de bureau et mobiles, y compris Android et iOS."
+        "question": "Puis-je utiliser 4K Video sur des appareils mobiles ?",
+        "answer": "Oui. 4K Video fonctionne sur les navigateurs de bureau et mobiles, y compris Android et iOS."
       }
     ]
   }

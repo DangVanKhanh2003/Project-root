@@ -1,4 +1,4 @@
-# SSVID Template System
+# 4K Video Template System
 
 Hệ thống template cho 4kvideo.pro sử dụng Eleventy (11ty) để generate static HTML pages với hỗ trợ đa ngôn ngữ.
 
@@ -97,7 +97,7 @@ Mỗi page có structure như sau:
 ```json
 {
   "url": "https://4kvideo.pro",
-  "name": "SSVID",
+  "name": "4K Video",
   "description": "Free online YouTube video downloader..."
 }
 ```

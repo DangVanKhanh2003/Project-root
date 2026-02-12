@@ -1,22 +1,22 @@
 {
   "seo": {
-    "title": "SSVID - YouTube MP4ビデオをオンラインで無料でダウンロード",
-    "description": "SSVIDでYouTubeビデオをMP4としてダウンロードします。無料で高速、無制限のYouTube MP4ダウンローダー。HDおよび4K品質と長いビデオをサポートしています。アプリは不要です。",
-    "schemaName": "SSVID - YouTube MP4ダウンローダー",
-    "schemaDescription": "SSVIDでYouTubeビデオをMP4としてダウンロードします。無料で高速、無制限。",
-    "ogTitle": "SSVID - YouTube MP4ビデオをオンラインで無料でダウンロード",
-    "ogDescription": "SSVIDでYouTubeビデオをMP4としてダウンロードします。HDおよび4K品質をサポートしています。無料で無制限。"
+    "title": "4K Video - YouTube MP4ビデオをオンラインで無料でダウンロード",
+    "description": "4K VideoでYouTubeビデオをMP4としてダウンロードします。無料で高速、無制限のYouTube MP4ダウンローダー。HDおよび4K品質と長いビデオをサポートしています。アプリは不要です。",
+    "schemaName": "4K Video - YouTube MP4ダウンローダー",
+    "schemaDescription": "4K VideoでYouTubeビデオをMP4としてダウンロードします。無料で高速、無制限。",
+    "ogTitle": "4K Video - YouTube MP4ビデオをオンラインで無料でダウンロード",
+    "ogDescription": "4K VideoでYouTubeビデオをMP4としてダウンロードします。HDおよび4K品質をサポートしています。無料で無制限。"
   },
   "defaultFormat": "mp4",
   "hero": {
-    "title": "SSVID - YouTube MP4ビデオをダウンロード",
+    "title": "4K Video - YouTube MP4ビデオをダウンロード",
     "subtitle": "無料で高速、無制限のYouTube MP4ダウンローダー"
   },
   "overview": {
-    "title": "SSVID YouTube MP4ダウンローダーとは？",
-    "description": "SSVIDは、オフラインで視聴するために<strong>YouTubeビデオをMP4としてダウンロード</strong>するのを支援するために特別に設計された無料のオンラインツールです。オーディオコンバーターとは異なり、MP4形式はビデオとサウンドの両方を保持するため、チュートリアル、プレゼンテーション、ミュージックビデオ、および長時間のYouTubeコンテンツに最適です。すべてのYouTubeダウンロードツールにアクセスするには、<a href=\"/\" title=\"SSVID Online Video Downloader\"><strong>SSVIDホームページ</strong></a>に戻ることができます。",
+    "title": "4K Video YouTube MP4ダウンローダーとは？",
+    "description": "4K Videoは、オフラインで視聴するために<strong>YouTubeビデオをMP4としてダウンロード</strong>するのを支援するために特別に設計された無料のオンラインツールです。オーディオコンバーターとは異なり、MP4形式はビデオとサウンドの両方を保持するため、チュートリアル、プレゼンテーション、ミュージックビデオ、および長時間のYouTubeコンテンツに最適です。すべてのYouTubeダウンロードツールにアクセスするには、<a href=\"/\" title=\"4K Video Online Video Downloader\"><strong>4K Videoホームページ</strong></a>に戻ることができます。",
     "howTo": {
-      "title": "SSVIDでYouTube MP4ビデオをダウンロードする方法",
+      "title": "4K VideoでYouTube MP4ビデオをダウンロードする方法",
       "steps": [
         {
           "number": "1",
@@ -26,7 +26,7 @@
         {
           "number": "2",
           "title": "貼り付けて選択",
-          "description": "SSVIDにリンクを貼り付けます。"
+          "description": "4K Videoにリンクを貼り付けます。"
         },
         {
           "number": "3",
@@ -37,7 +37,7 @@
     }
   },
   "whatCanDownload": {
-    "title": "SSVIDでMP4として何をダウンロードできますか？",
+    "title": "4K VideoでMP4として何をダウンロードできますか？",
     "sections": [
       {
         "title": "YouTubeビデオ（MP4）",
@@ -45,11 +45,11 @@
       },
       {
         "title": "HDおよび4KのYouTubeビデオ",
-        "description": "元のビデオでサポートされている場合、SSVIDを使用すると、大画面で非常にクリアな再生のために、HDおよび4K品質でYouTube MP4ビデオをダウンロードできます。"
+        "description": "元のビデオでサポートされている場合、4K Videoを使用すると、大画面で非常にクリアな再生のために、HDおよび4K品質でYouTube MP4ビデオをダウンロードできます。"
       },
       {
         "title": "長いYouTubeビデオ",
-        "description": "SSVIDは、期間制限なしで長いYouTubeビデオをMP4としてダウンロードすることをサポートしており、ポッドキャスト、ドキュメンタリー、および完全なコースに適しています。"
+        "description": "4K Videoは、期間制限なしで長いYouTubeビデオをMP4としてダウンロードすることをサポートしており、ポッドキャスト、ドキュメンタリー、および完全なコースに適しています。"
       }
     ]
   },
@@ -59,7 +59,7 @@
   },
   "qualityOptions": {
     "title": "MP4ビデオ品質と長いビデオのサポート",
-    "description": "SSVIDを使用すると、利用可能な場合は<strong>HDおよび4K品質</strong>を含む複数の解像度でYouTube MP4ビデオをダウンロードできます。このツールは、時間制限や制限なしで、完全なチュートリアル、講義、拡張コンテンツなどの<strong>長いYouTubeビデオ</strong>もサポートしています。"
+    "description": "4K Videoを使用すると、利用可能な場合は<strong>HDおよび4K品質</strong>を含む複数の解像度でYouTube MP4ビデオをダウンロードできます。このツールは、時間制限や制限なしで、完全なチュートリアル、講義、拡張コンテンツなどの<strong>長いYouTubeビデオ</strong>もサポートしています。"
   },
   "faqs": {
     "title": "よくある質問",
@@ -70,23 +70,23 @@
       },
       {
         "question": "YouTube MP4ビデオをオンラインでダウンロードできますか？",
-        "answer": "はい。SSVIDは完全にオンラインで動作し、ブラウザで直接YouTube MP4ビデオをダウンロードできます。"
+        "answer": "はい。4K Videoは完全にオンラインで動作し、ブラウザで直接YouTube MP4ビデオをダウンロードできます。"
       },
       {
-        "question": "SSVIDはHDおよび4K MP4のダウンロードをサポートしていますか？",
-        "answer": "はい。SSVIDは、元のYouTubeビデオがそれらの解像度で利用可能な場合、HDおよび4K MP4のダウンロードをサポートしています。"
+        "question": "4K VideoはHDおよび4K MP4のダウンロードをサポートしていますか？",
+        "answer": "はい。4K Videoは、元のYouTubeビデオがそれらの解像度で利用可能な場合、HDおよび4K MP4のダウンロードをサポートしています。"
       },
       {
         "question": "長いYouTubeビデオをMP4としてダウンロードできますか？",
-        "answer": "はい。SSVIDは、時間制限なしで長いYouTubeビデオのダウンロードをサポートしています。"
+        "answer": "はい。4K Videoは、時間制限なしで長いYouTubeビデオのダウンロードをサポートしています。"
       },
       {
-        "question": "SSVIDは無料で使用できますか？",
-        "answer": "はい。SSVIDは完全に無料で、登録は不要です。"
+        "question": "4K Videoは無料で使用できますか？",
+        "answer": "はい。4K Videoは完全に無料で、登録は不要です。"
       },
       {
-        "question": "モバイルデバイスでSSVIDを使用できますか？",
-        "answer": "はい。SSVIDは、AndroidやiOSを含むデスクトップおよびモバイルブラウザの両方で動作します。"
+        "question": "モバイルデバイスで4K Videoを使用できますか？",
+        "answer": "はい。4K Videoは、AndroidやiOSを含むデスクトップおよびモバイルブラウザの両方で動作します。"
       }
     ]
   }

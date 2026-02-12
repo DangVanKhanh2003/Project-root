@@ -1,15 +1,15 @@
 {
   "seo": {
-    "title": "SSVID - Download MP3 YouTube Playlist Online (No Ads)",
-    "description": "Download MP3 YouTube playlists online with SSVID. Convert full YouTube playlists to MP3 for free, no ads, no limits. ZIP download on desktop, individual files on mobile.",
-    "schemaName": "SSVID - YouTube Playlist Downloader",
-    "schemaDescription": "Download MP3 YouTube playlists online with SSVID. Convert full playlists to MP3 for free.",
-    "ogTitle": "SSVID - Download MP3 YouTube Playlist Online (No Ads)",
-    "ogDescription": "Download MP3 YouTube playlists online with SSVID. Convert full YouTube playlists to MP3 for free, no ads, no limits."
+    "title": "4K Video - Download MP3 YouTube Playlist Online (No Ads)",
+    "description": "Download MP3 YouTube playlists online with 4K Video. Convert full YouTube playlists to MP3 for free, no ads, no limits. ZIP download on desktop, individual files on mobile.",
+    "schemaName": "4K Video - YouTube Playlist Downloader",
+    "schemaDescription": "Download MP3 YouTube playlists online with 4K Video. Convert full playlists to MP3 for free.",
+    "ogTitle": "4K Video - Download MP3 YouTube Playlist Online (No Ads)",
+    "ogDescription": "Download MP3 YouTube playlists online with 4K Video. Convert full YouTube playlists to MP3 for free, no ads, no limits."
   },
   "defaultFormat": "mp3",
   "hero": {
-    "title": "SSVID - Download MP3 YouTube Playlist",
+    "title": "4K Video - Download MP3 YouTube Playlist",
     "subtitle": "Free, fast & unlimited Download MP3 YouTube Playlist"
   },
   "form": {
@@ -29,7 +29,7 @@
         {
           "number": "2",
           "title": "Paste the Playlist",
-          "description": "Paste the playlist link into SSVID."
+          "description": "Paste the playlist link into 4K Video."
         },
         {
           "number": "3",
@@ -46,17 +46,17 @@
   },
   "content": {
     "intro": {
-      "title": "What Is SSVID MP3 YouTube Playlist Downloader?",
-      "description": "SSVID is a free online tool that helps you <strong>download MP3 YouTube playlists</strong> using a single playlist link. Instead of converting videos one by one, SSVID allows you to extract and download all audio tracks from a YouTube playlist at once, making it ideal for music albums, study playlists, podcasts, and long video collections."
+      "title": "What Is 4K Video MP3 YouTube Playlist Downloader?",
+      "description": "4K Video is a free online tool that helps you <strong>download MP3 YouTube playlists</strong> using a single playlist link. Instead of converting videos one by one, 4K Video allows you to extract and download all audio tracks from a YouTube playlist at once, making it ideal for music albums, study playlists, podcasts, and long video collections."
     },
     "columns": [
       {
         "title": "How to Download MP3 from a YouTube Playlist",
-        "description": "1. Copy the YouTube playlist URL you want to download.<br>2. Paste the playlist link into SSVID.<br>3. Select MP3 and your preferred audio quality.<br>4. Click download and save the entire playlist to your device."
+        "description": "1. Copy the YouTube playlist URL you want to download.<br>2. Paste the playlist link into 4K Video.<br>3. Select MP3 and your preferred audio quality.<br>4. Click download and save the entire playlist to your device."
       },
       {
         "title": "Playlist MP3 Download on Desktop and Mobile",
-        "description": "SSVID automatically adapts to your device. On <strong>desktop computers</strong>, you can <strong>download the entire MP3 playlist as a single ZIP file</strong> for faster and more convenient storage. On <strong>mobile devices</strong>, MP3 files are downloaded <strong>one by one</strong>, allowing easy access and playback directly from your browser."
+        "description": "4K Video automatically adapts to your device. On <strong>desktop computers</strong>, you can <strong>download the entire MP3 playlist as a single ZIP file</strong> for faster and more convenient storage. On <strong>mobile devices</strong>, MP3 files are downloaded <strong>one by one</strong>, allowing easy access and playback directly from your browser."
       }
     ],
     "whyDownload": {
@@ -65,7 +65,7 @@
     },
     "quality": {
       "title": "Supported MP3 Quality Options",
-      "description": "SSVID supports multiple MP3 quality levels, including <strong>128kbps</strong>, <strong>192kbps</strong>, and <strong>320kbps</strong>. You can choose the best balance between file size and sound quality depending on your needs."
+      "description": "4K Video supports multiple MP3 quality levels, including <strong>128kbps</strong>, <strong>192kbps</strong>, and <strong>320kbps</strong>. You can choose the best balance between file size and sound quality depending on your needs."
     },
     "comparison": {
       "title": "Playlist Downloader vs YouTube Multi Download",
@@ -76,12 +76,12 @@
         },
         {
           "title": "YouTube Multi Download",
-          "description": "Designed for users who have <strong>multiple individual YouTube video links</strong> that are not part of the same playlist. The Multi Downloader supports both <strong>MP3 and MP4</strong> formats. If you already have a custom list of video URLs, try <a href=\"/youtube-multi-downloader\" title=\"SSVID YouTube Multi Download\"><strong>YouTube Multi Download with SSVID</strong></a> for faster batch downloads."
+          "description": "Designed for users who have <strong>multiple individual YouTube video links</strong> that are not part of the same playlist. The Multi Downloader supports both <strong>MP3 and MP4</strong> formats. If you already have a custom list of video URLs, try <a href=\"/youtube-multi-downloader\" title=\"4K Video YouTube Multi Download\"><strong>YouTube Multi Download with 4K Video</strong></a> for faster batch downloads."
         }
       ]
     },
     "useCases": {
-      "title": "When Should You Use SSVID Playlist Downloader?",
+      "title": "When Should You Use 4K Video Playlist Downloader?",
       "items": [
         {
           "title": "Download YouTube Music Albums",
@@ -93,7 +93,7 @@
         },
         {
           "title": "Unlimited Playlist Downloads",
-          "description": "SSVID supports <strong>unlimited YouTube playlist downloads</strong>, making it suitable for both short and long playlists."
+          "description": "4K Video supports <strong>unlimited YouTube playlist downloads</strong>, making it suitable for both short and long playlists."
         }
       ]
     }
@@ -103,15 +103,15 @@
     "items": [
       {
         "question": "Is there a limit on playlist size?",
-        "answer": "No. SSVID allows unlimited YouTube playlist to MP3 downloads without restricting the number of videos."
+        "answer": "No. 4K Video allows unlimited YouTube playlist to MP3 downloads without restricting the number of videos."
       },
       {
         "question": "Do I need to install any software?",
-        "answer": "No installation is required. SSVID works fully online in your browser."
+        "answer": "No installation is required. 4K Video works fully online in your browser."
       },
       {
-        "question": "Is SSVID free and ad-free?",
-        "answer": "Yes. SSVID is free to use and offers a no-ads experience for playlist downloads."
+        "question": "Is 4K Video free and ad-free?",
+        "answer": "Yes. 4K Video is free to use and offers a no-ads experience for playlist downloads."
       },
       {
         "question": "Can I download playlist MP3 files on my phone?",

@@ -1,22 +1,22 @@
 {
   "seo": {
-    "title": "SSVID - Tải xuống YouTube MP3 trực tuyến miễn phí (128kbps, 320kbps)",
-    "description": "Tải xuống âm thanh YouTube dưới dạng MP3 với SSVID. Trình tải xuống YouTube MP3 miễn phí, nhanh chóng và không giới hạn. Chọn chất lượng 128–320kbps. Không ứng dụng, không phần mềm, không đăng ký.",
-    "schemaName": "SSVID - Trình tải xuống YouTube MP3",
-    "schemaDescription": "Tải xuống âm thanh YouTube dưới dạng MP3 với SSVID. Miễn phí, nhanh chóng và không giới hạn.",
-    "ogTitle": "SSVID - Tải xuống YouTube MP3 trực tuyến miễn phí",
-    "ogDescription": "Tải xuống âm thanh YouTube dưới dạng MP3 với SSVID. Chọn chất lượng 128–320kbps. Miễn phí và không giới hạn."
+    "title": "4K Video - Tải xuống YouTube MP3 trực tuyến miễn phí (128kbps, 320kbps)",
+    "description": "Tải xuống âm thanh YouTube dưới dạng MP3 với 4K Video. Trình tải xuống YouTube MP3 miễn phí, nhanh chóng và không giới hạn. Chọn chất lượng 128–320kbps. Không ứng dụng, không phần mềm, không đăng ký.",
+    "schemaName": "4K Video - Trình tải xuống YouTube MP3",
+    "schemaDescription": "Tải xuống âm thanh YouTube dưới dạng MP3 với 4K Video. Miễn phí, nhanh chóng và không giới hạn.",
+    "ogTitle": "4K Video - Tải xuống YouTube MP3 trực tuyến miễn phí",
+    "ogDescription": "Tải xuống âm thanh YouTube dưới dạng MP3 với 4K Video. Chọn chất lượng 128–320kbps. Miễn phí và không giới hạn."
   },
   "defaultFormat": "mp3",
   "hero": {
-    "title": "SSVID - Tải xuống YouTube MP3",
+    "title": "4K Video - Tải xuống YouTube MP3",
     "subtitle": "Trình tải xuống YouTube MP3 miễn phí, nhanh chóng & không giới hạn"
   },
   "overview": {
-    "title": "SSVID YouTube MP3 Downloader là gì?",
-    "description": "SSVID là một công cụ trực tuyến miễn phí giúp bạn <strong>tải xuống âm thanh YouTube dưới dạng MP3</strong> để nghe ngoại tuyến. Không giống như MP4 (video), MP3 tập trung vào việc chỉ tải xuống âm thanh, giúp các tệp nhỏ hơn và lưu nhanh hơn—hoàn hảo cho âm nhạc, podcast, phỏng vấn và nội dung học tập. Bạn cũng có thể sử dụng <a href=\"/\" title=\"Trình tải xuống YouTube trực tuyến SSVID\"><strong>trang chủ SSVID</strong></a> để truy cập tất cả các tùy chọn tải xuống (MP4, Shorts và hơn thế nữa).",
+    "title": "4K Video YouTube MP3 Downloader là gì?",
+    "description": "4K Video là một công cụ trực tuyến miễn phí giúp bạn <strong>tải xuống âm thanh YouTube dưới dạng MP3</strong> để nghe ngoại tuyến. Không giống như MP4 (video), MP3 tập trung vào việc chỉ tải xuống âm thanh, giúp các tệp nhỏ hơn và lưu nhanh hơn—hoàn hảo cho âm nhạc, podcast, phỏng vấn và nội dung học tập. Bạn cũng có thể sử dụng <a href=\"/\" title=\"Trình tải xuống YouTube trực tuyến 4K Video\"><strong>trang chủ 4K Video</strong></a> để truy cập tất cả các tùy chọn tải xuống (MP4, Shorts và hơn thế nữa).",
     "howTo": {
-      "title": "Cách tải xuống YouTube MP3 bằng SSVID",
+      "title": "Cách tải xuống YouTube MP3 bằng 4K Video",
       "steps": [
         {
           "number": "1",
@@ -26,7 +26,7 @@
         {
           "number": "2",
           "title": "Dán & Chọn",
-          "description": "Dán liên kết vào SSVID."
+          "description": "Dán liên kết vào 4K Video."
         },
         {
           "number": "3",
@@ -37,7 +37,7 @@
     }
   },
   "whatCanDownload": {
-    "title": "Bạn có thể tải xuống gì dưới dạng MP3 với SSVID?",
+    "title": "Bạn có thể tải xuống gì dưới dạng MP3 với 4K Video?",
     "sections": [
       {
         "title": "Âm nhạc & Bài hát (MP3)",
@@ -49,7 +49,7 @@
       },
       {
         "title": "MP3 chất lượng cao (Lên đến 320kbps)",
-        "description": "Chọn chất lượng MP3 cao hơn để có âm thanh phong phú hơn. Khi có sẵn, SSVID giúp bạn tải xuống âm thanh lên đến <strong>320kbps</strong> để có độ rõ nét tốt hơn trong âm nhạc và âm thanh phức tạp."
+        "description": "Chọn chất lượng MP3 cao hơn để có âm thanh phong phú hơn. Khi có sẵn, 4K Video giúp bạn tải xuống âm thanh lên đến <strong>320kbps</strong> để có độ rõ nét tốt hơn trong âm nhạc và âm thanh phức tạp."
       }
     ]
   },
@@ -59,7 +59,7 @@
   },
   "qualityOptions": {
     "title": "Tùy chọn chất lượng MP3 (128–320kbps)",
-    "description": "SSVID hỗ trợ nhiều tùy chọn chất lượng MP3 để bạn có thể cân bằng chất lượng âm thanh và kích thước tệp. <strong>128kbps</strong> rất tốt cho giọng nói và các bản tải xuống nhỏ hơn, trong khi <strong>320kbps</strong> lý tưởng cho âm nhạc và nghe có độ trung thực cao hơn. Nếu bạn muốn video, hãy sử dụng <a href=\"/download-youtube-mp4\" title=\"Tải xuống YouTube MP4\"><strong>Tải xuống YouTube MP4</strong></a>."
+    "description": "4K Video hỗ trợ nhiều tùy chọn chất lượng MP3 để bạn có thể cân bằng chất lượng âm thanh và kích thước tệp. <strong>128kbps</strong> rất tốt cho giọng nói và các bản tải xuống nhỏ hơn, trong khi <strong>320kbps</strong> lý tưởng cho âm nhạc và nghe có độ trung thực cao hơn. Nếu bạn muốn video, hãy sử dụng <a href=\"/download-youtube-mp4\" title=\"Tải xuống YouTube MP4\"><strong>Tải xuống YouTube MP4</strong></a>."
   },
   "faqs": {
     "title": "Các câu hỏi thường gặp",
@@ -70,7 +70,7 @@
       },
       {
         "question": "Tôi có thể tải xuống YouTube MP3 trực tuyến mà không cần cài đặt phần mềm không?",
-        "answer": "Có. SSVID hoạt động hoàn toàn trực tuyến trong trình duyệt của bạn—không cần phần mềm, không cần tiện ích mở rộng và không cần đăng ký."
+        "answer": "Có. 4K Video hoạt động hoàn toàn trực tuyến trong trình duyệt của bạn—không cần phần mềm, không cần tiện ích mở rộng và không cần đăng ký."
       },
       {
         "question": "Tôi nên chọn chất lượng MP3 nào: 128kbps hay 320kbps?",
@@ -78,15 +78,15 @@
       },
       {
         "question": "Tôi có thể tải xuống các video YouTube dài dưới dạng MP3 không?",
-        "answer": "Có. SSVID hỗ trợ chuyển đổi các video YouTube dài thành MP3 để nghe ngoại tuyến mà không giới hạn thời lượng."
+        "answer": "Có. 4K Video hỗ trợ chuyển đổi các video YouTube dài thành MP3 để nghe ngoại tuyến mà không giới hạn thời lượng."
       },
       {
-        "question": "SSVID có miễn phí và không giới hạn cho việc tải xuống MP3 không?",
-        "answer": "Có. SSVID miễn phí sử dụng và cho phép tải xuống YouTube MP3 không giới hạn."
+        "question": "4K Video có miễn phí và không giới hạn cho việc tải xuống MP3 không?",
+        "answer": "Có. 4K Video miễn phí sử dụng và cho phép tải xuống YouTube MP3 không giới hạn."
       },
       {
-        "question": "SSVID có hoạt động trên iPhone và Android không?",
-        "answer": "Có. SSVID hoạt động trên trình duyệt di động và trình duyệt máy tính để bàn, vì vậy bạn có thể tải xuống MP3 trên iOS, Android, Windows hoặc macOS."
+        "question": "4K Video có hoạt động trên iPhone và Android không?",
+        "answer": "Có. 4K Video hoạt động trên trình duyệt di động và trình duyệt máy tính để bàn, vì vậy bạn có thể tải xuống MP3 trên iOS, Android, Windows hoặc macOS."
       }
     ]
   }

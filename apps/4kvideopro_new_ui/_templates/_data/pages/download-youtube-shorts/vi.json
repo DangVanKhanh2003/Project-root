@@ -1,22 +1,22 @@
 {
   "seo": {
-    "title": "SSVID - Trình tải xuống YouTube Shorts trực tuyến miễn phí (9:16 Dọc)",
-    "description": "Tải xuống YouTube Shorts bằng SSVID. Trình tải xuống Shorts miễn phí, nhanh chóng và không giới hạn. Lưu Shorts ở định dạng dọc 9:16 gốc. Không ứng dụng, không phần mềm, không đăng ký.",
-    "schemaName": "SSVID - Trình tải xuống YouTube Shorts",
-    "schemaDescription": "Tải xuống YouTube Shorts bằng SSVID. Miễn phí, nhanh chóng và không giới hạn.",
-    "ogTitle": "SSVID - Trình tải xuống YouTube Shorts trực tuyến miễn phí",
-    "ogDescription": "Tải xuống YouTube Shorts bằng SSVID. Lưu ở định dạng dọc 9:16 gốc. Miễn phí và không giới hạn."
+    "title": "4K Video - Trình tải xuống YouTube Shorts trực tuyến miễn phí (9:16 Dọc)",
+    "description": "Tải xuống YouTube Shorts bằng 4K Video. Trình tải xuống Shorts miễn phí, nhanh chóng và không giới hạn. Lưu Shorts ở định dạng dọc 9:16 gốc. Không ứng dụng, không phần mềm, không đăng ký.",
+    "schemaName": "4K Video - Trình tải xuống YouTube Shorts",
+    "schemaDescription": "Tải xuống YouTube Shorts bằng 4K Video. Miễn phí, nhanh chóng và không giới hạn.",
+    "ogTitle": "4K Video - Trình tải xuống YouTube Shorts trực tuyến miễn phí",
+    "ogDescription": "Tải xuống YouTube Shorts bằng 4K Video. Lưu ở định dạng dọc 9:16 gốc. Miễn phí và không giới hạn."
   },
   "defaultFormat": "mp4",
   "hero": {
-    "title": "SSVID - Tải xuống YouTube Shorts",
+    "title": "4K Video - Tải xuống YouTube Shorts",
     "subtitle": "Trình tải xuống YouTube Shorts miễn phí, nhanh chóng & không giới hạn"
   },
   "overview": {
-    "title": "SSVID YouTube Shorts Downloader là gì?",
-    "description": "SSVID là một công cụ trực tuyến miễn phí giúp bạn <strong>tải xuống video YouTube Shorts</strong> để xem ngoại tuyến. Shorts được thiết kế ở định dạng dọc, vì vậy SSVID tập trung vào việc giữ <strong>bố cục chân dung 9:16 gốc</strong> để có trải nghiệm xem di động tốt hơn. Bạn cũng có thể sử dụng <a href=\"/\" title=\"SSVID Online YouTube Downloader\"><strong>trang chủ SSVID</strong></a> để truy cập tất cả các tùy chọn tải xuống (MP4, MP3 và hơn thế nữa).",
+    "title": "4K Video YouTube Shorts Downloader là gì?",
+    "description": "4K Video là một công cụ trực tuyến miễn phí giúp bạn <strong>tải xuống video YouTube Shorts</strong> để xem ngoại tuyến. Shorts được thiết kế ở định dạng dọc, vì vậy 4K Video tập trung vào việc giữ <strong>bố cục chân dung 9:16 gốc</strong> để có trải nghiệm xem di động tốt hơn. Bạn cũng có thể sử dụng <a href=\"/\" title=\"4K Video Online YouTube Downloader\"><strong>trang chủ 4K Video</strong></a> để truy cập tất cả các tùy chọn tải xuống (MP4, MP3 và hơn thế nữa).",
     "howTo": {
-      "title": "Cách tải xuống YouTube Shorts bằng SSVID",
+      "title": "Cách tải xuống YouTube Shorts bằng 4K Video",
       "steps": [
         {
           "number": "1",
@@ -26,7 +26,7 @@
         {
           "number": "2",
           "title": "Dán & Chọn",
-          "description": "Dán liên kết vào SSVID."
+          "description": "Dán liên kết vào 4K Video."
         },
         {
           "number": "3",
@@ -37,7 +37,7 @@
     }
   },
   "whatCanDownload": {
-    "title": "Bạn có thể tải xuống gì từ YouTube Shorts bằng SSVID?",
+    "title": "Bạn có thể tải xuống gì từ YouTube Shorts bằng 4K Video?",
     "sections": [
       {
         "title": "Video Shorts (MP4)",
@@ -59,7 +59,7 @@
   },
   "verticalFormat": {
     "title": "Định dạng dọc 9:16 (Không có vấn đề xoay)",
-    "description": "Nhiều công cụ xử lý Shorts như video thông thường, điều này có thể gây ra phát lại ngang hoặc khung hình không chính xác. SSVID được xây dựng cho Shorts, giúp bạn giữ <strong>bố cục dọc 9:16</strong> để phát lại mượt mà hơn trên thiết bị di động. Nếu bạn muốn tải xuống video YouTube tiêu chuẩn, hãy sử dụng <a href=\"/download-youtube-mp4\" title=\"Download YouTube MP4\"><strong>Tải xuống YouTube MP4</strong></a>."
+    "description": "Nhiều công cụ xử lý Shorts như video thông thường, điều này có thể gây ra phát lại ngang hoặc khung hình không chính xác. 4K Video được xây dựng cho Shorts, giúp bạn giữ <strong>bố cục dọc 9:16</strong> để phát lại mượt mà hơn trên thiết bị di động. Nếu bạn muốn tải xuống video YouTube tiêu chuẩn, hãy sử dụng <a href=\"/download-youtube-mp4\" title=\"Download YouTube MP4\"><strong>Tải xuống YouTube MP4</strong></a>."
   },
   "faqs": {
     "title": "Các câu hỏi thường gặp",
@@ -70,22 +70,22 @@
       },
       {
         "question": "Tôi có thể tải xuống YouTube Shorts trực tuyến mà không cần cài đặt phần mềm không?",
-        "answer": "Có. SSVID hoạt động hoàn toàn trực tuyến trong trình duyệt của bạn—không cần phần mềm, không cần tiện ích mở rộng và không cần đăng ký."
+        "answer": "Có. 4K Video hoạt động hoàn toàn trực tuyến trong trình duyệt của bạn—không cần phần mềm, không cần tiện ích mở rộng và không cần đăng ký."
       },
       {
-        "question": "SSVID có giữ Shorts ở định dạng dọc gốc không?",
-        "answer": "Có. SSVID tập trung vào việc bảo tồn <strong>bố cục dọc 9:16</strong> để Shorts phát đúng cách trên thiết bị di động."
+        "question": "4K Video có giữ Shorts ở định dạng dọc gốc không?",
+        "answer": "Có. 4K Video tập trung vào việc bảo tồn <strong>bố cục dọc 9:16</strong> để Shorts phát đúng cách trên thiết bị di động."
       },
       {
         "question": "Tôi có thể tải xuống Shorts trên iPhone và Android không?",
-        "answer": "Có. SSVID hoạt động trên trình duyệt di động và máy tính để bàn, vì vậy bạn có thể tải xuống Shorts trên iOS, Android, Windows hoặc macOS."
+        "answer": "Có. 4K Video hoạt động trên trình duyệt di động và máy tính để bàn, vì vậy bạn có thể tải xuống Shorts trên iOS, Android, Windows hoặc macOS."
       },
       {
-        "question": "SSVID có miễn phí và không giới hạn cho việc tải xuống Shorts không?",
-        "answer": "Có. SSVID miễn phí sử dụng và cho phép tải xuống YouTube Shorts không giới hạn."
+        "question": "4K Video có miễn phí và không giới hạn cho việc tải xuống Shorts không?",
+        "answer": "Có. 4K Video miễn phí sử dụng và cho phép tải xuống YouTube Shorts không giới hạn."
       },
       {
-        "question": "SSVID có thể tải xuống Shorts riêng tư hoặc bị hạn chế không?",
+        "question": "4K Video có thể tải xuống Shorts riêng tư hoặc bị hạn chế không?",
         "answer": "Không. Nội dung riêng tư hoặc bị hạn chế không thể được xử lý bởi các công cụ tải xuống trực tuyến."
       }
     ]
