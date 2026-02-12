@@ -4,7 +4,7 @@
 
 - [x] Sử dụng `@graph` array để chứa nhiều entities
 - [x] Mỗi entity phải có `@type` và `@id`
-- [x] `@id` format: `{canonicalUrl}#{fragment}` (vd: `https://ssvid.cc/#organization`)
+- [x] `@id` format: `{canonicalUrl}#{fragment}` (vd: `https://4kvideo.pro/#organization`)
 
 ## 2. Entity Relationship Graph
 

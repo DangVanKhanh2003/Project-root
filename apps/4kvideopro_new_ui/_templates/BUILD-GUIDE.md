@@ -9,7 +9,7 @@ Hệ thống template đã được setup hoàn chỉnh theo chuẩn **y2matepro
 ### 📁 Cấu trúc hoàn chỉnh:
 
 ```
-ssvid.cc/
+4kvideo.pro/
 ├── .eleventy.cjs                    ✅ Eleventy config
 ├── _templates/
 │   ├── _data/
@@ -43,7 +43,7 @@ ssvid.cc/
 ## 📦 Bước 1: Cài đặt Dependencies
 
 ```bash
-cd F:\downloader\Project-root\apps\ssvid.cc
+cd F:\downloader\Project-root\apps\4kvideo.pro
 
 # Cài đặt Eleventy
 npm install --save-dev @11ty/eleventy
@@ -85,7 +85,7 @@ _11ty-output/
 
 **Sau đó tự động copy ra root:**
 ```
-ssvid.cc/
+4kvideo.pro/
 ├── index.html                    ✅ Built from template
 ├── youtube-to-mp3.html           ✅
 ├── youtube-to-mp4.html           ✅
@@ -163,7 +163,7 @@ Thêm language vào array (line 71):
 
 ```javascript
 eleventyConfig.addGlobalData('site', {
-  url: 'https://ssvid.cc',
+  url: 'https://4kvideo.pro',
   languages: [
     { code: 'en', name: 'English', isDefault: true },
     { code: 'vi', name: 'Tiếng Việt', isDefault: false }  // ← Thêm dòng này

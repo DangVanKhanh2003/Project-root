@@ -1,4 +1,4 @@
-﻿# UI Processing → Merging → Success: Current Behavior (ssvid.cc)
+﻿# UI Processing → Merging → Success: Current Behavior (4kvideo.pro)
 
 ## Scope
 This report explains why the status bar sometimes resets to 0% “merging” even when the API already returned completed.

@@ -67,7 +67,7 @@ module.exports = function (eleventyConfig) {
   // ============================================
   // Make site config and i18n data available to all templates
   eleventyConfig.addGlobalData('site', {
-    url: 'https://ssvid.cc',
+    url: 'https://4kvideo.pro',
     languages: [
       { code: 'en', name: 'English', flag: 'us.png', isDefault: true },
       { code: 'ar', name: 'العربية', flag: 'sa.svg', isDefault: false },

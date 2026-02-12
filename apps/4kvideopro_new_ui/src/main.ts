@@ -1,6 +1,6 @@
 /**
  * Main Entry Point - TypeScript
- * SSVID.cc - Video Downloader
+ * 4kvideo.pro - Video Downloader
  */
 
 // === CSS Import ===
