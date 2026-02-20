@@ -237,6 +237,63 @@ function initMultiDownloadForm() {
 }
 
 /**
+ * Initialize language selector dropdown
+ */
+function initLangSelector() {
+    const langSelector = document.querySelector('.lang-selector');
+    const langButton = document.querySelector('.lang-button');
+
+    if (!langSelector || !langButton) return;
+
+    langButton.addEventListener('click', (e) => {
+        e.stopPropagation();
+        langSelector.classList.toggle('active');
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!langSelector.contains(e.target as Node)) {
+            langSelector.classList.remove('active');
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            langSelector.classList.remove('active');
+        }
+    });
+}
+
+/**
+ * Initialize drawer language selector dropdown
+ */
+function initDrawerLangSelector() {
+    const drawerLangSelector = document.querySelector('.drawer-lang-selector');
+    const drawerLangButton = document.querySelector('.drawer-lang-button');
+
+    if (!drawerLangSelector || !drawerLangButton) return;
+
+    drawerLangButton.addEventListener('click', (e) => {
+        e.stopPropagation();
+        drawerLangSelector.classList.toggle('active');
+    });
+
+    const mobileDrawer = document.getElementById('mobile-drawer');
+    if (mobileDrawer) {
+        mobileDrawer.addEventListener('click', (e) => {
+            if (!drawerLangSelector.contains(e.target as Node)) {
+                drawerLangSelector.classList.remove('active');
+            }
+        });
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            drawerLangSelector.classList.remove('active');
+        }
+    });
+}
+
+/**
  * Initialize app
  */
 function init() {
@@ -244,6 +301,8 @@ function init() {
 
     // Initialize UI components
     initMobileMenu();
+    initLangSelector();
+    initDrawerLangSelector();
     initFormatToggle();
     initAudioDropdown({ dropdownId: 'multi-audio-track-dropdown', hiddenInputId: 'multi-audio-track-value' });
 
