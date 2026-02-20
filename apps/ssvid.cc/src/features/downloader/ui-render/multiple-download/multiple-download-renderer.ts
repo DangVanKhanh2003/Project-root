@@ -79,6 +79,7 @@ export class MultipleDownloadRenderer {
         if (!this.container) return;
 
         this.container.innerHTML = `
+            <div class="multi-download-header" id="multi-batch-header" style="display: none;"></div>
             <div class="multi-download-list" id="multi-list"></div>
             <div class="multi-download-footer" id="multi-footer"></div>
         `;
@@ -224,7 +225,7 @@ export class MultipleDownloadRenderer {
 
                 if (groupId && this.listContainer) {
                     const items = videoStore.getItemsByGroup(groupId);
-                    const processingItems = items.filter(i => ['analyzing', 'fetching_metadata', 'downloading', 'converting'].includes(i.status));
+                    const processingItems = items.filter(i => ['analyzing', 'fetching_metadata', 'queued', 'downloading', 'converting'].includes(i.status));
 
                     if (checked && processingItems.length > 0) {
                         // Revert checkbox state temporarily
@@ -297,7 +298,7 @@ export class MultipleDownloadRenderer {
             if (target.id === 'masterCheckbox') {
                 const checked = (target as HTMLInputElement).checked;
                 const items = videoStore.getAllItems().filter(i => !i.groupId);
-                const processingItems = items.filter(i => ['analyzing', 'fetching_metadata', 'downloading', 'converting'].includes(i.status));
+                const processingItems = items.filter(i => ['analyzing', 'fetching_metadata', 'queued', 'downloading', 'converting'].includes(i.status));
 
                 if (checked && processingItems.length > 0) {
                     // Revert checkbox state temporarily
