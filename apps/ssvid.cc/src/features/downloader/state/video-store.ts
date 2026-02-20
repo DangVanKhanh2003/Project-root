@@ -18,6 +18,7 @@ const DEFAULT_SETTINGS: VideoItemSettings = {
 class VideoStore {
     private items: Map<string, VideoItem> = new Map();
     private listeners: Set<StoreListener> = new Set();
+    private groupMeta: Map<string, { isLoading: boolean; title: string }> = new Map();
 
     // ==========================================
     // CRUD
@@ -56,7 +57,21 @@ class VideoStore {
 
     clearAll(): void {
         this.items.clear();
+        this.groupMeta.clear();
         this.notify('items:cleared', null);
+    }
+
+    // ==========================================
+    // Group Meta (loading state + title)
+    // ==========================================
+
+    setGroupMeta(groupId: string, isLoading: boolean, title: string): void {
+        this.groupMeta.set(groupId, { isLoading, title });
+        this.notify('group:updated', { groupId, isLoading, title });
+    }
+
+    getGroupMeta(groupId: string): { isLoading: boolean; title: string } | undefined {
+        return this.groupMeta.get(groupId);
     }
 
     hasItem(id: string): boolean {
@@ -106,6 +121,23 @@ class VideoStore {
                 } else {
                     item.isSelected = false;
                 }
+            }
+        }
+        this.notify('items:selection-changed', null);
+    }
+
+    /**
+     * Batch-select/deselect a list of item IDs and fire ONE event.
+     * Use this instead of calling toggleSelect() in a loop.
+     */
+    setItemsSelection(ids: string[], selected: boolean): void {
+        for (const id of ids) {
+            const item = this.items.get(id);
+            if (!item) continue;
+            if (selected) {
+                if (this.isSelectableStatus(item.status)) item.isSelected = true;
+            } else {
+                item.isSelected = false;
             }
         }
         this.notify('items:selection-changed', null);

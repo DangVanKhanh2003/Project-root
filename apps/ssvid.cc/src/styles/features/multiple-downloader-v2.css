@@ -1389,6 +1389,26 @@
     color: #1e293b;
 }
 
+.group-title-dots {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 1px;
+}
+
+.group-title-dots span {
+    display: inline-block;
+    animation: dot-bounce 1.2s ease-in-out infinite;
+}
+
+.group-title-dots span:nth-child(1) { animation-delay: 0s; }
+.group-title-dots span:nth-child(2) { animation-delay: 0.2s; }
+.group-title-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes dot-bounce {
+    0%, 60%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-4px); }
+}
+
 .group-collapse-btn {
     background: none;
     border: none;

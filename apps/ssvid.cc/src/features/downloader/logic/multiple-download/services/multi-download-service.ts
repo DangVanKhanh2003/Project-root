@@ -1,6 +1,7 @@
 
 import { api } from '../../../../../api';
 import { extractPlaylistId, isPlaylistUrl, PlaylistDto } from '@downloader/core';
+import { getYtMetaBaseUrl } from '../../../../../environment';
 import { videoStore } from '../../../state/video-store';
 import { VideoItem, VideoItemSettings } from '../../../state/multiple-download-types';
 import { VideoMeta } from '../../../state/types';
@@ -89,9 +90,8 @@ export class MultiDownloadService {
         }
 
         const groupId = `${playlistId}_${Date.now()}`;
-        const groupTitle = 'Playlist';
 
-        // Add skeleton group with 8 items while fetching playlist
+        // Add 8 skeleton items for visual loading while fetching page 1
         const skeletonItems: VideoItem[] = Array.from({ length: 8 }).map((_, i) => ({
             id: generateItemId(`skeleton_${groupId}_${i}`),
             url: '',
@@ -120,36 +120,67 @@ export class MultiDownloadService {
             isSelected: false,
             isDownloaded: false,
             groupId,
-            groupTitle,
+            groupTitle: 'Playlist',
         }));
 
         for (const item of skeletonItems) {
             videoStore.addItem(item);
         }
 
-        let result;
+        // Fetch page 1
+        let page1: PlaylistPageResult;
         try {
-            result = await api.playlistV3.extractPlaylist(playlistId);
+            page1 = await fetchPlaylistPage(playlistId);
         } catch (error) {
-            // Remove skeletons on error
-            for (const item of skeletonItems) {
-                videoStore.removeItem(item.id);
-            }
+            for (const item of skeletonItems) videoStore.removeItem(item.id);
             throw error;
         }
 
-        if (!result.ok || !result.data) {
-            for (const item of skeletonItems) {
-                videoStore.removeItem(item.id);
-            }
-            throw new Error(result.message || 'Failed to fetch playlist');
+        if (!page1.items || page1.items.length === 0) {
+            for (const item of skeletonItems) videoStore.removeItem(item.id);
+            throw new Error('Playlist is empty or could not be fetched');
         }
 
-        const playlist = result.data as PlaylistDto;
-        const realGroupTitle = playlist.title || 'Playlist';
+        const realTitle = page1.title || 'Playlist';
+        const hasMorePages = !!page1.nextPageToken;
 
-        // Create items with preloaded metadata
-        const videoItems: VideoItem[] = (playlist.items || []).map((video: any) => ({
+        // Set group meta BEFORE adding items so updateGroupCount reads it correctly
+        videoStore.setGroupMeta(groupId, hasMorePages, realTitle);
+
+        // Add page 1 items
+        const page1Items = this.buildVideoItems(page1.items, groupId, realTitle, globalSettings);
+        for (const item of page1Items) {
+            videoStore.addItem(item);
+        }
+
+        // Remove skeletons after real items are added
+        for (const item of skeletonItems) {
+            videoStore.removeItem(item.id);
+        }
+
+        // Launch background loading for remaining pages (fire-and-forget)
+        if (page1.nextPageToken) {
+            this.loadRemainingPages(groupId, playlistId, page1.nextPageToken, realTitle, globalSettings)
+                .catch(() => {
+                    // Fail silently — mark group as done with videos loaded so far
+                    videoStore.setGroupMeta(groupId, false, realTitle);
+                });
+        }
+
+        return {
+            title: realTitle,
+            thumbnail: '',
+            itemCount: page1Items.length,
+        };
+    }
+
+    private buildVideoItems(
+        videos: Array<{ id: string; title?: string; author?: string; thumbnail?: string; duration?: number }>,
+        groupId: string,
+        groupTitle: string,
+        globalSettings?: Partial<VideoItemSettings>
+    ): VideoItem[] {
+        return videos.map((video: any) => ({
             id: generateItemId(video.id),
             url: normalizeURL(video.id),
             meta: {
@@ -177,23 +208,48 @@ export class MultiDownloadService {
             isSelected: false,
             isDownloaded: false,
             groupId,
-            groupTitle: realGroupTitle,
+            groupTitle,
         }));
+    }
 
-        for (const item of videoItems) {
-            videoStore.addItem(item);
+    private async loadRemainingPages(
+        groupId: string,
+        playlistId: string,
+        firstNextToken: string,
+        title: string,
+        globalSettings?: Partial<VideoItemSettings>
+    ): Promise<void> {
+        let nextPageToken: string | null = firstNextToken;
+
+        while (nextPageToken) {
+            // Stop if group was removed by user
+            if (videoStore.getItemsByGroup(groupId).length === 0) break;
+
+            const page = await fetchPlaylistPage(playlistId, nextPageToken);
+            if (!page.items || page.items.length === 0) break;
+
+            // Stop if group was removed while page was fetching
+            if (videoStore.getItemsByGroup(groupId).length === 0) break;
+
+            const items = this.buildVideoItems(page.items, groupId, title, globalSettings);
+
+            // Add in batches of 5, yielding between each batch so the browser
+            // can process user interactions and repaint between bursts.
+            for (let i = 0; i < items.length; i += 5) {
+                const batch = items.slice(i, i + 5);
+                for (const item of batch) {
+                    videoStore.addItem(item);
+                }
+                if (i + 5 < items.length) {
+                    await yieldToBrowser();
+                }
+            }
+
+            nextPageToken = page.nextPageToken;
         }
 
-        // Remove skeleton items after real items are added
-        for (const item of skeletonItems) {
-            videoStore.removeItem(item.id);
-        }
-
-        return {
-            title: realGroupTitle,
-            thumbnail: playlist.thumbnail || '',
-            itemCount: videoItems.length,
-        };
+        // All pages loaded — unlock group checkbox
+        videoStore.setGroupMeta(groupId, false, title);
     }
 
     // ==========================================
@@ -374,3 +430,28 @@ export class MultiDownloadService {
 }
 
 export const multiDownloadService = new MultiDownloadService();
+
+// ==========================================
+// Playlist pagination API helper
+// ==========================================
+
+interface PlaylistPageResult {
+    items: Array<{ id: string; title?: string; author?: string; thumbnail?: string; duration?: number }>;
+    nextPageToken: string | null;
+    title?: string;
+}
+
+function yieldToBrowser(): Promise<void> {
+    return new Promise(resolve => setTimeout(resolve, 0));
+}
+
+async function fetchPlaylistPage(playlistId: string, pageToken?: string): Promise<PlaylistPageResult> {
+    const baseUrl = getYtMetaBaseUrl();
+    const url = new URL(`${baseUrl}/playlist`);
+    url.searchParams.set('id', playlistId);
+    if (pageToken) url.searchParams.set('pageToken', pageToken);
+
+    const response = await fetch(url.toString());
+    if (!response.ok) throw new Error(`Playlist API error: ${response.status}`);
+    return response.json();
+}

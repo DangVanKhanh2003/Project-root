@@ -55,7 +55,8 @@ export type VideoStoreEventName =
     | 'item:progress'
     | 'items:cleared'
     | 'items:selection-changed'
-    | 'items:settings-changed';
+    | 'items:settings-changed'
+    | 'group:updated';
 
 export interface VideoStoreEvent {
     name: VideoStoreEventName;
