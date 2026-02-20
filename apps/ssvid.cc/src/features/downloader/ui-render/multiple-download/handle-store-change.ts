@@ -275,7 +275,15 @@ export function updateGroupCount(groupEl: HTMLElement, isLocked: boolean = false
     if (titleEl) {
         const totalCount = items.length;
         if (isGroupLoading) {
-            titleEl.innerHTML = `Loading<span class="group-title-dots"><span>.</span><span>.</span><span>.</span></span> (${totalCount} items)`;
+            const alreadyHasDots = !!titleEl.querySelector('.group-title-dots');
+            if (!alreadyHasDots) {
+                // Create dots once — never recreate so animation is not interrupted
+                titleEl.innerHTML = `Loading<span class="group-title-dots"><span>.</span><span>.</span><span>.</span></span> (<span class="group-title-count">${totalCount}</span> items)`;
+            } else {
+                // Only update the count, leave dots DOM untouched
+                const countEl = titleEl.querySelector('.group-title-count') as HTMLElement;
+                if (countEl) countEl.textContent = String(totalCount);
+            }
         } else {
             const name = groupMeta?.title || 'Playlist';
             titleEl.textContent = `${name} (${totalCount} items)`;

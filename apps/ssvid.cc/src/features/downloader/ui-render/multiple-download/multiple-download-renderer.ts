@@ -6,7 +6,7 @@ import { MultiDownloadStrategy } from './multi-download-strategy';
 import { PlaylistStrategy } from './playlist-strategy';
 import { RendererStrategy } from './renderer-strategy.interface';
 import { createStoreChangeHandler, updateGroupCount } from './handle-store-change';
-import { triggerDownload } from '../../../../utils';
+import { triggerDownload, isMobileDevice } from '../../../../utils';
 import { MaterialPopup } from '../../../../ui-components/material-popup/material-popup';
 
 export class MultipleDownloadRenderer {
@@ -227,7 +227,7 @@ export class MultipleDownloadRenderer {
                     const items = videoStore.getItemsByGroup(groupId);
                     const processingItems = items.filter(i => ['analyzing', 'fetching_metadata', 'queued', 'downloading', 'converting'].includes(i.status));
 
-                    if (checked && processingItems.length > 0) {
+                    if (!isMobileDevice() && checked && processingItems.length > 0) {
                         // Revert checkbox state temporarily
                         (target as HTMLInputElement).checked = false;
 
@@ -512,14 +512,19 @@ export class MultipleDownloadRenderer {
     }
 
     private toggleGroupSelection(groupId: string, checked: boolean) {
-        const groupEl = this.listContainer?.querySelector(`[data-group-id="${groupId}"].playlist-group`) as HTMLElement | null;
-        const activeTab = groupEl?.dataset.activeTab || 'convert';
         const items = videoStore.getItemsByGroup(groupId);
-        const tabItems = items.filter(i =>
-            activeTab === 'convert' ? isConvertTabStatus(i.status) : isDownloadTabStatus(i.status)
-        );
-        // Batch update — fires ONE event instead of N events
-        videoStore.setItemsSelection(tabItems.map(i => i.id), checked);
+
+        if (isMobileDevice()) {
+            // Mobile has no tabs — select/deselect all items regardless of status
+            videoStore.setItemsSelection(items.map(i => i.id), checked);
+        } else {
+            const groupEl = this.listContainer?.querySelector(`[data-group-id="${groupId}"].playlist-group`) as HTMLElement | null;
+            const activeTab = groupEl?.dataset.activeTab || 'convert';
+            const tabItems = items.filter(i =>
+                activeTab === 'convert' ? isConvertTabStatus(i.status) : isDownloadTabStatus(i.status)
+            );
+            videoStore.setItemsSelection(tabItems.map(i => i.id), checked);
+        }
     }
 
     private toggleBatchSelection(checked: boolean) {
