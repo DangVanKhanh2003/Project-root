@@ -1,6 +1,6 @@
 /**
  * Playlist Downloader Entry Point
- * Entry point for youtube-playlist-downloader.html
+ * Entry point for download-mp3-youtube-playlist.html
  */
 
 // === CSS Import ===

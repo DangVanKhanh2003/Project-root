@@ -40,7 +40,7 @@ module.exports = function() {
     { pageKey: 'download-youtube-mp4', slug: 'download-youtube-mp4' },
     { pageKey: 'download-youtube-shorts', slug: 'download-youtube-shorts' },
     { pageKey: 'youtube-multi-downloader', slug: 'youtube-multi-downloader' },
-    { pageKey: 'youtube-playlist-downloader', slug: 'youtube-playlist-downloader' }
+    { pageKey: 'download-mp3-youtube-playlist', slug: 'download-mp3-youtube-playlist' }
   ];
 
   // Check which pages have data files
