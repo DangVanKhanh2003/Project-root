@@ -1367,6 +1367,21 @@
     gap: 0.5rem;
 }
 
+.group-header-title-area::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-left: 2px solid #64748b;
+    border-top: 2px solid #64748b;
+    transform: translateY(2px) rotate(45deg);
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+}
+
+.playlist-group.collapsed .group-header-title-area::before {
+    transform: translateY(2px) rotate(-135deg);
+}
+
 .group-title {
     font-size: 1rem;
     font-weight: 700;
