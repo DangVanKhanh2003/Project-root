@@ -1,0 +1,116 @@
+{
+  "seo": {
+    "title": "SSVID Scaricare più video YouTube contemporaneamente (Senza pubblicità)",
+    "description": "Scarica più video YouTube insieme in MP3 o MP4 (Senza pubblicità).",
+    "schemaName": "SSVID YouTube Multi Downloader",
+    "schemaDescription": "Scaricare più video YouTube online in modo rapido.",
+    "ogTitle": "SSVID Scaricare più video YouTube contemporaneamente (Senza pubblicità)",
+    "ogDescription": "Scarica più video YouTube in MP3 o MP4 subito (Senza pubblicità)."
+  },
+  "defaultFormat": "mp4",
+  "hero": {
+    "title": "SSVID YouTube Multi Downloader (Senza pubblicità)",
+    "subtitle": "Scarica più video YouTube allo stesso tempo"
+  },
+  "form": {
+    "textareaPlaceholder": "Incolla qui i link di YouTube (uno per riga).\nhttps://youtube.com/watch?v=VID_1\nhttps://youtube.com/watch?v=VID_2",
+    "convertButton": "Converti",
+    "audioTrackLabel": "Traccia audio"
+  },
+  "overview": {
+    "howTo": {
+      "title": "Come usare YouTube Multi Downloader con SSVID",
+      "steps": [
+        {
+          "number": "1",
+          "title": "Copia più link",
+          "description": "Copia i link dei video YouTube che desideri scaricare."
+        },
+        {
+          "number": "2",
+          "title": "Incolla tutti i link",
+          "description": "Incolla tutti i link nello strumento di download multiplo SSVID."
+        },
+        {
+          "number": "3",
+          "title": "Scegli il formato",
+          "description": "Seleziona il formato desiderato (MP3 o MP4)."
+        },
+        {
+          "number": "4",
+          "title": "Scarica",
+          "description": "Fai clic su scarica e salva tutti i video contemporaneamente."
+        }
+      ]
+    }
+  },
+  "content": {
+    "intro": {
+      "title": "Che cos’è SSVID YouTube Multi Downloader?",
+      "description": "SSVID è uno strumento online che ti permette di <strong>scaricare più video YouTube contemporaneamente</strong> utilizzando un elenco di link video separati. Invece di scaricare i video uno alla volta, puoi incollare più URL e convertirli in un unico processo."
+    },
+    "whyUse": {
+      "title": "Perché usare un YouTube Multi Downloader?",
+      "description": "È perfetto quando i tuoi video <strong>non fanno parte della stessa playlist</strong>. Se hai un elenco personalizzato di link video, questo strumento ti fa risparmiare tempo elaborandoli insieme."
+    },
+    "supportedFormats": {
+      "title": "Formati supportati: MP3 e MP4",
+      "description": "SSVID supporta i formati <strong>MP3</strong> e <strong>MP4</strong>. Scegli MP3 se ti serve solo l’audio, oppure MP4 se vuoi conservare il video completo."
+    },
+    "comparison": {
+      "title": "Download multiplo YouTube vs Download playlist",
+      "items": [
+        {
+          "title": "Download multiplo YouTube",
+          "description": "Ideale quando hai <strong>più link video YouTube separati</strong>. Incolla diversi URL e scaricali insieme in formato MP3 o MP4."
+        },
+        {
+          "title": "Scaricare playlist YouTube in MP3",
+          "description": "Perfetto quando i video sono già organizzati in una playlist. Con <strong>un solo link della playlist</strong> puoi scaricare automaticamente tutti i video in formato MP3. Se hai una playlist, prova <a href=\"/download-mp3-youtube-playlist\" title=\"Download MP3 YouTube Playlist\"><strong>Download MP3 YouTube Playlist with SSVID</strong></a>."
+        }
+      ]
+    },
+    "whenUse": {
+      "title": "Quando usare SSVID Multi Downloader?",
+      "items": [
+        {
+          "title": "Liste video personalizzate",
+          "description": "Ideale quando raccogli manualmente link di video YouTube da diverse fonti."
+        },
+        {
+          "title": "Download batch in MP3 o MP4",
+          "description": "Scarica più video in formato MP3 o MP4 contemporaneamente senza ripetere gli stessi passaggi."
+        },
+        {
+          "title": "Download multipli illimitati",
+          "description": "SSVID consente <strong>download multipli YouTube illimitati</strong> senza pubblicità e senza restrizioni."
+        }
+      ]
+    }
+  },
+  "faqs": {
+    "title": "Domande frequenti",
+    "items": [
+      {
+        "question": "Quanti video YouTube posso scaricare contemporaneamente?",
+        "answer": "SSVID consente download multipli illimitati. Puoi incollare tutti i link che desideri."
+      },
+      {
+        "question": "Ho bisogno di una playlist per usare il download multiplo?",
+        "answer": "No. Il download multiplo è progettato per link video individuali che non fanno parte di una playlist."
+      },
+      {
+        "question": "SSVID è gratuito e senza pubblicità?",
+        "answer": "Sì. SSVID offre un servizio gratuito e senza pubblicità per scaricare più video YouTube."
+      },
+      {
+        "question": "Posso scaricare sia MP3 che MP4?",
+        "answer": "Sì. SSVID supporta sia il formato audio MP3 sia il formato video MP4."
+      },
+      {
+        "question": "SSVID funziona su dispositivi mobili?",
+        "answer": "Sì. SSVID funziona sia su browser desktop che su browser mobili."
+      }
+    ]
+  }
+}

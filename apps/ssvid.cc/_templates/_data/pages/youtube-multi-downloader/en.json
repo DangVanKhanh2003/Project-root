@@ -10,7 +10,7 @@
   "defaultFormat": "mp4",
   "hero": {
     "title": "SSVID - YouTube Multi Downloader",
-    "subtitle": "Free, fast & unlimited YouTube Multi Download"
+    "subtitle": "Free, fast & unlimited YouTube Multi Downloader"
   },
   "form": {
     "textareaPlaceholder": "Paste YouTube URLs here (one per line).\nhttps://youtube.com/watch?v=VID_1\nhttps://youtube.com/watch?v=VID_2",
@@ -46,11 +46,11 @@
   },
   "content": {
     "intro": {
-      "title": "What Is SSVID YouTube Multi Download?",
+      "title": "What Is SSVID YouTube Multi Downloader?",
       "description": "SSVID YouTube Multi Download is an online tool that lets you <strong>download multiple YouTube videos at the same time</strong> using a list of individual video links. Instead of downloading videos one by one, you can paste several URLs at once and convert them in a single process."
     },
     "whyUse": {
-      "title": "Why Use YouTube Multi Download?",
+      "title": "Why Use YouTube Multi Downloader?",
       "description": "YouTube Multi Download is perfect when your videos are <strong>not part of the same playlist</strong>. If you already have a custom list of video URLs, this tool saves time by processing them together instead of repeating the download steps for each video."
     },
     "supportedFormats": {
@@ -71,7 +71,7 @@
       ]
     },
     "whenUse": {
-      "title": "When Should You Use SSVID Multi Download?",
+      "title": "When Should You Use SSVID Multi Downloader?",
       "items": [
         {
           "title": "Custom Video Lists",

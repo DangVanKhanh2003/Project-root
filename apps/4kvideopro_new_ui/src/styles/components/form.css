@@ -135,8 +135,8 @@
 }
 
 .btn-paste:hover {
-    background: var(--color-accent-dark, rgba(141, 2, 31, 0.1));
-    color: var(--brand, #8F0F20);
+    background: var(--color-accent-dark, rgba(229, 9, 20, 0.1));
+    color: var(--brand, #E50914);
 }
 
 .btn-paste:active {

@@ -1,5 +1,5 @@
 :root {
-    --brand: #8F0F20;
+    --brand: #E50914;
     --text: #374957;
     --muted: #4f5b66;
     --surface-weak: #F9F2F4;
@@ -8,8 +8,8 @@
 
     /* Theme tokens needed by reusable packages (light theme) */
     /* Colors */
-    --primary-color: #8F0F20;
-    --primary-color-hover: #9f1e16;
+    --primary-color: #E50914;
+    --primary-color-hover: #b91c1c;
     /* Slightly darker for hover */
     --secondary-color: #ffffff;
     --color-black: #000000;
@@ -17,8 +17,8 @@
     --color-white: #ffffff;
 
     --bg-primary: #ffffff;
-    --bg-secondary: #F6F6F6;
-    /* Light gray for content sections */
+    --bg-secondary: #FAFAFA;
+    /* Neutral light gray background */
     --text-primary: #333333;
     --bg-badge: #f2f4f7;
 
@@ -30,8 +30,8 @@
     --border-secondary: #e5e7eb;
 
     --color-accent: var(--brand);
-    --color-accent-hover: #740219;
-    --color-accent-dark: rgba(141, 2, 31, 0.12);
+    --color-accent-hover: #b91c1c;
+    --color-accent-dark: rgba(229, 9, 20, 0.12);
     --color-status-error: #e74c3c;
 
     --radius-small: 8px;

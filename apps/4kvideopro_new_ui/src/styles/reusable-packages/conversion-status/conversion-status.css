@@ -65,7 +65,7 @@
   width: var(--progress-width, 0%);
   background: #F8B6B6;
   /* Primary color with lighter opacity */
-  border-right: 1px solid rgba(141, 2, 31, 0.4);
+  border-right: 1px solid rgba(229, 9, 20, 0.4);
   box-shadow: none;
   transition: width 0.4s ease-out;
   z-index: 1;

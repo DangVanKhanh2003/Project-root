@@ -5,7 +5,7 @@
     z-index: 20;
     background: var(--primary-color);
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(141, 2, 31, 0.08);
+    border-bottom: 1px solid rgba(229, 9, 20, 0.08);
 }
 
 .header-inner {
