@@ -227,24 +227,36 @@ export class MultipleDownloadRenderer {
                 const checked = (target as HTMLInputElement).checked;
 
                 if (groupId && this.listContainer) {
-                    const items = videoStore.getItemsByGroup(groupId);
-                    const processingItems = items.filter(i => ['analyzing', 'fetching_metadata', 'queued', 'downloading', 'converting'].includes(i.status));
+                    if (!isMobileDevice() && checked) {
+                        const groupEl = this.listContainer.querySelector(`[data-group-id="${groupId}"].playlist-group`) as HTMLElement | null;
+                        const activeTab = groupEl?.dataset.activeTab || 'convert';
+                        const items = videoStore.getItemsByGroup(groupId);
+                        const tabItems = items.filter(i =>
+                            activeTab === 'convert' ? isConvertTabStatus(i.status) : isDownloadTabStatus(i.status)
+                        );
 
-                    if (!isMobileDevice() && checked && processingItems.length > 0) {
-                        // Revert checkbox state temporarily
-                        (target as HTMLInputElement).checked = false;
+                        const processingCount = tabItems.filter(i => ['analyzing', 'fetching_metadata', 'queued', 'downloading', 'converting'].includes(i.status)).length;
+                        const failedCount = tabItems.filter(i => i.status === 'error').length;
 
-                        MaterialPopup.show({
-                            title: 'Warning',
-                            type: 'warning',
-                            message: `There are still <strong>${processingItems.length} videos</strong> being processed. Are you sure you want to continue?`,
-                            confirmText: 'OK',
-                            onConfirm: () => {
-                                (target as HTMLInputElement).checked = true;
-                                this.toggleGroupSelection(groupId, true);
-                            }
-                        });
-                        return;
+                        if (processingCount > 0 || failedCount > 0) {
+                            (target as HTMLInputElement).checked = false;
+
+                            const parts: string[] = [];
+                            if (processingCount > 0) parts.push(`<strong>${processingCount} video${processingCount > 1 ? 's' : ''}</strong> still processing`);
+                            if (failedCount > 0) parts.push(`<strong>${failedCount} video${failedCount > 1 ? 's' : ''}</strong> failed`);
+
+                            MaterialPopup.show({
+                                title: 'Warning',
+                                type: 'warning',
+                                message: `There ${parts.length === 1 && processingCount === 1 ? 'is' : 'are'} ${parts.join(' and ')}. Are you sure you want to continue?`,
+                                confirmText: 'OK',
+                                onConfirm: () => {
+                                    (target as HTMLInputElement).checked = true;
+                                    this.toggleGroupSelection(groupId, true);
+                                }
+                            });
+                            return;
+                        }
                     }
 
                     this.toggleGroupSelection(groupId, checked);
@@ -301,23 +313,30 @@ export class MultipleDownloadRenderer {
             if (target.id === 'masterCheckbox') {
                 const checked = (target as HTMLInputElement).checked;
                 const items = videoStore.getAllItems().filter(i => !i.groupId);
-                const processingItems = items.filter(i => ['analyzing', 'fetching_metadata', 'queued', 'downloading', 'converting'].includes(i.status));
 
-                if (checked && processingItems.length > 0) {
-                    // Revert checkbox state temporarily
-                    (target as HTMLInputElement).checked = false;
+                if (checked) {
+                    const processingCount = items.filter(i => ['analyzing', 'fetching_metadata', 'queued', 'downloading', 'converting'].includes(i.status)).length;
+                    const failedCount = items.filter(i => i.status === 'error').length;
 
-                    MaterialPopup.show({
-                        title: 'Warning',
-                        type: 'warning',
-                        message: `There are still <strong>${processingItems.length} videos</strong> being processed. Are you sure you want to continue?`,
-                        confirmText: 'OK',
-                        onConfirm: () => {
-                            (target as HTMLInputElement).checked = true;
-                            this.toggleBatchSelection(true);
-                        }
-                    });
-                    return;
+                    if (processingCount > 0 || failedCount > 0) {
+                        (target as HTMLInputElement).checked = false;
+
+                        const parts: string[] = [];
+                        if (processingCount > 0) parts.push(`<strong>${processingCount} video${processingCount > 1 ? 's' : ''}</strong> still processing`);
+                        if (failedCount > 0) parts.push(`<strong>${failedCount} video${failedCount > 1 ? 's' : ''}</strong> failed`);
+
+                        MaterialPopup.show({
+                            title: 'Warning',
+                            type: 'warning',
+                            message: `There ${parts.length === 1 && processingCount === 1 ? 'is' : 'are'} ${parts.join(' and ')}. Are you sure you want to continue?`,
+                            confirmText: 'OK',
+                            onConfirm: () => {
+                                (target as HTMLInputElement).checked = true;
+                                this.toggleBatchSelection(true);
+                            }
+                        });
+                        return;
+                    }
                 }
 
                 this.toggleBatchSelection(checked);
@@ -537,8 +556,8 @@ export class MultipleDownloadRenderer {
     }
 }
 
-const CONVERT_TAB_STATUSES = new Set(['pending', 'analyzing', 'fetching_metadata', 'ready', 'error', 'cancelled']);
-const DOWNLOAD_TAB_STATUSES = new Set(['queued', 'downloading', 'converting', 'completed']);
+const CONVERT_TAB_STATUSES = new Set(['pending', 'analyzing', 'fetching_metadata', 'ready', 'cancelled']);
+const DOWNLOAD_TAB_STATUSES = new Set(['queued', 'downloading', 'converting', 'completed', 'error']);
 
 function isConvertTabStatus(status: string) {
     return CONVERT_TAB_STATUSES.has(status);

@@ -14,8 +14,8 @@ export interface StoreChangeHandlerConfig {
     getActiveLoadingId?: () => string | null;
 }
 
-const CONVERT_TAB_STATUSES = new Set(['pending', 'analyzing', 'fetching_metadata', 'ready', 'error', 'cancelled']);
-const DOWNLOAD_TAB_STATUSES = new Set(['queued', 'downloading', 'converting', 'completed']);
+const CONVERT_TAB_STATUSES = new Set(['pending', 'analyzing', 'fetching_metadata', 'ready', 'cancelled']);
+const DOWNLOAD_TAB_STATUSES = new Set(['queued', 'downloading', 'converting', 'completed', 'error']);
 
 function isConvertTabStatus(status: string) {
     return CONVERT_TAB_STATUSES.has(status);
@@ -74,9 +74,9 @@ export function createStoreChangeHandler(config: StoreChangeHandlerConfig) {
                     if (groupEl) {
                         const isLocked = config.getGlobalLockState?.() || false;
                         updateGroupCount(groupEl, isLocked);
-                        // Remove group if empty
+                        // Remove group if no video items remain
                         const groupItems = groupEl.querySelector('.group-items');
-                        if (groupItems && groupItems.children.length === 0) {
+                        if (groupItems && groupItems.querySelectorAll('.multi-video-item').length === 0) {
                             groupEl.remove();
                         }
                     }
@@ -257,11 +257,11 @@ function createGroupElement(groupId: string, groupTitle: string): HTMLElement {
             </div>
         </div>
         <div class="group-items">
+            <div class="group-empty" style="display: none;">No items in this tab</div>
             <div class="group-load-more" style="display: none;">
                 <button type="button" class="btn-load-more-group" data-action="load-more-group" data-group-id="${groupId}">Load more</button>
             </div>
         </div>
-        <div class="group-empty" style="display: none;">No items in this tab</div>
     `;
     return el;
 }
@@ -287,7 +287,7 @@ export function updateGroupCount(groupEl: HTMLElement, isLocked: boolean = false
     const loadMoreContainer = groupEl.querySelector('.group-load-more') as HTMLElement;
     const loadMoreBtn = loadMoreContainer?.querySelector('.btn-load-more-group') as HTMLButtonElement;
     if (loadMoreContainer && loadMoreBtn) {
-        if (groupMeta?.nextPageToken) {
+        if (groupMeta?.nextPageToken && activeTab !== 'download') {
             loadMoreContainer.style.display = '';
             loadMoreBtn.disabled = isGroupLoading;
             loadMoreBtn.textContent = isGroupLoading ? 'Loading...' : 'Load more';
