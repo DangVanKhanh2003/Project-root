@@ -143,15 +143,18 @@ async function pollStatus(
     throw new Error('Download timed out');
 }
 
+const VIDEO_CONTAINERS = new Set(['webm', 'mkv']);
+const AUDIO_FORMATS = new Set(['ogg', 'wav', 'opus', 'm4a', 'flac']);
+
 function buildV3Request(url: string, settings: VideoItemSettings) {
     const isAudio = settings.format === 'mp3';
-    const AUDIO_FORMATS = new Set(['ogg', 'wav', 'opus', 'm4a', 'flac']);
     const isFormatOverride = isAudio && AUDIO_FORMATS.has(settings.audioBitrate || '');
+    const isContainerOverride = !isAudio && VIDEO_CONTAINERS.has(settings.quality || '');
 
     return mapToV3DownloadRequest(url, {
         downloadMode: isAudio ? 'audio' : 'video',
-        videoQuality: settings.videoQuality || settings.quality?.replace('p', '') || '720',
-        youtubeVideoContainer: isAudio ? undefined : 'mp4',
+        videoQuality: isContainerOverride ? undefined : (settings.quality?.replace('p', '') || '720'),
+        youtubeVideoContainer: isAudio ? undefined : (isContainerOverride ? settings.quality : 'mp4'),
         audioFormat: isAudio ? (isFormatOverride ? settings.audioBitrate : (settings.audioFormat || 'mp3')) : undefined,
         audioBitrate: isFormatOverride ? undefined : (settings.audioBitrate || '128'),
         trackId: settings.audioTrack,

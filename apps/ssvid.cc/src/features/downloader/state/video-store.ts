@@ -9,7 +9,6 @@ const DOWNLOADABLE_STATUSES: VideoItem['status'][] = ['ready', 'error', 'cancell
 const DEFAULT_SETTINGS: VideoItemSettings = {
     format: 'mp4',
     quality: '720p',
-    videoQuality: '720',
     audioFormat: 'mp3',
     audioBitrate: '128',
     audioTrack: 'origin',
