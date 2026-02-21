@@ -161,39 +161,6 @@ export class HttpClient implements IHttpClient {
       const responseData = await response.json();
       console.log('[HttpClient] Response body parsed:', JSON.stringify(responseData, null, 2));
 
-      // ✅ Handle API "hidden failures" (HTTP 200 but operation failed)
-      const isHiddenFailure =
-        responseData.mess ||
-        (responseData.data && responseData.data.fail === 1) ||
-        responseData.c_status === 'FAILED';
-
-      if (isHiddenFailure) {
-        console.log('[HttpClient] Hidden failure detected:', responseData);
-        const message =
-          responseData.mess ||
-          (responseData.data && responseData.data.reason) ||
-          'An unknown API error occurred.';
-        throw new ApiError(message, 0, 'Hidden Failure', responseData);
-      }
-
-      // ✅ Handle standard API-level errors
-      if (responseData.status === 'error') {
-        console.log('[HttpClient] API-level error detected (status === "error"):', responseData);
-        const message =
-          responseData.jobError ||  // V3 API uses jobError field
-          responseData.message ||
-          responseData.error?.message ||
-          responseData.error?.code ||
-          'An unknown API error occurred.';
-        console.log('[HttpClient] Error message extracted:', message);
-        throw new ApiError(
-          message,
-          0,
-          'API Error',
-          responseData
-        );
-      }
-
       console.log('[HttpClient] Success response, returning data');
 
       // Return successful response

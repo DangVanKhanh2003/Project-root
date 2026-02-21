@@ -53,7 +53,7 @@ export interface ProgressDetail {
 /**
  * Job status type
  */
-export type JobStatus = 'pending' | 'completed' | 'error';
+export type JobStatus = 'pending' | 'completed' | 'error' | 'not_found' | 'failed';
 
 /**
  * Response from GET /api/status/:id

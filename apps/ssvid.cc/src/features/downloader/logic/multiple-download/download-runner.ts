@@ -21,7 +21,6 @@ export interface DownloadConfig {
 
 const POLLING_INTERVAL = 2000;
 const MAX_POLL_ITERATIONS = 5400; // 3 hours at 2s intervals
-const MAX_JOB_RETRIES = 2;
 
 export async function runSingleDownload(config: DownloadConfig): Promise<void> {
     const { url, settings, signal, callbacks } = config;
@@ -77,7 +76,6 @@ async function pollStatus(
     const pollingInterval = v3Config.timeout.pollingInterval || POLLING_INTERVAL;
     const { maxConsecutiveErrors } = RETRY_CONFIGS.polling;
     let consecutiveErrors = 0;
-    let jobRetries = 0;
     let lastProgress = 0;
 
     for (let i = 0; i < MAX_POLL_ITERATIONS; i++) {
@@ -114,14 +112,10 @@ async function pollStatus(
                 throw new Error('Completed but no download URL');
             }
 
-            if (statusData.status === 'error') {
-                if (jobRetries < MAX_JOB_RETRIES) {
-                    jobRetries++;
-                    console.warn(`[DownloadRunner] Job error, retrying (${jobRetries}/${MAX_JOB_RETRIES})`);
-                    // Continue polling - server may recover
-                } else {
-                    throw new Error(statusData.jobError || 'Job failed');
-                }
+            if (statusData.status === 'error' || statusData.status === 'not_found' || statusData.status === 'failed') {
+                // Terminal status - stop polling immediately, no retry
+                debugger;
+                throw new Error(statusData.jobError || 'Job failed');
             }
         } catch (error: any) {
             if (signal.aborted || error.name === 'AbortError') return;
