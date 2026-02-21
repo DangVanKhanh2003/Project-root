@@ -522,6 +522,18 @@ export class MultipleDownloadRenderer {
         // Update active tab on group element
         groupEl.dataset.activeTab = tabType;
 
+        // Always clear all selections in Download tab on entry
+        if (tabType === 'download') {
+            const downloadTabItemIds = videoStore
+                .getItemsByGroup(groupId)
+                .filter(item => isDownloadTabStatus(item.status))
+                .map(item => item.id);
+
+            if (downloadTabItemIds.length > 0) {
+                videoStore.setItemsSelection(downloadTabItemIds, false);
+            }
+        }
+
         // Update glider position
         const glider = groupEl.querySelector('.tab-glider') as HTMLElement;
         if (glider) {

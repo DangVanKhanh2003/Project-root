@@ -1556,16 +1556,23 @@
 }
 
 /* =========================================
-   NEW: Retry Button Styles
+   Retry Button
    ========================================= */
-.btn-icon.btn-retry {
-    font-size: 1.1rem;
-    color: var(--brand, #8F0F20);
+.multi-video-actions .btn-retry {
+    background: #ef4444;
+    border: none;
+    color: #fff;
+    border-radius: 6px;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: background-color 0.2s ease;
 }
 
-.btn-icon.btn-retry:hover {
-    background-color: rgba(143, 15, 32, 0.1);
-    color: var(--brand, #8F0F20);
+.multi-video-actions .btn-retry:hover {
+    background: #dc2626;
 }
 
 /* =========================================
