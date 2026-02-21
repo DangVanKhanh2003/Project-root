@@ -32,6 +32,7 @@ import {
 } from '../state';
 import { renderResults, renderMessage, renderPreviewCard, showLoading, clearContent, clearHeroMessage } from '../ui-render/content-renderer';
 import { updateVideoTitle } from '../ui-render/download-rendering';
+import { onAfterSubmit, onDownloadFailed } from '../../widget-level-manager';
 import { getInputValue as getInputValueFromRenderer, setInputValue as setInputValueInRenderer } from '../ui-render/ui-renderer';
 import type { VideoData } from '@downloader/ui-components';
 import { navigateToVideo } from '../routing/url-manager';
@@ -793,12 +794,7 @@ async function handleSubmit(event: Event): Promise<void> {
 
   try {
     if (state.inputType === 'url') {
-      // Show detail skeleton for video extraction
-      // showLoading('detail');
-
-      // Scroll to hero-card after skeleton renders (50ms delay)
-
-
+      onAfterSubmit();
       await handleExtractMedia(value);
     } else {
       // Show list skeleton (12 cards) for keyword search
@@ -818,6 +814,7 @@ async function handleSubmit(event: Event): Promise<void> {
     const message = error instanceof Error ? error.message : 'An error occurred';
     setError(message);
     renderMessage(message, 'error');
+    onDownloadFailed();
   } finally {
     setLoading(false);
     // 🚨 CRITICAL: Reset submitting flag to allow suggestions again

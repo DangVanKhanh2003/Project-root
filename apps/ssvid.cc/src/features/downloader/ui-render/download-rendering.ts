@@ -14,6 +14,7 @@ import type { AppState, ConversionTask } from '../state/types';
 import { getMergingEstimator, clearMergingEstimator } from './merging-progress-estimator';
 import { showVidToolPopup } from '@downloader/vidtool-popup';
 import { logEvent } from '../../../libs/firebase';
+import { onAfterDownload, onDownloadFailed, onReset, incrementDownloadCount } from '../../widget-level-manager';
 
 // ============================================================
 // TYPE DEFINITIONS
@@ -103,6 +104,10 @@ export function renderConversionStatus(state: AppState, _prevState?: AppState): 
           retryBtnInCallback.classList.remove('active');
         }
 
+        // Show Trustpilot widget after successful download
+        incrementDownloadCount();
+        onAfterDownload();
+
         delete statusContainer.dataset.completionState;
       }, 400);
     }
@@ -166,34 +171,34 @@ function stopExtractingRotator(formatId: string) {
  * Start extracting rotator for a format
  */
 function startExtractingRotator(formatId: string, statusContainer: HTMLElement) {
-    if (extractingIntervals.has(formatId)) return; // Already running
+  if (extractingIntervals.has(formatId)) return; // Already running
 
-    const statusTextElement = statusContainer.querySelector('.status-text');
-    if (!statusTextElement) return;
+  const statusTextElement = statusContainer.querySelector('.status-text');
+  if (!statusTextElement) return;
 
-    // Set initial start time if needed
-    if (!extractingStartTimes.has(formatId)) {
-        extractingStartTimes.set(formatId, Date.now());
+  // Set initial start time if needed
+  if (!extractingStartTimes.has(formatId)) {
+    extractingStartTimes.set(formatId, Date.now());
+  }
+
+  const interval = window.setInterval(() => {
+    const startTime = extractingStartTimes.get(formatId) || Date.now();
+    const elapsed = Date.now() - startTime;
+    const msgIndex = Math.floor(elapsed / 2000) % EXTRACTING_MESSAGES.length;
+
+    // Check if element still exists
+    try {
+      if (document.body.contains(statusTextElement)) {
+        statusTextElement.textContent = EXTRACTING_MESSAGES[msgIndex];
+      } else {
+        stopExtractingRotator(formatId);
+      }
+    } catch (e) {
+      stopExtractingRotator(formatId);
     }
+  }, 1000); // Check every second
 
-    const interval = window.setInterval(() => {
-        const startTime = extractingStartTimes.get(formatId) || Date.now();
-        const elapsed = Date.now() - startTime;
-        const msgIndex = Math.floor(elapsed / 2000) % EXTRACTING_MESSAGES.length;
-        
-        // Check if element still exists
-        try {
-            if (document.body.contains(statusTextElement)) {
-                statusTextElement.textContent = EXTRACTING_MESSAGES[msgIndex];
-            } else {
-                stopExtractingRotator(formatId);
-            }
-        } catch(e) {
-            stopExtractingRotator(formatId);
-        }
-    }, 1000); // Check every second
-
-    extractingIntervals.set(formatId, interval);
+  extractingIntervals.set(formatId, interval);
 }
 
 /**
@@ -291,17 +296,17 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
 
   // Update last update time
   lastUpdateTimes.set(formatId, now);
-  
+
   // Track extracting start time
   if (task.state === TaskState.EXTRACTING) {
-      if (!extractingStartTimes.has(formatId)) {
-          extractingStartTimes.set(formatId, now);
-      }
+    if (!extractingStartTimes.has(formatId)) {
+      extractingStartTimes.set(formatId, now);
+    }
   } else {
-      // Cleanup if not extracting
-      if (extractingStartTimes.has(formatId)) {
-          extractingStartTimes.delete(formatId);
-      }
+    // Cleanup if not extracting
+    if (extractingStartTimes.has(formatId)) {
+      extractingStartTimes.delete(formatId);
+    }
   }
 
   // Get DOM elements
@@ -385,11 +390,11 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
 
         // 4. Mark estimator as running for complete() to work
         const estimator = getMergingEstimator(formatId);
-        estimator.start((p) => { 
-           if (statusTextElement) {
-             statusTextElement.textContent = `Merging... ${p}%`;
-           }
-        }); 
+        estimator.start((p) => {
+          if (statusTextElement) {
+            statusTextElement.textContent = `Merging... ${p}%`;
+          }
+        });
       });
     });
 
@@ -412,24 +417,24 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
     const text = task.statusText || 'Processing...';
     // Only show % if we have valid progress and NOT extracting (extracting usually 0 or indeterminate)
     // Actually user wants % for processing. Extracting is a specific state.
-    
+
     // Only show % if we have valid progress and NOT extracting (extracting usually 0 or indeterminate)
     // Actually user wants % for processing. Extracting is a specific state.
-    
+
     if (task.state === TaskState.EXTRACTING) {
-        // Start rotator if not running
-        startExtractingRotator(formatId, statusContainer);
-        
-        // Immediate update
-        const startTime = extractingStartTimes.get(formatId) || Date.now();
-        const elapsed = Date.now() - startTime;
-        const msgIndex = Math.floor(elapsed / 2000) % EXTRACTING_MESSAGES.length;
-        statusTextElement.textContent = EXTRACTING_MESSAGES[msgIndex];
+      // Start rotator if not running
+      startExtractingRotator(formatId, statusContainer);
+
+      // Immediate update
+      const startTime = extractingStartTimes.get(formatId) || Date.now();
+      const elapsed = Date.now() - startTime;
+      const msgIndex = Math.floor(elapsed / 2000) % EXTRACTING_MESSAGES.length;
+      statusTextElement.textContent = EXTRACTING_MESSAGES[msgIndex];
     } else {
-        // Stop rotator if running
-        stopExtractingRotator(formatId);
-        
-        statusTextElement.textContent = `${text} ${Math.round(progress)}%`;
+      // Stop rotator if running
+      stopExtractingRotator(formatId);
+
+      statusTextElement.textContent = `${text} ${Math.round(progress)}%`;
     }
   }
 
@@ -537,6 +542,8 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
   if (task.state === TaskState.FAILED) {
     positionActionContainer(actionContainer);
     actionContainer.classList.add('active');
+    // Hide Trustpilot widget on download failure
+    onDownloadFailed();
     // Cleanup throttle map when task completes (prevent memory leak)
     lastUpdateTimes.delete(formatId);
     transitionInProgress.delete(formatId);
@@ -738,6 +745,9 @@ function clearSearchUrl(): void {
 async function handleNewConvertButtonClick(): Promise<void> {
   console.log('[renderConversionStatus] Next button clicked');
   logEvent('next_button_click');
+
+  // Hide Trustpilot widget on reset
+  onReset();
 
   const { showSearchView } = await import('./view-switcher');
   const { setInputValue, focusInput } = await import('./ui-renderer');

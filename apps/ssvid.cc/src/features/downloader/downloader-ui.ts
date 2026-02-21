@@ -19,13 +19,14 @@ import type { AudioFormatType } from './state/types';
 
 import { setupUrlSync } from './routing/url-sync';
 import { handleVideoRoute } from './logic/route-init';
+import { preloadTrustpilotWidget } from '../trustpilot/trustpilot-widget';
 
 /**
  * Initialize downloader UI
  */
 export async function init(): Promise<void> {
   // Step 0: Initialize shared services
-  // Configure scroll manager for ytmp3-clone-3 (header is static)
+  preloadTrustpilotWidget();
   scrollManager.setHeaderConfig({ isFixed: false, height: 0 });
   scrollManager.init();
 
