@@ -151,13 +151,15 @@ async function pollStatus(
 
 function buildV3Request(url: string, settings: VideoItemSettings) {
     const isAudio = settings.format === 'mp3';
+    const AUDIO_FORMATS = new Set(['ogg', 'wav', 'opus', 'm4a', 'flac']);
+    const isFormatOverride = isAudio && AUDIO_FORMATS.has(settings.audioBitrate || '');
 
     return mapToV3DownloadRequest(url, {
         downloadMode: isAudio ? 'audio' : 'video',
         videoQuality: settings.videoQuality || settings.quality?.replace('p', '') || '720',
         youtubeVideoContainer: isAudio ? undefined : 'mp4',
-        audioFormat: isAudio ? (settings.audioFormat || 'mp3') : undefined,
-        audioBitrate: settings.audioBitrate || '128',
+        audioFormat: isAudio ? (isFormatOverride ? settings.audioBitrate : (settings.audioFormat || 'mp3')) : undefined,
+        audioBitrate: isFormatOverride ? undefined : (settings.audioBitrate || '128'),
         trackId: settings.audioTrack,
     });
 }

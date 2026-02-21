@@ -116,10 +116,10 @@ export class PlaylistStrategy implements RendererStrategy {
                 <select class="item-quality-select" data-id="${item.id}" data-field="audioBitrate">
                     <option value="128" ${bitrate === '128' ? 'selected' : ''}>128kbps</option>
                     <option value="320" ${bitrate === '320' ? 'selected' : ''}>320kbps</option>
-                    <option value="ogg" ${quality === 'ogg' ? 'selected' : ''}>OGG</option>
-                    <option value="wav" ${quality === 'wav' ? 'selected' : ''}>WAV</option>
-                    <option value="opus" ${quality === 'opus' ? 'selected' : ''}>Opus</option>
-                    <option value="m4a" ${quality === 'm4a' ? 'selected' : ''}>M4A</option>
+                    <option value="ogg" ${bitrate === 'ogg' ? 'selected' : ''}>OGG</option>
+                    <option value="wav" ${bitrate === 'wav' ? 'selected' : ''}>WAV</option>
+                    <option value="opus" ${bitrate === 'opus' ? 'selected' : ''}>Opus</option>
+                    <option value="m4a" ${bitrate === 'm4a' ? 'selected' : ''}>M4A</option>
                 </select>`;
         }
 
