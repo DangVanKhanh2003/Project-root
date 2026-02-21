@@ -1573,6 +1573,8 @@
 
 .multi-video-actions .btn-retry:hover {
     background: #dc2626;
+    box-shadow: none;
+    transform: none;
 }
 
 /* =========================================
