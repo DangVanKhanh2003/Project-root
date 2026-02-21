@@ -108,7 +108,7 @@ function mapAudioFormat(format?: string): OutputConfig['format'] {
     'm4a': 'm4a',
     'wav': 'wav',
     'opus': 'opus',
-    'ogg': 'opus', // OGG maps to opus in V3
+    'ogg': 'ogg',
     'flac': 'flac',
   };
 
