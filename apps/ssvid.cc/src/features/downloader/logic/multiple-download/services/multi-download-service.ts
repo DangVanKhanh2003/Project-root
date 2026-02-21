@@ -1,6 +1,6 @@
 
 import { api } from '../../../../../api';
-import { extractPlaylistId, isPlaylistUrl, PlaylistDto } from '@downloader/core';
+import { extractPlaylistId, extractVideoId, isPlaylistUrl, PlaylistDto } from '@downloader/core';
 import { getYtMetaBaseUrl } from '../../../../../environment';
 import { videoStore } from '../../../state/video-store';
 import { VideoItem, VideoItemSettings } from '../../../state/multiple-download-types';
@@ -162,6 +162,65 @@ export class MultiDownloadService {
             thumbnail: '',
             itemCount: page1Items.length,
         };
+    }
+
+    // ==========================================
+    // Add Single Video as Group
+    // ==========================================
+
+    async addSingleVideoAsGroup(videoUrl: string, globalSettings?: Partial<VideoItemSettings>): Promise<void> {
+        const videoId = extractVideoId(videoUrl) || `video_${Date.now()}`;
+        const groupId = `single_${videoId}_${Date.now()}`;
+        const normalizedUrl = normalizeURL(videoId);
+
+        // Create skeleton item with groupId
+        const skeletonItem: VideoItem = {
+            id: generateItemId(videoId),
+            url: normalizedUrl,
+            meta: {
+                title: 'Loading...',
+                originalUrl: videoUrl,
+                status: 'analyzing',
+                author: '',
+                thumbnail: videoId ? `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg` : '',
+                duration: 0,
+                url: normalizedUrl,
+                vid: videoId,
+                source: 'youtube',
+                isFakeData: true,
+            },
+            status: 'fetching_metadata' as const,
+            progress: 0,
+            settings: {
+                format: globalSettings?.format || 'mp4',
+                quality: globalSettings?.quality || '720p',
+                audioFormat: globalSettings?.audioFormat,
+                audioBitrate: globalSettings?.audioBitrate,
+                videoQuality: globalSettings?.videoQuality,
+                audioTrack: globalSettings?.audioTrack,
+            },
+            isSelected: false,
+            isDownloaded: false,
+            groupId,
+            groupTitle: 'Video',
+        };
+
+        videoStore.addItem(skeletonItem);
+        videoStore.setGroupMeta(groupId, false, 'Video', null);
+
+        // Fetch metadata
+        await fetchMetadataBatch(
+            [{ id: skeletonItem.id, url: normalizedUrl }],
+            (result) => {
+                if (result.success && result.meta) {
+                    videoStore.updateMetadata(result.id, result.meta);
+                    // Update group title with actual video title
+                    videoStore.setGroupMeta(groupId, false, result.meta.title || 'Video', null);
+                } else {
+                    videoStore.setError(result.id, result.error || 'Failed to fetch info');
+                }
+            }
+        );
     }
 
     async loadMoreGroup(groupId: string): Promise<void> {

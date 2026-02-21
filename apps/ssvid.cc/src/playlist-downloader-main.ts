@@ -10,7 +10,7 @@ import './styles/index.css';
 import { multiDownloadService } from './features/downloader/logic/multiple-download/services/multi-download-service';
 import { multipleDownloadRenderer } from './features/downloader/ui-render/multiple-download/multiple-download-renderer';
 import { VideoItemSettings } from './features/downloader/state/multiple-download-types';
-import { isPlaylistUrl } from '@downloader/core';
+import { isPlaylistUrl, extractVideoId } from '@downloader/core';
 import { initAudioDropdown } from './features/downloader/ui-render/dropdown-logic';
 
 /**
@@ -223,16 +223,18 @@ function initPlaylistForm() {
 
         if (!url) {
             if (errorMessage) {
-                errorMessage.textContent = 'Please paste a YouTube playlist URL';
+                errorMessage.textContent = 'Please paste a YouTube URL';
                 errorMessage.style.display = 'block';
             }
             return;
         }
 
-        // Validate playlist URL
-        if (!isPlaylistUrl(url)) {
+        // Validate: must be playlist or single video URL
+        const isPlaylist = isPlaylistUrl(url);
+        const videoId = extractVideoId(url);
+        if (!isPlaylist && !videoId) {
             if (errorMessage) {
-                errorMessage.textContent = 'Please enter a valid YouTube playlist URL';
+                errorMessage.textContent = 'Please enter a valid YouTube URL';
                 errorMessage.style.display = 'block';
             }
             return;
@@ -257,8 +259,11 @@ function initPlaylistForm() {
         try {
             const settings = getCurrentSettings();
 
-            // Add playlist through service (store-driven — renderer auto-updates)
-            await multiDownloadService.addPlaylist(url, settings);
+            if (isPlaylist) {
+                await multiDownloadService.addPlaylist(url, settings);
+            } else {
+                await multiDownloadService.addSingleVideoAsGroup(url, settings);
+            }
 
         } catch (error) {
             console.error('[Playlist Downloader] Error fetching playlist:', error);
