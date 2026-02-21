@@ -18,7 +18,7 @@ const DEFAULT_SETTINGS: VideoItemSettings = {
 class VideoStore {
     private items: Map<string, VideoItem> = new Map();
     private listeners: Set<StoreListener> = new Set();
-    private groupMeta: Map<string, { isLoading: boolean; title: string }> = new Map();
+    private groupMeta: Map<string, { isLoading: boolean; title: string; nextPageToken: string | null }> = new Map();
 
     // ==========================================
     // CRUD
@@ -65,12 +65,12 @@ class VideoStore {
     // Group Meta (loading state + title)
     // ==========================================
 
-    setGroupMeta(groupId: string, isLoading: boolean, title: string): void {
-        this.groupMeta.set(groupId, { isLoading, title });
-        this.notify('group:updated', { groupId, isLoading, title });
+    setGroupMeta(groupId: string, isLoading: boolean, title: string, nextPageToken: string | null = null): void {
+        this.groupMeta.set(groupId, { isLoading, title, nextPageToken });
+        this.notify('group:updated', { groupId, isLoading, title, nextPageToken });
     }
 
-    getGroupMeta(groupId: string): { isLoading: boolean; title: string } | undefined {
+    getGroupMeta(groupId: string): { isLoading: boolean; title: string; nextPageToken: string | null } | undefined {
         return this.groupMeta.get(groupId);
     }
 

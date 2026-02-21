@@ -142,10 +142,6 @@ export class MultiDownloadService {
         }
 
         const realTitle = page1.title || 'Playlist';
-        const hasMorePages = !!page1.nextPageToken;
-
-        // Set group meta BEFORE adding items so updateGroupCount reads it correctly
-        videoStore.setGroupMeta(groupId, hasMorePages, realTitle);
 
         // Add page 1 items
         const page1Items = this.buildVideoItems(page1.items, groupId, realTitle, globalSettings);
@@ -158,20 +154,71 @@ export class MultiDownloadService {
             videoStore.removeItem(item.id);
         }
 
-        // Launch background loading for remaining pages (fire-and-forget)
-        if (page1.nextPageToken) {
-            this.loadRemainingPages(groupId, playlistId, page1.nextPageToken, realTitle, globalSettings)
-                .catch(() => {
-                    // Fail silently — mark group as done with videos loaded so far
-                    videoStore.setGroupMeta(groupId, false, realTitle);
-                });
-        }
+        // Set group meta after items are visible — shows Load more button if more pages exist
+        videoStore.setGroupMeta(groupId, false, realTitle, page1.nextPageToken ?? null);
 
         return {
             title: realTitle,
             thumbnail: '',
             itemCount: page1Items.length,
         };
+    }
+
+    async loadMoreGroup(groupId: string): Promise<void> {
+        const meta = videoStore.getGroupMeta(groupId);
+        if (!meta || !meta.nextPageToken || meta.isLoading) return;
+
+        const playlistId = groupId.slice(0, groupId.lastIndexOf('_'));
+        const settings = videoStore.getItemsByGroup(groupId)[0]?.settings;
+        const savedToken = meta.nextPageToken;
+
+        // Add skeletons at the bottom of the group while fetching
+        const skeletonItems: VideoItem[] = Array.from({ length: 5 }).map((_, i) => ({
+            id: generateItemId(`skeleton_loadmore_${groupId}_${i}`),
+            url: '',
+            meta: {
+                title: 'Loading...',
+                originalUrl: '',
+                status: 'analyzing',
+                author: '',
+                thumbnail: '',
+                duration: 0,
+                url: '',
+                vid: '',
+                source: 'youtube',
+                isFakeData: true,
+            },
+            status: 'fetching_metadata' as const,
+            progress: 0,
+            settings: settings || { format: 'mp4', quality: '720p' },
+            isSelected: false,
+            isDownloaded: false,
+            groupId,
+            groupTitle: meta.title,
+        }));
+
+        for (const item of skeletonItems) videoStore.addItem(item);
+        videoStore.setGroupMeta(groupId, true, meta.title, meta.nextPageToken);
+
+        try {
+            const page = await fetchPlaylistPage(playlistId, savedToken);
+
+            if (page.items && page.items.length > 0) {
+                const items = this.buildVideoItems(page.items, groupId, meta.title, settings);
+                for (let i = 0; i < items.length; i += 5) {
+                    const batch = items.slice(i, i + 5);
+                    for (const item of batch) videoStore.addItem(item);
+                    if (i + 5 < items.length) await yieldToBrowser();
+                }
+            }
+
+            for (const item of skeletonItems) videoStore.removeItem(item.id);
+            videoStore.setGroupMeta(groupId, false, meta.title, page.nextPageToken ?? null);
+        } catch {
+            for (const item of skeletonItems) videoStore.removeItem(item.id);
+            // Restore token on error so user can retry
+            videoStore.setGroupMeta(groupId, false, meta.title, savedToken);
+        }
     }
 
     private buildVideoItems(
@@ -210,46 +257,6 @@ export class MultiDownloadService {
             groupId,
             groupTitle,
         }));
-    }
-
-    private async loadRemainingPages(
-        groupId: string,
-        playlistId: string,
-        firstNextToken: string,
-        title: string,
-        globalSettings?: Partial<VideoItemSettings>
-    ): Promise<void> {
-        let nextPageToken: string | null = firstNextToken;
-
-        while (nextPageToken) {
-            // Stop if group was removed by user
-            if (videoStore.getItemsByGroup(groupId).length === 0) break;
-
-            const page = await fetchPlaylistPage(playlistId, nextPageToken);
-            if (!page.items || page.items.length === 0) break;
-
-            // Stop if group was removed while page was fetching
-            if (videoStore.getItemsByGroup(groupId).length === 0) break;
-
-            const items = this.buildVideoItems(page.items, groupId, title, globalSettings);
-
-            // Add in batches of 5, yielding between each batch so the browser
-            // can process user interactions and repaint between bursts.
-            for (let i = 0; i < items.length; i += 5) {
-                const batch = items.slice(i, i + 5);
-                for (const item of batch) {
-                    videoStore.addItem(item);
-                }
-                if (i + 5 < items.length) {
-                    await yieldToBrowser();
-                }
-            }
-
-            nextPageToken = page.nextPageToken;
-        }
-
-        // All pages loaded — unlock group checkbox
-        videoStore.setGroupMeta(groupId, false, title);
     }
 
     // ==========================================

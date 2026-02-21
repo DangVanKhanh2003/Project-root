@@ -44,7 +44,9 @@ export function createStoreChangeHandler(config: StoreChangeHandlerConfig) {
                     }
                     const groupList = groupEl.querySelector('.group-items');
                     if (groupList) {
-                        groupList.appendChild(el);
+                        // Insert before the load-more button so it stays at the bottom
+                        const loadMoreEl = groupList.querySelector('.group-load-more');
+                        groupList.insertBefore(el, loadMoreEl ?? null);
                     }
                     const isLocked = config.getGlobalLockState?.() || false;
                     updateGroupCount(groupEl, isLocked);
@@ -254,7 +256,11 @@ function createGroupElement(groupId: string, groupTitle: string): HTMLElement {
                 </div>
             </div>
         </div>
-        <div class="group-items"></div>
+        <div class="group-items">
+            <div class="group-load-more" style="display: none;">
+                <button type="button" class="btn-load-more-group" data-action="load-more-group" data-group-id="${groupId}">Load more</button>
+            </div>
+        </div>
         <div class="group-empty" style="display: none;">No items in this tab</div>
     `;
     return el;
@@ -268,25 +274,25 @@ export function updateGroupCount(groupEl: HTMLElement, isLocked: boolean = false
     const isMobile = isMobileDevice();
     const activeTab = isMobile ? 'all' : (groupEl.dataset.activeTab || 'convert');
 
-    // Update group title based on loading state
+    // Update group title
     const groupMeta = videoStore.getGroupMeta(groupId);
     const isGroupLoading = groupMeta?.isLoading === true;
     const titleEl = groupEl.querySelector('.group-title') as HTMLElement;
     if (titleEl) {
-        const totalCount = items.length;
-        if (isGroupLoading) {
-            const alreadyHasDots = !!titleEl.querySelector('.group-title-dots');
-            if (!alreadyHasDots) {
-                // Create dots once — never recreate so animation is not interrupted
-                titleEl.innerHTML = `Loading<span class="group-title-dots"><span>.</span><span>.</span><span>.</span></span> (<span class="group-title-count">${totalCount}</span> items)`;
-            } else {
-                // Only update the count, leave dots DOM untouched
-                const countEl = titleEl.querySelector('.group-title-count') as HTMLElement;
-                if (countEl) countEl.textContent = String(totalCount);
-            }
+        const name = groupMeta?.title || 'Playlist';
+        titleEl.textContent = `${name} (${items.length} items)`;
+    }
+
+    // Update Load more button
+    const loadMoreContainer = groupEl.querySelector('.group-load-more') as HTMLElement;
+    const loadMoreBtn = loadMoreContainer?.querySelector('.btn-load-more-group') as HTMLButtonElement;
+    if (loadMoreContainer && loadMoreBtn) {
+        if (groupMeta?.nextPageToken) {
+            loadMoreContainer.style.display = '';
+            loadMoreBtn.disabled = isGroupLoading;
+            loadMoreBtn.textContent = isGroupLoading ? 'Loading...' : 'Load more';
         } else {
-            const name = groupMeta?.title || 'Playlist';
-            titleEl.textContent = `${name} (${totalCount} items)`;
+            loadMoreContainer.style.display = 'none';
         }
     }
 
@@ -382,15 +388,7 @@ export function updateGroupCount(groupEl: HTMLElement, isLocked: boolean = false
             const someSelected = selectableItems.some(i => i.isSelected);
             groupCheckbox.checked = allSelected;
             groupCheckbox.indeterminate = someSelected && !allSelected;
-            // Lock checkbox while more pages are loading
-            groupCheckbox.disabled = isGroupLoading || isLocked;
-        }
-
-        // Lock/unlock the selection label while group is still loading pages
-        const groupLabelEl = groupEl.querySelector('.group-selection-label') as HTMLElement;
-        if (groupLabelEl) {
-            groupLabelEl.style.opacity = isGroupLoading ? '0.4' : '';
-            groupLabelEl.style.pointerEvents = isGroupLoading ? 'none' : '';
+            groupCheckbox.disabled = isLocked;
         }
     }
 }

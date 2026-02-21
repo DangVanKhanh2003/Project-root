@@ -194,6 +194,9 @@ export class MultipleDownloadRenderer {
                 case 'remove-group':
                     if (groupId) multiDownloadService.removeGroup(groupId);
                     break;
+                case 'load-more-group':
+                    if (groupId) multiDownloadService.loadMoreGroup(groupId);
+                    break;
                 case 'playlist-tab':
                     if (groupId) this.handleTabClick(target, groupId);
                     break;
