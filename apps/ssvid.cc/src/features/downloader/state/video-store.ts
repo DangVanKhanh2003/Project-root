@@ -167,6 +167,10 @@ class VideoStore {
             item.progress = 0;
             item.progressPhase = undefined;
         }
+        // Deselect when entering the download pipeline so Download tab starts unticked
+        if (status === 'queued') {
+            item.isSelected = false;
+        }
         this.notify('item:updated', item);
     }
 

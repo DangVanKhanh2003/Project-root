@@ -188,7 +188,7 @@ export class PlaylistStrategy implements RendererStrategy {
         }
 
         if (item.status === 'error') {
-            return `<button class="btn-icon btn-retry" data-action="retry" data-id="${item.id}" title="Retry">↻</button>`;
+            return `<button class="btn-retry" data-action="retry" data-id="${item.id}">Retry</button>`;
         }
 
         return `
@@ -252,7 +252,7 @@ export class PlaylistStrategy implements RendererStrategy {
         }
 
         if (item.status === 'error') {
-            return `<button class="btn-icon btn-retry" data-action="retry" data-id="${item.id}" title="Retry">↻</button>`;
+            return `<button class="btn-retry" data-action="retry" data-id="${item.id}">Retry</button>`;
         }
 
         return '';
