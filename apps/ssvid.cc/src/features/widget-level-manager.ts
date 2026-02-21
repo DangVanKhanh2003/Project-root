@@ -137,11 +137,7 @@ export function onAfterSubmit(): void {
  * Shows Trustpilot widget if level rules allow.
  */
 export function onAfterDownload(): void {
-    const state = resolveState(true);
-
-    if (state.showTrustpilotWidget) {
-        showTrustpilotWidget();
-    }
+    // no-op: Trustpilot widget is shown on submit, not after download
 }
 
 /**
