@@ -30,6 +30,16 @@
     height: 36px;
 }
 
+.header-logo svg rect[fill="#CB0E35"],
+.drawer-logo svg rect[fill="#CB0E35"] {
+    fill: #004fab;
+}
+
+.header-logo svg path[fill="#8D021F"],
+.drawer-logo svg path[fill="#8D021F"] {
+    fill: #003f8a;
+}
+
 .header-nav {
     display: flex;
     align-items: center;

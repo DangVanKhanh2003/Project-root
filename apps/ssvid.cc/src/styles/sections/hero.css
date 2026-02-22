@@ -68,7 +68,11 @@
 }
 
 .logo-hero svg rect[fill="#CB0E35"] {
-    fill: #CB0E35;
+    fill: #004fab;
+}
+
+.logo-hero svg path[fill="#8D021F"] {
+    fill: #003f8a;
 }
 
 .logo-text-hero {

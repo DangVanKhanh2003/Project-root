@@ -14,7 +14,7 @@
 .bg-tech-grid {
     background-color: #fff;
     background-image:
-        linear-gradient(rgba(141, 2, 31, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(141, 2, 31, 0.03) 1px, transparent 1px);
+        linear-gradient(rgba(0, 79, 171, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 79, 171, 0.03) 1px, transparent 1px);
     background-size: 40px 40px;
 }

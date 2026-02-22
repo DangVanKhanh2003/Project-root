@@ -29,7 +29,7 @@
     font-weight: 700;
     text-align: center;
     margin-bottom: 2rem;
-    color: var(--brand, #8F0F20);
+    color: var(--brand, #004fab);
 }
 
 .content-row {
@@ -130,8 +130,8 @@
 }
 
 .input-action-btn:hover {
-    background: var(--color-accent-dark, rgba(141, 2, 31, 0.1));
-    color: var(--brand, #8F0F20);
+    background: var(--color-accent-dark, rgba(0, 79, 171, 0.1));
+    color: var(--brand, #004fab);
     transform: translateY(-50%);
 }
 
@@ -201,7 +201,7 @@
 }
 
 .multi-format-btn.active {
-    background: var(--brand, #8F0F20);
+    background: var(--brand, #004fab);
     color: #fff;
 }
 
@@ -245,7 +245,7 @@
 
 .multi-quality-select:hover,
 .multi-quality-select:focus {
-    border-color: var(--brand, #8F0F20);
+    border-color: var(--brand, #004fab);
 }
 
 .multi-select-arrow {
@@ -268,7 +268,7 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    background: var(--brand, #8F0F20);
+    background: var(--brand, #004fab);
     color: #fff;
     border: none;
     border-radius: var(--radius-xl, 24px);
@@ -782,7 +782,7 @@
 
 
 .btn-icon.btn-download {
-    color: var(--brand, #8F0F20);
+    color: var(--brand, #004fab);
     border: 1px solid var(--border-glass, #e5e7eb);
 }
 
@@ -814,9 +814,9 @@
 .progress-bar {
     width: 0;
     height: 100%;
-    background: #8F0F20;
+    background: #004fab;
     /* Use solid color first for reliability */
-    background: var(--brand, #8F0F20);
+    background: var(--brand, #004fab);
     transition: width 0.3s ease;
     border-radius: 10px;
     display: block !important;
@@ -829,7 +829,7 @@
     /* Place it above/to the right of the bar */
     font-size: 0.75rem;
     font-weight: 600;
-    color: var(--brand, #8F0F20);
+    color: var(--brand, #004fab);
 }
 
 /* Footer Controls */
@@ -857,27 +857,27 @@
 }
 
 .btn-primary {
-    background-color: var(--brand, #8F0F20);
+    background-color: var(--brand, #004fab);
     color: white;
 }
 
 .btn-primary:hover {
-    background-color: var(--color-accent-hover, #740219);
+    background-color: var(--color-accent-hover, #003f8a);
     transform: translateY(-1px);
 }
 
 .btn-success {
-    background-color: var(--brand, #8F0F20);
+    background-color: var(--brand, #004fab);
     color: white;
 }
 
 .btn-success:hover:not(:disabled) {
-    background-color: var(--color-accent-hover, #740219);
+    background-color: var(--color-accent-hover, #003f8a);
 }
 
 .btn-success:disabled {
     cursor: not-allowed;
-    background-color: var(--brand, #8F0F20);
+    background-color: var(--brand, #004fab);
     opacity: 0.6;
     color: white;
 }
@@ -1205,7 +1205,7 @@
 }
 
 .playlist-tab.active {
-    background: var(--brand, #8F0F20);
+    background: var(--brand, #004fab);
     color: #ffffff;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
@@ -1281,7 +1281,7 @@
     width: 18px;
     height: 18px;
     cursor: pointer;
-    accent-color: var(--brand, #8F0F20);
+    accent-color: var(--brand, #004fab);
 }
 
 /* Item Checkbox */
@@ -1295,7 +1295,7 @@
     width: 18px;
     height: 18px;
     cursor: pointer;
-    accent-color: var(--brand, #8F0F20);
+    accent-color: var(--brand, #004fab);
     border: 2px solid #cbd5e1;
     border-radius: 4px;
 }
@@ -1397,8 +1397,8 @@
 
 .btn-load-more-group {
     background: none;
-    border: 1px solid rgba(143, 15, 32, 0.3);
-    color: var(--brand, #8F0F20);
+    border: 1px solid rgba(0, 79, 171, 0.3);
+    color: var(--brand, #004fab);
     padding: 0.5rem 1.5rem;
     border-radius: 36px;
     font-size: 0.875rem;
@@ -1408,8 +1408,8 @@
 }
 
 .btn-load-more-group:hover:not(:disabled) {
-    background: rgba(143, 15, 32, 0.08);
-    border-color: rgba(143, 15, 32, 0.5);
+    background: rgba(0, 79, 171, 0.08);
+    border-color: rgba(0, 79, 171, 0.5);
 }
 
 .btn-load-more-group:disabled {
@@ -1456,9 +1456,9 @@
 }
 
 .btn-playlist-group-action {
-    background: var(--surface-weak, #F9F2F4);
-    color: var(--brand, #8F0F20);
-    border: 1px solid rgba(143, 15, 32, 0.2);
+    background: var(--surface-weak, #e8f1ff);
+    color: var(--brand, #004fab);
+    border: 1px solid rgba(0, 79, 171, 0.2);
     padding: 0.5rem 1rem;
     border-radius: 36px;
     font-size: 0.875rem;
@@ -1473,15 +1473,15 @@
 }
 
 .btn-playlist-group-action:hover:not(:disabled) {
-    background: rgba(143, 15, 32, 0.1);
-    border-color: rgba(143, 15, 32, 0.3);
+    background: rgba(0, 79, 171, 0.1);
+    border-color: rgba(0, 79, 171, 0.3);
 }
 
 .btn-playlist-group-action:disabled {
     cursor: not-allowed;
-    background: var(--surface-weak, #F9F2F4);
-    border-color: rgba(143, 15, 32, 0.15);
-    color: var(--brand, #8F0F20);
+    background: var(--surface-weak, #e8f1ff);
+    border-color: rgba(0, 79, 171, 0.15);
+    color: var(--brand, #004fab);
     opacity: 0.6;
 }
 
@@ -1540,7 +1540,7 @@
 .item-format-select:focus,
 .item-quality-select:focus,
 .item-audio-track-select:focus {
-    border-color: var(--brand, #8F0F20);
+    border-color: var(--brand, #004fab);
 }
 
 /* =========================================
@@ -1586,7 +1586,7 @@
     border-radius: 6px;
     font-size: 0.8125rem;
     font-weight: 600;
-    background: var(--brand, #8F0F20);
+    background: var(--brand, #004fab);
     color: #fff;
     border: none;
     height: 32px;
@@ -1839,3 +1839,5 @@
         display: none !important;
     }
 }
+
+

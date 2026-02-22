@@ -63,9 +63,9 @@
   left: 0;
   height: 100%;
   width: var(--progress-width, 0%);
-  background: #F8B6B6;
+  background: #cfe0ff;
   /* Primary color with lighter opacity */
-  border-right: 1px solid rgba(141, 2, 31, 0.4);
+  border-right: 1px solid rgba(0, 79, 171, 0.4);
   box-shadow: none;
   transition: width 0.4s ease-out;
   z-index: 1;
