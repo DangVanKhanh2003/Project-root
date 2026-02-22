@@ -103,6 +103,7 @@
     border-radius: 28px;
     /* Slightly larger radius */
     padding: 32px;
+    padding-bottom: 5px !important;
     /* Increased padding as requested (was 8px) */
     /* Softer, spread out shadow */
     width: 100%;

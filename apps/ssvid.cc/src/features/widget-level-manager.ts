@@ -71,7 +71,7 @@ function ensureMultiPlaylistBannerWrapper(host: HTMLElement): HTMLElement {
 
     wrapper = document.createElement('div');
     wrapper.id = MULTI_PLAYLIST_BANNER_WRAPPER_ID;
-    wrapper.style.marginTop = '16px';
+    wrapper.style.marginTop = '50px';
     wrapper.style.width = '100%';
     host.appendChild(wrapper);
 
