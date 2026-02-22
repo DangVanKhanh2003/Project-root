@@ -11,9 +11,14 @@ import {
     showTrustpilotWidget,
     hideTrustpilotWidget
 } from './trustpilot/trustpilot-widget';
+import {
+    showTipMessageWidget,
+    hideTipMessageWidget
+} from './tip-message/tip-message-widget';
 
 const MULTI_PLAYLIST_BANNER_WRAPPER_ID = 'multi-playlist-banner-wrapper';
 const MULTI_PLAYLIST_BANNER_PUBLIC_URL = '/assest/banner/multi-playlist-banner.js';
+const TIP_MESSAGE_LINK_URL = 'https://ko-fi.com/ssvid';
 
 type MultiPlaylistBannerModule = {
     initMultiPlaylistBanner: (
@@ -32,6 +37,10 @@ let multiPlaylistBannerShowTimeoutId: ReturnType<typeof setTimeout> | null = nul
 
 const MULTI_PLAYLIST_BANNER_RETRY_DELAY_MS = 250;
 const MULTI_PLAYLIST_BANNER_MAX_RETRIES = 20;
+
+function getHeroCard(): HTMLElement | null {
+    return document.querySelector('.hero-card') as HTMLElement | null;
+}
 
 function loadMultiPlaylistBannerModule(): Promise<MultiPlaylistBannerModule> {
     if (!multiPlaylistBannerModulePromise) {
@@ -79,7 +88,7 @@ function buildBannerLinkOptions() {
 }
 
 function tryShowMultiPlaylistBannerWidget(retryCount = 0): void {
-    const heroCard = document.querySelector('.hero-card') as HTMLElement | null;
+    const heroCard = getHeroCard();
     if (!heroCard) {
         if (retryCount < MULTI_PLAYLIST_BANNER_MAX_RETRIES) {
             multiPlaylistBannerShowTimeoutId = setTimeout(() => {
@@ -245,6 +254,7 @@ function resolveState(forceRefresh = false): WidgetState {
  */
 export function onAfterSubmit(): void {
     showTrustpilotWidget();
+    showTipMessageWidget({ url: TIP_MESSAGE_LINK_URL });
     showMultiPlaylistBannerWidget();
 }
 
@@ -262,6 +272,7 @@ export function onAfterDownload(): void {
  */
 export function onReset(): void {
     hideTrustpilotWidget();
+    hideTipMessageWidget();
     hideMultiPlaylistBannerWidget();
 }
 
@@ -271,5 +282,6 @@ export function onReset(): void {
  */
 export function onDownloadFailed(): void {
     hideTrustpilotWidget();
+    hideTipMessageWidget();
     hideMultiPlaylistBannerWidget();
 }
