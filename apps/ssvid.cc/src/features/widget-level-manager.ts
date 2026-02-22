@@ -12,6 +12,121 @@ import {
     hideTrustpilotWidget
 } from './trustpilot/trustpilot-widget';
 
+const MULTI_PLAYLIST_BANNER_WRAPPER_ID = 'multi-playlist-banner-wrapper';
+const MULTI_PLAYLIST_BANNER_PUBLIC_URL = '/assest/banner/multi-playlist-banner.js';
+
+type MultiPlaylistBannerModule = {
+    initMultiPlaylistBanner: (
+        target: string | HTMLElement,
+        options?: {
+            multiPath?: string;
+            playlistPath?: string;
+            multiParams?: Record<string, string>;
+            playlistParams?: Record<string, string>;
+        }
+    ) => HTMLElement | null;
+};
+
+let multiPlaylistBannerModulePromise: Promise<MultiPlaylistBannerModule> | null = null;
+let multiPlaylistBannerShowTimeoutId: ReturnType<typeof setTimeout> | null = null;
+
+const MULTI_PLAYLIST_BANNER_RETRY_DELAY_MS = 250;
+const MULTI_PLAYLIST_BANNER_MAX_RETRIES = 20;
+
+function loadMultiPlaylistBannerModule(): Promise<MultiPlaylistBannerModule> {
+    if (!multiPlaylistBannerModulePromise) {
+        multiPlaylistBannerModulePromise = fetch(MULTI_PLAYLIST_BANNER_PUBLIC_URL)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Failed to load multi-playlist banner module');
+                }
+                return response.text();
+            })
+            .then((code) => {
+                const blob = new Blob([code], { type: 'text/javascript' });
+                const blobUrl = URL.createObjectURL(blob);
+
+                return import(/* @vite-ignore */ blobUrl)
+                    .then((module) => module as MultiPlaylistBannerModule)
+                    .finally(() => {
+                        URL.revokeObjectURL(blobUrl);
+                    });
+            });
+    }
+    return multiPlaylistBannerModulePromise;
+}
+
+function ensureMultiPlaylistBannerWrapper(host: HTMLElement): HTMLElement {
+    let wrapper = document.getElementById(MULTI_PLAYLIST_BANNER_WRAPPER_ID) as HTMLElement | null;
+    if (wrapper) return wrapper;
+
+    wrapper = document.createElement('div');
+    wrapper.id = MULTI_PLAYLIST_BANNER_WRAPPER_ID;
+    wrapper.style.marginTop = '16px';
+    wrapper.style.width = '100%';
+    host.appendChild(wrapper);
+
+    return wrapper;
+}
+
+function buildBannerLinkOptions() {
+    return {
+        multiPath: '/youtube-multi-downloader',
+        playlistPath: '/download-mp3-youtube-playlist',
+        multiParams: {},
+        playlistParams: {}
+    };
+}
+
+function tryShowMultiPlaylistBannerWidget(retryCount = 0): void {
+    const heroCard = document.querySelector('.hero-card') as HTMLElement | null;
+    if (!heroCard) {
+        if (retryCount < MULTI_PLAYLIST_BANNER_MAX_RETRIES) {
+            multiPlaylistBannerShowTimeoutId = setTimeout(() => {
+                tryShowMultiPlaylistBannerWidget(retryCount + 1);
+            }, MULTI_PLAYLIST_BANNER_RETRY_DELAY_MS);
+        }
+        return;
+    }
+
+    const host = heroCard.parentElement || heroCard;
+    const wrapper = ensureMultiPlaylistBannerWrapper(host);
+    if (!wrapper.parentElement || wrapper.previousElementSibling !== heroCard) {
+        heroCard.insertAdjacentElement('afterend', wrapper);
+    }
+
+    wrapper.innerHTML = '';
+    wrapper.style.display = '';
+
+    loadMultiPlaylistBannerModule()
+        .then(({ initMultiPlaylistBanner }) => {
+            initMultiPlaylistBanner(wrapper, buildBannerLinkOptions());
+        })
+        .catch(() => {
+            // Cleanup wrapper if module load fails
+            wrapper.remove();
+        });
+}
+
+function showMultiPlaylistBannerWidget(): void {
+    if (multiPlaylistBannerShowTimeoutId) {
+        clearTimeout(multiPlaylistBannerShowTimeoutId);
+        multiPlaylistBannerShowTimeoutId = null;
+    }
+
+    tryShowMultiPlaylistBannerWidget();
+}
+
+function hideMultiPlaylistBannerWidget(): void {
+    if (multiPlaylistBannerShowTimeoutId) {
+        clearTimeout(multiPlaylistBannerShowTimeoutId);
+        multiPlaylistBannerShowTimeoutId = null;
+    }
+
+    const wrapper = document.getElementById(MULTI_PLAYLIST_BANNER_WRAPPER_ID);
+    if (wrapper) wrapper.remove();
+}
+
 // ============================================================
 // CONFIGURATION CONSTANTS
 // ============================================================
@@ -130,6 +245,7 @@ function resolveState(forceRefresh = false): WidgetState {
  */
 export function onAfterSubmit(): void {
     showTrustpilotWidget();
+    showMultiPlaylistBannerWidget();
 }
 
 /**
@@ -146,6 +262,7 @@ export function onAfterDownload(): void {
  */
 export function onReset(): void {
     hideTrustpilotWidget();
+    hideMultiPlaylistBannerWidget();
 }
 
 /**
@@ -154,4 +271,5 @@ export function onReset(): void {
  */
 export function onDownloadFailed(): void {
     hideTrustpilotWidget();
+    hideMultiPlaylistBannerWidget();
 }
