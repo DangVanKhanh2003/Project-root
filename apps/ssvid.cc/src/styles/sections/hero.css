@@ -22,7 +22,7 @@
     width: 100%;
     height: 300px;
     /* Fixed height for the red area */
-    background-color: var(--primary-color);
+    background-color: var(--background-hero-section);
     /* Red */
     z-index: -1;
 }
