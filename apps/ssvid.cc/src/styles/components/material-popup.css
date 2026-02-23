@@ -60,7 +60,7 @@
 /* Typography */
 .m3-dialog-title {
     font-size: 26px; /* Slightly smaller title */
-    line-height: 1.2;
+    line-height: 1;
     font-weight: 700;
     color: #111827;
     margin: 0 0 12px;
@@ -74,7 +74,7 @@
 
 .m3-dialog-message {
     font-size: 15px; /* Slightly smaller message */
-    line-height: 1.5;
+    line-height: 1;
     letter-spacing: 0.1px;
     color: #4b5563;
     text-align: center;

@@ -55,7 +55,7 @@
 .content-col p {
     margin-bottom: 0;
     color: #4b5563;
-    line-height: 1.7;
+    line-height: 1;
 }
 
 /* =========================================
@@ -569,7 +569,7 @@
     background: #fff7ed;
     color: #9a3412;
     font-size: 0.8rem;
-    line-height: 1.2;
+    line-height: 1;
 }
 
 .multi-audio-language-warning svg {
@@ -853,7 +853,7 @@
     transition: all 0.2s ease;
     border: none;
     text-decoration: none;
-    line-height: 1.5;
+    line-height: 1;
 }
 
 .btn-primary {

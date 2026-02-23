@@ -78,7 +78,7 @@ const BANNER_STYLES = `
     font-size: 1.25rem;
     font-weight: 800;
     margin-bottom: 0.5rem;
-    line-height: 1.25;
+    line-height: 1;
     color: #0f172a;
   }
 
@@ -96,7 +96,7 @@ const BANNER_STYLES = `
     color: #475569;
     font-size: 0.875rem;
     font-weight: 500;
-    line-height: 1.6;
+    line-height: 1;
     margin-bottom: 1.25rem;
     max-width: 28rem;
   }
@@ -291,7 +291,7 @@ const BANNER_STYLES = `
   .mp-banner-card-subtitle {
     font-size: 0.75rem;
     font-weight: 500;
-    line-height: 1.4;
+    line-height: 1;
   }
 
   .mp-banner-card-white .mp-banner-card-subtitle {
