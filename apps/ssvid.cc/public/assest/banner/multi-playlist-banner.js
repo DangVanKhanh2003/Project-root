@@ -228,6 +228,7 @@ const BANNER_STYLES = `
     padding: 0.75rem;
     border-radius: 0.5rem;
     flex-shrink: 0;
+    line-height: 1;
     transition: background-color 0.3s ease;
   }
 
@@ -304,6 +305,7 @@ const BANNER_STYLES = `
   .mp-banner-card-arrow {
     padding: 0.375rem;
     border-radius: 9999px;
+    line-height: 1;
     transition: background-color 0.3s ease;
   }
 
