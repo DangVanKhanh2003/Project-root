@@ -1,0 +1,126 @@
+{
+  "seo": {
+    "title": "SSVID YouTube 플레이리스트 MP3 다운로드 (광고 없음)",
+    "description": "YouTube 전체 플레이리스트를 MP3로 무료 다운로드 (광고 없음).",
+    "schemaName": "SSVID MP3 YouTube 플레이리스트 다운로더",
+    "schemaDescription": "하나의 링크로 YouTube 플레이리스트 전체를 MP3로 변환 및 다운로드.",
+    "ogTitle": "SSVID YouTube 플레이리스트 MP3 다운로드 (광고 없음)",
+    "ogDescription": "YouTube 플레이리스트를 MP3로 무료 변환 및 다운로드. 광고 없음, 제한 없음."
+  },
+  "defaultFormat": "mp3",
+  "hero": {
+    "title": "SSVID MP3 YouTube 플레이리스트 다운로더 (광고 없음)",
+    "subtitle": "하나의 링크로 YouTube 플레이리스트 전체를 MP3로 다운로드"
+  },
+  "form": {
+    "title": "MP3 YouTube 플레이리스트 다운로더",
+    "placeholder": "여기에 플레이리스트 URL을 붙여넣으세요...",
+    "convertButton": "변환"
+  },
+  "overview": {
+    "howTo": {
+      "title": "YouTube 플레이리스트에서 MP3 다운로드 방법",
+      "steps": [
+        {
+          "number": "1",
+          "title": "링크 복사",
+          "description": "다운로드하려는 YouTube 플레이리스트의 URL을 복사합니다."
+        },
+        {
+          "number": "2",
+          "title": "플레이리스트 붙여넣기",
+          "description": "플레이리스트 링크를 SSVID에 붙여넣습니다."
+        },
+        {
+          "number": "3",
+          "title": "MP3 품질 선택",
+          "description": "MP3 형식과 원하는 오디오 품질을 선택합니다."
+        },
+        {
+          "number": "4",
+          "title": "다운로드",
+          "description": "다운로드를 클릭하여 전체 플레이리스트를 저장합니다."
+        }
+      ]
+    }
+  },
+  "content": {
+    "intro": {
+      "title": "SSVID MP3 YouTube 플레이리스트 다운로더란?",
+      "description": "SSVID는 <strong>YouTube 플레이리스트 전체를 MP3로 다운로드</strong>할 수 있는 무료 온라인 도구입니다. 영상을 하나씩 변환할 필요 없이, 하나의 플레이리스트 링크로 모든 오디오 트랙을 한 번에 추출할 수 있습니다."
+    },
+    "columns": [
+      {
+        "title": "YouTube 플레이리스트를 MP3로 다운로드",
+        "description": "1. 플레이리스트 URL 복사.<br>2. SSVID에 링크 붙여넣기.<br>3. MP3 및 오디오 품질 선택.<br>4. 다운로드하여 전체 저장."
+      },
+      {
+        "title": "데스크톱 및 모바일 다운로드",
+        "description": "SSVID는 기기에 맞게 자동으로 최적화됩니다. <strong>데스크톱</strong>에서는 <strong>전체 MP3 플레이리스트를 하나의 ZIP 파일로 다운로드</strong>할 수 있습니다. <strong>모바일</strong>에서는 MP3 파일이 <strong>개별적으로</strong> 다운로드됩니다."
+      }
+    ],
+    "whyDownload": {
+      "title": "왜 YouTube 플레이리스트를 MP3로 다운로드해야 하나요?",
+      "description": "MP3는 가볍고 대부분의 기기에서 지원되는 오디오 형식입니다. 오디오만 필요한 경우, <strong>YouTube 플레이리스트를 MP3로 다운로드</strong>하면 저장 공간을 절약하고 오프라인 재생이 더욱 편리해집니다."
+    },
+    "quality": {
+      "title": "지원되는 MP3 음질",
+      "description": "SSVID는 <strong>128kbps</strong>, <strong>192kbps</strong>, <strong>320kbps</strong> 등 다양한 MP3 음질을 지원합니다. 파일 크기와 음질 사이에서 원하는 균형을 선택하세요."
+    },
+    "comparison": {
+      "title": "플레이리스트 다운로드 vs 멀티 다운로드",
+      "sections": [
+        {
+          "title": "MP3 YouTube 플레이리스트 다운로드",
+          "description": "<strong>하나의 플레이리스트 링크</strong>가 있을 때 가장 적합합니다. 링크를 붙여넣으면 모든 영상을 자동으로 MP3로 다운로드합니다."
+        },
+        {
+          "title": "YouTube Multi Download",
+          "description": "같은 플레이리스트에 속하지 않은 <strong>여러 개의 개별 영상 링크</strong>가 있을 때 사용합니다. <strong>MP3 및 MP4</strong> 형식을 지원합니다. 여러 링크가 있다면 <a href=\"/youtube-multi-downloader\" title=\"SSVID YouTube Multi Download\"><strong>YouTube Multi Download with SSVID</strong></a>를 이용하세요."
+        }
+      ]
+    },
+    "useCases": {
+      "title": "SSVID 플레이리스트 다운로더를 사용해야 할 때",
+      "items": [
+        {
+          "title": "음악 앨범 다운로드",
+          "description": "YouTube 음악 앨범이나 큐레이션된 플레이리스트를 MP3로 변환하여 오프라인에서 감상하세요."
+        },
+        {
+          "title": "교육 및 팟캐스트 플레이리스트",
+          "description": "강의나 팟캐스트 플레이리스트를 MP3 파일로 변환하여 언제든지 들을 수 있습니다."
+        },
+        {
+          "title": "무제한 플레이리스트 다운로드",
+          "description": "SSVID는 <strong>무제한 YouTube 플레이리스트 다운로드</strong>를 지원하며 광고나 제한이 없습니다."
+        }
+      ]
+    }
+  },
+  "faqs": {
+    "title": "자주 묻는 질문",
+    "items": [
+      {
+        "question": "플레이리스트 크기에 제한이 있나요?",
+        "answer": "아니요. SSVID는 영상 개수 제한 없이 YouTube 플레이리스트를 MP3로 다운로드할 수 있습니다."
+      },
+      {
+        "question": "소프트웨어를 설치해야 하나요?",
+        "answer": "아니요. SSVID는 브라우저에서 완전히 온라인으로 작동합니다."
+      },
+      {
+        "question": "SSVID는 무료이며 광고가 없나요?",
+        "answer": "네. SSVID는 무료이며 광고 없는 다운로드 경험을 제공합니다."
+      },
+      {
+        "question": "휴대폰에서도 MP3를 다운로드할 수 있나요?",
+        "answer": "네. 모바일에서는 MP3 파일이 개별적으로 다운로드됩니다."
+      },
+      {
+        "question": "플레이리스트 다운로드와 멀티 다운로드의 차이는 무엇인가요?",
+        "answer": "플레이리스트 다운로드는 하나의 플레이리스트 링크를 사용하고, 멀티 다운로드는 여러 개의 개별 영상 링크를 사용합니다."
+      }
+    ]
+  }
+}

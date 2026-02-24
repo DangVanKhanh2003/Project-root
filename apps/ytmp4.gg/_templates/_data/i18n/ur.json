@@ -1,0 +1,58 @@
+{
+  "nav": {
+    "home": "صفحہ اول",
+    "youtubeToMp3": "YouTube to MP3",
+    "youtubeToMp4": "YouTube to MP4",
+    "youtubeShorts": "YouTube Shorts",
+    "about": "ہمارے بارے میں"
+  },
+  "langSelector": {
+    "buttonText": "UR",
+    "buttonLabel": "زبان",
+    "currentLangFull": "اردو"
+  },
+  "drawer": {
+    "logoText": "ytmp4.gg",
+    "links": {
+      "home": "صفحہ اول",
+      "youtubeToMp3": "یوٹیوب سے MP3",
+      "youtubeToMp4": "یوٹیوب سے MP4",
+      "youtubeShorts": "یوٹیوب شارٹس",
+      "about": "ہمارے بارے में",
+      "faq": "اکثر پوچھے گئے سوالات",
+      "contact": "رابطہ کریں",
+      "terms": "Terms of Use",
+      "privacy": "رازداری",
+      "dmca": "DMCA"
+    }
+  },
+  "hero": {
+    "placeholder": "یوٹیوب کا لنک یہاں چسپاں کریں...",
+    "pasteBtn": "چسپاں کریں",
+    "clearBtn": "صاف کریں",
+    "convertBtn": "تبدیل کریں",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "Audio track",
+    "searchPlaceholder": "تلاش کریں..."
+  },
+  "overview": {
+    "badge": "تیز اور مفت"
+  },
+  "footer": {
+    "linksRow1": {
+      "youtubeToMp3": "یوٹیوب سے MP3",
+      "youtubeToMp4": "یوٹیوب سے MP4",
+      "youtubeShorts": "یوٹیوب شارٹس"
+    },
+    "linksRow2": {
+      "about": "ہمارے بارے में",
+      "contact": "رابطہ کریں",
+      "terms": "Terms of Use",
+      "privacyPolicy": "رازداری کی پالیسی",
+      "dmca": "DMCA",
+      "faq": "اکثر پوچھے گئے سوالات"
+    },
+    "copyright": "© 2026 SSVid. جملہ حقوق محفوظ ہیں."
+  }
+}

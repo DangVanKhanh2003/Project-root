@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DMCA / Copyright Claims – SSVID</title>
+    <meta name="description"
+        content="SSVID respects copyright laws. Learn how to submit a DMCA or copyright claim request if you believe your rights have been infringed.">
+    <link rel="canonical" href="https://ytmp4.gg/dmca">
+
+    <!-- Critical: Read format preference before render to prevent FOUC (SSVID) -->
+    <script>
+        (function () { var f = 'mp4'; try { var p = JSON.parse(localStorage.getItem('ssvid_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat } catch (e) { } document.documentElement.dataset.format = f; document.write('<style>html[data-format="mp3"] .quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4{display:block!important}</style>') })()
+    </script>
+
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header class="site-header ">
+        <div class="container">
+            <div class="header-inner">
+                <a href="/" class="header-logo" aria-label="SSVid home">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 58 58" fill="none"
+                        aria-hidden="true" focusable="false">
+                        <rect x="4.1676" y="0" width="53.8323" height="53.8323" rx="8" ry="8" fill="#CB0E35" />
+                        <rect x="0" y="4.16766" width="53.8323" height="53.8323" rx="8" ry="8" fill="white" />
+                        <path
+                            d="M39.2054 46.1916H14.6268C10.3869 46.1866 6.95113 42.7687 6.94604 38.5509V23.2695C6.95113 19.0517 10.3869 15.6338 14.6268 15.6287H39.2054C43.4453 15.6338 46.8811 19.0517 46.8862 23.2695V38.5509C46.8811 42.7687 43.4453 46.1866 39.2054 46.1916ZM14.6268 18.685C12.0816 18.685 10.0184 20.7375 10.0184 23.2695V38.5509C10.0184 41.0828 12.0816 43.1353 14.6268 43.1353H39.2054C41.7506 43.1353 43.8138 41.0828 43.8138 38.5509V23.2695C43.8138 20.7375 41.7506 18.685 39.2054 18.685H14.6268Z"
+                            fill="#8D021F" />
+                        <path
+                            d="M24.0174 38.965C22.3238 38.9575 20.9527 37.5935 20.9451 35.9087V25.9162C20.9451 24.2283 22.3207 22.8599 24.0175 22.86C24.5568 22.86 25.0866 23.0013 25.5535 23.2694L34.2467 28.2634C35.7161 29.1074 36.2195 30.9766 35.371 32.4384C35.1014 32.903 34.7137 33.2886 34.2467 33.5569L25.5535 38.5509C25.0872 38.8214 24.5572 38.9642 24.0174 38.965ZM32.712 30.9102L24.0174 25.9162V35.9041L32.712 30.9102Z"
+                            fill="#8D021F" />
+                    </svg>
+                    <span class="header-logo-text">ytmp4.gg</span>
+                </a>
+                <nav class="header-nav" aria-label="Primary">
+                    <a href="/" class="header-link">Home</a>
+                    <a href="/about" class="header-link">About</a>
+                </nav>
+                <button id="mobile-menu-btn" class="mobile-menu-btn" type="button" aria-label="Open menu">
+                    <span class="mobile-menu-bars" aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+
+    </header>
+
+    <!-- MOBILE DRAWER (Kept if needed, but trigger is gone with header. Hiding for now effectively) -->
+    <div id="mobile-drawer" class="mobile-drawer" hidden>
+        <div id="mobile-drawer-content" class="drawer-content" role="dialog" aria-modal="true" aria-label="Mobile menu">
+            <div class="drawer-header">
+                <a href="/" class="drawer-logo" aria-label="SSVid home">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 58 58" fill="none"
+                        aria-hidden="true" focusable="false">
+                        <rect x="4.1676" y="0" width="53.8323" height="53.8323" rx="8" ry="8" fill="#CB0E35" />
+                        <rect x="0" y="4.16766" width="53.8323" height="53.8323" rx="8" ry="8" fill="white" />
+                        <path
+                            d="M39.2054 46.1916H14.6268C10.3869 46.1866 6.95113 42.7687 6.94604 38.5509V23.2695C6.95113 19.0517 10.3869 15.6338 14.6268 15.6287H39.2054C43.4453 15.6338 46.8811 19.0517 46.8862 23.2695V38.5509C46.8811 42.7687 43.4453 46.1866 39.2054 46.1916ZM14.6268 18.685C12.0816 18.685 10.0184 20.7375 10.0184 23.2695V38.5509C10.0184 41.0828 12.0816 43.1353 14.6268 43.1353H39.2054C41.7506 43.1353 43.8138 41.0828 43.8138 38.5509V23.2695C43.8138 20.7375 41.7506 18.685 39.2054 18.685H14.6268Z"
+                            fill="#8D021F" />
+                        <path
+                            d="M24.0174 38.965C22.3238 38.9575 20.9527 37.5935 20.9451 35.9087V25.9162C20.9451 24.2283 22.3207 22.8599 24.0175 22.86C24.5568 22.86 25.0866 23.0013 25.5535 23.2694L34.2467 28.2634C35.7161 29.1074 36.2195 30.9766 35.371 32.4384C35.1014 32.903 34.7137 33.2886 34.2467 33.5569L25.5535 38.5509C25.0872 38.8214 24.5572 38.9642 24.0174 38.965ZM32.712 30.9102L24.0174 25.9162V35.9041L32.712 30.9102Z"
+                            fill="#8D021F" />
+                    </svg>
+                    <span class="drawer-logo-text">ytmp4.gg</span>
+                </a>
+                <button id="close-drawer-btn" class="drawer-close" type="button" aria-label="Close menu">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="drawer-scroll">
+                <nav class="drawer-nav" aria-label="Mobile">
+                    <a href="/" class="drawer-link">Home</a>
+                    <a href="/download-youtube-mp3" class="drawer-link">Download youtube Mp3</a>
+                    <a href="/download-youtube-mp4" class="drawer-link">Download youtube Mp4</a>
+                    <a href="/download-youtube-shorts" class="drawer-link">Download Youtube Shorts</a>
+                    <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
+                    <a href="/about" class="drawer-link">About</a>
+                    <a href="/faq" class="drawer-link">FAQ</a>
+                    <a href="/contact" class="drawer-link">Contact</a>
+                    <a href="/terms-of-use" class="drawer-link">Terms of Use</a>
+                    <a href="/policy" class="drawer-link">Privacy</a>
+                    <a href="/dmca" class="drawer-link">DMCA</a>
+                </nav>
+
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <main>
+
+        <section class="content-section content-section--white">
+            <div class="container">
+                <div class="page-header">
+                    <h1 class="page-title">DMCA / Copyright Claims</h1>
+                    <p class="page-subtitle">Copyright protection and claim procedures</p>
+                </div>
+                <div style="margin-bottom: 32px;"></div>
+                <h2 class="titles">Copyright Respect</h2>
+                <p>SSVID respects the intellectual property rights of content owners and complies with applicable
+                    copyright laws. We expect our users to do the same when using our services.</p>
+                <br>
+                <h2 class="titles">Role of SSVID</h2>
+                <p>SSVID is a technical tool that processes user-submitted links. We do not host, upload, store, or
+                    distribute any video or audio content. All content accessed through SSVID is provided by third-party
+                    platforms and remains under their control.</p>
+                <br>
+                <h2 class="titles">Filing a DMCA Notice</h2>
+                <p>If you are a copyright owner or an authorized representative and believe that your copyrighted work
+                    has been infringed through the use of SSVID, you may submit a copyright claim by providing the
+                    following information:</p>
+                <br>
+                <p>• Identification of the copyrighted work you claim has been infringed.<br>• Identification of the
+                    material or link that you believe is infringing.<br>• Your full name and contact information.<br>• A
+                    statement that you have a good-faith belief that the disputed use is not authorized by the copyright
+                    owner, its agent, or the law.<br>• A statement that the information in your notice is accurate and
+                    that you are authorized to act on behalf of the copyright owner.<br>• A physical or electronic
+                    signature of the copyright owner or authorized representative.</p>
+                <br>
+                <h2 class="titles">How to Submit a Claim</h2>
+                <p>Please send all DMCA or copyright-related requests via email to:<br><strong>Email:</strong> <a
+                        href="mailto:contact.ssvidcc@gmail.com" rel="nofollow">contact.ssvidcc@gmail.com</a></p>
+                <br>
+                <h2 class="titles">Review Process</h2>
+                <p>Upon receiving a valid copyright complaint, SSVID will review the request and take appropriate action
+                    when required. Incomplete or invalid notices may not receive a response.</p>
+                <br>
+                <h2 class="titles">No Content Storage</h2>
+                <p>Because SSVID does not store or control any content, our actions may be limited to restricting access
+                    to specific processing features when applicable.</p>
+                <br>
+                <h2 class="titles">Changes to This Policy</h2>
+                <p>SSVID reserves the right to update this DMCA / Copyright Claims policy at any time. Any changes will
+                    be effective immediately upon publication on this page.</p>
+                <br>
+                <h2 class="titles">Contact Information</h2>
+                <p>For DMCA or copyright-related questions, please contact us at:<br><strong>Email:</strong> <a
+                        href="mailto:contact.ssvidcc@gmail.com" rel="nofollow">contact.ssvidcc@gmail.com</a></p>
+                <br>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links"
+                style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
+                <a href="/download-youtube-mp3" style="color: inherit; text-decoration: none;">Download youtube Mp3</a>
+                <a href="/download-youtube-mp4" style="color: inherit; text-decoration: none;">Download youtube Mp4</a>
+                <a href="/download-youtube-shorts" style="color: inherit; text-decoration: none;">Download Youtube
+                    Shorts</a>
+            </div>
+            <div class="footer-links"
+                style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
+                <a href="/about" style="color: inherit; text-decoration: none;">About</a>
+                <a href="/contact" style="color: inherit; text-decoration: none;">Contact</a>
+                <a href="/terms-of-use" style="color: inherit; text-decoration: none;">Terms of Use</a>
+                <a href="/policy" style="color: inherit; text-decoration: none;">Privacy Policy</a>
+                <a href="/dmca" style="color: inherit; text-decoration: none;">DMCA</a>
+                <a href="/faq" style="color: inherit; text-decoration: none;">FAQ</a>
+            </div>
+            <div class="copyright">© 2026 SSVid. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>
