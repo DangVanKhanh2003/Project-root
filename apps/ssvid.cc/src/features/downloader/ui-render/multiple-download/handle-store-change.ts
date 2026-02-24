@@ -258,9 +258,9 @@ function createGroupElement(groupId: string, groupTitle: string): HTMLElement {
         </div>
         <div class="group-items">
             <div class="group-empty" style="display: none;">No items in this tab</div>
-            <div class="group-load-more" style="display: none;">
-                <button type="button" class="btn-load-more-group" data-action="load-more-group" data-group-id="${groupId}">Load more</button>
-            </div>
+        </div>
+        <div class="group-load-more" style="display: none;">
+            <button type="button" class="btn-load-more-group" data-action="load-more-group" data-group-id="${groupId}">Load more</button>
         </div>
     `;
     return el;
