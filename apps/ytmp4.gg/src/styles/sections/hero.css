@@ -22,7 +22,7 @@
     width: 100%;
     height: 300px;
     /* Fixed height for the red area */
-    background-color: var(--background-hero-section);
+    background-color: var(--primary-color);
     /* Red */
     z-index: -1;
 }
@@ -68,11 +68,7 @@
 }
 
 .logo-hero svg rect[fill="#CB0E35"] {
-    fill: #004fab;
-}
-
-.logo-hero svg path[fill="#8D021F"] {
-    fill: #003f8a;
+    fill: #CB0E35;
 }
 
 .logo-text-hero {

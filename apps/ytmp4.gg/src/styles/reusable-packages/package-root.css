@@ -152,14 +152,14 @@
   --pkg-color-gray-900: #030014;   /* Dark Nebula bg */
 
   /* Primary Color System - Blue Theme */
-  --pkg-color-primary: #004fab;                    /* Primary brand color */
+  --pkg-color-primary: #D4FF00;                    /* Primary brand color */
   --pkg-color-on-primary: #ffffff;                 /* White text on primary */
-  --pkg-color-primary-container: rgba(0, 79, 171, 0.1);  /* Primary tint container */
-  --pkg-color-on-primary-container: #003f8a;       /* Dark blue text on container */
+  --pkg-color-primary-container: rgba(139, 92, 246, 0.1);  /* Primary tint container */
+  --pkg-color-on-primary-container: #c4b5fd;       /* Dark blue text on container */
 
   /* Accent Colors - Blue Scale */
-  --pkg-color-accent: #003f8a;                     /* Darker blue for accents */
-  --pkg-color-accent-bright: #2563eb;              /* Bright blue for highlights */
+  --pkg-color-accent: #7c3aed;                     /* Darker blue for accents */
+  --pkg-color-accent-bright: #3b82f6;              /* Bright blue for highlights */
 
   /* Surface Color System - Dark Glassmorphism */
   --pkg-color-surface: var(--bg-card, rgba(255, 255, 255, 0.03));          /* Dark glass surface */
@@ -340,9 +340,9 @@
   --pkg-search-results-duration-color: var(--pkg-color-white);
 
   /* Search Results Retry Button */
-  --pkg-search-results-retry-bg: var(--pkg-color-error);
+  --pkg-search-results-retry-bg: var(--pkg-color-primary);
   --pkg-search-results-retry-color: var(--pkg-color-white);
-  --pkg-search-results-retry-hover-bg: #dc2626;
+  --pkg-search-results-retry-hover-bg: var(--pkg-color-accent);
 
   /* Search Results Animation */
   --pkg-search-results-transition-duration: var(--pkg-duration-short4);
@@ -357,4 +357,3 @@
   /* Search Results Typography - Light Theme */
   --pkg-search-results-title-color: #000000;
 }
-

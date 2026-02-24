@@ -38,9 +38,9 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background-color: rgba(217, 232, 255, 0.6);
+    background-color: rgba(255, 216, 228, 0.5);
     /* bg-secondary-container/50 */
-    color: #003f8a;
+    color: #5D0014;
     /* text-secondary-onContainer (Darker Red/Pink) */
     padding: 6px 16px;
     border-radius: 8px;
@@ -114,7 +114,7 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: #004fab;
+    background-color: #8D021F;
     /* Primary */
     color: #FFFFFF;
     /* On Primary */
@@ -136,7 +136,7 @@
     top: 40px;
     bottom: 0;
     width: 2px;
-    background-color: #cfe0ff;
+    background-color: #FFD8E4;
     /* Muted Line */
 }
 
