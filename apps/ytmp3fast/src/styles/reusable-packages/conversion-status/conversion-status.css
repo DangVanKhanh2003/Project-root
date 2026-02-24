@@ -61,7 +61,7 @@
   background: #8abdff;
   border-right: 1px solid #1d4ed8;
   box-shadow: none;
-  transition: width 0.5s ease-out;
+  transition: width 0.1s ease;
   z-index: 1;
 }
 

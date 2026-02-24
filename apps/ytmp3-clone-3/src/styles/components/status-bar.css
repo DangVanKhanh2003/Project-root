@@ -29,7 +29,7 @@
     /* Purple tint */
     border-right: 1px solid rgba(139, 92, 246, 0.4);
     box-shadow: none;
-    transition: width 0.5s ease-out;
+    transition: width 0.1s ease;
     z-index: 1;
 }
 

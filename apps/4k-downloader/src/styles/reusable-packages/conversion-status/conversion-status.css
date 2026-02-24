@@ -61,7 +61,7 @@
   background: color-mix(in srgb, var(--color-accent) 35%, transparent);
   border-right: 1px solid color-mix(in srgb, var(--color-accent) 60%, transparent);
   box-shadow: none;
-  transition: width 0.5s ease-out;
+  transition: width 0.1s ease;
   z-index: 1;
 }
 
