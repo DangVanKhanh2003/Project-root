@@ -158,6 +158,24 @@ function syncInputToSlider(inputId: 'trim-start' | 'trim-end'): void {
     }
 }
 
+function nudgeTimeInput(inputId: 'trim-start' | 'trim-end', deltaSeconds: number): void {
+    const input = document.getElementById(inputId) as HTMLInputElement | null;
+    if (!input) return;
+
+    const fallback = inputId === 'trim-start' ? startTime : endTime;
+    const base = parseTime(input.value);
+    const current = base === null ? fallback : base;
+    const minBound = inputId === 'trim-start' ? 0 : Math.max(0, startTime);
+    const maxBoundRaw = inputId === 'trim-start'
+        ? (videoDuration > 0 ? Math.min(videoDuration, endTime) : endTime)
+        : (videoDuration > 0 ? videoDuration : Number.POSITIVE_INFINITY);
+    const maxBound = Math.max(minBound, maxBoundRaw);
+    const next = Math.min(maxBound, Math.max(minBound, current + deltaSeconds));
+
+    input.value = formatTime(next);
+    syncInputToSlider(inputId);
+}
+
 // ==========================================
 // CDN loaders
 // ==========================================
@@ -328,6 +346,8 @@ export function initTrimController(): void {
         startInput.addEventListener('blur', () => syncInputToSlider('trim-start'));
         startInput.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') { e.preventDefault(); syncInputToSlider('trim-start'); }
+            if (e.key === 'ArrowUp') { e.preventDefault(); nudgeTimeInput('trim-start', 1); }
+            if (e.key === 'ArrowDown') { e.preventDefault(); nudgeTimeInput('trim-start', -1); }
         });
     }
 
@@ -336,6 +356,8 @@ export function initTrimController(): void {
         endInput.addEventListener('blur', () => syncInputToSlider('trim-end'));
         endInput.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') { e.preventDefault(); syncInputToSlider('trim-end'); }
+            if (e.key === 'ArrowUp') { e.preventDefault(); nudgeTimeInput('trim-end', 1); }
+            if (e.key === 'ArrowDown') { e.preventDefault(); nudgeTimeInput('trim-end', -1); }
         });
     }
 }

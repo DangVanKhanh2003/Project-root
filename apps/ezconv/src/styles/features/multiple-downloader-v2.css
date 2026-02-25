@@ -971,10 +971,27 @@
         flex: 0 0 auto;
     }
 
+    #multi-download-form.advanced-expanded-mobile .multi-format-toggle {
+        flex: 1 1 100%;
+        width: 100%;
+    }
+
+    #multi-download-form.advanced-expanded-mobile .multi-format-toggle .multi-format-btn {
+        flex: 1 1 50%;
+        text-align: center;
+    }
+
     .multi-btn-convert {
         order: 3;
         flex: 0 0 auto;
         margin-left: auto;
+    }
+
+    .multi-btn-convert.convert-below-advanced {
+        display: inline-flex;
+        width: 100%;
+        margin: 12px 0 0;
+        justify-content: center;
     }
 
     .multi-quality-select {

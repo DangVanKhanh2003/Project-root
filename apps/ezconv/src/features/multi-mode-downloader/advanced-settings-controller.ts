@@ -89,18 +89,56 @@ export function initAdvancedSettings(): void {
     // --- Advanced Settings panel toggle ---
     const toggleBtn = document.getElementById('advanced-settings-toggle');
     const panel = document.getElementById('advanced-settings-panel');
+    const convertBtn = document.getElementById('addUrlsBtn');
+    const form = document.getElementById('multi-download-form');
+    const convertOriginalParent = convertBtn?.parentElement;
+    const convertOriginalNextSibling = convertBtn?.nextSibling ?? null;
+
+    const syncConvertButtonPosition = (expanded: boolean): void => {
+        if (!panel || !convertBtn || !convertOriginalParent) return;
+
+        const isMobile = window.matchMedia('(max-width: 768px)').matches;
+        const shouldMoveBelowPanel = isMobile && expanded;
+        form?.classList.toggle('advanced-expanded-mobile', shouldMoveBelowPanel);
+
+        if (shouldMoveBelowPanel) {
+            const parent = panel.parentElement;
+            if (parent) {
+                parent.insertBefore(convertBtn, panel.nextSibling);
+                convertBtn.classList.add('convert-below-advanced');
+            }
+            return;
+        }
+
+        if (convertBtn.parentElement !== convertOriginalParent) {
+            if (convertOriginalNextSibling && convertOriginalNextSibling.parentNode === convertOriginalParent) {
+                convertOriginalParent.insertBefore(convertBtn, convertOriginalNextSibling);
+            } else {
+                convertOriginalParent.appendChild(convertBtn);
+            }
+        }
+        convertBtn.classList.remove('convert-below-advanced');
+    };
 
     if (toggleBtn && panel) {
         toggleBtn.addEventListener('click', () => {
             const expanded = toggleBtn.getAttribute('aria-expanded') === 'true';
-            toggleBtn.setAttribute('aria-expanded', String(!expanded));
+            const nextExpanded = !expanded;
+            toggleBtn.setAttribute('aria-expanded', String(nextExpanded));
             if (expanded) {
                 panel.setAttribute('hidden', '');
             } else {
                 panel.removeAttribute('hidden');
             }
+            syncConvertButtonPosition(nextExpanded);
         });
     }
+
+    syncConvertButtonPosition(false);
+    window.addEventListener('resize', () => {
+        const expanded = toggleBtn?.getAttribute('aria-expanded') === 'true';
+        syncConvertButtonPosition(expanded);
+    });
 
     // --- Playlist Mode switch ---
     const playlistSwitch = document.getElementById('playlist-mode-toggle');
