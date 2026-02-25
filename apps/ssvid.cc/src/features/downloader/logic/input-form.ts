@@ -92,6 +92,19 @@ function generateFakeYouTubeData(videoId: string, url: string): any {
     formats: {
       video: [
         {
+          quality: '2160p',
+          format: 'mp4',
+          vid: videoId,
+          type: 'VIDEO',
+          size: 'Processing...',
+          isFakeData: true,
+          extractV2Options: {
+            downloadMode: 'video',
+            videoQuality: '2160',
+            youtubeVideoContainer: 'mp4'
+          }
+        },
+        {
           quality: '1080p',
           format: 'mp4',
           vid: videoId,
