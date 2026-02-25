@@ -102,6 +102,7 @@ export class PlaylistStrategy implements RendererStrategy {
         if (format === 'mp4') {
             qualitySelect = `
                 <select class="item-quality-select" data-id="${item.id}" data-field="quality">
+                    <option value="2160p" ${quality === '2160p' ? 'selected' : ''}>4K</option>
                     <option value="1080p" ${quality === '1080p' ? 'selected' : ''}>1080p</option>
                     <option value="720p" ${quality === '720p' ? 'selected' : ''}>720p</option>
                     <option value="480p" ${quality === '480p' ? 'selected' : ''}>480p</option>
