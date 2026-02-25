@@ -96,8 +96,10 @@ async function handleBatchConvert(
         );
     }
 
-    await multiDownloadService.addUrls(rawText, settings);
-    multiDownloadService.startAllDownloads();
+    const groupId = await multiDownloadService.addUrls(rawText, settings);
+    if (groupId) {
+        multiDownloadService.startGroupDownloads(groupId);
+    }
 }
 
 async function handlePlaylistModeConvert(
@@ -107,17 +109,24 @@ async function handlePlaylistModeConvert(
     const parsed = parseYouTubeURLs(rawText);
     if (parsed.length === 0) throw new Error('No valid YouTube URLs found.');
 
-    for (const p of parsed) {
+    const tasks = parsed.map(async (p) => {
         if (p.playlistId) {
-            // Reconstruct a clean playlist URL — p.url was normalized to watch?v=...
+            // Reconstruct a clean playlist URL - p.url was normalized to watch?v=...
             // which strips the list= param, so extractPlaylistId would fail on it.
             const playlistUrl = `https://www.youtube.com/playlist?list=${p.playlistId}`;
             await multiDownloadService.addPlaylist(playlistUrl, settings);
         } else {
             await multiDownloadService.addSingleVideoAsGroup(p.url, settings);
         }
+    });
+
+    const results = await Promise.allSettled(tasks);
+    const failed = results.filter((r): r is PromiseRejectedResult => r.status === 'rejected');
+    if (failed.length > 0) {
+        const first = failed[0].reason;
+        throw new Error(first instanceof Error ? first.message : 'Failed to load one or more groups.');
     }
-    // Playlist mode: no auto-start — user chooses per-group via Convert Selected
+    // Playlist mode: no auto-start - user chooses per-group via Convert Selected
 }
 
 async function handleTrimConvert(
@@ -144,8 +153,10 @@ async function handleTrimConvert(
     // Normalize to canonical watch URL (strips playlist params)
     const normalizedUrl = normalizeURL(p.videoId);
 
-    await multiDownloadService.addUrls(normalizedUrl, trimSettings);
-    multiDownloadService.startAllDownloads();
+    const groupId = await multiDownloadService.addUrls(normalizedUrl, trimSettings);
+    if (groupId) {
+        multiDownloadService.startGroupDownloads(groupId);
+    }
 }
 
 // ==========================================
@@ -173,3 +184,4 @@ function setLoading(btn: HTMLElement, loading: boolean): void {
         btn.removeAttribute('disabled');
     }
 }
+

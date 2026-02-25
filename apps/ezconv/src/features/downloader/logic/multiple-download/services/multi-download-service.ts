@@ -17,11 +17,12 @@ export class MultiDownloadService {
     // Add URLs (batch mode)
     // ==========================================
 
-    async addUrls(rawText: string, globalSettings?: Partial<VideoItemSettings>): Promise<void> {
+    async addUrls(rawText: string, globalSettings?: Partial<VideoItemSettings>): Promise<string | null> {
         const parsed = parseYouTubeURLs(rawText);
         console.log('[MultiDownloadService] Parsed URLs:', parsed.length, parsed);
 
-        if (parsed.length === 0) return;
+        if (parsed.length === 0) return null;
+        const groupId = `multi_${Date.now()}_${Math.random().toString(36).slice(2, 6)}`;
 
         // No deduplication - accept all URLs
         console.log('[MultiDownloadService] Adding all URLs:', parsed.length);
@@ -54,12 +55,15 @@ export class MultiDownloadService {
             },
             isSelected: false,
             isDownloaded: false,
+            groupId,
+            groupTitle: 'Multiple',
         }));
 
         // Add to store (triggers 'item:added' per item)
         for (const item of newItems) {
             videoStore.addItem(item);
         }
+        videoStore.setGroupMeta(groupId, false, 'Multiple', null);
 
         // 2. Fetch metadata in parallel
         // updateMetadata auto-sets status to 'ready' when current status is 'fetching_metadata'
@@ -73,6 +77,7 @@ export class MultiDownloadService {
                 }
             }
         );
+        return groupId;
     }
 
     // ==========================================
@@ -256,8 +261,8 @@ export class MultiDownloadService {
             groupTitle: meta.title,
         }));
 
-        for (const item of skeletonItems) videoStore.addItem(item);
         videoStore.setGroupMeta(groupId, true, meta.title, meta.nextPageToken);
+        for (const item of skeletonItems) videoStore.addItem(item);
 
         try {
             const page = await fetchPlaylistPage(playlistId, savedToken);

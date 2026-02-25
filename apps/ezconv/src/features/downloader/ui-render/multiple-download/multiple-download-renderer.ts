@@ -12,6 +12,8 @@ import { MaterialPopup } from '../../../../ui-components/material-popup/material
 export class MultipleDownloadRenderer {
     private container: HTMLElement | null = null;
     private listContainer: HTMLElement | null = null;
+    private groupHostContainer: HTMLElement | null = null;
+    private groupListContainer: HTMLElement | null = null;
     private isInitialized = false;
     private isPlaylistMode: boolean = false;
     private strategy: RendererStrategy = new MultiDownloadStrategy();
@@ -37,8 +39,19 @@ export class MultipleDownloadRenderer {
             }
         }
 
+        this.groupHostContainer = document.getElementById('playlist-groups-container');
+        if (!this.groupHostContainer && this.container?.parentElement) {
+            const groupHost = document.createElement('div');
+            groupHost.id = 'playlist-groups-container';
+            groupHost.className = 'multiple-downloads-container playlist-groups-container';
+            groupHost.style.display = 'none';
+            this.container.insertAdjacentElement('afterend', groupHost);
+            this.groupHostContainer = groupHost;
+        }
+
         if (this.container) {
             this.renderStructure();
+            this.renderGroupStructure();
             this.bindEvents();
             this.subscribeToStore();
             this.isInitialized = true;
@@ -67,6 +80,26 @@ export class MultipleDownloadRenderer {
         if (this.container) this.container.style.display = 'none';
     }
 
+    private showGroups() {
+        if (this.groupHostContainer) this.groupHostContainer.style.display = 'block';
+    }
+
+    private hideGroups() {
+        if (this.groupHostContainer) this.groupHostContainer.style.display = 'none';
+    }
+
+    private prioritizeSection(section: 'group' | 'batch') {
+        if (!this.container || !this.groupHostContainer) return;
+        const parent = this.container.parentElement;
+        if (!parent || this.groupHostContainer.parentElement !== parent) return;
+
+        if (section === 'group') {
+            parent.insertBefore(this.groupHostContainer, this.container);
+        } else {
+            parent.insertBefore(this.container, this.groupHostContainer);
+        }
+    }
+
     destroy() {
         if (this.unsubscribe) {
             this.unsubscribe();
@@ -91,11 +124,19 @@ export class MultipleDownloadRenderer {
         this.listContainer = this.container.querySelector('#multi-list');
     }
 
+    private renderGroupStructure() {
+        if (!this.groupHostContainer) return;
+        this.groupHostContainer.innerHTML = `<div class="multi-download-list" id="multi-group-list"></div>`;
+        this.groupListContainer = this.groupHostContainer.querySelector('#multi-group-list');
+    }
+
     private subscribeToStore() {
-        if (!this.listContainer) return;
+        if (!this.listContainer || !this.groupListContainer) return;
 
         const handleChange = createStoreChangeHandler({
             listContainer: this.listContainer,
+            batchListContainer: this.listContainer,
+            groupListContainer: this.groupListContainer,
             strategy: this.strategy,
             // Grouped items (playlists) always use PlaylistStrategy (dropdowns).
             // Non-grouped items use PlaylistStrategy only when in explicit playlist-only mode.
@@ -108,12 +149,21 @@ export class MultipleDownloadRenderer {
         });
 
         this.unsubscribe = videoStore.subscribe((eventName, data) => {
-            // Show container when items exist
-            const count = videoStore.getCount();
-            if (count > 0) {
+            const allItems = videoStore.getAllItems();
+            const batchCount = allItems.filter(i => !i.groupId).length;
+            const groupCount = allItems.filter(i => !!i.groupId).length;
+
+            if (batchCount > 0) {
                 this.show();
-            } else if (count === 0) {
+            } else {
                 this.hide();
+            }
+            if (groupCount > 0) this.showGroups();
+            else this.hideGroups();
+
+            if (eventName === 'item:added' && data) {
+                const item = data as { groupId?: string };
+                this.prioritizeSection(item.groupId ? 'group' : 'batch');
             }
 
             handleChange(eventName, data);
@@ -160,9 +210,9 @@ export class MultipleDownloadRenderer {
 
     private bindEvents() {
         if (!this.container) return;
+        const eventRoots = [this.container, this.groupHostContainer].filter(Boolean) as HTMLElement[];
 
-        // Click delegation
-        this.container.addEventListener('click', (e) => {
+        const handleClick = (e: Event) => {
             const target = e.target as HTMLElement;
             const actionBtn = target.closest('[data-action]') as HTMLElement;
 
@@ -189,7 +239,7 @@ export class MultipleDownloadRenderer {
                     if (id) {
                         const groupElForItemGuide = actionBtn.closest('.playlist-group') as HTMLElement;
                         multiDownloadService.startDownload(id);
-                        if (groupElForItemGuide) showDownloadTabGuide(groupElForItemGuide, 50);
+                        if (groupElForItemGuide?.dataset.hasTabs === 'true') showDownloadTabGuide(groupElForItemGuide, 50);
                     }
                     break;
                 case 'toggle-group':
@@ -198,9 +248,11 @@ export class MultipleDownloadRenderer {
                 case 'download-group':
                     if (groupId) {
                         multiDownloadService.startSelectedGroupDownloads(groupId);
-                        const groupElForGuide = this.listContainer?.querySelector(`[data-group-id="${groupId}"].playlist-group`) as HTMLElement;
-                        showDownloadTabGuide(groupElForGuide);
-                        this.switchToTab(groupId, 'download', true);
+                        const groupElForGuide = this.groupListContainer?.querySelector(`[data-group-id="${groupId}"].playlist-group`) as HTMLElement;
+                        if (groupElForGuide?.dataset.hasTabs === 'true') {
+                            showDownloadTabGuide(groupElForGuide);
+                            this.switchToTab(groupId, 'download', true);
+                        }
                         videoStore.setGroupSelection(groupId, false);
                     }
                     break;
@@ -223,10 +275,10 @@ export class MultipleDownloadRenderer {
                     this.handleSaveDownload(actionBtn);
                     break;
             }
-        });
+        };
+        eventRoots.forEach(root => root.addEventListener('click', handleClick));
 
-        // Change delegation (checkboxes, selects)
-        this.container.addEventListener('change', (e) => {
+        const handleChange = (e: Event) => {
             const target = e.target as HTMLElement;
 
             // Item checkbox
@@ -242,13 +294,15 @@ export class MultipleDownloadRenderer {
                 const groupId = (target as HTMLInputElement).dataset.groupId;
                 const checked = (target as HTMLInputElement).checked;
 
-                if (groupId && this.listContainer) {
+                if (groupId && this.groupListContainer) {
                     if (checked) {
-                        const groupEl = this.listContainer.querySelector(`[data-group-id="${groupId}"].playlist-group`) as HTMLElement | null;
-                        const activeTab = groupEl?.dataset.activeTab || 'convert';
+                        const groupEl = this.groupListContainer.querySelector(`[data-group-id="${groupId}"].playlist-group`) as HTMLElement | null;
+                        const hasTabs = groupEl?.dataset.hasTabs === 'true';
+                        const activeTab = hasTabs ? (groupEl?.dataset.activeTab || 'convert') : 'all';
                         const items = videoStore.getItemsByGroup(groupId);
                         const tabItems = items.filter(i =>
-                            activeTab === 'convert' ? isConvertTabStatus(i.status) : isDownloadTabStatus(i.status)
+                            activeTab === 'all' ? true
+                                : activeTab === 'convert' ? isConvertTabStatus(i.status) : isDownloadTabStatus(i.status)
                         );
 
                         const processingCount = tabItems.filter(i => ['analyzing', 'fetching_metadata', 'queued', 'downloading', 'converting'].includes(i.status)).length;
@@ -289,7 +343,8 @@ export class MultipleDownloadRenderer {
                     // Re-render settings to swap quality dropdown
                     const item = videoStore.getItem(id);
                     if (item) {
-                        const el = this.listContainer?.querySelector(`.multi-video-item[data-id="${id}"]`) as HTMLElement;
+                        const el = (this.listContainer?.querySelector(`.multi-video-item[data-id="${id}"]`) ||
+                            this.groupListContainer?.querySelector(`.multi-video-item[data-id="${id}"]`)) as HTMLElement;
                         if (el) {
                             const settingsEl = el.querySelector('.item-settings') as HTMLElement;
                             if (settingsEl) {
@@ -357,7 +412,8 @@ export class MultipleDownloadRenderer {
 
                 this.toggleBatchSelection(checked);
             }
-        });
+        };
+        eventRoots.forEach(root => root.addEventListener('change', handleChange));
     }
 
     private async handleDownloadZipBatch(btn: HTMLElement) {
@@ -447,7 +503,7 @@ export class MultipleDownloadRenderer {
 
         this.isGlobalDownloadLocked = true;
         this.updateBatchHeader(); // Refresh header buttons
-        this.listContainer?.querySelectorAll('.multi-video-item').forEach(el => {
+        [this.listContainer, this.groupListContainer].forEach(container => container?.querySelectorAll('.multi-video-item').forEach(el => {
             const itemId = (el as HTMLElement).dataset.id;
             if (itemId) {
                 const item = videoStore.getItem(itemId);
@@ -463,10 +519,10 @@ export class MultipleDownloadRenderer {
                     );
                 }
             }
-        });
+        }));
 
         // Update all group headers (Convert Selected, ZIP)
-        this.listContainer?.querySelectorAll('.playlist-group').forEach(groupEl => {
+        this.groupListContainer?.querySelectorAll('.playlist-group').forEach(groupEl => {
             updateGroupCount(groupEl as HTMLElement, true);
         });
 
@@ -511,7 +567,7 @@ export class MultipleDownloadRenderer {
 
 
     private toggleGroup(groupId: string) {
-        const groupEl = this.listContainer?.querySelector(`[data-group-id="${groupId}"].playlist-group`) as HTMLElement;
+        const groupEl = this.groupListContainer?.querySelector(`[data-group-id="${groupId}"].playlist-group`) as HTMLElement;
         if (!groupEl) return;
         groupEl.classList.toggle('collapsed');
     }
@@ -524,7 +580,7 @@ export class MultipleDownloadRenderer {
     }
 
     private switchToTab(groupId: string, tabType: string, isProgrammatic: boolean = false) {
-        const groupEl = this.listContainer?.querySelector(`[data-group-id="${groupId}"].playlist-group`) as HTMLElement;
+        const groupEl = this.groupListContainer?.querySelector(`[data-group-id="${groupId}"].playlist-group`) as HTMLElement;
         if (!groupEl) return;
 
         const tabEl = groupEl.querySelector(`.playlist-tab[data-tab="${tabType}"]`) as HTMLElement;
@@ -574,11 +630,13 @@ export class MultipleDownloadRenderer {
     }
 
     private toggleGroupSelection(groupId: string, checked: boolean) {
-        const groupEl = this.listContainer?.querySelector(`[data-group-id="${groupId}"].playlist-group`) as HTMLElement | null;
-        const activeTab = groupEl?.dataset.activeTab || 'convert';
+        const groupEl = this.groupListContainer?.querySelector(`[data-group-id="${groupId}"].playlist-group`) as HTMLElement | null;
+        const hasTabs = groupEl?.dataset.hasTabs === 'true';
+        const activeTab = hasTabs ? (groupEl?.dataset.activeTab || 'convert') : 'all';
         const items = videoStore.getItemsByGroup(groupId);
         const tabItems = items.filter(i =>
-            activeTab === 'convert' ? isConvertTabStatus(i.status) : isDownloadTabStatus(i.status)
+            activeTab === 'all' ? true
+                : activeTab === 'convert' ? isConvertTabStatus(i.status) : isDownloadTabStatus(i.status)
         );
         videoStore.setItemsSelection(tabItems.map(i => i.id), checked);
     }

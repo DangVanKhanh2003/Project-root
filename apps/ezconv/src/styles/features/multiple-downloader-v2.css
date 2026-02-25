@@ -951,6 +951,21 @@
         min-width: 0;
     }
 
+    .advanced-settings-toggle {
+        display: inline-flex;
+        width: 42px;
+        min-height: 42px;
+        height: 42px;
+        padding: 0;
+        justify-content: center;
+        gap: 0;
+    }
+
+    .advanced-settings-toggle .adv-settings-text,
+    .advanced-settings-toggle .adv-settings-chevron {
+        display: none !important;
+    }
+
     .multi-format-toggle {
         order: 2;
         flex: 0 0 auto;
@@ -1503,10 +1518,10 @@
 
 .btn-playlist-group-action:disabled {
     cursor: not-allowed;
-    background: var(--surface-weak, #e8f1ff);
-    border-color: rgba(0, 79, 171, 0.15);
-    color: var(--brand, #004fab);
-    opacity: 0.6;
+    background: #dfe7f3;
+    border-color: #c6d4ea;
+    color: #5f7596;
+    opacity: 0.8;
 }
 
 
@@ -1926,43 +1941,49 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    margin-top: 12px;
-    padding: 7px 14px;
+    margin-top: 0;
+    padding: 7px 10px;
+    min-height: 45px;
     background: none;
-    border: 1px solid #d1d5db;
+    border: none;
     border-radius: 20px;
     cursor: pointer;
     font-size: 0.875rem;
     font-weight: 500;
-    color: #374151;
-    transition: background 0.15s, border-color 0.15s;
+    color: #6b7280;
+    transition: background-color 0.15s, color 0.15s;
     -webkit-tap-highlight-color: transparent;
+    flex-shrink: 0;
 }
 
 .advanced-settings-toggle:hover {
-    background: #f3f4f6;
-    border-color: #9ca3af;
+    background: transparent;
+    border: none;
+    color: #6b7280;
 }
 
 .advanced-settings-toggle[aria-expanded="true"] {
     background: #eff6ff;
-    border-color: #93c5fd;
-    color: #1d4ed8;
+    border: none;
+    color: #2563eb;
 }
 
-.advanced-settings-toggle[aria-expanded="true"] .adv-settings-chevron {
-    transform: rotate(180deg);
+.adv-settings-icon-wrap {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .adv-settings-icon {
-    flex-shrink: 0;
-    opacity: 0.7;
+    color: currentColor;
+    opacity: 1;
 }
 
 .adv-settings-chevron {
     flex-shrink: 0;
     margin-left: 2px;
-    transition: transform 0.2s ease;
+    color: currentColor;
 }
 
 /* Panel */
@@ -1979,6 +2000,7 @@
     flex-wrap: wrap;
     gap: 20px;
     align-items: flex-start;
+    justify-content: space-between;
 }
 
 .adv-setting-item {
@@ -2000,6 +2022,7 @@
     color: #6b7280;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    text-align: left;
 }
 
 /* Mode switch (toggle knob) */
@@ -2053,6 +2076,9 @@
     display: grid;
     grid-template-columns: 4fr 6fr;
     gap: 16px;
+    width: 100%;
+    max-width: 980px;
+    margin-inline: auto;
 }
 
 .cutting-interface .stream-player-wrap {
@@ -2089,6 +2115,7 @@
     font-size: 13px;
     font-weight: 600;
     color: var(--text-muted);
+    text-align: left;
 }
 
 .cutting-interface .trim-slider {
@@ -2110,6 +2137,7 @@
 .cutting-interface .stream-time-label {
     font-size: 12px;
     color: var(--text-muted);
+    text-align: left;
 }
 
 .cutting-interface .time-input {
@@ -2159,11 +2187,18 @@
     }
 
     .adv-settings-row {
-        flex-direction: column;
+        flex-direction: row;
+        flex-wrap: wrap;
         gap: 14px;
     }
 
+    .adv-setting-item {
+        flex: 1 1 calc(50% - 7px);
+        min-width: 0;
+    }
+
     .adv-setting-item--audio {
+        flex: 1 1 100%;
         max-width: 100%;
         width: 100%;
     }

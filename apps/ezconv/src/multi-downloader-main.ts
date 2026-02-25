@@ -48,8 +48,10 @@ function initMultiDownloadForm() {
         addUrlsBtn.setAttribute('disabled', 'true');
         urlsInput.value = '';
         try {
-            await multiDownloadService.addUrls(rawText, getCurrentSettings());
-            multiDownloadService.startAllDownloads();
+            const groupId = await multiDownloadService.addUrls(rawText, getCurrentSettings());
+            if (groupId) {
+                multiDownloadService.startGroupDownloads(groupId);
+            }
         } catch (error) {
             if (errorMessage) { errorMessage.textContent = error instanceof Error ? error.message : 'Failed to process URLs'; errorMessage.style.display = 'block'; }
         } finally {
