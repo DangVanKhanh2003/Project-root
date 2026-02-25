@@ -1,0 +1,91 @@
+{
+  "seo": {
+    "title": "Ezconv - Télécharger des vidéos YouTube en ligne gratuitement - Rapide et illimité",
+    "description": "Téléchargez des vidéos YouTube en ligne avec Ezconv. Gratuit, rapide et illimité. Prend en charge la qualité HD et 4K, les longues vidéos YouTube. Pas d'application, pas de logiciel, pas d'inscription.",
+    "schemaName": "Ezconv - Téléchargeur de vidéos YouTube",
+    "schemaDescription": "Téléchargez des vidéos YouTube en ligne avec Ezconv. Gratuit, rapide et illimité.",
+    "ogTitle": "Ezconv - Télécharger des vidéos YouTube en ligne gratuitement",
+    "ogDescription": "Téléchargez des vidéos YouTube en ligne avec Ezconv. Gratuit, rapide et illimité. Prend en charge la qualité HD et 4K."
+  },
+  "defaultFormat": "mp4",
+  "hero": {
+    "title": "Ezconv - Télécharger une vidéo YouTube",
+    "subtitle": "Téléchargeur de vidéos YouTube gratuit, rapide et illimité"
+  },
+  "overview": {
+    "title": "Qu'est-ce que Ezconv ?",
+    "description": "Ezconv est un outil en ligne de pointe conçu pour simplifier la façon dont vous enregistrez le contenu YouTube. Conçu selon les principes du Material Design, nous offrons une expérience transparente et sans publicité qui respecte votre temps et votre vie privée.<br><br>Que vous ayez besoin d'une lecture hors ligne pour les voyages, à des fins d'archivage ou de création de contenu, Ezconv traite la vidéo et l'audio de haute qualité directement dans votre navigateur sans nécessiter d'installations logicielles complexes.",
+    "howTo": {
+      "title": "Comment télécharger",
+      "steps": [
+        {
+          "number": "1",
+          "title": "Copiez le lien",
+          "description": "Accédez à YouTube et copiez l'URL de la vidéo que vous souhaitez enregistrer."
+        },
+        {
+          "number": "2",
+          "title": "Collez et sélectionnez",
+          "description": "Collez le lien dans la barre de recherche Ezconv et choisissez votre format préféré (MP4/MP3)."
+        },
+        {
+          "number": "3",
+          "title": "Télécharger",
+          "description": "Cliquez sur le bouton de conversion et attendez quelques secondes que votre fichier soit prêt."
+        }
+      ]
+    }
+  },
+  "whatCanDownload": {
+    "title": "Que pouvez-vous télécharger avec Ezconv ?",
+    "intro": "Ezconv est conçu pour vous aider à télécharger facilement différents types de contenu YouTube, le tout en un seul endroit, sans limites ni étapes compliquées.",
+    "sections": [
+      {
+        "title": "Vidéos YouTube (MP4)",
+        "description": "Avec Ezconv, vous pouvez <strong><a href=\"/download-youtube-mp4\">télécharger des vidéos YouTube au format MP4</a></strong> pour les visionner hors ligne sur n'importe quel appareil. C'est idéal pour enregistrer des tutoriels, des clips musicaux, des vlogs et du contenu YouTube de longue durée dans un format vidéo largement pris en charge."
+      },
+      {
+        "title": "Audio YouTube (MP3)",
+        "description": "Ezconv vous permet de <strong><a href=\"/download-youtube-mp3\">télécharger de l'audio YouTube au format MP3</a></strong> en extrayant le son directement des vidéos. Cette option est parfaite pour la musique, les podcasts, les interviews et autres contenus audio que vous souhaitez écouter à tout moment."
+      },
+      {
+        "title": "Shorts YouTube",
+        "description": "Vous pouvez également <strong><a href=\"/download-youtube-shorts\">télécharger des vidéos YouTube Shorts</a></strong> dans le format vertical correct tout en conservant la qualité d'origine. Ezconv facilite l'enregistrement de vidéos YouTube de courte durée pour un visionnage ou un partage hors ligne."
+      }
+    ]
+  },
+  "quality": {
+    "title": "Qualité et longues vidéos YouTube",
+    "description1": "Ezconv prend en charge le téléchargement de vidéos YouTube en haute qualité, y compris les résolutions HD et 4K, tout en préservant la clarté d'origine de la vidéo. Cela le rend adapté aux utilisateurs qui souhaitent la meilleure expérience de visionnage hors ligne sur des écrans haute résolution.",
+    "description2": "De plus, Ezconv peut gérer de longues vidéos YouTube sans limite de temps. Vous pouvez télécharger des tutoriels complets, des conférences, des podcasts et des vidéos étendues sans vous soucier des restrictions ou des interruptions."
+  },
+  "faqs": {
+    "title": "Foire aux questions (FAQ)",
+    "items": [
+      {
+        "question": "L'utilisation de Ezconv est-elle gratuite ?",
+        "answer": "Oui. L'utilisation de Ezconv est entièrement gratuite, sans frais cachés, abonnements ou limites de téléchargement."
+      },
+      {
+        "question": "Puis-je télécharger des vidéos YouTube en ligne sans installer de logiciel ?",
+        "answer": "Oui. Ezconv fonctionne entièrement en ligne dans votre navigateur, il n'est donc pas nécessaire d'installer d'applications ou de logiciels."
+      },
+      {
+        "question": "Puis-je télécharger des vidéos YouTube au format MP4 ou MP3 ?",
+        "answer": "Oui. Ezconv vous permet de télécharger des vidéos YouTube au format MP4 ou d'extraire de l'audio au format MP3, selon vos besoins."
+      },
+      {
+        "question": "Ezconv prend-il en charge le téléchargement de Shorts YouTube ?",
+        "answer": "Oui. Vous pouvez télécharger facilement des vidéos YouTube Shorts tout en conservant le format vertical correct et la qualité d'origine."
+      },
+      {
+        "question": "L'utilisation de Ezconv est-elle sûre ?",
+        "answer": "Oui. L'utilisation de Ezconv est sûre et ne nécessite aucune inscription de compte ni information personnelle."
+      },
+      {
+        "question": "Ezconv fonctionne-t-il sur les appareils mobiles ?",
+        "answer": "Oui. Ezconv fonctionne sans problème sur les ordinateurs de bureau et les appareils mobiles, y compris les navigateurs Android et iOS."
+      }
+    ]
+  }
+}

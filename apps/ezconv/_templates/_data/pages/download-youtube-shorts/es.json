@@ -1,0 +1,93 @@
+{
+  "seo": {
+    "title": "Ezconv - Descargador de YouTube Shorts Online Gratis (9:16 Vertical)",
+    "description": "Descarga YouTube Shorts con Ezconv. Descargador de Shorts gratuito, rápido e ilimitado. Guarda Shorts en el formato vertical original 9:16. Sin aplicación, sin software, sin registro.",
+    "schemaName": "Ezconv - Descargador de YouTube Shorts",
+    "schemaDescription": "Descarga YouTube Shorts con Ezconv. Gratis, rápido e ilimitado.",
+    "ogTitle": "Ezconv - Descargador de YouTube Shorts Online Gratis",
+    "ogDescription": "Descarga YouTube Shorts con Ezconv. Guarda en formato vertical original 9:16. Gratis e ilimitado."
+  },
+  "defaultFormat": "mp4",
+  "hero": {
+    "title": "Ezconv - Descargar YouTube Shorts",
+    "subtitle": "Descargador de YouTube Shorts gratuito, rápido e ilimitado"
+  },
+  "overview": {
+    "title": "¿Qué es el Descargador de YouTube Shorts de Ezconv?",
+    "description": "Ezconv es una herramienta online gratuita que te ayuda a <strong>descargar videos de YouTube Shorts</strong> para verlos sin conexión. Los Shorts están diseñados en formato vertical, por lo que Ezconv se enfoca en mantener el <strong>diseño original de retrato 9:16</strong> para una mejor experiencia de visualización móvil. También puedes usar la <a href=\"/\" title=\"Ezconv Online YouTube Downloader\"><strong>página de inicio de Ezconv</strong></a> para acceder a todas las opciones de descarga (MP4, MP3 y más).",
+    "howTo": {
+      "title": "Cómo descargar YouTube Shorts con Ezconv",
+      "steps": [
+        {
+          "number": "1",
+          "title": "Copiar el enlace",
+          "description": "Copia el enlace de YouTube Shorts."
+        },
+        {
+          "number": "2",
+          "title": "Pegar y seleccionar",
+          "description": "Pega el enlace en Ezconv."
+        },
+        {
+          "number": "3",
+          "title": "Descargar",
+          "description": "Descarga el Short en segundos."
+        }
+      ]
+    }
+  },
+  "whatCanDownload": {
+    "title": "¿Qué puedes descargar de YouTube Shorts con Ezconv?",
+    "sections": [
+      {
+        "title": "Videos de Shorts (MP4)",
+        "description": "Guarda YouTube Shorts como MP4 para verlos sin conexión en teléfonos y computadoras. MP4 es ampliamente compatible y fácil de compartir o almacenar."
+      },
+      {
+        "title": "Tutoriales y consejos cortos",
+        "description": "Descarga tutoriales rápidos, recetas, movimientos de fitness o consejos de estudio de Shorts para que puedas reproducirlos en cualquier momento, incluso sin internet."
+      },
+      {
+        "title": "Clips y momentos destacados de tendencia",
+        "description": "Guarda Shorts de tendencia, momentos divertidos o momentos destacados para verlos más tarde. Perfecto cuando no quieres perder un clip en tu feed."
+      }
+    ]
+  },
+  "whyDownload": {
+    "title": "¿Por qué descargar YouTube Shorts?",
+    "description": "Descargar Shorts te permite ver tus clips favoritos sin conexión, guardar inspiración para más tarde y conservar tutoriales o fragmentos útiles sin depender de los datos móviles. Dado que los Shorts son cortos y verticales, son ideales para una visualización rápida en teléfonos."
+  },
+  "verticalFormat": {
+    "title": "Formato vertical 9:16 (sin problemas de rotación)",
+    "description": "Muchas herramientas tratan los Shorts como videos normales, lo que puede causar una reproducción lateral o un encuadre incorrecto. Ezconv está diseñado para Shorts, ayudándote a mantener el diseño <strong>vertical 9:16</strong> para una reproducción más fluida en dispositivos móviles. Si deseas descargar videos estándar de YouTube, usa <a href=\"/download-youtube-mp4\" title=\"Download YouTube MP4\"><strong>Descargar YouTube MP4</strong></a>."
+  },
+  "faqs": {
+    "title": "Preguntas frecuentes",
+    "items": [
+      {
+        "question": "¿Cuál es la diferencia entre YouTube Shorts y los videos normales de YouTube?",
+        "answer": "YouTube Shorts son videos de formato corto diseñados para la visualización vertical (a menudo 9:16). Los videos normales de YouTube suelen ser más largos y a menudo en formatos horizontales."
+      },
+      {
+        "question": "¿Puedo descargar YouTube Shorts online sin instalar software?",
+        "answer": "Sí. Ezconv funciona completamente online en tu navegador, sin software, sin extensiones y sin necesidad de registrarse."
+      },
+      {
+        "question": "¿Ezconv mantiene los Shorts en el formato vertical original?",
+        "answer": "Sí. Ezconv se enfoca en preservar el diseño <strong>vertical 9:16</strong> para que los Shorts se reproduzcan correctamente en dispositivos móviles."
+      },
+      {
+        "question": "¿Puedo descargar Shorts en iPhone y Android?",
+        "answer": "Sí. Ezconv funciona en navegadores móviles y de escritorio, por lo que puedes descargar Shorts en iOS, Android, Windows o macOS."
+      },
+      {
+        "question": "¿Es Ezconv gratuito e ilimitado para descargar Shorts?",
+        "answer": "Sí. Ezconv es de uso gratuito y permite descargas ilimitadas de YouTube Shorts."
+      },
+      {
+        "question": "¿Puede Ezconv descargar Shorts privados o restringidos?",
+        "answer": "No. El contenido privado o restringido no puede ser procesado por herramientas de descarga online."
+      }
+    ]
+  }
+}

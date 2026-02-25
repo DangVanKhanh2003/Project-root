@@ -1,0 +1,116 @@
+{
+  "seo": {
+    "title": "Ezconv Tải nhiều video YouTube cùng lúc (Không quảng cáo)",
+    "description": "Tải nhiều video YouTube sang MP3 hoặc MP4 cùng lúc (Không quảng cáo).",
+    "schemaName": "Ezconv YouTube Multi Downloader",
+    "schemaDescription": "Tải nhiều video YouTube cùng lúc trực tuyến nhanh chóng.",
+    "ogTitle": "Ezconv Tải nhiều video YouTube cùng lúc (Không quảng cáo)",
+    "ogDescription": "Tải video YouTube sang MP3 hoặc MP4 hàng loạt (Không quảng cáo)."
+  },
+  "defaultFormat": "mp4",
+  "hero": {
+    "title": "Ezconv YouTube Multi Downloader (Không quảng cáo)",
+    "subtitle": "Tải nhiều video YouTube trong một lần"
+  },
+  "form": {
+    "textareaPlaceholder": "Dán link YouTube vào đây (mỗi dòng một link).\nhttps://youtube.com/watch?v=VID_1\nhttps://youtube.com/watch?v=VID_2",
+    "convertButton": "Chuyển đổi",
+    "audioTrackLabel": "Track âm thanh"
+  },
+  "overview": {
+    "howTo": {
+      "title": "Cách sử dụng YouTube Multi Downloader với Ezconv",
+      "steps": [
+        {
+          "number": "1",
+          "title": "Sao chép nhiều link",
+          "description": "Sao chép các link video YouTube mà bạn muốn tải xuống."
+        },
+        {
+          "number": "2",
+          "title": "Dán tất cả link",
+          "description": "Dán tất cả các link vào công cụ tải nhiều video của Ezconv."
+        },
+        {
+          "number": "3",
+          "title": "Chọn định dạng",
+          "description": "Chọn định dạng đầu ra mong muốn (MP3 hoặc MP4)."
+        },
+        {
+          "number": "4",
+          "title": "Tải xuống",
+          "description": "Nhấn tải xuống để lưu tất cả video cùng lúc."
+        }
+      ]
+    }
+  },
+  "content": {
+    "intro": {
+      "title": "Ezconv YouTube Multi Downloader là gì?",
+      "description": "Ezconv là công cụ trực tuyến cho phép bạn <strong>tải nhiều video YouTube cùng lúc</strong> bằng cách sử dụng danh sách các link video riêng lẻ. Thay vì tải từng video một, bạn có thể dán nhiều URL và xử lý chúng trong một lần duy nhất."
+    },
+    "whyUse": {
+      "title": "Vì sao nên sử dụng YouTube Multi Downloader?",
+      "description": "Công cụ này đặc biệt hữu ích khi các video của bạn <strong>không nằm trong cùng một playlist</strong>. Nếu bạn đã có danh sách link tùy chỉnh, Ezconv giúp tiết kiệm thời gian bằng cách xử lý tất cả cùng lúc thay vì lặp lại các bước tải cho từng video."
+    },
+    "supportedFormats": {
+      "title": "Định dạng hỗ trợ: MP3 và MP4",
+      "description": "Ezconv hỗ trợ cả định dạng <strong>MP3</strong> và <strong>MP4</strong>. Chọn MP3 nếu bạn chỉ cần file âm thanh, hoặc MP4 nếu muốn giữ nguyên video đầy đủ."
+    },
+    "comparison": {
+      "title": "Tải nhiều video YouTube và tải playlist",
+      "items": [
+        {
+          "title": "Tải nhiều video YouTube",
+          "description": "Phù hợp khi bạn có <strong>nhiều link video YouTube riêng lẻ</strong>. Chỉ cần dán nhiều URL và tải xuống cùng lúc dưới dạng MP3 hoặc MP4."
+        },
+        {
+          "title": "Tải playlist YouTube sang MP3",
+          "description": "Phù hợp khi video đã được sắp xếp trong một playlist. Chỉ với <strong>một link playlist</strong>, bạn có thể tự động tải tất cả video dưới dạng MP3. Nếu bạn có playlist, hãy thử <a href=\"/download-mp3-youtube-playlist\" title=\"Download MP3 YouTube Playlist\"><strong>Download MP3 YouTube Playlist with Ezconv</strong></a>."
+        }
+      ]
+    },
+    "whenUse": {
+      "title": "Khi nào nên sử dụng Ezconv Multi Downloader?",
+      "items": [
+        {
+          "title": "Danh sách video tùy chỉnh",
+          "description": "Phù hợp khi bạn thu thập link video YouTube từ nhiều nguồn khác nhau."
+        },
+        {
+          "title": "Tải hàng loạt MP3 hoặc MP4",
+          "description": "Tải nhiều video sang MP3 hoặc MP4 cùng lúc mà không cần lặp lại thao tác."
+        },
+        {
+          "title": "Tải không giới hạn",
+          "description": "Ezconv hỗ trợ <strong>tải nhiều video YouTube không giới hạn</strong> mà không có quảng cáo hay hạn chế."
+        }
+      ]
+    }
+  },
+  "faqs": {
+    "title": "Câu hỏi thường gặp",
+    "items": [
+      {
+        "question": "Tôi có thể tải bao nhiêu video YouTube cùng lúc?",
+        "answer": "Ezconv cho phép tải nhiều video không giới hạn. Bạn có thể dán bao nhiêu link tùy ý."
+      },
+      {
+        "question": "Có cần playlist để sử dụng tải nhiều video không?",
+        "answer": "Không. Tính năng tải nhiều video được thiết kế cho các link video riêng lẻ không thuộc playlist."
+      },
+      {
+        "question": "Ezconv có miễn phí và không quảng cáo không?",
+        "answer": "Có. Ezconv cung cấp trải nghiệm tải video miễn phí và không quảng cáo."
+      },
+      {
+        "question": "Tôi có thể tải cả MP3 và MP4 không?",
+        "answer": "Có. Ezconv hỗ trợ cả định dạng MP3 (âm thanh) và MP4 (video)."
+      },
+      {
+        "question": "Ezconv có hoạt động trên điện thoại không?",
+        "answer": "Có. Ezconv hoạt động trên cả trình duyệt máy tính và trình duyệt di động."
+      }
+    ]
+  }
+}

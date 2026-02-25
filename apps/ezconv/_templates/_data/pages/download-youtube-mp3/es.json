@@ -1,0 +1,93 @@
+{
+  "seo": {
+    "title": "Ezconv - Descargar MP3 de YouTube en línea gratis (128kbps, 320kbps)",
+    "description": "Descarga audio de YouTube como MP3 con Ezconv. Descargador de MP3 de YouTube gratuito, rápido e ilimitado. Elige una calidad de 128 a 320 kbps. Sin aplicación, sin software, sin registro.",
+    "schemaName": "Ezconv - Descargador de MP3 de YouTube",
+    "schemaDescription": "Descarga audio de YouTube como MP3 con Ezconv. Gratis, rápido e ilimitado.",
+    "ogTitle": "Ezconv - Descargar MP3 de YouTube en línea gratis",
+    "ogDescription": "Descarga audio de YouTube como MP3 con Ezconv. Elige una calidad de 128 a 320 kbps. Gratis e ilimitado."
+  },
+  "defaultFormat": "mp3",
+  "hero": {
+    "title": "Ezconv - Descargar MP3 de YouTube",
+    "subtitle": "Descargador de MP3 de YouTube gratuito, rápido e ilimitado"
+  },
+  "overview": {
+    "title": "¿Qué es el descargador de MP3 de YouTube Ezconv?",
+    "description": "Ezconv es una herramienta en línea gratuita que te ayuda a <strong>descargar audio de YouTube como MP3</strong> para escucharlo sin conexión. A diferencia de MP4 (video), MP3 se enfoca solo en descargas de audio, lo que hace que los archivos sean más pequeños y rápidos de guardar, perfecto para música, podcasts, entrevistas y contenido de estudio. También puedes usar la <a href=\"/\" title=\"Descargador de YouTube en línea Ezconv\"><strong>página de inicio de Ezconv</strong></a> para acceder a todas las opciones de descarga (MP4, Shorts y más).",
+    "howTo": {
+      "title": "Cómo descargar MP3 de YouTube con Ezconv",
+      "steps": [
+        {
+          "number": "1",
+          "title": "Copia el enlace",
+          "description": "Copia el enlace del video de YouTube."
+        },
+        {
+          "number": "2",
+          "title": "Pega y selecciona",
+          "description": "Pega el enlace en Ezconv."
+        },
+        {
+          "number": "3",
+          "title": "Descargar",
+          "description": "Selecciona la calidad de MP3 y descarga en segundos."
+        }
+      ]
+    }
+  },
+  "whatCanDownload": {
+    "title": "¿Qué puedes descargar como MP3 con Ezconv?",
+    "sections": [
+      {
+        "title": "Música y canciones (MP3)",
+        "description": "Guarda música de YouTube como MP3 para escucharla sin conexión en cualquier dispositivo. MP3 es liviano, ampliamente compatible y fácil de organizar en tu biblioteca de música."
+      },
+      {
+        "title": "Podcasts, charlas y conferencias",
+        "description": "Convierte videos educativos largos en MP3 para que puedas escucharlos mientras viajas, trabajas o estudias, sin necesidad de streaming ni de mantener la pantalla encendida."
+      },
+      {
+        "title": "MP3 de alta calidad (hasta 320 kbps)",
+        "description": "Elige una calidad de MP3 superior para un sonido más rico. Cuando esté disponible, Ezconv te ayuda a descargar audio de hasta <strong>320 kbps</strong> para una mayor claridad en la música y el audio complejo."
+      }
+    ]
+  },
+  "whyDownload": {
+    "title": "¿Por qué descargar YouTube como MP3?",
+    "description": "MP3 es uno de los formatos de audio más compatibles en teléfonos, computadoras, sistemas de automóviles y reproductores de música. Si solo necesitas el sonido (no el video), MP3 ahorra almacenamiento y facilita la escucha sin conexión, especialmente para contenido largo como conferencias o podcasts."
+  },
+  "qualityOptions": {
+    "title": "Opciones de calidad de MP3 (128–320 kbps)",
+    "description": "Ezconv admite múltiples opciones de calidad de MP3 para que puedas equilibrar la calidad del sonido y el tamaño del archivo. <strong>128 kbps</strong> es ideal para voz y descargas más pequeñas, mientras que <strong>320 kbps</strong> es ideal para música y escucha de alta fidelidad. Si quieres video en su lugar, usa <a href=\"/download-youtube-mp4\" title=\"Descargar MP4 de YouTube\"><strong>Descargar MP4 de YouTube</strong></a>."
+  },
+  "faqs": {
+    "title": "Preguntas frecuentes",
+    "items": [
+      {
+        "question": "¿Cuál es la diferencia entre YouTube MP3 y MP4?",
+        "answer": "MP3 es solo audio, mientras que MP4 incluye tanto video como audio. Elige MP3 si solo necesitas sonido y quieres archivos más pequeños."
+      },
+      {
+        "question": "¿Puedo descargar MP3 de YouTube en línea sin instalar software?",
+        "answer": "Sí. Ezconv funciona completamente en línea en tu navegador, sin necesidad de software, extensiones ni registro."
+      },
+      {
+        "question": "¿Qué calidad de MP3 debo elegir: 128 kbps o 320 kbps?",
+        "answer": "128 kbps es bueno para voz y archivos más pequeños. 320 kbps es mejor para música y detalles de audio más altos si quieres la mejor calidad de MP3."
+      },
+      {
+        "question": "¿Puedo descargar videos largos de YouTube como MP3?",
+        "answer": "Sí. Ezconv admite la conversión de videos largos de YouTube a MP3 para escucharlos sin conexión y sin límites de duración."
+      },
+      {
+        "question": "¿Ezconv es gratuito e ilimitado para descargas de MP3?",
+        "answer": "Sí. Ezconv es de uso gratuito y permite descargas ilimitadas de MP3 de YouTube."
+      },
+      {
+        "question": "¿Funciona Ezconv en iPhone y Android?",
+        "answer": "Sí. Ezconv funciona en navegadores móviles y de escritorio, por lo que puedes descargar MP3 en iOS, Android, Windows o macOS."
+      }
+    ]
+  }
+}

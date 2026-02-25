@@ -1,0 +1,69 @@
+{
+  "nav": {
+    "home": "ပင်မစာမျက်နှာ",
+    "youtubeToMp3": "YouTube to MP3",
+    "youtubeToMp4": "YouTube to MP4",
+    "youtubeShorts": "YouTube Shorts",
+    "about": "ကျွန်ုပ်တို့အကြောင်း"
+  },
+  "langSelector": {
+    "buttonText": "MY",
+    "buttonLabel": "ဘာသာစကား",
+    "currentLangFull": "မြန်မာ"
+  },
+  "drawer": {
+    "logoText": "ezconv.pro",
+    "links": {
+      "home": "ပင်မစာမျက်နှာ",
+      "youtubeToMp3": "YouTube မှ MP3",
+      "youtubeToMp4": "YouTube မှ MP4",
+      "youtubeShorts": "YouTube Shorts",
+      "about": "ကျွန်ုပ်တို့အကြောင်း",
+      "faq": "အမေးများသောမေးခွန်းများ",
+      "contact": "ဆက်သွယ်ရန်",
+      "terms": "Terms of Use",
+      "privacy": "ကိုယ်ရေးကိုယ်တာ",
+      "dmca": "DMCA",
+      "cutVideoYoutube": "YouTube ဗီဒီယို ဖြတ်ရန်"
+    }
+  },
+  "hero": {
+    "placeholder": "YouTube လင့်ခ်ကို ဤနေရာတွင် ကူးထည့်ပါ...",
+    "pasteBtn": "ကူးထည့်ပါ",
+    "clearBtn": "ရှင်းလင်းပါ",
+    "convertBtn": "ပြောင်းရန်",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "Audio track",
+    "searchPlaceholder": "ရှာဖွေရန်..."
+  },
+  "overview": {
+    "badge": "မြန်ဆန်และအခမဲ့"
+  },
+  "footer": {
+    "linksRow1": {
+      "youtubeToMp3": "YouTube မှ MP3",
+      "youtubeToMp4": "YouTube မှ MP4",
+      "youtubeShorts": "YouTube Shorts",
+      "cutVideoYoutube": "YouTube ဗီဒီယို ဖြတ်ရန်"
+    },
+    "linksRow2": {
+      "about": "ကျွန်ုပ်တို့အကြောင်း",
+      "contact": "ဆက်သွယ်ရန်",
+      "terms": "Terms of Use",
+      "privacyPolicy": "ကိုယ်ရေးကိုယ်တာမူဝါဒ",
+      "dmca": "DMCA",
+      "faq": "အမေးများသောမေးခွန်းများ"
+    },
+    "copyright": "© 2026 Ezconv. မူပိုင်ခွင့်များရယူပြီး။"
+  },
+  "strim": {
+    "startBtn": "စတင်ရန်",
+    "selectFormatLabel": "၁. ဖော်မတ်ရွေးချယ်ပါ:",
+    "selectQualityLabel": "၂. အရည်အသွေးရွေးချယ်ပါ:",
+    "audioTrackLabel": "၃. အသံသွင်းချောင်းရွေးချယ်ပါ:",
+    "trimLabel": "၄. ဗီဒီယိုဖြတ်ရန် (စတင် – ပြီးဆုံး):",
+    "startTimeLabel": "စတင်",
+    "endTimeLabel": "ပြီးဆုံး"
+  }
+}

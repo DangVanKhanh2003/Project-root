@@ -1,0 +1,126 @@
+{
+  "seo": {
+    "title": "Ezconv - Cắt Video YouTube Online Miễn Phí",
+    "description": "Cắt YouTube miễn phí – Tải MP4 hoặc MP3.",
+    "schemaName": "Ezconv - Công cụ cắt video YouTube",
+    "schemaDescription": "Công cụ cắt video YouTube miễn phí. Cắt, trim và tải video YouTube dưới dạng MP4 hoặc MP3 không quảng cáo, không giới hạn.",
+    "ogTitle": "Ezconv - Cắt Video YouTube Online Miễn Phí",
+    "ogDescription": "Cắt YouTube miễn phí – Tải MP4 hoặc MP3."
+  },
+  "defaultFormat": "mp4",
+  "hero": {
+    "title": "Ezconv - Cắt Video YouTube Online",
+    "subtitle": "Miễn phí, nhanh & không giới hạn MP4 và MP3"
+  },
+  "form": {
+    "title": "Công cụ cắt video YouTube",
+    "placeholder": "Dán link video YouTube vào đây...",
+    "convertButton": "Cắt & Tải xuống"
+  },
+  "overview": {
+    "howTo": {
+      "title": "Cách cắt và trim video YouTube online",
+      "steps": [
+        {
+          "number": "1",
+          "title": "Sao chép link video",
+          "description": "Sao chép URL video YouTube mà bạn muốn cắt hoặc trim."
+        },
+        {
+          "number": "2",
+          "title": "Dán link vào công cụ",
+          "description": "Dán link YouTube vào công cụ cắt video Ezconv."
+        },
+        {
+          "number": "3",
+          "title": "Chọn thời gian bắt đầu & kết thúc",
+          "description": "Thiết lập chính xác thời điểm bắt đầu và kết thúc cho đoạn video cần cắt."
+        },
+        {
+          "number": "4",
+          "title": "Tải xuống MP4 hoặc MP3",
+          "description": "Nhấn Cắt & Tải xuống để xuất đoạn đã chọn dưới dạng MP4 hoặc MP3."
+        }
+      ]
+    }
+  },
+  "content": {
+    "intro": {
+      "title": "Ezconv YouTube Video Cutter là gì?",
+      "description": "Ezconv là <strong>công cụ cắt video YouTube miễn phí</strong> cho phép bạn cắt và tải video ngay lập tức. Thay vì tải toàn bộ video, bạn có thể chọn một đoạn cụ thể và xuất dưới dạng <strong>MP4 hoặc MP3</strong>. Công cụ hoạt động trực tiếp trên trình duyệt <strong>không quảng cáo và không giới hạn</strong>."
+    },
+    "columns": [
+      {
+        "title": "Cắt video YouTube chỉ trong vài giây",
+        "description": "1. Dán link YouTube.<br>2. Chọn định dạng MP4 hoặc MP3.<br>3. Thiết lập thời gian bắt đầu & kết thúc.<br>4. Tải ngay đoạn video đã cắt."
+      },
+      {
+        "title": "Cutter MP4 & MP3 cho điện thoại và máy tính",
+        "description": "Ezconv hoạt động mượt mà trên <strong>điện thoại, máy tính bảng và máy tính</strong>. Cắt video YouTube online mà không cần cài đặt phần mềm. Tải <strong>video MP4</strong> hoặc trích xuất <strong>âm thanh MP3</strong> trực tiếp từ trình duyệt."
+      }
+    ],
+    "whyDownload": {
+      "title": "Vì sao nên dùng Ezconv để cắt YouTube?",
+      "description": "Với Ezconv, bạn tiết kiệm thời gian và dung lượng lưu trữ bằng cách chỉ tải phần cần thiết. Dù là highlight, clip ngắn, nhạc hay podcast, <strong>YouTube cutter</strong> này giúp thao tác nhanh chóng và đơn giản."
+    },
+    "quality": {
+      "title": "Xuất MP4 & MP3 chất lượng cao",
+      "description": "Ezconv giữ nguyên chất lượng video và âm thanh gốc. Xuất đoạn đã cắt dưới dạng MP4 chất lượng cao hoặc MP3 rõ nét với tốc độ xử lý nhanh và phát mượt."
+    },
+    "comparison": {
+      "title": "YouTube Cutter vs YouTube Multi Download",
+      "sections": [
+        {
+          "title": "Cắt & trim video YouTube",
+          "description": "Phù hợp khi bạn cần <strong>một đoạn cụ thể</strong> của một video. Chọn chính xác khoảng thời gian và chỉ tải phần đó."
+        },
+        {
+          "title": "YouTube Multi Download",
+          "description": "Nếu bạn muốn tải <strong>nhiều video đầy đủ</strong> cùng lúc thay vì cắt, hãy dùng công cụ Multi Download. Hỗ trợ <strong>MP3 và MP4</strong>."
+        }
+      ]
+    },
+    "useCases": {
+      "title": "Khi nào nên dùng Ezconv?",
+      "items": [
+        {
+          "title": "Tạo clip ngắn & highlight",
+          "description": "Cắt những khoảnh khắc quan trọng từ video dài để chia sẻ hoặc chỉnh sửa."
+        },
+        {
+          "title": "Trích xuất nhạc hoặc podcast",
+          "description": "Cắt một phần cụ thể của video nhạc hoặc podcast và lưu dưới dạng MP3."
+        },
+        {
+          "title": "Chỉ tải phần bạn cần",
+          "description": "Tránh tải toàn bộ video bằng cách lưu đúng đoạn quan trọng."
+        }
+      ]
+    }
+  },
+  "faqs": {
+    "title": "Câu hỏi thường gặp",
+    "items": [
+      {
+        "question": "Ezconv có miễn phí không?",
+        "answer": "Có. Ezconv hoàn toàn miễn phí, không quảng cáo và không giới hạn."
+      },
+      {
+        "question": "Tôi có thể cắt video sang MP3 không?",
+        "answer": "Có. Bạn có thể xuất đoạn đã chọn dưới dạng MP3."
+      },
+      {
+        "question": "Có cần cài đặt phần mềm không?",
+        "answer": "Không. Công cụ hoạt động hoàn toàn online trên trình duyệt."
+      },
+      {
+        "question": "Có hỗ trợ thiết bị di động không?",
+        "answer": "Có. Hỗ trợ điện thoại, máy tính bảng và máy tính."
+      },
+      {
+        "question": "Chất lượng có giảm sau khi cắt không?",
+        "answer": "Không. Ezconv giữ nguyên chất lượng gốc của đoạn đã chọn."
+      }
+    ]
+  }
+}

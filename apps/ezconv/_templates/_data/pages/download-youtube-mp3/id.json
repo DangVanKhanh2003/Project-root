@@ -1,0 +1,93 @@
+{
+  "seo": {
+    "title": "Ezconv - Unduh MP3 YouTube Online Gratis (128kbps, 320kbps)",
+    "description": "Unduh audio YouTube sebagai MP3 dengan Ezconv. Pengunduh MP3 YouTube gratis, cepat, dan tidak terbatas. Pilih kualitas 128–320kbps. Tanpa aplikasi, tanpa perangkat lunak, tanpa registrasi.",
+    "schemaName": "Ezconv - Pengunduh MP3 YouTube",
+    "schemaDescription": "Unduh audio YouTube sebagai MP3 dengan Ezconv. Gratis, cepat, dan tidak terbatas.",
+    "ogTitle": "Ezconv - Unduh MP3 YouTube Online Gratis",
+    "ogDescription": "Unduh audio YouTube sebagai MP3 dengan Ezconv. Pilih kualitas 128–320kbps. Gratis dan tidak terbatas."
+  },
+  "defaultFormat": "mp3",
+  "hero": {
+    "title": "Ezconv - Unduh MP3 YouTube",
+    "subtitle": "Pengunduh MP3 YouTube gratis, cepat & tidak terbatas"
+  },
+  "overview": {
+    "title": "Apa itu Pengunduh MP3 YouTube Ezconv?",
+    "description": "Ezconv adalah alat online gratis yang membantu Anda <strong>mengunduh audio YouTube sebagai MP3</strong> untuk mendengarkan secara offline. Tidak seperti MP4 (video), MP3 berfokus pada unduhan audio-saja, membuat file lebih kecil dan lebih cepat disimpan—sempurna untuk musik, podcast, wawancara, dan konten belajar. Anda juga dapat menggunakan <a href=\"/\" title=\"Pengunduh YouTube Online Ezconv\"><strong>beranda Ezconv</strong></a> untuk mengakses semua opsi unduhan (MP4, Shorts, dan lainnya).",
+    "howTo": {
+      "title": "Cara Mengunduh MP3 YouTube dengan Ezconv",
+      "steps": [
+        {
+          "number": "1",
+          "title": "Salin Tautan",
+          "description": "Salin tautan video YouTube."
+        },
+        {
+          "number": "2",
+          "title": "Tempel & Pilih",
+          "description": "Tempel tautan ke Ezconv."
+        },
+        {
+          "number": "3",
+          "title": "Unduh",
+          "description": "Pilih kualitas MP3 dan unduh dalam hitungan detik."
+        }
+      ]
+    }
+  },
+  "whatCanDownload": {
+    "title": "Apa yang Dapat Anda Unduh sebagai MP3 dengan Ezconv?",
+    "sections": [
+      {
+        "title": "Musik & Lagu (MP3)",
+        "description": "Simpan musik YouTube sebagai MP3 untuk mendengarkan secara offline di perangkat apa pun. MP3 ringan, didukung secara luas, dan mudah diatur dalam perpustakaan musik Anda."
+      },
+      {
+        "title": "Podcast, Ceramah & Kuliah",
+        "description": "Konversi video edukasi panjang menjadi MP3 sehingga Anda dapat mendengarkan saat bepergian, bekerja, atau belajar—tanpa streaming atau membiarkan layar menyala."
+      },
+      {
+        "title": "MP3 Kualitas Tinggi (Hingga 320kbps)",
+        "description": "Pilih kualitas MP3 yang lebih tinggi untuk suara yang lebih kaya. Jika tersedia, Ezconv membantu Anda mengunduh audio hingga <strong>320kbps</strong> untuk kejernihan yang lebih baik dalam musik dan audio kompleks."
+      }
+    ]
+  },
+  "whyDownload": {
+    "title": "Mengapa Mengunduh YouTube sebagai MP3?",
+    "description": "MP3 adalah salah satu format audio yang paling kompatibel di ponsel, komputer, sistem mobil, dan pemutar musik. Jika Anda hanya membutuhkan suara (bukan video), MP3 menghemat penyimpanan dan membuat mendengarkan secara offline mudah—terutama untuk konten panjang seperti ceramah atau podcast."
+  },
+  "qualityOptions": {
+    "title": "Opsi Kualitas MP3 (128–320kbps)",
+    "description": "Ezconv mendukung beberapa opsi kualitas MP3 sehingga Anda dapat menyeimbangkan kualitas suara dan ukuran file. <strong>128kbps</strong> sangat bagus untuk ucapan dan unduhan yang lebih kecil, sementara <strong>320kbps</strong> ideal untuk musik dan mendengarkan dengan fidelitas tinggi. Jika Anda menginginkan video, gunakan <a href=\"/download-youtube-mp4\" title=\"Unduh MP4 YouTube\"><strong>Unduh MP4 YouTube</strong></a>."
+  },
+  "faqs": {
+    "title": "Pertanyaan yang Sering Diajukan",
+    "items": [
+      {
+        "question": "Apa perbedaan antara YouTube MP3 dan MP4?",
+        "answer": "MP3 hanya audio, sedangkan MP4 menyertakan video dan audio. Pilih MP3 jika Anda hanya membutuhkan suara dan menginginkan file yang lebih kecil."
+      },
+      {
+        "question": "Bisakah saya mengunduh MP3 YouTube online tanpa menginstal perangkat lunak?",
+        "answer": "Ya. Ezconv berfungsi sepenuhnya online di browser Anda—tanpa perangkat lunak, tanpa ekstensi, dan tanpa registrasi."
+      },
+      {
+        "question": "Kualitas MP3 mana yang harus saya pilih: 128kbps atau 320kbps?",
+        "answer": "128kbps bagus untuk ucapan dan file yang lebih kecil. 320kbps lebih baik untuk musik dan detail audio yang lebih tinggi jika Anda menginginkan kualitas MP3 terbaik."
+      },
+      {
+        "question": "Bisakah saya mengunduh video YouTube panjang sebagai MP3?",
+        "answer": "Ya. Ezconv mendukung konversi video YouTube panjang menjadi MP3 untuk mendengarkan secara offline tanpa batas durasi."
+      },
+      {
+        "question": "Apakah Ezconv gratis dan tidak terbatas untuk unduhan MP3?",
+        "answer": "Ya. Ezconv gratis untuk digunakan dan memungkinkan unduhan MP3 YouTube tanpa batas."
+      },
+      {
+        "question": "Apakah Ezconv berfungsi di iPhone dan Android?",
+        "answer": "Ya. Ezconv berfungsi di browser seluler dan browser desktop, sehingga Anda dapat mengunduh MP3 di iOS, Android, Windows, atau macOS."
+      }
+    ]
+  }
+}

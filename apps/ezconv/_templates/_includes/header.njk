@@ -1,0 +1,121 @@
+{%- set base = i18nBase[lang] or i18nBase['en'] -%}
+{%- set langPrefix = '' if (lang == 'en' or not lang) else '/' + lang -%}
+{%- set pageSlug = '' if pageKey == 'index' else pageKey -%}
+
+<!-- HEADER -->
+<header class="site-header">
+    <div class="container">
+        <div class="header-inner">
+            <a href="{{ langPrefix }}/" class="header-logo" aria-label="Ezconv home">
+                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 58 58" fill="none"
+                    aria-hidden="true" focusable="false">
+                    <rect x="4.1676" y="0" width="53.8323" height="53.8323" rx="8" ry="8" fill="#004fab" />
+                    <rect x="0" y="4.16766" width="53.8323" height="53.8323" rx="8" ry="8" fill="white" />
+                    <path d="M39.2054 46.1916H14.6268C10.3869 46.1866 6.95113 42.7687 6.94604 38.5509V23.2695C6.95113 19.0517 10.3869 15.6338 14.6268 15.6287H39.2054C43.4453 15.6338 46.8811 19.0517 46.8862 23.2695V38.5509C46.8811 42.7687 43.4453 46.1866 39.2054 46.1916ZM14.6268 18.685C12.0816 18.685 10.0184 20.7375 10.0184 23.2695V38.5509C10.0184 41.0828 12.0816 43.1353 14.6268 43.1353H39.2054C41.7506 43.1353 43.8138 41.0828 43.8138 38.5509V23.2695C43.8138 20.7375 41.7506 18.685 39.2054 18.685H14.6268Z" fill="#003f8a" />
+                    <path d="M24.0174 38.965C22.3238 38.9575 20.9527 37.5935 20.9451 35.9087V25.9162C20.9451 24.2283 22.3207 22.8599 24.0175 22.86C24.5568 22.86 25.0866 23.0013 25.5535 23.2694L34.2467 28.2634C35.7161 29.1074 36.2195 30.9766 35.371 32.4384C35.1014 32.903 34.7137 33.2886 34.2467 33.5569L25.5535 38.5509C25.0872 38.8214 24.5572 38.9642 24.0174 38.965ZM32.712 30.9102L24.0174 25.9162V35.9041L32.712 30.9102Z" fill="#003f8a" />
+                </svg>
+                <span class="header-logo-text">ezconv.pro</span>
+            </a>
+            <nav class="header-nav" aria-label="Primary">
+                <a href="{{ langPrefix }}/" class="header-link">{{ base.nav.home }}</a>
+                <a href="/about" class="header-link">{{ base.nav.about }}</a>
+                <div class="lang-selector">
+                    <button class="lang-button" type="button" aria-label="{{ base.langSelector.buttonLabel }}">
+                        <span>{{ base.langSelector.buttonText }}</span>
+                        <svg class="lang-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6" />
+                        </svg>
+                    </button>
+                    <div class="lang-dropdown" role="menu" aria-label="Languages">
+                        <div class="lang-dropdown-scroll">
+                            {%- set singleLangPages = ['about', 'contact', 'dmca', 'faq', 'policy', 'terms-of-use'] -%}
+                            {%- for langItem in site.languages %}
+                            {%- if langItem.isDefault %}
+                                {%- set langUrl = '/' if pageSlug == '' else '/' + pageSlug %}
+                            {%- else %}
+                                {%- if pageKey in singleLangPages %}
+                                    {%- set langUrl = '/' + langItem.code + '/' %}
+                                {%- else %}
+                                    {%- set langUrl = '/' + langItem.code + '/' if pageSlug == '' else '/' + langItem.code + '/' + pageSlug %}
+                                {%- endif %}
+                            {%- endif %}
+                            <a href="{{ langUrl }}" class="lang-option{% if langItem.code == lang %} active{% endif %}" role="menuitem">
+                                <img class="lang-flag" src="/assest/flat-svg/{{ langItem.flag }}" alt="{{ langItem.name }}" aria-hidden="true"
+                                    loading="lazy" width="18" height="14">
+                                <span>{{ langItem.name }}</span>
+                            </a>
+                            {%- endfor %}
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <button id="mobile-menu-btn" class="mobile-menu-btn" type="button" aria-label="Open menu">
+                <span class="mobile-menu-bars" aria-hidden="true"></span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- MOBILE DRAWER -->
+<div id="mobile-drawer" class="mobile-drawer" hidden>
+    <div id="mobile-drawer-content" class="drawer-content" role="dialog" aria-modal="true" aria-label="Mobile menu">
+        <div class="drawer-header">
+            <a href="{{ langPrefix }}/" class="drawer-logo" aria-label="Ezconv home">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 58 58" fill="none"
+                    aria-hidden="true" focusable="false">
+                    <rect x="4.1676" y="0" width="53.8323" height="53.8323" rx="8" ry="8" fill="#004fab" />
+                    <rect x="0" y="4.16766" width="53.8323" height="53.8323" rx="8" ry="8" fill="white" />
+                    <path d="M39.2054 46.1916H14.6268C10.3869 46.1866 6.95113 42.7687 6.94604 38.5509V23.2695C6.95113 19.0517 10.3869 15.6338 14.6268 15.6287H39.2054C43.4453 15.6338 46.8811 19.0517 46.8862 23.2695V38.5509C46.8811 42.7687 43.4453 46.1866 39.2054 46.1916ZM14.6268 18.685C12.0816 18.685 10.0184 20.7375 10.0184 23.2695V38.5509C10.0184 41.0828 12.0816 43.1353 14.6268 43.1353H39.2054C41.7506 43.1353 43.8138 41.0828 43.8138 38.5509V23.2695C43.8138 20.7375 41.7506 18.685 39.2054 18.685H14.6268Z" fill="#003f8a" />
+                    <path d="M24.0174 38.965C22.3238 38.9575 20.9527 37.5935 20.9451 35.9087V25.9162C20.9451 24.2283 22.3207 22.8599 24.0175 22.86C24.5568 22.86 25.0866 23.0013 25.5535 23.2694L34.2467 28.2634C35.7161 29.1074 36.2195 30.9766 35.371 32.4384C35.1014 32.903 34.7137 33.2886 34.2467 33.5569L25.5535 38.5509C25.0872 38.8214 24.5572 38.9642 24.0174 38.965ZM32.712 30.9102L24.0174 25.9162V35.9041L32.712 30.9102Z" fill="#003f8a" />
+                </svg>
+                <span class="drawer-logo-text">{{ base.drawer.logoText }}</span>
+            </a>
+            <button id="close-drawer-btn" class="drawer-close" type="button" aria-label="Close menu">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="drawer-scroll">
+            <nav class="drawer-nav" aria-label="Mobile">
+                <a href="{{ langPrefix }}/" class="drawer-link">{{ base.drawer.links.home }}</a>
+                <a href="{{ langPrefix }}/youtube-multi-downloader" class="drawer-link">{{ base.drawer.links.youtubeMulti or 'YouTube Multi Downloader' }}</a>
+                <a href="{{ langPrefix }}/download-mp3-youtube-playlist" class="drawer-link">{{ base.drawer.links.youtubePlaylist or 'YouTube Playlist Downloader' }}</a>
+                <a href="{{ langPrefix }}/download-youtube-mp3" class="drawer-link">{{ base.drawer.links.youtubeToMp3 or 'YouTube to MP3' }}</a>
+                <a href="{{ langPrefix }}/download-youtube-mp4" class="drawer-link">{{ base.drawer.links.youtubeToMp4 or 'YouTube to MP4' }}</a>
+                <a href="{{ langPrefix }}/download-youtube-shorts" class="drawer-link">{{ base.drawer.links.youtubeShorts or 'YouTube Shorts' }}</a>
+                <a href="{{ langPrefix }}/cut-video-youtube" class="drawer-link">{{ base.drawer.links.cutVideoYoutube or 'Cut Video YouTube' }}</a>
+                <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
+                <a href="/about" class="drawer-link">{{ base.drawer.links.about }}</a>
+                <a href="/faq" class="drawer-link">{{ base.drawer.links.faq }}</a>
+                <a href="/contact" class="drawer-link">{{ base.drawer.links.contact }}</a>
+                <a href="/terms-of-use" class="drawer-link">{{ base.drawer.links.terms }}</a>
+                <a href="/policy" class="drawer-link">{{ base.drawer.links.privacy }}</a>
+                <a href="/dmca" class="drawer-link">{{ base.drawer.links.dmca }}</a>
+            </nav>
+            <div class="drawer-lang-selector">
+                <button class="drawer-lang-button" type="button" aria-label="Choose language">
+                    <span>{{ base.langSelector.currentLangFull }}</span>
+                    <svg class="lang-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path d="M6 9l6 6 6-6" />
+                    </svg>
+                </button>
+                <div class="drawer-lang-menu" role="menu" aria-label="Languages">
+                    {%- set singleLangPages = ['about', 'contact', 'dmca', 'faq', 'policy', 'terms-of-use'] -%}
+                    {%- for langItem in site.languages %}
+                    {%- if langItem.isDefault %}
+                        {%- set langUrl = '/' if pageSlug == '' else '/' + pageSlug %}
+                    {%- else %}
+                        {%- if pageKey in singleLangPages %}
+                            {%- set langUrl = '/' + langItem.code + '/' %}
+                        {%- else %}
+                            {%- set langUrl = '/' + langItem.code + '/' if pageSlug == '' else '/' + langItem.code + '/' + pageSlug %}
+                        {%- endif %}
+                    {%- endif %}
+                    <a href="{{ langUrl }}" class="drawer-sublink{% if langItem.code == lang %} active{% endif %}" role="menuitem">{{ langItem.name }}</a>
+                    {%- endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

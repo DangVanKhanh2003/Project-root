@@ -1,0 +1,93 @@
+{
+  "seo": {
+    "title": "Ezconv - Muat Turun Video YouTube MP4 Dalam Talian Percuma",
+    "description": "Muat turun video YouTube sebagai MP4 dengan Ezconv. Pengunduh YouTube MP4 percuma, pantas dan tanpa had. Menyokong kualiti HD & 4K dan video panjang. Tiada aplikasi diperlukan.",
+    "schemaName": "Ezconv - Pengunduh YouTube MP4",
+    "schemaDescription": "Muat turun video YouTube sebagai MP4 dengan Ezconv. Percuma, pantas dan tanpa had.",
+    "ogTitle": "Ezconv - Muat Turun Video YouTube MP4 Dalam Talian Percuma",
+    "ogDescription": "Muat turun video YouTube sebagai MP4 dengan Ezconv. Menyokong kualiti HD & 4K. Percuma dan tanpa had."
+  },
+  "defaultFormat": "mp4",
+  "hero": {
+    "title": "Ezconv - Muat Turun Video YouTube MP4",
+    "subtitle": "Pengunduh YouTube MP4 percuma, pantas & tanpa had"
+  },
+  "overview": {
+    "title": "Apakah Ezconv Pengunduh YouTube MP4?",
+    "description": "Ezconv adalah alat dalam talian percuma yang direka khusus untuk membantu pengguna <strong>memuat turun video YouTube sebagai MP4</strong> untuk tontonan luar talian. Tidak seperti penukar audio, format MP4 menyimpan kedua-dua video dan bunyi, menjadikannya ideal untuk tutorial, pembentangan, video muzik, dan kandungan YouTube berdurasi panjang. Anda boleh kembali ke <a href=\"/\" title=\"Ezconv Online Video Downloader\"><strong>laman utama Ezconv</strong></a> untuk mengakses semua alat muat turun YouTube.",
+    "howTo": {
+      "title": "Cara Memuat Turun Video YouTube MP4 dengan Ezconv",
+      "steps": [
+        {
+          "number": "1",
+          "title": "Salin Pautan",
+          "description": "Salin pautan video YouTube."
+        },
+        {
+          "number": "2",
+          "title": "Tampal & Pilih",
+          "description": "Tampal pautan ke Ezconv."
+        },
+        {
+          "number": "3",
+          "title": "Muat Turun",
+          "description": "Muat turun video sebagai MP4 dalam beberapa saat."
+        }
+      ]
+    }
+  },
+  "whatCanDownload": {
+    "title": "Apa yang Boleh Anda Muat Turun sebagai MP4 dengan Ezconv?",
+    "sections": [
+      {
+        "title": "Video YouTube (MP4)",
+        "description": "Muat turun video YouTube sebagai MP4 untuk mengekalkan pengalaman visual penuh. Pilihan ini sesuai untuk tutorial, vlog, video muzik, dan kandungan pendidikan yang bergantung pada visual video."
+      },
+      {
+        "title": "Video YouTube HD & 4K",
+        "description": "Apabila disokong oleh video asal, Ezconv membolehkan anda memuat turun video YouTube MP4 dalam kualiti HD dan 4K untuk main balik yang jelas pada skrin besar."
+      },
+      {
+        "title": "Video YouTube Panjang",
+        "description": "Ezconv menyokong muat turun video YouTube panjang sebagai MP4 tanpa had tempoh, menjadikannya sesuai untuk podcast, dokumentari, dan kursus penuh."
+      }
+    ]
+  },
+  "whyDownload": {
+    "title": "Mengapa Muat Turun Video YouTube sebagai MP4?",
+    "description": "MP4 adalah format video yang paling banyak disokong di seluruh peranti dan platform. Dengan memilih MP4, anda boleh menonton video YouTube yang dimuat turun di luar talian tanpa masalah keserasian. Format ini sesuai untuk pengguna yang ingin menyimpan video penuh dan bukannya hanya audio."
+  },
+  "qualityOptions": {
+    "title": "Kualiti Video MP4 & Sokongan Video Panjang",
+    "description": "Ezconv membolehkan anda memuat turun video YouTube MP4 dalam pelbagai resolusi, termasuk <strong>kualiti HD dan 4K</strong> apabila tersedia. Alat ini juga menyokong <strong>video YouTube panjang</strong>, seperti tutorial penuh, kuliah, dan kandungan lanjutan, tanpa had masa atau sekatan."
+  },
+  "faqs": {
+    "title": "Soalan Lazim",
+    "items": [
+      {
+        "question": "Apakah perbezaan antara YouTube MP4 dan MP3?",
+        "answer": "MP4 termasuk video dan audio, manakala MP3 hanya mengekstrak bunyi. MP4 lebih baik untuk tontonan luar talian dan kandungan visual."
+      },
+      {
+        "question": "Bolehkah saya memuat turun video YouTube MP4 dalam talian?",
+        "answer": "Ya. Ezconv berfungsi sepenuhnya dalam talian, membolehkan anda memuat turun video YouTube MP4 terus dalam pelayar anda."
+      },
+      {
+        "question": "Adakah Ezconv menyokong muat turun MP4 HD dan 4K?",
+        "answer": "Ya. Ezconv menyokong muat turun MP4 HD dan 4K apabila video YouTube asal tersedia dalam resolusi tersebut."
+      },
+      {
+        "question": "Bolehkah saya memuat turun video YouTube panjang sebagai MP4?",
+        "answer": "Ya. Ezconv menyokong muat turun video YouTube panjang tanpa had masa."
+      },
+      {
+        "question": "Adakah Ezconv percuma untuk digunakan?",
+        "answer": "Ya. Ezconv adalah percuma sepenuhnya dan tidak memerlukan pendaftaran."
+      },
+      {
+        "question": "Bolehkah saya menggunakan Ezconv pada peranti mudah alih?",
+        "answer": "Ya. Ezconv berfungsi pada pelayar desktop dan mudah alih, termasuk Android dan iOS."
+      }
+    ]
+  }
+}

@@ -1,0 +1,126 @@
+{
+  "seo": {
+    "title": "Ezconv Descargar MP3 YouTube Playlist Completa (Sin anuncios)",
+    "description": "Descarga listas de reproducción completas de YouTube en MP3 gratis (Sin anuncios).",
+    "schemaName": "Ezconv Descargar MP3 YouTube Playlist",
+    "schemaDescription": "Convierte una lista de reproducción completa de YouTube a MP3 con un solo enlace.",
+    "ogTitle": "Ezconv Descargar MP3 YouTube Playlist Completa (Sin anuncios)",
+    "ogDescription": "Convierte y descarga listas de reproducción completas de YouTube en MP3 gratis (Sin anuncios)."
+  },
+  "defaultFormat": "mp3",
+  "hero": {
+    "title": "Ezconv Descargar MP3 YouTube Playlist (Sin anuncios)",
+    "subtitle": "Descarga una lista de reproducción completa de YouTube en MP3 con un solo enlace"
+  },
+  "form": {
+    "title": "Descargador de MP3 YouTube Playlist",
+    "placeholder": "Pega aquí la URL de la lista de reproducción...",
+    "convertButton": "Convertir"
+  },
+  "overview": {
+    "howTo": {
+      "title": "Cómo descargar MP3 desde una lista de reproducción de YouTube",
+      "steps": [
+        {
+          "number": "1",
+          "title": "Copiar el enlace",
+          "description": "Copia la URL de la lista de reproducción de YouTube que deseas descargar."
+        },
+        {
+          "number": "2",
+          "title": "Pegar la lista",
+          "description": "Pega el enlace de la lista de reproducción en Ezconv."
+        },
+        {
+          "number": "3",
+          "title": "Elegir calidad MP3",
+          "description": "Selecciona MP3 y la calidad de audio que prefieras."
+        },
+        {
+          "number": "4",
+          "title": "Descargar",
+          "description": "Haz clic en descargar y guarda la lista completa en tu dispositivo."
+        }
+      ]
+    }
+  },
+  "content": {
+    "intro": {
+      "title": "¿Qué es Ezconv MP3 YouTube Playlist Downloader?",
+      "description": "Ezconv es una herramienta online gratuita que te permite <strong>descargar una lista de reproducción completa de YouTube en MP3</strong> utilizando un solo enlace. En lugar de convertir videos uno por uno, puedes extraer todas las pistas de audio de la lista en un solo proceso."
+    },
+    "columns": [
+      {
+        "title": "Descargar MP3 desde una lista de reproducción de YouTube",
+        "description": "1. Copia la URL de la lista.<br>2. Pega el enlace en Ezconv.<br>3. Selecciona MP3 y la calidad de audio.<br>4. Descarga y guarda la lista completa."
+      },
+      {
+        "title": "Descarga en escritorio y móvil",
+        "description": "Ezconv se adapta automáticamente a tu dispositivo. En <strong>ordenadores de escritorio</strong>, puedes <strong>descargar toda la lista en un solo archivo ZIP</strong>. En <strong>dispositivos móviles</strong>, los archivos MP3 se descargan <strong>uno por uno</strong>."
+      }
+    ],
+    "whyDownload": {
+      "title": "¿Por qué descargar una lista de reproducción de YouTube en MP3?",
+      "description": "El formato MP3 es ligero y compatible con casi todos los dispositivos. Si solo necesitas audio, <strong>descargar la lista de reproducción en MP3</strong> ahorra espacio y facilita la escucha sin conexión."
+    },
+    "quality": {
+      "title": "Calidades de MP3 compatibles",
+      "description": "Ezconv admite varias calidades de MP3, incluyendo <strong>128kbps</strong>, <strong>192kbps</strong> y <strong>320kbps</strong>. Elige el equilibrio adecuado entre tamaño de archivo y calidad de sonido."
+    },
+    "comparison": {
+      "title": "Descargador de listas vs Descarga múltiple",
+      "sections": [
+        {
+          "title": "Descargar MP3 YouTube Playlist",
+          "description": "Ideal cuando ya tienes <strong>un enlace de lista de reproducción</strong>. Solo pega el enlace y descarga todos los videos automáticamente en MP3."
+        },
+        {
+          "title": "YouTube Multi Download",
+          "description": "Diseñado para usuarios que tienen <strong>varios enlaces individuales de YouTube</strong> que no forman parte de la misma lista. Soporta <strong>MP3 y MP4</strong>. Si tienes una lista personalizada de enlaces, prueba <a href=\"/youtube-multi-downloader\" title=\"Ezconv YouTube Multi Download\"><strong>YouTube Multi Download with Ezconv</strong></a>."
+        }
+      ]
+    },
+    "useCases": {
+      "title": "¿Cuándo usar el Ezconv Playlist Downloader?",
+      "items": [
+        {
+          "title": "Descargar álbumes de música",
+          "description": "Convierte álbumes completos de YouTube o listas musicales en MP3 para escucharlos sin conexión."
+        },
+        {
+          "title": "Listas educativas y podcasts",
+          "description": "Transforma largas listas de conferencias o podcasts en archivos MP3 para escucharlos en cualquier momento."
+        },
+        {
+          "title": "Descargas ilimitadas de listas",
+          "description": "Ezconv permite <strong>descargas ilimitadas de listas de reproducción de YouTube</strong> sin anuncios ni restricciones."
+        }
+      ]
+    }
+  },
+  "faqs": {
+    "title": "Preguntas frecuentes",
+    "items": [
+      {
+        "question": "¿Existe un límite en el tamaño de la lista?",
+        "answer": "No. Ezconv permite descargas ilimitadas de listas de reproducción a MP3 sin limitar el número de videos."
+      },
+      {
+        "question": "¿Necesito instalar algún programa?",
+        "answer": "No. Ezconv funciona completamente online en tu navegador."
+      },
+      {
+        "question": "¿Ezconv es gratis y sin anuncios?",
+        "answer": "Sí. Ezconv es gratuito y ofrece una experiencia sin anuncios."
+      },
+      {
+        "question": "¿Puedo descargar los MP3 de la lista en mi teléfono?",
+        "answer": "Sí. En dispositivos móviles, los archivos MP3 se descargan individualmente."
+      },
+      {
+        "question": "¿Cuál es la diferencia entre descargar lista y descarga múltiple?",
+        "answer": "La descarga de lista utiliza un solo enlace de playlist, mientras que la descarga múltiple utiliza varios enlaces individuales."
+      }
+    ]
+  }
+}

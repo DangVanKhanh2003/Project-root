@@ -1,0 +1,69 @@
+{
+  "nav": {
+    "home": "ホーム",
+    "youtubeToMp3": "YouTube to MP3",
+    "youtubeToMp4": "YouTube to MP4",
+    "youtubeShorts": "YouTube Shorts",
+    "about": "概要"
+  },
+  "langSelector": {
+    "buttonText": "JA",
+    "buttonLabel": "言語",
+    "currentLangFull": "日本語"
+  },
+  "drawer": {
+    "logoText": "ezconv.pro",
+    "links": {
+      "home": "ホーム",
+      "youtubeToMp3": "YouTubeからMP3へ",
+      "youtubeToMp4": "YouTubeからMP4へ",
+      "youtubeShorts": "YouTubeショート",
+      "about": "概要",
+      "faq": "よくある質問",
+      "contact": "お問い合わせ",
+      "terms": "Terms of Use",
+      "privacy": "プライバシー",
+      "dmca": "DMCA",
+      "cutVideoYoutube": "YouTube動画をカット"
+    }
+  },
+  "hero": {
+    "placeholder": "ここにYouTubeのリンクを貼り付けてください...",
+    "pasteBtn": "貼り付け",
+    "clearBtn": "クリア",
+    "convertBtn": "変換",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "Audio track",
+    "searchPlaceholder": "検索..."
+  },
+  "overview": {
+    "badge": "高速＆無料"
+  },
+  "footer": {
+    "linksRow1": {
+      "youtubeToMp3": "YouTubeからMP3へ",
+      "youtubeToMp4": "YouTubeからMP4へ",
+      "youtubeShorts": "YouTubeショート",
+      "cutVideoYoutube": "YouTube動画をカット"
+    },
+    "linksRow2": {
+      "about": "概要",
+      "contact": "お問い合わせ",
+      "terms": "Terms of Use",
+      "privacyPolicy": "プライバシーポリシー",
+      "dmca": "DMCA",
+      "faq": "よくある質問"
+    },
+    "copyright": "© 2026 Ezconv. 無断複写・転載を禁じます。"
+  },
+  "strim": {
+    "startBtn": "開始",
+    "selectFormatLabel": "1. フォーマットを選択:",
+    "selectQualityLabel": "2. 品質を選択:",
+    "audioTrackLabel": "3. 音声トラックを選択:",
+    "trimLabel": "4. 動画をカット (開始 – 終了):",
+    "startTimeLabel": "開始",
+    "endTimeLabel": "終了"
+  }
+}

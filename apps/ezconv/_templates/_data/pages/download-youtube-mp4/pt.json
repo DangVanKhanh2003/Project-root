@@ -1,0 +1,93 @@
+{
+  "seo": {
+    "title": "Ezconv - Baixar vídeos MP4 do YouTube online grátis",
+    "description": "Baixe vídeos do YouTube como MP4 com Ezconv. Downloader de MP4 do YouTube gratuito, rápido e ilimitado. Suporta qualidade HD e 4K e vídeos longos. Não é necessário aplicativo.",
+    "schemaName": "Ezconv - Downloader de MP4 do YouTube",
+    "schemaDescription": "Baixe vídeos do YouTube como MP4 com Ezconv. Gratuito, rápido e ilimitado.",
+    "ogTitle": "Ezconv - Baixar vídeos MP4 do YouTube online grátis",
+    "ogDescription": "Baixe vídeos do YouTube como MP4 com Ezconv. Suporta qualidade HD e 4K. Gratuito e ilimitado."
+  },
+  "defaultFormat": "mp4",
+  "hero": {
+    "title": "Ezconv - Baixar vídeos MP4 do YouTube",
+    "subtitle": "Downloader de MP4 do YouTube gratuito, rápido e ilimitado"
+  },
+  "overview": {
+    "title": "O que é o Ezconv YouTube MP4 Downloader?",
+    "description": "Ezconv é uma ferramenta online gratuita projetada especificamente para ajudar os usuários a <strong>baixar vídeos do YouTube como MP4</strong> para visualização offline. Ao contrário dos conversores de áudio, o formato MP4 mantém vídeo e som, tornando-o ideal para tutoriais, apresentações, vídeos de música e conteúdo de YouTube de longa duração. Você pode retornar à <a href=\"/\" title=\"Ezconv Online Video Downloader\"><strong>página inicial do Ezconv</strong></a> para acessar todas as ferramentas de download do YouTube.",
+    "howTo": {
+      "title": "Como baixar vídeos MP4 do YouTube com Ezconv",
+      "steps": [
+        {
+          "number": "1",
+          "title": "Copie o link",
+          "description": "Copie o link do vídeo do YouTube."
+        },
+        {
+          "number": "2",
+          "title": "Cole e selecione",
+          "description": "Cole o link no Ezconv."
+        },
+{
+          "number": "3",
+          "title": "Baixar",
+          "description": "Baixe o vídeo como MP4 em segundos."
+        }
+      ]
+    }
+  },
+  "whatCanDownload": {
+    "title": "O que você pode baixar como MP4 com Ezconv?",
+    "sections": [
+      {
+        "title": "Vídeos do YouTube (MP4)",
+        "description": "Baixe vídeos do YouTube como MP4 para manter a experiência visual completa. Esta opção é ideal para tutoriais, vlogs, vídeos de música e conteúdo educacional que depende de recursos visuais de vídeo."
+      },
+      {
+        "title": "Vídeos do YouTube em HD e 4K",
+        "description": "Quando suportado pelo vídeo original, o Ezconv permite que você baixe vídeos MP4 do YouTube em qualidade HD e 4K para reprodução cristalina em telas grandes."
+      },
+      {
+        "title": "Vídeos longos do YouTube",
+        "description": "O Ezconv suporta o download de vídeos longos do YouTube como MP4 sem limites de duração, tornando-o adequado para podcasts, documentários e cursos completos."
+      }
+    ]
+  },
+  "whyDownload": {
+    "title": "Por que baixar vídeos do YouTube como MP4?",
+    "description": "MP4 é o formato de vídeo mais amplamente suportado em dispositivos e plataformas. Ao escolher MP4, você pode assistir a vídeos do YouTube baixados offline sem problemas de compatibilidade. Este formato é perfeito para usuários que desejam salvar vídeos completos em vez de apenas áudio."
+  },
+  "qualityOptions": {
+    "title": "Qualidade de vídeo MP4 e suporte a vídeos longos",
+    "description": "O Ezconv permite que você baixe vídeos MP4 do YouTube em várias resoluções, incluindo <strong>qualidade HD e 4K</strong> quando disponível. A ferramenta também suporta <strong>vídeos longos do YouTube</strong>, como tutoriais completos, palestras e conteúdo estendido, sem limites de tempo ou restrições."
+  },
+  "faqs": {
+    "title": "Perguntas frequentes",
+    "items": [
+      {
+        "question": "Qual a diferença entre YouTube MP4 e MP3?",
+        "answer": "MP4 inclui vídeo e áudio, enquanto MP3 extrai apenas o som. MP4 é melhor para visualização offline e conteúdo visual."
+      },
+      {
+        "question": "Posso baixar vídeos MP4 do YouTube online?",
+        "answer": "Sim. O Ezconv funciona totalmente online, permitindo que você baixe vídeos MP4 do YouTube diretamente no seu navegador."
+      },
+      {
+        "question": "O Ezconv suporta downloads de MP4 em HD e 4K?",
+        "answer": "Sim. O Ezconv suporta downloads de MP4 em HD e 4K quando o vídeo original do YouTube está disponível nessas resoluções."
+      },
+      {
+        "question": "Posso baixar vídeos longos do YouTube como MP4?",
+        "answer": "Sim. O Ezconv suporta o download de vídeos longos do YouTube sem limites de tempo."
+      },
+      {
+        "question": "O Ezconv é gratuito para usar?",
+        "answer": "Sim. O Ezconv é totalmente gratuito e não requer registro."
+      },
+      {
+        "question": "Posso usar o Ezconv em dispositivos móveis?",
+        "answer": "Sim. O Ezconv funciona em navegadores de desktop e móveis, incluindo Android e iOS."
+      }
+    ]
+  }
+}

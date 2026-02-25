@@ -1,0 +1,126 @@
+{
+  "seo": {
+    "title": "Ezconv - Potong Video YouTube Online Gratis",
+    "description": "Cutter YouTube gratis – Unduh MP4 atau MP3.",
+    "schemaName": "Ezconv - Pemotong Video YouTube",
+    "schemaDescription": "Pemotong video YouTube gratis. Potong dan unduh video YouTube dalam format MP4 atau MP3 tanpa iklan dan tanpa batas.",
+    "ogTitle": "Ezconv - Potong Video YouTube Online Gratis",
+    "ogDescription": "Cutter YouTube gratis – Unduh MP4 atau MP3."
+  },
+  "defaultFormat": "mp4",
+  "hero": {
+    "title": "Ezconv - Pemotong Video YouTube Online",
+    "subtitle": "Gratis, cepat & tanpa batas MP4 dan MP3"
+  },
+  "form": {
+    "title": "Pemotong Video YouTube",
+    "placeholder": "Tempelkan link video YouTube di sini...",
+    "convertButton": "Potong & Unduh"
+  },
+  "overview": {
+    "howTo": {
+      "title": "Cara memotong video YouTube secara online",
+      "steps": [
+        {
+          "number": "1",
+          "title": "Salin link video",
+          "description": "Salin URL video YouTube yang ingin Anda potong atau trim."
+        },
+        {
+          "number": "2",
+          "title": "Tempelkan link",
+          "description": "Tempelkan link YouTube ke dalam alat Ezconv."
+        },
+        {
+          "number": "3",
+          "title": "Pilih waktu mulai & selesai",
+          "description": "Tentukan waktu mulai dan akhir yang tepat untuk bagian yang ingin dipotong."
+        },
+        {
+          "number": "4",
+          "title": "Unduh MP4 atau MP3",
+          "description": "Klik Potong & Unduh untuk mengekspor bagian dalam format MP4 atau MP3."
+        }
+      ]
+    }
+  },
+  "content": {
+    "intro": {
+      "title": "Apa itu Pemotong Video YouTube Ezconv?",
+      "description": "Ezconv adalah <strong>pemotong video YouTube gratis</strong> yang memungkinkan Anda memotong dan mengunduh video dengan cepat. Daripada mengunduh seluruh video, Anda dapat memilih bagian tertentu dan mengekspornya dalam format <strong>MP4 atau MP3</strong>. Alat ini bekerja langsung di browser <strong>tanpa iklan dan tanpa batas</strong>."
+    },
+    "columns": [
+      {
+        "title": "Potong video YouTube dalam hitungan detik",
+        "description": "1. Tempelkan link YouTube.<br>2. Pilih format MP4 atau MP3.<br>3. Atur waktu mulai dan selesai.<br>4. Unduh klip yang telah dipotong langsung."
+      },
+      {
+        "title": "Cutter MP4 & MP3 untuk HP dan desktop",
+        "description": "Ezconv bekerja dengan sempurna di <strong>ponsel, tablet, dan komputer desktop</strong>. Potong video YouTube online tanpa instal aplikasi. Unduh <strong>video MP4</strong> atau ekstrak <strong>audio MP3</strong> langsung dari browser Anda."
+      }
+    ],
+    "whyDownload": {
+      "title": "Mengapa menggunakan Ezconv untuk memotong YouTube?",
+      "description": "Dengan Ezconv, Anda menghemat waktu dan penyimpanan karena hanya mengunduh bagian yang dibutuhkan. Baik untuk highlight, klip pendek, musik, atau potongan podcast, <strong>YouTube cutter</strong> ini cepat dan mudah digunakan."
+    },
+    "quality": {
+      "title": "Ekspor MP4 & MP3 kualitas tinggi",
+      "description": "Ezconv mempertahankan kualitas asli video dan audio. Ekspor bagian yang dipotong dalam MP4 berkualitas tinggi atau MP3 jernih dengan proses cepat dan pemutaran lancar."
+    },
+    "comparison": {
+      "title": "YouTube Cutter vs Multi Download",
+      "sections": [
+        {
+          "title": "Potong & trim video YouTube",
+          "description": "Cocok saat Anda membutuhkan <strong>bagian tertentu</strong> dari satu video. Pilih rentang waktu yang tepat dan unduh hanya bagian tersebut."
+        },
+        {
+          "title": "YouTube Multi Download",
+          "description": "Jika Anda ingin mengunduh <strong>beberapa video penuh</strong> sekaligus tanpa memotong, gunakan alat Multi Download. Mendukung format <strong>MP3 dan MP4</strong>."
+        }
+      ]
+    },
+    "useCases": {
+      "title": "Kapan sebaiknya menggunakan Ezconv?",
+      "items": [
+        {
+          "title": "Membuat klip pendek & highlight",
+          "description": "Potong momen penting dari video panjang untuk dibagikan atau diedit."
+        },
+        {
+          "title": "Ekstrak musik atau podcast",
+          "description": "Potong bagian tertentu dari video musik atau podcast dan simpan sebagai MP3."
+        },
+        {
+          "title": "Unduh hanya yang diperlukan",
+          "description": "Hindari mengunduh video penuh dengan menyimpan hanya bagian penting."
+        }
+      ]
+    }
+  },
+  "faqs": {
+    "title": "Pertanyaan yang Sering Diajukan",
+    "items": [
+      {
+        "question": "Apakah Ezconv gratis?",
+        "answer": "Ya. Ezconv sepenuhnya gratis tanpa iklan dan tanpa batas."
+      },
+      {
+        "question": "Bisakah saya memotong video ke MP3?",
+        "answer": "Ya. Anda dapat mengekspor bagian yang dipilih dalam format MP3."
+      },
+      {
+        "question": "Apakah perlu instal aplikasi?",
+        "answer": "Tidak. Ezconv bekerja sepenuhnya online di browser."
+      },
+      {
+        "question": "Apakah mendukung perangkat mobile?",
+        "answer": "Ya. Alat ini mendukung ponsel, tablet, dan desktop."
+      },
+      {
+        "question": "Apakah kualitas berkurang setelah dipotong?",
+        "answer": "Tidak. Ezconv menjaga kualitas asli bagian yang dipilih."
+      }
+    ]
+  }
+}

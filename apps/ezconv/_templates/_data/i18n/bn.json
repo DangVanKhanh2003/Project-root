@@ -1,0 +1,69 @@
+{
+  "nav": {
+    "home": "হোম",
+    "youtubeToMp3": "YouTube to MP3",
+    "youtubeToMp4": "YouTube to MP4",
+    "youtubeShorts": "YouTube Shorts",
+    "about": "সম্পর্কে"
+  },
+  "langSelector": {
+    "buttonText": "BN",
+    "buttonLabel": "ভাষা",
+    "currentLangFull": "বাংলা"
+  },
+  "drawer": {
+    "logoText": "ezconv.pro",
+    "links": {
+      "home": "হোম",
+      "youtubeToMp3": "ইউটিউব থেকে MP3",
+      "youtubeToMp4": "ইউটিউব থেকে MP4",
+      "youtubeShorts": "ইউটিউব শর্টস",
+      "about": "সম্পর্কে",
+      "faq": "FAQ",
+      "contact": "যোগাযোগ",
+      "terms": "Terms of Use",
+      "privacy": "গোপনীয়তা",
+      "dmca": "DMCA",
+      "cutVideoYoutube": "কাট ভিডিও ইউটিউব"
+    }
+  },
+  "hero": {
+    "placeholder": "এখানে ইউটিউব লিঙ্ক পেস্ট করুন...",
+    "pasteBtn": "পেস্ট",
+    "clearBtn": "মুছুন",
+    "convertBtn": "রূপান্তর",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "Audio track",
+    "searchPlaceholder": "অনুসন্ধান..."
+  },
+  "overview": {
+    "badge": "দ্রুত ও বিনামূল্যে"
+  },
+  "footer": {
+    "linksRow1": {
+      "youtubeToMp3": "ইউটিউব থেকে MP3",
+      "youtubeToMp4": "ইউটিউব থেকে MP4",
+      "youtubeShorts": "ইউটিউব শর্টস",
+      "cutVideoYoutube": "কাট ভিডিও ইউটিউব"
+    },
+    "linksRow2": {
+      "about": "সম্পর্কে",
+      "contact": "যোগাযোগ",
+      "terms": "Terms of Use",
+      "privacyPolicy": "গোপনীয়তা নীতি",
+      "dmca": "DMCA",
+      "faq": "FAQ"
+    },
+    "copyright": "© 2026 Ezconv. সর্বস্বত্ব সংরক্ষিত।"
+  },
+  "strim": {
+    "startBtn": "শুরু করুন",
+    "selectFormatLabel": "১. ফরম্যাট নির্বাচন করুন:",
+    "selectQualityLabel": "২. মান নির্বাচন করুন:",
+    "audioTrackLabel": "৩. অডিও ট্র্যাক নির্বাচন করুন:",
+    "trimLabel": "৪. ভিডিও কাটুন (শুরু – শেষ):",
+    "startTimeLabel": "শুরু",
+    "endTimeLabel": "শেষ"
+  }
+}
