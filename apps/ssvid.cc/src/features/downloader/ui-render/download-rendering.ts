@@ -730,8 +730,14 @@ function clearSearchUrl(): void {
   const url = new URL(window.location.href);
   let newPath = url.pathname.replace(/\/search\/?$/, '') || '/';
 
-  // Ensure path ends with / (except for root /)
-  if (newPath !== '/' && !newPath.endsWith('/')) {
+  // Keep no-trailing-slash path for cut-video page (user-facing route expectation)
+  const isCutVideoPage = /\/cut-video-youtube\/?$/.test(newPath);
+  if (isCutVideoPage) {
+    newPath = newPath.replace(/\/$/, '');
+  }
+
+  // Ensure path ends with / (except root and cut-video page)
+  if (!isCutVideoPage && newPath !== '/' && !newPath.endsWith('/')) {
     newPath += '/';
   }
 
