@@ -9,6 +9,8 @@ export interface StoreChangeHandlerConfig {
     listContainer: HTMLElement;
     controlsContainer?: HTMLElement;
     strategy: RendererStrategy;
+    /** Per-item strategy resolver. When provided, takes precedence over `strategy`. */
+    getStrategy?: (item: VideoItem) => RendererStrategy;
     onCountsChanged?: () => void;
     getGlobalLockState?: () => boolean;
     getActiveLoadingId?: () => string | null;
@@ -26,14 +28,17 @@ function isDownloadTabStatus(status: string) {
 }
 
 export function createStoreChangeHandler(config: StoreChangeHandlerConfig) {
-    const { listContainer, strategy, onCountsChanged } = config;
+    const { listContainer, onCountsChanged } = config;
+    const resolveStrategy = (item: VideoItem): RendererStrategy =>
+        config.getStrategy ? config.getStrategy(item) : config.strategy;
 
     return function handleStoreChange(eventName: VideoStoreEventName, data: any): void {
         switch (eventName) {
             case 'item:added': {
                 // data is the full VideoItem
                 const item = data as VideoItem;
-                const el = VideoItemRenderer.createVideoItemElement(item, strategy);
+                const itemStrategy = resolveStrategy(item);
+                const el = VideoItemRenderer.createVideoItemElement(item, itemStrategy);
 
                 // Insert into group container if groupId exists
                 if (item.groupId) {
@@ -49,16 +54,16 @@ export function createStoreChangeHandler(config: StoreChangeHandlerConfig) {
                         groupList.insertBefore(el, loadMoreEl ?? null);
                     }
                     // afterRender must run AFTER DOM insertion so getComputedStyle works correctly
-                    if (strategy.afterRender) {
-                        strategy.afterRender(el, item);
+                    if (itemStrategy.afterRender) {
+                        itemStrategy.afterRender(el, item);
                     }
                     const isLocked = config.getGlobalLockState?.() || false;
                     updateGroupCount(groupEl, isLocked);
                 } else {
                     listContainer.prepend(el);
                     // afterRender must run AFTER DOM insertion so getComputedStyle works correctly
-                    if (strategy.afterRender) {
-                        strategy.afterRender(el, item);
+                    if (itemStrategy.afterRender) {
+                        itemStrategy.afterRender(el, item);
                     }
                 }
 
@@ -110,7 +115,7 @@ export function createStoreChangeHandler(config: StoreChangeHandlerConfig) {
                     for (const item of items) {
                         const el = getVideoItemElement(listContainer, item.id);
                         if (el) {
-                            VideoItemRenderer.updateVideoItemElement(el, item, strategy, {
+                            VideoItemRenderer.updateVideoItemElement(el, item, resolveStrategy(item), {
                                 isGlobalLocked,
                                 currentDownloadingItemId: activeLoadingId || undefined
                             });
@@ -133,7 +138,7 @@ export function createStoreChangeHandler(config: StoreChangeHandlerConfig) {
                 const isGlobalLocked = config.getGlobalLockState?.() || false;
                 const activeLoadingId = config.getActiveLoadingId?.() || null;
 
-                VideoItemRenderer.updateVideoItemElement(el, item, strategy, {
+                VideoItemRenderer.updateVideoItemElement(el, item, resolveStrategy(item), {
                     isGlobalLocked,
                     currentDownloadingItemId: activeLoadingId || undefined
                 });
@@ -156,7 +161,7 @@ export function createStoreChangeHandler(config: StoreChangeHandlerConfig) {
                 const el = getVideoItemElement(listContainer, item.id);
                 if (!el) return;
 
-                VideoItemRenderer.updateProgressOnly(el, item, strategy);
+                VideoItemRenderer.updateProgressOnly(el, item, resolveStrategy(item));
                 onCountsChanged?.();
                 break;
             }
@@ -207,10 +212,11 @@ export function createStoreChangeHandler(config: StoreChangeHandlerConfig) {
                     const el = getVideoItemElement(listContainer, item.id);
                     if (!el) continue;
 
+                    const s = resolveStrategy(item);
                     const settingsEl = el.querySelector('.item-settings') as HTMLElement;
                     if (settingsEl) {
-                        settingsEl.innerHTML = strategy.buildSettingsContent(item);
-                        settingsEl.className = 'item-settings' + strategy.getSettingsClass(item);
+                        settingsEl.innerHTML = s.buildSettingsContent(item);
+                        settingsEl.className = 'item-settings' + s.getSettingsClass(item);
                     }
                 }
                 break;

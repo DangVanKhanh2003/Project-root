@@ -57,7 +57,7 @@
     },
     "copyright": "© 2026 Ezconv. 無断複写・転載を禁じます。"
   },
-  "strim": {
+  "trim": {
     "startBtn": "開始",
     "selectFormatLabel": "1. フォーマットを選択:",
     "selectQualityLabel": "2. 品質を選択:",

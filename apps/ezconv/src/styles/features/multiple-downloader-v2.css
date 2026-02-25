@@ -1916,3 +1916,255 @@
         display: none !important;
     }
 }
+
+/* =========================================
+   Advanced Settings (new-ux.html)
+   ========================================= */
+
+/* Toggle button */
+.advanced-settings-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 12px;
+    padding: 7px 14px;
+    background: none;
+    border: 1px solid #d1d5db;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+    transition: background 0.15s, border-color 0.15s;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.advanced-settings-toggle:hover {
+    background: #f3f4f6;
+    border-color: #9ca3af;
+}
+
+.advanced-settings-toggle[aria-expanded="true"] {
+    background: #eff6ff;
+    border-color: #93c5fd;
+    color: #1d4ed8;
+}
+
+.advanced-settings-toggle[aria-expanded="true"] .adv-settings-chevron {
+    transform: rotate(180deg);
+}
+
+.adv-settings-icon {
+    flex-shrink: 0;
+    opacity: 0.7;
+}
+
+.adv-settings-chevron {
+    flex-shrink: 0;
+    margin-left: 2px;
+    transition: transform 0.2s ease;
+}
+
+/* Panel */
+.advanced-settings-panel {
+    margin-top: 12px;
+    padding: 16px 20px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+}
+
+.adv-settings-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.adv-setting-item {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 120px;
+}
+
+.adv-setting-item--audio {
+    min-width: 160px;
+    flex: 1;
+    max-width: 240px;
+}
+
+.adv-setting-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Mode switch (toggle knob) */
+.mode-switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+    border-radius: 999px;
+    background: #d1d5db;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.2s;
+    -webkit-tap-highlight-color: transparent;
+    flex-shrink: 0;
+}
+
+.mode-switch[aria-checked="true"] {
+    background: #004fab;
+}
+
+.mode-switch-thumb {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+    transition: transform 0.2s;
+    pointer-events: none;
+}
+
+.mode-switch[aria-checked="true"] .mode-switch-thumb {
+    transform: translateX(20px);
+}
+
+/* =========================================
+   Cutting Interface (stream-editor reuse)
+   ========================================= */
+
+.cutting-interface {
+    margin-top: 16px;
+    border-top: 1px solid #e5e7eb;
+    padding-top: 16px;
+}
+
+.cutting-interface .stream-editor {
+    display: grid;
+    grid-template-columns: 4fr 6fr;
+    gap: 16px;
+}
+
+.cutting-interface .stream-player-wrap {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #000;
+}
+
+.cutting-interface .stream-player,
+.cutting-interface .stream-player-wrap iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.cutting-interface .stream-settings {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.cutting-interface .stream-step {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.cutting-interface .stream-step-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.cutting-interface .trim-slider {
+    margin: 8px 0 6px;
+}
+
+.cutting-interface .stream-time-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.cutting-interface .stream-time-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.cutting-interface .stream-time-label {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.cutting-interface .time-input {
+    width: 100%;
+    min-height: 38px;
+    border: 1px solid var(--border-secondary);
+    border-radius: 999px;
+    padding: 0 12px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+/* noUiSlider */
+.cutting-interface .noUi-target {
+    background: #eef2f8;
+    border: none;
+    border-radius: 999px;
+    box-shadow: none;
+    height: 8px;
+}
+
+.cutting-interface .noUi-connect {
+    background: var(--primary-color);
+}
+
+.cutting-interface .noUi-horizontal .noUi-handle {
+    width: 16px;
+    height: 16px;
+    right: -8px;
+    top: -4px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    background: var(--primary-color);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+.cutting-interface .noUi-handle::before,
+.cutting-interface .noUi-handle::after {
+    display: none;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .cutting-interface .stream-editor {
+        grid-template-columns: 1fr;
+    }
+
+    .adv-settings-row {
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .adv-setting-item--audio {
+        max-width: 100%;
+        width: 100%;
+    }
+}

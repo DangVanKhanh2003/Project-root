@@ -158,6 +158,8 @@ function buildV3Request(url: string, settings: VideoItemSettings) {
         audioFormat: isAudio ? (isFormatOverride ? settings.audioBitrate : (settings.audioFormat || 'mp3')) : undefined,
         audioBitrate: isFormatOverride ? undefined : (settings.audioBitrate || '128'),
         trackId: settings.audioTrack,
+        ...(Number.isFinite(settings.trimStart) ? { trimStart: settings.trimStart } : {}),
+        ...(Number.isFinite(settings.trimEnd) ? { trimEnd: settings.trimEnd } : {}),
     });
 }
 

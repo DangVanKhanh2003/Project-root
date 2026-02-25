@@ -30,7 +30,7 @@
                         </div>
                     </div>
                     <button type="button" id="stream-start-btn" class="stream-start-btn">
-                        {{ base.strim.startBtn }}
+                        {{ base.trim.startBtn }}
                     </button>
                 </div>
                 <div id="suggestion-container" class="suggestion-container"></div>
@@ -78,7 +78,7 @@
                 <div class="stream-settings">
                     <div class="stream-step-row">
                         <div class="stream-step">
-                            <span class="stream-step-label">{{ base.strim.selectFormatLabel }}</span>
+                            <span class="stream-step-label">{{ base.trim.selectFormatLabel }}</span>
                             <div class="format-toggle" id="stream-format-toggle">
                                 <button type="button" data-format="mp3"
                                     class="format-btn selected">{{ base.hero.formatMp3 }}</button>
@@ -87,7 +87,7 @@
                             </div>
                         </div>
                         <div class="stream-step">
-                            <span class="stream-step-label">{{ base.strim.selectQualityLabel }}</span>
+                            <span class="stream-step-label">{{ base.trim.selectQualityLabel }}</span>
                             <div class="quality-dropdown-wrapper">
                                 <select id="stream-quality-select" class="quality-select"
                                     aria-label="Quality selector"></select>
@@ -99,7 +99,7 @@
                     </div>
 
                     <div class="stream-step" id="stream-audio-track-row">
-                        <span class="stream-step-label">{{ base.strim.audioTrackLabel }}</span>
+                        <span class="stream-step-label">{{ base.trim.audioTrackLabel }}</span>
                         <div class="audio-dropdown-wrapper">
                             <div class="custom-dropdown" id="stream-audio-track-dropdown">
                                 <div class="dropdown-trigger" tabindex="0" role="button"
@@ -150,16 +150,16 @@
                     </div>
 
                     <div class="stream-step">
-                        <span class="stream-step-label">{{ base.strim.trimLabel }}</span>
+                        <span class="stream-step-label">{{ base.trim.trimLabel }}</span>
                         <div id="trim-slider" class="trim-slider"></div>
                         <div class="stream-time-row">
                             <div class="stream-time-field">
-                                <span class="stream-time-label">{{ base.strim.startTimeLabel }}</span>
+                                <span class="stream-time-label">{{ base.trim.startTimeLabel }}</span>
                                 <input type="text" id="trim-start" class="time-input" value="0:00"
                                     autocomplete="off" />
                             </div>
                             <div class="stream-time-field">
-                                <span class="stream-time-label">{{ base.strim.endTimeLabel }}</span>
+                                <span class="stream-time-label">{{ base.trim.endTimeLabel }}</span>
                                 <input type="text" id="trim-end" class="time-input" value="0:00"
                                     autocomplete="off" />
                             </div>

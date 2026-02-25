@@ -13,6 +13,9 @@ export interface VideoItemSettings {
     audioBitrate?: string;
     videoQuality?: string;
     audioTrack?: string;
+    trimStart?: number;
+    trimEnd?: number;
+    trimRangeLabel?: string;
 }
 
 export interface VideoItem {

@@ -1,26 +1,26 @@
-body[data-page="strim-downloader"] .form-container {
+body[data-page="trim-downloader"] .form-container {
   max-width: 1000px;
 }
 
-body[data-page="strim-downloader"] .hero-card {
+body[data-page="trim-downloader"] .hero-card {
   padding-top: 24px;
   padding-bottom: 24px !important;
 }
 
-body[data-page="strim-downloader"] .stream-input-row {
+body[data-page="trim-downloader"] .stream-input-row {
   display: flex;
   gap: 10px;
   align-items: stretch;
 }
 
-body[data-page="strim-downloader"] .stream-hero-note {
+body[data-page="trim-downloader"] .stream-hero-note {
   margin: 0 0 12px;
   color: rgba(255, 255, 255, 0.88);
   font-size: 14px;
   line-height: 1.5;
 }
 
-body[data-page="strim-downloader"] .stream-hero-card-title {
+body[data-page="trim-downloader"] .stream-hero-card-title {
   margin: 0 0 18px;
   color: #000;
   font-size: 1.45rem;
@@ -28,11 +28,11 @@ body[data-page="strim-downloader"] .stream-hero-card-title {
   font-weight: 700;
 }
 
-body[data-page="strim-downloader"] #result-view {
+body[data-page="trim-downloader"] #result-view {
   margin-top: 0 !important;
 }
 
-body[data-page="strim-downloader"] .yt-preview-format {
+body[data-page="trim-downloader"] .yt-preview-format {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -43,12 +43,12 @@ body[data-page="strim-downloader"] .yt-preview-format {
   text-align: left;
 }
 
-body[data-page="strim-downloader"] .stream-input-row .input-shell {
+body[data-page="trim-downloader"] .stream-input-row .input-shell {
   flex: 1;
   min-width: 0;
 }
 
-body[data-page="strim-downloader"] .stream-start-btn {
+body[data-page="trim-downloader"] .stream-start-btn {
   min-width: 120px;
   height: 50px;
   max-height: 50px;
@@ -61,18 +61,18 @@ body[data-page="strim-downloader"] .stream-start-btn {
   cursor: pointer;
 }
 
-body[data-page="strim-downloader"] .stream-start-btn:hover {
+body[data-page="trim-downloader"] .stream-start-btn:hover {
   background: var(--primary-color-hover);
 }
 
-body[data-page="strim-downloader"] .stream-editor {
+body[data-page="trim-downloader"] .stream-editor {
   display: grid;
   grid-template-columns: 4fr 6fr;
   gap: 16px;
   margin-top: 24px;
 }
 
-body[data-page="strim-downloader"] .stream-player-wrap {
+body[data-page="trim-downloader"] .stream-player-wrap {
   position: relative;
   width: 100%;
   padding-bottom: 56.25%;
@@ -81,8 +81,8 @@ body[data-page="strim-downloader"] .stream-player-wrap {
   background: #000;
 }
 
-body[data-page="strim-downloader"] .stream-player,
-body[data-page="strim-downloader"] .stream-player-wrap iframe {
+body[data-page="trim-downloader"] .stream-player,
+body[data-page="trim-downloader"] .stream-player-wrap iframe {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -90,30 +90,30 @@ body[data-page="strim-downloader"] .stream-player-wrap iframe {
   border: 0;
 }
 
-body[data-page="strim-downloader"] .stream-settings {
+body[data-page="trim-downloader"] .stream-settings {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-body[data-page="strim-downloader"] .stream-input-row .video-input {
+body[data-page="trim-downloader"] .stream-input-row .video-input {
   height: 50px;
   max-height: 50px;
 }
 
-body[data-page="strim-downloader"] .stream-step {
+body[data-page="trim-downloader"] .stream-step {
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
-body[data-page="strim-downloader"] .stream-step-row {
+body[data-page="trim-downloader"] .stream-step-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
 }
 
-body[data-page="strim-downloader"] .stream-step-label {
+body[data-page="trim-downloader"] .stream-step-label {
   font-size: 13px;
   font-weight: 600;
   color: var(--text-muted);
@@ -121,14 +121,14 @@ body[data-page="strim-downloader"] .stream-step-label {
   width: 100%;
 }
 
-body[data-page="strim-downloader"] #stream-format-toggle {
+body[data-page="trim-downloader"] #stream-format-toggle {
   display: flex;
   border-radius: 999px;
   overflow: hidden;
   border: 1px solid #b0b0b0ad;
 }
 
-body[data-page="strim-downloader"] #stream-format-toggle .format-btn {
+body[data-page="trim-downloader"] #stream-format-toggle .format-btn {
   flex: 1;
   border: none;
   background: #fff;
@@ -138,12 +138,12 @@ body[data-page="strim-downloader"] #stream-format-toggle .format-btn {
   font-weight: 600;
 }
 
-body[data-page="strim-downloader"] #stream-format-toggle .format-btn.selected {
+body[data-page="trim-downloader"] #stream-format-toggle .format-btn.selected {
   background: var(--primary-color);
   color: #fff;
 }
 
-body[data-page="strim-downloader"] #stream-quality-select {
+body[data-page="trim-downloader"] #stream-quality-select {
   width: 100%;
   appearance: none;
   -webkit-appearance: none;
@@ -151,11 +151,11 @@ body[data-page="strim-downloader"] #stream-quality-select {
   padding-right: 36px;
 }
 
-body[data-page="strim-downloader"] .stream-settings .quality-dropdown-wrapper {
+body[data-page="trim-downloader"] .stream-settings .quality-dropdown-wrapper {
   position: relative;
 }
 
-body[data-page="strim-downloader"] .stream-settings .quality-dropdown-wrapper .dropdown-arrow {
+body[data-page="trim-downloader"] .stream-settings .quality-dropdown-wrapper .dropdown-arrow {
   position: absolute;
   top: 50%;
   right: 10px;
@@ -166,28 +166,28 @@ body[data-page="strim-downloader"] .stream-settings .quality-dropdown-wrapper .d
   color: var(--text-primary, #333);
 }
 
-body[data-page="strim-downloader"] .trim-slider {
+body[data-page="trim-downloader"] .trim-slider {
   margin: 8px 0 6px;
 }
 
-body[data-page="strim-downloader"] .stream-time-row {
+body[data-page="trim-downloader"] .stream-time-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
 }
 
-body[data-page="strim-downloader"] .stream-time-field {
+body[data-page="trim-downloader"] .stream-time-field {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
-body[data-page="strim-downloader"] .stream-time-label {
+body[data-page="trim-downloader"] .stream-time-label {
   font-size: 12px;
   color: var(--text-muted);
 }
 
-body[data-page="strim-downloader"] .time-input {
+body[data-page="trim-downloader"] .time-input {
   width: 100%;
   min-height: 38px;
   border: 1px solid var(--border-secondary);
@@ -197,38 +197,38 @@ body[data-page="strim-downloader"] .time-input {
   font-weight: 600;
 }
 
-body[data-page="strim-downloader"] .stream-convert-btn {
+body[data-page="trim-downloader"] .stream-convert-btn {
   width: 100%;
 }
 
-body[data-page="strim-downloader"] .stream-convert-row {
+body[data-page="trim-downloader"] .stream-convert-row {
   margin-top: 4px;
 }
 
-body[data-page="strim-downloader"] .stream-settings .audio-dropdown-wrapper {
+body[data-page="trim-downloader"] .stream-settings .audio-dropdown-wrapper {
   width: 100%;
 }
 
-body[data-page="strim-downloader"] .stream-settings .custom-dropdown {
+body[data-page="trim-downloader"] .stream-settings .custom-dropdown {
   width: 100%;
 }
 
-body[data-page="strim-downloader"] .stream-settings .dropdown-trigger {
+body[data-page="trim-downloader"] .stream-settings .dropdown-trigger {
   min-height: 40px;
   display: flex;
   align-items: center;
 }
 
-body[data-page="strim-downloader"] .stream-settings .dropdown-trigger .selected-content {
+body[data-page="trim-downloader"] .stream-settings .dropdown-trigger .selected-content {
   flex: 1;
   text-align: left;
 }
 
-body[data-page="strim-downloader"] .stream-settings .dropdown-trigger .selected-text {
+body[data-page="trim-downloader"] .stream-settings .dropdown-trigger .selected-text {
   text-align: left;
 }
 
-body[data-page="strim-downloader"] .stream-settings .dropdown-trigger .dropdown-arrow {
+body[data-page="trim-downloader"] .stream-settings .dropdown-trigger .dropdown-arrow {
   margin-left: auto;
   flex-shrink: 0;
   opacity: 1;
@@ -236,11 +236,11 @@ body[data-page="strim-downloader"] .stream-settings .dropdown-trigger .dropdown-
   display: inline-block;
 }
 
-body[data-page="strim-downloader"] .stream-settings .dropdown-menu {
+body[data-page="trim-downloader"] .stream-settings .dropdown-menu {
   z-index: 20;
 }
 
-body[data-page="strim-downloader"] .noUi-target {
+body[data-page="trim-downloader"] .noUi-target {
   background: #eef2f8;
   border: none;
   border-radius: 999px;
@@ -248,11 +248,11 @@ body[data-page="strim-downloader"] .noUi-target {
   height: 8px;
 }
 
-body[data-page="strim-downloader"] .noUi-connect {
+body[data-page="trim-downloader"] .noUi-connect {
   background: var(--primary-color);
 }
 
-body[data-page="strim-downloader"] .noUi-horizontal .noUi-handle {
+body[data-page="trim-downloader"] .noUi-horizontal .noUi-handle {
   width: 16px;
   height: 16px;
   right: -8px;
@@ -263,55 +263,55 @@ body[data-page="strim-downloader"] .noUi-horizontal .noUi-handle {
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
 }
 
-body[data-page="strim-downloader"] .noUi-handle:before,
-body[data-page="strim-downloader"] .noUi-handle:after {
+body[data-page="trim-downloader"] .noUi-handle:before,
+body[data-page="trim-downloader"] .noUi-handle:after {
   display: none;
 }
 
-body[data-page="strim-downloader"] .noUi-touch-area {
+body[data-page="trim-downloader"] .noUi-touch-area {
   transform: translateY(2px);
 }
 
 @media (max-width: 768px) {
-  body[data-page="strim-downloader"] .yt-preview-format {
+  body[data-page="trim-downloader"] .yt-preview-format {
     justify-content: center;
     align-content: center;
     text-align: center;
   }
 
-  body[data-page="strim-downloader"] .stream-input-row {
+  body[data-page="trim-downloader"] .stream-input-row {
     flex-direction: column;
   }
 
-  body[data-page="strim-downloader"] .stream-start-btn {
+  body[data-page="trim-downloader"] .stream-start-btn {
     min-height: 44px;
   }
 
-  body[data-page="strim-downloader"] .stream-editor {
+  body[data-page="trim-downloader"] .stream-editor {
     grid-template-columns: 1fr;
   }
 
-  body[data-page="strim-downloader"] .stream-step-row {
+  body[data-page="trim-downloader"] .stream-step-row {
     grid-template-columns: 1fr;
   }
 
   /* Override base mobile dropdown collapse behavior for stream page:
      always show text, no hide animation. */
-  body[data-page="strim-downloader"] .stream-settings .audio-dropdown-wrapper {
+  body[data-page="trim-downloader"] .stream-settings .audio-dropdown-wrapper {
     width: 100% !important;
     flex: 1 1 auto !important;
     margin-left: 0 !important;
     transition: none !important;
   }
 
-  body[data-page="strim-downloader"] .stream-settings .audio-dropdown-wrapper:has(.custom-dropdown.active) {
+  body[data-page="trim-downloader"] .stream-settings .audio-dropdown-wrapper:has(.custom-dropdown.active) {
     width: 100% !important;
   }
 
-  body[data-page="strim-downloader"] .stream-settings .audio-dropdown-wrapper .selected-content,
-  body[data-page="strim-downloader"] .stream-settings .audio-dropdown-wrapper .dropdown-arrow,
-  body[data-page="strim-downloader"] .stream-settings .audio-dropdown-wrapper:has(.custom-dropdown.active) .selected-content,
-  body[data-page="strim-downloader"] .stream-settings .audio-dropdown-wrapper:has(.custom-dropdown.active) .dropdown-arrow {
+  body[data-page="trim-downloader"] .stream-settings .audio-dropdown-wrapper .selected-content,
+  body[data-page="trim-downloader"] .stream-settings .audio-dropdown-wrapper .dropdown-arrow,
+  body[data-page="trim-downloader"] .stream-settings .audio-dropdown-wrapper:has(.custom-dropdown.active) .selected-content,
+  body[data-page="trim-downloader"] .stream-settings .audio-dropdown-wrapper:has(.custom-dropdown.active) .dropdown-arrow {
     opacity: 1 !important;
     max-width: none !important;
     overflow: visible !important;
@@ -319,8 +319,8 @@ body[data-page="strim-downloader"] .noUi-touch-area {
     transition: none !important;
   }
 
-  body[data-page="strim-downloader"] .stream-settings .audio-dropdown-wrapper .dropdown-trigger,
-  body[data-page="strim-downloader"] .stream-settings .audio-dropdown-wrapper:has(.custom-dropdown.active) .dropdown-trigger {
+  body[data-page="trim-downloader"] .stream-settings .audio-dropdown-wrapper .dropdown-trigger,
+  body[data-page="trim-downloader"] .stream-settings .audio-dropdown-wrapper:has(.custom-dropdown.active) .dropdown-trigger {
     justify-content: flex-start !important;
     gap: 8px !important;
     padding: 0 12px !important;
@@ -329,14 +329,14 @@ body[data-page="strim-downloader"] .noUi-touch-area {
     transition: none !important;
   }
 
-  body[data-page="strim-downloader"] .stream-settings .audio-dropdown-wrapper .dropdown-menu {
+  body[data-page="trim-downloader"] .stream-settings .audio-dropdown-wrapper .dropdown-menu {
     left: 0 !important;
     right: auto !important;
   }
 }
 
 @media (min-width: 1024px) {
-  body[data-page="strim-downloader"] .stream-hero-card-title {
+  body[data-page="trim-downloader"] .stream-hero-card-title {
     font-size: 1.9rem;
     margin-bottom: 24px;
   }

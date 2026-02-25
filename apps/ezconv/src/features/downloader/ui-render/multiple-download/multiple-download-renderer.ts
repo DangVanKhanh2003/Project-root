@@ -15,6 +15,8 @@ export class MultipleDownloadRenderer {
     private isInitialized = false;
     private isPlaylistMode: boolean = false;
     private strategy: RendererStrategy = new MultiDownloadStrategy();
+    private readonly batchStrategy: RendererStrategy = new MultiDownloadStrategy();
+    private readonly playlistStrategy: RendererStrategy = new PlaylistStrategy();
     private unsubscribe: (() => void) | null = null;
     private isGlobalDownloadLocked: boolean = false;
     private activeLoadingId: string | null = null;
@@ -48,11 +50,13 @@ export class MultipleDownloadRenderer {
     }
 
     usePlaylistStrategy() {
-        this.strategy = new PlaylistStrategy();
+        this.isPlaylistMode = true;
+        this.strategy = this.playlistStrategy;
     }
 
     useBatchStrategy() {
-        this.strategy = new MultiDownloadStrategy();
+        this.isPlaylistMode = false;
+        this.strategy = this.batchStrategy;
     }
 
     show() {
@@ -93,6 +97,12 @@ export class MultipleDownloadRenderer {
         const handleChange = createStoreChangeHandler({
             listContainer: this.listContainer,
             strategy: this.strategy,
+            // Grouped items (playlists) always use PlaylistStrategy (dropdowns).
+            // Non-grouped items use PlaylistStrategy only when in explicit playlist-only mode.
+            getStrategy: (item) =>
+                item.groupId ? this.playlistStrategy
+                : this.isPlaylistMode ? this.playlistStrategy
+                : this.batchStrategy,
             getGlobalLockState: () => this.isGlobalDownloadLocked,
             getActiveLoadingId: () => this.activeLoadingId
         });
