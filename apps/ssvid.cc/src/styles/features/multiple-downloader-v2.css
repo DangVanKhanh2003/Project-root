@@ -1217,7 +1217,7 @@
 .playlist-tab {
     background: transparent;
     border: none;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem;
     font-size: 0.8125rem;
     font-weight: 600;
     color: #313131cf;
@@ -1908,6 +1908,7 @@
 }
 
 @media (max-width: 640px) {
+
     /* Hide remove button AND cancel button during processing phases ONLY on mobile */
     .multi-video-item.analyzing .btn-remove,
     .multi-video-item.fetching_metadata .btn-remove,
@@ -1915,5 +1916,3 @@
         display: none !important;
     }
 }
-
-
