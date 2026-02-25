@@ -200,9 +200,7 @@
     }
 
     .btn-paste .btn-state--paste,
-    .btn-paste .btn-state--clear,
-    #input-action-button .btn-state--paste,
-    #input-action-button .btn-state--clear {
+    .btn-paste .btn-state--clear {
         display: none !important;
     }
 }
