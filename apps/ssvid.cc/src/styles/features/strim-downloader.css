@@ -155,19 +155,15 @@ body[data-page="strim-downloader"] .stream-settings .quality-dropdown-wrapper {
   position: relative;
 }
 
-body[data-page="strim-downloader"] .stream-settings .quality-dropdown-wrapper::after {
-  content: '';
+body[data-page="strim-downloader"] .stream-settings .quality-dropdown-wrapper .dropdown-arrow {
   position: absolute;
   top: 50%;
-  right: 14px;
-  width: 16px;
-  height: 16px;
-  border-right: 2px solid var(--text-primary, #333);
-  border-bottom: 2px solid var(--text-primary, #333);
-  transform: translateY(-60%) rotate(45deg);
+  right: 10px;
+  transform: translateY(-50%);
   opacity: 0.8;
   z-index: 2;
   pointer-events: none;
+  color: var(--text-primary, #333);
 }
 
 body[data-page="strim-downloader"] .trim-slider {
