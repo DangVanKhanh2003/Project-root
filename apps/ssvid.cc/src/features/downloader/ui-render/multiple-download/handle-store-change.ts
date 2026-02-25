@@ -3,7 +3,7 @@ import { VideoStoreEventName, VideoItem } from '../../state/multiple-download-ty
 import { videoStore } from '../../state/video-store';
 import { VideoItemRenderer } from './video-item-renderer';
 import { RendererStrategy } from './renderer-strategy.interface';
-import { isMobileDevice } from '../../../../utils';
+import { isIOS } from '../../../../utils';
 
 export interface StoreChangeHandlerConfig {
     listContainer: HTMLElement;
@@ -48,10 +48,18 @@ export function createStoreChangeHandler(config: StoreChangeHandlerConfig) {
                         const loadMoreEl = groupList.querySelector('.group-load-more');
                         groupList.insertBefore(el, loadMoreEl ?? null);
                     }
+                    // afterRender must run AFTER DOM insertion so getComputedStyle works correctly
+                    if (strategy.afterRender) {
+                        strategy.afterRender(el, item);
+                    }
                     const isLocked = config.getGlobalLockState?.() || false;
                     updateGroupCount(groupEl, isLocked);
                 } else {
                     listContainer.prepend(el);
+                    // afterRender must run AFTER DOM insertion so getComputedStyle works correctly
+                    if (strategy.afterRender) {
+                        strategy.afterRender(el, item);
+                    }
                 }
 
                 // Remove empty state if exists
@@ -237,8 +245,12 @@ function createGroupElement(groupId: string, groupTitle: string): HTMLElement {
                     <p class="group-title">Playlist</p>
                 </div>
                 <div class="playlist-header-tabs">
-                    <button type="button" class="playlist-tab active" data-action="playlist-tab" data-tab="convert" data-group-id="${groupId}">Convert Tab (0)</button>
-                    <button type="button" class="playlist-tab" data-action="playlist-tab" data-tab="download" data-group-id="${groupId}">Download Tab (0)</button>
+                    <div class="tab-glider"></div>
+                    <button type="button" class="playlist-tab active" data-action="playlist-tab" data-tab="convert" data-group-id="${groupId}">Convert <span class="tab-suffix">Tab</span> (0)</button>
+                    <button type="button" class="playlist-tab" data-action="playlist-tab" data-tab="download" data-group-id="${groupId}">Download <span class="tab-suffix">Tab</span> (0)</button>
+                    <div class="tab-hand-guide" style="display: none;" aria-hidden="true">
+                        <img src="/hand-click.gif" alt="" width="48" height="48">
+                    </div>
                 </div>
             </div>
             <div class="group-header-bottom-row">
@@ -271,8 +283,7 @@ export function updateGroupCount(groupEl: HTMLElement, isLocked: boolean = false
     if (!groupId) return;
 
     const items = videoStore.getItemsByGroup(groupId);
-    const isMobile = isMobileDevice();
-    const activeTab = isMobile ? 'all' : (groupEl.dataset.activeTab || 'convert');
+    const activeTab = groupEl.dataset.activeTab || 'convert';
 
     // Update group title
     const groupMeta = videoStore.getGroupMeta(groupId);
@@ -304,13 +315,26 @@ export function updateGroupCount(groupEl: HTMLElement, isLocked: boolean = false
     const dCount = downloadItems.length;
 
     // Update Tab Counts
-    const convertTab = groupEl.querySelector('.playlist-tab[data-tab="convert"]');
-    const downloadTab = groupEl.querySelector('.playlist-tab[data-tab="download"]');
+    const convertTab = groupEl.querySelector('.playlist-tab[data-tab="convert"]') as HTMLElement | null;
+    const downloadTab = groupEl.querySelector('.playlist-tab[data-tab="download"]') as HTMLElement | null;
 
-    if (convertTab) convertTab.textContent = `Convert Tab (${cCount})`;
-    if (downloadTab) downloadTab.textContent = `Download Tab (${dCount})`;
+    if (convertTab) convertTab.innerHTML = `Convert <span class="tab-suffix">Tab</span> (${cCount})`;
+    if (downloadTab) downloadTab.innerHTML = `Download <span class="tab-suffix">Tab</span> (${dCount})`;
 
-    // Filter Visibility of items — use Map for O(1) lookup instead of O(n) find()
+    // Sync glider to active tab (handles initial render and any tab that hasn't been clicked yet)
+    const activeTabEl = activeTab === 'convert' ? convertTab : downloadTab;
+    const glider = groupEl.querySelector('.tab-glider') as HTMLElement | null;
+    if (glider && activeTabEl && activeTabEl.offsetWidth > 0) {
+        const style = window.getComputedStyle(activeTabEl);
+        const paddingLeft = parseFloat(style.paddingLeft) || 0;
+        const paddingRight = parseFloat(style.paddingRight) || 0;
+        const extraPadding = 6;
+        const width = (activeTabEl.offsetWidth - paddingLeft - paddingRight) + (extraPadding * 2);
+        glider.style.width = `${width}px`;
+        glider.style.transform = `translateX(${activeTabEl.offsetLeft + paddingLeft - extraPadding}px)`;
+    }
+
+    // Filter Visibility of items — always by active tab (mobile and desktop)
     const itemsMap = new Map(items.map(i => [i.id, i]));
     const itemElements = groupEl.querySelectorAll('.multi-video-item');
     let visibleCount = 0;
@@ -320,11 +344,9 @@ export function updateGroupCount(groupEl: HTMLElement, isLocked: boolean = false
         const itemData = id ? itemsMap.get(id) : undefined;
 
         if (itemData) {
-            const isVisible = isMobile
-                ? true
-                : (activeTab === 'convert'
-                    ? isConvertTabStatus(itemData.status)
-                    : isDownloadTabStatus(itemData.status));
+            const isVisible = activeTab === 'convert'
+                ? isConvertTabStatus(itemData.status)
+                : isDownloadTabStatus(itemData.status);
 
             (itemEl as HTMLElement).style.display = isVisible ? 'flex' : 'none';
             if (isVisible) visibleCount++;
@@ -337,23 +359,12 @@ export function updateGroupCount(groupEl: HTMLElement, isLocked: boolean = false
         emptyState.style.display = visibleCount === 0 ? 'flex' : 'none';
     }
 
-    // Toggle Action Buttons based on Tab
+    // Toggle Action Buttons based on active tab
     const convertAllBtn = groupEl.querySelector('[data-action="download-group"]') as HTMLElement;
     const zipBtn = groupEl.querySelector('[data-action="download-zip-group"]') as HTMLElement;
 
     if (convertAllBtn && zipBtn) {
-        if (isMobile) {
-            const downloadableCount = items.filter(i => i.isSelected && ['ready', 'error', 'cancelled'].includes(i.status)).length;
-            convertAllBtn.style.display = '';
-            (convertAllBtn as HTMLButtonElement).disabled = downloadableCount === 0 || isLocked;
-            convertAllBtn.textContent = `Convert selected (${downloadableCount})`;
-
-            const completedItems = items.filter(i => i.status === 'completed');
-            const selectedCompletedCount = completedItems.filter(i => i.isSelected).length;
-            zipBtn.style.display = '';
-            (zipBtn as HTMLButtonElement).disabled = selectedCompletedCount === 0 || isLocked;
-            zipBtn.innerHTML = `<svg class="btn-icon-zip" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550.801 550.801" aria-hidden="true" width="16" height="16" style="margin-right: 8px; vertical-align: middle;"><path fill="currentColor" d="M475.095,131.992c-0.032-2.526-0.833-5.021-2.568-6.993L366.324,3.694c-0.021-0.034-0.053-0.045-0.084-0.076c-0.633-0.707-1.36-1.29-2.141-1.804c-0.232-0.15-0.465-0.285-0.707-0.422c-0.686-0.366-1.393-0.67-2.131-0.892c-0.2-0.058-0.379-0.14-0.58-0.192C359.87,0.114,359.047,0,358.203,0H97.2C85.292,0,75.6,9.693,75.6,21.601v507.6c0,11.913,9.692,21.601,21.6,21.601H453.6c11.918,0,21.601-9.688,21.601-21.601V133.202C475.2,132.796,475.137,132.398,475.095,131.992z M243.599,523.494H141.75v-15.936l62.398-89.797v-0.785h-56.565v-24.484h95.051v17.106l-61.038,88.636v0.771h62.002V523.494z M292.021,523.494h-29.744V392.492h29.744V523.494z M399.705,463.44c-10.104,9.524-25.069,13.796-42.566,13.796c-3.893,0-7.383-0.19-10.104-0.58v46.849h-29.352V394.242c9.134-1.561,21.958-2.721,40.036-2.721c18.277,0,31.292,3.491,40.046,10.494c8.354,6.607,13.996,17.486,13.996,30.322C411.761,445.163,407.479,456.053,399.705,463.44z M97.2,366.752V21.601h129.167v-3.396h32.756v3.396h88.28v110.515c0,5.961,4.831,10.8,10.8,10.8H453.6l.011,223.836H97.2z"></path></svg> Download ZIP (${selectedCompletedCount})`;
-        } else if (activeTab === 'convert') {
+        if (activeTab === 'convert') {
             convertAllBtn.style.display = '';
             zipBtn.style.display = 'none';
 
@@ -362,28 +373,31 @@ export function updateGroupCount(groupEl: HTMLElement, isLocked: boolean = false
             convertAllBtn.textContent = `Convert selected (${downloadableCount})`;
         } else {
             convertAllBtn.style.display = 'none';
-            zipBtn.style.display = '';
 
-            const completedItems = downloadItems.filter(i => i.status === 'completed');
-            const selectedCompletedCount = completedItems.filter(i => i.isSelected).length;
-            (zipBtn as HTMLButtonElement).disabled = selectedCompletedCount === 0 || isLocked;
-            zipBtn.innerHTML = `<svg class="btn-icon-zip" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550.801 550.801" aria-hidden="true" width="16" height="16" style="margin-right: 8px; vertical-align: middle;"><path fill="currentColor" d="M475.095,131.992c-0.032-2.526-0.833-5.021-2.568-6.993L366.324,3.694c-0.021-0.034-0.053-0.045-0.084-0.076c-0.633-0.707-1.36-1.29-2.141-1.804c-0.232-0.15-0.465-0.285-0.707-0.422c-0.686-0.366-1.393-0.67-2.131-0.892c-0.2-0.058-0.379-0.14-0.58-0.192C359.87,0.114,359.047,0,358.203,0H97.2C85.292,0,75.6,9.693,75.6,21.601v507.6c0,11.913,9.692,21.601,21.6,21.601H453.6c11.918,0,21.601-9.688,21.601-21.601V133.202C475.2,132.796,475.137,132.398,475.095,131.992z M243.599,523.494H141.75v-15.936l62.398-89.797v-0.785h-56.565v-24.484h95.051v17.106l-61.038,88.636v0.771h62.002V523.494z M292.021,523.494h-29.744V392.492h29.744V523.494z M399.705,463.44c-10.104,9.524-25.069,13.796-42.566,13.796c-3.893,0-7.383-0.19-10.104-0.58v46.849h-29.352V394.242c9.134-1.561,21.958-2.721,40.036-2.721c18.277,0,31.292,3.491,40.046,10.494c8.354,6.607,13.996,17.486,13.996,30.322C411.761,445.163,407.479,456.053,399.705,463.44z M97.2,366.752V21.601h129.167v-3.396h32.756v3.396h88.28v110.515c0,5.961,4.831,10.8,10.8,10.8H453.6l.011,223.836H97.2z"></path></svg> Download ZIP (${selectedCompletedCount})`;
+            if (isIOS()) {
+                zipBtn.style.display = 'none';
+            } else {
+                zipBtn.style.display = '';
+                const completedItems = downloadItems.filter(i => i.status === 'completed');
+                const selectedCompletedCount = completedItems.filter(i => i.isSelected).length;
+                (zipBtn as HTMLButtonElement).disabled = selectedCompletedCount === 0 || isLocked;
+                zipBtn.innerHTML = `<svg class="btn-icon-zip" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 550.801 550.801" aria-hidden="true" width="16" height="16" style="margin-right: 8px; vertical-align: middle;"><path fill="currentColor" d="M475.095,131.992c-0.032-2.526-0.833-5.021-2.568-6.993L366.324,3.694c-0.021-0.034-0.053-0.045-0.084-0.076c-0.633-0.707-1.36-1.29-2.141-1.804c-0.232-0.15-0.465-0.285-0.707-0.422c-0.686-0.366-1.393-0.67-2.131-0.892c-0.2-0.058-0.379-0.14-0.58-0.192C359.87,0.114,359.047,0,358.203,0H97.2C85.292,0,75.6,9.693,75.6,21.601v507.6c0,11.913,9.692,21.601,21.6,21.601H453.6c11.918,0,21.601-9.688,21.601-21.601V133.202C475.2,132.796,475.137,132.398,475.095,131.992z M243.599,523.494H141.75v-15.936l62.398-89.797v-0.785h-56.565v-24.484h95.051v17.106l-61.038,88.636v0.771h62.002V523.494z M292.021,523.494h-29.744V392.492h29.744V523.494z M399.705,463.44c-10.104,9.524-25.069,13.796-42.566,13.796c-3.893,0-7.383-0.19-10.104-0.58v46.849h-29.352V394.242c9.134-1.561,21.958-2.721,40.036-2.721c18.277,0,31.292,3.491,40.046,10.494c8.354,6.607,13.996,17.486,13.996,30.322C411.761,445.163,407.479,456.053,399.705,463.44z M97.2,366.752V21.601h129.167v-3.396h32.756v3.396h88.28v110.515c0,5.961,4.831,10.8,10.8,10.8H453.6l.011,223.836H97.2z"></path></svg> Download ZIP (${selectedCompletedCount})`;
+            }
         }
 
-        // Update Selection Count Text (tab-scoped)
+        // Update Selection Count Text (scoped to active tab)
         const selectionText = groupEl.querySelector('.group-selection-text');
         if (selectionText) {
-            const selectedCount = isMobile
-                ? items.filter(i => i.isSelected).length
-                : (activeTab === 'convert' ? convertItems : downloadItems).filter(i => i.isSelected).length;
+            const tabItems = activeTab === 'convert' ? convertItems : downloadItems;
+            const selectedCount = tabItems.filter(i => i.isSelected).length;
             selectionText.textContent = `${selectedCount} selected`;
         }
 
-        // Update Group Checkbox State (tab-scoped)
+        // Update Group Checkbox State (scoped to active tab)
         const groupCheckbox = groupEl.querySelector('.group-checkbox') as HTMLInputElement;
         if (groupCheckbox) {
-            const baseItems = isMobile ? items : (activeTab === 'convert' ? convertItems : downloadItems);
-            const selectableItems = baseItems.filter(i => ['ready', 'error', 'cancelled', 'completed'].includes(i.status));
+            const tabItems = activeTab === 'convert' ? convertItems : downloadItems;
+            const selectableItems = tabItems.filter(i => ['ready', 'error', 'cancelled', 'completed'].includes(i.status));
             const allSelected = selectableItems.length > 0 && selectableItems.every(i => i.isSelected);
             const someSelected = selectableItems.some(i => i.isSelected);
             groupCheckbox.checked = allSelected;
@@ -391,4 +405,37 @@ export function updateGroupCount(groupEl: HTMLElement, isLocked: boolean = false
             groupCheckbox.disabled = isLocked;
         }
     }
+}
+
+export const DOWNLOAD_TAB_CLICKED_KEY = 'hasClickedPlaylistTab';
+
+/**
+ * Show hand pointer guide on the Download tab if user hasn't discovered it yet
+ */
+export function showDownloadTabGuide(groupEl: HTMLElement, offsetX: number = 0): void {
+    if (!groupEl) { console.log('[guide] no groupEl'); return; }
+    if (localStorage.getItem(DOWNLOAD_TAB_CLICKED_KEY) === 'true') { console.log('[guide] already clicked, skip'); return; }
+
+    const tabsContainer = groupEl.querySelector('.playlist-header-tabs') as HTMLElement;
+    if (!tabsContainer) { console.log('[guide] no tabsContainer'); return; }
+
+    const downloadTab = tabsContainer.querySelector('.playlist-tab[data-tab="download"]') as HTMLElement;
+    if (!downloadTab) { console.log('[guide] no downloadTab'); return; }
+
+    const handGuide = tabsContainer.querySelector('.tab-hand-guide') as HTMLElement;
+    if (!handGuide) { console.log('[guide] no handGuide el'); return; }
+
+    const tabLeft = downloadTab.offsetLeft;
+    const guideWidth = 50;
+    console.log('[guide] showing at left:', tabLeft - guideWidth + offsetX, 'offsetX:', offsetX);
+    handGuide.style.left = `${tabLeft - guideWidth + offsetX}px`;
+    handGuide.style.right = '';
+    handGuide.style.display = '';
+
+    // Auto hide after 5s
+    if ((handGuide as any)._autoHideTimer) clearTimeout((handGuide as any)._autoHideTimer);
+    (handGuide as any)._autoHideTimer = setTimeout(() => {
+        handGuide.style.display = 'none';
+        (handGuide as any)._autoHideTimer = null;
+    }, 5000);
 }

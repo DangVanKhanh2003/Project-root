@@ -82,9 +82,9 @@ export class VideoItemRenderer {
         VideoItemRenderer.updatePhaseLabel(el, item, strategy);
         VideoItemRenderer.updateProgressBar(el, item);
 
-        if (strategy.afterRender) {
-            strategy.afterRender(el, item);
-        }
+        // NOTE: afterRender (autoResizeSelect) is NOT called here because the element
+        // is not yet in the DOM — getComputedStyle would return wrong values.
+        // Caller must invoke strategy.afterRender(el, item) after DOM insertion.
 
         return el;
     }
