@@ -23,7 +23,8 @@
       "contact": "ติดต่อ",
       "terms": "Terms of Use",
       "privacy": "ความเป็นส่วนตัว",
-      "dmca": "DMCA"
+      "dmca": "DMCA",
+      "cutVideoYoutube": "ตัดวิดีโอ YouTube"
     }
   },
   "hero": {
@@ -43,7 +44,8 @@
     "linksRow1": {
       "youtubeToMp3": "YouTube เป็น MP3",
       "youtubeToMp4": "YouTube เป็น MP4",
-      "youtubeShorts": "YouTube Shorts"
+      "youtubeShorts": "YouTube Shorts",
+      "cutVideoYoutube": "ตัดวิดีโอ YouTube"
     },
     "linksRow2": {
       "about": "เกี่ยวกับ",
@@ -54,5 +56,14 @@
       "faq": "คำถามที่พบบ่อย"
     },
     "copyright": "© 2026 SSVid. สงวนลิขสิทธิ์."
+  },
+  "strim": {
+    "startBtn": "เริ่ม",
+    "selectFormatLabel": "1. เลือกรูปแบบ:",
+    "selectQualityLabel": "2. เลือกคุณภาพ:",
+    "audioTrackLabel": "3. เลือกแทร็กเสียง:",
+    "trimLabel": "4. ตัดวิดีโอ (เริ่ม – สิ้นสุด):",
+    "startTimeLabel": "เริ่ม",
+    "endTimeLabel": "สิ้นสุด"
   }
 }

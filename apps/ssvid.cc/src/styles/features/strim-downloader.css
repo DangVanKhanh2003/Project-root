@@ -35,12 +35,12 @@ body[data-page="strim-downloader"] #result-view {
 body[data-page="strim-downloader"] .yt-preview-format {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  align-content: center;
+  align-content: flex-start;
   gap: 8px;
   width: 100%;
-  text-align: center;
+  text-align: left;
 }
 
 body[data-page="strim-downloader"] .stream-input-row .input-shell {
@@ -160,8 +160,8 @@ body[data-page="strim-downloader"] .stream-settings .quality-dropdown-wrapper::a
   position: absolute;
   top: 50%;
   right: 14px;
-  width: 10px;
-  height: 10px;
+  width: 16px;
+  height: 16px;
   border-right: 2px solid var(--text-primary, #333);
   border-bottom: 2px solid var(--text-primary, #333);
   transform: translateY(-60%) rotate(45deg);
@@ -277,6 +277,12 @@ body[data-page="strim-downloader"] .noUi-touch-area {
 }
 
 @media (max-width: 768px) {
+  body[data-page="strim-downloader"] .yt-preview-format {
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+  }
+
   body[data-page="strim-downloader"] .stream-input-row {
     flex-direction: column;
   }

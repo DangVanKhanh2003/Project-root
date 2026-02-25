@@ -23,7 +23,8 @@
       "contact": "Контакты",
       "terms": "Terms of Use",
       "privacy": "Конфиденциальность",
-      "dmca": "DMCA"
+      "dmca": "DMCA",
+      "cutVideoYoutube": "Обрезать видео YouTube"
     }
   },
   "hero": {
@@ -43,7 +44,8 @@
     "linksRow1": {
       "youtubeToMp3": "YouTube в MP3",
       "youtubeToMp4": "YouTube в MP4",
-      "youtubeShorts": "YouTube Shorts"
+      "youtubeShorts": "YouTube Shorts",
+      "cutVideoYoutube": "Обрезать видео YouTube"
     },
     "linksRow2": {
       "about": "О нас",
@@ -54,5 +56,14 @@
       "faq": "Часто задаваемые вопросы"
     },
     "copyright": "© 2026 SSVid. Все права защищены."
+  },
+  "strim": {
+    "startBtn": "Начать",
+    "selectFormatLabel": "1. Выберите формат:",
+    "selectQualityLabel": "2. Выберите качество:",
+    "audioTrackLabel": "3. Выберите аудиодорожку:",
+    "trimLabel": "4. Обрезать видео (Начало – Конец):",
+    "startTimeLabel": "Начало",
+    "endTimeLabel": "Конец"
   }
 }

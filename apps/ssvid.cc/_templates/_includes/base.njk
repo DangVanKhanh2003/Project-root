@@ -113,7 +113,7 @@
     {%- endif %}
 </head>
 
-<body>
+<body{% if bodyDataPage %} data-page="{{ bodyDataPage }}"{% endif %}>
     {# Include Header #}
     {% include "header.njk" %}
 

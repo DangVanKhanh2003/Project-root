@@ -23,7 +23,8 @@
       "contact": "Kontak",
       "terms": "Terms of Use",
       "privacy": "Privasi",
-      "dmca": "DMCA"
+      "dmca": "DMCA",
+      "cutVideoYoutube": "Potong Video YouTube"
     }
   },
   "hero": {
@@ -43,7 +44,8 @@
     "linksRow1": {
       "youtubeToMp3": "YouTube ke MP3",
       "youtubeToMp4": "YouTube ke MP4",
-      "youtubeShorts": "YouTube Shorts"
+      "youtubeShorts": "YouTube Shorts",
+      "cutVideoYoutube": "Potong Video YouTube"
     },
     "linksRow2": {
       "about": "Tentang",
@@ -54,5 +56,14 @@
       "faq": "FAQ"
     },
     "copyright": "© 2026 SSVid. Hak cipta dilindungi undang-undang."
+  },
+  "strim": {
+    "startBtn": "Mulai",
+    "selectFormatLabel": "1. Pilih format:",
+    "selectQualityLabel": "2. Pilih kualitas:",
+    "audioTrackLabel": "3. Pilih trek audio:",
+    "trimLabel": "4. Potong video (Mulai – Selesai):",
+    "startTimeLabel": "Mulai",
+    "endTimeLabel": "Selesai"
   }
 }

@@ -23,7 +23,8 @@
       "contact": "ဆက်သွယ်ရန်",
       "terms": "Terms of Use",
       "privacy": "ကိုယ်ရေးကိုယ်တာ",
-      "dmca": "DMCA"
+      "dmca": "DMCA",
+      "cutVideoYoutube": "YouTube ဗီဒီယို ဖြတ်ရန်"
     }
   },
   "hero": {
@@ -43,7 +44,8 @@
     "linksRow1": {
       "youtubeToMp3": "YouTube မှ MP3",
       "youtubeToMp4": "YouTube မှ MP4",
-      "youtubeShorts": "YouTube Shorts"
+      "youtubeShorts": "YouTube Shorts",
+      "cutVideoYoutube": "YouTube ဗီဒီယို ဖြတ်ရန်"
     },
     "linksRow2": {
       "about": "ကျွန်ုပ်တို့အကြောင်း",
@@ -54,5 +56,14 @@
       "faq": "အမေးများသောမေးခွန်းများ"
     },
     "copyright": "© 2026 SSVid. မူပိုင်ခွင့်များရယူပြီး။"
+  },
+  "strim": {
+    "startBtn": "စတင်ရန်",
+    "selectFormatLabel": "၁. ဖော်မတ်ရွေးချယ်ပါ:",
+    "selectQualityLabel": "၂. အရည်အသွေးရွေးချယ်ပါ:",
+    "audioTrackLabel": "၃. အသံသွင်းချောင်းရွေးချယ်ပါ:",
+    "trimLabel": "၄. ဗီဒီယိုဖြတ်ရန် (စတင် – ပြီးဆုံး):",
+    "startTimeLabel": "စတင်",
+    "endTimeLabel": "ပြီးဆုံး"
   }
 }

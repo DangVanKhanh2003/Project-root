@@ -23,7 +23,8 @@
       "contact": "رابطہ کریں",
       "terms": "Terms of Use",
       "privacy": "رازداری",
-      "dmca": "DMCA"
+      "dmca": "DMCA",
+      "cutVideoYoutube": "یوٹیوب ویڈیو کاٹیں"
     }
   },
   "hero": {
@@ -43,7 +44,8 @@
     "linksRow1": {
       "youtubeToMp3": "یوٹیوب سے MP3",
       "youtubeToMp4": "یوٹیوب سے MP4",
-      "youtubeShorts": "یوٹیوب شارٹس"
+      "youtubeShorts": "یوٹیوب شارٹس",
+      "cutVideoYoutube": "یوٹیوب ویڈیو کاٹیں"
     },
     "linksRow2": {
       "about": "ہمارے بارے में",
@@ -54,5 +56,14 @@
       "faq": "اکثر پوچھے گئے سوالات"
     },
     "copyright": "© 2026 SSVid. جملہ حقوق محفوظ ہیں."
+  },
+  "strim": {
+    "startBtn": "شروع کریں",
+    "selectFormatLabel": "۱. فارمیٹ منتخب کریں:",
+    "selectQualityLabel": "۲. معیار منتخب کریں:",
+    "audioTrackLabel": "۳. آڈیو ٹریک منتخب کریں:",
+    "trimLabel": "۴. ویڈیو کاٹیں (شروع – اختتام):",
+    "startTimeLabel": "شروع",
+    "endTimeLabel": "اختتام"
   }
 }

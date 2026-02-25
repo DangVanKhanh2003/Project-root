@@ -23,7 +23,8 @@
       "contact": "اتصل بنا",
       "terms": "Terms of Use",
       "privacy": "الخصوصية",
-      "dmca": "DMCA"
+      "dmca": "DMCA",
+      "cutVideoYoutube": "قطع فيديو يوتيوب"
     }
   },
   "hero": {
@@ -43,7 +44,8 @@
     "linksRow1": {
       "youtubeToMp3": "يوتيوب إلى MP3",
       "youtubeToMp4": "يوتيوب إلى MP4",
-      "youtubeShorts": "يوتيوب شورتس"
+      "youtubeShorts": "يوتيوب شورتس",
+      "cutVideoYoutube": "قطع فيديو يوتيوب"
     },
     "linksRow2": {
       "about": "حول",
@@ -54,5 +56,14 @@
       "faq": "الأسئلة الشائعة"
     },
     "copyright": "© 2026 SSVid. جميع الحقوق محفوظة."
+  },
+  "strim": {
+    "startBtn": "ابدأ",
+    "selectFormatLabel": "١. اختر الصيغة:",
+    "selectQualityLabel": "٢. اختر الجودة:",
+    "audioTrackLabel": "٣. اختر المسار الصوتي:",
+    "trimLabel": "٤. قطع الفيديو (البداية – النهاية):",
+    "startTimeLabel": "البداية",
+    "endTimeLabel": "النهاية"
   }
 }

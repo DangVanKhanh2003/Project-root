@@ -23,7 +23,8 @@
       "contact": "Liên hệ",
       "terms": "Terms of Use",
       "privacy": "Bảo mật",
-      "dmca": "DMCA"
+      "dmca": "DMCA",
+      "cutVideoYoutube": "Cắt Video YouTube"
     }
   },
   "hero": {
@@ -43,7 +44,8 @@
     "linksRow1": {
       "youtubeToMp3": "Download youtube Mp3",
       "youtubeToMp4": "Download youtube Mp4",
-      "youtubeShorts": "Download Youtube Shorts"
+      "youtubeShorts": "Download Youtube Shorts",
+      "cutVideoYoutube": "Cắt Video YouTube"
     },
     "linksRow2": {
       "about": "Giới thiệu",
@@ -54,5 +56,14 @@
       "faq": "FAQ"
     },
     "copyright": "© 2026 SSVid. Bảo lưu mọi quyền."
+  },
+  "strim": {
+    "startBtn": "Bắt đầu",
+    "selectFormatLabel": "1. Chọn định dạng:",
+    "selectQualityLabel": "2. Chọn chất lượng:",
+    "audioTrackLabel": "3. Chọn âm thanh:",
+    "trimLabel": "4. Cắt video (Bắt đầu – Kết thúc):",
+    "startTimeLabel": "Bắt đầu",
+    "endTimeLabel": "Kết thúc"
   }
 }

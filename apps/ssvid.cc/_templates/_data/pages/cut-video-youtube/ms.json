@@ -1,0 +1,126 @@
+{
+  "seo": {
+    "title": "SSVID - Potong Video YouTube Online Percuma",
+    "description": "YouTube cutter percuma – Muat turun MP4/MP3.",
+    "schemaName": "SSVID - Pemotong Video YouTube",
+    "schemaDescription": "Pemotong video YouTube percuma. Potong dan muat turun video YouTube dalam format MP4 atau MP3 tanpa iklan dan tanpa had.",
+    "ogTitle": "SSVID - Potong Video YouTube Online Percuma",
+    "ogDescription": "YouTube cutter percuma – Muat turun MP4/MP3."
+  },
+  "defaultFormat": "mp4",
+  "hero": {
+    "title": "SSVID - Pemotong Video YouTube Online",
+    "subtitle": "Percuma, pantas & tanpa had MP4 dan MP3"
+  },
+  "form": {
+    "title": "Pemotong Video YouTube",
+    "placeholder": "Tampal pautan video YouTube di sini...",
+    "convertButton": "Potong & Muat Turun"
+  },
+  "overview": {
+    "howTo": {
+      "title": "Cara potong video YouTube secara online",
+      "steps": [
+        {
+          "number": "1",
+          "title": "Salin pautan video",
+          "description": "Salin URL video YouTube yang ingin anda potong atau trim."
+        },
+        {
+          "number": "2",
+          "title": "Tampal pautan",
+          "description": "Tampal pautan YouTube ke dalam alat SSVID."
+        },
+        {
+          "number": "3",
+          "title": "Pilih masa mula & tamat",
+          "description": "Tetapkan masa mula dan tamat yang tepat untuk bahagian yang ingin dipotong."
+        },
+        {
+          "number": "4",
+          "title": "Muat turun MP4 atau MP3",
+          "description": "Klik Potong & Muat Turun untuk eksport bahagian dalam format MP4 atau MP3."
+        }
+      ]
+    }
+  },
+  "content": {
+    "intro": {
+      "title": "Apakah Pemotong Video YouTube SSVID?",
+      "description": "SSVID ialah <strong>pemotong video YouTube percuma</strong> yang membolehkan anda memotong dan memuat turun video dengan segera. Daripada memuat turun keseluruhan video, anda boleh memilih bahagian tertentu dan mengeksportnya dalam format <strong>MP4 atau MP3</strong>. Alat ini berfungsi terus dalam pelayar <strong>tanpa iklan dan tanpa had</strong>."
+    },
+    "columns": [
+      {
+        "title": "Potong video YouTube dalam beberapa saat",
+        "description": "1. Tampal pautan YouTube.<br>2. Pilih format MP4 atau MP3.<br>3. Tetapkan masa mula dan tamat.<br>4. Muat turun klip yang telah dipotong serta-merta."
+      },
+      {
+        "title": "Cutter MP4 & MP3 untuk telefon dan desktop",
+        "description": "SSVID berfungsi dengan baik pada <strong>telefon pintar, tablet dan komputer desktop</strong>. Potong video YouTube secara online tanpa memasang perisian. Muat turun <strong>video MP4</strong> atau ekstrak <strong>audio MP3</strong> terus dari pelayar anda."
+      }
+    ],
+    "whyDownload": {
+      "title": "Mengapa guna SSVID untuk potong YouTube?",
+      "description": "Dengan SSVID, anda menjimatkan masa dan storan kerana hanya memuat turun bahagian yang diperlukan. Sama ada highlight, klip pendek, muzik atau petikan podcast, <strong>YouTube cutter</strong> ini cepat dan mudah digunakan."
+    },
+    "quality": {
+      "title": "Eksport MP4 & MP3 berkualiti tinggi",
+      "description": "SSVID mengekalkan kualiti asal video dan audio. Eksport bahagian yang dipotong dalam MP4 berkualiti tinggi atau MP3 yang jelas dengan pemprosesan pantas dan main balik lancar."
+    },
+    "comparison": {
+      "title": "YouTube Cutter vs Muat Turun Berbilang",
+      "sections": [
+        {
+          "title": "Potong & trim video YouTube",
+          "description": "Sesuai apabila anda memerlukan <strong>bahagian tertentu</strong> daripada satu video. Pilih julat masa yang tepat dan muat turun hanya bahagian tersebut."
+        },
+        {
+          "title": "YouTube Muat Turun Berbilang",
+          "description": "Jika anda ingin memuat turun <strong>beberapa video penuh</strong> serentak tanpa memotong, gunakan alat muat turun berbilang. Menyokong format <strong>MP3 dan MP4</strong>."
+        }
+      ]
+    },
+    "useCases": {
+      "title": "Bila perlu gunakan SSVID?",
+      "items": [
+        {
+          "title": "Cipta klip pendek & highlight",
+          "description": "Potong momen penting daripada video panjang untuk dikongsi atau diedit."
+        },
+        {
+          "title": "Ekstrak muzik atau podcast",
+          "description": "Potong bahagian tertentu daripada video muzik atau podcast dan simpan sebagai MP3."
+        },
+        {
+          "title": "Muat turun hanya yang diperlukan",
+          "description": "Elakkan memuat turun video penuh dengan menyimpan bahagian penting sahaja."
+        }
+      ]
+    }
+  },
+  "faqs": {
+    "title": "Soalan Lazim",
+    "items": [
+      {
+        "question": "Adakah SSVID percuma?",
+        "answer": "Ya. SSVID adalah sepenuhnya percuma tanpa iklan dan tanpa had."
+      },
+      {
+        "question": "Bolehkah saya potong video ke MP3?",
+        "answer": "Ya. Anda boleh mengeksport bahagian yang dipilih dalam format MP3."
+      },
+      {
+        "question": "Perlu pasang perisian?",
+        "answer": "Tidak. SSVID berfungsi sepenuhnya online dalam pelayar."
+      },
+      {
+        "question": "Adakah ia menyokong peranti mudah alih?",
+        "answer": "Ya. Alat ini menyokong telefon, tablet dan desktop."
+      },
+      {
+        "question": "Adakah kualiti berkurang selepas dipotong?",
+        "answer": "Tidak. SSVID mengekalkan kualiti asal bahagian yang dipilih."
+      }
+    ]
+  }
+}

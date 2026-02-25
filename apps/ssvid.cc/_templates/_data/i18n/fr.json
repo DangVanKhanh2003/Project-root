@@ -23,7 +23,8 @@
       "contact": "Contact",
       "terms": "Terms of Use",
       "privacy": "Confidentialité",
-      "dmca": "DMCA"
+      "dmca": "DMCA",
+      "cutVideoYoutube": "Couper Vidéo YouTube"
     }
   },
   "hero": {
@@ -43,7 +44,8 @@
     "linksRow1": {
       "youtubeToMp3": "YouTube vers MP3",
       "youtubeToMp4": "YouTube vers MP4",
-      "youtubeShorts": "YouTube Shorts"
+      "youtubeShorts": "YouTube Shorts",
+      "cutVideoYoutube": "Couper Vidéo YouTube"
     },
     "linksRow2": {
       "about": "À propos",
@@ -54,5 +56,14 @@
       "faq": "FAQ"
     },
     "copyright": "© 2026 SSVid. Tous droits réservés."
+  },
+  "strim": {
+    "startBtn": "Démarrer",
+    "selectFormatLabel": "1. Sélectionner le format :",
+    "selectQualityLabel": "2. Sélectionner la qualité :",
+    "audioTrackLabel": "3. Sélectionner la piste audio :",
+    "trimLabel": "4. Couper la vidéo (Début – Fin) :",
+    "startTimeLabel": "Début",
+    "endTimeLabel": "Fin"
   }
 }

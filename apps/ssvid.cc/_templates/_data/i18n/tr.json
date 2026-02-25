@@ -23,7 +23,8 @@
       "contact": "İletişim",
       "terms": "Terms of Use",
       "privacy": "Gizlilik",
-      "dmca": "DMCA"
+      "dmca": "DMCA",
+      "cutVideoYoutube": "YouTube Video Kes"
     }
   },
   "hero": {
@@ -43,7 +44,8 @@
     "linksRow1": {
       "youtubeToMp3": "YouTube'dan MP3'e",
       "youtubeToMp4": "YouTube'dan MP4'e",
-      "youtubeShorts": "YouTube Shorts"
+      "youtubeShorts": "YouTube Shorts",
+      "cutVideoYoutube": "YouTube Video Kes"
     },
     "linksRow2": {
       "about": "Hakkında",
@@ -54,5 +56,14 @@
       "faq": "SSS"
     },
     "copyright": "© 2026 SSVid. Tüm hakları saklıdır."
+  },
+  "strim": {
+    "startBtn": "Başlat",
+    "selectFormatLabel": "1. Format seçin:",
+    "selectQualityLabel": "2. Kalite seçin:",
+    "audioTrackLabel": "3. Ses kanalı seçin:",
+    "trimLabel": "4. Videoyu kes (Başlangıç – Bitiş):",
+    "startTimeLabel": "Başlangıç",
+    "endTimeLabel": "Bitiş"
   }
 }

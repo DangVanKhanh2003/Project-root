@@ -23,7 +23,8 @@
       "contact": "Hubungi Kami",
       "terms": "Terms of Use",
       "privacy": "Privasi",
-      "dmca": "DMCA"
+      "dmca": "DMCA",
+      "cutVideoYoutube": "Potong Video YouTube"
     }
   },
   "hero": {
@@ -43,7 +44,8 @@
     "linksRow1": {
       "youtubeToMp3": "YouTube ke MP3",
       "youtubeToMp4": "YouTube ke MP4",
-      "youtubeShorts": "YouTube Shorts"
+      "youtubeShorts": "YouTube Shorts",
+      "cutVideoYoutube": "Potong Video YouTube"
     },
     "linksRow2": {
       "about": "Tentang Kami",
@@ -54,5 +56,14 @@
       "faq": "Soalan Lazim"
     },
     "copyright": "© 2026 SSVid. Hak cipta terpelihara."
+  },
+  "strim": {
+    "startBtn": "Mula",
+    "selectFormatLabel": "1. Pilih format:",
+    "selectQualityLabel": "2. Pilih kualiti:",
+    "audioTrackLabel": "3. Pilih trek audio:",
+    "trimLabel": "4. Potong video (Mula – Tamat):",
+    "startTimeLabel": "Mula",
+    "endTimeLabel": "Tamat"
   }
 }

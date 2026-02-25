@@ -23,7 +23,8 @@
       "contact": "যোগাযোগ",
       "terms": "Terms of Use",
       "privacy": "গোপনীয়তা",
-      "dmca": "DMCA"
+      "dmca": "DMCA",
+      "cutVideoYoutube": "কাট ভিডিও ইউটিউব"
     }
   },
   "hero": {
@@ -43,7 +44,8 @@
     "linksRow1": {
       "youtubeToMp3": "ইউটিউব থেকে MP3",
       "youtubeToMp4": "ইউটিউব থেকে MP4",
-      "youtubeShorts": "ইউটিউব শর্টস"
+      "youtubeShorts": "ইউটিউব শর্টস",
+      "cutVideoYoutube": "কাট ভিডিও ইউটিউব"
     },
     "linksRow2": {
       "about": "সম্পর্কে",
@@ -54,5 +56,14 @@
       "faq": "FAQ"
     },
     "copyright": "© 2026 SSVid. সর্বস্বত্ব সংরক্ষিত।"
+  },
+  "strim": {
+    "startBtn": "শুরু করুন",
+    "selectFormatLabel": "১. ফরম্যাট নির্বাচন করুন:",
+    "selectQualityLabel": "২. মান নির্বাচন করুন:",
+    "audioTrackLabel": "৩. অডিও ট্র্যাক নির্বাচন করুন:",
+    "trimLabel": "৪. ভিডিও কাটুন (শুরু – শেষ):",
+    "startTimeLabel": "শুরু",
+    "endTimeLabel": "শেষ"
   }
 }
