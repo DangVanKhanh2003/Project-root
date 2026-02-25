@@ -123,7 +123,8 @@ function renderVideoQualityDropdown(selectedQuality: string): string {
   // MP4 with all quality options
   qualities.forEach(quality => {
     const resolution = quality.replace('p', '');
-    videoOptions.push({ value: `mp4-${resolution}`, label: `MP4 - ${quality}` });
+    const label = quality === '2160p' ? 'MP4 - 4K' : `MP4 - ${quality}`;
+    videoOptions.push({ value: `mp4-${resolution}`, label });
   });
 
   // WEBM and MKV without quality suffix
