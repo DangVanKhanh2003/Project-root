@@ -189,9 +189,21 @@
         font-size: 16px;
     }
 
-    .btn-paste {
-        padding: 8px 14px;
-        font-size: 13px;
+    .btn-paste,
+    #input-action-button {
+        width: 40px;
+        min-width: 40px;
+        height: 40px;
+        padding: 0;
+        justify-content: center;
+        gap: 0;
+    }
+
+    .btn-paste .btn-state--paste,
+    .btn-paste .btn-state--clear,
+    #input-action-button .btn-state--paste,
+    #input-action-button .btn-state--clear {
+        display: none !important;
     }
 }
 

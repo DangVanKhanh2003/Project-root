@@ -303,6 +303,7 @@ export interface YouTubePreview {
   thumbnail: string;
   url: string;
   isLoading: boolean;
+  trimRangeLabel?: string;
 }
 
 export interface YouTubePreviewState {

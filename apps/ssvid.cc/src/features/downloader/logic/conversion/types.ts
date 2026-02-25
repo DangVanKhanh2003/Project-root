@@ -72,6 +72,8 @@ export interface FormatData {
     youtubeVideoContainer?: string;
     audioBitrate?: string;
     audioFormat?: string;
+    trimStart?: number;
+    trimEnd?: number;
   } | null;
 }
 

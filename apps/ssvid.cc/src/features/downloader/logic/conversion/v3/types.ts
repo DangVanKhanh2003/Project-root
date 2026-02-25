@@ -64,5 +64,7 @@ export interface V3ConversionParams {
     audioBitrate?: string;
     audioFormat?: string;
     trackId?: string;
+    trimStart?: number;
+    trimEnd?: number;
   };
 }

@@ -15,6 +15,8 @@ export interface ExtractV2Options {
   audioBitrate?: string;
   audioFormat?: string;
   trackId?: string;
+  trimStart?: number;
+  trimEnd?: number;
 }
 
 /**
@@ -139,6 +141,15 @@ export function mapToV3DownloadRequest(
 ): V3DownloadRequest {
   const isVideo = options.downloadMode === 'video';
   const os = detectOsType();
+  const hasTrim =
+    Number.isFinite(options.trimStart) ||
+    Number.isFinite(options.trimEnd);
+  const trim = hasTrim
+    ? {
+      ...(Number.isFinite(options.trimStart) ? { start: options.trimStart } : {}),
+      ...(Number.isFinite(options.trimEnd) ? { end: options.trimEnd } : {}),
+    }
+    : undefined;
 
   if (isVideo) {
     // Video download
@@ -150,6 +161,7 @@ export function mapToV3DownloadRequest(
         format: mapVideoFormat(options.youtubeVideoContainer),
         quality: mapVideoQuality(options.videoQuality),
       },
+      ...(trim ? { trim } : {}),
     };
 
     // Always include audio config for video (default 128k)
@@ -169,6 +181,7 @@ export function mapToV3DownloadRequest(
         type: 'audio',
         format: mapAudioFormat(options.audioFormat),
       },
+      ...(trim ? { trim } : {}),
     };
 
     // Add audio bitrate

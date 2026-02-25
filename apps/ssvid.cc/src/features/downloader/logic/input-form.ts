@@ -255,7 +255,17 @@ function generateFakeYouTubeData(videoId: string, url: string): any {
  * Handle auto-download after preview is shown
  * Builds formatData from FormatSelector state and triggers conversion
  */
-async function handleAutoDownload(url: string, videoId: string): Promise<void> {
+interface AutoDownloadOptions {
+  trimStart?: number;
+  trimEnd?: number;
+  trimRangeLabel?: string;
+}
+
+export async function handleAutoDownload(
+  url: string,
+  videoId: string,
+  options: AutoDownloadOptions = {}
+): Promise<void> {
   try {
     console.log('[Auto-Download] Starting auto-download for:', videoId);
 
@@ -266,8 +276,9 @@ async function handleAutoDownload(url: string, videoId: string): Promise<void> {
     const videoQuality = state.videoQuality; // e.g., '720p'
     const audioFormat = state.audioFormat; // e.g., 'mp3'
     const audioBitrate = state.audioBitrate; // e.g., '128'
+    const streamAudioTrackInput = document.getElementById('stream-selected-audio-track') as HTMLInputElement | null;
     const audioTrackInput = document.getElementById('audio-track-value') as HTMLInputElement | null;
-    const rawTrackId = audioTrackInput?.value?.trim();
+    const rawTrackId = streamAudioTrackInput?.value?.trim() || audioTrackInput?.value?.trim();
     const trackId = rawTrackId && rawTrackId !== 'original' ? rawTrackId : undefined;
 
     console.log('[Auto-Download] Selected format:', selectedFormat);
@@ -312,7 +323,9 @@ async function handleAutoDownload(url: string, videoId: string): Promise<void> {
           videoQuality: finalQuality,
           youtubeVideoContainer: targetContainer,
           audioBitrate: videoAudioBitrate,
-          trackId
+          trackId,
+          ...(Number.isFinite(options.trimStart) ? { trimStart: options.trimStart } : {}),
+          ...(Number.isFinite(options.trimEnd) ? { trimEnd: options.trimEnd } : {})
         }
       };
       formatId = `video|${targetContainer}-${videoQuality}`;
@@ -338,13 +351,23 @@ async function handleAutoDownload(url: string, videoId: string): Promise<void> {
           downloadMode: 'audio',
           audioBitrate: finalBitrate,  // '128' for M4A/OGG/WAV/Opus, user choice for MP3
           audioFormat: audioFormat,
-          trackId
+          trackId,
+          ...(Number.isFinite(options.trimStart) ? { trimStart: options.trimStart } : {}),
+          ...(Number.isFinite(options.trimEnd) ? { trimEnd: options.trimEnd } : {})
         }
       };
       formatId = formatData.id;
     }
 
     console.log('[Auto-Download] Built formatData:', formatData);
+
+    if (state.youtubePreview) {
+      setYouTubePreview({
+        ...state.youtubePreview,
+        trimRangeLabel: options.trimRangeLabel
+      });
+      renderPreviewCard(null);
+    }
 
     // Get video title for conversion
     const videoTitle = state.youtubePreview?.title || 'Loading video information...';
@@ -840,9 +863,18 @@ async function handleSubmit(event: Event): Promise<void> {
  * Only supports YouTube URLs - validates before extraction
  * Rejects non-YouTube URLs with error message
  */
-async function handleExtractMedia(url: string): Promise<void> {
+interface ExtractMediaOptions {
+  autoDownload?: boolean;
+  skipResultView?: boolean;
+}
+
+export async function handleExtractMedia(
+  url: string,
+  options: ExtractMediaOptions = {}
+): Promise<void> {
 
   try {
+    const { autoDownload = true, skipResultView = false } = options;
     // ═══════════════════════════════════════════════════════
     // VALIDATION: YouTube URLs Only
     // ═══════════════════════════════════════════════════════
@@ -881,18 +913,19 @@ async function handleExtractMedia(url: string): Promise<void> {
     const thumbnail = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
 
 
-    // 3. Render preview immediately with skeleton
-    showLoading('detail');
-    showResultView();
-    // Scroll after skeleton renders (50ms delay)
-    setTimeout(() => {
-      if (scrollManager.isDesktop()) {
-        scrollManager.scrollToTop();
-      } else {
-        scrollManager.scrollToElement('.hero-card');
-      }
-    }, 50);
-    // Keep skeleton until API returns
+    // 3. Render preview skeleton in standard downloader flow
+    if (!skipResultView) {
+      showLoading('detail');
+      showResultView();
+      // Scroll after skeleton renders (50ms delay)
+      setTimeout(() => {
+        if (scrollManager.isDesktop()) {
+          scrollManager.scrollToTop();
+        } else {
+          scrollManager.scrollToElement('.hero-card');
+        }
+      }, 50);
+    }
 
     // 4. Fetch metadata from YouTube Public API (async, hides skeleton when done)
     (async () => {
@@ -928,19 +961,23 @@ async function handleExtractMedia(url: string): Promise<void> {
         url,
         isLoading: false  // Hide skeleton
       });
-      renderPreviewCard(null);
+      if (!skipResultView) {
+        renderPreviewCard(null);
+      }
     })();
 
-    // 5. Auto-download: Extract formats and trigger conversion (fire-and-forget)
-    handleAutoDownload(url, videoId).then(() => {
-      // Reset isFromListItemClick flag after conversion starts
-      const currentState = getState();
-      if (currentState.isFromListItemClick) {
-        setIsFromListItemClick(false);
-      }
-    }).catch((error) => {
-      console.error('[Auto Download] Error:', error);
-    });
+    // 5. Auto-download in default flow (fire-and-forget)
+    if (autoDownload) {
+      handleAutoDownload(url, videoId).then(() => {
+        // Reset isFromListItemClick flag after conversion starts
+        const currentState = getState();
+        if (currentState.isFromListItemClick) {
+          setIsFromListItemClick(false);
+        }
+      }).catch((error) => {
+        console.error('[Auto Download] Error:', error);
+      });
+    }
 
     // Return immediately to enable input (don't wait for conversion)
 
@@ -1034,7 +1071,7 @@ export function transformSearchItemToVideoData(item: any): VideoData {
 /**
  * Handle search (keyword input)
  */
-async function handleSearch(keyword: string): Promise<void> {
+export async function handleSearch(keyword: string): Promise<void> {
 
   try {
     // Use Search V2 API for better results

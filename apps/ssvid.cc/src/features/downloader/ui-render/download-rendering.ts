@@ -745,6 +745,7 @@ function clearSearchUrl(): void {
 async function handleNewConvertButtonClick(): Promise<void> {
   console.log('[renderConversionStatus] Next button clicked');
   logEvent('next_button_click');
+  document.dispatchEvent(new CustomEvent('resetForm'));
 
   // Hide Trustpilot widget on reset
   onReset();

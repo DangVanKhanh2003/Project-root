@@ -89,7 +89,15 @@ function handleSearchResultClick(event: MouseEvent): void {
   }
 
   // Submit form to extract video (skeleton already shown)
-  form.requestSubmit();
+  const isStrimPage = document.body.dataset.page === 'strim-downloader';
+  if (isStrimPage) {
+    // Stream cut page uses Start button as the entry action.
+    // Clicking a list item should prefill input then auto-trigger Start.
+    const startBtn = document.getElementById('stream-start-btn') as HTMLButtonElement | null;
+    startBtn?.click();
+  } else {
+    form.requestSubmit();
+  }
 }
 
 /**
@@ -508,7 +516,7 @@ export function renderPreviewCard(_data: any): void {
     return;
   }
 
-  const { title, thumbnail, author } = youtubePreview;
+  const { title, thumbnail, author, trimRangeLabel } = youtubePreview;
   const selectedFormat = state.selectedFormat;
   const audioTrackInput = document.getElementById('audio-track-value') as HTMLInputElement | null;
   const audioTrackCode = audioTrackInput?.value || 'original';
@@ -560,11 +568,12 @@ export function renderPreviewCard(_data: any): void {
         <div class="yt-preview-meta">
           <div class="yt-preview-format">
             ${formatBadge ? `<span class="meta-badge badge-format">${formatBadge}</span>` : ''}
-            ${qualityInfo ? `<span class="meta-badge badge-quality">${escapeHtml(qualityInfo)}</span>` : ''}
+            ${qualityInfo ? `<span class="meta-badge badge-quality badge-main-quality">${escapeHtml(qualityInfo)}</span>` : ''}
             <span class="meta-badge badge-audio">
               <span class="audio-track-icon">${audioTrackIcon}</span>
               <span class="audio-track-value">${escapeHtml(audioTrackLabel)}</span>
             </span>
+            ${trimRangeLabel ? `<span class="meta-badge badge-quality badge-trim-range">${escapeHtml(trimRangeLabel)}</span>` : ''}
           </div>
           ${author ? `<p class="yt-preview-author">${escapeHtml(author)}</p>` : ''}
         </div>
@@ -585,8 +594,9 @@ export function renderPreviewCard(_data: any): void {
         // Same thumbnail - only update text elements (no DOM replacement = no flicker)
         const titleEl = existingPreviewCard.querySelector('.yt-preview-title');
         const formatBadgeEl = existingPreviewCard.querySelector('.badge-format');
-        const qualityInfoEl = existingPreviewCard.querySelector('.badge-quality');
+        const qualityInfoEl = existingPreviewCard.querySelector('.badge-main-quality');
         const audioTrackValueEl = existingPreviewCard.querySelector('.audio-track-value');
+        const trimBadgeEl = existingPreviewCard.querySelector('.badge-trim-range');
         const authorEl = existingPreviewCard.querySelector('.yt-preview-author');
         const metaEl = existingPreviewCard.querySelector('.yt-preview-meta');
 
@@ -594,6 +604,21 @@ export function renderPreviewCard(_data: any): void {
         if (formatBadgeEl) formatBadgeEl.textContent = formatBadge;
         if (qualityInfoEl) qualityInfoEl.textContent = qualityInfo;
         if (audioTrackValueEl) audioTrackValueEl.textContent = audioTrackLabel;
+        if (trimRangeLabel) {
+          if (trimBadgeEl) {
+            trimBadgeEl.textContent = trimRangeLabel;
+          } else {
+            const formatWrap = existingPreviewCard.querySelector('.yt-preview-format');
+            if (formatWrap) {
+              const badge = document.createElement('span');
+              badge.className = 'meta-badge badge-quality badge-trim-range';
+              badge.textContent = trimRangeLabel;
+              formatWrap.appendChild(badge);
+            }
+          }
+        } else if (trimBadgeEl) {
+          trimBadgeEl.remove();
+        }
         // Handle author: update, create, or remove
         if (author) {
           if (authorEl) {
