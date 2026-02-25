@@ -89,8 +89,8 @@ function handleSearchResultClick(event: MouseEvent): void {
   }
 
   // Submit form to extract video (skeleton already shown)
-  const isStrimPage = document.body.dataset.page === 'trim-downloader';
-  if (isStrimPage) {
+  const isTrimPage = document.body.dataset.page === 'trim-downloader';
+  if (isTrimPage) {
     // Stream cut page uses Start button as the entry action.
     // Clicking a list item should prefill input then auto-trigger Start.
     const startBtn = document.getElementById('stream-start-btn') as HTMLButtonElement | null;
