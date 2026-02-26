@@ -49,16 +49,10 @@
       "title": "SSVID YouTube video kesme aracı nedir?",
       "description": "SSVID, <strong>ücretsiz bir YouTube video kesme aracı</strong> olup videoları anında kesip indirmenizi sağlar. Tüm videoyu indirmek yerine sadece istediğiniz bölümü seçerek <strong>MP4 veya MP3</strong> formatında dışa aktarabilirsiniz. Araç tarayıcıda çalışır ve <strong>reklamsız ve sınırsız</strong> kullanım sunar."
     },
-    "columns": [
-      {
-        "title": "YouTube videolarını saniyeler içinde kesin",
-        "description": "1. YouTube bağlantısını yapıştırın.<br>2. MP4 veya MP3 seçin.<br>3. Başlangıç ve bitiş süresini ayarlayın.<br>4. Kesilmiş klibi hemen indirin."
-      },
-      {
-        "title": "Mobil ve bilgisayar için MP4 & MP3 cutter",
-        "description": "SSVID <strong>akıllı telefonlar, tabletler ve masaüstü bilgisayarlarda</strong> sorunsuz çalışır. Yazılım yüklemeden YouTube videolarını online kesin. <strong>MP4 video</strong> indirin veya <strong>MP3 ses</strong> çıkarın."
-      }
-    ],
+    "intro2": {
+      "title": "Mobil ve bilgisayar için MP4 & MP3 cutter",
+      "description": "SSVID <strong>akıllı telefonlar, tabletler ve masaüstü bilgisayarlarda</strong> sorunsuz çalışır. Yazılım yüklemeden YouTube videolarını online kesin. <strong>MP4 video</strong> indirin veya <strong>MP3 ses</strong> çıkarın."
+    },
     "whyDownload": {
       "title": "YouTube kesmek için neden SSVID?",
       "description": "SSVID ile yalnızca ihtiyacınız olan kısmı indirerek zamandan ve depolama alanından tasarruf edersiniz. Öne çıkan anlar, kısa klipler, müzik veya podcast bölümleri için bu <strong>YouTube cutter</strong> hızlı ve pratiktir."

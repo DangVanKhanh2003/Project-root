@@ -49,16 +49,10 @@
       "title": "SSVID 유튜브 동영상 커터란?",
       "description": "SSVID는 <strong>무료 유튜브 동영상 커터</strong>로, 영상을 즉시 자르고 다운로드할 수 있습니다. 전체 영상을 다운로드하는 대신 원하는 부분만 선택하여 <strong>MP4 또는 MP3</strong> 형식으로 저장할 수 있습니다. 브라우저에서 바로 작동하며 <strong>광고 없음, 제한 없음</strong>으로 이용 가능합니다."
     },
-    "columns": [
-      {
-        "title": "몇 초 만에 유튜브 영상 자르기",
-        "description": "1. 유튜브 링크를 붙여넣기.<br>2. MP4 또는 MP3 선택.<br>3. 시작 및 종료 시간 설정.<br>4. 잘라낸 클립을 즉시 다운로드."
-      },
-      {
-        "title": "모바일 및 PC용 MP4 & MP3 커터",
-        "description": "SSVID는 <strong>스마트폰, 태블릿, 데스크톱</strong>에서 완벽하게 작동합니다. 소프트웨어 설치 없이 온라인으로 유튜브 영상을 자를 수 있습니다. <strong>MP4 동영상</strong> 다운로드 또는 <strong>MP3 오디오</strong> 추출을 브라우저에서 바로 진행하세요."
-      }
-    ],
+    "intro2": {
+      "title": "모바일 및 PC용 MP4 & MP3 커터",
+      "description": "SSVID는 <strong>스마트폰, 태블릿, 데스크톱</strong>에서 완벽하게 작동합니다. 소프트웨어 설치 없이 온라인으로 유튜브 영상을 자를 수 있습니다. <strong>MP4 동영상</strong> 다운로드 또는 <strong>MP3 오디오</strong> 추출을 브라우저에서 바로 진행하세요."
+    },
     "whyDownload": {
       "title": "왜 SSVID로 유튜브 영상을 자를까요?",
       "description": "SSVID를 사용하면 필요한 부분만 다운로드하여 시간과 저장 공간을 절약할 수 있습니다. 하이라이트, 짧은 클립, 음악, 팟캐스트 일부 등 이 <strong>유튜브 커터</strong>로 빠르고 간편하게 만들 수 있습니다."

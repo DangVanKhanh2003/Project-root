@@ -49,16 +49,10 @@
       "title": "SSVID YouTube動画カッターとは？",
       "description": "SSVIDは<strong>無料のYouTube動画カッター</strong>で、動画をすぐにカットしてダウンロードできます。動画全体を保存する代わりに、必要な部分だけを選択して<strong>MP4またはMP3</strong>形式で書き出せます。ブラウザ上で動作し、<strong>広告なし・制限なし</strong>で利用できます。"
     },
-    "columns": [
-      {
-        "title": "数秒でYouTube動画をカット",
-        "description": "1. YouTubeリンクを貼り付け。<br>2. MP4またはMP3を選択。<br>3. 開始・終了時間を設定。<br>4. カットした動画をすぐにダウンロード。"
-      },
-      {
-        "title": "スマホ・PC対応のMP4 & MP3カッター",
-        "description": "SSVIDは<strong>スマートフォン、タブレット、パソコン</strong>で利用可能。ソフトのインストール不要でYouTube動画をオンラインでカットできます。<strong>MP4動画</strong>の保存や<strong>MP3音声</strong>の抽出もブラウザから直接可能です。"
-      }
-    ],
+    "intro2": {
+      "title": "スマホ・PC対応のMP4 & MP3カッター",
+      "description": "SSVIDは<strong>スマートフォン、タブレット、パソコン</strong>で利用可能。ソフトのインストール不要でYouTube動画をオンラインでカットできます。<strong>MP4動画</strong>の保存や<strong>MP3音声</strong>の抽出もブラウザから直接可能です。"
+    },
     "whyDownload": {
       "title": "なぜSSVIDでYouTube動画をカットするの？",
       "description": "SSVIDなら必要な部分だけをダウンロードできるため、時間とストレージを節約できます。ハイライト、ショートクリップ、音楽、ポッドキャストの一部など、この<strong>YouTubeカッター</strong>で簡単かつ高速に作成できます。"

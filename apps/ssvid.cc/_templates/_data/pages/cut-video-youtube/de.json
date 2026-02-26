@@ -49,16 +49,10 @@
       "title": "Was ist der SSVID YouTube Video Cutter?",
       "description": "SSVID ist ein <strong>kostenloser YouTube Video Cutter</strong>, mit dem du YouTube-Videos sofort schneiden und herunterladen kannst. Statt das komplette Video zu laden, wählst du einen bestimmten Abschnitt und exportierst ihn als <strong>MP4 oder MP3</strong>. Das Tool funktioniert direkt im Browser <strong>ohne Werbung und ohne Limits</strong>."
     },
-    "columns": [
-      {
-        "title": "YouTube-Video in Sekunden online schneiden",
-        "description": "1. YouTube-Link einfügen.<br>2. MP4 oder MP3 wählen.<br>3. Start- und Endzeit festlegen.<br>4. Den geschnittenen Clip sofort herunterladen."
-      },
-      {
-        "title": "MP4 & MP3 Cutter für Handy und Desktop",
-        "description": "SSVID funktioniert perfekt auf <strong>Smartphones, Tablets und Desktop-Computern</strong>. Schneide YouTube-Videos online ohne Software. Lade <strong>MP4-Videos</strong> herunter oder extrahiere <strong>MP3-Audio</strong> direkt im Browser."
-      }
-    ],
+    "intro2": {
+      "title": "MP4 & MP3 Cutter für Handy und Desktop",
+      "description": "SSVID funktioniert perfekt auf <strong>Smartphones, Tablets und Desktop-Computern</strong>. Schneide YouTube-Videos online ohne Software. Lade <strong>MP4-Videos</strong> herunter oder extrahiere <strong>MP3-Audio</strong> direkt im Browser."
+    },
     "whyDownload": {
       "title": "Warum SSVID zum Schneiden von YouTube-Videos nutzen?",
       "description": "Mit SSVID sparst du Zeit und Speicherplatz, da du nur den benötigten Teil herunterlädst. Ob Highlights, kurze Clips, Musikstücke oder Podcast-Ausschnitte – dieser <strong>YouTube Cutter</strong> macht es schnell und einfach."
