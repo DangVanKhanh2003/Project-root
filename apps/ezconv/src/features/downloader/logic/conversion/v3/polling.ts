@@ -10,6 +10,7 @@ import { RETRY_CONFIGS, isTimeoutError } from '../retry-helper';
 
 const LOG_PREFIX = '[V3 Polling]';
 const log = (...args: unknown[]) => console.log(LOG_PREFIX, ...args);
+const TERMINAL_JOB_STATUSES = new Set(['error', 'not_found', 'failed', 'faild']);
 
 /**
  * Polling options
@@ -25,7 +26,7 @@ export interface PollingOptions {
   onComplete: (downloadUrl: string) => void;
 
   /** Callback when error occurs */
-  onError: (error: string) => void;
+  onError: (error: unknown) => void;
 
   /** Abort signal for cancellation */
   signal: AbortSignal;
@@ -48,12 +49,13 @@ export async function startPolling(options: PollingOptions): Promise<void> {
   while (!signal.aborted) {
     try {
       const status = await apiV3.getStatusByUrl(statusUrl);
+      const normalizedStatus = normalizeStatus(status.status);
 
       // Reset consecutive errors on successful response
       consecutiveErrors = 0;
 
       // Handle different statuses
-      switch (status.status) {
+      switch (normalizedStatus) {
         case 'pending':
           // Update progress
           onProgress(
@@ -69,16 +71,16 @@ export async function startPolling(options: PollingOptions): Promise<void> {
             onComplete(status.downloadUrl);
             return;
           } else {
-            onError('Completed but no download URL');
+            onError(new Error('Completed but no download URL'));
             return;
           }
 
         case 'error':
         case 'not_found':
         case 'failed':
+        case 'faild':
           // Terminal status - stop polling immediately, no retry
-          debugger;
-          onError(status.jobError || 'Conversion failed');
+          onError(createTerminalJobError(status.jobError || 'Conversion failed'));
           return;
 
         default:
@@ -98,19 +100,15 @@ export async function startPolling(options: PollingOptions): Promise<void> {
       // Check for Job Error (from service) - Stop immediately
       if ((error as any).isJobError) {
         log('Job failed logic error, stopping:', (error as any).message);
-        onError((error as any).message);
+        onError(error);
         return;
       }
 
-      // Check for API-level Job Error (thrown by HttpClient)
-      // HttpClient throws ApiError when response.status === 'error'
-      // This is NOT a network error, it's a valid job failure response
-      // Fix: Stop polling if API returns "status": "error"
-      const apiResponse = (error as any).response;
-      if (apiResponse && apiResponse.status === 'error') {
-        const errorMessage = apiResponse.jobError || (error as any).message || 'Conversion failed';
-        log('Job failed (API returned error status), stopping:', errorMessage);
-        onError(errorMessage);
+      // Handle terminal API-level failures (HTTP 4xx or terminal status keywords in payload/message)
+      if (isTerminalJobError(error)) {
+        const errorMessage = ((error as any)?.message as string) || 'Conversion failed';
+        log('Terminal job error, stopping:', errorMessage);
+        onError(createTerminalJobError(errorMessage));
         return;
       }
 
@@ -121,7 +119,7 @@ export async function startPolling(options: PollingOptions): Promise<void> {
       // Check if max consecutive errors reached
       if (consecutiveErrors >= maxConsecutiveErrors) {
         log('Max consecutive errors reached, failing...');
-        onError('Network error - please try again');
+        onError(new Error('Network error - please try again'));
         return;
       }
     }
@@ -136,4 +134,40 @@ export async function startPolling(options: PollingOptions): Promise<void> {
  */
 function sleep(ms: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function createTerminalJobError(message: string): Error & { isJobError: true } {
+  const error = new Error(message) as Error & { isJobError: true };
+  error.isJobError = true;
+  return error;
+}
+
+function isTerminalJobError(error: unknown): boolean {
+  const e = error as any;
+  const normalizedMessage = String(e?.message || '').toLowerCase();
+  const responseStatus = normalizeStatus(e?.response?.status);
+
+  if (responseStatus && TERMINAL_JOB_STATUSES.has(responseStatus)) {
+    return true;
+  }
+
+  // HttpClient exposes HTTP status code on ApiError.status
+  // Treat 4xx (except 429) as terminal job/API validation failures.
+  if (typeof e?.status === 'number' && e.status >= 400 && e.status < 500 && e.status !== 429) {
+    return true;
+  }
+
+  return (
+    normalizedMessage.includes('not_found') ||
+    normalizedMessage.includes('not found') ||
+    normalizedMessage.includes('job failed') ||
+    normalizedMessage.includes('invalid_job_id') ||
+    normalizedMessage.includes('job_not_found') ||
+    normalizedMessage.includes('extract_failed')
+  );
+}
+
+function normalizeStatus(value: unknown): string | null {
+  if (typeof value !== 'string') return null;
+  return value.trim().toLowerCase().replace(/[\s-]+/g, '_');
 }

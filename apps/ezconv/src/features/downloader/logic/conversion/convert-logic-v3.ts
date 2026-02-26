@@ -171,6 +171,11 @@ export async function startConversion(params: V3ConversionParams): Promise<void>
         lastError = error;
         logError(`Job attempt ${attempt} failed:`, error);
 
+        // Terminal job errors (status: error/not_found/failed/faild) should not retry full flow.
+        if ((error as any)?.isJobError) {
+          break;
+        }
+
         if (attempt < maxJobAttempts) {
           startFakeProgress();
           continue;
