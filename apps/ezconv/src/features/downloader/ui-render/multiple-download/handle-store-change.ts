@@ -31,6 +31,11 @@ function isDownloadTabStatus(status: string) {
     return DOWNLOAD_TAB_STATUSES.has(status);
 }
 
+// Throttle progress updates to avoid flooding the main thread (O(N) layout shift)
+const PROGRESS_THROTTLE_MS = 120;
+const lastProgressTime = new Map<string, number>();
+const pendingProgressItems = new Map<string, VideoItem>();
+
 // Cache tab padding after first measurement (constant CSS value, never changes)
 let cachedTabPadding: number | null = null;
 function getTabPadding(tabEl: HTMLElement): number {
@@ -51,6 +56,7 @@ export function createStoreChangeHandler(config: StoreChangeHandlerConfig) {
         || groupListContainer.querySelector(`.multi-video-item[data-id="${id}"]`) as HTMLElement;
 
     return function handleStoreChange(eventName: VideoStoreEventName, data: any): void {
+
         switch (eventName) {
             case 'item:added': {
                 // data is the full VideoItem
@@ -63,18 +69,11 @@ export function createStoreChangeHandler(config: StoreChangeHandlerConfig) {
                     let groupEl = groupListContainer.querySelector(`[data-group-id="${item.groupId}"]`) as HTMLElement;
                     if (!groupEl) {
                         groupEl = createGroupElement(item.groupId, item.groupTitle || 'Playlist');
-                        groupListContainer.prepend(groupEl);
+                        groupListContainer.prepend(groupEl); // Group add to TOP (newest first)
                     }
                     const groupList = groupEl.querySelector('.group-items');
                     if (groupList) {
-                        const groupMeta = videoStore.getGroupMeta(item.groupId);
-                        const isLoadMoreInsert = groupMeta?.isLoading === true;
-                        if (isLoadMoreInsert) {
-                            // During load-more, keep newly added skeleton/items at the bottom.
-                            groupList.appendChild(el);
-                        } else {
-                            groupList.prepend(el);
-                        }
+                        groupList.appendChild(el);
                     }
                     // afterRender must run AFTER DOM insertion so getComputedStyle works correctly
                     if (itemStrategy.afterRender) {
@@ -83,7 +82,7 @@ export function createStoreChangeHandler(config: StoreChangeHandlerConfig) {
                     const isLocked = config.getGlobalLockState?.() || false;
                     updateGroupCount(groupEl, isLocked, true);
                 } else {
-                    batchListContainer.prepend(el);
+                    batchListContainer.appendChild(el);
                     // afterRender must run AFTER DOM insertion so getComputedStyle works correctly
                     if (itemStrategy.afterRender) {
                         itemStrategy.afterRender(el, item);
@@ -112,7 +111,9 @@ export function createStoreChangeHandler(config: StoreChangeHandlerConfig) {
                         updateGroupCount(groupEl, isLocked);
                         // Remove group if no video items remain
                         const groupItems = groupEl.querySelector('.group-items');
-                        if (groupItems && groupItems.querySelectorAll('.multi-video-item').length === 0) {
+                        const groupMeta = videoStore.getGroupMeta(item.groupId);
+                        const isGroupLoading = groupMeta?.isLoading === true;
+                        if (groupItems && groupItems.querySelectorAll('.multi-video-item').length === 0 && !isGroupLoading) {
                             groupEl.remove();
                         }
                     }
@@ -177,15 +178,29 @@ export function createStoreChangeHandler(config: StoreChangeHandlerConfig) {
                 onCountsChanged?.();
                 break;
             }
-
             case 'item:progress': {
                 // data is the full VideoItem
                 const item = data as VideoItem;
+
+                // Force update if phase changed or reaching terminal progress - otherwise throttle
+                const now = Date.now();
+                const lastTime = lastProgressTime.get(item.id) || 0;
+                const shouldForce = item.progress === 100 || (item.progressPhase && item.progressPhase !== (pendingProgressItems.get(item.id)?.progressPhase));
+
+                if (!shouldForce && (now - lastTime < PROGRESS_THROTTLE_MS)) {
+                    pendingProgressItems.set(item.id, item);
+                    return;
+                }
+
+                lastProgressTime.set(item.id, now);
+                pendingProgressItems.delete(item.id);
+
                 const el = getItemElement(item.id);
                 if (!el) return;
 
                 VideoItemRenderer.updateProgressOnly(el, item, resolveStrategy(item));
                 onCountsChanged?.();
+
                 break;
             }
 
@@ -397,10 +412,12 @@ export function updateGroupCount(groupEl: HTMLElement, isLocked: boolean = false
         if (dCountEl) dCountEl.textContent = `(${dCount})`;
     }
 
-    // FIX 6: Sync glider with cached padding (avoids getComputedStyle per-call forcing reflow)
+    // Glider Optimization: Only update glider if tab changed or on force update
+    const prevGliderTab = groupEl.dataset.prevGliderTab;
     const activeTabEl = activeTab === 'convert' ? convertTab : downloadTab;
     const glider = groupEl.querySelector('.tab-glider') as HTMLElement | null;
-    if (hasTabs && glider && activeTabEl && activeTabEl.offsetWidth > 0) {
+    if (hasTabs && glider && activeTabEl && activeTabEl.offsetWidth > 0 && (forceVisibility || prevGliderTab !== activeTab)) {
+        groupEl.dataset.prevGliderTab = activeTab;
         const padLeft = getTabPadding(activeTabEl);
         const extraPadding = 6;
         const width = (activeTabEl.offsetWidth - padLeft * 2) + (extraPadding * 2);
@@ -455,7 +472,7 @@ export function updateGroupCount(groupEl: HTMLElement, isLocked: boolean = false
             if (convertAllBtn) convertAllBtn.style.display = '';
             zipBtn.style.display = 'none';
             if (convertAllBtn) {
-                (convertAllBtn as HTMLButtonElement).disabled = downloadable_convert === 0 || isLocked;
+                (convertAllBtn as HTMLButtonElement).disabled = downloadable_convert === 0;
                 convertAllBtn.textContent = `Convert selected (${downloadable_convert})`;
             }
         } else {
@@ -467,7 +484,12 @@ export function updateGroupCount(groupEl: HTMLElement, isLocked: boolean = false
                 // FIX 2: Update text node only — no SVG re-parse
                 (zipBtn as HTMLButtonElement).disabled = selectedCompleted_download === 0 || isLocked;
                 const zipCountEl = zipBtn.querySelector('.zip-count') as HTMLElement;
-                if (zipCountEl) zipCountEl.textContent = `Download ZIP (${selectedCompleted_download})`;
+                if (zipCountEl) {
+                    const nextText = `Download ZIP (${selectedCompleted_download})`;
+                    if (zipCountEl.textContent !== nextText) {
+                        zipCountEl.textContent = nextText;
+                    }
+                }
             }
         }
 
@@ -492,7 +514,7 @@ export function updateGroupCount(groupEl: HTMLElement, isLocked: boolean = false
             const someSelected = selSome;
             groupCheckbox.checked = allSelected;
             groupCheckbox.indeterminate = someSelected && !allSelected;
-            groupCheckbox.disabled = isLocked;
+            groupCheckbox.disabled = false;
         }
     }
 }
@@ -503,21 +525,20 @@ export const DOWNLOAD_TAB_CLICKED_KEY = 'hasClickedPlaylistTab';
  * Show hand pointer guide on the Download tab if user hasn't discovered it yet
  */
 export function showDownloadTabGuide(groupEl: HTMLElement, offsetX: number = 0): void {
-    if (!groupEl) { console.log('[guide] no groupEl'); return; }
-    if (localStorage.getItem(DOWNLOAD_TAB_CLICKED_KEY) === 'true') { console.log('[guide] already clicked, skip'); return; }
+    if (!groupEl) return;
+    if (localStorage.getItem(DOWNLOAD_TAB_CLICKED_KEY) === 'true') return;
 
     const tabsContainer = groupEl.querySelector('.playlist-header-tabs') as HTMLElement;
-    if (!tabsContainer) { console.log('[guide] no tabsContainer'); return; }
+    if (!tabsContainer) return;
 
     const downloadTab = tabsContainer.querySelector('.playlist-tab[data-tab="download"]') as HTMLElement;
-    if (!downloadTab) { console.log('[guide] no downloadTab'); return; }
+    if (!downloadTab) return;
 
     const handGuide = tabsContainer.querySelector('.tab-hand-guide') as HTMLElement;
-    if (!handGuide) { console.log('[guide] no handGuide el'); return; }
+    if (!handGuide) return;
 
     const tabLeft = downloadTab.offsetLeft;
     const guideWidth = 50;
-    console.log('[guide] showing at left:', tabLeft - guideWidth + offsetX, 'offsetX:', offsetX);
     handGuide.style.left = `${tabLeft - guideWidth + offsetX}px`;
     handGuide.style.right = '';
     handGuide.style.display = '';

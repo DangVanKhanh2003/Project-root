@@ -62,10 +62,17 @@ export class MultiDownloadService {
             groupTitle: 'Multiple',
         }));
 
-        // Add to store (triggers 'item:added' per item)
-        for (const item of newItems) {
-            videoStore.addItem(item);
+        // Add to store in chunks to allow UI to breathe
+        const CHUNK_SIZE = 5;
+        for (let i = 0; i < newItems.length; i += CHUNK_SIZE) {
+            const batch = newItems.slice(i, i + CHUNK_SIZE);
+            for (const item of batch) {
+                videoStore.addItem(item);
+            }
+            // Yield to browser to render the added items
+            await yieldToBrowser();
         }
+
         videoStore.setGroupMeta(groupId, false, 'Multiple', null);
 
         // 2. Fetch metadata in parallel
@@ -98,6 +105,8 @@ export class MultiDownloadService {
         }
 
         const groupId = `${playlistId}_${Date.now()}`;
+        // Mark group as loading immediately so renderer keeps DOM stable during skeleton -> real items transition.
+        videoStore.setGroupMeta(groupId, true, 'Playlist', null);
 
         // Add 8 skeleton items for visual loading while fetching page 1
         const skeletonItems: VideoItem[] = Array.from({ length: 8 }).map((_, i) => ({
@@ -131,8 +140,10 @@ export class MultiDownloadService {
             groupTitle: 'Playlist',
         }));
 
-        for (const item of skeletonItems) {
-            videoStore.addItem(item);
+        for (let i = 0; i < skeletonItems.length; i += 4) {
+            const batch = skeletonItems.slice(i, i + 4);
+            for (const item of batch) videoStore.addItem(item);
+            await yieldToBrowser();
         }
 
         // Fetch page 1
@@ -140,27 +151,32 @@ export class MultiDownloadService {
         try {
             page1 = await fetchPlaylistPage(playlistId);
         } catch (error) {
+            videoStore.setGroupMeta(groupId, false, 'Playlist', null);
             for (const item of skeletonItems) videoStore.removeItem(item.id);
             throw error;
         }
 
         if (!page1.items || page1.items.length === 0) {
+            videoStore.setGroupMeta(groupId, false, 'Playlist', null);
             for (const item of skeletonItems) videoStore.removeItem(item.id);
             throw new Error('Playlist is empty or could not be fetched');
         }
 
         const realTitle = page1.title || 'Playlist';
 
-        // Add page 1 items
-        const page1Items = this.buildVideoItems(page1.items, groupId, realTitle, globalSettings);
-        for (const item of page1Items) {
-            videoStore.addItem(item);
-        }
-
-        // Remove skeletons after real items are added
+        // Remove skeletons then append real items in the same task to avoid an empty-frame flicker.
         for (const item of skeletonItems) {
             videoStore.removeItem(item.id);
         }
+
+        // Add page 1 items in chunks
+        const page1Items = this.buildVideoItems(page1.items, groupId, realTitle, globalSettings);
+        for (let i = 0; i < page1Items.length; i += 5) {
+            const batch = page1Items.slice(i, i + 5);
+            for (const item of batch) videoStore.addItem(item);
+            if (i + 5 < page1Items.length) await yieldToBrowser();
+        }
+
 
         // Set group meta after items are visible — shows Load more button if more pages exist
         videoStore.setGroupMeta(groupId, false, realTitle, page1.nextPageToken ?? null);
@@ -273,6 +289,9 @@ export class MultiDownloadService {
         try {
             const page = await fetchPlaylistPage(playlistId, savedToken);
 
+            // Remove skeletons and add real items in the same task to prevent visual blink.
+            for (const item of skeletonItems) videoStore.removeItem(item.id);
+
             if (page.items && page.items.length > 0) {
                 const items = this.buildVideoItems(page.items, groupId, meta.title, settings);
                 for (let i = 0; i < items.length; i += 5) {
@@ -281,8 +300,6 @@ export class MultiDownloadService {
                     if (i + 5 < items.length) await yieldToBrowser();
                 }
             }
-
-            for (const item of skeletonItems) videoStore.removeItem(item.id);
             videoStore.setGroupMeta(groupId, false, meta.title, page.nextPageToken ?? null);
         } catch {
             for (const item of skeletonItems) videoStore.removeItem(item.id);
@@ -518,9 +535,7 @@ interface PlaylistPageResult {
     title?: string;
 }
 
-function yieldToBrowser(): Promise<void> {
-    return new Promise(resolve => setTimeout(resolve, 0));
-}
+const yieldToBrowser = () => new Promise(resolve => setTimeout(resolve, 0));
 
 async function fetchPlaylistPage(playlistId: string, pageToken?: string): Promise<PlaylistPageResult> {
     const baseUrl = getYtMetaBaseUrl();

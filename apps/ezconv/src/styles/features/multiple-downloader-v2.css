@@ -2244,11 +2244,9 @@
 }
 
 /* FIX 5: Global download lock — CSS class replaces O(n) JS loop */
-.is-global-locked .btn-download-multi-download,
-.is-global-locked [data-action="download-group"],
+.is-global-locked [data-action="save"],
 .is-global-locked [data-action="download-zip-group"],
-.is-global-locked .group-checkbox,
-.is-global-locked .item-checkbox {
+.is-global-locked [data-action="download-zip-batch"] {
     pointer-events: none;
     opacity: 0.5;
 }

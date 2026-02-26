@@ -93,22 +93,17 @@ export class VideoItemRenderer {
      * Update existing element (granular, no re-create)
      */
     static updateVideoItemElement(el: HTMLElement, item: VideoItem, strategy: RendererStrategy, context: { isFileDownloading?: boolean, currentDownloadingItemId?: string, isGlobalLocked?: boolean } = {}): void {
-        console.log('[VideoItemRenderer] updateVideoItemElement called:', item.id, 'status:', item.status);
-        console.log('[VideoItemRenderer] el.classList:', el.classList.toString());
 
         // Check for skeleton BEFORE applyStatusClass (which removes skeleton-loading class)
         const hasSkeleton = el.classList.contains('skeleton-loading');
         const shouldTransition = hasSkeleton && item.status !== 'fetching_metadata';
-        console.log('[VideoItemRenderer] hasSkeleton:', hasSkeleton, 'shouldTransition:', shouldTransition);
 
         // Skeleton → full transition
         if (shouldTransition) {
-            console.log('[VideoItemRenderer] Transitioning from skeleton to full content...');
             el.innerHTML = '';
             el.classList.remove('skeleton-loading');
             VideoItemRenderer.buildStructure(el, item, strategy, context);
             VideoItemRenderer.applyStatusClass(el, item);
-            console.log('[VideoItemRenderer] Transition complete!');
             if (strategy.afterRender) {
                 strategy.afterRender(el, item);
             }

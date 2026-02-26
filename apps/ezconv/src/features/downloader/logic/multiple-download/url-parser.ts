@@ -8,8 +8,6 @@ export interface ParsedUrl {
 }
 
 export function parseYouTubeURLs(inputText: string): ParsedUrl[] {
-    console.log('[parseYouTubeURLs] Raw input:', JSON.stringify(inputText));
-    console.log('[parseYouTubeURLs] Input length:', inputText.length);
 
     // Normalize: replace all types of line endings and whitespace
     const normalized = inputText
@@ -18,17 +16,13 @@ export function parseYouTubeURLs(inputText: string): ParsedUrl[] {
         .replace(/\t/g, ' ')     // Tabs to spaces
         .trim();
 
-    console.log('[parseYouTubeURLs] Normalized:', JSON.stringify(normalized));
-
     // Split by newlines, spaces, or commas (one or more)
     const tokens = normalized.split(/[\n\s,]+/).filter(Boolean);
-    console.log('[parseYouTubeURLs] Tokens after split:', tokens.length, tokens);
 
     const results: ParsedUrl[] = [];
 
     for (const token of tokens) {
         const isValid = isYouTubeUrl(token);
-        console.log('[parseYouTubeURLs] Token:', token, '| isYouTubeUrl:', isValid);
         if (!isValid) continue;
 
         const videoId = extractVideoId(token);

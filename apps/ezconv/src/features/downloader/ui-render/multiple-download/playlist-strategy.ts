@@ -6,22 +6,54 @@ import { escapeAttr } from './video-item-renderer';
 import { LANGUAGES } from '../../logic/data/languages';
 import { autoResizeSelect } from '../../../../utils/dom-utils';
 
+
 /**
  * Strategy for Playlist Mode
  * Editable dropdowns when pending/ready/error, locked badges when downloading/completed
  */
 export class PlaylistStrategy implements RendererStrategy {
 
+    private afterRenderQueue: { el: HTMLElement, item: VideoItem }[] = [];
+    private isQueueProcessing = false;
+
     afterRender(el: HTMLElement, item: VideoItem): void {
-        const selects = el.querySelectorAll('select') as NodeListOf<HTMLSelectElement>;
-        selects.forEach(select => {
-            autoResizeSelect(select);
-            // Also resize on change
-            if (!(select as any)._hasResizeListener) {
-                select.addEventListener('change', () => autoResizeSelect(select));
-                (select as any)._hasResizeListener = true;
+        this.afterRenderQueue.push({ el, item });
+        this.processQueue();
+    }
+
+    private processQueue(): void {
+        if (this.isQueueProcessing) return;
+        this.isQueueProcessing = true;
+
+        const processBatch = () => {
+            const batchSize = 3;
+            const batch = this.afterRenderQueue.splice(0, batchSize);
+
+            for (const { el, item } of batch) {
+                const selects = el.querySelectorAll('select') as NodeListOf<HTMLSelectElement>;
+                selects.forEach(select => {
+                    autoResizeSelect(select);
+                    if (!(select as any)._hasResizeListener) {
+                        select.addEventListener('change', () => autoResizeSelect(select));
+                        (select as any)._hasResizeListener = true;
+                    }
+                });
             }
-        });
+
+            if (this.afterRenderQueue.length > 0) {
+                // Use requestIdleCallback if available, fallback to setTimeout
+                if ('requestIdleCallback' in window) {
+                    (window as any).requestIdleCallback(processBatch);
+                } else {
+                    (window as any).setTimeout(processBatch, 2);
+                }
+            } else {
+                this.isQueueProcessing = false;
+            }
+        };
+
+        // Start first batch in next tick
+        (window as any).setTimeout(processBatch, 0);
     }
 
     buildSettingsContent(item: VideoItem): string {
@@ -165,10 +197,8 @@ export class PlaylistStrategy implements RendererStrategy {
         }
 
         if (item.status === 'ready') {
-            const isLocked = context.isGlobalLocked;
-            const disabledAttr = isLocked ? 'disabled' : '';
             return `
-                <button class="btn-download-multi-download is-outline" type="button" data-action="convert" data-id="${item.id}" ${disabledAttr}>
+                <button class="btn-download-multi-download is-outline" type="button" data-action="convert" data-id="${item.id}">
                     <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="12" y1="5" x2="12" y2="15"></line>
                         <polyline points="8 11 12 15 16 11"></polyline>
@@ -256,10 +286,8 @@ export class PlaylistStrategy implements RendererStrategy {
         }
 
         if (item.status === 'ready') {
-            const isLocked = context.isGlobalLocked;
-            const disabledAttr = isLocked ? 'disabled' : '';
             return `
-                <button class="btn-download-multi-download is-outline" type="button" data-action="convert" data-id="${item.id}" ${disabledAttr}>
+                <button class="btn-download-multi-download is-outline" type="button" data-action="convert" data-id="${item.id}">
                     <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="12" y1="5" x2="12" y2="15"></line>
                         <polyline points="8 11 12 15 16 11"></polyline>

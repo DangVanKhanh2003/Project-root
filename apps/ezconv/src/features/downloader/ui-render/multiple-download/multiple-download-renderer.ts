@@ -142,32 +142,34 @@ export class MultipleDownloadRenderer {
             // Non-grouped items use PlaylistStrategy only when in explicit playlist-only mode.
             getStrategy: (item) =>
                 item.groupId ? this.playlistStrategy
-                : this.isPlaylistMode ? this.playlistStrategy
-                : this.batchStrategy,
+                    : this.isPlaylistMode ? this.playlistStrategy
+                        : this.batchStrategy,
             getGlobalLockState: () => this.isGlobalDownloadLocked,
             getActiveLoadingId: () => this.activeLoadingId
         });
+
+        let headerThrottleTimer: any = null;
+        const throttledUpdateHeader = () => {
+            if (headerThrottleTimer) return;
+            headerThrottleTimer = setTimeout(() => {
+                this.updateBatchHeader();
+                headerThrottleTimer = null;
+            }, 200);
+        };
 
         this.unsubscribe = videoStore.subscribe((eventName, data) => {
             const allItems = videoStore.getAllItems();
             const batchCount = allItems.filter(i => !i.groupId).length;
             const groupCount = allItems.filter(i => !!i.groupId).length;
 
-            if (batchCount > 0) {
-                this.show();
-            } else {
-                this.hide();
-            }
+            if (batchCount > 0) this.show();
+            else this.hide();
+
             if (groupCount > 0) this.showGroups();
             else this.hideGroups();
 
-            if (eventName === 'item:added' && data) {
-                const item = data as { groupId?: string };
-                this.prioritizeSection(item.groupId ? 'group' : 'batch');
-            }
-
             handleChange(eventName, data);
-            this.updateBatchHeader();
+            throttledUpdateHeader();
         });
     }
 

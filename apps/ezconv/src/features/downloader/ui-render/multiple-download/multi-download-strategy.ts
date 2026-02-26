@@ -84,8 +84,8 @@ export class MultiDownloadStrategy implements RendererStrategy {
     private getDesktopActionButton(item: VideoItem, context: { isFileDownloading?: boolean, currentDownloadingItemId?: string, isGlobalLocked?: boolean }): string {
         const isLocked = !!context.isGlobalLocked;
         const isLoading = context.currentDownloadingItemId === item.id;
-        const disabledAttr = isLocked ? 'disabled' : '';
-        const disabledClass = isLocked ? 'is-disabled' : '';
+        const downloadDisabledAttr = isLocked ? 'disabled' : '';
+        const downloadDisabledClass = isLocked ? 'is-disabled' : '';
         const loadingClass = isLoading ? 'is-loading' : '';
 
         if (item.status === 'downloading' || item.status === 'converting') {
@@ -99,7 +99,7 @@ export class MultiDownloadStrategy implements RendererStrategy {
 
         if (item.status === 'ready') {
             return `
-                <button class="btn-download-multi-download is-outline" type="button" data-action="convert" data-id="${item.id}" ${disabledAttr}>
+                <button class="btn-download-multi-download is-outline" type="button" data-action="convert" data-id="${item.id}">
                     <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="12" y1="5" x2="12" y2="15"></line>
                         <polyline points="8 11 12 15 16 11"></polyline>
@@ -114,11 +114,11 @@ export class MultiDownloadStrategy implements RendererStrategy {
         if (item.status === 'completed' && item.downloadUrl) {
             const filename = `${item.meta.title} (${item.settings?.quality || item.settings?.audioBitrate || ''}).${item.settings?.format || 'mp4'}`;
             const isDownloaded = item.isDownloaded;
-            const classes = ['btn-download-multi-download', (isDownloaded && !isLoading) ? 'is-success' : '', disabledClass, loadingClass].filter(Boolean).join(' ');
+            const classes = ['btn-download-multi-download', (isDownloaded && !isLoading) ? 'is-success' : '', downloadDisabledClass, loadingClass].filter(Boolean).join(' ');
             const label = isDownloaded ? 'Downloaded' : 'Download';
 
             return `
-                <button class="${classes}" type="button" data-action="save" data-id="${item.id}" data-download-url="${item.downloadUrl}" data-filename="${escapeAttr(filename)}" ${disabledAttr}>
+                <button class="${classes}" type="button" data-action="save" data-id="${item.id}" data-download-url="${item.downloadUrl}" data-filename="${escapeAttr(filename)}" ${downloadDisabledAttr}>
                     <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="12" y1="5" x2="12" y2="15"></line>
                         <polyline points="8 11 12 15 16 11"></polyline>
