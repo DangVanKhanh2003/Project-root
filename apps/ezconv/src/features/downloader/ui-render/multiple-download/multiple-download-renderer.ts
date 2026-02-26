@@ -217,6 +217,22 @@ export class MultipleDownloadRenderer {
         const handleClick = (e: Event) => {
             const target = e.target as HTMLElement;
             const actionBtn = target.closest('[data-action]') as HTMLElement;
+            const itemEl = target.closest('.multi-video-item') as HTMLElement | null;
+
+            if (itemEl) {
+                const clickedInteractiveEl = target.closest(
+                    '[data-action], .item-checkbox, .item-checkbox-wrapper, .item-format-select, .item-quality-select, .item-audio-track-select, select, input, button, a, label'
+                );
+
+                if (!clickedInteractiveEl) {
+                    const itemId = itemEl.dataset.id;
+                    const checkbox = itemEl.querySelector('.item-checkbox') as HTMLInputElement | null;
+                    if (itemId && checkbox && !checkbox.disabled) {
+                        videoStore.toggleSelect(itemId);
+                    }
+                    return;
+                }
+            }
 
             if (!actionBtn) return;
 

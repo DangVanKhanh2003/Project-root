@@ -12,6 +12,7 @@ import { getCurrentSettings, initFormatToggle } from './features/shared/form/for
 import { initAdvancedSettings } from './features/multi-mode-downloader/advanced-settings-controller';
 import { initConvertForm } from './features/multi-mode-downloader/convert-submit-controller';
 import { initTrimController, getTrimStart, getTrimEnd } from './features/multi-mode-downloader/trim-controller';
+import { initSearchSuggestController } from './features/multi-mode-downloader/search-suggest-controller';
 
 function init(): void {
     initHeaderScroll();
@@ -29,6 +30,7 @@ function init(): void {
 
     initTrimController();
     initAdvancedSettings();
+    initSearchSuggestController();
     initConvertForm({ getSettings: getCurrentSettings, getTrimStart, getTrimEnd });
 
     initFirebaseAnalytics();

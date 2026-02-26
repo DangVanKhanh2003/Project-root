@@ -39,6 +39,8 @@ export function initConvertForm(config: ConvertFormConfig): void {
                 urlsInput.selectionStart = urlsInput.selectionEnd = start + 1;
                 urlsInput.dispatchEvent(new Event('input'));
             } else {
+                const hasValidUrls = parseYouTubeURLs(urlsInput.value).length > 0;
+                if (!hasValidUrls) return;
                 // Enter: submit
                 e.preventDefault();
                 addUrlsBtn.click();
@@ -72,6 +74,7 @@ export function initConvertForm(config: ConvertFormConfig): void {
             return;
         }
 
+        document.dispatchEvent(new CustomEvent('multi-download:convert-click'));
         clearError(errorMessage);
         setLoading(addUrlsBtn, true);
 

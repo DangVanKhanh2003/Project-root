@@ -132,10 +132,6 @@
         /* Reduced bottom padding to 0 to let mask cover more of the form (half-in/half-out) */
     }
 
-    /* Remove container padding on mobile as requested */
-    .hero-container {
-        padding: 0;
-    }
 
     .title-hero {
         font-size: 26px;
