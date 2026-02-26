@@ -70,23 +70,14 @@ bodyDataPage: strim-downloader
 <!-- What Can You Download with SSVID? -->
 <section class="content-section content-section--white">
     <div class="container">
-        <h2 class="titles">{{ page.content.columns[0].title }}</h2>
-        <p>{{ page.content.columns[0].description | safe }}</p>
+        <h2 class="titles">{{ page.content.intro2.title }}</h2>
+        <p>{{ page.content.intro2.description | safe }}</p>
 
-        <div class="subsection">
-            <h3>{{ page.content.columns[1].title }}</h3>
-            <p>{{ page.content.columns[1].description | safe }}</p>
-        </div>
+        <h2 class="titles">{{ page.content.whyDownload.title }}</h2>
+        <p>{{ page.content.whyDownload.description | safe }}</p>
 
-        <div class="subsection">
-            <h3>{{ page.content.whyDownload.title }}</h3>
-            <p>{{ page.content.whyDownload.description | safe }}</p>
-        </div>
-
-        <div class="subsection">
-            <h3>{{ page.content.quality.title }}</h3>
-            <p>{{ page.content.quality.description | safe }}</p>
-        </div>
+        <h2 class="titles">{{ page.content.quality.title }}</h2>
+        <p>{{ page.content.quality.description | safe }}</p>
     </div>
 </section>
 
