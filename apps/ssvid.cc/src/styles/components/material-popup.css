@@ -94,6 +94,10 @@
     gap: 12px;
 }
 
+.m3-dialog-actions-inline {
+    flex-direction: row;
+}
+
 /* Solid Pill Button Style */
 .m3-button-solid {
     height: 48px; /* Slightly shorter button */
@@ -117,6 +121,27 @@
 }
 
 .m3-button-solid:active {
+    transform: scale(0.98);
+}
+
+.m3-button-text {
+    height: 48px;
+    width: 100%;
+    border-radius: 99px;
+    border: 1px solid #d1d5db;
+    background-color: #fff;
+    color: #4b5563;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.m3-button-text:hover {
+    background-color: #f9fafb;
+}
+
+.m3-button-text:active {
     transform: scale(0.98);
 }
 

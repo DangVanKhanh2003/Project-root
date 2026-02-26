@@ -38,6 +38,7 @@ import type { VideoData } from '@downloader/ui-components';
 import { navigateToVideo } from '../routing/url-manager';
 import { setVideoPageSEO } from '../routing/seo-manager';
 import { showResultView } from '../ui-render/view-switcher';
+import { MaterialPopup } from '../../../ui-components/material-popup/material-popup';
 
 // ============================================
 // YOUTUBE HELPERS
@@ -71,6 +72,42 @@ function extractYouTubeVideoId(url: string): string | null {
   if (embedMatch) return embedMatch[1];
 
   return null;
+}
+
+/**
+ * Extract playlist ID from URL
+ */
+function extractPlaylistId(url: string): string | null {
+  const playlistMatch = url.match(/[?&]list=([\w-]+)/);
+  return playlistMatch ? playlistMatch[1] : null;
+}
+
+function shouldPromptPlaylistRedirect(url: string): boolean {
+  const videoId = extractYouTubeVideoId(url);
+  const playlistId = extractPlaylistId(url);
+  return !videoId && !!playlistId;
+}
+
+async function confirmPlaylistRedirect(): Promise<boolean> {
+  return new Promise((resolve) => {
+    let settled = false;
+    const settle = (goToPlaylistPage: boolean) => {
+      if (settled) return;
+      settled = true;
+      resolve(goToPlaylistPage);
+    };
+
+    MaterialPopup.show({
+      title: 'Go to playlist page',
+      message: 'Would you like to download a playlist instead? Go to the playlist downloader page.',
+      type: 'info',
+      confirmText: 'Playlist page',
+      cancelText: 'Cancel',
+      buttonLayout: 'row',
+      onConfirm: () => settle(true),
+      onCancel: () => settle(false)
+    });
+  });
 }
 
 /**
@@ -830,6 +867,18 @@ async function handleSubmit(event: Event): Promise<void> {
 
   try {
     if (state.inputType === 'url') {
+      if (shouldPromptPlaylistRedirect(value)) {
+        setLoading(false);
+        const shouldRedirectToPlaylist = await confirmPlaylistRedirect();
+
+        if (shouldRedirectToPlaylist) {
+          window.location.href = '/download-mp3-youtube-playlist';
+          return;
+        }
+
+        setLoading(true);
+      }
+
       onAfterSubmit();
       await handleExtractMedia(value);
     } else {

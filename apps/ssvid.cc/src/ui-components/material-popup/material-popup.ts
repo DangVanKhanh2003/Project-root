@@ -4,6 +4,7 @@ export interface PopupOptions {
     message: string;
     confirmText?: string;
     cancelText?: string;
+    buttonLayout?: 'stack' | 'row';
     onConfirm?: () => void;
     onCancel?: () => void;
     type?: 'info' | 'warning' | 'error';
@@ -16,6 +17,7 @@ export class MaterialPopup {
             message,
             confirmText = 'OK',
             cancelText,
+            buttonLayout = 'stack',
             onConfirm,
             onCancel,
             type = 'info'
@@ -61,9 +63,18 @@ export class MaterialPopup {
         else if (type === 'error') iconContent = errorIcon;
         else iconContent = infoIcon;
 
-        const cancelButtonHtml = cancelText 
-            ? `<button class="m3-button-text m3-cancel-btn" type="button" style="margin-top: 8px; width: 100%; border-radius: 99px; height: 40px; color: #6b7280; font-weight: 500;">${cancelText}</button>`
+        const confirmButtonHtml = `<button class="m3-button-solid m3-confirm-btn" type="button">${confirmText}</button>`;
+        const cancelButtonHtml = cancelText
+            ? `<button class="m3-button-text m3-cancel-btn" type="button">${cancelText}</button>`
             : '';
+
+        const actionsClass = buttonLayout === 'row' && cancelText
+            ? 'm3-dialog-actions m3-dialog-actions-inline'
+            : 'm3-dialog-actions';
+
+        const actionsHtml = buttonLayout === 'row' && cancelText
+            ? `${cancelButtonHtml}${confirmButtonHtml}`
+            : `${confirmButtonHtml}${cancelButtonHtml}`;
 
         overlay.innerHTML = `
             <div class="${dialogClass}">
@@ -72,9 +83,8 @@ export class MaterialPopup {
                 <div class="m3-dialog-body">
                     <p class="m3-dialog-message">${message}</p>
                 </div>
-                <div class="m3-dialog-actions">
-                    <button class="m3-button-solid m3-confirm-btn" type="button">${confirmText}</button>
-                    ${cancelButtonHtml}
+                <div class="${actionsClass}">
+                    ${actionsHtml}
                 </div>
             </div>
         `;

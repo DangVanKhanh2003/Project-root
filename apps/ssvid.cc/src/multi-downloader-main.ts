@@ -11,6 +11,48 @@ import { multiDownloadService } from './features/downloader/logic/multiple-downl
 import { multipleDownloadRenderer } from './features/downloader/ui-render/multiple-download/multiple-download-renderer';
 import { VideoItemSettings } from './features/downloader/state/multiple-download-types';
 import { initAudioDropdown } from './features/downloader/ui-render/dropdown-logic';
+import { MaterialPopup } from './ui-components/material-popup/material-popup';
+import { extractVideoId, extractPlaylistId, isYouTubeUrl } from '@downloader/core';
+
+function shouldPromptPlaylistRedirectForMulti(rawText: string): boolean {
+    const tokens = rawText
+        .replace(/\r\n/g, '\n')
+        .replace(/\r/g, '\n')
+        .replace(/\t/g, ' ')
+        .trim()
+        .split(/[\n\s,]+/)
+        .filter(Boolean)
+        .filter(token => isYouTubeUrl(token));
+
+    if (tokens.length === 0) return false;
+
+    const hasVideoUrl = tokens.some(token => !!extractVideoId(token));
+    const hasPlaylistOnlyUrl = tokens.some(token => !extractVideoId(token) && !!extractPlaylistId(token));
+
+    return hasPlaylistOnlyUrl && !hasVideoUrl;
+}
+
+async function confirmPlaylistRedirect(): Promise<boolean> {
+    return new Promise((resolve) => {
+        let settled = false;
+        const settle = (goToPlaylistPage: boolean) => {
+            if (settled) return;
+            settled = true;
+            resolve(goToPlaylistPage);
+        };
+
+        MaterialPopup.show({
+            title: 'Go to playlist page',
+            message: 'Would you like to download a playlist instead? Go to the playlist downloader page.',
+            type: 'info',
+            confirmText: 'Playlist page',
+            cancelText: 'Cancel',
+            buttonLayout: 'row',
+            onConfirm: () => settle(true),
+            onCancel: () => settle(false)
+        });
+    });
+}
 
 /**
  * Initialize mobile menu functionality
@@ -205,6 +247,14 @@ function initMultiDownloadForm() {
         if (errorMessage) {
             errorMessage.textContent = '';
             errorMessage.style.display = 'none';
+        }
+
+        if (shouldPromptPlaylistRedirectForMulti(rawText)) {
+            const shouldRedirectToPlaylist = await confirmPlaylistRedirect();
+            if (shouldRedirectToPlaylist) {
+                window.location.href = '/download-mp3-youtube-playlist';
+                return;
+            }
         }
 
         // Set button to loading state
