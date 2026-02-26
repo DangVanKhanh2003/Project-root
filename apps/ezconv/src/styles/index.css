@@ -38,6 +38,7 @@
 @import './components/material-popup.css';
 @import './features/trim-downloader.css';
 @import './features/multiple-downloader-v2.css';
+@import './features/filename-style.css';
 
 /* 7. Reusable Packages (TypeScript features) */
 @import './reusable-packages/package-root.css';

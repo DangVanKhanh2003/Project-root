@@ -16,6 +16,8 @@ export interface VideoItemSettings {
     trimStart?: number;
     trimEnd?: number;
     trimRangeLabel?: string;
+    filenameStyle?: 'classic' | 'basic' | 'pretty' | 'nerdy';
+    enableMetadata?: boolean;
 }
 
 export interface VideoItem {

@@ -62,4 +62,10 @@ export interface V3DownloadRequest {
 
   /** Trim configuration */
   trim?: TrimConfig;
+
+  /** Filename style for output file naming */
+  filenameStyle?: 'classic' | 'basic' | 'pretty' | 'nerdy';
+
+  /** Whether to embed metadata (title, artist, thumbnail) into the output file */
+  enableMetadata?: boolean;
 }

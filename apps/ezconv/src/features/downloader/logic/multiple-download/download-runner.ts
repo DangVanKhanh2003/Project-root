@@ -185,6 +185,8 @@ function buildV3Request(url: string, settings: VideoItemSettings) {
         trackId: settings.audioTrack,
         ...(Number.isFinite(settings.trimStart) ? { trimStart: settings.trimStart } : {}),
         ...(Number.isFinite(settings.trimEnd) ? { trimEnd: settings.trimEnd } : {}),
+        ...(settings.filenameStyle ? { filenameStyle: settings.filenameStyle } : {}),
+        ...(typeof settings.enableMetadata === 'boolean' ? { enableMetadata: settings.enableMetadata } : {}),
     });
 }
 

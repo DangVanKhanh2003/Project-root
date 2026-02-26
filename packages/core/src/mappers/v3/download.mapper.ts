@@ -17,6 +17,8 @@ export interface ExtractV2Options {
   trackId?: string;
   trimStart?: number;
   trimEnd?: number;
+  filenameStyle?: 'classic' | 'basic' | 'pretty' | 'nerdy';
+  enableMetadata?: boolean;
 }
 
 /**
@@ -162,6 +164,8 @@ export function mapToV3DownloadRequest(
         quality: mapVideoQuality(options.videoQuality),
       },
       ...(trim ? { trim } : {}),
+      ...(options.filenameStyle ? { filenameStyle: options.filenameStyle } : {}),
+      ...(typeof options.enableMetadata === 'boolean' ? { enableMetadata: options.enableMetadata } : {}),
     };
 
     // Always include audio config for video (default 128k)
@@ -182,6 +186,8 @@ export function mapToV3DownloadRequest(
         format: mapAudioFormat(options.audioFormat),
       },
       ...(trim ? { trim } : {}),
+      ...(options.filenameStyle ? { filenameStyle: options.filenameStyle } : {}),
+      ...(typeof options.enableMetadata === 'boolean' ? { enableMetadata: options.enableMetadata } : {}),
     };
 
     // Add audio bitrate

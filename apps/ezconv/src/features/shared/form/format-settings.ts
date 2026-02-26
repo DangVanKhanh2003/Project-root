@@ -7,6 +7,29 @@
 import { VideoItemSettings } from '../../downloader/state/multiple-download-types';
 
 // ==========================================
+// Filename style preview templates
+// ==========================================
+
+const FILENAME_PREVIEWS: Record<string, { video: string; audio: string }> = {
+    classic: {
+        video: 'youtube_dQw4w9WgXcQ_1080p.mp4',
+        audio: 'youtube_dQw4w9WgXcQ_audio.mp3',
+    },
+    basic: {
+        video: 'Video Title - Author (1080p).mp4',
+        audio: 'Video Title - Author (192k).mp3',
+    },
+    pretty: {
+        video: 'Video Title - Author (1080p, youtube).mp4',
+        audio: 'Video Title - Author (192k, youtube).mp3',
+    },
+    nerdy: {
+        video: 'Video Title - Author (1080p, youtube, dQw4w9WgXcQ).mp4',
+        audio: 'Video Title - Author (192k, youtube, dQw4w9WgXcQ).mp3',
+    },
+};
+
+// ==========================================
 // Read current settings from UI
 // ==========================================
 
@@ -48,7 +71,15 @@ export function getCurrentSettings(): Partial<VideoItemSettings> {
         }
     }
 
-    return { format, quality, audioFormat, audioBitrate, videoQuality, audioTrack };
+    // Read filename style from active tab
+    const activeStyleTab = document.querySelector('#filename-style-tabs .fs-tab.active') as HTMLElement | null;
+    const filenameStyle = (activeStyleTab?.dataset.style || 'basic') as VideoItemSettings['filenameStyle'];
+
+    // Read embed metadata from toggle
+    const metadataToggle = document.getElementById('metadata-mode-toggle');
+    const enableMetadata = metadataToggle ? metadataToggle.getAttribute('aria-checked') === 'true' : true;
+
+    return { format, quality, audioFormat, audioBitrate, videoQuality, audioTrack, filenameStyle, enableMetadata };
 }
 
 // ==========================================
@@ -64,6 +95,8 @@ export function saveFormatPreferences(): void {
             videoQuality: settings.videoQuality ? settings.videoQuality + 'p' : '720p',
             audioFormat: audioFmt,
             audioBitrate: audioFmt === 'mp3' ? (settings.audioBitrate || '128') : '',
+            filenameStyle: settings.filenameStyle || 'basic',
+            enableMetadata: settings.enableMetadata !== false,
             timestamp: Date.now(),
         };
         // Avoid double 'p' suffix for special containers
@@ -72,6 +105,25 @@ export function saveFormatPreferences(): void {
         }
         localStorage.setItem('Ezconv_format_preferences', JSON.stringify(prefs));
     } catch (_) {}
+}
+
+// ==========================================
+// Update filename preview
+// ==========================================
+
+function syncFilenamePreviewVisibility(format: 'mp3' | 'mp4'): void {
+    const videoRow = document.getElementById('fp-video-row');
+    const audioRow = document.getElementById('fp-audio-row');
+    if (videoRow) videoRow.style.display = (format === 'mp4') ? 'flex' : 'none';
+    if (audioRow) audioRow.style.display = (format === 'mp3') ? 'flex' : 'none';
+}
+
+function updateFilenamePreview(style: string): void {
+    const preview = FILENAME_PREVIEWS[style] || FILENAME_PREVIEWS.basic;
+    const videoEl = document.getElementById('fp-video-name');
+    const audioEl = document.getElementById('fp-audio-name');
+    if (videoEl) videoEl.textContent = preview.video;
+    if (audioEl) audioEl.textContent = preview.audio;
 }
 
 // ==========================================
@@ -89,11 +141,63 @@ export function initFormatToggle(): void {
         btn.addEventListener('click', () => {
             formatBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            document.documentElement.dataset.format = btn.getAttribute('data-format') || 'mp4';
+            const format = (btn.getAttribute('data-format') || 'mp4') as 'mp3' | 'mp4';
+            document.documentElement.dataset.format = format;
+            syncFilenamePreviewVisibility(format);
             saveFormatPreferences();
         });
     });
 
     qualitySelectMp3.addEventListener('change', saveFormatPreferences);
     qualitySelectMp4.addEventListener('change', saveFormatPreferences);
+
+    // --- Filename Style tabs ---
+    const styleTabs = document.querySelectorAll('#filename-style-tabs .fs-tab');
+    styleTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            styleTabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            const style = (tab as HTMLElement).dataset.style || 'basic';
+            updateFilenamePreview(style);
+            saveFormatPreferences();
+        });
+    });
+
+    // --- Metadata toggle ---
+    const metadataToggle = document.getElementById('metadata-mode-toggle');
+    if (metadataToggle) {
+        metadataToggle.addEventListener('click', () => {
+            const isOn = metadataToggle.getAttribute('aria-checked') === 'true';
+            metadataToggle.setAttribute('aria-checked', String(!isOn));
+            saveFormatPreferences();
+        });
+    }
+
+    // --- Restore from localStorage ---
+    try {
+        const stored = JSON.parse(localStorage.getItem('Ezconv_format_preferences') || '{}');
+
+        // Restore format visibility
+        if (stored.selectedFormat) {
+            syncFilenamePreviewVisibility(stored.selectedFormat);
+        } else {
+            // Default visibility
+            const activeFormatBtn = document.querySelector('.multi-format-toggle .multi-format-btn.active');
+            const currentFormat = (activeFormatBtn?.getAttribute('data-format') || 'mp4') as 'mp3' | 'mp4';
+            syncFilenamePreviewVisibility(currentFormat);
+        }
+
+        // Restore filename style
+        if (stored.filenameStyle && FILENAME_PREVIEWS[stored.filenameStyle]) {
+            styleTabs.forEach(t => {
+                t.classList.toggle('active', (t as HTMLElement).dataset.style === stored.filenameStyle);
+            });
+            updateFilenamePreview(stored.filenameStyle);
+        }
+
+        // Restore metadata toggle
+        if (metadataToggle && typeof stored.enableMetadata === 'boolean') {
+            metadataToggle.setAttribute('aria-checked', String(stored.enableMetadata));
+        }
+    } catch (_) {}
 }

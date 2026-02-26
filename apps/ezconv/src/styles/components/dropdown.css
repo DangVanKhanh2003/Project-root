@@ -11,7 +11,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 10px 14px;
+    padding: 8px 14px;
     background: #fff;
     border: 1px solid #b0b0b0ad;
     border-radius: var(--radius-xl);
@@ -19,7 +19,7 @@
     transition: border-color 0.3s;
     min-width: 160px;
     position: relative;
-    height: 45px;
+    height: 40px;
 }
 
 /* Audio dropdown trigger specific styles */
@@ -235,7 +235,7 @@
         gap: 0;
         transition: padding 0.5s, gap 0.5s;
         min-width: 42px;
-        height: 42px;
+        height: 38px;
     }
 
     /* Trigger Styles - Expanded: align left */
