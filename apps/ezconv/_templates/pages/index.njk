@@ -65,31 +65,28 @@ eleventyComputed:
     </div>
 </section>
 
-<!-- What Can You Download with Ezconv? -->
+<!-- Features Section -->
 <section class="content-section content-section--white">
     <div class="container">
-        <h2 class="titles">{{ page.whatCanDownload.title }}</h2>
-        <p>{{ page.whatCanDownload.intro }}</p>
-        {% for section in page.whatCanDownload.sections %}
+        {% for block in page.features.blocks %}
+        <h2 class="titles">{{ block.title }}</h2>
+        {% if block.description %}
+        <p>{{ block.description | localizeLinks(langPrefix) | safe }}</p>
+        {% endif %}
+        {% if block.subsections %}
+        {% for sub in block.subsections %}
         <div class="subsection">
-            <h3>{{ section.title }}</h3>
-            <p>{{ section.description | localizeLinks(langPrefix) | safe }}</p>
+            <h3>{{ sub.title }}</h3>
+            <p>{{ sub.description | localizeLinks(langPrefix) | safe }}</p>
         </div>
+        {% endfor %}
+        {% endif %}
         {% endfor %}
     </div>
 </section>
 
-<!-- Quality & Long YouTube Videos -->
-<section class="content-section content-section--gray">
-    <div class="container">
-        <h2 class="titles">{{ page.quality.title }}</h2>
-        <p style="text-align: center;">{{ page.quality.description1 }}</p>
-        <p style="text-align: center;">{{ page.quality.description2 }}</p>
-    </div>
-</section>
-
 <!-- FAQ Section -->
-<section id="faq" class="content-section content-section--white faq-section">
+<section id="faq" class="content-section content-section--gray faq-section">
     <div class="container">
         <h2 class="titles">{{ page.faqs.title }}</h2>
         {% for faq in page.faqs.items %}

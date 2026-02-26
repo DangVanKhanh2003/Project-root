@@ -21,35 +21,54 @@ export interface DownloadConfig {
 
 const POLLING_INTERVAL = 2000;
 const MAX_POLL_ITERATIONS = 5400; // 3 hours at 2s intervals
+const MAX_JOB_ATTEMPTS = 2; // Total full-flow attempts: extract + poll
 
 export async function runSingleDownload(config: DownloadConfig): Promise<void> {
     const { url, settings, signal, callbacks } = config;
+    let lastError: any = null;
 
-    // Phase 1: Extract (create job)
-    callbacks.onPhaseChange('extracting');
+    for (let attempt = 1; attempt <= MAX_JOB_ATTEMPTS; attempt++) {
+        if (signal.aborted) return;
 
-    const jobResponse = await extractWithRetries(url, settings, signal);
+        try {
+            // Phase 1: Extract (create job)
+            callbacks.onPhaseChange('extracting');
 
-    if (signal.aborted) return;
+            const jobResponse = await extractWithRetries(url, settings, signal);
 
-    const response: any = (jobResponse && (jobResponse as any).data) ? (jobResponse as any).data : jobResponse;
-    const statusUrl = response?.statusUrl || jobResponse?.statusUrl;
-    const title = response?.title || jobResponse?.title;
-    const audioLanguageChanged = response?.audioLanguageChanged ?? response?.audio_language_changed ?? jobResponse?.audioLanguageChanged;
-    const availableAudioLanguages = response?.availableAudioLanguages ?? response?.available_audio_languages ?? jobResponse?.availableAudioLanguages;
+            if (signal.aborted) return;
 
-    if (!statusUrl) {
-        throw new Error('No status URL returned');
+            const response: any = (jobResponse && (jobResponse as any).data) ? (jobResponse as any).data : jobResponse;
+            const statusUrl = response?.statusUrl || jobResponse?.statusUrl;
+            const title = response?.title || jobResponse?.title;
+            const audioLanguageChanged = response?.audioLanguageChanged ?? response?.audio_language_changed ?? jobResponse?.audioLanguageChanged;
+            const availableAudioLanguages = response?.availableAudioLanguages ?? response?.available_audio_languages ?? jobResponse?.availableAudioLanguages;
+
+            if (!statusUrl) {
+                throw new Error('No status URL returned');
+            }
+
+            // Report audio track info if available
+            if (callbacks.onAudioTrackInfo && (availableAudioLanguages || audioLanguageChanged !== undefined)) {
+                callbacks.onAudioTrackInfo(availableAudioLanguages || [], audioLanguageChanged || false);
+            }
+
+            // Phase 2: Poll status
+            callbacks.onPhaseChange('processing');
+            await pollStatus(statusUrl, signal, callbacks);
+            return;
+        } catch (error: any) {
+            if (signal.aborted || error?.name === 'AbortError') return;
+            lastError = error;
+
+            // Retry full flow (extract + poll) if attempts remain.
+            if (attempt < MAX_JOB_ATTEMPTS) {
+                continue;
+            }
+        }
     }
 
-    // Report audio track info if available
-    if (callbacks.onAudioTrackInfo && (availableAudioLanguages || audioLanguageChanged !== undefined)) {
-        callbacks.onAudioTrackInfo(availableAudioLanguages || [], audioLanguageChanged || false);
-    }
-
-    // Phase 2: Poll status
-    callbacks.onPhaseChange('processing');
-    await pollStatus(statusUrl, signal, callbacks);
+    throw lastError || new Error('Download failed');
 }
 
 async function extractWithRetries(
