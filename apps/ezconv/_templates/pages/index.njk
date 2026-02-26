@@ -4,6 +4,9 @@ pagination:
   data: indexPages
   size: 1
   alias: pageInfo
+pageScript: /src/multi-mode-main.ts
+pageStyles:
+  - /src/styles/features/multiple-downloader-v2.css
 eleventyComputed:
   permalink: "{{ pageInfo.permalink }}"
   lang: "{{ pageInfo.lang }}"
@@ -24,10 +27,12 @@ eleventyComputed:
     </div>
 </section>
 
-<!-- Search Results Section (Hidden until populated) -->
-<section id="search-results-section" style="display: none;">
+<!-- Video List Section -->
+<section class="video-list-section">
     <div class="container">
-        <div id="search-results-container"></div>
+        <div id="multiple-downloads-container" class="multiple-downloads-container" style="display: none;">
+            <!-- Video items will be rendered by MultipleDownloadRenderer -->
+        </div>
     </div>
 </section>
 
