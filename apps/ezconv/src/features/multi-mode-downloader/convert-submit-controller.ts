@@ -7,7 +7,7 @@
 import { multiDownloadService } from '../downloader/logic/multiple-download/services/multi-download-service';
 import { VideoItemSettings } from '../downloader/state/multiple-download-types';
 import { parseYouTubeURLs, normalizeURL } from '../downloader/logic/multiple-download/url-parser';
-import { isPlaylistMode, isTrimMode } from './advanced-settings-controller';
+import { isPlaylistMode, isTrimMode, resetTrimModeToDefault } from './advanced-settings-controller';
 import { getTrimStart, getTrimEnd, getTrimRangeLabel } from './trim-controller';
 
 const MAX_BATCH_URLS = 50;
@@ -78,6 +78,7 @@ export function initConvertForm(config: ConvertFormConfig): void {
             showError(errorMessage, err instanceof Error ? err.message : 'Failed to process URLs.');
         } finally {
             if (isSuccess) {
+                resetTrimModeToDefault();
                 urlsInput.value = '';
                 updateConvertButtonCount(addUrlsBtn, urlsInput.value);
             }

@@ -18,6 +18,7 @@ class VideoStore {
     private items: Map<string, VideoItem> = new Map();
     private listeners: Set<StoreListener> = new Set();
     private groupMeta: Map<string, { isLoading: boolean; title: string; nextPageToken: string | null }> = new Map();
+    private groupIndex: Map<string, Set<string>> = new Map();
 
     // ==========================================
     // CRUD
@@ -28,6 +29,12 @@ class VideoStore {
         // Ensure defaults
         item.settings = { ...DEFAULT_SETTINGS, ...item.settings };
         this.items.set(item.id, item);
+        // Maintain group index
+        if (item.groupId) {
+            let group = this.groupIndex.get(item.groupId);
+            if (!group) { group = new Set(); this.groupIndex.set(item.groupId, group); }
+            group.add(item.id);
+        }
         this.notify('item:added', item);
     }
 
@@ -35,6 +42,14 @@ class VideoStore {
         const item = this.items.get(id);
         if (!item) return;
         this.items.delete(id);
+        // Maintain group index
+        if (item.groupId) {
+            const group = this.groupIndex.get(item.groupId);
+            if (group) {
+                group.delete(id);
+                if (group.size === 0) this.groupIndex.delete(item.groupId);
+            }
+        }
         this.notify('item:removed', item);
     }
 
@@ -47,7 +62,14 @@ class VideoStore {
     }
 
     getItemsByGroup(groupId: string): VideoItem[] {
-        return this.getAllItems().filter(item => item.groupId === groupId);
+        const ids = this.groupIndex.get(groupId);
+        if (!ids) return [];
+        const result: VideoItem[] = [];
+        for (const id of ids) {
+            const item = this.items.get(id);
+            if (item) result.push(item);
+        }
+        return result;
     }
 
     getCount(): number {
@@ -57,6 +79,7 @@ class VideoStore {
     clearAll(): void {
         this.items.clear();
         this.groupMeta.clear();
+        this.groupIndex.clear();
         this.notify('items:cleared', null);
     }
 
@@ -111,15 +134,17 @@ class VideoStore {
     }
 
     setGroupSelection(groupId: string, selected: boolean): void {
-        for (const item of this.items.values()) {
-            if (item.groupId === groupId) {
-                if (selected) {
-                    if (this.isSelectableStatus(item.status)) {
-                        item.isSelected = true;
-                    }
-                } else {
-                    item.isSelected = false;
+        const ids = this.groupIndex.get(groupId);
+        if (!ids) return;
+        for (const id of ids) {
+            const item = this.items.get(id);
+            if (!item) continue;
+            if (selected) {
+                if (this.isSelectableStatus(item.status)) {
+                    item.isSelected = true;
                 }
+            } else {
+                item.isSelected = false;
             }
         }
         this.notify('items:selection-changed', null);
@@ -311,11 +336,7 @@ class VideoStore {
     }
 
     getGroupIds(): string[] {
-        const ids = new Set<string>();
-        for (const item of this.items.values()) {
-            if (item.groupId) ids.add(item.groupId);
-        }
-        return Array.from(ids);
+        return Array.from(this.groupIndex.keys());
     }
 
     // ==========================================

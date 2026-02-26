@@ -35,6 +35,7 @@ function isDownloadTabStatus(status: string) {
 const PROGRESS_THROTTLE_MS = 120;
 const lastProgressTime = new Map<string, number>();
 const pendingProgressItems = new Map<string, VideoItem>();
+const pendingFlushTimers = new Map<string, number>();
 
 // Cache tab padding after first measurement (constant CSS value, never changes)
 let cachedTabPadding: number | null = null;
@@ -80,7 +81,7 @@ export function createStoreChangeHandler(config: StoreChangeHandlerConfig) {
                         itemStrategy.afterRender(el, item);
                     }
                     const isLocked = config.getGlobalLockState?.() || false;
-                    updateGroupCount(groupEl, isLocked, true);
+                    updateGroupCount(groupEl, isLocked, true, item.id);
                 } else {
                     batchListContainer.appendChild(el);
                     // afterRender must run AFTER DOM insertion so getComputedStyle works correctly
@@ -171,7 +172,7 @@ export function createStoreChangeHandler(config: StoreChangeHandlerConfig) {
                 if (item.groupId) {
                     const groupEl = groupListContainer.querySelector(`[data-group-id="${item.groupId}"]`) as HTMLElement;
                     if (groupEl) {
-                        updateGroupCount(groupEl, isGlobalLocked, true);
+                        updateGroupCount(groupEl, isGlobalLocked, true, item.id);
                     }
                 }
 
@@ -189,11 +190,32 @@ export function createStoreChangeHandler(config: StoreChangeHandlerConfig) {
 
                 if (!shouldForce && (now - lastTime < PROGRESS_THROTTLE_MS)) {
                     pendingProgressItems.set(item.id, item);
+                    // Schedule a flush so the last throttled update is never lost
+                    if (!pendingFlushTimers.has(item.id)) {
+                        pendingFlushTimers.set(item.id, window.setTimeout(() => {
+                            pendingFlushTimers.delete(item.id);
+                            const pending = pendingProgressItems.get(item.id);
+                            if (pending) {
+                                pendingProgressItems.delete(item.id);
+                                lastProgressTime.set(item.id, Date.now());
+                                const pendingEl = getItemElement(item.id);
+                                if (pendingEl) {
+                                    VideoItemRenderer.updateProgressOnly(pendingEl, pending, resolveStrategy(pending));
+                                }
+                            }
+                        }, PROGRESS_THROTTLE_MS));
+                    }
                     return;
                 }
 
                 lastProgressTime.set(item.id, now);
                 pendingProgressItems.delete(item.id);
+                // Clear any pending flush timer since we're updating now
+                const existingTimer = pendingFlushTimers.get(item.id);
+                if (existingTimer) {
+                    clearTimeout(existingTimer);
+                    pendingFlushTimers.delete(item.id);
+                }
 
                 const el = getItemElement(item.id);
                 if (!el) return;
@@ -330,7 +352,7 @@ function createGroupElement(groupId: string, groupTitle: string): HTMLElement {
     return el;
 }
 
-export function updateGroupCount(groupEl: HTMLElement, isLocked: boolean = false, forceVisibility = false): void {
+export function updateGroupCount(groupEl: HTMLElement, isLocked: boolean = false, forceVisibility = false, singleItemId?: string): void {
     const groupId = groupEl.dataset.groupId;
     if (!groupId) return;
     const hasTabs = groupEl.dataset.hasTabs === 'true';
@@ -429,21 +451,40 @@ export function updateGroupCount(groupEl: HTMLElement, isLocked: boolean = false
     const visibleCount = !hasTabs ? items.length : (activeTab === 'convert' ? cCount : dCount);
     const prevTab = groupEl.dataset.prevTab;
     if (forceVisibility || prevTab !== activeTab) {
+        const tabChanged = prevTab !== activeTab;
         groupEl.dataset.prevTab = activeTab;
-        const itemsMap = new Map(items.map(i => [i.id, i]));
-        const itemElements = groupEl.querySelectorAll('.multi-video-item');
-        itemElements.forEach(itemEl => {
-            const id = (itemEl as HTMLElement).dataset.id;
-            if (!id) return;
-            const itemData = itemsMap.get(id);
-            if (!itemData) return;
-            const isVisible = !hasTabs || activeTab === 'all'
-                ? true
-                : activeTab === 'convert'
-                    ? isConvertTabStatus(itemData.status)
-                    : isDownloadTabStatus(itemData.status);
-            (itemEl as HTMLElement).style.display = isVisible ? 'flex' : 'none';
-        });
+
+        if (tabChanged) {
+            // Tab changed — must loop all items to set visibility
+            const itemsMap = new Map(items.map(i => [i.id, i]));
+            const itemElements = groupEl.querySelectorAll('.multi-video-item');
+            itemElements.forEach(itemEl => {
+                const id = (itemEl as HTMLElement).dataset.id;
+                if (!id) return;
+                const itemData = itemsMap.get(id);
+                if (!itemData) return;
+                const isVisible = !hasTabs || activeTab === 'all'
+                    ? true
+                    : activeTab === 'convert'
+                        ? isConvertTabStatus(itemData.status)
+                        : isDownloadTabStatus(itemData.status);
+                (itemEl as HTMLElement).style.display = isVisible ? 'flex' : 'none';
+            });
+        } else if (singleItemId) {
+            // Single item added/updated — only set visibility for that item
+            const itemEl = groupEl.querySelector(`.multi-video-item[data-id="${singleItemId}"]`) as HTMLElement;
+            if (itemEl) {
+                const itemData = items.find(i => i.id === singleItemId);
+                if (itemData) {
+                    const isVisible = !hasTabs || activeTab === 'all'
+                        ? true
+                        : activeTab === 'convert'
+                            ? isConvertTabStatus(itemData.status)
+                            : isDownloadTabStatus(itemData.status);
+                    itemEl.style.display = isVisible ? 'flex' : 'none';
+                }
+            }
+        }
     }
 
     // Toggle Empty State
