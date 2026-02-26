@@ -1430,6 +1430,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    cursor: pointer;
 }
 
 .group-header-title-area::before {
@@ -2240,4 +2241,14 @@
         max-width: 100%;
         width: 100%;
     }
+}
+
+/* FIX 5: Global download lock — CSS class replaces O(n) JS loop */
+.is-global-locked .btn-download-multi-download,
+.is-global-locked [data-action="download-group"],
+.is-global-locked [data-action="download-zip-group"],
+.is-global-locked .group-checkbox,
+.is-global-locked .item-checkbox {
+    pointer-events: none;
+    opacity: 0.5;
 }

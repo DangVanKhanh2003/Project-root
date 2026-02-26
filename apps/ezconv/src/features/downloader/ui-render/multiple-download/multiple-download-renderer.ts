@@ -272,7 +272,7 @@ export class MultipleDownloadRenderer {
                     if (groupId) multiDownloadService.loadMoreGroup(groupId);
                     break;
                 case 'playlist-tab':
-                    if (groupId) this.handleTabClick(target, groupId);
+                    if (groupId) this.handleTabClick(actionBtn, groupId);
                     break;
                 case 'download-zip-batch':
                     this.handleDownloadZipBatch(actionBtn);
@@ -509,28 +509,9 @@ export class MultipleDownloadRenderer {
 
         this.isGlobalDownloadLocked = true;
         this.updateBatchHeader(); // Refresh header buttons
-        [this.listContainer, this.groupListContainer].forEach(container => container?.querySelectorAll('.multi-video-item').forEach(el => {
-            const itemId = (el as HTMLElement).dataset.id;
-            if (itemId) {
-                const item = videoStore.getItem(itemId);
-                if (item) {
-                    VideoItemRenderer.updateVideoItemElement(
-                        el as HTMLElement,
-                        item,
-                        this.strategy,
-                        {
-                            isGlobalLocked: true,
-                            currentDownloadingItemId: this.activeLoadingId || undefined
-                        }
-                    );
-                }
-            }
-        }));
-
-        // Update all group headers (Convert Selected, ZIP)
-        this.groupListContainer?.querySelectorAll('.playlist-group').forEach(groupEl => {
-            updateGroupCount(groupEl as HTMLElement, true);
-        });
+        // FIX 5: CSS class lock instead of O(n) per-item re-render
+        this.listContainer?.classList.add('is-global-locked');
+        this.groupListContainer?.classList.add('is-global-locked');
 
         triggerDownload(downloadUrl, filename || undefined);
 
@@ -540,6 +521,8 @@ export class MultipleDownloadRenderer {
             }
             this.isGlobalDownloadLocked = false;
             this.activeLoadingId = null;
+            this.listContainer?.classList.remove('is-global-locked');
+            this.groupListContainer?.classList.remove('is-global-locked');
             this.updateBatchHeader();
             // Trigger a re-render/update of all items to unlock
             videoStore.triggerUpdate();

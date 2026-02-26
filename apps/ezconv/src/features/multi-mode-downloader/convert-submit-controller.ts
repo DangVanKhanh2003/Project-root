@@ -10,6 +10,8 @@ import { parseYouTubeURLs, normalizeURL } from '../downloader/logic/multiple-dow
 import { isPlaylistMode, isTrimMode } from './advanced-settings-controller';
 import { getTrimStart, getTrimEnd, getTrimRangeLabel } from './trim-controller';
 
+const MAX_BATCH_URLS = 50;
+
 export interface ConvertFormConfig {
     getSettings: () => Partial<VideoItemSettings>;
     getTrimStart: () => number;
@@ -22,6 +24,7 @@ export function initConvertForm(config: ConvertFormConfig): void {
     const errorMessage = document.getElementById('error-message') as HTMLElement | null;
 
     if (!urlsInput || !addUrlsBtn) return;
+    updateConvertButtonCount(addUrlsBtn, urlsInput.value);
 
     // Ctrl+Enter to submit
     urlsInput.addEventListener('keydown', (e) => {
@@ -41,11 +44,16 @@ export function initConvertForm(config: ConvertFormConfig): void {
                 urlsInput.value = formatted;
                 urlsInput.scrollTop = urlsInput.scrollHeight;
             }
+            updateConvertButtonCount(addUrlsBtn, urlsInput.value);
         }, 0);
+    });
+    urlsInput.addEventListener('input', () => {
+        updateConvertButtonCount(addUrlsBtn, urlsInput.value);
     });
 
     addUrlsBtn.addEventListener('click', async () => {
         const rawText = urlsInput.value.trim();
+        let isSuccess = false;
 
         if (!rawText) {
             showError(errorMessage, 'Please paste at least one YouTube URL.');
@@ -54,7 +62,6 @@ export function initConvertForm(config: ConvertFormConfig): void {
 
         clearError(errorMessage);
         setLoading(addUrlsBtn, true);
-        urlsInput.value = '';
 
         try {
             const settings = config.getSettings();
@@ -66,9 +73,14 @@ export function initConvertForm(config: ConvertFormConfig): void {
             } else {
                 await handleBatchConvert(rawText, settings);
             }
+            isSuccess = true;
         } catch (err) {
             showError(errorMessage, err instanceof Error ? err.message : 'Failed to process URLs.');
         } finally {
+            if (isSuccess) {
+                urlsInput.value = '';
+                updateConvertButtonCount(addUrlsBtn, urlsInput.value);
+            }
             setLoading(addUrlsBtn, false);
         }
     });
@@ -87,6 +99,9 @@ async function handleBatchConvert(
     // A pure playlist URL (no v= param) cannot be treated as a single video — warn the user.
     const parsed = parseYouTubeURLs(rawText);
     if (parsed.length === 0) throw new Error('No valid YouTube URLs found.');
+    if (parsed.length > MAX_BATCH_URLS) {
+        throw new Error(`Multiple mode supports up to ${MAX_BATCH_URLS} URLs per convert.`);
+    }
 
     const purePlaylistUrls = parsed.filter(p => !p.videoId && p.playlistId);
     if (purePlaylistUrls.length > 0) {
@@ -108,6 +123,11 @@ async function handlePlaylistModeConvert(
 ): Promise<void> {
     const parsed = parseYouTubeURLs(rawText);
     if (parsed.length === 0) throw new Error('No valid YouTube URLs found.');
+
+    const playlistUrls = parsed.filter(p => !!p.playlistId);
+    if (playlistUrls.length > 1) {
+        throw new Error('Playlist Mode only supports 1 playlist URL at a time.');
+    }
 
     const tasks = parsed.map(async (p) => {
         if (p.playlistId) {
@@ -182,6 +202,22 @@ function setLoading(btn: HTMLElement, loading: boolean): void {
     } else {
         btn.classList.remove('loading');
         btn.removeAttribute('disabled');
+    }
+}
+
+function updateConvertButtonCount(btn: HTMLElement, rawText: string): void {
+    const count = rawText
+        .trim()
+        .split(/[\n\s,]+/)
+        .filter(Boolean)
+        .length;
+
+    const label = count > 0 ? `Convert (${count})` : 'Convert';
+    const textNode = btn.querySelector('span');
+    if (textNode) {
+        textNode.textContent = label;
+    } else {
+        btn.textContent = label;
     }
 }
 
