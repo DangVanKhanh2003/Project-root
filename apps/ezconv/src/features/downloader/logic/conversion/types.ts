@@ -37,7 +37,8 @@ export enum FileFormat {
   WAV = 'wav',
   OPUS = 'opus',
   OGG = 'ogg',
-  M4A = 'm4a'
+  M4A = 'm4a',
+  FLAC = 'flac'
 }
 
 // ============================================================
@@ -96,7 +97,7 @@ export interface ApiProgressData {
 // UTILS
 // ============================================================
 
-const AUDIO_FORMATS = ['mp3', 'wav', 'opus', 'ogg', 'm4a', 'audio'];
+const AUDIO_FORMATS = ['mp3', 'wav', 'opus', 'ogg', 'm4a', 'flac', 'audio'];
 
 export function isAudioFormat(format: string): boolean {
   return AUDIO_FORMATS.includes(format.toLowerCase());
@@ -111,7 +112,8 @@ export function parseFileFormat(value: string): FileFormat | null {
     'wav': FileFormat.WAV,
     'opus': FileFormat.OPUS,
     'ogg': FileFormat.OGG,
-    'm4a': FileFormat.M4A
+    'm4a': FileFormat.M4A,
+    'flac': FileFormat.FLAC
   };
   return map[normalized] ?? null;
 }

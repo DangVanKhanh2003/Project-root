@@ -31,13 +31,11 @@ import {
   updateYouTubePreviewMetadata,
 } from '../state';
 import { renderResults, renderMessage, renderPreviewCard, showLoading, clearContent, clearHeroMessage } from '../ui-render/content-renderer';
-import { updateVideoTitle } from '../ui-render/download-rendering';
 import { onAfterSubmit, onDownloadFailed } from '../../widget-level-manager';
 import { getInputValue as getInputValueFromRenderer, setInputValue as setInputValueInRenderer } from '../ui-render/ui-renderer';
 import type { VideoData } from '@downloader/ui-components';
 import { navigateToVideo } from '../routing/url-manager';
 import { setVideoPageSEO } from '../routing/seo-manager';
-import { showResultView } from '../ui-render/view-switcher';
 
 // ============================================
 // YOUTUBE HELPERS
@@ -101,6 +99,19 @@ function generateFakeYouTubeData(videoId: string, url: string): any {
           extractV2Options: {
             downloadMode: 'video',
             videoQuality: '2160',
+            youtubeVideoContainer: 'mp4'
+          }
+        },
+        {
+          quality: '1440p',
+          format: 'mp4',
+          vid: videoId,
+          type: 'VIDEO',
+          size: 'Processing...',
+          isFakeData: true,
+          extractV2Options: {
+            downloadMode: 'video',
+            videoQuality: '1440',
             youtubeVideoContainer: 'mp4'
           }
         },
@@ -208,6 +219,18 @@ function generateFakeYouTubeData(videoId: string, url: string): any {
             downloadMode: 'audio',
             audioBitrate: '128',
             audioFormat: 'mp3'
+          }
+        },
+        {
+          quality: 'FLAC',
+          format: 'flac',
+          vid: videoId,
+          type: 'AUDIO',
+          size: 'Processing...',
+          isFakeData: true,
+          extractV2Options: {
+            downloadMode: 'audio',
+            audioFormat: 'flac'
           }
         },
         {
@@ -334,23 +357,25 @@ export async function handleAutoDownload(
       // Audio format - All formats need audioBitrate
       // M4A, OGG, WAV, Opus: Fixed '128'
       // MP3: User selection (64/128/192/256/320)
-      const isNonBitrateFormat = ['m4a', 'ogg', 'wav', 'opus'].includes(audioFormat.toLowerCase());
-      const finalBitrate = isNonBitrateFormat ? '128' : audioBitrate;
-      const finalQuality = isNonBitrateFormat ? audioFormat.toUpperCase() : `${audioBitrate}kbps`;
+      const normalizedAudioFormat = (audioFormat || 'mp3').toLowerCase();
+      const normalizedAudioBitrate = audioBitrate || '128';
+      const isNonBitrateFormat = ['m4a', 'ogg', 'wav', 'opus', 'flac'].includes(normalizedAudioFormat);
+      const finalBitrate = isNonBitrateFormat ? '128' : normalizedAudioBitrate;
+      const finalQuality = isNonBitrateFormat ? normalizedAudioFormat.toUpperCase() : `${normalizedAudioBitrate}kbps`;
 
       formatData = {
-        id: isNonBitrateFormat ? `audio|${audioFormat}` : `audio|${audioFormat}-${audioBitrate}kbps`,
+        id: isNonBitrateFormat ? `audio|${normalizedAudioFormat}` : `audio|${normalizedAudioFormat}-${normalizedAudioBitrate}kbps`,
         vid: videoId,
         category: 'audio',
         type: 'AUDIO',
-        format: audioFormat,
+        format: normalizedAudioFormat,
         quality: finalQuality,
         sizeText: 'Processing...',
         isFakeData: true,
         extractV2Options: {
           downloadMode: 'audio',
           audioBitrate: finalBitrate,  // '128' for M4A/OGG/WAV/Opus, user choice for MP3
-          audioFormat: audioFormat,
+          audioFormat: normalizedAudioFormat,
           trackId,
           ...(Number.isFinite(options.trimStart) ? { trimStart: options.trimStart } : {}),
           ...(Number.isFinite(options.trimEnd) ? { trimEnd: options.trimEnd } : {})
@@ -916,7 +941,7 @@ export async function handleExtractMedia(
     // 3. Render preview skeleton in standard downloader flow
     if (!skipResultView) {
       showLoading('detail');
-      showResultView();
+     // showResultView();
       // Scroll after skeleton renders (50ms delay)
       setTimeout(() => {
         if (scrollManager.isDesktop()) {

@@ -32,6 +32,9 @@ export function getCurrentSettings(): Partial<VideoItemSettings> {
             quality = audioBitrate + 'kbps';
         } else {
             audioFormat = val;
+            // Keep parity with per-item playlist dropdown contract:
+            // non-MP3 formats are stored as audioBitrate override values.
+            audioBitrate = val;
             quality = val;
         }
     } else if (qualitySelectMp4) {

@@ -135,6 +135,7 @@ export class PlaylistStrategy implements RendererStrategy {
             qualitySelect = `
                 <select class="item-quality-select" data-id="${item.id}" data-field="quality">
                     <option value="2160p" ${quality === '2160p' ? 'selected' : ''}>4K</option>
+                    <option value="1440p" ${quality === '1440p' ? 'selected' : ''}>2K</option>
                     <option value="1080p" ${quality === '1080p' ? 'selected' : ''}>1080p</option>
                     <option value="720p" ${quality === '720p' ? 'selected' : ''}>720p</option>
                     <option value="480p" ${quality === '480p' ? 'selected' : ''}>480p</option>
@@ -144,7 +145,9 @@ export class PlaylistStrategy implements RendererStrategy {
                     <option value="mkv" ${quality === 'mkv' ? 'selected' : ''}>MKV</option>
                 </select>`;
         } else {
-            const bitrate = item.settings?.audioBitrate || '128';
+            const bitrate = (item.settings?.audioFormat && item.settings.audioFormat !== 'mp3')
+                ? item.settings.audioFormat
+                : (item.settings?.audioBitrate || '128');
             qualitySelect = `
                 <select class="item-quality-select" data-id="${item.id}" data-field="audioBitrate">
                     <option value="128" ${bitrate === '128' ? 'selected' : ''}>128kbps</option>
@@ -153,6 +156,7 @@ export class PlaylistStrategy implements RendererStrategy {
                     <option value="wav" ${bitrate === 'wav' ? 'selected' : ''}>WAV</option>
                     <option value="opus" ${bitrate === 'opus' ? 'selected' : ''}>Opus</option>
                     <option value="m4a" ${bitrate === 'm4a' ? 'selected' : ''}>M4A</option>
+                    <option value="flac" ${bitrate === 'flac' ? 'selected' : ''}>FLAC</option>
                 </select>`;
         }
 

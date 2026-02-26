@@ -74,6 +74,10 @@ export function initConvertForm(config: ConvertFormConfig): void {
         clearSuccess(successMessage);
         setLoading(addUrlsBtn, true);
 
+        // Clear input immediately — don't wait for API response
+        urlsInput.value = '';
+        updateConvertButtonCount(addUrlsBtn, '');
+
         try {
             const settings = config.getSettings();
 
@@ -89,12 +93,8 @@ export function initConvertForm(config: ConvertFormConfig): void {
             clearSuccess(successMessage);
             showError(errorMessage, err instanceof Error ? err.message : 'Failed to process URLs.');
         } finally {
-            if (isSuccess) {
-                if (isTrimMode()) {
-                    resetTrimEditor();
-                }
-                urlsInput.value = '';
-                updateConvertButtonCount(addUrlsBtn, urlsInput.value);
+            if (isSuccess && isTrimMode()) {
+                resetTrimEditor();
             }
             setLoading(addUrlsBtn, false);
         }

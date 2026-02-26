@@ -24,7 +24,7 @@ export function handleVideoRoute(route: Route): void {
     // Apply URL parameters if present
     if (route.format || route.quality) {
         // Determine whether to switch to MP3 or MP4 tab
-        const isAudio = route.format === 'mp3' || route.format === 'm4a' || route.format === 'wav' || route.format === 'ogg' || route.format === 'opus';
+        const isAudio = route.format === 'mp3' || route.format === 'm4a' || route.format === 'wav' || route.format === 'ogg' || route.format === 'opus' || route.format === 'flac';
         const type = isAudio ? 'mp3' : 'mp4';
 
         // Find format tab buttons
@@ -52,7 +52,7 @@ export function handleVideoRoute(route: Route): void {
                 } else {
                     // Case 2: quality is a bitrate (e.g. 128)
                     const prefix = (['mp3', 'm4a', 'opus', 'ogg', 'flac', 'wav'].includes(f)) ? f : 'mp3';
-                    targetValue = `${prefix}-${q}`;
+                    targetValue = prefix === 'mp3' ? `${prefix}-${q}` : prefix;
                 }
             } else if (f) {
                 // Case 3: Only format provided (e.g. format=wav)

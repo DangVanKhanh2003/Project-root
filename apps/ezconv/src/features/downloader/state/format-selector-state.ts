@@ -18,7 +18,7 @@ const STORAGE_KEY = 'Ezconv_format_preferences';
 export const QUALITY_OPTIONS = {
   mp4: {
     formats: ['mp4', 'webm', 'mkv'] as const,
-    qualities: ['2160p', '1080p', '720p', '480p', '360p', '144p'] as const
+    qualities: ['2160p', '1440p', '1080p', '720p', '480p', '360p', '144p'] as const
   },
   mp3: {
     formats: ['mp3', 'wav', 'm4a', 'opus', 'ogg', 'flac'] as AudioFormatType[],
@@ -317,7 +317,7 @@ export function validateFormatSelection(): { isValid: boolean; message?: string 
     if (!state.audioFormat) {
       return { isValid: false, message: 'Please select an audio format' };
     }
-    if (!state.audioBitrate) {
+    if (state.audioFormat === 'mp3' && !state.audioBitrate) {
       return { isValid: false, message: 'Please select an audio bitrate' };
     }
   }
@@ -335,6 +335,9 @@ export function getCurrentQualityLabel(): string {
     return state.videoQuality || 'Select quality';
   } else {
     const format = state.audioFormat.toUpperCase();
+    if (state.audioFormat !== 'mp3') {
+      return format;
+    }
     const bitrate = state.audioBitrate ? `${state.audioBitrate}kbps` : 'Select quality';
     return state.audioBitrate ? `${format} - ${bitrate}` : bitrate;
   }
