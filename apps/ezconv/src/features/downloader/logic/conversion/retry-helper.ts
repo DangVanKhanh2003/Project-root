@@ -36,7 +36,7 @@ export const RETRY_CONFIGS = {
 
   // Polling phase (checking progress)
   polling: {
-    maxConsecutiveErrors: 5, // Allow 5 consecutive network/API errors before failing
+    maxConsecutiveErrors: 10, // Allow 5 consecutive network/API errors before failing
     retryDelay: 0, // NO delay - retry immediately
     retryOnTimeout: true, // Timeout is NOT an error - continue polling
   }
