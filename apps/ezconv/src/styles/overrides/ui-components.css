@@ -73,8 +73,27 @@
   border-radius: 12px !important;
 }
 
-.search-result-card .card-title {
+.search-result-card .card-title,
+.keyword-result-card-wrap .search-result-card .card-title {
   color: #0f0f0f !important;
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-line-clamp: 1 !important;
+  line-clamp: 1 !important;
+  white-space: normal !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  word-break: break-word !important;
+  max-height: 1.3em !important;
+}
+
+@media (min-width: 600px) {
+  .search-result-card .card-title,
+  .keyword-result-card-wrap .search-result-card .card-title {
+    -webkit-line-clamp: 1 !important;
+    line-clamp: 1 !important;
+    max-height: 1.3em !important;
+  }
 }
 
 .search-result-card .meta-info {

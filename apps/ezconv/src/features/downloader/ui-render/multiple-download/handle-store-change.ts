@@ -303,7 +303,7 @@ export function createStoreChangeHandler(config: StoreChangeHandlerConfig) {
 }
 
 function createGroupElement(groupId: string, groupTitle: string): HTMLElement {
-    const hasTabs = groupTitle === 'Playlist';
+    const hasTabs = groupTitle === 'Playlist' || groupTitle === 'Channel';
     const el = document.createElement('div');
     el.className = 'playlist-group';
     el.dataset.groupId = groupId;
@@ -315,7 +315,7 @@ function createGroupElement(groupId: string, groupTitle: string): HTMLElement {
         <div class="group-header">
             <div class="group-header-top-row">
                 <div class="group-header-title-area" data-action="toggle-group" data-group-id="${groupId}">
-                    <p class="group-title"><span class="group-name">Playlist</span></p>
+                    <p class="group-title"><span class="group-name">${groupTitle}</span></p>
                 </div>
                 ${hasTabs ? `
                     <div class="playlist-header-tabs">

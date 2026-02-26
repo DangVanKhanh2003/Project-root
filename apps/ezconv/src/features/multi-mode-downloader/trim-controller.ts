@@ -88,7 +88,7 @@ function renderEmptyPreview(): void {
                 <path d="M10 8l6 4-6 4V8z" fill="currentColor"></path>
                 <rect x="3" y="5" width="18" height="14" rx="3" ry="3" fill="none" stroke="currentColor" stroke-width="1.5"></rect>
             </svg>
-            <span>Add more links</span>
+            <span>Add links to preview videos</span>
         </div>
     `;
 }

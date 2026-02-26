@@ -2,6 +2,7 @@ import { extractVideoId } from '@downloader/core';
 import { createSearchResultCard, createSkeletonCard, type VideoData } from '@downloader/ui-components';
 import { api } from '../../api';
 import { normalizeURL, parseYouTubeURLs } from '../downloader/logic/multiple-download/url-parser';
+import { getApiBaseUrl } from '../../environment';
 
 interface SearchItem {
     videoId: string;
@@ -14,6 +15,7 @@ interface SearchItem {
 
 const SUGGEST_DEBOUNCE_MS = 280;
 const SEARCH_PAGE_LIMIT = 20;
+const DEBUG_SUGGEST = true;
 
 export function initSearchSuggestController(): void {
     const urlsInput = document.getElementById('urlsInput') as HTMLTextAreaElement | null;
@@ -34,12 +36,30 @@ export function initSearchSuggestController(): void {
     let nextPageToken: string | null = null;
     let hasNextPage = false;
     let isLoadingMore = false;
+    let suppressSuggestionsUntilInputClick = false;
+    const debugLog = (...args: unknown[]): void => {
+        if (!DEBUG_SUGGEST) return;
+        console.log('[search-suggest]', ...args);
+    };
+
+    const cancelPendingSuggestions = (): void => {
+        if (debounceTimer) {
+            clearTimeout(debounceTimer);
+            debounceTimer = null;
+        }
+        // Invalidate all in-flight suggestion responses.
+        latestSuggestRequestId += 1;
+    };
 
     const hideSuggestions = (): void => {
         suggestionItems = [];
         highlightedSuggestionIndex = -1;
         suggestionContainer.innerHTML = '';
         suggestionContainer.classList.remove('suggestion-container--visible');
+        debugLog('hideSuggestions', {
+            classVisible: suggestionContainer.classList.contains('suggestion-container--visible'),
+            childCount: suggestionContainer.children.length
+        });
     };
 
     const resetSearchState = (): void => {
@@ -76,31 +96,49 @@ export function initSearchSuggestController(): void {
             </div>
         `;
         suggestionContainer.classList.add('suggestion-container--visible');
+        debugLog('renderSuggestions', {
+            count: items.length,
+            classVisible: suggestionContainer.classList.contains('suggestion-container--visible'),
+            firstItem: items[0] || null
+        });
     };
 
     const fetchSuggestions = async (query: string): Promise<void> => {
         const requestId = ++latestSuggestRequestId;
+        debugLog('fetchSuggestions:start', { query, requestId });
 
         try {
-            const result = await api.getSuggestions({ q: query });
+            const suggestUrl = `${getApiBaseUrl()}/suggest-keyword?q=${encodeURIComponent(query)}`;
+            const response = await fetch(suggestUrl, { method: 'GET' });
+            const payload = await response.json();
+            debugLog('fetchSuggestions:response', {
+                requestId,
+                ok: response.ok,
+                hasData: Boolean(payload)
+            });
             if (requestId !== latestSuggestRequestId) return;
 
-            if (!result.ok || !result.data) {
+            if (!response.ok) {
                 hideSuggestions();
                 return;
             }
 
-            const raw = result.data;
-            const values = Array.isArray(raw) ? raw : (typeof raw === 'object' ? Object.values(raw) : []);
-            const normalized = values
+            const normalized = extractSuggestions(payload)
                 .map((value) => String(value || '').trim())
-                .filter(Boolean)
+                .filter((value) => Boolean(value) && value.toLowerCase() !== 'ok')
                 .slice(0, 8);
+            debugLog('fetchSuggestions:normalized', {
+                requestId,
+                rawType: Array.isArray(payload) ? 'array' : typeof payload,
+                normalizedCount: normalized.length,
+                normalizedPreview: normalized.slice(0, 3)
+            });
 
             suggestionItems = normalized;
             highlightedSuggestionIndex = -1;
             renderSuggestions(normalized);
         } catch {
+            debugLog('fetchSuggestions:error', { requestId });
             if (requestId === latestSuggestRequestId) {
                 hideSuggestions();
             }
@@ -108,6 +146,7 @@ export function initSearchSuggestController(): void {
     };
 
     const scheduleSuggestions = (query: string): void => {
+        debugLog('scheduleSuggestions', { query });
         if (debounceTimer) {
             clearTimeout(debounceTimer);
         }
@@ -117,21 +156,22 @@ export function initSearchSuggestController(): void {
     };
 
     const getKeywordFromTextarea = (): string => {
-        const lines = urlsInput.value
-            .split(/\r?\n/)
-            .map((line) => line.trim())
-            .filter(Boolean);
+        const fullText = urlsInput.value || '';
+        const caretPos = typeof urlsInput.selectionStart === 'number'
+            ? urlsInput.selectionStart
+            : fullText.length;
 
-        if (lines.length !== 1) {
-            return '';
-        }
+        const beforeCaret = fullText.slice(0, caretPos);
+        const lineStart = beforeCaret.lastIndexOf('\n') + 1;
+        const afterCaret = fullText.slice(caretPos);
+        const nextNewlineOffset = afterCaret.indexOf('\n');
+        const lineEnd = nextNewlineOffset >= 0 ? caretPos + nextNewlineOffset : fullText.length;
 
-        const keyword = lines[0];
-        if (!keyword || looksLikeUrl(keyword) || parseYouTubeURLs(keyword).length > 0) {
-            return '';
-        }
+        const currentLine = fullText.slice(lineStart, lineEnd).trim();
+        if (!currentLine) return '';
+        if (looksLikeUrl(currentLine) || parseYouTubeURLs(currentLine).length > 0) return '';
 
-        return keyword;
+        return currentLine;
     };
 
     const getSelectedVideoIdsFromTextarea = (): Set<string> => {
@@ -243,6 +283,10 @@ export function initSearchSuggestController(): void {
     };
 
     const runSearch = async (keyword: string): Promise<void> => {
+        suppressSuggestionsUntilInputClick = true;
+        cancelPendingSuggestions();
+        urlsInput.value = '';
+        urlsInput.dispatchEvent(new Event('input', { bubbles: true }));
         resetSearchState();
         currentKeyword = keyword;
         renderLoadingResults();
@@ -318,8 +362,18 @@ export function initSearchSuggestController(): void {
         syncCheckboxesFromTextarea();
         const query = getKeywordFromTextarea();
         highlightedSuggestionIndex = -1;
+        debugLog('input', {
+            textareaValue: urlsInput.value,
+            computedQuery: query,
+            selectionStart: urlsInput.selectionStart
+        });
 
         if (!query) {
+            hideSuggestions();
+            return;
+        }
+
+        if (suppressSuggestionsUntilInputClick) {
             hideSuggestions();
             return;
         }
@@ -375,6 +429,10 @@ export function initSearchSuggestController(): void {
         }
     });
 
+    urlsInput.addEventListener('pointerdown', () => {
+        suppressSuggestionsUntilInputClick = false;
+    });
+
     suggestionContainer.addEventListener('click', (event) => {
         const target = event.target as HTMLElement;
         const item = target.closest('.keyword-suggest-item') as HTMLElement | null;
@@ -422,6 +480,8 @@ export function initSearchSuggestController(): void {
     });
 
     document.addEventListener('multi-download:convert-click', () => {
+        suppressSuggestionsUntilInputClick = true;
+        cancelPendingSuggestions();
         hideSuggestions();
         clearSearchResults();
     });
@@ -575,4 +635,32 @@ function injectCheckboxIntoCard(cardHtml: string, videoId: string, videoUrl: str
     `;
 
     return cardHtml.replace('<div class="card-thumbnail">', `<div class="card-thumbnail">${checkboxHtml}`);
+}
+
+function extractSuggestions(payload: any): string[] {
+    if (!payload) return [];
+
+    if (Array.isArray(payload)) {
+        return payload.filter((x): x is string => typeof x === 'string');
+    }
+
+    const data = payload?.data ?? payload;
+    if (Array.isArray(data)) {
+        return data.filter((x): x is string => typeof x === 'string');
+    }
+
+    const candidates = [
+        data?.suggestions,
+        data?.items,
+        data?.keywords,
+        data?.results,
+    ];
+
+    for (const candidate of candidates) {
+        if (Array.isArray(candidate)) {
+            return candidate.filter((x): x is string => typeof x === 'string');
+        }
+    }
+
+    return [];
 }

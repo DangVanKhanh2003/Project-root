@@ -8,7 +8,7 @@ import { VideoMeta } from '../../../state/types';
 import { DownloadQueue } from '../download-queue';
 import { runSingleDownload } from '../download-runner';
 import { fetchMetadataBatch } from '../metadata-fetcher';
-import { parseYouTubeURLs, generateItemId, normalizeURL } from '../url-parser';
+import { parseYouTubeURLs, generateItemId, normalizeURL, extractChannelHandle } from '../url-parser';
 
 export class MultiDownloadService {
     private queue = new DownloadQueue(5);
@@ -273,6 +273,114 @@ export class MultiDownloadService {
         );
     }
 
+    // ==========================================
+    // Add Channel
+    // ==========================================
+
+    async addChannel(
+        channelUrl: string,
+        globalSettings?: Partial<VideoItemSettings>,
+        onItemsAdded?: () => void
+    ): Promise<{
+        title: string;
+        itemCount: number;
+    }> {
+        const channelId = extractChannelHandle(channelUrl);
+        if (!channelId) {
+            throw new Error('Could not extract channel ID from URL');
+        }
+
+        const groupId = `channel_${channelId}_${Date.now()}`;
+        // Mark group as loading immediately
+        videoStore.setGroupMeta(groupId, true, 'Channel', null);
+
+        // Add 8 skeleton items for visual loading
+        const skeletonItems: VideoItem[] = Array.from({ length: 8 }).map((_, i) => ({
+            id: generateItemId(`skeleton_${groupId}_${i}`),
+            url: '',
+            meta: {
+                title: 'Loading...',
+                originalUrl: '',
+                status: 'analyzing',
+                author: '',
+                thumbnail: '',
+                duration: 0,
+                url: '',
+                vid: '',
+                source: 'youtube',
+                isFakeData: true,
+            },
+            status: 'fetching_metadata' as const,
+            progress: 0,
+            settings: {
+                format: globalSettings?.format || 'mp4',
+                quality: globalSettings?.quality || '720p',
+                audioFormat: globalSettings?.audioFormat,
+                audioBitrate: globalSettings?.audioBitrate,
+                videoQuality: globalSettings?.videoQuality,
+                audioTrack: globalSettings?.audioTrack,
+            },
+            isSelected: false,
+            isDownloaded: false,
+            groupId,
+            groupTitle: 'Channel',
+        }));
+
+        let didNotifyAdded = false;
+        for (let i = 0; i < skeletonItems.length; i += 4) {
+            const batch = skeletonItems.slice(i, i + 4);
+            for (const item of batch) videoStore.addItem(item);
+            if (!didNotifyAdded) {
+                didNotifyAdded = true;
+                onItemsAdded?.();
+            }
+            await yieldToBrowser();
+        }
+
+        // Fetch page 1
+        let page1: ChannelPageResult;
+        try {
+            page1 = await fetchChannelPage(channelId);
+        } catch (error) {
+            videoStore.setGroupMeta(groupId, false, 'Channel', null);
+            for (const item of skeletonItems) videoStore.removeItem(item.id);
+            throw error;
+        }
+
+        if (!page1.items || page1.items.length === 0) {
+            videoStore.setGroupMeta(groupId, false, 'Channel', null);
+            for (const item of skeletonItems) videoStore.removeItem(item.id);
+            throw new Error('Channel has no videos or could not be fetched');
+        }
+
+        // Use the channel name from the first item, fallback to channelId
+        const realTitle = page1.items[0]?.channel || channelId;
+
+        // Remove skeletons then append real items
+        for (const item of skeletonItems) {
+            videoStore.removeItem(item.id);
+        }
+
+        // Add page 1 items in chunks
+        const page1Items = this.buildVideoItems(page1.items.map(v => ({
+            id: v.id,
+            title: v.title,
+            thumbnail: v.thumbnail,
+        })), groupId, realTitle, globalSettings);
+        for (let i = 0; i < page1Items.length; i += 5) {
+            const batch = page1Items.slice(i, i + 5);
+            for (const item of batch) videoStore.addItem(item);
+            if (i + 5 < page1Items.length) await yieldToBrowser();
+        }
+
+        videoStore.setGroupMeta(groupId, false, realTitle, page1.nextPageToken ?? null);
+
+        return {
+            title: realTitle,
+            itemCount: page1Items.length,
+        };
+    }
+
     async loadMoreGroup(groupId: string): Promise<void> {
         const meta = videoStore.getGroupMeta(groupId);
         if (!meta || !meta.nextPageToken || meta.isLoading) return;
@@ -280,6 +388,17 @@ export class MultiDownloadService {
         const playlistId = groupId.slice(0, groupId.lastIndexOf('_'));
         const settings = videoStore.getItemsByGroup(groupId)[0]?.settings;
         const savedToken = meta.nextPageToken;
+
+        // Determine if this is a channel group or playlist group
+        const isChannelGroup = groupId.startsWith('channel_');
+        // Extract the original ID for API calls
+        let apiId: string;
+        if (isChannelGroup) {
+            // groupId format: channel_{channelId}_{timestamp}
+            apiId = groupId.slice('channel_'.length, groupId.lastIndexOf('_'));
+        } else {
+            apiId = groupId.slice(0, groupId.lastIndexOf('_'));
+        }
 
         // Add skeletons at the bottom of the group while fetching
         const skeletonItems: VideoItem[] = Array.from({ length: 5 }).map((_, i) => ({
@@ -310,7 +429,18 @@ export class MultiDownloadService {
         for (const item of skeletonItems) videoStore.addItem(item);
 
         try {
-            const page = await fetchPlaylistPage(playlistId, savedToken);
+            let page: { items: Array<any>; nextPageToken?: string | null };
+            if (isChannelGroup) {
+                page = await fetchChannelPage(apiId, savedToken);
+                // Normalize channel response items to match buildVideoItems input
+                page.items = (page.items || []).map((v: any) => ({
+                    id: v.id,
+                    title: v.title,
+                    thumbnail: v.thumbnail,
+                }));
+            } else {
+                page = await fetchPlaylistPage(apiId, savedToken);
+            }
 
             // Remove skeletons and add real items in the same task to prevent visual blink.
             for (const item of skeletonItems) videoStore.removeItem(item.id);
@@ -569,5 +699,26 @@ async function fetchPlaylistPage(playlistId: string, pageToken?: string): Promis
 
     const response = await fetch(url.toString());
     if (!response.ok) throw new Error(`Playlist API error: ${response.status}`);
+    return response.json();
+}
+
+// ==========================================
+// Channel pagination API helper
+// ==========================================
+
+interface ChannelPageResult {
+    items: Array<{ id: string; title?: string; channel?: string; thumbnail?: string }>;
+    nextPageToken: string | null;
+}
+
+async function fetchChannelPage(channelId: string, pageToken?: string): Promise<ChannelPageResult> {
+    const baseUrl = getYtMetaBaseUrl();
+    const url = new URL(`${baseUrl}/channel-videos`);
+    url.searchParams.set('id', channelId);
+    url.searchParams.set('maxResults', '50');
+    if (pageToken) url.searchParams.set('pageToken', pageToken);
+
+    const response = await fetch(url.toString());
+    if (!response.ok) throw new Error(`Channel API error: ${response.status}`);
     return response.json();
 }

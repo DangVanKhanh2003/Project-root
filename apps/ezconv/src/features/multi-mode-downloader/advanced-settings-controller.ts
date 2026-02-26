@@ -8,9 +8,11 @@ import { loadVideoForTrim, resetTrimEditor } from './trim-controller';
 
 let _playlistModeOn = false;
 let _trimModeOn = false;
+let _channelModeOn = false;
 
 export function isPlaylistMode(): boolean { return _playlistModeOn; }
 export function isTrimMode(): boolean { return _trimModeOn; }
+export function isChannelMode(): boolean { return _channelModeOn; }
 
 // ==========================================
 // Internal helpers
@@ -52,21 +54,29 @@ export function hideCuttingInterface(): void {
 
 function applyPlaylistMode(on: boolean): void {
     _playlistModeOn = on;
-    // Playlist ON → force Trim OFF
+    // Playlist ON → force Trim OFF + Channel OFF
     if (on && _trimModeOn) {
         _trimModeOn = false;
         updateSwitchUI('trim-mode-toggle', false);
         hideCuttingInterface();
+    }
+    if (on && _channelModeOn) {
+        _channelModeOn = false;
+        updateSwitchUI('channel-mode-toggle', false);
     }
     updateSwitchUI('playlist-mode-toggle', on);
 }
 
 function applyTrimMode(on: boolean): void {
     _trimModeOn = on;
-    // Trim ON → force Playlist OFF
+    // Trim ON → force Playlist OFF + Channel OFF
     if (on && _playlistModeOn) {
         _playlistModeOn = false;
         updateSwitchUI('playlist-mode-toggle', false);
+    }
+    if (on && _channelModeOn) {
+        _channelModeOn = false;
+        updateSwitchUI('channel-mode-toggle', false);
     }
     updateSwitchUI('trim-mode-toggle', on);
     if (on) {
@@ -79,6 +89,21 @@ function applyTrimMode(on: boolean): void {
         hideCuttingInterface();
         resetTrimEditor();
     }
+}
+
+function applyChannelMode(on: boolean): void {
+    _channelModeOn = on;
+    // Channel ON → force Playlist OFF + Trim OFF
+    if (on && _playlistModeOn) {
+        _playlistModeOn = false;
+        updateSwitchUI('playlist-mode-toggle', false);
+    }
+    if (on && _trimModeOn) {
+        _trimModeOn = false;
+        updateSwitchUI('trim-mode-toggle', false);
+        hideCuttingInterface();
+    }
+    updateSwitchUI('channel-mode-toggle', on);
 }
 
 // ==========================================
@@ -148,6 +173,23 @@ export function initAdvancedSettings(): void {
         });
     }
 
+    // --- Channel Mode switch ---
+    const channelSwitch = document.getElementById('channel-mode-toggle');
+    if (channelSwitch) {
+        channelSwitch.addEventListener('click', () => {
+            if (_channelModeOn) {
+                applyChannelMode(false);
+                return;
+            }
+            const count = countUrls();
+            if (count > 1) {
+                showInlineError('Channel Mode requires only 1 URL. Remove extra URLs first.');
+                return;
+            }
+            applyChannelMode(true);
+        });
+    }
+
     // --- Trim/Cut switch ---
     const trimSwitch = document.getElementById('trim-mode-toggle');
     if (trimSwitch) {
@@ -157,10 +199,6 @@ export function initAdvancedSettings(): void {
                 return;
             }
             const count = countUrls();
-            if (count === 0) {
-                showInlineError('Paste a YouTube URL before enabling Trim/Cut.');
-                return;
-            }
             if (count > 1) {
                 showInlineError('Trim/Cut requires exactly 1 URL. Remove extra URLs first.');
                 return;
@@ -169,21 +207,24 @@ export function initAdvancedSettings(): void {
         });
     }
 
-    // --- Textarea: auto-off if >1 URL; reload player if URL changes while trim ON ---
+    // --- Textarea: show error if >1 URL while trim/channel ON ---
     const textarea = document.getElementById('urlsInput') as HTMLTextAreaElement | null;
     if (textarea) {
         textarea.addEventListener('input', () => {
-            if (!_trimModeOn) return;
             const count = countUrls();
-            if (count > 1) {
-                applyTrimMode(false);
-                showInlineError('Trim/Cut turned off — multiple URLs detected.');
-                return;
+            if (_trimModeOn) {
+                if (count > 1) {
+                    showInlineError('Trim/Cut mode only supports 1 URL. Remove extra URLs.');
+                } else {
+                    // URL changed (or cleared) — reset and reload
+                    resetTrimEditor();
+                    const url = textarea.value.trim().split(/[\n\s,]+/).filter(Boolean)[0] || '';
+                    if (url) loadVideoForTrim(url);
+                }
             }
-            // URL changed (or cleared) — reset and reload
-            resetTrimEditor();
-            const url = textarea.value.trim().split(/[\n\s,]+/).filter(Boolean)[0] || '';
-            if (url) loadVideoForTrim(url);
+            if (_channelModeOn && count > 1) {
+                showInlineError('Channel Mode only supports 1 URL. Remove extra URLs.');
+            }
         });
     }
 }

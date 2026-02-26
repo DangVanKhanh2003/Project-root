@@ -56,3 +56,35 @@ export function generateItemId(videoId: string | null): string {
     const rand = Math.random().toString(36).substring(2, 6);
     return `${base}_${time}_${rand}`;
 }
+
+/**
+ * Extract channel handle or ID from YouTube channel URLs.
+ * Supports: /@handle, /channel/UCxxx, /c/name, /@handle/videos etc.
+ */
+export function extractChannelHandle(url: string): string | null {
+    try {
+        const u = new URL(url);
+        if (!u.hostname.includes('youtube.com')) return null;
+        const path = u.pathname;
+
+        // /@handle or /@handle/videos
+        const handleMatch = path.match(/^\/@([^/]+)/);
+        if (handleMatch) return '@' + handleMatch[1];
+
+        // /channel/UCxxxx
+        const channelIdMatch = path.match(/^\/channel\/([^/]+)/);
+        if (channelIdMatch) return channelIdMatch[1];
+
+        // /c/customname
+        const customMatch = path.match(/^\/c\/([^/]+)/);
+        if (customMatch) return customMatch[1];
+
+        return null;
+    } catch {
+        return null;
+    }
+}
+
+export function isChannelUrl(url: string): boolean {
+    return extractChannelHandle(url) !== null;
+}

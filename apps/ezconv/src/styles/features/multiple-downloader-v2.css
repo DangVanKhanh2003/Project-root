@@ -205,6 +205,9 @@
 
 .urls-input-container #keyword-suggestion-container.suggestion-container--visible {
     display: block;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
 }
 
 

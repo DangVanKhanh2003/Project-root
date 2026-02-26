@@ -7,7 +7,7 @@
 import { multiDownloadService } from '../downloader/logic/multiple-download/services/multi-download-service';
 import { VideoItemSettings } from '../downloader/state/multiple-download-types';
 import { parseYouTubeURLs, normalizeURL } from '../downloader/logic/multiple-download/url-parser';
-import { isPlaylistMode, isTrimMode } from './advanced-settings-controller';
+import { isPlaylistMode, isTrimMode, isChannelMode } from './advanced-settings-controller';
 import { getTrimStart, getTrimEnd, getTrimRangeLabel, resetTrimEditor } from './trim-controller';
 import { isMobileViewport, scrollToElementWithOffset } from '../shared/scroll/scroll-behavior';
 
@@ -87,6 +87,8 @@ export function initConvertForm(config: ConvertFormConfig): void {
 
             if (isTrimMode()) {
                 await handleTrimConvert(rawText, settings);
+            } else if (isChannelMode()) {
+                await handleChannelModeConvert(rawText, settings);
             } else if (isPlaylistMode()) {
                 await handlePlaylistModeConvert(rawText, settings);
             } else {
@@ -170,6 +172,19 @@ async function handlePlaylistModeConvert(
         throw new Error(first instanceof Error ? first.message : 'Failed to load one or more groups.');
     }
     // Playlist mode: no auto-start - user chooses per-group via Convert Selected
+}
+
+async function handleChannelModeConvert(
+    rawText: string,
+    settings: Partial<VideoItemSettings>,
+    onItemsAdded?: () => void
+): Promise<void> {
+    const urls = rawText.trim().split(/[\n\s,]+/).filter(Boolean);
+    if (urls.length === 0) throw new Error('Please paste a YouTube channel URL.');
+    if (urls.length > 1) throw new Error('Channel Mode only supports 1 URL at a time.');
+
+    await multiDownloadService.addChannel(urls[0], settings, onItemsAdded);
+    // Channel mode: no auto-start - user chooses per-group via Convert Selected
 }
 
 async function handleTrimConvert(
