@@ -9,7 +9,7 @@ import { VideoItemSettings } from '../downloader/state/multiple-download-types';
 import { parseYouTubeURLs, normalizeURL } from '../downloader/logic/multiple-download/url-parser';
 import { isPlaylistMode, isTrimMode } from './advanced-settings-controller';
 import { getTrimStart, getTrimEnd, getTrimRangeLabel, resetTrimEditor } from './trim-controller';
-import { scrollManager } from '@downloader/ui-shared';
+import { isMobileViewport, scrollToElementWithOffset } from '../shared/scroll/scroll-behavior';
 
 const MAX_BATCH_URLS = 50;
 
@@ -267,19 +267,13 @@ function scrollAfterSuccessfulConvert(): void {
     const isPanelOpenByAria = advancedToggle?.getAttribute('aria-expanded') === 'true';
     if (!isPanelOpenByHidden && !isPanelOpenByAria) return;
 
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const behavior: ScrollBehavior = prefersReducedMotion ? 'auto' : 'smooth';
-    const targetSelector = scrollManager.isMobile()
-        ? '.video-list-section'
-        : '#multi-download-form';
+    const isMobile = isMobileViewport();
+    const target = isMobile
+        ? document.querySelector('.video-list-section')
+        : document.querySelector('#multi-download-form, .multiple-download-card');
 
-    // Wait for UI updates from addUrls/addPlaylist render before scrolling.
-    requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-            scrollManager.scrollToElement(targetSelector, {
-                behavior,
-                offset: 0,
-            });
-        });
-    });
+    if (!target) return;
+
+    const offset = isMobile ? 20 : 15;
+    scrollToElementWithOffset(target, offset);
 }

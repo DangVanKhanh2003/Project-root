@@ -4,7 +4,6 @@
  */
 
 import './styles/index.css';
-import { scrollManager } from '@downloader/ui-shared';
 
 import { multipleDownloadRenderer } from './features/downloader/ui-render/multiple-download/multiple-download-renderer';
 import { initAudioDropdown } from './features/downloader/ui-render/dropdown-logic';
@@ -15,10 +14,6 @@ import { initConvertForm } from './features/multi-mode-downloader/convert-submit
 import { initTrimController, getTrimStart, getTrimEnd } from './features/multi-mode-downloader/trim-controller';
 
 function init(): void {
-    // Use shared base scroll behavior across projects
-    scrollManager.setHeaderConfig({ isFixed: false, height: 0 });
-    scrollManager.init();
-
     initHeaderScroll();
     initMobileMenu();
     initLangSelector();

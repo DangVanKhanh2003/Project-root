@@ -1,6 +1,6 @@
 /* Hero Section */
 .hero-section {
-    background-color: var(--bg-secondary);
+    background: var(--background-hero-section);
     /* Changed to Gray (Secondary) */
     padding: 50px 0 40px 0;
     color: var(--color-white);
@@ -13,19 +13,6 @@
     z-index: 1;
 }
 
-/* Pseudo-element for the fixed-height Red Header/Hero BG */
-.hero-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 300px;
-    /* Fixed height for the red area */
-    background-color: var(--background-hero-section);
-    /* Red */
-    z-index: -1;
-}
 
 .hero-section>* {
     z-index: 2;
@@ -189,11 +176,6 @@
         /* Smaller logo text */
     }
 
-    /* Adjust Red Background Height on Mobile */
-    .hero-section::before {
-        height: 300px;
-        /* Adjusted for mobile */
-    }
 }
 
 @media (max-width: 480px) {
