@@ -17,7 +17,11 @@ export class MultiDownloadService {
     // Add URLs (batch mode)
     // ==========================================
 
-    async addUrls(rawText: string, globalSettings?: Partial<VideoItemSettings>): Promise<string | null> {
+    async addUrls(
+        rawText: string,
+        globalSettings?: Partial<VideoItemSettings>,
+        onItemsAdded?: () => void
+    ): Promise<string | null> {
         const parsed = parseYouTubeURLs(rawText);
         console.log('[MultiDownloadService] Parsed URLs:', parsed.length, parsed);
 
@@ -64,10 +68,15 @@ export class MultiDownloadService {
 
         // Add to store in chunks to allow UI to breathe
         const CHUNK_SIZE = 5;
+        let didNotifyAdded = false;
         for (let i = 0; i < newItems.length; i += CHUNK_SIZE) {
             const batch = newItems.slice(i, i + CHUNK_SIZE);
             for (const item of batch) {
                 videoStore.addItem(item);
+            }
+            if (!didNotifyAdded) {
+                didNotifyAdded = true;
+                onItemsAdded?.();
             }
             // Yield to browser to render the added items
             await yieldToBrowser();
@@ -94,7 +103,11 @@ export class MultiDownloadService {
     // Add Playlist
     // ==========================================
 
-    async addPlaylist(playlistUrl: string, globalSettings?: Partial<VideoItemSettings>): Promise<{
+    async addPlaylist(
+        playlistUrl: string,
+        globalSettings?: Partial<VideoItemSettings>,
+        onItemsAdded?: () => void
+    ): Promise<{
         title: string;
         thumbnail: string;
         itemCount: number;
@@ -140,9 +153,14 @@ export class MultiDownloadService {
             groupTitle: 'Playlist',
         }));
 
+        let didNotifyAdded = false;
         for (let i = 0; i < skeletonItems.length; i += 4) {
             const batch = skeletonItems.slice(i, i + 4);
             for (const item of batch) videoStore.addItem(item);
+            if (!didNotifyAdded) {
+                didNotifyAdded = true;
+                onItemsAdded?.();
+            }
             await yieldToBrowser();
         }
 
@@ -192,7 +210,11 @@ export class MultiDownloadService {
     // Add Single Video as Group
     // ==========================================
 
-    async addSingleVideoAsGroup(videoUrl: string, globalSettings?: Partial<VideoItemSettings>): Promise<void> {
+    async addSingleVideoAsGroup(
+        videoUrl: string,
+        globalSettings?: Partial<VideoItemSettings>,
+        onItemsAdded?: () => void
+    ): Promise<void> {
         const videoId = extractVideoId(videoUrl) || `video_${Date.now()}`;
         const groupId = `single_${videoId}_${Date.now()}`;
         const normalizedUrl = normalizeURL(videoId);
@@ -233,6 +255,7 @@ export class MultiDownloadService {
         };
 
         videoStore.addItem(skeletonItem);
+        onItemsAdded?.();
         videoStore.setGroupMeta(groupId, false, 'Video', null);
 
         // Fetch metadata
@@ -384,46 +407,47 @@ export class MultiDownloadService {
     startDownload(id: string): void {
         const item = videoStore.getItem(id);
         if (!item) return;
-
         videoStore.setStatus(id, 'queued');
-
-        this.queue.add(id, (signal) => {
-            return this.executeDownload(id, signal);
-        }).catch(() => {
-            // Cancelled or error — handled in executeDownload
-        });
+        this.enqueueJob(id);
     }
 
     startAllDownloads(): void {
         const items = videoStore.getDownloadableItems();
-        for (const item of items) {
-            this.startDownload(item.id);
-        }
+        const ids = items.map(i => i.id);
+        videoStore.batchSetQueued(ids);
+        for (const id of ids) this.enqueueJob(id);
     }
 
     startSelectedDownloads(): void {
         const items = videoStore.getSelectedDownloadable();
-        for (const item of items) {
-            this.startDownload(item.id);
-        }
+        const ids = items.map(i => i.id);
+        videoStore.batchSetQueued(ids);
+        for (const id of ids) this.enqueueJob(id);
     }
 
     startGroupDownloads(groupId: string): void {
         const items = videoStore.getAllItems().filter(i =>
             i.groupId === groupId && ['ready', 'error', 'cancelled'].includes(i.status)
         );
-        for (const item of items) {
-            this.startDownload(item.id);
-        }
+        const ids = items.map(i => i.id);
+        videoStore.batchSetQueued(ids);
+        for (const id of ids) this.enqueueJob(id);
     }
 
     startSelectedGroupDownloads(groupId: string): void {
         const items = videoStore.getAllItems().filter(i =>
             i.groupId === groupId && i.isSelected && ['ready', 'error', 'cancelled'].includes(i.status)
         );
-        for (const item of items) {
-            this.startDownload(item.id);
-        }
+        const ids = items.map(i => i.id);
+        videoStore.batchSetQueued(ids);
+        for (const id of ids) this.enqueueJob(id);
+    }
+
+    /** Add item to execution queue only (status must already be set). */
+    private enqueueJob(id: string): void {
+        this.queue.add(id, (signal) => {
+            return this.executeDownload(id, signal);
+        }).catch(() => {});
     }
 
     cancelGroupDownloads(groupId: string): void {

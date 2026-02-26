@@ -183,6 +183,22 @@ class VideoStore {
     // Status & Progress
     // ==========================================
 
+    /**
+     * Set multiple items to 'queued' in one pass and fire ONE event.
+     * Use this instead of calling setStatus('queued') in a loop.
+     */
+    batchSetQueued(ids: string[]): void {
+        for (const id of ids) {
+            const item = this.items.get(id);
+            if (!item) continue;
+            item.status = 'queued';
+            item.progress = 0;
+            item.progressPhase = undefined;
+            item.isSelected = false;
+        }
+        this.notify('item:updated', null);
+    }
+
     setStatus(id: string, status: VideoItem['status']): void {
         const item = this.items.get(id);
         if (!item) return;

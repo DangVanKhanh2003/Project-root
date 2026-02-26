@@ -7,8 +7,8 @@
 import { multiDownloadService } from '../downloader/logic/multiple-download/services/multi-download-service';
 import { VideoItemSettings } from '../downloader/state/multiple-download-types';
 import { parseYouTubeURLs, normalizeURL } from '../downloader/logic/multiple-download/url-parser';
-import { isPlaylistMode, isTrimMode, resetTrimModeToDefault } from './advanced-settings-controller';
-import { getTrimStart, getTrimEnd, getTrimRangeLabel } from './trim-controller';
+import { isPlaylistMode, isTrimMode } from './advanced-settings-controller';
+import { getTrimStart, getTrimEnd, getTrimRangeLabel, resetTrimEditor } from './trim-controller';
 
 const MAX_BATCH_URLS = 50;
 
@@ -22,6 +22,7 @@ export function initConvertForm(config: ConvertFormConfig): void {
     const urlsInput = document.getElementById('urlsInput') as HTMLTextAreaElement | null;
     const addUrlsBtn = document.getElementById('addUrlsBtn');
     const errorMessage = document.getElementById('error-message') as HTMLElement | null;
+    const successMessage = document.getElementById('success-message') as HTMLElement | null;
 
     if (!urlsInput || !addUrlsBtn) return;
     updateConvertButtonCount(addUrlsBtn, urlsInput.value);
@@ -37,6 +38,7 @@ export function initConvertForm(config: ConvertFormConfig): void {
     // Auto-format on paste: one URL per line
     urlsInput.addEventListener('paste', () => {
         setTimeout(() => {
+            clearSuccess(successMessage);
             const val = urlsInput.value;
             let formatted = val.split(/[\s,]+/).filter(Boolean).join('\n');
             if (formatted && !formatted.endsWith('\n')) formatted += '\n';
@@ -48,37 +50,49 @@ export function initConvertForm(config: ConvertFormConfig): void {
         }, 0);
     });
     urlsInput.addEventListener('input', () => {
+        clearSuccess(successMessage);
         updateConvertButtonCount(addUrlsBtn, urlsInput.value);
     });
 
     addUrlsBtn.addEventListener('click', async () => {
         const rawText = urlsInput.value.trim();
         let isSuccess = false;
+        let hasShownAddedSuccess = false;
+        const showAddedSuccessOnce = () => {
+            if (hasShownAddedSuccess) return;
+            hasShownAddedSuccess = true;
+            showSuccess(successMessage, 'Added to list successfully.');
+        };
 
         if (!rawText) {
+            clearSuccess(successMessage);
             showError(errorMessage, 'Please paste at least one YouTube URL.');
             return;
         }
 
         clearError(errorMessage);
+        clearSuccess(successMessage);
         setLoading(addUrlsBtn, true);
 
         try {
             const settings = config.getSettings();
 
             if (isTrimMode()) {
-                await handleTrimConvert(rawText, settings);
+                await handleTrimConvert(rawText, settings, showAddedSuccessOnce);
             } else if (isPlaylistMode()) {
-                await handlePlaylistModeConvert(rawText, settings);
+                await handlePlaylistModeConvert(rawText, settings, showAddedSuccessOnce);
             } else {
-                await handleBatchConvert(rawText, settings);
+                await handleBatchConvert(rawText, settings, showAddedSuccessOnce);
             }
             isSuccess = true;
         } catch (err) {
+            clearSuccess(successMessage);
             showError(errorMessage, err instanceof Error ? err.message : 'Failed to process URLs.');
         } finally {
             if (isSuccess) {
-                resetTrimModeToDefault();
+                if (isTrimMode()) {
+                    resetTrimEditor();
+                }
                 urlsInput.value = '';
                 updateConvertButtonCount(addUrlsBtn, urlsInput.value);
             }
@@ -93,7 +107,8 @@ export function initConvertForm(config: ConvertFormConfig): void {
 
 async function handleBatchConvert(
     rawText: string,
-    settings: Partial<VideoItemSettings>
+    settings: Partial<VideoItemSettings>,
+    onItemsAdded?: () => void
 ): Promise<void> {
     // In batch mode, URLs are treated as individual videos.
     // A URL like watch?v=XXX&list=PLyyy is already normalized to watch?v=XXX by parseYouTubeURLs.
@@ -112,7 +127,7 @@ async function handleBatchConvert(
         );
     }
 
-    const groupId = await multiDownloadService.addUrls(rawText, settings);
+    const groupId = await multiDownloadService.addUrls(rawText, settings, onItemsAdded);
     if (groupId) {
         multiDownloadService.startGroupDownloads(groupId);
     }
@@ -120,7 +135,8 @@ async function handleBatchConvert(
 
 async function handlePlaylistModeConvert(
     rawText: string,
-    settings: Partial<VideoItemSettings>
+    settings: Partial<VideoItemSettings>,
+    onItemsAdded?: () => void
 ): Promise<void> {
     const parsed = parseYouTubeURLs(rawText);
     if (parsed.length === 0) throw new Error('No valid YouTube URLs found.');
@@ -135,9 +151,9 @@ async function handlePlaylistModeConvert(
             // Reconstruct a clean playlist URL - p.url was normalized to watch?v=...
             // which strips the list= param, so extractPlaylistId would fail on it.
             const playlistUrl = `https://www.youtube.com/playlist?list=${p.playlistId}`;
-            await multiDownloadService.addPlaylist(playlistUrl, settings);
+            await multiDownloadService.addPlaylist(playlistUrl, settings, onItemsAdded);
         } else {
-            await multiDownloadService.addSingleVideoAsGroup(p.url, settings);
+            await multiDownloadService.addSingleVideoAsGroup(p.url, settings, onItemsAdded);
         }
     });
 
@@ -152,7 +168,8 @@ async function handlePlaylistModeConvert(
 
 async function handleTrimConvert(
     rawText: string,
-    settings: Partial<VideoItemSettings>
+    settings: Partial<VideoItemSettings>,
+    onItemsAdded?: () => void
 ): Promise<void> {
     const parsed = parseYouTubeURLs(rawText);
     if (parsed.length === 0) throw new Error('No valid YouTube URLs found.');
@@ -174,7 +191,7 @@ async function handleTrimConvert(
     // Normalize to canonical watch URL (strips playlist params)
     const normalizedUrl = normalizeURL(p.videoId);
 
-    const groupId = await multiDownloadService.addUrls(normalizedUrl, trimSettings);
+    const groupId = await multiDownloadService.addUrls(normalizedUrl, trimSettings, onItemsAdded);
     if (groupId) {
         multiDownloadService.startGroupDownloads(groupId);
     }
@@ -191,6 +208,23 @@ function showError(el: HTMLElement | null, msg: string): void {
 }
 
 function clearError(el: HTMLElement | null): void {
+    if (!el) return;
+    el.textContent = '';
+    el.style.display = 'none';
+}
+
+function showSuccess(el: HTMLElement | null, msg: string): void {
+    if (!el) return;
+    el.textContent = msg;
+    el.style.display = 'block';
+    window.setTimeout(() => {
+        if (el.textContent === msg) {
+            el.style.display = 'none';
+        }
+    }, 3500);
+}
+
+function clearSuccess(el: HTMLElement | null): void {
     if (!el) return;
     el.textContent = '';
     el.style.display = 'none';

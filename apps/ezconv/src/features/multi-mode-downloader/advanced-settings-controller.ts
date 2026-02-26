@@ -11,15 +11,6 @@ let _trimModeOn = false;
 
 export function isPlaylistMode(): boolean { return _playlistModeOn; }
 export function isTrimMode(): boolean { return _trimModeOn; }
-export function resetTrimModeToDefault(): void {
-    if (_trimModeOn) {
-        applyTrimMode(false);
-    } else {
-        // Keep editor state consistent even if mode flag/UI got out of sync.
-        resetTrimEditor();
-        hideCuttingInterface();
-    }
-}
 
 // ==========================================
 // Internal helpers

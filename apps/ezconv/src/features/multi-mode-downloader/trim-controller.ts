@@ -77,6 +77,20 @@ let startTime = 0;
 let endTime = 0;
 let seekPreviewPauseTimer: number | null = null;
 
+function renderEmptyPreview(): void {
+    const container = document.getElementById('stream-player');
+    if (!container) return;
+    container.innerHTML = `
+        <div class="trim-empty-preview" aria-label="Empty trim preview">
+            <svg viewBox="0 0 24 24" width="42" height="42" aria-hidden="true" focusable="false">
+                <path d="M10 8l6 4-6 4V8z" fill="currentColor"></path>
+                <rect x="3" y="5" width="18" height="14" rx="3" ry="3" fill="none" stroke="currentColor" stroke-width="1.5"></rect>
+            </svg>
+            <span>Add more links</span>
+        </div>
+    `;
+}
+
 // ==========================================
 // Public accessors
 // ==========================================
@@ -317,13 +331,15 @@ export function resetTrimEditor(): void {
     if (slider) { slider.destroy(); slider = null; }
     if (player) { player.destroy(); player = null; }
 
-    const container = document.getElementById('stream-player');
-    if (container) container.innerHTML = '';
+    renderEmptyPreview();
 
     const startInput = document.getElementById('trim-start') as HTMLInputElement | null;
     const endInput = document.getElementById('trim-end') as HTMLInputElement | null;
     if (startInput) startInput.value = '0:00';
     if (endInput) endInput.value = '0:00';
+
+    // Keep slider visible in default state after reset.
+    initSlider();
 }
 
 export async function loadVideoForTrim(url: string): Promise<void> {
