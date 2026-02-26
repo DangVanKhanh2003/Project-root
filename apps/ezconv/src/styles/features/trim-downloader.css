@@ -268,9 +268,6 @@ body[data-page="trim-downloader"] .noUi-handle:after {
   display: none;
 }
 
-body[data-page="trim-downloader"] .noUi-touch-area {
-  transform: translateY(2px);
-}
 
 @media (max-width: 768px) {
   body[data-page="trim-downloader"] .yt-preview-format {

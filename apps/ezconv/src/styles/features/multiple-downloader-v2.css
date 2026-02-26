@@ -277,7 +277,6 @@
 
 .multi-btn-convert:hover {
     filter: brightness(1.1);
-    transform: translateY(-1px);
 }
 
 .multi-btn-convert:active {
@@ -2221,10 +2220,10 @@
 }
 
 .cutting-interface .noUi-horizontal .noUi-handle {
-    width: 16px;
-    height: 16px;
+    width: 20px;
+    height: 20px;
     right: -8px;
-    top: -4px;
+    top: -6px;
     border-radius: 50%;
     border: 2px solid #fff;
     background: var(--primary-color);

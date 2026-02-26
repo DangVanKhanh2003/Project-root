@@ -9,6 +9,7 @@ import { VideoItemSettings } from '../downloader/state/multiple-download-types';
 import { parseYouTubeURLs, normalizeURL } from '../downloader/logic/multiple-download/url-parser';
 import { isPlaylistMode, isTrimMode } from './advanced-settings-controller';
 import { getTrimStart, getTrimEnd, getTrimRangeLabel, resetTrimEditor } from './trim-controller';
+import { scrollManager } from '@downloader/ui-shared';
 
 const MAX_BATCH_URLS = 50;
 
@@ -95,6 +96,9 @@ export function initConvertForm(config: ConvertFormConfig): void {
         } finally {
             if (isSuccess && isTrimMode()) {
                 resetTrimEditor();
+            }
+            if (isSuccess) {
+                scrollAfterSuccessfulConvert();
             }
             setLoading(addUrlsBtn, false);
         }
@@ -256,3 +260,26 @@ function updateConvertButtonCount(btn: HTMLElement, rawText: string): void {
     }
 }
 
+function scrollAfterSuccessfulConvert(): void {
+    const advancedPanel = document.getElementById('advanced-settings-panel');
+    const advancedToggle = document.getElementById('advanced-settings-toggle');
+    const isPanelOpenByHidden = !!advancedPanel && !advancedPanel.hasAttribute('hidden');
+    const isPanelOpenByAria = advancedToggle?.getAttribute('aria-expanded') === 'true';
+    if (!isPanelOpenByHidden && !isPanelOpenByAria) return;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const behavior: ScrollBehavior = prefersReducedMotion ? 'auto' : 'smooth';
+    const targetSelector = scrollManager.isMobile()
+        ? '.video-list-section'
+        : '#multi-download-form';
+
+    // Wait for UI updates from addUrls/addPlaylist render before scrolling.
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            scrollManager.scrollToElement(targetSelector, {
+                behavior,
+                offset: 0,
+            });
+        });
+    });
+}
