@@ -93,6 +93,21 @@ export class MultiDownloadStrategy implements RendererStrategy {
                 <button class="btn-icon btn-cancel" data-action="cancel" data-id="${item.id}" title="Cancel">
                     <span class="icon-cancel">✕</span>
                 </button>
+                ${removeBtnHtml(item.id)}
+            `;
+        }
+
+        if (item.status === 'ready') {
+            return `
+                <button class="btn-download-multi-download is-outline" type="button" data-action="convert" data-id="${item.id}" ${disabledAttr}>
+                    <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="5" x2="12" y2="15"></line>
+                        <polyline points="8 11 12 15 16 11"></polyline>
+                        <line x1="6" y1="19" x2="18" y2="19"></line>
+                    </svg>
+                    <span class="btn-text">Convert</span>
+                </button>
+                ${removeBtnHtml(item.id)}
             `;
         }
 
@@ -118,27 +133,18 @@ export class MultiDownloadStrategy implements RendererStrategy {
                     </svg>
                     <span class="btn-text">${label}</span>
                 </button>
+                ${removeBtnHtml(item.id)}
             `;
         }
 
         if (item.status === 'error') {
             return `
                 <button class="btn-retry" data-action="retry" data-id="${item.id}">Retry</button>
-                <button class="btn-icon btn-remove" data-action="remove" data-id="${item.id}" title="Remove">
-                    <span class="icon-trash">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
-                    </span>
-                </button>
+                ${removeBtnHtml(item.id)}
             `;
         }
 
-        return `
-            <button class="btn-icon btn-remove" data-action="remove" data-id="${item.id}" title="Remove">
-                <span class="icon-trash">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
-                </span>
-            </button>
-        `;
+        return removeBtnHtml(item.id);
     }
 
     private getMobileActionButton(item: VideoItem, context: { isFileDownloading?: boolean, currentDownloadingItemId?: string, isGlobalLocked?: boolean }): string {
@@ -179,6 +185,16 @@ export class MultiDownloadStrategy implements RendererStrategy {
 
         return '';
     }
+}
+
+function removeBtnHtml(id: string): string {
+    return `
+        <button class="btn-icon btn-remove" data-action="remove" data-id="${id}" title="Remove">
+            <span class="icon-trash">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+            </span>
+        </button>
+    `;
 }
 
 function formatAudioDetail(bitrate: string | undefined, audioFormat: string | undefined): string {

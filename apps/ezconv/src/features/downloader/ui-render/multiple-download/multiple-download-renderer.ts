@@ -224,7 +224,13 @@ export class MultipleDownloadRenderer {
 
             switch (action) {
                 case 'remove':
-                    if (id) videoStore.removeItem(id);
+                    if (id) {
+                        const item = videoStore.getItem(id);
+                        if (item && ['downloading', 'converting', 'analyzing', 'queued'].includes(item.status)) {
+                            multiDownloadService.cancelDownload(id);
+                        }
+                        videoStore.removeItem(id);
+                    }
                     break;
                 case 'cancel':
                     if (id) multiDownloadService.cancelDownload(id);

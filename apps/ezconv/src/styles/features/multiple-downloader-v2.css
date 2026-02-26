@@ -389,7 +389,7 @@
 .group-download-btn {
     background: #10b981 !important;
     color: white !important;
-    border: none !important;
+    border: 1.5px solid #059669 !important;
     padding: 8px 24px !important;
     border-radius: 36px !important;
     font-weight: 700 !important;
@@ -402,13 +402,15 @@
 }
 
 .group-download-btn:hover:not(:disabled) {
-    background: #059669;
+    background: #059669 !important;
+    border-color: #047857 !important;
 }
 
 .group-download-btn:disabled {
     opacity: 0.6;
     cursor: not-allowed;
-    background: #94a3b8;
+    background: #94a3b8 !important;
+    border-color: #94a3b8 !important;
 }
 
 .btn-icon-zip {
@@ -519,12 +521,12 @@
     padding: 8px;
     border-radius: 8px;
     color: #ef4444;
-    /* Red color from image */
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: background 0.2s;
+    margin-left: 24px;
 }
 
 
@@ -709,6 +711,10 @@
     display: none;
 }
 
+.multiple-downloads-container .multi-video-item .multi-video-status {
+    display: none;
+}
+
 .status-badge {
     display: inline-flex;
     align-items: center;
@@ -760,6 +766,7 @@
 
 .multi-video-actions {
     display: flex;
+    align-items: center;
     gap: 0.5rem;
     margin-left: 1rem;
 }
@@ -867,17 +874,19 @@
 }
 
 .btn-success {
-    background-color: var(--brand, #004fab);
+    background-color: #10b981;
     color: white;
+    border: 1.5px solid #059669;
 }
 
 .btn-success:hover:not(:disabled) {
-    background-color: var(--color-accent-hover, #003f8a);
+    background-color: #059669;
+    border-color: #047857;
 }
 
 .btn-success:disabled {
     cursor: not-allowed;
-    background-color: var(--brand, #004fab);
+    background-color: #10b981;
     opacity: 0.6;
     color: white;
 }
@@ -1147,7 +1156,7 @@
         flex-shrink: 0;
         display: flex;
         align-items: center;
-        align-self: flex-start;
+        align-self: center;
         gap: 4px;
     }
 
@@ -1666,37 +1675,41 @@
 
 /* New Multi-Download Button */
 .btn-download-multi-download {
-    display: none;
-    /* Hidden on desktop */
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.5rem 1.25rem;
-    background: #3b82f6;
-    color: white;
-    border: none;
-    border-radius: 8px;
+    padding: 0;
+    width: 36px;
+    height: 36px;
+    background: transparent;
+    color: #3b82f6;
+    border: 1.5px solid #3b82f6;
+    border-radius: 50%;
     font-size: 0.875rem;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.2s, transform 0.1s;
-    white-space: nowrap;
-    height: 36px;
+    transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.1s;
+    flex-shrink: 0;
 }
 
-/* Hide icons on desktop by default */
-.btn-download-multi-download .btn-icon,
+.btn-download-multi-download .btn-icon {
+    display: block;
+    color: inherit;
+}
+
 .btn-download-multi-download .btn-icon-spinner,
 .btn-download-multi-download .btn-icon-check {
     display: none;
 }
 
-/* Show only text on desktop */
 .btn-download-multi-download .btn-text {
-    display: inline;
+    display: none;
 }
 
 .btn-download-multi-download:hover {
-    background: #2563eb;
+    background: #3b82f6;
+    color: white;
+    border-color: #3b82f6;
 }
 
 .btn-download-multi-download:active {
@@ -1707,13 +1720,10 @@
     animation: spin 1s linear infinite;
 }
 
-.btn-download-multi-download .btn-icon-check {
-    color: white;
-}
-
 /* Loading state */
 .btn-download-multi-download.is-loading {
-    background: #0ea5e9;
+    background: #3b82f6;
+    color: white;
     cursor: wait;
 }
 
@@ -1726,17 +1736,17 @@
     display: block !important;
 }
 
-.btn-download-multi-download.is-loading .btn-icon-check {
-    display: none !important;
-}
-
-/* Success state */
+/* Success state (already downloaded) */
 .btn-download-multi-download.is-success {
-    background: #15803d;
+    background: transparent;
+    color: #10b981;
+    border-color: #10b981;
 }
 
 .btn-download-multi-download.is-success:hover {
-    background: #166534;
+    background: #10b981;
+    color: white;
+    border-color: #10b981;
 }
 
 .btn-download-multi-download.is-success .btn-icon {
@@ -1750,31 +1760,26 @@
 /* Disabled state */
 .btn-download-multi-download.is-disabled,
 .btn-download-multi-download:disabled {
-    opacity: 0.6;
+    opacity: 0.4;
     cursor: not-allowed;
     pointer-events: none;
 }
 
-/* Outline variant for 'Ready' state */
+/* Outline variant for 'Convert/Ready' state */
 .btn-download-multi-download.is-outline {
     background: transparent;
-    border: 1px solid #e2e8f0;
+    border-color: #cbd5e1;
     color: #94a3b8;
 }
 
 .btn-download-multi-download.is-outline .btn-icon {
     display: block !important;
-    color: #94a3b8;
 }
 
 .btn-download-multi-download.is-outline:hover {
-    background: #f8fafc;
-    border-color: #cbd5e1;
-    color: #64748b;
-}
-
-.btn-download-multi-download.is-outline:hover .btn-icon {
-    color: #64748b;
+    background: #64748b;
+    border-color: #64748b;
+    color: white;
 }
 
 @keyframes spin {
@@ -1903,7 +1908,7 @@
         overflow-x: visible;
     }
 
-    /* Mobile: Button show only icon */
+    /* Mobile: Button always filled + white icon */
     .btn-download-multi-download {
         display: inline-flex !important;
         width: 32px;
@@ -1911,6 +1916,21 @@
         height: 32px;
         padding: 0;
         border-radius: 50%;
+        background: #3b82f6 !important;
+        color: white !important;
+        border: none !important;
+    }
+
+    .btn-download-multi-download.is-success {
+        background: #10b981 !important;
+        color: white !important;
+        border: none !important;
+    }
+
+    .btn-download-multi-download.is-outline {
+        background: #94a3b8 !important;
+        color: white !important;
+        border: none !important;
     }
 
     .btn-download-multi-download .btn-text {
@@ -1919,6 +1939,7 @@
 
     .btn-download-multi-download .btn-icon {
         display: block !important;
+        color: white !important;
     }
 
     /* If item is in some state show spinner/check instead */
