@@ -23,7 +23,6 @@ export function initConvertForm(config: ConvertFormConfig): void {
     const urlsInput = document.getElementById('urlsInput') as HTMLTextAreaElement | null;
     const addUrlsBtn = document.getElementById('addUrlsBtn');
     const errorMessage = document.getElementById('error-message') as HTMLElement | null;
-    const successMessage = document.getElementById('success-message') as HTMLElement | null;
 
     if (!urlsInput || !addUrlsBtn) return;
     updateConvertButtonCount(addUrlsBtn, urlsInput.value);
@@ -39,7 +38,6 @@ export function initConvertForm(config: ConvertFormConfig): void {
     // Auto-format on paste: one URL per line
     urlsInput.addEventListener('paste', () => {
         setTimeout(() => {
-            clearSuccess(successMessage);
             const val = urlsInput.value;
             let formatted = val.split(/[\s,]+/).filter(Boolean).join('\n');
             if (formatted && !formatted.endsWith('\n')) formatted += '\n';
@@ -51,28 +49,19 @@ export function initConvertForm(config: ConvertFormConfig): void {
         }, 0);
     });
     urlsInput.addEventListener('input', () => {
-        clearSuccess(successMessage);
         updateConvertButtonCount(addUrlsBtn, urlsInput.value);
     });
 
     addUrlsBtn.addEventListener('click', async () => {
         const rawText = urlsInput.value.trim();
         let isSuccess = false;
-        let hasShownAddedSuccess = false;
-        const showAddedSuccessOnce = () => {
-            if (hasShownAddedSuccess) return;
-            hasShownAddedSuccess = true;
-            showSuccess(successMessage, 'Added to list successfully.');
-        };
 
         if (!rawText) {
-            clearSuccess(successMessage);
             showError(errorMessage, 'Please paste at least one YouTube URL.');
             return;
         }
 
         clearError(errorMessage);
-        clearSuccess(successMessage);
         setLoading(addUrlsBtn, true);
 
         // Clear input immediately — don't wait for API response
@@ -83,15 +72,14 @@ export function initConvertForm(config: ConvertFormConfig): void {
             const settings = config.getSettings();
 
             if (isTrimMode()) {
-                await handleTrimConvert(rawText, settings, showAddedSuccessOnce);
+                await handleTrimConvert(rawText, settings);
             } else if (isPlaylistMode()) {
-                await handlePlaylistModeConvert(rawText, settings, showAddedSuccessOnce);
+                await handlePlaylistModeConvert(rawText, settings);
             } else {
-                await handleBatchConvert(rawText, settings, showAddedSuccessOnce);
+                await handleBatchConvert(rawText, settings);
             }
             isSuccess = true;
         } catch (err) {
-            clearSuccess(successMessage);
             showError(errorMessage, err instanceof Error ? err.message : 'Failed to process URLs.');
         } finally {
             if (isSuccess && isTrimMode()) {
@@ -212,23 +200,6 @@ function showError(el: HTMLElement | null, msg: string): void {
 }
 
 function clearError(el: HTMLElement | null): void {
-    if (!el) return;
-    el.textContent = '';
-    el.style.display = 'none';
-}
-
-function showSuccess(el: HTMLElement | null, msg: string): void {
-    if (!el) return;
-    el.textContent = msg;
-    el.style.display = 'block';
-    window.setTimeout(() => {
-        if (el.textContent === msg) {
-            el.style.display = 'none';
-        }
-    }, 3500);
-}
-
-function clearSuccess(el: HTMLElement | null): void {
     if (!el) return;
     el.textContent = '';
     el.style.display = 'none';
