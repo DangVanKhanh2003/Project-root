@@ -42,6 +42,7 @@ interface YTPlayerApi {
     seekTo: (seconds: number, allowSeekAhead: boolean) => void;
     pauseVideo: () => void;
     playVideo: () => void;
+    mute?: () => void;
 }
 
 declare global {
@@ -76,6 +77,7 @@ let currentVideoId: string | null = null;
 let startTime = 0;
 let endTime = 0;
 let seekPreviewPauseTimer: number | null = null;
+let autoPlayRetryTimer: number | null = null;
 
 function renderEmptyPreview(): void {
     const container = document.getElementById('stream-player');
@@ -259,6 +261,19 @@ function initSlider(): void {
     });
 }
 
+function tryAutoPlayPreview(target: YTPlayerApi): void {
+    target.mute?.();
+    target.playVideo();
+
+    if (autoPlayRetryTimer !== null) {
+        window.clearTimeout(autoPlayRetryTimer);
+    }
+    autoPlayRetryTimer = window.setTimeout(() => {
+        target.playVideo();
+        autoPlayRetryTimer = null;
+    }, 200);
+}
+
 // ==========================================
 // Player
 // ==========================================
@@ -267,6 +282,10 @@ function createPlayer(videoId: string): void {
     const container = document.getElementById('stream-player');
     if (!container || !window.YT?.Player) return;
 
+    if (autoPlayRetryTimer !== null) {
+        window.clearTimeout(autoPlayRetryTimer);
+        autoPlayRetryTimer = null;
+    }
     if (player) { player.destroy(); }
 
     player = new window.YT.Player('stream-player', {
@@ -291,6 +310,7 @@ function createPlayer(videoId: string): void {
                     initSlider();
                     updateTimeInputs();
                 }
+                tryAutoPlayPreview(event.target);
             },
             onStateChange: (event) => {
                 if (event.data === window.YT?.PlayerState.PLAYING && videoDuration < 1) {
@@ -326,6 +346,10 @@ export function resetTrimEditor(): void {
     if (seekPreviewPauseTimer !== null) {
         window.clearTimeout(seekPreviewPauseTimer);
         seekPreviewPauseTimer = null;
+    }
+    if (autoPlayRetryTimer !== null) {
+        window.clearTimeout(autoPlayRetryTimer);
+        autoPlayRetryTimer = null;
     }
 
     if (slider) { slider.destroy(); slider = null; }
