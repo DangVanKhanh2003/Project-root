@@ -1,22 +1,22 @@
 {
   "seo": {
-    "title": "EzConv.pro - YouTube MP3 ダウンロード 無料 2026（320kbps・広告なし）",
-    "description": "EzConv.proは、広告なし・登録不要でオンラインでYouTubeをMP3に変換・ダウンロードできる無料ツールです。64kbpsから320kbpsまでの高音質に対応しています。",
-    "schemaName": "EzConv.pro - YouTube MP3 ダウンロード",
-    "schemaDescription": "EzConv.proは、ソフトウェアのインストール不要でYouTube動画を最大320kbpsの高音質MP3ファイルに変換できる、無料のウェブベースYouTube MP3ダウンロードツールです。",
-    "ogTitle": "EzConv.pro - 無料YouTube MP3ダウンロード（320kbps・広告なし）",
-    "ogDescription": "EzConv.proでYouTube MP3をオンラインダウンロード。広告なし、安全、登録不要。最大320kbpsの高音質対応。"
+    "title": "EzConv - YouTube MP3 ダウンロード 無料 2026（320kbps・広告なし）",
+    "description": "EzConvは、広告なし・登録不要でオンラインでYouTubeをMP3に変換・ダウンロードできる無料ツールです。64kbpsから320kbpsまでの高音質に対応しています。",
+    "schemaName": "EzConv - YouTube MP3 ダウンロード",
+    "schemaDescription": "EzConvは、ソフトウェアのインストール不要でYouTube動画を最大320kbpsの高音質MP3ファイルに変換できる、無料のウェブベースYouTube MP3ダウンロードツールです。",
+    "ogTitle": "EzConv - 無料YouTube MP3ダウンロード（320kbps・広告なし）",
+    "ogDescription": "EzConvでYouTube MP3をオンラインダウンロード。広告なし、安全、登録不要。最大320kbpsの高音質対応。"
   },
   "defaultFormat": "mp3",
   "hero": {
-    "title": "EzConv.pro - YouTube MP3 ダウンロード",
+    "title": "EzConv - YouTube MP3 ダウンロード",
     "subtitle": "広告なし・ポップアップなしでYouTube MP3を無料オンラインダウンロード"
   },
   "overview": {
-    "title": "EzConv.proとは？",
-    "description": "EzConv.proは、<strong>無料のウェブベースYouTube MP3ダウンロードツール</strong>で、YouTube動画をブラウザ上で直接高音質MP3ファイルに変換できます。<strong>広告なしで安全</strong>な体験を提供し、ソフトウェアのインストールやポップアップ、アカウント登録は不要です。ユーザーは<strong>64kbpsから320kbps</strong>まで音質を選択でき、ダウンロード前に不要な部分をカットできる内蔵トリミング機能も利用できます。EzConv.proはシンプルかつ安全に設計され、デスクトップ、タブレット、モバイルデバイスでスムーズに動作します。",
+    "title": "EzConvとは？",
+    "description": "EzConvは、<strong>無料のウェブベースYouTube MP3ダウンロードツール</strong>で、YouTube動画をブラウザ上で直接高音質MP3ファイルに変換できます。<strong>広告なしで安全</strong>な体験を提供し、ソフトウェアのインストールやポップアップ、アカウント登録は不要です。ユーザーは<strong>64kbpsから320kbps</strong>まで音質を選択でき、ダウンロード前に不要な部分をカットできる内蔵トリミング機能も利用できます。EzConvはシンプルかつ安全に設計され、デスクトップ、タブレット、モバイルデバイスでスムーズに動作します。",
     "howTo": {
-      "title": "EzConv.proでYouTube MP3をダウンロードする方法",
+      "title": "EzConvでYouTube MP3をダウンロードする方法",
       "steps": [
         {
           "number": "1",
@@ -25,8 +25,8 @@
         },
         {
           "number": "2",
-          "title": "EzConv.proに貼り付け",
-          "description": "YouTubeのURLをEzConv.proの入力欄に貼り付け、希望するMP3音質を選択します。"
+          "title": "EzConvに貼り付け",
+          "description": "YouTubeのURLをEzConvの入力欄に貼り付け、希望するMP3音質を選択します。"
         },
         {
           "number": "3",
@@ -37,8 +37,8 @@
     }
   },
   "whatCanDownload": {
-    "title": "EzConv.proで何がダウンロードできますか？",
-    "intro": "EzConv.proはYouTube MP3ダウンロードに特化しており、YouTube動画から音声を安全かつ簡単に抽出し、オフラインで再生できるようにします。",
+    "title": "EzConvで何がダウンロードできますか？",
+    "intro": "EzConvはYouTube MP3ダウンロードに特化しており、YouTube動画から音声を安全かつ簡単に抽出し、オフラインで再生できるようにします。",
     "sections": [
       {
         "title": "YouTube動画をMP3に変換",
@@ -56,31 +56,31 @@
   },
   "quality": {
     "title": "320kbps高音質＆広告なし体験",
-    "description1": "EzConv.proは64kbpsから320kbpsまで複数のMP3音質レベルをサポートしており、ファイルサイズと音質のバランスを自由に選択できます。",
+    "description1": "EzConvは64kbpsから320kbpsまで複数のMP3音質レベルをサポートしており、ファイルサイズと音質のバランスを自由に選択できます。",
     "description2": "本プラットフォームは、広告や悪質なリダイレクト、アカウント登録なしで安全にYouTube MP3をダウンロードできるよう設計されています。"
   },
   "faqs": {
     "title": "よくある質問",
     "items": [
       {
-        "question": "EzConv.proは無料で利用できますか？",
-        "answer": "はい。EzConv.proは完全無料で、YouTube MP3を無制限にダウンロードできます。"
+        "question": "EzConvは無料で利用できますか？",
+        "answer": "はい。EzConvは完全無料で、YouTube MP3を無制限にダウンロードできます。"
       },
       {
         "question": "YouTube MP3をダウンロードするためにソフトウェアのインストールは必要ですか？",
-        "answer": "いいえ。EzConv.proはウェブブラウザ上で完全オンラインで動作し、インストールは不要です。"
+        "answer": "いいえ。EzConvはウェブブラウザ上で完全オンラインで動作し、インストールは不要です。"
       },
       {
         "question": "MP3ダウンロード時に音質を選べますか？",
-        "answer": "はい。EzConv.proは64kbpsから320kbpsまで選択可能なMP3音質に対応しています。"
+        "answer": "はい。EzConvは64kbpsから320kbpsまで選択可能なMP3音質に対応しています。"
       },
       {
-        "question": "EzConv.proは安全で広告なしですか？",
-        "answer": "EzConv.proはポップアップやサードパーティスクリプトなしで、クリーンなYouTube MP3ダウンロード体験を提供するよう設計されています。"
+        "question": "EzConvは安全で広告なしですか？",
+        "answer": "EzConvはポップアップやサードパーティスクリプトなしで、クリーンなYouTube MP3ダウンロード体験を提供するよう設計されています。"
       },
       {
-        "question": "EzConv.proはモバイル端末でも利用できますか？",
-        "answer": "はい。EzConv.proはデスクトップ、タブレット、モバイル端末で最新のブラウザを通じて利用できます。"
+        "question": "EzConvはモバイル端末でも利用できますか？",
+        "answer": "はい。EzConvはデスクトップ、タブレット、モバイル端末で最新のブラウザを通じて利用できます。"
       }
     ]
   }
