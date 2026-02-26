@@ -15,6 +15,7 @@ on:
           - 'ytmp3-clone-5'
           - 'ytmp3.my'
           - 'ssvid.cc'
+          - 'ezconv'
       environment:
         description: 'Target environment'
         required: true
@@ -74,6 +75,11 @@ jobs:
               echo "directory=apps/ssvid.cc" >> $GITHUB_OUTPUT
               echo "filter_path=./apps/ssvid.cc" >> $GITHUB_OUTPUT
               echo "domain=${{ vars.SSVID_DOMAIN || 'ssvid.cc' }}" >> $GITHUB_OUTPUT
+              ;;
+            "ezconv")
+              echo "directory=apps/ezconv" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/ezconv" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.EZCONV_DOMAIN || 'ezconv.pro' }}" >> $GITHUB_OUTPUT
               ;;
           esac
 

@@ -22,6 +22,7 @@ on:
           - 'ytmp3.my'
           - '4kvideopro'
           - 'ssvid.cc'
+          - 'ezconv'
 
 concurrency:
   group: ci-${{ github.repository }}-${{ github.ref }}
@@ -67,11 +68,13 @@ jobs:
               - 'apps/4kvideopro/**'
             ssvid.cc:
               - 'apps/ssvid.cc/**'
+            ezconv:
+              - 'apps/ezconv/**'
 
       - name: Determine apps to deploy
         id: determine-apps
         run: |
-          ALL_APPS='["y2matepro","y2matevc","ytmp3-clone-3","mp3fast","ytmp3-clone-5","ytmp3.my","4kvideopro","ssvid.cc"]'
+          ALL_APPS='["y2matepro","y2matevc","ytmp3-clone-3","mp3fast","ytmp3-clone-5","ytmp3.my","4kvideopro","ssvid.cc","ezconv"]'
 
           # Handle manual trigger with specific_app
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
@@ -166,6 +169,10 @@ jobs:
           if [[ "${{ steps.filter.outputs['ssvid.cc'] }}" == "true" ]]; then
             CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["ssvid.cc"]')
             echo "✅ ssvid.cc changed"
+          fi
+          if [[ "${{ steps.filter.outputs.ezconv }}" == "true" ]]; then
+            CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["ezconv"]')
+            echo "✅ ezconv changed"
           fi
 
           echo "📋 Changed apps: $CHANGED_APPS"
@@ -294,6 +301,20 @@ jobs:
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
+  deploy-ezconv:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'ezconv')
+    uses: ./.github/workflows/deploy-app.yml
+    with:
+      app_name: ezconv
+      app_directory: apps/ezconv
+      filter_path: ./apps/ezconv
+      domain: ${{ vars.EZCONV_DOMAIN || 'ezconv.pro' }}
+    secrets:
+      SSH_HOST: ${{ secrets.SSH_HOST }}
+      SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
   # ============================================
   # Job 9: Summary
   # ============================================
@@ -308,6 +329,7 @@ jobs:
       - deploy-ytmp3-my
       - deploy-4kvideopro
       - deploy-ssvid-cc
+      - deploy-ezconv
     if: always()
     runs-on: ubuntu-latest
     steps:
@@ -330,3 +352,4 @@ jobs:
           echo "| ytmp3.my | ${{ needs.deploy-ytmp3-my.result || 'skipped' }} |"
           echo "| 4kvideopro | ${{ needs.deploy-4kvideopro.result || 'skipped' }} |"
           echo "| ssvid.cc | ${{ needs.deploy-ssvid-cc.result || 'skipped' }} |"
+          echo "| ezconv | ${{ needs.deploy-ezconv.result || 'skipped' }} |"
