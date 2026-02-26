@@ -27,11 +27,22 @@ export function initConvertForm(config: ConvertFormConfig): void {
     if (!urlsInput || !addUrlsBtn) return;
     updateConvertButtonCount(addUrlsBtn, urlsInput.value);
 
-    // Ctrl+Enter to submit
+    // Enter to submit, Ctrl+Enter to insert newline
     urlsInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
-            e.preventDefault();
-            addUrlsBtn.click();
+        if (e.key === 'Enter') {
+            if (e.ctrlKey || e.metaKey) {
+                // Ctrl+Enter: insert a newline at cursor position
+                e.preventDefault();
+                const start = urlsInput.selectionStart;
+                const end = urlsInput.selectionEnd;
+                urlsInput.value = urlsInput.value.substring(0, start) + '\n' + urlsInput.value.substring(end);
+                urlsInput.selectionStart = urlsInput.selectionEnd = start + 1;
+                urlsInput.dispatchEvent(new Event('input'));
+            } else {
+                // Enter: submit
+                e.preventDefault();
+                addUrlsBtn.click();
+            }
         }
     });
 
