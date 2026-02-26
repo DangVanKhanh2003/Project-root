@@ -141,15 +141,17 @@ export class PlaylistStrategy implements RendererStrategy {
         const format = (item.settings?.format || 'mp4').toUpperCase();
         const quality = item.settings?.quality || '720p';
         const audioTrack = item.settings?.audioTrack;
+        const trimRangeLabel = item.settings?.trimRangeLabel;
 
         // Only show audio track if it's explicitly set and not 'original'
         const trackLabel = (audioTrack && audioTrack !== 'original') ? ` · ${audioTrack.toUpperCase()}` : '';
+        const trimLabel = trimRangeLabel ? ` · ${trimRangeLabel}` : '';
 
         const details = format === 'MP3'
             ? formatAudioDetail(item.settings?.audioBitrate, item.settings?.audioFormat)
             : quality;
 
-        return `<span class="item-setting-text">${format} · ${details}${trackLabel}</span>`;
+        return `<span class="item-setting-text">${format} · ${details}${trackLabel}${trimLabel}</span>`;
     }
 
     private getDesktopActionButton(item: VideoItem, context: { isFileDownloading?: boolean, currentDownloadingItemId?: string, isGlobalLocked?: boolean }): string {
