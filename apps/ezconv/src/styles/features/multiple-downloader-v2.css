@@ -1878,9 +1878,9 @@ html[data-theme="dark"] .btn-download-multi-download.is-outline:hover {
 /* Panel */
 .advanced-settings-panel {
     padding: 16px 20px;
-    background: var(--bg-page);
+    background: white;
     border: 1px solid var(--border-subtle);
-    border-radius: 6px;
+    border-radius: 20px;
     width: 100%;
 }
 
