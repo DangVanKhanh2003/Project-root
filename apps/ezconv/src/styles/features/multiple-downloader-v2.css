@@ -576,7 +576,7 @@ html[data-theme="dark"] .keyword-search-load-more-btn:hover:not(:disabled) {
     color: white !important;
     border: 1.5px solid #059669 !important;
     padding: 8px 24px !important;
-    border-radius: 36px !important;
+    border-radius: 20px !important;
     font-weight: 700 !important;
     display: flex !important;
     align-items: center !important;
@@ -1161,7 +1161,7 @@ html[data-theme="dark"] .keyword-search-load-more-btn:hover:not(:disabled) {
     gap: 0;
     background: var(--border-default);
     padding: 0.25rem;
-    border-radius: 36px;
+    border-radius: 20px;
     border: 1px solid var(--border-subtle);
     position: relative;
 }
@@ -1173,7 +1173,7 @@ html[data-theme="dark"] .keyword-search-load-more-btn:hover:not(:disabled) {
     bottom: 4px;
     left: 0;
     background: var(--brand, #C65D3B);
-    border-radius: 36px;
+    border-radius: 20px;
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1;
     pointer-events: none;
@@ -1195,7 +1195,7 @@ html[data-theme="dark"] .keyword-search-load-more-btn:hover:not(:disabled) {
     font-weight: 600;
     color: var(--text-heading);
     cursor: pointer;
-    border-radius: 36px;
+    border-radius: 20px;
     transition: color 0.2s ease;
     white-space: nowrap;
     position: relative;
@@ -1221,7 +1221,7 @@ html[data-theme="dark"] .keyword-search-load-more-btn:hover:not(:disabled) {
 
 .playlist-group {
     border: none;
-    border-radius: 36px;
+    border-radius: 20px;
     margin-bottom: 2rem;
     overflow: hidden;
 }
@@ -1398,7 +1398,7 @@ html[data-theme="dark"] .keyword-search-load-more-btn:hover:not(:disabled) {
     border: 1px solid rgba(198, 93, 59, 0.3);
     color: var(--brand, #C65D3B);
     padding: 0.5rem 1.5rem;
-    border-radius: 36px;
+    border-radius: 20px;
     font-size: 0.875rem;
     font-weight: 600;
     cursor: pointer;
@@ -1458,7 +1458,7 @@ html[data-theme="dark"] .keyword-search-load-more-btn:hover:not(:disabled) {
     color: var(--brand, #C65D3B);
     border: 1px solid rgba(198, 93, 59, 0.2);
     padding: 0.5rem 1rem;
-    border-radius: 36px;
+    border-radius: 20px;
     font-size: 0.875rem;
     font-weight: 600;
     cursor: pointer;
