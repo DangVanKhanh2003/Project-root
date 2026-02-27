@@ -27,8 +27,8 @@
 
 .header-logo svg {
     display: block;
-    width: 36px;
-    height: 36px;
+    width: 70px;
+    height: auto;
 }
 
 .header-logo svg rect[fill="#CB0E35"],
@@ -361,6 +361,12 @@
 
     .header-logo {
         justify-content: flex-start;
+    }
+
+    .header-logo svg {
+        display: block;
+        width: 55px;
+        height: auto;
     }
 
     .header-nav {
