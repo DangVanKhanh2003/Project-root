@@ -4,7 +4,7 @@
  * for the unified download page.
  */
 
-import { loadVideoForTrim, resetTrimEditor } from './trim-controller';
+import { ensureTrimEditorDefaults, loadVideoForTrim, resetTrimEditor } from './trim-controller';
 
 let _playlistModeOn = false;
 let _trimModeOn = false;
@@ -81,10 +81,11 @@ function applyTrimMode(on: boolean): void {
     updateSwitchUI('trim-mode-toggle', on);
     if (on) {
         showCuttingInterface();
+        void ensureTrimEditorDefaults();
         // Load player for the current URL if present
         const textarea = document.getElementById('urlsInput') as HTMLTextAreaElement | null;
         const url = textarea?.value.trim().split(/[\n\s,]+/).filter(Boolean)[0] || '';
-        if (url) loadVideoForTrim(url);
+        if (url) void loadVideoForTrim(url);
     } else {
         hideCuttingInterface();
         resetTrimEditor();

@@ -366,6 +366,11 @@ export function resetTrimEditor(): void {
     initSlider();
 }
 
+export async function ensureTrimEditorDefaults(): Promise<void> {
+    await loadNoUiSlider();
+    resetTrimEditor();
+}
+
 export async function loadVideoForTrim(url: string): Promise<void> {
     const videoId = extractVideoId(url);
     if (!videoId) return;
