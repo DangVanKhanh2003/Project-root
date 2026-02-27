@@ -53,6 +53,8 @@ interface StoredPreferences {
   videoQuality: string;
   audioFormat: AudioFormatType;
   audioBitrate: string;
+  filenameStyle?: 'classic' | 'basic' | 'pretty' | 'nerdy';
+  enableMetadata?: boolean;
   timestamp: number; // For potential expiration logic
 }
 
@@ -106,11 +108,19 @@ function getPageDefaults(): { format: FormatType; videoQuality: string; audioFor
 export function saveFormatPreferences(): void {
   try {
     const state = getState();
+    let existing: Partial<StoredPreferences> = {};
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      existing = raw ? JSON.parse(raw) as Partial<StoredPreferences> : {};
+    } catch (_) {}
+
     const preferences: StoredPreferences = {
       selectedFormat: state.selectedFormat,
       videoQuality: state.videoQuality,
       audioFormat: state.audioFormat,
       audioBitrate: state.audioBitrate,
+      filenameStyle: existing.filenameStyle,
+      enableMetadata: existing.enableMetadata,
       timestamp: Date.now()
     };
 

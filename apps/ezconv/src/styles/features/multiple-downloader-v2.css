@@ -2150,6 +2150,22 @@
         border-radius: calc(var(--radius-xl, 24px) - 10px);
     }
 
+}
+
+@media (max-width: 350px) {
+    .multi-format-btn {
+        padding: 7px 12px;
+        font-size: 12px;
+    }
+
+    .multi-btn-convert {
+        padding: 0 16px;
+        font-size: 13px;
+        height: 38px;
+    }
+}
+
+@media (max-width: 640px) {
     /* Mobile styles for list... */
     .multi-video-item {
         flex-direction: row;

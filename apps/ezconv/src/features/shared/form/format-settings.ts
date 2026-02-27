@@ -73,11 +73,11 @@ export function getCurrentSettings(): Partial<VideoItemSettings> {
 
     // Read filename style from active tab
     const activeStyleTab = document.querySelector('#filename-style-tabs .fs-tab.active') as HTMLElement | null;
-    const filenameStyle = (activeStyleTab?.dataset.style || 'basic') as VideoItemSettings['filenameStyle'];
+    const filenameStyle = activeStyleTab?.dataset.style as VideoItemSettings['filenameStyle'] | undefined;
 
     // Read embed metadata from toggle
     const metadataToggle = document.getElementById('metadata-mode-toggle');
-    const enableMetadata = metadataToggle ? metadataToggle.getAttribute('aria-checked') === 'true' : false;
+    const enableMetadata = metadataToggle ? metadataToggle.getAttribute('aria-checked') === 'true' : undefined;
 
     return { format, quality, audioFormat, audioBitrate, videoQuality, audioTrack, filenameStyle, enableMetadata };
 }
@@ -88,6 +88,10 @@ export function getCurrentSettings(): Partial<VideoItemSettings> {
 
 export function saveFormatPreferences(): void {
     try {
+        const stored = JSON.parse(localStorage.getItem('Ezconv_format_preferences') || '{}') as {
+            filenameStyle?: VideoItemSettings['filenameStyle'];
+            enableMetadata?: boolean;
+        };
         const settings = getCurrentSettings();
         const audioFmt = settings.audioFormat || 'mp3';
         const prefs = {
@@ -95,8 +99,10 @@ export function saveFormatPreferences(): void {
             videoQuality: settings.videoQuality ? settings.videoQuality + 'p' : '720p',
             audioFormat: audioFmt,
             audioBitrate: audioFmt === 'mp3' ? (settings.audioBitrate || '128') : '',
-            filenameStyle: settings.filenameStyle || 'basic',
-            enableMetadata: settings.enableMetadata === true,
+            filenameStyle: settings.filenameStyle || stored.filenameStyle || 'basic',
+            enableMetadata: typeof settings.enableMetadata === 'boolean'
+                ? settings.enableMetadata
+                : (stored.enableMetadata === true),
             timestamp: Date.now(),
         };
         // Avoid double 'p' suffix for special containers
@@ -104,7 +110,7 @@ export function saveFormatPreferences(): void {
             prefs.videoQuality = settings.videoQuality!;
         }
         localStorage.setItem('Ezconv_format_preferences', JSON.stringify(prefs));
-    } catch (_) {}
+    } catch (_) { }
 }
 
 // ==========================================
@@ -135,8 +141,6 @@ export function initFormatToggle(): void {
     const qualitySelectMp3 = document.getElementById('multi-quality-select-mp3') as HTMLSelectElement | null;
     const qualitySelectMp4 = document.getElementById('multi-quality-select-mp4') as HTMLSelectElement | null;
 
-    if (!qualitySelectMp3 || !qualitySelectMp4) return;
-
     formatBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             formatBtns.forEach(b => b.classList.remove('active'));
@@ -148,8 +152,8 @@ export function initFormatToggle(): void {
         });
     });
 
-    qualitySelectMp3.addEventListener('change', saveFormatPreferences);
-    qualitySelectMp4.addEventListener('change', saveFormatPreferences);
+    qualitySelectMp3?.addEventListener('change', saveFormatPreferences);
+    qualitySelectMp4?.addEventListener('change', saveFormatPreferences);
 
     // --- Filename Style tabs ---
     const styleTabs = document.querySelectorAll('#filename-style-tabs .fs-tab');
@@ -203,5 +207,5 @@ export function initFormatToggle(): void {
                 metadataToggle.setAttribute('aria-checked', 'false');
             }
         }
-    } catch (_) {}
+    } catch (_) { }
 }
