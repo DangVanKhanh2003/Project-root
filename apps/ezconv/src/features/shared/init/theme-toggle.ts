@@ -48,7 +48,7 @@ export function initThemeToggle(): void {
     setTheme(theme);
 
     // Bind toggle buttons
-    const toggles = document.querySelectorAll<HTMLButtonElement>('#theme-toggle');
+    const toggles = document.querySelectorAll<HTMLButtonElement>('.theme-toggle-btn');
     toggles.forEach(btn => {
         btn.addEventListener('click', () => {
             const current = document.documentElement.getAttribute('data-theme');

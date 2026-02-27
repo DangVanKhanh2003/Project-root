@@ -155,8 +155,8 @@
 
 .drawer-logo svg {
     display: block;
-    width: 28px;
-    height: 28px;
+    width: 44px;
+    height: auto;
 }
 
 .drawer-close {
@@ -339,6 +339,18 @@
     margin-left: 10px;
 }
 
+.theme-toggle-btn--drawer {
+    display: none;
+    margin-top: 0;
+    margin-left: 0;
+    border-color: var(--border-default);
+    color: var(--text-heading);
+}
+
+.theme-toggle-btn--drawer:hover {
+    background: var(--bg-hover);
+}
+
 .theme-toggle-btn:hover {
     background: var(--bg-hover);
 }
@@ -373,13 +385,21 @@
         display: none;
     }
 
-    .theme-toggle-btn {
+    .theme-toggle-btn--header {
+        display: none;
+    }
+
+    .theme-toggle-btn--drawer {
+        display: inline-flex;
+    }
+
+    .theme-toggle-btn--header {
         margin-left: auto;
     }
 
     .mobile-menu-btn {
         display: inline-flex;
-        margin-left: 8px;
+        margin-left: auto;
     }
 
     .lang-dropdown {
