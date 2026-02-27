@@ -22,8 +22,8 @@
 }
 
 [data-theme="light"] .yt-preview-card {
-  background: #fff;
-  border: 1px solid #e2e8f0;
+  background: var(--bg-card);
+  border: 1px solid var(--border-default);
   box-shadow: none;
 }
 

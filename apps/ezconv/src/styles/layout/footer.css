@@ -1,5 +1,5 @@
 footer {
-    background: var(--primary-color);
+    background: var(--brand);
     color: #fff;
     padding: 40px 0 20px;
 }
@@ -7,6 +7,6 @@ footer {
 .copyright {
     text-align: center;
     padding: 20px 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    opacity: 0.7;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    opacity: 0.8;
 }

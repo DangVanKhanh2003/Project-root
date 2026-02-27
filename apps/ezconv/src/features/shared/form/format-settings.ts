@@ -34,12 +34,12 @@ const FILENAME_PREVIEWS: Record<string, { video: string; audio: string }> = {
 // ==========================================
 
 export function getCurrentSettings(): Partial<VideoItemSettings> {
-    const activeFormatBtn = document.querySelector('.multi-format-toggle .multi-format-btn.active');
+    const formatSelect = document.getElementById('multi-format-select') as HTMLSelectElement | null;
     const qualitySelectMp3 = document.getElementById('multi-quality-select-mp3') as HTMLSelectElement | null;
     const qualitySelectMp4 = document.getElementById('multi-quality-select-mp4') as HTMLSelectElement | null;
     const audioTrackValue = document.getElementById('multi-audio-track-value') as HTMLInputElement | null;
 
-    const format = (activeFormatBtn?.getAttribute('data-format') || 'mp4') as 'mp3' | 'mp4';
+    const format = (formatSelect?.value || 'mp4') as 'mp3' | 'mp4';
     const audioTrack = audioTrackValue?.value || 'original';
 
     let quality = '720p';
@@ -137,19 +137,15 @@ function updateFilenamePreview(style: string): void {
 // ==========================================
 
 export function initFormatToggle(): void {
-    const formatBtns = document.querySelectorAll('.multi-format-toggle .multi-format-btn');
+    const formatSelect = document.getElementById('multi-format-select') as HTMLSelectElement | null;
     const qualitySelectMp3 = document.getElementById('multi-quality-select-mp3') as HTMLSelectElement | null;
     const qualitySelectMp4 = document.getElementById('multi-quality-select-mp4') as HTMLSelectElement | null;
 
-    formatBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            formatBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            const format = (btn.getAttribute('data-format') || 'mp4') as 'mp3' | 'mp4';
-            document.documentElement.dataset.format = format;
-            syncFilenamePreviewVisibility(format);
-            saveFormatPreferences();
-        });
+    formatSelect?.addEventListener('change', () => {
+        const format = (formatSelect.value || 'mp4') as 'mp3' | 'mp4';
+        document.documentElement.dataset.format = format;
+        syncFilenamePreviewVisibility(format);
+        saveFormatPreferences();
     });
 
     qualitySelectMp3?.addEventListener('change', saveFormatPreferences);
@@ -184,10 +180,10 @@ export function initFormatToggle(): void {
         // Restore format visibility
         if (stored.selectedFormat) {
             syncFilenamePreviewVisibility(stored.selectedFormat);
+            if (formatSelect) formatSelect.value = stored.selectedFormat;
         } else {
             // Default visibility
-            const activeFormatBtn = document.querySelector('.multi-format-toggle .multi-format-btn.active');
-            const currentFormat = (activeFormatBtn?.getAttribute('data-format') || 'mp4') as 'mp3' | 'mp4';
+            const currentFormat = (formatSelect?.value || 'mp4') as 'mp3' | 'mp4';
             syncFilenamePreviewVisibility(currentFormat);
         }
 

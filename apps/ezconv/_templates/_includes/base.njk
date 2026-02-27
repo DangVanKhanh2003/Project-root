@@ -42,6 +42,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta charset="UTF-8">
 
+    <!-- Google Fonts: Anthropic Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anthropic+Sans:wght@400;500;600;700;800&family=Anthropic+Serif+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <!-- SEO Metadata -->
     <title>{{ seo.title }}</title>
     <meta name="description" content="{{ seo.description }}">
@@ -97,6 +102,10 @@
     <!-- Critical: Read format preference before render to prevent FOUC -->
     <script>
         (function () { var f = 'mp4'; try { var p = JSON.parse(localStorage.getItem('Ezconv_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat } catch (e) { } document.documentElement.dataset.format = f; document.write('<style>html[data-format="mp3"] .quality-select--mp4,html[data-format="mp3"] .multi-quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3,html[data-format="mp3"] .multi-quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3,html[data-format="mp4"] .multi-quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4,html[data-format="mp4"] .multi-quality-select--mp4{display:block!important}</style>') })()
+    </script>
+    <script>
+        /* Prevent theme FOUC: apply saved theme immediately */
+        (function(){try{var t=localStorage.getItem('ezconv-theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark')}catch(e){}})()
     </script>
 
     <!-- JSON-LD Structured Data -->

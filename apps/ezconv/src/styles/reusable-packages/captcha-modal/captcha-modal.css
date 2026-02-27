@@ -45,7 +45,7 @@
 .captcha-modal-content {
     position: relative;
     background-color: var(--pkg-captcha-modal-bg);
-    color: var(--color-white);
+    color: var(--text-heading);
     border-radius: var(--pkg-captcha-modal-radius);
     padding: var(--pkg-captcha-modal-padding);
     width: 90%;
@@ -66,7 +66,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid var(--color-gray-700);
+    border-bottom: 1px solid var(--border-default);
     padding-bottom: 16px;
     margin-bottom: 16px;
 }
@@ -104,7 +104,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 80px; /* Prevents layout shift */
+    min-height: 80px;
+    /* Prevents layout shift */
 }
 
 /* Responsive adjustments */

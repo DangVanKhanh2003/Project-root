@@ -252,12 +252,8 @@ function updateConvertButtonCount(btn: HTMLElement, rawText: string): void {
         .length;
 
     const label = count > 0 ? `Convert (${count})` : 'Convert';
-    const textNode = btn.querySelector('span');
-    if (textNode) {
-        textNode.textContent = label;
-    } else {
-        btn.textContent = label;
-    }
+    btn.setAttribute('aria-label', label);
+    btn.setAttribute('title', label);
 }
 
 function scrollAfterSuccessfulConvert(): void {

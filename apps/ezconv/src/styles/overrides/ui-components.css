@@ -24,18 +24,17 @@
 
 /* Force Light Theme for Suggestion Container */
 .suggestion-container {
-  background-color: #ffffff !important;
-  border: 1px solid #f0f0f0 !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border-subtle) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
   border-radius: 16px !important;
-  /* Update radius to match radius-xl roughly if needed, or keep generic */
   overflow: hidden !important;
 }
 
 .suggestion-item {
-  background-color: #ffffff !important;
-  color: #333333 !important;
-  border-bottom: 1px solid #f0f0f0 !important;
+  background-color: var(--bg-card) !important;
+  color: var(--text-body) !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
   transition: background-color 0.2s;
 }
 
@@ -67,15 +66,14 @@
    ========================================== */
 
 .search-result-card {
-  background: #ffffff !important;
-  border: 1px solid #f0f0f0 !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05) !important;
-  border-radius: 12px !important;
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-subtle) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
 }
 
 .search-result-card .card-title,
 .keyword-result-card-wrap .search-result-card .card-title {
-  color: #0f0f0f !important;
+  color: var(--text-heading) !important;
   display: -webkit-box !important;
   -webkit-box-orient: vertical !important;
   -webkit-line-clamp: 1 !important;
@@ -88,6 +86,7 @@
 }
 
 @media (min-width: 600px) {
+
   .search-result-card .card-title,
   .keyword-result-card-wrap .search-result-card .card-title {
     -webkit-line-clamp: 1 !important;
@@ -97,10 +96,10 @@
 }
 
 .search-result-card .meta-info {
-  color: #666666 !important;
+  color: var(--text-secondary) !important;
 }
 
 /* Ensure skeleton loading states are also light if visible */
 .skeleton-card {
-  background-color: #ffffff !important;
+  background-color: var(--bg-card) !important;
 }

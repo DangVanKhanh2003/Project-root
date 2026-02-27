@@ -1,9 +1,8 @@
 /* Hero Section */
 .hero-section {
-    background: var(--background-hero-section);
-    /* Changed to Gray (Secondary) */
+    background: var(--bg-page);
     padding: 50px 0 40px 0;
-    color: var(--color-white);
+    color: var(--text-heading);
     text-align: center;
     position: relative;
     display: flex;
@@ -46,7 +45,7 @@
     align-items: center;
     gap: 12px;
     text-decoration: none;
-    color: white;
+    color: var(--text-heading);
     margin-bottom: 24px;
 }
 
@@ -55,11 +54,11 @@
 }
 
 .logo-hero svg rect[fill="#CB0E35"] {
-    fill: #004fab;
+    fill: var(--brand);
 }
 
 .logo-hero svg path[fill="#8D021F"] {
-    fill: #003f8a;
+    fill: var(--brand-hover);
 }
 
 .logo-text-hero {
@@ -76,7 +75,7 @@
     font-weight: 600;
     margin: 0;
     line-height: 1.1;
-    color: white;
+    color: var(--text-heading);
 }
 
 .subtitle-hero {
@@ -84,29 +83,23 @@
     font-weight: 400;
     opacity: 1;
     /* Ensure full opacity for pure white */
-    color: #ffffff;
-    /* Explicit white */
+    color: var(--text-secondary);
     margin: 0;
 }
 
 .hero-card {
-    background: white;
+    background: var(--bg-card);
     border-radius: 28px;
-    /* Slightly larger radius */
     padding: 32px;
     padding-bottom: 15px !important;
-    /* Increased padding as requested (was 8px) */
-    /* Softer, spread out shadow */
     width: 100%;
     max-width: 1100px;
     margin-bottom: 0;
-    /* No negative margin needed with mask approach */
     position: relative;
     z-index: 10;
     display: flex;
     flex-direction: column;
-    border: 1px solid rgba(137, 137, 137, 0.332);
-    /* Space between elements inside form */
+    border: 1px solid var(--border-default);
 }
 
 /* Override existing form styles if necessary to fit the new look */
@@ -138,15 +131,11 @@
         /* Explicit 26px as requested */
         margin-bottom: 8px;
         /* Slightly reduce gap */
-        padding: 0 20px;
-        /* Added side padding as requested */
     }
 
     .subtitle-hero {
         font-size: 16px;
         /* Smaller subtitle for mobile */
-        padding: 0 20px;
-        /* Added side padding as requested */
     }
 
     .hero-header {

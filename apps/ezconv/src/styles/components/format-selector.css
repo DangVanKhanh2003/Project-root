@@ -24,7 +24,7 @@
 /* Default state (no data-format or mp4): MP4 active */
 .format-btn[data-format="mp4"],
 .format-btn[data-format="mp4"]:hover {
-    background: var(--brand);
+    background: var(--accent-ui);
     /* Primary Color */
     color: #fff;
     box-shadow: none;
@@ -58,7 +58,7 @@ html:not([data-format="mp3"]) .format-btn[data-format="mp3"]:hover {
 
 html[data-format="mp3"] .format-btn[data-format="mp3"],
 html[data-format="mp3"] .format-btn[data-format="mp3"]:hover {
-    background: var(--brand);
+    background: var(--accent-ui);
     /* Primary Color */
     color: #fff;
     box-shadow: none;
@@ -80,10 +80,10 @@ html[data-format="mp3"] .quality-select--mp3 {
 /* Format Toggle */
 .format-toggle {
     display: flex;
-    background: white;
+    background: var(--bg-card);
     border-radius: var(--radius-xl);
     padding: 4px;
-    border: 1px solid #b0b0b0ad;
+    border: 1px solid var(--border-input);
 }
 
 .format-btn {
@@ -99,13 +99,12 @@ html[data-format="mp3"] .quality-select--mp3 {
 }
 
 .format-btn.active {
-    background: var(--brand);
-    /* Primary Color */
+    background: var(--accent-ui);
     color: #fff;
 }
 
 .format-btn:hover:not(.active) {
-    background: var(--brand);
+    background: var(--accent-ui);
     color: #fff;
 }
 
@@ -124,9 +123,9 @@ html[data-format="mp3"] .quality-select--mp3 {
 .quality-select {
     height: 45px;
     padding: 0 40px 0 18px;
-    border: 1px solid #b0b0b0ad;
+    border: 1px solid var(--border-input);
     border-radius: var(--radius-xl);
-    background: #fff;
+    background: var(--bg-card);
     cursor: pointer;
     font-size: 14px;
     font-weight: 600;
@@ -139,7 +138,7 @@ html[data-format="mp3"] .quality-select--mp3 {
 
 .quality-select:hover,
 .quality-select:focus {
-    border-color: var(--brand);
+    border-color: var(--accent-ui);
 }
 
 .quality-select--mp4 {

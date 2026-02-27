@@ -2,8 +2,7 @@
 <div id="multi-download-form" class="multiple-download-card">
     <!-- URL Input Area -->
     <div class="urls-input-container">
-        <textarea id="urlsInput" class="urls-textarea" placeholder="Paste YouTube URLs here (one per line).
-https://youtube.com/watch?v=VID_1
+        <textarea id="urlsInput" class="urls-textarea" placeholder="https://youtube.com/watch?v=VID_1
 https://youtube.com/watch?v=VID_2" rows="5"></textarea>
         <div id="keyword-suggestion-container" class="suggestion-container"></div>
     </div>
@@ -12,11 +11,26 @@ https://youtube.com/watch?v=VID_2" rows="5"></textarea>
     <div id="multi-download-form-actions">
         <div class="multi-format-selector-wrapper">
             <div class="multi-format-selector">
-                <div class="multi-format-toggle">
-                    <button type="button" class="multi-format-btn active" data-format="mp4">MP4</button>
-                    <button type="button" class="multi-format-btn" data-format="mp3">MP3</button>
-                </div>
-                <div class="multi-quality-wrapper">
+                <button type="button" id="advanced-settings-toggle" class="advanced-settings-toggle"
+                    aria-label="Advanced Settings" aria-expanded="false"
+                    aria-controls="advanced-settings-panel">
+                    <div class="adv-settings-icon-wrap" aria-hidden="true">
+                        <svg class="adv-settings-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="flex-shrink: 0;"><path d="M10 3C10.2761 3 10.5 3.22386 10.5 3.5V9.5H16.5L16.6006 9.50977C16.8286 9.55629 17 9.75829 17 10C17 10.2417 16.8286 10.4437 16.6006 10.4902L16.5 10.5H10.5V16.5C10.5 16.7761 10.2761 17 10 17C9.72386 17 9.5 16.7761 9.5 16.5V10.5H3.5C3.22386 10.5 3 10.2761 3 10C3 9.72386 3.22386 9.5 3.5 9.5H9.5V3.5C9.5 3.22386 9.72386 3 10 3Z"></path></svg>
+                    </div>
+                </button>
+                <div class="multi-format-actions">
+                    <div class="multi-format-dropdown-wrapper">
+                        <select id="multi-format-select" class="multi-format-select" aria-label="Format">
+                            <option value="mp4" selected>MP4</option>
+                            <option value="mp3">MP3</option>
+                        </select>
+                        <div class="multi-select-arrow">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <path d="M6 9l6 6 6-6" />
+                            </svg>
+                        </div>
+                    </div>
                     <div class="multi-quality-dropdown-wrapper">
                         <select id="multi-quality-select-mp3"
                             class="multi-quality-select multi-quality-select--mp3"
@@ -49,30 +63,11 @@ https://youtube.com/watch?v=VID_2" rows="5"></textarea>
                             </svg>
                         </div>
                     </div>
-                    <button type="button" id="advanced-settings-toggle" class="advanced-settings-toggle"
-                        aria-label="Advanced Settings" aria-expanded="false"
-                        aria-controls="advanced-settings-panel">
-                        <div class="adv-settings-icon-wrap" aria-hidden="true">
-                            <svg class="adv-settings-icon" width="16" height="16" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <circle cx="12" cy="12" r="3"></circle>
-                                <path
-                                    d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z">
-                                </path>
-                            </svg>
-                        </div>
-                        <span class="adv-settings-text">Advanced Settings</span>
-                        <svg class="adv-settings-chevron" width="14" height="14" viewBox="0 0 24 24"
-                            fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                            <path d="M6 9l6 6 6-6" />
-                        </svg>
+                    <script>(function () { try { var p = JSON.parse(localStorage.getItem('Ezconv_format_preferences')); if (!p) return; var f = p.selectedFormat; if (f === 'mp3' || f === 'mp4') { var btns = document.querySelectorAll('.multi-format-btn'); btns.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-format') === f) }) } var s = f === 'mp4' ? document.getElementById('multi-quality-select-mp4') : document.getElementById('multi-quality-select-mp3'); if (!s) return; var v; if (f === 'mp4') { var vq = p.videoQuality || '720p'; v = (vq === 'webm' || vq === 'mkv') ? vq : 'mp4-' + vq.replace('p', '') } else { var af = p.audioFormat || 'mp3'; v = (af === 'mp3') ? 'mp3-' + (p.audioBitrate || '128') : af } s.value = v } catch (e) { } })()</script>
+                    <button type="button" id="addUrlsBtn" class="multi-btn-convert" aria-label="Convert">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M208.49,120.49a12,12,0,0,1-17,0L140,69V216a12,12,0,0,1-24,0V69L64.49,120.49a12,12,0,0,1-17-17l72-72a12,12,0,0,1,17,0l72,72A12,12,0,0,1,208.49,120.49Z"></path></svg>
                     </button>
                 </div>
-                <script>(function () { try { var p = JSON.parse(localStorage.getItem('Ezconv_format_preferences')); if (!p) return; var f = p.selectedFormat; if (f === 'mp3' || f === 'mp4') { var btns = document.querySelectorAll('.multi-format-btn'); btns.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-format') === f) }) } var s = f === 'mp4' ? document.getElementById('multi-quality-select-mp4') : document.getElementById('multi-quality-select-mp3'); if (!s) return; var v; if (f === 'mp4') { var vq = p.videoQuality || '720p'; v = (vq === 'webm' || vq === 'mkv') ? vq : 'mp4-' + vq.replace('p', '') } else { var af = p.audioFormat || 'mp3'; v = (af === 'mp3') ? 'mp3-' + (p.audioBitrate || '128') : af } s.value = v } catch (e) { } })()</script>
-                <button type="button" id="addUrlsBtn" class="multi-btn-convert">
-                    <span>Convert</span>
-                </button>
             </div>
         </div>
     </div>
@@ -241,10 +236,10 @@ https://youtube.com/watch?v=VID_2" rows="5"></textarea>
             </div>
         </div>
     </div>
-    <div id="error-message" class="error-message" role="alert" aria-live="polite"></div>
-    <div id="success-message" class="success-message" role="status" aria-live="polite"></div>
-
+   
 </div>
+ <div id="error-message" class="error-message" role="alert" aria-live="polite"></div>
+    <div id="success-message" class="success-message" role="status" aria-live="polite"></div>
 
 <!-- Keyword Search Results (outside form card) -->
 <section id="keyword-search-results-section" class="keyword-search-results-section"

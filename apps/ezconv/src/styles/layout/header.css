@@ -3,14 +3,15 @@
     position: sticky;
     top: 0;
     z-index: 20;
-    background: var(--background-hero-section);
+    background: var(--bg-page);
     backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-subtle);
 }
 
 .header-inner {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     min-height: 64px;
 }
 
@@ -18,7 +19,7 @@
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    color: #fff;
+    color: var(--text-heading);
     text-decoration: none;
     font-weight: 700;
     font-size: 18px;
@@ -32,18 +33,19 @@
 
 .header-logo svg rect[fill="#CB0E35"],
 .drawer-logo svg rect[fill="#CB0E35"] {
-    fill: #004fab;
+    fill: var(--brand);
 }
 
 .header-logo svg path[fill="#8D021F"],
 .drawer-logo svg path[fill="#8D021F"] {
-    fill: #003f8a;
+    fill: var(--brand-hover);
 }
 
 .header-nav {
     display: flex;
     align-items: center;
     gap: 18px;
+    margin-left: auto;
 }
 
 .mobile-menu-btn {
@@ -54,7 +56,7 @@
     height: 44px;
     border: 0;
     background: transparent;
-    color: #fff;
+    color: var(--text-heading);
     cursor: pointer;
 }
 
@@ -107,8 +109,8 @@
     left: 0;
     height: 100%;
     width: min(82vw, 320px);
-    background: #fff;
-    color: #141414;
+    background: var(--bg-card);
+    color: var(--text-heading);
     padding: 0;
     display: flex;
     flex-direction: column;
@@ -127,7 +129,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 14px 18px;
-    background: var(--primary-color);
+    background: var(--brand);
     color: #fff;
 }
 
@@ -174,7 +176,7 @@
 
 .drawer-link,
 .drawer-sublink {
-    color: #141414;
+    color: var(--text-heading);
     text-decoration: none;
     font-weight: 500;
     font-size: 16px;
@@ -198,10 +200,10 @@
     width: 100%;
     gap: 8px;
     padding: 10px 12px;
-    border: 1px solid rgba(20, 20, 20, 0.12);
+    border: 1px solid var(--border-default);
     border-radius: 10px;
-    background: rgba(20, 20, 20, 0.04);
-    color: #141414;
+    background: var(--bg-surface-soft);
+    color: var(--text-heading);
     font-weight: 600;
     cursor: pointer;
 }
@@ -223,14 +225,14 @@
 }
 
 .header-link {
-    color: #fff;
+    color: var(--text-heading);
     text-decoration: none;
     font-weight: 500;
     font-size: 16px;
 }
 
 .header-link:hover {
-    color: #fff;
+    color: var(--text-heading);
     opacity: 0.85;
 }
 
@@ -245,14 +247,14 @@
     padding: 6px 8px;
     border: 0;
     background: transparent;
-    color: #fff;
+    color: var(--text-heading);
     font-weight: 600;
     font-size: 16px;
     cursor: pointer;
 }
 
 .lang-button:hover {
-    color: #fff;
+    color: var(--text-heading);
     opacity: 0.85;
 }
 
@@ -261,8 +263,8 @@
     right: 0;
     top: calc(100% + 8px);
     min-width: 220px;
-    background: #fff;
-    color: #141414;
+    background: var(--bg-card);
+    color: var(--text-heading);
     border-radius: 12px;
     box-shadow: 0 12px 30px rgba(15, 23, 42, 0.18);
     padding: 0;
@@ -294,7 +296,7 @@
 }
 
 .lang-option:hover {
-    background: rgba(15, 23, 42, 0.06);
+    background: var(--bg-hover);
 }
 
 .lang-flag {
@@ -315,8 +317,34 @@
 
 .lang-dropdown-scroll::-webkit-scrollbar-thumb,
 .drawer-scroll::-webkit-scrollbar-thumb {
-    background: rgba(20, 20, 20, 0.4);
+    background: var(--text-placeholder);
     border-radius: 999px;
+}
+
+/* Theme Toggle Button */
+.theme-toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--border-default);
+    background: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    color: var(--text-heading);
+    transition: background 0.2s, color 0.2s;
+    -webkit-tap-highlight-color: transparent;
+    flex-shrink: 0;
+    margin-left: 10px;
+}
+
+.theme-toggle-btn:hover {
+    background: var(--bg-hover);
+}
+
+.theme-icon--moon {
+    display: none;
 }
 
 .lang-dropdown-scroll::-webkit-scrollbar-track,
@@ -339,8 +367,13 @@
         display: none;
     }
 
+    .theme-toggle-btn {
+        margin-left: auto;
+    }
+
     .mobile-menu-btn {
         display: inline-flex;
+        margin-left: 8px;
     }
 
     .lang-dropdown {

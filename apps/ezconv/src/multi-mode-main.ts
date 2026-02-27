@@ -13,8 +13,10 @@ import { initAdvancedSettings } from './features/multi-mode-downloader/advanced-
 import { initConvertForm } from './features/multi-mode-downloader/convert-submit-controller';
 import { initTrimController, getTrimStart, getTrimEnd } from './features/multi-mode-downloader/trim-controller';
 import { initSearchSuggestController } from './features/multi-mode-downloader/search-suggest-controller';
+import { initThemeToggle } from './features/shared/init/theme-toggle';
 
 function init(): void {
+    initThemeToggle();
     initHeaderScroll();
     initMobileMenu();
     initLangSelector();

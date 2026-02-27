@@ -39,7 +39,7 @@
 .status-container {
   position: relative;
   width: 100%;
-  background: white;
+  background: var(--bg-card);
   border: 1px solid var(--border-secondary);
   border-radius: var(--radius-xl);
   display: flex;
@@ -63,9 +63,8 @@
   left: 0;
   height: 100%;
   width: var(--progress-width, 0%);
-  background: #cfe0ff;
-  /* Primary color with lighter opacity */
-  border-right: 1px solid rgba(0, 79, 171, 0.4);
+  background: rgba(198, 93, 59, 0.15);
+  border-right: 1px solid rgba(198, 93, 59, 0.4);
   box-shadow: none;
   transition: width 0.1s ease;
   z-index: 1;
