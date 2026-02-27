@@ -72,6 +72,10 @@ export class MultipleDownloadRenderer {
         this.strategy = this.batchStrategy;
     }
 
+    private getStrategyForItem(item: { groupId?: string | null }): RendererStrategy {
+        return item.groupId ? this.playlistStrategy : (this.isPlaylistMode ? this.playlistStrategy : this.batchStrategy);
+    }
+
     show() {
         if (this.container) this.container.style.display = 'block';
     }
@@ -367,14 +371,16 @@ export class MultipleDownloadRenderer {
                     // Re-render settings to swap quality dropdown
                     const item = videoStore.getItem(id);
                     if (item) {
+                        const itemStrategy = this.getStrategyForItem(item);
                         const el = (this.listContainer?.querySelector(`.multi-video-item[data-id="${id}"]`) ||
                             this.groupListContainer?.querySelector(`.multi-video-item[data-id="${id}"]`)) as HTMLElement;
                         if (el) {
                             const settingsEl = el.querySelector('.item-settings') as HTMLElement;
                             if (settingsEl) {
-                                settingsEl.innerHTML = this.strategy.buildSettingsContent(item);
-                                if (this.strategy.afterRender) {
-                                    this.strategy.afterRender(el, item);
+                                settingsEl.innerHTML = itemStrategy.buildSettingsContent(item);
+                                settingsEl.className = 'item-settings' + itemStrategy.getSettingsClass(item);
+                                if (itemStrategy.afterRender) {
+                                    itemStrategy.afterRender(el, item);
                                 }
                             }
                         }

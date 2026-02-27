@@ -68,6 +68,7 @@ export function initConvertForm(config: ConvertFormConfig): void {
     addUrlsBtn.addEventListener('click', async () => {
         const rawText = urlsInput.value.trim();
         let isSuccess = false;
+        let hasScrolledOnFlowStart = false;
 
         if (!rawText) {
             showError(errorMessage, 'Please paste at least one YouTube URL.');
@@ -84,15 +85,20 @@ export function initConvertForm(config: ConvertFormConfig): void {
 
         try {
             const settings = config.getSettings();
+            const onItemsAdded = () => {
+                if (hasScrolledOnFlowStart) return;
+                hasScrolledOnFlowStart = true;
+                scrollAfterSuccessfulConvert();
+            };
 
             if (isTrimMode()) {
-                await handleTrimConvert(rawText, settings);
+                await handleTrimConvert(rawText, settings, onItemsAdded);
             } else if (isChannelMode()) {
-                await handleChannelModeConvert(rawText, settings);
+                await handleChannelModeConvert(rawText, settings, onItemsAdded);
             } else if (isPlaylistMode()) {
-                await handlePlaylistModeConvert(rawText, settings);
+                await handlePlaylistModeConvert(rawText, settings, onItemsAdded);
             } else {
-                await handleBatchConvert(rawText, settings);
+                await handleBatchConvert(rawText, settings, onItemsAdded);
             }
             isSuccess = true;
         } catch (err) {
@@ -101,7 +107,7 @@ export function initConvertForm(config: ConvertFormConfig): void {
             if (isSuccess && isTrimMode()) {
                 resetTrimEditor();
             }
-            if (isSuccess) {
+            if (isSuccess && !hasScrolledOnFlowStart) {
                 scrollAfterSuccessfulConvert();
             }
             setLoading(addUrlsBtn, false);
