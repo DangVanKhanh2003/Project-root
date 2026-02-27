@@ -9,8 +9,28 @@
     <meta name="robots" content="noindex, follow">
     <link rel="canonical" href="https://ezconv.pro/404">
 
+    <!-- Google Fonts: Anthropic Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anthropic+Sans:wght@400;500;600;700;800&family=Anthropic+Serif+Display:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Critical: Read format preference before render to prevent FOUC (Ezconv) -->
     <script>
-        (function () { var f = 'mp4'; try { var p = JSON.parse(localStorage.getItem('Ezconv_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat } catch (e) { } document.documentElement.dataset.format = f; document.write('<style>html[data-format="mp3"] .quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4{display:block!important}</style>') })()
+        (function () { var f = 'mp4'; try { var p = JSON.parse(localStorage.getItem('Ezconv_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat } catch (e) { } document.documentElement.dataset.format = f; document.write('<style>html[data-format="mp3"] .quality-select--mp4,html[data-format="mp3"] .multi-quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3,html[data-format="mp3"] .multi-quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3,html[data-format="mp4"] .multi-quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4,html[data-format="mp4"] .multi-quality-select--mp4{display:block!important}</style>') })()
+    </script>
+    <script>
+            /* Prevent theme FOUC: apply saved theme immediately */
+            (function () { try { var t = localStorage.getItem('ezconv-theme'); if (t === 'dark') document.documentElement.setAttribute('data-theme', 'dark') } catch (e) { } })()
     </script>
     <style>
         body {
@@ -96,17 +116,12 @@
     <header class="site-header ">
         <div class="container">
             <div class="header-inner">
-                <a href="/" class="header-logo" aria-label="Ezconv home">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 58 58" fill="none"
-                        aria-hidden="true" focusable="false">
-                        <rect x="4.1676" y="0" width="53.8323" height="53.8323" rx="8" ry="8" fill="#CB0E35" />
-                        <rect x="0" y="4.16766" width="53.8323" height="53.8323" rx="8" ry="8" fill="white" />
+                <a href="/" class="header-logo" aria-label="EzConv.pro home">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 50" fill="none" aria-hidden="true"
+                        focusable="false">
                         <path
-                            d="M39.2054 46.1916H14.6268C10.3869 46.1866 6.95113 42.7687 6.94604 38.5509V23.2695C6.95113 19.0517 10.3869 15.6338 14.6268 15.6287H39.2054C43.4453 15.6338 46.8811 19.0517 46.8862 23.2695V38.5509C46.8811 42.7687 43.4453 46.1866 39.2054 46.1916ZM14.6268 18.685C12.0816 18.685 10.0184 20.7375 10.0184 23.2695V38.5509C10.0184 41.0828 12.0816 43.1353 14.6268 43.1353H39.2054C41.7506 43.1353 43.8138 41.0828 43.8138 38.5509V23.2695C43.8138 20.7375 41.7506 18.685 39.2054 18.685H14.6268Z"
-                            fill="#8D021F" />
-                        <path
-                            d="M24.0174 38.965C22.3238 38.9575 20.9527 37.5935 20.9451 35.9087V25.9162C20.9451 24.2283 22.3207 22.8599 24.0175 22.86C24.5568 22.86 25.0866 23.0013 25.5535 23.2694L34.2467 28.2634C35.7161 29.1074 36.2195 30.9766 35.371 32.4384C35.1014 32.903 34.7137 33.2886 34.2467 33.5569L25.5535 38.5509C25.0872 38.8214 24.5572 38.9642 24.0174 38.965ZM32.712 30.9102L24.0174 25.9162V35.9041L32.712 30.9102Z"
-                            fill="#8D021F" />
+                            d="M 4 23 v 4 M 10 20 v 10 M 16 15 v 20 M 22 9 v 32 M 28 15 v 20 M 34 17 v 16 M 40 10 v 30 M 46 4 v 42 M 52 2 v 46 M 58 11 v 28 M 64 16 v 18 M 70 12 v 26 M 76 18 v 14 M 82 17 v 16 M 88 21 v 8"
+                            stroke="#C65D3B" stroke-width="3.5" stroke-linecap="round" fill="none" />
                     </svg>
                     <span class="header-logo-text">EzConv.pro</span>
                 </a>
@@ -114,6 +129,24 @@
                     <a href="/" class="header-link">Home</a>
                     <a href="/about" class="header-link">About</a>
                 </nav>
+                <button class="theme-toggle-btn theme-toggle-btn--header" type="button" aria-label="Toggle theme">
+                    <svg class="theme-icon theme-icon--sun" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5" />
+                        <line x1="12" y1="1" x2="12" y2="3" />
+                        <line x1="12" y1="21" x2="12" y2="23" />
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                        <line x1="1" y1="12" x2="3" y2="12" />
+                        <line x1="21" y1="12" x2="23" y2="12" />
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                    </svg>
+                    <svg class="theme-icon theme-icon--moon" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                    </svg>
+                </button>
                 <button id="mobile-menu-btn" class="mobile-menu-btn" type="button" aria-label="Open menu">
                     <span class="mobile-menu-bars" aria-hidden="true"></span>
                 </button>
@@ -124,19 +157,14 @@
     <div id="mobile-drawer" class="mobile-drawer" hidden>
         <div id="mobile-drawer-content" class="drawer-content" role="dialog" aria-modal="true" aria-label="Mobile menu">
             <div class="drawer-header">
-                <a href="/" class="drawer-logo" aria-label="Ezconv home">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 58 58" fill="none"
-                        aria-hidden="true" focusable="false">
-                        <rect x="4.1676" y="0" width="53.8323" height="53.8323" rx="8" ry="8" fill="#CB0E35" />
-                        <rect x="0" y="4.16766" width="53.8323" height="53.8323" rx="8" ry="8" fill="white" />
+                <a href="/" class="drawer-logo" aria-label="EzConv.pro home">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 50" fill="none" aria-hidden="true"
+                        focusable="false">
                         <path
-                            d="M39.2054 46.1916H14.6268C10.3869 46.1866 6.95113 42.7687 6.94604 38.5509V23.2695C6.95113 19.0517 10.3869 15.6338 14.6268 15.6287H39.2054C43.4453 15.6338 46.8811 19.0517 46.8862 23.2695V38.5509C46.8811 42.7687 43.4453 46.1866 39.2054 46.1916ZM14.6268 18.685C12.0816 18.685 10.0184 20.7375 10.0184 23.2695V38.5509C10.0184 41.0828 12.0816 43.1353 14.6268 43.1353H39.2054C41.7506 43.1353 43.8138 41.0828 43.8138 38.5509V23.2695C43.8138 20.7375 41.7506 18.685 39.2054 18.685H14.6268Z"
-                            fill="#8D021F" />
-                        <path
-                            d="M24.0174 38.965C22.3238 38.9575 20.9527 37.5935 20.9451 35.9087V25.9162C20.9451 24.2283 22.3207 22.8599 24.0175 22.86C24.5568 22.86 25.0866 23.0013 25.5535 23.2694L34.2467 28.2634C35.7161 29.1074 36.2195 30.9766 35.371 32.4384C35.1014 32.903 34.7137 33.2886 34.2467 33.5569L25.5535 38.5509C25.0872 38.8214 24.5572 38.9642 24.0174 38.965ZM32.712 30.9102L24.0174 25.9162V35.9041L32.712 30.9102Z"
-                            fill="#8D021F" />
+                            d="M 4 23 v 4 M 10 20 v 10 M 16 15 v 20 M 22 9 v 32 M 28 15 v 20 M 34 17 v 16 M 40 10 v 30 M 46 4 v 42 M 52 2 v 46 M 58 11 v 28 M 64 16 v 18 M 70 12 v 26 M 76 18 v 14 M 82 17 v 16 M 88 21 v 8"
+                            stroke="#C65D3B" stroke-width="3.5" stroke-linecap="round" fill="none" />
                     </svg>
-                    <span class="drawer-logo-text">ezconv.pro</span>
+                    <span class="drawer-logo-text">EzConv.pro</span>
                 </a>
                 <button id="close-drawer-btn" class="drawer-close" type="button" aria-label="Close menu">
                     <span aria-hidden="true">&times;</span>
@@ -152,6 +180,25 @@
                     <a href="/policy" class="drawer-link">Privacy</a>
                     <a href="/dmca" class="drawer-link">DMCA</a>
                 </nav>
+
+                <button class="theme-toggle-btn theme-toggle-btn--drawer" type="button" aria-label="Toggle theme">
+                    <svg class="theme-icon theme-icon--sun" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5" />
+                        <line x1="12" y1="1" x2="12" y2="3" />
+                        <line x1="12" y1="21" x2="12" y2="23" />
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                        <line x1="1" y1="12" x2="3" y2="12" />
+                        <line x1="21" y1="12" x2="23" y2="12" />
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                    </svg>
+                    <svg class="theme-icon theme-icon--moon" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                    </svg>
+                </button>
             </div>
         </div>
     </div>
