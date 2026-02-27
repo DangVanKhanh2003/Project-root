@@ -663,7 +663,14 @@ export class MultiDownloadService {
                         videoStore.updateProgress(id, progress, phase);
                     },
                     onComplete: (downloadUrl, filename) => {
-                        videoStore.setCompleted(id, downloadUrl, filename);
+                        // Keep merging UI visible briefly so users can see progress reach 100%.
+                        const completeAfterMs = 350;
+                        window.setTimeout(() => {
+                            // Item may have been cancelled/removed while waiting.
+                            const latest = videoStore.getItem(id);
+                            if (!latest || latest.status !== 'converting') return;
+                            videoStore.setCompleted(id, downloadUrl, filename);
+                        }, completeAfterMs);
                     },
                     onError: (message) => {
                         videoStore.setError(id, message);

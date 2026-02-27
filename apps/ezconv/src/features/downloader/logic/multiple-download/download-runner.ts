@@ -113,7 +113,12 @@ async function pollStatus(
             }
 
             // Phase detection
+            // Some jobs report status=pending with progress=100 before exposing detail.video/audio=100.
+            // Treat that state as merging so UI does not appear stuck at 100% in processing.
             let phase: ProgressPhase = 'processing';
+            if (normalizedStatus === 'pending' && lastProgress >= 100) {
+                phase = 'merging';
+            }
             if (statusData.detail) {
                 if (statusData.detail.video === 100 && statusData.detail.audio === 100) {
                     phase = 'merging';
@@ -124,6 +129,11 @@ async function pollStatus(
 
             if (normalizedStatus === 'completed') {
                 if (statusData.downloadUrl) {
+                    if (lastProgress < 100) {
+                        await animateProgressTo100(lastProgress, 'processing', signal, callbacks.onProgress);
+                    }
+                    // Ensure UI enters final merging state at 100% before marking completed.
+                    callbacks.onProgress(100, 'merging');
                     const filename = statusData.title
                         ? `${statusData.title}.${getExtension(callbacks)}`
                         : undefined;
@@ -197,6 +207,28 @@ function getExtension(callbacks: DownloadCallbacks): string {
 
 function sleep(ms: number): Promise<void> {
     return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function animateProgressTo100(
+    from: number,
+    phase: ProgressPhase,
+    signal: AbortSignal,
+    onProgress: (progress: number, phase?: ProgressPhase) => void
+): Promise<void> {
+    const start = Math.max(0, Math.min(100, Math.round(from)));
+    if (start >= 100) return;
+
+    const durationMs = 450;
+    const stepMs = 30;
+    const steps = Math.max(1, Math.floor(durationMs / stepMs));
+
+    for (let i = 1; i <= steps; i++) {
+        if (signal.aborted) return;
+        const next = Math.min(100, Math.round(start + ((100 - start) * i) / steps));
+        onProgress(next, phase);
+        await sleep(stepMs);
+        if (next >= 100) return;
+    }
 }
 
 function isTerminalJobError(error: unknown): boolean {

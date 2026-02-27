@@ -217,8 +217,12 @@ export class VideoItemRenderer {
         const percentEl = el.querySelector('.progress-percentage-label') as HTMLElement;
         if (percentEl) {
             if (VideoItemRenderer.isMergingPhase(item)) {
-                const estimator = getMergingEstimator(item.id);
-                percentEl.textContent = `${Math.round(estimator.getProgress())}%`;
+                if (mergingTransitionInProgress.get(item.id)) {
+                    percentEl.textContent = `${Math.round(item.progress)}%`;
+                } else {
+                    const estimator = getMergingEstimator(item.id);
+                    percentEl.textContent = `${Math.round(estimator.getProgress())}%`;
+                }
             } else {
                 percentEl.textContent = `${Math.round(item.progress)}%`;
             }
@@ -326,17 +330,28 @@ export class VideoItemRenderer {
                             return;
                         }
 
-                        if (bar) bar.style.width = '0%';
+                        if (bar) {
+                            const previousTransition = bar.style.transition;
+                            bar.style.transition = 'none';
+                            bar.style.width = '0%';
+                            // Force reflow so reset-to-zero is applied immediately without animation.
+                            void bar.offsetWidth;
+                            bar.style.transition = previousTransition;
+                        }
                         if (percentLabel) percentLabel.textContent = '0%';
 
                         const estimator = getMergingEstimator(item.id);
                         estimator.start((p) => {
                             if (!document.body.contains(el) || !el.classList.contains('converting')) return;
-                            if (bar) bar.style.width = `${p}%`;
-                            if (percentLabel) percentLabel.textContent = `${p}%`;
+                            if (bar) bar.style.width = `${p.toFixed(2)}%`;
+                            if (percentLabel) percentLabel.textContent = `${Math.round(p)}%`;
                         });
 
                         mergingTransitionInProgress.set(item.id, false);
+                        const container = el.querySelector('.multi-video-progress');
+                        if (container) {
+                            container.classList.add('phase-merging');
+                        }
                     }, 400);
                 }
 
@@ -345,8 +360,8 @@ export class VideoItemRenderer {
                     const mergeProgress = estimator.isRunning()
                         ? estimator.getProgress()
                         : Math.min(98, progressPercent);
-                    if (bar) bar.style.width = `${mergeProgress}%`;
-                    if (percentLabel) percentLabel.textContent = `${mergeProgress}%`;
+                    if (bar) bar.style.width = `${mergeProgress.toFixed(2)}%`;
+                    if (percentLabel) percentLabel.textContent = `${Math.round(mergeProgress)}%`;
                 }
             } else {
                 clearMergingEstimator(item.id);
@@ -357,7 +372,7 @@ export class VideoItemRenderer {
             // Phase-specific color
             const progressContainer = el.querySelector('.multi-video-progress');
             if (progressContainer) {
-                if (isMergingPhase) {
+                if (isMergingPhase && !mergingTransitionInProgress.get(item.id)) {
                     progressContainer.classList.add('phase-merging');
                 } else {
                     progressContainer.classList.remove('phase-merging');

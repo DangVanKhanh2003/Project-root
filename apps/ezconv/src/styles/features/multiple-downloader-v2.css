@@ -1275,8 +1275,8 @@ html[data-theme="dark"] .keyword-search-load-more-btn:hover:not(:disabled) {
 .master-checkbox,
 .multiple-download-checkbox,
 .group-checkbox {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
     cursor: pointer;
     accent-color: var(--accent-ui, #C65D3B);
 }
@@ -1289,8 +1289,8 @@ html[data-theme="dark"] .keyword-search-load-more-btn:hover:not(:disabled) {
 }
 
 .item-checkbox {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
     cursor: pointer;
     accent-color: var(--accent-ui, #C65D3B);
     border: 2px solid var(--border-default);
@@ -1332,7 +1332,8 @@ html[data-theme="dark"] .keyword-search-load-more-btn:hover:not(:disabled) {
    NEW: Phase-specific progress bar colors
    ========================================= */
 .multi-video-progress.phase-merging .progress-bar {
-    background: #f59e0b;
+    background: var(--brand, #C65D3B);
+    transition: width 0.12s linear;
 }
 
 /* =========================================
@@ -2294,7 +2295,7 @@ html[data-theme="dark"] .btn-download-multi-download.is-outline:hover {
         justify-content: center;
     }
 
-    .multi-btn-convert.convert-below-advanced + #error-message {
+    .multi-btn-convert.convert-below-advanced+#error-message {
         margin-top: 12px;
     }
 
@@ -2454,9 +2455,12 @@ html[data-theme="dark"] .btn-download-multi-download.is-outline:hover {
         display: none !important;
     }
 
+    .master-checkbox,
+    .multiple-download-checkbox,
+    .group-checkbox,
     .item-checkbox {
-        width: 12px;
-        height: 12px;
+        width: 14px !important;
+        height: 14px !important;
     }
 
     .multi-download-header {

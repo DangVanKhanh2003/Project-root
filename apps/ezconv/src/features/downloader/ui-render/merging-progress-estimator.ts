@@ -37,7 +37,7 @@ export function createMergingEstimator(): MergingEstimator {
     // Initial update
     onProgress(0);
 
-    // Tick every 100ms
+    // Tick faster for smoother bar movement
     intervalId = window.setInterval(() => {
       const elapsed = (Date.now() - startTime) / 1000; // seconds
 
@@ -45,10 +45,14 @@ export function createMergingEstimator(): MergingEstimator {
       if (elapsed <= 15) {
         // Phase 1: 0 -> 50% in 15s (Linear)
         target = (elapsed / 15) * 50;
-      } else if (elapsed <= 40) {
-        // Phase 2: 50 -> 98% in 25s (Linear)
+      } else if (elapsed <= 35) {
+        // Phase 2: 50 -> 90% in 20s
         const phase2Elapsed = elapsed - 15;
-        target = 50 + (phase2Elapsed / 25) * 48;
+        target = 50 + (phase2Elapsed / 20) * 40;
+      } else if (elapsed <= 50) {
+        // Phase 3 (slower tail): 90 -> 98% in 15s
+        const phase3Elapsed = elapsed - 35;
+        target = 90 + (phase3Elapsed / 15) * 8;
       } else {
         // Cap at 98%
         target = 98;
@@ -57,17 +61,13 @@ export function createMergingEstimator(): MergingEstimator {
       // Ensure we don't go backwards or exceed 98
       target = Math.min(98, Math.max(currentProgress, target));
       
-      const rounded = Math.round(target);
-      if (Math.round(currentProgress) !== rounded) {
-         currentProgress = target; // Update internal float
-         if (onProgressCallback) {
-            onProgressCallback(rounded);
-         }
-      } else {
-         currentProgress = target; // Just update internal float
+      const changed = Math.abs(target - currentProgress) >= 0.02;
+      currentProgress = target;
+      if (changed && onProgressCallback) {
+        onProgressCallback(currentProgress);
       }
 
-    }, 100);
+    }, 50);
   }
 
   function stop(): void {
@@ -89,7 +89,7 @@ export function createMergingEstimator(): MergingEstimator {
   }
 
   function getProgress(): number {
-    return Math.round(currentProgress);
+    return currentProgress;
   }
 
   function isRunning(): boolean {
