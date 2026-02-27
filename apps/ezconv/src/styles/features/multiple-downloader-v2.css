@@ -1455,11 +1455,11 @@ html[data-theme="dark"] .keyword-search-load-more-btn:hover:not(:disabled) {
 }
 
 .btn-playlist-group-action {
-    background: var(--surface-weak, #e8f1ff);
-    color: var(--brand, #C65D3B);
-    border: 1px solid rgba(198, 93, 59, 0.2);
+    background: var(--brand, #C65D3B);
+    color: #ffffff;
+    border: 1px solid transparent;
     padding: 0.5rem 1rem;
-    border-radius: 20px;
+    border-radius: 10px;
     font-size: 0.875rem;
     font-weight: 600;
     cursor: pointer;
@@ -1472,60 +1472,67 @@ html[data-theme="dark"] .keyword-search-load-more-btn:hover:not(:disabled) {
 }
 
 .btn-playlist-group-action:hover:not(:disabled) {
-    background: rgba(198, 93, 59, 0.1);
-    border-color: rgba(198, 93, 59, 0.3);
+    background: var(--brand-hover, #B14F2F);
+    border-color: transparent;
 }
 
 .btn-playlist-group-action:disabled {
     cursor: not-allowed;
-    background: var(--bg-hover);
-    border-color: var(--border-default);
-    color: var(--text-secondary);
+    background: rgba(198, 93, 59, 0.2);
+    border-color: rgba(198, 93, 59, 0.25);
+    color: rgba(198, 93, 59, 0.75);
     opacity: 0.8;
 }
 
 .btn-playlist-group-action.btn-success {
+    background: var(--brand, #C65D3B);
+    color: #ffffff;
     border: none;
 }
 
 .btn-playlist-group-action.btn-success:hover:not(:disabled) {
+    background: var(--brand-hover, #B14F2F);
     border: none;
 }
 
 html[data-theme="dark"] .btn-playlist-group-action:not(.btn-success) {
-    background: var(--brand, #C65D3B);
+    background: #000000;
     color: #ffffff;
     border-color: transparent;
 }
 
 html[data-theme="dark"] .btn-playlist-group-action:not(.btn-success):hover:not(:disabled) {
-    background: var(--brand-hover, #B14F2F);
+    background: var(--brand, #C65D3B);
+    color: #ffffff;
     border-color: transparent;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 html[data-theme="dark"] .btn-playlist-group-action:not(.btn-success):disabled {
-    background: var(--bg-hover);
-    border-color: var(--border-default);
-    color: var(--text-secondary);
+    background: #FAF9F5;
+    color: #61615F;
+    border-color: transparent;
 }
 
 html[data-theme="dark"] .btn-playlist-group-action.btn-success {
     display: inline-flex;
     align-items: center;
-    background: var(--brand, #C65D3B);
-    color: #ffffff;
+    background: #FAF9F5;
+    color: #61615F;
     border: none;
 }
 
 html[data-theme="dark"] .btn-playlist-group-action.btn-success:hover:not(:disabled) {
-    background: var(--brand-hover, #B14F2F);
+    background: var(--brand, #C65D3B);
+    color: #ffffff;
     border: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 html[data-theme="dark"] .btn-playlist-group-action.btn-success:disabled {
-    background: var(--bg-hover);
-    color: var(--text-secondary);
-    border-color: var(--border-default);
+    background: #FAF9F5;
+    color: #61615F;
+    border-color: transparent;
 }
 
 html[data-theme="dark"] .btn-playlist-group-action.btn-success .btn-icon-zip {
@@ -1549,20 +1556,20 @@ html[data-theme="dark"] .playlist-group {
 }
 
 html[data-theme="light"] .btn-playlist-group-action {
-    background: #111111;
+    background: var(--brand, #C65D3B);
     color: #ffffff;
     border-color: transparent;
 }
 
 html[data-theme="light"] .btn-playlist-group-action:hover:not(:disabled) {
-    background: #000000;
+    background: var(--brand-hover, #B14F2F);
     border-color: transparent;
 }
 
 html[data-theme="light"] .btn-playlist-group-action:disabled {
-    background: #9ca3af;
-    color: #f3f4f6;
-    border-color: transparent;
+    background: rgba(198, 93, 59, 0.2);
+    color: rgba(198, 93, 59, 0.75);
+    border-color: rgba(198, 93, 59, 0.25);
 }
 
 
