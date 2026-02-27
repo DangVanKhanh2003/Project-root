@@ -130,6 +130,34 @@ export function createStoreChangeHandler(config: StoreChangeHandlerConfig) {
             }
 
             case 'item:updated': {
+                // Batch update: only the changed items (from batchSetQueued)
+                if (Array.isArray(data)) {
+                    const changedItems = data as VideoItem[];
+                    const isGlobalLocked = config.getGlobalLockState?.() || false;
+                    const activeLoadingId = config.getActiveLoadingId?.() || null;
+                    const affectedGroupIds = new Set<string>();
+
+                    for (const item of changedItems) {
+                        const el = getItemElement(item.id);
+                        if (el) {
+                            VideoItemRenderer.updateVideoItemElement(el, item, resolveStrategy(item), {
+                                isGlobalLocked,
+                                currentDownloadingItemId: activeLoadingId || undefined
+                            });
+                        }
+                        if (item.groupId) affectedGroupIds.add(item.groupId);
+                    }
+
+                    // Only update affected groups, not all groups
+                    for (const gid of affectedGroupIds) {
+                        const groupEl = groupListContainer.querySelector(`[data-group-id="${gid}"]`) as HTMLElement;
+                        if (groupEl) updateGroupCount(groupEl, isGlobalLocked);
+                    }
+
+                    onCountsChanged?.();
+                    return;
+                }
+
                 // If data is null/undefined, it means a global UI update (e.g. lock release)
                 if (!data) {
                     const items = videoStore.getAllItems();
@@ -237,6 +265,22 @@ export function createStoreChangeHandler(config: StoreChangeHandlerConfig) {
 
             case 'items:selection-changed': {
                 const isLocked = config.getGlobalLockState?.() || false;
+
+                if (typeof data === 'string') {
+                    // Group-scoped: only sync checkboxes within this group
+                    const groupId = data;
+                    const groupEl = groupListContainer.querySelector(`[data-group-id="${groupId}"]`) as HTMLElement;
+                    if (groupEl) {
+                        const itemsMap = new Map(videoStore.getItemsByGroup(groupId).map(i => [i.id, i]));
+                        groupEl.querySelectorAll<HTMLInputElement>('.item-checkbox').forEach(cb => {
+                            const item = itemsMap.get(cb.dataset.id!);
+                            if (item) cb.checked = item.isSelected;
+                        });
+                        updateGroupCount(groupEl, isLocked);
+                    }
+                    onCountsChanged?.();
+                    break;
+                }
 
                 if (data) {
                     // Single item toggled (from toggleSelect) — only update that checkbox + its group

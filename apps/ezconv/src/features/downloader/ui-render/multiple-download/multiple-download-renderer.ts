@@ -616,7 +616,7 @@ export class MultipleDownloadRenderer {
                 .map(item => item.id);
 
             if (downloadTabItemIds.length > 0) {
-                videoStore.setItemsSelection(downloadTabItemIds, false);
+                videoStore.setItemsSelection(downloadTabItemIds, false, groupId);
             }
         }
 
@@ -645,7 +645,7 @@ export class MultipleDownloadRenderer {
             activeTab === 'all' ? true
                 : activeTab === 'convert' ? isConvertTabStatus(i.status) : isDownloadTabStatus(i.status)
         );
-        videoStore.setItemsSelection(tabItems.map(i => i.id), checked);
+        videoStore.setItemsSelection(tabItems.map(i => i.id), checked, groupId);
     }
 
     private toggleBatchSelection(checked: boolean) {

@@ -147,14 +147,15 @@ class VideoStore {
                 item.isSelected = false;
             }
         }
-        this.notify('items:selection-changed', null);
+        // Pass groupId so handler only updates this group's checkboxes
+        this.notify('items:selection-changed', groupId);
     }
 
     /**
      * Batch-select/deselect a list of item IDs and fire ONE event.
-     * Use this instead of calling toggleSelect() in a loop.
+     * Pass groupId to scope DOM updates to that group only.
      */
-    setItemsSelection(ids: string[], selected: boolean): void {
+    setItemsSelection(ids: string[], selected: boolean, groupId?: string): void {
         for (const id of ids) {
             const item = this.items.get(id);
             if (!item) continue;
@@ -164,7 +165,7 @@ class VideoStore {
                 item.isSelected = false;
             }
         }
-        this.notify('items:selection-changed', null);
+        this.notify('items:selection-changed', groupId ?? null);
     }
 
     getSelectedItems(): VideoItem[] {
@@ -185,9 +186,10 @@ class VideoStore {
 
     /**
      * Set multiple items to 'queued' in one pass and fire ONE event.
-     * Use this instead of calling setStatus('queued') in a loop.
+     * Passes the changed items array so handler only re-renders those items.
      */
     batchSetQueued(ids: string[]): void {
+        const changed: VideoItem[] = [];
         for (const id of ids) {
             const item = this.items.get(id);
             if (!item) continue;
@@ -195,8 +197,9 @@ class VideoStore {
             item.progress = 0;
             item.progressPhase = undefined;
             item.isSelected = false;
+            changed.push(item);
         }
-        this.notify('item:updated', null);
+        this.notify('item:updated', changed);
     }
 
     setStatus(id: string, status: VideoItem['status']): void {
