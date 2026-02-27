@@ -168,6 +168,11 @@
     font-size: 14px;
     margin-top: 12px;
     min-height: 20px;
+    padding: 10px 12px;
+    border: 1px solid color-mix(in srgb, var(--color-status-error) 35%, transparent);
+    border-radius: 10px;
+    background: color-mix(in srgb, var(--color-status-error) 12%, transparent);
+    line-height: 1.4;
 }
 
 .error-message.show {

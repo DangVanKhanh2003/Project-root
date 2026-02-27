@@ -5,6 +5,7 @@
  */
 
 import { VideoItemSettings } from '../../downloader/state/multiple-download-types';
+import { autoResizeSelect } from '../../../utils/dom-utils';
 
 // ==========================================
 // Filename style preview templates
@@ -28,6 +29,9 @@ const FILENAME_PREVIEWS: Record<string, { video: string; audio: string }> = {
         audio: 'Video Title - Author (192k, youtube, dQw4w9WgXcQ).mp3',
     },
 };
+
+const QUALITY_SELECT_EXTRA_WIDTH = 30;
+const MOBILE_BREAKPOINT_QUERY = '(max-width: 900px)';
 
 // ==========================================
 // Read current settings from UI
@@ -132,6 +136,30 @@ function updateFilenamePreview(style: string): void {
     if (audioEl) audioEl.textContent = preview.audio;
 }
 
+function syncQualitySelectWidth(select: HTMLSelectElement | null): void {
+    if (!select) return;
+
+    if (window.matchMedia(MOBILE_BREAKPOINT_QUERY).matches) {
+        // Let mobile CSS keep full-width behavior.
+        select.style.width = '';
+        return;
+    }
+
+    autoResizeSelect(select);
+    const measuredWidth = parseFloat(select.style.width);
+    if (Number.isFinite(measuredWidth) && measuredWidth > 0) {
+        select.style.width = `${Math.ceil(measuredWidth + QUALITY_SELECT_EXTRA_WIDTH)}px`;
+    }
+}
+
+function syncAllQualitySelectWidths(
+    qualitySelectMp3: HTMLSelectElement | null,
+    qualitySelectMp4: HTMLSelectElement | null
+): void {
+    syncQualitySelectWidth(qualitySelectMp3);
+    syncQualitySelectWidth(qualitySelectMp4);
+}
+
 // ==========================================
 // Wire format/quality toggle listeners
 // ==========================================
@@ -145,11 +173,18 @@ export function initFormatToggle(): void {
         const format = (formatSelect.value || 'mp4') as 'mp3' | 'mp4';
         document.documentElement.dataset.format = format;
         syncFilenamePreviewVisibility(format);
+        syncAllQualitySelectWidths(qualitySelectMp3, qualitySelectMp4);
         saveFormatPreferences();
     });
 
-    qualitySelectMp3?.addEventListener('change', saveFormatPreferences);
-    qualitySelectMp4?.addEventListener('change', saveFormatPreferences);
+    qualitySelectMp3?.addEventListener('change', () => {
+        syncQualitySelectWidth(qualitySelectMp3);
+        saveFormatPreferences();
+    });
+    qualitySelectMp4?.addEventListener('change', () => {
+        syncQualitySelectWidth(qualitySelectMp4);
+        saveFormatPreferences();
+    });
 
     // --- Filename Style tabs ---
     const styleTabs = document.querySelectorAll('#filename-style-tabs .fs-tab');
@@ -204,4 +239,17 @@ export function initFormatToggle(): void {
             }
         }
     } catch (_) { }
+
+    syncAllQualitySelectWidths(qualitySelectMp3, qualitySelectMp4);
+
+    let rafId = 0;
+    window.addEventListener('resize', () => {
+        if (rafId) {
+            cancelAnimationFrame(rafId);
+        }
+        rafId = requestAnimationFrame(() => {
+            syncAllQualitySelectWidths(qualitySelectMp3, qualitySelectMp4);
+            rafId = 0;
+        });
+    });
 }

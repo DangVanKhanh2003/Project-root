@@ -11,7 +11,7 @@
     display: flex;
     gap: 0;
     background: var(--border-default);
-    border-radius: 10px;
+    border-radius: 6px;
     padding: 3px;
     width: 100%;
 }

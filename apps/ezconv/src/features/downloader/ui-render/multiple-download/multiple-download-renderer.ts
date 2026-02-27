@@ -443,9 +443,9 @@ export class MultipleDownloadRenderer {
     private async handleDownloadZipBatch(btn: HTMLElement) {
         if (!(btn instanceof HTMLButtonElement)) return;
 
-        const originalText = btn.textContent;
+        const originalHtml = btn.innerHTML;
         btn.disabled = true;
-        btn.textContent = 'Creating ZIP...';
+        btn.innerHTML = 'Creating ZIP...';
 
         try {
             const completedIds = videoStore.getAllItems()
@@ -468,7 +468,7 @@ export class MultipleDownloadRenderer {
             alert(error.message || 'Failed to create ZIP');
         } finally {
             btn.disabled = false;
-            btn.textContent = originalText;
+            btn.innerHTML = originalHtml;
             this.updateBatchHeader();
         }
     }
@@ -476,9 +476,9 @@ export class MultipleDownloadRenderer {
     private async handleDownloadZipGroup(groupId: string, btn: HTMLElement) {
         if (!(btn instanceof HTMLButtonElement)) return;
 
-        const originalText = btn.textContent;
+        const originalHtml = btn.innerHTML;
         btn.disabled = true;
-        btn.textContent = 'Creating ZIP...';
+        btn.innerHTML = 'Creating ZIP...';
 
         try {
             const completedIds = videoStore.getItemsByGroup(groupId)
@@ -501,7 +501,7 @@ export class MultipleDownloadRenderer {
             alert(error.message || 'Failed to create ZIP');
         } finally {
             btn.disabled = false;
-            btn.textContent = originalText;
+            btn.innerHTML = originalHtml;
         }
     }
 

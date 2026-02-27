@@ -17,11 +17,13 @@
     padding: 14px;
     box-shadow: none;
     border: 1px solid var(--border-default);
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     max-width: 1100px;
     margin-left: auto;
     margin-right: auto;
     width: 100%;
+    position: relative;
+    overflow: visible;
 }
 
 .multiple-download-card h1 {
@@ -67,7 +69,7 @@
     border: 0px;
     border-radius: 24px;
     transition: all 0.3s ease;
-    position: relative;
+    position: static;
 }
 
 .keyword-suggest-list {
@@ -96,6 +98,10 @@
 
 .keyword-search-results-section {
     margin-bottom: 14px;
+    margin-top: 8px;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .keyword-result-card-wrap {
@@ -129,6 +135,13 @@
 
 .keyword-result-card-wrap .search-result-card {
     margin: 0;
+    transform: none !important;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease !important;
+}
+
+.keyword-result-card-wrap .search-result-card:hover,
+.keyword-result-card-wrap .search-result-card:active {
+    transform: none !important;
 }
 
 .keyword-results-message {
@@ -193,19 +206,55 @@
     transform: none;
 }
 
-.urls-input-container #keyword-suggestion-container {
+#multi-download-form #keyword-suggestion-container {
     position: absolute;
-    left: 12px;
-    right: 12px;
+    left: 0;
+    right: 0;
+    width: 100%;
     top: calc(100% + 8px);
-    z-index: 25;
+    z-index: 40;
 }
 
-.urls-input-container #keyword-suggestion-container.suggestion-container--visible {
+#multi-download-form #keyword-suggestion-container.suggestion-container--visible {
     display: block;
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
+}
+
+html[data-theme="dark"] .keyword-suggest-list {
+    background: #131823;
+    border-color: rgba(148, 163, 184, 0.24);
+    box-shadow: 0 10px 24px rgba(2, 6, 23, 0.55);
+}
+
+html[data-theme="dark"] .keyword-suggest-item {
+    background: #131823;
+    color: #e5e7eb;
+}
+
+html[data-theme="dark"] .keyword-suggest-item:hover,
+html[data-theme="dark"] .keyword-suggest-item.is-highlighted {
+    background: #1d2635;
+    color: #f8fafc;
+}
+
+html[data-theme="dark"] .keyword-results-message {
+    background: #131823;
+    color: #cbd5e1;
+    border-color: rgba(148, 163, 184, 0.3);
+}
+
+html[data-theme="dark"] .keyword-search-load-more-btn {
+    background: #131823;
+    color: #e5e7eb;
+    border-color: rgba(148, 163, 184, 0.3);
+}
+
+html[data-theme="dark"] .keyword-search-load-more-btn:hover:not(:disabled) {
+    background: #1d2635;
+    border-color: rgba(148, 163, 184, 0.5);
+    box-shadow: 0 6px 16px rgba(2, 6, 23, 0.45);
 }
 
 
@@ -342,7 +391,7 @@
 }
 
 .multi-format-select:hover,
-.multi-format-select:focus {
+.multi-format-select:focus-visible {
     background: var(--bg-hover);
 }
 
@@ -378,7 +427,7 @@
 }
 
 .multi-quality-select:hover,
-.multi-quality-select:focus {
+.multi-quality-select:focus-visible {
     background: var(--bg-hover);
     border-color: var(--border-input);
 }
@@ -1434,6 +1483,79 @@
     opacity: 0.8;
 }
 
+.btn-playlist-group-action.btn-success {
+    border: none;
+}
+
+.btn-playlist-group-action.btn-success:hover:not(:disabled) {
+    border: none;
+}
+
+html[data-theme="dark"] .btn-playlist-group-action:not(.btn-success) {
+    background: var(--brand, #C65D3B);
+    color: #ffffff;
+    border-color: transparent;
+}
+
+html[data-theme="dark"] .btn-playlist-group-action:not(.btn-success):hover:not(:disabled) {
+    background: var(--brand-hover, #B14F2F);
+    border-color: transparent;
+}
+
+html[data-theme="dark"] .btn-playlist-group-action:not(.btn-success):disabled {
+    background: var(--bg-hover);
+    border-color: var(--border-default);
+    color: var(--text-secondary);
+}
+
+html[data-theme="dark"] .btn-playlist-group-action.btn-success {
+    display: inline-flex;
+    align-items: center;
+    background: var(--brand, #C65D3B);
+    color: #ffffff;
+    border: none;
+}
+
+html[data-theme="dark"] .btn-playlist-group-action.btn-success:hover:not(:disabled) {
+    background: var(--brand-hover, #B14F2F);
+    border: none;
+}
+
+html[data-theme="dark"] .btn-playlist-group-action.btn-success:disabled {
+    background: var(--bg-hover);
+    color: var(--text-secondary);
+    border-color: var(--border-default);
+}
+
+html[data-theme="dark"] .btn-playlist-group-action.btn-success .btn-icon-zip {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    fill: currentColor;
+    flex-shrink: 0;
+}
+
+html[data-theme="light"] .tab-glider {
+    background: #111111;
+}
+
+html[data-theme="light"] .btn-playlist-group-action {
+    background: #111111;
+    color: #ffffff;
+    border-color: transparent;
+}
+
+html[data-theme="light"] .btn-playlist-group-action:hover:not(:disabled) {
+    background: #000000;
+    border-color: transparent;
+}
+
+html[data-theme="light"] .btn-playlist-group-action:disabled {
+    background: #9ca3af;
+    color: #f3f4f6;
+    border-color: transparent;
+}
+
 
 
 .playlist-group.collapsed .group-items {
@@ -1667,6 +1789,18 @@
     color: white;
 }
 
+html[data-theme="dark"] .btn-download-multi-download.is-outline {
+    background: rgba(148, 163, 184, 0.2);
+    border-color: #94a3b8;
+    color: #e2e8f0;
+}
+
+html[data-theme="dark"] .btn-download-multi-download.is-outline:hover {
+    background: #94a3b8;
+    border-color: #94a3b8;
+    color: #0f172a;
+}
+
 @keyframes spin {
     from {
         transform: rotate(0deg);
@@ -1743,17 +1877,17 @@
 
 /* Panel */
 .advanced-settings-panel {
-    margin-top: 12px;
     padding: 16px 20px;
     background: var(--bg-page);
     border: 1px solid var(--border-subtle);
     border-radius: 6px;
+    width: 100%;
 }
 
 [data-theme="dark"] .advanced-settings-panel {
     --tw-bg-opacity: 1;
     background: hsl(var(--bg-000) / var(--tw-bg-opacity));
-    border-color: hsl(var(--border-200) / .3);
+    border-color: #505050;
 }
 
 .adv-settings-row {
@@ -1787,7 +1921,7 @@
     border-radius: 6px;
     border: 1px solid var(--border-default);
     height: auto;
-    min-height: 34px;
+    min-height: 35px;
     padding: 6px 10px;
     font-size: 13px;
     width: auto;
