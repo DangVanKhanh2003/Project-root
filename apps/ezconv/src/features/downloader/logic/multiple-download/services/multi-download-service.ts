@@ -218,7 +218,7 @@ export class MultiDownloadService {
         videoUrl: string,
         globalSettings?: Partial<VideoItemSettings>,
         onItemsAdded?: () => void
-    ): Promise<void> {
+    ): Promise<string> {
         const videoId = extractVideoId(videoUrl) || `video_${Date.now()}`;
         const groupId = `single_${videoId}_${Date.now()}`;
         const normalizedUrl = normalizeURL(videoId);
@@ -277,6 +277,8 @@ export class MultiDownloadService {
                 }
             }
         );
+
+        return groupId;
     }
 
     // ==========================================

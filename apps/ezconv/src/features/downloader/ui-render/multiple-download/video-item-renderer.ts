@@ -70,14 +70,14 @@ export class VideoItemRenderer {
     /**
      * Create a DOM element for a video item (called once per item)
      */
-    static createVideoItemElement(item: VideoItem, strategy: RendererStrategy): HTMLElement {
+    static createVideoItemElement(item: VideoItem, strategy: RendererStrategy, context: { isGlobalLocked?: boolean, activeTab?: string } = {}): HTMLElement {
         const el = document.createElement('div');
         el.className = 'multi-video-item';
         el.dataset.id = item.id;
         if (item.groupId) el.dataset.groupId = item.groupId;
 
         // Build initial structure
-        VideoItemRenderer.buildStructure(el, item, strategy, { isGlobalLocked: false });
+        VideoItemRenderer.buildStructure(el, item, strategy, context);
         VideoItemRenderer.applyStatusClass(el, item);
         VideoItemRenderer.updatePhaseLabel(el, item, strategy);
         VideoItemRenderer.updateProgressBar(el, item);
@@ -92,7 +92,7 @@ export class VideoItemRenderer {
     /**
      * Update existing element (granular, no re-create)
      */
-    static updateVideoItemElement(el: HTMLElement, item: VideoItem, strategy: RendererStrategy, context: { isFileDownloading?: boolean, currentDownloadingItemId?: string, isGlobalLocked?: boolean } = {}): void {
+    static updateVideoItemElement(el: HTMLElement, item: VideoItem, strategy: RendererStrategy, context: { isFileDownloading?: boolean, currentDownloadingItemId?: string, isGlobalLocked?: boolean, activeTab?: string } = {}): void {
 
         // Check for skeleton BEFORE applyStatusClass (which removes skeleton-loading class)
         const hasSkeleton = el.classList.contains('skeleton-loading');
@@ -229,7 +229,7 @@ export class VideoItemRenderer {
     // Private helpers
     // ==========================================
 
-    private static buildStructure(el: HTMLElement, item: VideoItem, strategy: RendererStrategy, context: { isGlobalLocked?: boolean } = {}): void {
+    private static buildStructure(el: HTMLElement, item: VideoItem, strategy: RendererStrategy, context: { isGlobalLocked?: boolean, activeTab?: string } = {}): void {
         if (item.status === 'fetching_metadata') {
             el.classList.add('skeleton-loading');
             el.innerHTML = `

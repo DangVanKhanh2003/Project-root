@@ -167,7 +167,9 @@ async function handlePlaylistModeConvert(
             const playlistUrl = `https://www.youtube.com/playlist?list=${p.playlistId}`;
             await multiDownloadService.addPlaylist(playlistUrl, settings, onItemsAdded);
         } else {
-            await multiDownloadService.addSingleVideoAsGroup(p.url, settings, onItemsAdded);
+            const groupId = await multiDownloadService.addSingleVideoAsGroup(p.url, settings, onItemsAdded);
+            // In playlist mode, single-video URLs should auto-start after metadata is ready.
+            multiDownloadService.startGroupDownloads(groupId);
         }
     });
 

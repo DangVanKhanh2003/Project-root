@@ -7,7 +7,7 @@ import { VideoItem, VideoItemSettings } from '../../state/multiple-download-type
  */
 export interface RendererStrategy {
     buildSettingsContent(item: VideoItem): string;
-    getActionButton(item: VideoItem, context: { isFileDownloading?: boolean, currentDownloadingItemId?: string, isGlobalLocked?: boolean }): string;
+    getActionButton(item: VideoItem, context: { isFileDownloading?: boolean, currentDownloadingItemId?: string, isGlobalLocked?: boolean, activeTab?: string }): string;
     getSettingsClass(item: VideoItem): string;
     getCheckboxHtml(item: VideoItem): string;
     getStatusHtml(item: VideoItem): string;

@@ -55,6 +55,13 @@ export function createStoreChangeHandler(config: StoreChangeHandlerConfig) {
     const getItemElement = (id: string): HTMLElement | null =>
         batchListContainer.querySelector(`.multi-video-item[data-id="${id}"]`) as HTMLElement
         || groupListContainer.querySelector(`.multi-video-item[data-id="${id}"]`) as HTMLElement;
+    const getActiveTabForItem = (item: VideoItem): string | undefined => {
+        if (!item.groupId) return undefined;
+        const groupEl = groupListContainer.querySelector(`[data-group-id="${item.groupId}"]`) as HTMLElement | null;
+        if (!groupEl) return 'convert';
+        const hasTabs = groupEl.dataset.hasTabs === 'true';
+        return hasTabs ? (groupEl.dataset.activeTab || 'convert') : 'all';
+    };
 
     return function handleStoreChange(eventName: VideoStoreEventName, data: any): void {
 
@@ -63,7 +70,6 @@ export function createStoreChangeHandler(config: StoreChangeHandlerConfig) {
                 // data is the full VideoItem
                 const item = data as VideoItem;
                 const itemStrategy = resolveStrategy(item);
-                const el = VideoItemRenderer.createVideoItemElement(item, itemStrategy);
 
                 // Insert into group container if groupId exists
                 if (item.groupId) {
@@ -72,6 +78,10 @@ export function createStoreChangeHandler(config: StoreChangeHandlerConfig) {
                         groupEl = createGroupElement(item.groupId, item.groupTitle || 'Playlist');
                         groupListContainer.prepend(groupEl); // Group add to TOP (newest first)
                     }
+                    const el = VideoItemRenderer.createVideoItemElement(item, itemStrategy, {
+                        isGlobalLocked: config.getGlobalLockState?.() || false,
+                        activeTab: getActiveTabForItem(item)
+                    });
                     const groupList = groupEl.querySelector('.group-items');
                     if (groupList) {
                         groupList.appendChild(el);
@@ -83,6 +93,9 @@ export function createStoreChangeHandler(config: StoreChangeHandlerConfig) {
                     const isLocked = config.getGlobalLockState?.() || false;
                     updateGroupCount(groupEl, isLocked, true, item.id);
                 } else {
+                    const el = VideoItemRenderer.createVideoItemElement(item, itemStrategy, {
+                        isGlobalLocked: config.getGlobalLockState?.() || false
+                    });
                     batchListContainer.appendChild(el);
                     // afterRender must run AFTER DOM insertion so getComputedStyle works correctly
                     if (itemStrategy.afterRender) {
@@ -142,7 +155,8 @@ export function createStoreChangeHandler(config: StoreChangeHandlerConfig) {
                         if (el) {
                             VideoItemRenderer.updateVideoItemElement(el, item, resolveStrategy(item), {
                                 isGlobalLocked,
-                                currentDownloadingItemId: activeLoadingId || undefined
+                                currentDownloadingItemId: activeLoadingId || undefined,
+                                activeTab: getActiveTabForItem(item)
                             });
                         }
                         if (item.groupId) affectedGroupIds.add(item.groupId);
@@ -170,7 +184,8 @@ export function createStoreChangeHandler(config: StoreChangeHandlerConfig) {
                         if (el) {
                             VideoItemRenderer.updateVideoItemElement(el, item, resolveStrategy(item), {
                                 isGlobalLocked,
-                                currentDownloadingItemId: activeLoadingId || undefined
+                                currentDownloadingItemId: activeLoadingId || undefined,
+                                activeTab: getActiveTabForItem(item)
                             });
                         }
                     }
@@ -193,7 +208,8 @@ export function createStoreChangeHandler(config: StoreChangeHandlerConfig) {
 
                 VideoItemRenderer.updateVideoItemElement(el, item, resolveStrategy(item), {
                     isGlobalLocked,
-                    currentDownloadingItemId: activeLoadingId || undefined
+                    currentDownloadingItemId: activeLoadingId || undefined,
+                    activeTab: getActiveTabForItem(item)
                 });
 
                 // Update group count if in a group

@@ -81,7 +81,7 @@ export class PlaylistStrategy implements RendererStrategy {
             </div>`;
     }
 
-    getActionButton(item: VideoItem, context: { isFileDownloading?: boolean, currentDownloadingItemId?: string, isGlobalLocked?: boolean } = {}): string {
+    getActionButton(item: VideoItem, context: { isFileDownloading?: boolean, currentDownloadingItemId?: string, isGlobalLocked?: boolean, activeTab?: string } = {}): string {
         if (isMobileDevice()) {
             return this.getMobileActionButton(item, context);
         }
@@ -190,7 +190,7 @@ export class PlaylistStrategy implements RendererStrategy {
         return `<span class="item-setting-text">${format} · ${details}${trackLabel}${trimLabel}</span>`;
     }
 
-    private getDesktopActionButton(item: VideoItem, context: { isFileDownloading?: boolean, currentDownloadingItemId?: string, isGlobalLocked?: boolean }): string {
+    private getDesktopActionButton(item: VideoItem, context: { isFileDownloading?: boolean, currentDownloadingItemId?: string, isGlobalLocked?: boolean, activeTab?: string }): string {
         if (item.status === 'downloading' || item.status === 'converting') {
             return `
                 <button class="btn-icon btn-cancel" data-action="cancel" data-id="${item.id}" title="Cancel">
@@ -201,6 +201,9 @@ export class PlaylistStrategy implements RendererStrategy {
         }
 
         if (item.status === 'ready') {
+            if (context.activeTab === 'convert') {
+                return removeBtnHtml(item.id);
+            }
             return `
                 <button class="btn-download-multi-download is-outline" type="button" data-action="convert" data-id="${item.id}">
                     <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -252,7 +255,7 @@ export class PlaylistStrategy implements RendererStrategy {
         return removeBtnHtml(item.id);
     }
 
-    private getMobileActionButton(item: VideoItem, context: { isFileDownloading?: boolean, currentDownloadingItemId?: string, isGlobalLocked?: boolean }): string {
+    private getMobileActionButton(item: VideoItem, context: { isFileDownloading?: boolean, currentDownloadingItemId?: string, isGlobalLocked?: boolean, activeTab?: string }): string {
         if (item.status === 'downloading' || item.status === 'converting') {
             return `
                 <button class="btn-icon btn-cancel" data-action="cancel" data-id="${item.id}" title="Cancel">
@@ -290,6 +293,9 @@ export class PlaylistStrategy implements RendererStrategy {
         }
 
         if (item.status === 'ready') {
+            if (context.activeTab === 'convert') {
+                return '';
+            }
             return `
                 <button class="btn-download-multi-download is-outline" type="button" data-action="convert" data-id="${item.id}">
                     <svg class="btn-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

@@ -2454,6 +2454,11 @@ html[data-theme="dark"] .btn-download-multi-download.is-outline:hover {
         display: none !important;
     }
 
+    .item-checkbox {
+        width: 12px;
+        height: 12px;
+    }
+
     .multi-download-header {
         flex-direction: row;
         justify-content: space-between;

@@ -41,7 +41,7 @@ export class MultiDownloadStrategy implements RendererStrategy {
             </div>`;
     }
 
-    getActionButton(item: VideoItem, context: { isFileDownloading?: boolean, currentDownloadingItemId?: string, isGlobalLocked?: boolean } = {}): string {
+    getActionButton(item: VideoItem, context: { isFileDownloading?: boolean, currentDownloadingItemId?: string, isGlobalLocked?: boolean, activeTab?: string } = {}): string {
         if (isMobileDevice()) {
             return this.getMobileActionButton(item, context);
         }
@@ -81,7 +81,7 @@ export class MultiDownloadStrategy implements RendererStrategy {
     // Private Helpers
     // ==========================================
 
-    private getDesktopActionButton(item: VideoItem, context: { isFileDownloading?: boolean, currentDownloadingItemId?: string, isGlobalLocked?: boolean }): string {
+    private getDesktopActionButton(item: VideoItem, context: { isFileDownloading?: boolean, currentDownloadingItemId?: string, isGlobalLocked?: boolean, activeTab?: string }): string {
         const isLocked = !!context.isGlobalLocked;
         const isLoading = context.currentDownloadingItemId === item.id;
         const downloadDisabledAttr = isLocked ? 'disabled' : '';
@@ -147,7 +147,7 @@ export class MultiDownloadStrategy implements RendererStrategy {
         return removeBtnHtml(item.id);
     }
 
-    private getMobileActionButton(item: VideoItem, context: { isFileDownloading?: boolean, currentDownloadingItemId?: string, isGlobalLocked?: boolean }): string {
+    private getMobileActionButton(item: VideoItem, context: { isFileDownloading?: boolean, currentDownloadingItemId?: string, isGlobalLocked?: boolean, activeTab?: string }): string {
         if (item.status === 'downloading' || item.status === 'converting') {
             return '';
         }
