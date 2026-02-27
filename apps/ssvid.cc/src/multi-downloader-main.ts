@@ -46,7 +46,7 @@ async function confirmPlaylistRedirect(): Promise<boolean> {
             message: 'Would you like to download a playlist instead? Go to the playlist downloader page.',
             type: 'info',
             confirmText: 'Playlist page',
-            cancelText: 'Cancel',
+            cancelText: 'Continue',
             buttonLayout: 'row',
             onConfirm: () => settle(true),
             onCancel: () => settle(false)
