@@ -17,7 +17,7 @@
     padding: 14px;
     box-shadow: none;
     border: 1px solid var(--border-default);
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     max-width: 1100px;
     margin-left: auto;
     margin-right: auto;
@@ -1539,6 +1539,14 @@ html[data-theme="light"] .tab-glider {
     background: #111111;
 }
 
+html[data-theme="light"] .playlist-group {
+    border: 1px solid var(--border-default);
+}
+
+html[data-theme="dark"] .playlist-group {
+    border: 1px solid var(--border-default);
+}
+
 html[data-theme="light"] .btn-playlist-group-action {
     background: #111111;
     color: #ffffff;
@@ -1613,6 +1621,56 @@ html[data-theme="light"] .btn-playlist-group-action:disabled {
     appearance: none;
     outline: none;
     flex-shrink: 0;
+}
+
+html[data-theme="light"] .item-settings.is-dropdowns .item-format-select,
+html[data-theme="light"] .item-settings.is-dropdowns .item-quality-select,
+html[data-theme="light"] .item-settings.is-dropdowns .item-audio-track-select {
+    color: var(--text-heading);
+    background-color: transparent;
+    color-scheme: light;
+}
+
+html[data-theme="light"] .item-settings.is-dropdowns .item-format-select:hover,
+html[data-theme="light"] .item-settings.is-dropdowns .item-quality-select:hover,
+html[data-theme="light"] .item-settings.is-dropdowns .item-audio-track-select:hover,
+html[data-theme="light"] .item-settings.is-dropdowns .item-format-select:focus-visible,
+html[data-theme="light"] .item-settings.is-dropdowns .item-quality-select:focus-visible,
+html[data-theme="light"] .item-settings.is-dropdowns .item-audio-track-select:focus-visible {
+    color: var(--text-heading);
+    background-color: var(--bg-hover);
+}
+
+html[data-theme="light"] .item-settings.is-dropdowns .item-format-select option,
+html[data-theme="light"] .item-settings.is-dropdowns .item-quality-select option,
+html[data-theme="light"] .item-settings.is-dropdowns .item-audio-track-select option {
+    color: var(--text-heading);
+    background-color: var(--bg-card);
+}
+
+html[data-theme="dark"] .item-settings.is-dropdowns .item-format-select,
+html[data-theme="dark"] .item-settings.is-dropdowns .item-quality-select,
+html[data-theme="dark"] .item-settings.is-dropdowns .item-audio-track-select {
+    color: var(--text-heading);
+    background-color: transparent;
+    color-scheme: dark;
+}
+
+html[data-theme="dark"] .item-settings.is-dropdowns .item-format-select:hover,
+html[data-theme="dark"] .item-settings.is-dropdowns .item-quality-select:hover,
+html[data-theme="dark"] .item-settings.is-dropdowns .item-audio-track-select:hover,
+html[data-theme="dark"] .item-settings.is-dropdowns .item-format-select:focus-visible,
+html[data-theme="dark"] .item-settings.is-dropdowns .item-quality-select:focus-visible,
+html[data-theme="dark"] .item-settings.is-dropdowns .item-audio-track-select:focus-visible {
+    color: var(--text-heading);
+    background-color: var(--bg-hover);
+}
+
+html[data-theme="dark"] .item-settings.is-dropdowns .item-format-select option,
+html[data-theme="dark"] .item-settings.is-dropdowns .item-quality-select option,
+html[data-theme="dark"] .item-settings.is-dropdowns .item-audio-track-select option {
+    color: var(--text-heading);
+    background-color: var(--bg-card);
 }
 
 /* =========================================
@@ -1948,6 +2006,10 @@ html[data-theme="dark"] .btn-download-multi-download.is-outline:hover {
     font-weight: bold;
 }
 
+[data-theme="dark"] .adv-setting-label {
+    color: #fff;
+}
+
 /* Mode switch (toggle knob) */
 .mode-switch {
     position: relative;
@@ -2146,6 +2208,7 @@ html[data-theme="dark"] .btn-download-multi-download.is-outline:hover {
 
     .advanced-settings-panel {
         padding: 10px 14px;
+        margin-bottom: 15px;
     }
 
     .multi-format-selector {
@@ -2154,22 +2217,26 @@ html[data-theme="dark"] .btn-download-multi-download.is-outline:hover {
         gap: 10px;
     }
 
+    .multi-format-actions {
+        flex: 1 1 auto;
+        width: auto;
+        margin-left: auto;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
     .multi-quality-wrapper {
         width: 100%;
         order: 1;
         padding-right: 0;
     }
 
-    .multi-quality-dropdown-wrapper {
-        flex: 1;
-        min-width: 0;
-    }
-
     .advanced-settings-toggle {
         display: inline-flex;
-        width: 42px;
-        min-height: 42px;
-        height: 42px;
+        width: 28px;
+        min-height: 28px;
+        height: 28px;
         padding: 0;
         justify-content: center;
         gap: 0;
@@ -2196,21 +2263,57 @@ html[data-theme="dark"] .btn-download-multi-download.is-outline:hover {
     }
 
     .multi-btn-convert {
-        order: 3;
+        order: 2;
+        flex: 1 1 100%;
+        width: 100%;
+        margin-left: 0;
+        justify-content: center;
+        height: 44px;
+        border-radius: 20px;
+        padding: 0 16px;
+        font-size: 14px;
+        line-height: 1;
+    }
+
+    .multi-format-dropdown-wrapper,
+    .multi-quality-dropdown-wrapper {
+        order: 1;
         flex: 0 0 auto;
-        margin-left: auto;
+        min-width: 0;
+        height: 28px;
+    }
+
+    .multi-format-select {
+        height: 28px;
     }
 
     .multi-btn-convert.convert-below-advanced {
         display: inline-flex;
         width: 100%;
-        margin: 12px 0 0;
+        margin: 0;
         justify-content: center;
+    }
+
+    .multi-btn-convert.convert-below-advanced + #error-message {
+        margin-top: 12px;
+    }
+
+    .multi-btn-convert.convert-below-advanced.is-text {
+        font-size: 14px;
+        font-weight: 700;
+        min-height: 44px;
+        height: auto;
+        width: 100%;
+        max-width: 100%;
+        border-radius: 20px;
+        padding: 10px 16px;
+        line-height: 1.2;
     }
 
     .multi-quality-select {
         width: 100%;
         min-width: 0;
+        height: 28px;
     }
 
     /* Audio dropdown mobile: icon-only collapsed, expand on active */
@@ -2248,7 +2351,7 @@ html[data-theme="dark"] .btn-download-multi-download.is-outline:hover {
         gap: 0;
         transition: padding 0.5s, gap 0.5s;
         min-width: 42px;
-        height: 42px;
+        height: 38px;
     }
 
     .multi-audio-dropdown-wrapper:has(.custom-dropdown.active) .dropdown-trigger {
@@ -2286,9 +2389,8 @@ html[data-theme="dark"] .btn-download-multi-download.is-outline:hover {
     }
 
     .multi-quality-select {
-        height: 42px;
+        height: 28px;
         font-size: 13px;
-        border-radius: calc(var(--radius-xl, 24px) - 10px);
     }
 
     .multi-format-selector-wrapper {
@@ -2299,7 +2401,7 @@ html[data-theme="dark"] .btn-download-multi-download.is-outline:hover {
     .multi-btn-convert {
         height: 42px;
         font-size: 14px;
-        border-radius: calc(var(--radius-xl, 24px) - 10px);
+        border-radius: 20px;
     }
 
 }

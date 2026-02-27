@@ -71,7 +71,6 @@
 /* --- Right Side: Steps Card --- */
 .overview-steps-card {
     flex: 1;
-    background: var(--bg-surface-soft);
     padding: 40px;
     width: 100%;
     max-width: 500px;
