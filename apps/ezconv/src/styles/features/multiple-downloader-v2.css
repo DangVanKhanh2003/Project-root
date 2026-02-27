@@ -1066,281 +1066,13 @@
 }
 
 /* Responsive */
-@media (min-width: 992px) {
-    .content-row {
-        display: flex;
-        align-items: flex-start;
-        gap: 28px;
-    }
-}
-
-@media (max-width: 900px) {
-    .multiple-download-card {
-        padding: 24px;
-        margin-bottom: 20px;
-    }
-}
-
-@media (max-width: 768px) {
-    .adv-setting-label {
-        font-size: 10px;
-    }
-
-    .advanced-settings-panel {
-        padding: 10px 14px;
-    }
-
-    .multi-format-selector {
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-
-    .multi-quality-wrapper {
-        width: 100%;
-        order: 1;
-        padding-right: 0;
-    }
-
-    .multi-quality-dropdown-wrapper {
-        flex: 1;
-        min-width: 0;
-    }
-
-    .advanced-settings-toggle {
-        display: inline-flex;
-        width: 42px;
-        min-height: 42px;
-        height: 42px;
-        padding: 0;
-        justify-content: center;
-        gap: 0;
-    }
-
-    .advanced-settings-toggle .adv-settings-text,
-    .advanced-settings-toggle .adv-settings-chevron {
-        display: none !important;
-    }
-
-    .multi-format-toggle {
-        order: 2;
-        flex: 0 0 auto;
-    }
-
-    #multi-download-form.advanced-expanded-mobile .multi-format-toggle {
-        flex: 1 1 100%;
-        width: 100%;
-    }
-
-    #multi-download-form.advanced-expanded-mobile .multi-format-toggle .multi-format-btn {
-        flex: 1 1 50%;
-        text-align: center;
-    }
-
-    .multi-btn-convert {
-        order: 3;
-        flex: 0 0 auto;
-        margin-left: auto;
-    }
-
-    .multi-btn-convert.convert-below-advanced {
-        display: inline-flex;
-        width: 100%;
-        margin: 12px 0 0;
-        justify-content: center;
-    }
-
-    .multi-quality-select {
-        width: 100%;
-        min-width: 0;
-    }
-
-    /* Audio dropdown mobile: icon-only collapsed, expand on active */
-    .multi-audio-dropdown-wrapper {
-        flex: 0 0 auto;
-        width: 42px;
-        margin-left: auto;
-        transition: width 0.5s ease;
-        z-index: 20;
-    }
-
-    .multi-audio-dropdown-wrapper:has(.custom-dropdown.active) {
-        width: 200px;
-    }
-
-    .multi-audio-dropdown-wrapper .selected-content,
-    .multi-audio-dropdown-wrapper .dropdown-arrow {
-        opacity: 0;
-        max-width: 0;
-        overflow: hidden;
-        transition: opacity 0.5s, max-width 0.5s;
-        pointer-events: none;
-    }
-
-    .multi-audio-dropdown-wrapper:has(.custom-dropdown.active) .selected-content,
-    .multi-audio-dropdown-wrapper:has(.custom-dropdown.active) .dropdown-arrow {
-        opacity: 1;
-        max-width: 200px;
-        transition: opacity 0.5s, max-width 0.5s;
-        pointer-events: auto;
-    }
-
-    .multi-audio-dropdown-wrapper .dropdown-trigger {
-        justify-content: center;
-        gap: 0;
-        transition: padding 0.5s, gap 0.5s;
-        min-width: 42px;
-        height: 42px;
-    }
-
-    .multi-audio-dropdown-wrapper:has(.custom-dropdown.active) .dropdown-trigger {
-        justify-content: flex-start;
-        gap: 10px;
-        padding: 0 10px;
-    }
-
-    .multi-audio-dropdown-wrapper .dropdown-menu {
-        left: auto;
-        right: 0;
-    }
-}
-
-@media (max-width: 640px) {
-    .adv-setting-item--audio,
-    .adv-setting-item--filename-style {
-        flex: 1 1 100%;
-        max-width: 100%;
-    }
-
-    .adv-setting-item--filename-style {
-        margin-top: 10px;
-    }
-
-    /* Mobile for form */
-    .multi-format-btn {
-        padding: 8px 16px;
-        font-size: 13px;
-    }
-
-    .multi-format-toggle {
-        border-radius: calc(var(--radius-xl, 24px) - 10px);
-    }
-
-    .multi-quality-select {
-        height: 42px;
-        font-size: 13px;
-        border-radius: calc(var(--radius-xl, 24px) - 10px);
-    }
-
-    .multi-format-selector-wrapper {
-        border-radius: calc(var(--radius-xl, 24px) - 10px);
-        margin-top: 0;
-    }
-
-    .multi-btn-convert {
-        height: 42px;
-        font-size: 14px;
-        border-radius: calc(var(--radius-xl, 24px) - 10px);
-    }
-
-    /* Mobile styles for list... */
-    .multi-video-item {
-        flex-direction: row;
-        align-items: center;
-        padding: 10px 12px;
-        gap: 0.5rem;
-    }
-
-    .multi-video-thumb {
-        width: 70px;
-        min-width: 70px;
-        height: 52px;
-        flex-shrink: 0;
-    }
-
-    .multi-video-thumb img {
-        height: 100%;
-        width: auto;
-        object-fit: cover;
-    }
-
-    .multi-video-info {
-        flex: 1;
-        min-width: 0;
-        padding-top: 0px;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .multi-video-status {
-        display: none !important;
-    }
-
-    .multi-download-header {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        background: #f8f9fa;
-        border-bottom: 1px solid #eee;
-        padding: 6px 12px;
-    }
-
-    .multi-header-top-row {
-        padding: 0.5rem 1rem 0.25rem;
-    }
-
-    .multiple-download-group-actions {
-        padding: 0 8px 8px 10px;
-    }
-
-    .multi-header-title,
-    .multi-download-header .group-title,
-    .multi-download-header .master-checkbox-label span {
-        font-size: 13px;
-        font-weight: 700;
-        color: #1a1a1a;
-    }
-
-    .item-count-badge,
-    .item-count-total {
-        font-size: 0.75rem;
-    }
-
-    .multi-video-actions {
-        margin-left: 0;
-        width: auto;
-        flex-shrink: 0;
-        display: flex;
-        align-items: center;
-        align-self: center;
-        gap: 4px;
-    }
-
-    .btn-icon.btn-download {
-        background: #4a90e2;
-        /* Blue color from image */
-        color: white;
-        border: none;
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        box-shadow: 0 2px 4px rgba(74, 144, 226, 0.3);
-    }
 
 
 
-    .btn-icon.btn-download svg,
-    .btn-icon.btn-download span {
-        width: 16px;
-        height: 16px;
-        font-size: 16px;
-    }
 
-    .status-badge {
-        display: none !important;
-    }
 
-}
+
+
 
 /* Skeleton Loading Animation */
 @keyframes skeleton-loading {
@@ -1952,180 +1684,11 @@
 /* =========================================
    NEW: Mobile Overrides for New Elements
    ========================================= */
-@media (max-width: 640px) {
-
-    .master-checkbox-wrapper,
-    .header-select-dropdown,
-    .btn-remove {
-        display: none !important;
-    }
-
-    /* Show download button on mobile */
-    .btn-icon.btn-download {
-        display: flex !important;
-    }
 
 
 
-    /* Ensure input action buttons are shown correctly */
-    .input-action-btn,
-    .btn-paste,
-    #input-action-button {
-        display: flex !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-    }
 
-    /* States should be flex, but respect the .hidden class */
-    #input-action-button .btn-state,
-    .btn-paste .btn-state,
-    .input-action-btn .btn-state {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
 
-    #input-action-button .btn-state.hidden,
-    .btn-paste .btn-state.hidden,
-    .input-action-btn .btn-state.hidden {
-        display: none !important;
-    }
-
-    /* Make sure icons are visible inside these buttons */
-    .input-action-btn svg,
-    .btn-paste svg,
-    #input-action-button svg {
-        display: block;
-        width: 18px;
-        height: 18px;
-        color: inherit;
-    }
-
-    .group-header {
-        padding: 0.5rem 1rem;
-    }
-
-    .group-header-title-area {
-        min-width: 0;
-        overflow: hidden;
-    }
-
-    .group-title {
-        font-size: 0.875rem;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .group-selection-text {
-        font-size: 0.75rem;
-    }
-
-    .group-actions {
-        font-size: 0.75rem;
-    }
-
-    .group-download-btn {
-        padding: 0px 0.75rem !important;
-        height: 30px !important;
-        min-width: unset !important;
-        font-size: 0.75rem !important;
-    }
-
-    .multi-video-title {
-        font-size: 0.875rem;
-    }
-
-    .multi-video-author {
-        font-size: 0.75rem;
-    }
-
-    .playlist-header-tabs {
-        padding: 5px 3px;
-    }
-
-    .playlist-tab {
-        padding: 3px 8px;
-        font-size: 0.6875rem;
-    }
-
-    .btn-playlist-group-action {
-        padding: 0px 0.75rem;
-        font-size: 0.75rem;
-        min-width: unset;
-    }
-
-    .btn-icon-zip {
-        width: 12px !important;
-        height: 12px !important;
-    }
-
-    .item-settings.is-dropdowns {
-        flex-wrap: nowrap;
-        overflow-x: visible;
-    }
-
-    /* Mobile: Button always filled + white icon */
-    .btn-download-multi-download {
-        display: inline-flex !important;
-        width: 32px;
-        min-width: 32px;
-        height: 32px;
-        padding: 0;
-        border-radius: 50%;
-        background: #3b82f6 !important;
-        color: white !important;
-        border: none !important;
-    }
-
-    .btn-download-multi-download.is-success {
-        background: #10b981 !important;
-        color: white !important;
-        border: none !important;
-    }
-
-    .btn-download-multi-download.is-outline {
-        background: #94a3b8 !important;
-        color: white !important;
-        border: none !important;
-    }
-
-    .btn-download-multi-download .btn-text {
-        display: none !important;
-    }
-
-    .btn-download-multi-download .btn-icon {
-        display: block !important;
-        color: white !important;
-    }
-
-    /* If item is in some state show spinner/check instead */
-    .btn-download-multi-download .btn-icon-spinner[style*="display: block"],
-    .btn-download-multi-download .btn-icon-check[style*="display: block"] {
-        display: block !important;
-    }
-
-    /* Mobile: Container border radius 36px */
-    .multiple-download-card {
-        border-radius: 36px !important;
-    }
-}
-
-@media (max-width: 768px) {
-    .playlist-tab .tab-suffix {
-        display: none;
-    }
-}
-
-@media (max-width: 640px) {
-
-    /* Hide remove button AND cancel button during processing phases ONLY on mobile */
-    .multi-video-item.analyzing .btn-remove,
-    .multi-video-item.fetching_metadata .btn-remove,
-    .btn-icon.btn-cancel {
-        display: none !important;
-    }
-}
 
 /* =========================================
    Advanced Settings (new-ux.html)
@@ -2198,7 +1761,7 @@
     justify-content: space-between;
 }
 
-.adv-settings-row + .adv-settings-row {
+.adv-settings-row+.adv-settings-row {
     margin-top: 16px;
     padding-top: 16px;
     border-top: 1px solid #e2e8f0;
@@ -2399,6 +1962,469 @@
 }
 
 /* Mobile */
+
+
+/* FIX 5: Global download lock — CSS class replaces O(n) JS loop */
+.is-global-locked [data-action="save"],
+.is-global-locked [data-action="download-zip-group"],
+.is-global-locked [data-action="download-zip-batch"] {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+@media (min-width: 992px) {
+    .content-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 28px;
+    }
+}
+
+@media (max-width: 900px) {
+    .multiple-download-card {
+        padding: 24px;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .adv-setting-label {
+        font-size: 9px;
+    }
+
+    .advanced-settings-panel {
+        padding: 10px 14px;
+    }
+
+    .multi-format-selector {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: flex-start;
+    }
+
+    .multi-quality-wrapper {
+        width: 100%;
+        order: 1;
+        padding-right: 0;
+    }
+
+    .multi-quality-dropdown-wrapper {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .advanced-settings-toggle {
+        display: inline-flex;
+        width: 42px;
+        min-height: 42px;
+        height: 42px;
+        padding: 0;
+        justify-content: center;
+        gap: 0;
+    }
+
+    .advanced-settings-toggle .adv-settings-text,
+    .advanced-settings-toggle .adv-settings-chevron {
+        display: none !important;
+    }
+
+    .multi-format-toggle {
+        order: 2;
+        flex: 0 0 auto;
+        min-width: 0;
+    }
+
+    #multi-download-form.advanced-expanded-mobile .multi-format-toggle {
+        flex: 1 1 100%;
+        width: 100%;
+    }
+
+    #multi-download-form.advanced-expanded-mobile .multi-format-toggle .multi-format-btn {
+        flex: 1 1 50%;
+        text-align: center;
+    }
+
+    .multi-btn-convert {
+        order: 3;
+        flex: 0 0 auto;
+    }
+
+    .multi-btn-convert.convert-below-advanced {
+        display: inline-flex;
+        width: 100%;
+        margin: 12px 0 0;
+        justify-content: center;
+    }
+
+    .multi-quality-select {
+        width: 100%;
+        min-width: 0;
+    }
+
+    /* Audio dropdown mobile: icon-only collapsed, expand on active */
+    .multi-audio-dropdown-wrapper {
+        flex: 0 0 auto;
+        width: 42px;
+        margin-left: auto;
+        transition: width 0.5s ease;
+        z-index: 20;
+    }
+
+    .multi-audio-dropdown-wrapper:has(.custom-dropdown.active) {
+        width: 200px;
+    }
+
+    .multi-audio-dropdown-wrapper .selected-content,
+    .multi-audio-dropdown-wrapper .dropdown-arrow {
+        opacity: 0;
+        max-width: 0;
+        overflow: hidden;
+        transition: opacity 0.5s, max-width 0.5s;
+        pointer-events: none;
+    }
+
+    .multi-audio-dropdown-wrapper:has(.custom-dropdown.active) .selected-content,
+    .multi-audio-dropdown-wrapper:has(.custom-dropdown.active) .dropdown-arrow {
+        opacity: 1;
+        max-width: 200px;
+        transition: opacity 0.5s, max-width 0.5s;
+        pointer-events: auto;
+    }
+
+    .multi-audio-dropdown-wrapper .dropdown-trigger {
+        justify-content: center;
+        gap: 0;
+        transition: padding 0.5s, gap 0.5s;
+        min-width: 42px;
+        height: 42px;
+    }
+
+    .multi-audio-dropdown-wrapper:has(.custom-dropdown.active) .dropdown-trigger {
+        justify-content: flex-start;
+        gap: 10px;
+        padding: 0 10px;
+    }
+
+    .multi-audio-dropdown-wrapper .dropdown-menu {
+        left: auto;
+        right: 0;
+    }
+}
+
+@media (max-width: 640px) {
+
+    .adv-setting-item--audio,
+    .adv-setting-item--filename-style {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+
+    .adv-setting-item--filename-style {
+        margin-top: 10px;
+    }
+
+    /* Mobile for form */
+    .multi-format-btn {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+
+    .multi-format-toggle {
+        border-radius: calc(var(--radius-xl, 24px) - 10px);
+    }
+
+    .multi-quality-select {
+        height: 42px;
+        font-size: 13px;
+        border-radius: calc(var(--radius-xl, 24px) - 10px);
+    }
+
+    .multi-format-selector-wrapper {
+        border-radius: calc(var(--radius-xl, 24px) - 10px);
+        margin-top: 0;
+    }
+
+    .multi-btn-convert {
+        height: 42px;
+        font-size: 14px;
+        border-radius: calc(var(--radius-xl, 24px) - 10px);
+    }
+
+    /* Mobile styles for list... */
+    .multi-video-item {
+        flex-direction: row;
+        align-items: center;
+        padding: 10px 12px;
+        gap: 0.5rem;
+    }
+
+    .multi-video-thumb {
+        width: 70px;
+        min-width: 70px;
+        height: 52px;
+        flex-shrink: 0;
+    }
+
+    .multi-video-thumb img {
+        height: 100%;
+        width: auto;
+        object-fit: cover;
+    }
+
+    .multi-video-info {
+        flex: 1;
+        min-width: 0;
+        padding-top: 0px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .multi-video-status {
+        display: none !important;
+    }
+
+    .multi-download-header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        background: #f8f9fa;
+        border-bottom: 1px solid #eee;
+        padding: 6px 12px;
+    }
+
+    .multi-header-top-row {
+        padding: 0.5rem 1rem 0.25rem;
+    }
+
+    .multiple-download-group-actions {
+        padding: 0 8px 8px 10px;
+    }
+
+    .multi-header-title,
+    .multi-download-header .group-title,
+    .multi-download-header .master-checkbox-label span {
+        font-size: 13px;
+        font-weight: 700;
+        color: #1a1a1a;
+    }
+
+    .item-count-badge,
+    .item-count-total {
+        font-size: 0.75rem;
+    }
+
+    .multi-video-actions {
+        margin-left: 0;
+        width: auto;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        align-self: center;
+        gap: 4px;
+    }
+
+    .btn-icon.btn-download {
+        background: #4a90e2;
+        /* Blue color from image */
+        color: white;
+        border: none;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        box-shadow: 0 2px 4px rgba(74, 144, 226, 0.3);
+    }
+
+
+
+    .btn-icon.btn-download svg,
+    .btn-icon.btn-download span {
+        width: 16px;
+        height: 16px;
+        font-size: 16px;
+    }
+
+    .status-badge {
+        display: none !important;
+    }
+
+}
+
+@media (max-width: 640px) {
+
+    .master-checkbox-wrapper,
+    .header-select-dropdown,
+    .btn-remove {
+        display: none !important;
+    }
+
+    /* Show download button on mobile */
+    .btn-icon.btn-download {
+        display: flex !important;
+    }
+
+
+
+    /* Ensure input action buttons are shown correctly */
+    .input-action-btn,
+    .btn-paste,
+    #input-action-button {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    /* States should be flex, but respect the .hidden class */
+    #input-action-button .btn-state,
+    .btn-paste .btn-state,
+    .input-action-btn .btn-state {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #input-action-button .btn-state.hidden,
+    .btn-paste .btn-state.hidden,
+    .input-action-btn .btn-state.hidden {
+        display: none !important;
+    }
+
+    /* Make sure icons are visible inside these buttons */
+    .input-action-btn svg,
+    .btn-paste svg,
+    #input-action-button svg {
+        display: block;
+        width: 18px;
+        height: 18px;
+        color: inherit;
+    }
+
+    .group-header {
+        padding: 0.5rem 1rem;
+    }
+
+    .group-header-title-area {
+        min-width: 0;
+        overflow: hidden;
+    }
+
+    .group-title {
+        font-size: 0.875rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .group-selection-text {
+        font-size: 0.75rem;
+    }
+
+    .group-actions {
+        font-size: 0.75rem;
+    }
+
+    .group-download-btn {
+        padding: 0px 0.75rem !important;
+        height: 30px !important;
+        min-width: unset !important;
+        font-size: 0.75rem !important;
+    }
+
+    .multi-video-title {
+        font-size: 0.875rem;
+    }
+
+    .multi-video-author {
+        font-size: 0.75rem;
+    }
+
+    .playlist-header-tabs {
+        padding: 5px 3px;
+    }
+
+    .playlist-tab {
+        padding: 3px 8px;
+        font-size: 0.6875rem;
+    }
+
+    .btn-playlist-group-action {
+        padding: 0px 0.75rem;
+        font-size: 0.75rem;
+        min-width: unset;
+    }
+
+    .btn-icon-zip {
+        width: 12px !important;
+        height: 12px !important;
+    }
+
+    .item-settings.is-dropdowns {
+        flex-wrap: nowrap;
+        overflow-x: visible;
+    }
+
+    /* Mobile: Button always filled + white icon */
+    .btn-download-multi-download {
+        display: inline-flex !important;
+        width: 32px;
+        min-width: 32px;
+        height: 32px;
+        padding: 0;
+        border-radius: 50%;
+        background: #3b82f6 !important;
+        color: white !important;
+        border: none !important;
+    }
+
+    .btn-download-multi-download.is-success {
+        background: #10b981 !important;
+        color: white !important;
+        border: none !important;
+    }
+
+    .btn-download-multi-download.is-outline {
+        background: #94a3b8 !important;
+        color: white !important;
+        border: none !important;
+    }
+
+    .btn-download-multi-download .btn-text {
+        display: none !important;
+    }
+
+    .btn-download-multi-download .btn-icon {
+        display: block !important;
+        color: white !important;
+    }
+
+    /* If item is in some state show spinner/check instead */
+    .btn-download-multi-download .btn-icon-spinner[style*="display: block"],
+    .btn-download-multi-download .btn-icon-check[style*="display: block"] {
+        display: block !important;
+    }
+
+    /* Mobile: Container border radius 36px */
+    .multiple-download-card {
+        border-radius: 36px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .playlist-tab .tab-suffix {
+        display: none;
+    }
+}
+
+@media (max-width: 640px) {
+
+    /* Hide remove button AND cancel button during processing phases ONLY on mobile */
+    .multi-video-item.analyzing .btn-remove,
+    .multi-video-item.fetching_metadata .btn-remove,
+    .btn-icon.btn-cancel {
+        display: none !important;
+    }
+}
+
 @media (max-width: 768px) {
     .cutting-interface .stream-editor {
         grid-template-columns: 1fr;
@@ -2420,12 +2446,4 @@
         max-width: 100%;
         width: 100%;
     }
-}
-
-/* FIX 5: Global download lock — CSS class replaces O(n) JS loop */
-.is-global-locked [data-action="save"],
-.is-global-locked [data-action="download-zip-group"],
-.is-global-locked [data-action="download-zip-batch"] {
-    pointer-events: none;
-    opacity: 0.5;
 }

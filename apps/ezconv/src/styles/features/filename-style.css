@@ -69,6 +69,7 @@
     display: flex;
     flex-direction: column;
     min-width: 0;
+    text-align: left;
 }
 
 .fp-name {
@@ -99,6 +100,18 @@
 }
 
 @media (max-width: 640px) {
+    .filename-style-tabs {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2px;
+        overflow-x: visible;
+    }
+
+    .fs-tab {
+        width: 100%;
+        text-align: center;
+    }
+
     .fp-icon {
         display: none;
     }

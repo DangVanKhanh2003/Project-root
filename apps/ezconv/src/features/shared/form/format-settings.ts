@@ -77,7 +77,7 @@ export function getCurrentSettings(): Partial<VideoItemSettings> {
 
     // Read embed metadata from toggle
     const metadataToggle = document.getElementById('metadata-mode-toggle');
-    const enableMetadata = metadataToggle ? metadataToggle.getAttribute('aria-checked') === 'true' : true;
+    const enableMetadata = metadataToggle ? metadataToggle.getAttribute('aria-checked') === 'true' : false;
 
     return { format, quality, audioFormat, audioBitrate, videoQuality, audioTrack, filenameStyle, enableMetadata };
 }
@@ -96,7 +96,7 @@ export function saveFormatPreferences(): void {
             audioFormat: audioFmt,
             audioBitrate: audioFmt === 'mp3' ? (settings.audioBitrate || '128') : '',
             filenameStyle: settings.filenameStyle || 'basic',
-            enableMetadata: settings.enableMetadata !== false,
+            enableMetadata: settings.enableMetadata === true,
             timestamp: Date.now(),
         };
         // Avoid double 'p' suffix for special containers
@@ -195,9 +195,13 @@ export function initFormatToggle(): void {
             updateFilenamePreview(stored.filenameStyle);
         }
 
-        // Restore metadata toggle
-        if (metadataToggle && typeof stored.enableMetadata === 'boolean') {
-            metadataToggle.setAttribute('aria-checked', String(stored.enableMetadata));
+        // Restore metadata toggle (default OFF)
+        if (metadataToggle) {
+            if (typeof stored.enableMetadata === 'boolean') {
+                metadataToggle.setAttribute('aria-checked', String(stored.enableMetadata));
+            } else {
+                metadataToggle.setAttribute('aria-checked', 'false');
+            }
         }
     } catch (_) {}
 }
