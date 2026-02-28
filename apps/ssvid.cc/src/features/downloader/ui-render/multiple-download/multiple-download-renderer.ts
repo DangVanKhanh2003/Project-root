@@ -154,6 +154,14 @@ export class MultipleDownloadRenderer {
         // Click delegation
         this.container.addEventListener('click', (e) => {
             const target = e.target as HTMLElement;
+            const itemEl = target.closest('.multi-video-item') as HTMLElement | null;
+
+            if (itemEl && this.shouldToggleItemSelection(target, itemEl)) {
+                const id = itemEl.dataset.id;
+                if (id) videoStore.toggleSelect(id);
+                return;
+            }
+
             const actionBtn = target.closest('[data-action]') as HTMLElement;
 
             if (!actionBtn) return;
@@ -348,6 +356,27 @@ export class MultipleDownloadRenderer {
                 this.toggleBatchSelection(checked);
             }
         });
+    }
+
+    private shouldToggleItemSelection(target: HTMLElement, itemEl: HTMLElement): boolean {
+        if (!itemEl.classList.contains('has-checkbox')) {
+            return false;
+        }
+
+        if (target.closest('.item-checkbox-wrapper, .item-settings, .multi-video-actions, [data-action]')) {
+            return false;
+        }
+
+        if (target.closest('button, select, option, input, textarea, label, a, summary, details')) {
+            return false;
+        }
+
+        if (target.closest('.dropdown, .dropdown-menu, .dropdown-toggle')) {
+            return false;
+        }
+
+        const checkbox = itemEl.querySelector('.item-checkbox') as HTMLInputElement | null;
+        return !!checkbox && !checkbox.disabled;
     }
 
     private async handleDownloadZipBatch(btn: HTMLElement) {
