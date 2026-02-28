@@ -10,6 +10,9 @@ import { parseYouTubeURLs, normalizeURL } from '../downloader/logic/multiple-dow
 import { isPlaylistMode, isTrimMode, isChannelMode } from './advanced-settings-controller';
 import { getTrimStart, getTrimEnd, getTrimRangeLabel, resetTrimEditor } from './trim-controller';
 import { isMobileViewport, scrollToElementWithOffset } from '../shared/scroll/scroll-behavior';
+import { checkLimit } from '../download-limit';
+import { showLimitReachedPopup } from '../ui/maintenance-popup';
+import { incrementDownloadCount } from '../widget-level-manager';
 
 const MAX_BATCH_URLS = 50;
 
@@ -133,6 +136,19 @@ async function handleBatchConvert(
         throw new Error(`Multiple mode supports up to ${MAX_BATCH_URLS} URLs per convert.`);
     }
 
+    const isBulkDownload = parsed.length >= 2;
+
+    if (isBulkDownload) {
+        const limitResult = await checkLimit({
+            kind: 'batch',
+            itemCount: parsed.length
+        });
+        if (!limitResult.allowed) {
+            showLimitReachedPopup(limitResult.mode ?? 'batch');
+            return;
+        }
+    }
+
     const purePlaylistUrls = parsed.filter(p => !p.videoId && p.playlistId);
     if (purePlaylistUrls.length > 0) {
         throw new Error(
@@ -143,6 +159,9 @@ async function handleBatchConvert(
 
     const groupId = await multiDownloadService.addUrls(rawText, settings, onItemsAdded);
     if (groupId) {
+        if (isBulkDownload) {
+            await incrementDownloadCount('batch', parsed.map((entry) => entry.url).join('\n'));
+        }
         multiDownloadService.startGroupDownloads(groupId);
     }
 }
@@ -154,6 +173,12 @@ async function handlePlaylistModeConvert(
 ): Promise<void> {
     const parsed = parseYouTubeURLs(rawText);
     if (parsed.length === 0) throw new Error('No valid YouTube URLs found.');
+
+    const limitResult = await checkLimit({ kind: 'playlist' });
+    if (!limitResult.allowed) {
+        showLimitReachedPopup(limitResult.mode ?? 'playlist');
+        return;
+    }
 
     const playlistUrls = parsed.filter(p => !!p.playlistId);
     if (playlistUrls.length > 1) {
@@ -190,6 +215,12 @@ async function handleChannelModeConvert(
     const urls = rawText.trim().split(/[\n\s,]+/).filter(Boolean);
     if (urls.length === 0) throw new Error('Please paste a YouTube channel URL.');
     if (urls.length > 1) throw new Error('Channel Mode only supports 1 URL at a time.');
+
+    const limitResult = await checkLimit({ kind: 'channel' });
+    if (!limitResult.allowed) {
+        showLimitReachedPopup(limitResult.mode ?? 'channel');
+        return;
+    }
 
     await multiDownloadService.addChannel(urls[0], settings, onItemsAdded);
     // Channel mode: no auto-start - user chooses per-group via Convert Selected

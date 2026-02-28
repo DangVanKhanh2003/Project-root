@@ -1,7 +1,7 @@
 
 import { api } from '../../../../../api';
 import { extractPlaylistId, extractVideoId, isPlaylistUrl, PlaylistDto } from '@downloader/core';
-import { getYtMetaBaseUrl } from '../../../../../environment';
+import { getApiBaseUrlV3, getYtMetaBaseUrl } from '../../../../../environment';
 import { videoStore } from '../../../state/video-store';
 import { VideoItem, VideoItemSettings } from '../../../state/multiple-download-types';
 import { VideoMeta } from '../../../state/types';
@@ -9,6 +9,26 @@ import { DownloadQueue } from '../download-queue';
 import { runSingleDownload } from '../download-runner';
 import { fetchMetadataBatch } from '../metadata-fetcher';
 import { parseYouTubeURLs, generateItemId, normalizeURL, extractChannelHandle } from '../url-parser';
+import { recordDownloadError, type DownloadMethod } from '../../../../download-limit';
+import { incrementDownloadCount } from '../../../../widget-level-manager';
+
+function inferDownloadMethod(item: VideoItem): DownloadMethod {
+    if (item.groupId?.startsWith('channel_')) return 'channel';
+    if (item.groupId?.startsWith('single_')) return Number.isFinite(item.settings.trimStart) || Number.isFinite(item.settings.trimEnd)
+        ? 'trim'
+        : 'single';
+    if (item.groupId?.startsWith('multi_')) {
+        const groupItems = item.groupId ? videoStore.getItemsByGroup(item.groupId) : [];
+        const isBulkDownload = groupItems.length >= 2;
+
+        if (Number.isFinite(item.settings.trimStart) || Number.isFinite(item.settings.trimEnd)) {
+            return 'trim';
+        }
+
+        return isBulkDownload ? 'batch' : 'single';
+    }
+    return 'playlist';
+}
 
 export class MultiDownloadService {
     private queue = new DownloadQueue(5);
@@ -202,6 +222,7 @@ export class MultiDownloadService {
 
         // Set group meta after items are visible — shows Load more button if more pages exist
         videoStore.setGroupMeta(groupId, false, realTitle, page1.nextPageToken ?? null);
+        await incrementDownloadCount('playlist', playlistUrl);
 
         return {
             title: realTitle,
@@ -384,6 +405,7 @@ export class MultiDownloadService {
         }
 
         videoStore.setGroupMeta(groupId, false, realTitle, page1.nextPageToken ?? null);
+        await incrementDownloadCount('channel', channelUrl);
 
         return {
             title: realTitle,
@@ -641,6 +663,7 @@ export class MultiDownloadService {
     private async executeDownload(id: string, signal: AbortSignal): Promise<void> {
         const item = videoStore.getItem(id);
         if (!item) return;
+        const method = inferDownloadMethod(item);
 
         const controller = new AbortController();
         videoStore.setAbortController(id, controller);
@@ -663,6 +686,10 @@ export class MultiDownloadService {
                         videoStore.updateProgress(id, progress, phase);
                     },
                     onComplete: (downloadUrl, filename) => {
+                        if (method !== 'playlist' && method !== 'channel' && method !== 'batch') {
+                            void incrementDownloadCount(method, item.meta.url || item.url);
+                        }
+
                         // Keep merging UI visible briefly so users can see progress reach 100%.
                         const completeAfterMs = 350;
                         window.setTimeout(() => {
@@ -684,6 +711,34 @@ export class MultiDownloadService {
             if (error.name === 'AbortError' || signal.aborted) {
                 videoStore.setCancelled(id);
             } else {
+                void recordDownloadError({
+                    method: `group_${method}_convert`,
+                    url: item.meta.url || item.url,
+                    endpoint: `${getApiBaseUrlV3()}/api/download`,
+                    requestData: {
+                        itemId: item.id,
+                        groupId: item.groupId || null,
+                        groupTitle: item.groupTitle || null,
+                        itemTitle: item.meta.title || null,
+                        settings: {
+                            format: item.settings.format,
+                            quality: item.settings.quality,
+                            audioFormat: item.settings.audioFormat,
+                            audioBitrate: item.settings.audioBitrate,
+                            videoQuality: item.settings.videoQuality,
+                            audioTrack: item.settings.audioTrack,
+                            trimStart: item.settings.trimStart,
+                            trimEnd: item.settings.trimEnd,
+                            filenameStyle: item.settings.filenameStyle,
+                            enableMetadata: item.settings.enableMetadata,
+                        },
+                    },
+                    errorData: {
+                        message: error?.message || 'Download failed',
+                        name: error?.name || 'Error',
+                        stack: error?.stack || null,
+                    },
+                });
                 videoStore.setError(id, error.message || 'Download failed');
             }
         } finally {

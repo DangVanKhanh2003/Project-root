@@ -23,6 +23,9 @@ import { triggerDownload } from '../../../../utils';
 import { TaskState, type V3ConversionParams } from './v3/types';
 import { startPolling } from './v3/polling';
 import { getErrorMessage } from './v3/error-messages';
+import { checkLimit, recordDownloadError, type DownloadMethod } from '../../../../features/download-limit';
+import { showLimitReachedPopup, showVideoLimitPopup } from '../../../../features/ui/maintenance-popup';
+import { incrementDownloadCount } from '../../../../features/widget-level-manager';
 
 // Retry helper
 import { retryWithBackoff, RETRY_CONFIGS } from './retry-helper';
@@ -38,6 +41,8 @@ const logError = (...args: unknown[]) => console.error(LOG_PREFIX, ...args);
 export async function startConversion(params: V3ConversionParams): Promise<void> {
   const { formatId, videoUrl, videoTitle, extractV2Options } = params;
   const maxJobAttempts = Math.max(1, params.maxJobAttempts ?? 2);
+  const downloadMethod = resolveSingleDownloadMethod(extractV2Options);
+  let lastRequestPayload: unknown = null;
 
   log('=== START CONVERSION V3 ===');
   log('formatId:', formatId);
@@ -55,6 +60,26 @@ export async function startConversion(params: V3ConversionParams): Promise<void>
     startedAt: Date.now(),
     abortController,
   });
+
+  const limitResult = await checkLimit({
+    kind: downloadMethod === 'trim' ? 'trim' : 'single',
+  });
+
+  if (!limitResult.allowed) {
+    if (limitResult.type === 'daily_mode_limit') {
+      showLimitReachedPopup(limitResult.mode ?? undefined);
+    } else if (limitResult.type === 'bulk_video_count') {
+      showVideoLimitPopup(limitResult.limit ?? undefined);
+    }
+
+    updateConversionTask(formatId, {
+      state: TaskState.FAILED,
+      statusText: 'Limit reached',
+      error: 'Limit reached',
+      completedAt: Date.now(),
+    });
+    return;
+  }
 
   const FAKE_PROGRESS_MAX = 95;
   const FAKE_PROGRESS_STEP = 1;
@@ -117,6 +142,7 @@ export async function startConversion(params: V3ConversionParams): Promise<void>
         // Phase 1: Create job (with retry)
         log('Phase 1: Creating job...');
         const request = mapToV3DownloadRequest(videoUrl, extractV2Options);
+        lastRequestPayload = request;
         log('V3 Request:', JSON.stringify(request, null, 2));
 
         const jobResponse = await retryWithBackoff(
@@ -159,6 +185,7 @@ export async function startConversion(params: V3ConversionParams): Promise<void>
           filename: generateFilename(videoTitle, extractV2Options),
           completedAt: Date.now(),
         });
+        await incrementDownloadCount(downloadMethod, videoUrl);
 
         return;
       } catch (error) {
@@ -186,6 +213,13 @@ export async function startConversion(params: V3ConversionParams): Promise<void>
     const errorMessage = getErrorMessage(lastError);
     logError('Error in conversion:', errorMessage);
     stopFakeProgress();
+    await recordDownloadError({
+      method: 'extractV3_stream',
+      url: videoUrl,
+      endpoint: `${window.location.origin.includes('localhost') ? 'https://hub.ytconvert.org' : 'https://hub.ytconvert.org'}/api/download`,
+      requestData: lastRequestPayload,
+      errorData: normalizeErrorForLog(lastError, errorMessage),
+    });
 
     updateConversionTask(formatId, {
       state: TaskState.FAILED,
@@ -196,6 +230,36 @@ export async function startConversion(params: V3ConversionParams): Promise<void>
   } finally {
     log('=== END CONVERSION V3 ===');
   }
+}
+
+function normalizeErrorForLog(error: unknown, fallbackMessage: string): Record<string, unknown> {
+  const candidate = error as {
+    status?: number;
+    message?: string;
+    response?: unknown;
+    data?: unknown;
+  } | null;
+
+  const response = candidate?.response ?? candidate?.data ?? {};
+  const status = typeof candidate?.status === 'number'
+    ? candidate.status
+    : typeof (response as { status?: unknown })?.status === 'number'
+      ? ((response as { status: number }).status)
+      : null;
+
+  return {
+    status,
+    message: candidate?.message || fallbackMessage,
+    response,
+  };
+}
+
+function resolveSingleDownloadMethod(options: V3ConversionParams['extractV2Options']): DownloadMethod {
+  const hasTrim =
+    Number.isFinite(options?.trimStart) ||
+    Number.isFinite(options?.trimEnd);
+
+  return hasTrim ? 'trim' : 'single';
 }
 
 interface PollOnceOptions {

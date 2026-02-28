@@ -377,27 +377,98 @@ function buildSanitizedContext() {
   return cloned;
 }
 
+function buildFeedbackSummary(context: any) {
+  return {
+    pagePath: window.location.pathname,
+    inputType: context?.inputType ?? null,
+    mode: context?.mode ?? null,
+    isMultipleEnabled: Boolean(context?.isEnabled),
+    selectedFormat: context?.selectedFormat ?? null,
+    videoQuality: context?.videoQuality ?? null,
+    audioFormat: context?.audioFormat ?? null,
+    audioBitrate: context?.audioBitrate ?? null,
+    itemsCount: Array.isArray(context?.items) ? context.items.length : 0,
+    hasVideoDetail: Boolean(context?.videoDetail),
+    hasGalleryDetail: Boolean(context?.galleryDetail),
+    conversionTaskCount: context?.conversionTasks ? Object.keys(context.conversionTasks).length : 0,
+    downloadTaskCount: context?.downloadTasks ? Object.keys(context.downloadTasks).length : 0,
+  };
+}
+
+function buildMailFriendlyDescription(params: {
+  description: string;
+  email: string;
+  page: string;
+  link: string;
+  summary: ReturnType<typeof buildFeedbackSummary>;
+}): string {
+  const { description, email, page, link, summary } = params;
+  const lines = [
+    'FEEDBACK DETAILS',
+    `Page: ${page || '-'}`,
+    `Contact Email: ${email || '-'}`,
+    `Input URL: ${link || '-'}`,
+    '',
+    'USER MESSAGE',
+    description,
+    '',
+    'STATE SUMMARY',
+    `Input Type: ${summary.inputType || '-'}`,
+    `Mode: ${summary.mode || '-'}`,
+    `Multiple Enabled: ${summary.isMultipleEnabled ? 'Yes' : 'No'}`,
+    `Format: ${summary.selectedFormat || '-'}`,
+    `Video Quality: ${summary.videoQuality || '-'}`,
+    `Audio Format: ${summary.audioFormat || '-'}`,
+    `Audio Bitrate: ${summary.audioBitrate || '-'}`,
+    `Items Count: ${summary.itemsCount}`,
+    `Has Video Detail: ${summary.hasVideoDetail ? 'Yes' : 'No'}`,
+    `Has Gallery Detail: ${summary.hasGalleryDetail ? 'Yes' : 'No'}`,
+    `Conversion Tasks: ${summary.conversionTaskCount}`,
+    `Download Tasks: ${summary.downloadTaskCount}`,
+  ];
+
+  return lines.join('\n');
+}
+
 async function submitFeedback(description: string, email: string): Promise<void> {
   const context = buildSanitizedContext();
   const link = getInputValue();
   const page = window.location.pathname;
+  const summary = buildFeedbackSummary(context);
+  const formattedDescription = buildMailFriendlyDescription({
+    description,
+    email,
+    page,
+    link,
+    summary,
+  });
 
   // Preserve existing app API service initialization pattern.
   // Access ensures the service tree is initialized before submission.
   void api.core;
 
-  const result = await sendFeedbackWidget({
-    title: 'Feedback Widget',
-    description,
-    page,
-    email,
-    link,
-    state: context,
-  });
+  try {
+    const result = await sendFeedbackWidget({
+      title: `Feedback Widget - ${page || '/'}`,
+      description: formattedDescription,
+      page,
+      email,
+      link,
+      state: {
+        summary,
+        snapshot: context,
+      },
+    });
 
-  const payload = result?.data as any;
-  if (!result.ok || (payload && typeof payload === 'object' && payload.ok === false)) {
-    throw new Error(result.message || payload?.message || 'Failed to send feedback');
+    const payload = result?.data as any;
+    if (!result.ok || (payload && typeof payload === 'object' && payload.ok === false)) {
+      console.warn('[Feedback Widget] Feedback API returned a non-success response.', {
+        message: result.message,
+        payload,
+      });
+    }
+  } catch (error) {
+    console.warn('[Feedback Widget] Feedback API request failed.', error);
   }
 }
 

@@ -3,6 +3,10 @@
  * Shared initialization functions used across all page entry points.
  */
 
+import { refreshWidgetState } from '../../widget-level-manager';
+
+let supporterUiBound = false;
+
 // ==========================================
 // Mobile Menu
 // ==========================================
@@ -132,4 +136,59 @@ export function initFeedbackWidget(): void {
             .then(({ initFeedbackWidget: init }) => init())
             .catch(() => {});
     }, 5000);
+}
+
+export function initSupporterUi(): void {
+    const licenseMenus = Array.from(document.querySelectorAll('.license-menu, .drawer-license-menu')) as HTMLElement[];
+
+    if (!supporterUiBound) {
+        supporterUiBound = true;
+        const licenseTriggers = Array.from(document.querySelectorAll('[data-license-trigger]')) as HTMLElement[];
+        const closeMenus = () => {
+            const menus = Array.from(document.querySelectorAll('.license-menu, .drawer-license-menu')) as HTMLElement[];
+            menus.forEach((menu) => {
+                menu.classList.remove('active');
+                const trigger = menu.querySelector('[data-license-trigger]') as HTMLElement | null;
+                trigger?.setAttribute('aria-expanded', 'false');
+            });
+        };
+
+        licenseTriggers.forEach((trigger) => {
+            trigger.addEventListener('click', (event) => {
+                event.stopPropagation();
+                const menu = trigger.closest('.license-menu, .drawer-license-menu') as HTMLElement | null;
+                if (!menu) return;
+
+                const isActive = menu.classList.contains('active');
+                closeMenus();
+                if (!isActive) {
+                    menu.classList.add('active');
+                    trigger.setAttribute('aria-expanded', 'true');
+                }
+            });
+        });
+
+        document.addEventListener('click', (event) => {
+            const target = event.target as Node | null;
+            if (!target) return;
+
+            const menus = Array.from(document.querySelectorAll('.license-menu, .drawer-license-menu')) as HTMLElement[];
+            const clickedInsideMenu = menus.some((menu) => menu.contains(target));
+            if (!clickedInsideMenu) {
+                closeMenus();
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                closeMenus();
+            }
+        });
+    }
+
+    licenseMenus.forEach((menu) => {
+        menu.classList.remove('active');
+    });
+
+    void refreshWidgetState();
 }

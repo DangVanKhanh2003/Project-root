@@ -29,3 +29,9 @@ h6,
 .hero-title {
     font-family: var(--font-title);
 }
+html.theme-switching *,
+html.theme-switching *::before,
+html.theme-switching *::after {
+    transition: none !important;
+    animation: none !important;
+}

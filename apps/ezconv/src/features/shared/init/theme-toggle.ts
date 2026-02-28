@@ -5,6 +5,9 @@
  */
 
 const THEME_KEY = 'ezconv-theme';
+const THEME_SWITCHING_CLASS = 'theme-switching';
+
+let themeTransitionResetId: number | null = null;
 
 function getStoredTheme(): string | null {
     try {
@@ -15,6 +18,14 @@ function getStoredTheme(): string | null {
 }
 
 function setTheme(theme: 'light' | 'dark'): void {
+    const root = document.documentElement;
+
+    if (themeTransitionResetId !== null) {
+        window.cancelAnimationFrame(themeTransitionResetId);
+        themeTransitionResetId = null;
+    }
+
+    root.classList.add(THEME_SWITCHING_CLASS);
     document.documentElement.setAttribute('data-theme', theme);
     try {
         localStorage.setItem(THEME_KEY, theme);
@@ -22,6 +33,11 @@ function setTheme(theme: 'light' | 'dark'): void {
         // localStorage unavailable
     }
     updateToggleIcons(theme);
+
+    themeTransitionResetId = window.requestAnimationFrame(() => {
+        root.classList.remove(THEME_SWITCHING_CLASS);
+        themeTransitionResetId = null;
+    });
 }
 
 function updateToggleIcons(theme: string): void {

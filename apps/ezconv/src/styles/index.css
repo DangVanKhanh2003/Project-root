@@ -36,6 +36,7 @@
 @import './components/format-selector.css';
 @import './components/dropdown.css';
 @import './components/material-popup.css';
+@import './components/maintenance-popup.css';
 @import './features/trim-downloader.css';
 @import './features/multiple-downloader-v2.css';
 @import './features/filename-style.css';
