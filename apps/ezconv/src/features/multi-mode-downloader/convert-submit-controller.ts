@@ -188,6 +188,9 @@ async function handlePlaylistModeConvert(
 ): Promise<void> {
     const parsed = parseYouTubeURLs(rawText);
     if (parsed.length === 0) throw new Error('No valid YouTube URLs found.');
+    if (parsed.length > 1) {
+        throw new Error('Playlist Mode only supports 1 URL at a time.');
+    }
 
     const limitResult = await checkLimit({ kind: 'playlist' });
     if (!limitResult.allowed) {
@@ -196,9 +199,6 @@ async function handlePlaylistModeConvert(
     }
 
     const playlistUrls = parsed.filter(p => !!p.playlistId);
-    if (playlistUrls.length > 1) {
-        throw new Error('Playlist Mode only supports 1 playlist URL at a time.');
-    }
 
     const tasks = parsed.map(async (p) => {
         if (p.playlistId) {

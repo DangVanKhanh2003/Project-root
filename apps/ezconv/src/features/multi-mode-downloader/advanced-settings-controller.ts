@@ -133,6 +133,13 @@ export function initAdvancedSettings(): void {
     const playlistSwitch = document.getElementById('playlist-mode-toggle');
     if (playlistSwitch) {
         playlistSwitch.addEventListener('click', () => {
+            if (!_playlistModeOn) {
+                const count = countUrls();
+                if (count > 1) {
+                    showInlineError('Playlist Mode only supports 1 URL. Remove extra URLs first.');
+                    return;
+                }
+            }
             applyPlaylistMode(!_playlistModeOn);
         });
     }
@@ -188,6 +195,9 @@ export function initAdvancedSettings(): void {
             }
             if (_channelModeOn && count > 1) {
                 showInlineError('Channel Mode only supports 1 URL. Remove extra URLs.');
+            }
+            if (_playlistModeOn && count > 1) {
+                showInlineError('Playlist Mode only supports 1 URL. Remove extra URLs.');
             }
         });
     }
