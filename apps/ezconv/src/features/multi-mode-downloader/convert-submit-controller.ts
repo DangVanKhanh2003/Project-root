@@ -12,7 +12,7 @@ import { isPlaylistMode, isTrimMode, isChannelMode } from './advanced-settings-c
 import { getTrimStart, getTrimEnd, getTrimRangeLabel, resetTrimEditor } from './trim-controller';
 import { isMobileViewport, scrollToElementWithOffset } from '../shared/scroll/scroll-behavior';
 import { checkLimit } from '../download-limit';
-import { showLimitReachedPopup } from '../ui/maintenance-popup';
+import { showLimitReachedPopup, showVideoLimitPopup } from '../ui/maintenance-popup';
 import { incrementDownloadCount } from '../widget-level-manager';
 
 const MAX_BATCH_URLS = 100; // Physical technical limit, business limit is checked via checkLimit
@@ -21,6 +21,19 @@ export interface ConvertFormConfig {
     getSettings: () => Partial<VideoItemSettings>;
     getTrimStart: () => number;
     getTrimEnd: () => number;
+}
+
+function dismissKeyboard(target: HTMLInputElement | HTMLTextAreaElement): void {
+    window.setTimeout(() => target.blur(), 0);
+}
+
+function showPopupForLimitResult(limit: Awaited<ReturnType<typeof checkLimit>>): void {
+    if (limit.type === 'bulk_video_count') {
+        showVideoLimitPopup(limit.limit ?? undefined);
+        return;
+    }
+
+    showLimitReachedPopup(limit.mode ?? undefined);
 }
 
 export function initConvertForm(config: ConvertFormConfig): void {
@@ -48,6 +61,7 @@ export function initConvertForm(config: ConvertFormConfig): void {
                 // Enter: submit
                 e.preventDefault();
                 addUrlsBtn.click();
+                dismissKeyboard(urlsInput);
             }
         }
     });
@@ -145,7 +159,7 @@ async function handleBatchConvert(
             itemCount: parsed.length
         });
         if (!limitResult.allowed) {
-            showLimitReachedPopup(limitResult.mode ?? 'batch');
+            showPopupForLimitResult(limitResult);
             return;
         }
     }
@@ -177,7 +191,7 @@ async function handlePlaylistModeConvert(
 
     const limitResult = await checkLimit({ kind: 'playlist' });
     if (!limitResult.allowed) {
-        showLimitReachedPopup(limitResult.mode ?? 'playlist');
+        showPopupForLimitResult(limitResult);
         return;
     }
 
@@ -222,7 +236,7 @@ async function handleChannelModeConvert(
 
     const limitResult = await checkLimit({ kind: 'channel' });
     if (!limitResult.allowed) {
-        showLimitReachedPopup(limitResult.mode ?? 'channel');
+        showPopupForLimitResult(limitResult);
         return;
     }
 
@@ -245,7 +259,7 @@ export async function handleTrimConvert(
 
     const limitResult = await checkLimit({ kind: 'trim' });
     if (!limitResult.allowed) {
-        showLimitReachedPopup(limitResult.mode ?? 'trim');
+        showPopupForLimitResult(limitResult);
         return;
     }
 

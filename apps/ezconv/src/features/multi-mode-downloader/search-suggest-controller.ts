@@ -17,6 +17,10 @@ const SUGGEST_DEBOUNCE_MS = 280;
 const SEARCH_PAGE_LIMIT = 20;
 const DEBUG_SUGGEST = true;
 
+function dismissKeyboard(target: HTMLInputElement | HTMLTextAreaElement): void {
+    window.setTimeout(() => target.blur(), 0);
+}
+
 export function initSearchSuggestController(): void {
     const form = document.getElementById('multi-download-form') as HTMLElement | null;
     const urlsInput = document.getElementById('urlsInput') as HTMLTextAreaElement | null;
@@ -460,6 +464,7 @@ export function initSearchSuggestController(): void {
             if (selectedSuggestion) {
                 searchInput.value = selectedSuggestion;
                 runSearch(selectedSuggestion);
+                dismissKeyboard(searchInput);
             }
             return;
         }
@@ -474,6 +479,7 @@ export function initSearchSuggestController(): void {
             event.preventDefault();
             event.stopImmediatePropagation();
             runSearch(query);
+            dismissKeyboard(searchInput);
         }
     });
 
@@ -492,6 +498,7 @@ export function initSearchSuggestController(): void {
 
         searchInput.value = suggestion;
         runSearch(suggestion);
+        dismissKeyboard(searchInput);
     });
 
     const onToggleClick = (): void => {
