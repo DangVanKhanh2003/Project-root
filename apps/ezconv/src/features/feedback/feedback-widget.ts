@@ -1,4 +1,4 @@
-import { api } from '../../api';
+import { api, sendFeedbackWidget } from '../../api';
 import { getState as getDownloaderState } from '../downloader/state/state-manager';
 
 const CONFIG = {
@@ -91,7 +91,7 @@ function injectStyles(): void {
       background: #f8fafc;
     }
     .fb-bubble svg { width: 14px; height: 14px; }
-    .fb-bubble .icon { color: #eab308; fill: #eab308; display: block !important; }
+    .fb-bubble .suggest-icon { color: #eab308; fill: #eab308; display: block !important; }
     .fb-bubble span { font-size: 16px; }
     .fb-bubble-text { white-space: nowrap; }
     @media (max-width: 768px) {
@@ -306,7 +306,7 @@ function createStructure(): void {
     </div>
 
     <button id="fb-bubble" class="fb-bubble" type="button">
-      <span class="icon">${icons.lightbulb}</span>
+      <span class="suggest-icon">${icons.lightbulb}</span>
       <span class="fb-bubble-text">${t('bubbleText')}</span>
     </button>
   `;
@@ -386,7 +386,7 @@ async function submitFeedback(description: string, email: string): Promise<void>
   // Access ensures the service tree is initialized before submission.
   void api.core;
 
-  const result = await api.sendFeedbackWidget({
+  const result = await sendFeedbackWidget({
     title: 'Feedback Widget',
     description,
     page,
