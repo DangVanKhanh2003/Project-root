@@ -173,5 +173,6 @@ const captchaHandler = async () => {
 // Domain Layer (Verifier) handles JWT extraction and storage automatically
 export const api = createVerifiedServices(coreServices, verifier, captchaHandler);
 
+
 // Export for debugging/advanced use
 export { coreServices, verifier, jwtStore };

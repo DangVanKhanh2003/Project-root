@@ -7,7 +7,7 @@ import './styles/index.css';
 
 import { multipleDownloadRenderer } from './features/downloader/ui-render/multiple-download/multiple-download-renderer';
 import { initAudioDropdown } from './features/downloader/ui-render/dropdown-logic';
-import { initMobileMenu, initLangSelector, initDrawerLangSelector, initHeaderScroll, initFirebaseAnalytics } from './features/shared/init/common-init';
+import { initMobileMenu, initLangSelector, initDrawerLangSelector, initHeaderScroll, initFirebaseAnalytics, initFeedbackWidget } from './features/shared/init/common-init';
 import { getCurrentSettings, initFormatToggle } from './features/shared/form/format-settings';
 import { initAdvancedSettings } from './features/multi-mode-downloader/advanced-settings-controller';
 import { initConvertForm } from './features/multi-mode-downloader/convert-submit-controller';
@@ -36,6 +36,7 @@ function init(): void {
     initConvertForm({ getSettings: getCurrentSettings, getTrimStart, getTrimEnd });
 
     initFirebaseAnalytics();
+    initFeedbackWidget();
 }
 
 if (document.readyState === 'loading') {

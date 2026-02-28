@@ -45,6 +45,7 @@ export const POLICY_NAME = {
 
   // Feedback
   SEND_FEEDBACK: 'sendFeedback',
+  SEND_FEEDBACK_WIDGET: 'sendFeedbackWidget',
 
   // Search V2
   SEARCH_V2: 'searchV2',

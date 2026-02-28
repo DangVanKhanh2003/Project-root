@@ -120,6 +120,8 @@ export function createVerifiedServices(
   if (services.feedback) {
     methodRegistry[POLICY_NAME.SEND_FEEDBACK] = (params: any) =>
       services.feedback!.sendFeedback(params);
+    methodRegistry[POLICY_NAME.SEND_FEEDBACK_WIDGET] = (params: any) =>
+      services.feedback!.sendFeedbackWidget(params);
   }
 
   if (services.decrypt) {
@@ -325,6 +327,8 @@ export function createVerifiedServices(
     // Feedback
     sendFeedback: (params: Parameters<IFeedbackService['sendFeedback']>[0]) =>
       wrap(POLICY_NAME.SEND_FEEDBACK, params),
+    sendFeedbackWidget: (params: Parameters<IFeedbackService['sendFeedbackWidget']>[0]) =>
+      wrap(POLICY_NAME.SEND_FEEDBACK_WIDGET, params),
 
     // Search V2
     searchV2: (query: string, options?: Parameters<ISearchV2Service['searchV2']>[1]) =>

@@ -121,3 +121,15 @@ export function initFirebaseAnalytics(): void {
             .catch(() => {});
     }, 5000);
 }
+
+// ==========================================
+// Feedback Widget (lazy, after 5s)
+// ==========================================
+
+export function initFeedbackWidget(): void {
+    setTimeout(() => {
+        import('../../feedback/feedback-widget')
+            .then(({ initFeedbackWidget: init }) => init())
+            .catch(() => {});
+    }, 5000);
+}
