@@ -413,7 +413,7 @@ html[data-theme="dark"] .keyword-search-load-more-btn:hover:not(:disabled) {
     display: none;
     /* Hidden by default, shown on mobile */
     position: absolute;
-    top: 10px;
+    top: 3px;
     right: 10px;
     z-index: 10;
 }
@@ -1779,7 +1779,7 @@ html[data-theme="light"] .btn-playlist-group-action:disabled {
 }
 
 .group-items {
-    max-height: 800px;
+    max-height: 650px;
     overflow-y: scroll;
 }
 
@@ -2411,7 +2411,7 @@ html[data-theme="dark"] .btn-download-multi-download.is-outline:hover {
 
 @media (max-width: 768px) {
     .urls-textarea {
-        padding-right: 20px;
+        padding-top: 12px;
     }
 
     .adv-setting-label {
@@ -2441,6 +2441,12 @@ html[data-theme="dark"] .btn-download-multi-download.is-outline:hover {
     .multi-search-toggle__text {
         display: none;
     }
+
+    .multi-search-toggle--mobile .multi-search-toggle__text {
+        display: inline-flex;
+        font-size: 11px;
+    }
+
 
     .multi-search-toggle.is-active {
         color: var(--brand, #C65D3B);
