@@ -285,7 +285,7 @@ html[data-theme="dark"] .keyword-search-load-more-btn:hover:not(:disabled) {
     width: 100%;
     border: none;
     outline: none;
-    padding-top: 6px;
+    padding-top: 6px !important;
     padding-left: 6px;
     min-height: 60px;
     border-radius: 20px;
@@ -385,45 +385,79 @@ html[data-theme="dark"] .keyword-search-load-more-btn:hover:not(:disabled) {
 .multi-format-selector {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 0;
     flex-wrap: wrap;
     justify-content: space-between;
 }
 
-.multi-search-toggle {
+.multi-search-toggle,
+.advanced-settings-toggle {
     position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    min-width: fit-content;
-    min-height: 36px;
     height: 36px;
     padding: 0 4px;
     border: 0;
     background: transparent;
     color: var(--text-secondary);
     cursor: pointer;
-    transition: color 0.2s ease, opacity 0.2s ease;
+    transition: all 0.2s ease;
     -webkit-tap-highlight-color: transparent;
     flex-shrink: 0;
+    border-radius: 8px;
+}
+
+.multi-search-toggle {
+    margin-left: 10px;
+    min-width: 36px;
+}
+
+.advanced-settings-toggle {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+}
+
+.multi-search-toggle:hover,
+.advanced-settings-toggle:hover {
+    color: var(--text-main, #333);
+    background: var(--bg-hover);
+}
+
+.multi-search-toggle.is-active,
+.advanced-settings-toggle[aria-expanded="true"] {
+    color: var(--brand, #C65D3B) !important;
+    background: color-mix(in srgb, var(--brand, #C65D3B) 12%, transparent) !important;
+}
+
+[data-theme="dark"] .multi-search-toggle.is-active,
+[data-theme="dark"] .advanced-settings-toggle[aria-expanded="true"] {
+    color: var(--brand, #C65D3B) !important;
+    background: color-mix(in srgb, var(--brand, #C65D3B) 25%, transparent) !important;
+}
+
+.advanced-settings-toggle:hover .adv-settings-icon {
+    color: var(--text-main, #333);
+}
+
+.advanced-settings-toggle[aria-expanded="true"] .adv-settings-icon {
+    color: var(--brand, #C65D3B) !important;
+}
+
+.adv-settings-icon-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .multi-search-toggle--mobile {
     display: none;
-    /* Hidden by default, shown on mobile */
-    position: absolute;
-    top: 3px;
-    right: 10px;
-    z-index: 10;
 }
 
 .multi-search-toggle--desktop {
     display: inline-flex;
-}
-
-.multi-search-toggle:hover {
-    color: var(--text-main, #333);
 }
 
 .multi-search-toggle__icon,
@@ -441,47 +475,20 @@ html[data-theme="dark"] .keyword-search-load-more-btn:hover:not(:disabled) {
     font-size: 13px;
     font-weight: 700;
     line-height: 1;
+    color: inherit;
+    /* Ensure it inherits active color */
 }
 
-.multi-search-toggle::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -3px;
-    height: 2px;
-    border-radius: 999px;
-    background: var(--brand, #C65D3B);
-    transform: scaleX(0);
-    transform-origin: right center;
-    /* Start closing from right to left */
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
+/* Underline removed globally per request */
 
-.multi-search-toggle.is-active {
-    color: #fff !important;
-}
-
-.multi-search-toggle--mobile.is-active {
-    color: var(--brand, #C65D3B) !important;
-}
+/* Underline removed globally per request */
 
 /* Ensure unactive is xám */
 .multi-search-toggle:not(.is-active) {
     color: var(--text-secondary, #71717a) !important;
 }
 
-.multi-search-toggle.is-active::after {
-    transform: scaleX(1);
-    transform-origin: left center;
-    /* Open from left to right */
-}
-
-/* Ensure closing animation goes right to left */
-.multi-search-toggle:not(.is-active)::after {
-    transform: scaleX(0);
-    transform-origin: left center;
-}
+/* Ensure closing animation logic is removed if no longer used */
 
 .multi-search-place {
     margin-top: 0;
@@ -545,7 +552,8 @@ html[data-theme="dark"] .multi-search-toggle:hover {
 }
 
 html[data-theme="dark"] .multi-search-toggle.is-active {
-    color: #fff;
+    color: var(--brand, #C65D3B) !important;
+    background: color-mix(in srgb, var(--brand, #C65D3B) 12%, transparent) !important;
 }
 
 html[data-theme="dark"] .multi-search-wrapper {
@@ -2132,7 +2140,7 @@ html[data-theme="dark"] .btn-download-multi-download.is-outline:hover {
 }
 
 .adv-settings-icon {
-    color: currentColor;
+    color: var(--text-secondary, #71717a);
     opacity: 1;
 }
 
@@ -2426,7 +2434,13 @@ html[data-theme="dark"] .btn-download-multi-download.is-outline:hover {
     .multi-format-selector {
         flex-direction: row;
         flex-wrap: wrap;
-        gap: 10px;
+        gap: 0;
+    }
+
+    .advanced-settings-toggle {
+        width: 28px !important;
+        height: 28px !important;
+        min-width: 28px;
     }
 
     .multi-search-toggle {
@@ -2436,28 +2450,20 @@ html[data-theme="dark"] .btn-download-multi-download.is-outline:hover {
         height: 28px;
         padding: 0;
         gap: 0;
+        margin-left: 6px !important;
     }
 
     .multi-search-toggle__text {
-        display: none;
-    }
-
-    .multi-search-toggle--mobile .multi-search-toggle__text {
-        display: inline-flex;
-        font-size: 11px;
+        display: none !important;
     }
 
 
-    .multi-search-toggle.is-active {
-        color: var(--brand, #C65D3B);
+    .multi-search-toggle::after {
+        display: none !important;
     }
 
     .multi-search-toggle::after {
-        bottom: -5px;
-    }
-
-    .multi-search-toggle--mobile::after {
-        display: none;
+        display: none !important;
     }
 
     .multi-format-actions {
@@ -2665,12 +2671,8 @@ html[data-theme="dark"] .btn-download-multi-download.is-outline:hover {
         border-radius: 20px;
     }
 
-    .multi-search-toggle--desktop {
-        display: none !important;
-    }
-
     .multi-search-toggle--mobile {
-        display: inline-flex !important;
+        display: none !important;
     }
 
 

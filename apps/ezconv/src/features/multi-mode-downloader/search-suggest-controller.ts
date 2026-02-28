@@ -330,8 +330,6 @@ export function initSearchSuggestController(): void {
     const runSearch = async (keyword: string): Promise<void> => {
         suppressSuggestionsUntilInputClick = true;
         cancelPendingSuggestions();
-        urlsInput.value = '';
-        urlsInput.dispatchEvent(new Event('input', { bubbles: true }));
         searchInput.value = keyword;
         setSearchMode(true);
         resetSearchState();
@@ -510,7 +508,6 @@ export function initSearchSuggestController(): void {
     };
 
     if (searchToggle) searchToggle.addEventListener('click', onToggleClick);
-    if (searchToggleMobile) searchToggleMobile.addEventListener('click', onToggleClick);
 
     resultsContainer.addEventListener('change', (event) => {
         const target = event.target as HTMLElement;
