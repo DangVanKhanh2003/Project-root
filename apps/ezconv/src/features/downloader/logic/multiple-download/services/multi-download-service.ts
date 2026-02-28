@@ -222,7 +222,6 @@ export class MultiDownloadService {
 
         // Set group meta after items are visible — shows Load more button if more pages exist
         videoStore.setGroupMeta(groupId, false, realTitle, page1.nextPageToken ?? null);
-        await incrementDownloadCount('playlist', playlistUrl);
 
         return {
             title: realTitle,
@@ -405,7 +404,6 @@ export class MultiDownloadService {
         }
 
         videoStore.setGroupMeta(groupId, false, realTitle, page1.nextPageToken ?? null);
-        await incrementDownloadCount('channel', channelUrl);
 
         return {
             title: realTitle,
@@ -611,7 +609,7 @@ export class MultiDownloadService {
     private enqueueJob(id: string): void {
         this.queue.add(id, (signal) => {
             return this.executeDownload(id, signal);
-        }).catch(() => {});
+        }).catch(() => { });
     }
 
     cancelGroupDownloads(groupId: string): void {
@@ -686,7 +684,9 @@ export class MultiDownloadService {
                         videoStore.updateProgress(id, progress, phase);
                     },
                     onComplete: (downloadUrl, filename) => {
-                        if (method !== 'playlist' && method !== 'channel' && method !== 'batch') {
+                        // Only increment for single/trim downloads.
+                        // Playlist/Channel/Batch downloads are incremented when the group is added.
+                        if (method === 'single' || method === 'trim') {
                             void incrementDownloadCount(method, item.meta.url || item.url);
                         }
 

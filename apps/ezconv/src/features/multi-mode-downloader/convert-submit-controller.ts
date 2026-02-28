@@ -4,6 +4,7 @@
  * to the correct download flow based on current mode.
  */
 
+
 import { multiDownloadService } from '../downloader/logic/multiple-download/services/multi-download-service';
 import { VideoItemSettings } from '../downloader/state/multiple-download-types';
 import { parseYouTubeURLs, normalizeURL } from '../downloader/logic/multiple-download/url-parser';
@@ -14,7 +15,7 @@ import { checkLimit } from '../download-limit';
 import { showLimitReachedPopup } from '../ui/maintenance-popup';
 import { incrementDownloadCount } from '../widget-level-manager';
 
-const MAX_BATCH_URLS = 50;
+const MAX_BATCH_URLS = 100; // Physical technical limit, business limit is checked via checkLimit
 
 export interface ConvertFormConfig {
     getSettings: () => Partial<VideoItemSettings>;
@@ -204,6 +205,9 @@ async function handlePlaylistModeConvert(
         const first = failed[0].reason;
         throw new Error(first instanceof Error ? first.message : 'Failed to load one or more groups.');
     }
+
+    // Successfully added playlist/single videos in playlist mode
+    await incrementDownloadCount('playlist', rawText);
     // Playlist mode: no auto-start - user chooses per-group via Convert Selected
 }
 
@@ -223,10 +227,11 @@ async function handleChannelModeConvert(
     }
 
     await multiDownloadService.addChannel(urls[0], settings, onItemsAdded);
+    await incrementDownloadCount('channel', rawText);
     // Channel mode: no auto-start - user chooses per-group via Convert Selected
 }
 
-async function handleTrimConvert(
+export async function handleTrimConvert(
     rawText: string,
     settings: Partial<VideoItemSettings>,
     onItemsAdded?: () => void
@@ -237,6 +242,12 @@ async function handleTrimConvert(
 
     const p = parsed[0];
     if (!p.videoId) throw new Error('Could not extract a video ID from the URL.');
+
+    const limitResult = await checkLimit({ kind: 'trim' });
+    if (!limitResult.allowed) {
+        showLimitReachedPopup(limitResult.mode ?? 'trim');
+        return;
+    }
 
     const trimStart = getTrimStart();
     const trimEnd = getTrimEnd();

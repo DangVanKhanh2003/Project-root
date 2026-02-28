@@ -7,15 +7,16 @@ const MAX_STORED_LOGS = 100;
 
 export const BULK_DOWNLOAD_LIMIT = 10;
 export const DAILY_BULK_DOWNLOAD_LIMIT = 20;
-export const DAILY_PLAYLIST_DOWNLOAD_LIMIT = 20;
-export const DAILY_CHANNEL_DOWNLOAD_LIMIT = 20;
+export const DAILY_PLAYLIST_DOWNLOAD_LIMIT = 5;
+export const DAILY_CHANNEL_DOWNLOAD_LIMIT = 5;
 export const DAILY_TRIM_DOWNLOAD_LIMIT = 20;
 
-const DAILY_COUNTER_KEY_BY_MODE: Record<LimitedDailyMode, string> = {
-    batch: 'ytmp3gg:download_bulk_daily',
-    playlist: 'ytmp3gg:download_playlist_daily',
-    channel: 'ytmp3gg:download_channel_daily',
-    trim: 'ytmp3gg:download_trim_daily'
+const DAILY_COUNTER_KEY_BY_MODE: Record<LimitedDailyMode | 'single' | 'trim', string> = {
+    batch: 'ezconv:download_batch_daily',
+    playlist: 'ezconv:download_playlist_daily',
+    channel: 'ezconv:download_channel_daily',
+    trim: 'ezconv:download_trim_daily',
+    single: 'ezconv:download_single_daily'
 };
 
 const MEMORY_FALLBACK_LOGS: DownloadLogRecord[] = [];
@@ -401,8 +402,26 @@ export async function checkLimit(context: LimitCheckContext): Promise<LimitCheck
         };
     }
 
+    const now = context.now ?? Date.now();
+
+    // 1. Check Bulk Video Count Limit (Max videos per paste)
+    if (context.kind === 'batch' && typeof context.itemCount === 'number') {
+        if (context.itemCount > BULK_DOWNLOAD_LIMIT) {
+            return {
+                allowed: false,
+                type: 'bulk_video_count',
+                mode: 'batch',
+                reason: 'video_limit_exceeded',
+                limit: BULK_DOWNLOAD_LIMIT,
+                currentCount: context.itemCount,
+                resetAt: null,
+                remainingSeconds: null
+            };
+        }
+    }
+
+    // 2. Check Daily Limits
     if (context.kind in DAILY_LIMITS_BY_MODE) {
-        const now = context.now ?? Date.now();
         const mode = context.kind as LimitedDailyMode;
         const modeLimit = DAILY_LIMITS_BY_MODE[mode];
         const currentCount = await getDownloadsTodayByMethod(mode, now);
