@@ -2389,7 +2389,7 @@ html[data-theme="dark"] .btn-download-multi-download.is-outline:hover {
     }
 
     .multi-search-toggle {
-        order: 1;
+        order: 2;
         min-width: 28px;
         min-height: 28px;
         height: 28px;
@@ -2410,6 +2410,7 @@ html[data-theme="dark"] .btn-download-multi-download.is-outline:hover {
     }
 
     .multi-format-actions {
+        order: 3;
         flex: 1 1 auto;
         width: auto;
         margin-left: auto;
@@ -2425,6 +2426,7 @@ html[data-theme="dark"] .btn-download-multi-download.is-outline:hover {
     }
 
     .advanced-settings-toggle {
+        order: 1;
         display: inline-flex;
         width: 28px;
         min-height: 28px;
