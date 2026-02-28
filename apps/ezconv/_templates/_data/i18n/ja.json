@@ -35,7 +35,9 @@
     "formatMp4": "MP4",
     "formatMp3": "MP3",
     "audioTrackDefault": "Audio track",
-    "searchPlaceholder": "検索..."
+    "searchPlaceholder": "検索...",
+    "searchBtn": "検索",
+    "searchVideosPlaceholder": "動画を検索..."
   },
   "overview": {
     "badge": "高速＆無料"

@@ -18,16 +18,21 @@ const SEARCH_PAGE_LIMIT = 20;
 const DEBUG_SUGGEST = true;
 
 export function initSearchSuggestController(): void {
+    const form = document.getElementById('multi-download-form') as HTMLElement | null;
     const urlsInput = document.getElementById('urlsInput') as HTMLTextAreaElement | null;
+    const searchToggle = document.getElementById('multi-search-toggle') as HTMLButtonElement | null;
+    const searchPlace = document.getElementById('multi-search-place') as HTMLElement | null;
+    const searchInput = document.getElementById('multi-search-input') as HTMLInputElement | null;
     const suggestionContainer = document.getElementById('keyword-suggestion-container') as HTMLElement | null;
     const resultsSection = document.getElementById('keyword-search-results-section') as HTMLElement | null;
     const resultsContainer = document.getElementById('keyword-search-results-container') as HTMLElement | null;
 
-    if (!urlsInput || !suggestionContainer || !resultsSection || !resultsContainer) {
+    if (!form || !urlsInput || !searchToggle || !searchPlace || !searchInput || !suggestionContainer || !resultsSection || !resultsContainer) {
         return;
     }
 
     let debounceTimer: number | null = null;
+    let searchToggleAnimationTimer: number | null = null;
     let latestSuggestRequestId = 0;
     let suggestionItems: string[] = [];
     let highlightedSuggestionIndex = -1;
@@ -40,6 +45,39 @@ export function initSearchSuggestController(): void {
     const debugLog = (...args: unknown[]): void => {
         if (!DEBUG_SUGGEST) return;
         console.log('[search-suggest]', ...args);
+    };
+
+    const syncSearchToggleState = (isActive: boolean): void => {
+        searchToggle.classList.toggle('is-active', isActive);
+        searchToggle.setAttribute('aria-pressed', String(isActive));
+        searchToggle.setAttribute('aria-expanded', String(isActive));
+        form.classList.toggle('search-mode-active', isActive);
+    };
+
+    const stopSearchToggleClosingAnimation = (): void => {
+        if (searchToggleAnimationTimer) {
+            clearTimeout(searchToggleAnimationTimer);
+            searchToggleAnimationTimer = null;
+        }
+        searchToggle.classList.remove('is-closing');
+    };
+
+    const setSearchMode = (isActive: boolean): void => {
+        stopSearchToggleClosingAnimation();
+
+        if (isActive) {
+            searchPlace.hidden = false;
+            syncSearchToggleState(true);
+            return;
+        }
+
+        syncSearchToggleState(false);
+        searchToggle.classList.add('is-closing');
+        searchToggleAnimationTimer = window.setTimeout(() => {
+            searchToggle.classList.remove('is-closing');
+            searchToggleAnimationTimer = null;
+        }, 240);
+        searchPlace.hidden = true;
     };
 
     const cancelPendingSuggestions = (): void => {
@@ -74,6 +112,15 @@ export function initSearchSuggestController(): void {
         resetSearchState();
         resultsContainer.innerHTML = '';
         resultsSection.style.display = 'none';
+    };
+
+    const closeSearchMode = (): void => {
+        cancelPendingSuggestions();
+        hideSuggestions();
+        clearSearchResults();
+        searchInput.value = '';
+        suppressSuggestionsUntilInputClick = false;
+        setSearchMode(false);
     };
 
     const renderSuggestions = (items: string[]): void => {
@@ -155,23 +202,11 @@ export function initSearchSuggestController(): void {
         }, SUGGEST_DEBOUNCE_MS);
     };
 
-    const getKeywordFromTextarea = (): string => {
-        const fullText = urlsInput.value || '';
-        const caretPos = typeof urlsInput.selectionStart === 'number'
-            ? urlsInput.selectionStart
-            : fullText.length;
-
-        const beforeCaret = fullText.slice(0, caretPos);
-        const lineStart = beforeCaret.lastIndexOf('\n') + 1;
-        const afterCaret = fullText.slice(caretPos);
-        const nextNewlineOffset = afterCaret.indexOf('\n');
-        const lineEnd = nextNewlineOffset >= 0 ? caretPos + nextNewlineOffset : fullText.length;
-
-        const currentLine = fullText.slice(lineStart, lineEnd).trim();
-        if (!currentLine) return '';
-        if (looksLikeUrl(currentLine) || parseYouTubeURLs(currentLine).length > 0) return '';
-
-        return currentLine;
+    const getSearchQuery = (): string => {
+        const value = searchInput.value.trim();
+        if (!value) return '';
+        if (looksLikeUrl(value) || parseYouTubeURLs(value).length > 0) return '';
+        return value;
     };
 
     const getSelectedVideoIdsFromTextarea = (): Set<string> => {
@@ -287,6 +322,8 @@ export function initSearchSuggestController(): void {
         cancelPendingSuggestions();
         urlsInput.value = '';
         urlsInput.dispatchEvent(new Event('input', { bubbles: true }));
+        searchInput.value = keyword;
+        setSearchMode(true);
         resetSearchState();
         currentKeyword = keyword;
         renderLoadingResults();
@@ -360,12 +397,16 @@ export function initSearchSuggestController(): void {
 
     urlsInput.addEventListener('input', () => {
         syncCheckboxesFromTextarea();
-        const query = getKeywordFromTextarea();
+    });
+
+    searchInput.addEventListener('input', () => {
+        syncCheckboxesFromTextarea();
+        const query = getSearchQuery();
         highlightedSuggestionIndex = -1;
         debugLog('input', {
-            textareaValue: urlsInput.value,
+            searchValue: searchInput.value,
             computedQuery: query,
-            selectionStart: urlsInput.selectionStart
+            searchModeActive: searchToggle.classList.contains('is-active')
         });
 
         if (!query) {
@@ -381,8 +422,8 @@ export function initSearchSuggestController(): void {
         scheduleSuggestions(query);
     });
 
-    urlsInput.addEventListener('keydown', (event) => {
-        const query = getKeywordFromTextarea();
+    searchInput.addEventListener('keydown', (event) => {
+        const query = getSearchQuery();
 
         if (event.key === 'ArrowDown' && suggestionItems.length > 0) {
             event.preventDefault();
@@ -409,8 +450,7 @@ export function initSearchSuggestController(): void {
             event.stopImmediatePropagation();
             const selectedSuggestion = suggestionItems[highlightedSuggestionIndex];
             if (selectedSuggestion) {
-                urlsInput.value = selectedSuggestion;
-                urlsInput.dispatchEvent(new Event('input', { bubbles: true }));
+                searchInput.value = selectedSuggestion;
                 runSearch(selectedSuggestion);
             }
             return;
@@ -429,7 +469,7 @@ export function initSearchSuggestController(): void {
         }
     });
 
-    urlsInput.addEventListener('pointerdown', () => {
+    searchInput.addEventListener('pointerdown', () => {
         suppressSuggestionsUntilInputClick = false;
     });
 
@@ -442,9 +482,20 @@ export function initSearchSuggestController(): void {
         const suggestion = suggestionItems[index];
         if (!suggestion) return;
 
-        urlsInput.value = suggestion;
-        urlsInput.dispatchEvent(new Event('input', { bubbles: true }));
+        searchInput.value = suggestion;
         runSearch(suggestion);
+    });
+
+    searchToggle.addEventListener('click', () => {
+        const nextState = !searchToggle.classList.contains('is-active');
+        if (nextState) {
+            setSearchMode(true);
+            suppressSuggestionsUntilInputClick = false;
+            searchInput.focus();
+            return;
+        }
+
+        closeSearchMode();
     });
 
     resultsContainer.addEventListener('change', (event) => {
@@ -480,19 +531,25 @@ export function initSearchSuggestController(): void {
     });
 
     document.addEventListener('multi-download:convert-click', () => {
-        suppressSuggestionsUntilInputClick = true;
-        cancelPendingSuggestions();
-        hideSuggestions();
-        clearSearchResults();
+        closeSearchMode();
     });
 
     document.addEventListener('click', (event) => {
         const target = event.target as Node;
-        if (suggestionContainer.contains(target) || urlsInput.contains(target as Node)) {
+        if (
+            suggestionContainer.contains(target)
+            || searchInput.contains(target as Node)
+            || searchToggle.contains(target as Node)
+        ) {
             return;
         }
         hideSuggestions();
     });
+
+    clearSearchResults();
+    searchPlace.hidden = true;
+    syncSearchToggleState(false);
+    stopSearchToggleClosingAnimation();
 }
 
 function readPagination(data: any): { nextPageToken: string | null; hasNextPage: boolean } {

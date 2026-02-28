@@ -35,7 +35,9 @@
     "formatMp4": "MP4",
     "formatMp3": "MP3",
     "audioTrackDefault": "Audio track",
-    "searchPlaceholder": "ရှာဖွေရန်..."
+    "searchPlaceholder": "ရှာဖွေရန်...",
+    "searchBtn": "ရှာဖွေရန်",
+    "searchVideosPlaceholder": "ဗီဒီယိုများကို ရှာဖွေပါ..."
   },
   "overview": {
     "badge": "မြန်ဆန်และအခမဲ့"

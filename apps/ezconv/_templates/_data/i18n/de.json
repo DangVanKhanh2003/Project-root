@@ -35,7 +35,9 @@
     "formatMp4": "MP4",
     "formatMp3": "MP3",
     "audioTrackDefault": "Audio track",
-    "searchPlaceholder": "Suchen..."
+    "searchPlaceholder": "Suchen...",
+    "searchBtn": "Suchen",
+    "searchVideosPlaceholder": "Nach Videos suchen..."
   },
   "overview": {
     "badge": "Schnell & Kostenlos"

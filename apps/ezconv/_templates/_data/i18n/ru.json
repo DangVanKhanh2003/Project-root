@@ -35,7 +35,9 @@
     "formatMp4": "MP4",
     "formatMp3": "MP3",
     "audioTrackDefault": "Audio track",
-    "searchPlaceholder": "Поиск..."
+    "searchPlaceholder": "Поиск...",
+    "searchBtn": "Поиск",
+    "searchVideosPlaceholder": "Искать видео..."
   },
   "overview": {
     "badge": "Быстро и бесплатно"
