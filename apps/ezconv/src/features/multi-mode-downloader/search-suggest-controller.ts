@@ -21,15 +21,23 @@ export function initSearchSuggestController(): void {
     const form = document.getElementById('multi-download-form') as HTMLElement | null;
     const urlsInput = document.getElementById('urlsInput') as HTMLTextAreaElement | null;
     const searchToggle = document.getElementById('multi-search-toggle') as HTMLButtonElement | null;
+    const searchToggleMobile = document.getElementById('multi-search-toggle-mobile') as HTMLButtonElement | null;
     const searchPlace = document.getElementById('multi-search-place') as HTMLElement | null;
     const searchInput = document.getElementById('multi-search-input') as HTMLInputElement | null;
     const suggestionContainer = document.getElementById('keyword-suggestion-container') as HTMLElement | null;
     const resultsSection = document.getElementById('keyword-search-results-section') as HTMLElement | null;
     const resultsContainer = document.getElementById('keyword-search-results-container') as HTMLElement | null;
 
-    if (!form || !urlsInput || !searchToggle || !searchPlace || !searchInput || !suggestionContainer || !resultsSection || !resultsContainer) {
+    if (!form || !urlsInput || (!searchToggle && !searchToggleMobile) || !searchPlace || !searchInput || !suggestionContainer || !resultsSection || !resultsContainer) {
         return;
     }
+
+    const getAllToggles = (): HTMLButtonElement[] => {
+        const toggles: HTMLButtonElement[] = [];
+        if (searchToggle) toggles.push(searchToggle);
+        if (searchToggleMobile) toggles.push(searchToggleMobile);
+        return toggles;
+    };
 
     let debounceTimer: number | null = null;
     let searchToggleAnimationTimer: number | null = null;
@@ -48,9 +56,11 @@ export function initSearchSuggestController(): void {
     };
 
     const syncSearchToggleState = (isActive: boolean): void => {
-        searchToggle.classList.toggle('is-active', isActive);
-        searchToggle.setAttribute('aria-pressed', String(isActive));
-        searchToggle.setAttribute('aria-expanded', String(isActive));
+        getAllToggles().forEach((t) => {
+            t.classList.toggle('is-active', isActive);
+            t.setAttribute('aria-pressed', String(isActive));
+            t.setAttribute('aria-expanded', String(isActive));
+        });
         form.classList.toggle('search-mode-active', isActive);
     };
 
@@ -59,7 +69,7 @@ export function initSearchSuggestController(): void {
             clearTimeout(searchToggleAnimationTimer);
             searchToggleAnimationTimer = null;
         }
-        searchToggle.classList.remove('is-closing');
+        getAllToggles().forEach((t) => t.classList.remove('is-closing'));
     };
 
     const setSearchMode = (isActive: boolean): void => {
@@ -72,11 +82,11 @@ export function initSearchSuggestController(): void {
         }
 
         syncSearchToggleState(false);
-        searchToggle.classList.add('is-closing');
+        getAllToggles().forEach((t) => t.classList.add('is-closing'));
         searchToggleAnimationTimer = window.setTimeout(() => {
-            searchToggle.classList.remove('is-closing');
+            getAllToggles().forEach((t) => t.classList.remove('is-closing'));
             searchToggleAnimationTimer = null;
-        }, 240);
+        }, 300);
         searchPlace.hidden = true;
     };
 
@@ -486,8 +496,9 @@ export function initSearchSuggestController(): void {
         runSearch(suggestion);
     });
 
-    searchToggle.addEventListener('click', () => {
-        const nextState = !searchToggle.classList.contains('is-active');
+    const onToggleClick = (): void => {
+        const isActive = getAllToggles().some((t) => t.classList.contains('is-active'));
+        const nextState = !isActive;
         if (nextState) {
             setSearchMode(true);
             suppressSuggestionsUntilInputClick = false;
@@ -496,7 +507,10 @@ export function initSearchSuggestController(): void {
         }
 
         closeSearchMode();
-    });
+    };
+
+    if (searchToggle) searchToggle.addEventListener('click', onToggleClick);
+    if (searchToggleMobile) searchToggleMobile.addEventListener('click', onToggleClick);
 
     resultsContainer.addEventListener('change', (event) => {
         const target = event.target as HTMLElement;
@@ -539,7 +553,8 @@ export function initSearchSuggestController(): void {
         if (
             suggestionContainer.contains(target)
             || searchInput.contains(target as Node)
-            || searchToggle.contains(target as Node)
+            || (searchToggle && searchToggle.contains(target as Node))
+            || (searchToggleMobile && searchToggleMobile.contains(target as Node))
         ) {
             return;
         }

@@ -73,10 +73,22 @@
 }
 
 .multi-search-shell {
+    position: relative;
     width: 100%;
     max-width: 1100px;
-    margin: 0 auto 10px;
-    position: relative;
+    margin: 10px auto;
+    z-index: 5;
+}
+
+.multi-search-place {
+    width: 100%;
+    background: var(--bg-card);
+    border-radius: var(--radius-xl, 24px);
+    transition: all 0.3s ease;
+}
+
+.multi-search-place[hidden] {
+    display: none !important;
 }
 
 .keyword-suggest-list {
@@ -397,6 +409,19 @@ html[data-theme="dark"] .keyword-search-load-more-btn:hover:not(:disabled) {
     flex-shrink: 0;
 }
 
+.multi-search-toggle--mobile {
+    display: none;
+    /* Hidden by default, shown on mobile */
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 10;
+}
+
+.multi-search-toggle--desktop {
+    display: inline-flex;
+}
+
 .multi-search-toggle:hover {
     color: var(--text-main, #333);
 }
@@ -429,19 +454,39 @@ html[data-theme="dark"] .keyword-search-load-more-btn:hover:not(:disabled) {
     background: var(--brand, #C65D3B);
     transform: scaleX(0);
     transform-origin: right center;
-    transition: transform 0.24s ease;
+    /* Start closing from right to left */
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .multi-search-toggle.is-active {
     color: var(--text-main, #333);
 }
 
+/* Mobile Active State: Orange */
+@media (max-width: 768px) {
+    .multi-search-toggle--mobile.is-active {
+        color: var(--brand, #C65D3B);
+    }
+}
+
+/* Desktop Active State: White (already default for text-main in dark mode maybe?) */
+/* User specified: desktop unactive is gray, active is white */
+html[data-theme="dark"] .multi-search-toggle.is-active {
+    color: #fff;
+}
+
+html[data-theme="light"] .multi-search-toggle.is-active {
+    color: #000;
+}
+
 .multi-search-toggle.is-active::after {
     transform: scaleX(1);
     transform-origin: left center;
+    /* Open from left to right */
 }
 
-.multi-search-toggle.is-closing::after {
+/* Ensure closing animation goes right to left */
+.multi-search-toggle:not(.is-active)::after {
     transform: scaleX(0);
     transform-origin: left center;
 }
@@ -2613,6 +2658,18 @@ html[data-theme="dark"] .btn-download-multi-download.is-outline:hover {
         border-radius: 20px;
     }
 
+    .multi-search-toggle--desktop {
+        display: none !important;
+    }
+
+    .multi-search-toggle--mobile {
+        display: inline-flex !important;
+    }
+
+    /* Adjust card padding to make room for top-left button */
+    .multiple-download-card {
+        padding-top: 40px !important;
+    }
 }
 
 @media (max-width: 350px) {
