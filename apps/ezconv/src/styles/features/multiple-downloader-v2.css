@@ -414,7 +414,7 @@ html[data-theme="dark"] .keyword-search-load-more-btn:hover:not(:disabled) {
     /* Hidden by default, shown on mobile */
     position: absolute;
     top: 10px;
-    left: 10px;
+    right: 10px;
     z-index: 10;
 }
 
@@ -459,24 +459,16 @@ html[data-theme="dark"] .keyword-search-load-more-btn:hover:not(:disabled) {
 }
 
 .multi-search-toggle.is-active {
-    color: var(--text-main, #333);
+    color: #fff !important;
 }
 
-/* Mobile Active State: Orange */
-@media (max-width: 768px) {
-    .multi-search-toggle--mobile.is-active {
-        color: var(--brand, #C65D3B);
-    }
+.multi-search-toggle--mobile.is-active {
+    color: var(--brand, #C65D3B) !important;
 }
 
-/* Desktop Active State: White (already default for text-main in dark mode maybe?) */
-/* User specified: desktop unactive is gray, active is white */
-html[data-theme="dark"] .multi-search-toggle.is-active {
-    color: #fff;
-}
-
-html[data-theme="light"] .multi-search-toggle.is-active {
-    color: #000;
+/* Ensure unactive is xám */
+.multi-search-toggle:not(.is-active) {
+    color: var(--text-secondary, #71717a) !important;
 }
 
 .multi-search-toggle.is-active::after {
@@ -2418,6 +2410,10 @@ html[data-theme="dark"] .btn-download-multi-download.is-outline:hover {
 }
 
 @media (max-width: 768px) {
+    .urls-textarea {
+        padding-right: 20px;
+    }
+
     .adv-setting-label {
         font-size: 9px;
     }
@@ -2452,6 +2448,10 @@ html[data-theme="dark"] .btn-download-multi-download.is-outline:hover {
 
     .multi-search-toggle::after {
         bottom: -5px;
+    }
+
+    .multi-search-toggle--mobile::after {
+        display: none;
     }
 
     .multi-format-actions {
@@ -2546,6 +2546,7 @@ html[data-theme="dark"] .btn-download-multi-download.is-outline:hover {
         width: 100%;
         margin: 0;
         justify-content: center;
+        order: 0;
     }
 
     .multi-btn-convert.convert-below-advanced+#error-message {
@@ -2666,10 +2667,7 @@ html[data-theme="dark"] .btn-download-multi-download.is-outline:hover {
         display: inline-flex !important;
     }
 
-    /* Adjust card padding to make room for top-left button */
-    .multiple-download-card {
-        padding-top: 40px !important;
-    }
+
 }
 
 @media (max-width: 350px) {
