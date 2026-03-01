@@ -246,38 +246,38 @@
 }
 
 html[data-theme="dark"] .keyword-suggest-list {
-    background: #131823;
-    border-color: rgba(148, 163, 184, 0.24);
-    box-shadow: 0 10px 24px rgba(2, 6, 23, 0.55);
+    background: var(--bg-card);
+    border-color: var(--border-default);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
 }
 
 html[data-theme="dark"] .keyword-suggest-item {
-    background: #131823;
-    color: #e5e7eb;
+    background: var(--bg-card);
+    color: var(--text-main);
 }
 
 html[data-theme="dark"] .keyword-suggest-item:hover,
 html[data-theme="dark"] .keyword-suggest-item.is-highlighted {
-    background: #1d2635;
-    color: #f8fafc;
+    background: var(--bg-hover);
+    color: var(--text-main);
 }
 
 html[data-theme="dark"] .keyword-results-message {
-    background: #131823;
-    color: #cbd5e1;
-    border-color: rgba(148, 163, 184, 0.3);
+    background: var(--bg-surface-soft);
+    color: var(--text-secondary);
+    border-color: var(--border-default);
 }
 
 html[data-theme="dark"] .keyword-search-load-more-btn {
-    background: #131823;
-    color: #e5e7eb;
-    border-color: rgba(148, 163, 184, 0.3);
+    background: var(--bg-card);
+    color: var(--text-main);
+    border-color: var(--border-default);
 }
 
 html[data-theme="dark"] .keyword-search-load-more-btn:hover:not(:disabled) {
-    background: #1d2635;
-    border-color: rgba(148, 163, 184, 0.5);
-    box-shadow: 0 6px 16px rgba(2, 6, 23, 0.45);
+    background: var(--bg-hover);
+    border-color: var(--border-input);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
 }
 
 
@@ -548,7 +548,7 @@ html[data-theme="dark"] .keyword-search-load-more-btn:hover:not(:disabled) {
 }
 
 html[data-theme="dark"] .multi-search-toggle:hover {
-    color: #f8fafc;
+    color: var(--text-main);
 }
 
 html[data-theme="dark"] .multi-search-toggle.is-active {
@@ -557,22 +557,22 @@ html[data-theme="dark"] .multi-search-toggle.is-active {
 }
 
 html[data-theme="dark"] .multi-search-wrapper {
-    background: rgba(19, 24, 35, 0.96);
-    border-color: rgba(148, 163, 184, 0.16);
+    background: var(--bg-card);
+    border-color: var(--border-input);
     box-shadow: none;
 }
 
 html[data-theme="dark"] .multi-search-wrapper:focus-within {
-    border-color: rgba(198, 93, 59, 0.68);
+    border-color: var(--brand, #C65D3B);
     box-shadow: none;
 }
 
 html[data-theme="dark"] .multi-search-input {
-    color: #f8fafc;
+    color: var(--text-main);
 }
 
 html[data-theme="dark"] .multi-search-input::placeholder {
-    color: #94a3b8;
+    color: var(--text-placeholder);
 }
 
 /* Format Dropdown */
