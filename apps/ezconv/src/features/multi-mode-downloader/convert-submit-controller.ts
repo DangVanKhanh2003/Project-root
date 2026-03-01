@@ -12,7 +12,9 @@ import { isPlaylistMode, isTrimMode, isChannelMode } from './advanced-settings-c
 import { getTrimStart, getTrimEnd, getTrimRangeLabel, resetTrimEditor } from './trim-controller';
 import { isMobileViewport, scrollToElementWithOffset } from '../shared/scroll/scroll-behavior';
 import { checkLimit } from '../download-limit';
-import { showLimitReachedPopup, showVideoLimitPopup } from '../ui/maintenance-popup';
+import { evaluateFeatureAccess, type FeatureAccessResult } from '../feature-access';
+import { FEATURE_KEYS } from '../../constants/feature-access-constants';
+import { showLimitReachedPopup, showVideoLimitPopup, showSupporterUpsellPopup } from '../ui/maintenance-popup';
 import { incrementDownloadCount } from '../widget-level-manager';
 
 const MAX_BATCH_URLS = 100; // Physical technical limit, business limit is checked via checkLimit
@@ -34,6 +36,18 @@ function showPopupForLimitResult(limit: Awaited<ReturnType<typeof checkLimit>>):
     }
 
     showLimitReachedPopup(limit.mode ?? undefined);
+}
+
+function showPopupForAccessResult(result: FeatureAccessResult): void {
+    if (result.reason === 'not_allowed' || result.reason === 'api_unavailable') {
+        showSupporterUpsellPopup();
+        return;
+    }
+    if (result.reason === 'video_limit_exceeded') {
+        showVideoLimitPopup(result.limit ?? undefined);
+        return;
+    }
+    showLimitReachedPopup(result.limitMode ?? undefined);
 }
 
 export function initConvertForm(config: ConvertFormConfig): void {
@@ -101,6 +115,7 @@ export function initConvertForm(config: ConvertFormConfig): void {
         urlsInput.value = '';
         updateConvertButtonCount(addUrlsBtn, '');
 
+        let proceeded = true;
         try {
             const settings = config.getSettings();
             const onItemsAdded = () => {
@@ -110,18 +125,23 @@ export function initConvertForm(config: ConvertFormConfig): void {
             };
 
             if (isTrimMode()) {
-                await handleTrimConvert(rawText, settings, onItemsAdded);
+                proceeded = await handleTrimConvert(rawText, settings, onItemsAdded);
             } else if (isChannelMode()) {
-                await handleChannelModeConvert(rawText, settings, onItemsAdded);
+                proceeded = await handleChannelModeConvert(rawText, settings, onItemsAdded);
             } else if (isPlaylistMode()) {
-                await handlePlaylistModeConvert(rawText, settings, onItemsAdded);
+                proceeded = await handlePlaylistModeConvert(rawText, settings, onItemsAdded);
             } else {
-                await handleBatchConvert(rawText, settings, onItemsAdded);
+                proceeded = await handleBatchConvert(rawText, settings, onItemsAdded);
             }
-            isSuccess = true;
+            if (proceeded) isSuccess = true;
         } catch (err) {
             showError(errorMessage, err instanceof Error ? err.message : 'Failed to process URLs.');
         } finally {
+            // Restore input if a limit popup was shown (no actual processing happened)
+            if (!proceeded) {
+                urlsInput.value = rawText;
+                updateConvertButtonCount(addUrlsBtn, rawText);
+            }
             if (isSuccess && isTrimMode()) {
                 resetTrimEditor();
             }
@@ -141,7 +161,7 @@ async function handleBatchConvert(
     rawText: string,
     settings: Partial<VideoItemSettings>,
     onItemsAdded?: () => void
-): Promise<void> {
+): Promise<boolean> {
     // In batch mode, URLs are treated as individual videos.
     // A URL like watch?v=XXX&list=PLyyy is already normalized to watch?v=XXX by parseYouTubeURLs.
     // A pure playlist URL (no v= param) cannot be treated as a single video — warn the user.
@@ -160,7 +180,7 @@ async function handleBatchConvert(
         });
         if (!limitResult.allowed) {
             showPopupForLimitResult(limitResult);
-            return;
+            return false;
         }
     }
 
@@ -179,23 +199,24 @@ async function handleBatchConvert(
         }
         multiDownloadService.startGroupDownloads(groupId);
     }
+    return true;
 }
 
 async function handlePlaylistModeConvert(
     rawText: string,
     settings: Partial<VideoItemSettings>,
     onItemsAdded?: () => void
-): Promise<void> {
+): Promise<boolean> {
     const parsed = parseYouTubeURLs(rawText);
     if (parsed.length === 0) throw new Error('No valid YouTube URLs found.');
     if (parsed.length > 1) {
         throw new Error('Playlist Mode only supports 1 URL at a time.');
     }
 
-    const limitResult = await checkLimit({ kind: 'playlist' });
-    if (!limitResult.allowed) {
-        showPopupForLimitResult(limitResult);
-        return;
+    const accessResult = await evaluateFeatureAccess(FEATURE_KEYS.PLAYLIST_DOWNLOAD, { kind: 'playlist' });
+    if (!accessResult.allowed) {
+        showPopupForAccessResult(accessResult);
+        return false;
     }
 
     const playlistUrls = parsed.filter(p => !!p.playlistId);
@@ -223,33 +244,35 @@ async function handlePlaylistModeConvert(
     // Successfully added playlist/single videos in playlist mode
     await incrementDownloadCount('playlist', rawText);
     // Playlist mode: no auto-start - user chooses per-group via Convert Selected
+    return true;
 }
 
 async function handleChannelModeConvert(
     rawText: string,
     settings: Partial<VideoItemSettings>,
     onItemsAdded?: () => void
-): Promise<void> {
+): Promise<boolean> {
     const urls = rawText.trim().split(/[\n\s,]+/).filter(Boolean);
     if (urls.length === 0) throw new Error('Please paste a YouTube channel URL.');
     if (urls.length > 1) throw new Error('Channel Mode only supports 1 URL at a time.');
 
-    const limitResult = await checkLimit({ kind: 'channel' });
-    if (!limitResult.allowed) {
-        showPopupForLimitResult(limitResult);
-        return;
+    const accessResult = await evaluateFeatureAccess(FEATURE_KEYS.CHANNEL_DOWNLOAD, { kind: 'channel' });
+    if (!accessResult.allowed) {
+        showPopupForAccessResult(accessResult);
+        return false;
     }
 
     await multiDownloadService.addChannel(urls[0], settings, onItemsAdded);
     await incrementDownloadCount('channel', rawText);
     // Channel mode: no auto-start - user chooses per-group via Convert Selected
+    return true;
 }
 
 export async function handleTrimConvert(
     rawText: string,
     settings: Partial<VideoItemSettings>,
     onItemsAdded?: () => void
-): Promise<void> {
+): Promise<boolean> {
     const parsed = parseYouTubeURLs(rawText);
     if (parsed.length === 0) throw new Error('No valid YouTube URLs found.');
     if (parsed.length > 1) throw new Error('Trim/Cut mode requires exactly 1 URL.');
@@ -260,7 +283,7 @@ export async function handleTrimConvert(
     const limitResult = await checkLimit({ kind: 'trim' });
     if (!limitResult.allowed) {
         showPopupForLimitResult(limitResult);
-        return;
+        return false;
     }
 
     const trimStart = getTrimStart();
@@ -280,6 +303,7 @@ export async function handleTrimConvert(
     if (groupId) {
         multiDownloadService.startGroupDownloads(groupId);
     }
+    return true;
 }
 
 // ==========================================

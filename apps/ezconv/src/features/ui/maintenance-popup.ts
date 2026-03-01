@@ -85,7 +85,7 @@ function formatCountdown(totalSeconds: number): string {
 function trackPopupEvent(eventName: string, eventParams: Record<string, unknown>): void {
     import('../../libs/firebase')
         .then(({ logEvent }) => logEvent(eventName, eventParams))
-        .catch(() => {});
+        .catch(() => { });
 }
 
 function closeOverlay(overlay: HTMLElement, box: HTMLElement, tickerId?: number): void {
@@ -264,6 +264,38 @@ export function showMaintenancePopup(): void {
             <h3 class="maintenance-popup-title">${t.maintenanceTitle}</h3>
             <p class="maintenance-popup-description">${t.maintenanceDescription}</p>
             <a href="${ONE_TIME_DOWNLOAD_URL}" class="maintenance-popup-primary-button" data-popup-action="continue_single_url">${t.maintenanceButton}</a>
+        `
+    );
+}
+
+export function showSupporterUpsellPopup(): void {
+    mountPopup(
+        'supporter-upsell-overlay',
+        'daily_limit',
+        `
+            <div class="maintenance-popup-header">
+                <svg class="maintenance-popup-header-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+                <div class="maintenance-popup-header-copy">
+                    <div class="maintenance-popup-label">Feature Unavailable</div>
+                    <p class="maintenance-popup-subtitle">This feature is not available in your region</p>
+                </div>
+            </div>
+            <div class="maintenance-popup-cta-card">
+                <div class="maintenance-popup-cta-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="none" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+                    <span>Unlimited Downloads &amp; Access All Features</span>
+                </div>
+                <p class="maintenance-popup-cta-description">Become a Supporter to <strong>unlock unlimited downloads and full access</strong> to all features, regardless of your region.</p>
+                <a href="${SUPPORTER_CTA_URL}" target="_blank" rel="noopener nofollow noreferrer" class="maintenance-popup-cta-button" data-popup-action="get_license">
+                    <img src="https://storage.ko-fi.com/cdn/logomarkLogo.png" alt="Ko-fi" width="20" height="20">
+                    <span>Become a Supporter</span>
+                </a>
+            </div>
+            <button type="button" class="maintenance-popup-link-button" data-popup-close>Maybe later</button>
         `
     );
 }
