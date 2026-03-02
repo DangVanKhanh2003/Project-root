@@ -69,6 +69,8 @@ eleventyComputed:
                                     <!-- MP4 Options -->
                                     <select id="quality-select-mp4" class="quality-select quality-select--mp4"
                                         aria-label="{{ base.formatSelector.quality.videoLabel }}" data-quality-select>
+                                        <option value="mp4-2160">{{ base.formatSelector.options.mp4['2160p'] }}</option>
+                                        <option value="mp4-1440">{{ base.formatSelector.options.mp4['1440p'] }}</option>
                                         <option value="mp4-1080">{{ base.formatSelector.options.mp4['1080p'] }}</option>
                                         <option value="mp4-720" selected>{{ base.formatSelector.options.mp4['720p'] }}</option>
                                         <option value="mp4-480">{{ base.formatSelector.options.mp4['480p'] }}</option>

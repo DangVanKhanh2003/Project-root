@@ -22,7 +22,7 @@ export const QUALITY_OPTIONS = {
   },
   mp3: {
     formats: ['mp3', 'wav', 'm4a', 'opus', 'ogg', 'flac'] as AudioFormatType[],
-    bitrates: ['320', '128', '64'] // Only for MP3
+    bitrates: ['320', '192', '128', '64'] // Only for MP3
   }
 } as const;
 
