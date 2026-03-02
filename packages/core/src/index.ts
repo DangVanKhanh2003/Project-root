@@ -146,3 +146,28 @@ export {
   checkVideoExists,
   type VideoExistsResult,
 } from './utils/youtube-url-validator';
+
+// Playlist redirect helpers
+export {
+  shouldPromptPlaylistRedirect,
+  shouldPromptPlaylistRedirectForMulti,
+} from './utils/playlist-redirect';
+
+// ========================================
+// Supporter
+// ========================================
+export {
+  FEATURE_KEYS,
+  FEATURE_KEY_ALIASES,
+  GEO_RESTRICTED_FEATURES,
+  FEATURE_ACCESS_REASONS,
+  type FeatureKey,
+  type FeatureAccessReason,
+} from './supporter/feature-access-constants';
+
+export {
+  createSupporterService,
+  type ISupporterService,
+  type AllowedFeaturesResponse,
+  type CheckKeyResponse,
+} from './services/supporter';

@@ -6,12 +6,18 @@
 // === CSS Import ===
 import './styles/index.css';
 
+import { applyInitialVisibility } from './features/widget-level-manager';
+
 // Import API and services
 import { multiDownloadService } from './features/downloader/logic/multiple-download/services/multi-download-service';
 import { multipleDownloadRenderer } from './features/downloader/ui-render/multiple-download/multiple-download-renderer';
 import { VideoItemSettings } from './features/downloader/state/multiple-download-types';
-import { isPlaylistUrl, extractVideoId } from '@downloader/core';
+import { isPlaylistUrl, extractVideoId, FEATURE_KEYS, FEATURE_ACCESS_REASONS } from '@downloader/core';
 import { initAudioDropdown } from './features/downloader/ui-render/dropdown-logic';
+import { evaluateFeatureAccess } from './features/allowed-features';
+import { recordUsage } from './features/download-limit';
+import { showLimitReachedPopup, showSupporterUpsellPopup } from '@downloader/ui-shared';
+import { POPUP_CONFIG } from './features/supporter-popup-config';
 
 /**
  * Initialize mobile menu functionality
@@ -256,6 +262,21 @@ function initPlaylistForm() {
         playlistUrlInput.value = '';
         playlistUrlInput.dispatchEvent(new Event('input'));
 
+        // Feature Access Check
+        const access = await evaluateFeatureAccess(FEATURE_KEYS.PLAYLIST_DOWNLOAD);
+        if (!access.allowed) {
+            fetchPlaylistBtn.classList.remove('loading');
+            fetchPlaylistBtn.removeAttribute('disabled');
+            fetchPlaylistBtn.innerHTML = `<span>${originalText}</span>`;
+
+            if (access.reason === FEATURE_ACCESS_REASONS.GEO_RESTRICTED) {
+                 showSupporterUpsellPopup(POPUP_CONFIG);
+            } else {
+                showLimitReachedPopup(POPUP_CONFIG);
+            }
+            return;
+        }
+
         try {
             const settings = getCurrentSettings();
 
@@ -264,11 +285,17 @@ function initPlaylistForm() {
             } else {
                 await multiDownloadService.addSingleVideoAsGroup(url, settings);
             }
+            recordUsage(FEATURE_KEYS.PLAYLIST_DOWNLOAD);
 
         } catch (error) {
             console.error('[Playlist Downloader] Error fetching playlist:', error);
-            if (errorMessage) {
-                errorMessage.textContent = error instanceof Error ? error.message : 'Failed to fetch playlist';
+            const msg = error instanceof Error ? error.message : 'Failed to fetch playlist';
+
+            // Show popup if the playlist is empty or could not be fetched
+            if (msg.includes('Playlist is empty or could not be fetched') || msg.includes('has no videos')) {
+                showLimitReachedPopup(POPUP_CONFIG);
+            } else if (errorMessage) {
+                errorMessage.textContent = msg;
                 errorMessage.style.display = 'block';
             }
         } finally {
@@ -339,9 +366,10 @@ function initDrawerLangSelector() {
 /**
  * Initialize app
  */
-function init() {
+async function init() {
     console.log('[Playlist Downloader] Initializing...');
 
+    await applyInitialVisibility();
     // Initialize UI components
     initMobileMenu();
     initLangSelector();
@@ -362,7 +390,9 @@ function init() {
 
 // DOM Ready
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+    document.addEventListener('DOMContentLoaded', () => {
+        init().catch(err => console.error('Failed to init playlist downloader:', err));
+    });
 } else {
-    init();
+    init().catch(err => console.error('Failed to init playlist downloader:', err));
 }

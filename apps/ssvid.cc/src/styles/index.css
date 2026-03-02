@@ -8,6 +8,9 @@
 @import '@downloader/ui-components/SearchResultCard/search-result-card.css';
 @import '@downloader/ui-components/SuggestionDropdown/suggestion-dropdown.css';
 
+/* 0.3. Supporter / Limit Popups (From @downloader/ui-shared) */
+@import '@downloader/ui-shared/styles/maintenance-popup.css';
+
 /* 0.2. UI Components Overrides (App-specific customizations) */
 @import './overrides/ui-components.css';
 

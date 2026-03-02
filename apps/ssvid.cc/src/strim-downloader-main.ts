@@ -1,4 +1,6 @@
 import './styles/index.css';
+import { applyInitialVisibility } from './features/widget-level-manager';
+
 
 function prepareStreamSubmitInterception(): void {
   const form = document.getElementById('downloadForm') as HTMLFormElement | null;
@@ -90,11 +92,12 @@ function initFirebaseAnalytics(): void {
   setTimeout(() => {
     import('./libs/firebase/firebase-loader')
       .then(({ loadFirebaseWhenIdle }) => loadFirebaseWhenIdle())
-      .catch(() => {});
+      .catch(() => { });
   }, 5000);
 }
 
 async function loadFeatures(): Promise<void> {
+  await applyInitialVisibility();
   initHeaderScroll();
   initMobileMenu();
   initLangSelector();

@@ -12,9 +12,10 @@ import { isPlaylistMode, isTrimMode, isChannelMode } from './advanced-settings-c
 import { getTrimStart, getTrimEnd, getTrimRangeLabel, resetTrimEditor } from './trim-controller';
 import { isMobileViewport, scrollToElementWithOffset } from '../shared/scroll/scroll-behavior';
 import { checkLimit } from '../download-limit';
-import { evaluateFeatureAccess, type FeatureAccessResult } from '../feature-access';
-import { FEATURE_KEYS } from '../../constants/feature-access-constants';
-import { showLimitReachedPopup, showVideoLimitPopup, showSupporterUpsellPopup } from '../ui/maintenance-popup';
+import { evaluateFeatureAccess, type FeatureAccessReason, type FeatureAccessResult } from '../feature-access';
+import { FEATURE_KEYS, FEATURE_ACCESS_REASONS } from '@downloader/core';
+import { showLimitReachedPopup, showVideoLimitPopup, showSupporterUpsellPopup } from '@downloader/ui-shared';
+import { POPUP_CONFIG } from '../supporter-popup-config';
 import { incrementDownloadCount } from '../widget-level-manager';
 
 const MAX_BATCH_URLS = 100; // Physical technical limit, business limit is checked via checkLimit
@@ -31,23 +32,23 @@ function dismissKeyboard(target: HTMLInputElement | HTMLTextAreaElement): void {
 
 function showPopupForLimitResult(limit: Awaited<ReturnType<typeof checkLimit>>): void {
     if (limit.type === 'bulk_video_count') {
-        showVideoLimitPopup(limit.limit ?? undefined);
+        showVideoLimitPopup(POPUP_CONFIG, limit.limit ?? undefined);
         return;
     }
 
-    showLimitReachedPopup(limit.mode ?? undefined);
+    showLimitReachedPopup(POPUP_CONFIG, limit.mode ?? undefined);
 }
 
 function showPopupForAccessResult(result: FeatureAccessResult): void {
-    if (result.reason === 'not_allowed' || result.reason === 'api_unavailable') {
-        showSupporterUpsellPopup();
+    if (result.reason === FEATURE_ACCESS_REASONS.NOT_ALLOWED || result.reason === FEATURE_ACCESS_REASONS.API_UNAVAILABLE) {
+        showSupporterUpsellPopup(POPUP_CONFIG);
         return;
     }
-    if (result.reason === 'video_limit_exceeded') {
-        showVideoLimitPopup(result.limit ?? undefined);
+    if (result.reason === FEATURE_ACCESS_REASONS.VIDEO_LIMIT_EXCEEDED) {
+        showVideoLimitPopup(POPUP_CONFIG, result.limit ?? undefined);
         return;
     }
-    showLimitReachedPopup(result.limitMode ?? undefined);
+    showLimitReachedPopup(POPUP_CONFIG, result.limitMode ?? undefined);
 }
 
 export function initConvertForm(config: ConvertFormConfig): void {

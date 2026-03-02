@@ -12,6 +12,9 @@ export * from './v2';
 // Public API Services
 export * from './public-api';
 
+// Supporter Services
+export * from './supporter';
+
 // Service types
 export type { ProtectionPayload, CaptchaPayload } from './types/protection.types';
 export type { RequestOptions, YouTubeStreamOptions, SearchV2Options } from './types/service-options.types';

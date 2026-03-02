@@ -1,5 +1,5 @@
-
 import { api } from '../../../../api';
+import { apiLogger } from '../../../../libs/api-logger/api-logger';
 import { VideoMeta } from '../../state/types';
 import { extractVideoId } from '@downloader/core';
 
@@ -62,6 +62,14 @@ export async function fetchMetadataBatch(
 
 export async function fetchSingleMetadata(url: string): Promise<VideoMeta> {
     const result = await api.getMetadataYoutube(url);
+
+    apiLogger.log({
+        type: result.ok ? 'success' : 'error',
+        endpoint: 'getMetadataYoutube',
+        requestData: { url },
+        responseData: result.ok ? { message: 'success' } : result,
+        errorData: result.ok ? undefined : result.message
+    });
 
     if (!result.ok || !result.data) {
         throw new Error(result.message || 'Metadata fetch failed');

@@ -50,6 +50,7 @@ interface ApiConfig {
     v2ApiUrl: string;
     mutiDownloadBaseUrl: string;
     queueApiUrl: string;
+    supporterApiBaseUrl: string;
     searchEndpoint: string;
     timeout: TimeoutConfig;
     expiry: ExpiryConfig;
@@ -142,6 +143,9 @@ const environment: Environment = {
 
         // ZIP Download API
         mutiDownloadBaseUrl: 'https://muti-download.ytconvert.org',
+
+        // Supporter API (license key check)
+        supporterApiBaseUrl: import.meta.env.VITE_SUPPORTER_API_BASE_URL || 'https://ytmp3-supporter.ytmp3.gg',
 
         // Search endpoint (specific for search functionality)
         searchEndpoint: '/index.php',
@@ -258,6 +262,10 @@ export function getApiBaseUrlV3(): string {
  */
 export function getMutiDownloadBaseUrl(): string {
     return environment.api.mutiDownloadBaseUrl;
+}
+
+export function getSupporterApiBaseUrl(): string {
+    return environment.api.supporterApiBaseUrl;
 }
 
 /**

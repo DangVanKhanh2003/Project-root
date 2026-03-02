@@ -39,54 +39,12 @@ import { navigateToVideo } from '../routing/url-manager';
 import { setVideoPageSEO } from '../routing/seo-manager';
 import { showResultView } from '../ui-render/view-switcher';
 import { MaterialPopup } from '../../../ui-components/material-popup/material-popup';
-
-// ============================================
-// YOUTUBE HELPERS
-// ============================================
-
-/**
- * Check if URL is YouTube
- */
-function isYouTubeUrl(url: string): boolean {
-  return /(?:youtube\.com|youtu\.be|youtube-nocookie\.com|youtubekids\.com)/i.test(url);
-}
-
-/**
- * Extract YouTube video ID from URL
- */
-function extractYouTubeVideoId(url: string): string | null {
-  // youtu.be/VIDEO_ID
-  const shortMatch = url.match(/youtu\.be\/([a-zA-Z0-9_-]{11})/);
-  if (shortMatch) return shortMatch[1];
-
-  // youtube.com/shorts/VIDEO_ID
-  const shortsMatch = url.match(/\/shorts\/([a-zA-Z0-9_-]{11})/);
-  if (shortsMatch) return shortsMatch[1];
-
-  // youtube.com/watch?v=VIDEO_ID
-  const longMatch = url.match(/[?&]v=([a-zA-Z0-9_-]{11})/);
-  if (longMatch) return longMatch[1];
-
-  // youtube.com/embed/VIDEO_ID
-  const embedMatch = url.match(/\/embed\/([a-zA-Z0-9_-]{11})/);
-  if (embedMatch) return embedMatch[1];
-
-  return null;
-}
-
-/**
- * Extract playlist ID from URL
- */
-function extractPlaylistId(url: string): string | null {
-  const playlistMatch = url.match(/[?&]list=([\w-]+)/);
-  return playlistMatch ? playlistMatch[1] : null;
-}
-
-function shouldPromptPlaylistRedirect(url: string): boolean {
-  const videoId = extractYouTubeVideoId(url);
-  const playlistId = extractPlaylistId(url);
-  return !videoId && !!playlistId;
-}
+import { shouldPromptPlaylistRedirect } from '@downloader/core';
+import { evaluateFeatureAccess } from '../../allowed-features';
+import { showLimitReachedPopup, showSupporterUpsellPopup } from '@downloader/ui-shared';
+import { POPUP_CONFIG } from '../../supporter-popup-config';
+import { checkLimit } from '../../download-limit';
+import { FEATURE_KEYS, FEATURE_ACCESS_REASONS } from '@downloader/core';
 
 async function confirmPlaylistRedirect(): Promise<boolean> {
   return new Promise((resolve) => {
@@ -862,6 +820,19 @@ async function handleSubmit(event: Event): Promise<void> {
   clearSuggestions();          // Clear suggestions completely (array + state + flags)
   setLoading(true);
 
+  // Check feature access early before playlist prompt or extraction
+  const access = await evaluateFeatureAccess('download_single');
+  if (!access.allowed) {
+    setLoading(false);
+    if (access.reason === FEATURE_ACCESS_REASONS.GEO_RESTRICTED) {
+      showSupporterUpsellPopup(POPUP_CONFIG);
+    } else {
+      showLimitReachedPopup(POPUP_CONFIG);
+    }
+    setSubmitting(false);
+    return;
+  }
+
   // Get input type to show appropriate skeleton
   const state = getState();
 
@@ -908,9 +879,32 @@ async function handleSubmit(event: Event): Promise<void> {
 }
 
 /**
+ * Extract YouTube video ID from a URL.
+ * Returns null if the URL is not a YouTube URL.
+ */
+function extractYouTubeVideoId(url: string): string | null {
+  try {
+    const parsed = new URL(url);
+    const host = parsed.hostname.replace(/^www\./, '');
+    if (host === 'youtu.be') {
+      return parsed.pathname.slice(1).split('/')[0] || null;
+    }
+    if (host === 'youtube.com' || host === 'music.youtube.com') {
+      const v = parsed.searchParams.get('v');
+      if (v) return v;
+      // /shorts/ID, /embed/ID, /live/ID
+      const m = parsed.pathname.match(/\/(?:shorts|embed|live)\/([^/?&]+)/);
+      if (m) return m[1];
+    }
+    return null;
+  } catch {
+    return null;
+  }
+}
+
+/**
  * Handle media extraction (URL input)
- * Only supports YouTube URLs - validates before extraction
- * Rejects non-YouTube URLs with error message
+ * Supports any URL (not just YouTube). YouTube URLs get preview thumbnail + metadata.
  */
 interface ExtractMediaOptions {
   autoDownload?: boolean;
@@ -924,45 +918,64 @@ export async function handleExtractMedia(
 
   try {
     const { autoDownload = true, skipResultView = false } = options;
-    // ═══════════════════════════════════════════════════════
-    // VALIDATION: YouTube URLs Only
-    // ═══════════════════════════════════════════════════════
 
-    // ❌ Reject if not a YouTube URL
-    if (!isYouTubeUrl(url)) {
-      throw new Error('Only YouTube URLs are supported. Please enter a valid YouTube link.');
+    // ── Early Limit Check (Before Skeleton UI) ────────────────────────
+    if (autoDownload) {
+      const state = getState();
+      const is4K = state.selectedFormat === 'mp4' && state.videoQuality === '2160p';
+      const is320kbps = state.selectedFormat === 'mp3' && state.audioFormat === 'mp3' && state.audioBitrate === '320';
+
+      if (is4K) {
+        const limitResult = checkLimit(FEATURE_KEYS.HIGH_QUALITY_4K);
+        if (!limitResult.allowed) {
+          showLimitReachedPopup(POPUP_CONFIG, FEATURE_KEYS.HIGH_QUALITY_4K);
+          setSubmitting(false);
+          setLoading(false);
+          return;
+        }
+      }
+
+      if (is320kbps) {
+        const limitResult = checkLimit(FEATURE_KEYS.HIGH_QUALITY_320K);
+        if (!limitResult.allowed) {
+          showLimitReachedPopup(POPUP_CONFIG, FEATURE_KEYS.HIGH_QUALITY_320K);
+          setSubmitting(false);
+          setLoading(false);
+          return;
+        }
+      }
     }
+    // ───────────────────────────────────────────────────────────────────────
 
     // ═══════════════════════════════════════════════════════
-    // YOUTUBE WORKFLOW: Simple Preview with Metadata
+    // YOUTUBE-SPECIFIC PREVIEW (optional, graceful fallback)
     // ═══════════════════════════════════════════════════════
-
     const videoId = extractYouTubeVideoId(url);
+    const isYouTube = !!videoId;
 
-    if (!videoId) {
-      throw new Error('Invalid YouTube URL - cannot extract video ID');
-    }
+    // ✅ Push URL to browser history (enables back navigation) — YouTube only
+    if (isYouTube && videoId) {
+      const state = getState();
+      const audioTrackInput = document.getElementById('audio-track-value') as HTMLInputElement | null;
+      const audioTrack = audioTrackInput?.value?.trim();
+      const urlAudioTrack = (audioTrack && audioTrack !== 'original' && audioTrack !== 'default') ? audioTrack : undefined;
 
-    // ✅ Push URL to browser history (enables back navigation)
-    const state = getState();
-    const audioTrackInput = document.getElementById('audio-track-value') as HTMLInputElement | null;
-    const audioTrack = audioTrackInput?.value?.trim();
-    const urlAudioTrack = (audioTrack && audioTrack !== 'original' && audioTrack !== 'default') ? audioTrack : undefined;
-
-    if (state.selectedFormat === 'mp4') {
-      navigateToVideo(videoId, { format: 'mp4', quality: state.videoQuality || undefined, audioTrack: urlAudioTrack });
-    } else {
-      navigateToVideo(videoId, { format: state.audioFormat || 'mp3', quality: state.audioBitrate || undefined, audioTrack: urlAudioTrack });
+      if (state.selectedFormat === 'mp4') {
+        navigateToVideo(videoId, { format: 'mp4', quality: state.videoQuality || undefined, audioTrack: urlAudioTrack });
+      } else {
+        navigateToVideo(videoId, { format: state.audioFormat || 'mp3', quality: state.audioBitrate || undefined, audioTrack: urlAudioTrack });
+      }
     }
 
     // ✅ Update SEO meta tags (noindex for result pages)
     setVideoPageSEO();
 
-    // 1. Create thumbnail URL from video ID
-    const thumbnail = `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+    // Thumbnail: YouTube only
+    const thumbnail = isYouTube && videoId
+      ? `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`
+      : '';
 
-
-    // 3. Render preview skeleton in standard downloader flow
+    // Show preview skeleton
     if (!skipResultView) {
       showLoading('detail');
       showResultView();
@@ -976,39 +989,30 @@ export async function handleExtractMedia(
       }, 50);
     }
 
-    // 4. Fetch metadata from YouTube Public API (async, hides skeleton when done)
+    // 4. Fetch metadata (YouTube only) or use URL as title for other URLs
     (async () => {
       let metadata: { title?: string; authorName?: string } | null = null;
 
-      try {
-        console.log('[YouTube Metadata] Fetching metadata for:', url);
-
-        metadata = await coreServices.youtubePublicApi.getMetadata(url);
-        console.log('[YouTube Metadata] Response:', metadata);
-
-        if (metadata && metadata.title) {
-          // Success: Update preview with real metadata
-          console.log('[YouTube Metadata] Success - Title:', metadata.title, 'Author:', metadata.authorName);
-        } else {
-          // API returned but no data - fallback to URL as title, no author
-          console.log('[YouTube Metadata] No data returned');
+      if (isYouTube) {
+        try {
+          console.log('[YouTube Metadata] Fetching metadata for:', url);
+          metadata = await coreServices.youtubePublicApi.getMetadata(url);
+          console.log('[YouTube Metadata] Response:', metadata);
+        } catch (error) {
+          console.error('[YouTube Metadata] Error:', error);
         }
-      } catch (error) {
-        // API failed - fallback to URL as title, no author
-        console.error('[YouTube Metadata] Error:', error);
       }
 
-      // Hide skeleton and show real data
-      // Delay 1s before update data as requested
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Delay 1s before update (UX smoothness)
+      await new Promise(resolve => setTimeout(resolve, isYouTube ? 1000 : 0));
 
       setYouTubePreview({
-        videoId,
+        videoId: videoId || '',
         title: metadata?.title || url,
         author: metadata?.authorName || '',
         thumbnail,
         url,
-        isLoading: false  // Hide skeleton
+        isLoading: false
       });
       if (!skipResultView) {
         renderPreviewCard(null);
@@ -1017,8 +1021,7 @@ export async function handleExtractMedia(
 
     // 5. Auto-download in default flow (fire-and-forget)
     if (autoDownload) {
-      handleAutoDownload(url, videoId).then(() => {
-        // Reset isFromListItemClick flag after conversion starts
+      handleAutoDownload(url, videoId || '', {}).then(() => {
         const currentState = getState();
         if (currentState.isFromListItemClick) {
           setIsFromListItemClick(false);
@@ -1027,8 +1030,6 @@ export async function handleExtractMedia(
         console.error('[Auto Download] Error:', error);
       });
     }
-
-    // Return immediately to enable input (don't wait for conversion)
 
   } catch (error) {
     throw error;
@@ -1335,3 +1336,4 @@ export function setInputValue(value: string): void {
     input.value = value;
   }
 }
+

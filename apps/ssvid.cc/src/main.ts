@@ -7,6 +7,8 @@
 // Single entry point for all styles (Phase 2: CSS Refactor)
 import './styles/index.css';
 
+import { applyInitialVisibility } from './features/widget-level-manager';
+
 
 
 if (typeof window !== 'undefined') {
@@ -217,7 +219,8 @@ function initFirebaseAnalytics(): void {
 /**
  * Initialize app
  */
-function loadFeatures() {
+async function loadFeatures() {
+  await applyInitialVisibility();   // Initialize license button + supporter badge
   initHeaderScroll(); // Initialize header scroll effect
   initMobileMenu(); // Initialize mobile menu
   initLangSelector(); // Initialize language selector dropdown
@@ -234,9 +237,11 @@ function loadFeatures() {
 
 // DOM Ready
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', loadFeatures);
+  document.addEventListener('DOMContentLoaded', () => {
+    loadFeatures().catch(err => console.error('Failed to load features:', err));
+  });
 } else {
   // DOM already loaded
-  loadFeatures();
+  loadFeatures().catch(err => console.error('Failed to load features:', err));
 }
 

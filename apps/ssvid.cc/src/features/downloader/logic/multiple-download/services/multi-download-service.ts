@@ -1,5 +1,5 @@
-
 import { api } from '../../../../../api';
+import { apiLogger } from '../../../../../libs/api-logger/api-logger';
 import { extractPlaylistId, extractVideoId, isPlaylistUrl, PlaylistDto } from '@downloader/core';
 import { getYtMetaBaseUrl } from '../../../../../environment';
 import { videoStore } from '../../../state/video-store';
@@ -517,7 +517,26 @@ async function fetchPlaylistPage(playlistId: string, pageToken?: string): Promis
     url.searchParams.set('id', playlistId);
     if (pageToken) url.searchParams.set('pageToken', pageToken);
 
-    const response = await fetch(url.toString());
-    if (!response.ok) throw new Error(`Playlist API error: ${response.status}`);
-    return response.json();
+    try {
+        const response = await fetch(url.toString());
+        if (!response.ok) throw new Error(`Playlist API error: ${response.status}`);
+        const data = await response.json();
+
+        apiLogger.log({
+            type: 'success',
+            endpoint: 'fetchPlaylistPage',
+            requestData: { playlistId, pageToken },
+            responseData: { itemsCount: data.items?.length }
+        });
+
+        return data;
+    } catch (error: any) {
+        apiLogger.log({
+            type: 'error',
+            endpoint: 'fetchPlaylistPage',
+            requestData: { playlistId, pageToken },
+            errorData: error.message
+        });
+        throw error;
+    }
 }

@@ -3,18 +3,7 @@ import '../styles/index.css';
 import { clearStoredLicenseKey, getStoredLicenseKey, saveLicenseKey } from './license-selector';
 import { initDrawerLangSelector, initLangSelector, initMobileMenu, initSupporterUi } from './shared/init/common-init';
 import { initThemeToggle } from './shared/init/theme-toggle';
-
-const CHECK_KEY_ENDPOINT = 'https://ytmp3-supporter.ytmp3.gg/api/check-key';
-
-interface CheckKeyResponse {
-    success?: boolean;
-    valid?: boolean;
-    message?: string;
-    data?: {
-        valid?: boolean;
-        key?: string;
-    };
-}
+import { supporterService } from '../api';
 
 function maskStoredKey(value: string | null): string {
     if (!value) return 'Not activated';
@@ -46,27 +35,10 @@ function setCurrentKey(value: string | null): void {
 }
 
 async function verifyLicenseKey(key: string): Promise<{ valid: boolean; message: string }> {
-    const response = await fetch(CHECK_KEY_ENDPOINT, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ key })
-    });
-
-    const payload = await response.json() as CheckKeyResponse;
-    const isValid = Boolean(payload?.success || payload?.valid || payload?.data?.valid);
-
-    if (!response.ok) {
-        return {
-            valid: false,
-            message: payload?.message || 'Could not verify license key.'
-        };
-    }
-
+    const result = await supporterService.checkLicenseKey(key);
     return {
-        valid: isValid,
-        message: payload?.message || (isValid ? 'License activated successfully.' : 'Invalid license key.')
+        valid: result.valid,
+        message: result.message || (result.valid ? 'License activated successfully.' : 'Invalid license key.')
     };
 }
 

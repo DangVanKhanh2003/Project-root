@@ -6,31 +6,19 @@
 // === CSS Import ===
 import './styles/index.css';
 
+import { applyInitialVisibility } from './features/widget-level-manager';
+
 // Import services and renderers
 import { multiDownloadService } from './features/downloader/logic/multiple-download/services/multi-download-service';
 import { multipleDownloadRenderer } from './features/downloader/ui-render/multiple-download/multiple-download-renderer';
 import { VideoItemSettings } from './features/downloader/state/multiple-download-types';
 import { initAudioDropdown } from './features/downloader/ui-render/dropdown-logic';
 import { MaterialPopup } from './ui-components/material-popup/material-popup';
-import { extractVideoId, extractPlaylistId, isYouTubeUrl } from '@downloader/core';
-
-function shouldPromptPlaylistRedirectForMulti(rawText: string): boolean {
-    const tokens = rawText
-        .replace(/\r\n/g, '\n')
-        .replace(/\r/g, '\n')
-        .replace(/\t/g, ' ')
-        .trim()
-        .split(/[\n\s,]+/)
-        .filter(Boolean)
-        .filter(token => isYouTubeUrl(token));
-
-    if (tokens.length === 0) return false;
-
-    const hasVideoUrl = tokens.some(token => !!extractVideoId(token));
-    const hasPlaylistOnlyUrl = tokens.some(token => !extractVideoId(token) && !!extractPlaylistId(token));
-
-    return hasPlaylistOnlyUrl && !hasVideoUrl;
-}
+import { shouldPromptPlaylistRedirectForMulti, FEATURE_KEYS, FEATURE_ACCESS_REASONS } from '@downloader/core';
+import { evaluateFeatureAccess } from './features/allowed-features';
+import { recordUsage } from './features/download-limit';
+import { showLimitReachedPopup, showSupporterUpsellPopup } from '@downloader/ui-shared';
+import { POPUP_CONFIG } from './features/supporter-popup-config';
 
 async function confirmPlaylistRedirect(): Promise<boolean> {
     return new Promise((resolve) => {
@@ -249,6 +237,27 @@ function initMultiDownloadForm() {
             errorMessage.style.display = 'none';
         }
 
+        // Set button to loading state
+        addUrlsBtn.classList.add('loading');
+        addUrlsBtn.setAttribute('disabled', 'true');
+
+        // Check feature access for multiple download
+        const access = await evaluateFeatureAccess(FEATURE_KEYS.BATCH_DOWNLOAD);
+        if (!access.allowed) {
+            addUrlsBtn.classList.remove('loading');
+            addUrlsBtn.removeAttribute('disabled');
+
+            if (access.reason === FEATURE_ACCESS_REASONS.GEO_RESTRICTED) {
+                showSupporterUpsellPopup(POPUP_CONFIG);
+            } else {
+                showLimitReachedPopup(POPUP_CONFIG);
+            }
+            return;
+        }
+
+        addUrlsBtn.classList.remove('loading');
+        addUrlsBtn.removeAttribute('disabled');
+
         if (shouldPromptPlaylistRedirectForMulti(rawText)) {
             const shouldRedirectToPlaylist = await confirmPlaylistRedirect();
             if (shouldRedirectToPlaylist) {
@@ -257,7 +266,7 @@ function initMultiDownloadForm() {
             }
         }
 
-        // Set button to loading state
+        // Set button to loading state again for processing
         addUrlsBtn.classList.add('loading');
         addUrlsBtn.setAttribute('disabled', 'true');
 
@@ -272,6 +281,7 @@ function initMultiDownloadForm() {
 
             // Auto-start download
             multiDownloadService.startAllDownloads();
+            recordUsage(FEATURE_KEYS.BATCH_DOWNLOAD);
 
         } catch (error) {
             console.error('[Multi Downloader] Error adding URLs:', error);
@@ -346,9 +356,10 @@ function initDrawerLangSelector() {
 /**
  * Initialize app
  */
-function init() {
+async function init() {
     console.log('[Multi Downloader] Initializing...');
 
+    await applyInitialVisibility();
     // Initialize UI components
     initMobileMenu();
     initLangSelector();
@@ -368,7 +379,9 @@ function init() {
 
 // DOM Ready
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+    document.addEventListener('DOMContentLoaded', () => {
+        init().catch(err => console.error('Failed to init multi downloader:', err));
+    });
 } else {
-    init();
+    init().catch(err => console.error('Failed to init multi downloader:', err));
 }

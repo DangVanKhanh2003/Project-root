@@ -9,6 +9,7 @@
     "./captcha": "./src/captcha/index.ts",
     "./scroll": "./src/scroll/index.ts",
     "./download": "./src/download/index.ts",
+    "./supporter": "./src/supporter/index.ts",
     "./styles/*": "./src/styles/*"
   },
   "scripts": {

@@ -4,7 +4,6 @@
  * CONTRACT: Orchestrates Trustpilot widget via lifecycle hooks.
  *
  * Based on: ytmp3.gg/src/script/features/supporter-level-manager.js
- * Simplified: No license/supporter system, uses localStorage for download counting.
  */
 
 import {
@@ -15,6 +14,10 @@ import {
     showTipMessageWidget,
     hideTipMessageWidget
 } from './tip-message/tip-message-widget';
+import { hasLicenseKey } from './download-limit';
+import { initLicenseSelector } from './license/license-selector';
+import { init as initSupporterTag, show as showSupporterTag, hide as hideSupporterTag } from './license/supporter-tag';
+import { apiLogger } from '../libs/api-logger/api-logger';
 
 const MULTI_PLAYLIST_BANNER_WRAPPER_ID = 'multi-playlist-banner-wrapper';
 const MULTI_PLAYLIST_BANNER_PUBLIC_URL = '/assest/banner/multi-playlist-banner.js';
@@ -142,12 +145,20 @@ function hideMultiPlaylistBannerWidget(): void {
 
 /**
  * Widget rules mapped by element name and timing.
- * Easy to extend: just add new entries for future widgets.
+ * 'supporter' key = override for license holders.
  */
-const WIDGET_RULES: Record<string, { timing: string; levels: Record<number, boolean> }> = {
+const WIDGET_RULES: Record<string, { timing: string; levels: Record<number | string, boolean> }> = {
+    'license-button': {
+        timing: 'pageLoad',
+        levels: { 1: false, 2: true, 3: true, supporter: true }
+    },
     'trustpilot-widget': {
         timing: 'afterSubmit',
-        levels: { 1: true, 2: true, 3: true }
+        levels: { 1: true, 2: true, 3: true, supporter: true }
+    },
+    'supporter-badge': {
+        timing: 'pageLoad',
+        levels: { 1: false, 2: false, 3: false, supporter: true }
     }
 };
 
@@ -168,8 +179,11 @@ const STORAGE_KEY = 'ssvid_download_count';
 
 interface WidgetState {
     level: 1 | 2 | 3;
+    isSupporter: boolean;
     downloadCount: number;
     showTrustpilotWidget: boolean;
+    showLicenseButton: boolean;
+    showSupporterBadge: boolean;
 }
 
 let cachedState: WidgetState | null = null;
@@ -179,12 +193,13 @@ let cachedState: WidgetState | null = null;
 // ============================================================
 
 /**
- * Get total download count from localStorage.
+ * Get total download count from IndexedDB logs.
  */
-function getDownloadCount(): number {
+async function getDownloadCount(): Promise<number> {
     try {
-        const count = localStorage.getItem(STORAGE_KEY);
-        return count ? parseInt(count, 10) || 0 : 0;
+        // The user specifically wants to get the count from IndexedDB (apiLogger worker)
+        // This ensures the count persists even if localStorage is cleared (e.g. in incognito)
+        return await apiLogger.getCountSuccess();
     } catch {
         return 0;
     }
@@ -195,8 +210,10 @@ function getDownloadCount(): number {
  */
 export function incrementDownloadCount(): void {
     try {
-        const current = getDownloadCount();
-        localStorage.setItem(STORAGE_KEY, String(current + 1));
+        const currentCountStr = localStorage.getItem(STORAGE_KEY);
+        const currentCount = currentCountStr ? parseInt(currentCountStr, 10) || 0 : 0;
+        localStorage.setItem(STORAGE_KEY, String(currentCount + 1));
+
         // Invalidate cached state so next resolveState() recalculates
         cachedState = null;
     } catch {
@@ -220,25 +237,32 @@ function getLevel(count: number): 1 | 2 | 3 {
 /**
  * Check if a rule allows showing an element at a timing and level.
  */
-function shouldShowByRule(elementName: string, timing: string, level: number): boolean {
+function shouldShowByRule(elementName: string, timing: string, level: number, isSupporter = false): boolean {
     const rule = WIDGET_RULES[elementName];
     if (!rule || rule.timing !== timing) return false;
+    if (isSupporter && Object.prototype.hasOwnProperty.call(rule.levels, 'supporter')) {
+        return Boolean(rule.levels['supporter']);
+    }
     return Boolean(rule.levels[level]);
 }
 
 /**
  * Resolve and cache current state.
  */
-function resolveState(forceRefresh = false): WidgetState {
+async function resolveState(forceRefresh = false): Promise<WidgetState> {
     if (cachedState && !forceRefresh) return cachedState;
 
-    const downloadCount = getDownloadCount();
-    const level = getLevel(downloadCount);
+    const isSupporter = hasLicenseKey();
+    const downloadCount = isSupporter ? 999 : await getDownloadCount();
+    const level = isSupporter ? 3 : getLevel(downloadCount);
 
     cachedState = {
         level,
+        isSupporter,
         downloadCount,
-        showTrustpilotWidget: shouldShowByRule('trustpilot-widget', 'afterSubmit', level)
+        showTrustpilotWidget: shouldShowByRule('trustpilot-widget', 'afterSubmit', level, isSupporter),
+        showLicenseButton: shouldShowByRule('license-button', 'pageLoad', level, isSupporter),
+        showSupporterBadge: shouldShowByRule('supporter-badge', 'pageLoad', level, isSupporter),
     };
 
     return cachedState;
@@ -249,8 +273,41 @@ function resolveState(forceRefresh = false): WidgetState {
 // ============================================================
 
 /**
+ * Called on page load. Applies license button + supporter badge visibility.
+ * Add this to loadFeatures() in main.ts.
+ */
+export async function applyInitialVisibility(): Promise<void> {
+    const state = await resolveState();
+
+    // License buttons visibility (Level 2+)
+    const licenseContainers = document.querySelectorAll('[data-license-button]');
+    licenseContainers.forEach((container) => {
+        const el = container as HTMLElement;
+        if (state.showLicenseButton) {
+            el.hidden = false;
+            el.style.display = 'flex';
+        } else {
+            el.hidden = true;
+            el.style.display = 'none';
+        }
+    });
+
+    // Init license dropdown interactions
+    if (state.showLicenseButton) {
+        initLicenseSelector();
+    }
+
+    // Supporter badge on logo
+    if (state.showSupporterBadge) {
+        initSupporterTag('.header-logo');
+        showSupporterTag();
+    } else {
+        hideSupporterTag();
+    }
+}
+
+/**
  * Called after form submit (extract start).
- * Always shows Trustpilot widget immediately.
  */
 export function onAfterSubmit(): void {
     showTrustpilotWidget();

@@ -7,7 +7,7 @@
  *   2. Geo-restriction API (cached, only for GEO_RESTRICTED_FEATURES)
  *   3. Local offline limit (checkLimit)
  *
- * API calls are delegated to src/api/allowed-features.ts (API layer).
+ * API calls are delegated to supporterService in src/api/index.ts.
  * This module handles caching, retry, and orchestration only.
  *
  * Reference: ytmp3.gg allowed-features.js
@@ -15,22 +15,19 @@
 
 import { hasStoredLicenseKey } from './license-selector';
 import { checkLimit, type LimitCheckContext, type LimitCheckResult, type LimitType, type LimitedDailyMode } from './download-limit';
-import { fetchAllowedFeaturesApi } from '../api/allowed-features';
+import { supporterService } from '../api';
 import {
     GEO_RESTRICTED_FEATURES,
     FEATURE_KEY_ALIASES,
-} from '../constants/feature-access-constants';
+    FEATURE_ACCESS_REASONS,
+    type FeatureAccessReason,
+} from '@downloader/core';
 
 // ============================================================
 // TYPES
 // ============================================================
 
-export type FeatureAccessReason =
-    | 'allowed'
-    | 'not_allowed'
-    | 'api_unavailable'
-    | 'limit_reached'
-    | 'video_limit_exceeded';
+export type { FeatureAccessReason };
 
 export interface FeatureAccessResult {
     allowed: boolean;
@@ -74,7 +71,7 @@ function normalizeFeature(feature: string): string {
 
 /**
  * Fetch allowed features with caching, retry, and inflight deduplication.
- * Delegates the actual HTTP call to the API layer (allowed-features.ts).
+ * Delegates the actual HTTP call to supporterService in src/api/index.ts.
  */
 async function fetchAllowedFeatures(): Promise<AllowedFeaturesState> {
     const now = Date.now();
@@ -94,7 +91,7 @@ async function fetchAllowedFeatures(): Promise<AllowedFeaturesState> {
 
         for (let attempt = 1; attempt <= MAX_FETCH_ATTEMPTS; attempt += 1) {
             try {
-                const data = await fetchAllowedFeaturesApi();
+                const data = await supporterService.fetchAllowedFeatures();
 
                 const normalizedFeatures = new Set<string>(
                     data.allowed_features.map((f) => normalizeFeature(f))
@@ -127,12 +124,12 @@ async function fetchAllowedFeatures(): Promise<AllowedFeaturesState> {
 
 function mapLimitResult(limitResult: LimitCheckResult): FeatureAccessResult {
     if (limitResult.allowed) {
-        return { allowed: true, reason: 'allowed' };
+        return { allowed: true, reason: FEATURE_ACCESS_REASONS.ALLOWED };
     }
 
     return {
         allowed: false,
-        reason: limitResult.type === 'bulk_video_count' ? 'video_limit_exceeded' : 'limit_reached',
+        reason: limitResult.type === 'bulk_video_count' ? FEATURE_ACCESS_REASONS.VIDEO_LIMIT_EXCEEDED : FEATURE_ACCESS_REASONS.LIMIT_REACHED,
         limitType: limitResult.type,
         limitMode: limitResult.mode,
         limit: limitResult.limit,
@@ -162,7 +159,7 @@ export async function evaluateFeatureAccess(
 
     // 1. Supporter bypass
     if (hasStoredLicenseKey()) {
-        return { allowed: true, reason: 'allowed' };
+        return { allowed: true, reason: FEATURE_ACCESS_REASONS.ALLOWED };
     }
 
     // 2. Geo-restriction check (only for features in GEO_RESTRICTED_FEATURES)
@@ -172,14 +169,14 @@ export async function evaluateFeatureAccess(
             if (!apiState.allowedFeatures.has(normalizedFeature)) {
                 return {
                     allowed: false,
-                    reason: 'not_allowed',
+                    reason: FEATURE_ACCESS_REASONS.NOT_ALLOWED,
                 };
             }
         } catch (error) {
             console.warn('[feature-access] API unavailable after retry:', error);
             return {
                 allowed: false,
-                reason: 'api_unavailable',
+                reason: FEATURE_ACCESS_REASONS.API_UNAVAILABLE,
             };
         }
     }

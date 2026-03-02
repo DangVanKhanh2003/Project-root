@@ -24,7 +24,8 @@ import { TaskState, type V3ConversionParams } from './v3/types';
 import { startPolling } from './v3/polling';
 import { getErrorMessage } from './v3/error-messages';
 import { checkLimit, recordDownloadError, type DownloadMethod } from '../../../../features/download-limit';
-import { showLimitReachedPopup, showVideoLimitPopup } from '../../../../features/ui/maintenance-popup';
+import { showLimitReachedPopup, showVideoLimitPopup } from '@downloader/ui-shared';
+import { POPUP_CONFIG } from '../../../../features/supporter-popup-config';
 import { incrementDownloadCount } from '../../../../features/widget-level-manager';
 
 // Retry helper
@@ -67,9 +68,9 @@ export async function startConversion(params: V3ConversionParams): Promise<void>
 
   if (!limitResult.allowed) {
     if (limitResult.type === 'daily_mode_limit') {
-      showLimitReachedPopup(limitResult.mode ?? undefined);
+      showLimitReachedPopup(POPUP_CONFIG, limitResult.mode ?? undefined);
     } else if (limitResult.type === 'bulk_video_count') {
-      showVideoLimitPopup(limitResult.limit ?? undefined);
+      showVideoLimitPopup(POPUP_CONFIG, limitResult.limit ?? undefined);
     }
 
     updateConversionTask(formatId, {

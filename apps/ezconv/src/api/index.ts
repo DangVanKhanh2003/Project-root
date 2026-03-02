@@ -15,6 +15,7 @@ import {
   createV3PlaylistService,
   createV3DownloadService,
   createV3ZipDownloadService,
+  createSupporterService,
 
   // Domain Layer
   createVerifier,
@@ -25,7 +26,7 @@ import {
 } from '@downloader/core';
 
 // Import centralized environment configuration
-import { getApiBaseUrl, getApiBaseUrlV2, getApiBaseUrlV3, getYtMetaBaseUrl, getSearchV2BaseUrl, getQueueApiUrl, getMutiDownloadBaseUrl, getTimeout } from '../environment';
+import { getApiBaseUrl, getApiBaseUrlV2, getApiBaseUrlV3, getYtMetaBaseUrl, getSearchV2BaseUrl, getQueueApiUrl, getMutiDownloadBaseUrl, getSupporterApiBaseUrl, getTimeout } from '../environment';
 
 // Import CAPTCHA dependencies
 import { CaptchaModal } from '@downloader/ui-shared';
@@ -39,6 +40,7 @@ const YT_META_BASE_URL = getYtMetaBaseUrl();
 const SEARCH_V2_BASE_URL = getSearchV2BaseUrl();
 const QUEUE_API_BASE_URL = getQueueApiUrl();
 const MUTI_DOWNLOAD_BASE_URL = getMutiDownloadBaseUrl();
+const SUPPORTER_API_BASE_URL = getSupporterApiBaseUrl();
 const API_TIMEOUT = getTimeout('default');
 
 // 1. Create HTTP Clients
@@ -75,6 +77,12 @@ const zipHttpClient = createHttpClient({
 // YT Meta HTTP Client (playlist metadata - yt-meta.ytconvert.org)
 const ytMetaHttpClient = createHttpClient({
   baseUrl: YT_META_BASE_URL,
+  timeout: getTimeout('playlist'),
+});
+
+// Supporter HTTP Client (license key check - ytmp3-supporter.ytmp3.gg)
+const supporterHttpClient = createHttpClient({
+  baseUrl: SUPPORTER_API_BASE_URL,
   timeout: getTimeout('playlist'),
 });
 
@@ -146,6 +154,9 @@ const coreServices = {
     zip: zipApiConfig
   }),
 };
+
+// Supporter Service (outside coreServices — no JWT/CAPTCHA needed)
+export const supporterService = createSupporterService(ytMetaHttpClient, supporterHttpClient);
 
 // 4. Create Verifier (Domain Layer)
 const verifier = createVerifier({

@@ -7,6 +7,7 @@
 
 import { createHttpClient, createV3DownloadService } from '@downloader/core';
 import { getApiBaseUrlV3, getTimeout } from '../environment';
+import { apiLogger } from '../libs/api-logger/api-logger';
 
 // V3 API Configuration
 const V3_BASE_URL = getApiBaseUrlV3();
@@ -31,19 +32,57 @@ const v3ApiConfig = {
 // Create V3 Download Service
 export const v3DownloadService = createV3DownloadService(v3HttpClient, v3ApiConfig);
 
-// Export V3 API object for easy access
+// Export V3 API object for easy access with logging
 export const apiV3 = {
   /**
    * Create a download job
    * POST /api/download
    */
-  createJob: v3DownloadService.createJob.bind(v3DownloadService),
+  createJob: async (...args: Parameters<typeof v3DownloadService.createJob>) => {
+    try {
+      const result = await v3DownloadService.createJob(...args);
+      apiLogger.log({
+        type: 'success',
+        endpoint: 'createJob',
+        requestData: args[0], // ExtractRequest
+        responseData: result
+      });
+      return result;
+    } catch (error) {
+      apiLogger.log({
+        type: 'error',
+        endpoint: 'createJob',
+        requestData: args[0],
+        errorData: error
+      });
+      throw error;
+    }
+  },
 
   /**
    * Get job status by full URL
    * GET {statusUrl} - URL from createJob response
    */
-  getStatusByUrl: v3DownloadService.getStatusByUrl.bind(v3DownloadService),
+  getStatusByUrl: async (...args: Parameters<typeof v3DownloadService.getStatusByUrl>) => {
+    try {
+      const result = await v3DownloadService.getStatusByUrl(...args);
+      apiLogger.log({
+        type: 'success',
+        endpoint: 'getStatusByUrl',
+        requestData: { url: args[0] }, // StatusURL
+        responseData: result
+      });
+      return result;
+    } catch (error) {
+      apiLogger.log({
+        type: 'error',
+        endpoint: 'getStatusByUrl',
+        requestData: { url: args[0] },
+        errorData: error
+      });
+      throw error;
+    }
+  },
 };
 
 // Export config for debugging

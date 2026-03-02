@@ -1,5 +1,3 @@
-import { BULK_DOWNLOAD_LIMIT, getSecondsUntilNextMidnight, type LimitedDailyMode } from '../download-limit';
-
 type PopupKind = 'daily_limit' | 'video_limit' | 'maintenance';
 
 interface PopupMessages {
@@ -23,8 +21,24 @@ interface PopupMessages {
     maintenanceButton: string;
 }
 
-const SUPPORTER_CTA_URL = 'https://ko-fi.com/s/fa5c2b2a93';
-const ONE_TIME_DOWNLOAD_URL = 'https://media.ytmp3.gg/';
+export interface MaintenancePopupConfig {
+    /** Ko-fi supporter link */
+    supporterCtaUrl: string;
+    /** One-time download page URL */
+    oneTimeDownloadUrl: string;
+    /** Optional Firebase logEvent function */
+    logEvent?: (eventName: string, eventParams: Record<string, unknown>) => void;
+}
+
+import { FEATURE_KEYS } from '@downloader/core';
+
+const FEATURE_LIMIT_LABELS: Readonly<Record<string, string>> = {
+    [FEATURE_KEYS.HIGH_QUALITY_4K]:    '4K Download Limit Reached',
+    [FEATURE_KEYS.HIGH_QUALITY_320K]:  '320kbps Download Limit Reached',
+    [FEATURE_KEYS.CUT_VIDEO_YOUTUBE]:  'Cut Video Limit Reached',
+    [FEATURE_KEYS.PLAYLIST_DOWNLOAD]:  'Playlist Download Limit Reached',
+    [FEATURE_KEYS.BATCH_DOWNLOAD]:     'Multiple Download Limit Reached',
+};
 
 const TRANSLATIONS: Record<string, PopupMessages> = {
     vi: {
@@ -74,37 +88,34 @@ function getMessages(): PopupMessages {
     return TRANSLATIONS[lang] || TRANSLATIONS[lang.split('-')[0]] || TRANSLATIONS.en;
 }
 
+function getSecondsUntilNextMidnight(): number {
+    const now = new Date();
+    const midnight = new Date(now);
+    midnight.setHours(24, 0, 0, 0);
+    return Math.floor((midnight.getTime() - now.getTime()) / 1000);
+}
+
 function formatCountdown(totalSeconds: number): string {
     const hours = Math.floor(totalSeconds / 3600);
     const minutes = Math.floor((totalSeconds % 3600) / 60);
     const seconds = Math.max(0, totalSeconds % 60);
-
     return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-}
-
-function trackPopupEvent(eventName: string, eventParams: Record<string, unknown>): void {
-    import('../../libs/firebase')
-        .then(({ logEvent }) => logEvent(eventName, eventParams))
-        .catch(() => { });
 }
 
 function closeOverlay(overlay: HTMLElement, box: HTMLElement, tickerId?: number): void {
     if (typeof tickerId === 'number') {
         window.clearInterval(tickerId);
     }
-
     overlay.classList.remove('is-visible');
     box.classList.remove('is-visible');
-
-    window.setTimeout(() => {
-        overlay.remove();
-    }, 250);
+    window.setTimeout(() => overlay.remove(), 250);
 }
 
 function mountPopup(
     overlayId: string,
     kind: PopupKind,
     boxHtml: string,
+    config: MaintenancePopupConfig,
     afterMount?: (box: HTMLElement, overlay: HTMLElement) => number | void
 ): void {
     if (document.getElementById(overlayId)) return;
@@ -130,13 +141,13 @@ function mountPopup(
 
     overlay.addEventListener('click', (event) => {
         if (event.target !== overlay) return;
-        trackPopupEvent(`${kind}_popup_overlay_click`, { popup: kind });
+        config.logEvent?.(`${kind}_popup_overlay_click`, { popup: kind });
         closeOverlay(overlay, box, tickerId);
     });
 
     const closeButton = box.querySelector('[data-popup-close]');
     closeButton?.addEventListener('click', () => {
-        trackPopupEvent(`${kind}_popup_close_click`, { popup: kind, action: 'maybe_later' });
+        config.logEvent?.(`${kind}_popup_close_click`, { popup: kind, action: 'maybe_later' });
         closeOverlay(overlay, box, tickerId);
     });
 
@@ -144,21 +155,22 @@ function mountPopup(
     actionButtons.forEach((button) => {
         button.addEventListener('click', () => {
             const action = button.getAttribute('data-popup-action') || 'cta';
-            trackPopupEvent(`${kind}_popup_action_click`, { popup: kind, action });
+            config.logEvent?.(`${kind}_popup_action_click`, { popup: kind, action });
             closeOverlay(overlay, box, tickerId);
         });
     });
 }
 
-export function showLimitReachedPopup(mode?: LimitedDailyMode): void {
+export function showLimitReachedPopup(config: MaintenancePopupConfig, mode?: string): void {
     const t = getMessages();
     const isBulkMode = mode === 'batch';
     const description = isBulkMode ? t.bulkDailyLimitDescription : t.dailyLimitDescription;
     const ctaTitle = isBulkMode ? t.bulkDailyLimitTitle : t.dailyLimitCtaTitle;
+    const limitLabel = (mode && FEATURE_LIMIT_LABELS[mode]) ? FEATURE_LIMIT_LABELS[mode] : t.dailyLimitLabel;
     const actionsHtml = isBulkMode
         ? `
             <div class="maintenance-popup-actions">
-                <a href="${SUPPORTER_CTA_URL}" target="_blank" rel="noopener nofollow noreferrer" class="maintenance-popup-cta-button" data-popup-action="get_license">
+                <a href="${config.supporterCtaUrl}" target="_blank" rel="noopener nofollow noreferrer" class="maintenance-popup-cta-button" data-popup-action="get_license">
                     <img src="https://storage.ko-fi.com/cdn/logomarkLogo.png" alt="Ko-fi" width="20" height="20">
                     <span>${t.dailyLimitButton}</span>
                 </a>
@@ -168,7 +180,7 @@ export function showLimitReachedPopup(mode?: LimitedDailyMode): void {
             </div>
         `
         : `
-            <a href="${SUPPORTER_CTA_URL}" target="_blank" rel="noopener nofollow noreferrer" class="maintenance-popup-cta-button" data-popup-action="get_license">
+            <a href="${config.supporterCtaUrl}" target="_blank" rel="noopener nofollow noreferrer" class="maintenance-popup-cta-button" data-popup-action="get_license">
                 <img src="https://storage.ko-fi.com/cdn/logomarkLogo.png" alt="Ko-fi" width="20" height="20">
                 <span>${t.dailyLimitButton}</span>
             </a>
@@ -184,7 +196,7 @@ export function showLimitReachedPopup(mode?: LimitedDailyMode): void {
                     <polyline points="12 6 12 12 16 14"></polyline>
                 </svg>
                 <div class="maintenance-popup-header-copy">
-                    <div class="maintenance-popup-label">${t.dailyLimitLabel}</div>
+                    <div class="maintenance-popup-label">${limitLabel}</div>
                     <p class="maintenance-popup-subtitle">${t.dailyLimitText} <strong id="limit-countdown" class="maintenance-popup-countdown">${formatCountdown(getSecondsUntilNextMidnight())}</strong></p>
                 </div>
             </div>
@@ -198,6 +210,7 @@ export function showLimitReachedPopup(mode?: LimitedDailyMode): void {
             </div>
             ${isBulkMode ? '' : `<button type="button" class="maintenance-popup-link-button" data-popup-close>${t.maybeLater}</button>`}
         `,
+        config,
         (box, overlay) => {
             const countdownEl = box.querySelector('#limit-countdown');
             const ticker = window.setInterval(() => {
@@ -208,13 +221,12 @@ export function showLimitReachedPopup(mode?: LimitedDailyMode): void {
                     closeOverlay(overlay, box, ticker);
                 }
             }, 1000);
-
             return ticker;
         }
     );
 }
 
-export function showVideoLimitPopup(maxVideos = BULK_DOWNLOAD_LIMIT): void {
+export function showVideoLimitPopup(config: MaintenancePopupConfig, maxVideos = 10): void {
     const t = getMessages();
 
     mountPopup(
@@ -238,17 +250,18 @@ export function showVideoLimitPopup(maxVideos = BULK_DOWNLOAD_LIMIT): void {
                     <span>${t.videoLimitCtaTitle}</span>
                 </div>
                 <p class="maintenance-popup-cta-description">${t.videoLimitDescription}</p>
-                <a href="${SUPPORTER_CTA_URL}" target="_blank" rel="noopener nofollow noreferrer" class="maintenance-popup-cta-button" data-popup-action="get_license">
+                <a href="${config.supporterCtaUrl}" target="_blank" rel="noopener nofollow noreferrer" class="maintenance-popup-cta-button" data-popup-action="get_license">
                     <img src="https://storage.ko-fi.com/cdn/logomarkLogo.png" alt="Ko-fi" width="20" height="20">
                     <span>${t.videoLimitButton}</span>
                 </a>
             </div>
             <button type="button" class="maintenance-popup-link-button" data-popup-close>${t.maybeLater}</button>
-        `
+        `,
+        config
     );
 }
 
-export function showMaintenancePopup(): void {
+export function showMaintenancePopup(config: MaintenancePopupConfig): void {
     const t = getMessages();
 
     mountPopup(
@@ -263,12 +276,13 @@ export function showMaintenancePopup(): void {
             <div class="maintenance-popup-badge">${t.maintenanceBadge}</div>
             <h3 class="maintenance-popup-title">${t.maintenanceTitle}</h3>
             <p class="maintenance-popup-description">${t.maintenanceDescription}</p>
-            <a href="${ONE_TIME_DOWNLOAD_URL}" class="maintenance-popup-primary-button" data-popup-action="continue_single_url">${t.maintenanceButton}</a>
-        `
+            <a href="${config.oneTimeDownloadUrl}" class="maintenance-popup-primary-button" data-popup-action="continue_single_url">${t.maintenanceButton}</a>
+        `,
+        config
     );
 }
 
-export function showSupporterUpsellPopup(): void {
+export function showSupporterUpsellPopup(config: MaintenancePopupConfig): void {
     mountPopup(
         'supporter-upsell-overlay',
         'daily_limit',
@@ -280,8 +294,8 @@ export function showSupporterUpsellPopup(): void {
                     <line x1="12" y1="16" x2="12.01" y2="16"></line>
                 </svg>
                 <div class="maintenance-popup-header-copy">
-                    <div class="maintenance-popup-label">Feature Unavailable</div>
-                    <p class="maintenance-popup-subtitle">This feature is not available in your region</p>
+                    <div class="maintenance-popup-label">Become A Supporter</div>
+                    <p class="maintenance-popup-subtitle">Unlock unlimited access to advanced download features.</p>
                 </div>
             </div>
             <div class="maintenance-popup-cta-card">
@@ -289,13 +303,14 @@ export function showSupporterUpsellPopup(): void {
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#f59e0b" stroke="none" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
                     <span>Unlimited Downloads &amp; Access All Features</span>
                 </div>
-                <p class="maintenance-popup-cta-description">Become a Supporter to <strong>unlock unlimited downloads and full access</strong> to all features, regardless of your region.</p>
-                <a href="${SUPPORTER_CTA_URL}" target="_blank" rel="noopener nofollow noreferrer" class="maintenance-popup-cta-button" data-popup-action="get_license">
+                <p class="maintenance-popup-cta-description">Become a Supporter to <strong>unlock unlimited downloads and full access</strong> to all features.</p>
+                <a href="${config.supporterCtaUrl}" target="_blank" rel="noopener nofollow noreferrer" class="maintenance-popup-cta-button" data-popup-action="get_license">
                     <img src="https://storage.ko-fi.com/cdn/logomarkLogo.png" alt="Ko-fi" width="20" height="20">
                     <span>Become a Supporter</span>
                 </a>
             </div>
             <button type="button" class="maintenance-popup-link-button" data-popup-close>Maybe later</button>
-        `
+        `,
+        config
     );
 }

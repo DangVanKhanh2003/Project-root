@@ -10,7 +10,7 @@
  */
 
 import { apiV3 } from '../../../../api/v3';
-import { mapToV3DownloadRequest, type CreateJobResponse } from '@downloader/core';
+import { mapToV3DownloadRequest, type CreateJobResponse, FEATURE_KEYS } from '@downloader/core';
 import {
   setConversionTask,
   getConversionTask,
@@ -19,6 +19,10 @@ import {
 } from '../../state';
 import { triggerDownload } from '../../../../utils';
 
+import { checkLimit, recordUsage } from '../../../download-limit';
+import { showLimitReachedPopup } from '@downloader/ui-shared';
+import { POPUP_CONFIG } from '../../../supporter-popup-config';
+
 // V3 specific imports
 import { TaskState, type V3ConversionParams } from './v3/types';
 import { startPolling } from './v3/polling';
@@ -26,6 +30,7 @@ import { getErrorMessage } from './v3/error-messages';
 
 // Retry helper
 import { retryWithBackoff, RETRY_CONFIGS } from './retry-helper';
+import { debug } from 'console';
 
 // Debug logger
 const LOG_PREFIX = '[ConvertLogicV3]';
@@ -43,6 +48,7 @@ export async function startConversion(params: V3ConversionParams): Promise<void>
   log('formatId:', formatId);
   log('videoUrl:', videoUrl);
   log('extractV2Options:', JSON.stringify(extractV2Options, null, 2));
+
 
   // Setup abort controller
   const abortController = new AbortController();
@@ -151,6 +157,17 @@ export async function startConversion(params: V3ConversionParams): Promise<void>
 
         log('Completed! Download URL:', downloadUrl);
         stopFakeProgress();
+
+        // Record usage AFTER success
+        const { videoQuality, audioBitrate, audioFormat, downloadMode, trimStart } = extractV2Options ?? {};
+        const is4K = downloadMode === 'video' && videoQuality === '2160';
+        const is320kbps = downloadMode === 'audio' && audioFormat === 'mp3' && audioBitrate === '320';
+        const isCutVideo = typeof trimStart === 'number';
+
+        if (is4K) recordUsage(FEATURE_KEYS.HIGH_QUALITY_4K);
+        if (is320kbps) recordUsage(FEATURE_KEYS.HIGH_QUALITY_320K);
+        if (isCutVideo) recordUsage(FEATURE_KEYS.CUT_VIDEO_YOUTUBE);
+
         updateConversionTask(formatId, {
           state: TaskState.SUCCESS,
           statusText: 'Merging...',

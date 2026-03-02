@@ -1,3 +1,4 @@
+import { FEATURE_ACCESS_REASONS } from '@downloader/core';
 import { hasStoredLicenseKey } from './license-selector';
 
 const DB_NAME = 'ezconv-supporter';
@@ -411,7 +412,7 @@ export async function checkLimit(context: LimitCheckContext): Promise<LimitCheck
                 allowed: false,
                 type: 'bulk_video_count',
                 mode: 'batch',
-                reason: 'video_limit_exceeded',
+                reason: FEATURE_ACCESS_REASONS.VIDEO_LIMIT_EXCEEDED,
                 limit: BULK_DOWNLOAD_LIMIT,
                 currentCount: context.itemCount,
                 resetAt: null,
@@ -432,7 +433,7 @@ export async function checkLimit(context: LimitCheckContext): Promise<LimitCheck
                 allowed: false,
                 type: 'daily_mode_limit',
                 mode,
-                reason: 'daily_limit_reached',
+                reason: FEATURE_ACCESS_REASONS.DAILY_LIMIT_REACHED,
                 limit: modeLimit,
                 currentCount,
                 resetAt: now + remainingMs,
