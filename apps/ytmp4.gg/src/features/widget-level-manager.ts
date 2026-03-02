@@ -18,7 +18,7 @@ import {
 
 const MULTI_PLAYLIST_BANNER_WRAPPER_ID = 'multi-playlist-banner-wrapper';
 const MULTI_PLAYLIST_BANNER_PUBLIC_URL = '/assest/banner/multi-playlist-banner.js';
-const TIP_MESSAGE_LINK_URL = 'https://ko-fi.com/ssvid';
+const TIP_MESSAGE_LINK_URL = 'https://ko-fi.com/metaconvert';
 
 type MultiPlaylistBannerModule = {
     initMultiPlaylistBanner: (

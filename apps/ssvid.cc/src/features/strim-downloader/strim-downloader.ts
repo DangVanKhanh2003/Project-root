@@ -1,4 +1,4 @@
-import { scrollManager } from '@downloader/ui-shared';
+import { scrollManager, showLimitReachedPopup } from '@downloader/ui-shared';
 import { handleAutoDownload, handleExtractMedia, handleSearch } from '../downloader/logic/input-form';
 import { clearContent, showLoading } from '../downloader/ui-render/content-renderer';
 import { showResultView } from '../downloader/ui-render/view-switcher';
@@ -11,6 +11,9 @@ import {
   setVideoQuality,
 } from '../downloader/state';
 import { initAudioDropdown } from '../downloader/ui-render/dropdown-logic';
+import { checkLimit } from '../download-limit';
+import { FEATURE_KEYS } from '@downloader/core';
+import { POPUP_CONFIG } from '../supporter-popup-config';
 
 type SliderTuple = [number | string, number | string];
 
@@ -258,6 +261,7 @@ function renderQualityOptions(format: 'mp3' | 'mp4'): void {
   const options = format === 'mp4'
     ? [
       { value: 'mp4-2160', label: 'MP4 - 4K' },
+      { value: 'mp4-1440', label: 'MP4 - 2K' },
       { value: 'mp4-1080', label: 'MP4 - 1080p' },
       { value: 'mp4-720', label: 'MP4 - 720p' },
       { value: 'mp4-480', label: 'MP4 - 480p' },
@@ -527,6 +531,36 @@ function setupEventListeners(): void {
       const url = input?.value.trim() || '';
       const videoId = extractVideoId(url);
       if (!url || !videoId) return;
+
+      // ── Quality Limit Check (before conversion starts) ──────────────────────
+      const currentState = getState();
+      const fmt = (currentState.selectedFormat || 'mp3') as 'mp3' | 'mp4';
+      const is4K = fmt === 'mp4' && (currentState.videoQuality || '') === '2160p';
+      const is2K = fmt === 'mp4' && (currentState.videoQuality || '') === '1440p';
+      const is320kbps = fmt === 'mp3' && currentState.audioFormat === 'mp3' && currentState.audioBitrate === '320';
+
+      if (is4K) {
+        const limitResult = checkLimit(FEATURE_KEYS.HIGH_QUALITY_4K);
+        if (!limitResult.allowed) {
+          showLimitReachedPopup(POPUP_CONFIG, FEATURE_KEYS.HIGH_QUALITY_4K);
+          return;
+        }
+      }
+      if (is2K) {
+        const limitResult = checkLimit(FEATURE_KEYS.HIGH_QUALITY_2K);
+        if (!limitResult.allowed) {
+          showLimitReachedPopup(POPUP_CONFIG, FEATURE_KEYS.HIGH_QUALITY_2K);
+          return;
+        }
+      }
+      if (is320kbps) {
+        const limitResult = checkLimit(FEATURE_KEYS.HIGH_QUALITY_320K);
+        if (!limitResult.allowed) {
+          showLimitReachedPopup(POPUP_CONFIG, FEATURE_KEYS.HIGH_QUALITY_320K);
+          return;
+        }
+      }
+      // ───────────────────────────────────────────────────────────────────────
 
       const streamAudioTrack = getStreamAudioTrackInput()?.value || 'original';
       const mainAudioTrack = getMainAudioTrackInput();
