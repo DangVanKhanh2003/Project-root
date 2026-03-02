@@ -38,10 +38,8 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background-color: rgba(217, 232, 255, 0.6);
-    /* bg-secondary-container/50 */
-    color: #003f8a;
-    /* text-secondary-onContainer (Darker Red/Pink) */
+    background-color: var(--accent-fill-soft);
+    color: var(--brand);
     padding: 6px 16px;
     border-radius: 8px;
     font-size: 0.875rem;
@@ -58,8 +56,7 @@
 .overview-title {
     font-size: 32px;
     font-weight: 700;
-    color: #1F1F1F;
-    /* On Surface */
+    color: var(--text-heading);
     line-height: 1.2;
     margin: 0;
 }
@@ -67,14 +64,13 @@
 .overview-desc {
     font-size: 1rem;
     line-height: 1.6;
-    color: #49454F;
-    /* Variant On Surface */
+    color: var(--text-secondary);
 }
 
 /* --- Right Side: Steps Card --- */
 .overview-steps-card {
     flex: 1;
-    background: #f5f5f5;
+    background: transparent;
     padding: 40px;
     width: 100%;
     max-width: 500px;
@@ -83,7 +79,7 @@
 .steps-card-title {
     font-size: 32px;
     font-weight: 700;
-    color: #1F1F1F;
+    color: var(--text-heading);
     margin-bottom: 32px;
     text-align: center;
     line-height: 1.2;
@@ -114,8 +110,7 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: #004fab;
-    /* Primary */
+    background-color: var(--brand);
     color: #FFFFFF;
     /* On Primary */
     display: flex;
@@ -136,21 +131,20 @@
     top: 40px;
     bottom: 0;
     width: 2px;
-    background-color: #cfe0ff;
-    /* Muted Line */
+    background-color: var(--border-default);
 }
 
 /* Text Content */
 .step-text h3 {
     font-size: 1.125rem;
     font-weight: 700;
-    color: #1F1F1F;
+    color: var(--text-heading);
     margin: 0 0 8px 0;
 }
 
 .step-text p {
     font-size: 0.9375rem;
-    color: #49454F;
+    color: var(--text-secondary);
     margin: 0;
     line-height: 1.5;
 }

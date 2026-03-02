@@ -80,10 +80,10 @@ html[data-format="mp3"] .quality-select--mp3 {
 /* Format Toggle */
 .format-toggle {
     display: flex;
-    background: white;
+    background: var(--bg-card);
     border-radius: var(--radius-xl);
     padding: 4px;
-    border: 1px solid #b0b0b0ad;
+    border: 1px solid var(--border-input);
 }
 
 .format-btn {
@@ -124,13 +124,13 @@ html[data-format="mp3"] .quality-select--mp3 {
 .quality-select {
     height: 45px;
     padding: 0 40px 0 18px;
-    border: 1px solid #b0b0b0ad;
+    border: 1px solid var(--border-input);
     border-radius: var(--radius-xl);
-    background: #fff;
+    background: var(--bg-card);
     cursor: pointer;
     font-size: 14px;
     font-weight: 600;
-    color: var(--text);
+    color: var(--text-body);
     outline: none;
     appearance: none;
     transition: border-color 0.3s;

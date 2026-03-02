@@ -35,11 +35,11 @@
 .input-running-border {
     filter: blur(2px);
     background: conic-gradient(from var(--angle),
-            rgba(52, 107, 241, 0) 0%,
-            rgba(52, 107, 241, 0.4) 10%,
-            rgba(52, 107, 241, 0.6) 35%,
-            rgba(52, 107, 241, 0.4) 60%,
-            rgba(52, 107, 241, 0) 70%);
+            rgba(var(--input-border-glow-rgb), 0) 0%,
+            rgba(var(--input-border-glow-rgb), 0.4) 10%,
+            rgba(var(--input-border-glow-rgb), 0.6) 35%,
+            rgba(var(--input-border-glow-rgb), 0.4) 60%,
+            rgba(var(--input-border-glow-rgb), 0) 70%);
     animation: rotate-gradient 8s linear infinite;
     transition: opacity 0.4s ease;
     opacity: 1;
@@ -47,9 +47,9 @@
 
 .input-focus-glow {
     background-image: radial-gradient(75% 181% at 50% 50%,
-            rgba(52, 107, 241, 0.9) 0px,
-            rgba(52, 107, 241, 0.8) 50%,
-            rgba(52, 107, 241, 0) 100%);
+            rgba(var(--input-glow-radial-rgb), 0.9) 0px,
+            rgba(var(--input-glow-radial-rgb), 0.8) 50%,
+            rgba(var(--input-glow-radial-rgb), 0) 100%);
     filter: blur(2px);
     opacity: 0;
     transition: opacity 0.4s ease;
@@ -57,7 +57,7 @@
 
 .input-static-border {
     inset: 0;
-    border: 1px solid rgba(226, 232, 240, 0.6);
+    border: 1px solid var(--border-default);
     pointer-events: none;
     z-index: 0;
 }
@@ -71,15 +71,15 @@
 }
 
 .input-shell .input-wrapper {
-    border: 1px solid #b0b0b0ad;
-    background: transparent;
+    border: 1px solid var(--border-input);
+    background: var(--bg-card);
     box-shadow: none;
 }
 
 .input-shell .input-content {
     position: relative;
     z-index: 1;
-    background: #fff;
+    background: var(--bg-card);
     border-radius: var(--radius-xl);
     transition: box-shadow 0.3s ease;
 }
@@ -93,8 +93,8 @@
 .input-wrapper {
     display: flex;
     align-items: center;
-    background: #fff;
-    border: 1px solid #8080803b;
+    background: var(--bg-card);
+    border: 1px solid var(--border-input);
     border-radius: var(--radius-xl);
     overflow: hidden;
     transition: border-color 0.3s, box-shadow 0.3s;
@@ -125,7 +125,7 @@
     padding: 8px 16px;
     font-size: 14px;
     font-weight: 600;
-    color: #67798e;
+    color: var(--text-secondary);
     background: transparent;
     border: none;
     border-radius: 12px;

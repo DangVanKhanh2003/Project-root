@@ -68,11 +68,11 @@
 }
 
 .logo-hero svg rect[fill="#CB0E35"] {
-    fill: #004fab;
+    fill: var(--brand);
 }
 
 .logo-hero svg path[fill="#8D021F"] {
-    fill: #003f8a;
+    fill: var(--brand-hover);
 }
 
 .logo-text-hero {
@@ -103,7 +103,7 @@
 }
 
 .hero-card {
-    background: white;
+    background: var(--bg-card);
     border-radius: 28px;
     /* Slightly larger radius */
     padding: 32px;
@@ -118,7 +118,7 @@
     z-index: 10;
     display: flex;
     flex-direction: column;
-    border: 1px solid rgba(137, 137, 137, 0.332);
+    border: 1px solid var(--border-default);
     /* Space between elements inside form */
 }
 

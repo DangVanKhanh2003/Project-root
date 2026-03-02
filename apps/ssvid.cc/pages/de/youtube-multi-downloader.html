@@ -66,7 +66,34 @@
 
     <!-- Critical: Read format preference before render to prevent FOUC -->
     <script>
-        (function () { var f = 'mp4'; try { var p = JSON.parse(localStorage.getItem('ssvid_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat } catch (e) { } document.documentElement.dataset.format = f; document.write('<style>html[data-format="mp3"] .quality-select--mp4,html[data-format="mp3"] .multi-quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3,html[data-format="mp3"] .multi-quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3,html[data-format="mp4"] .multi-quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4,html[data-format="mp4"] .multi-quality-select--mp4{display:block!important}</style>') })()
+        function setTheme(theme) {
+            if (theme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+            }
+            try {
+                localStorage.setItem('theme', theme);
+            } catch (e) { }
+        }
+
+        (function () {
+            try {
+                var savedTheme = localStorage.getItem('theme');
+                if (savedTheme === 'dark') {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                }
+            } catch (e) { }
+
+            var f = 'mp4';
+            try {
+                var p = JSON.parse(localStorage.getItem('ssvid_format_preferences'));
+                if (p && p.selectedFormat) f = p.selectedFormat;
+            } catch (e) { }
+
+            document.documentElement.dataset.format = f;
+            document.write('<style>html[data-format="mp3"] .quality-select--mp4,html[data-format="mp3"] .multi-quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3,html[data-format="mp3"] .multi-quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3,html[data-format="mp4"] .multi-quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4,html[data-format="mp4"] .multi-quality-select--mp4{display:block!important}</style>');
+        })();
     </script>
 
     <!-- JSON-LD Structured Data -->
@@ -296,6 +323,26 @@
                         </div>
                     </div>
                 </div>
+                <button
+                    type="button"
+                    class="theme-toggle-btn"
+                    aria-label="Toggle theme"
+                    onclick="setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')">
+                    <svg class="theme-toggle-icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+                        <circle cx="12" cy="12" r="4"></circle>
+                        <path d="M12 2v2"></path>
+                        <path d="M12 20v2"></path>
+                        <path d="M4.93 4.93l1.41 1.41"></path>
+                        <path d="M17.66 17.66l1.41 1.41"></path>
+                        <path d="M2 12h2"></path>
+                        <path d="M20 12h2"></path>
+                        <path d="M6.34 17.66l-1.41 1.41"></path>
+                        <path d="M19.07 4.93l-1.41 1.41"></path>
+                    </svg>
+                    <svg class="theme-toggle-icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3c0 0 0 0 0 0a7 7 0 0 0 9.79 9.79z"></path>
+                    </svg>
+                </button>
             </nav>
             <button id="mobile-menu-btn" class="mobile-menu-btn" type="button" aria-label="Open menu">
                 <span class="mobile-menu-bars" aria-hidden="true"></span>
@@ -383,6 +430,26 @@
                     <a href="/vi/youtube-multi-downloader" class="drawer-sublink" role="menuitem">Tiếng Việt</a>
                 </div>
             </div>
+            <button
+                type="button"
+                class="theme-toggle-btn"
+                aria-label="Toggle theme"
+                onclick="setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')">
+                <svg class="theme-toggle-icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <path d="M12 2v2"></path>
+                    <path d="M12 20v2"></path>
+                    <path d="M4.93 4.93l1.41 1.41"></path>
+                    <path d="M17.66 17.66l1.41 1.41"></path>
+                    <path d="M2 12h2"></path>
+                    <path d="M20 12h2"></path>
+                    <path d="M6.34 17.66l-1.41 1.41"></path>
+                    <path d="M19.07 4.93l-1.41 1.41"></path>
+                </svg>
+                <svg class="theme-toggle-icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3c0 0 0 0 0 0a7 7 0 0 0 9.79 9.79z"></path>
+                </svg>
+            </button>
         </div>
     </div>
 </div>

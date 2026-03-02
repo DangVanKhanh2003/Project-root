@@ -76,7 +76,7 @@ h2.titles {
 
 /* Paragraphs */
 .content-section p {
-    color: black;
+    color: var(--text-body);
     line-height: 1.8;
     margin-bottom: 16px;
     font-size: 18px;
@@ -136,7 +136,7 @@ h2.titles {
 .subsection {
     margin-top: 32px;
     padding: 24px;
-    background: white;
+    background: var(--bg-card);
     border-radius: 12px;
     border-left: 4px solid var(--brand);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -144,12 +144,12 @@ h2.titles {
 
 /* Subsection background on gray sections */
 .content-section--gray .subsection {
-    background: white;
+    background: var(--bg-card);
 }
 
 /* Subsection background on white sections */
 .content-section--white .subsection {
-    background: var(--surface-weak);
+    background: var(--bg-surface-soft);
 }
 
 
@@ -170,7 +170,7 @@ h2.titles {
 .faq-item {
     margin-bottom: 24px;
     padding: 24px;
-    background: white;
+    background: var(--bg-card);
     border-radius: 12px;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
