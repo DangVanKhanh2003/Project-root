@@ -496,8 +496,9 @@
                                         <div class="custom-dropdown-menu" role="listbox" hidden>
                                             <div class="dropdown-group">
                                                 <div class="dropdown-group-label">Video</div>
-                                                <div class="dropdown-option selected" data-value="video|mp4-2160" role="option">MP4 - 4K</div>
-                                                                                                <div class="dropdown-option" data-value="video|mp4-1080" role="option">MP4 - 1080p</div>
+                                                <div class="dropdown-option selected" data-value="video|mp4-2160" role="option">MP4 - 4K (2160p)</div>
+                                                <div class="dropdown-option" data-value="video|mp4-1440" role="option">MP4 - 2K (1440p)</div>
+                                                <div class="dropdown-option" data-value="video|mp4-1080" role="option">MP4 - 1080p</div>
                                                 <div class="dropdown-option" data-value="video|mp4-720" role="option">MP4 - 720p</div>
                                                 <div class="dropdown-option" data-value="video|mp4-480" role="option">MP4 - 480p</div>
                                                 <div class="dropdown-option" data-value="video|mp4-360" role="option">MP4 - 360p</div>
@@ -648,6 +649,17 @@
     </div>
 </footer>
 
+
+    <!-- Ko-fi Support Widget -->
+    <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+    <script>
+      kofiWidgetOverlay.draw('metaconvert', {
+        'type': 'floating-chat',
+        'floating-chat.donateButton.text': 'Support me',
+        'floating-chat.donateButton.background-color': '#00b9fe',
+        'floating-chat.donateButton.text-color': '#fff'
+      });
+    </script>
 </body>
 
 </html>

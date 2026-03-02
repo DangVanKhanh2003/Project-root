@@ -8,9 +8,8 @@
 
     <!-- SEO Metadata -->
     <title>YouTube ဗီဒီယိုကို အွန်လိုင်းမှ ဒေါင်းလုဒ်လုပ်ပါ – MP4 &amp; MP3 | Y2Mate</title>
-    <meta name="description"
-        content="Y2Mate ဖြင့် YouTube ဗီဒီယိုကို အွန်လိုင်းတွင် အခမဲ့ ဒေါင်းလုဒ်လုပ်ပါ။ YouTube ဗီဒီယိုများကို ဗီဒီယို သို့မဟုတ် အသံ (MP4, MP3) အဖြစ် ဒေါင်းလုဒ်လုပ်ပါ — watermark မရှိ၊ ကြော်ငြာမရှိ၊ သင့်ဘရောက်ဆာတွင် တိုက်ရိုက်အသုံးပြုပါ။">
-
+    <meta name="description" content="Y2Mate ဖြင့် YouTube ဗီဒီယိုကို အွန်လိုင်းတွင် အခမဲ့ ဒေါင်းလုဒ်လုပ်ပါ။ YouTube ဗီဒီယိုများကို ဗီဒီယို သို့မဟုတ် အသံ (MP4, MP3) အဖြစ် ဒေါင်းလုဒ်လုပ်ပါ — watermark မရှိ၊ ကြော်ငြာမရှိ၊ သင့်ဘရောက်ဆာတွင် တိုက်ရိုက်အသုံးပြုပါ။">
+    
     <link rel="canonical" href="https://y2mate.vc/my/">
 
     <!-- hreflang tags for multilingual SEO -->
@@ -37,18 +36,15 @@
 
     <!-- Schema.org markup -->
     <meta itemprop="name" content="Y2mate - Youtube ဗီဒီယို ဒေါင်းလုဒ်လုပ်သူ" />
-    <meta itemprop="description"
-        content="Y2mate YouTube Downloader - MP3 128-320kbps သို့မဟုတ် MP4 360p-1080p သို့ လျင်မြန်စွာ ပြောင်းပါ။ ကန့်သတ်ချက်မရှိ၊ အက်ပ်မရှိ။">
+    <meta itemprop="description" content="Y2mate YouTube Downloader - MP3 128-320kbps သို့မဟုတ် MP4 360p-1080p သို့ လျင်မြန်စွာ ပြောင်းပါ။ ကန့်သတ်ချက်မရှိ၊ အက်ပ်မရှိ။">
     <meta itemprop="inLanguage" content="my" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Y2Mate" />
     <meta property="og:locale" content="en_US" />
-    <meta property="og:title"
-        content="Y2mate - အခမဲ့ YouTube ဒေါင်းလုဒ်လုပ်သူ - YouTube ဗီဒီယိုကို အခမဲ့ ဒေါင်းလုဒ်လုပ်ပါ" />
-    <meta property="og:description"
-        content="Y2mate YouTube Downloader - အခမဲ့ MP3/MP4 ပြောင်းလဲခြင်း (128-320kbps, 360p-1080p)။ မြန်ဆန်သည်၊ ကန့်သတ်ချက်မရှိ၊ အက်ပ်မရှိ။" />
+    <meta property="og:title" content="Y2mate - အခမဲ့ YouTube ဒေါင်းလုဒ်လုပ်သူ - YouTube ဗီဒီယိုကို အခမဲ့ ဒေါင်းလုဒ်လုပ်ပါ" />
+    <meta property="og:description" content="Y2mate YouTube Downloader - အခမဲ့ MP3/MP4 ပြောင်းလဲခြင်း (128-320kbps, 360p-1080p)။ မြန်ဆန်သည်၊ ကန့်သတ်ချက်မရှိ၊ အက်ပ်မရှိ။" />
     <meta property="og:image" content="https://y2mate.vc/logo.png" />
     <meta property="og:url" content="https://y2mate.vc/my/" />
 
@@ -68,7 +64,7 @@
     <!-- Google Analytics: Lazy loaded via analytics-loader.ts for better performance -->
 
     <!-- Critical: Set format and auto-submit preferences before render to prevent FOUC -->
-    <script>(function () { var f = 'mp4', a = 'false'; try { var p = JSON.parse(localStorage.getItem('y2mate_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat; var s = localStorage.getItem('y2mate_auto_submit'); if (s) a = s; } catch (e) { } document.documentElement.dataset.format = f; document.documentElement.dataset.autoSubmit = a; })()</script>
+    <script>(function(){var f='mp4',a='false';try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p&&p.selectedFormat)f=p.selectedFormat;var s=localStorage.getItem('y2mate_auto_submit');if(s)a=s;}catch(e){}document.documentElement.dataset.format=f;document.documentElement.dataset.autoSubmit=a;})()</script>
 
     <!-- Critical: Hide auto-submit tooltip before CSS loads -->
     <style>
@@ -79,7 +75,7 @@
     </style>
 
     <!-- Critical: Prevent default form submit before app init (avoid /search 404) -->
-    <script>(function () { document.addEventListener('submit', function (event) { var target = event.target; if (target && target.id === 'downloadForm') { event.preventDefault(); } }, true); })();</script>
+    <script>(function(){document.addEventListener('submit',function(event){var target=event.target;if(target&&target.id==='downloadForm'){event.preventDefault();}},true);})();</script>
 
     <!-- Critical CSS imported via Vite -->
     <script type="module" src="/src/main.ts"></script>
@@ -156,36 +152,125 @@
 
 <body>
     <header class="nav-header">
-        <div class="container">
-            <div class="nav_head">
-                <div class="navbar-logo">
-                    <a href="/my/">
-                        <img height="46px" width="46px" src="/logo.png" alt="Y2Mate logo">
-                        <span class="logo-name">Y2mate</span>
-                    </a>
-                </div>
-                <button type="button" class="navbar-toggler" id="mobileMenuToggle"
-                    aria-label="လမ်းညွှန်မီနူးကို ဖွင့်ပါ">
-                    <span class="toggle-icon"></span>
-                    <span class="toggle-icon"></span>
-                    <span class="toggle-icon"></span>
-                </button>
+    <div class="container">
+        <div class="nav_head">
+            <div class="navbar-logo">
+                <a href="/my/">
+                    <img height="46px" width="46px" src="/logo.png" alt="Y2Mate logo">
+                    <span class="logo-name">Y2mate</span>
+                </a>
             </div>
-            <div class="header-menu">
-                <ul class="menu-navbar">
+            <button type="button" class="navbar-toggler" id="mobileMenuToggle" aria-label="လမ်းညွှန်မီနူးကို ဖွင့်ပါ">
+                <span class="toggle-icon"></span>
+                <span class="toggle-icon"></span>
+                <span class="toggle-icon"></span>
+            </button>
+        </div>
+        <div class="header-menu">
+            <ul class="menu-navbar">
+              
+                <li class="navbar">
+                    <a href="/my/youtube-to-mp4">YouTube to MP4 Converter</a>
+                </li>
+                <li class="navbar">
+                    <a href="/my/youtube-to-mp3">YouTube to MP3 Converter</a>
+                </li>
+                <li class="navbar language">
+                    <a href="/">
+                        မြန်မာ<span class="shape"></span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <ul class="lang-menu">
+                            <li>
+                                <a data-lang="en" href="/">English</a>
+                            </li>
+                            <li>
+                                <a data-lang="ar" href="/ar/">العربية</a>
+                            </li>
+                            <li>
+                                <a data-lang="bn" href="/bn/">বাংলা</a>
+                            </li>
+                            <li>
+                                <a data-lang="de" href="/de/">Deutsch</a>
+                            </li>
+                            <li>
+                                <a data-lang="es" href="/es/">Español</a>
+                            </li>
+                            <li>
+                                <a data-lang="fr" href="/fr/">Français</a>
+                            </li>
+                            <li>
+                                <a data-lang="hi" href="/hi/">हिन्दी</a>
+                            </li>
+                            <li>
+                                <a data-lang="id" href="/id/">Indonesia</a>
+                            </li>
+                            <li>
+                                <a data-lang="it" href="/it/">Italiano</a>
+                            </li>
+                            <li>
+                                <a data-lang="ja" href="/ja/">日本語</a>
+                            </li>
+                            <li>
+                                <a data-lang="ko" href="/ko/">한국어</a>
+                            </li>
+                            <li>
+                                <a data-lang="my" href="/my/">မြန်မာ</a>
+                            </li>
+                            <li>
+                                <a data-lang="ms" href="/ms/">Melayu</a>
+                            </li>
+                            <li>
+                                <a data-lang="pt" href="/pt/">Português</a>
+                            </li>
+                            <li>
+                                <a data-lang="ru" href="/ru/">Русский</a>
+                            </li>
+                            <li>
+                                <a data-lang="th" href="/th/">ไทย</a>
+                            </li>
+                            <li>
+                                <a data-lang="tr" href="/tr/">Türkçe</a>
+                            </li>
+                            <li>
+                                <a data-lang="ur" href="/ur/">اردو</a>
+                            </li>
+                            <li>
+                                <a data-lang="vi" href="/vi/">Tiếng Việt</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
 
-                    <li class="navbar">
-                        <a href="/my/youtube-to-mp4">YouTube to MP4 Converter</a>
-                    </li>
-                    <li class="navbar">
-                        <a href="/my/youtube-to-mp3">YouTube to MP3 Converter</a>
-                    </li>
-                    <li class="navbar language">
-                        <a href="/">
-                            မြန်မာ<span class="shape"></span>
-                        </a>
-                        <div class="dropdown-menu">
-                            <ul class="lang-menu">
+        <!-- Mobile Menu Overlay -->
+        <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+            <div class="mobile-menu-content">
+                <div class="mobile-header-top">
+                    <a href="/my/">
+                        <div class="mobile-logo">
+                            <img height="36px" width="36px" src="/logo.png" alt="Y2Mate logo">
+                            <span class="logo-name">Y2mate</span>
+                        </div>
+                    </a>
+                    <button type="button" class="mobile-close-btn" id="mobileCloseBtn" aria-label="လမ်းညွှန်မီနူးကို ပိတ်ပါ">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <nav class="mobile-nav">
+                    <ul class="mobile-menu">
+                        <li><a href="/my/">YouTube Downloader</a></li>
+                        <li><a href="/my/youtube-to-mp4">YouTube to MP4 Converter</a></li>
+                        <li><a href="/my/youtube-to-mp3">YouTube to MP3 Converter</a></li>
+                        <li><a href="/my/youtube-short-downloader">YouTube Shorts Downloader</a></li>
+                        <li class="mobile-language">
+                            <button type="button" class="mobile-language-toggle" aria-expanded="false">
+                                မြန်မာ<span class="shape"></span>
+                            </button>
+                            <ul class="mobile-lang-menu">
                                 <li>
                                     <a data-lang="en" href="/">English</a>
                                 </li>
@@ -244,335 +329,228 @@
                                     <a data-lang="vi" href="/vi/">Tiếng Việt</a>
                                 </li>
                             </ul>
-                        </div>
-                    </li>
-                </ul>
+                        </li>
+                    </ul>
+                </nav>
             </div>
-
-            <!-- Mobile Menu Overlay -->
-            <div class="mobile-menu-overlay" id="mobileMenuOverlay">
-                <div class="mobile-menu-content">
-                    <div class="mobile-header-top">
-                        <a href="/my/">
-                            <div class="mobile-logo">
-                                <img height="36px" width="36px" src="/logo.png" alt="Y2Mate logo">
-                                <span class="logo-name">Y2mate</span>
-                            </div>
-                        </a>
-                        <button type="button" class="mobile-close-btn" id="mobileCloseBtn"
-                            aria-label="လမ်းညွှန်မီနူးကို ပိတ်ပါ">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" />
-                            </svg>
-                        </button>
-                    </div>
-                    <nav class="mobile-nav">
-                        <ul class="mobile-menu">
-                            <li><a href="/my/">YouTube Downloader</a></li>
-                            <li><a href="/my/youtube-to-mp4">YouTube to MP4 Converter</a></li>
-                            <li><a href="/my/youtube-to-mp3">YouTube to MP3 Converter</a></li>
-                            <li><a href="/my/youtube-short-downloader">YouTube Shorts Downloader</a></li>
-                            <li class="mobile-language">
-                                <button type="button" class="mobile-language-toggle" aria-expanded="false">
-                                    မြန်မာ<span class="shape"></span>
-                                </button>
-                                <ul class="mobile-lang-menu">
-                                    <li>
-                                        <a data-lang="en" href="/">English</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="ar" href="/ar/">العربية</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="bn" href="/bn/">বাংলা</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="de" href="/de/">Deutsch</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="es" href="/es/">Español</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="fr" href="/fr/">Français</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="hi" href="/hi/">हिन्दी</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="id" href="/id/">Indonesia</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="it" href="/it/">Italiano</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="ja" href="/ja/">日本語</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="ko" href="/ko/">한국어</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="my" href="/my/">မြန်မာ</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="ms" href="/ms/">Melayu</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="pt" href="/pt/">Português</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="ru" href="/ru/">Русский</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="th" href="/th/">ไทย</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="tr" href="/tr/">Türkçe</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="ur" href="/ur/">اردو</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="vi" href="/vi/">Tiếng Việt</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-            <!-- End Mobile Menu Overlay -->
         </div>
-    </header>
+        <!-- End Mobile Menu Overlay -->
+    </div>
+</header>
 
 
     <main>
-        <div class="container">
-            <section class="y2mate-download-pro">
-                <div class="y2mate-search-form-pro d-flex">
-                    <div class="form-wrap">
-                        <h1 class="y2mate_title-pro">Y2Mate - YouTube ဗီဒီယိုကို ဒေါင်းလုဒ်လုပ်ပါ</h1>
-                        <form id="downloadForm" class="search_form" method="POST" action="/search/">
-                            <div class="input-container">
-                                <div class=" input-wrapper">
-                                    <input id="videoUrl" class="y2mate_query-pro keyword" type="text" name="q"
-                                        placeholder="လင့်ခ်ကို ရှာဖွေပါ သို့မဟုတ် ကူးထည့်ပါ..." autocomplete="off"
-                                        autofocus="" role="combobox" aria-autocomplete="list"
-                                        aria-controls="suggestion-container" aria-expanded="false">
-                                    <button id="input-action-button" type="button" class="input-action-btn"
-                                        data-action="paste" aria-label="ကလစ်ဘုတ်မှ ကူးထည့်ပါ">
-                                        <svg class="paste-icon" xmlns="http://www.w3.org/2000/svg" width="18"
-                                            height="18" viewBox="0 0 24 24">
-                                            <path fill="currentColor"
-                                                d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm7 16H5V5h2v3h10V5h2v14z" />
-                                        </svg>
-                                        <svg class="clear-icon" xmlns="http://www.w3.org/2000/svg" width="18"
-                                            height="18" viewBox="0 0 24 24">
-                                            <path fill="currentColor"
-                                                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                            <button id="submit" type="submit" name="form_submit" class="submit-btn" aria-label="Search">
-                                <div class="converter-btn">စတင်ပါ</div>
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                    width="14px" height="14px" fill="#fff" id="Layer_1"
-                                    style="enable-background:new 0 0 16 16;" version="1.1" viewBox="0 0 16 16"
-                                    xml:space="preserve">
-                                    <path
-                                        d="M15.375,7L10,2.54C9.695,2.287,9.461,2,9,2C8.375,2,8,2.516,8,3v3H1C0.45,6,0,6.45,0,7v2c0,0.55,0.45,1,1,1h7v3  c0,0.484,0.375,1,1,1c0.461,0,0.695-0.287,1-0.54L15.375,9C15.758,8.688,16,8.445,16,8S15.758,7.313,15.375,7z">
-                                    </path>
+    <div class="container">
+    <section class="y2mate-download-pro">
+        <div class="y2mate-search-form-pro d-flex">
+            <div class="form-wrap">
+                <h1 class="y2mate_title-pro">Y2Mate - YouTube ဗီဒီယိုကို ဒေါင်းလုဒ်လုပ်ပါ</h1>
+                <form id="downloadForm" class="search_form" method="POST" action="/search/">
+                    <div class="input-container">
+                        <div class=" input-wrapper">
+                            <input id="videoUrl" class="y2mate_query-pro keyword" type="text" name="q"
+                                placeholder="လင့်ခ်ကို ရှာဖွေပါ သို့မဟုတ် ကူးထည့်ပါ..." autocomplete="off" autofocus=""
+                                role="combobox" aria-autocomplete="list" aria-controls="suggestion-container" aria-expanded="false">
+                            <button id="input-action-button" type="button" class="input-action-btn" data-action="paste"
+                                aria-label="ကလစ်ဘုတ်မှ ကူးထည့်ပါ">
+                                <svg class="paste-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                    viewBox="0 0 24 24">
+                                    <path fill="currentColor"
+                                        d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm7 16H5V5h2v3h10V5h2v14z" />
+                                </svg>
+                                <svg class="clear-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                    viewBox="0 0 24 24">
+                                    <path fill="currentColor"
+                                        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
                                 </svg>
                             </button>
+                        </div>
+                    </div>
+                    <button id="submit" type="submit" name="form_submit" class="submit-btn" aria-label="Search">
+                        <div class="converter-btn">စတင်ပါ</div>
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                            width="14px" height="14px" fill="#fff" id="Layer_1"
+                            style="enable-background:new 0 0 16 16;" version="1.1" viewBox="0 0 16 16"
+                            xml:space="preserve">
+                            <path
+                                d="M15.375,7L10,2.54C9.695,2.287,9.461,2,9,2C8.375,2,8,2.516,8,3v3H1C0.45,6,0,6.45,0,7v2c0,0.55,0.45,1,1,1h7v3  c0,0.484,0.375,1,1,1c0.461,0,0.695-0.287,1-0.54L15.375,9C15.758,8.688,16,8.445,16,8S15.758,7.313,15.375,7z">
+                            </path>
+                        </svg>
+                    </button>
 
-                            <!-- Format Selector -->
-                            <div id="format-selector-container" class="format-selector-wrapper">
-                                <div class="format-selector">
-                                    <!-- Group 1: Format + Quality -->
-                                    <div class="format-quality-group">
-                                        <!-- Format Toggle -->
-                                        <button type="button" class="format-toggle-btn" data-toggle-format>
-                                            <span class="toggle-side" data-format="mp4">
-                                                <span class="format-label">MP4</span>
-                                            </span>
-                                            <span class="toggle-side" data-format="mp3">
-                                                <span class="format-label">MP3</span>
-                                            </span>
-                                        </button>
-                                        <!-- Quality Dropdowns -->
-                                        <div class="quality-selector">
-                                            <!-- MP4 Options -->
-                                            <select id="quality-select-mp4" class="quality-select quality-select--mp4"
-                                                aria-label="ဗီဒီယို အရည်အသွေး" data-quality-select>
-                                                <option value="mp4-1080">MP4 - 1080p</option>
-                                                <option value="mp4-720" selected>MP4 - 720p</option>
-                                                <option value="mp4-480">MP4 - 480p</option>
-                                                <option value="mp4-360">MP4 - 360p</option>
-                                                <option value="mp4-144">MP4 - 144p</option>
-                                                <option value="webm">WEBM</option>
-                                                <option value="mkv">MKV</option>
-                                            </select>
-                                            <!-- MP3 Options -->
-                                            <select id="quality-select-mp3" class="quality-select quality-select--mp3"
-                                                aria-label="အသံ အရည်အသွေး" data-quality-select>
-                                                <option value="mp3-320">MP3 - 320kbps</option>
-                                                <option value="mp3-256">MP3 - 256kbps</option>
-                                                <option value="mp3-192">MP3 - 192kbps</option>
-                                                <option value="mp3-128" selected>MP3 - 128kbps</option>
-                                                <option value="ogg">OGG</option>
-                                                <option value="opus">OPUS</option>
-                                                <option value="wav">WAV</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <!-- Group 2: Auto Submit Toggle -->
-                                    <div class="auto-submit-toggle"
-                                        data-tooltip="URL သို့မဟုတ် သော့ချက်စာလုံးကို ကူးထည့်သည့်အခါ အလိုအလျောက် တင်သွင်းပါ">
-                                        <strong class="toggle-label">အလိုအလျောက် တင်သွင်းပါ</strong>
-                                        <label class="toggle-switch" for="auto-submit-checkbox">
-                                            <input type="checkbox" id="auto-submit-checkbox" data-auto-submit-toggle
-                                                aria-label="Auto submit after selecting format" />
-                                            <span class="toggle-slider"></span>
-                                        </label>
-                                        <span class="custom-tooltip"></span>
-                                    </div>
+                    <!-- Format Selector -->
+                    <div id="format-selector-container" class="format-selector-wrapper">
+                        <div class="format-selector">
+                            <!-- Group 1: Format + Quality -->
+                            <div class="format-quality-group">
+                                <!-- Format Toggle -->
+                                <button type="button" class="format-toggle-btn" data-toggle-format>
+                                    <span class="toggle-side" data-format="mp4">
+                                        <span class="format-label">MP4</span>
+                                    </span>
+                                    <span class="toggle-side" data-format="mp3">
+                                        <span class="format-label">MP3</span>
+                                    </span>
+                                </button>
+                                <!-- Quality Dropdowns -->
+                                <div class="quality-selector">
+                                    <!-- MP4 Options -->
+                                    <select id="quality-select-mp4" class="quality-select quality-select--mp4"
+                                        aria-label="ဗီဒီယို အရည်အသွေး" data-quality-select>
+                                        <option value="mp4-2160">MP4 - 4K</option>
+                                        <option value="mp4-1440">MP4 - 2K</option>
+                                        <option value="mp4-1080">MP4 - 1080p</option>
+                                        <option value="mp4-720" selected>MP4 - 720p</option>
+                                        <option value="mp4-480">MP4 - 480p</option>
+                                        <option value="mp4-360">MP4 - 360p</option>                                        <option value="mp4-144">MP4 - 144p</option>
+                                        <option value="webm">WEBM</option>
+                                        <option value="mkv">MKV</option>
+                                    </select>
+                                    <!-- MP3 Options -->
+                                    <select id="quality-select-mp3" class="quality-select quality-select--mp3"
+                                        aria-label="အသံ အရည်အသွေး" data-quality-select>
+                                        <option value="mp3-320">MP3 - 320kbps</option>
+                                        <option value="mp3-256">MP3 - 256kbps</option>
+                                        <option value="mp3-192">MP3 - 192kbps</option>
+                                        <option value="mp3-128" selected>MP3 - 128kbps</option>
+                                        <option value="ogg">OGG</option>
+                                        <option value="opus">OPUS</option>
+                                        <option value="wav">WAV</option>
+                                    </select>
                                 </div>
                             </div>
-
-                            <div id="suggestion-container" class="suggesstion-list suggesstion-box"></div>
-                        </form>
-
-                        <!-- Video Detail Area -->
-                        <div id="content-area"></div>
+                            <!-- Group 2: Auto Submit Toggle -->
+                            <div class="auto-submit-toggle"
+                                data-tooltip="URL သို့မဟုတ် သော့ချက်စာလုံးကို ကူးထည့်သည့်အခါ အလိုအလျောက် တင်သွင်းပါ">
+                                <strong class="toggle-label">အလိုအလျောက် တင်သွင်းပါ</strong>
+                                <label class="toggle-switch" for="auto-submit-checkbox">
+                                    <input type="checkbox" id="auto-submit-checkbox" data-auto-submit-toggle aria-label="Auto submit after selecting format" />
+                                    <span class="toggle-slider"></span>
+                                </label>
+                                <span class="custom-tooltip"></span>
+                        </div>
                     </div>
-                </div>
-            </section>
+                    </div>
 
-            <!-- Search Results Section -->
-            <section id="search-results-section" class="search-results-section" style="display: none;">
-                <div id="search-results-container"></div>
-            </section>
+                    <div id="suggestion-container" class="suggesstion-list suggesstion-box"></div>
+                </form>
 
-            <!-- Content Sections -->
-            <section class="y2mate-content-pro d-flex">
-                <div class="col-sm-12">
-                    <h2>Y2Mate ဆိုတာဘာလဲ – YouTube Video Downloader</h2>
-                    <p>Y2Mate သည် သုံးစွဲသူများအား YouTube ဗီဒီယိုများကို အမျိုးမျိုးသော ဖော်မတ်များနှင့်
-                        ကြည်လင်ပြတ်သားမှုများဖြင့် ဒေါင်းလုဒ်လုပ်ခွင့်ပြုသည့် အွန်လိုင်းတူးလ်တစ်ခုဖြစ်သည်။ ဤတူးလ်ကို
-                        အော့ဖ်လိုင်းကြည့်ရှုရန် သို့မဟုတ် ကိုယ်ရေးကိုယ်တာအသုံးပြုရန်အတွက် YouTube အကြောင်းအရာများကို
-                        သိမ်းဆည်းရန် လိုအပ်သူများအတွက် ဒီဇိုင်းထုတ်ထားသည်။</p>
-                    <p>ဤတူးလ်သည် သင့်ဘရောက်ဆာတွင် တိုက်ရိုက်အလုပ်လုပ်ပြီး ကွန်ပျူတာများ၊ စမတ်ဖုန်းများနှင့်
-                        တက်ဘလက်များနှင့် တွဲဖက်အသုံးပြုနိုင်သောကြောင့် ယနေ့ခေတ်တွင် အသုံးများသော youtube
-                        ဗီဒီယိုဒေါင်းလုဒ်အသုံးပြုမှုများအတွက် သင့်လျော်ပါသည်။</p>
-                </div>
-            </section>
-            <section class="y2mate-content-pro d-flex">
-                <div class="col-sm-12">
-                    <h2>အွန်လိုင်း YouTube ဗီဒီယို ဒေါင်းလုဒ်လုပ်သူ</h2>
-                    <p>Y2Mate သည် အွန်လိုင်း YouTube ဒေါင်းလုဒ်လုပ်သူအဖြစ် လုပ်ဆောင်ပြီး မည်သည့်အပလီကေးရှင်း သို့မဟုတ်
-                        ဘရောက်ဆာ extension ကိုမျှ ထည့်သွင်းစရာမလိုဘဲ YouTube မှ အကြောင်းအရာများကို
-                        ဒေါင်းလုဒ်လုပ်ခွင့်ပြုသည်။</p>
-                    <p>ဗီဒီယိုလင့်ခ်ကို ကူးထည့်ပြီးနောက်၊ စနစ်သည် အကြောင်းအရာကို ခွဲခြမ်းစိတ်ဖြာပြီး သင့်လျော်သော
-                        ဒေါင်းလုဒ်ရွေးချယ်စရာများကို ပြသသည်။ အော့ဖ်လိုင်းကြည့်ရှုရန် ဗီဒီယိုကို ဒေါင်းလုဒ်လုပ်ရန်
-                        သို့မဟုတ် ကိုယ်ရေးကိုယ်တာအသုံးပြုရန်အတွက် အသံကို ထုတ်ယူရန် သင်ရွေးချယ်နိုင်သည်။</p>
-                </div>
-            </section>
-            <section class="y2mate-content-pro d-flex">
-                <div class="col-sm-12">
-                    <h2>Y2Mate မှ နောက်ထပ် ဒေါင်းလုဒ် ရွေးချယ်စရာများ</h2>
-                    <p>အထူးပြုရွေးချယ်စရာများ ပိုမိုလိုအပ်ပါက၊ Y2Mate သည် သီးခြားအသုံးပြုမှုကိစ္စများအတွက်
-                        သီးသန့်တူးလ်များကိုလည်း ပံ့ပိုးပေးပါသည်။</p>
-                    <p>ဗီဒီယိုများကို ဒေါင်းလုဒ်လုပ်ပြီး အော့ဖ်လိုင်းကြည့်ရှုရန်အတွက် သင့်လျော်သော ကြည်လင်ပြတ်သားမှုကို
-                        ရွေးချယ်ရန် <a href="/my/youtube-to-mp4">YouTube to MP4</a> တူးလ်ကို သင်အသုံးပြုနိုင်ပါသည်။</p>
-                    <p>အသံသာလိုအပ်ပါက၊ <a href="/my/youtube-to-mp3">YouTube to MP3</a> တူးလ်သည် ဗီဒီယိုများကို MP3
-                        ဖော်မတ်သို့ လျင်မြန်စွာ ပြောင်းလဲပေးပါသည်။</p>
-                    <p>ပုံစံတိုအကြောင်းအရာများအတွက်၊ <a href="/my/youtube-short-downloader">YouTube Shorts
-                            Downloader</a> ကို ဒေါင်လိုက် Shorts ဗီဒီယိုများကို ဒေါင်းလုဒ်လုပ်ရန်
-                        အထူးဒီဇိုင်းထုတ်ထားသည်။</p>
-                    <p><em>တူးလ်တစ်ခုစီကို သီးခြားရည်ရွယ်ချက်တစ်ခုအတွက် သီးခြားတည်ဆောက်ထားသောကြောင့်
-                            အလုံးစုံအတွေ့အကြုံကို ရှင်းလင်းပြီး နားလည်ရလွယ်ကူစေသည်။</em></p>
-                </div>
-            </section>
-            <section class="y2mate-content-pro d-flex">
-                <div class="col-sm-12">
-                    <h2>Y2Mate ဖြင့် YouTube အကြောင်းအရာများကို ဒေါင်းလုဒ်လုပ်ခြင်းသည် ဘေးကင်းပါသလား။</h2>
-                    <p>Y2Mate သည် ဆော့ဖ်ဝဲလ်ထည့်သွင်းရန် မလိုအပ်ပါ၊ လော့ဂ်အင်အထောက်အထားများကို မတောင်းဆိုပါ၊ နှင့်
-                        ကိုယ်ရေးကိုယ်တာအချက်အလက်များကို မစုဆောင်းပါ။ ဒေါင်းလုဒ်အားလုံးကို သင့်ဘရောက်ဆာအတွင်း
-                        တိုက်ရိုက်ကိုင်တွယ်ပါသည်။</p>
-                    <p>သုံးစွဲသူများသည် ကိုယ်ရေးကိုယ်တာအသုံးပြုရန်အတွက်သာ အကြောင်းအရာများကို ဒေါင်းလုဒ်လုပ်သင့်ပြီး
-                        YouTube ရှိ အကြောင်းအရာဖန်တီးသူများ၏ အခွင့်အရေးများကို လေးစားသင့်သည်။</p>
-                </div>
-            </section>
-
-            <!-- Why Choose Section -->
-            <section class="y2mate-instruction-pro">
-                <div class="y2mate-in-ad-pro">
-                    <h2>YouTube အကြောင်းအရာများကို ဒေါင်းလုဒ်လုပ်ရန် Y2Mate ကို အဘယ်ကြောင့် ရွေးချယ်သင့်သနည်း</h2>
-                    <p>သုံးစွဲသူများအား YouTube မှ အကြောင်းအရာများကို ဒေါင်းလုဒ်လုပ်ခွင့်ပြုသည့်
-                        ဝဘ်ဆိုဒ်များစွာရှိသော်လည်း ၎င်းတို့အားလုံးသည် ရှင်းလင်းပြီး တည်ငြိမ်သောအတွေ့အကြုံကို
-                        မပေးနိုင်ပါ။ Y2Mate ကို YouTube ဗီဒီယိုများ ဒေါင်းလုဒ်လုပ်သည့်အခါ လူများကြုံတွေ့ရလေ့ရှိသော
-                        ပြဿနာများကို ဖြေရှင်းရန် တည်ဆောက်ထားသည်။</p>
-                    <ul>
-                        <li>watermark မရှိ – ဒေါင်းလုဒ်လုပ်ထားသော အကြောင်းအရာသည် မူရင်းရင်းမြစ်နှင့် တူညီသည်</li>
-                        <li>နှောင့်ယှက်သော ကြော်ငြာများမရှိ – ပေါ့ပ်အပ်များ သို့မဟုတ် မမျှော်လင့်ထားသော
-                            ပြန်လည်ညွှန်းဆိုမှုများမရှိ</li>
-                        <li>သန့်ရှင်းသော ဒေါင်းလုဒ်များ – ဖိုင်များသည် ရှင်းလင်းပြီး အသုံးပြုရလွယ်ကူသည်</li>
-                        <li>မှတ်ပုံတင်ရန်မလိုအပ် – ချက်ချင်းဝင်ရောက်ပြီး အသုံးပြုပါ</li>
-                        <li>တည်ငြိမ်သော စွမ်းဆောင်ရည် – YouTube အကြောင်းအရာ အမျိုးအစားအမျိုးမျိုးနှင့် ကောင်းမွန်စွာ
-                            အလုပ်လုပ်သည်</li>
-                    </ul>
-                </div>
-            </section>
-
-            <!-- Instructions Section -->
-            <section class="y2mate-instruction-pro">
-                <div class="y2mate-in-ad-pro">
-                    <h2>Y2Mate ဖြင့် YouTube ဗီဒီယိုကို ဒေါင်းလုဒ်လုပ်နည်း</h2>
-                    <ol>
-                        <li>YouTube မှ ဗီဒီယိုလင့်ခ်ကို ကူးယူပါ။</li>
-                        <li>စာမျက်နှာပေါ်ရှိ ထည့်သွင်းသည့်အကွက်ထဲသို့ လင့်ခ်ကို ကူးထည့်ပါ။</li>
-                        <li>စနစ်အား အကြောင်းအရာကို ခွဲခြမ်းစိတ်ဖြာခွင့်ပြုရန် စတင်ခလုတ်ကို နှိပ်ပါ။</li>
-                        <li>သင်လိုအပ်သော ဖော်မတ်ကို ရွေးချယ်ပြီး သင့်စက်သို့ ဒေါင်းလုဒ်လုပ်ပါ။</li>
-                    </ol>
-                    <p><em>လုပ်ငန်းစဉ်တစ်ခုလုံးသည် သင့်ဘရောက်ဆာတွင် တိုက်ရိုက်အလုပ်လုပ်ပြီး မည်သည့်ဆော့ဖ်ဝဲလ်ကိုမျှ
-                            ထည့်သွင်းရန် မလိုအပ်ပါ။</em></p>
-                </div>
-            </section>
-
-            <!-- FAQs Section -->
+                <!-- Video Detail Area -->
+                <div id="content-area"></div>
+            </div>
         </div>
+    </section>
+
+    <!-- Search Results Section -->
+    <section id="search-results-section" class="search-results-section" style="display: none;">
+        <div id="search-results-container"></div>
+    </section>
+
+    <!-- Content Sections -->
+    <section class="y2mate-content-pro d-flex">
+        <div class="col-sm-12">
+            <h2>Y2Mate ဆိုတာဘာလဲ – YouTube Video Downloader</h2>
+            <p>Y2Mate သည် သုံးစွဲသူများအား YouTube ဗီဒီယိုများကို အမျိုးမျိုးသော ဖော်မတ်များနှင့် ကြည်လင်ပြတ်သားမှုများဖြင့် ဒေါင်းလုဒ်လုပ်ခွင့်ပြုသည့် အွန်လိုင်းတူးလ်တစ်ခုဖြစ်သည်။ ဤတူးလ်ကို အော့ဖ်လိုင်းကြည့်ရှုရန် သို့မဟုတ် ကိုယ်ရေးကိုယ်တာအသုံးပြုရန်အတွက် YouTube အကြောင်းအရာများကို သိမ်းဆည်းရန် လိုအပ်သူများအတွက် ဒီဇိုင်းထုတ်ထားသည်။</p>
+            <p>ဤတူးလ်သည် သင့်ဘရောက်ဆာတွင် တိုက်ရိုက်အလုပ်လုပ်ပြီး ကွန်ပျူတာများ၊ စမတ်ဖုန်းများနှင့် တက်ဘလက်များနှင့် တွဲဖက်အသုံးပြုနိုင်သောကြောင့် ယနေ့ခေတ်တွင် အသုံးများသော youtube ဗီဒီယိုဒေါင်းလုဒ်အသုံးပြုမှုများအတွက် သင့်လျော်ပါသည်။</p>
+        </div>
+    </section>
+    <section class="y2mate-content-pro d-flex">
+        <div class="col-sm-12">
+            <h2>အွန်လိုင်း YouTube ဗီဒီယို ဒေါင်းလုဒ်လုပ်သူ</h2>
+            <p>Y2Mate သည် အွန်လိုင်း YouTube ဒေါင်းလုဒ်လုပ်သူအဖြစ် လုပ်ဆောင်ပြီး မည်သည့်အပလီကေးရှင်း သို့မဟုတ် ဘရောက်ဆာ extension ကိုမျှ ထည့်သွင်းစရာမလိုဘဲ YouTube မှ အကြောင်းအရာများကို ဒေါင်းလုဒ်လုပ်ခွင့်ပြုသည်။</p>
+            <p>ဗီဒီယိုလင့်ခ်ကို ကူးထည့်ပြီးနောက်၊ စနစ်သည် အကြောင်းအရာကို ခွဲခြမ်းစိတ်ဖြာပြီး သင့်လျော်သော ဒေါင်းလုဒ်ရွေးချယ်စရာများကို ပြသသည်။ အော့ဖ်လိုင်းကြည့်ရှုရန် ဗီဒီယိုကို ဒေါင်းလုဒ်လုပ်ရန် သို့မဟုတ် ကိုယ်ရေးကိုယ်တာအသုံးပြုရန်အတွက် အသံကို ထုတ်ယူရန် သင်ရွေးချယ်နိုင်သည်။</p>
+        </div>
+    </section>
+    <section class="y2mate-content-pro d-flex">
+        <div class="col-sm-12">
+            <h2>Y2Mate မှ နောက်ထပ် ဒေါင်းလုဒ် ရွေးချယ်စရာများ</h2>
+            <p>အထူးပြုရွေးချယ်စရာများ ပိုမိုလိုအပ်ပါက၊ Y2Mate သည် သီးခြားအသုံးပြုမှုကိစ္စများအတွက် သီးသန့်တူးလ်များကိုလည်း ပံ့ပိုးပေးပါသည်။</p>
+            <p>ဗီဒီယိုများကို ဒေါင်းလုဒ်လုပ်ပြီး အော့ဖ်လိုင်းကြည့်ရှုရန်အတွက် သင့်လျော်သော ကြည်လင်ပြတ်သားမှုကို ရွေးချယ်ရန် <a href="/my/youtube-to-mp4">YouTube to MP4</a> တူးလ်ကို သင်အသုံးပြုနိုင်ပါသည်။</p>
+            <p>အသံသာလိုအပ်ပါက၊ <a href="/my/youtube-to-mp3">YouTube to MP3</a> တူးလ်သည် ဗီဒီယိုများကို MP3 ဖော်မတ်သို့ လျင်မြန်စွာ ပြောင်းလဲပေးပါသည်။</p>
+            <p>ပုံစံတိုအကြောင်းအရာများအတွက်၊ <a href="/my/youtube-short-downloader">YouTube Shorts Downloader</a> ကို ဒေါင်လိုက် Shorts ဗီဒီယိုများကို ဒေါင်းလုဒ်လုပ်ရန် အထူးဒီဇိုင်းထုတ်ထားသည်။</p>
+            <p><em>တူးလ်တစ်ခုစီကို သီးခြားရည်ရွယ်ချက်တစ်ခုအတွက် သီးခြားတည်ဆောက်ထားသောကြောင့် အလုံးစုံအတွေ့အကြုံကို ရှင်းလင်းပြီး နားလည်ရလွယ်ကူစေသည်။</em></p>
+        </div>
+    </section>
+    <section class="y2mate-content-pro d-flex">
+        <div class="col-sm-12">
+            <h2>Y2Mate ဖြင့် YouTube အကြောင်းအရာများကို ဒေါင်းလုဒ်လုပ်ခြင်းသည် ဘေးကင်းပါသလား။</h2>
+            <p>Y2Mate သည် ဆော့ဖ်ဝဲလ်ထည့်သွင်းရန် မလိုအပ်ပါ၊ လော့ဂ်အင်အထောက်အထားများကို မတောင်းဆိုပါ၊ နှင့် ကိုယ်ရေးကိုယ်တာအချက်အလက်များကို မစုဆောင်းပါ။ ဒေါင်းလုဒ်အားလုံးကို သင့်ဘရောက်ဆာအတွင်း တိုက်ရိုက်ကိုင်တွယ်ပါသည်။</p>
+            <p>သုံးစွဲသူများသည် ကိုယ်ရေးကိုယ်တာအသုံးပြုရန်အတွက်သာ အကြောင်းအရာများကို ဒေါင်းလုဒ်လုပ်သင့်ပြီး YouTube ရှိ အကြောင်းအရာဖန်တီးသူများ၏ အခွင့်အရေးများကို လေးစားသင့်သည်။</p>
+        </div>
+    </section>
+
+    <!-- Why Choose Section -->
+    <section class="y2mate-instruction-pro">
+        <div class="y2mate-in-ad-pro">
+            <h2>YouTube အကြောင်းအရာများကို ဒေါင်းလုဒ်လုပ်ရန် Y2Mate ကို အဘယ်ကြောင့် ရွေးချယ်သင့်သနည်း</h2>
+            <p>သုံးစွဲသူများအား YouTube မှ အကြောင်းအရာများကို ဒေါင်းလုဒ်လုပ်ခွင့်ပြုသည့် ဝဘ်ဆိုဒ်များစွာရှိသော်လည်း ၎င်းတို့အားလုံးသည် ရှင်းလင်းပြီး တည်ငြိမ်သောအတွေ့အကြုံကို မပေးနိုင်ပါ။ Y2Mate ကို YouTube ဗီဒီယိုများ ဒေါင်းလုဒ်လုပ်သည့်အခါ လူများကြုံတွေ့ရလေ့ရှိသော ပြဿနာများကို ဖြေရှင်းရန် တည်ဆောက်ထားသည်။</p>
+            <ul>
+                <li>watermark မရှိ – ဒေါင်းလုဒ်လုပ်ထားသော အကြောင်းအရာသည် မူရင်းရင်းမြစ်နှင့် တူညီသည်</li>
+                <li>နှောင့်ယှက်သော ကြော်ငြာများမရှိ – ပေါ့ပ်အပ်များ သို့မဟုတ် မမျှော်လင့်ထားသော ပြန်လည်ညွှန်းဆိုမှုများမရှိ</li>
+                <li>သန့်ရှင်းသော ဒေါင်းလုဒ်များ – ဖိုင်များသည် ရှင်းလင်းပြီး အသုံးပြုရလွယ်ကူသည်</li>
+                <li>မှတ်ပုံတင်ရန်မလိုအပ် – ချက်ချင်းဝင်ရောက်ပြီး အသုံးပြုပါ</li>
+                <li>တည်ငြိမ်သော စွမ်းဆောင်ရည် – YouTube အကြောင်းအရာ အမျိုးအစားအမျိုးမျိုးနှင့် ကောင်းမွန်စွာ အလုပ်လုပ်သည်</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Instructions Section -->
+    <section class="y2mate-instruction-pro">
+        <div class="y2mate-in-ad-pro">
+            <h2>Y2Mate ဖြင့် YouTube ဗီဒီယိုကို ဒေါင်းလုဒ်လုပ်နည်း</h2>
+            <ol>
+                <li>YouTube မှ ဗီဒီယိုလင့်ခ်ကို ကူးယူပါ။</li>
+                <li>စာမျက်နှာပေါ်ရှိ ထည့်သွင်းသည့်အကွက်ထဲသို့ လင့်ခ်ကို ကူးထည့်ပါ။</li>
+                <li>စနစ်အား အကြောင်းအရာကို ခွဲခြမ်းစိတ်ဖြာခွင့်ပြုရန် စတင်ခလုတ်ကို နှိပ်ပါ။</li>
+                <li>သင်လိုအပ်သော ဖော်မတ်ကို ရွေးချယ်ပြီး သင့်စက်သို့ ဒေါင်းလုဒ်လုပ်ပါ။</li>
+            </ol>
+            <p><em>လုပ်ငန်းစဉ်တစ်ခုလုံးသည် သင့်ဘရောက်ဆာတွင် တိုက်ရိုက်အလုပ်လုပ်ပြီး မည်သည့်ဆော့ဖ်ဝဲလ်ကိုမျှ ထည့်သွင်းရန် မလိုအပ်ပါ။</em></p>
+        </div>
+    </section>
+
+    <!-- FAQs Section -->
+</div>
 
     </main>
 
     <footer class="footer">
-        <p>© 2026 y2mate</p>
-        <ul class="footer_nav">
-            <li class="fnav-menu">
-                <a href="/about-us">အကြောင်း</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="/contact">ဆက်သွယ်ရန်</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="/terms-condition">ဝန်ဆောင်မှုဆိုင်ရာ စည်းမျဉ်းများ</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="/privacy-policy">ကိုယ်ရေးကိုယ်တာ မူဝါဒ</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="/copyright-claims">မူပိုင်ခွင့် တောင်းဆိုမှုများ</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="/my/youtube-short-downloader">YouTube Shorts Downloader</a>
-            </li>
-        </ul>
-    </footer>
+    <p>© 2026 y2mate</p>
+    <ul class="footer_nav">
+        <li class="fnav-menu">
+            <a href="/about-us">အကြောင်း</a>
+        </li>
+        <li class="fnav-menu">
+            <a href="/contact">ဆက်သွယ်ရန်</a>
+        </li>
+        <li class="fnav-menu">
+            <a href="/terms-condition">ဝန်ဆောင်မှုဆိုင်ရာ စည်းမျဉ်းများ</a>
+        </li>
+        <li class="fnav-menu">
+            <a href="/privacy-policy">ကိုယ်ရေးကိုယ်တာ မူဝါဒ</a>
+        </li>
+        <li class="fnav-menu">
+            <a href="/copyright-claims">မူပိုင်ခွင့် တောင်းဆိုမှုများ</a>
+        </li>
+        <li class="fnav-menu">
+            <a href="/my/youtube-short-downloader">YouTube Shorts Downloader</a>
+        </li>
+    </ul>
+</footer>
 
 
     <!-- Conversion Modal Wrapper -->
     <div id="progressBarWrapper"></div>
+
+    <!-- Ko-fi Support Widget -->
+    <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+    <script>
+      kofiWidgetOverlay.draw('metaconvert', {
+        'type': 'floating-chat',
+        'floating-chat.donateButton.text': 'Support me',
+        'floating-chat.donateButton.background-color': '#00b9fe',
+        'floating-chat.donateButton.text-color': '#fff'
+      });
+    </script>
 </body>
 
 </html>

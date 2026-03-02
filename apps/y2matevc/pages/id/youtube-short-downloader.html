@@ -8,9 +8,8 @@
 
     <!-- SEO Metadata -->
     <title>Pengunduh YouTube Shorts – Unduh Video Shorts | Y2Mate</title>
-    <meta name="description"
-        content="Pengunduh YouTube Shorts memungkinkan Anda mengunduh video Shorts dalam format vertikal 9:16 yang benar. Tidak ada masalah rotasi, tidak ada tanda air, berfungsi langsung di browser Anda.">
-
+    <meta name="description" content="Pengunduh YouTube Shorts memungkinkan Anda mengunduh video Shorts dalam format vertikal 9:16 yang benar. Tidak ada masalah rotasi, tidak ada tanda air, berfungsi langsung di browser Anda.">
+    
     <link rel="canonical" href="https://y2mate.vc/id/youtube-short-downloader">
 
     <!-- hreflang tags for multilingual SEO -->
@@ -37,8 +36,7 @@
 
     <!-- Schema.org markup -->
     <meta itemprop="name" content="Y2mate - Pengunduh YouTube Shorts" />
-    <meta itemprop="description"
-        content="Unduh YouTube Shorts secara instan. Pengunduh video vertikal gratis untuk seluler.">
+    <meta itemprop="description" content="Unduh YouTube Shorts secara instan. Pengunduh video vertikal gratis untuk seluler.">
     <meta itemprop="inLanguage" content="id" />
 
     <!-- Open Graph / Facebook -->
@@ -46,8 +44,7 @@
     <meta property="og:site_name" content="Y2Mate" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:title" content="Y2mate - Pengunduh YouTube Shorts (Gratis, Cepat, HD)" />
-    <meta property="og:description"
-        content="Unduh YouTube Shorts dalam HD. Simpan video vertikal secara instan-format potret, rasio 9:16." />
+    <meta property="og:description" content="Unduh YouTube Shorts dalam HD. Simpan video vertikal secara instan-format potret, rasio 9:16." />
     <meta property="og:image" content="https://y2mate.vc/logo.png" />
     <meta property="og:url" content="https://y2mate.vc/id/youtube-short-downloader" />
 
@@ -67,7 +64,7 @@
     <!-- Google Analytics: Lazy loaded via analytics-loader.ts for better performance -->
 
     <!-- Critical: Set format and auto-submit preferences before render to prevent FOUC -->
-    <script>(function () { var f = 'mp4', a = 'false'; try { var p = JSON.parse(localStorage.getItem('y2mate_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat; var s = localStorage.getItem('y2mate_auto_submit'); if (s) a = s; } catch (e) { } document.documentElement.dataset.format = f; document.documentElement.dataset.autoSubmit = a; })()</script>
+    <script>(function(){var f='mp4',a='false';try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p&&p.selectedFormat)f=p.selectedFormat;var s=localStorage.getItem('y2mate_auto_submit');if(s)a=s;}catch(e){}document.documentElement.dataset.format=f;document.documentElement.dataset.autoSubmit=a;})()</script>
 
     <!-- Critical: Hide auto-submit tooltip before CSS loads -->
     <style>
@@ -78,7 +75,7 @@
     </style>
 
     <!-- Critical: Prevent default form submit before app init (avoid /search 404) -->
-    <script>(function () { document.addEventListener('submit', function (event) { var target = event.target; if (target && target.id === 'downloadForm') { event.preventDefault(); } }, true); })();</script>
+    <script>(function(){document.addEventListener('submit',function(event){var target=event.target;if(target&&target.id==='downloadForm'){event.preventDefault();}},true);})();</script>
 
     <!-- Critical CSS imported via Vite -->
     <script type="module" src="/src/main.ts"></script>
@@ -215,35 +212,125 @@
 
 <body>
     <header class="nav-header">
-        <div class="container">
-            <div class="nav_head">
-                <div class="navbar-logo">
-                    <a href="/id/">
-                        <img height="46px" width="46px" src="/logo.png" alt="Y2Mate logo">
-                        <span class="logo-name">Y2mate</span>
-                    </a>
-                </div>
-                <button type="button" class="navbar-toggler" id="mobileMenuToggle" aria-label="Buka menu navigasi">
-                    <span class="toggle-icon"></span>
-                    <span class="toggle-icon"></span>
-                    <span class="toggle-icon"></span>
-                </button>
+    <div class="container">
+        <div class="nav_head">
+            <div class="navbar-logo">
+                <a href="/id/">
+                    <img height="46px" width="46px" src="/logo.png" alt="Y2Mate logo">
+                    <span class="logo-name">Y2mate</span>
+                </a>
             </div>
-            <div class="header-menu">
-                <ul class="menu-navbar">
+            <button type="button" class="navbar-toggler" id="mobileMenuToggle" aria-label="Buka menu navigasi">
+                <span class="toggle-icon"></span>
+                <span class="toggle-icon"></span>
+                <span class="toggle-icon"></span>
+            </button>
+        </div>
+        <div class="header-menu">
+            <ul class="menu-navbar">
+              
+                <li class="navbar">
+                    <a href="/id/youtube-to-mp4">Konverter YouTube ke MP4</a>
+                </li>
+                <li class="navbar">
+                    <a href="/id/youtube-to-mp3">Konverter YouTube ke MP3</a>
+                </li>
+                <li class="navbar language">
+                    <a href="/">
+                        Bahasa Indonesia<span class="shape"></span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <ul class="lang-menu">
+                            <li>
+                                <a data-lang="en" href="/youtube-short-downloader">English</a>
+                            </li>
+                            <li>
+                                <a data-lang="ar" href="/ar/youtube-short-downloader">العربية</a>
+                            </li>
+                            <li>
+                                <a data-lang="bn" href="/bn/youtube-short-downloader">বাংলা</a>
+                            </li>
+                            <li>
+                                <a data-lang="de" href="/de/youtube-short-downloader">Deutsch</a>
+                            </li>
+                            <li>
+                                <a data-lang="es" href="/es/youtube-short-downloader">Español</a>
+                            </li>
+                            <li>
+                                <a data-lang="fr" href="/fr/youtube-short-downloader">Français</a>
+                            </li>
+                            <li>
+                                <a data-lang="hi" href="/hi/youtube-short-downloader">हिन्दी</a>
+                            </li>
+                            <li>
+                                <a data-lang="id" href="/id/youtube-short-downloader">Indonesia</a>
+                            </li>
+                            <li>
+                                <a data-lang="it" href="/it/youtube-short-downloader">Italiano</a>
+                            </li>
+                            <li>
+                                <a data-lang="ja" href="/ja/youtube-short-downloader">日本語</a>
+                            </li>
+                            <li>
+                                <a data-lang="ko" href="/ko/youtube-short-downloader">한국어</a>
+                            </li>
+                            <li>
+                                <a data-lang="my" href="/my/youtube-short-downloader">မြန်မာ</a>
+                            </li>
+                            <li>
+                                <a data-lang="ms" href="/ms/youtube-short-downloader">Melayu</a>
+                            </li>
+                            <li>
+                                <a data-lang="pt" href="/pt/youtube-short-downloader">Português</a>
+                            </li>
+                            <li>
+                                <a data-lang="ru" href="/ru/youtube-short-downloader">Русский</a>
+                            </li>
+                            <li>
+                                <a data-lang="th" href="/th/youtube-short-downloader">ไทย</a>
+                            </li>
+                            <li>
+                                <a data-lang="tr" href="/tr/youtube-short-downloader">Türkçe</a>
+                            </li>
+                            <li>
+                                <a data-lang="ur" href="/ur/youtube-short-downloader">اردو</a>
+                            </li>
+                            <li>
+                                <a data-lang="vi" href="/vi/youtube-short-downloader">Tiếng Việt</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
 
-                    <li class="navbar">
-                        <a href="/id/youtube-to-mp4">Konverter YouTube ke MP4</a>
-                    </li>
-                    <li class="navbar">
-                        <a href="/id/youtube-to-mp3">Konverter YouTube ke MP3</a>
-                    </li>
-                    <li class="navbar language">
-                        <a href="/">
-                            Bahasa Indonesia<span class="shape"></span>
-                        </a>
-                        <div class="dropdown-menu">
-                            <ul class="lang-menu">
+        <!-- Mobile Menu Overlay -->
+        <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+            <div class="mobile-menu-content">
+                <div class="mobile-header-top">
+                    <a href="/id/">
+                        <div class="mobile-logo">
+                            <img height="36px" width="36px" src="/logo.png" alt="Y2Mate logo">
+                            <span class="logo-name">Y2mate</span>
+                        </div>
+                    </a>
+                    <button type="button" class="mobile-close-btn" id="mobileCloseBtn" aria-label="Tutup menu navigasi">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <nav class="mobile-nav">
+                    <ul class="mobile-menu">
+                        <li><a href="/id/">Pengunduh YouTube</a></li>
+                        <li><a href="/id/youtube-to-mp4">Konverter YouTube ke MP4</a></li>
+                        <li><a href="/id/youtube-to-mp3">Konverter YouTube ke MP3</a></li>
+                        <li><a href="/id/youtube-short-downloader">Pengunduh YouTube Shorts</a></li>
+                        <li class="mobile-language">
+                            <button type="button" class="mobile-language-toggle" aria-expanded="false">
+                                Bahasa Indonesia<span class="shape"></span>
+                            </button>
+                            <ul class="mobile-lang-menu">
                                 <li>
                                     <a data-lang="en" href="/youtube-short-downloader">English</a>
                                 </li>
@@ -302,365 +389,262 @@
                                     <a data-lang="vi" href="/vi/youtube-short-downloader">Tiếng Việt</a>
                                 </li>
                             </ul>
-                        </div>
-                    </li>
-                </ul>
+                        </li>
+                    </ul>
+                </nav>
             </div>
-
-            <!-- Mobile Menu Overlay -->
-            <div class="mobile-menu-overlay" id="mobileMenuOverlay">
-                <div class="mobile-menu-content">
-                    <div class="mobile-header-top">
-                        <a href="/id/">
-                            <div class="mobile-logo">
-                                <img height="36px" width="36px" src="/logo.png" alt="Y2Mate logo">
-                                <span class="logo-name">Y2mate</span>
-                            </div>
-                        </a>
-                        <button type="button" class="mobile-close-btn" id="mobileCloseBtn"
-                            aria-label="Tutup menu navigasi">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" />
-                            </svg>
-                        </button>
-                    </div>
-                    <nav class="mobile-nav">
-                        <ul class="mobile-menu">
-                            <li><a href="/id/">Pengunduh YouTube</a></li>
-                            <li><a href="/id/youtube-to-mp4">Konverter YouTube ke MP4</a></li>
-                            <li><a href="/id/youtube-to-mp3">Konverter YouTube ke MP3</a></li>
-                            <li><a href="/id/youtube-short-downloader">Pengunduh YouTube Shorts</a></li>
-                            <li class="mobile-language">
-                                <button type="button" class="mobile-language-toggle" aria-expanded="false">
-                                    Bahasa Indonesia<span class="shape"></span>
-                                </button>
-                                <ul class="mobile-lang-menu">
-                                    <li>
-                                        <a data-lang="en" href="/youtube-short-downloader">English</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="ar" href="/ar/youtube-short-downloader">العربية</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="bn" href="/bn/youtube-short-downloader">বাংলা</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="de" href="/de/youtube-short-downloader">Deutsch</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="es" href="/es/youtube-short-downloader">Español</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="fr" href="/fr/youtube-short-downloader">Français</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="hi" href="/hi/youtube-short-downloader">हिन्दी</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="id" href="/id/youtube-short-downloader">Indonesia</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="it" href="/it/youtube-short-downloader">Italiano</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="ja" href="/ja/youtube-short-downloader">日本語</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="ko" href="/ko/youtube-short-downloader">한국어</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="my" href="/my/youtube-short-downloader">မြန်မာ</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="ms" href="/ms/youtube-short-downloader">Melayu</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="pt" href="/pt/youtube-short-downloader">Português</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="ru" href="/ru/youtube-short-downloader">Русский</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="th" href="/th/youtube-short-downloader">ไทย</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="tr" href="/tr/youtube-short-downloader">Türkçe</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="ur" href="/ur/youtube-short-downloader">اردو</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="vi" href="/vi/youtube-short-downloader">Tiếng Việt</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-            <!-- End Mobile Menu Overlay -->
         </div>
-    </header>
+        <!-- End Mobile Menu Overlay -->
+    </div>
+</header>
 
 
     <main>
-        <div class="container">
-            <section class="y2mate-download-pro">
-                <div class="y2mate-search-form-pro d-flex">
-                    <div class="form-wrap">
-                        <h1 class="y2mate_title-pro">Y2Mate - Pengunduh YouTube Shorts</h1>
-                        <form id="downloadForm" class="search_form" method="POST" action="/search/">
-                            <div class="input-container">
-                                <div class=" input-wrapper">
-                                    <input id="videoUrl" class="y2mate_query-pro keyword" type="text" name="q"
-                                        placeholder="Cari atau tempel tautan di sini..." autocomplete="off" autofocus=""
-                                        role="combobox" aria-autocomplete="list" aria-controls="suggestion-container"
-                                        aria-expanded="false">
-                                    <button id="input-action-button" type="button" class="input-action-btn"
-                                        data-action="paste" aria-label="Tempel dari papan klip">
-                                        <svg class="paste-icon" xmlns="http://www.w3.org/2000/svg" width="18"
-                                            height="18" viewBox="0 0 24 24">
-                                            <path fill="currentColor"
-                                                d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm7 16H5V5h2v3h10V5h2v14z" />
-                                        </svg>
-                                        <svg class="clear-icon" xmlns="http://www.w3.org/2000/svg" width="18"
-                                            height="18" viewBox="0 0 24 24">
-                                            <path fill="currentColor"
-                                                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                            <button id="submit" type="submit" name="form_submit" class="submit-btn" aria-label="Search">
-                                <div class="converter-btn">Mulai</div>
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                    width="14px" height="14px" fill="#fff" id="Layer_1"
-                                    style="enable-background:new 0 0 16 16;" version="1.1" viewBox="0 0 16 16"
-                                    xml:space="preserve">
-                                    <path
-                                        d="M15.375,7L10,2.54C9.695,2.287,9.461,2,9,2C8.375,2,8,2.516,8,3v3H1C0.45,6,0,6.45,0,7v2c0,0.55,0.45,1,1,1h7v3  c0,0.484,0.375,1,1,1c0.461,0,0.695-0.287,1-0.54L15.375,9C15.758,8.688,16,8.445,16,8S15.758,7.313,15.375,7z">
-                                    </path>
+    <div class="container">
+    <section class="y2mate-download-pro">
+        <div class="y2mate-search-form-pro d-flex">
+            <div class="form-wrap">
+                <h1 class="y2mate_title-pro">Y2Mate - Pengunduh YouTube Shorts</h1>
+                <form id="downloadForm" class="search_form" method="POST" action="/search/">
+                    <div class="input-container">
+                        <div class=" input-wrapper">
+                            <input id="videoUrl" class="y2mate_query-pro keyword" type="text" name="q"
+                                placeholder="Cari atau tempel tautan di sini..." autocomplete="off" autofocus=""
+                                role="combobox" aria-autocomplete="list" aria-controls="suggestion-container" aria-expanded="false">
+                            <button id="input-action-button" type="button" class="input-action-btn" data-action="paste"
+                                aria-label="Tempel dari papan klip">
+                                <svg class="paste-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                    viewBox="0 0 24 24">
+                                    <path fill="currentColor"
+                                        d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm7 16H5V5h2v3h10V5h2v14z" />
+                                </svg>
+                                <svg class="clear-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                    viewBox="0 0 24 24">
+                                    <path fill="currentColor"
+                                        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
                                 </svg>
                             </button>
+                        </div>
+                    </div>
+                    <button id="submit" type="submit" name="form_submit" class="submit-btn" aria-label="Search">
+                        <div class="converter-btn">Mulai</div>
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                            width="14px" height="14px" fill="#fff" id="Layer_1"
+                            style="enable-background:new 0 0 16 16;" version="1.1" viewBox="0 0 16 16"
+                            xml:space="preserve">
+                            <path
+                                d="M15.375,7L10,2.54C9.695,2.287,9.461,2,9,2C8.375,2,8,2.516,8,3v3H1C0.45,6,0,6.45,0,7v2c0,0.55,0.45,1,1,1h7v3  c0,0.484,0.375,1,1,1c0.461,0,0.695-0.287,1-0.54L15.375,9C15.758,8.688,16,8.445,16,8S15.758,7.313,15.375,7z">
+                            </path>
+                        </svg>
+                    </button>
 
-                            <!-- Format Selector -->
-                            <div id="format-selector-container" class="format-selector-wrapper">
-                                <div class="format-selector">
-                                    <!-- Group 1: Format + Quality -->
-                                    <div class="format-quality-group">
-                                        <!-- Format Toggle -->
-                                        <button type="button" class="format-toggle-btn" data-toggle-format>
-                                            <span class="toggle-side" data-format="mp4">
-                                                <span class="format-label">MP4</span>
-                                            </span>
-                                            <span class="toggle-side" data-format="mp3">
-                                                <span class="format-label">MP3</span>
-                                            </span>
-                                        </button>
-                                        <!-- Quality Dropdowns -->
-                                        <div class="quality-selector">
-                                            <!-- MP4 Options -->
-                                            <select id="quality-select-mp4" class="quality-select quality-select--mp4"
-                                                aria-label="Kualitas video" data-quality-select>
-                                                <option value="mp4-1080">MP4 - 1080p</option>
-                                                <option value="mp4-720" selected>MP4 - 720p</option>
-                                                <option value="mp4-480">MP4 - 480p</option>
-                                                <option value="mp4-360">MP4 - 360p</option>
-                                                <option value="mp4-144">MP4 - 144p</option>
-                                                <option value="webm">WEBM</option>
-                                                <option value="mkv">MKV</option>
-                                            </select>
-                                            <!-- MP3 Options -->
-                                            <select id="quality-select-mp3" class="quality-select quality-select--mp3"
-                                                aria-label="Kualitas audio" data-quality-select>
-                                                <option value="mp3-320">MP3 - 320kbps</option>
-                                                <option value="mp3-256">MP3 - 256kbps</option>
-                                                <option value="mp3-192">MP3 - 192kbps</option>
-                                                <option value="mp3-128" selected>MP3 - 128kbps</option>
-                                                <option value="ogg">OGG</option>
-                                                <option value="opus">OPUS</option>
-                                                <option value="wav">WAV</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <!-- Group 2: Auto Submit Toggle -->
-                                    <div class="auto-submit-toggle"
-                                        data-tooltip="Kirim otomatis saat menempelkan URL atau kata kunci">
-                                        <strong class="toggle-label">Kirim otomatis</strong>
-                                        <label class="toggle-switch" for="auto-submit-checkbox">
-                                            <input type="checkbox" id="auto-submit-checkbox" data-auto-submit-toggle
-                                                aria-label="Auto submit after selecting format" />
-                                            <span class="toggle-slider"></span>
-                                        </label>
-                                        <span class="custom-tooltip"></span>
-                                    </div>
+                    <!-- Format Selector -->
+                    <div id="format-selector-container" class="format-selector-wrapper">
+                        <div class="format-selector">
+                            <!-- Group 1: Format + Quality -->
+                            <div class="format-quality-group">
+                                <!-- Format Toggle -->
+                                <button type="button" class="format-toggle-btn" data-toggle-format>
+                                    <span class="toggle-side" data-format="mp4">
+                                        <span class="format-label">MP4</span>
+                                    </span>
+                                    <span class="toggle-side" data-format="mp3">
+                                        <span class="format-label">MP3</span>
+                                    </span>
+                                </button>
+                                <!-- Quality Dropdowns -->
+                                <div class="quality-selector">
+                                    <!-- MP4 Options -->
+                                    <select id="quality-select-mp4" class="quality-select quality-select--mp4"
+                                        aria-label="Kualitas video" data-quality-select>
+                                        <option value="mp4-2160">MP4 - 4K</option>
+                                        <option value="mp4-1440">MP4 - 2K</option>
+                                        <option value="mp4-1080">MP4 - 1080p</option>
+                                        <option value="mp4-720" selected>MP4 - 720p</option>
+                                        <option value="mp4-480">MP4 - 480p</option>
+                                        <option value="mp4-360">MP4 - 360p</option>                                        <option value="mp4-144">MP4 - 144p</option>
+                                        <option value="webm">WEBM</option>
+                                        <option value="mkv">MKV</option>
+                                    </select>
+                                    <!-- MP3 Options -->
+                                    <select id="quality-select-mp3" class="quality-select quality-select--mp3"
+                                        aria-label="Kualitas audio" data-quality-select>
+                                        <option value="mp3-320">MP3 - 320kbps</option>
+                                        <option value="mp3-256">MP3 - 256kbps</option>
+                                        <option value="mp3-192">MP3 - 192kbps</option>
+                                        <option value="mp3-128" selected>MP3 - 128kbps</option>
+                                        <option value="ogg">OGG</option>
+                                        <option value="opus">OPUS</option>
+                                        <option value="wav">WAV</option>
+                                    </select>
                                 </div>
-                                <script>(function () { try { const preferencesJson = localStorage.getItem('y2mate_format_preferences'); if (preferencesJson) { const preferences = JSON.parse(preferencesJson); const selectElement = preferences.selectedFormat === 'mp4' ? document.getElementById('quality-select-mp4') : document.getElementById('quality-select-mp3'); if (selectElement) { let value; if (preferences.selectedFormat === 'mp4') { const videoQuality = preferences.videoQuality || '720p'; value = (videoQuality === 'webm' || videoQuality === 'mkv') ? videoQuality : `mp4-${videoQuality.replace('p', '')}`; } else { const audioFormat = preferences.audioFormat || 'mp3'; value = (audioFormat === 'mp3') ? `mp3-${preferences.audioBitrate || '128'}` : audioFormat; } selectElement.value = value; } } const autoSubmitValue = localStorage.getItem('y2mate_auto_submit'); const checkbox = document.getElementById('auto-submit-checkbox'); if (checkbox) { checkbox.checked = autoSubmitValue === 'true'; } } catch (error) { console.error('Error syncing UI from localStorage in inline script:', error); } })();</script>
                             </div>
-
-                            <div id="suggestion-container" class="suggesstion-list suggesstion-box"></div>
-                        </form>
-
-                        <!-- Video Detail Area -->
-                        <div id="content-area"></div>
+                            <!-- Group 2: Auto Submit Toggle -->
+                            <div class="auto-submit-toggle"
+                                data-tooltip="Kirim otomatis saat menempelkan URL atau kata kunci">
+                                <strong class="toggle-label">Kirim otomatis</strong>
+                                <label class="toggle-switch" for="auto-submit-checkbox">
+                                    <input type="checkbox" id="auto-submit-checkbox" data-auto-submit-toggle aria-label="Auto submit after selecting format" />
+                                    <span class="toggle-slider"></span>
+                                </label>
+                                <span class="custom-tooltip"></span>
+                        </div>
                     </div>
-                </div>
-            </section>
+                    <script>(function(){try{const preferencesJson=localStorage.getItem('y2mate_format_preferences');if(preferencesJson){const preferences=JSON.parse(preferencesJson);const selectElement=preferences.selectedFormat==='mp4'?document.getElementById('quality-select-mp4'):document.getElementById('quality-select-mp3');if(selectElement){let value;if(preferences.selectedFormat==='mp4'){const videoQuality=preferences.videoQuality||'720p';value=(videoQuality==='webm'||videoQuality==='mkv')?videoQuality:`mp4-${videoQuality.replace('p','')}`;}else{const audioFormat=preferences.audioFormat||'mp3';value=(audioFormat==='mp3')?`mp3-${preferences.audioBitrate||'128'}`:audioFormat;}selectElement.value=value;}}const autoSubmitValue=localStorage.getItem('y2mate_auto_submit');const checkbox=document.getElementById('auto-submit-checkbox');if(checkbox){checkbox.checked=autoSubmitValue==='true';}}catch(error){console.error('Error syncing UI from localStorage in inline script:',error);}})();</script>
+                    </div>
 
-            <!-- Search Results Section -->
-            <section id="search-results-section" class="search-results-section" style="display: none;">
-                <div id="search-results-container"></div>
-            </section>
+                    <div id="suggestion-container" class="suggesstion-list suggesstion-box"></div>
+                </form>
 
-            <!-- Content Sections -->
-            <section class="y2mate-content-pro d-flex">
-                <div class="col-sm-12">
-                    <h2>Apa itu Pengunduh YouTube Shorts di Y2Mate?</h2>
-                    <p>Pengunduh YouTube Shorts dari <a href="/id/">Y2Mate</a> dibuat khusus untuk mengunduh video
-                        Shorts bentuk pendek dari YouTube.</p>
-                    <p>Shorts secara fundamental berbeda dari video YouTube biasa dalam hal durasi, rasio aspek, dan
-                        perilaku pemutaran. Mengunduh Shorts memerlukan proses penanganan khusus untuk menghindari
-                        masalah tampilan.</p>
-                </div>
-            </section>
-            <section class="y2mate-content-pro d-flex">
-                <div class="col-sm-12">
-                    <h2>Mengapa Pengunduhan YouTube Shorts Sering Gagal?</h2>
-                    <p>Banyak alat pengunduh video tidak membedakan antara video Shorts dan video YouTube bentuk panjang
-                        standar.</p>
-                    <p>Akibatnya, video Shorts mungkin diunduh dengan masalah umum seperti rotasi horizontal, audio yang
-                        hilang, atau rasio aspek yang salah.</p>
-                </div>
-            </section>
-            <section class="y2mate-content-pro d-flex">
-                <div class="col-sm-12">
-                    <h2>Pemrosesan Khusus untuk Video Shorts</h2>
-                    <p>Saat Anda menempelkan tautan video Shorts, sistem mendeteksinya sebagai konten bentuk pendek dan
-                        menerapkan metode pemrosesan khusus yang dirancang untuk video vertikal.</p>
-                    <p>Pendekatan ini membantu memastikan pengunduhan lebih cepat dan mengurangi masalah pemutaran di
-                        berbagai perangkat.</p>
-                </div>
-            </section>
-            <section class="y2mate-content-pro d-flex">
-                <div class="col-sm-12">
-                    <h2>Pertahankan Rasio Aspek Vertikal Asli</h2>
-                    <p>Video Shorts yang diunduh menjaga rasio aspek vertikal yang sama seperti yang muncul di YouTube.
-                        Video tidak diputar atau dipotong.</p>
-                    <p>Ini membuat video Shorts cocok untuk diputar ulang di perangkat seluler atau untuk penggunaan
-                        offline pribadi.</p>
-                </div>
-            </section>
-            <section class="y2mate-content-pro d-flex">
-                <div class="col-sm-12">
-                    <h2>Bagaimana Shorts Berbeda dari Video YouTube Biasa</h2>
-                    <p>YouTube Shorts adalah video pendek dan vertikal, sedangkan video YouTube biasa biasanya
-                        horizontal dan berdurasi lebih lama.</p>
-                    <p>Jika Anda perlu mengunduh video YouTube bentuk panjang untuk ditonton secara offline, Anda dapat
-                        menggunakan alat <a href="/id/youtube-to-mp4">YouTube ke MP4</a> atau mengunjungi <a
-                            href="/id/">Unduh Video YouTube</a> untuk menjelajahi opsi pengunduhan lainnya.</p>
-                </div>
-            </section>
-
-            <!-- Why Choose Section -->
-            <section class="y2mate-instruction-pro">
-                <div class="y2mate-in-ad-pro">
-                    <h2>Mengapa Memilih Y2Mate untuk Pengunduhan YouTube Shorts</h2>
-                    <p>Sebagian besar pengunduh YouTube tidak menangani video Shorts dengan benar, yang mengakibatkan
-                        video diputar atau dipotong. Pengunduh Shorts khusus Y2Mate mempertahankan format vertikal yang
-                        benar.</p>
-                    <ul>
-                        <li>Mempertahankan format vertikal – mempertahankan rasio aspek 9:16 asli</li>
-                        <li>Pemrosesan cepat – Shorts dideteksi dan diproses dengan cepat</li>
-                        <li>Tidak ada masalah rotasi – video diputar dengan benar di semua perangkat</li>
-                        <li>Bekerja di seluler – dioptimalkan untuk pengunduhan perangkat seluler</li>
-                        <li>Termasuk audio – mengunduh Shorts dengan suara aslinya</li>
-                    </ul>
-                </div>
-            </section>
-
-            <!-- Instructions Section -->
-            <section class="y2mate-instruction-pro">
-                <div class="y2mate-in-ad-pro">
-                    <h2>Cara Mengunduh Video YouTube Shorts</h2>
-                    <ol>
-                        <li>Salin tautan video YouTube Shorts yang ingin Anda unduh.</li>
-                        <li>Tempelkan tautan ke bidang input di halaman ini.</li>
-                        <li>Klik tombol mulai untuk menganalisis video Shorts.</li>
-                        <li>Pilih kualitas pilihan Anda dan unduh video vertikal ke perangkat Anda.</li>
-                    </ol>
-                    <p><em>Pengunduh Shorts secara otomatis mendeteksi video vertikal dan memprosesnya dengan benar
-                            tanpa masalah rotasi.</em></p>
-                </div>
-            </section>
-
-            <!-- FAQs Section -->
-            <section class="yt-content">
-                <h2>Pertanyaan yang Sering Diajukan Tentang YouTube Shorts</h2>
-                <div class="download-uses">
-                    <div class="guide-data">
-                        <h3>Apakah ada batas unduhan untuk YouTube Shorts?</h3>
-                        <p>Tidak. Anda dapat mengunduh YouTube Shorts tanpa batas harian atau penggunaan tetap.</p>
-                    </div>
-                    <div class="guide-data">
-                        <h3>Bagaimana cara menyimpan YouTube Short di ponsel saya?</h3>
-                        <p>Di Android, Short yang diunduh akan muncul di folder Unduhan atau Galeri Anda. Di iPhone,
-                            gunakan Safari untuk mengunduh video, lalu simpan dari bagian Unduhan ke Foto.</p>
-                    </div>
-                    <div class="guide-data">
-                        <h3>Bisakah saya mengunduh Shorts dengan suara?</h3>
-                        <p>Ya. Shorts diunduh dengan audio aslinya jika video sumber menyertakan suara.</p>
-                    </div>
-                    <div class="guide-data">
-                        <h3>Mengapa Shorts diproses lebih cepat daripada video YouTube biasa?</h3>
-                        <p>Shorts berdurasi lebih pendek dan menggunakan format yang berbeda, memungkinkan sistem untuk
-                            menganalisis dan menyiapkan file lebih cepat.</p>
-                    </div>
-                    <div class="guide-data">
-                        <h3>Akankah Short yang diunduh mempertahankan format vertikalnya?</h3>
-                        <p>Ya. Alat ini mempertahankan rasio aspek vertikal asli sehingga video ditampilkan dengan benar
-                            di perangkat seluler.</p>
-                    </div>
-                    <div class="guide-data">
-                        <h3>Bagaimana seharusnya Shorts yang diunduh digunakan?</h3>
-                        <p>Shorts yang diunduh dimaksudkan untuk penggunaan pribadi, seperti menonton atau menyimpan
-                            secara offline. Pengguna bertanggung jawab untuk menghormati hak-hak pembuat konten asli.
-                        </p>
-                    </div>
-                </div>
-            </section>
+                <!-- Video Detail Area -->
+                <div id="content-area"></div>
+            </div>
         </div>
+    </section>
+
+    <!-- Search Results Section -->
+    <section id="search-results-section" class="search-results-section" style="display: none;">
+        <div id="search-results-container"></div>
+    </section>
+
+    <!-- Content Sections -->
+    <section class="y2mate-content-pro d-flex">
+        <div class="col-sm-12">
+            <h2>Apa itu Pengunduh YouTube Shorts di Y2Mate?</h2>
+            <p>Pengunduh YouTube Shorts dari <a href="/id/">Y2Mate</a> dibuat khusus untuk mengunduh video Shorts bentuk pendek dari YouTube.</p>
+            <p>Shorts secara fundamental berbeda dari video YouTube biasa dalam hal durasi, rasio aspek, dan perilaku pemutaran. Mengunduh Shorts memerlukan proses penanganan khusus untuk menghindari masalah tampilan.</p>
+        </div>
+    </section>
+    <section class="y2mate-content-pro d-flex">
+        <div class="col-sm-12">
+            <h2>Mengapa Pengunduhan YouTube Shorts Sering Gagal?</h2>
+            <p>Banyak alat pengunduh video tidak membedakan antara video Shorts dan video YouTube bentuk panjang standar.</p>
+            <p>Akibatnya, video Shorts mungkin diunduh dengan masalah umum seperti rotasi horizontal, audio yang hilang, atau rasio aspek yang salah.</p>
+        </div>
+    </section>
+    <section class="y2mate-content-pro d-flex">
+        <div class="col-sm-12">
+            <h2>Pemrosesan Khusus untuk Video Shorts</h2>
+            <p>Saat Anda menempelkan tautan video Shorts, sistem mendeteksinya sebagai konten bentuk pendek dan menerapkan metode pemrosesan khusus yang dirancang untuk video vertikal.</p>
+            <p>Pendekatan ini membantu memastikan pengunduhan lebih cepat dan mengurangi masalah pemutaran di berbagai perangkat.</p>
+        </div>
+    </section>
+    <section class="y2mate-content-pro d-flex">
+        <div class="col-sm-12">
+            <h2>Pertahankan Rasio Aspek Vertikal Asli</h2>
+            <p>Video Shorts yang diunduh menjaga rasio aspek vertikal yang sama seperti yang muncul di YouTube. Video tidak diputar atau dipotong.</p>
+            <p>Ini membuat video Shorts cocok untuk diputar ulang di perangkat seluler atau untuk penggunaan offline pribadi.</p>
+        </div>
+    </section>
+    <section class="y2mate-content-pro d-flex">
+        <div class="col-sm-12">
+            <h2>Bagaimana Shorts Berbeda dari Video YouTube Biasa</h2>
+            <p>YouTube Shorts adalah video pendek dan vertikal, sedangkan video YouTube biasa biasanya horizontal dan berdurasi lebih lama.</p>
+            <p>Jika Anda perlu mengunduh video YouTube bentuk panjang untuk ditonton secara offline, Anda dapat menggunakan alat <a href="/id/youtube-to-mp4">YouTube ke MP4</a> atau mengunjungi <a href="/id/">Unduh Video YouTube</a> untuk menjelajahi opsi pengunduhan lainnya.</p>
+        </div>
+    </section>
+
+    <!-- Why Choose Section -->
+    <section class="y2mate-instruction-pro">
+        <div class="y2mate-in-ad-pro">
+            <h2>Mengapa Memilih Y2Mate untuk Pengunduhan YouTube Shorts</h2>
+            <p>Sebagian besar pengunduh YouTube tidak menangani video Shorts dengan benar, yang mengakibatkan video diputar atau dipotong. Pengunduh Shorts khusus Y2Mate mempertahankan format vertikal yang benar.</p>
+            <ul>
+                <li>Mempertahankan format vertikal – mempertahankan rasio aspek 9:16 asli</li>
+                <li>Pemrosesan cepat – Shorts dideteksi dan diproses dengan cepat</li>
+                <li>Tidak ada masalah rotasi – video diputar dengan benar di semua perangkat</li>
+                <li>Bekerja di seluler – dioptimalkan untuk pengunduhan perangkat seluler</li>
+                <li>Termasuk audio – mengunduh Shorts dengan suara aslinya</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Instructions Section -->
+    <section class="y2mate-instruction-pro">
+        <div class="y2mate-in-ad-pro">
+            <h2>Cara Mengunduh Video YouTube Shorts</h2>
+            <ol>
+                <li>Salin tautan video YouTube Shorts yang ingin Anda unduh.</li>
+                <li>Tempelkan tautan ke bidang input di halaman ini.</li>
+                <li>Klik tombol mulai untuk menganalisis video Shorts.</li>
+                <li>Pilih kualitas pilihan Anda dan unduh video vertikal ke perangkat Anda.</li>
+            </ol>
+            <p><em>Pengunduh Shorts secara otomatis mendeteksi video vertikal dan memprosesnya dengan benar tanpa masalah rotasi.</em></p>
+        </div>
+    </section>
+
+    <!-- FAQs Section -->
+    <section class="yt-content">
+        <h2>Pertanyaan yang Sering Diajukan Tentang YouTube Shorts</h2>
+        <div class="download-uses">
+            <div class="guide-data">
+                <h3>Apakah ada batas unduhan untuk YouTube Shorts?</h3>
+                <p>Tidak. Anda dapat mengunduh YouTube Shorts tanpa batas harian atau penggunaan tetap.</p>
+            </div>
+            <div class="guide-data">
+                <h3>Bagaimana cara menyimpan YouTube Short di ponsel saya?</h3>
+                <p>Di Android, Short yang diunduh akan muncul di folder Unduhan atau Galeri Anda. Di iPhone, gunakan Safari untuk mengunduh video, lalu simpan dari bagian Unduhan ke Foto.</p>
+            </div>
+            <div class="guide-data">
+                <h3>Bisakah saya mengunduh Shorts dengan suara?</h3>
+                <p>Ya. Shorts diunduh dengan audio aslinya jika video sumber menyertakan suara.</p>
+            </div>
+            <div class="guide-data">
+                <h3>Mengapa Shorts diproses lebih cepat daripada video YouTube biasa?</h3>
+                <p>Shorts berdurasi lebih pendek dan menggunakan format yang berbeda, memungkinkan sistem untuk menganalisis dan menyiapkan file lebih cepat.</p>
+            </div>
+            <div class="guide-data">
+                <h3>Akankah Short yang diunduh mempertahankan format vertikalnya?</h3>
+                <p>Ya. Alat ini mempertahankan rasio aspek vertikal asli sehingga video ditampilkan dengan benar di perangkat seluler.</p>
+            </div>
+            <div class="guide-data">
+                <h3>Bagaimana seharusnya Shorts yang diunduh digunakan?</h3>
+                <p>Shorts yang diunduh dimaksudkan untuk penggunaan pribadi, seperti menonton atau menyimpan secara offline. Pengguna bertanggung jawab untuk menghormati hak-hak pembuat konten asli.</p>
+            </div>
+        </div>
+    </section>
+</div>
 
     </main>
 
     <footer class="footer">
-        <p>© 2026 y2mate</p>
-        <ul class="footer_nav">
-            <li class="fnav-menu">
-                <a href="/about-us">Tentang</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="/contact">Kontak</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="/terms-condition">Ketentuan Layanan</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="/privacy-policy">Kebijakan Privasi</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="/copyright-claims">Klaim Hak Cipta</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="/id/youtube-short-downloader">Pengunduh YouTube Shorts</a>
-            </li>
-        </ul>
-    </footer>
+    <p>© 2026 y2mate</p>
+    <ul class="footer_nav">
+        <li class="fnav-menu">
+            <a href="/about-us">Tentang</a>
+        </li>
+        <li class="fnav-menu">
+            <a href="/contact">Kontak</a>
+        </li>
+        <li class="fnav-menu">
+            <a href="/terms-condition">Ketentuan Layanan</a>
+        </li>
+        <li class="fnav-menu">
+            <a href="/privacy-policy">Kebijakan Privasi</a>
+        </li>
+        <li class="fnav-menu">
+            <a href="/copyright-claims">Klaim Hak Cipta</a>
+        </li>
+        <li class="fnav-menu">
+            <a href="/id/youtube-short-downloader">Pengunduh YouTube Shorts</a>
+        </li>
+    </ul>
+</footer>
 
 
     <!-- Conversion Modal Wrapper -->
     <div id="progressBarWrapper"></div>
+
+    <!-- Ko-fi Support Widget -->
+    <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+    <script>
+      kofiWidgetOverlay.draw('metaconvert', {
+        'type': 'floating-chat',
+        'floating-chat.donateButton.text': 'Support me',
+        'floating-chat.donateButton.background-color': '#00b9fe',
+        'floating-chat.donateButton.text-color': '#fff'
+      });
+    </script>
 </body>
 
 </html>

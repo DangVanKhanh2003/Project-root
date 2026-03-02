@@ -8,9 +8,8 @@
 
     <!-- SEO Metadata -->
     <title>ইউটিউব থেকে এমপি৩ – ইউটিউব ভিডিও থেকে অডিও এক্সট্র্যাক্ট করুন | Y2Mate</title>
-    <meta name="description"
-        content="Y2Mate দিয়ে ইউটিউব ভিডিও থেকে এমপি৩ হিসেবে অডিও এক্সট্র্যাক্ট করুন। অফলাইন শোনার জন্য ইউটিউব ভিডিওকে এমপি৩-তে রূপান্তর করুন — সঙ্গীত, পডকাস্ট এবং দীর্ঘ ভিডিওর জন্য অপ্টিমাইজ করা হয়েছে।">
-
+    <meta name="description" content="Y2Mate দিয়ে ইউটিউব ভিডিও থেকে এমপি৩ হিসেবে অডিও এক্সট্র্যাক্ট করুন। অফলাইন শোনার জন্য ইউটিউব ভিডিওকে এমপি৩-তে রূপান্তর করুন — সঙ্গীত, পডকাস্ট এবং দীর্ঘ ভিডিওর জন্য অপ্টিমাইজ করা হয়েছে।">
+    
     <link rel="canonical" href="https://y2mate.vc/bn/youtube-to-mp3">
 
     <!-- hreflang tags for multilingual SEO -->
@@ -37,8 +36,7 @@
 
     <!-- Schema.org markup -->
     <meta itemprop="name" content="Y2mate - ইউটিউব থেকে এমপি৩ কনভার্টার" />
-    <meta itemprop="description"
-        content="Y2mate থেকে এমপি৩: 128/192/320kbps। দ্রুত, বিনামূল্যে, কোনো সীমা নেই, কোনো অ্যাপ নেই।">
+    <meta itemprop="description" content="Y2mate থেকে এমপি৩: 128/192/320kbps। দ্রুত, বিনামূল্যে, কোনো সীমা নেই, কোনো অ্যাপ নেই।">
     <meta itemprop="inLanguage" content="bn" />
 
     <!-- Open Graph / Facebook -->
@@ -46,8 +44,7 @@
     <meta property="og:site_name" content="Y2Mate" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:title" content="Y2mate - ইউটিউব থেকে এমপি৩ কনভার্টার বিনামূল্যে" />
-    <meta property="og:description"
-        content="Y2mate থেকে এমপি৩: 128/192/320kbps। দ্রুত, বিনামূল্যে, কোনো সীমা নেই, কোনো অ্যাপ নেই।" />
+    <meta property="og:description" content="Y2mate থেকে এমপি৩: 128/192/320kbps। দ্রুত, বিনামূল্যে, কোনো সীমা নেই, কোনো অ্যাপ নেই।" />
     <meta property="og:image" content="https://y2mate.vc/logo.png" />
     <meta property="og:url" content="https://y2mate.vc/bn/youtube-to-mp3" />
 
@@ -67,7 +64,7 @@
     <!-- Google Analytics: Lazy loaded via analytics-loader.ts for better performance -->
 
     <!-- Critical: Set format and auto-submit preferences before render to prevent FOUC -->
-    <script>(function () { var f = 'mp4', a = 'false'; try { var p = JSON.parse(localStorage.getItem('y2mate_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat; var s = localStorage.getItem('y2mate_auto_submit'); if (s) a = s; } catch (e) { } document.documentElement.dataset.format = f; document.documentElement.dataset.autoSubmit = a; })()</script>
+    <script>(function(){var f='mp4',a='false';try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p&&p.selectedFormat)f=p.selectedFormat;var s=localStorage.getItem('y2mate_auto_submit');if(s)a=s;}catch(e){}document.documentElement.dataset.format=f;document.documentElement.dataset.autoSubmit=a;})()</script>
 
     <!-- Critical: Hide auto-submit tooltip before CSS loads -->
     <style>
@@ -78,7 +75,7 @@
     </style>
 
     <!-- Critical: Prevent default form submit before app init (avoid /search 404) -->
-    <script>(function () { document.addEventListener('submit', function (event) { var target = event.target; if (target && target.id === 'downloadForm') { event.preventDefault(); } }, true); })();</script>
+    <script>(function(){document.addEventListener('submit',function(event){var target=event.target;if(target&&target.id==='downloadForm'){event.preventDefault();}},true);})();</script>
 
     <!-- Critical CSS imported via Vite -->
     <script type="module" src="/src/main.ts"></script>
@@ -215,35 +212,125 @@
 
 <body>
     <header class="nav-header">
-        <div class="container">
-            <div class="nav_head">
-                <div class="navbar-logo">
-                    <a href="/bn/">
-                        <img height="46px" width="46px" src="/logo.png" alt="Y2Mate logo">
-                        <span class="logo-name">Y2mate</span>
-                    </a>
-                </div>
-                <button type="button" class="navbar-toggler" id="mobileMenuToggle" aria-label="নেভিগেশন মেনু খুলুন">
-                    <span class="toggle-icon"></span>
-                    <span class="toggle-icon"></span>
-                    <span class="toggle-icon"></span>
-                </button>
+    <div class="container">
+        <div class="nav_head">
+            <div class="navbar-logo">
+                <a href="/bn/">
+                    <img height="46px" width="46px" src="/logo.png" alt="Y2Mate logo">
+                    <span class="logo-name">Y2mate</span>
+                </a>
             </div>
-            <div class="header-menu">
-                <ul class="menu-navbar">
+            <button type="button" class="navbar-toggler" id="mobileMenuToggle" aria-label="নেভিগেশন মেনু খুলুন">
+                <span class="toggle-icon"></span>
+                <span class="toggle-icon"></span>
+                <span class="toggle-icon"></span>
+            </button>
+        </div>
+        <div class="header-menu">
+            <ul class="menu-navbar">
+              
+                <li class="navbar">
+                    <a href="/bn/youtube-to-mp4">ইউটিউব থেকে MP4 রূপান্তরকারী</a>
+                </li>
+                <li class="navbar">
+                    <a href="/bn/youtube-to-mp3">ইউটিউব থেকে MP3 রূপান্তরকারী</a>
+                </li>
+                <li class="navbar language">
+                    <a href="/">
+                        বাংলা<span class="shape"></span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <ul class="lang-menu">
+                            <li>
+                                <a data-lang="en" href="/youtube-to-mp3">English</a>
+                            </li>
+                            <li>
+                                <a data-lang="ar" href="/ar/youtube-to-mp3">العربية</a>
+                            </li>
+                            <li>
+                                <a data-lang="bn" href="/bn/youtube-to-mp3">বাংলা</a>
+                            </li>
+                            <li>
+                                <a data-lang="de" href="/de/youtube-to-mp3">Deutsch</a>
+                            </li>
+                            <li>
+                                <a data-lang="es" href="/es/youtube-to-mp3">Español</a>
+                            </li>
+                            <li>
+                                <a data-lang="fr" href="/fr/youtube-to-mp3">Français</a>
+                            </li>
+                            <li>
+                                <a data-lang="hi" href="/hi/youtube-to-mp3">हिन्दी</a>
+                            </li>
+                            <li>
+                                <a data-lang="id" href="/id/youtube-to-mp3">Indonesia</a>
+                            </li>
+                            <li>
+                                <a data-lang="it" href="/it/youtube-to-mp3">Italiano</a>
+                            </li>
+                            <li>
+                                <a data-lang="ja" href="/ja/youtube-to-mp3">日本語</a>
+                            </li>
+                            <li>
+                                <a data-lang="ko" href="/ko/youtube-to-mp3">한국어</a>
+                            </li>
+                            <li>
+                                <a data-lang="my" href="/my/youtube-to-mp3">မြန်မာ</a>
+                            </li>
+                            <li>
+                                <a data-lang="ms" href="/ms/youtube-to-mp3">Melayu</a>
+                            </li>
+                            <li>
+                                <a data-lang="pt" href="/pt/youtube-to-mp3">Português</a>
+                            </li>
+                            <li>
+                                <a data-lang="ru" href="/ru/youtube-to-mp3">Русский</a>
+                            </li>
+                            <li>
+                                <a data-lang="th" href="/th/youtube-to-mp3">ไทย</a>
+                            </li>
+                            <li>
+                                <a data-lang="tr" href="/tr/youtube-to-mp3">Türkçe</a>
+                            </li>
+                            <li>
+                                <a data-lang="ur" href="/ur/youtube-to-mp3">اردو</a>
+                            </li>
+                            <li>
+                                <a data-lang="vi" href="/vi/youtube-to-mp3">Tiếng Việt</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
 
-                    <li class="navbar">
-                        <a href="/bn/youtube-to-mp4">ইউটিউব থেকে MP4 রূপান্তরকারী</a>
-                    </li>
-                    <li class="navbar">
-                        <a href="/bn/youtube-to-mp3">ইউটিউব থেকে MP3 রূপান্তরকারী</a>
-                    </li>
-                    <li class="navbar language">
-                        <a href="/">
-                            বাংলা<span class="shape"></span>
-                        </a>
-                        <div class="dropdown-menu">
-                            <ul class="lang-menu">
+        <!-- Mobile Menu Overlay -->
+        <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+            <div class="mobile-menu-content">
+                <div class="mobile-header-top">
+                    <a href="/bn/">
+                        <div class="mobile-logo">
+                            <img height="36px" width="36px" src="/logo.png" alt="Y2Mate logo">
+                            <span class="logo-name">Y2mate</span>
+                        </div>
+                    </a>
+                    <button type="button" class="mobile-close-btn" id="mobileCloseBtn" aria-label="নেভিগেশন মেনু বন্ধ করুন">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <nav class="mobile-nav">
+                    <ul class="mobile-menu">
+                        <li><a href="/bn/">ইউটিউব ডাউনলোডার</a></li>
+                        <li><a href="/bn/youtube-to-mp4">ইউটিউব থেকে MP4 রূপান্তরকারী</a></li>
+                        <li><a href="/bn/youtube-to-mp3">ইউটিউব থেকে MP3 রূপান্তরকারী</a></li>
+                        <li><a href="/bn/youtube-short-downloader">ইউটিউব শর্টস ডাউনলোডার</a></li>
+                        <li class="mobile-language">
+                            <button type="button" class="mobile-language-toggle" aria-expanded="false">
+                                বাংলা<span class="shape"></span>
+                            </button>
+                            <ul class="mobile-lang-menu">
                                 <li>
                                     <a data-lang="en" href="/youtube-to-mp3">English</a>
                                 </li>
@@ -302,376 +389,275 @@
                                     <a data-lang="vi" href="/vi/youtube-to-mp3">Tiếng Việt</a>
                                 </li>
                             </ul>
-                        </div>
-                    </li>
-                </ul>
+                        </li>
+                    </ul>
+                </nav>
             </div>
-
-            <!-- Mobile Menu Overlay -->
-            <div class="mobile-menu-overlay" id="mobileMenuOverlay">
-                <div class="mobile-menu-content">
-                    <div class="mobile-header-top">
-                        <a href="/bn/">
-                            <div class="mobile-logo">
-                                <img height="36px" width="36px" src="/logo.png" alt="Y2Mate logo">
-                                <span class="logo-name">Y2mate</span>
-                            </div>
-                        </a>
-                        <button type="button" class="mobile-close-btn" id="mobileCloseBtn"
-                            aria-label="নেভিগেশন মেনু বন্ধ করুন">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" />
-                            </svg>
-                        </button>
-                    </div>
-                    <nav class="mobile-nav">
-                        <ul class="mobile-menu">
-                            <li><a href="/bn/">ইউটিউব ডাউনলোডার</a></li>
-                            <li><a href="/bn/youtube-to-mp4">ইউটিউব থেকে MP4 রূপান্তরকারী</a></li>
-                            <li><a href="/bn/youtube-to-mp3">ইউটিউব থেকে MP3 রূপান্তরকারী</a></li>
-                            <li><a href="/bn/youtube-short-downloader">ইউটিউব শর্টস ডাউনলোডার</a></li>
-                            <li class="mobile-language">
-                                <button type="button" class="mobile-language-toggle" aria-expanded="false">
-                                    বাংলা<span class="shape"></span>
-                                </button>
-                                <ul class="mobile-lang-menu">
-                                    <li>
-                                        <a data-lang="en" href="/youtube-to-mp3">English</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="ar" href="/ar/youtube-to-mp3">العربية</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="bn" href="/bn/youtube-to-mp3">বাংলা</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="de" href="/de/youtube-to-mp3">Deutsch</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="es" href="/es/youtube-to-mp3">Español</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="fr" href="/fr/youtube-to-mp3">Français</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="hi" href="/hi/youtube-to-mp3">हिन्दी</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="id" href="/id/youtube-to-mp3">Indonesia</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="it" href="/it/youtube-to-mp3">Italiano</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="ja" href="/ja/youtube-to-mp3">日本語</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="ko" href="/ko/youtube-to-mp3">한국어</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="my" href="/my/youtube-to-mp3">မြန်မာ</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="ms" href="/ms/youtube-to-mp3">Melayu</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="pt" href="/pt/youtube-to-mp3">Português</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="ru" href="/ru/youtube-to-mp3">Русский</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="th" href="/th/youtube-to-mp3">ไทย</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="tr" href="/tr/youtube-to-mp3">Türkçe</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="ur" href="/ur/youtube-to-mp3">اردو</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="vi" href="/vi/youtube-to-mp3">Tiếng Việt</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-            <!-- End Mobile Menu Overlay -->
         </div>
-    </header>
+        <!-- End Mobile Menu Overlay -->
+    </div>
+</header>
 
 
     <main>
-        <div class="container">
-            <section class="y2mate-download-pro">
-                <div class="y2mate-search-form-pro d-flex">
-                    <div class="form-wrap">
-                        <h1 class="y2mate_title-pro">Y2Mate – ইউটিউব থেকে এমপি৩</h1>
-                        <form id="downloadForm" class="search_form" method="POST" action="/search/">
-                            <div class="input-container">
-                                <div class=" input-wrapper">
-                                    <input id="videoUrl" class="y2mate_query-pro keyword" type="text" name="q"
-                                        placeholder="এখানে লিঙ্ক খুঁজুন বা পেস্ট করুন..." autocomplete="off"
-                                        autofocus="" role="combobox" aria-autocomplete="list"
-                                        aria-controls="suggestion-container" aria-expanded="false">
-                                    <button id="input-action-button" type="button" class="input-action-btn"
-                                        data-action="paste" aria-label="ক্লিপবোর্ড থেকে পেস্ট করুন">
-                                        <svg class="paste-icon" xmlns="http://www.w3.org/2000/svg" width="18"
-                                            height="18" viewBox="0 0 24 24">
-                                            <path fill="currentColor"
-                                                d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm7 16H5V5h2v3h10V5h2v14z" />
-                                        </svg>
-                                        <svg class="clear-icon" xmlns="http://www.w3.org/2000/svg" width="18"
-                                            height="18" viewBox="0 0 24 24">
-                                            <path fill="currentColor"
-                                                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                            <button id="submit" type="submit" name="form_submit" class="submit-btn" aria-label="Search">
-                                <div class="converter-btn">শুরু করুন</div>
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                    width="14px" height="14px" fill="#fff" id="Layer_1"
-                                    style="enable-background:new 0 0 16 16;" version="1.1" viewBox="0 0 16 16"
-                                    xml:space="preserve">
-                                    <path
-                                        d="M15.375,7L10,2.54C9.695,2.287,9.461,2,9,2C8.375,2,8,2.516,8,3v3H1C0.45,6,0,6.45,0,7v2c0,0.55,0.45,1,1,1h7v3  c0,0.484,0.375,1,1,1c0.461,0,0.695-0.287,1-0.54L15.375,9C15.758,8.688,16,8.445,16,8S15.758,7.313,15.375,7z">
-                                    </path>
+    <div class="container">
+    <section class="y2mate-download-pro">
+        <div class="y2mate-search-form-pro d-flex">
+            <div class="form-wrap">
+                <h1 class="y2mate_title-pro">Y2Mate – ইউটিউব থেকে এমপি৩</h1>
+                <form id="downloadForm" class="search_form" method="POST" action="/search/">
+                    <div class="input-container">
+                        <div class=" input-wrapper">
+                            <input id="videoUrl" class="y2mate_query-pro keyword" type="text" name="q"
+                                placeholder="এখানে লিঙ্ক খুঁজুন বা পেস্ট করুন..." autocomplete="off" autofocus=""
+                                role="combobox" aria-autocomplete="list" aria-controls="suggestion-container" aria-expanded="false">
+                            <button id="input-action-button" type="button" class="input-action-btn" data-action="paste"
+                                aria-label="ক্লিপবোর্ড থেকে পেস্ট করুন">
+                                <svg class="paste-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                    viewBox="0 0 24 24">
+                                    <path fill="currentColor"
+                                        d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm7 16H5V5h2v3h10V5h2v14z" />
+                                </svg>
+                                <svg class="clear-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                    viewBox="0 0 24 24">
+                                    <path fill="currentColor"
+                                        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
                                 </svg>
                             </button>
+                        </div>
+                    </div>
+                    <button id="submit" type="submit" name="form_submit" class="submit-btn" aria-label="Search">
+                        <div class="converter-btn">শুরু করুন</div>
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                            width="14px" height="14px" fill="#fff" id="Layer_1"
+                            style="enable-background:new 0 0 16 16;" version="1.1" viewBox="0 0 16 16"
+                            xml:space="preserve">
+                            <path
+                                d="M15.375,7L10,2.54C9.695,2.287,9.461,2,9,2C8.375,2,8,2.516,8,3v3H1C0.45,6,0,6.45,0,7v2c0,0.55,0.45,1,1,1h7v3  c0,0.484,0.375,1,1,1c0.461,0,0.695-0.287,1-0.54L15.375,9C15.758,8.688,16,8.445,16,8S15.758,7.313,15.375,7z">
+                            </path>
+                        </svg>
+                    </button>
 
-                            <!-- Format Selector -->
-                            <div id="format-selector-container" class="format-selector-wrapper">
-                                <div class="format-selector">
-                                    <!-- Group 1: Format + Quality -->
-                                    <div class="format-quality-group">
-                                        <!-- Format Toggle -->
-                                        <button type="button" class="format-toggle-btn" data-toggle-format>
-                                            <span class="toggle-side" data-format="mp4">
-                                                <span class="format-label">MP4</span>
-                                            </span>
-                                            <span class="toggle-side" data-format="mp3">
-                                                <span class="format-label">MP3</span>
-                                            </span>
-                                        </button>
-                                        <!-- Quality Dropdowns -->
-                                        <div class="quality-selector">
-                                            <!-- MP4 Options -->
-                                            <select id="quality-select-mp4" class="quality-select quality-select--mp4"
-                                                aria-label="ভিডিওর গুণমান" data-quality-select>
-                                                <option value="mp4-1080">MP4 - 1080p</option>
-                                                <option value="mp4-720" selected>MP4 - 720p</option>
-                                                <option value="mp4-480">MP4 - 480p</option>
-                                                <option value="mp4-360">MP4 - 360p</option>
-                                                <option value="mp4-144">MP4 - 144p</option>
-                                                <option value="webm">WEBM</option>
-                                                <option value="mkv">MKV</option>
-                                            </select>
-                                            <!-- MP3 Options -->
-                                            <select id="quality-select-mp3" class="quality-select quality-select--mp3"
-                                                aria-label="অডিওর গুণমান" data-quality-select>
-                                                <option value="mp3-320">MP3 - 320kbps</option>
-                                                <option value="mp3-256">MP3 - 256kbps</option>
-                                                <option value="mp3-192">MP3 - 192kbps</option>
-                                                <option value="mp3-128" selected>MP3 - 128kbps</option>
-                                                <option value="ogg">OGG</option>
-                                                <option value="opus">OPUS</option>
-                                                <option value="wav">WAV</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <!-- Group 2: Auto Submit Toggle -->
-                                    <div class="auto-submit-toggle"
-                                        data-tooltip="URL বা কীওয়ার্ড পেস্ট করার সময় স্বয়ংক্রিয়ভাবে জমা দিন">
-                                        <strong class="toggle-label">স্বয়ংক্রিয় জমা দিন</strong>
-                                        <label class="toggle-switch" for="auto-submit-checkbox">
-                                            <input type="checkbox" id="auto-submit-checkbox" data-auto-submit-toggle
-                                                aria-label="Auto submit after selecting format" />
-                                            <span class="toggle-slider"></span>
-                                        </label>
-                                        <span class="custom-tooltip"></span>
-                                    </div>
+                    <!-- Format Selector -->
+                    <div id="format-selector-container" class="format-selector-wrapper">
+                        <div class="format-selector">
+                            <!-- Group 1: Format + Quality -->
+                            <div class="format-quality-group">
+                                <!-- Format Toggle -->
+                                <button type="button" class="format-toggle-btn" data-toggle-format>
+                                    <span class="toggle-side" data-format="mp4">
+                                        <span class="format-label">MP4</span>
+                                    </span>
+                                    <span class="toggle-side" data-format="mp3">
+                                        <span class="format-label">MP3</span>
+                                    </span>
+                                </button>
+                                <!-- Quality Dropdowns -->
+                                <div class="quality-selector">
+                                    <!-- MP4 Options -->
+                                    <select id="quality-select-mp4" class="quality-select quality-select--mp4"
+                                        aria-label="ভিডিওর গুণমান" data-quality-select>
+                                        <option value="mp4-2160">MP4 - 4K</option>
+                                        <option value="mp4-1440">MP4 - 2K</option>
+                                        <option value="mp4-1080">MP4 - 1080p</option>
+                                        <option value="mp4-720" selected>MP4 - 720p</option>
+                                        <option value="mp4-480">MP4 - 480p</option>
+                                        <option value="mp4-360">MP4 - 360p</option>                                        <option value="mp4-144">MP4 - 144p</option>
+                                        <option value="webm">WEBM</option>
+                                        <option value="mkv">MKV</option>
+                                    </select>
+                                    <!-- MP3 Options -->
+                                    <select id="quality-select-mp3" class="quality-select quality-select--mp3"
+                                        aria-label="অডিওর গুণমান" data-quality-select>
+                                        <option value="mp3-320">MP3 - 320kbps</option>
+                                        <option value="mp3-256">MP3 - 256kbps</option>
+                                        <option value="mp3-192">MP3 - 192kbps</option>
+                                        <option value="mp3-128" selected>MP3 - 128kbps</option>
+                                        <option value="ogg">OGG</option>
+                                        <option value="opus">OPUS</option>
+                                        <option value="wav">WAV</option>
+                                    </select>
                                 </div>
-                                <script>(function () { try { const preferencesJson = localStorage.getItem('y2mate_format_preferences'); if (preferencesJson) { const preferences = JSON.parse(preferencesJson); const selectElement = preferences.selectedFormat === 'mp4' ? document.getElementById('quality-select-mp4') : document.getElementById('quality-select-mp3'); if (selectElement) { let value; if (preferences.selectedFormat === 'mp4') { const videoQuality = preferences.videoQuality || '720p'; value = (videoQuality === 'webm' || videoQuality === 'mkv') ? videoQuality : `mp4-${videoQuality.replace('p', '')}`; } else { const audioFormat = preferences.audioFormat || 'mp3'; value = (audioFormat === 'mp3') ? `mp3-${preferences.audioBitrate || '128'}` : audioFormat; } selectElement.value = value; } } const autoSubmitValue = localStorage.getItem('y2mate_auto_submit'); const checkbox = document.getElementById('auto-submit-checkbox'); if (checkbox) { checkbox.checked = autoSubmitValue === 'true'; } } catch (error) { console.error('Error syncing UI from localStorage in inline script:', error); } })();</script>
                             </div>
-
-                            <div id="suggestion-container" class="suggesstion-list suggesstion-box"></div>
-                        </form>
-
-                        <!-- Video Detail Area -->
-                        <div id="content-area"></div>
+                            <!-- Group 2: Auto Submit Toggle -->
+                            <div class="auto-submit-toggle"
+                                data-tooltip="URL বা কীওয়ার্ড পেস্ট করার সময় স্বয়ংক্রিয়ভাবে জমা দিন">
+                                <strong class="toggle-label">স্বয়ংক্রিয় জমা দিন</strong>
+                                <label class="toggle-switch" for="auto-submit-checkbox">
+                                    <input type="checkbox" id="auto-submit-checkbox" data-auto-submit-toggle aria-label="Auto submit after selecting format"/>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                                <span class="custom-tooltip"></span>
+                        </div>
                     </div>
-                </div>
-            </section>
+                    <script>(function(){try{const preferencesJson=localStorage.getItem('y2mate_format_preferences');if(preferencesJson){const preferences=JSON.parse(preferencesJson);const selectElement=preferences.selectedFormat==='mp4'?document.getElementById('quality-select-mp4'):document.getElementById('quality-select-mp3');if(selectElement){let value;if(preferences.selectedFormat==='mp4'){const videoQuality=preferences.videoQuality||'720p';value=(videoQuality==='webm'||videoQuality==='mkv')?videoQuality:`mp4-${videoQuality.replace('p','')}`;}else{const audioFormat=preferences.audioFormat||'mp3';value=(audioFormat==='mp3')?`mp3-${preferences.audioBitrate||'128'}`:audioFormat;}selectElement.value=value;}}const autoSubmitValue=localStorage.getItem('y2mate_auto_submit');const checkbox=document.getElementById('auto-submit-checkbox');if(checkbox){checkbox.checked=autoSubmitValue==='true';}}catch(error){console.error('Error syncing UI from localStorage in inline script:',error);}})();</script>
+                    </div>
 
-            <!-- Search Results Section -->
-            <section id="search-results-section" class="search-results-section" style="display: none;">
-                <div id="search-results-container"></div>
-            </section>
+                    <div id="suggestion-container" class="suggesstion-list suggesstion-box"></div>
+                </form>
 
-            <!-- Content Sections -->
-            <section class="y2mate-content-pro d-flex">
-                <div class="col-sm-12">
-                    <h2>Y2Mate-এ ইউটিউব থেকে এমপি৩ কী?</h2>
-                    <p><strong>ইউটিউব থেকে এমপি৩</strong> পেজটি <a href="/bn/">Y2Mate</a> থেকে বিশেষভাবে ইউটিউব ভিডিও
-                        থেকে অডিও এক্সট্র্যাক্ট করে এমপি৩ ফাইল হিসেবে সংরক্ষণ করার জন্য ডিজাইন করা হয়েছে।</p>
-                    <p>এই পেজটি ভিডিওর ভিজ্যুয়ালের উপর ফোকাস করে না। পরিবর্তে, এটি শুধুমাত্র অডিও স্ট্রিম প্রসেস করে
-                        অফলাইন শোনার ব্যবহারের ক্ষেত্রে সমর্থন করে।</p>
-                </div>
-            </section>
-            <section class="y2mate-content-pro d-flex">
-                <div class="col-sm-12">
-                    <h2>কখন আপনার ইউটিউব থেকে এমপি৩ ব্যবহার করা উচিত?</h2>
-                    <p>ইউটিউব থেকে এমপি৩ সঙ্গীত ভিডিও, পডকাস্ট, বক্তৃতা, সাক্ষাৎকার এবং দীর্ঘ ফর্মের বিষয়বস্তুর জন্য
-                        উপযুক্ত যেখানে ব্যবহারকারীদের ভিডিওর পরিবর্তে শুধুমাত্র অডিও প্রয়োজন।</p>
-                    <p>শুধুমাত্র অডিও এক্সট্র্যাক্ট করার মাধ্যমে, এমপি৩ ফাইলগুলি ভিডিও ফাইলের চেয়ে উল্লেখযোগ্যভাবে ছোট
-                        হয়, যা মোবাইল ডিভাইসে সংরক্ষণ এবং প্লে করা সহজ করে তোলে।</p>
-                </div>
-            </section>
-            <section class="y2mate-content-pro d-flex">
-                <div class="col-sm-12">
-                    <h2>ইউটিউব থেকে অডিও এক্সট্র্যাক্ট করার সময় সাধারণ সমস্যা</h2>
-                    <p>অনেক ইউটিউব থেকে এমপি৩ টুল দীর্ঘ ভিডিও, একাধিক অডিও স্ট্রিম সহ ভিডিও, বা অসামঞ্জস্যপূর্ণ অডিও
-                        মানের সাথে লড়াই করে।</p>
-                    <p>ফলস্বরূপ, এমপি৩ ফাইলগুলিতে শব্দ, অনুপস্থিত অংশ বা ভুল সময়কাল থাকতে পারে।</p>
-                </div>
-            </section>
-            <section class="y2mate-content-pro d-flex">
-                <div class="col-sm-12">
-                    <h2>টুলটি কীভাবে এমপি৩ ফাইল প্রসেস এবং জেনারেট করে</h2>
-                    <p>যখন আপনি একটি ইউটিউব ভিডিও লিঙ্ক পেস্ট করেন, তখন সিস্টেমটি মূল অডিও স্ট্রিম বিশ্লেষণ করে এবং একটি
-                        সংশ্লিষ্ট এমপি৩ ফাইল তৈরি করে।</p>
-                    <p>অডিওর গুণমান উৎস ভিডিওর উপর নির্ভর করে। যখন উপলব্ধ থাকে, তখন টুলটি ডাউনলোডের জন্য উপযুক্ত বিটরেট
-                        বিকল্পগুলি প্রদর্শন করে।</p>
-                </div>
-            </section>
-            <section class="y2mate-content-pro d-flex">
-                <div class="col-sm-12">
-                    <h2>কেন ভিডিও ডাউনলোড করার চেয়ে অডিও এক্সট্র্যাক্ট করা বেশি কার্যকর</h2>
-                    <p>ভিডিও থেকে অডিও আলাদা করা এমপি৪ ফাইল ডাউনলোড করার তুলনায় ফাইলের আকার উল্লেখযোগ্যভাবে হ্রাস করে।
-                    </p>
-                    <p>এটি বিশেষত সেই ব্যবহারকারীদের জন্য উপযোগী যারা মোবাইল ডিভাইসে সঙ্গীত বা পডকাস্ট শোনেন এবং স্টোরেজ
-                        স্পেস সংরক্ষণ করতে চান।</p>
-                </div>
-            </section>
-            <section class="y2mate-content-pro d-flex">
-                <div class="col-sm-12">
-                    <h2>এমপি৩ এবং এমপি৪ এর মধ্যে পার্থক্য</h2>
-                    <p>এমপি৩ ফাইলগুলিতে শুধুমাত্র অডিও থাকে, যখন এমপি৪ ফাইলগুলিতে ভিডিও এবং অডিও উভয়ই অন্তর্ভুক্ত থাকে।
-                    </p>
-                    <p>আপনার যদি ভিডিও বিষয়বস্তু দেখার প্রয়োজন হয়, তবে আপনার এমপি৩ অডিও এক্সট্র্যাক্ট করার পরিবর্তে
-                        <a href="/bn/youtube-to-mp4">ইউটিউব থেকে এমপি৪</a> পেজটি ব্যবহার করা উচিত।</p>
-                </div>
-            </section>
-            <section class="y2mate-content-pro d-flex">
-                <div class="col-sm-12">
-                    <h2>অডিও বা ভিডিও ডাউনলোডের মধ্যে নির্বাচন করা</h2>
-                    <p>আপনার যদি অডিও বা ভিডিওর প্রয়োজন হয় সে সম্পর্কে আপনি যদি অনিশ্চিত হন, তবে আপনি উপলব্ধ ডাউনলোড
-                        বিকল্পগুলি অন্বেষণ করতে <a href="/bn/">ডাউনলোড ভিডিও ইউটিউব</a> পেজটি দেখতে পারেন।</p>
-                </div>
-            </section>
-
-            <!-- Why Choose Section -->
-            <section class="y2mate-instruction-pro">
-                <div class="y2mate-in-ad-pro">
-                    <h2>ইউটিউব থেকে এমপি৩ রূপান্তরের জন্য কেন Y2Mate বেছে নেবেন</h2>
-                    <p>অনেক ইউটিউব থেকে এমপি৩ কনভার্টার সঠিকভাবে অডিও এক্সট্র্যাক্ট করতে ব্যর্থ হয়, যার ফলে নিম্ন মানের
-                        বা অসম্পূর্ণ ফাইল তৈরি হয়। Y2Mate সামঞ্জস্যপূর্ণ অডিও মানের সাথে নির্ভরযোগ্য এমপি৩
-                        এক্সট্র্যাকশন প্রদান করে।</p>
-                    <ul>
-                        <li>উচ্চ-মানের অডিও এক্সট্র্যাকশন – মূল অডিওর গুণমান সংরক্ষণ করে</li>
-                        <li>একাধিক বিটরেট বিকল্প – 128kbps থেকে 320kbps পর্যন্ত বেছে নিন</li>
-                        <li>দ্রুত অডিও প্রসেসিং – যেকোনো ইউটিউব ভিডিও থেকে দ্রুত অডিও এক্সট্র্যাক্ট করুন</li>
-                        <li>কোনো সফ্টওয়্যার প্রয়োজন নেই – আপনার ব্রাউজারে সম্পূর্ণরূপে কাজ করে</li>
-                        <li>সঙ্গীত এবং পডকাস্টের জন্য অপ্টিমাইজ করা – অফলাইন শোনার জন্য আদর্শ</li>
-                    </ul>
-                </div>
-            </section>
-
-            <!-- Instructions Section -->
-            <section class="y2mate-instruction-pro">
-                <div class="y2mate-in-ad-pro">
-                    <h2>ইউটিউব ভিডিও থেকে কীভাবে এমপি৩ হিসেবে অডিও এক্সট্র্যাক্ট করবেন</h2>
-                    <ol>
-                        <li>আপনি যে অডিওটি এক্সট্র্যাক্ট করতে চান সেই ইউটিউব ভিডিও লিঙ্কটি অনুলিপি করুন।</li>
-                        <li>এই পেজের ইনপুট ফিল্ডে লিঙ্কটি পেস্ট করুন।</li>
-                        <li>ভিডিওর অডিও স্ট্রিম বিশ্লেষণ করতে স্টার্ট বোতামে ক্লিক করুন।</li>
-                        <li>আপনার পছন্দের এমপি৩ বিটরেট নির্বাচন করুন এবং আপনার ডিভাইসে অডিও ফাইলটি ডাউনলোড করুন।</li>
-                    </ol>
-                    <p><em>সম্পূর্ণ অডিও এক্সট্র্যাকশন প্রক্রিয়াটি কোনো সফ্টওয়্যার ইনস্টলেশনের প্রয়োজন ছাড়াই আপনার
-                            ব্রাউজারে চলে।</em></p>
-                </div>
-            </section>
-
-            <!-- FAQs Section -->
-            <section class="yt-content">
-                <h2>ইউটিউব থেকে এমপি৩ সম্পর্কে প্রায়শই জিজ্ঞাসিত প্রশ্নাবলী</h2>
-                <div class="download-uses">
-                    <div class="guide-data">
-                        <h3>ইউটিউব থেকে এমপি৩ রূপান্তর কী করে?</h3>
-                        <p>এটি একটি ইউটিউব ভিডিও থেকে অডিও স্ট্রিম এক্সট্র্যাক্ট করে এবং অফলাইন শোনার জন্য এটি একটি
-                            এমপি৩ ফাইল হিসেবে সংরক্ষণ করে।</p>
-                    </div>
-                    <div class="guide-data">
-                        <h3>আমার কোন এমপি৩ গুণমান বেছে নেওয়া উচিত?</h3>
-                        <p>নিম্ন বিটরেটগুলি বক্তৃতার জন্য উপযুক্ত, যখন উচ্চ বিটরেটগুলি সঙ্গীত এবং বিস্তারিত অডিওর জন্য
-                            আরও ভাল শব্দ গুণমান প্রদান করে।</p>
-                    </div>
-                    <div class="guide-data">
-                        <h3>এমপি৩ কি ভিডিও থেকে সম্পূর্ণ অডিও অন্তর্ভুক্ত করে?</h3>
-                        <p>হ্যাঁ। রূপান্তরিত এমপি৩ মূল ভিডিও থেকে সম্পূর্ণ অডিও ট্র্যাক ধারণ করে।</p>
-                    </div>
-                    <div class="guide-data">
-                        <h3>আমি কি দীর্ঘ ইউটিউব ভিডিওকে এমপি৩-তে রূপান্তর করতে পারি?</h3>
-                        <p>হ্যাঁ। অডিও এক্সট্র্যাকশন দীর্ঘ ভিডিওর সাথে কাজ করে যতক্ষণ পর্যন্ত উৎস ভিডিওটি পাবলিক বা
-                            আনলিস্টেড থাকে।</p>
-                    </div>
-                    <div class="guide-data">
-                        <h3>এমপি৩ রূপান্তর কি অনলাইনে করা হয়?</h3>
-                        <p>হ্যাঁ। সম্পূর্ণ প্রক্রিয়াটি কোনো সফ্টওয়্যার ইনস্টল না করেই আপনার ব্রাউজারে চলে।</p>
-                    </div>
-                    <div class="guide-data">
-                        <h3>ব্যক্তিগত ইউটিউব ভিডিও কি এমপি৩-তে রূপান্তর করা যায়?</h3>
-                        <p>না। ব্যক্তিগত ভিডিওগুলি সিস্টেম দ্বারা অ্যাক্সেস বা প্রসেস করা যায় না।</p>
-                    </div>
-                </div>
-            </section>
+                <!-- Video Detail Area -->
+                <div id="content-area"></div>
+            </div>
         </div>
+    </section>
+
+    <!-- Search Results Section -->
+    <section id="search-results-section" class="search-results-section" style="display: none;">
+        <div id="search-results-container"></div>
+    </section>
+
+    <!-- Content Sections -->
+    <section class="y2mate-content-pro d-flex">
+        <div class="col-sm-12">
+            <h2>Y2Mate-এ ইউটিউব থেকে এমপি৩ কী?</h2>
+            <p><strong>ইউটিউব থেকে এমপি৩</strong> পেজটি <a href="/bn/">Y2Mate</a> থেকে বিশেষভাবে ইউটিউব ভিডিও থেকে অডিও এক্সট্র্যাক্ট করে এমপি৩ ফাইল হিসেবে সংরক্ষণ করার জন্য ডিজাইন করা হয়েছে।</p>
+            <p>এই পেজটি ভিডিওর ভিজ্যুয়ালের উপর ফোকাস করে না। পরিবর্তে, এটি শুধুমাত্র অডিও স্ট্রিম প্রসেস করে অফলাইন শোনার ব্যবহারের ক্ষেত্রে সমর্থন করে।</p>
+        </div>
+    </section>
+    <section class="y2mate-content-pro d-flex">
+        <div class="col-sm-12">
+            <h2>কখন আপনার ইউটিউব থেকে এমপি৩ ব্যবহার করা উচিত?</h2>
+            <p>ইউটিউব থেকে এমপি৩ সঙ্গীত ভিডিও, পডকাস্ট, বক্তৃতা, সাক্ষাৎকার এবং দীর্ঘ ফর্মের বিষয়বস্তুর জন্য উপযুক্ত যেখানে ব্যবহারকারীদের ভিডিওর পরিবর্তে শুধুমাত্র অডিও প্রয়োজন।</p>
+            <p>শুধুমাত্র অডিও এক্সট্র্যাক্ট করার মাধ্যমে, এমপি৩ ফাইলগুলি ভিডিও ফাইলের চেয়ে উল্লেখযোগ্যভাবে ছোট হয়, যা মোবাইল ডিভাইসে সংরক্ষণ এবং প্লে করা সহজ করে তোলে।</p>
+        </div>
+    </section>
+    <section class="y2mate-content-pro d-flex">
+        <div class="col-sm-12">
+            <h2>ইউটিউব থেকে অডিও এক্সট্র্যাক্ট করার সময় সাধারণ সমস্যা</h2>
+            <p>অনেক ইউটিউব থেকে এমপি৩ টুল দীর্ঘ ভিডিও, একাধিক অডিও স্ট্রিম সহ ভিডিও, বা অসামঞ্জস্যপূর্ণ অডিও মানের সাথে লড়াই করে।</p>
+            <p>ফলস্বরূপ, এমপি৩ ফাইলগুলিতে শব্দ, অনুপস্থিত অংশ বা ভুল সময়কাল থাকতে পারে।</p>
+        </div>
+    </section>
+    <section class="y2mate-content-pro d-flex">
+        <div class="col-sm-12">
+            <h2>টুলটি কীভাবে এমপি৩ ফাইল প্রসেস এবং জেনারেট করে</h2>
+            <p>যখন আপনি একটি ইউটিউব ভিডিও লিঙ্ক পেস্ট করেন, তখন সিস্টেমটি মূল অডিও স্ট্রিম বিশ্লেষণ করে এবং একটি সংশ্লিষ্ট এমপি৩ ফাইল তৈরি করে।</p>
+            <p>অডিওর গুণমান উৎস ভিডিওর উপর নির্ভর করে। যখন উপলব্ধ থাকে, তখন টুলটি ডাউনলোডের জন্য উপযুক্ত বিটরেট বিকল্পগুলি প্রদর্শন করে।</p>
+        </div>
+    </section>
+    <section class="y2mate-content-pro d-flex">
+        <div class="col-sm-12">
+            <h2>কেন ভিডিও ডাউনলোড করার চেয়ে অডিও এক্সট্র্যাক্ট করা বেশি কার্যকর</h2>
+            <p>ভিডিও থেকে অডিও আলাদা করা এমপি৪ ফাইল ডাউনলোড করার তুলনায় ফাইলের আকার উল্লেখযোগ্যভাবে হ্রাস করে।</p>
+            <p>এটি বিশেষত সেই ব্যবহারকারীদের জন্য উপযোগী যারা মোবাইল ডিভাইসে সঙ্গীত বা পডকাস্ট শোনেন এবং স্টোরেজ স্পেস সংরক্ষণ করতে চান।</p>
+        </div>
+    </section>
+    <section class="y2mate-content-pro d-flex">
+        <div class="col-sm-12">
+            <h2>এমপি৩ এবং এমপি৪ এর মধ্যে পার্থক্য</h2>
+            <p>এমপি৩ ফাইলগুলিতে শুধুমাত্র অডিও থাকে, যখন এমপি৪ ফাইলগুলিতে ভিডিও এবং অডিও উভয়ই অন্তর্ভুক্ত থাকে।</p>
+            <p>আপনার যদি ভিডিও বিষয়বস্তু দেখার প্রয়োজন হয়, তবে আপনার এমপি৩ অডিও এক্সট্র্যাক্ট করার পরিবর্তে <a href="/bn/youtube-to-mp4">ইউটিউব থেকে এমপি৪</a> পেজটি ব্যবহার করা উচিত।</p>
+        </div>
+    </section>
+    <section class="y2mate-content-pro d-flex">
+        <div class="col-sm-12">
+            <h2>অডিও বা ভিডিও ডাউনলোডের মধ্যে নির্বাচন করা</h2>
+            <p>আপনার যদি অডিও বা ভিডিওর প্রয়োজন হয় সে সম্পর্কে আপনি যদি অনিশ্চিত হন, তবে আপনি উপলব্ধ ডাউনলোড বিকল্পগুলি অন্বেষণ করতে <a href="/bn/">ডাউনলোড ভিডিও ইউটিউব</a> পেজটি দেখতে পারেন।</p>
+        </div>
+    </section>
+
+    <!-- Why Choose Section -->
+    <section class="y2mate-instruction-pro">
+        <div class="y2mate-in-ad-pro">
+            <h2>ইউটিউব থেকে এমপি৩ রূপান্তরের জন্য কেন Y2Mate বেছে নেবেন</h2>
+            <p>অনেক ইউটিউব থেকে এমপি৩ কনভার্টার সঠিকভাবে অডিও এক্সট্র্যাক্ট করতে ব্যর্থ হয়, যার ফলে নিম্ন মানের বা অসম্পূর্ণ ফাইল তৈরি হয়। Y2Mate সামঞ্জস্যপূর্ণ অডিও মানের সাথে নির্ভরযোগ্য এমপি৩ এক্সট্র্যাকশন প্রদান করে।</p>
+            <ul>
+                <li>উচ্চ-মানের অডিও এক্সট্র্যাকশন – মূল অডিওর গুণমান সংরক্ষণ করে</li>
+                <li>একাধিক বিটরেট বিকল্প – 128kbps থেকে 320kbps পর্যন্ত বেছে নিন</li>
+                <li>দ্রুত অডিও প্রসেসিং – যেকোনো ইউটিউব ভিডিও থেকে দ্রুত অডিও এক্সট্র্যাক্ট করুন</li>
+                <li>কোনো সফ্টওয়্যার প্রয়োজন নেই – আপনার ব্রাউজারে সম্পূর্ণরূপে কাজ করে</li>
+                <li>সঙ্গীত এবং পডকাস্টের জন্য অপ্টিমাইজ করা – অফলাইন শোনার জন্য আদর্শ</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Instructions Section -->
+    <section class="y2mate-instruction-pro">
+        <div class="y2mate-in-ad-pro">
+            <h2>ইউটিউব ভিডিও থেকে কীভাবে এমপি৩ হিসেবে অডিও এক্সট্র্যাক্ট করবেন</h2>
+            <ol>
+                <li>আপনি যে অডিওটি এক্সট্র্যাক্ট করতে চান সেই ইউটিউব ভিডিও লিঙ্কটি অনুলিপি করুন।</li>
+                <li>এই পেজের ইনপুট ফিল্ডে লিঙ্কটি পেস্ট করুন।</li>
+                <li>ভিডিওর অডিও স্ট্রিম বিশ্লেষণ করতে স্টার্ট বোতামে ক্লিক করুন।</li>
+                <li>আপনার পছন্দের এমপি৩ বিটরেট নির্বাচন করুন এবং আপনার ডিভাইসে অডিও ফাইলটি ডাউনলোড করুন।</li>
+            </ol>
+            <p><em>সম্পূর্ণ অডিও এক্সট্র্যাকশন প্রক্রিয়াটি কোনো সফ্টওয়্যার ইনস্টলেশনের প্রয়োজন ছাড়াই আপনার ব্রাউজারে চলে।</em></p>
+        </div>
+    </section>
+
+    <!-- FAQs Section -->
+    <section class="yt-content">
+        <h2>ইউটিউব থেকে এমপি৩ সম্পর্কে প্রায়শই জিজ্ঞাসিত প্রশ্নাবলী</h2>
+        <div class="download-uses">
+            <div class="guide-data">
+                <h3>ইউটিউব থেকে এমপি৩ রূপান্তর কী করে?</h3>
+                <p>এটি একটি ইউটিউব ভিডিও থেকে অডিও স্ট্রিম এক্সট্র্যাক্ট করে এবং অফলাইন শোনার জন্য এটি একটি এমপি৩ ফাইল হিসেবে সংরক্ষণ করে।</p>
+            </div>
+            <div class="guide-data">
+                <h3>আমার কোন এমপি৩ গুণমান বেছে নেওয়া উচিত?</h3>
+                <p>নিম্ন বিটরেটগুলি বক্তৃতার জন্য উপযুক্ত, যখন উচ্চ বিটরেটগুলি সঙ্গীত এবং বিস্তারিত অডিওর জন্য আরও ভাল শব্দ গুণমান প্রদান করে।</p>
+            </div>
+            <div class="guide-data">
+                <h3>এমপি৩ কি ভিডিও থেকে সম্পূর্ণ অডিও অন্তর্ভুক্ত করে?</h3>
+                <p>হ্যাঁ। রূপান্তরিত এমপি৩ মূল ভিডিও থেকে সম্পূর্ণ অডিও ট্র্যাক ধারণ করে।</p>
+            </div>
+            <div class="guide-data">
+                <h3>আমি কি দীর্ঘ ইউটিউব ভিডিওকে এমপি৩-তে রূপান্তর করতে পারি?</h3>
+                <p>হ্যাঁ। অডিও এক্সট্র্যাকশন দীর্ঘ ভিডিওর সাথে কাজ করে যতক্ষণ পর্যন্ত উৎস ভিডিওটি পাবলিক বা আনলিস্টেড থাকে।</p>
+            </div>
+            <div class="guide-data">
+                <h3>এমপি৩ রূপান্তর কি অনলাইনে করা হয়?</h3>
+                <p>হ্যাঁ। সম্পূর্ণ প্রক্রিয়াটি কোনো সফ্টওয়্যার ইনস্টল না করেই আপনার ব্রাউজারে চলে।</p>
+            </div>
+            <div class="guide-data">
+                <h3>ব্যক্তিগত ইউটিউব ভিডিও কি এমপি৩-তে রূপান্তর করা যায়?</h3>
+                <p>না। ব্যক্তিগত ভিডিওগুলি সিস্টেম দ্বারা অ্যাক্সেস বা প্রসেস করা যায় না।</p>
+            </div>
+        </div>
+    </section>
+</div>
 
     </main>
 
     <footer class="footer">
-        <p>© 2026 y2mate</p>
-        <ul class="footer_nav">
-            <li class="fnav-menu">
-                <a href="/about-us">সম্পর্কে</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="/contact">যোগাযোগ</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="/terms-condition">পরিষেবার শর্তাবলী</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="/privacy-policy">গোপনীয়তা নীতি</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="/copyright-claims">কপিরাইট দাবি</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="/bn/youtube-short-downloader">ইউটিউব শর্টস ডাউনলোডার</a>
-            </li>
-        </ul>
-    </footer>
+    <p>© 2026 y2mate</p>
+    <ul class="footer_nav">
+        <li class="fnav-menu">
+            <a href="/about-us">সম্পর্কে</a>
+        </li>
+        <li class="fnav-menu">
+            <a href="/contact">যোগাযোগ</a>
+        </li>
+        <li class="fnav-menu">
+            <a href="/terms-condition">পরিষেবার শর্তাবলী</a>
+        </li>
+        <li class="fnav-menu">
+            <a href="/privacy-policy">গোপনীয়তা নীতি</a>
+        </li>
+        <li class="fnav-menu">
+            <a href="/copyright-claims">কপিরাইট দাবি</a>
+        </li>
+        <li class="fnav-menu">
+            <a href="/bn/youtube-short-downloader">ইউটিউব শর্টস ডাউনলোডার</a>
+        </li>
+    </ul>
+</footer>
 
 
     <!-- Conversion Modal Wrapper -->
     <div id="progressBarWrapper"></div>
+
+    <!-- Ko-fi Support Widget -->
+    <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+    <script>
+      kofiWidgetOverlay.draw('metaconvert', {
+        'type': 'floating-chat',
+        'floating-chat.donateButton.text': 'Support me',
+        'floating-chat.donateButton.background-color': '#00b9fe',
+        'floating-chat.donateButton.text-color': '#fff'
+      });
+    </script>
 </body>
 
 </html>

@@ -8,9 +8,8 @@
 
     <!-- SEO Metadata -->
     <title>YouTube sang MP3 – Trích xuất Âm thanh từ Video YouTube | Y2Mate</title>
-    <meta name="description"
-        content="Trích xuất âm thanh từ video YouTube dưới dạng MP3 với Y2Mate. Chuyển đổi video YouTube sang MP3 để nghe ngoại tuyến — được tối ưu hóa cho nhạc, podcast và video dài.">
-
+    <meta name="description" content="Trích xuất âm thanh từ video YouTube dưới dạng MP3 với Y2Mate. Chuyển đổi video YouTube sang MP3 để nghe ngoại tuyến — được tối ưu hóa cho nhạc, podcast và video dài.">
+    
     <link rel="canonical" href="https://y2mate.vc/vi/youtube-to-mp3">
 
     <!-- hreflang tags for multilingual SEO -->
@@ -37,8 +36,7 @@
 
     <!-- Schema.org markup -->
     <meta itemprop="name" content="Y2mate - Công cụ chuyển đổi YouTube sang MP3" />
-    <meta itemprop="description"
-        content="Y2mate sang MP3: 128/192/320kbps. Nhanh, miễn phí, không giới hạn, không cần ứng dụng.">
+    <meta itemprop="description" content="Y2mate sang MP3: 128/192/320kbps. Nhanh, miễn phí, không giới hạn, không cần ứng dụng.">
     <meta itemprop="inLanguage" content="vi" />
 
     <!-- Open Graph / Facebook -->
@@ -46,8 +44,7 @@
     <meta property="og:site_name" content="Y2Mate" />
     <meta property="og:locale" content="vi_VN" />
     <meta property="og:title" content="Y2mate - Công cụ chuyển đổi YouTube sang MP3 miễn phí" />
-    <meta property="og:description"
-        content="Y2mate sang MP3: 128/192/320kbps. Nhanh, miễn phí, không giới hạn, không cần ứng dụng." />
+    <meta property="og:description" content="Y2mate sang MP3: 128/192/320kbps. Nhanh, miễn phí, không giới hạn, không cần ứng dụng." />
     <meta property="og:image" content="https://y2mate.vc/logo.png" />
     <meta property="og:url" content="https://y2mate.vc/vi/youtube-to-mp3" />
 
@@ -67,7 +64,7 @@
     <!-- Google Analytics: Lazy loaded via analytics-loader.ts for better performance -->
 
     <!-- Critical: Set format and auto-submit preferences before render to prevent FOUC -->
-    <script>(function () { var f = 'mp4', a = 'false'; try { var p = JSON.parse(localStorage.getItem('y2mate_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat; var s = localStorage.getItem('y2mate_auto_submit'); if (s) a = s; } catch (e) { } document.documentElement.dataset.format = f; document.documentElement.dataset.autoSubmit = a; })()</script>
+    <script>(function(){var f='mp4',a='false';try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p&&p.selectedFormat)f=p.selectedFormat;var s=localStorage.getItem('y2mate_auto_submit');if(s)a=s;}catch(e){}document.documentElement.dataset.format=f;document.documentElement.dataset.autoSubmit=a;})()</script>
 
     <!-- Critical: Hide auto-submit tooltip before CSS loads -->
     <style>
@@ -78,7 +75,7 @@
     </style>
 
     <!-- Critical: Prevent default form submit before app init (avoid /search 404) -->
-    <script>(function () { document.addEventListener('submit', function (event) { var target = event.target; if (target && target.id === 'downloadForm') { event.preventDefault(); } }, true); })();</script>
+    <script>(function(){document.addEventListener('submit',function(event){var target=event.target;if(target&&target.id==='downloadForm'){event.preventDefault();}},true);})();</script>
 
     <!-- Critical CSS imported via Vite -->
     <script type="module" src="/src/main.ts"></script>
@@ -215,35 +212,125 @@
 
 <body>
     <header class="nav-header">
-        <div class="container">
-            <div class="nav_head">
-                <div class="navbar-logo">
-                    <a href="/vi/">
-                        <img height="46px" width="46px" src="/logo.png" alt="Y2Mate logo">
-                        <span class="logo-name">Y2mate</span>
-                    </a>
-                </div>
-                <button type="button" class="navbar-toggler" id="mobileMenuToggle" aria-label="Mở menu điều hướng">
-                    <span class="toggle-icon"></span>
-                    <span class="toggle-icon"></span>
-                    <span class="toggle-icon"></span>
-                </button>
+    <div class="container">
+        <div class="nav_head">
+            <div class="navbar-logo">
+                <a href="/vi/">
+                    <img height="46px" width="46px" src="/logo.png" alt="Y2Mate logo">
+                    <span class="logo-name">Y2mate</span>
+                </a>
             </div>
-            <div class="header-menu">
-                <ul class="menu-navbar">
+            <button type="button" class="navbar-toggler" id="mobileMenuToggle" aria-label="Mở menu điều hướng">
+                <span class="toggle-icon"></span>
+                <span class="toggle-icon"></span>
+                <span class="toggle-icon"></span>
+            </button>
+        </div>
+        <div class="header-menu">
+            <ul class="menu-navbar">
+              
+                <li class="navbar">
+                    <a href="/vi/youtube-to-mp4">Trình chuyển đổi YouTube sang MP4</a>
+                </li>
+                <li class="navbar">
+                    <a href="/vi/youtube-to-mp3">Trình chuyển đổi YouTube sang MP3</a>
+                </li>
+                <li class="navbar language">
+                    <a href="/">
+                        Tiếng Việt<span class="shape"></span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <ul class="lang-menu">
+                            <li>
+                                <a data-lang="en" href="/youtube-to-mp3">English</a>
+                            </li>
+                            <li>
+                                <a data-lang="ar" href="/ar/youtube-to-mp3">العربية</a>
+                            </li>
+                            <li>
+                                <a data-lang="bn" href="/bn/youtube-to-mp3">বাংলা</a>
+                            </li>
+                            <li>
+                                <a data-lang="de" href="/de/youtube-to-mp3">Deutsch</a>
+                            </li>
+                            <li>
+                                <a data-lang="es" href="/es/youtube-to-mp3">Español</a>
+                            </li>
+                            <li>
+                                <a data-lang="fr" href="/fr/youtube-to-mp3">Français</a>
+                            </li>
+                            <li>
+                                <a data-lang="hi" href="/hi/youtube-to-mp3">हिन्दी</a>
+                            </li>
+                            <li>
+                                <a data-lang="id" href="/id/youtube-to-mp3">Indonesia</a>
+                            </li>
+                            <li>
+                                <a data-lang="it" href="/it/youtube-to-mp3">Italiano</a>
+                            </li>
+                            <li>
+                                <a data-lang="ja" href="/ja/youtube-to-mp3">日本語</a>
+                            </li>
+                            <li>
+                                <a data-lang="ko" href="/ko/youtube-to-mp3">한국어</a>
+                            </li>
+                            <li>
+                                <a data-lang="my" href="/my/youtube-to-mp3">မြန်မာ</a>
+                            </li>
+                            <li>
+                                <a data-lang="ms" href="/ms/youtube-to-mp3">Melayu</a>
+                            </li>
+                            <li>
+                                <a data-lang="pt" href="/pt/youtube-to-mp3">Português</a>
+                            </li>
+                            <li>
+                                <a data-lang="ru" href="/ru/youtube-to-mp3">Русский</a>
+                            </li>
+                            <li>
+                                <a data-lang="th" href="/th/youtube-to-mp3">ไทย</a>
+                            </li>
+                            <li>
+                                <a data-lang="tr" href="/tr/youtube-to-mp3">Türkçe</a>
+                            </li>
+                            <li>
+                                <a data-lang="ur" href="/ur/youtube-to-mp3">اردو</a>
+                            </li>
+                            <li>
+                                <a data-lang="vi" href="/vi/youtube-to-mp3">Tiếng Việt</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
 
-                    <li class="navbar">
-                        <a href="/vi/youtube-to-mp4">Trình chuyển đổi YouTube sang MP4</a>
-                    </li>
-                    <li class="navbar">
-                        <a href="/vi/youtube-to-mp3">Trình chuyển đổi YouTube sang MP3</a>
-                    </li>
-                    <li class="navbar language">
-                        <a href="/">
-                            Tiếng Việt<span class="shape"></span>
-                        </a>
-                        <div class="dropdown-menu">
-                            <ul class="lang-menu">
+        <!-- Mobile Menu Overlay -->
+        <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+            <div class="mobile-menu-content">
+                <div class="mobile-header-top">
+                    <a href="/vi/">
+                        <div class="mobile-logo">
+                            <img height="36px" width="36px" src="/logo.png" alt="Y2Mate logo">
+                            <span class="logo-name">Y2mate</span>
+                        </div>
+                    </a>
+                    <button type="button" class="mobile-close-btn" id="mobileCloseBtn" aria-label="Đóng menu điều hướng">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <nav class="mobile-nav">
+                    <ul class="mobile-menu">
+                        <li><a href="/vi/">Trình tải xuống YouTube</a></li>
+                        <li><a href="/vi/youtube-to-mp4">Trình chuyển đổi YouTube sang MP4</a></li>
+                        <li><a href="/vi/youtube-to-mp3">Trình chuyển đổi YouTube sang MP3</a></li>
+                        <li><a href="/vi/youtube-short-downloader">Trình tải xuống YouTube Shorts</a></li>
+                        <li class="mobile-language">
+                            <button type="button" class="mobile-language-toggle" aria-expanded="false">
+                                Tiếng Việt<span class="shape"></span>
+                            </button>
+                            <ul class="mobile-lang-menu">
                                 <li>
                                     <a data-lang="en" href="/youtube-to-mp3">English</a>
                                 </li>
@@ -302,376 +389,275 @@
                                     <a data-lang="vi" href="/vi/youtube-to-mp3">Tiếng Việt</a>
                                 </li>
                             </ul>
-                        </div>
-                    </li>
-                </ul>
+                        </li>
+                    </ul>
+                </nav>
             </div>
-
-            <!-- Mobile Menu Overlay -->
-            <div class="mobile-menu-overlay" id="mobileMenuOverlay">
-                <div class="mobile-menu-content">
-                    <div class="mobile-header-top">
-                        <a href="/vi/">
-                            <div class="mobile-logo">
-                                <img height="36px" width="36px" src="/logo.png" alt="Y2Mate logo">
-                                <span class="logo-name">Y2mate</span>
-                            </div>
-                        </a>
-                        <button type="button" class="mobile-close-btn" id="mobileCloseBtn"
-                            aria-label="Đóng menu điều hướng">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" />
-                            </svg>
-                        </button>
-                    </div>
-                    <nav class="mobile-nav">
-                        <ul class="mobile-menu">
-                            <li><a href="/vi/">Trình tải xuống YouTube</a></li>
-                            <li><a href="/vi/youtube-to-mp4">Trình chuyển đổi YouTube sang MP4</a></li>
-                            <li><a href="/vi/youtube-to-mp3">Trình chuyển đổi YouTube sang MP3</a></li>
-                            <li><a href="/vi/youtube-short-downloader">Trình tải xuống YouTube Shorts</a></li>
-                            <li class="mobile-language">
-                                <button type="button" class="mobile-language-toggle" aria-expanded="false">
-                                    Tiếng Việt<span class="shape"></span>
-                                </button>
-                                <ul class="mobile-lang-menu">
-                                    <li>
-                                        <a data-lang="en" href="/youtube-to-mp3">English</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="ar" href="/ar/youtube-to-mp3">العربية</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="bn" href="/bn/youtube-to-mp3">বাংলা</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="de" href="/de/youtube-to-mp3">Deutsch</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="es" href="/es/youtube-to-mp3">Español</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="fr" href="/fr/youtube-to-mp3">Français</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="hi" href="/hi/youtube-to-mp3">हिन्दी</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="id" href="/id/youtube-to-mp3">Indonesia</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="it" href="/it/youtube-to-mp3">Italiano</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="ja" href="/ja/youtube-to-mp3">日本語</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="ko" href="/ko/youtube-to-mp3">한국어</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="my" href="/my/youtube-to-mp3">မြန်မာ</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="ms" href="/ms/youtube-to-mp3">Melayu</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="pt" href="/pt/youtube-to-mp3">Português</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="ru" href="/ru/youtube-to-mp3">Русский</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="th" href="/th/youtube-to-mp3">ไทย</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="tr" href="/tr/youtube-to-mp3">Türkçe</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="ur" href="/ur/youtube-to-mp3">اردو</a>
-                                    </li>
-                                    <li>
-                                        <a data-lang="vi" href="/vi/youtube-to-mp3">Tiếng Việt</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-            <!-- End Mobile Menu Overlay -->
         </div>
-    </header>
+        <!-- End Mobile Menu Overlay -->
+    </div>
+</header>
 
 
     <main>
-        <div class="container">
-            <section class="y2mate-download-pro">
-                <div class="y2mate-search-form-pro d-flex">
-                    <div class="form-wrap">
-                        <h1 class="y2mate_title-pro">Y2Mate – YouTube sang MP3</h1>
-                        <form id="downloadForm" class="search_form" method="POST" action="/search/">
-                            <div class="input-container">
-                                <div class=" input-wrapper">
-                                    <input id="videoUrl" class="y2mate_query-pro keyword" type="text" name="q"
-                                        placeholder="Tìm kiếm hoặc dán liên kết tại đây..." autocomplete="off"
-                                        autofocus="" role="combobox" aria-autocomplete="list"
-                                        aria-controls="suggestion-container" aria-expanded="false">
-                                    <button id="input-action-button" type="button" class="input-action-btn"
-                                        data-action="paste" aria-label="Dán từ khay nhớ tạm">
-                                        <svg class="paste-icon" xmlns="http://www.w3.org/2000/svg" width="18"
-                                            height="18" viewBox="0 0 24 24">
-                                            <path fill="currentColor"
-                                                d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm7 16H5V5h2v3h10V5h2v14z" />
-                                        </svg>
-                                        <svg class="clear-icon" xmlns="http://www.w3.org/2000/svg" width="18"
-                                            height="18" viewBox="0 0 24 24">
-                                            <path fill="currentColor"
-                                                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                            <button id="submit" type="submit" name="form_submit" class="submit-btn" aria-label="Search">
-                                <div class="converter-btn">Bắt đầu</div>
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                    width="14px" height="14px" fill="#fff" id="Layer_1"
-                                    style="enable-background:new 0 0 16 16;" version="1.1" viewBox="0 0 16 16"
-                                    xml:space="preserve">
-                                    <path
-                                        d="M15.375,7L10,2.54C9.695,2.287,9.461,2,9,2C8.375,2,8,2.516,8,3v3H1C0.45,6,0,6.45,0,7v2c0,0.55,0.45,1,1,1h7v3  c0,0.484,0.375,1,1,1c0.461,0,0.695-0.287,1-0.54L15.375,9C15.758,8.688,16,8.445,16,8S15.758,7.313,15.375,7z">
-                                    </path>
+    <div class="container">
+    <section class="y2mate-download-pro">
+        <div class="y2mate-search-form-pro d-flex">
+            <div class="form-wrap">
+                <h1 class="y2mate_title-pro">Y2Mate – YouTube sang MP3</h1>
+                <form id="downloadForm" class="search_form" method="POST" action="/search/">
+                    <div class="input-container">
+                        <div class=" input-wrapper">
+                            <input id="videoUrl" class="y2mate_query-pro keyword" type="text" name="q"
+                                placeholder="Tìm kiếm hoặc dán liên kết tại đây..." autocomplete="off" autofocus=""
+                                role="combobox" aria-autocomplete="list" aria-controls="suggestion-container" aria-expanded="false">
+                            <button id="input-action-button" type="button" class="input-action-btn" data-action="paste"
+                                aria-label="Dán từ khay nhớ tạm">
+                                <svg class="paste-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                    viewBox="0 0 24 24">
+                                    <path fill="currentColor"
+                                        d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm7 16H5V5h2v3h10V5h2v14z" />
+                                </svg>
+                                <svg class="clear-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                    viewBox="0 0 24 24">
+                                    <path fill="currentColor"
+                                        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
                                 </svg>
                             </button>
+                        </div>
+                    </div>
+                    <button id="submit" type="submit" name="form_submit" class="submit-btn" aria-label="Search">
+                        <div class="converter-btn">Bắt đầu</div>
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                            width="14px" height="14px" fill="#fff" id="Layer_1"
+                            style="enable-background:new 0 0 16 16;" version="1.1" viewBox="0 0 16 16"
+                            xml:space="preserve">
+                            <path
+                                d="M15.375,7L10,2.54C9.695,2.287,9.461,2,9,2C8.375,2,8,2.516,8,3v3H1C0.45,6,0,6.45,0,7v2c0,0.55,0.45,1,1,1h7v3  c0,0.484,0.375,1,1,1c0.461,0,0.695-0.287,1-0.54L15.375,9C15.758,8.688,16,8.445,16,8S15.758,7.313,15.375,7z">
+                            </path>
+                        </svg>
+                    </button>
 
-                            <!-- Format Selector -->
-                            <div id="format-selector-container" class="format-selector-wrapper">
-                                <div class="format-selector">
-                                    <!-- Group 1: Format + Quality -->
-                                    <div class="format-quality-group">
-                                        <!-- Format Toggle -->
-                                        <button type="button" class="format-toggle-btn" data-toggle-format>
-                                            <span class="toggle-side" data-format="mp4">
-                                                <span class="format-label">MP4</span>
-                                            </span>
-                                            <span class="toggle-side" data-format="mp3">
-                                                <span class="format-label">MP3</span>
-                                            </span>
-                                        </button>
-                                        <!-- Quality Dropdowns -->
-                                        <div class="quality-selector">
-                                            <!-- MP4 Options -->
-                                            <select id="quality-select-mp4" class="quality-select quality-select--mp4"
-                                                aria-label="Chất lượng video" data-quality-select>
-                                                <option value="mp4-1080">MP4 - 1080p</option>
-                                                <option value="mp4-720" selected>MP4 - 720p</option>
-                                                <option value="mp4-480">MP4 - 480p</option>
-                                                <option value="mp4-360">MP4 - 360p</option>
-                                                <option value="mp4-144">MP4 - 144p</option>
-                                                <option value="webm">WEBM</option>
-                                                <option value="mkv">MKV</option>
-                                            </select>
-                                            <!-- MP3 Options -->
-                                            <select id="quality-select-mp3" class="quality-select quality-select--mp3"
-                                                aria-label="Chất lượng âm thanh" data-quality-select>
-                                                <option value="mp3-320">MP3 - 320kbps</option>
-                                                <option value="mp3-256">MP3 - 256kbps</option>
-                                                <option value="mp3-192">MP3 - 192kbps</option>
-                                                <option value="mp3-128" selected>MP3 - 128kbps</option>
-                                                <option value="ogg">OGG</option>
-                                                <option value="opus">OPUS</option>
-                                                <option value="wav">WAV</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <!-- Group 2: Auto Submit Toggle -->
-                                    <div class="auto-submit-toggle"
-                                        data-tooltip="Tự động submit khi dán URL hoặc từ khóa">
-                                        <strong class="toggle-label">Tự động sumbit</strong>
-                                        <label class="toggle-switch" for="auto-submit-checkbox">
-                                            <input type="checkbox" id="auto-submit-checkbox" data-auto-submit-toggle
-                                                aria-label="Auto submit after selecting format" />
-                                            <span class="toggle-slider"></span>
-                                        </label>
-                                        <span class="custom-tooltip"></span>
-                                    </div>
+                    <!-- Format Selector -->
+                    <div id="format-selector-container" class="format-selector-wrapper">
+                        <div class="format-selector">
+                            <!-- Group 1: Format + Quality -->
+                            <div class="format-quality-group">
+                                <!-- Format Toggle -->
+                                <button type="button" class="format-toggle-btn" data-toggle-format>
+                                    <span class="toggle-side" data-format="mp4">
+                                        <span class="format-label">MP4</span>
+                                    </span>
+                                    <span class="toggle-side" data-format="mp3">
+                                        <span class="format-label">MP3</span>
+                                    </span>
+                                </button>
+                                <!-- Quality Dropdowns -->
+                                <div class="quality-selector">
+                                    <!-- MP4 Options -->
+                                    <select id="quality-select-mp4" class="quality-select quality-select--mp4"
+                                        aria-label="Chất lượng video" data-quality-select>
+                                        <option value="mp4-2160">MP4 - 4K</option>
+                                        <option value="mp4-1440">MP4 - 2K</option>
+                                        <option value="mp4-1080">MP4 - 1080p</option>
+                                        <option value="mp4-720" selected>MP4 - 720p</option>
+                                        <option value="mp4-480">MP4 - 480p</option>
+                                        <option value="mp4-360">MP4 - 360p</option>                                        <option value="mp4-144">MP4 - 144p</option>
+                                        <option value="webm">WEBM</option>
+                                        <option value="mkv">MKV</option>
+                                    </select>
+                                    <!-- MP3 Options -->
+                                    <select id="quality-select-mp3" class="quality-select quality-select--mp3"
+                                        aria-label="Chất lượng âm thanh" data-quality-select>
+                                        <option value="mp3-320">MP3 - 320kbps</option>
+                                        <option value="mp3-256">MP3 - 256kbps</option>
+                                        <option value="mp3-192">MP3 - 192kbps</option>
+                                        <option value="mp3-128" selected>MP3 - 128kbps</option>
+                                        <option value="ogg">OGG</option>
+                                        <option value="opus">OPUS</option>
+                                        <option value="wav">WAV</option>
+                                    </select>
                                 </div>
-                                <script>(function () { try { const preferencesJson = localStorage.getItem('y2mate_format_preferences'); if (preferencesJson) { const preferences = JSON.parse(preferencesJson); const selectElement = preferences.selectedFormat === 'mp4' ? document.getElementById('quality-select-mp4') : document.getElementById('quality-select-mp3'); if (selectElement) { let value; if (preferences.selectedFormat === 'mp4') { const videoQuality = preferences.videoQuality || '720p'; value = (videoQuality === 'webm' || videoQuality === 'mkv') ? videoQuality : `mp4-${videoQuality.replace('p', '')}`; } else { const audioFormat = preferences.audioFormat || 'mp3'; value = (audioFormat === 'mp3') ? `mp3-${preferences.audioBitrate || '128'}` : audioFormat; } selectElement.value = value; } } const autoSubmitValue = localStorage.getItem('y2mate_auto_submit'); const checkbox = document.getElementById('auto-submit-checkbox'); if (checkbox) { checkbox.checked = autoSubmitValue === 'true'; } } catch (error) { console.error('Error syncing UI from localStorage in inline script:', error); } })();</script>
                             </div>
-
-                            <div id="suggestion-container" class="suggesstion-list suggesstion-box"></div>
-                        </form>
-
-                        <!-- Video Detail Area -->
-                        <div id="content-area"></div>
+                            <!-- Group 2: Auto Submit Toggle -->
+                            <div class="auto-submit-toggle"
+                                data-tooltip="Tự động submit khi dán URL hoặc từ khóa">
+                                <strong class="toggle-label">Tự động sumbit</strong>
+                                <label class="toggle-switch" for="auto-submit-checkbox">
+                                    <input type="checkbox" id="auto-submit-checkbox" data-auto-submit-toggle aria-label="Auto submit after selecting format"/>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                                <span class="custom-tooltip"></span>
+                        </div>
                     </div>
-                </div>
-            </section>
+                    <script>(function(){try{const preferencesJson=localStorage.getItem('y2mate_format_preferences');if(preferencesJson){const preferences=JSON.parse(preferencesJson);const selectElement=preferences.selectedFormat==='mp4'?document.getElementById('quality-select-mp4'):document.getElementById('quality-select-mp3');if(selectElement){let value;if(preferences.selectedFormat==='mp4'){const videoQuality=preferences.videoQuality||'720p';value=(videoQuality==='webm'||videoQuality==='mkv')?videoQuality:`mp4-${videoQuality.replace('p','')}`;}else{const audioFormat=preferences.audioFormat||'mp3';value=(audioFormat==='mp3')?`mp3-${preferences.audioBitrate||'128'}`:audioFormat;}selectElement.value=value;}}const autoSubmitValue=localStorage.getItem('y2mate_auto_submit');const checkbox=document.getElementById('auto-submit-checkbox');if(checkbox){checkbox.checked=autoSubmitValue==='true';}}catch(error){console.error('Error syncing UI from localStorage in inline script:',error);}})();</script>
+                    </div>
 
-            <!-- Search Results Section -->
-            <section id="search-results-section" class="search-results-section" style="display: none;">
-                <div id="search-results-container"></div>
-            </section>
+                    <div id="suggestion-container" class="suggesstion-list suggesstion-box"></div>
+                </form>
 
-            <!-- Content Sections -->
-            <section class="y2mate-content-pro d-flex">
-                <div class="col-sm-12">
-                    <h2>YouTube sang MP3 trên Y2Mate là gì?</h2>
-                    <p>Trang <strong>YouTube sang MP3</strong> từ <a href="/vi/">Y2Mate</a> được thiết kế đặc biệt để
-                        trích xuất âm thanh từ video YouTube và lưu dưới dạng tệp MP3.</p>
-                    <p>Trang này không tập trung vào hình ảnh video. Thay vào đó, nó chỉ xử lý luồng âm thanh để hỗ trợ
-                        các trường hợp sử dụng nghe ngoại tuyến.</p>
-                </div>
-            </section>
-            <section class="y2mate-content-pro d-flex">
-                <div class="col-sm-12">
-                    <h2>Khi nào bạn nên sử dụng YouTube sang MP3?</h2>
-                    <p>YouTube sang MP3 phù hợp cho các video ca nhạc, podcast, bài giảng, phỏng vấn và nội dung dài mà
-                        người dùng chỉ cần âm thanh thay vì video.</p>
-                    <p>Bằng cách chỉ trích xuất âm thanh, các tệp MP3 nhỏ hơn đáng kể so với các tệp video, giúp chúng
-                        dễ dàng lưu trữ và phát trên thiết bị di động.</p>
-                </div>
-            </section>
-            <section class="y2mate-content-pro d-flex">
-                <div class="col-sm-12">
-                    <h2>Các vấn đề thường gặp khi trích xuất âm thanh từ YouTube</h2>
-                    <p>Nhiều công cụ YouTube sang MP3 gặp khó khăn với các video dài, video có nhiều luồng âm thanh hoặc
-                        chất lượng âm thanh không nhất quán.</p>
-                    <p>Do đó, các tệp MP3 có thể chứa tiếng ồn, các đoạn bị thiếu hoặc thời lượng không chính xác.</p>
-                </div>
-            </section>
-            <section class="y2mate-content-pro d-flex">
-                <div class="col-sm-12">
-                    <h2>Cách công cụ xử lý và tạo tệp MP3</h2>
-                    <p>Khi bạn dán một liên kết video YouTube, hệ thống sẽ phân tích luồng âm thanh gốc và tạo một tệp
-                        MP3 tương ứng.</p>
-                    <p>Chất lượng âm thanh phụ thuộc vào video nguồn. Khi có sẵn, công cụ sẽ hiển thị các tùy chọn
-                        bitrate phù hợp để tải xuống.</p>
-                </div>
-            </section>
-            <section class="y2mate-content-pro d-flex">
-                <div class="col-sm-12">
-                    <h2>Tại sao trích xuất âm thanh hiệu quả hơn tải xuống video</h2>
-                    <p>Việc tách âm thanh khỏi video giúp giảm đáng kể kích thước tệp so với việc tải xuống các tệp MP4.
-                    </p>
-                    <p>Điều này đặc biệt hữu ích cho những người dùng nghe nhạc hoặc podcast trên thiết bị di động và
-                        muốn tiết kiệm dung lượng lưu trữ.</p>
-                </div>
-            </section>
-            <section class="y2mate-content-pro d-flex">
-                <div class="col-sm-12">
-                    <h2>Sự khác biệt giữa MP3 và MP4</h2>
-                    <p>Tệp MP3 chỉ chứa âm thanh, trong khi tệp MP4 bao gồm cả video và âm thanh.</p>
-                    <p>Nếu bạn cần xem nội dung video, bạn nên sử dụng trang <a href="/vi/youtube-to-mp4">YouTube sang
-                            MP4</a> thay vì trích xuất âm thanh MP3.</p>
-                </div>
-            </section>
-            <section class="y2mate-content-pro d-flex">
-                <div class="col-sm-12">
-                    <h2>Lựa chọn giữa tải xuống âm thanh hoặc video</h2>
-                    <p>Nếu bạn không chắc chắn mình cần âm thanh hay video, bạn có thể truy cập trang <a href="/vi/">Tải
-                            video YouTube</a> để khám phá các tùy chọn tải xuống có sẵn.</p>
-                </div>
-            </section>
-
-            <!-- Why Choose Section -->
-            <section class="y2mate-instruction-pro">
-                <div class="y2mate-in-ad-pro">
-                    <h2>Tại sao chọn Y2Mate để chuyển đổi YouTube sang MP3</h2>
-                    <p>Nhiều công cụ chuyển đổi YouTube sang MP3 không thể trích xuất âm thanh đúng cách, dẫn đến các
-                        tệp chất lượng thấp hoặc không hoàn chỉnh. Y2Mate cung cấp khả năng trích xuất MP3 đáng tin cậy
-                        với chất lượng âm thanh nhất quán.</p>
-                    <ul>
-                        <li>Trích xuất âm thanh chất lượng cao – giữ nguyên chất lượng âm thanh gốc</li>
-                        <li>Nhiều tùy chọn bitrate – chọn từ 128kbps đến 320kbps</li>
-                        <li>Xử lý âm thanh nhanh – trích xuất âm thanh nhanh chóng từ bất kỳ video YouTube nào</li>
-                        <li>Không cần phần mềm – hoạt động hoàn toàn trên trình duyệt của bạn</li>
-                        <li>Tối ưu hóa cho nhạc và podcast – lý tưởng để nghe ngoại tuyến</li>
-                    </ul>
-                </div>
-            </section>
-
-            <!-- Instructions Section -->
-            <section class="y2mate-instruction-pro">
-                <div class="y2mate-in-ad-pro">
-                    <h2>Cách trích xuất âm thanh từ video YouTube dưới dạng MP3</h2>
-                    <ol>
-                        <li>Sao chép liên kết video YouTube chứa âm thanh bạn muốn trích xuất.</li>
-                        <li>Dán liên kết vào trường nhập trên trang này.</li>
-                        <li>Nhấp vào nút bắt đầu để phân tích luồng âm thanh của video.</li>
-                        <li>Chọn bitrate MP3 ưa thích của bạn và tải tệp âm thanh về thiết bị của bạn.</li>
-                    </ol>
-                    <p><em>Toàn bộ quá trình trích xuất âm thanh chạy trên trình duyệt của bạn mà không cần cài đặt bất
-                            kỳ phần mềm nào.</em></p>
-                </div>
-            </section>
-
-            <!-- FAQs Section -->
-            <section class="yt-content">
-                <h2>Câu hỏi thường gặp về YouTube sang MP3</h2>
-                <div class="download-uses">
-                    <div class="guide-data">
-                        <h3>Chuyển đổi YouTube sang MP3 làm gì?</h3>
-                        <p>Nó trích xuất luồng âm thanh từ một video YouTube và lưu nó dưới dạng tệp MP3 để nghe ngoại
-                            tuyến.</p>
-                    </div>
-                    <div class="guide-data">
-                        <h3>Tôi nên chọn chất lượng MP3 nào?</h3>
-                        <p>Bitrate thấp hơn phù hợp cho lời nói, trong khi bitrate cao hơn cung cấp chất lượng âm thanh
-                            tốt hơn cho âm nhạc và âm thanh chi tiết.</p>
-                    </div>
-                    <div class="guide-data">
-                        <h3>MP3 có bao gồm toàn bộ âm thanh từ video không?</h3>
-                        <p>Có. MP3 đã chuyển đổi chứa bản âm thanh hoàn chỉnh từ video gốc.</p>
-                    </div>
-                    <div class="guide-data">
-                        <h3>Tôi có thể chuyển đổi các video YouTube dài sang MP3 không?</h3>
-                        <p>Có. Việc trích xuất âm thanh hoạt động với các video dài miễn là video nguồn ở chế độ công
-                            khai hoặc không công khai.</p>
-                    </div>
-                    <div class="guide-data">
-                        <h3>Việc chuyển đổi MP3 có được thực hiện trực tuyến không?</h3>
-                        <p>Có. Toàn bộ quá trình chạy trên trình duyệt của bạn mà không cần cài đặt bất kỳ phần mềm nào.
-                        </p>
-                    </div>
-                    <div class="guide-data">
-                        <h3>Video YouTube riêng tư có thể được chuyển đổi sang MP3 không?</h3>
-                        <p>Không. Các video riêng tư không thể được truy cập hoặc xử lý bởi hệ thống.</p>
-                    </div>
-                </div>
-            </section>
+                <!-- Video Detail Area -->
+                <div id="content-area"></div>
+            </div>
         </div>
+    </section>
+
+    <!-- Search Results Section -->
+    <section id="search-results-section" class="search-results-section" style="display: none;">
+        <div id="search-results-container"></div>
+    </section>
+
+    <!-- Content Sections -->
+    <section class="y2mate-content-pro d-flex">
+        <div class="col-sm-12">
+            <h2>YouTube sang MP3 trên Y2Mate là gì?</h2>
+            <p>Trang <strong>YouTube sang MP3</strong> từ <a href="/vi/">Y2Mate</a> được thiết kế đặc biệt để trích xuất âm thanh từ video YouTube và lưu dưới dạng tệp MP3.</p>
+            <p>Trang này không tập trung vào hình ảnh video. Thay vào đó, nó chỉ xử lý luồng âm thanh để hỗ trợ các trường hợp sử dụng nghe ngoại tuyến.</p>
+        </div>
+    </section>
+    <section class="y2mate-content-pro d-flex">
+        <div class="col-sm-12">
+            <h2>Khi nào bạn nên sử dụng YouTube sang MP3?</h2>
+            <p>YouTube sang MP3 phù hợp cho các video ca nhạc, podcast, bài giảng, phỏng vấn và nội dung dài mà người dùng chỉ cần âm thanh thay vì video.</p>
+            <p>Bằng cách chỉ trích xuất âm thanh, các tệp MP3 nhỏ hơn đáng kể so với các tệp video, giúp chúng dễ dàng lưu trữ và phát trên thiết bị di động.</p>
+        </div>
+    </section>
+    <section class="y2mate-content-pro d-flex">
+        <div class="col-sm-12">
+            <h2>Các vấn đề thường gặp khi trích xuất âm thanh từ YouTube</h2>
+            <p>Nhiều công cụ YouTube sang MP3 gặp khó khăn với các video dài, video có nhiều luồng âm thanh hoặc chất lượng âm thanh không nhất quán.</p>
+            <p>Do đó, các tệp MP3 có thể chứa tiếng ồn, các đoạn bị thiếu hoặc thời lượng không chính xác.</p>
+        </div>
+    </section>
+    <section class="y2mate-content-pro d-flex">
+        <div class="col-sm-12">
+            <h2>Cách công cụ xử lý và tạo tệp MP3</h2>
+            <p>Khi bạn dán một liên kết video YouTube, hệ thống sẽ phân tích luồng âm thanh gốc và tạo một tệp MP3 tương ứng.</p>
+            <p>Chất lượng âm thanh phụ thuộc vào video nguồn. Khi có sẵn, công cụ sẽ hiển thị các tùy chọn bitrate phù hợp để tải xuống.</p>
+        </div>
+    </section>
+    <section class="y2mate-content-pro d-flex">
+        <div class="col-sm-12">
+            <h2>Tại sao trích xuất âm thanh hiệu quả hơn tải xuống video</h2>
+            <p>Việc tách âm thanh khỏi video giúp giảm đáng kể kích thước tệp so với việc tải xuống các tệp MP4.</p>
+            <p>Điều này đặc biệt hữu ích cho những người dùng nghe nhạc hoặc podcast trên thiết bị di động và muốn tiết kiệm dung lượng lưu trữ.</p>
+        </div>
+    </section>
+    <section class="y2mate-content-pro d-flex">
+        <div class="col-sm-12">
+            <h2>Sự khác biệt giữa MP3 và MP4</h2>
+            <p>Tệp MP3 chỉ chứa âm thanh, trong khi tệp MP4 bao gồm cả video và âm thanh.</p>
+            <p>Nếu bạn cần xem nội dung video, bạn nên sử dụng trang <a href="/vi/youtube-to-mp4">YouTube sang MP4</a> thay vì trích xuất âm thanh MP3.</p>
+        </div>
+    </section>
+    <section class="y2mate-content-pro d-flex">
+        <div class="col-sm-12">
+            <h2>Lựa chọn giữa tải xuống âm thanh hoặc video</h2>
+            <p>Nếu bạn không chắc chắn mình cần âm thanh hay video, bạn có thể truy cập trang <a href="/vi/">Tải video YouTube</a> để khám phá các tùy chọn tải xuống có sẵn.</p>
+        </div>
+    </section>
+
+    <!-- Why Choose Section -->
+    <section class="y2mate-instruction-pro">
+        <div class="y2mate-in-ad-pro">
+            <h2>Tại sao chọn Y2Mate để chuyển đổi YouTube sang MP3</h2>
+            <p>Nhiều công cụ chuyển đổi YouTube sang MP3 không thể trích xuất âm thanh đúng cách, dẫn đến các tệp chất lượng thấp hoặc không hoàn chỉnh. Y2Mate cung cấp khả năng trích xuất MP3 đáng tin cậy với chất lượng âm thanh nhất quán.</p>
+            <ul>
+                <li>Trích xuất âm thanh chất lượng cao – giữ nguyên chất lượng âm thanh gốc</li>
+                <li>Nhiều tùy chọn bitrate – chọn từ 128kbps đến 320kbps</li>
+                <li>Xử lý âm thanh nhanh – trích xuất âm thanh nhanh chóng từ bất kỳ video YouTube nào</li>
+                <li>Không cần phần mềm – hoạt động hoàn toàn trên trình duyệt của bạn</li>
+                <li>Tối ưu hóa cho nhạc và podcast – lý tưởng để nghe ngoại tuyến</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Instructions Section -->
+    <section class="y2mate-instruction-pro">
+        <div class="y2mate-in-ad-pro">
+            <h2>Cách trích xuất âm thanh từ video YouTube dưới dạng MP3</h2>
+            <ol>
+                <li>Sao chép liên kết video YouTube chứa âm thanh bạn muốn trích xuất.</li>
+                <li>Dán liên kết vào trường nhập trên trang này.</li>
+                <li>Nhấp vào nút bắt đầu để phân tích luồng âm thanh của video.</li>
+                <li>Chọn bitrate MP3 ưa thích của bạn và tải tệp âm thanh về thiết bị của bạn.</li>
+            </ol>
+            <p><em>Toàn bộ quá trình trích xuất âm thanh chạy trên trình duyệt của bạn mà không cần cài đặt bất kỳ phần mềm nào.</em></p>
+        </div>
+    </section>
+
+    <!-- FAQs Section -->
+    <section class="yt-content">
+        <h2>Câu hỏi thường gặp về YouTube sang MP3</h2>
+        <div class="download-uses">
+            <div class="guide-data">
+                <h3>Chuyển đổi YouTube sang MP3 làm gì?</h3>
+                <p>Nó trích xuất luồng âm thanh từ một video YouTube và lưu nó dưới dạng tệp MP3 để nghe ngoại tuyến.</p>
+            </div>
+            <div class="guide-data">
+                <h3>Tôi nên chọn chất lượng MP3 nào?</h3>
+                <p>Bitrate thấp hơn phù hợp cho lời nói, trong khi bitrate cao hơn cung cấp chất lượng âm thanh tốt hơn cho âm nhạc và âm thanh chi tiết.</p>
+            </div>
+            <div class="guide-data">
+                <h3>MP3 có bao gồm toàn bộ âm thanh từ video không?</h3>
+                <p>Có. MP3 đã chuyển đổi chứa bản âm thanh hoàn chỉnh từ video gốc.</p>
+            </div>
+            <div class="guide-data">
+                <h3>Tôi có thể chuyển đổi các video YouTube dài sang MP3 không?</h3>
+                <p>Có. Việc trích xuất âm thanh hoạt động với các video dài miễn là video nguồn ở chế độ công khai hoặc không công khai.</p>
+            </div>
+            <div class="guide-data">
+                <h3>Việc chuyển đổi MP3 có được thực hiện trực tuyến không?</h3>
+                <p>Có. Toàn bộ quá trình chạy trên trình duyệt của bạn mà không cần cài đặt bất kỳ phần mềm nào.</p>
+            </div>
+            <div class="guide-data">
+                <h3>Video YouTube riêng tư có thể được chuyển đổi sang MP3 không?</h3>
+                <p>Không. Các video riêng tư không thể được truy cập hoặc xử lý bởi hệ thống.</p>
+            </div>
+        </div>
+    </section>
+</div>
 
     </main>
 
     <footer class="footer">
-        <p>© 2026 y2mate</p>
-        <ul class="footer_nav">
-            <li class="fnav-menu">
-                <a href="/about-us">Giới thiệu</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="/contact">Liên hệ</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="/terms-condition">Điều khoản dịch vụ</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="/privacy-policy">Chính sách bảo mật</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="/copyright-claims">Tuyên bố bản quyền</a>
-            </li>
-            <li class="fnav-menu">
-                <a href="/vi/youtube-short-downloader">Trình tải xuống YouTube Shorts</a>
-            </li>
-        </ul>
-    </footer>
+    <p>© 2026 y2mate</p>
+    <ul class="footer_nav">
+        <li class="fnav-menu">
+            <a href="/about-us">Giới thiệu</a>
+        </li>
+        <li class="fnav-menu">
+            <a href="/contact">Liên hệ</a>
+        </li>
+        <li class="fnav-menu">
+            <a href="/terms-condition">Điều khoản dịch vụ</a>
+        </li>
+        <li class="fnav-menu">
+            <a href="/privacy-policy">Chính sách bảo mật</a>
+        </li>
+        <li class="fnav-menu">
+            <a href="/copyright-claims">Tuyên bố bản quyền</a>
+        </li>
+        <li class="fnav-menu">
+            <a href="/vi/youtube-short-downloader">Trình tải xuống YouTube Shorts</a>
+        </li>
+    </ul>
+</footer>
 
 
     <!-- Conversion Modal Wrapper -->
     <div id="progressBarWrapper"></div>
+
+    <!-- Ko-fi Support Widget -->
+    <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+    <script>
+      kofiWidgetOverlay.draw('metaconvert', {
+        'type': 'floating-chat',
+        'floating-chat.donateButton.text': 'Support me',
+        'floating-chat.donateButton.background-color': '#00b9fe',
+        'floating-chat.donateButton.text-color': '#fff'
+      });
+    </script>
 </body>
 
 </html>

@@ -549,7 +549,9 @@ https://youtube.com/watch?v=VID_2" rows="5"></textarea>
                             class="multi-quality-select multi-quality-select--mp3"
                             aria-label="Audio quality" data-quality-select style="display: none;">
                             <option value="mp3-128" selected>MP3 - 128kbps</option>
+                            <option value="mp3-192">MP3 - 192kbps</option>
                             <option value="mp3-320">MP3 - 320kbps</option>
+                            <option value="mp3-64">MP3 - 64kbps</option>
                             <option value="flac">FLAC - Lossless</option>
                             <option value="ogg">OGG</option>
                             <option value="wav">WAV - Lossless</option>
@@ -990,6 +992,17 @@ https://youtube.com/watch?v=VID_2" rows="5"></textarea>
 
 
     <!-- Main TypeScript Entry --><script type="module" src="/src/multi-mode-main.ts"></script>
+
+    <!-- Ko-fi Support Widget -->
+    <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+    <script>
+      kofiWidgetOverlay.draw('metaconvert', {
+        'type': 'floating-chat',
+        'floating-chat.donateButton.text': 'Support me',
+        'floating-chat.donateButton.background-color': '#00b9fe',
+        'floating-chat.donateButton.text-color': '#fff'
+      });
+    </script>
 </body>
 
 </html>
