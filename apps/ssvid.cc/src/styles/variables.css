@@ -19,7 +19,7 @@
     --color-white: #ffffff;
 
     --bg-primary: #ffffff;
-    --bg-secondary: #F6F6F6;
+    --bg-secondary: #FAF9F5;
     /* Light gray for content sections */
     --text-primary: #333333;
     --bg-badge: #f2f4f7;
@@ -70,6 +70,9 @@
     --input-border-glow-rgb: 52, 107, 241;
     --input-glow-radial-rgb: 52, 107, 241;
 
+    /* Input caret */
+    --input-caret-color: var(--text-body);
+
     /* Status badge backgrounds */
     --status-ready-bg: #eff6ff;
     --status-ready-color: #3b82f6;
@@ -83,6 +86,11 @@
     --status-analyzing-color: #0369a1;
     --status-converting-bg: #fff7ed;
     --status-converting-color: #c2410c;
+
+    /* Support Bar */
+    --support-bg: #f5f4ed;
+    --support-bg-hover: #ecece2;
+    --support-text: #3d3d3a;
 }
 
 :root[data-theme="dark"] {
@@ -95,10 +103,10 @@
     --color-accent-dark: rgba(198, 93, 59, 0.20);
     --background-hero-section: var(--bg-secondary);
 
-    --bg-page: #1F1F1E;
-    --bg-card: #2A2A28;
+    --bg-page: #262624;
+    --bg-card: #30302E;
     --bg-primary: #1F1F1E;
-    --bg-secondary: #1F1F1E;
+    --bg-secondary: #262624;
     --bg-surface-soft: #383836;
     --bg-hover: #383836;
     --surface-weak: rgba(198, 93, 59, 0.10);
@@ -127,6 +135,9 @@
     --input-border-glow-rgb: 198, 93, 59;
     --input-glow-radial-rgb: 198, 93, 59;
 
+    /* Input caret */
+    --input-caret-color: #ffffff;
+
     --status-ready-bg: rgba(198, 93, 59, 0.12);
     --status-ready-color: #D9785B;
     --status-success-bg: rgba(16, 185, 129, 0.15);
@@ -141,4 +152,9 @@
     --status-converting-color: #C65D3B;
 
     --color-status-error: #E74C3C;
+
+    /* Support Bar */
+    --support-bg: #1f1e1d;
+    --support-bg-hover: #3a3a38;
+    --support-text: #c2c0b6;
 }

@@ -76,6 +76,11 @@
     box-shadow: none;
 }
 
+.input-shell:focus-within .input-wrapper,
+.input-wrapper:focus-within {
+    border-color: var(--color-accent);
+}
+
 .input-shell .input-content {
     position: relative;
     z-index: 1;
@@ -110,6 +115,7 @@
     border: none;
     outline: none;
     background: transparent;
+    caret-color: var(--input-caret-color);
 }
 
 .input-actions {
