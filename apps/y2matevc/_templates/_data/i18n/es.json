@@ -44,7 +44,8 @@
         "128kbps": "MP3 - 128kbps",
         "ogg": "OGG",
         "opus": "OPUS",
-        "wav": "WAV"
+        "wav": "WAV",
+        "64kbps": "MP3 - 64kbps"
       }
     }
   },
