@@ -103,6 +103,9 @@
       gtag('config', 'G-D2LRBF188F');
     </script>
 
+    <!-- FOUC Prevention: Read format from localStorage before render -->
+    <script>(function(){var f='mp3';try{var p=JSON.parse(localStorage.getItem('mp3fast_format_preferences'));if(p&&(p.selectedFormat==='mp3'||p.selectedFormat==='mp4'))f=p.selectedFormat}catch(e){}document.documentElement.dataset.format=f})()</script>
+
     <!-- TypeScript Module -->
     <script type="module" src="/src/main.ts"></script>
 

@@ -1,33 +1,38 @@
 /**
  * Format Selector State Management
- * Manages MP3 bitrate selection with localStorage persistence
- * Auto format = MP3 (no format selection needed)
+ * Manages MP3/MP4 format and quality selection with localStorage persistence
  */
 
 import { setState, getState } from './state-manager';
+import type { FormatType, AudioFormatType } from './types';
 
 // ==========================================
 // Constants
 // ==========================================
 
-const STORAGE_KEY = 'y2mate_format_preferences';
+const STORAGE_KEY = 'mp3fast_format_preferences';
 
-/**
- * Available MP3 bitrate options
- */
-export const BITRATE_OPTIONS = ['320', '192', '128', '64'] as const;
+export const QUALITY_OPTIONS = {
+  mp4: {
+    formats: ['mp4', 'webm', 'mkv'] as const,
+    qualities: ['2160p', '1440p', '1080p', '720p', '480p', '360p', '144p'] as const
+  },
+  mp3: {
+    formats: ['mp3', 'wav', 'm4a', 'opus', 'ogg', 'flac'] as AudioFormatType[],
+    bitrates: ['320', '192', '128', '64'] as const
+  }
+} as const;
 
-/**
- * Default bitrate
- */
-const DEFAULT_BITRATE = '128';
+export const BITRATE_OPTIONS = QUALITY_OPTIONS.mp3.bitrates;
 
 // ==========================================
 // LocalStorage Types
 // ==========================================
 
 interface StoredPreferences {
-  audioFormat: string;
+  selectedFormat: FormatType;
+  videoQuality: string;
+  audioFormat: AudioFormatType;
   audioBitrate: string;
   timestamp: number;
 }
@@ -37,17 +42,18 @@ interface StoredPreferences {
 // ==========================================
 
 /**
- * Save bitrate preference to localStorage
+ * Save format preferences to localStorage
  */
 export function saveFormatPreferences(): void {
   try {
     const state = getState();
     const preferences: StoredPreferences = {
+      selectedFormat: state.selectedFormat,
+      videoQuality: state.videoQuality,
       audioFormat: state.audioFormat,
       audioBitrate: state.audioBitrate,
       timestamp: Date.now()
     };
-
     localStorage.setItem(STORAGE_KEY, JSON.stringify(preferences));
   } catch (err) {
     console.warn('Failed to save format preferences:', err);
@@ -55,14 +61,7 @@ export function saveFormatPreferences(): void {
 }
 
 /**
- * Valid audio formats for mp3fast
- */
-const AUDIO_FORMATS = ['mp3', 'wav', 'm4a', 'opus', 'ogg', 'flac'] as const;
-type AudioFormat = typeof AUDIO_FORMATS[number];
-
-/**
  * Load format preferences from localStorage
- * Returns null if no preferences found or invalid
  */
 function loadFormatPreferences(): StoredPreferences | null {
   try {
@@ -71,14 +70,9 @@ function loadFormatPreferences(): StoredPreferences | null {
 
     const preferences = JSON.parse(stored) as StoredPreferences;
 
-    // Validate audioFormat - default to 'mp3' if invalid
-    if (!preferences.audioFormat || !AUDIO_FORMATS.includes(preferences.audioFormat as AudioFormat)) {
-      preferences.audioFormat = 'mp3';
-    }
-
-    // Validate audioBitrate - default to DEFAULT_BITRATE if invalid
-    if (!preferences.audioBitrate || !BITRATE_OPTIONS.includes(preferences.audioBitrate as any)) {
-      preferences.audioBitrate = DEFAULT_BITRATE;
+    if (!preferences.selectedFormat ||
+      (preferences.selectedFormat !== 'mp3' && preferences.selectedFormat !== 'mp4')) {
+      return null;
     }
 
     return preferences;
@@ -111,20 +105,19 @@ export function initializeFormatSelector(): void {
   const stored = loadFormatPreferences();
 
   if (stored) {
-    // Use stored format and bitrate preferences
-    // selectedFormat is always 'mp3' (audio mode) for this app
     setState({
-      selectedFormat: 'mp3',
-      audioFormat: stored.audioFormat as AudioFormat,
-      audioBitrate: stored.audioBitrate,
+      selectedFormat: stored.selectedFormat,
+      videoQuality: stored.videoQuality || '720p',
+      audioFormat: stored.audioFormat || 'mp3',
+      audioBitrate: stored.audioBitrate || '128',
       hasUserSelectedFormat: true
     });
   } else {
-    // Use defaults
     setState({
       selectedFormat: 'mp3',
+      videoQuality: '720p',
       audioFormat: 'mp3',
-      audioBitrate: DEFAULT_BITRATE,
+      audioBitrate: '128',
       hasUserSelectedFormat: false
     });
   }
@@ -135,27 +128,54 @@ export function initializeFormatSelector(): void {
 // ==========================================
 
 /**
- * Set audio format
- * Supports: mp3, wav, m4a, opus, ogg, flac
+ * Change format (mp3 ↔ mp4)
+ */
+export function setSelectedFormat(format: FormatType): void {
+  setState({
+    selectedFormat: format,
+    hasUserSelectedFormat: true
+  });
+  saveFormatPreferences();
+}
+
+/**
+ * Set video quality (for MP4)
+ */
+export function setVideoQuality(quality: string): void {
+  const isValidQuality = QUALITY_OPTIONS.mp4.qualities.includes(quality as any);
+  const isValidFormat = QUALITY_OPTIONS.mp4.formats.includes(quality as any);
+
+  if (!isValidQuality && !isValidFormat) {
+    console.warn(`Invalid video quality: ${quality}`);
+    return;
+  }
+
+  setState({
+    videoQuality: quality,
+    hasUserSelectedFormat: true
+  });
+  saveFormatPreferences();
+}
+
+/**
+ * Set audio format (for MP3 mode)
  */
 export function setAudioFormat(format: string): void {
-  // Validate format
-  if (!AUDIO_FORMATS.includes(format as AudioFormat)) {
+  const audioFormats = QUALITY_OPTIONS.mp3.formats as readonly string[];
+  if (!audioFormats.includes(format)) {
     console.warn(`Invalid audio format: ${format}, defaulting to 'mp3'`);
     format = 'mp3';
   }
 
   setState({
-    audioFormat: format as AudioFormat,
+    audioFormat: format as AudioFormatType,
     hasUserSelectedFormat: true
   });
-
-  // Auto-save to localStorage
   saveFormatPreferences();
 }
 
 /**
- * Set audio bitrate (MP3)
+ * Set audio bitrate (for MP3 mode)
  */
 export function setAudioBitrate(bitrate: string): void {
   if (!BITRATE_OPTIONS.includes(bitrate as any)) {
@@ -167,36 +187,29 @@ export function setAudioBitrate(bitrate: string): void {
     audioBitrate: bitrate,
     hasUserSelectedFormat: true
   });
-
-  // Auto-save to localStorage
   saveFormatPreferences();
 }
 
 /**
  * Combined setter for audio (format + bitrate)
- * More efficient when setting both at once
- * Matches ytmp3.my API for consistency
  */
 export function setAudioOptions(format: string, bitrate: string): void {
-  // Validate format
-  if (!AUDIO_FORMATS.includes(format as AudioFormat)) {
+  const audioFormats = QUALITY_OPTIONS.mp3.formats as readonly string[];
+  if (!audioFormats.includes(format)) {
     console.warn(`Invalid audio format: ${format}, defaulting to 'mp3'`);
     format = 'mp3';
   }
 
-  // Bitrate is optional for non-MP3 formats
   if (bitrate && !BITRATE_OPTIONS.includes(bitrate as any)) {
     console.warn(`Invalid audio bitrate: ${bitrate}`);
     bitrate = '';
   }
 
   setState({
-    audioFormat: format as AudioFormat,
+    audioFormat: format as AudioFormatType,
     audioBitrate: bitrate,
     hasUserSelectedFormat: true
   });
-
-  // Auto-save to localStorage
   saveFormatPreferences();
 }
 
@@ -205,17 +218,19 @@ export function setAudioOptions(format: string, bitrate: string): void {
 // ==========================================
 
 /**
- * Get current bitrate label
+ * Get current quality label
  */
 export function getCurrentQualityLabel(): string {
   const state = getState();
+  if (state.selectedFormat === 'mp4') {
+    return state.videoQuality || 'Select quality';
+  }
   return state.audioBitrate ? `${state.audioBitrate}kbps` : 'Select quality';
 }
 
 /**
- * Get available bitrate options
+ * Get available bitrate options (for backward compatibility)
  */
 export function getAvailableBitrates(): readonly string[] {
   return BITRATE_OPTIONS;
 }
-

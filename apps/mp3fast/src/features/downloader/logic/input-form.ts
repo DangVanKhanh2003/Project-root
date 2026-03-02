@@ -46,63 +46,57 @@ import {
 
 /**
  * Handle auto-download after preview is shown
- * Builds formatData from state (audioFormat + audioBitrate)
- * Matches ytmp3.my behavior for audio format handling
+ * Builds formatData from state — supports both MP3 and MP4
  */
 async function handleAutoDownload(url: string, videoId: string): Promise<void> {
   try {
-    console.log('[Auto-Download] Starting auto-download for:', videoId);
-
-    // Get format and bitrate from state (dropdown selection)
     const state = getState();
-    const audioFormat = state.audioFormat || 'mp3';
-    const audioBitrate = state.audioBitrate || '128';
+    const selectedFormat = state.selectedFormat || 'mp3';
 
-    console.log('[Auto-Download] Audio format:', audioFormat, 'Bitrate:', audioBitrate);
+    let formatId: string;
+    let extractV2Options: Record<string, unknown>;
 
-    // Non-MP3 formats (wav, flac, ogg, opus, m4a) use fixed bitrate
-    const isNonBitrateFormat = ['m4a', 'ogg', 'wav', 'opus', 'flac'].includes(audioFormat.toLowerCase());
-    const finalBitrate = isNonBitrateFormat ? '128' : audioBitrate;
-    const finalQuality = isNonBitrateFormat ? audioFormat.toUpperCase() : `${audioBitrate}kbps`;
+    if (selectedFormat === 'mp4') {
+      // ── MP4 path ──
+      const videoQuality = state.videoQuality || '720p';
+      const resolution = videoQuality.replace('p', ''); // "720p" → "720"
+      const isWebm = videoQuality === 'webm';
+      const isMkv = videoQuality === 'mkv';
+      const container = isWebm ? 'webm' : isMkv ? 'mkv' : 'mp4';
 
-    // Build formatData with correct format
-    const formatId = isNonBitrateFormat
-      ? `audio|${audioFormat}`
-      : `audio|${audioFormat}-${audioBitrate}kbps`;
+      formatId = `video|${container}-${videoQuality}`;
+      extractV2Options = {
+        downloadMode: 'video' as const,
+        videoQuality: resolution,
+        youtubeVideoContainer: container
+      };
+    } else {
+      // ── MP3 / audio path ──
+      const audioFormat = state.audioFormat || 'mp3';
+      const audioBitrate = state.audioBitrate || '128';
+      const isNonBitrateFormat = ['m4a', 'ogg', 'wav', 'opus', 'flac'].includes(audioFormat.toLowerCase());
+      const finalBitrate = isNonBitrateFormat ? '128' : audioBitrate;
 
-    const formatData = {
-      id: formatId,
-      vid: videoId,
-      category: 'audio',
-      type: 'AUDIO',
-      format: audioFormat,
-      quality: finalQuality,
-      sizeText: 'Processing...',
-      isFakeData: true,
-      extractV2Options: {
+      formatId = isNonBitrateFormat
+        ? `audio|${audioFormat}`
+        : `audio|${audioFormat}-${audioBitrate}kbps`;
+
+      extractV2Options = {
         downloadMode: 'audio' as const,
         audioBitrate: finalBitrate,
         audioFormat: audioFormat
-      }
-    };
+      };
+    }
 
-    console.log('[Auto-Download] Built formatData:', formatData);
-
-    // Get video title for conversion
     const videoTitle = state.youtubePreview?.title || 'Loading video information...';
-
-    // Trigger conversion with built formatData
-    console.log('[Auto-Download] Triggering conversion...');
     const { startConversion } = await import('./conversion');
 
     await startConversion({
       formatId,
       videoUrl: url,
       videoTitle,
-      extractV2Options: formatData.extractV2Options || {}
+      extractV2Options
     });
-
-    console.log('[Auto-Download] Conversion triggered successfully');
 
   } catch (error) {
     console.error('[Auto-Download] Error:', error);

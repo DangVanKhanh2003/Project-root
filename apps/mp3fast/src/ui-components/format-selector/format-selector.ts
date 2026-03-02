@@ -1,17 +1,18 @@
 /**
  * Format Selector Component
- * Quality dropdown for MP3 (auto format = mp3)
+ * MP3/MP4 toggle + Quality dropdown
  */
 
 import {
+  getState,
+  setSelectedFormat,
+  setVideoQuality,
   setAudioFormat,
-  setAudioBitrate
+  setAudioBitrate,
+  QUALITY_OPTIONS,
+  type FormatType,
+  type AudioFormatType
 } from '../../features/downloader/state';
-
-// ==========================================
-// Render Functions
-// ==========================================
-
 
 // ==========================================
 // Event Handlers
@@ -28,7 +29,10 @@ export function initFormatSelector(containerSelector: string = '#previewCard'): 
     return;
   }
 
-  // Listen for quality select changes (MP3 bitrate)
+  // Format button clicks (MP3 ↔ MP4)
+  container.addEventListener('click', handleFormatSelectorClick);
+
+  // Quality select changes
   container.addEventListener('change', handleQualityChange);
 
   // Initialize dropdown arrow rotation
@@ -39,33 +43,65 @@ export function initFormatSelector(containerSelector: string = '#previewCard'): 
 }
 
 /**
+ * Handle all clicks within format selector (event delegation)
+ */
+function handleFormatSelectorClick(event: Event): void {
+  const target = event.target as HTMLElement;
+
+  const formatBtn = target.closest('.format-btn') as HTMLElement;
+  if (formatBtn) {
+    const format = formatBtn.dataset.format as FormatType;
+    if (format === 'mp3' || format === 'mp4') {
+      handleFormatChange(format);
+    }
+  }
+}
+
+/**
+ * Handle format change (MP3 ↔ MP4)
+ * Updates html[data-format] — CSS handles visibility and active state
+ */
+function handleFormatChange(format: FormatType): void {
+  setSelectedFormat(format);
+  document.documentElement.dataset.format = format;
+}
+
+/**
  * Handle quality select change
- * Sets both audio format and bitrate (matches ytmp3.my behavior)
  *
- * Value formats:
- * - "mp3-128", "mp3-320" etc. → format='mp3', bitrate='128'/'320'
- * - "wav", "flac", "ogg", "opus", "m4a" → format=value, bitrate=''
+ * MP3 values:  "mp3-128", "mp3-320", "flac", "wav", "m4a", "opus", "ogg"
+ * MP4 values:  "mp4-720", "mp4-1080", "webm", "mkv"
  */
 function handleQualityChange(event: Event): void {
   const target = event.target as HTMLSelectElement;
 
-  // Only handle quality-select changes
   if (!target.matches('[data-quality-select]')) {
     return;
   }
 
   const value = target.value;
+  const state = getState();
 
-  // Check if value contains bitrate (e.g., "mp3-128")
-  if (value.includes('-')) {
-    const [format, bitrate] = value.split('-');
-    setAudioFormat(format);
-    setAudioBitrate(bitrate);
+  if (state.selectedFormat === 'mp4') {
+    if (value.startsWith('mp4-')) {
+      // "mp4-720" → "720p"
+      const resolution = value.split('-')[1];
+      setVideoQuality(`${resolution}p`);
+    } else {
+      // "webm" or "mkv"
+      setVideoQuality(value);
+    }
   } else {
-    // Non-MP3 formats without bitrate (wav, flac, ogg, opus, m4a)
-    setAudioFormat(value);
-    // Clear bitrate for non-MP3 formats (API will use default)
-    setAudioBitrate('128'); // Default bitrate for API compatibility
+    if (value.startsWith('mp3-')) {
+      // "mp3-128" → format='mp3', bitrate='128'
+      const [format, bitrate] = value.split('-');
+      setAudioFormat(format);
+      setAudioBitrate(bitrate);
+    } else {
+      // "flac", "wav", "m4a", "opus", "ogg"
+      setAudioFormat(value);
+      setAudioBitrate('128'); // Default for API compatibility
+    }
   }
 }
 
@@ -75,37 +111,30 @@ function handleQualityChange(event: Event): void {
 
 /**
  * Initialize dropdown arrow rotation on open/close
- * Native <select> doesn't have open/close events, so we use:
- * - mousedown: toggle open state
- * - change: option selected, close
- * - blur: clicked outside, close
  */
 function initDropdownArrow(container: Element): void {
   const qualityWrappers = container.querySelectorAll('.quality-wrapper');
 
   qualityWrappers.forEach((wrapper) => {
-    const select = wrapper.querySelector('select');
-    if (!select) return;
+    const selects = wrapper.querySelectorAll('select');
+    selects.forEach((select) => {
+      select.addEventListener('mousedown', () => {
+        wrapper.classList.toggle('dropdown-open');
+      });
 
-    // Toggle dropdown on mousedown (handles open and close on same element)
-    select.addEventListener('mousedown', () => {
-      wrapper.classList.toggle('dropdown-open');
-    });
+      select.addEventListener('change', () => {
+        wrapper.classList.remove('dropdown-open');
+      });
 
-    // Close dropdown when option selected
-    select.addEventListener('change', () => {
-      wrapper.classList.remove('dropdown-open');
-    });
-
-    // Close dropdown when focus lost
-    select.addEventListener('blur', () => {
-      wrapper.classList.remove('dropdown-open');
+      select.addEventListener('blur', () => {
+        wrapper.classList.remove('dropdown-open');
+      });
     });
   });
 }
 
 // ==========================================
-// Cleanup
+// Tooltips
 // ==========================================
 
 /**
@@ -117,7 +146,6 @@ function initCustomTooltips(container: Element): void {
   tooltipElements.forEach((element) => {
     let tooltipTimer: number | null = null;
 
-    // Set tooltip text content
     const tooltipText = element.getAttribute('data-tooltip');
     const tooltipElement = element.querySelector('.custom-tooltip');
 
@@ -125,14 +153,12 @@ function initCustomTooltips(container: Element): void {
       tooltipElement.textContent = tooltipText;
     }
 
-    // Show tooltip on mouse enter (with 0.5s delay)
     element.addEventListener('mouseenter', () => {
       tooltipTimer = window.setTimeout(() => {
         element.classList.add('show-tooltip');
-      }, 500); // 0.5s delay
+      }, 500);
     });
 
-    // Hide tooltip on mouse leave
     element.addEventListener('mouseleave', () => {
       if (tooltipTimer) {
         clearTimeout(tooltipTimer);
@@ -143,9 +169,10 @@ function initCustomTooltips(container: Element): void {
   });
 }
 
-/**
- * Cleanup format selector (remove event listeners)
- */
+// ==========================================
+// Cleanup
+// ==========================================
+
 export function cleanupFormatSelector(): void {
-  // No global event listeners to clean up (using event delegation)
+  // Event delegation — no global listeners to remove
 }
