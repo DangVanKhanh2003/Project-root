@@ -77,7 +77,6 @@ export async function startPolling(options: PollingOptions): Promise<void> {
         case 'not_found':
         case 'failed':
           // Terminal status - stop polling immediately, no retry
-          debugger;
           onError(status.jobError || 'Conversion failed');
           return;
 

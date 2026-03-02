@@ -58,6 +58,11 @@ interface StoredPreferences {
   timestamp: number; // For potential expiration logic
 }
 
+function normalizeStoredAudioBitrate(bitrate: string | undefined): string {
+  if (!bitrate) return '128';
+  return QUALITY_OPTIONS.mp3.bitrates.includes(bitrate as any) ? bitrate : '128';
+}
+
 // ==========================================
 // Page Detection
 // ==========================================
@@ -83,7 +88,7 @@ function getPageDefaults(): { format: FormatType; videoQuality: string; audioFor
       format: defaults.format,
       videoQuality: defaults.videoQuality || '',
       audioFormat: defaults.audioFormat || 'mp3',
-      audioBitrate: defaults.audioBitrate || ''
+      audioBitrate: normalizeStoredAudioBitrate(defaults.audioBitrate || '')
     };
   }
 
@@ -183,7 +188,7 @@ export function initializeFormatSelector(): void {
       selectedFormat: stored.selectedFormat,
       videoQuality: stored.videoQuality,
       audioFormat: stored.audioFormat,
-      audioBitrate: stored.audioBitrate,
+      audioBitrate: normalizeStoredAudioBitrate(stored.audioBitrate),
       hasUserSelectedFormat: true
     });
   } else {

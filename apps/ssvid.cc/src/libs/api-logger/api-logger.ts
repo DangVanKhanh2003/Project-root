@@ -247,7 +247,6 @@ class ApiLogger {
      */
     async getCountSuccess(): Promise<number> {
         try {
-            debugger
             const result = await this.sendMessage('count-success');
             return result?.count || 0;
         } catch (error) {

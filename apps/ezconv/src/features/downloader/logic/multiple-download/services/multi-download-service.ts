@@ -8,7 +8,7 @@ import { VideoMeta } from '../../../state/types';
 import { DownloadQueue } from '../download-queue';
 import { runSingleDownload } from '../download-runner';
 import { fetchMetadataBatch } from '../metadata-fetcher';
-import { parseYouTubeURLs, generateItemId, normalizeURL, extractChannelHandle } from '../url-parser';
+import { parseConvertibleURLs, parseYouTubeURLs, generateItemId, normalizeURL, extractChannelHandle } from '../url-parser';
 import { recordDownloadError, type DownloadMethod } from '../../../../download-limit';
 import { incrementDownloadCount } from '../../../../widget-level-manager';
 
@@ -42,7 +42,7 @@ export class MultiDownloadService {
         globalSettings?: Partial<VideoItemSettings>,
         onItemsAdded?: () => void
     ): Promise<string | null> {
-        const parsed = parseYouTubeURLs(rawText);
+        const parsed = parseConvertibleURLs(rawText);
         console.log('[MultiDownloadService] Parsed URLs:', parsed.length, parsed);
 
         if (parsed.length === 0) return null;

@@ -17,6 +17,7 @@ const extractingIntervals = new Map<string, number>();
 const extractingElements = new Map<string, HTMLElement[]>();
 const previousMergingPhase = new Map<string, boolean>();
 const mergingTransitionInProgress = new Map<string, boolean>();
+const TRANSPARENT_PIXEL = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
 
 function stopExtractingRotator(itemId: string): void {
     const interval = extractingIntervals.get(itemId);
@@ -79,6 +80,7 @@ export class VideoItemRenderer {
         // Build initial structure
         VideoItemRenderer.buildStructure(el, item, strategy, { isGlobalLocked: false });
         VideoItemRenderer.applyStatusClass(el, item);
+        VideoItemRenderer.updatePreviewVisibility(el, item);
         VideoItemRenderer.updatePhaseLabel(el, item, strategy);
         VideoItemRenderer.updateProgressBar(el, item);
 
@@ -108,6 +110,7 @@ export class VideoItemRenderer {
             el.classList.remove('skeleton-loading');
             VideoItemRenderer.buildStructure(el, item, strategy, context);
             VideoItemRenderer.applyStatusClass(el, item);
+            VideoItemRenderer.updatePreviewVisibility(el, item);
             console.log('[VideoItemRenderer] Transition complete!');
             if (strategy.afterRender) {
                 strategy.afterRender(el, item);
@@ -117,6 +120,7 @@ export class VideoItemRenderer {
 
         // Apply status class for non-skeleton updates
         VideoItemRenderer.applyStatusClass(el, item);
+        VideoItemRenderer.updatePreviewVisibility(el, item);
 
         if (item.status === 'fetching_metadata') return;
 
@@ -129,8 +133,13 @@ export class VideoItemRenderer {
 
         // Thumbnail
         const thumbImg = el.querySelector('.multi-video-thumb img') as HTMLImageElement;
-        if (thumbImg && item.meta.thumbnail && thumbImg.src !== item.meta.thumbnail) {
-            thumbImg.src = item.meta.thumbnail;
+        if (thumbImg) {
+            const nextThumbSrc = VideoItemRenderer.shouldHideSourcePreview(item)
+                ? TRANSPARENT_PIXEL
+                : (item.meta.thumbnail || TRANSPARENT_PIXEL);
+            if (thumbImg.src !== nextThumbSrc) {
+                thumbImg.src = nextThumbSrc;
+            }
         }
 
         // Author
@@ -266,14 +275,16 @@ export class VideoItemRenderer {
         const isDownloading = ['downloading', 'converting', 'analyzing', 'queued'].includes(item.status);
         const checkboxHtml = strategy.getCheckboxHtml(item);
         const durationStr = formatDuration(item.meta.duration);
+        const hideSourcePreview = VideoItemRenderer.shouldHideSourcePreview(item);
+        const thumbSrc = hideSourcePreview ? TRANSPARENT_PIXEL : (item.meta.thumbnail || TRANSPARENT_PIXEL);
         const progressPercent = Math.round(item.progress || 0);
         const initialPhaseText = VideoItemRenderer.getPhaseLabelText(item, strategy);
 
         el.innerHTML = `
             ${checkboxHtml}
             <div class="multi-video-thumb">
-                <img src="${escapeAttr(item.meta.thumbnail)}" alt="${escapeAttr(item.meta.title)}" loading="lazy">
-                ${durationStr ? `<span class="multi-video-duration">${durationStr}</span>` : ''}
+                <img src="${escapeAttr(thumbSrc)}" alt="${escapeAttr(item.meta.title)}" loading="lazy">
+                ${!hideSourcePreview && durationStr ? `<span class="multi-video-duration">${durationStr}</span>` : ''}
             </div>
             <div class="multi-video-info">
                 <div class="multi-video-title" title="${escapeAttr(item.meta.title)}">${escapeHtml(item.meta.title)}</div>
@@ -395,6 +406,21 @@ export class VideoItemRenderer {
         }
     }
 
+    private static updatePreviewVisibility(el: HTMLElement, item: VideoItem): void {
+        const shouldHide = VideoItemRenderer.shouldHideSourcePreview(item);
+        el.classList.toggle('multi-video-item--compact', shouldHide);
+
+        const thumbEl = el.querySelector('.multi-video-thumb') as HTMLElement | null;
+        if (thumbEl) {
+            thumbEl.style.display = shouldHide ? 'none' : '';
+        }
+
+        const metaEl = el.querySelector('.multi-video-meta') as HTMLElement | null;
+        if (metaEl) {
+            metaEl.style.display = shouldHide ? 'none' : '';
+        }
+    }
+
     private static updatePhaseLabel(el: HTMLElement, item: VideoItem, strategy: RendererStrategy): void {
         const phaseEls = [
             el.querySelector('.multi-video-phase-label') as HTMLElement | null,
@@ -437,6 +463,10 @@ export class VideoItemRenderer {
 
     private static isMergingPhase(item: VideoItem): boolean {
         return item.status === 'converting' && item.progressPhase === 'merging';
+    }
+
+    private static shouldHideSourcePreview(item: VideoItem): boolean {
+        return item.meta.source === 'url';
     }
 
     private static updateAudioLanguageWarning(el: HTMLElement, item: VideoItem): void {

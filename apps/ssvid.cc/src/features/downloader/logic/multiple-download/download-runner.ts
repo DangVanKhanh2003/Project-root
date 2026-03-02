@@ -114,7 +114,6 @@ async function pollStatus(
 
             if (statusData.status === 'error' || statusData.status === 'not_found' || statusData.status === 'failed') {
                 // Terminal status - stop polling immediately, no retry
-                debugger;
                 throw new Error(statusData.jobError || 'Job failed');
             }
         } catch (error: any) {

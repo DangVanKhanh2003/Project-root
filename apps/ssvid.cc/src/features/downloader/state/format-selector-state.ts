@@ -18,11 +18,11 @@ const STORAGE_KEY = 'ssvid_format_preferences';
 export const QUALITY_OPTIONS = {
   mp4: {
     formats: ['mp4', 'webm', 'mkv'] as const,
-    qualities: ['2160p', '1080p', '720p', '480p', '360p', '144p'] as const
+    qualities: ['2160p', '1440p', '1080p', '720p', '480p', '360p', '144p'] as const
   },
   mp3: {
     formats: ['mp3', 'wav', 'm4a', 'opus', 'ogg', 'flac'] as AudioFormatType[],
-    bitrates: ['320', '128', '64'] // Only for MP3
+    bitrates: ['320', '192', '128', '64'] // Only for MP3
   }
 } as const;
 
@@ -56,6 +56,11 @@ interface StoredPreferences {
   timestamp: number; // For potential expiration logic
 }
 
+function normalizeStoredAudioBitrate(bitrate: string | undefined): string {
+  if (!bitrate) return '128';
+  return QUALITY_OPTIONS.mp3.bitrates.includes(bitrate as any) ? bitrate : '128';
+}
+
 // ==========================================
 // Page Detection
 // ==========================================
@@ -81,7 +86,7 @@ function getPageDefaults(): { format: FormatType; videoQuality: string; audioFor
       format: defaults.format,
       videoQuality: defaults.videoQuality || '',
       audioFormat: defaults.audioFormat || 'mp3',
-      audioBitrate: defaults.audioBitrate || ''
+      audioBitrate: normalizeStoredAudioBitrate(defaults.audioBitrate || '')
     };
   }
 
@@ -173,7 +178,7 @@ export function initializeFormatSelector(): void {
       selectedFormat: stored.selectedFormat,
       videoQuality: stored.videoQuality,
       audioFormat: stored.audioFormat,
-      audioBitrate: stored.audioBitrate,
+      audioBitrate: normalizeStoredAudioBitrate(stored.audioBitrate),
       hasUserSelectedFormat: true
     });
   } else {

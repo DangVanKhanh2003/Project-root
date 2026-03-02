@@ -12,12 +12,13 @@ import { applyInitialVisibility } from './features/widget-level-manager';
 import { multiDownloadService } from './features/downloader/logic/multiple-download/services/multi-download-service';
 import { multipleDownloadRenderer } from './features/downloader/ui-render/multiple-download/multiple-download-renderer';
 import { VideoItemSettings } from './features/downloader/state/multiple-download-types';
+import { parseYouTubeURLs } from './features/downloader/logic/multiple-download/url-parser';
 import { initAudioDropdown } from './features/downloader/ui-render/dropdown-logic';
 import { MaterialPopup } from './ui-components/material-popup/material-popup';
 import { shouldPromptPlaylistRedirectForMulti, FEATURE_KEYS, FEATURE_ACCESS_REASONS } from '@downloader/core';
 import { evaluateFeatureAccess } from './features/allowed-features';
-import { recordUsage } from './features/download-limit';
-import { showLimitReachedPopup, showSupporterUpsellPopup } from '@downloader/ui-shared';
+import { recordUsage, hasLicenseKey, MAX_MULTI_DOWNLOAD_VIDEOS } from './features/download-limit';
+import { showLimitReachedPopup, showVideoLimitPopup, showSupporterUpsellPopup } from '@downloader/ui-shared';
 import { POPUP_CONFIG } from './features/supporter-popup-config';
 
 async function confirmPlaylistRedirect(): Promise<boolean> {
@@ -183,6 +184,25 @@ function getCurrentSettings(): Partial<VideoItemSettings> {
 }
 
 /**
+ * Update the convert button text/label with the number of URLs
+ */
+function updateConvertButtonCount(btn: HTMLElement, rawText: string): void {
+    const count = rawText
+        .trim()
+        .split(/[\n\s,]+/)
+        .filter(Boolean)
+        .length;
+
+    const label = count > 0 ? `Download (${count})` : 'Download';
+    const originalTextSpan = btn.querySelector('span');
+    if (originalTextSpan) {
+        originalTextSpan.textContent = label;
+    } else {
+        btn.textContent = label;
+    }
+}
+
+/**
  * Initialize multi-download form
  */
 function initMultiDownloadForm() {
@@ -194,6 +214,9 @@ function initMultiDownloadForm() {
         console.error('[Multi Downloader] Required elements not found');
         return;
     }
+
+    // Initial count
+    updateConvertButtonCount(addUrlsBtn, urlsInput.value);
 
     // Ctrl+Enter to Submit
     urlsInput.addEventListener('keydown', (e) => {
@@ -217,7 +240,12 @@ function initMultiDownloadForm() {
                 urlsInput.value = formatted;
                 urlsInput.scrollTop = urlsInput.scrollHeight;
             }
+            updateConvertButtonCount(addUrlsBtn, urlsInput.value);
         }, 0);
+    });
+
+    urlsInput.addEventListener('input', () => {
+        updateConvertButtonCount(addUrlsBtn, urlsInput.value);
     });
 
     addUrlsBtn.addEventListener('click', async () => {
@@ -258,6 +286,13 @@ function initMultiDownloadForm() {
         addUrlsBtn.classList.remove('loading');
         addUrlsBtn.removeAttribute('disabled');
 
+        const parsed = parseYouTubeURLs(rawText);
+
+        if (!hasLicenseKey() && parsed.length > MAX_MULTI_DOWNLOAD_VIDEOS) {
+            showVideoLimitPopup(POPUP_CONFIG, MAX_MULTI_DOWNLOAD_VIDEOS);
+            return;
+        }
+
         if (shouldPromptPlaylistRedirectForMulti(rawText)) {
             const shouldRedirectToPlaylist = await confirmPlaylistRedirect();
             if (shouldRedirectToPlaylist) {
@@ -272,6 +307,7 @@ function initMultiDownloadForm() {
 
         // Clear input after user submits
         urlsInput.value = '';
+        updateConvertButtonCount(addUrlsBtn, '');
 
         try {
             const settings = getCurrentSettings();

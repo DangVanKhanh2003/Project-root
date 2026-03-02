@@ -268,7 +268,7 @@ function renderQualityOptions(format: 'mp3' | 'mp4'): void {
     ]
     : [
       { value: 'mp3-320', label: 'MP3 - 320kbps' },
-      { value: 'mp3-256', label: 'MP3 - 256kbps' },
+      { value: 'mp3-192', label: 'MP3 - 192kbps' },
       { value: 'mp3-128', label: 'MP3 - 128kbps' },
       { value: 'wav', label: 'WAV - Lossless' },
       { value: 'm4a', label: 'M4A - 128kbps' },

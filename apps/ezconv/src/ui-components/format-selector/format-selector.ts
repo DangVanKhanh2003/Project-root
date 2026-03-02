@@ -152,7 +152,6 @@ function renderAudioQualityDropdown(selectedAudioFormat: AudioFormatType, select
   // Build audio quality options
   const audioOptions = [
     { value: 'mp3-320', label: 'MP3 - 320kbps', format: 'mp3', bitrate: '320' },
-    { value: 'mp3-256', label: 'MP3 - 256kbps', format: 'mp3', bitrate: '256' },
     { value: 'mp3-128', label: 'MP3 - 128kbps', format: 'mp3', bitrate: '128' },
     { value: 'flac', label: 'FLAC - Lossless', format: 'flac', bitrate: '' },
     { value: 'wav', label: 'WAV - Lossless', format: 'wav', bitrate: '' },

@@ -1,7 +1,7 @@
 
 import { api } from '../../../../api';
 import { VideoMeta } from '../../state/types';
-import { extractVideoId } from '@downloader/core';
+import { extractVideoId, isYouTubeUrl } from '@downloader/core';
 
 const MAX_CONCURRENT = 5;
 
@@ -61,6 +61,10 @@ export async function fetchMetadataBatch(
 }
 
 export async function fetchSingleMetadata(url: string): Promise<VideoMeta> {
+    if (!isYouTubeUrl(url)) {
+        return createFallbackMeta(url);
+    }
+
     const result = await api.getMetadataYoutube(url);
 
     if (!result.ok || !result.data) {
@@ -91,16 +95,26 @@ export async function fetchSingleMetadata(url: string): Promise<VideoMeta> {
 
 function createFallbackMeta(url: string): VideoMeta {
     const vid = extractVideoId(url) || '';
+    const genericTitle = getGenericUrlTitle(url);
+
     return {
-        title: vid ? `Video ${vid}` : 'Unknown Video',
+        title: vid ? `Video ${vid}` : genericTitle,
         originalUrl: url,
-        status: 'error',
+        status: 'ready',
         author: '',
         thumbnail: vid ? `https://i.ytimg.com/vi/${vid}/hqdefault.jpg` : '',
         duration: 0,
         url,
         vid,
-        source: 'youtube',
+        source: vid ? 'youtube' : 'url',
         isFakeData: true,
     };
+}
+
+function getGenericUrlTitle(url: string): string {
+    try {
+        return new URL(url).hostname || url;
+    } catch {
+        return url || 'Unknown Video';
+    }
 }

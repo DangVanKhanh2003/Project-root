@@ -7,6 +7,39 @@ export interface ParsedUrl {
     playlistId: string | null;
 }
 
+function parseUrlLike(input: string): URL | null {
+    const value = input.trim();
+    if (!value) return null;
+
+    try {
+        return new URL(/^https?:\/\//i.test(value) ? value : `https://${value}`);
+    } catch {
+        return null;
+    }
+}
+
+function isGenericUrl(input: string): boolean {
+    const parsed = parseUrlLike(input);
+    if (!parsed) return false;
+
+    if (!['http:', 'https:'].includes(parsed.protocol)) {
+        return false;
+    }
+
+    const host = parsed.hostname.trim();
+    if (!host) return false;
+
+    const isIpv4 = /^\d{1,3}(?:\.\d{1,3}){3}$/.test(host);
+    const isLocalhost = host === 'localhost';
+    const hasDot = host.includes('.');
+
+    return isIpv4 || isLocalhost || hasDot;
+}
+
+function normalizeGenericUrl(input: string): string {
+    return parseUrlLike(input)?.toString() || input;
+}
+
 export function parseYouTubeURLs(inputText: string): ParsedUrl[] {
 
     // Normalize: replace all types of line endings and whitespace
@@ -33,6 +66,43 @@ export function parseYouTubeURLs(inputText: string): ParsedUrl[] {
             url: videoId ? normalizeURL(videoId) : token,
             videoId,
             playlistId,
+        });
+    }
+
+    return results;
+}
+
+export function parseConvertibleURLs(inputText: string): ParsedUrl[] {
+    const normalized = inputText
+        .replace(/\r\n/g, '\n')
+        .replace(/\r/g, '\n')
+        .replace(/\t/g, ' ')
+        .trim();
+
+    const tokens = normalized.split(/[\n\s,]+/).filter(Boolean);
+    const results: ParsedUrl[] = [];
+
+    for (const token of tokens) {
+        if (isYouTubeUrl(token)) {
+            const videoId = extractVideoId(token);
+            const playlistId = extractPlaylistId(token);
+
+            results.push({
+                url: videoId ? normalizeURL(videoId) : normalizeGenericUrl(token),
+                videoId,
+                playlistId,
+            });
+            continue;
+        }
+
+        if (!isGenericUrl(token)) {
+            continue;
+        }
+
+        results.push({
+            url: normalizeGenericUrl(token),
+            videoId: null,
+            playlistId: null,
         });
     }
 

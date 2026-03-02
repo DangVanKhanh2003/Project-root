@@ -113,7 +113,7 @@ function generateFakeYouTubeData(videoId: string, url: string): any {
           }
         },
         {
-          quality: '720p',
+          quality: '1440p',
           format: 'mp4',
           vid: videoId,
           type: 'VIDEO',
@@ -121,7 +121,7 @@ function generateFakeYouTubeData(videoId: string, url: string): any {
           isFakeData: true,
           extractV2Options: {
             downloadMode: 'video',
-            videoQuality: '720',
+            videoQuality: '1440',
             youtubeVideoContainer: 'mp4'
           }
         },
@@ -180,7 +180,7 @@ function generateFakeYouTubeData(videoId: string, url: string): any {
       ],
       audio: [
         {
-          quality: '256kbps',
+          quality: '320kbps',
           format: 'mp3',
           vid: videoId,
           type: 'AUDIO',
@@ -188,7 +188,20 @@ function generateFakeYouTubeData(videoId: string, url: string): any {
           isFakeData: true,
           extractV2Options: {
             downloadMode: 'audio',
-            audioBitrate: '256',
+            audioBitrate: '320',
+            audioFormat: 'mp3'
+          }
+        },
+        {
+          quality: '192kbps',
+          format: 'mp3',
+          vid: videoId,
+          type: 'AUDIO',
+          size: 'Processing...',
+          isFakeData: true,
+          extractV2Options: {
+            downloadMode: 'audio',
+            audioBitrate: '192',
             audioFormat: 'mp3'
           }
         },
@@ -202,6 +215,19 @@ function generateFakeYouTubeData(videoId: string, url: string): any {
           extractV2Options: {
             downloadMode: 'audio',
             audioBitrate: '128',
+            audioFormat: 'mp3'
+          }
+        },
+        {
+          quality: '64kbps',
+          format: 'mp3',
+          vid: videoId,
+          type: 'AUDIO',
+          size: 'Processing...',
+          isFakeData: true,
+          extractV2Options: {
+            downloadMode: 'audio',
+            audioBitrate: '64',
             audioFormat: 'mp3'
           }
         },
@@ -328,7 +354,7 @@ export async function handleAutoDownload(
     } else {
       // Audio format - All formats need audioBitrate
       // M4A, OGG, WAV, Opus: Fixed '128'
-      // MP3: User selection (64/128/192/256/320)
+      // MP3: User selection (64/128/192/320)
       const isNonBitrateFormat = ['m4a', 'ogg', 'wav', 'opus'].includes(audioFormat.toLowerCase());
       const finalBitrate = isNonBitrateFormat ? '128' : audioBitrate;
       const finalQuality = isNonBitrateFormat ? audioFormat.toUpperCase() : `${audioBitrate}kbps`;

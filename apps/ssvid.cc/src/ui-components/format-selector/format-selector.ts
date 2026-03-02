@@ -123,7 +123,12 @@ function renderVideoQualityDropdown(selectedQuality: string): string {
   // MP4 with all quality options
   qualities.forEach(quality => {
     const resolution = quality.replace('p', '');
-    const label = quality === '2160p' ? 'MP4 - 4K' : `MP4 - ${quality}`;
+    const label =
+      quality === '2160p'
+        ? 'MP4 - 4K'
+        : quality === '1440p'
+          ? 'MP4 - 2K'
+          : `MP4 - ${quality}`;
     videoOptions.push({ value: `mp4-${resolution}`, label });
   });
 
@@ -152,11 +157,11 @@ function renderAudioQualityDropdown(selectedAudioFormat: AudioFormatType, select
   // Build audio quality options
   const audioOptions = [
     { value: 'mp3-320', label: 'MP3 - 320kbps', format: 'mp3', bitrate: '320' },
-    { value: 'mp3-256', label: 'MP3 - 256kbps', format: 'mp3', bitrate: '256' },
+    { value: 'mp3-192', label: 'MP3 - 192kbps', format: 'mp3', bitrate: '192' },
     { value: 'mp3-128', label: 'MP3 - 128kbps', format: 'mp3', bitrate: '128' },
+    { value: 'mp3-64', label: 'MP3 - 64kbps', format: 'mp3', bitrate: '64' },
     { value: 'flac-128', label: 'FLAC - Lossless', format: 'flac', bitrate: '128' },
     { value: 'wav-128', label: 'WAV - Lossless', format: 'wav', bitrate: '128' },
-    { value: 'm4a-256', label: 'M4A - 256kbps', format: 'm4a', bitrate: '256' },
     { value: 'm4a-128', label: 'M4A - 128kbps', format: 'm4a', bitrate: '128' },
     { value: 'opus-128', label: 'Opus - 128kbps', format: 'opus', bitrate: '128' },
     { value: 'ogg-128', label: 'OGG - 128kbps', format: 'ogg', bitrate: '128' },
@@ -297,6 +302,7 @@ function replaceDropdownOptions(container: HTMLElement, format: FormatType): voi
 function renderAudioDropdownOnly(selectedAudioFormat: AudioFormatType, selectedBitrate: string): string {
   const audioOptions = [
     { value: 'mp3-320', label: 'MP3 - 320kbps' },
+    { value: 'mp3-192', label: 'MP3 - 192kbps' },
     { value: 'mp3-128', label: 'MP3 - 128kbps' },
     { value: 'mp3-64', label: 'MP3 - 64kbps' },
     { value: 'flac', label: 'FLAC - Lossless' },

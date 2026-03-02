@@ -7,7 +7,7 @@
 
 import { multiDownloadService } from '../downloader/logic/multiple-download/services/multi-download-service';
 import { VideoItemSettings } from '../downloader/state/multiple-download-types';
-import { parseYouTubeURLs, normalizeURL } from '../downloader/logic/multiple-download/url-parser';
+import { parseConvertibleURLs, parseYouTubeURLs, normalizeURL } from '../downloader/logic/multiple-download/url-parser';
 import { isPlaylistMode, isTrimMode, isChannelMode } from './advanced-settings-controller';
 import { getTrimStart, getTrimEnd, getTrimRangeLabel, resetTrimEditor } from './trim-controller';
 import { isMobileViewport, scrollToElementWithOffset } from '../shared/scroll/scroll-behavior';
@@ -71,7 +71,9 @@ export function initConvertForm(config: ConvertFormConfig): void {
                 urlsInput.selectionStart = urlsInput.selectionEnd = start + 1;
                 urlsInput.dispatchEvent(new Event('input'));
             } else {
-                const hasValidUrls = parseYouTubeURLs(urlsInput.value).length > 0;
+                const hasValidUrls = isTrimMode() || isPlaylistMode()
+                    ? parseYouTubeURLs(urlsInput.value).length > 0
+                    : parseConvertibleURLs(urlsInput.value).length > 0;
                 if (!hasValidUrls) return;
                 // Enter: submit
                 e.preventDefault();
@@ -104,7 +106,7 @@ export function initConvertForm(config: ConvertFormConfig): void {
         let hasScrolledOnFlowStart = false;
 
         if (!rawText) {
-            showError(errorMessage, 'Please paste at least one YouTube URL.');
+            showError(errorMessage, 'Please paste at least one URL.');
             return;
         }
 
@@ -164,10 +166,10 @@ async function handleBatchConvert(
     onItemsAdded?: () => void
 ): Promise<boolean> {
     // In batch mode, URLs are treated as individual videos.
-    // A URL like watch?v=XXX&list=PLyyy is already normalized to watch?v=XXX by parseYouTubeURLs.
+    // YouTube watch URLs with list= are normalized to the canonical watch URL.
     // A pure playlist URL (no v= param) cannot be treated as a single video — warn the user.
-    const parsed = parseYouTubeURLs(rawText);
-    if (parsed.length === 0) throw new Error('No valid YouTube URLs found.');
+    const parsed = parseConvertibleURLs(rawText);
+    if (parsed.length === 0) throw new Error('No valid URLs found.');
     if (parsed.length > MAX_BATCH_URLS) {
         throw new Error(`Multiple mode supports up to ${MAX_BATCH_URLS} URLs per convert.`);
     }
