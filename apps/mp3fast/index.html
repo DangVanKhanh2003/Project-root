@@ -233,10 +233,16 @@
                     <div id="format-selector-container">
                         <div class="format-selector-wrapper">
                             <div class="format-selector">
-                                <!-- Format Toggle -->
-                                <div class="format-toggle">
-                                    <button type="button" class="format-btn" data-format="mp3">MP3</button>
-                                    <button type="button" class="format-btn" data-format="mp4">MP4</button>
+                                <!-- Format Select -->
+                                <div class="quality-wrapper format-wrapper">
+                                    <select id="format-select" class="quality-select format-select" data-format-select>
+                                        <option value="mp3">MP3</option>
+                                        <option value="mp4">MP4</option>
+                                    </select>
+                                    <script>(function(){try{var p=JSON.parse(localStorage.getItem('mp3fast_format_preferences'));if(!p)return;var s=document.getElementById('format-select');if(s&&(p.selectedFormat==='mp3'||p.selectedFormat==='mp4'))s.value=p.selectedFormat}catch(e){}})()</script>
+                                    <div class="select-arrow">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                                    </div>
                                 </div>
 
                                 <!-- Quality Dropdown -->

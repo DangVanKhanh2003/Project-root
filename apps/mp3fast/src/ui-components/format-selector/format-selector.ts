@@ -9,9 +9,7 @@ import {
   setVideoQuality,
   setAudioFormat,
   setAudioBitrate,
-  QUALITY_OPTIONS,
-  type FormatType,
-  type AudioFormatType
+  type FormatType
 } from '../../features/downloader/state';
 
 // ==========================================
@@ -29,11 +27,8 @@ export function initFormatSelector(containerSelector: string = '#previewCard'): 
     return;
   }
 
-  // Format button clicks (MP3 ↔ MP4)
-  container.addEventListener('click', handleFormatSelectorClick);
-
-  // Quality select changes
-  container.addEventListener('change', handleQualityChange);
+  // All select changes (format select + quality select)
+  container.addEventListener('change', handleSelectChange);
 
   // Initialize dropdown arrow rotation
   initDropdownArrow(container);
@@ -43,43 +38,34 @@ export function initFormatSelector(containerSelector: string = '#previewCard'): 
 }
 
 /**
- * Handle all clicks within format selector (event delegation)
+ * Handle all <select> changes within format selector (event delegation)
  */
-function handleFormatSelectorClick(event: Event): void {
-  const target = event.target as HTMLElement;
+function handleSelectChange(event: Event): void {
+  const target = event.target as HTMLSelectElement;
 
-  const formatBtn = target.closest('.format-btn') as HTMLElement;
-  if (formatBtn) {
-    const format = formatBtn.dataset.format as FormatType;
+  // Format select (MP3 ↔ MP4)
+  if (target.matches('[data-format-select]')) {
+    const format = target.value as FormatType;
     if (format === 'mp3' || format === 'mp4') {
-      handleFormatChange(format);
+      setSelectedFormat(format);
+      document.documentElement.dataset.format = format;
     }
+    return;
+  }
+
+  // Quality select
+  if (target.matches('[data-quality-select]')) {
+    handleQualityChange(target.value);
   }
 }
 
 /**
- * Handle format change (MP3 ↔ MP4)
- * Updates html[data-format] — CSS handles visibility and active state
- */
-function handleFormatChange(format: FormatType): void {
-  setSelectedFormat(format);
-  document.documentElement.dataset.format = format;
-}
-
-/**
- * Handle quality select change
+ * Handle quality select value change
  *
  * MP3 values:  "mp3-128", "mp3-320", "flac", "wav", "m4a", "opus", "ogg"
  * MP4 values:  "mp4-720", "mp4-1080", "webm", "mkv"
  */
-function handleQualityChange(event: Event): void {
-  const target = event.target as HTMLSelectElement;
-
-  if (!target.matches('[data-quality-select]')) {
-    return;
-  }
-
-  const value = target.value;
+function handleQualityChange(value: string): void {
   const state = getState();
 
   if (state.selectedFormat === 'mp4') {
@@ -100,7 +86,7 @@ function handleQualityChange(event: Event): void {
     } else {
       // "flac", "wav", "m4a", "opus", "ogg"
       setAudioFormat(value);
-      setAudioBitrate('128'); // Default for API compatibility
+      setAudioBitrate('128');
     }
   }
 }
