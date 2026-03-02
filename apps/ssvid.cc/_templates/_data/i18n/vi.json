@@ -35,7 +35,8 @@
     "formatMp4": "MP4",
     "formatMp3": "MP3",
     "audioTrackDefault": "Audio track",
-    "searchPlaceholder": "Tìm kiếm..."
+    "searchPlaceholder": "Tìm kiếm...",
+    "supportedPlatforms": "Nền tảng hỗ trợ:"
   },
   "overview": {
     "badge": "Nhanh & Miễn phí"

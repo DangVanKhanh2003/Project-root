@@ -35,7 +35,8 @@
     "formatMp4": "MP4",
     "formatMp3": "MP3",
     "audioTrackDefault": "Audio track",
-    "searchPlaceholder": "Cari..."
+    "searchPlaceholder": "Cari...",
+    "supportedPlatforms": "Platform yang didukung:"
   },
   "overview": {
     "badge": "Cepat & Gratis"

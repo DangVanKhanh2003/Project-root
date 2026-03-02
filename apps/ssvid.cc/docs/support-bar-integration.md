@@ -180,7 +180,6 @@ Paste toàn bộ khối này vào stylesheet của bạn (hoặc vào file riên
     justify-content: center;
 
     /* Stacking overlap effect */
-    margin-left: -6px;
     flex-shrink: 0;
     position: relative;
     transition: opacity 0.5s ease;

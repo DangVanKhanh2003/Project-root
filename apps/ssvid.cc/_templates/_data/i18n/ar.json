@@ -35,7 +35,8 @@
     "formatMp4": "MP4",
     "formatMp3": "MP3",
     "audioTrackDefault": "Audio track",
-    "searchPlaceholder": "بحث..."
+    "searchPlaceholder": "بحث...",
+    "supportedPlatforms": "المنصات المدعومة:"
   },
   "overview": {
     "badge": "سريع ومجاني"

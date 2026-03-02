@@ -35,7 +35,8 @@
     "formatMp4": "MP4",
     "formatMp3": "MP3",
     "audioTrackDefault": "Audio track",
-    "searchPlaceholder": "تلاش کریں..."
+    "searchPlaceholder": "تلاش کریں...",
+    "supportedPlatforms": "تعاون یافتہ پلیٹ فارمز:"
   },
   "overview": {
     "badge": "تیز اور مفت"
