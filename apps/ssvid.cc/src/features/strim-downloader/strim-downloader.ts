@@ -343,8 +343,9 @@ function initSlider(): void {
   }
 
   const hasDuration = videoDuration > 0;
+  // If no duration yet, set dummy max but keep handles at 0 instead of max
   const max = hasDuration ? videoDuration : 100;
-  const end = hasDuration ? videoDuration : 100;
+  const end = hasDuration ? videoDuration : 0;
 
   slider = window.noUiSlider.create(sliderElement, {
     start: [0, end],
@@ -357,7 +358,8 @@ function initSlider(): void {
   slider.on('update', (values) => {
     startTime = Math.round(Number(values[0]));
     endTime = Math.round(Number(values[1]));
-    if (videoDuration > 0) updateTimeInputs();
+    // Always update inputs so it shows 0:00 before duration is loaded
+    updateTimeInputs();
   });
 
   slider.on('slide', (values, handle) => {
@@ -459,6 +461,8 @@ async function loadVideo(url: string): Promise<void> {
 
   currentVideoId = videoId;
   videoDuration = 0;
+  startTime = 0;
+  endTime = 0;
   clearContent();
   setEditorVisible(true);
 
@@ -576,9 +580,17 @@ function setupEventListeners(): void {
   const urlInput = document.getElementById('videoUrl') as HTMLInputElement | null;
   if (urlInput) {
     urlInput.addEventListener('input', () => {
-      if (!urlInput.value.trim()) {
+      const val = urlInput.value.trim();
+      if (!val) {
         setEditorVisible(false);
         currentVideoId = null;
+      } else {
+        // Preload scripts when a URL is likely pasted
+        const maybeId = extractVideoId(val);
+        if (maybeId) {
+          loadNoUiSlider().catch(() => { });
+          loadYouTubeApi().catch(() => { });
+        }
       }
     });
   }

@@ -7,14 +7,14 @@
 
 import { multiDownloadService } from '../downloader/logic/multiple-download/services/multi-download-service';
 import { VideoItemSettings } from '../downloader/state/multiple-download-types';
-import { parseConvertibleURLs, parseYouTubeURLs, normalizeURL } from '../downloader/logic/multiple-download/url-parser';
+import { parseConvertibleURLs, parseYouTubeURLs, normalizeURL, isChannelUrl } from '../downloader/logic/multiple-download/url-parser';
 import { isPlaylistMode, isTrimMode, isChannelMode } from './advanced-settings-controller';
 import { getTrimStart, getTrimEnd, getTrimRangeLabel, resetTrimEditor } from './trim-controller';
 import { isMobileViewport, scrollToElementWithOffset } from '../shared/scroll/scroll-behavior';
 import { checkLimit } from '../download-limit';
 import { evaluateFeatureAccess, type FeatureAccessReason, type FeatureAccessResult } from '../feature-access';
 import { FEATURE_KEYS, FEATURE_ACCESS_REASONS } from '@downloader/core';
-import { showLimitReachedPopup, showVideoLimitPopup, showSupporterUpsellPopup } from '@downloader/ui-shared';
+import { showLimitReachedPopup, showVideoLimitPopup, showSupporterUpsellPopup, showPlaylistInstructionPopup, showChannelInstructionPopup } from '@downloader/ui-shared';
 import { POPUP_CONFIG } from '../supporter-popup-config';
 import { incrementDownloadCount } from '../widget-level-manager';
 
@@ -189,10 +189,14 @@ async function handleBatchConvert(
 
     const purePlaylistUrls = parsed.filter(p => !p.videoId && p.playlistId);
     if (purePlaylistUrls.length > 0) {
-        throw new Error(
-            'One or more URLs are playlist-only links (no video ID). ' +
-            'Enable Playlist Mode to load them as groups.'
-        );
+        showPlaylistInstructionPopup(POPUP_CONFIG);
+        return false;
+    }
+
+    const channelUrls = parsed.filter(p => !p.videoId && isChannelUrl(p.url));
+    if (channelUrls.length > 0) {
+        showChannelInstructionPopup(POPUP_CONFIG);
+        return false;
     }
 
     const groupId = await multiDownloadService.addUrls(rawText, settings, onItemsAdded);

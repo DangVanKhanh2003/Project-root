@@ -961,6 +961,17 @@ export async function handleExtractMedia(
         }
       }
 
+      const is2K = state.selectedFormat === 'mp4' && state.videoQuality === '1440p';
+      if (is2K) {
+        const limitResult = checkLimit(FEATURE_KEYS.HIGH_QUALITY_2K);
+        if (!limitResult.allowed) {
+          showLimitReachedPopup(POPUP_CONFIG, FEATURE_KEYS.HIGH_QUALITY_2K);
+          setSubmitting(false);
+          setLoading(false);
+          return;
+        }
+      }
+
       if (is320kbps) {
         const limitResult = checkLimit(FEATURE_KEYS.HIGH_QUALITY_320K);
         if (!limitResult.allowed) {

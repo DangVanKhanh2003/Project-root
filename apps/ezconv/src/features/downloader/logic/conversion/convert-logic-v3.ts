@@ -62,8 +62,21 @@ export async function startConversion(params: V3ConversionParams): Promise<void>
     abortController,
   });
 
+  const is4K = extractV2Options?.downloadMode === 'video' && extractV2Options?.videoQuality === '2160';
+  const is2K = extractV2Options?.downloadMode === 'video' && extractV2Options?.videoQuality === '1440';
+  const is320kbps = extractV2Options?.downloadMode === 'audio' && extractV2Options?.audioBitrate === '320';
+
+  let kindToCheck = downloadMethod === 'trim' ? 'trim' : 'single';
+  if (is4K) {
+    kindToCheck = 'high_quality_4k';
+  } else if (is2K) {
+    kindToCheck = 'high_quality_2k';
+  } else if (is320kbps) {
+    kindToCheck = 'high_quality_320k';
+  }
+
   const limitResult = await checkLimit({
-    kind: downloadMethod === 'trim' ? 'trim' : 'single',
+    kind: kindToCheck as any,
   });
 
   if (!limitResult.allowed) {
@@ -186,7 +199,11 @@ export async function startConversion(params: V3ConversionParams): Promise<void>
           filename: generateFilename(videoTitle, extractV2Options),
           completedAt: Date.now(),
         });
+        
         await incrementDownloadCount(downloadMethod, videoUrl);
+        if (kindToCheck !== downloadMethod) {
+          await incrementDownloadCount(kindToCheck as DownloadMethod, videoUrl);
+        }
 
         return;
       } catch (error) {

@@ -9,6 +9,7 @@ export const FEATURE_KEYS = {
     PLAYLIST_DOWNLOAD: 'download_playlist',
     CHANNEL_DOWNLOAD: 'download_channel',
     HIGH_QUALITY_4K: 'download_4k',
+    HIGH_QUALITY_2K: 'download_2k',
     HIGH_QUALITY_320K: 'download_320kbps',
     CUT_VIDEO_YOUTUBE: 'cut_video_youtube',
 } as const;

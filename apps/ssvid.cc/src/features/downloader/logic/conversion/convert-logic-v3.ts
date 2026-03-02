@@ -160,11 +160,13 @@ export async function startConversion(params: V3ConversionParams): Promise<void>
 
         // Record usage AFTER success
         const { videoQuality, audioBitrate, audioFormat, downloadMode, trimStart } = extractV2Options ?? {};
-        const is4K = downloadMode === 'video' && videoQuality === '2160';
-        const is320kbps = downloadMode === 'audio' && audioFormat === 'mp3' && audioBitrate === '320';
-        const isCutVideo = typeof trimStart === 'number';
+        const is4K = extractV2Options?.downloadMode === 'video' && extractV2Options?.videoQuality === '2160';
+        const is2K = extractV2Options?.downloadMode === 'video' && extractV2Options?.videoQuality === '1440';
+        const is320kbps = extractV2Options?.downloadMode === 'audio' && extractV2Options?.audioBitrate === '320';
+        const isCutVideo = typeof extractV2Options?.trimStart === 'number' && typeof extractV2Options?.trimEnd === 'number';
 
         if (is4K) recordUsage(FEATURE_KEYS.HIGH_QUALITY_4K);
+        if (is2K) recordUsage(FEATURE_KEYS.HIGH_QUALITY_2K);
         if (is320kbps) recordUsage(FEATURE_KEYS.HIGH_QUALITY_320K);
         if (isCutVideo) recordUsage(FEATURE_KEYS.CUT_VIDEO_YOUTUBE);
 

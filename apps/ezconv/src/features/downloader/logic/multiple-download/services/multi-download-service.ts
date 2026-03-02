@@ -9,8 +9,10 @@ import { DownloadQueue } from '../download-queue';
 import { runSingleDownload } from '../download-runner';
 import { fetchMetadataBatch } from '../metadata-fetcher';
 import { parseConvertibleURLs, parseYouTubeURLs, generateItemId, normalizeURL, extractChannelHandle } from '../url-parser';
-import { recordDownloadError, type DownloadMethod } from '../../../../download-limit';
+import { recordDownloadError, type DownloadMethod, checkLimit } from '../../../../download-limit';
 import { incrementDownloadCount } from '../../../../widget-level-manager';
+import { showLimitReachedPopup } from '@downloader/ui-shared';
+import { POPUP_CONFIG } from '../../../../supporter-popup-config';
 
 function inferDownloadMethod(item: VideoItem): DownloadMethod {
     if (item.groupId?.startsWith('channel_')) return 'channel';
@@ -563,43 +565,77 @@ export class MultiDownloadService {
     }
 
     // ==========================================
+    // Pre-Check Limits
+    // ==========================================
+
+    private async checkItemLimits(items: VideoItem[]): Promise<boolean> {
+        for (const item of items) {
+            const isAudio = item.settings.format === 'mp3';
+            const is4K = !isAudio && item.settings.quality === '2160p';
+            const is2K = !isAudio && item.settings.quality === '1440p';
+            const is320kbps = isAudio && item.settings.audioBitrate === '320';
+
+            let limitResult: any = null;
+            if (is4K) limitResult = await checkLimit({ kind: 'high_quality_4k' });
+            else if (is2K) limitResult = await checkLimit({ kind: 'high_quality_2k' });
+            else if (is320kbps) limitResult = await checkLimit({ kind: 'high_quality_320k' });
+
+            if (limitResult && !limitResult.allowed) {
+                showLimitReachedPopup(POPUP_CONFIG, limitResult.mode ?? undefined);
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // ==========================================
     // Download Control
     // ==========================================
 
-    startDownload(id: string): void {
+    async startDownload(id: string): Promise<void> {
         const item = videoStore.getItem(id);
         if (!item) return;
+        if (!(await this.checkItemLimits([item]))) return;
+        
         videoStore.setStatus(id, 'queued');
         this.enqueueJob(id);
     }
 
-    startAllDownloads(): void {
+    async startAllDownloads(): Promise<void> {
         const items = videoStore.getDownloadableItems();
+        if (!(await this.checkItemLimits(items))) return;
+        
         const ids = items.map(i => i.id);
         videoStore.batchSetQueued(ids);
         for (const id of ids) this.enqueueJob(id);
     }
 
-    startSelectedDownloads(): void {
+    async startSelectedDownloads(): Promise<void> {
         const items = videoStore.getSelectedDownloadable();
+        if (!(await this.checkItemLimits(items))) return;
+        
         const ids = items.map(i => i.id);
         videoStore.batchSetQueued(ids);
         for (const id of ids) this.enqueueJob(id);
     }
 
-    startGroupDownloads(groupId: string): void {
+    async startGroupDownloads(groupId: string): Promise<void> {
         const items = videoStore.getAllItems().filter(i =>
             i.groupId === groupId && ['ready', 'error', 'cancelled'].includes(i.status)
         );
+        if (!(await this.checkItemLimits(items))) return;
+        
         const ids = items.map(i => i.id);
         videoStore.batchSetQueued(ids);
         for (const id of ids) this.enqueueJob(id);
     }
 
-    startSelectedGroupDownloads(groupId: string): void {
+    async startSelectedGroupDownloads(groupId: string): Promise<void> {
         const items = videoStore.getAllItems().filter(i =>
             i.groupId === groupId && i.isSelected && ['ready', 'error', 'cancelled'].includes(i.status)
         );
+        if (!(await this.checkItemLimits(items))) return;
+        
         const ids = items.map(i => i.id);
         videoStore.batchSetQueued(ids);
         for (const id of ids) this.enqueueJob(id);
@@ -684,8 +720,23 @@ export class MultiDownloadService {
                         videoStore.updateProgress(id, progress, phase);
                     },
                     onComplete: (downloadUrl, filename) => {
-                        // Only increment for single/trim downloads.
-                        // Playlist/Channel/Batch downloads are incremented when the group is added.
+                        let methodToIncrement = method as DownloadMethod;
+                        const isAudio = item.settings.format === 'mp3';
+                        const is4K = !isAudio && item.settings.quality === '2160p';
+                        const is2K = !isAudio && item.settings.quality === '1440p';
+                        const is320kbps = isAudio && item.settings.audioBitrate === '320';
+
+                        if (is4K) methodToIncrement = 'high_quality_4k';
+                        else if (is2K) methodToIncrement = 'high_quality_2k';
+                        else if (is320kbps) methodToIncrement = 'high_quality_320k';
+
+                        // Always increment the exact quality limit if one applies
+                        if (methodToIncrement !== method) {
+                            void incrementDownloadCount(methodToIncrement, item.meta.url || item.url);
+                        }
+
+                        // Only increment the raw download count for single/trim downloads.
+                        // Playlist/Channel/Batch downloads have their generic counters incremented when the group is initially added.
                         if (method === 'single' || method === 'trim') {
                             void incrementDownloadCount(method, item.meta.url || item.url);
                         }

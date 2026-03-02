@@ -3,6 +3,7 @@ import { apiV3, v3Config } from '../../../../api/v3';
 import { mapToV3DownloadRequest } from '@downloader/core';
 import { retryWithBackoff, RETRY_CONFIGS, isTimeoutError } from '../conversion/retry-helper';
 import { VideoItemSettings, ProgressPhase } from '../../state/multiple-download-types';
+import { checkLimit } from '../../../../features/download-limit';
 
 export interface DownloadCallbacks {
     onPhaseChange: (phase: ProgressPhase) => void;

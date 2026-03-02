@@ -158,7 +158,7 @@ const WIDGET_RULES: Record<string, { timing: string; levels: Record<number | str
     },
     'supporter-badge': {
         timing: 'pageLoad',
-        levels: { 1: false, 2: false, 3: false, supporter: true }
+        levels: { 1: false, 2: false, 3: false, supporter: false }
     }
 };
 

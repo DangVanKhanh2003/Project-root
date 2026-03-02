@@ -11,20 +11,26 @@ export const DAILY_BULK_DOWNLOAD_LIMIT = 20;
 export const DAILY_PLAYLIST_DOWNLOAD_LIMIT = 5;
 export const DAILY_CHANNEL_DOWNLOAD_LIMIT = 5;
 export const DAILY_TRIM_DOWNLOAD_LIMIT = 20;
+export const DAILY_HIGH_QUALITY_4K_LIMIT = 5;
+export const DAILY_HIGH_QUALITY_2K_LIMIT = 5;
+export const DAILY_HIGH_QUALITY_320K_LIMIT = 5;
 
 const DAILY_COUNTER_KEY_BY_MODE: Record<LimitedDailyMode | 'single' | 'trim', string> = {
     batch: 'ezconv:download_batch_daily',
     playlist: 'ezconv:download_playlist_daily',
     channel: 'ezconv:download_channel_daily',
     trim: 'ezconv:download_trim_daily',
-    single: 'ezconv:download_single_daily'
+    single: 'ezconv:download_single_daily',
+    high_quality_4k: 'ezconv:download_4k_daily',
+    high_quality_2k: 'ezconv:download_2k_daily',
+    high_quality_320k: 'ezconv:download_320k_daily'
 };
 
 const MEMORY_FALLBACK_LOGS: DownloadLogRecord[] = [];
 
-export type DownloadMethod = 'single' | 'batch' | 'playlist' | 'channel' | 'trim' | 'unknown';
+export type DownloadMethod = 'single' | 'batch' | 'playlist' | 'channel' | 'trim' | 'high_quality_4k' | 'high_quality_2k' | 'high_quality_320k' | 'unknown';
 export type SupporterLevel = 1 | 2 | 3;
-export type LimitedDailyMode = 'batch' | 'playlist' | 'channel' | 'trim';
+export type LimitedDailyMode = 'batch' | 'playlist' | 'channel' | 'trim' | 'high_quality_4k' | 'high_quality_2k' | 'high_quality_320k';
 export type LimitType = 'daily_mode_limit' | 'bulk_video_count';
 
 export interface DownloadLogRecord {
@@ -56,7 +62,7 @@ interface DailyCounterRecord {
 }
 
 export interface LimitCheckContext {
-    kind: 'single' | 'batch' | 'playlist' | 'channel' | 'trim';
+    kind: 'single' | 'batch' | 'playlist' | 'channel' | 'trim' | 'high_quality_4k' | 'high_quality_2k' | 'high_quality_320k';
     itemCount?: number;
     now?: number;
 }
@@ -86,7 +92,10 @@ const DAILY_LIMITS_BY_MODE: Record<LimitedDailyMode, number> = {
     batch: DAILY_BULK_DOWNLOAD_LIMIT,
     playlist: DAILY_PLAYLIST_DOWNLOAD_LIMIT,
     channel: DAILY_CHANNEL_DOWNLOAD_LIMIT,
-    trim: DAILY_TRIM_DOWNLOAD_LIMIT
+    trim: DAILY_TRIM_DOWNLOAD_LIMIT,
+    high_quality_4k: DAILY_HIGH_QUALITY_4K_LIMIT,
+    high_quality_2k: DAILY_HIGH_QUALITY_2K_LIMIT,
+    high_quality_320k: DAILY_HIGH_QUALITY_320K_LIMIT
 };
 
 function openDatabase(): Promise<IDBDatabase | null> {
