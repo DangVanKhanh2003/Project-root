@@ -93,7 +93,7 @@
     --color-accent: #C65D3B;
     --color-accent-hover: #B14F2F;
     --color-accent-dark: rgba(198, 93, 59, 0.20);
-    --background-hero-section: #2A2A28;
+    --background-hero-section: var(--bg-secondary);
 
     --bg-page: #1F1F1E;
     --bg-card: #2A2A28;
