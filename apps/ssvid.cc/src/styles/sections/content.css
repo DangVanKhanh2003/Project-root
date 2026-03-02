@@ -93,6 +93,14 @@ h2.titles {
     transition: opacity 0.2s ease;
 }
 
+.content-section a:visited {
+    color: #888888;
+}
+
+[data-theme="dark"] .content-section a:visited {
+    color: #C65D3B;
+}
+
 .content-section a:hover {
     opacity: 0.8;
     text-decoration: underline;

@@ -59,6 +59,9 @@
     --border-input: #b0b0b0;
     --border-subtle: #e5e7eb;
 
+    /* Link visited */
+    --link-visited: #888888;
+
     /* Accent fill tokens */
     --accent-fill-soft: rgba(0, 79, 171, 0.08);
     --accent-fill-strong: rgba(0, 79, 171, 0.16);
@@ -115,6 +118,8 @@
     --border-subtle: #2F2F2D;
     --border-secondary: #3A3A38;
     --border-glass: 1px solid #3A3A38;
+
+    --link-visited: var(--brand);
 
     --accent-fill-soft: rgba(198, 93, 59, 0.12);
     --accent-fill-strong: rgba(198, 93, 59, 0.20);

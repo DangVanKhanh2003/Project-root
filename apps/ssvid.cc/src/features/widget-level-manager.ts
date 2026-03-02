@@ -290,7 +290,7 @@ export async function applyInitialVisibility(): Promise<void> {
         } else {
             el.hidden = true;
             el.setAttribute('aria-hidden', 'true');
-            el.style.removeProperty('display');
+            el.style.display = 'none'; // inline style overrides author CSS (e.g. .license-menu { display: flex })
         }
     });
 

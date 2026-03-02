@@ -22,7 +22,7 @@ body[data-page="strim-downloader"] .stream-hero-note {
 
 body[data-page="strim-downloader"] .stream-hero-card-title {
   margin: 0 0 18px;
-  color: #000;
+  color: var(--text-heading);
   font-size: 1.45rem;
   line-height: 1.2;
   font-weight: 700;
