@@ -72,6 +72,37 @@
     position: static;
 }
 
+.input-platform-icons {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    opacity: 0.3;
+    transition: opacity 0.3s ease;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.input-platform-icons svg {
+    width: 18px;
+    height: 18px;
+    color: var(--text-secondary, #6b7280);
+    flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+    .input-platform-icons {
+        top: 10px;
+    }
+
+    .input-platform-icons svg {
+        width: 12px;
+        height: 12px;
+    }
+}
+
 .multi-search-shell {
     position: relative;
     width: 100%;
