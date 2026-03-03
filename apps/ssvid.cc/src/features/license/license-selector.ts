@@ -6,7 +6,7 @@
 import { logEvent } from '../../libs/firebase';
 
 const LICENSE_KEY_STORAGE_KEY = 'ssvid:license_key';
-const KOFI_MEMBERSHIP_URL = 'https://ko-fi.com/s/fa5c2b2a93';
+const KOFI_MEMBERSHIP_URL = 'https://ko-fi.com/s/d242437374';
 
 let isDropdownOpen = false;
 
@@ -132,7 +132,7 @@ export function initLicenseSelector(): void {
             if (addBtn) {
                 e.preventDefault();
                 e.stopPropagation();
-                
+
                 const href = (addBtn as HTMLAnchorElement).href || '/license';
                 window.open(href, '_blank');
                 closeDropdown();
@@ -143,7 +143,7 @@ export function initLicenseSelector(): void {
             if (resetBtn) {
                 e.preventDefault();
                 e.stopPropagation();
-                
+
                 const href = (resetBtn as HTMLAnchorElement).href || 'https://ytmp3-supporter.ytmp3.gg/reset/';
                 resetLicenseKey();
 

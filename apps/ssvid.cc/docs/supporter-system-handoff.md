@@ -59,7 +59,7 @@ import {
 import type { MaintenancePopupConfig } from '@downloader/ui-shared';
 
 export const POPUP_CONFIG: MaintenancePopupConfig = {
-  supporterCtaUrl: 'https://ko-fi.com/s/fa5c2b2a93',
+  supporterCtaUrl: 'https://ko-fi.com/s/d242437374',
   oneTimeDownloadUrl: 'https://ssvid.cc/',  // trang chủ ssvid
   logEvent: (eventName, eventParams) => {
     import('../libs/firebase')
@@ -215,7 +215,7 @@ export async function isAnyFeatureAllowed(features: string[]): Promise<boolean>
 import type { MaintenancePopupConfig } from '@downloader/ui-shared';
 
 export const POPUP_CONFIG: MaintenancePopupConfig = {
-  supporterCtaUrl: 'https://ko-fi.com/s/fa5c2b2a93',
+  supporterCtaUrl: 'https://ko-fi.com/s/d242437374',
   oneTimeDownloadUrl: 'https://ssvid.cc/',
   logEvent: (eventName, eventParams) => {
     import('../libs/firebase')
@@ -234,7 +234,7 @@ export const POPUP_CONFIG: MaintenancePopupConfig = {
 - HTML của license button: **copy y hệt từ ytmp3.gg** vào header HTML
 - Logic: toggle dropdown, load key từ localStorage
 - Storage key: `ssvid:license_key`
-- Ko-fi link: `https://ko-fi.com/s/fa5c2b2a93`
+- Ko-fi link: `https://ko-fi.com/s/d242437374`
 
 **Exports**:
 ```typescript

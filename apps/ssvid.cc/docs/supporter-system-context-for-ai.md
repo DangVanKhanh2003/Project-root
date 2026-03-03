@@ -90,7 +90,7 @@ src/
 > **Lưu ý về Ko-fi**: `src/features/kofi/kofi-widget.ts` đã bị xóa. Ko-fi widget hiện được nhúng trực tiếp vào HTML bằng script tag:
 > ```html
 > <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
-> <script>kofiWidgetOverlay.draw('metaconvert', { 'type': 'floating-chat', ... });</script>
+> <script>kofiWidgetOverlay.draw('metaconvert4', { 'type': 'floating-chat', ... });</script>
 > ```
 > Không cần tạo lại file TS cho Ko-fi.
 
@@ -226,7 +226,7 @@ HTML/CSS của license button: **copy y hệt từ ytmp3.gg** (không thay đổ
 - `getSavedLicenseKey(): string | null`
 - `resetLicenseKey(): void`
 
-**Ko-fi Membership link**: `https://ko-fi.com/s/fa5c2b2a93`
+**Ko-fi Membership link**: `https://ko-fi.com/s/d242437374`
 
 #### [NEW] `src/features/license/license-page.ts`
 Port từ `F:\downloader\ytmp3.gg\src\script\features\license-page.js`.
@@ -281,7 +281,7 @@ Thay `logEventWithPrefix(...)` bằng `logEvent(...)` từ `src/libs/firebase`.
 2. `showVideoLimitPopup(maxVideos?: number)` — hiện khi nhập > 10 video
 3. `showSupporterUpsellPopup(country?: string)` — hiện khi geo-restricted
 
-Ko-fi link trong tất cả popup: `https://ko-fi.com/s/fa5c2b2a93`
+Ko-fi link trong tất cả popup: `https://ko-fi.com/s/d242437374`
 
 ---
 
@@ -344,7 +344,7 @@ Mặc định `display:none`, `license-selector.ts` sẽ show/hide dựa trên l
 ### Ko-fi Links
 | Mục đích | Link |
 |---|---|
-| Membership / Upsell (popup, license button) | `https://ko-fi.com/s/fa5c2b2a93` |
+| Membership / Upsell (popup, license button) | `https://ko-fi.com/s/d242437374` |
 
 ### LocalStorage Keys (namespace `ssvid:`)
 | Key | Mục đích |
