@@ -5,7 +5,7 @@
  */
 
 const TIP_MESSAGE_WRAPPER_ID = 'tip-message-wrapper';
-const DEFAULT_KOFI_URL = 'https://ko-fi.com/metaconvert';
+const DEFAULT_KOFI_URL = 'https://ko-fi.com/metaconvert4';
 
 type TipMessageI18n = {
     tipMessagePlease: string;
