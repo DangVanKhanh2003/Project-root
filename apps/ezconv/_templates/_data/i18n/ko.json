@@ -37,7 +37,8 @@
     "audioTrackDefault": "Audio track",
     "searchPlaceholder": "검색...",
     "searchBtn": "검색",
-    "searchVideosPlaceholder": "동영상을 검색하세요..."
+    "searchVideosPlaceholder": "동영상을 검색하세요...",
+    "supportedPlatforms": "지원되는 플랫폼:"
   },
   "overview": {
     "badge": "빠르고 무료"

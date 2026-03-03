@@ -39,7 +39,7 @@
 .status-container {
   position: relative;
   width: 100%;
-  background: white;
+  background: var(--bg-card, white);
   border: 1px solid var(--border-secondary);
   border-radius: var(--radius-xl);
   display: flex;
@@ -63,12 +63,17 @@
   left: 0;
   height: 100%;
   width: var(--progress-width, 0%);
-  background: #cfe0ff;
+  background: var(--surface-weak, #cfe0ff);
   /* Primary color with lighter opacity */
-  border-right: 1px solid rgba(0, 79, 171, 0.4);
+  border-right: 1px solid var(--brand, rgba(0, 79, 171, 0.4));
   box-shadow: none;
   transition: width 0.1s ease;
   z-index: 1;
+}
+
+[data-theme="dark"] .status--processing::before,
+[data-theme="dark"] .status--success::before {
+  background: var(--accent-fill-strong);
 }
 
 /* Disable transition for instant reset (e.g., when transitioning between phases) */
@@ -162,9 +167,19 @@
   text-align: center;
 }
 
+[data-theme="dark"] .audio-language-warning {
+  background: rgba(245, 158, 11, 0.15);
+  border-color: rgba(245, 158, 11, 0.5);
+  color: #f59e0b;
+}
+
 .audio-language-warning strong {
   font-weight: 700;
   color: #92400e;
+}
+
+[data-theme="dark"] .audio-language-warning strong {
+  color: #fbbf24;
 }
 
 /* ===== ICON STATES ===== */
@@ -298,9 +313,9 @@
   font-size: 16px;
   font-weight: 600;
   border-radius: var(--radius-xl);
-  border: 1px solid var(--color-black);
+  border: 1px solid var(--text-main);
   background: transparent;
-  color: var(--color-black);
+  color: var(--text-main);
   cursor: pointer;
   transition: all 0.2s ease;
   display: flex;
@@ -321,16 +336,27 @@
   color: var(--color-black);
 }
 
+[data-theme="dark"] .btn-new-convert {
+  border: 1px solid var(--text-main);
+  color: var(--text-main);
+}
+
 .btn-new-convert:hover {
-  border-color: var(--color-black);
-  color: var(--color-white);
-  background: var(--color-black);
+  border-color: var(--text-main);
+  color: var(--bg-primary);
+  background: var(--text-main);
 }
 
 [data-theme="light"] .btn-new-convert:hover {
   background: var(--color-black);
   color: var(--color-white);
   border-color: var(--color-black);
+}
+
+[data-theme="dark"] .btn-new-convert:hover {
+  background: var(--text-main);
+  color: var(--bg-primary);
+  border-color: var(--text-main);
 }
 
 /* ===== RESPONSIVE ===== */

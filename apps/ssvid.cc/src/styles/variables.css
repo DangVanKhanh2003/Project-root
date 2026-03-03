@@ -43,7 +43,7 @@
     --font-display: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
     /* Surface tokens */
-    --bg-page: #F6F6F6;
+    --bg-page: #FAF9F5;
     --bg-card: #ffffff;
     --bg-surface-soft: rgba(0, 79, 171, 0.05);
     --bg-hover: rgba(0, 79, 171, 0.08);
@@ -87,10 +87,6 @@
     --status-converting-bg: #fff7ed;
     --status-converting-color: #c2410c;
 
-    /* Support Bar */
-    --support-bg: #f5f4ed;
-    --support-bg-hover: #ecece2;
-    --support-text: #3d3d3a;
 }
 
 :root[data-theme="dark"] {
@@ -121,11 +117,11 @@
     --text-primary: #E8E6E3;
     --muted: #C9C7C2;
 
-    --border-default: #3A3A38;
-    --border-input: #40403E;
-    --border-subtle: #2F2F2D;
-    --border-secondary: #3A3A38;
-    --border-glass: 1px solid #3A3A38;
+    --border-default: #4A4A48;
+    --border-input: #555553;
+    --border-subtle: #3A3A38;
+    --border-secondary: #4A4A48;
+    --border-glass: 1px solid #4A4A48;
 
     --link-visited: var(--brand);
 
@@ -153,8 +149,4 @@
 
     --color-status-error: #E74C3C;
 
-    /* Support Bar */
-    --support-bg: #1f1e1d;
-    --support-bg-hover: #3a3a38;
-    --support-text: #c2c0b6;
 }

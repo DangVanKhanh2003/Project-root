@@ -37,7 +37,8 @@
     "audioTrackDefault": "Audio track",
     "searchPlaceholder": "Search...",
     "searchBtn": "Search",
-    "searchVideosPlaceholder": "Search for videos..."
+    "searchVideosPlaceholder": "Search for videos...",
+    "supportedPlatforms": "Supported platforms:"
   },
   "overview": {
     "badge": "Fast & Free"

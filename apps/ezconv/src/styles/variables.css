@@ -25,6 +25,10 @@
     --border-input: #DCD7CF;
     --border-subtle: #ECE9E4;
 
+    /* ===== Support Platforms ===== */
+    --support-bg: #EFEDE5;
+    --support-text: #6b6b6b;
+
     /* ===== Semantic Colors ===== */
     --color-status-error: #e74c3c;
     --color-status-success: #10b981;
@@ -72,7 +76,7 @@
 
 /* ===== Dark Mode ===== */
 [data-theme="dark"] {
-    --bg-page: #1F1F1E;
+    --bg-page: #262624;
     --bg-card: #2A2A28;
     --bg-surface-soft: #383836;
     --bg-hover: #383836;
@@ -90,6 +94,9 @@
     --color-white: #1F1F1E;
 
     --color-accent-dark: rgba(198, 93, 59, 0.2);
+
+    --support-bg: #1f1e1d;
+    --support-text: #9a9894;
 
     /* In dark mode, UI accent = orange */
     --accent-ui: #C65D3B;

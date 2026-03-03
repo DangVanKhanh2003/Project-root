@@ -115,6 +115,7 @@
     border: none;
     outline: none;
     background: transparent;
+    color: var(--text-main);
     caret-color: var(--input-caret-color);
 }
 

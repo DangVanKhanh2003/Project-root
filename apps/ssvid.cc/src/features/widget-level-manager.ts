@@ -14,6 +14,7 @@ import {
     showTipMessageWidget,
     hideTipMessageWidget
 } from './tip-message/tip-message-widget';
+import { ensureHeroBelowContainerSlot } from './hero-below-container-slot';
 import { hasLicenseKey } from './download-limit';
 import { initLicenseSelector } from './license/license-selector';
 import { init as initSupporterTag, show as showSupporterTag, hide as hideSupporterTag } from './license/supporter-tag';
@@ -41,10 +42,6 @@ let multiPlaylistBannerShowTimeoutId: ReturnType<typeof setTimeout> | null = nul
 const MULTI_PLAYLIST_BANNER_RETRY_DELAY_MS = 250;
 const MULTI_PLAYLIST_BANNER_MAX_RETRIES = 20;
 
-function getHeroCard(): HTMLElement | null {
-    return document.querySelector('.hero-card') as HTMLElement | null;
-}
-
 function loadMultiPlaylistBannerModule(): Promise<MultiPlaylistBannerModule> {
     if (!multiPlaylistBannerModulePromise) {
         multiPlaylistBannerModulePromise = fetch(MULTI_PLAYLIST_BANNER_PUBLIC_URL)
@@ -68,19 +65,6 @@ function loadMultiPlaylistBannerModule(): Promise<MultiPlaylistBannerModule> {
     return multiPlaylistBannerModulePromise;
 }
 
-function ensureMultiPlaylistBannerWrapper(host: HTMLElement): HTMLElement {
-    let wrapper = document.getElementById(MULTI_PLAYLIST_BANNER_WRAPPER_ID) as HTMLElement | null;
-    if (wrapper) return wrapper;
-
-    wrapper = document.createElement('div');
-    wrapper.id = MULTI_PLAYLIST_BANNER_WRAPPER_ID;
-    wrapper.style.marginTop = '50px';
-    wrapper.style.width = '100%';
-    host.appendChild(wrapper);
-
-    return wrapper;
-}
-
 function buildBannerLinkOptions() {
     return {
         multiPath: '/youtube-multi-downloader',
@@ -91,20 +75,16 @@ function buildBannerLinkOptions() {
 }
 
 function tryShowMultiPlaylistBannerWidget(retryCount = 0): void {
-    const heroCard = getHeroCard();
-    if (!heroCard) {
+    const wrapper = ensureHeroBelowContainerSlot(MULTI_PLAYLIST_BANNER_WRAPPER_ID, {
+        marginTop: '50px'
+    });
+    if (!wrapper) {
         if (retryCount < MULTI_PLAYLIST_BANNER_MAX_RETRIES) {
             multiPlaylistBannerShowTimeoutId = setTimeout(() => {
                 tryShowMultiPlaylistBannerWidget(retryCount + 1);
             }, MULTI_PLAYLIST_BANNER_RETRY_DELAY_MS);
         }
         return;
-    }
-
-    const host = heroCard.parentElement || heroCard;
-    const wrapper = ensureMultiPlaylistBannerWrapper(host);
-    if (!wrapper.parentElement || wrapper.previousElementSibling !== heroCard) {
-        heroCard.insertAdjacentElement('afterend', wrapper);
     }
 
     wrapper.innerHTML = '';

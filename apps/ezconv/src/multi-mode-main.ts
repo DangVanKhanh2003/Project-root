@@ -14,10 +14,12 @@ import { initConvertForm } from './features/multi-mode-downloader/convert-submit
 import { initTrimController, getTrimStart, getTrimEnd } from './features/multi-mode-downloader/trim-controller';
 import { initSearchSuggestController } from './features/multi-mode-downloader/search-suggest-controller';
 import { initThemeToggle } from './features/shared/init/theme-toggle';
+import { initWaveAnimation } from './features/shared/init/wave-animation';
 
 function init(): void {
     initThemeToggle();
     initHeaderScroll();
+    initWaveAnimation();
     initMobileMenu();
     initSupporterUi();
     initLangSelector();

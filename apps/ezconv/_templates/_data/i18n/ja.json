@@ -37,7 +37,8 @@
     "audioTrackDefault": "Audio track",
     "searchPlaceholder": "検索...",
     "searchBtn": "検索",
-    "searchVideosPlaceholder": "動画を検索..."
+    "searchVideosPlaceholder": "動画を検索...",
+    "supportedPlatforms": "対応プラットフォーム:"
   },
   "overview": {
     "badge": "高速＆無料"

@@ -37,7 +37,8 @@
     "audioTrackDefault": "Audio track",
     "searchPlaceholder": "ค้นหา...",
     "searchBtn": "ค้นหา",
-    "searchVideosPlaceholder": "ค้นหาวิดีโอ..."
+    "searchVideosPlaceholder": "ค้นหาวิดีโอ...",
+    "supportedPlatforms": "แพลตฟอร์มที่รองรับ:"
   },
   "overview": {
     "badge": "รวดเร็วและฟรี"

@@ -37,7 +37,8 @@
     "audioTrackDefault": "Audio track",
     "searchPlaceholder": "Cari...",
     "searchBtn": "Cari",
-    "searchVideosPlaceholder": "Cari video..."
+    "searchVideosPlaceholder": "Cari video...",
+    "supportedPlatforms": "Platform yang disokong:"
   },
   "overview": {
     "badge": "Cepat & Percuma"

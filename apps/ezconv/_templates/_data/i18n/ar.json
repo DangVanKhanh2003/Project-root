@@ -37,7 +37,8 @@
     "audioTrackDefault": "Audio track",
     "searchPlaceholder": "بحث...",
     "searchBtn": "بحث",
-    "searchVideosPlaceholder": "ابحث عن مقاطع فيديو..."
+    "searchVideosPlaceholder": "ابحث عن مقاطع فيديو...",
+    "supportedPlatforms": "المنصات المدعومة:"
   },
   "overview": {
     "badge": "سريع ومجاني"
