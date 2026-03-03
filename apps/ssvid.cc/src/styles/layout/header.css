@@ -216,6 +216,21 @@
 .drawer-scroll>.theme-toggle-btn {
     align-self: flex-start;
     margin-left: 0;
+    color: var(--text-body);
+    border-color: var(--border-default);
+}
+
+.drawer-scroll>.theme-toggle-btn:hover {
+    background: var(--bg-hover);
+}
+
+[data-theme="dark"] .drawer-scroll>.theme-toggle-btn {
+    color: var(--brand);
+    border-color: var(--brand);
+}
+
+[data-theme="dark"] .drawer-scroll>.theme-toggle-btn:hover {
+    background: var(--accent-fill-soft);
 }
 
 .drawer-logo {
