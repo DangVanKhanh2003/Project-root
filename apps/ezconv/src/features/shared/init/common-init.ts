@@ -4,8 +4,65 @@
  */
 
 import { refreshWidgetState } from '../../widget-level-manager';
+import { migrateOldKey, removeLegacyKey, saveLicenseFromApi, isCacheStale, getStoredRawKey, clearLicenseToken } from '../../license-token';
+import { supporterService } from '../../../api';
 
 let supporterUiBound = false;
+let licenseRefreshDone = false;
+
+// ==========================================
+// License Auto-Migration & Background Refresh
+// ==========================================
+
+/**
+ * Handles:
+ *   1. Seamless migration from old key format (ezconv:license_key)
+ *   2. Background async refresh when cache is stale (>24h)
+ *
+ * Both are non-blocking — hasValidLicense() always uses cache.
+ * Runs once per page load.
+ */
+async function initLicenseRefresh(): Promise<void> {
+    if (licenseRefreshDone) return;
+    licenseRefreshDone = true;
+
+    // 1. Migrate old key format
+    const oldKey = migrateOldKey();
+    if (oldKey) {
+        try {
+            const result = await supporterService.checkLicenseKey(oldKey);
+            if (result.valid) {
+                saveLicenseFromApi(oldKey, result);
+                removeLegacyKey();
+            } else {
+                removeLegacyKey();
+            }
+        } catch {
+            // Network error — leave old key for next attempt
+        }
+        void refreshWidgetState();
+        return;
+    }
+
+    // 2. Background refresh if cache is stale (non-blocking, fire-and-forget)
+    if (isCacheStale()) {
+        const key = getStoredRawKey();
+        if (key) {
+            supporterService.checkLicenseKey(key)
+                .then((result) => {
+                    if (result.valid) {
+                        saveLicenseFromApi(key, result);
+                    } else {
+                        clearLicenseToken();
+                    }
+                    void refreshWidgetState();
+                })
+                .catch(() => {
+                    // Network error — cache still valid, will retry next load
+                });
+        }
+    }
+}
 
 // ==========================================
 // Mobile Menu
@@ -122,7 +179,7 @@ export function initFirebaseAnalytics(): void {
     setTimeout(() => {
         import('../../../libs/firebase/firebase-loader')
             .then(({ loadFirebaseWhenIdle }) => loadFirebaseWhenIdle())
-            .catch(() => {});
+            .catch(() => { });
     }, 5000);
 }
 
@@ -134,7 +191,7 @@ export function initFeedbackWidget(): void {
     setTimeout(() => {
         import('../../feedback/feedback-widget')
             .then(({ initFeedbackWidget: init }) => init())
-            .catch(() => {});
+            .catch(() => { });
     }, 5000);
 }
 
@@ -191,4 +248,7 @@ export function initSupporterUi(): void {
     });
 
     void refreshWidgetState();
+
+    // Trigger license migration & TTL refresh in background
+    void initLicenseRefresh();
 }

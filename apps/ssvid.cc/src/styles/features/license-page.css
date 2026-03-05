@@ -102,7 +102,7 @@
 }
 
 /* Divider between steps and form */
-.license-steps + .license-form {
+.license-steps+.license-form {
     margin-top: clamp(28px, 4.5vw, 40px);
 }
 
@@ -255,4 +255,44 @@
         padding: 14px 32px;
         white-space: nowrap;
     }
+}
+
+/* Expired status tag */
+.license-status-tag.expired {
+    display: inline-flex;
+    background: var(--status-error-bg);
+    color: var(--status-error-color);
+    border-color: var(--status-error-color);
+}
+
+/* Plan info panel */
+.license-plan-info {
+    margin-top: 16px;
+    padding: 16px 20px;
+    border-radius: 12px;
+    background: var(--bg-card);
+    border: 1px solid var(--license-border);
+}
+
+.plan-info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+}
+
+.plan-info-row+.plan-info-row {
+    border-top: 1px solid var(--license-border);
+}
+
+.plan-info-label {
+    font-size: 14px;
+    color: var(--license-muted);
+    font-weight: 500;
+}
+
+.plan-info-value {
+    font-size: 14px;
+    color: var(--license-ink);
+    font-weight: 600;
 }

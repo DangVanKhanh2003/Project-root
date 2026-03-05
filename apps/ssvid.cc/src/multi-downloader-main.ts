@@ -18,8 +18,7 @@ import { MaterialPopup } from './ui-components/material-popup/material-popup';
 import { shouldPromptPlaylistRedirectForMulti, FEATURE_KEYS, FEATURE_ACCESS_REASONS } from '@downloader/core';
 import { evaluateFeatureAccess } from './features/allowed-features';
 import { recordUsage, hasLicenseKey, MAX_MULTI_DOWNLOAD_VIDEOS } from './features/download-limit';
-import { showLimitReachedPopup, showVideoLimitPopup, showSupporterUpsellPopup } from '@downloader/ui-shared';
-import { POPUP_CONFIG } from './features/supporter-popup-config';
+import { show as showPaywall } from 'https://media.ytmp3.gg/poppurchase.v3.js';
 
 async function confirmPlaylistRedirect(): Promise<boolean> {
     return new Promise((resolve) => {
@@ -276,9 +275,9 @@ function initMultiDownloadForm() {
             addUrlsBtn.removeAttribute('disabled');
 
             if (access.reason === FEATURE_ACCESS_REASONS.GEO_RESTRICTED) {
-                showSupporterUpsellPopup(POPUP_CONFIG);
+                showPaywall();
             } else {
-                showLimitReachedPopup(POPUP_CONFIG);
+                showPaywall('download_multi');
             }
             return;
         }
@@ -289,7 +288,7 @@ function initMultiDownloadForm() {
         const parsed = parseYouTubeURLs(rawText);
 
         if (!hasLicenseKey() && parsed.length > MAX_MULTI_DOWNLOAD_VIDEOS) {
-            showVideoLimitPopup(POPUP_CONFIG, MAX_MULTI_DOWNLOAD_VIDEOS);
+            showPaywall('title_limit_max10');
             return;
         }
 

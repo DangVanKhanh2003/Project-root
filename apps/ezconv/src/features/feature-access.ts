@@ -13,7 +13,7 @@
  * Reference: ytmp3.gg allowed-features.js
  */
 
-import { hasStoredLicenseKey } from './license-selector';
+import { hasValidLicense } from './license-token';
 import { checkLimit, type LimitCheckContext, type LimitCheckResult, type LimitType, type LimitedDailyMode } from './download-limit';
 import { supporterService } from '../api';
 import {
@@ -158,7 +158,7 @@ export async function evaluateFeatureAccess(
     const normalizedFeature = normalizeFeature(featureKey);
 
     // 1. Supporter bypass
-    if (hasStoredLicenseKey()) {
+    if (hasValidLicense()) {
         return { allowed: true, reason: FEATURE_ACCESS_REASONS.ALLOWED };
     }
 

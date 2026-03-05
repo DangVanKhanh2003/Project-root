@@ -1,4 +1,5 @@
-import { scrollManager, showLimitReachedPopup } from '@downloader/ui-shared';
+import { scrollManager } from '@downloader/ui-shared';
+import { show as showPaywall } from 'https://media.ytmp3.gg/poppurchase.v3.js';
 import { handleAutoDownload, handleExtractMedia, handleSearch } from '../downloader/logic/input-form';
 import { clearContent, showLoading } from '../downloader/ui-render/content-renderer';
 import { showResultView } from '../downloader/ui-render/view-switcher';
@@ -13,7 +14,6 @@ import {
 import { initAudioDropdown } from '../downloader/ui-render/dropdown-logic';
 import { checkLimit } from '../download-limit';
 import { FEATURE_KEYS } from '@downloader/core';
-import { POPUP_CONFIG } from '../supporter-popup-config';
 
 type SliderTuple = [number | string, number | string];
 
@@ -542,21 +542,21 @@ function setupEventListeners(): void {
       if (is4K) {
         const limitResult = checkLimit(FEATURE_KEYS.HIGH_QUALITY_4K);
         if (!limitResult.allowed) {
-          showLimitReachedPopup(POPUP_CONFIG, FEATURE_KEYS.HIGH_QUALITY_4K);
+          showPaywall('download_4k');
           return;
         }
       }
       if (is2K) {
         const limitResult = checkLimit(FEATURE_KEYS.HIGH_QUALITY_2K);
         if (!limitResult.allowed) {
-          showLimitReachedPopup(POPUP_CONFIG, FEATURE_KEYS.HIGH_QUALITY_2K);
+          showPaywall('download_2k');
           return;
         }
       }
       if (is320kbps) {
         const limitResult = checkLimit(FEATURE_KEYS.HIGH_QUALITY_320K);
         if (!limitResult.allowed) {
-          showLimitReachedPopup(POPUP_CONFIG, FEATURE_KEYS.HIGH_QUALITY_320K);
+          showPaywall('download_320kbps');
           return;
         }
       }

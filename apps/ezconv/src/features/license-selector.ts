@@ -1,9 +1,19 @@
-const LICENSE_STORAGE_KEY = 'ezconv:license_key';
-const LICENSE_EVENT_NAME = 'ezconv:license-key-changed';
+/**
+ * License Selector — Backward-Compatible Wrapper
+ *
+ * Thin delegation layer over license-token.ts.
+ * Keeps the same export signatures so existing imports continue to work.
+ */
 
-export interface LicenseKeyChangeDetail {
-    key: string | null;
-}
+import {
+    hasValidLicense,
+    getStoredRawKey,
+    clearLicenseToken,
+    getLicenseTokenStorageKey,
+    type LicenseKeyChangeDetail,
+} from './license-token';
+
+export type { LicenseKeyChangeDetail };
 
 declare global {
     interface DocumentEventMap {
@@ -11,59 +21,39 @@ declare global {
     }
 }
 
-function normalizeLicenseKey(value: string | null | undefined): string | null {
-    if (typeof value !== 'string') return null;
-    const normalized = value.trim();
-    return normalized ? normalized : null;
-}
-
-function dispatchLicenseKeyChanged(key: string | null): void {
-    if (typeof document === 'undefined') return;
-
-    document.dispatchEvent(new CustomEvent(LICENSE_EVENT_NAME, {
-        detail: { key }
-    }));
-}
-
 export function getLicenseStorageKey(): string {
-    return LICENSE_STORAGE_KEY;
+    return getLicenseTokenStorageKey();
 }
 
-export function getStoredLicenseKey(): string | null {
-    try {
-        return normalizeLicenseKey(localStorage.getItem(LICENSE_STORAGE_KEY));
-    } catch {
-        return null;
-    }
-}
-
+/**
+ * Check if user has a valid stored license.
+ * Now checks the encoded token + TTL instead of just raw key existence.
+ */
 export function hasStoredLicenseKey(): boolean {
-    return getStoredLicenseKey() !== null;
+    return hasValidLicense();
 }
 
-export function saveLicenseKey(key: string): string | null {
-    const normalized = normalizeLicenseKey(key);
-    if (!normalized) {
-        clearStoredLicenseKey();
-        return null;
-    }
-
-    try {
-        localStorage.setItem(LICENSE_STORAGE_KEY, normalized);
-    } catch {
-        return null;
-    }
-
-    dispatchLicenseKeyChanged(normalized);
-    return normalized;
+/**
+ * Get the raw license key from the stored token.
+ * Returns null if no token or invalid.
+ */
+export function getStoredLicenseKey(): string | null {
+    return getStoredRawKey();
 }
 
+/**
+ * @deprecated Use saveLicenseFromApi() from license-token.ts instead.
+ * Kept for backward compat — does nothing meaningful now.
+ */
+export function saveLicenseKey(_key: string): string | null {
+    // No-op: saving is now done via saveLicenseFromApi() in license-token.ts
+    // which requires the full API response
+    return _key || null;
+}
+
+/**
+ * Clear stored license token.
+ */
 export function clearStoredLicenseKey(): void {
-    try {
-        localStorage.removeItem(LICENSE_STORAGE_KEY);
-    } catch {
-        // localStorage unavailable
-    }
-
-    dispatchLicenseKeyChanged(null);
+    clearLicenseToken();
 }

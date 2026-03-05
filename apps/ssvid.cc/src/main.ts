@@ -8,6 +8,7 @@
 import './styles/index.css';
 
 import { applyInitialVisibility } from './features/widget-level-manager';
+import { initLicenseOnPageLoad } from './features/license/license-token';
 
 
 
@@ -221,6 +222,7 @@ function initFirebaseAnalytics(): void {
  */
 async function loadFeatures() {
   await applyInitialVisibility();   // Initialize license button + supporter badge
+  initLicenseOnPageLoad();          // Background revalidation if cache is stale (fire-and-forget)
   initHeaderScroll(); // Initialize header scroll effect
   initMobileMenu(); // Initialize mobile menu
   initLangSelector(); // Initialize language selector dropdown

@@ -16,8 +16,7 @@ import { isPlaylistUrl, extractVideoId, FEATURE_KEYS, FEATURE_ACCESS_REASONS } f
 import { initAudioDropdown } from './features/downloader/ui-render/dropdown-logic';
 import { evaluateFeatureAccess } from './features/allowed-features';
 import { recordUsage } from './features/download-limit';
-import { showLimitReachedPopup, showSupporterUpsellPopup } from '@downloader/ui-shared';
-import { POPUP_CONFIG } from './features/supporter-popup-config';
+import { show as showPaywall } from 'https://media.ytmp3.gg/poppurchase.v3.js';
 
 /**
  * Initialize mobile menu functionality
@@ -270,9 +269,9 @@ function initPlaylistForm() {
             fetchPlaylistBtn.innerHTML = `<span>${originalText}</span>`;
 
             if (access.reason === FEATURE_ACCESS_REASONS.GEO_RESTRICTED) {
-                 showSupporterUpsellPopup(POPUP_CONFIG);
+                showPaywall();
             } else {
-                showLimitReachedPopup(POPUP_CONFIG);
+                showPaywall('download_playlist');
             }
             return;
         }
@@ -293,7 +292,7 @@ function initPlaylistForm() {
 
             // Show popup if the playlist is empty or could not be fetched
             if (msg.includes('Playlist is empty or could not be fetched') || msg.includes('has no videos')) {
-                showLimitReachedPopup(POPUP_CONFIG);
+                showPaywall('download_playlist');
             } else if (errorMessage) {
                 errorMessage.textContent = msg;
                 errorMessage.style.display = 'block';

@@ -10,6 +10,7 @@
 // ============================================================
 
 import { FEATURE_KEYS, FEATURE_ACCESS_REASONS, type FeatureAccessReason } from '@downloader/core';
+import { hasValidLicense } from './license/license-token';
 
 /** Default maximum uses per day for non-license users (fallback for any unlisted feature). */
 export const MAX_PER_DAY = 1;
@@ -83,12 +84,7 @@ function writeUsage(storageKey: string, usage: DailyUsage): void {
  * Check if a valid license key is stored.
  */
 export function hasLicenseKey(): boolean {
-    try {
-        const key = localStorage.getItem(LICENSE_KEY_STORAGE_KEY);
-        return typeof key === 'string' && key.trim() !== '';
-    } catch {
-        return false;
-    }
+    return hasValidLicense();
 }
 
 /**

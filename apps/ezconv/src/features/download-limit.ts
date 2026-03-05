@@ -1,5 +1,5 @@
 import { FEATURE_ACCESS_REASONS } from '@downloader/core';
-import { hasStoredLicenseKey } from './license-selector';
+import { hasValidLicense } from './license-token';
 
 const DB_NAME = 'ezconv-supporter';
 const DB_VERSION = 1;
@@ -302,7 +302,7 @@ export async function getSupporterUsageSummary(now = Date.now()): Promise<Suppor
         getDownloadsTodayByMethod('trim', now)
     ]);
 
-    const hasLicense = hasStoredLicenseKey();
+    const hasLicense = hasValidLicense();
 
     return {
         hasLicense,
@@ -399,7 +399,7 @@ export async function recordDownloadError(payload: DownloadErrorLogPayload): Pro
 }
 
 export async function checkLimit(context: LimitCheckContext): Promise<LimitCheckResult> {
-    if (hasStoredLicenseKey()) {
+    if (hasValidLicense()) {
         return {
             allowed: true,
             type: null,

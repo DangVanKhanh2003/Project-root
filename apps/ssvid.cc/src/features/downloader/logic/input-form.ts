@@ -41,8 +41,7 @@ import { showResultView } from '../ui-render/view-switcher';
 import { MaterialPopup } from '../../../ui-components/material-popup/material-popup';
 import { shouldPromptPlaylistRedirect } from '@downloader/core';
 import { evaluateFeatureAccess } from '../../allowed-features';
-import { showLimitReachedPopup, showSupporterUpsellPopup } from '@downloader/ui-shared';
-import { POPUP_CONFIG } from '../../supporter-popup-config';
+import { show as showPaywall } from 'https://media.ytmp3.gg/poppurchase.v3.js';
 import { checkLimit } from '../../download-limit';
 import { FEATURE_KEYS, FEATURE_ACCESS_REASONS } from '@downloader/core';
 
@@ -851,9 +850,9 @@ async function handleSubmit(event: Event): Promise<void> {
   if (!access.allowed) {
     setLoading(false);
     if (access.reason === FEATURE_ACCESS_REASONS.GEO_RESTRICTED) {
-      showSupporterUpsellPopup(POPUP_CONFIG);
+      showPaywall();
     } else {
-      showLimitReachedPopup(POPUP_CONFIG);
+      showPaywall();
     }
     setSubmitting(false);
     return;
@@ -954,7 +953,7 @@ export async function handleExtractMedia(
       if (is4K) {
         const limitResult = checkLimit(FEATURE_KEYS.HIGH_QUALITY_4K);
         if (!limitResult.allowed) {
-          showLimitReachedPopup(POPUP_CONFIG, FEATURE_KEYS.HIGH_QUALITY_4K);
+          showPaywall('download_4k');
           setSubmitting(false);
           setLoading(false);
           return;
@@ -965,7 +964,7 @@ export async function handleExtractMedia(
       if (is2K) {
         const limitResult = checkLimit(FEATURE_KEYS.HIGH_QUALITY_2K);
         if (!limitResult.allowed) {
-          showLimitReachedPopup(POPUP_CONFIG, FEATURE_KEYS.HIGH_QUALITY_2K);
+          showPaywall('download_2k');
           setSubmitting(false);
           setLoading(false);
           return;
@@ -975,7 +974,7 @@ export async function handleExtractMedia(
       if (is320kbps) {
         const limitResult = checkLimit(FEATURE_KEYS.HIGH_QUALITY_320K);
         if (!limitResult.allowed) {
-          showLimitReachedPopup(POPUP_CONFIG, FEATURE_KEYS.HIGH_QUALITY_320K);
+          showPaywall('download_320kbps');
           setSubmitting(false);
           setLoading(false);
           return;

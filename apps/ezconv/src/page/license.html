@@ -316,8 +316,8 @@
                                 </span>
                                 <span>Reset License Key</span>
                             </a>
-                            <a href="https://ko-fi.com/s/d242437374" target="_blank" rel="noopener nofollow noreferrer"
-                                class="license-dropdown-item" data-license-action="get">
+                            <a href="javascript:void(0)" class="license-dropdown-item" data-license-action="get"
+                                onclick="import('https://media.ytmp3.gg/poppurchase.v3.js').then(m=>m.show('none_title'))">
                                 <span class="license-dropdown-icon" aria-hidden="true">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                         <path
@@ -415,9 +415,10 @@
                                 </span>
                                 <span>Reset License Key</span>
                             </a>
-                            <a href="https://ko-fi.com/s/d242437374" target="_blank" rel="noopener nofollow noreferrer"
+                            <a href="javascript:void(0)"
                                 class="license-dropdown-item drawer-sublink drawer-license-link"
-                                data-license-action="get">
+                                data-license-action="get"
+                                onclick="import('https://media.ytmp3.gg/poppurchase.v3.js').then(m=>m.show('none_title'))">
                                 <span class="license-dropdown-icon" aria-hidden="true">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                         <path
@@ -470,9 +471,25 @@
                             </div>
                         </form>
                         <div id="license-status" class="license-status" data-state="idle"></div>
-                        <div class="license-current">
-                            <strong>Stored key</strong>
-                            <code id="license-current-key">Not activated</code>
+                        <div id="license-plan-info" class="license-current"
+                            style="display: flex; flex-direction: column; gap: 12px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <strong style="color: var(--text-secondary); font-weight: 600;">Stored key</strong>
+                                <code id="license-current-key" style="font-size: 0.9rem;">Not activated</code>
+                            </div>
+                            <div data-license-detail hidden style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="color: var(--text-secondary); font-weight: 600;">Plan</span>
+                                <strong id="license-plan-type"
+                                    style="color: var(--text-heading); font-size: 1rem;"></strong>
+                            </div>
+                            <div data-license-detail hidden style="display: flex; justify-content: space-between; align-items: center;">
+                                <span style="color: var(--text-secondary); font-weight: 600;">Days remaining</span>
+                                <strong id="license-days-remaining"
+                                    style="color: var(--brand); font-size: 1rem;"></strong>
+                            </div>
+                            <button id="license-clear-btn" type="button"
+                                style="margin-top: 4px; padding: 8px 16px; border-radius: 10px; border: 1px solid var(--border-default); background: transparent; color: var(--text-secondary); cursor: pointer; font-size: 0.9rem; font-weight: 600;"
+                                hidden>Clear License</button>
                         </div>
                     </div>
                 </section>

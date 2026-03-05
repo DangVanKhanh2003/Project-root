@@ -1,12 +1,19 @@
 /**
- * License Page Logic — form input + API validation
- * Ported from: ytmp3.gg/src/script/features/license-page.js (simplified, no i18n)
+ * License Page Logic — form input + API validation + plan info display
+ * Uses cached license system — reads cache on load instead of calling API every time.
  */
 
 import { supporterService } from '../../api';
-import { saveLicenseKey, getSavedLicenseKey } from './license-selector';
-
-const LICENSE_KEY_STORAGE_KEY = 'ssvid:license_key';
+import {
+    saveLicenseKey,
+    getSavedLicenseKey,
+    saveLicenseCache,
+    getLicenseCache,
+    isPlanActive,
+    getDaysRemaining,
+    formatPlanDisplay,
+    initLicenseOnPageLoad,
+} from './license-token';
 
 // ============================================================
 // UI HELPERS
@@ -28,13 +35,16 @@ function clearMessage(): void {
     messageEl.className = 'license-message';
 }
 
-function setStatusTag(status: 'active' | 'inactive' | ''): void {
+function setStatusTag(status: 'active' | 'expired' | 'inactive' | ''): void {
     const statusTag = document.getElementById('license-status-tag');
     if (!statusTag) return;
-    statusTag.classList.remove('active', 'inactive');
+    statusTag.classList.remove('active', 'inactive', 'expired');
     if (status === 'active') {
         statusTag.textContent = 'Active';
         statusTag.classList.add('active');
+    } else if (status === 'expired') {
+        statusTag.textContent = 'Expired';
+        statusTag.classList.add('expired');
     } else if (status === 'inactive') {
         statusTag.textContent = 'Inactive';
         statusTag.classList.add('inactive');
@@ -43,19 +53,66 @@ function setStatusTag(status: 'active' | 'inactive' | ''): void {
     }
 }
 
+/**
+ * Show/hide plan info panel with plan details.
+ */
+function showPlanInfo(planType: string, daysRemaining: number | null, userName?: string): void {
+    const panel = document.getElementById('license-plan-info');
+    if (!panel) return;
+
+    const planLabel = planType.charAt(0).toUpperCase() + planType.slice(1);
+
+    let daysText = '';
+    if (daysRemaining === null) {
+        daysText = 'Never expires';
+    } else if (daysRemaining <= 0) {
+        daysText = 'Expired';
+    } else {
+        daysText = `${daysRemaining} day${daysRemaining > 1 ? 's' : ''} remaining`;
+    }
+
+    panel.innerHTML = `
+        <div class="plan-info-row">
+            <span class="plan-info-label">Plan</span>
+            <span class="plan-info-value">${planLabel}</span>
+        </div>
+        <div class="plan-info-row">
+            <span class="plan-info-label">Status</span>
+            <span class="plan-info-value">${daysText}</span>
+        </div>
+        ${userName ? `
+        <div class="plan-info-row">
+            <span class="plan-info-label">Name</span>
+            <span class="plan-info-value">${userName}</span>
+        </div>` : ''}
+    `;
+    panel.style.display = '';
+}
+
+function hidePlanInfo(): void {
+    const panel = document.getElementById('license-plan-info');
+    if (!panel) return;
+    panel.innerHTML = '';
+    panel.style.display = 'none';
+}
+
 // ============================================================
 // CORE LOGIC
 // ============================================================
 
-async function checkLicenseKey(licenseKey: string): Promise<{ valid: boolean; message: string; status?: string }> {
+async function checkLicenseKey(licenseKey: string): Promise<{
+    valid: boolean;
+    message: string;
+    response?: import('@downloader/core').CheckKeyResponse;
+}> {
     try {
-        // checkLicenseKey returns CheckKeyResponse: { valid: boolean, message?: string }
         const response = await supporterService.checkLicenseKey(licenseKey);
 
         if (response?.valid) {
             return {
                 valid: true,
                 message: response.message || 'active',
+                response,
             };
         }
 
@@ -72,6 +129,10 @@ async function checkLicenseKey(licenseKey: string): Promise<{ valid: boolean; me
     }
 }
 
+// ============================================================
+// INITIALIZATION
+// ============================================================
+
 async function initActivationForm(): Promise<void> {
     const input = document.getElementById('licenseKeyInputPage') as HTMLInputElement | null;
     const submitBtn = document.getElementById('license-submit') as HTMLButtonElement | null;
@@ -81,22 +142,48 @@ async function initActivationForm(): Promise<void> {
 
     let hasSavedKey = false;
 
-    // Check existing saved key on load
-    const savedKey = getSavedLicenseKey();
-    if (savedKey) {
-        setMessage('Verifying license key...', 'loading');
-        const result = await checkLicenseKey(savedKey);
-        if (result.valid) {
+    // Check existing cached license on load (NO API call if cache is valid)
+    const cache = getLicenseCache();
+    if (cache) {
+        if (isPlanActive(cache)) {
             hasSavedKey = true;
             setStatusTag('active');
+            showPlanInfo(cache.planType, getDaysRemaining(cache), cache.userName);
             clearMessage();
         } else {
+            // Plan expired
             hasSavedKey = false;
-            setStatusTag('inactive');
-            setMessage(`Invalid license key: ${result.message}`, 'error');
+            setStatusTag('expired');
+            showPlanInfo(cache.planType, getDaysRemaining(cache), cache.userName);
+            setMessage('Your license plan has expired.', 'error');
         }
+        // Fire background revalidation if needed (non-blocking)
+        initLicenseOnPageLoad();
     } else {
-        setStatusTag('inactive');
+        // No cache — check if there's a saved key we can try to validate
+        const savedKey = getSavedLicenseKey();
+        if (savedKey) {
+            setMessage('Verifying license key...', 'loading');
+            const result = await checkLicenseKey(savedKey);
+            if (result.valid && result.response) {
+                hasSavedKey = true;
+                saveLicenseCache(result.response);
+                setStatusTag('active');
+                const newCache = getLicenseCache();
+                if (newCache) {
+                    showPlanInfo(newCache.planType, getDaysRemaining(newCache), newCache.userName);
+                }
+                clearMessage();
+            } else {
+                hasSavedKey = false;
+                setStatusTag('inactive');
+                hidePlanInfo();
+                setMessage(`Invalid license key: ${result.message}`, 'error');
+            }
+        } else {
+            setStatusTag('inactive');
+            hidePlanInfo();
+        }
     }
 
     // Submit logic
@@ -118,11 +205,18 @@ async function initActivationForm(): Promise<void> {
         submitBtn.disabled = false;
         submitBtn.textContent = defaultLabel;
 
-        if (result.valid) {
+        if (result.valid && result.response) {
+            // Save key + cache
             saveLicenseKey(licenseKey);
+            saveLicenseCache(result.response);
             hasSavedKey = true;
+
             setStatusTag('active');
-            setMessage(`License verified: ${result.message}`, 'success');
+            const newCache = getLicenseCache();
+            if (newCache) {
+                showPlanInfo(newCache.planType, getDaysRemaining(newCache), newCache.userName);
+            }
+            setMessage(`License verified: ${formatPlanDisplay(newCache!)}`, 'success');
         } else {
             if (!hasSavedKey) setStatusTag('inactive');
             setMessage(`Invalid license key: ${result.message}`, 'error');

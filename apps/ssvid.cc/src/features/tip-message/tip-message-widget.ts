@@ -4,8 +4,11 @@
  * CONTRACT: Exposes show/hide API for widget-level-manager.
  */
 
+import { getTipMessageKoFiLink } from '../supporter-pricing';
+
 const TIP_MESSAGE_WRAPPER_ID = 'tip-message-wrapper';
 const DEFAULT_KOFI_URL = 'https://ko-fi.com/metaconvert4';
+let tipMessageRequestId = 0;
 
 type TipMessageI18n = {
     tipMessagePlease: string;
@@ -153,6 +156,7 @@ function ensureWrapper(): HTMLElement | null {
 }
 
 export function showTipMessageWidget(options: TipMessageOptions = {}): void {
+    const requestId = ++tipMessageRequestId;
     const wrapper = ensureWrapper();
     if (!wrapper) return;
 
@@ -177,9 +181,29 @@ export function showTipMessageWidget(options: TipMessageOptions = {}): void {
             </span>
         </div>
     `;
+
+    if (typeof options.url === 'string' && options.url.trim()) {
+        return;
+    }
+
+    void getTipMessageKoFiLink()
+        .then((koFiLink) => {
+            if (requestId !== tipMessageRequestId || !koFiLink || koFiLink === koFiHref) {
+                return;
+            }
+
+            showTipMessageWidget({
+                ...options,
+                url: koFiLink
+            });
+        })
+        .catch(() => {
+            // Keep fallback Ko-fi link when pricing API is unavailable.
+        });
 }
 
 export function hideTipMessageWidget(): void {
+    tipMessageRequestId += 1;
     const wrapper = document.getElementById(TIP_MESSAGE_WRAPPER_ID);
     if (wrapper) wrapper.remove();
 

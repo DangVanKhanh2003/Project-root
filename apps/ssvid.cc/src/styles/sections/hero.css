@@ -252,7 +252,8 @@
 
 .support-platforms-label {
     font-size: 12px;
-    color: var(--text-muted, #9ca3af);
+    color: #111111;
+    font-weight: 700;
     white-space: nowrap;
 }
 
@@ -263,8 +264,20 @@
 }
 
 .support-platform-icon {
-    width: 14px;
-    height: 14px;
-    color: var(--text-muted, #9ca3af);
+    width: 18px;
+    height: 18px;
     flex-shrink: 0;
+}
+
+.support-platforms-icons img.support-platform-icon {
+    object-fit: contain;
+    display: block;
+}
+
+.support-platforms-icons svg.support-platform-icon {
+    display: none;
+}
+
+[data-theme="dark"] .support-platforms-label {
+    color: var(--text-primary);
 }

@@ -92,6 +92,7 @@ export default defineConfig({
       }
     },
     rollupOptions: {
+      external: (id: string) => /^https?:\/\//.test(id),
       input: {
         main: mainEntry,
         ...eleventyPageEntries,

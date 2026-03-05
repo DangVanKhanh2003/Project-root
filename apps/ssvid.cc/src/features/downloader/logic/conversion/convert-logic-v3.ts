@@ -20,8 +20,6 @@ import {
 import { triggerDownload } from '../../../../utils';
 
 import { checkLimit, recordUsage } from '../../../download-limit';
-import { showLimitReachedPopup } from '@downloader/ui-shared';
-import { POPUP_CONFIG } from '../../../supporter-popup-config';
 
 // V3 specific imports
 import { TaskState, type V3ConversionParams } from './v3/types';

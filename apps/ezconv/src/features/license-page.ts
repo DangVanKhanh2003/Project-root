@@ -1,11 +1,15 @@
 import '../styles/index.css';
 
-import { clearStoredLicenseKey, getStoredLicenseKey, saveLicenseKey } from './license-selector';
+import { clearLicenseToken, getLicenseInfo, saveLicenseFromApi, computeDaysRemaining } from './license-token';
 import { initDrawerLangSelector, initLangSelector, initMobileMenu, initSupporterUi } from './shared/init/common-init';
 import { initThemeToggle } from './shared/init/theme-toggle';
 import { supporterService } from '../api';
 
-function maskStoredKey(value: string | null): string {
+// ============================================================
+// HELPERS
+// ============================================================
+
+function maskKey(value: string | null): string {
     if (!value) return 'Not activated';
     if (value.length <= 7) return '*'.repeat(value.length);
     return `${value.slice(0, -7)}*******`;
@@ -19,30 +23,103 @@ function setStatus(message: string, type: 'idle' | 'success' | 'error' | 'loadin
     statusEl.setAttribute('data-state', type);
 }
 
-function setCurrentKey(value: string | null): void {
+function formatPlanType(plan: string): string {
+    const map: Record<string, string> = {
+        lifetime: 'Lifetime',
+        yearly: 'Yearly',
+        monthly: 'Monthly',
+        weekly: 'Weekly',
+    };
+    return map[plan.toLowerCase()] || plan;
+}
+
+function formatDaysRemaining(expiresAt: string | null): string {
+    if (!expiresAt) return '∞ (Lifetime)';
+    const days = computeDaysRemaining(expiresAt);
+    if (days === null) return '∞';
+    if (days <= 0) return 'Last day';
+    return `${days} day${days !== 1 ? 's' : ''}`;
+}
+
+function formatActivationState(status: string, isExpired: boolean): { text: string; state: string } {
+    if (isExpired || status === 'expired') {
+        return { text: 'Expired', state: 'expired' };
+    }
+    if (status === 'active') {
+        return { text: 'Active', state: 'active' };
+    }
+    return { text: 'Inactive', state: 'inactive' };
+}
+
+// ============================================================
+// UI UPDATE
+// ============================================================
+
+function updateLicenseDisplay(): void {
     const currentKeyEl = document.getElementById('license-current-key');
     const clearButton = document.getElementById('license-clear-btn') as HTMLButtonElement | null;
     const stateEl = document.getElementById('license-activation-state');
+    const planTypeEl = document.getElementById('license-plan-type');
+    const daysRemainingEl = document.getElementById('license-days-remaining');
+    const detailRows = Array.from(document.querySelectorAll('[data-license-detail]')) as HTMLElement[];
 
-    if (!currentKeyEl) return;
+    const info = getLicenseInfo();
+    const hasLicense = !!info;
 
-    currentKeyEl.textContent = maskStoredKey(value);
-    if (stateEl) {
-        stateEl.textContent = value ? 'Active' : 'Inactive';
-        stateEl.setAttribute('data-state', value ? 'active' : 'inactive');
+    // Key display
+    if (currentKeyEl) {
+        currentKeyEl.textContent = maskKey(info?.key ?? null);
     }
-    clearButton?.toggleAttribute('hidden', !value);
+
+    // Activation state
+    if (stateEl) {
+        if (info) {
+            const { text, state } = formatActivationState(info.status, info.isExpired);
+            stateEl.textContent = text;
+            stateEl.setAttribute('data-state', state);
+        } else {
+            stateEl.textContent = 'Inactive';
+            stateEl.setAttribute('data-state', 'inactive');
+        }
+    }
+
+    // Clear button
+    clearButton?.toggleAttribute('hidden', !hasLicense);
+
+    // Plan + Days remaining rows
+    detailRows.forEach((row) => {
+        row.hidden = !hasLicense;
+    });
+    if (planTypeEl && info) {
+        planTypeEl.textContent = formatPlanType(info.planType);
+    }
+    if (daysRemainingEl && info) {
+        daysRemainingEl.textContent = formatDaysRemaining(info.expiresAt);
+    }
 }
 
-async function verifyLicenseKey(key: string): Promise<{ valid: boolean; message: string }> {
+// ============================================================
+// API CALLS
+// ============================================================
+
+async function activateKey(key: string): Promise<{ valid: boolean; message: string }> {
     const result = await supporterService.checkLicenseKey(key);
+
+    if (result.valid) {
+        saveLicenseFromApi(key, result);
+    }
+
     return {
         valid: result.valid,
-        message: result.message || (result.valid ? 'License activated successfully.' : 'Invalid license key.')
+        message: result.message || (result.valid ? 'License activated successfully.' : 'Invalid license key.'),
     };
 }
 
-function initLicensePage(): void {
+// ============================================================
+// INIT
+// ============================================================
+
+async function initLicensePage(): Promise<void> {
     initThemeToggle();
     initMobileMenu();
     initLangSelector();
@@ -55,8 +132,10 @@ function initLicensePage(): void {
 
     if (!form || !input) return;
 
-    setCurrentKey(getStoredLicenseKey());
+    // --- Initial display ---
+    updateLicenseDisplay();
 
+    // --- Form submit ---
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
 
@@ -69,14 +148,13 @@ function initLicensePage(): void {
         setStatus('Checking your license key...', 'loading');
 
         try {
-            const result = await verifyLicenseKey(key);
+            const result = await activateKey(key);
             if (!result.valid) {
                 setStatus(result.message, 'error');
                 return;
             }
 
-            saveLicenseKey(key);
-            setCurrentKey(key);
+            updateLicenseDisplay();
             setStatus(result.message, 'success');
             input.value = '';
             initSupporterUi();
@@ -85,16 +163,17 @@ function initLicensePage(): void {
         }
     });
 
+    // --- Clear button ---
     clearButton?.addEventListener('click', () => {
-        clearStoredLicenseKey();
-        setCurrentKey(null);
+        clearLicenseToken();
+        updateLicenseDisplay();
         setStatus('Stored license key removed.', 'idle');
         initSupporterUi();
     });
 }
 
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initLicensePage);
+    document.addEventListener('DOMContentLoaded', () => void initLicensePage());
 } else {
-    initLicensePage();
+    void initLicensePage();
 }

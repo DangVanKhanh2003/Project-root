@@ -11,15 +11,17 @@ import {
     hideTrustpilotWidget
 } from './trustpilot/trustpilot-widget';
 import {
-    showTipMessageWidget,
+    showTipMessageWidgetWithPricing,
     hideTipMessageWidget
 } from './tip-message/tip-message-widget';
 import {
-    clearStoredLicenseKey,
-    getLicenseStorageKey,
-    getStoredLicenseKey,
-    hasStoredLicenseKey
-} from './license-selector';
+    hasValidLicense,
+    getStoredRawKey,
+    clearLicenseToken,
+    getLicenseTokenStorageKey,
+    getLicenseInfo,
+    computeDaysRemaining,
+} from './license-token';
 import {
     getSupporterUsageSummary,
     recordSuccessfulConvert,
@@ -28,7 +30,6 @@ import {
 
 const MULTI_PLAYLIST_BANNER_WRAPPER_ID = 'multi-playlist-banner-wrapper';
 const MULTI_PLAYLIST_BANNER_PUBLIC_URL = '/assest/banner/multi-playlist-banner.js';
-const TIP_MESSAGE_LINK_URL = 'https://ko-fi.com/Ezconv';
 const LICENSE_BUTTON_SELECTOR = '[data-license-button], #license-button, .license-button';
 const LICENSE_TRIGGER_SELECTOR = '[data-license-trigger]';
 
@@ -210,6 +211,26 @@ function shouldShowLicenseButton(level: number, hasLicenseKey: boolean): boolean
     return shouldShowByRule('license-button', 'always', level);
 }
 
+function getLicenseButtonLabel(state: WidgetState): string | null {
+    if (!state.hasLicenseKey) return null;
+
+    const info = getLicenseInfo();
+    if (!info) return null;
+
+    // Lifetime → show "Lifetime"
+    if (info.planType === 'lifetime' || !info.expiresAt) {
+        return 'Lifetime';
+    }
+
+    // Time-limited → show "X days"
+    const days = computeDaysRemaining(info.expiresAt);
+    if (days !== null && days > 0) {
+        return `${days} day${days !== 1 ? 's' : ''}`;
+    }
+
+    return null;
+}
+
 function updateLicenseButtonVisibility(state: WidgetState): void {
     if (typeof document === 'undefined') return;
 
@@ -225,18 +246,66 @@ function updateLicenseButtonVisibility(state: WidgetState): void {
         button.classList.toggle('is-hidden', !shouldShow);
     });
 
+    const planLabel = getLicenseButtonLabel(state);
+    const info = state.hasLicenseKey ? getLicenseInfo() : null;
+
     triggers.forEach((trigger) => {
         const fallbackLabel = trigger.getAttribute('data-license-default-label') || 'License';
+        const label = planLabel || fallbackLabel;
         const labelSpan = trigger.querySelector('span:not(.license-icon)') as HTMLElement | null;
 
         if (labelSpan) {
-            labelSpan.textContent = fallbackLabel;
+            labelSpan.textContent = label;
         } else {
-            trigger.textContent = fallbackLabel;
+            trigger.textContent = label;
         }
 
+        if (planLabel) {
+            trigger.setAttribute('title', `Plan: ${planLabel}`);
+        } else {
+            trigger.removeAttribute('title');
+        }
         trigger.removeAttribute('data-license-key');
-        trigger.removeAttribute('title');
+    });
+
+    // Populate dropdown status bars
+    const statusBars = Array.from(document.querySelectorAll('[data-license-status]')) as HTMLElement[];
+    statusBars.forEach((bar) => {
+        bar.hidden = false;
+        bar.dataset.licenseState = info ? 'active' : 'none';
+
+        const planEl = bar.querySelector('[data-license-plan-label]') as HTMLElement | null;
+        const daysEl = bar.querySelector('[data-license-days-label]') as HTMLElement | null;
+
+        if (planEl) {
+            if (!info) {
+                planEl.textContent = 'none';
+            } else {
+                const planMap: Record<string, string> = {
+                    lifetime: 'Lifetime', yearly: 'Yearly', monthly: 'Monthly', weekly: 'Weekly',
+                };
+                planEl.textContent = planMap[info.planType.toLowerCase()] || info.planType;
+            }
+        }
+
+        if (daysEl) {
+            if (!info) {
+                daysEl.textContent = 'none';
+            } else if (!info.expiresAt) {
+                daysEl.textContent = '∞ (Lifetime)';
+            } else {
+                const days = computeDaysRemaining(info.expiresAt);
+                if (days !== null && days > 0) {
+                    daysEl.textContent = `${days} day${days !== 1 ? 's' : ''}`;
+                } else {
+                    daysEl.textContent = 'Last day';
+                }
+            }
+
+            if (!info || !info.expiresAt) {
+                daysEl.textContent = 'none';
+            }
+        }
     });
 }
 
@@ -254,8 +323,8 @@ async function resolveState(forceRefresh = false): Promise<WidgetState> {
 
     pendingStatePromise = getSupporterUsageSummary()
         .then((summary) => {
-            const licenseKey = getStoredLicenseKey();
-            const hasLicenseKey = Boolean(licenseKey);
+            const licenseKey = getStoredRawKey();
+            const hasLicenseKey = hasValidLicense();
 
             const nextState: WidgetState = {
                 level: summary.level,
@@ -284,7 +353,7 @@ function bindStorageListeners(): void {
     hasBoundStorageListeners = true;
 
     window.addEventListener('storage', (event) => {
-        if (event.key && event.key !== getLicenseStorageKey()) return;
+        if (event.key && event.key !== getLicenseTokenStorageKey()) return;
         invalidateState();
         void resolveState(true);
     });
@@ -306,15 +375,15 @@ export async function refreshWidgetState(): Promise<WidgetState> {
 }
 
 export function hasLicenseKey(): boolean {
-    return hasStoredLicenseKey();
+    return hasValidLicense();
 }
 
 export function getLicenseKey(): string | null {
-    return getStoredLicenseKey();
+    return getStoredRawKey();
 }
 
 export function clearLicenseKey(): void {
-    clearStoredLicenseKey();
+    clearLicenseToken();
 }
 
 export async function incrementDownloadCount(method: DownloadMethod = 'single', url = ''): Promise<void> {
@@ -332,7 +401,7 @@ export async function incrementDownloadCount(method: DownloadMethod = 'single', 
  */
 export function onAfterSubmit(): void {
     showTrustpilotWidget();
-    showTipMessageWidget({ url: TIP_MESSAGE_LINK_URL });
+    showTipMessageWidgetWithPricing();
     showMultiPlaylistBannerWidget();
     void resolveState();
 }
