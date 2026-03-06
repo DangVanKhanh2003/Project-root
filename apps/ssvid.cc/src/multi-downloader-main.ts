@@ -18,7 +18,7 @@ import { MaterialPopup } from './ui-components/material-popup/material-popup';
 import { shouldPromptPlaylistRedirectForMulti, FEATURE_KEYS, FEATURE_ACCESS_REASONS } from '@downloader/core';
 import { evaluateFeatureAccess } from './features/allowed-features';
 import { recordUsage, hasLicenseKey, MAX_MULTI_DOWNLOAD_VIDEOS } from './features/download-limit';
-import { show as showPaywall } from 'https://media.ytmp3.gg/poppurchase.v3.js';
+import { show as showPaywall } from 'https://media.ytmp3.gg/poppurchase.v3.js?v=1';
 
 async function confirmPlaylistRedirect(): Promise<boolean> {
     return new Promise((resolve) => {

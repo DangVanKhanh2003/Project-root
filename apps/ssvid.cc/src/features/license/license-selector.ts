@@ -5,7 +5,7 @@
  */
 
 import { logEvent } from '../../libs/firebase';
-import { show as showPaywall } from 'https://media.ytmp3.gg/poppurchase.v3.js';
+import { show as showPaywall } from 'https://media.ytmp3.gg/poppurchase.v3.js?v=1';
 import {
     getSavedLicenseKey,
     saveLicenseKey,

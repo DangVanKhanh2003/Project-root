@@ -271,7 +271,8 @@ function updateLicenseButtonVisibility(state: WidgetState): void {
     // Populate dropdown status bars
     const statusBars = Array.from(document.querySelectorAll('[data-license-status]')) as HTMLElement[];
     statusBars.forEach((bar) => {
-        bar.hidden = false;
+        const shouldShowStatusBar = Boolean(info);
+        bar.hidden = !shouldShowStatusBar;
         bar.dataset.licenseState = info ? 'active' : 'none';
 
         const planEl = bar.querySelector('[data-license-plan-label]') as HTMLElement | null;

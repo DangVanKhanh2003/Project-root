@@ -118,13 +118,27 @@
             padding: 0 18px;
             border-radius: 18px;
             border: 1px solid color-mix(in srgb, var(--brand) 30%, var(--border-default));
-            background: #fff;
+            background: var(--bg-card);
             color: var(--text-heading);
             font-size: 1.1rem;
             font-weight: 700;
             letter-spacing: 0.08em;
             text-transform: uppercase;
             box-shadow: 0 16px 38px rgba(198, 93, 59, 0.08);
+        }
+
+        .license-input::placeholder {
+            color: var(--text-placeholder);
+            opacity: 1;
+        }
+
+        [data-theme="dark"] .license-input {
+            border-color: color-mix(in srgb, var(--brand) 45%, var(--border-input));
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
+        }
+
+        [data-theme="dark"] .license-input::placeholder {
+            color: var(--text-secondary);
         }
 
         .license-actions {
@@ -215,7 +229,7 @@
 
         .license-illustration-window {
             border-radius: 18px;
-            background: #fff;
+            background: var(--bg-card);
             border: 1px solid var(--border-subtle);
             padding: 18px;
         }
@@ -230,7 +244,7 @@
             width: 10px;
             height: 10px;
             border-radius: 999px;
-            background: #e2e8f0;
+            background: var(--bg-surface-soft);
         }
 
         .license-highlight {
@@ -296,6 +310,19 @@
                             <span>License</span>
                         </button>
                         <div class="license-dropdown" data-license-dropdown>
+                            <div class="license-status-bar" data-license-status hidden
+                                style="padding: 10px 14px; border-bottom: 1px solid var(--border-subtle); display: flex; flex-direction: column; gap: 4px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span style="font-size: 0.8rem; color: var(--text-secondary);">Plan</span>
+                                    <strong data-license-plan-label
+                                        style="font-size: 0.85rem; color: var(--text-heading);"></strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span style="font-size: 0.8rem; color: var(--text-secondary);">Remaining</span>
+                                    <strong data-license-days-label
+                                        style="font-size: 0.85rem; color: var(--brand);"></strong>
+                                </div>
+                            </div>
                             <a href="/license" class="license-dropdown-item" data-license-action="add">
                                 <span class="license-dropdown-icon" aria-hidden="true">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -317,7 +344,7 @@
                                 <span>Reset License Key</span>
                             </a>
                             <a href="javascript:void(0)" class="license-dropdown-item" data-license-action="get"
-                                onclick="import('https://media.ytmp3.gg/poppurchase.v3.js').then(m=>m.show('none_title'))">
+                                onclick="import('https://media.ytmp3.gg/poppurchase.v3.js?v=1').then(m=>m.show('none_title'))">
                                 <span class="license-dropdown-icon" aria-hidden="true">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                         <path
@@ -393,6 +420,19 @@
                             <span>License</span>
                         </button>
                         <div class="license-dropdown drawer-license-actions">
+                            <div class="license-status-bar" data-license-status hidden
+                                style="padding: 10px 14px; border-bottom: 1px solid var(--border-subtle); display: flex; flex-direction: column; gap: 4px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span style="font-size: 0.8rem; color: var(--text-secondary);">Plan</span>
+                                    <strong data-license-plan-label
+                                        style="font-size: 0.85rem; color: var(--text-heading);"></strong>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center;">
+                                    <span style="font-size: 0.8rem; color: var(--text-secondary);">Remaining</span>
+                                    <strong data-license-days-label
+                                        style="font-size: 0.85rem; color: var(--brand);"></strong>
+                                </div>
+                            </div>
                             <a href="/license" class="license-dropdown-item drawer-sublink drawer-license-link"
                                 data-license-action="add">
                                 <span class="license-dropdown-icon" aria-hidden="true">
@@ -418,7 +458,7 @@
                             <a href="javascript:void(0)"
                                 class="license-dropdown-item drawer-sublink drawer-license-link"
                                 data-license-action="get"
-                                onclick="import('https://media.ytmp3.gg/poppurchase.v3.js').then(m=>m.show('none_title'))">
+                                onclick="import('https://media.ytmp3.gg/poppurchase.v3.js?v=1').then(m=>m.show('none_title'))">
                                 <span class="license-dropdown-icon" aria-hidden="true">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                                         <path
@@ -477,12 +517,14 @@
                                 <strong style="color: var(--text-secondary); font-weight: 600;">Stored key</strong>
                                 <code id="license-current-key" style="font-size: 0.9rem;">Not activated</code>
                             </div>
-                            <div data-license-detail hidden style="display: flex; justify-content: space-between; align-items: center;">
+                            <div data-license-detail hidden
+                                style="display: flex; justify-content: space-between; align-items: center;">
                                 <span style="color: var(--text-secondary); font-weight: 600;">Plan</span>
                                 <strong id="license-plan-type"
                                     style="color: var(--text-heading); font-size: 1rem;"></strong>
                             </div>
-                            <div data-license-detail hidden style="display: flex; justify-content: space-between; align-items: center;">
+                            <div data-license-detail hidden
+                                style="display: flex; justify-content: space-between; align-items: center;">
                                 <span style="color: var(--text-secondary); font-weight: 600;">Days remaining</span>
                                 <strong id="license-days-remaining"
                                     style="color: var(--brand); font-size: 1rem;"></strong>
@@ -531,7 +573,7 @@
                                 <div style="margin-bottom: 12px; color: var(--text-heading); font-weight: 700;">Paste
                                     license key and press Submit</div>
                                 <div
-                                    style="padding: 16px; border-radius: 14px; border: 1px solid color-mix(in srgb, var(--brand) 30%, var(--border-default)); background: #fff; color: var(--text-heading); font-weight: 700; letter-spacing: 0.08em;">
+                                    style="padding: 16px; border-radius: 14px; border: 1px solid color-mix(in srgb, var(--brand) 30%, var(--border-default)); background: var(--bg-card); color: var(--text-heading); font-weight: 700; letter-spacing: 0.08em;">
                                     XXXX-XXXX-XXXX-XXXX</div>
                                 <div
                                     style="margin-top: 12px; display: inline-flex; align-items: center; justify-content: center; min-width: 120px; min-height: 42px; border-radius: 12px; background: var(--brand); color: #fff; font-weight: 700;">

@@ -41,7 +41,7 @@ import { showResultView } from '../ui-render/view-switcher';
 import { MaterialPopup } from '../../../ui-components/material-popup/material-popup';
 import { shouldPromptPlaylistRedirect } from '@downloader/core';
 import { evaluateFeatureAccess } from '../../allowed-features';
-import { show as showPaywall } from 'https://media.ytmp3.gg/poppurchase.v3.js';
+import { show as showPaywall } from 'https://media.ytmp3.gg/poppurchase.v3.js?v=1';
 import { checkLimit } from '../../download-limit';
 import { FEATURE_KEYS, FEATURE_ACCESS_REASONS } from '@downloader/core';
 

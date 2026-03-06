@@ -7,7 +7,7 @@ const STORE_NAME = 'successful_converts';
 const MAX_STORED_LOGS = 100;
 
 export const BULK_DOWNLOAD_LIMIT = 10;
-export const DAILY_BULK_DOWNLOAD_LIMIT = 20;
+export const DAILY_BULK_DOWNLOAD_LIMIT = 5;
 export const DAILY_PLAYLIST_DOWNLOAD_LIMIT = 5;
 export const DAILY_CHANNEL_DOWNLOAD_LIMIT = 5;
 export const DAILY_TRIM_DOWNLOAD_LIMIT = 20;
