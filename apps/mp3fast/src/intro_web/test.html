@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EzConv Intro Module — Test Page</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #F3F1EE;
+            padding: 40px 20px;
+            margin: 0;
+        }
+
+        .test-section {
+            max-width: 900px;
+            margin: 0 auto 40px;
+        }
+
+        .test-section h2 {
+            text-align: center;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: #6B6B6B;
+            margin-bottom: 20px;
+        }
+
+        .popup-trigger {
+            display: block;
+            margin: 0 auto;
+            padding: 16px 32px;
+            background-color: #D96C3F;
+            color: white;
+            border: none;
+            border-radius: 999px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .popup-trigger:hover {
+            background-color: #C65E35;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Banner section -->
+    <div class="test-section">
+        <h2>Banner (injected via JS)</h2>
+        <div id="banner-container"></div>
+    </div>
+
+    <!-- Popup trigger -->
+    <div class="test-section" style="text-align:center;">
+        <h2>Popup Demo</h2>
+        <button class="popup-trigger" onclick="EzConvIntro.showPopup()">Show Popup</button>
+    </div>
+
+    <script src="intro_oganic_ezconv.js"></script>
+    <script>
+        EzConvIntro.injectBanner(document.getElementById('banner-container'));
+    </script>
+</body>
+
+</html>

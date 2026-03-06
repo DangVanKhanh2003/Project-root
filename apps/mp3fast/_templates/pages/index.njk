@@ -150,6 +150,26 @@ eleventyComputed:
     </div>
 </section>
 
+
+<!-- EzConv Intro Banner -->
+<section id="ezconv-intro-banner-section" class="ezc-banner-container" style="max-width:900px;">
+</section>
+<script src="/intro_oganic_ezconv.js"></script>
+<script>
+(function(){
+  function injectBanner(){
+    var c = document.getElementById('ezconv-intro-banner-section');
+    if(c && window.EzConvIntro) { EzConvIntro.injectBanner(c); }
+  }
+  if(typeof requestIdleCallback==='function'){
+    requestIdleCallback(injectBanner,{timeout:2000});
+  } else {
+    setTimeout(injectBanner, 100);
+  }
+
+})();
+</script>
+
 <!-- SEO / TEXT CONTENT -->
 <section class="content-section">
     <div class="content-wrapper">
