@@ -8,3 +8,14 @@ interface ImportMetaEnv {
 interface ImportMeta {
   readonly env: ImportMetaEnv;
 }
+
+interface EzConvIntroApi {
+  injectBanner: (container: HTMLElement, options?: Record<string, unknown>) => void;
+  showPopup: (options?: Record<string, unknown>) => void;
+  hidePopup: () => void;
+  preloadPopup?: (options?: Record<string, unknown>) => void;
+}
+
+interface Window {
+  EzConvIntro?: EzConvIntroApi;
+}
