@@ -65,9 +65,9 @@
     keyword: 'ezconv pro',
     title: 'EzConv Pro — The Professional Free & No-Ads YouTube Download Platform',
     subtitle: "Give EzConv Pro a try — it's worth your time.",
-    desktopImage: '/desktop_ezconv_intro_goggle.png',
-    mobileImage: '/mobile_ezconv_intro_goggle.png',
-    expImage: '/ezconv_exp.png',
+    desktopImage: 'https://mp3fast.net/desktop_ezconv_intro_goggle.png',
+    mobileImage: 'https://mp3fast.net/mobile_ezconv_intro_goggle.png',
+    expImage: 'https://mp3fast.net/ezconv_exp.png',
   };
 
   /* ───── CSS (scoped with .ezi- prefix) ───── */

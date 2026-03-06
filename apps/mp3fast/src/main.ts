@@ -140,10 +140,16 @@ async function initLanguageSwitcher() {
  * Preload EzConv intro images and popup module
  */
 function preloadEzConvIntro() {
+  type EzConvIntroWindow = Window & {
+    EzConvIntro?: {
+      preloadPopup?: () => void;
+    };
+  };
+
   const images = [
-    '/desktop_ezconv_intro_goggle.png',
-    '/mobile_ezconv_intro_goggle.png',
-    '/ezconv_exp.png',
+    'https://mp3fast.net/desktop_ezconv_intro_goggle.png',
+    'https://mp3fast.net/mobile_ezconv_intro_goggle.png',
+    'https://mp3fast.net/ezconv_exp.png',
   ];
   images.forEach(src => {
     const img = new Image();
@@ -151,9 +157,8 @@ function preloadEzConvIntro() {
   });
 
   // Preload popup so it's ready on first download click
-  if (window.EzConvIntro) {
-    window.EzConvIntro.preloadPopup?.();
-  }
+  const ezConvIntro = (window as EzConvIntroWindow).EzConvIntro;
+  ezConvIntro?.preloadPopup?.();
 }
 
 /**
