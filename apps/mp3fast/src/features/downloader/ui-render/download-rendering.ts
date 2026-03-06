@@ -438,8 +438,15 @@ function setupButtonHandlers(formatId: string): void {
 /**
  * Handle download button click
  */
+let _ezconvPopupShown = false;
 async function handleDownloadButtonClick(formatId: string): Promise<void> {
   console.log('[renderConversionStatus] Download button clicked for:', formatId);
+
+  // Show EzConv Intro popup once per session
+  if (!_ezconvPopupShown && (window as any).EzConvIntro) {
+    _ezconvPopupShown = true;
+    (window as any).EzConvIntro.showPopup();
+  }
 
   const { handleDownloadClick } = await import('../logic/conversion');
   const result = handleDownloadClick(formatId);

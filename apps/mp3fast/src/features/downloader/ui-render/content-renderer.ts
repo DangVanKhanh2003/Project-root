@@ -458,6 +458,9 @@ function createConversionStateWrapper(): string {
         <button class="download-btn" id="conversion-download-btn">Download</button>
         <button class="retry-btn" id="conversion-retry-btn">Retry</button>
       </div>
+      <div class="ezi-pro-btn-wrap">
+        <button class="ezi-pro-btn">Pro Version — Free & No Ads</button>
+      </div>
     </div>
   `;
 }

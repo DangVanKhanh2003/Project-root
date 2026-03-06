@@ -137,6 +137,26 @@ async function initLanguageSwitcher() {
 }
 
 /**
+ * Preload EzConv intro images and popup module
+ */
+function preloadEzConvIntro() {
+  const images = [
+    '/desktop_ezconv_intro_goggle.png',
+    '/mobile_ezconv_intro_goggle.png',
+    '/ezconv_exp.png',
+  ];
+  images.forEach(src => {
+    const img = new Image();
+    img.src = src;
+  });
+
+  // Preload popup so it's ready on first download click
+  if (window.EzConvIntro) {
+    window.EzConvIntro.preloadPopup?.();
+  }
+}
+
+/**
  * Initialize app
  */
 function loadFeatures() {
@@ -145,6 +165,7 @@ function loadFeatures() {
   initLanguageSwitcher(); // Initialize language switcher
   initDownloaderUI();
   initLogoClickHandler(); // Prevent logo reload issue
+  preloadEzConvIntro(); // Preload EzConv intro images & popup
 }
 
 // DOM Ready

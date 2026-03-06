@@ -2187,6 +2187,7 @@ html[data-theme="dark"] .btn-download-multi-download.is-outline:hover {
     border: 1px solid var(--border-subtle);
     border-radius: 20px;
     width: 100%;
+    margin-top: 10px;
 }
 
 [data-theme="dark"] .advanced-settings-panel {
@@ -2606,6 +2607,7 @@ html[data-theme="dark"] .btn-download-multi-download.is-outline:hover {
         border-radius: 20px;
         padding: 10px 16px;
         line-height: 1.2;
+        margin-top: 10px;
     }
 
     .multi-quality-select {

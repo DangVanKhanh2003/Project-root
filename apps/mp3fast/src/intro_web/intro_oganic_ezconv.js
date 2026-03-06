@@ -198,6 +198,19 @@
 }
 .ezi-dismiss-btn:hover{color:#D96C3F}
 
+/* Pro version button */
+.ezi-pro-btn-wrap{display:flex;justify-content:center;margin-top:12px}
+.ezi-pro-btn{
+  padding:14px 24px;
+  background:#C65D3B;color:#fff;
+  border:none;border-radius:12px;
+  font-size:15px;font-weight:700;
+  cursor:pointer;transition:background .15s;
+  white-space:nowrap;
+  -webkit-tap-highlight-color:transparent;
+}
+.ezi-pro-btn:hover{background:#b5532f}
+
 /* ── Mobile compact (both banner & popup) ── */
 @media(max-width:639px){
   /* Banner mobile */
@@ -390,24 +403,47 @@
     }
   }
 
-  /* ───── Auto popup on download btn (once per session) ───── */
+  /* ───── Pro version button triggers popup ───── */
 
-  let _popupTriggered = false;
   document.addEventListener('click', function (e) {
-    if (_popupTriggered) return;
-    const btn = e.target.closest('#conversion-download-btn');
+    const btn = e.target.closest('.ezi-pro-btn');
     if (btn) {
-      _popupTriggered = true;
       showPopup();
     }
-  }, true); // capture phase — fires before any stopPropagation
+  });
 
   /* ───── Export ───── */
+
+  /**
+   * Preload popup DOM so it's instant on first show.
+   */
+  function preloadPopup(options) {
+    injectStyle();
+    const cfg = Object.assign({}, DEFAULTS, options);
+    if (!_popupEl) {
+      _popupEl = document.createElement('div');
+      _popupEl.className = 'ezi-popup-overlay';
+      _popupEl.innerHTML = `
+        <div class="ezi-popup-backdrop"></div>
+        <div class="ezi-popup-content">
+          <div class="ezi-card">
+            ${buildCardContent(cfg, { showFeatures: false, showExpImage: false })}
+            <div class="ezi-popup-footer">
+              <button class="ezi-dismiss-btn">Maybe later</button>
+            </div>
+          </div>
+        </div>`;
+      document.body.appendChild(_popupEl);
+      _popupEl.querySelector('.ezi-popup-backdrop').addEventListener('click', hidePopup);
+      _popupEl.querySelector('.ezi-dismiss-btn').addEventListener('click', hidePopup);
+    }
+  }
 
   root.EzConvIntro = {
     injectBanner: injectBanner,
     showPopup: showPopup,
     hidePopup: hidePopup,
+    preloadPopup: preloadPopup,
   };
 
 })(typeof globalThis !== 'undefined' ? globalThis : window);
