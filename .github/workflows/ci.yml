@@ -73,6 +73,8 @@ jobs:
 
       - name: Determine apps to deploy
         id: determine-apps
+        env:
+          COMMIT_MSG: ${{ github.event.head_commit.message }}
         run: |
           ALL_APPS='["y2matepro","y2matevc","ytmp3-clone-3","mp3fast","ytmp3-clone-5","ytmp3.my","4kvideopro","ssvid.cc","ezconv"]'
 
@@ -94,7 +96,6 @@ jobs:
           fi
 
           # Handle commit message convention [deploy:app1,app2] or [deploy:all]
-          COMMIT_MSG="${{ github.event.head_commit.message }}"
           if [[ "$COMMIT_MSG" =~ \[deploy:([^\]]+)\] ]]; then
             DEPLOY_TARGETS="${BASH_REMATCH[1]}"
             echo "📝 Found deploy tag in commit: $DEPLOY_TARGETS"
