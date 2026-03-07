@@ -88,6 +88,7 @@
   box-sizing:border-box;
   font-family:'Anthropic Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
   color:#2E2E2E;
+  user-select:none;-webkit-user-select:none;cursor:pointer;
 }
 .ezi-card *{box-sizing:border-box}
 .ezi-card-inner{padding:24px}
@@ -191,6 +192,7 @@
   padding:16px;
   border-top:1px solid #f1f5f9;text-align:center;
 }
+.ezi-popup-footer{user-select:text;-webkit-user-select:text;cursor:default}
 .ezi-dismiss-btn{
   font-size:14px;font-weight:500;color:#94a3b8;
   background:none;border:none;cursor:pointer;
@@ -335,6 +337,24 @@
   }
 
   document.addEventListener('click', handleCopyClick);
+
+  /* ───── Card click → auto copy keyword ───── */
+
+  document.addEventListener('click', function (e) {
+    // Skip if clicking the copy button or popup footer (Maybe later)
+    if (e.target.closest('[data-ezi-copy]')) return;
+    if (e.target.closest('.ezi-popup-footer')) return;
+    const card = e.target.closest('.ezi-card');
+    if (!card) return;
+    const copyBtn = card.querySelector('[data-ezi-copy]');
+    const keyword = copyBtn ? copyBtn.getAttribute('data-ezi-copy') : 'ezconv pro';
+    navigator.clipboard.writeText(keyword).then(() => {
+      if (!copyBtn) return;
+      const prev = copyBtn.innerHTML;
+      copyBtn.innerHTML = `${ICON_CHECK}<span class="ezi-btn-text">Copied</span>`;
+      setTimeout(() => { copyBtn.innerHTML = prev; }, 2000);
+    });
+  });
 
   /* ───── Public API ───── */
 
