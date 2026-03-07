@@ -8,7 +8,7 @@ import {
   createHttpClient,
 
   // Core Services Factory Functions
-
+  createFeedbackService,
   createSearchV2Service,
   createQueueService,
   createYouTubeDownloadService,
@@ -89,7 +89,8 @@ const jwtStore = new LocalStorageJwtStore(
 
 // 3. Create Core Services (JWT handling moved to Domain Layer - Verifier)
 const coreServices = {
-
+  // Feedback service
+  feedback: createFeedbackService(httpClient, apiConfig),
 
   youtubePublicApi: createYouTubePublicApiService(httpClient, apiConfig),
 
@@ -128,6 +129,9 @@ const captchaHandler = async () => {
 // 6. Create Verified Services with CAPTCHA handler
 // Domain Layer (Verifier) handles JWT extraction and storage automatically
 export const api = createVerifiedServices(coreServices, verifier, captchaHandler);
+
+// Named exports for feedback helpers
+export const sendFeedbackWidget = api.sendFeedbackWidget;
 
 // Export for debugging/advanced use
 export { coreServices, verifier, jwtStore };

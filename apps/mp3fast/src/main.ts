@@ -161,6 +161,14 @@ function preloadEzConvIntro() {
   ezConvIntro?.preloadPopup?.();
 }
 
+function initFeedbackWidget(): void {
+  setTimeout(() => {
+    import('./features/feedback/feedback-widget')
+      .then(({ initFeedbackWidget: init }) => init())
+      .catch(() => { });
+  }, 5000);
+}
+
 /**
  * Initialize app
  */
@@ -171,6 +179,7 @@ function loadFeatures() {
   initDownloaderUI();
   initLogoClickHandler(); // Prevent logo reload issue
   preloadEzConvIntro(); // Preload EzConv intro images & popup
+  initFeedbackWidget(); // Initialize Feedback Widget (lazy loaded after 5s)
 }
 
 // DOM Ready

@@ -17,3 +17,6 @@ export * from './download';
 
 // Supporter popups
 export * from './supporter';
+
+// Feedback widget
+export * from './feedback';

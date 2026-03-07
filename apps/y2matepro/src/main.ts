@@ -243,6 +243,14 @@ function initFirebaseAnalytics() {
   }, 5000);
 }
 
+function initFeedbackWidget(): void {
+  setTimeout(() => {
+    import('./features/feedback/feedback-widget')
+      .then(({ initFeedbackWidget: init }) => init())
+      .catch(() => { });
+  }, 5000);
+}
+
 /**
  * Initialize app
  */
@@ -251,6 +259,7 @@ function loadFeatures() {
   initLanguageDropdown(); // Initialize language dropdown
   initDownloaderUI();
   initFirebaseAnalytics(); // Load analytics when browser is idle
+  initFeedbackWidget(); // Initialize Feedback Widget (lazy loaded after 5s)
 }
 
 // DOM Ready

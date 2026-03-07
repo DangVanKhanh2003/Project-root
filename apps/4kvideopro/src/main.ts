@@ -219,6 +219,14 @@ function initFirebaseAnalytics(): void {
   }, 5000);
 }
 
+function initFeedbackWidget(): void {
+  setTimeout(() => {
+    import('./features/feedback/feedback-widget')
+      .then(({ initFeedbackWidget: init }) => init())
+      .catch(() => { });
+  }, 5000);
+}
+
 /**
  * Initialize app
  */
@@ -230,6 +238,7 @@ function loadFeatures() {
   initDownloaderUI(); // Initialize downloader (async/lazy loaded)
   initLogoClickHandler(); // Prevent logo reload issue
   initFirebaseAnalytics(); // Initialize Firebase Analytics (lazy loaded after 5s)
+  initFeedbackWidget(); // Initialize Feedback Widget (lazy loaded after 5s)
 }
 
 // DOM Ready

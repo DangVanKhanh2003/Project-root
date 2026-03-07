@@ -10,6 +10,7 @@
     "./scroll": "./src/scroll/index.ts",
     "./download": "./src/download/index.ts",
     "./supporter": "./src/supporter/index.ts",
+    "./feedback": "./src/feedback/index.ts",
     "./styles/*": "./src/styles/*"
   },
   "scripts": {
