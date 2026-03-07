@@ -31,6 +31,7 @@
 
 /* 5. Sections */
 @import './sections/hero.css';
+@import './sections/main-content.css';
 
 /* 6. Components */
 @import './components/form.css';

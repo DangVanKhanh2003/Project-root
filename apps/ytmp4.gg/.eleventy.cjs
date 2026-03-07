@@ -103,6 +103,12 @@ module.exports = function (eleventyConfig) {
   // 5. FILTERS (Template helpers)
   // ============================================
 
+  // Find a section by h2 value from content.sections array
+  eleventyConfig.addFilter('findSection', function (sections, h2Value) {
+    if (!Array.isArray(sections)) return null;
+    return sections.find(s => s.h2 === h2Value) || null;
+  });
+
   // Strip HTML tags from string (for JSON-LD)
   eleventyConfig.addFilter('stripHtml', function (str) {
     if (!str) return '';

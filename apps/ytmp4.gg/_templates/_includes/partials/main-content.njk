@@ -1,0 +1,52 @@
+<!-- MAIN CONTENT -->
+<section class="main-content">
+    <div class="support-platforms-bar">
+        <span class="support-platforms-label">{{ base.hero.supportedPlatforms }}</span>
+        <div class="support-platforms-icons">
+            <img class="support-platform-icon" src="/assest/social-icon/youtube.png" alt="YouTube" loading="lazy" decoding="async">
+            <img class="support-platform-icon" src="/assest/social-icon/tiktok.png" alt="TikTok" loading="lazy" decoding="async">
+        </div>
+    </div>
+    <div class="container main-content-card">
+        {% for section in page.content.sections %}
+        <div class="content-section">
+            <h2>{{ section.h2 }}</h2>
+
+            {# --- Simple paragraphs --- #}
+            {% if section.p %}
+                {% for para in section.p %}
+                <p>{{ para | safe }}</p>
+                {% endfor %}
+            {% endif %}
+
+            {# --- Ordered list (e.g. how-to steps) --- #}
+            {% if section.ol %}
+            <ol>
+                {% for item in section.ol %}
+                <li>
+                    <h3>{{ item.h3 }}</h3>
+                    {% for para in item.p %}
+                    <p>{{ para | safe }}</p>
+                    {% endfor %}
+                </li>
+                {% endfor %}
+            </ol>
+            {% endif %}
+
+            {# --- Unordered list (e.g. features, FAQs, comparisons) --- #}
+            {% if section.ul %}
+            <ul>
+                {% for item in section.ul %}
+                <li>
+                    <h3>{{ item.h3 }}</h3>
+                    {% for para in item.p %}
+                    <p>{{ para | safe }}</p>
+                    {% endfor %}
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</section>

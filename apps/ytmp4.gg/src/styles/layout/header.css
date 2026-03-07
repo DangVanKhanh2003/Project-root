@@ -30,6 +30,11 @@
     height: 36px;
 }
 
+.header-logo-text,
+.drawer-logo-text {
+    font-family: 'Roboto', sans-serif;
+}
+
 /* Logo icon fill overrides — match actual SVG fill attributes */
 .header-logo svg rect[fill="#CB0E35"],
 .drawer-logo svg rect[fill="#CB0E35"] {
@@ -42,8 +47,8 @@
 }
 
 /* Dark mode: swap blue fills → orange */
-[data-theme="dark"] .header-logo svg rect[fill="#004fab"],
-[data-theme="dark"] .drawer-logo svg rect[fill="#004fab"] {
+[data-theme="dark"] .header-logo svg rect[fill="#000000"],
+[data-theme="dark"] .drawer-logo svg rect[fill="#000000"] {
     fill: var(--brand);
 }
 

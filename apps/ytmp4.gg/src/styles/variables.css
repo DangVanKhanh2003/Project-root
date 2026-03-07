@@ -1,17 +1,19 @@
 :root {
-    --brand: #004fab;
+    --brand: #000000;
     --brand-hover: #003f8a;
     --text: #374957;
     --muted: #4f5b66;
     --surface-weak: #e8f1ff;
     --radius-xl: 36px;
     --container-width: 1100px;
+    --container-padding-sm: 12px;
 
     /* Theme tokens needed by reusable packages (light theme) */
     /* Colors */
-    --primary-color: #004fab;
+    --primary-color: #000000;
     --primary-color-hover: #003f8a;
-    --background-hero-section: #0055b9;
+    --background-hero-section: #60A5FA;
+    --hero-section-bg: #60A5FA;
     /* Slightly darker for hover */
     --secondary-color: #ffffff;
     --color-black: #000000;
@@ -22,6 +24,7 @@
     --bg-secondary: #FAF9F5;
     /* Light gray for content sections */
     --text-primary: #333333;
+    --hero-title-color: #000000;
     --bg-badge: #f2f4f7;
 
     --text-main: var(--text);
@@ -87,6 +90,55 @@
     --status-converting-bg: #fff7ed;
     --status-converting-color: #c2410c;
 
+    /* Main Content Card */
+    --main-content-bg: #ffffff;
+    --main-content-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --main-content-text: var(--text-body);
+    --main-content-heading: var(--text-heading);
+    --main-content-link: var(--brand);
+    --main-content-link-hover: var(--brand-hover);
+    --main-content-font-family: var(--font-display);
+    --main-content-line-height: 1.65;
+    --main-content-radius: 8px;
+    --main-content-margin-inline: 12px;
+    --main-content-max-width-sm: 600px;
+    --main-content-max-width-md: 700px;
+    --main-content-max-width-lg: 800px;
+    --main-content-max-width-xl: 900px;
+    --main-content-max-width-2xl: 1000px;
+    --main-content-max-width-3xl: 1200px;
+    --padding-card: 12px;
+
+}
+
+@media (min-width: 768px) {
+    :root {
+        --padding-card: 16px;
+    }
+}
+
+@media (min-width: 840px) {
+    :root {
+        --padding-card: 20px;
+    }
+}
+
+@media (min-width: 1240px) {
+    :root {
+        --padding-card: 24px;
+    }
+}
+
+@media (min-width: 1920px) {
+    :root {
+        --padding-card: 28px;
+    }
+}
+
+@media (min-width: 2560px) {
+    :root {
+        --padding-card: 32px;
+    }
 }
 
 :root[data-theme="dark"] {
@@ -98,6 +150,7 @@
     --color-accent-hover: #B14F2F;
     --color-accent-dark: rgba(198, 93, 59, 0.20);
     --background-hero-section: var(--bg-secondary);
+    --hero-section-bg: var(--bg-secondary);
 
     --bg-page: #262624;
     --bg-card: #30302E;
@@ -115,6 +168,7 @@
     --text-muted: #C9C7C2;
     --text-placeholder: #8A8884;
     --text-primary: #E8E6E3;
+    --hero-title-color: var(--text-heading);
     --muted: #C9C7C2;
 
     --border-default: #4A4A48;
@@ -148,5 +202,13 @@
     --status-converting-color: #C65D3B;
 
     --color-status-error: #E74C3C;
+
+    /* Main Content Card */
+    --main-content-bg: var(--bg-card);
+    --main-content-shadow: none;
+    --main-content-text: var(--text-body);
+    --main-content-heading: var(--text-heading);
+    --main-content-link: var(--brand);
+    --main-content-link-hover: var(--brand-hover);
 
 }

@@ -3,6 +3,10 @@ body[data-page="strim-downloader"] .form-container {
 }
 
 body[data-page="strim-downloader"] .hero-card {
+  max-width: 1000px !important;
+}
+
+body[data-page="strim-downloader"] .hero-card {
   padding-top: 24px;
   padding-bottom: 24px !important;
 }

@@ -152,7 +152,7 @@
   --pkg-color-gray-900: #030014;   /* Dark Nebula bg */
 
   /* Primary Color System - Blue Theme */
-  --pkg-color-primary: #004fab;                    /* Primary brand color */
+  --pkg-color-primary: #000000;                    /* Primary brand color */
   --pkg-color-on-primary: #ffffff;                 /* White text on primary */
   --pkg-color-primary-container: rgba(0, 79, 171, 0.1);  /* Primary tint container */
   --pkg-color-on-primary-container: #003f8a;       /* Dark blue text on container */

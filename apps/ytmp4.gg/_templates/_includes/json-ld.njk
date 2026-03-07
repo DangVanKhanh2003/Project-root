@@ -4,6 +4,13 @@
 {%- set hasHowTo = pageData.overview and pageData.overview.howTo and pageData.overview.howTo.steps -%}
 {%- set hasFaqs = pageData.faqs and pageData.faqs.items -%}
 
+{#- Support old structure (hero.title) and new structures (content.h1.title / content.form.h1) -#}
+{%- set pageName = pageData.hero.title if pageData.hero else (pageData.content.form.h1 if (pageData.content and pageData.content.form and pageData.content.form.h1) else (pageData.content.h1.title if (pageData.content and pageData.content.h1) else '')) -%}
+
+{#- New structure: detect FAQ section from content.sections -#}
+{%- set faqSection = pageData.content.sections | findSection("Frequently Asked Questions") if (not hasFaqs and pageData.content and pageData.content.sections) else null -%}
+{%- set hasFaqsNew = faqSection and faqSection.ul -%}
+
 {#- Build canonical URL -#}
 {%- set cleanUrl = page.url | replace('/index.html', '/') | replace('.html', '') -%}
 {%- set canonicalUrl = site.url + cleanUrl -%}
@@ -23,7 +30,7 @@
       "url": "{{ site.url }}/",
       "logo": {
         "@type": "ImageObject",
-        "url": "{{ site.url }}/logo.png"
+        "url": "https://ytmp4.gg/logo.png"
       },
       "contactPoint": {
         "@type": "ContactPoint",
@@ -47,7 +54,7 @@
       "@type": "WebPage",
       "@id": "{{ canonicalUrl }}#webpage",
       "url": "{{ canonicalUrl }}",
-      "name": "{{ pageData.hero.title | jsonString | safe }}",
+      "name": "{{ pageName | jsonString | safe }}",
       "isPartOf": {
         "@id": "{{ site.url }}/#website"
       },
@@ -60,7 +67,7 @@
     {
       "@type": "SoftwareApplication",
       "@id": "{{ canonicalUrl }}#application",
-      "name": "{{ pageData.hero.title | jsonString | safe }}",
+      "name": "{{ pageName | jsonString | safe }}",
       "url": "{{ canonicalUrl }}",
       "description": "{{ seo.schemaDescription | jsonString | safe }}",
       "applicationCategory": "MultimediaApplication",
@@ -73,7 +80,7 @@
         "priceCurrency": "USD"
       }
     }
-    {%- if hasFaqs %},
+    {%- if hasFaqs or hasFaqsNew %},
     {
       "@type": "FAQPage",
       "@id": "{{ canonicalUrl }}#faq",
@@ -81,6 +88,7 @@
         "@id": "{{ canonicalUrl }}#webpage"
       },
       "mainEntity": [
+        {%- if hasFaqs %}
         {%- for item in pageData.faqs.items %}
         {
           "@type": "Question",
@@ -91,6 +99,18 @@
           }
         }{%- if not loop.last %},{% endif %}
         {%- endfor %}
+        {%- elif hasFaqsNew %}
+        {%- for item in faqSection.ul %}
+        {
+          "@type": "Question",
+          "name": "{{ item.h3 | jsonString | safe }}",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "{{ item.p[0] | jsonString | safe }}"
+          }
+        }{%- if not loop.last %},{% endif %}
+        {%- endfor %}
+        {%- endif %}
       ]
     }
     {%- endif %}
@@ -125,7 +145,7 @@
       "@type": "WebPage",
       "@id": "{{ canonicalUrl }}#webpage",
       "url": "{{ canonicalUrl }}",
-      "name": "{{ pageData.hero.title | jsonString | safe }}",
+      "name": "{{ pageName | jsonString | safe }}",
       "isPartOf": {
         "@id": "{{ site.url }}/#website"
       },
@@ -138,7 +158,7 @@
     {
       "@type": "SoftwareApplication",
       "@id": "{{ canonicalUrl }}#application",
-      "name": "{{ pageData.hero.title | jsonString | safe }}",
+      "name": "{{ pageName | jsonString | safe }}",
       "url": "{{ canonicalUrl }}",
       "description": "{{ seo.schemaDescription | jsonString | safe }}",
       "applicationCategory": "MultimediaApplication",
@@ -154,7 +174,7 @@
         "priceCurrency": "USD"
       }
     }
-    {%- if hasFaqs %},
+    {%- if hasFaqs or hasFaqsNew %},
     {
       "@type": "FAQPage",
       "@id": "{{ canonicalUrl }}#faq",
@@ -162,6 +182,7 @@
         "@id": "{{ canonicalUrl }}#webpage"
       },
       "mainEntity": [
+        {%- if hasFaqs %}
         {%- for item in pageData.faqs.items %}
         {
           "@type": "Question",
@@ -172,6 +193,18 @@
           }
         }{%- if not loop.last %},{% endif %}
         {%- endfor %}
+        {%- elif hasFaqsNew %}
+        {%- for item in faqSection.ul %}
+        {
+          "@type": "Question",
+          "name": "{{ item.h3 | jsonString | safe }}",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "{{ item.p[0] | jsonString | safe }}"
+          }
+        }{%- if not loop.last %},{% endif %}
+        {%- endfor %}
+        {%- endif %}
       ]
     }
     {%- endif %}

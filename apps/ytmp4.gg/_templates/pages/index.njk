@@ -16,10 +16,6 @@ eleventyComputed:
 <!-- HERO SECTION -->
 <section class="hero-section">
     <div class="container hero-container">
-        <div id="hero-header" class="hero-header">
-            <h1 class="title-hero">{{ page.hero.title }}</h1>
-            <p class="subtitle-hero">{{ page.hero.subtitle }}</p>
-        </div>
         {% include "partials/hero-form.njk" %}
     </div>
 </section>
@@ -30,4 +26,6 @@ eleventyComputed:
         <div id="search-results-container"></div>
     </div>
 </section>
+
+{% include "partials/main-content.njk" %}
 

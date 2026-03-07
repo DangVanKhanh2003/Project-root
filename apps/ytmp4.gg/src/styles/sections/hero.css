@@ -1,8 +1,7 @@
 /* Hero Section */
 .hero-section {
-    background-color: var(--bg-secondary);
-    /* Changed to Gray (Secondary) */
-    padding: 50px 0 40px 0;
+    background-color: var(--hero-section-bg);
+    padding: 50px 16px 40px 16px;
     color: var(--color-white);
     text-align: center;
     position: relative;
@@ -13,23 +12,8 @@
     z-index: 1;
 }
 
-/* Pseudo-element for the fixed-height Red Header/Hero BG */
-.hero-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 300px;
-    /* Fixed height for the red area */
-    background-color: var(--background-hero-section);
-    /* Red */
-    z-index: -1;
-}
-
 .hero-section>* {
     z-index: 2;
-    /* Ensure content sits above the bg */
 }
 
 .hero-container {
@@ -37,8 +21,7 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    max-width: 1100px;
-    /* Constrain width for better centering */
+    max-width: var(--main-content-max-width-3xl);
     margin: 0 auto;
     position: relative;
     z-index: 2;
@@ -84,12 +67,46 @@
 }
 
 .title-hero {
-    font-size: 3rem;
-    /* 48px */
-    font-weight: 600;
-    margin: 0;
-    line-height: 1.1;
-    color: white;
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    /* 16px → 20px fluid scaling */
+    font-weight: 700;
+    color: var(--hero-title-color);
+    line-height: 1.25;
+    /* Comfortable for smaller text */
+    margin: 0 0 20px 0;
+    /* Only bottom margin increased */
+    text-align: center;
+    font-family: var(--font-display);
+    letter-spacing: 0;
+}
+
+@media (min-width: 351px) {
+    .title-hero {
+        font-size: clamp(1.0625rem, 3vw, 1.375rem);
+        margin: 0 0 22px 0;
+    }
+}
+
+@media (min-width: 840px) {
+    .title-hero {
+        font-size: clamp(1.25rem, 3.5vw, 1.75rem);
+        margin: 0 0 24px 0;
+    }
+}
+
+@media (min-width: 1920px) {
+    .title-hero {
+        font-size: clamp(1.375rem, 4vw, 2rem);
+        margin: 0 0 28px 0;
+    }
+}
+
+@media (min-width: 2560px) {
+    .title-hero {
+        font-size: clamp(1.5rem, 4.5vw, 2.25rem);
+        margin: 0 0 32px 0;
+        line-height: 1.2;
+    }
 }
 
 .subtitle-hero {
@@ -104,45 +121,52 @@
 
 .hero-card {
     background: var(--bg-card);
-    border-radius: 24px;
-    /* Slightly larger radius */
-    padding: 32px;
-    padding-bottom: 15px !important;
-    /* Increased padding as requested (was 8px) */
-    /* Softer, spread out shadow */
+    border-radius: 12px;
+    padding: var(--padding-card);
+    padding-bottom: 16px !important;
     width: 100%;
-    max-width: 1100px;
+    max-width: 100% !important;
     margin-bottom: 0;
-    /* No negative margin needed with mask approach */
     position: relative;
     z-index: 10;
     display: flex;
     flex-direction: column;
-    border: 0px;
-    /* Space between elements inside form */
+    border: 0;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 351px) {
     .hero-card {
-        padding: 16px;
+        max-width: var(--main-content-max-width-sm) !important;
+    }
+}
+
+@media (min-width: 600px) {
+    .hero-card {
+        max-width: var(--main-content-max-width-md) !important;
     }
 }
 
 @media (min-width: 840px) {
     .hero-card {
-        padding: 20px;
+        max-width: var(--main-content-max-width-lg) !important;
     }
 }
 
 @media (min-width: 1240px) {
     .hero-card {
-        padding: 24px;
+        max-width: var(--main-content-max-width-xl) !important;
     }
 }
 
 @media (min-width: 1920px) {
     .hero-card {
-        padding: 28px;
+        max-width: var(--main-content-max-width-2xl) !important;
+    }
+}
+
+@media (min-width: 2560px) {
+    .hero-card {
+        max-width: var(--main-content-max-width-3xl) !important;
     }
 }
 
@@ -165,7 +189,7 @@
 
 @media (max-width: 768px) {
     .hero-section {
-        padding: 50px 0 0px;
+        padding: 50px 12px 20px 12px;
         /* Reduced bottom padding to 0 to let mask cover more of the form (half-in/half-out) */
     }
 
@@ -175,12 +199,7 @@
     }
 
     .title-hero {
-        font-size: 26px;
-        /* Explicit 26px as requested */
-        margin-bottom: 8px;
-        /* Slightly reduce gap */
         padding: 0 20px;
-        /* Added side padding as requested */
     }
 
     .subtitle-hero {
@@ -213,19 +232,9 @@
         /* Smaller logo text */
     }
 
-    /* Adjust Red Background Height on Mobile */
-    .hero-section::before {
-        height: 300px;
-        /* Adjusted for mobile */
-    }
 }
 
-@media (max-width: 480px) {
-    .hero-card {
-        padding: 24px 14px;
-        border-radius: calc(var(--radius-xl) - 10px);
-    }
-}
+
 
 /* Search Results Container */
 #search-results-container {
@@ -243,7 +252,7 @@
 
 /* Support Platforms Bar (inside hero-card) */
 .support-platforms-bar {
-    padding: 30px 24px 0px;
+    padding: 12px 0px;
     display: flex;
     align-items: center;
     justify-content: center;
