@@ -1,0 +1,117 @@
+{
+  "seo": {
+    "title": "YouTube Video Cutter Online – Trim & Download MP4 | YTMP4",
+    "description": "Cut and trim YouTube videos online with YTMP4. Select start and end time, trim YouTube video online, and download the clip as MP4 instantly.",
+    "schemaName": "YTMP4 - YouTube Video Cutter",
+    "schemaDescription": "Online YouTube video cutter and trimmer. Cut part of YouTube video and download as MP4 quickly.",
+    "ogTitle": "YouTube Video Cutter Online – Trim & Download | YTMP4",
+    "ogDescription": "Trim YouTube video online and download the selected clip in MP4 format using YTMP4."
+  },
+  "defaultFormat": "mp4",
+  "hero": {
+    "title": "YTMP4 – YouTube Video Cutter",
+    "subtitle": "Trim YouTube Video Online and Download the Clip as MP4"
+  },
+  "form": {
+    "title": "Cut YouTube Video Online",
+    "placeholder": "Paste YouTube video URL here...",
+    "convertButton": "Trim & Download"
+  },
+  "overview": {
+    "howTo": {
+      "title": "How to Trim a YouTube Video Online",
+      "steps": [
+        {
+          "number": "1",
+          "title": "Paste the YouTube Video Link",
+          "description": "Copy the video URL and paste it into the YTMP4 YouTube video cutter."
+        },
+        {
+          "number": "2",
+          "title": "Set Start and End Time",
+          "description": "Choose the exact time range you want to keep."
+        },
+        {
+          "number": "3",
+          "title": "Preview the Clip",
+          "description": "Make sure the selected part is correct before downloading."
+        },
+        {
+          "number": "4",
+          "title": "Download the Trimmed Video",
+          "description": "Click download to save the trimmed YouTube video as an MP4 file."
+        }
+      ]
+    }
+  },
+  "content": {
+    "intro": {
+      "title": "What Is YTMP4 YouTube Video Cutter?",
+      "description": "YTMP4 provides a simple <strong>youtube video cutter</strong> that allows you to trim and download specific parts of a video. Instead of downloading the entire file, you can <strong>cut part of YouTube video</strong> and save only the section you need."
+    },
+    "columns": [
+      {
+        "title": "Trim YouTube Video Online",
+        "description": "With this <strong>youtube video cut online</strong> tool, you can select a custom start and end time and instantly <strong>trim YouTube video online</strong> without installing software."
+      },
+      {
+        "title": "YouTube Trimmer and Clip Maker",
+        "description": "YTMP4 works as a <strong>youtube trimmer</strong> and <strong>youtube video trimmer</strong> that helps you create short clips. It can also function as a <strong>youtube clip maker</strong> or <strong>youtube video clipper</strong> for sharing highlights."
+      },
+      {
+        "title": "Fast and Simple YouTube Cutter Online",
+        "description": "If you are looking for a <strong>youtube cutter online free</strong> solution, YTMP4 lets you <strong>cut YouTube online</strong> and download the trimmed clip quickly in MP4 format."
+      },
+      {
+        "title": "Need Full Video Download?",
+        "description": "If you prefer downloading the entire video instead of trimming it, visit the <a href=\"/\"><strong>YTMP4 YouTube to MP4 converter</strong></a>. For high-resolution downloads, check the <a href=\"/download-youtube-4k-video\"><strong>YouTube 4K video downloader</strong></a> page."
+      }
+    ],
+    "whyDownload": {
+      "title": "Why Use a YouTube Video Cutter?",
+      "description": "A <strong>youtube video cutter online free</strong> tool is useful when you only need a specific segment of a video. Whether you want to create a short highlight, remove unnecessary parts, or share a clip, trimming saves storage space and time."
+    },
+    "quality": {
+      "title": "Clip YouTube Video Online with MP4 Output",
+      "description": "You can <strong>clip YouTube video online</strong> and download it in MP4 format for compatibility across devices including smartphones, tablets, and desktop computers."
+    },
+    "useCases": {
+      "title": "When Should You Trim a YouTube Video?",
+      "items": [
+        {
+          "title": "Create Highlights",
+          "description": "Cut the best moments from longer videos for sharing."
+        },
+        {
+          "title": "Remove Unwanted Sections",
+          "description": "Trim out intros or outros and keep only the useful content."
+        },
+        {
+          "title": "Save Storage Space",
+          "description": "Download only the part you need instead of the full video file."
+        }
+      ]
+    }
+  },
+  "faqs": {
+    "title": "Frequently Asked Questions",
+    "items": [
+      {
+        "question": "Can I cut part of a YouTube video online?",
+        "answer": "Yes. YTMP4 allows you to select a start and end time and download the trimmed section as an MP4 file."
+      },
+      {
+        "question": "Is this YouTube video cutter online free?",
+        "answer": "Yes. YTMP4 works online with no ads and no registration required."
+      },
+      {
+        "question": "Do I need to install any software?",
+        "answer": "No. The YouTube video trimmer works entirely in your browser."
+      },
+      {
+        "question": "Is YTMP4 affiliated with YouTube?",
+        "answer": "No. YTMP4 is an independent tool and is not affiliated with YouTube or Google."
+      }
+    ]
+  }
+}

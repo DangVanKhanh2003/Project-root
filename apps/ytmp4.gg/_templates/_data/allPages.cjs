@@ -4,44 +4,51 @@ const path = require('path');
 /**
  * Generate all page variants for all languages
  * This creates an array that can be used with Eleventy pagination
+const fs = require('fs');
+const path = require('path');
+
+/**
+ * Generate all page variants for all languages
+ * This creates an array that can be used with Eleventy pagination
  * to generate multilingual pages from a single template
  */
-module.exports = function() {
+module.exports = function () {
   const pagesDir = path.join(__dirname, 'pages');
   const allPages = [];
 
   // Define all supported languages
   const languages = [
     { code: 'en', name: 'English', isDefault: true },
-    { code: 'ar', name: 'العربية', isDefault: false },
-    { code: 'bn', name: 'বাংলা', isDefault: false },
-    { code: 'de', name: 'Deutsch', isDefault: false },
-    { code: 'es', name: 'Español', isDefault: false },
-    { code: 'fr', name: 'Français', isDefault: false },
-    { code: 'hi', name: 'हिन्दी', isDefault: false },
-    { code: 'id', name: 'Indonesia', isDefault: false },
-    { code: 'it', name: 'Italiano', isDefault: false },
-    { code: 'ja', name: '日本語', isDefault: false },
-    { code: 'ko', name: '한국어', isDefault: false },
-    { code: 'my', name: 'မြန်မာ', isDefault: false },
-    { code: 'ms', name: 'Melayu', isDefault: false },
-    { code: 'pt', name: 'Português', isDefault: false },
-    { code: 'ru', name: 'Русский', isDefault: false },
-    { code: 'th', name: 'ไทย', isDefault: false },
-    { code: 'tr', name: 'Türkçe', isDefault: false },
-    { code: 'ur', name: 'اردو', isDefault: false },
-    { code: 'vi', name: 'Tiếng Việt', isDefault: false }
+    // { code: 'ar', name: 'العربية', isDefault: false },
+    // { code: 'bn', name: 'বাংলা', isDefault: false },
+    // { code: 'de', name: 'Deutsch', isDefault: false },
+    // { code: 'es', name: 'Español', isDefault: false },
+    // { code: 'fr', name: 'Français', isDefault: false },
+    // { code: 'hi', name: 'हिन्दी', isDefault: false },
+    // { code: 'id', name: 'Indonesia', isDefault: false },
+    // { code: 'it', name: 'Italiano', isDefault: false },
+    // { code: 'ja', name: '日本語', isDefault: false },
+    // { code: 'ko', name: '한국어', isDefault: false },
+    // { code: 'my', name: 'မြန်မာ', isDefault: false },
+    // { code: 'ms', name: 'Melayu', isDefault: false },
+    // { code: 'pt', name: 'Português', isDefault: false },
+    // { code: 'ru', name: 'Русский', isDefault: false },
+    // { code: 'th', name: 'ไทย', isDefault: false },
+    // { code: 'tr', name: 'Türkçe', isDefault: false },
+    // { code: 'ur', name: 'اردو', isDefault: false },
+    // { code: 'vi', name: 'Tiếng Việt', isDefault: false }
   ];
 
   // Define page configs with their URL slugs
   const pageConfigs = [
-    { pageKey: 'index', slug: '' },  // Homepage
-    { pageKey: 'download-youtube-mp3', slug: 'download-youtube-mp3' },
-    { pageKey: 'download-youtube-mp4', slug: 'download-youtube-mp4' },
-    { pageKey: 'download-youtube-shorts', slug: 'download-youtube-shorts' },
-    { pageKey: 'youtube-multi-downloader', slug: 'youtube-multi-downloader' },
-    { pageKey: 'download-mp3-youtube-playlist', slug: 'download-mp3-youtube-playlist' },
-    { pageKey: 'cut-video-youtube', slug: 'cut-video-youtube' }
+    { pageKey: 'index', slug: '' },
+    { pageKey: 'download-youtube-4k-video', slug: 'download-youtube-4k-video' },
+    { pageKey: 'download-youtube-1080p-video', slug: 'download-youtube-1080p-video' },
+    { pageKey: 'youtube-shorts-mp4', slug: 'youtube-shorts-mp4' },
+    { pageKey: 'download-youtube-playlist', slug: 'download-youtube-playlist' },
+    { pageKey: 'multi-youtube-downloader', slug: 'multi-youtube-downloader' },
+    { pageKey: 'youtube-video-cutter', slug: 'youtube-video-cutter' },
+    { pageKey: 'download-youtube-channel', slug: 'download-youtube-channel' }
   ];
 
   // Check which pages have data files

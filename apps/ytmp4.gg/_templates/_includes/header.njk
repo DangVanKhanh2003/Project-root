@@ -32,7 +32,7 @@
                     </div>
                 </div>
 
-                <div class="lang-selector">
+                <!-- <div class="lang-selector">
                     <button class="lang-button" type="button" aria-label="{{ base.langSelector.buttonLabel }}">
                         <span>{{ base.langSelector.buttonText }}</span>
                         <svg class="lang-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"
@@ -61,7 +61,7 @@
                             {%- endfor %}
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <button
                     type="button"
                     class="theme-toggle-btn"
@@ -110,13 +110,15 @@
         </div>
         <div class="drawer-scroll">
             <nav class="drawer-nav" aria-label="Mobile">
-                <a href="{{ langPrefix }}/" class="drawer-link">{{ base.drawer.links.home }}</a>
-                <a href="{{ langPrefix }}/youtube-multi-downloader" class="drawer-link">{{ base.drawer.links.youtubeMulti or 'YouTube Multi Downloader' }}</a>
-                <a href="{{ langPrefix }}/download-mp3-youtube-playlist" class="drawer-link">{{ base.drawer.links.youtubePlaylist or 'YouTube Playlist Downloader' }}</a>
-                <a href="{{ langPrefix }}/download-youtube-mp3" class="drawer-link">{{ base.drawer.links.youtubeToMp3 or 'YouTube to MP3' }}</a>
-                <a href="{{ langPrefix }}/download-youtube-mp4" class="drawer-link">{{ base.drawer.links.youtubeToMp4 or 'YouTube to MP4' }}</a>
-                <a href="{{ langPrefix }}/download-youtube-shorts" class="drawer-link">{{ base.drawer.links.youtubeShorts or 'YouTube Shorts' }}</a>
-                <a href="{{ langPrefix }}/cut-video-youtube" class="drawer-link">{{ base.drawer.links.cutVideoYoutube or 'Cut Video YouTube' }}</a>
+                <a href="{{ langPrefix }}/" class="drawer-link">{{ base.drawer.links.youtubeToMp4 or 'YouTube to MP4' }}</a>
+                <a href="{{ langPrefix }}/download-youtube-4k-video" class="drawer-link">{{ base.drawer.links.youtubeHd4k or 'YouTube HD / 4K' }}</a>
+                <a href="{{ langPrefix }}/download-youtube-1080p-video" class="drawer-link">{{ base.drawer.links.youtube1080p or 'YouTube 1080p' }}</a>
+                <a href="{{ langPrefix }}/youtube-shorts-mp4" class="drawer-link">{{ base.drawer.links.shortsDownloader or 'Shorts Downloader' }}</a>
+                <a href="{{ langPrefix }}/youtube-video-cutter" class="drawer-link">{{ base.drawer.links.cutVideo or 'Cut Video' }}</a>
+                <a href="{{ langPrefix }}/download-youtube-playlist" class="drawer-link">{{ base.drawer.links.playlistDownloader or 'Playlist Downloader' }}</a>
+                <a href="{{ langPrefix }}/multi-youtube-downloader" class="drawer-link">{{ base.drawer.links.multiDownloader or 'Multi Downloader' }}</a>
+                <a href="{{ langPrefix }}/download-youtube-channel" class="drawer-link">{{ base.drawer.links.channelDownloader or 'Channel Downloader' }}</a>
+                
                 <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
                 <a href="/about" class="drawer-link">{{ base.drawer.links.about }}</a>
                 <a href="/faq" class="drawer-link">{{ base.drawer.links.faq }}</a>
@@ -139,7 +141,7 @@
                     </div>
                 </div>
             </nav>
-            <div class="drawer-lang-selector">
+            <!-- <div class="drawer-lang-selector">
                 <button class="drawer-lang-button" type="button" aria-label="Choose language">
                     <span>{{ base.langSelector.currentLangFull }}</span>
                     <svg class="lang-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"
@@ -162,7 +164,7 @@
                     <a href="{{ langUrl }}" class="drawer-sublink{% if langItem.code == lang %} active{% endif %}" role="menuitem">{{ langItem.name }}</a>
                     {%- endfor %}
                 </div>
-            </div>
+            </div> -->
             <button
                 type="button"
                 class="theme-toggle-btn"

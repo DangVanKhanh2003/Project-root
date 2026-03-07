@@ -31,8 +31,6 @@
 
 /* 5. Sections */
 @import './sections/hero.css';
-@import './sections/content.css';
-@import './sections/overview.css';
 
 /* 6. Components */
 @import './components/form.css';
@@ -51,3 +49,4 @@
 /* 8. Utilities (MUST be last) */
 @import './utilities/animations.css';
 @import './utilities/helpers.css';
+

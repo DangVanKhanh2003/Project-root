@@ -118,10 +118,6 @@ function hideMultiPlaylistBannerWidget(): void {
     if (wrapper) wrapper.remove();
 }
 
-// ============================================================
-// CONFIGURATION CONSTANTS
-// ============================================================
-
 /**
  * Widget rules mapped by element name and timing.
  * 'supporter' key = override for license holders.

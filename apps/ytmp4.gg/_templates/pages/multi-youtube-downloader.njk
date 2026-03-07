@@ -1,16 +1,16 @@
 ---
 layout: base.njk
 pagination:
-  data: youtubePlaylistDownloaderPages
+  data: multiYoutubeDownloaderPages
   size: 1
   alias: pageInfo
 eleventyComputed:
   permalink: "{{ pageInfo.permalink }}"
   lang: "{{ pageInfo.lang }}"
   pageKey: "{{ pageInfo.pageKey }}"
-pageStyles:
-  - "/src/styles/features/multiple-downloader-v2.css"
-pageScript: "/src/playlist-downloader-main.ts"
+  pageScript: "/src/multi-downloader-main.ts"
+  pageStyles:
+    - "/src/styles/features/multiple-downloader-v2.css"
 ---
 {%- set base = i18nBase[lang] or i18nBase['en'] -%}
 {%- set page = i18nPages[pageKey][lang] or i18nPages[pageKey].en -%}
@@ -24,41 +24,23 @@ pageScript: "/src/playlist-downloader-main.ts"
             <p class="subtitle-hero">{{ page.hero.subtitle }}</p>
         </div>
 
-        <!-- Playlist Download Form -->
-        <div id="playlist-download-form" class="multiple-download-card">
-          
-            <div class="urls-input-container" style="border: none;">
-                <div class="input-wrapper">
-                    <input type="text" id="playlistUrl" class="video-input"
-                        placeholder="{{ page.form.placeholder }}" autocomplete="off"
-                        aria-label="YouTube playlist URL" />
-                    <button type="button" id="input-action-button" class="input-action-btn" data-action="paste">
-                        <span class="btn-state btn-state--paste">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 640 640"
-                                class="btn-icon paste-icon" role="img" aria-label="Paste icon" fill="currentColor">
-                                <path
-                                    d="M128 64C92.7 64 64 92.7 64 128L64 448C64 483.3 92.7 512 128 512L240 512L240 288C240 226.1 290.1 176 352 176L416 176L416 128C416 92.7 387.3 64 352 64L128 64zM312 176L168 176C154.7 176 144 165.3 144 152C144 138.7 154.7 128 168 128L312 128C325.3 128 336 138.7 336 152C336 165.3 325.3 176 312 176zM352 224C316.7 224 288 252.7 288 288L288 512C288 547.3 316.7 576 352 576L512 576C547.3 576 576 547.3 576 512L576 346.5C576 329.5 569.3 313.2 557.3 301.2L498.8 242.7C486.8 230.7 470.5 224 453.5 224L352 224z" />
-                            </svg>
-                        </span>
-                        <span class="btn-state btn-state--clear hidden">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-x-circle-fill clear-icon" viewBox="0 0 16 16" role="img"
-                                aria-label="Clear icon">
-                                <path
-                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z">
-                                </path>
-                            </svg>
-                        </span>
-                    </button>
-                </div>
+        <!-- Multi Download Form -->
+        <div id="multi-download-form" class="multiple-download-card">
+            <!-- URL Input Area -->
+            <div class="urls-input-container">
+                <textarea id="urlsInput" class="urls-textarea"
+                    placeholder="{{ page.form.textareaPlaceholder or page.form.placeholder or base.hero.placeholder }}" rows="5"></textarea>
             </div>
 
+            <!-- Global Settings Row -->
             <div id="multi-download-form-actions">
                 <div class="multi-format-selector-wrapper">
                     <div class="multi-format-selector">
                         <div class="multi-format-toggle">
-                            <button type="button" class="multi-format-btn active" data-format="mp4">MP4</button>
-                            <button type="button" class="multi-format-btn" data-format="mp3">MP3</button>
+                            <button type="button" class="multi-format-btn active"
+                                data-format="mp4">{{ base.hero.formatMp4 }}</button>
+                            <button type="button" class="multi-format-btn"
+                                data-format="mp3">{{ base.hero.formatMp3 }}</button>
                         </div>
                         <div class="multi-quality-wrapper">
                             <div class="multi-quality-dropdown-wrapper">
@@ -119,17 +101,17 @@ pageScript: "/src/playlist-downloader-main.ts"
                                             </svg>
                                         </div>
                                         <div class="selected-content">
-                                            <span class="selected-text">Audio track</span>
+                                            <span class="selected-text">{{ page.form.audioTrackLabel or base.hero.audioTrackDefault }}</span>
                                         </div>
-                                        <svg class="dropdown-arrow" width="16" height="16" viewBox="0 0 24 24"
-                                            fill="none" stroke="currentColor" stroke-width="2">
+                                        <svg class="dropdown-arrow" width="16" height="16"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                             <path d="M6 9l6 6 6-6" />
                                         </svg>
                                     </div>
 
                                     <div class="dropdown-menu hidden">
                                         <div class="dropdown-search">
-                                            <input type="text" placeholder="Search..."
+                                            <input type="text" placeholder="{{ base.hero.searchPlaceholder }}"
                                                 aria-label="Search language">
                                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
                                                 stroke="currentColor" stroke-width="2" class="search-icon">
@@ -146,7 +128,7 @@ pageScript: "/src/playlist-downloader-main.ts"
                             </div>
                         </div>
                         <script>(function () { try { var p = JSON.parse(localStorage.getItem('ytmp4_format_preferences')); if (!p) return; var f = p.selectedFormat; if (f === 'mp3' || f === 'mp4') { var btns = document.querySelectorAll('.multi-format-btn'); btns.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-format') === f) }) } var s = f === 'mp4' ? document.getElementById('multi-quality-select-mp4') : document.getElementById('multi-quality-select-mp3'); if (!s) return; var v; if (f === 'mp4') { var vq = p.videoQuality || '720p'; v = (vq === 'webm' || vq === 'mkv') ? vq : 'mp4-' + vq.replace('p', '') } else { var af = p.audioFormat || 'mp3'; v = (af === 'mp3') ? 'mp3-' + (p.audioBitrate || '128') : af } s.value = v } catch (e) { } })()</script>
-                        <button type="submit" id="fetchPlaylistBtn" class="multi-btn-convert" disabled>
+                        <button type="button" id="addUrlsBtn" class="multi-btn-convert" disabled>
                             <span>{{ page.form.convertButton }}</span>
                         </button>
                     </div>
@@ -166,81 +148,3 @@ pageScript: "/src/playlist-downloader-main.ts"
     </div>
 </section>
 
-<!-- OVERVIEW SECTION -->
-<section id="about" class="overview-section" aria-label="YTMP4 overview">
-    <div class="container overview-container">
-        <div class="overview-info">
-            <div class="overview-badge">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="lucide lucide-shield-check" aria-hidden="true">
-                    <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
-                    <path d="m9 12 2 2 4-4"></path>
-                </svg>
-                <span>{{ base.overview.badge }}</span>
-            </div>
-            <h2 class="overview-title">{{ page.content.intro.title }}</h2>
-            <p class="overview-desc">{{ page.content.intro.description | safe }}</p>
-        </div>
-
-        <div class="overview-steps-card">
-            <h2 class="steps-card-title">{{ page.overview.howTo.title }}</h2>
-            <div class="stepper">
-                {% for step in page.overview.howTo.steps %}
-                <div class="step-item">
-                    <div class="step-circle">{{ step.number }}</div>
-                    <div class="step-text">
-                        <h3>{{ step.title }}</h3>
-                        <p>{{ step.description }}</p>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Content Section -->
-<section class="content-section content-section--white">
-    <div class="container">
-        {% if page.content.columns and page.content.columns.length > 1 %}
-        <h2 class="titles">{{ page.content.columns[1].title }}</h2>
-        <p>{{ page.content.columns[1].description | safe }}</p>
-        {% endif %}
-
-        <h2 class="titles">{{ page.content.whyDownload.title }}</h2>
-        <p>{{ page.content.whyDownload.description | safe }}</p>
-
-        <h2 class="titles">{{ page.content.quality.title }}</h2>
-        <p>{{ page.content.quality.description | safe }}</p>
-
-        <h2 class="titles">{{ page.content.comparison.title }}</h2>
-        {% for section in page.content.comparison.sections %}
-        <div class="subsection">
-            <h3>{{ section.title }}</h3>
-            <p>{{ section.description | localizeLinks(langPrefix) | safe }}</p>
-        </div>
-        {% endfor %}
-
-        <h2 class="titles">{{ page.content.useCases.title }}</h2>
-        {% for item in page.content.useCases.items %}
-        <div class="subsection">
-            <h3>{{ item.title }}</h3>
-            <p>{{ item.description | safe }}</p>
-        </div>
-        {% endfor %}
-    </div>
-</section>
-
-<!-- FAQ Section -->
-<section id="faq" class="content-section content-section--gray faq-section">
-    <div class="container">
-        <h2 class="titles">{{ page.faqs.title }}</h2>
-        {% for faq in page.faqs.items %}
-        <div class="faq-item">
-            <h3>{{ faq.question }}</h3>
-            <p>{{ faq.answer | safe }}</p>
-        </div>
-        {% endfor %}
-    </div>
-</section>

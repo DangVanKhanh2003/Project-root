@@ -1,0 +1,119 @@
+{
+  "seo": {
+    "title": "YouTube Multi Downloader Online – Bulk MP4 Download | YTMP4",
+    "description": "Download multiple YouTube videos at once with YTMP4. Paste multiple links and start bulk YouTube download in MP4 format instantly.",
+    "schemaName": "YTMP4 - YouTube Multi Downloader",
+    "schemaDescription": "Online YouTube multi downloader. Download multiple YouTube videos in bulk MP4 format quickly and easily.",
+    "ogTitle": "YouTube Multi Downloader – Bulk Download Online | YTMP4",
+    "ogDescription": "Download multiple YouTube videos in bulk using YTMP4 multi YouTube downloader online."
+  },
+  "defaultFormat": "mp4",
+  "hero": {
+    "title": "YTMP4 – YouTube Multi Downloader",
+    "subtitle": "Download Multiple YouTube Videos at Once in MP4 Format"
+  },
+  "form": {
+    "textareaPlaceholder": "Paste YouTube URLs here (one per line).\nhttps://youtube.com/watch?v=VID_1\nhttps://youtube.com/watch?v=VID_2",
+    "title": "Multi YouTube Downloader Online",
+    "placeholder": "Paste YouTube URLs here (one per line).\nhttps://youtube.com/watch?v=VID_1\nhttps://youtube.com/watch?v=VID_2",
+    "convertButton": "Download All Videos",
+    "audioTrackLabel": "Audio track"
+  },
+  "overview": {
+    "howTo": {
+      "title": "How to Download Multiple YouTube Videos",
+      "steps": [
+        {
+          "number": "1",
+          "title": "Copy Multiple Video Links",
+          "description": "Copy the URLs of the YouTube videos you want to download."
+        },
+        {
+          "number": "2",
+          "title": "Paste All Links",
+          "description": "Paste each link into the YTMP4 multi YouTube downloader, one per line."
+        },
+        {
+          "number": "3",
+          "title": "Process the Videos",
+          "description": "The tool will load and prepare each video for download."
+        },
+        {
+          "number": "4",
+          "title": "Download in Bulk",
+          "description": "Download all selected videos in MP4 format at once."
+        }
+      ]
+    }
+  },
+  "content": {
+    "intro": {
+      "title": "What Is YTMP4 YouTube Multi Downloader?",
+      "description": "YTMP4 provides a powerful <strong>youtube multi downloader</strong> that allows you to download several videos at the same time. Instead of downloading one video after another, you can paste multiple links and start a <strong>bulk YouTube download</strong> instantly."
+    },
+    "columns": [
+      {
+        "title": "Bulk YouTube Downloader Online",
+        "description": "With YTMP4, you can use a <strong>bulk youtube downloader</strong> directly in your browser. No installation is required, and the process is simple and fast."
+      },
+      {
+        "title": "Batch YouTube Downloader",
+        "description": "This tool works as a <strong>batch youtube downloader</strong> that supports <strong>youtube batch download</strong> for users who need to save multiple videos efficiently."
+      },
+      {
+        "title": "Download Multiple YouTube Videos Easily",
+        "description": "If you want to <strong>download multiple YouTube videos</strong> without creating a playlist, YTMP4 lets you paste links and complete a <strong>youtube bulk download</strong> in just a few steps."
+      },
+      {
+        "title": "Need Playlist or Channel Download?",
+        "description": "If the videos are grouped in a list, try the <a href=\"/download-youtube-playlist\"><strong>YouTube playlist downloader</strong></a>. To download content from a creator page, use the <a href=\"/download-youtube-channel\"><strong>YouTube channel downloader</strong></a> instead."
+      }
+    ],
+    "whyDownload": {
+      "title": "Why Use a Multi YouTube Downloader?",
+      "description": "A <strong>multi YouTube downloader online</strong> is ideal when you need to save several videos quickly. Instead of repeating the process for each link, you can <strong>download YouTube videos in bulk</strong> and manage them more efficiently."
+    },
+    "quality": {
+      "title": "Download Videos in MP4 Format",
+      "description": "All videos downloaded through YTMP4 are saved in MP4 format for compatibility across devices including smartphones, tablets, and desktop computers."
+    },
+    "useCases": {
+      "title": "When Should You Use Bulk Download?",
+      "items": [
+        {
+          "title": "Save Multiple Tutorials",
+          "description": "Download several educational videos at once for offline study."
+        },
+        {
+          "title": "Archive Content Quickly",
+          "description": "Perform a batch download to back up important videos."
+        },
+        {
+          "title": "Organize Offline Collections",
+          "description": "Download YouTube videos in bulk and store them locally for later viewing."
+        }
+      ]
+    }
+  },
+  "faqs": {
+    "title": "Frequently Asked Questions",
+    "items": [
+      {
+        "question": "Can I download multiple YouTube videos at once?",
+        "answer": "Yes. YTMP4 allows you to paste multiple links and download them in bulk."
+      },
+      {
+        "question": "Is this a bulk YouTube downloader online?",
+        "answer": "Yes. YTMP4 works as a bulk and batch YouTube downloader directly in your browser."
+      },
+      {
+        "question": "Do I need to create a playlist?",
+        "answer": "No. You can paste individual video links without creating a playlist."
+      },
+      {
+        "question": "Is YTMP4 affiliated with YouTube?",
+        "answer": "No. YTMP4 is an independent tool and is not affiliated with YouTube or Google."
+      }
+    ]
+  }
+}

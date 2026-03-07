@@ -15,16 +15,20 @@
     "logoText": "YTMP4.gg",
     "links": {
       "home": "Home",
-      "youtubeToMp3": "Download youtube Mp3",
-      "youtubeToMp4": "Download youtube Mp4",
-      "youtubeShorts": "Download Youtube Shorts",
+      "youtubeToMp4": "YouTube to MP4",
+      "youtubeHd4k": "YouTube HD / 4K",
+      "youtube1080p": "YouTube 1080p",
+      "shortsDownloader": "Shorts Downloader",
+      "cutVideo": "Cut Video",
+      "playlistDownloader": "Playlist Downloader",
+      "multiDownloader": "Multi Downloader",
+      "channelDownloader": "Channel Downloader",
       "about": "About",
       "faq": "FAQ",
       "contact": "Contact",
       "terms": "Terms of Use",
-      "privacy": "Privacy",
-      "dmca": "DMCA",
-      "cutVideoYoutube": "Cut Video YouTube"
+      "privacy": "Privacy Policy",
+      "dmca": "DMCA"
     }
   },
   "hero": {
@@ -38,15 +42,15 @@
     "searchPlaceholder": "Search...",
     "supportedPlatforms": "Supported platforms:"
   },
-  "overview": {
-    "badge": "Fast & Free"
-  },
   "footer": {
     "linksRow1": {
-      "youtubeToMp3": "Download youtube Mp3",
-      "youtubeToMp4": "Download youtube Mp4",
-      "youtubeShorts": "Download Youtube Shorts",
-      "cutVideoYoutube": "Cut Video YouTube"
+      "youtubeHd4k": "YouTube HD / 4K",
+      "youtube1080p": "YouTube 1080p",
+      "shortsDownloader": "Shorts Downloader",
+      "cutVideo": "Cut Video",
+      "playlistDownloader": "Playlist Downloader",
+      "multiDownloader": "Multi Downloader",
+      "channelDownloader": "Channel Downloader"
     },
     "linksRow2": {
       "about": "About",

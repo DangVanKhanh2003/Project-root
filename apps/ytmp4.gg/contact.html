@@ -4,9 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact YTMP4 – Get Support & Copyright Assistance</title>
-    <meta name="description"
-        content="Contact YTMP4 for support, questions, or copyright-related requests. Reach us anytime via email for fast assistance.">
+    <title>Contact | YTMP4</title>
+    <meta name="description" content="Contact YTMP4 for website-related questions, technical matters, or copyright inquiries.">
     <link rel="canonical" href="https://ytmp4.gg/contact">
 
     <!-- Critical: Read format preference before render to prevent FOUC (YTMP4) -->
@@ -17,17 +16,17 @@
 
     <!-- Theme Toggle Init -->
     <script>
-        (function() {
-            try {
-                var theme = localStorage.getItem('theme');
-                if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                    document.documentElement.setAttribute('data-theme', 'dark');
-                } else {
-                    document.documentElement.setAttribute('data-theme', 'light');
-                }
-            } catch (e) {}
-        })();
-        window.setTheme = function(theme) {
+            (function () {
+                try {
+                    var theme = localStorage.getItem('theme');
+                    if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                        document.documentElement.setAttribute('data-theme', 'dark');
+                    } else {
+                        document.documentElement.setAttribute('data-theme', 'light');
+                    }
+                } catch (e) { }
+            })();
+        window.setTheme = function (theme) {
             document.documentElement.setAttribute('data-theme', theme);
             localStorage.setItem('theme', theme);
         };
@@ -57,27 +56,26 @@
                 <nav class="header-nav" aria-label="Primary">
                     <a href="/" class="header-link">Home</a>
                     <a href="/about" class="header-link">About</a>
-                
-                <button
-                    type="button"
-                    class="theme-toggle-btn"
-                    aria-label="Toggle theme"
-                    onclick="setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')">
-                    <svg class="theme-toggle-icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
-                        <circle cx="12" cy="12" r="4"></circle>
-                        <path d="M12 2v2"></path>
-                        <path d="M12 20v2"></path>
-                        <path d="M4.93 4.93l1.41 1.41"></path>
-                        <path d="M17.66 17.66l1.41 1.41"></path>
-                        <path d="M2 12h2"></path>
-                        <path d="M20 12h2"></path>
-                        <path d="M6.34 17.66l-1.41 1.41"></path>
-                        <path d="M19.07 4.93l-1.41 1.41"></path>
-                    </svg>
-                    <svg class="theme-toggle-icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3c0 0 0 0 0 0a7 7 0 0 0 9.79 9.79z"></path>
-                    </svg>
-                </button>
+
+                    <button type="button" class="theme-toggle-btn" aria-label="Toggle theme"
+                        onclick="setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')">
+                        <svg class="theme-toggle-icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" aria-hidden="true" focusable="false">
+                            <circle cx="12" cy="12" r="4"></circle>
+                            <path d="M12 2v2"></path>
+                            <path d="M12 20v2"></path>
+                            <path d="M4.93 4.93l1.41 1.41"></path>
+                            <path d="M17.66 17.66l1.41 1.41"></path>
+                            <path d="M2 12h2"></path>
+                            <path d="M20 12h2"></path>
+                            <path d="M6.34 17.66l-1.41 1.41"></path>
+                            <path d="M19.07 4.93l-1.41 1.41"></path>
+                        </svg>
+                        <svg class="theme-toggle-icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" aria-hidden="true" focusable="false">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3c0 0 0 0 0 0a7 7 0 0 0 9.79 9.79z"></path>
+                        </svg>
+                    </button>
                 </nav>
                 <button id="mobile-menu-btn" class="mobile-menu-btn" type="button" aria-label="Open menu">
                     <span class="mobile-menu-bars" aria-hidden="true"></span>
@@ -112,9 +110,12 @@
             <div class="drawer-scroll">
                 <nav class="drawer-nav" aria-label="Mobile">
                     <a href="/" class="drawer-link">Home</a>
-                    <a href="/download-youtube-mp3" class="drawer-link">Download youtube Mp3</a>
-                    <a href="/download-youtube-mp4" class="drawer-link">Download youtube Mp4</a>
-                    <a href="/download-youtube-shorts" class="drawer-link">Download Youtube Shorts</a>
+                    <a href="/download-youtube-4k-video" class="drawer-link">YouTube HD / 4K</a>
+                <a href="/youtube-shorts-mp4" class="drawer-link">Shorts Downloader</a>
+                <a href="/youtube-video-cutter" class="drawer-link">Cut Video</a>
+                <a href="/download-youtube-playlist" class="drawer-link">Playlist Downloader</a>
+                <a href="/multi-youtube-downloader" class="drawer-link">Multi Downloader</a>
+                <a href="/download-youtube-channel" class="drawer-link">Channel Downloader</a>
                     <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
                     <a href="/about" class="drawer-link">About</a>
                     <a href="/faq" class="drawer-link">FAQ</a>
@@ -122,27 +123,26 @@
                     <a href="/terms-of-use" class="drawer-link">Terms of Use</a>
                     <a href="/policy" class="drawer-link">Privacy</a>
                     <a href="/dmca" class="drawer-link">DMCA</a>
-                
-                <button
-                    type="button"
-                    class="theme-toggle-btn"
-                    aria-label="Toggle theme"
-                    onclick="setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')">
-                    <svg class="theme-toggle-icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
-                        <circle cx="12" cy="12" r="4"></circle>
-                        <path d="M12 2v2"></path>
-                        <path d="M12 20v2"></path>
-                        <path d="M4.93 4.93l1.41 1.41"></path>
-                        <path d="M17.66 17.66l1.41 1.41"></path>
-                        <path d="M2 12h2"></path>
-                        <path d="M20 12h2"></path>
-                        <path d="M6.34 17.66l-1.41 1.41"></path>
-                        <path d="M19.07 4.93l-1.41 1.41"></path>
-                    </svg>
-                    <svg class="theme-toggle-icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3c0 0 0 0 0 0a7 7 0 0 0 9.79 9.79z"></path>
-                    </svg>
-                </button>
+
+                    <button type="button" class="theme-toggle-btn" aria-label="Toggle theme"
+                        onclick="setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')">
+                        <svg class="theme-toggle-icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" aria-hidden="true" focusable="false">
+                            <circle cx="12" cy="12" r="4"></circle>
+                            <path d="M12 2v2"></path>
+                            <path d="M12 20v2"></path>
+                            <path d="M4.93 4.93l1.41 1.41"></path>
+                            <path d="M17.66 17.66l1.41 1.41"></path>
+                            <path d="M2 12h2"></path>
+                            <path d="M20 12h2"></path>
+                            <path d="M6.34 17.66l-1.41 1.41"></path>
+                            <path d="M19.07 4.93l-1.41 1.41"></path>
+                        </svg>
+                        <svg class="theme-toggle-icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" aria-hidden="true" focusable="false">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3c0 0 0 0 0 0a7 7 0 0 0 9.79 9.79z"></path>
+                        </svg>
+                    </button>
                 </nav>
 
             </div>
@@ -154,31 +154,34 @@
 
         <section class="content-section content-section--white">
             <div class="container">
-                <div class="page-header">
-                    <h1 class="page-title">Contact YTMP4</h1>
-                    <p class="page-subtitle">Get in touch with our support team</p>
-                </div>
-                <div style="margin-bottom: 32px;"></div>
-                <h2 class="titles">How to Contact Us</h2>
-                <p>If you have questions, feedback, or need assistance related to YTMP4, feel free to contact us via
-                    email. We aim to respond as quickly as possible.</p>
-                <br>
-                <h2 class="titles">Support & General Inquiries</h2>
-                <p>For general questions or technical issues, please contact us at:<br><strong>Email:</strong> <a
-                        href="mailto:contact.ytmp4cc@gmail.com" rel="nofollow">contact.ytmp4cc@gmail.com</a></p>
-                <br>
-                <h2 class="titles">Copyright & DMCA Requests</h2>
-                <p>If you are a copyright owner or authorized representative and believe that content accessed through
-                    YTMP4 infringes your rights, please contact us directly via email with detailed information. We take
-                    copyright concerns seriously and will review all valid requests.</p>
-                <br>
-                <h2 class="titles">About YTMP4</h2>
-                <p>YTMP4 is a free online tool that helps users download YouTube videos for offline use. To learn more
-                    about how YTMP4 works, visit the <a href="/about" title="About YTMP4"><strong>About
-                            YTMP4</strong></a> page or return to the <a href="/"
-                        title="YTMP4 Online YouTube Downloader"><strong>homepage</strong></a>.</p>
-                <br>
-            </div>
+<div class="page-header">
+  <h1 class="page-title">Contact</h1>
+  <p class="page-subtitle">Contact YTMP4 for website-related questions, technical matters, or copyright inquiries.</p>
+</div>
+<div style="margin-bottom: 32px;"></div>
+<p>This page provides official contact information for the YTMP4 website.</p>
+<p>If you need to reach us regarding the operation of the website, technical issues, or copyright-related matters, please use the contact details below.</p>
+<br>
+<h2 class="titles">Purpose of Contact</h2>
+<p>You may contact YTMP4 for the following reasons:</p>
+<p>- Questions related to website functionality or availability</p>
+<p>- Technical issues affecting the video processing service</p>
+<p>- Copyright or DMCA-related communications</p>
+<br>
+<h2 class="titles">Requests We Do Not Handle</h2>
+<p>YTMP4 does not provide individual support for third-party platforms or specific video content.</p>
+<p>Requests related to video ownership, content availability, or playback issues on external websites should be directed to the respective platform.</p>
+<br>
+<h2 class="titles">Contact Information</h2>
+<p>All inquiries related to this website should be sent to the following email address:</p>
+<p>Email: contact.ytmp4gg@gmail.com</p>
+<br>
+<h2 class="titles">Response Notice</h2>
+<p>Messages are reviewed as part of regular website administration.</p>
+<p>Response times may vary depending on the nature and complexity of the request.</p>
+<br>
+
+</div>
         </section>
     </main>
 
@@ -186,10 +189,12 @@
         <div class="container">
             <div class="footer-links"
                 style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
-                <a href="/download-youtube-mp3" style="color: inherit; text-decoration: none;">Download youtube Mp3</a>
-                <a href="/download-youtube-mp4" style="color: inherit; text-decoration: none;">Download youtube Mp4</a>
-                <a href="/download-youtube-shorts" style="color: inherit; text-decoration: none;">Download Youtube
-                    Shorts</a>
+                <a href="/download-youtube-4k-video" style="color: inherit; text-decoration: none;">YouTube HD / 4K</a>
+                <a href="/youtube-shorts-mp4" style="color: inherit; text-decoration: none;">Shorts Downloader</a>
+                <a href="/youtube-video-cutter" style="color: inherit; text-decoration: none;">Cut Video</a>
+                <a href="/download-youtube-playlist" style="color: inherit; text-decoration: none;">Playlist Downloader</a>
+                <a href="/multi-youtube-downloader" style="color: inherit; text-decoration: none;">Multi Downloader</a>
+                <a href="/download-youtube-channel" style="color: inherit; text-decoration: none;">Channel Downloader</a>
             </div>
             <div class="footer-links"
                 style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
