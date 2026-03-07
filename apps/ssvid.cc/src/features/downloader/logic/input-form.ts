@@ -454,6 +454,10 @@ export function initInputForm(): boolean {
 
   // Attach event listeners
   form.addEventListener('submit', handleSubmit);
+
+  // Enable submit button now that preventDefault handler is attached
+  const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+  if (submitBtn) submitBtn.disabled = false;
   input.addEventListener('input', handleInput);
   input.addEventListener('keydown', handleKeyDown); // Keyboard navigation
   input.addEventListener('click', handleInputClick); // Mobile click-to-scroll
@@ -999,7 +1003,8 @@ export async function handleExtractMedia(
       if (state.selectedFormat === 'mp4') {
         navigateToVideo(videoId, { format: 'mp4', quality: state.videoQuality || undefined, audioTrack: urlAudioTrack });
       } else {
-        navigateToVideo(videoId, { format: state.audioFormat || 'mp3', quality: state.audioBitrate || undefined, audioTrack: urlAudioTrack });
+        const audioQuality = state.audioFormat === 'mp3' ? (state.audioBitrate || undefined) : undefined;
+        navigateToVideo(videoId, { format: state.audioFormat || 'mp3', quality: audioQuality, audioTrack: urlAudioTrack });
       }
     }
 

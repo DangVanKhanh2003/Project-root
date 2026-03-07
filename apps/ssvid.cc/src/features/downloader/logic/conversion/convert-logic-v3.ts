@@ -286,8 +286,12 @@ function generateFilename(
     const format = options.youtubeVideoContainer || 'mp4';
     return `${sanitizedTitle}_${quality}p.${format}`;
   } else {
-    const format = options.audioFormat || 'mp3';
-    const bitrate = options.audioBitrate || '128';
-    return `${sanitizedTitle}_${bitrate}kbps.${format}`;
+    const format = (options.audioFormat || 'mp3').toLowerCase();
+    if (format === 'mp3') {
+      const bitrate = options.audioBitrate || '128';
+      return `${sanitizedTitle}_${bitrate}kbps.${format}`;
+    }
+
+    return `${sanitizedTitle}.${format}`;
   }
 }

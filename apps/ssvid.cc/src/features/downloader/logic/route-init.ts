@@ -50,9 +50,15 @@ export function handleVideoRoute(route: Route): void {
                 if (['opus', 'ogg', 'wav', 'flac', 'm4a'].includes(q)) {
                     targetValue = q;
                 } else {
-                    // Case 2: quality is a bitrate (e.g. 128)
-                    const prefix = (['mp3', 'm4a', 'opus', 'ogg', 'flac', 'wav'].includes(f)) ? f : 'mp3';
-                    targetValue = `${prefix}-${q}`;
+                    // Case 2: quality is a bitrate (e.g. 128) - only MP3 uses bitrate suffix
+                    const normalizedBitrate = q.replace(/kbps$/i, '');
+                    if (f === 'mp3') {
+                        targetValue = `mp3-${normalizedBitrate}`;
+                    } else if (['m4a', 'opus', 'ogg', 'flac', 'wav'].includes(f)) {
+                        targetValue = f;
+                    } else {
+                        targetValue = `mp3-${normalizedBitrate}`;
+                    }
                 }
             } else if (f) {
                 // Case 3: Only format provided (e.g. format=wav)

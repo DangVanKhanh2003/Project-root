@@ -236,7 +236,7 @@ function applyQualityValueToState(format: 'mp3' | 'mp4', value: string): void {
   }
 
   setAudioFormat(value as 'wav' | 'm4a' | 'opus' | 'ogg' | 'flac' | 'mp3');
-  setAudioBitrate('128');
+  setAudioBitrate('');
 }
 
 function getCurrentQualityValue(format: 'mp3' | 'mp4'): string {
@@ -275,9 +275,9 @@ function renderQualityOptions(format: 'mp3' | 'mp4'): void {
       { value: 'mp3-192', label: 'MP3 - 192kbps' },
       { value: 'mp3-128', label: 'MP3 - 128kbps' },
       { value: 'wav', label: 'WAV - Lossless' },
-      { value: 'm4a', label: 'M4A - 128kbps' },
-      { value: 'opus', label: 'Opus - 128kbps' },
-      { value: 'ogg', label: 'OGG - 128kbps' },
+      { value: 'm4a', label: 'M4A' },
+      { value: 'opus', label: 'Opus' },
+      { value: 'ogg', label: 'OGG' },
       { value: 'flac', label: 'FLAC - Lossless' },
     ];
 

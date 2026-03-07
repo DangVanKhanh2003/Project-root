@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
 
     <!-- SEO Metadata -->
-    <title>SSVID - Download YouTube Videos Online Free – Fast &amp; Unlimited</title>
+    <title>SSVID - Youtube to MP4</title>
     <meta name="description" content="Download YouTube videos online with SSVID. Free, fast, and unlimited. Support HD &amp; 4K quality, long YouTube videos. No app, no software, no registration."><link rel="canonical" href="https://ssvid.cc/">
 
     <!-- hreflang tags for multilingual SEO (2-char language codes) -->
@@ -130,7 +130,7 @@
       "@type": "WebPage",
       "@id": "https://ssvid.cc/#webpage",
       "url": "https://ssvid.cc/",
-      "name": "SSVID - Download YouTube Video",
+      "name": "SSVID - Youtube to MP4",
       "isPartOf": {
         "@id": "https://ssvid.cc/#website"
       },
@@ -143,7 +143,7 @@
     {
       "@type": "SoftwareApplication",
       "@id": "https://ssvid.cc/#application",
-      "name": "SSVID - Download YouTube Video",
+      "name": "SSVID - Youtube to MP4",
       "url": "https://ssvid.cc/",
       "description": "Download YouTube videos online with SSVID. Free, fast, and unlimited.",
       "applicationCategory": "MultimediaApplication",
@@ -525,12 +525,12 @@
 <section class="hero-section">
     <div class="container hero-container">
         <div id="hero-header" class="hero-header">
-            <h1 class="title-hero">SSVID - Download YouTube Video</h1>
+            <h1 class="title-hero">SSVID - Youtube to MP4</h1>
             <p class="subtitle-hero">Free, fast &amp; unlimited YouTube video downloader</p>
         </div>
         <div class="hero-card">
     <div id="search-view" class="">
-        <form id="downloadForm" class="form-container">
+        <form id="downloadForm" class="form-container" onsubmit="return false">
             <div class="input-group">
                 <div class="input-shell" id="input-wrapper">
                     <div class="input-wrapper input-content">
@@ -650,13 +650,12 @@
                                         <div class="dropdown-options" role="listbox">
                                         </div>
                                     </div>
-                                    <input type="hidden" id="audio-track-value" value="original"
-                                        name="audioTrack">
+                                    <input type="hidden" id="audio-track-value" value="original">
                                 </div>
                             </div>
                             <script>(function () { try { var p = JSON.parse(localStorage.getItem('ssvid_format_preferences')); if (!p) return; var s = p.selectedFormat === 'mp4' ? document.getElementById('quality-select-mp4') : document.getElementById('quality-select-mp3'); if (!s) return; var v; if (p.selectedFormat === 'mp4') { var vq = p.videoQuality || '720p'; v = (vq === 'webm' || vq === 'mkv') ? vq : 'mp4-' + vq.replace('p', '') } else { var af = p.audioFormat || 'mp3'; v = (af === 'mp3') ? 'mp3-' + (p.audioBitrate || '128') : af } s.value = v } catch (e) { } })()</script>
                         </div>
-                        <button type="submit" class="btn-convert">
+                        <button type="submit" class="btn-convert" disabled>
                             <span>Convert</span>
                         </button>
                     </div>
@@ -677,8 +676,6 @@
         <div class="support-platforms-icons">
             <img class="support-platform-icon" src="/assest/social-icon/youtube.png" alt="YouTube" loading="lazy" decoding="async">
             <img class="support-platform-icon" src="/assest/social-icon/tiktok.png" alt="TikTok" loading="lazy" decoding="async">
-            <!-- YouTube -->
-           
         </div>
     </div>
 

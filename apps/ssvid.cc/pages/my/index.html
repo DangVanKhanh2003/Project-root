@@ -504,7 +504,7 @@
         </div>
         <div class="hero-card">
     <div id="search-view" class="">
-        <form id="downloadForm" class="form-container">
+        <form id="downloadForm" class="form-container" onsubmit="return false">
             <div class="input-group">
                 <div class="input-shell" id="input-wrapper">
                     <div class="input-wrapper input-content">
@@ -624,13 +624,12 @@
                                         <div class="dropdown-options" role="listbox">
                                         </div>
                                     </div>
-                                    <input type="hidden" id="audio-track-value" value="original"
-                                        name="audioTrack">
+                                    <input type="hidden" id="audio-track-value" value="original">
                                 </div>
                             </div>
                             <script>(function () { try { var p = JSON.parse(localStorage.getItem('ssvid_format_preferences')); if (!p) return; var s = p.selectedFormat === 'mp4' ? document.getElementById('quality-select-mp4') : document.getElementById('quality-select-mp3'); if (!s) return; var v; if (p.selectedFormat === 'mp4') { var vq = p.videoQuality || '720p'; v = (vq === 'webm' || vq === 'mkv') ? vq : 'mp4-' + vq.replace('p', '') } else { var af = p.audioFormat || 'mp3'; v = (af === 'mp3') ? 'mp3-' + (p.audioBitrate || '128') : af } s.value = v } catch (e) { } })()</script>
                         </div>
-                        <button type="submit" class="btn-convert">
+                        <button type="submit" class="btn-convert" disabled>
                             <span>ပြောင်းရန်</span>
                         </button>
                     </div>
@@ -651,8 +650,6 @@
         <div class="support-platforms-icons">
             <img class="support-platform-icon" src="/assest/social-icon/youtube.png" alt="YouTube" loading="lazy" decoding="async">
             <img class="support-platform-icon" src="/assest/social-icon/tiktok.png" alt="TikTok" loading="lazy" decoding="async">
-            <!-- YouTube -->
-           
         </div>
     </div>
 

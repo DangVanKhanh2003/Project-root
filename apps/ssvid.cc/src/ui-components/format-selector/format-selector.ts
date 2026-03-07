@@ -160,17 +160,17 @@ function renderAudioQualityDropdown(selectedAudioFormat: AudioFormatType, select
     { value: 'mp3-192', label: 'MP3 - 192kbps', format: 'mp3', bitrate: '192' },
     { value: 'mp3-128', label: 'MP3 - 128kbps', format: 'mp3', bitrate: '128' },
     { value: 'mp3-64', label: 'MP3 - 64kbps', format: 'mp3', bitrate: '64' },
-    { value: 'flac-128', label: 'FLAC - Lossless', format: 'flac', bitrate: '128' },
-    { value: 'wav-128', label: 'WAV - Lossless', format: 'wav', bitrate: '128' },
-    { value: 'm4a-128', label: 'M4A - 128kbps', format: 'm4a', bitrate: '128' },
-    { value: 'opus-128', label: 'Opus - 128kbps', format: 'opus', bitrate: '128' },
-    { value: 'ogg-128', label: 'OGG - 128kbps', format: 'ogg', bitrate: '128' },
+    { value: 'flac', label: 'FLAC - Lossless', format: 'flac', bitrate: '128' },
+    { value: 'wav', label: 'WAV - Lossless', format: 'wav', bitrate: '128' },
+    { value: 'm4a', label: 'M4A', format: 'm4a', bitrate: '128' },
+    { value: 'opus', label: 'Opus', format: 'opus', bitrate: '128' },
+    { value: 'ogg', label: 'OGG', format: 'ogg', bitrate: '128' },
   ];
 
   // Determine selected value
-  const selectedValue = selectedAudioFormat && selectedBitrate
-    ? `${selectedAudioFormat}-${selectedBitrate}`
-    : 'mp3-128'; // Default
+  const selectedValue = selectedAudioFormat === 'mp3'
+    ? `mp3-${selectedBitrate || '128'}`
+    : (selectedAudioFormat || 'mp3-128');
 
   return `
     <div class="quality-dropdown-wrapper">

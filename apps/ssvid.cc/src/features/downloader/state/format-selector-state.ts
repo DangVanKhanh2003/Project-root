@@ -56,7 +56,11 @@ interface StoredPreferences {
   timestamp: number; // For potential expiration logic
 }
 
-function normalizeStoredAudioBitrate(bitrate: string | undefined): string {
+function normalizeStoredAudioBitrate(
+  bitrate: string | undefined,
+  audioFormat: AudioFormatType | undefined
+): string {
+  if (audioFormat && audioFormat !== 'mp3') return '';
   if (!bitrate) return '128';
   return QUALITY_OPTIONS.mp3.bitrates.includes(bitrate as any) ? bitrate : '128';
 }
@@ -86,7 +90,7 @@ function getPageDefaults(): { format: FormatType; videoQuality: string; audioFor
       format: defaults.format,
       videoQuality: defaults.videoQuality || '',
       audioFormat: defaults.audioFormat || 'mp3',
-      audioBitrate: normalizeStoredAudioBitrate(defaults.audioBitrate || '')
+      audioBitrate: normalizeStoredAudioBitrate(defaults.audioBitrate || '', defaults.audioFormat || 'mp3')
     };
   }
 
@@ -178,7 +182,7 @@ export function initializeFormatSelector(): void {
       selectedFormat: stored.selectedFormat,
       videoQuality: stored.videoQuality,
       audioFormat: stored.audioFormat,
-      audioBitrate: normalizeStoredAudioBitrate(stored.audioBitrate),
+      audioBitrate: normalizeStoredAudioBitrate(stored.audioBitrate, stored.audioFormat),
       hasUserSelectedFormat: true
     });
   } else {
@@ -264,6 +268,17 @@ export function setAudioFormat(format: AudioFormatType): void {
  * Set audio bitrate (for MP3 mode)
  */
 export function setAudioBitrate(bitrate: string): void {
+  // Non-MP3 formats don't carry bitrate in UI state.
+  if (bitrate === '') {
+    setState({
+      audioBitrate: '',
+      hasUserSelectedFormat: true
+    });
+
+    saveFormatPreferences();
+    return;
+  }
+
   if (!QUALITY_OPTIONS.mp3.bitrates.includes(bitrate as any)) {
     console.warn(`Invalid audio bitrate: ${bitrate}`);
     return;
@@ -322,7 +337,7 @@ export function validateFormatSelection(): { isValid: boolean; message?: string 
     if (!state.audioFormat) {
       return { isValid: false, message: 'Please select an audio format' };
     }
-    if (!state.audioBitrate) {
+    if (state.audioFormat === 'mp3' && !state.audioBitrate) {
       return { isValid: false, message: 'Please select an audio bitrate' };
     }
   }
@@ -340,8 +355,12 @@ export function getCurrentQualityLabel(): string {
     return state.videoQuality || 'Select quality';
   } else {
     const format = state.audioFormat.toUpperCase();
+    if (state.audioFormat !== 'mp3') {
+      return format;
+    }
+
     const bitrate = state.audioBitrate ? `${state.audioBitrate}kbps` : 'Select quality';
-    return state.audioBitrate ? `${format} - ${bitrate}` : bitrate;
+    return state.audioBitrate ? `${format} - ${bitrate}` : 'Select quality';
   }
 }
 
