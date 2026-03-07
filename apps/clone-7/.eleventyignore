@@ -1,7 +1,0 @@
-node_modules/
-dist/
-src/
-public/
-*.ts
-*.js
-!_templates/**/*
