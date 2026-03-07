@@ -185,4 +185,7 @@ export const api = createVerifiedServices(coreServices, verifier, captchaHandler
 // Supporter Service (outside coreServices — no JWT/CAPTCHA needed)
 export const supporterService = createSupporterService(ytMetaHttpClient, supporterHttpClient);
 
+// Named exports for feedback helpers
+export const sendFeedbackWidget = api.sendFeedbackWidget;
+
 export { coreServices, verifier, jwtStore };

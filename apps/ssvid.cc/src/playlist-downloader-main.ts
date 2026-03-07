@@ -362,6 +362,14 @@ function initDrawerLangSelector() {
     });
 }
 
+function initFeedbackWidget(): void {
+    setTimeout(() => {
+        import('./features/feedback/feedback-widget')
+            .then(({ initFeedbackWidget: init }) => init())
+            .catch(() => { });
+    }, 5000);
+}
+
 /**
  * Initialize app
  */
@@ -383,6 +391,7 @@ async function init() {
 
     // Initialize form handlers
     initPlaylistForm();
+    initFeedbackWidget();
 
     console.log('[Playlist Downloader] Initialized');
 }

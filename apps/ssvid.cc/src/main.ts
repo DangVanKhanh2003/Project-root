@@ -218,6 +218,21 @@ function initFirebaseAnalytics(): void {
 }
 
 /**
+ * Initialize Feedback Widget (lazy loaded)
+ */
+function initFeedbackWidget(): void {
+  setTimeout(() => {
+    import('./features/feedback/feedback-widget')
+      .then(({ initFeedbackWidget: init }) => {
+        init();
+      })
+      .catch(() => {
+        // Silent fail - app works without feedback widget
+      });
+  }, 5000);
+}
+
+/**
  * Initialize app
  */
 async function loadFeatures() {
@@ -230,6 +245,7 @@ async function loadFeatures() {
   initDownloaderUI(); // Initialize downloader (async/lazy loaded)
   initLogoClickHandler(); // Prevent logo reload issue
   initFirebaseAnalytics(); // Initialize Firebase Analytics (lazy loaded after 5s)
+  initFeedbackWidget(); // Initialize Feedback Widget (lazy loaded after 5s)
 
   // Initialize custom audio dropdown
   import('./features/downloader/ui-render/dropdown-logic').then(({ initAudioDropdown }) => {

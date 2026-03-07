@@ -96,6 +96,14 @@ function initFirebaseAnalytics(): void {
   }, 5000);
 }
 
+function initFeedbackWidget(): void {
+  setTimeout(() => {
+    import('./features/feedback/feedback-widget')
+      .then(({ initFeedbackWidget: init }) => init())
+      .catch(() => { });
+  }, 5000);
+}
+
 async function loadFeatures(): Promise<void> {
   await applyInitialVisibility();
   initHeaderScroll();
@@ -108,6 +116,7 @@ async function loadFeatures(): Promise<void> {
   const { init } = await import('./features/strim-downloader/strim-downloader');
   init();
   initFirebaseAnalytics();
+  initFeedbackWidget();
 }
 
 if (document.readyState === 'loading') {
