@@ -223,6 +223,9 @@ function initPlaylistForm() {
         return;
     }
 
+    // Enable submit button now that JS handler is attached
+    fetchPlaylistBtn.removeAttribute('disabled');
+
     fetchPlaylistBtn.addEventListener('click', async () => {
         const url = playlistUrlInput.value.trim();
 

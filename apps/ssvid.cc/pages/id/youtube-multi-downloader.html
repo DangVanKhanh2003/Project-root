@@ -611,7 +611,7 @@ https://youtube.com/watch?v=VID_2" rows="5"></textarea>
                             </div>
                         </div>
                         <script>(function () { try { var p = JSON.parse(localStorage.getItem('ssvid_format_preferences')); if (!p) return; var f = p.selectedFormat; if (f === 'mp3' || f === 'mp4') { var btns = document.querySelectorAll('.multi-format-btn'); btns.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-format') === f) }) } var s = f === 'mp4' ? document.getElementById('multi-quality-select-mp4') : document.getElementById('multi-quality-select-mp3'); if (!s) return; var v; if (f === 'mp4') { var vq = p.videoQuality || '720p'; v = (vq === 'webm' || vq === 'mkv') ? vq : 'mp4-' + vq.replace('p', '') } else { var af = p.audioFormat || 'mp3'; v = (af === 'mp3') ? 'mp3-' + (p.audioBitrate || '128') : af } s.value = v } catch (e) { } })()</script>
-                        <button type="button" id="addUrlsBtn" class="multi-btn-convert">
+                        <button type="button" id="addUrlsBtn" class="multi-btn-convert" disabled>
                             <span>Konversi</span>
                         </button>
                     </div>

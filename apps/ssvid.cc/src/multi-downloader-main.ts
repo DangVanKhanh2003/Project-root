@@ -201,9 +201,6 @@ function updateConvertButtonCount(btn: HTMLElement, rawText: string): void {
     }
 }
 
-/**
- * Initialize multi-download form
- */
 function initMultiDownloadForm() {
     const urlsInput = document.getElementById('urlsInput') as HTMLTextAreaElement | null;
     const addUrlsBtn = document.getElementById('addUrlsBtn');
@@ -213,6 +210,9 @@ function initMultiDownloadForm() {
         console.error('[Multi Downloader] Required elements not found');
         return;
     }
+
+    // Enable button now that JS has loaded
+    addUrlsBtn.removeAttribute('disabled');
 
     // Initial count
     updateConvertButtonCount(addUrlsBtn, urlsInput.value);
