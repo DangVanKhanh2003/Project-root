@@ -401,6 +401,10 @@ export function initInputForm(): boolean {
 
   // Attach event listeners
   form.addEventListener('submit', handleSubmit);
+
+  // Enable submit button now that preventDefault handler is attached
+  const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+  if (submitBtn) submitBtn.disabled = false;
   input.addEventListener('input', handleInput);
   input.addEventListener('keydown', handleKeyDown); // Keyboard navigation
   input.addEventListener('click', handleInputClick); // Mobile click-to-scroll
