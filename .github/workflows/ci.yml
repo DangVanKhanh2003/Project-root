@@ -16,9 +16,7 @@ on:
           - ''
           - 'y2matepro'
           - 'y2matevc'
-          - 'ytmp3-clone-3'
           - 'mp3fast'
-          - 'ytmp3-clone-5'
           - 'ytmp3.my'
           - '4kvideopro'
           - 'ssvid.cc'
@@ -56,12 +54,8 @@ jobs:
               - 'apps/y2matepro/**'
             y2matevc:
               - 'apps/y2matevc/**'
-            ytmp3-clone-3:
-              - 'apps/ytmp3-clone-3/**'
             mp3fast:
               - 'apps/mp3fast/**'
-            ytmp3-clone-5:
-              - 'apps/ytmp3-clone-5/**'
             ytmp3.my:
               - 'apps/ytmp3.my/**'
             4kvideopro:
@@ -76,7 +70,7 @@ jobs:
         env:
           COMMIT_MSG: ${{ github.event.head_commit.message }}
         run: |
-          ALL_APPS='["y2matepro","y2matevc","ytmp3-clone-3","mp3fast","ytmp3-clone-5","ytmp3.my","4kvideopro","ssvid.cc","ezconv"]'
+          ALL_APPS='["y2matepro","y2matevc","mp3fast","ytmp3.my","4kvideopro","ssvid.cc","ezconv"]'
 
           # Handle manual trigger with specific_app
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
@@ -147,17 +141,9 @@ jobs:
             CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["y2matevc"]')
             echo "✅ y2matevc changed"
           fi
-          if [[ "${{ steps.filter.outputs.ytmp3-clone-3 }}" == "true" ]]; then
-            CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["ytmp3-clone-3"]')
-            echo "✅ ytmp3-clone-3 changed"
-          fi
           if [[ "${{ steps.filter.outputs.mp3fast }}" == "true" ]]; then
             CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["mp3fast"]')
             echo "✅ mp3fast changed"
-          fi
-          if [[ "${{ steps.filter.outputs.ytmp3-clone-5 }}" == "true" ]]; then
-            CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["ytmp3-clone-5"]')
-            echo "✅ ytmp3-clone-5 changed"
           fi
           if [[ "${{ steps.filter.outputs.ytmp3.my }}" == "true" ]]; then
             CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["ytmp3.my"]')
@@ -218,20 +204,6 @@ jobs:
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
-  deploy-ytmp3-clone-3:
-    needs: detect-changes
-    if: needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'ytmp3-clone-3')
-    uses: ./.github/workflows/deploy-app.yml
-    with:
-      app_name: ytmp3-clone-3
-      app_directory: apps/ytmp3-clone-3
-      filter_path: ./apps/ytmp3-clone-3
-      domain: ${{ vars.YTMP3_CLONE_3_DOMAIN || 'ytmp3-clone-3.com' }}
-    secrets:
-      SSH_HOST: ${{ secrets.SSH_HOST }}
-      SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
-      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-
   deploy-mp3fast:
     needs: detect-changes
     if: needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'mp3fast')
@@ -241,20 +213,6 @@ jobs:
       app_directory: apps/mp3fast
       filter_path: ./apps/mp3fast
       domain: ${{ vars.MP3FAST_DOMAIN || 'mp3fast.net' }}
-    secrets:
-      SSH_HOST: ${{ secrets.SSH_HOST }}
-      SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
-      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-
-  deploy-ytmp3-clone-5:
-    needs: detect-changes
-    if: needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'ytmp3-clone-5')
-    uses: ./.github/workflows/deploy-app.yml
-    with:
-      app_name: ytmp3-clone-5
-      app_directory: apps/ytmp3-clone-5
-      filter_path: ./apps/ytmp3-clone-5
-      domain: ${{ vars.YTMP3_CLONE_5_DOMAIN || 'ytmp3-clone-5.com' }}
     secrets:
       SSH_HOST: ${{ secrets.SSH_HOST }}
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
@@ -324,9 +282,7 @@ jobs:
       - detect-changes
       - deploy-y2matepro
       - deploy-y2matevc
-      - deploy-ytmp3-clone-3
       - deploy-mp3fast
-      - deploy-ytmp3-clone-5
       - deploy-ytmp3-my
       - deploy-4kvideopro
       - deploy-ssvid-cc
@@ -347,9 +303,7 @@ jobs:
           echo "|-----|--------|"
           echo "| y2matepro | ${{ needs.deploy-y2matepro.result || 'skipped' }} |"
           echo "| y2matevc | ${{ needs.deploy-y2matevc.result || 'skipped' }} |"
-          echo "| ytmp3-clone-3 | ${{ needs.deploy-ytmp3-clone-3.result || 'skipped' }} |"
           echo "| mp3fast | ${{ needs.deploy-mp3fast.result || 'skipped' }} |"
-          echo "| ytmp3-clone-5 | ${{ needs.deploy-ytmp3-clone-5.result || 'skipped' }} |"
           echo "| ytmp3.my | ${{ needs.deploy-ytmp3-my.result || 'skipped' }} |"
           echo "| 4kvideopro | ${{ needs.deploy-4kvideopro.result || 'skipped' }} |"
           echo "| ssvid.cc | ${{ needs.deploy-ssvid-cc.result || 'skipped' }} |"

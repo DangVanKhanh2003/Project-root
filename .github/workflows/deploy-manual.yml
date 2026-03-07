@@ -10,9 +10,7 @@ on:
         options:
           - 'y2matepro'
           - 'y2matevc'
-          - 'ytmp3-clone-3'
           - 'mp3fast'
-          - 'ytmp3-clone-5'
           - 'ytmp3.my'
           - 'ssvid.cc'
           - 'ezconv'
@@ -51,20 +49,10 @@ jobs:
               echo "filter_path=./apps/y2matevc" >> $GITHUB_OUTPUT
               echo "domain=${{ vars.Y2MATEVC_DOMAIN || 'y2mate.vc' }}" >> $GITHUB_OUTPUT
               ;;
-            "ytmp3-clone-3")
-              echo "directory=apps/ytmp3-clone-3" >> $GITHUB_OUTPUT
-              echo "filter_path=./apps/ytmp3-clone-3" >> $GITHUB_OUTPUT
-              echo "domain=${{ vars.YTMP3_CLONE_3_DOMAIN || 'ytmp3-clone-3.com' }}" >> $GITHUB_OUTPUT
-              ;;
             "mp3fast")
               echo "directory=apps/mp3fast" >> $GITHUB_OUTPUT
               echo "filter_path=./apps/mp3fast" >> $GITHUB_OUTPUT
               echo "domain=${{ vars.MP3FAST_DOMAIN || 'mp3fast.net' }}" >> $GITHUB_OUTPUT
-              ;;
-            "ytmp3-clone-5")
-              echo "directory=apps/ytmp3-clone-5" >> $GITHUB_OUTPUT
-              echo "filter_path=./apps/ytmp3-clone-5" >> $GITHUB_OUTPUT
-              echo "domain=${{ vars.YTMP3_CLONE_5_DOMAIN || 'ytmp3-clone-5.com' }}" >> $GITHUB_OUTPUT
               ;;
             "ytmp3.my")
               echo "directory=apps/ytmp3.my" >> $GITHUB_OUTPUT

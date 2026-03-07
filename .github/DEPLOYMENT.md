@@ -19,12 +19,12 @@ git commit -m "chore: update packages [deploy:all]"
 
 **Danh sách app names hợp lệ:**
 - `y2matepro`
-- `y2mate-new-ux`
-- `ytmp3-clone-3`
+- `y2matevc`
 - `mp3fast`
-- `ytmp3-clone-5`
 - `ytmp3.my`
 - `4kvideopro`
+- `ssvid.cc`
+- `ezconv`
 
 ### 2. Manual Trigger (GitHub Actions UI)
 
