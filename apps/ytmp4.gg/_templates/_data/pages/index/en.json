@@ -1,0 +1,91 @@
+{
+  "seo": {
+    "title": "YTMP4 - Youtube to MP4",
+    "description": "Download YouTube videos online with YTMP4. Free, fast, and unlimited. Support HD & 4K quality, long YouTube videos. No app, no software, no registration.",
+    "schemaName": "YTMP4 - YouTube Video Downloader",
+    "schemaDescription": "Download YouTube videos online with YTMP4. Free, fast, and unlimited.",
+    "ogTitle": "YTMP4 - Download YouTube Videos Online Free",
+    "ogDescription": "Download YouTube videos online with YTMP4. Free, fast, and unlimited. Support HD & 4K quality."
+  },
+  "defaultFormat": "mp4",
+  "hero": {
+    "title": "YTMP4 - Youtube to MP4",
+    "subtitle": "Free, fast & unlimited YouTube video downloader"
+  },
+  "overview": {
+    "title": "What is YTMP4?",
+    "description": "YTMP4 is a cutting-edge online tool engineered to simplify the way you save YouTube content. Designed with Material Design principles, we offer a seamless, ad-free experience that respects your time and privacy.<br><br>Whether you need offline playback for travel, archival purposes, or content creation, YTMP4 processes high-quality video and audio directly in your browser without requiring complex software installations.",
+    "howTo": {
+      "title": "How to Download",
+      "steps": [
+        {
+          "number": "1",
+          "title": "Copy the Link",
+          "description": "Navigate to YouTube and copy the URL of the video you want to save."
+        },
+        {
+          "number": "2",
+          "title": "Paste & Select",
+          "description": "Paste the link into the YTMP4 search bar and choose your preferred format (MP4/MP3)."
+        },
+        {
+          "number": "3",
+          "title": "Download",
+          "description": "Click the convert button and wait a few seconds for your file to be ready."
+        }
+      ]
+    }
+  },
+  "whatCanDownload": {
+    "title": "What Can You Download with YTMP4?",
+    "intro": "YTMP4 is designed to help you download different types of YouTube content easily, all in one place, without limits or complicated steps.",
+    "sections": [
+      {
+        "title": "YouTube Videos (MP4)",
+        "description": "With YTMP4, you can <strong><a href=\"/download-youtube-mp4\">download YouTube videos as MP4</a></strong> for offline viewing on any device. This is ideal for saving tutorials, music videos, vlogs, and long-form YouTube content in a widely supported video format."
+      },
+      {
+        "title": "YouTube Audio (MP3)",
+        "description": "YTMP4 allows you to <strong><a href=\"/download-youtube-mp3\">download YouTube audio as MP3</a></strong> by extracting sound directly from videos. This option is perfect for music, podcasts, interviews, and other audio content you want to listen to anytime."
+      },
+      {
+        "title": "YouTube Shorts",
+        "description": "You can also <strong><a href=\"/download-youtube-shorts\">download YouTube Shorts videos</a></strong> in the correct vertical format while keeping the original quality. YTMP4 makes it easy to save short-form YouTube videos for offline viewing or sharing."
+      }
+    ]
+  },
+  "quality": {
+    "title": "Quality & Long YouTube Videos",
+    "description1": "YTMP4 supports downloading YouTube videos in high quality, including HD and 4K resolution, while preserving the original clarity of the video. This makes it suitable for users who want the best offline viewing experience on high-resolution screens.",
+    "description2": "In addition, YTMP4 can handle long YouTube videos without time limits. You can download full-length tutorials, lectures, podcasts, and extended videos without worrying about restrictions or interruptions."
+  },
+  "faqs": {
+    "title": "Frequently Asked Questions (FAQ)",
+    "items": [
+      {
+        "question": "Is YTMP4 free to use?",
+        "answer": "Yes. YTMP4 is completely free to use with no hidden fees, subscriptions, or download limits."
+      },
+      {
+        "question": "Can I download YouTube videos online without installing software?",
+        "answer": "Yes. YTMP4 works fully online in your browser, so there's no need to install any apps or software."
+      },
+      {
+        "question": "Can I download YouTube videos as MP4 or MP3?",
+        "answer": "Yes. YTMP4 allows you to download YouTube videos as MP4 or extract audio as MP3, depending on your needs."
+      },
+      {
+        "question": "Does YTMP4 support downloading YouTube Shorts?",
+        "answer": "Yes. You can download YouTube Shorts videos easily while keeping the correct vertical format and original quality."
+      },
+      {
+        "question": "Is YTMP4 safe to use?",
+        "answer": "Yes. YTMP4 is safe to use and does not require account registration or personal information."
+      },
+      {
+        "question": "Does YTMP4 work on mobile devices?",
+        "answer": "Yes. YTMP4 works smoothly on both desktop and mobile devices, including Android and iOS browsers."
+      }
+    ]
+  }
+}
