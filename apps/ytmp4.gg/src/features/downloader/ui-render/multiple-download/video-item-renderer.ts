@@ -407,6 +407,22 @@ export class VideoItemRenderer {
     }
 
     private static updatePreviewVisibility(el: HTMLElement, item: VideoItem): void {
+        // Always keep full skeleton layout while waiting for metadata.
+        if (item.status === 'fetching_metadata') {
+            el.classList.remove('multi-video-item--compact');
+
+            const skeletonThumbEl = el.querySelector('.multi-video-thumb') as HTMLElement | null;
+            if (skeletonThumbEl) {
+                skeletonThumbEl.style.display = '';
+            }
+
+            const skeletonMetaEl = el.querySelector('.multi-video-meta') as HTMLElement | null;
+            if (skeletonMetaEl) {
+                skeletonMetaEl.style.display = '';
+            }
+            return;
+        }
+
         const shouldHide = VideoItemRenderer.shouldHideSourcePreview(item);
         el.classList.toggle('multi-video-item--compact', shouldHide);
 
@@ -466,7 +482,7 @@ export class VideoItemRenderer {
     }
 
     private static shouldHideSourcePreview(item: VideoItem): boolean {
-        return item.meta.source === 'url';
+        return item.meta.source === 'url' && !item.meta.thumbnail;
     }
 
     private static updateAudioLanguageWarning(el: HTMLElement, item: VideoItem): void {

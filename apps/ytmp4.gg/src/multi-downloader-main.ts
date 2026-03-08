@@ -7,6 +7,7 @@
 import './styles/index.css';
 
 import { applyInitialVisibility } from './features/widget-level-manager';
+import { showTipMessageWidget } from './features/tip-message/tip-message-widget';
 
 // Import services and renderers
 import { multiDownloadService } from './features/downloader/logic/multiple-download/services/multi-download-service';
@@ -201,10 +202,52 @@ function updateConvertButtonCount(btn: HTMLElement, rawText: string): void {
     }
 }
 
+function normalizeUrlsText(rawText: string, addTrailingNewline = false): string {
+    let formatted = rawText.split(/[\s,]+/).filter(Boolean).join('\n');
+    if (addTrailingNewline && formatted && !formatted.endsWith('\n')) {
+        formatted += '\n';
+    }
+    return formatted;
+}
+
+function setErrorMessage(errorMessage: HTMLElement | null, message: string): void {
+    if (!errorMessage) return;
+    errorMessage.textContent = message;
+    errorMessage.style.display = message ? 'block' : 'none';
+}
+
+function updateInputActionButton(button: HTMLButtonElement | null, rawText: string): void {
+    if (!button) return;
+
+    const hasContent = rawText.trim().length > 0;
+    const pasteIcon = button.querySelector('.paste-icon');
+    const pasteText = button.querySelector('.btn-state--paste');
+    const clearIcon = button.querySelector('.clear-icon');
+    const clearText = button.querySelector('.btn-state--clear');
+
+    if (hasContent) {
+        button.dataset.action = 'clear';
+        button.setAttribute('aria-label', 'Clear');
+        pasteIcon?.classList.add('hidden');
+        pasteText?.classList.add('hidden');
+        clearIcon?.classList.remove('hidden');
+        clearText?.classList.remove('hidden');
+        return;
+    }
+
+    button.dataset.action = 'paste';
+    button.setAttribute('aria-label', 'Paste');
+    pasteIcon?.classList.remove('hidden');
+    pasteText?.classList.remove('hidden');
+    clearIcon?.classList.add('hidden');
+    clearText?.classList.add('hidden');
+}
+
 function initMultiDownloadForm() {
     const urlsInput = document.getElementById('urlsInput') as HTMLTextAreaElement | null;
     const addUrlsBtn = document.getElementById('addUrlsBtn');
     const errorMessage = document.getElementById('error-message');
+    const inputActionBtn = document.getElementById('input-action-button') as HTMLButtonElement | null;
 
     if (!urlsInput || !addUrlsBtn) {
         console.error('[Multi Downloader] Required elements not found');
@@ -216,6 +259,7 @@ function initMultiDownloadForm() {
 
     // Initial count
     updateConvertButtonCount(addUrlsBtn, urlsInput.value);
+    updateInputActionButton(inputActionBtn, urlsInput.value);
 
     // Ctrl+Enter to Submit
     urlsInput.addEventListener('keydown', (e) => {
@@ -226,47 +270,79 @@ function initMultiDownloadForm() {
     });
 
     // Auto-Enter on Paste
-    urlsInput.addEventListener('paste', (e) => {
+    urlsInput.addEventListener('paste', () => {
         setTimeout(() => {
             const val = urlsInput.value;
-            let formatted = val.split(/[\s,]+/).filter(Boolean).join('\n');
-
-            if (formatted && !formatted.endsWith('\n')) {
-                formatted += '\n';
-            }
+            const formatted = normalizeUrlsText(val, true);
 
             if (formatted !== val) {
                 urlsInput.value = formatted;
                 urlsInput.scrollTop = urlsInput.scrollHeight;
             }
             updateConvertButtonCount(addUrlsBtn, urlsInput.value);
+            updateInputActionButton(inputActionBtn, urlsInput.value);
         }, 0);
     });
 
     urlsInput.addEventListener('input', () => {
         updateConvertButtonCount(addUrlsBtn, urlsInput.value);
+        updateInputActionButton(inputActionBtn, urlsInput.value);
     });
+
+    if (inputActionBtn) {
+        inputActionBtn.addEventListener('click', () => {
+            const action = inputActionBtn.dataset.action;
+            urlsInput.focus();
+
+            if (action === 'clear') {
+                urlsInput.value = '';
+                updateConvertButtonCount(addUrlsBtn, urlsInput.value);
+                updateInputActionButton(inputActionBtn, urlsInput.value);
+                setErrorMessage(errorMessage, '');
+                return;
+            }
+
+            if (!navigator.clipboard || !navigator.clipboard.readText) {
+                setErrorMessage(errorMessage, 'Clipboard API not supported in this browser');
+                return;
+            }
+
+            navigator.clipboard.readText()
+                .then((text) => {
+                    const trimmed = text.trim();
+                    if (!trimmed) {
+                        setErrorMessage(errorMessage, 'Clipboard is empty. Please copy a YouTube URL first.');
+                        return;
+                    }
+
+                    urlsInput.value = normalizeUrlsText(trimmed, true);
+                    urlsInput.scrollTop = urlsInput.scrollHeight;
+                    updateConvertButtonCount(addUrlsBtn, urlsInput.value);
+                    updateInputActionButton(inputActionBtn, urlsInput.value);
+                    setErrorMessage(errorMessage, '');
+                })
+                .catch(() => {
+                    setErrorMessage(errorMessage, 'Failed to read clipboard. Please paste manually.');
+                });
+        });
+    }
 
     addUrlsBtn.addEventListener('click', async () => {
         const rawText = urlsInput.value.trim();
 
         if (!rawText) {
-            if (errorMessage) {
-                errorMessage.textContent = 'Please paste at least one YouTube URL';
-                errorMessage.style.display = 'block';
-            }
+            setErrorMessage(errorMessage, 'Please paste at least one URL');
             return;
         }
 
         // Clear error
-        if (errorMessage) {
-            errorMessage.textContent = '';
-            errorMessage.style.display = 'none';
-        }
+        setErrorMessage(errorMessage, '');
 
         // Set button to loading state
         addUrlsBtn.classList.add('loading');
         addUrlsBtn.setAttribute('disabled', 'true');
+
+        showTipMessageWidget();
 
         // Check feature access for multiple download
         const access = await evaluateFeatureAccess(FEATURE_KEYS.BATCH_DOWNLOAD);
@@ -306,7 +382,12 @@ function initMultiDownloadForm() {
 
         // Clear input after user submits
         urlsInput.value = '';
-        updateConvertButtonCount(addUrlsBtn, '');
+        updateConvertButtonCount(addUrlsBtn, urlsInput.value);
+        updateInputActionButton(inputActionBtn, urlsInput.value);
+
+        console.log('[Multi] calling multipleDownloadRenderer.show()');
+        debugger;
+        multipleDownloadRenderer.show();
 
         try {
             const settings = getCurrentSettings();
@@ -320,10 +401,7 @@ function initMultiDownloadForm() {
 
         } catch (error) {
             console.error('[Multi Downloader] Error adding URLs:', error);
-            if (errorMessage) {
-                errorMessage.textContent = error instanceof Error ? error.message : 'Failed to process URLs';
-                errorMessage.style.display = 'block';
-            }
+            setErrorMessage(errorMessage, error instanceof Error ? error.message : 'Failed to process URLs');
         } finally {
             addUrlsBtn.classList.remove('loading');
             addUrlsBtn.removeAttribute('disabled');

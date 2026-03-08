@@ -742,7 +742,7 @@
     .header-inner {
         flex-direction: row;
         gap: 12px;
-        padding: 8px 0;
+        padding: 8px 12px;
     }
 
     .header-logo {

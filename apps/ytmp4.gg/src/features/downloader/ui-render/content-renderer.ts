@@ -517,7 +517,7 @@ export function renderPreviewCard(_data: any): void {
   }
 
   const { videoId, title, thumbnail, author, trimRangeLabel } = youtubePreview;
-  const showSourcePreview = Boolean(videoId && thumbnail);
+  const showSourcePreview = Boolean(thumbnail);
   const selectedFormat = state.selectedFormat;
   const audioTrackInput = document.getElementById('audio-track-value') as HTMLInputElement | null;
   const audioTrackCode = audioTrackInput?.value || 'original';

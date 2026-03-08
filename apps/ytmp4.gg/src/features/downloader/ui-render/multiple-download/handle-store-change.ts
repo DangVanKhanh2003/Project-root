@@ -269,7 +269,15 @@ function createGroupElement(groupId: string, groupTitle: string): HTMLElement {
             </div>
         </div>
         <div class="group-items">
-            <div class="group-empty" style="display: none;">No items in this tab</div>
+            <div class="group-empty" style="display: none;">
+                <svg class="group-empty-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="12" y1="18" x2="12" y2="12"></line>
+                    <line x1="9" y1="15" x2="15" y2="15"></line>
+                </svg>
+                <span class="group-empty-text">No items to convert in this tab</span>
+            </div>
         </div>
         <div class="group-load-more" style="display: none;">
             <button type="button" class="btn-load-more-group" data-action="load-more-group" data-group-id="${groupId}">Load more</button>
@@ -356,6 +364,12 @@ export function updateGroupCount(groupEl: HTMLElement, isLocked: boolean = false
     // Toggle Empty State
     const emptyState = groupEl.querySelector('.group-empty') as HTMLElement;
     if (emptyState) {
+        const emptyText = emptyState.querySelector('.group-empty-text') as HTMLElement | null;
+        if (emptyText) {
+            emptyText.textContent = activeTab === 'convert'
+                ? 'No items to convert in this tab'
+                : 'No downloaded items in this tab';
+        }
         emptyState.style.display = visibleCount === 0 ? 'flex' : 'none';
     }
 

@@ -1,5 +1,6 @@
 <!-- MAIN CONTENT -->
 <section class="main-content">
+    {% if showSupportPlatforms != false %}
     <div class="support-platforms-bar">
         <span class="support-platforms-label">{{ base.hero.supportedPlatforms }}</span>
         <div class="support-platforms-icons">
@@ -7,6 +8,7 @@
             <img class="support-platform-icon" src="/assest/social-icon/tiktok.png" alt="TikTok" loading="lazy" decoding="async">
         </div>
     </div>
+    {% endif %}
     <div class="container main-content-card">
         {% for section in page.content.sections %}
         <div class="content-section">

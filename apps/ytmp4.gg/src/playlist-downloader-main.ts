@@ -7,6 +7,7 @@
 import './styles/index.css';
 
 import { applyInitialVisibility } from './features/widget-level-manager';
+import { showTipMessageWidget } from './features/tip-message/tip-message-widget';
 
 // Import API and services
 import { multiDownloadService } from './features/downloader/logic/multiple-download/services/multi-download-service';
@@ -118,6 +119,10 @@ function initInputActions() {
 
     if (!inputActionBtn || !playlistUrlInput) return;
 
+    const focusInput = () => {
+        playlistUrlInput.focus();
+    };
+
     const updateButtonState = () => {
         const hasValue = playlistUrlInput.value.trim().length > 0;
         const pasteIcon = inputActionBtn.querySelector('.paste-icon');
@@ -142,21 +147,28 @@ function initInputActions() {
 
     playlistUrlInput.addEventListener('input', updateButtonState);
 
+    // Keep focus on input when clicking action button so Enter triggers submit.
+    inputActionBtn.addEventListener('pointerdown', (event) => {
+        event.preventDefault();
+    });
+
     inputActionBtn.addEventListener('click', async () => {
         const action = inputActionBtn.getAttribute('data-action');
+        focusInput();
 
         if (action === 'paste') {
             try {
                 const text = await navigator.clipboard.readText();
-                playlistUrlInput.value = text;
-                playlistUrlInput.dispatchEvent(new Event('input'));
+                playlistUrlInput.value = text.trim();
+                playlistUrlInput.dispatchEvent(new Event('input', { bubbles: true }));
+                focusInput();
             } catch (err) {
                 console.error('Failed to read clipboard:', err);
             }
         } else {
             playlistUrlInput.value = '';
-            playlistUrlInput.dispatchEvent(new Event('input'));
-            playlistUrlInput.focus();
+            playlistUrlInput.dispatchEvent(new Event('input', { bubbles: true }));
+            focusInput();
         }
     });
 }
@@ -226,7 +238,11 @@ function initPlaylistForm() {
     // Enable submit button now that JS handler is attached
     fetchPlaylistBtn.removeAttribute('disabled');
 
-    fetchPlaylistBtn.addEventListener('click', async () => {
+    const submitPlaylist = async () => {
+        if (fetchPlaylistBtn.hasAttribute('disabled')) {
+            return;
+        }
+
         const url = playlistUrlInput.value.trim();
 
         if (!url) {
@@ -260,6 +276,8 @@ function initPlaylistForm() {
         const originalText = fetchPlaylistBtn.textContent;
         fetchPlaylistBtn.innerHTML = '<span>Loading...</span>';
 
+        showTipMessageWidget();
+
         // Clear input after user submits
         playlistUrlInput.value = '';
         playlistUrlInput.dispatchEvent(new Event('input'));
@@ -278,6 +296,10 @@ function initPlaylistForm() {
             }
             return;
         }
+
+        console.log('[Playlist] calling multipleDownloadRenderer.show()');
+        debugger;
+        multipleDownloadRenderer.show();
 
         try {
             const settings = getCurrentSettings();
@@ -305,6 +327,20 @@ function initPlaylistForm() {
             fetchPlaylistBtn.removeAttribute('disabled');
             fetchPlaylistBtn.innerHTML = `<span>${originalText}</span>`;
         }
+    };
+
+    fetchPlaylistBtn.addEventListener('click', () => {
+        submitPlaylist().catch((error) => {
+            console.error('[Playlist Downloader] Submit failed:', error);
+        });
+    });
+
+    playlistUrlInput.addEventListener('keydown', (event) => {
+        if (event.key !== 'Enter') return;
+        event.preventDefault();
+        submitPlaylist().catch((error) => {
+            console.error('[Playlist Downloader] Submit failed:', error);
+        });
     });
 }
 

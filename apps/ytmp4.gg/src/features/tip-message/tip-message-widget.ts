@@ -138,7 +138,10 @@ function ensureWrapper(): HTMLElement | null {
     let wrapper = document.getElementById(TIP_MESSAGE_WRAPPER_ID);
     if (wrapper) return wrapper;
 
-    const heroCard = document.querySelector('.hero-card') as HTMLElement | null;
+    const heroCard = (
+        document.querySelector('.hero-card') ||
+        document.querySelector('.multiple-download-card')
+    ) as HTMLElement | null;
     if (!heroCard) return null;
 
     wrapper = document.createElement('div');
@@ -174,7 +177,7 @@ export function showTipMessageWidget(options: TipMessageOptions = {}): void {
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" style="width:1rem;height:1rem;fill:#f45d22;flex-shrink:0;"><path d="M96 64c0-17.7 14.3-32 32-32l320 0 64 0c70.7 0 128 57.3 128 128s-57.3 128-128 128l-32 0c0 53-43 96-96 96l-192 0c-53 0-96-43-96-96L96 64zM480 224l32 0c35.3 0 64-28.7 64-64s-28.7-64-64-64l-32 0 0 128zM32 416l512 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 480c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/></svg>
             <span style="color:var(--text-body);">
                 ${t.tipMessagePlease}
-                <a href="${koFiHref}" target="_blank" rel="nofollow noopener noreferrer" style="text-decoration:underline;font-weight:700;color:#f45d22 !important;">
+                <a id="tip-message-kofi-link" href="${koFiHref}" target="_blank" rel="nofollow noopener noreferrer" style="text-decoration:underline;font-weight:700;color:#f45d22 !important;">
                     ${t.tipMessageCoffee}
                 </a>
                 ${t.tipMessageSuffix}
@@ -192,10 +195,9 @@ export function showTipMessageWidget(options: TipMessageOptions = {}): void {
                 return;
             }
 
-            showTipMessageWidget({
-                ...options,
-                url: koFiLink
-            });
+            // Update only the href — no re-render, no flicker
+            const link = wrapper.querySelector<HTMLAnchorElement>('#tip-message-kofi-link');
+            if (link) link.href = koFiLink;
         })
         .catch(() => {
             // Keep fallback Ko-fi link when pricing API is unavailable.

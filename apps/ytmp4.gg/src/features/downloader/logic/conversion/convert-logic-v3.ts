@@ -25,6 +25,7 @@ import { checkLimit, recordUsage } from '../../../download-limit';
 import { TaskState, type V3ConversionParams } from './v3/types';
 import { startPolling } from './v3/polling';
 import { getErrorMessage } from './v3/error-messages';
+import { extractMediaInfoFromCreateJob, hasExtractedMediaInfo } from './v3/extract-media-info';
 
 // Retry helper
 import { retryWithBackoff, RETRY_CONFIGS } from './retry-helper';
@@ -39,7 +40,7 @@ const logError = (...args: unknown[]) => console.error(LOG_PREFIX, ...args);
  * Main entry point for V3 conversion flow
  */
 export async function startConversion(params: V3ConversionParams): Promise<void> {
-  const { formatId, videoUrl, videoTitle, extractV2Options } = params;
+  const { formatId, videoUrl, videoTitle, extractV2Options, onExtracted } = params;
   const maxJobAttempts = Math.max(1, params.maxJobAttempts ?? 2);
 
   log('=== START CONVERSION V3 ===');
@@ -110,6 +111,7 @@ export async function startConversion(params: V3ConversionParams): Promise<void>
 
   try {
     let lastError: unknown = null;
+    let resolvedVideoTitle = videoTitle;
 
     for (let attempt = 1; attempt <= maxJobAttempts; attempt++) {
       if (abortController.signal.aborted) {
@@ -129,6 +131,18 @@ export async function startConversion(params: V3ConversionParams): Promise<void>
         ) as CreateJobResponse;
         log('Job created:', JSON.stringify(jobResponse, null, 2));
 
+        const extractedInfo = extractMediaInfoFromCreateJob(jobResponse);
+        if (extractedInfo.title) {
+          resolvedVideoTitle = extractedInfo.title;
+        }
+        if (onExtracted && hasExtractedMediaInfo(extractedInfo)) {
+          try {
+            onExtracted(extractedInfo);
+          } catch (callbackError) {
+            logError('onExtracted callback failed:', callbackError);
+          }
+        }
+
         if (abortController.signal.aborted) {
           log('Aborted after job creation');
           return;
@@ -139,7 +153,8 @@ export async function startConversion(params: V3ConversionParams): Promise<void>
           state: TaskState.PROCESSING,
           statusText: 'Processing...',
           showProgressBar: true,
-          sourceId: jobResponse.statusUrl,
+          sourceId: extractedInfo.statusUrl || jobResponse.statusUrl,
+          extractResponse: extractedInfo,
           audioLanguageChanged: jobResponse.audioLanguageChanged,
           availableAudioLanguages: jobResponse.availableAudioLanguages,
         });
@@ -173,7 +188,7 @@ export async function startConversion(params: V3ConversionParams): Promise<void>
           statusText: 'Merging...',
           progress: 100,
           downloadUrl,
-          filename: generateFilename(videoTitle, extractV2Options),
+          filename: generateFilename(resolvedVideoTitle, extractV2Options),
           completedAt: Date.now(),
         });
 

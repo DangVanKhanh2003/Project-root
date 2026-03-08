@@ -4,6 +4,7 @@
  */
 
 import type { TaskState } from '../types';
+import type { ExtractedMediaInfo } from './extract-media-info';
 
 // Re-export TaskState for V3 consumers
 export { TaskState } from '../types';
@@ -57,6 +58,7 @@ export interface V3ConversionParams {
   videoUrl: string;
   videoTitle: string;
   maxJobAttempts?: number; // Total attempts (initial + retries)
+  onExtracted?: (info: ExtractedMediaInfo) => void;
   extractV2Options: {
     downloadMode?: 'video' | 'audio';
     videoQuality?: string;

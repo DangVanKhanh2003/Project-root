@@ -10,6 +10,7 @@ eleventyComputed:
   pageKey: "{{ pageInfo.pageKey }}"
 pageScript: /src/strim-downloader-main.ts
 bodyDataPage: strim-downloader
+showSupportPlatforms: false
 ---
 {%- set base = i18nBase[lang] or i18nBase['en'] -%}
 {%- set page = i18nPages[pageKey][lang] or i18nPages[pageKey].en -%}
