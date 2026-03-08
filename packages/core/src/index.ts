@@ -151,7 +151,10 @@ export {
 export {
   shouldPromptPlaylistRedirect,
   shouldPromptPlaylistRedirectForMulti,
+  shouldPromptChannelRedirect,
+  getUrlRedirectTarget,
 } from './utils/playlist-redirect';
+export type { UrlRedirectTarget } from './utils/playlist-redirect';
 
 // ========================================
 // Supporter

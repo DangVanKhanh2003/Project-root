@@ -169,7 +169,7 @@
 }
 
 .urls-textarea::-webkit-scrollbar {
-    width: 2px;
+    width: 1px;
 }
 
 .urls-textarea::-webkit-scrollbar-track {
@@ -184,7 +184,8 @@
 .urls-input-container .input-actions {
     position: absolute;
     top: 50%;
-    right: 10px;
+    right: 0;
+    margin-right: 5px;
     transform: translateY(-50%);
     padding-right: 0;
     z-index: 3;
@@ -1085,7 +1086,8 @@
 
     .urls-input-container .input-actions {
         top: 50%;
-        right: 8px;
+        right: 0;
+        margin-right: 5px;
     }
 
     .urls-input-container .btn-paste {
@@ -1687,6 +1689,25 @@
     border-color: var(--border-default);
     color: var(--brand, #000000);
     opacity: 0.6;
+}
+
+.btn-playlist-group-action.btn-success {
+    background: #16a34a;
+    border-color: #16a34a;
+    color: #ffffff;
+}
+
+.btn-playlist-group-action.btn-success:hover:not(:disabled) {
+    background: #16a34a;
+    border-color: #16a34a;
+    color: #ffffff;
+}
+
+.btn-playlist-group-action.btn-success:disabled {
+    background: var(--status-success-bg, #dcfce7);
+    border-color: var(--status-success-color, #16a34a);
+    color: var(--status-success-color, #166534);
+    opacity: 1;
 }
 
 

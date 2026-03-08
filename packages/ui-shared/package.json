@@ -11,7 +11,8 @@
     "./download": "./src/download/index.ts",
     "./supporter": "./src/supporter/index.ts",
     "./feedback": "./src/feedback/index.ts",
-    "./styles/*": "./src/styles/*"
+    "./styles/*": "./src/styles/*",
+    "./playlist": "./src/playlist/index.ts"
   },
   "scripts": {
     "build": "tsc --build",

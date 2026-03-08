@@ -10,7 +10,8 @@ eleventyComputed:
   pageKey: "{{ pageInfo.pageKey }}"
 pageStyles:
   - "/src/styles/features/multiple-downloader-v2.css"
-pageScript: "/src/playlist-downloader-main.ts"
+pageScript: "/src/channel-downloader-main.ts"
+showSupportPlatforms: false
 ---
 {%- set base = i18nBase[lang] or i18nBase['en'] -%}
 {%- set page = i18nPages[pageKey][lang] or i18nPages[pageKey].en -%}

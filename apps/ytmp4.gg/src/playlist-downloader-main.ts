@@ -13,7 +13,9 @@ import { showTipMessageWidget } from './features/tip-message/tip-message-widget'
 import { multiDownloadService } from './features/downloader/logic/multiple-download/services/multi-download-service';
 import { multipleDownloadRenderer } from './features/downloader/ui-render/multiple-download/multiple-download-renderer';
 import { VideoItemSettings } from './features/downloader/state/multiple-download-types';
-import { isPlaylistUrl, extractVideoId, FEATURE_KEYS, FEATURE_ACCESS_REASONS } from '@downloader/core';
+import { isPlaylistUrl, extractVideoId, FEATURE_KEYS, FEATURE_ACCESS_REASONS, getUrlRedirectTarget } from '@downloader/core';
+import { confirmRedirectPopup } from '@downloader/ui-shared';
+import { MaterialPopup } from './ui-components/material-popup/material-popup';
 import { initAudioDropdown } from './features/downloader/ui-render/dropdown-logic';
 import { evaluateFeatureAccess } from './features/allowed-features';
 import { recordUsage } from './features/download-limit';
@@ -253,6 +255,21 @@ function initPlaylistForm() {
             return;
         }
 
+        // If channel/playlist-only URL, prompt redirect
+        const redirectTarget = getUrlRedirectTarget(url);
+        if (redirectTarget === 'channel') {
+            const go = await confirmRedirectPopup({ popup: MaterialPopup, target: 'channel' });
+            if (go) {
+                window.location.href = '/download-youtube-channel';
+                return;
+            }
+            if (errorMessage) {
+                errorMessage.textContent = 'Please enter a valid YouTube playlist URL';
+                errorMessage.style.display = 'block';
+            }
+            return;
+        }
+
         // Validate: must be playlist or single video URL
         const isPlaylist = isPlaylistUrl(url);
         const videoId = extractVideoId(url);
@@ -298,7 +315,6 @@ function initPlaylistForm() {
         }
 
         console.log('[Playlist] calling multipleDownloadRenderer.show()');
-        debugger;
         multipleDownloadRenderer.show();
 
         try {

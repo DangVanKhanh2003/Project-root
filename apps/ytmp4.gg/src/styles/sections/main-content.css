@@ -1,4 +1,4 @@
-/* =========================================================
+npm run/* =========================================================
    Section - Main Content Card
    ---------------------------------------------------------
    Tokenized styles for SEO main-content block
@@ -73,6 +73,8 @@
     border: 0;
     padding-left: clamp(12px, 2.5vw, 24px);
     padding-right: clamp(12px, 2.5vw, 24px);
+    margin-top: 20px;
+
 }
 
 .main-content > .main-content-card.container {
@@ -173,8 +175,27 @@
     counter-reset: main-content-step;
 }
 
+.main-content-card .content-section ul {
+    counter-reset: main-content-unordered-step;
+}
+
 .main-content-card .content-section li {
     margin: clamp(6px, 1vw, 10px) 0;
+}
+
+.main-content-card .content-section ul>li {
+    counter-increment: main-content-unordered-step;
+    position: relative;
+    padding-left: 30px;
+}
+
+.main-content-card .content-section ul>li::before {
+    content: counter(main-content-unordered-step) ".";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    color: var(--main-content-heading);
+    font-weight: 700;
 }
 
 .main-content-card .content-section ol>li {
@@ -376,6 +397,28 @@
 .seo-container .prose ol,
 .content-section.content-section--white ol {
     counter-reset: main-content-ordered-step;
+}
+
+.seo-container .prose ul,
+.content-section.content-section--white ul {
+    counter-reset: main-content-unordered-step;
+}
+
+.seo-container .prose ul>li,
+.content-section.content-section--white ul>li {
+    counter-increment: main-content-unordered-step;
+    position: relative;
+    padding-left: 28px;
+}
+
+.seo-container .prose ul>li::before,
+.content-section.content-section--white ul>li::before {
+    content: counter(main-content-unordered-step) ".";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--main-content-heading);
+    font-weight: 600;
 }
 
 .seo-container .prose ol>li,

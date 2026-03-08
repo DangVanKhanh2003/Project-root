@@ -16,32 +16,12 @@ import { VideoItemSettings } from './features/downloader/state/multiple-download
 import { parseYouTubeURLs } from './features/downloader/logic/multiple-download/url-parser';
 import { initAudioDropdown } from './features/downloader/ui-render/dropdown-logic';
 import { MaterialPopup } from './ui-components/material-popup/material-popup';
-import { shouldPromptPlaylistRedirectForMulti, FEATURE_KEYS, FEATURE_ACCESS_REASONS } from '@downloader/core';
+import { confirmRedirectPopup } from '@downloader/ui-shared';
+import { shouldPromptPlaylistRedirectForMulti, getUrlRedirectTarget, FEATURE_KEYS, FEATURE_ACCESS_REASONS } from '@downloader/core';
 import { evaluateFeatureAccess } from './features/allowed-features';
 import { recordUsage, hasLicenseKey, MAX_MULTI_DOWNLOAD_VIDEOS } from './features/download-limit';
 import { show as showPaywall } from 'https://media.ytmp3.gg/poppurchase.v3.js?v=1';
 
-async function confirmPlaylistRedirect(): Promise<boolean> {
-    return new Promise((resolve) => {
-        let settled = false;
-        const settle = (goToPlaylistPage: boolean) => {
-            if (settled) return;
-            settled = true;
-            resolve(goToPlaylistPage);
-        };
-
-        MaterialPopup.show({
-            title: 'Go to playlist page',
-            message: 'Would you like to download a playlist instead? Go to the playlist downloader page.',
-            type: 'info',
-            confirmText: 'Playlist page',
-            cancelText: 'Continue',
-            buttonLayout: 'row',
-            onConfirm: () => settle(true),
-            onCancel: () => settle(false)
-        });
-    });
-}
 
 /**
  * Initialize mobile menu functionality
@@ -368,10 +348,23 @@ function initMultiDownloadForm() {
             return;
         }
 
-        if (shouldPromptPlaylistRedirectForMulti(rawText)) {
-            const shouldRedirectToPlaylist = await confirmPlaylistRedirect();
-            if (shouldRedirectToPlaylist) {
-                window.location.href = '/download-mp3-youtube-playlist';
+        // Single URL: check for channel or playlist redirect
+        const singleToken = rawText.trim().split(/[\n\s,]+/).filter(Boolean);
+        if (singleToken.length === 1) {
+            const redirectTarget = getUrlRedirectTarget(singleToken[0]);
+            if (redirectTarget) {
+                const go = await confirmRedirectPopup({ popup: MaterialPopup, target: redirectTarget, cancelText: 'Continue' });
+                if (go) {
+                    window.location.href = redirectTarget === 'channel'
+                        ? '/download-youtube-channel'
+                        : '/download-youtube-playlist';
+                    return;
+                }
+            }
+        } else if (shouldPromptPlaylistRedirectForMulti(rawText)) {
+            const go = await confirmRedirectPopup({ popup: MaterialPopup, target: 'playlist', cancelText: 'Continue' });
+            if (go) {
+                window.location.href = '/download-youtube-playlist';
                 return;
             }
         }
@@ -386,7 +379,6 @@ function initMultiDownloadForm() {
         updateInputActionButton(inputActionBtn, urlsInput.value);
 
         console.log('[Multi] calling multipleDownloadRenderer.show()');
-        debugger;
         multipleDownloadRenderer.show();
 
         try {

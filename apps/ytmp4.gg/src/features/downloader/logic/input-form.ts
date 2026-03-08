@@ -5,7 +5,7 @@
 
 import { api, coreServices } from '../../../api';
 import { logEvent } from '../../../libs/firebase';
-import { scrollManager } from '@downloader/ui-shared';
+import { scrollManager, confirmRedirectPopup } from '@downloader/ui-shared';
 import {
   getState,
   setState,
@@ -39,33 +39,12 @@ import { navigateToVideo } from '../routing/url-manager';
 import { setVideoPageSEO } from '../routing/seo-manager';
 import { showResultView } from '../ui-render/view-switcher';
 import { MaterialPopup } from '../../../ui-components/material-popup/material-popup';
-import { shouldPromptPlaylistRedirect } from '@downloader/core';
+import { getUrlRedirectTarget } from '@downloader/core';
 import { evaluateFeatureAccess } from '../../allowed-features';
 import { show as showPaywall } from 'https://media.ytmp3.gg/poppurchase.v3.js?v=1';
 import { checkLimit } from '../../download-limit';
 import { FEATURE_KEYS, FEATURE_ACCESS_REASONS } from '@downloader/core';
 
-async function confirmPlaylistRedirect(): Promise<boolean> {
-  return new Promise((resolve) => {
-    let settled = false;
-    const settle = (goToPlaylistPage: boolean) => {
-      if (settled) return;
-      settled = true;
-      resolve(goToPlaylistPage);
-    };
-
-    MaterialPopup.show({
-      title: 'Go to playlist page',
-      message: 'Would you like to download a playlist instead? Go to the playlist downloader page.',
-      type: 'info',
-      confirmText: 'Playlist page',
-      cancelText: 'Cancel',
-      buttonLayout: 'row',
-      onConfirm: () => settle(true),
-      onCancel: () => settle(false)
-    });
-  });
-}
 
 /**
  * Generate fake YouTube data for instant UI
@@ -902,15 +881,16 @@ async function handleSubmit(event: Event): Promise<void> {
 
   try {
     if (state.inputType === 'url') {
-      if (shouldPromptPlaylistRedirect(value)) {
+      const redirectTarget = getUrlRedirectTarget(value);
+      if (redirectTarget) {
         setLoading(false);
-        const shouldRedirectToPlaylist = await confirmPlaylistRedirect();
-
-        if (shouldRedirectToPlaylist) {
-          window.location.href = '/download-mp3-youtube-playlist';
+        const go = await confirmRedirectPopup({ popup: MaterialPopup, target: redirectTarget });
+        if (go) {
+          window.location.href = redirectTarget === 'channel'
+            ? '/download-youtube-channel'
+            : '/download-youtube-playlist';
           return;
         }
-
         setLoading(true);
       }
 
@@ -1418,4 +1398,3 @@ export function setInputValue(value: string): void {
     input.value = value;
   }
 }
-

@@ -236,6 +236,13 @@
     margin-top: 30px;
 }
 
+@media (max-width: 768px) {
+    #search-results-section {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+}
+
 #hero-inline-message {
     margin-top: 12px;
     text-align: center;

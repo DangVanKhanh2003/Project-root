@@ -1,26 +1,27 @@
 /**
- * Multi Downloader Entry Point
- * Entry point for youtube-multi-downloader.html
+ * Channel Downloader Entry Point
+ * Entry point for download-youtube-channel.html
+ * Reuses playlist UI/UX but calls the channel API.
  */
 
 // === CSS Import ===
 import './styles/index.css';
 
 import { applyInitialVisibility } from './features/widget-level-manager';
+import { showTipMessageWidget } from './features/tip-message/tip-message-widget';
 
-// Import services and renderers
+// Import API and services
 import { multiDownloadService } from './features/downloader/logic/multiple-download/services/multi-download-service';
 import { multipleDownloadRenderer } from './features/downloader/ui-render/multiple-download/multiple-download-renderer';
 import { VideoItemSettings } from './features/downloader/state/multiple-download-types';
-import { parseYouTubeURLs } from './features/downloader/logic/multiple-download/url-parser';
-import { initAudioDropdown } from './features/downloader/ui-render/dropdown-logic';
-import { MaterialPopup } from './ui-components/material-popup/material-popup';
+import { FEATURE_KEYS, FEATURE_ACCESS_REASONS, getUrlRedirectTarget } from '@downloader/core';
 import { confirmRedirectPopup } from '@downloader/ui-shared';
-import { shouldPromptPlaylistRedirectForMulti, getUrlRedirectTarget, FEATURE_KEYS, FEATURE_ACCESS_REASONS } from '@downloader/core';
+import { MaterialPopup } from './ui-components/material-popup/material-popup';
+import { isChannelUrl } from './features/downloader/logic/multiple-download/url-parser';
+import { initAudioDropdown } from './features/downloader/ui-render/dropdown-logic';
 import { evaluateFeatureAccess } from './features/allowed-features';
-import { recordUsage, hasLicenseKey, MAX_MULTI_DOWNLOAD_VIDEOS } from './features/download-limit';
+import { recordUsage } from './features/download-limit';
 import { show as showPaywall } from 'https://media.ytmp3.gg/poppurchase.v3.js?v=1';
-
 
 /**
  * Initialize mobile menu functionality
@@ -84,7 +85,7 @@ function saveFormatPreferences() {
         if (prefs.videoQuality === 'webmp' || prefs.videoQuality === 'mkvp') {
             prefs.videoQuality = settings.videoQuality!;
         }
-        localStorage.setItem('ssvid_format_preferences', JSON.stringify(prefs));
+        localStorage.setItem('ytmp4_format_preferences', JSON.stringify(prefs));
     } catch (e) { }
 }
 
@@ -114,7 +115,70 @@ function initFormatToggle() {
 }
 
 /**
- * Get current format settings from UI elements
+ * Initialize paste/clear button for input
+ */
+function initInputActions() {
+    const inputActionBtn = document.getElementById('input-action-button');
+    const urlInput = document.getElementById('playlistUrl') as HTMLInputElement | null;
+
+    if (!inputActionBtn || !urlInput) return;
+
+    const focusInput = () => {
+        urlInput.focus();
+    };
+
+    const updateButtonState = () => {
+        const hasValue = urlInput.value.trim().length > 0;
+        const pasteIcon = inputActionBtn.querySelector('.paste-icon');
+        const clearIcon = inputActionBtn.querySelector('.clear-icon');
+        const pasteText = inputActionBtn.querySelector('.btn-state--paste');
+        const clearText = inputActionBtn.querySelector('.btn-state--clear');
+
+        if (hasValue) {
+            pasteIcon?.classList.add('hidden');
+            clearIcon?.classList.remove('hidden');
+            pasteText?.classList.add('hidden');
+            clearText?.classList.remove('hidden');
+            inputActionBtn.setAttribute('data-action', 'clear');
+        } else {
+            pasteIcon?.classList.remove('hidden');
+            clearIcon?.classList.add('hidden');
+            pasteText?.classList.remove('hidden');
+            clearText?.classList.add('hidden');
+            inputActionBtn.setAttribute('data-action', 'paste');
+        }
+    };
+
+    urlInput.addEventListener('input', updateButtonState);
+
+    // Keep focus on input when clicking action button so Enter triggers submit.
+    inputActionBtn.addEventListener('pointerdown', (event) => {
+        event.preventDefault();
+    });
+
+    inputActionBtn.addEventListener('click', async () => {
+        const action = inputActionBtn.getAttribute('data-action');
+        focusInput();
+
+        if (action === 'paste') {
+            try {
+                const text = await navigator.clipboard.readText();
+                urlInput.value = text.trim();
+                urlInput.dispatchEvent(new Event('input', { bubbles: true }));
+                focusInput();
+            } catch (err) {
+                console.error('Failed to read clipboard:', err);
+            }
+        } else {
+            urlInput.value = '';
+            urlInput.dispatchEvent(new Event('input', { bubbles: true }));
+            focusInput();
+        }
+    });
+}
+
+/**
+ * Get current format settings from UI
  */
 function getCurrentSettings(): Partial<VideoItemSettings> {
     const activeFormatBtn = document.querySelector('.multi-format-toggle .multi-format-btn.active');
@@ -163,76 +227,55 @@ function getCurrentSettings(): Partial<VideoItemSettings> {
 }
 
 /**
- * Update the convert button text/label with the number of URLs
+ * Initialize channel download form
  */
-function updateConvertButtonCount(btn: HTMLElement, rawText: string): void {
-    const count = rawText
-        .trim()
-        .split(/[\n\s,]+/)
-        .filter(Boolean)
-        .length;
-
-    const label = count > 0 ? `Download (${count})` : 'Download';
-    const originalTextSpan = btn.querySelector('span');
-    if (originalTextSpan) {
-        originalTextSpan.textContent = label;
-    } else {
-        btn.textContent = label;
-    }
-}
-
-function initMultiDownloadForm() {
-    const urlsInput = document.getElementById('urlsInput') as HTMLTextAreaElement | null;
-    const addUrlsBtn = document.getElementById('addUrlsBtn');
+function initChannelForm() {
+    const urlInput = document.getElementById('playlistUrl') as HTMLInputElement | null;
+    const fetchBtn = document.getElementById('fetchPlaylistBtn');
     const errorMessage = document.getElementById('error-message');
 
-    if (!urlsInput || !addUrlsBtn) {
-        console.error('[Multi Downloader] Required elements not found');
+    if (!urlInput || !fetchBtn) {
+        console.error('[Channel Downloader] Required elements not found');
         return;
     }
 
-    // Enable button now that JS has loaded
-    addUrlsBtn.removeAttribute('disabled');
+    // Enable submit button now that JS handler is attached
+    fetchBtn.removeAttribute('disabled');
 
-    // Initial count
-    updateConvertButtonCount(addUrlsBtn, urlsInput.value);
-
-    // Ctrl+Enter to Submit
-    urlsInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
-            e.preventDefault();
-            addUrlsBtn.click();
+    const submitChannel = async () => {
+        if (fetchBtn.hasAttribute('disabled')) {
+            return;
         }
-    });
 
-    // Auto-Enter on Paste
-    urlsInput.addEventListener('paste', (e) => {
-        setTimeout(() => {
-            const val = urlsInput.value;
-            let formatted = val.split(/[\s,]+/).filter(Boolean).join('\n');
+        const url = urlInput.value.trim();
 
-            if (formatted && !formatted.endsWith('\n')) {
-                formatted += '\n';
-            }
-
-            if (formatted !== val) {
-                urlsInput.value = formatted;
-                urlsInput.scrollTop = urlsInput.scrollHeight;
-            }
-            updateConvertButtonCount(addUrlsBtn, urlsInput.value);
-        }, 0);
-    });
-
-    urlsInput.addEventListener('input', () => {
-        updateConvertButtonCount(addUrlsBtn, urlsInput.value);
-    });
-
-    addUrlsBtn.addEventListener('click', async () => {
-        const rawText = urlsInput.value.trim();
-
-        if (!rawText) {
+        if (!url) {
             if (errorMessage) {
-                errorMessage.textContent = 'Please paste at least one YouTube URL';
+                errorMessage.textContent = 'Please paste a YouTube channel URL';
+                errorMessage.style.display = 'block';
+            }
+            return;
+        }
+
+        // If playlist-only URL, prompt redirect
+        const redirectTarget = getUrlRedirectTarget(url);
+        if (redirectTarget === 'playlist') {
+            const go = await confirmRedirectPopup({ popup: MaterialPopup, target: 'playlist' });
+            if (go) {
+                window.location.href = '/download-youtube-playlist';
+                return;
+            }
+            if (errorMessage) {
+                errorMessage.textContent = 'Please enter a valid YouTube channel URL';
+                errorMessage.style.display = 'block';
+            }
+            return;
+        }
+
+        // Validate: must be a channel URL
+        if (!isChannelUrl(url)) {
+            if (errorMessage) {
+                errorMessage.textContent = 'Please enter a valid YouTube channel URL (e.g. youtube.com/@channelname)';
                 errorMessage.style.display = 'block';
             }
             return;
@@ -245,80 +288,67 @@ function initMultiDownloadForm() {
         }
 
         // Set button to loading state
-        addUrlsBtn.classList.add('loading');
-        addUrlsBtn.setAttribute('disabled', 'true');
+        fetchBtn.classList.add('loading');
+        fetchBtn.setAttribute('disabled', 'true');
+        const originalText = fetchBtn.textContent;
+        fetchBtn.innerHTML = '<span>Loading...</span>';
 
-        // Check feature access for multiple download
-        const access = await evaluateFeatureAccess(FEATURE_KEYS.BATCH_DOWNLOAD);
+        showTipMessageWidget();
+
+        // Clear input after user submits
+        urlInput.value = '';
+        urlInput.dispatchEvent(new Event('input'));
+
+        // Feature Access Check
+        const access = await evaluateFeatureAccess(FEATURE_KEYS.CHANNEL_DOWNLOAD);
         if (!access.allowed) {
-            addUrlsBtn.classList.remove('loading');
-            addUrlsBtn.removeAttribute('disabled');
+            fetchBtn.classList.remove('loading');
+            fetchBtn.removeAttribute('disabled');
+            fetchBtn.innerHTML = `<span>${originalText}</span>`;
 
             if (access.reason === FEATURE_ACCESS_REASONS.GEO_RESTRICTED) {
                 showPaywall();
             } else {
-                showPaywall('download_multi');
+                showPaywall('download_channel');
             }
             return;
         }
 
-        addUrlsBtn.classList.remove('loading');
-        addUrlsBtn.removeAttribute('disabled');
-
-        const parsed = parseYouTubeURLs(rawText);
-
-        if (!hasLicenseKey() && parsed.length > MAX_MULTI_DOWNLOAD_VIDEOS) {
-            showPaywall('title_limit_max10');
-            return;
-        }
-
-        // Single URL: check for channel or playlist redirect
-        const singleToken = rawText.trim().split(/[\n\s,]+/).filter(Boolean);
-        if (singleToken.length === 1) {
-            const redirectTarget = getUrlRedirectTarget(singleToken[0]);
-            if (redirectTarget) {
-                const go = await confirmRedirectPopup({ popup: MaterialPopup, target: redirectTarget, cancelText: 'Continue' });
-                if (go && redirectTarget === 'playlist') {
-                    window.location.href = '/download-mp3-youtube-playlist';
-                    return;
-                }
-            }
-        } else if (shouldPromptPlaylistRedirectForMulti(rawText)) {
-            const go = await confirmRedirectPopup({ popup: MaterialPopup, target: 'playlist', cancelText: 'Continue' });
-            if (go) {
-                window.location.href = '/download-mp3-youtube-playlist';
-                return;
-            }
-        }
-
-        // Set button to loading state again for processing
-        addUrlsBtn.classList.add('loading');
-        addUrlsBtn.setAttribute('disabled', 'true');
-
-        // Clear input after user submits
-        urlsInput.value = '';
-        updateConvertButtonCount(addUrlsBtn, '');
+        multipleDownloadRenderer.show();
 
         try {
             const settings = getCurrentSettings();
-
-            // Add URLs through the service (store-driven — renderer auto-updates)
-            await multiDownloadService.addUrls(rawText, settings);
-
-            // Auto-start download
-            multiDownloadService.startAllDownloads();
-            recordUsage(FEATURE_KEYS.BATCH_DOWNLOAD);
-
+            await multiDownloadService.addChannel(url, settings);
+            recordUsage(FEATURE_KEYS.CHANNEL_DOWNLOAD);
         } catch (error) {
-            console.error('[Multi Downloader] Error adding URLs:', error);
-            if (errorMessage) {
-                errorMessage.textContent = error instanceof Error ? error.message : 'Failed to process URLs';
+            console.error('[Channel Downloader] Error fetching channel:', error);
+            const msg = error instanceof Error ? error.message : 'Failed to fetch channel';
+
+            if (msg.includes('Channel has no videos') || msg.includes('could not be fetched')) {
+                showPaywall('download_channel');
+            } else if (errorMessage) {
+                errorMessage.textContent = msg;
                 errorMessage.style.display = 'block';
             }
         } finally {
-            addUrlsBtn.classList.remove('loading');
-            addUrlsBtn.removeAttribute('disabled');
+            fetchBtn.classList.remove('loading');
+            fetchBtn.removeAttribute('disabled');
+            fetchBtn.innerHTML = `<span>${originalText}</span>`;
         }
+    };
+
+    fetchBtn.addEventListener('click', () => {
+        submitChannel().catch((error) => {
+            console.error('[Channel Downloader] Submit failed:', error);
+        });
+    });
+
+    urlInput.addEventListener('keydown', (event) => {
+        if (event.key !== 'Enter') return;
+        event.preventDefault();
+        submitChannel().catch((error) => {
+            console.error('[Channel Downloader] Submit failed:', error);
+        });
     });
 }
 
@@ -391,7 +421,7 @@ function initFeedbackWidget(): void {
  * Initialize app
  */
 async function init() {
-    console.log('[Multi Downloader] Initializing...');
+    console.log('[Channel Downloader] Initializing...');
 
     await applyInitialVisibility();
     // Initialize UI components
@@ -399,24 +429,25 @@ async function init() {
     initLangSelector();
     initDrawerLangSelector();
     initFormatToggle();
+    initInputActions();
     initAudioDropdown({ dropdownId: 'multi-audio-track-dropdown', hiddenInputId: 'multi-audio-track-value' });
 
-    // Initialize the renderer (batch strategy by default)
-    multipleDownloadRenderer.useBatchStrategy();
+    // Initialize the renderer with playlist strategy (same UX)
+    multipleDownloadRenderer.usePlaylistStrategy();
     multipleDownloadRenderer.init();
 
     // Initialize form handlers
-    initMultiDownloadForm();
+    initChannelForm();
     initFeedbackWidget();
 
-    console.log('[Multi Downloader] Initialized');
+    console.log('[Channel Downloader] Initialized');
 }
 
 // DOM Ready
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
-        init().catch(err => console.error('Failed to init multi downloader:', err));
+        init().catch(err => console.error('Failed to init channel downloader:', err));
     });
 } else {
-    init().catch(err => console.error('Failed to init multi downloader:', err));
+    init().catch(err => console.error('Failed to init channel downloader:', err));
 }

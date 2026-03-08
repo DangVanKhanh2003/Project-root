@@ -16,13 +16,13 @@
     "links": {
       "home": "Home",
       "youtubeToMp4": "YouTube to MP4",
-      "youtubeHd4k": "YouTube HD / 4K",
-      "youtube1080p": "YouTube 1080p",
-      "shortsDownloader": "Shorts Downloader",
-      "cutVideo": "Cut Video",
-      "playlistDownloader": "Playlist Downloader",
-      "multiDownloader": "Multi Downloader",
-      "channelDownloader": "Channel Downloader",
+      "youtubeHd4k": "Download Youtube 4k Video",
+      "youtube1080p": "Download Youtube 1080p Video",
+      "shortsDownloader": "Youtube Shorts mp4",
+      "cutVideo": "Youtube Video Cutter",
+      "playlistDownloader": "Download Youtube Playlist",
+      "multiDownloader": "Multi Youtube Downloader",
+      "channelDownloader": "Download Youtube Channel",
       "about": "About",
       "faq": "FAQ",
       "contact": "Contact",
@@ -44,13 +44,13 @@
   },
   "footer": {
     "linksRow1": {
-      "youtubeHd4k": "YouTube HD / 4K",
-      "youtube1080p": "YouTube 1080p",
-      "shortsDownloader": "Shorts Downloader",
-      "cutVideo": "Cut Video",
-      "playlistDownloader": "Playlist Downloader",
-      "multiDownloader": "Multi Downloader",
-      "channelDownloader": "Channel Downloader"
+      "youtubeHd4k": "Download Youtube 4k Video",
+      "youtube1080p": "Download Youtube 1080p Video",
+      "shortsDownloader": "Youtube Shorts mp4",
+      "cutVideo": "Youtube Video Cutter",
+      "playlistDownloader": "Download Youtube Playlist",
+      "multiDownloader": "Multi Youtube Downloader",
+      "channelDownloader": "Download Youtube Channel"
     },
     "linksRow2": {
       "about": "About",

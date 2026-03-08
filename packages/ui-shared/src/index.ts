@@ -20,3 +20,6 @@ export * from './supporter';
 
 // Feedback widget
 export * from './feedback';
+
+// Playlist redirect popup
+export * from './playlist';

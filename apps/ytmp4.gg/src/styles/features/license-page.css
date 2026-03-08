@@ -24,6 +24,7 @@
     padding: clamp(28px, 5vw, 52px);
     box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
     border: 1px solid var(--border-subtle);
+    margin-top: 16px;
 }
 
 .license-card {
