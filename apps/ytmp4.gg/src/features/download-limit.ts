@@ -11,6 +11,7 @@
 
 import { FEATURE_KEYS, FEATURE_ACCESS_REASONS, type FeatureAccessReason } from '@downloader/core';
 import { hasValidLicense } from './license/license-token';
+import { MULTIPLE_MAX_ITEMS_ALLOWED } from './feature-limit-policy';
 
 /** Default maximum uses per day for non-license users (fallback for any unlisted feature). */
 export const MAX_PER_DAY = 1;
@@ -28,8 +29,11 @@ const FEATURE_DAILY_LIMITS: Readonly<Record<string, number>> = {
     [FEATURE_KEYS.CUT_VIDEO_YOUTUBE]: 20,
 };
 
-/** Maximum videos per single multi-download action for non-license users. */
-export const MAX_MULTI_DOWNLOAD_VIDEOS = 10;
+/**
+ * Backward-compatible export.
+ * Multiple per-convert limit now comes from centralized policy.
+ */
+export const MAX_MULTI_DOWNLOAD_VIDEOS = MULTIPLE_MAX_ITEMS_ALLOWED;
 
 // ============================================================
 // STORAGE KEYS
@@ -52,6 +56,14 @@ function getTodayString(): string {
     const m = String(d.getMonth() + 1).padStart(2, '0');
     const day = String(d.getDate()).padStart(2, '0');
     return `${y}-${m}-${day}`; // local date, e.g. "2026-02-19"
+}
+
+function getStartUsageStorageKey(featureKey: string): string {
+    return `${featureKey}_daily`;
+}
+
+function getItemUsageStorageKey(featureKey: string): string {
+    return `${featureKey}_items_daily`;
 }
 
 function readUsage(storageKey: string): DailyUsage {
@@ -93,7 +105,7 @@ export function hasLicenseKey(): boolean {
  */
 export function getUsageToday(featureKey: string): number {
     const today = getTodayString();
-    const usage = readUsage(`${featureKey}_daily`);
+    const usage = readUsage(getStartUsageStorageKey(featureKey));
     return usage.date === today ? usage.count : 0;
 }
 
@@ -101,7 +113,7 @@ export function getUsageToday(featureKey: string): number {
  * Check if user is allowed to use a feature. Does NOT increment count.
  * @param featureKey - e.g. 'download_playlist' | 'download_4k' | 'download_320kbps'
  */
-export function checkLimit(featureKey: string): {
+export function checkLimit(featureKey: string, maxPerDayOverride?: number): {
     allowed: boolean;
     reason?: 'license' | 'limit_reached' | FeatureAccessReason;
     usedToday?: number;
@@ -113,9 +125,11 @@ export function checkLimit(featureKey: string): {
     }
 
     const today = getTodayString();
-    const usage = readUsage(`${featureKey}_daily`);
+    const usage = readUsage(getStartUsageStorageKey(featureKey));
     const count = usage.date === today ? usage.count : 0;
-    const limit = FEATURE_DAILY_LIMITS[featureKey] ?? MAX_PER_DAY;
+    const limit = typeof maxPerDayOverride === 'number' && Number.isFinite(maxPerDayOverride)
+        ? Math.max(0, Math.floor(maxPerDayOverride))
+        : (FEATURE_DAILY_LIMITS[featureKey] ?? MAX_PER_DAY);
 
     if (count < limit) {
         console.log(`[DailyLimit:${featureKey}] check OK (${count}/${limit})`);
@@ -135,12 +149,123 @@ export function recordUsage(featureKey: string): void {
     if (hasLicenseKey()) return; // no limit for license holders
 
     const today = getTodayString();
-    const storageKey = `${featureKey}_daily`;
+    const storageKey = getStartUsageStorageKey(featureKey);
     const usage = readUsage(storageKey);
     const count = usage.date === today ? usage.count : 0;
     const limit = FEATURE_DAILY_LIMITS[featureKey] ?? MAX_PER_DAY;
     writeUsage(storageKey, { date: today, count: count + 1 });
     console.log(`[DailyLimit:${featureKey}] recorded (${count + 1}/${limit})`);
+}
+
+// ============================================================
+// START LIMIT (alias for daily start gate)
+// ============================================================
+
+/**
+ * Check if user can start this feature in current day.
+ */
+export function checkStartLimit(featureKey: string, startPerDay: number) {
+    return checkLimit(featureKey, startPerDay);
+}
+
+/**
+ * Record one successful start usage.
+ */
+export function recordStartUsage(featureKey: string): void {
+    recordUsage(featureKey);
+}
+
+// ============================================================
+// DAILY ITEM QUOTA (separate tracking for per-day item count)
+// ============================================================
+
+/**
+ * Get consumed item count for a feature in current day.
+ */
+export function getDailyItemsUsed(featureKey: string): number {
+    const today = getTodayString();
+    const usage = readUsage(getItemUsageStorageKey(featureKey));
+    return usage.date === today ? usage.count : 0;
+}
+
+/**
+ * Get daily item quota snapshot for a feature.
+ */
+export function getDailyItemUsage(featureKey: string, maxPerDay: number): {
+    usedToday: number;
+    maxPerDay: number;
+    remainingToday: number;
+} {
+    const usedToday = getDailyItemsUsed(featureKey);
+    const safeMaxPerDay = typeof maxPerDay === 'number' && Number.isFinite(maxPerDay)
+        ? Math.max(0, Math.floor(maxPerDay))
+        : 0;
+
+    return {
+        usedToday,
+        maxPerDay: safeMaxPerDay,
+        remainingToday: Math.max(0, safeMaxPerDay - usedToday),
+    };
+}
+
+/**
+ * Check if adding N items exceeds daily item quota.
+ */
+export function checkDailyItemQuota(featureKey: string, maxItemsPerDay: number, incomingItems = 1): {
+    allowed: boolean;
+    reason?: string;
+    requestedItems: number;
+    usedToday: number;
+    maxPerDay: number;
+    remainingToday: number;
+} {
+    const requestedItems = Number.isFinite(incomingItems)
+        ? Math.max(1, Math.floor(incomingItems))
+        : 1;
+
+    if (hasLicenseKey()) {
+        return {
+            allowed: true,
+            reason: 'license',
+            requestedItems,
+            usedToday: 0,
+            maxPerDay: 0,
+            remainingToday: 0,
+        };
+    }
+
+    const usage = getDailyItemUsage(featureKey, maxItemsPerDay);
+    const allowed = usage.usedToday + requestedItems <= usage.maxPerDay;
+
+    return {
+        allowed,
+        reason: allowed ? undefined : 'limit_reached',
+        requestedItems,
+        usedToday: usage.usedToday,
+        maxPerDay: usage.maxPerDay,
+        remainingToday: usage.remainingToday,
+    };
+}
+
+/**
+ * Record consumed items for a feature in current day.
+ */
+export function recordDailyItemsUsage(featureKey: string, consumedItems = 1): void {
+    if (hasLicenseKey()) return;
+
+    const amount = Number.isFinite(consumedItems)
+        ? Math.max(0, Math.floor(consumedItems))
+        : 0;
+
+    if (amount <= 0) return;
+
+    const today = getTodayString();
+    const storageKey = getItemUsageStorageKey(featureKey);
+    const usage = readUsage(storageKey);
+    const count = usage.date === today ? usage.count : 0;
+
+    writeUsage(storageKey, { date: today, count: count + amount });
+    console.log(`[DailyItemLimit:${featureKey}] recorded (${count + amount})`);
 }
 
 /**

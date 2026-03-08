@@ -14,15 +14,15 @@ import { showTipMessageWidget } from './features/tip-message/tip-message-widget'
 import { multiDownloadService } from './features/downloader/logic/multiple-download/services/multi-download-service';
 import { multipleDownloadRenderer } from './features/downloader/ui-render/multiple-download/multiple-download-renderer';
 import { VideoItemSettings } from './features/downloader/state/multiple-download-types';
-import { FEATURE_KEYS, FEATURE_ACCESS_REASONS, getUrlRedirectTarget } from '@downloader/core';
+import { FEATURE_KEYS, getUrlRedirectTarget } from '@downloader/core';
 import { confirmRedirectPopup } from '@downloader/ui-shared';
 import { MaterialPopup } from './ui-components/material-popup/material-popup';
 import { isChannelUrl } from './features/downloader/logic/multiple-download/url-parser';
 import { initAudioDropdown } from './features/downloader/ui-render/dropdown-logic';
 import { syncCustomVideoGroupDropdown } from './features/downloader/ui-render/video-group-dropdown';
-import { evaluateFeatureAccess } from './features/allowed-features';
-import { recordUsage } from './features/download-limit';
-import { show as showPaywall } from 'https://media.ytmp3.gg/poppurchase.v3.js?v=1';
+import { evaluateFeatureAccess, initAllowedFeatures } from './features/allowed-features';
+import { recordStartUsage } from './features/download-limit';
+import { showPaywall } from './features/paywall-popup';
 
 /**
  * Initialize mobile menu functionality
@@ -308,18 +308,18 @@ function initChannelForm() {
         urlInput.value = '';
         urlInput.dispatchEvent(new Event('input'));
 
-        // Feature Access Check
-        const access = await evaluateFeatureAccess(FEATURE_KEYS.CHANNEL_DOWNLOAD);
+        // Feature Access Check (country-tier-aware)
+        const access = evaluateFeatureAccess(FEATURE_KEYS.CHANNEL_DOWNLOAD);
         if (!access.allowed) {
             fetchBtn.classList.remove('loading');
             fetchBtn.removeAttribute('disabled');
             fetchBtn.innerHTML = `<span>${originalText}</span>`;
 
-            if (access.reason === FEATURE_ACCESS_REASONS.GEO_RESTRICTED) {
-                showPaywall();
-            } else {
-                showPaywall('download_channel');
-            }
+            const dailyStart = access.limitsResolved?.startPerDay;
+            const title = typeof dailyStart === 'number'
+                ? `Channel Start Limit: ${dailyStart}/day`
+                : 'Channel Download Limit Reached';
+            showPaywall('download_channel', { title });
             return;
         }
 
@@ -328,7 +328,7 @@ function initChannelForm() {
         try {
             const settings = getCurrentSettings();
             await multiDownloadService.addChannel(url, settings);
-            recordUsage(FEATURE_KEYS.CHANNEL_DOWNLOAD);
+            recordStartUsage(FEATURE_KEYS.CHANNEL_DOWNLOAD);
         } catch (error) {
             console.error('[Channel Downloader] Error fetching channel:', error);
             const msg = error instanceof Error ? error.message : 'Failed to fetch channel';
@@ -433,6 +433,7 @@ async function init() {
     console.log('[Channel Downloader] Initializing...');
 
     await applyInitialVisibility();
+    initAllowedFeatures();
     // Initialize UI components
     initMobileMenu();
     initLangSelector();

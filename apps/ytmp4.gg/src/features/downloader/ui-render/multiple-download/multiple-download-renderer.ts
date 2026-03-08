@@ -8,6 +8,11 @@ import { RendererStrategy } from './renderer-strategy.interface';
 import { createStoreChangeHandler, updateGroupCount, DOWNLOAD_TAB_CLICKED_KEY, showDownloadTabGuide } from './handle-store-change';
 import { triggerDownload, isIOS } from '../../../../utils';
 import { MaterialPopup } from '../../../../ui-components/material-popup/material-popup';
+import { showTipMessageWidget } from '../../../../features/tip-message/tip-message-widget';
+import { checkDailyItemQuota, recordDailyItemsUsage } from '../../../../features/download-limit';
+import { evaluateFeatureAccess, getFeatureLimitContext } from '../../../../features/allowed-features';
+import { showPaywall } from '../../../../features/paywall-popup';
+import { FEATURE_KEYS } from '@downloader/core';
 
 export class MultipleDownloadRenderer {
     private container: HTMLElement | null = null;
@@ -185,9 +190,7 @@ export class MultipleDownloadRenderer {
                     break;
                 case 'convert':
                     if (id) {
-                        const groupElForItemGuide = actionBtn.closest('.playlist-group') as HTMLElement;
-                        multiDownloadService.startDownload(id);
-                        if (groupElForItemGuide) showDownloadTabGuide(groupElForItemGuide, 50);
+                        this.handleConvertAction(actionBtn, [id]);
                     }
                     break;
                 case 'toggle-group':
@@ -195,11 +198,10 @@ export class MultipleDownloadRenderer {
                     break;
                 case 'download-group':
                     if (groupId) {
-                        multiDownloadService.startSelectedGroupDownloads(groupId);
-                        const groupElForGuide = this.listContainer?.querySelector(`[data-group-id="${groupId}"].playlist-group`) as HTMLElement;
-                        showDownloadTabGuide(groupElForGuide);
-                        this.switchToTab(groupId, 'download', true);
-                        videoStore.setGroupSelection(groupId, false);
+                        const items = videoStore.getAllItems().filter(i =>
+                            i.groupId === groupId && i.isSelected
+                        );
+                        this.handleConvertAction(actionBtn, items.map(i => i.id), groupId);
                     }
                     break;
                 case 'download-zip-group':
@@ -410,6 +412,54 @@ export class MultipleDownloadRenderer {
 
         const checkbox = itemEl.querySelector('.item-checkbox') as HTMLInputElement | null;
         return !!checkbox && !checkbox.disabled;
+    }
+
+    private async handleConvertAction(actionBtn: HTMLElement, ids: string[], groupId?: string) {
+        if (ids.length === 0) return;
+
+        // 1. Determine which feature limit applies based on current URL
+        let featureKey: string = FEATURE_KEYS.BATCH_DOWNLOAD;
+        if (window.location.pathname.includes('playlist')) {
+            featureKey = FEATURE_KEYS.PLAYLIST_DOWNLOAD;
+        } else if (window.location.pathname.includes('channel')) {
+            featureKey = FEATURE_KEYS.CHANNEL_DOWNLOAD;
+        }
+
+        const access = evaluateFeatureAccess(featureKey);
+        const limitContext = getFeatureLimitContext(featureKey);
+
+        const itemsToConvert = ids.length;
+
+        // 2. Check daily item quota
+        const maxLimit = limitContext.limitsResolved?.maxItemsPerConvert || 0;
+        const remainingItemQuota = checkDailyItemQuota(featureKey, maxLimit, itemsToConvert);
+
+        if (!remainingItemQuota.allowed) {
+            showPaywall(featureKey, {
+                title: `Daily limit: ${maxLimit} items/day`,
+                noCountdown: true,
+                noCountdownMessage: "Support us to unlock more daily items."
+            });
+            return;
+        }
+
+        // 3. Record usage and proceed
+        recordDailyItemsUsage(featureKey, itemsToConvert);
+
+        // 4. Show tip message
+        showTipMessageWidget();
+
+        if (groupId) {
+            multiDownloadService.startSelectedGroupDownloads(groupId);
+            const groupElForGuide = this.listContainer?.querySelector(`[data-group-id="${groupId}"].playlist-group`) as HTMLElement;
+            showDownloadTabGuide(groupElForGuide);
+            this.switchToTab(groupId, 'download', true);
+            videoStore.setGroupSelection(groupId, false);
+        } else if (ids.length === 1) {
+            const groupElForItemGuide = actionBtn.closest('.playlist-group') as HTMLElement;
+            multiDownloadService.startDownload(ids[0]);
+            if (groupElForItemGuide) showDownloadTabGuide(groupElForItemGuide, 50);
+        }
     }
 
     private async handleDownloadZipBatch(btn: HTMLElement) {

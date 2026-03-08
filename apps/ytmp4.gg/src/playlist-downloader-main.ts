@@ -13,14 +13,14 @@ import { showTipMessageWidget } from './features/tip-message/tip-message-widget'
 import { multiDownloadService } from './features/downloader/logic/multiple-download/services/multi-download-service';
 import { multipleDownloadRenderer } from './features/downloader/ui-render/multiple-download/multiple-download-renderer';
 import { VideoItemSettings } from './features/downloader/state/multiple-download-types';
-import { isPlaylistUrl, extractVideoId, FEATURE_KEYS, FEATURE_ACCESS_REASONS, getUrlRedirectTarget } from '@downloader/core';
+import { isPlaylistUrl, extractVideoId, FEATURE_KEYS, getUrlRedirectTarget } from '@downloader/core';
 import { confirmRedirectPopup } from '@downloader/ui-shared';
 import { MaterialPopup } from './ui-components/material-popup/material-popup';
 import { initAudioDropdown } from './features/downloader/ui-render/dropdown-logic';
 import { syncCustomVideoGroupDropdown } from './features/downloader/ui-render/video-group-dropdown';
-import { evaluateFeatureAccess } from './features/allowed-features';
-import { recordUsage } from './features/download-limit';
-import { show as showPaywall } from 'https://media.ytmp3.gg/poppurchase.v3.js?v=1';
+import { evaluateFeatureAccess, initAllowedFeatures } from './features/allowed-features';
+import { recordStartUsage } from './features/download-limit';
+import { showPaywall } from './features/paywall-popup';
 
 /**
  * Initialize mobile menu functionality
@@ -308,18 +308,18 @@ function initPlaylistForm() {
         playlistUrlInput.value = '';
         playlistUrlInput.dispatchEvent(new Event('input'));
 
-        // Feature Access Check
-        const access = await evaluateFeatureAccess(FEATURE_KEYS.PLAYLIST_DOWNLOAD);
+        // Feature Access Check (country-tier-aware)
+        const access = evaluateFeatureAccess(FEATURE_KEYS.PLAYLIST_DOWNLOAD);
         if (!access.allowed) {
             fetchPlaylistBtn.classList.remove('loading');
             fetchPlaylistBtn.removeAttribute('disabled');
             fetchPlaylistBtn.innerHTML = `<span>${originalText}</span>`;
 
-            if (access.reason === FEATURE_ACCESS_REASONS.GEO_RESTRICTED) {
-                showPaywall();
-            } else {
-                showPaywall('download_playlist');
-            }
+            const dailyStart = access.limitsResolved?.startPerDay;
+            const title = typeof dailyStart === 'number'
+                ? `Playlist Start Limit: ${dailyStart}/day`
+                : 'Playlist Download Limit Reached';
+            showPaywall('download_playlist', { title });
             return;
         }
 
@@ -334,7 +334,7 @@ function initPlaylistForm() {
             } else {
                 await multiDownloadService.addSingleVideoAsGroup(url, settings);
             }
-            recordUsage(FEATURE_KEYS.PLAYLIST_DOWNLOAD);
+            recordStartUsage(FEATURE_KEYS.PLAYLIST_DOWNLOAD);
 
         } catch (error) {
             console.error('[Playlist Downloader] Error fetching playlist:', error);
@@ -441,6 +441,7 @@ async function init() {
     console.log('[Playlist Downloader] Initializing...');
 
     await applyInitialVisibility();
+    initAllowedFeatures();
     // Initialize UI components
     initMobileMenu();
     initLangSelector();

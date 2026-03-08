@@ -871,7 +871,7 @@ async function handleSubmit(event: Event): Promise<void> {
   setLoading(true);
 
   // Check feature access early before playlist prompt or extraction
-  const access = await evaluateFeatureAccess('download_single');
+  const access = evaluateFeatureAccess('download_single');
   if (!access.allowed) {
     setLoading(false);
     if (access.reason === FEATURE_ACCESS_REASONS.GEO_RESTRICTED) {

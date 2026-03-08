@@ -18,10 +18,10 @@ import { initAudioDropdown } from './features/downloader/ui-render/dropdown-logi
 import { syncCustomVideoGroupDropdown } from './features/downloader/ui-render/video-group-dropdown';
 import { MaterialPopup } from './ui-components/material-popup/material-popup';
 import { confirmRedirectPopup } from '@downloader/ui-shared';
-import { shouldPromptPlaylistRedirectForMulti, getUrlRedirectTarget, FEATURE_KEYS, FEATURE_ACCESS_REASONS } from '@downloader/core';
-import { evaluateFeatureAccess } from './features/allowed-features';
-import { recordUsage, hasLicenseKey, MAX_MULTI_DOWNLOAD_VIDEOS } from './features/download-limit';
-import { show as showPaywall } from 'https://media.ytmp3.gg/poppurchase.v3.js?v=1';
+import { shouldPromptPlaylistRedirectForMulti, getUrlRedirectTarget, FEATURE_KEYS } from '@downloader/core';
+import { evaluateFeatureAccess, initAllowedFeatures } from './features/allowed-features';
+import { recordStartUsage, hasLicenseKey, checkDailyItemQuota, recordDailyItemsUsage } from './features/download-limit';
+import { showPaywall } from './features/paywall-popup';
 
 
 /**
@@ -333,17 +333,17 @@ function initMultiDownloadForm() {
 
         showTipMessageWidget();
 
-        // Check feature access for multiple download
-        const access = await evaluateFeatureAccess(FEATURE_KEYS.BATCH_DOWNLOAD);
+        // Check feature access for multiple download (country-tier-aware)
+        const access = evaluateFeatureAccess(FEATURE_KEYS.BATCH_DOWNLOAD);
         if (!access.allowed) {
             addUrlsBtn.classList.remove('loading');
             addUrlsBtn.removeAttribute('disabled');
 
-            if (access.reason === FEATURE_ACCESS_REASONS.GEO_RESTRICTED) {
-                showPaywall();
-            } else {
-                showPaywall('download_multi');
-            }
+            const dailyStart = access.limitsResolved?.startPerDay;
+            const title = typeof dailyStart === 'number'
+                ? `Multi Download Start Limit: ${dailyStart}/day`
+                : 'Multi Download Limit Reached';
+            showPaywall('download_multi', { title });
             return;
         }
 
@@ -352,8 +352,16 @@ function initMultiDownloadForm() {
 
         const parsed = parseYouTubeURLs(rawText);
 
-        if (!hasLicenseKey() && parsed.length > MAX_MULTI_DOWNLOAD_VIDEOS) {
-            showPaywall('title_limit_max10');
+        // Per-convert item limit (country-aware)
+        const itemsToConvert = parsed.length;
+        const maxLimit = access.limitsResolved?.maxItemsPerConvert || 0;
+        const remainingItemQuota = checkDailyItemQuota(FEATURE_KEYS.BATCH_DOWNLOAD, maxLimit, itemsToConvert);
+
+        if (!remainingItemQuota.allowed) {
+            showPaywall(FEATURE_KEYS.BATCH_DOWNLOAD, {
+                title: `Daily limit: ${maxLimit} items/day`,
+                noCountdown: true,
+            });
             return;
         }
 
@@ -398,7 +406,8 @@ function initMultiDownloadForm() {
 
             // Auto-start download
             multiDownloadService.startAllDownloads();
-            recordUsage(FEATURE_KEYS.BATCH_DOWNLOAD);
+            recordStartUsage(FEATURE_KEYS.BATCH_DOWNLOAD);
+            recordDailyItemsUsage(FEATURE_KEYS.BATCH_DOWNLOAD, itemsToConvert);
 
         } catch (error) {
             console.error('[Multi Downloader] Error adding URLs:', error);
@@ -482,6 +491,7 @@ async function init() {
     console.log('[Multi Downloader] Initializing...');
 
     await applyInitialVisibility();
+    initAllowedFeatures();
     // Initialize UI components
     initMobileMenu();
     initLangSelector();

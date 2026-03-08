@@ -2,11 +2,13 @@
  * Feature Access Orchestrator — ytmp4.gg
  * 3-layer check: License → Geo (API) → Daily Limit
  *
- * Ported from: ytmp3.gg/src/temp/allowed-features.js
+ * Geo result is cached in localStorage (7 days) and in-memory for the session.
+ * At page init, call initAllowedFeatures() to pre-warm the cache.
  */
 
 import { supporterService } from '../api';
-import { hasLicenseKey, checkLimit } from './download-limit';
+import { hasLicenseKey, checkStartLimit } from './download-limit';
+import { resolveFeatureLimits, type ResolvedLimits } from './feature-limit-policy';
 import {
     FEATURE_KEY_ALIASES,
     FEATURE_ACCESS_REASONS,
@@ -17,7 +19,8 @@ import {
 // CONFIGURATION
 // ============================================================
 
-const API_CACHE_TTL_MS = 5 * 60 * 1000; // 5 minutes
+const LS_CACHE_KEY = 'ytmp4_allowed_features';
+const LS_CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
 const ALLOWED_FEATURES_MAX_ATTEMPTS = 2;
 
 /**
@@ -40,9 +43,43 @@ interface AllowedState {
     allowedFeatures: Set<string>;
 }
 
-let cachedApiResult: AllowedState | null = null;
-let cachedApiTimestamp = 0;
+interface StoredAllowedState {
+    country: string;
+    allowedFeatures: string[];
+    timestamp: number;
+}
+
 let inflightApiPromise: Promise<AllowedState> | null = null;
+
+// ============================================================
+// LOCALSTORAGE CACHE
+// ============================================================
+
+function readLocalStorageCache(): AllowedState | null {
+    try {
+        const raw = localStorage.getItem(LS_CACHE_KEY);
+        if (!raw) return null;
+        const parsed: StoredAllowedState = JSON.parse(raw);
+        if (Date.now() - parsed.timestamp > LS_CACHE_TTL_MS) return null;
+        return {
+            country: parsed.country,
+            allowedFeatures: new Set(parsed.allowedFeatures),
+        };
+    } catch {
+        return null;
+    }
+}
+
+function writeLocalStorageCache(state: AllowedState): void {
+    try {
+        const data: StoredAllowedState = {
+            country: state.country,
+            allowedFeatures: Array.from(state.allowedFeatures),
+            timestamp: Date.now(),
+        };
+        localStorage.setItem(LS_CACHE_KEY, JSON.stringify(data));
+    } catch { }
+}
 
 // ============================================================
 // INTERNAL HELPERS
@@ -52,22 +89,18 @@ function normalizeFeature(feature: string): string {
     return (FEATURE_KEY_ALIASES as Record<string, string>)[feature] ?? feature;
 }
 
-async function fetchAllowedFeatures(): Promise<AllowedState> {
-    const now = Date.now();
-    if (cachedApiResult && now - cachedApiTimestamp < API_CACHE_TTL_MS) {
-        return cachedApiResult;
-    }
-
-    if (inflightApiPromise) {
-        return inflightApiPromise;
-    }
+/**
+ * Fetch from API, save to localStorage + memory cache.
+ * Deduplicates concurrent calls.
+ */
+async function fetchAndCacheAllowedFeatures(): Promise<AllowedState> {
+    if (inflightApiPromise) return inflightApiPromise;
 
     inflightApiPromise = (async () => {
         let lastError: unknown = null;
 
         for (let attempt = 1; attempt <= ALLOWED_FEATURES_MAX_ATTEMPTS; attempt++) {
             try {
-                // fetchAllowedFeatures() returns AllowedFeaturesResponse directly
                 const response = await supporterService.fetchAllowedFeatures();
 
                 const normalizedFeatures = new Set<string>(
@@ -76,14 +109,13 @@ async function fetchAllowedFeatures(): Promise<AllowedState> {
                         : []
                 );
 
-                const allowedState: AllowedState = {
+                const state: AllowedState = {
                     country: typeof response?.country === 'string' ? response.country : '',
                     allowedFeatures: normalizedFeatures,
                 };
 
-                cachedApiResult = allowedState;
-                cachedApiTimestamp = Date.now();
-                return allowedState;
+                writeLocalStorageCache(state);
+                return state;
             } catch (error) {
                 lastError = error;
             }
@@ -97,6 +129,34 @@ async function fetchAllowedFeatures(): Promise<AllowedState> {
     return inflightApiPromise;
 }
 
+/**
+ * Get country context synchronously.
+ * Priority: memory cache → localStorage cache → fallback (+ trigger background fetch).
+ */
+function getCountryContextSync(normalizedFeature: string): {
+    countryAllowed: boolean;
+    source: 'api' | 'fallback' | 'unrestricted';
+    country: string;
+} {
+    if (!GEO_RESTRICTED_FEATURES.has(normalizedFeature)) {
+        return { countryAllowed: true, source: 'unrestricted', country: '' };
+    }
+
+    // localStorage cache
+    const lsCache = readLocalStorageCache();
+    if (lsCache) {
+        return {
+            countryAllowed: lsCache.allowedFeatures.has(normalizedFeature),
+            source: 'api',
+            country: lsCache.country,
+        };
+    }
+
+    // No cache — trigger background fetch, return fallback immediately
+    fetchAndCacheAllowedFeatures().catch(() => {});
+    return { countryAllowed: false, source: 'fallback', country: '' };
+}
+
 // ============================================================
 // PUBLIC API
 // ============================================================
@@ -106,67 +166,112 @@ export type { FeatureAccessReason };
 export interface FeatureAccessResult {
     allowed: boolean;
     reason: FeatureAccessReason;
+    countryAllowed?: boolean;
+    source?: 'license' | 'api' | 'fallback' | 'unrestricted';
     country?: string;
+    limitsResolved?: ResolvedLimits;
 }
 
 /**
- * Full 3-layer access check.
- * Layer 1: License key bypass
- * Layer 2: Geo / API allowlist
- * Layer 3: Daily limit
+ * Pre-warm the allowed features cache at page init.
+ * Checks localStorage first; if expired or missing, fetches from API.
  */
-export async function evaluateFeatureAccess(feature: string): Promise<FeatureAccessResult> {
+export function initAllowedFeatures(): void {
+    if (readLocalStorageCache()) return;
+    fetchAndCacheAllowedFeatures().catch(() => {});
+}
+
+/**
+ * Full access check with country-tier-aware limits.
+ *
+ * Layer 1: License key → bypass all
+ * Layer 2: Geo/API → use memory/localStorage cache, fallback if unavailable
+ * Layer 3: Daily start limit → gate per-day starts
+ */
+export function evaluateFeatureAccess(feature: string): FeatureAccessResult {
     const normalizedFeature = normalizeFeature(feature);
 
     // Layer 1: License key holders bypass everything
     if (hasLicenseKey()) {
-        return { allowed: true, reason: FEATURE_ACCESS_REASONS.ALLOWED };
+        return {
+            allowed: true,
+            reason: FEATURE_ACCESS_REASONS.ALLOWED,
+            countryAllowed: true,
+            source: 'license',
+            limitsResolved: resolveFeatureLimits(normalizedFeature, { countryAllowed: true, isLicense: true }),
+        };
     }
 
-    // Layer 2: Geo check (only for geo-restricted features)
-    if (GEO_RESTRICTED_FEATURES.has(normalizedFeature)) {
-        try {
-            const apiState = await fetchAllowedFeatures();
-            if (!apiState.allowedFeatures.has(normalizedFeature)) {
-                return {
-                    allowed: false,
-                    reason: FEATURE_ACCESS_REASONS.GEO_RESTRICTED,
-                    country: apiState.country,
-                };
-            }
-        } catch (error) {
-            console.warn('[allowed-features] API unavailable after retry, showing supporter upsell:', error);
-            return { allowed: false, reason: FEATURE_ACCESS_REASONS.API_UNAVAILABLE };
+    // Layer 2: Geo check — sync, uses cache or fallback
+    const { countryAllowed, source, country } = getCountryContextSync(normalizedFeature);
+    const limitsResolved = resolveFeatureLimits(normalizedFeature, { countryAllowed });
+
+    // Layer 3: Daily start limit (if policy defines startPerDay)
+    if (typeof limitsResolved.startPerDay === 'number') {
+        const startLimit = checkStartLimit(normalizedFeature, limitsResolved.startPerDay);
+        if (!startLimit.allowed) {
+            return {
+                allowed: false,
+                reason: FEATURE_ACCESS_REASONS.LIMIT_REACHED,
+                countryAllowed,
+                source,
+                country,
+                limitsResolved,
+            };
         }
     }
 
-    // Layer 3: Daily limit
-    const localResult = checkLimit(normalizedFeature);
-    if (!localResult.allowed) {
-        return { allowed: false, reason: FEATURE_ACCESS_REASONS.LIMIT_REACHED };
+    return {
+        allowed: true,
+        reason: FEATURE_ACCESS_REASONS.ALLOWED,
+        countryAllowed,
+        source,
+        country,
+        limitsResolved,
+    };
+}
+
+/**
+ * Resolve feature limit tier without applying start/day gate.
+ * Use this for convert-time item checks.
+ */
+export function getFeatureLimitContext(feature: string): {
+    countryAllowed: boolean;
+    source: 'license' | 'api' | 'fallback' | 'unrestricted';
+    country: string;
+    limitsResolved: ResolvedLimits;
+} {
+    const normalizedFeature = normalizeFeature(feature);
+
+    if (hasLicenseKey()) {
+        return {
+            countryAllowed: true,
+            source: 'license',
+            country: '',
+            limitsResolved: resolveFeatureLimits(normalizedFeature, { countryAllowed: true, isLicense: true }),
+        };
     }
 
-    return { allowed: true, reason: FEATURE_ACCESS_REASONS.ALLOWED };
+    const { countryAllowed, source, country } = getCountryContextSync(normalizedFeature);
+    return {
+        countryAllowed,
+        source,
+        country,
+        limitsResolved: resolveFeatureLimits(normalizedFeature, { countryAllowed }),
+    };
 }
 
 /**
  * Returns true if the feature is allowed.
  */
-export async function isFeatureAllowed(feature: string): Promise<boolean> {
-    const result = await evaluateFeatureAccess(feature);
-    return result.allowed;
+export function isFeatureAllowed(feature: string): boolean {
+    return evaluateFeatureAccess(feature).allowed;
 }
 
 /**
  * Returns true if ANY of the given features is allowed.
  */
-export async function isAnyFeatureAllowed(features: string[]): Promise<boolean> {
+export function isAnyFeatureAllowed(features: string[]): boolean {
     if (!Array.isArray(features) || features.length === 0) return false;
-
-    for (const feature of features) {
-        const result = await evaluateFeatureAccess(feature);
-        if (result.allowed) return true;
-    }
-
-    return false;
+    return features.some(f => evaluateFeatureAccess(f).allowed);
 }

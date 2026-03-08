@@ -75,6 +75,11 @@ export class DownloadQueue {
         return this.running.has(id);
     }
 
+    setMaxConcurrent(n: number): void {
+        this.maxConcurrent = n;
+        this.processNext();
+    }
+
     hasCapacity(): boolean {
         return this.running.size < this.maxConcurrent;
     }

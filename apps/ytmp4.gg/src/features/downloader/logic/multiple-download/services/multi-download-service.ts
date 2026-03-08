@@ -10,8 +10,11 @@ import { runSingleDownload } from '../download-runner';
 import { fetchMetadataBatch } from '../metadata-fetcher';
 import { parseYouTubeURLs, generateItemId, normalizeURL, extractChannelHandle } from '../url-parser';
 
+const YOUTUBE_QUEUE_CONCURRENCY = 5;
+const OTHER_LINK_QUEUE_CONCURRENCY = 10;
+
 export class MultiDownloadService {
-    private queue = new DownloadQueue(5);
+    private queue = new DownloadQueue(YOUTUBE_QUEUE_CONCURRENCY);
 
     // ==========================================
     // Add URLs (batch mode)
@@ -462,7 +465,13 @@ export class MultiDownloadService {
     // Download Control
     // ==========================================
 
+    private syncQueueLimit(): void {
+        const hasYouTube = videoStore.getAllItems().some(i => isYouTubeUrl(i.url));
+        this.queue.setMaxConcurrent(hasYouTube ? YOUTUBE_QUEUE_CONCURRENCY : OTHER_LINK_QUEUE_CONCURRENCY);
+    }
+
     startDownload(id: string): void {
+        this.syncQueueLimit();
         const item = videoStore.getItem(id);
         if (!item) return;
 
