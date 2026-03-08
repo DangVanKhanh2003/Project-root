@@ -201,6 +201,7 @@
     border-radius: 999px;
     border: 1px solid var(--border-default);
     background: var(--bg-card);
+    margin-right: 10px;
 }
 
 .urls-input-container .btn-paste:hover {
