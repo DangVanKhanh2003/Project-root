@@ -17,6 +17,7 @@ import { isPlaylistUrl, extractVideoId, FEATURE_KEYS, FEATURE_ACCESS_REASONS, ge
 import { confirmRedirectPopup } from '@downloader/ui-shared';
 import { MaterialPopup } from './ui-components/material-popup/material-popup';
 import { initAudioDropdown } from './features/downloader/ui-render/dropdown-logic';
+import { syncCustomVideoGroupDropdown } from './features/downloader/ui-render/video-group-dropdown';
 import { evaluateFeatureAccess } from './features/allowed-features';
 import { recordUsage } from './features/download-limit';
 import { show as showPaywall } from 'https://media.ytmp3.gg/poppurchase.v3.js?v=1';
@@ -71,18 +72,13 @@ function initMobileMenu() {
 function saveFormatPreferences() {
     try {
         const settings = getCurrentSettings();
-        const audioFmt = settings.audioFormat || 'mp3';
         const prefs = {
             selectedFormat: settings.format || 'mp4',
-            videoQuality: settings.videoQuality ? settings.videoQuality + 'p' : '720p',
-            audioFormat: audioFmt,
-            audioBitrate: audioFmt === 'mp3' ? (settings.audioBitrate || '128') : '',
+            videoQuality: settings.videoQuality || '720p',
+            audioFormat: settings.audioFormat || 'mp3',
+            audioBitrate: settings.audioBitrate || '',
             timestamp: Date.now()
         };
-        // Normalize videoQuality: avoid double 'p' (e.g. '720pp')
-        if (prefs.videoQuality === 'webmp' || prefs.videoQuality === 'mkvp') {
-            prefs.videoQuality = settings.videoQuality!;
-        }
         localStorage.setItem('ytmp4_format_preferences', JSON.stringify(prefs));
     } catch (e) { }
 }
@@ -97,6 +93,16 @@ function initFormatToggle() {
 
     if (!qualitySelectMp3 || !qualitySelectMp4) return;
 
+    const syncVideoDropdown = () => {
+        syncCustomVideoGroupDropdown(qualitySelectMp4, {
+            valueMode: 'dash',
+            dropdownClassName: 'multi-video-group-dropdown',
+            wrapperGroupedClass: 'multi-quality-dropdown-wrapper--grouped',
+        });
+    };
+
+    syncVideoDropdown();
+
     formatBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             formatBtns.forEach(b => b.classList.remove('active'));
@@ -109,7 +115,10 @@ function initFormatToggle() {
     });
 
     qualitySelectMp3.addEventListener('change', () => saveFormatPreferences());
-    qualitySelectMp4.addEventListener('change', () => saveFormatPreferences());
+    qualitySelectMp4.addEventListener('change', () => {
+        saveFormatPreferences();
+        syncVideoDropdown();
+    });
 }
 
 /**
@@ -193,24 +202,24 @@ function getCurrentSettings(): Partial<VideoItemSettings> {
     const audioTrack = audioTrackValue?.value || 'original';
 
     if (format === 'mp3' && qualitySelectMp3) {
-        const val = qualitySelectMp3.value; // e.g. 'mp3-128', 'ogg', 'wav'
-        if (val.includes('-')) {
-            audioFormat = val.split('-')[0]; // 'mp3'
-            audioBitrate = val.split('-')[1]; // '128'
-            quality = audioBitrate + 'kbps';
+        const val = qualitySelectMp3.value; // e.g. 'mp3-128', 'wav'
+        if (val.startsWith('mp3-')) {
+            audioFormat = 'mp3';
+            audioBitrate = val.split('-')[1] || '128';
+            quality = `${audioBitrate}kbps`;
         } else {
-            audioFormat = val; // 'ogg', 'wav', 'opus', 'm4a'
-            audioBitrate = undefined;
-            quality = val;
+            audioFormat = val;
+            audioBitrate = '128';
+            quality = `${val.toUpperCase()} - 128kbps`;
         }
     } else if (qualitySelectMp4) {
-        const val = qualitySelectMp4.value; // e.g. 'mp4-720', 'webm', 'mkv'
-        if (val.includes('-')) {
-            videoQuality = val.split('-')[1];
-            quality = videoQuality + 'p';
-        } else {
-            videoQuality = val;
-            quality = val;
+        const val = qualitySelectMp4.value; // e.g. 'mp4-720', 'webm-720', 'mkv-1080'
+        const match = val.match(/^(mp4|webm|mkv)-(\d+)$/);
+        if (match) {
+            const container = match[1];
+            const resolution = `${match[2]}p`;
+            videoQuality = container === 'mp4' ? resolution : `${container}-${resolution}`;
+            quality = videoQuality;
         }
     }
 

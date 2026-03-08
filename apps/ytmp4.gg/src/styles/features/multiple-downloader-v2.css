@@ -314,7 +314,7 @@
 }
 
 .multi-format-btn {
-    padding: 10px 24px;
+    padding: 7px 24px;
     border: none;
     background: transparent;
     cursor: pointer;
@@ -353,7 +353,7 @@
 }
 
 .multi-quality-select {
-    height: 45px;
+    height: 40px;
     padding: 0 40px 0 18px;
     border: 1px solid var(--border-input);
     border-radius: var(--radius-xl);
@@ -380,6 +380,26 @@
     transform: translateY(-50%);
     pointer-events: none;
     color: var(--text-body);
+}
+
+.multi-quality-dropdown-wrapper--grouped .multi-select-arrow {
+    display: none;
+}
+
+.multi-quality-dropdown-wrapper .multi-video-group-dropdown {
+    min-width: 180px;
+}
+
+.multi-quality-dropdown-wrapper .multi-video-group-dropdown .video-group-menu {
+    max-height: 380px;
+}
+
+html[data-format="mp3"] .multi-quality-dropdown-wrapper .multi-video-group-dropdown {
+    display: none !important;
+}
+
+html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropdown {
+    display: block !important;
 }
 
 /* Convert Button */
@@ -1789,6 +1809,44 @@
 .item-settings.is-dropdowns .item-audio-track-select option:checked {
     background: var(--multi-list-control-active);
     color: var(--multi-list-control-active-text);
+}
+
+.item-settings.is-dropdowns .item-video-group-dropdown {
+    min-width: 150px;
+}
+
+.item-settings.is-dropdowns .item-video-group-dropdown .video-group-trigger {
+    height: 24px;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    color: var(--multi-list-control-text);
+    padding: 0 0.75rem 0 0;
+    gap: 4px;
+}
+
+.item-settings.is-dropdowns .item-video-group-dropdown .video-group-trigger:hover,
+.item-settings.is-dropdowns .item-video-group-dropdown .video-group-trigger:focus-visible {
+    border-color: transparent;
+    background: transparent;
+}
+
+.item-settings.is-dropdowns .item-video-group-dropdown .video-group-trigger-icon svg {
+    width: 12px;
+    height: 12px;
+}
+
+.item-settings.is-dropdowns .item-video-group-dropdown .video-group-menu {
+    min-width: 200px;
+    max-height: 320px;
+    z-index: 40;
+}
+
+.item-settings.is-dropdowns .item-video-group-dropdown .video-group-header,
+.item-settings.is-dropdowns .item-video-group-dropdown .video-group-item {
+    font-size: 12px;
 }
 
 /* =========================================

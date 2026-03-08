@@ -31,13 +31,10 @@ export function setupUrlSync(): void {
              // Format is crucial (mp3/m4a/wav)
              newRoute.format = state.audioFormat;
              
-             // Quality for MP3 (bitrate)
-             if (state.audioFormat === 'mp3') {
-                 newRoute.quality = state.audioBitrate; // '128', '320'
-             } else {
-                 // For others, usually default bitrate, explicit removal of quality param
-                 delete newRoute.quality; 
-             }
+             // Quality (bitrate) only for MP3
+             newRoute.quality = state.audioFormat === 'mp3'
+                ? (state.audioBitrate || '128')
+                : '128';
         }
 
         // Audio Track

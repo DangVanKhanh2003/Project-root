@@ -109,7 +109,11 @@ export async function init(): Promise<void> {
       } else if (audioFormats.includes(route.format)) {
         setSelectedFormat('mp3');
         setAudioFormat(route.format as AudioFormatType);
-        if (route.quality) setAudioBitrate(route.quality);
+        if (route.format === 'mp3' && route.quality) {
+          setAudioBitrate(route.quality);
+        } else {
+          setAudioBitrate('128');
+        }
       }
     }
 

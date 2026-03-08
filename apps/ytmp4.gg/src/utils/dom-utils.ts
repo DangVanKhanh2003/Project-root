@@ -1,5 +1,17 @@
 
 /**
+ * Submit a form programmatically, with polyfill for Safari < 16 which lacks requestSubmit().
+ * Unlike form.submit(), this triggers the 'submit' event so listeners are notified.
+ */
+export function submitForm(form: HTMLFormElement): void {
+  if (typeof form.requestSubmit === 'function') {
+    form.requestSubmit();
+  } else {
+    form.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
+  }
+}
+
+/**
  * Adjusts the width of a select element to fit its selected option's text.
  * +18px accounts for the dropdown arrow space (background-image arrow).
  */

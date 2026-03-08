@@ -204,7 +204,7 @@
 /* 0-350 */
 @media (min-width: 0) and (max-width: 350px) {
   .yt-preview-card {
-    min-height: 205px;
+    min-height: 210px;
   }
 
   .yt-preview-title {
@@ -221,7 +221,7 @@
 @media (min-width: 351px) and (max-width: 599px) {
   .yt-preview-card {
     padding: 0.875rem;
-    min-height: 210px;
+    min-height: 220px;
   }
 
   .yt-preview-title {

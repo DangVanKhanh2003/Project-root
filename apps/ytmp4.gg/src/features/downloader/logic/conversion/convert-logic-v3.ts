@@ -19,7 +19,7 @@ import {
 } from '../../state';
 import { triggerDownload } from '../../../../utils';
 
-import { checkLimit, recordUsage } from '../../../download-limit';
+import { recordUsage } from '../../../download-limit';
 
 // V3 specific imports
 import { TaskState, type V3ConversionParams } from './v3/types';
@@ -29,12 +29,25 @@ import { extractMediaInfoFromCreateJob, hasExtractedMediaInfo } from './v3/extra
 
 // Retry helper
 import { retryWithBackoff, RETRY_CONFIGS } from './retry-helper';
-import { debug } from 'console';
 
 // Debug logger
 const LOG_PREFIX = '[ConvertLogicV3]';
 const log = (...args: unknown[]) => console.log(LOG_PREFIX, ...args);
 const logError = (...args: unknown[]) => console.error(LOG_PREFIX, ...args);
+
+function normalizeVideoResolution(videoQuality: string | undefined): string {
+  const normalized = (videoQuality || '').toLowerCase();
+  const grouped = normalized.match(/^(?:mp4|webm|mkv)-(\d+)p$/);
+  if (grouped) return `${grouped[1]}p`;
+
+  const plain = normalized.match(/^(\d+)p$/);
+  if (plain) return `${plain[1]}p`;
+
+  const numeric = normalized.match(/^(\d+)$/);
+  if (numeric) return `${numeric[1]}p`;
+
+  return '';
+}
 
 /**
  * Main entry point for V3 conversion flow
@@ -172,9 +185,10 @@ export async function startConversion(params: V3ConversionParams): Promise<void>
         stopFakeProgress();
 
         // Record usage AFTER success
-        const { videoQuality, audioBitrate, audioFormat, downloadMode, trimStart } = extractV2Options ?? {};
-        const is4K = extractV2Options?.downloadMode === 'video' && extractV2Options?.videoQuality === '2160';
-        const is2K = extractV2Options?.downloadMode === 'video' && extractV2Options?.videoQuality === '1440';
+        const isVideoDownload = extractV2Options?.downloadMode === 'video';
+        const selectedResolution = normalizeVideoResolution(extractV2Options?.videoQuality);
+        const is4K = isVideoDownload && selectedResolution === '2160p';
+        const is2K = isVideoDownload && selectedResolution === '1440p';
         const is320kbps = extractV2Options?.downloadMode === 'audio' && extractV2Options?.audioBitrate === '320';
         const isCutVideo = typeof extractV2Options?.trimStart === 'number' && typeof extractV2Options?.trimEnd === 'number';
 

@@ -1,4 +1,4 @@
-<div class="hero-card">
+﻿<div class="hero-card">
     <h1 class="stream-hero-card-title">{{ page.content.form.h1 }}</h1>
     <div id="search-view" class="">
         <form id="downloadForm" class="form-container" autocomplete="off" onsubmit="return false">
@@ -53,12 +53,46 @@
                                 <select id="quality-select-mp3"
                                     class="quality-select quality-select--mp3"
                                     aria-label="Audio quality" data-quality-select>
+                                    <option value="mp3-320">MP3 - 320kbps</option>
+                                    <option value="mp3-192">MP3 - 192kbps</option>
                                     <option value="mp3-128" selected>MP3 - 128kbps</option>
+                                    <option value="mp3-64">MP3 - 64kbps</option>
+                                    <option value="wav">WAV - 128kbps</option>
+                                    <option value="m4a">M4A - 128kbps</option>
+                                    <option value="ogg">OGG - 128kbps</option>
+                                    <option value="opus">Opus - 128kbps</option>
+                                    <option value="flac">FLAC - 128kbps</option>
                                 </select>
                                 <select id="quality-select-mp4"
                                     class="quality-select quality-select--mp4"
                                     aria-label="Video quality" data-quality-select>
-                                    <option value="mp4-720" selected>MP4 - 720p</option>
+                                    <optgroup label="MP4">
+                                        <option value="mp4-2160">mp4 - 4K</option>
+                                        <option value="mp4-1440">mp4 - 2K</option>
+                                        <option value="mp4-1080">mp4 - 1080p</option>
+                                        <option value="mp4-720" selected>mp4 - 720p</option>
+                                        <option value="mp4-480">mp4 - 480p</option>
+                                        <option value="mp4-360">mp4 - 360p</option>
+                                        <option value="mp4-144">mp4 - 144p</option>
+                                    </optgroup>
+                                    <optgroup label="WEBM">
+                                        <option value="webm-2160">webm - 4K</option>
+                                        <option value="webm-1440">webm - 2K</option>
+                                        <option value="webm-1080">webm - 1080p</option>
+                                        <option value="webm-720">webm - 720p</option>
+                                        <option value="webm-480">webm - 480p</option>
+                                        <option value="webm-360">webm - 360p</option>
+                                        <option value="webm-144">webm - 144p</option>
+                                    </optgroup>
+                                    <optgroup label="MKV">
+                                        <option value="mkv-2160">mkv - 4K</option>
+                                        <option value="mkv-1440">mkv - 2K</option>
+                                        <option value="mkv-1080">mkv - 1080p</option>
+                                        <option value="mkv-720">mkv - 720p</option>
+                                        <option value="mkv-480">mkv - 480p</option>
+                                        <option value="mkv-360">mkv - 360p</option>
+                                        <option value="mkv-144">mkv - 144p</option>
+                                    </optgroup>
                                 </select>
                                 <svg class="dropdown-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                                     <path d="M6 9l6 6 6-6"></path>
@@ -184,3 +218,6 @@
 
   
 </div>
+
+
+

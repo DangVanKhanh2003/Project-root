@@ -29,18 +29,18 @@ export const QUALITY_OPTIONS = {
 /**
  * Page-specific default values based on URL
  * Maps page URL patterns to default format/quality
- * Note: audioBitrate is only used for MP3, empty for other formats
+ * Note: audioBitrate is only required for MP3 format
  */
 const PAGE_DEFAULTS: Record<string, { format: FormatType; videoQuality?: string; audioFormat?: AudioFormatType; audioBitrate?: string }> = {
   // Main pages
   'youtube-to-mp3': { format: 'mp3', audioFormat: 'mp3', audioBitrate: '128' },
   'youtube-to-mp4': { format: 'mp4', videoQuality: '720p' },
-  // Audio format converter pages (non-MP3 formats don't have bitrate)
-  'youtube-to-wav-converter': { format: 'mp3', audioFormat: 'wav', audioBitrate: '' },
-  'youtube-to-m4a-converter': { format: 'mp3', audioFormat: 'm4a', audioBitrate: '' },
-  'youtube-to-opus-converter': { format: 'mp3', audioFormat: 'opus', audioBitrate: '' },
-  'youtube-to-ogg-converter': { format: 'mp3', audioFormat: 'ogg', audioBitrate: '' },
-  'youtube-to-flac-converter': { format: 'mp3', audioFormat: 'flac', audioBitrate: '' },
+  // Audio format converter pages
+  'youtube-to-wav-converter': { format: 'mp3', audioFormat: 'wav', audioBitrate: '128' },
+  'youtube-to-m4a-converter': { format: 'mp3', audioFormat: 'm4a', audioBitrate: '128' },
+  'youtube-to-opus-converter': { format: 'mp3', audioFormat: 'opus', audioBitrate: '128' },
+  'youtube-to-ogg-converter': { format: 'mp3', audioFormat: 'ogg', audioBitrate: '128' },
+  'youtube-to-flac-converter': { format: 'mp3', audioFormat: 'flac', audioBitrate: '128' },
   'youtube-to-mp3-320kbps-converter': { format: 'mp3', audioFormat: 'mp3', audioBitrate: '320' },
 };
 
@@ -56,11 +56,51 @@ interface StoredPreferences {
   timestamp: number; // For potential expiration logic
 }
 
+function normalizeVideoQuality(quality: string | undefined): string | null {
+  if (!quality) return null;
+
+  const normalized = String(quality).toLowerCase().trim();
+
+  if (QUALITY_OPTIONS.mp4.qualities.includes(normalized as any)) {
+    return normalized;
+  }
+
+  const simpleMatch = normalized.match(/^(\d+)(p)?$/);
+  if (simpleMatch) {
+    const resolution = `${simpleMatch[1]}p`;
+    if (QUALITY_OPTIONS.mp4.qualities.includes(resolution as any)) {
+      return resolution;
+    }
+    return null;
+  }
+
+  const containerOnlyMatch = normalized.match(/^(webm|mkv)$/);
+  if (containerOnlyMatch) {
+    // Legacy stored values used container only; map to default 720p
+    return `${containerOnlyMatch[1]}-720p`;
+  }
+
+  const groupedMatch = normalized.match(/^(mp4|webm|mkv)-(\d+)(p)?$/);
+  if (!groupedMatch) return null;
+
+  const container = groupedMatch[1];
+  const resolution = `${groupedMatch[2]}p`;
+  if (!QUALITY_OPTIONS.mp4.qualities.includes(resolution as any)) {
+    return null;
+  }
+
+  return container === 'mp4' ? resolution : `${container}-${resolution}`;
+}
+
+function normalizeStoredVideoQuality(quality: string | undefined): string {
+  return normalizeVideoQuality(quality) || '720p';
+}
+
 function normalizeStoredAudioBitrate(
   bitrate: string | undefined,
   audioFormat: AudioFormatType | undefined
 ): string {
-  if (audioFormat && audioFormat !== 'mp3') return '';
+  if (audioFormat && audioFormat !== 'mp3') return '128';
   if (!bitrate) return '128';
   return QUALITY_OPTIONS.mp3.bitrates.includes(bitrate as any) ? bitrate : '128';
 }
@@ -88,7 +128,7 @@ function getPageDefaults(): { format: FormatType; videoQuality: string; audioFor
   if (defaults) {
     return {
       format: defaults.format,
-      videoQuality: defaults.videoQuality || '',
+      videoQuality: normalizeStoredVideoQuality(defaults.videoQuality || ''),
       audioFormat: defaults.audioFormat || 'mp3',
       audioBitrate: normalizeStoredAudioBitrate(defaults.audioBitrate || '', defaults.audioFormat || 'mp3')
     };
@@ -180,7 +220,7 @@ export function initializeFormatSelector(): void {
     // Use stored preferences (user has used the app before)
     setState({
       selectedFormat: stored.selectedFormat,
-      videoQuality: stored.videoQuality,
+      videoQuality: normalizeStoredVideoQuality(stored.videoQuality),
       audioFormat: stored.audioFormat,
       audioBitrate: normalizeStoredAudioBitrate(stored.audioBitrate, stored.audioFormat),
       hasUserSelectedFormat: true
@@ -216,8 +256,8 @@ export function setSelectedFormat(format: FormatType): void {
   // Clear quality if switching format type to force user selection
   if (format === 'mp4' && !state.videoQuality) {
     setState({ videoQuality: '' });
-  } else if (format === 'mp3' && !state.audioBitrate) {
-    setState({ audioBitrate: '' });
+  } else if (format === 'mp3' && state.audioFormat === 'mp3' && !state.audioBitrate) {
+    setState({ audioBitrate: '128' });
   }
 
   // Auto-save to localStorage after format change
@@ -229,16 +269,14 @@ export function setSelectedFormat(format: FormatType): void {
  * Accepts: resolution (e.g., "720p") or format (e.g., "webm", "mkv")
  */
 export function setVideoQuality(quality: string): void {
-  const isValidQuality = QUALITY_OPTIONS.mp4.qualities.includes(quality as any);
-  const isValidFormat = QUALITY_OPTIONS.mp4.formats.includes(quality as any);
-
-  if (!isValidQuality && !isValidFormat) {
+  const normalizedQuality = normalizeVideoQuality(quality);
+  if (!normalizedQuality) {
     console.warn(`Invalid video quality: ${quality}`);
     return;
   }
 
   setState({
-    videoQuality: quality,
+    videoQuality: normalizedQuality,
     hasUserSelectedFormat: true
   });
 
@@ -255,8 +293,14 @@ export function setAudioFormat(format: AudioFormatType): void {
     return;
   }
 
+  const state = getState();
+  const normalizedBitrate = format === 'mp3'
+    ? normalizeStoredAudioBitrate(state.audioBitrate, 'mp3')
+    : '128';
+
   setState({
     audioFormat: format,
+    audioBitrate: normalizedBitrate,
     hasUserSelectedFormat: true
   });
 
@@ -265,16 +309,16 @@ export function setAudioFormat(format: AudioFormatType): void {
 }
 
 /**
- * Set audio bitrate (for MP3 mode)
+ * Set audio bitrate (for audio formats)
  */
 export function setAudioBitrate(bitrate: string): void {
-  // Non-MP3 formats don't carry bitrate in UI state.
-  if (bitrate === '') {
+  const state = getState();
+
+  if (state.audioFormat !== 'mp3') {
     setState({
-      audioBitrate: '',
+      audioBitrate: '128',
       hasUserSelectedFormat: true
     });
-
     saveFormatPreferences();
     return;
   }
@@ -303,14 +347,14 @@ export function setAudioOptions(format: AudioFormatType, bitrate: string): void 
     return;
   }
 
-  if (!QUALITY_OPTIONS.mp3.bitrates.includes(bitrate as any)) {
+  if (format === 'mp3' && !QUALITY_OPTIONS.mp3.bitrates.includes(bitrate as any)) {
     console.warn(`Invalid audio bitrate: ${bitrate}`);
     return;
   }
 
   setState({
     audioFormat: format,
-    audioBitrate: bitrate,
+    audioBitrate: format === 'mp3' ? bitrate : '128',
     hasUserSelectedFormat: true
   });
 
@@ -356,9 +400,8 @@ export function getCurrentQualityLabel(): string {
   } else {
     const format = state.audioFormat.toUpperCase();
     if (state.audioFormat !== 'mp3') {
-      return format;
+      return `${format} - 128kbps`;
     }
-
     const bitrate = state.audioBitrate ? `${state.audioBitrate}kbps` : 'Select quality';
     return state.audioBitrate ? `${format} - ${bitrate}` : 'Select quality';
   }

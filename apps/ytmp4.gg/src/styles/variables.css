@@ -175,7 +175,7 @@
 
     --bg-page: #262624;
     --bg-card: #30302E;
-    --yt-preview-card-bg: var(--bg-card);
+    --yt-preview-card-bg: rgba(0, 0, 0, .1);
     --bg-primary: #1F1F1E;
     --bg-secondary: #262624;
     --bg-surface-soft: #383836;

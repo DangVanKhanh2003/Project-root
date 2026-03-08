@@ -1,4 +1,4 @@
-
+﻿
 import { RendererStrategy } from './renderer-strategy.interface';
 import { VideoItem } from '../../state/multiple-download-types';
 import { isMobileDevice } from '../../../../utils';
@@ -10,18 +10,18 @@ import { escapeAttr } from './video-item-renderer';
 export class MultiDownloadStrategy implements RendererStrategy {
 
     buildSettingsContent(item: VideoItem): string {
-        const format = (item.settings?.format || 'mp4').toUpperCase();
+        const baseFormat = (item.settings?.format || 'mp4').toLowerCase();
         const quality = item.settings?.quality || '720p';
         const audioTrack = item.settings?.audioTrack;
 
         // Only show audio track if it's explicitly set and not 'original'
-        const trackLabel = (audioTrack && audioTrack !== 'original') ? ` · ${audioTrack.toUpperCase()}` : '';
+        const trackLabel = (audioTrack && audioTrack !== 'original') ? ` - ${audioTrack.toUpperCase()}` : '';
 
-        const details = format === 'MP3'
-            ? formatAudioDetail(item.settings?.audioBitrate, item.settings?.audioFormat)
-            : quality;
+        const display = baseFormat === 'mp3'
+            ? getAudioDisplay(item.settings?.audioFormat, item.settings?.audioBitrate)
+            : getVideoDisplay(quality, baseFormat);
 
-        return `<span class="item-setting-text">${format} · ${details}${trackLabel}</span>`;
+        return `<span class="item-setting-text">${display.format} - ${display.details}${trackLabel}</span>`;
     }
 
     getSettingsClass(item: VideoItem): string {
@@ -89,7 +89,7 @@ export class MultiDownloadStrategy implements RendererStrategy {
         if (item.status === 'downloading' || item.status === 'converting') {
             return `
                 <button class="btn-icon btn-cancel" data-action="cancel" data-id="${item.id}" title="Cancel">
-                    <span class="icon-cancel">✕</span>
+                    <span class="icon-cancel">âœ•</span>
                 </button>
             `;
         }
@@ -179,19 +179,37 @@ export class MultiDownloadStrategy implements RendererStrategy {
     }
 }
 
-function formatAudioDetail(bitrate: string | undefined, audioFormat: string | undefined): string {
-    if (bitrate) {
-        const numeric = Number(bitrate);
-        if (!Number.isNaN(numeric)) {
-            return numeric + 'kbps';
-        }
-        return bitrate.toUpperCase();
+function getVideoDisplay(quality: string, fallbackFormat: string): { format: string; details: string } {
+    const normalizedQuality = (quality || '720p').toLowerCase();
+    const grouped = normalizedQuality.match(/^(webm|mkv)-(\d+p)$/);
+    if (grouped) {
+        return { format: grouped[1].toUpperCase(), details: normalizeResolutionLabel(grouped[2]) };
     }
 
-    if (audioFormat && audioFormat !== 'mp3') {
-        return audioFormat.toUpperCase();
+    const plain = normalizedQuality.match(/^(\d+)p$/);
+    if (plain) {
+        return { format: fallbackFormat.toUpperCase(), details: normalizeResolutionLabel(`${plain[1]}p`) };
     }
 
-    return '128kbps';
+    return { format: fallbackFormat.toUpperCase(), details: quality };
 }
+
+function getAudioDisplay(audioFormat: string | undefined, bitrate: string | undefined): { format: string; details: string } {
+    const normalizedFormat = (audioFormat || 'mp3').toLowerCase();
+    if (normalizedFormat !== 'mp3') {
+        return { format: normalizedFormat.toUpperCase(), details: '128kbps' };
+    }
+
+    const numericBitrate = Number(bitrate || '128');
+    const resolved = Number.isNaN(numericBitrate) ? '128' : String(numericBitrate);
+    return { format: 'MP3', details: `${resolved}kbps` };
+}
+
+function normalizeResolutionLabel(resolution: string): string {
+    const normalized = (resolution || '').toLowerCase();
+    if (normalized === '2160p') return '4K';
+    if (normalized === '1440p') return '2K';
+    return normalized;
+}
+
 

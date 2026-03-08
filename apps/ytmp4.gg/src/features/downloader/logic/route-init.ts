@@ -1,4 +1,5 @@
 import { Route } from '../routing/url-manager';
+import { submitForm } from '../../../utils/dom-utils';
 import { setVideoPageSEO } from '../routing/seo-manager';
 import { setAudioTrack } from '../ui-render/dropdown-logic';
 
@@ -24,8 +25,7 @@ export function handleVideoRoute(route: Route): void {
     // Apply URL parameters if present
     if (route.format || route.quality) {
         // Determine whether to switch to MP3 or MP4 tab
-        const isAudio = route.format === 'mp3' || route.format === 'm4a' || route.format === 'wav' || route.format === 'ogg' || route.format === 'opus';
-        const type = isAudio ? 'mp3' : 'mp4';
+        const isAudio = route.format === 'mp3' || route.format === 'm4a' || route.format === 'wav' || route.format === 'ogg' || route.format === 'opus' || route.format === 'flac';
 
         // Find format tab buttons
         const mp4Btn = document.querySelector(`.format-btn[data-format="mp4"]`) as HTMLElement;
@@ -46,32 +46,24 @@ export function handleVideoRoute(route: Route): void {
             const f = route.format ? route.format.toLowerCase() : '';
 
             if (q) {
-                // Case 1: quality param is actually a format name (e.g. quality=opus)
-                if (['opus', 'ogg', 'wav', 'flac', 'm4a'].includes(q)) {
-                    targetValue = q;
-                } else {
-                    // Case 2: quality is a bitrate (e.g. 128) - only MP3 uses bitrate suffix
-                    const normalizedBitrate = q.replace(/kbps$/i, '');
-                    if (f === 'mp3') {
-                        targetValue = `mp3-${normalizedBitrate}`;
-                    } else if (['m4a', 'opus', 'ogg', 'flac', 'wav'].includes(f)) {
-                        targetValue = f;
-                    } else {
-                        targetValue = `mp3-${normalizedBitrate}`;
-                    }
-                }
+                const normalizedBitrate = q.replace(/kbps$/i, '');
+                targetValue = f === 'mp3'
+                    ? `mp3-${normalizedBitrate}`
+                    : (['m4a', 'opus', 'ogg', 'flac', 'wav'].includes(f) ? f : 'mp3-128');
             } else if (f) {
-                // Case 3: Only format provided (e.g. format=wav)
-                targetValue = f;
+                targetValue = f === 'mp3'
+                    ? 'mp3-128'
+                    : (['m4a', 'opus', 'ogg', 'flac', 'wav'].includes(f) ? f : 'mp3-128');
             }
         } else {
             // Video Logic
             const q = route.quality ? route.quality.toLowerCase() : '';
             if (q) {
-                if (['webm', 'mkv'].includes(q)) {
-                    targetValue = q;
+                const grouped = q.match(/^(mp4|webm|mkv)-(\d+)(p)?$/);
+                if (grouped) {
+                    targetValue = `${grouped[1]}-${grouped[2]}`;
                 } else {
-                    const res = q.replace('p', '');
+                    const res = q.replace(/p$/i, '');
                     targetValue = `mp4-${res}`;
                 }
             } else {
@@ -121,7 +113,7 @@ export function handleVideoRoute(route: Route): void {
 
         // Small delay to let UI settle before submitting
         setTimeout(() => {
-            form.requestSubmit();
+            submitForm(form);
         }, 100);
     }
 }

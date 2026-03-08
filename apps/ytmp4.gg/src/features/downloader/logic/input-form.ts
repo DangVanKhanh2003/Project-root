@@ -4,6 +4,7 @@
  */
 
 import { api, coreServices } from '../../../api';
+import { submitForm } from '../../../utils/dom-utils';
 import { logEvent } from '../../../libs/firebase';
 import { scrollManager, confirmRedirectPopup } from '@downloader/ui-shared';
 import {
@@ -289,32 +290,21 @@ export async function handleAutoDownload(
     let formatId: string;
 
     if (selectedFormat === 'mp4') {
-      // Default to MP4 parameters (Case B logic promoted to default)
-      const qualityNumber = videoQuality.replace('p', '');
-      let targetContainer = 'mp4';
-      let finalQuality = videoQuality === '144p' ? '144p' : qualityNumber;
+      const normalizedVideoQuality = (videoQuality || '720p').toLowerCase();
+      const groupedMatch = normalizedVideoQuality.match(/^(webm|mkv)-(\d+)p$/);
+      const targetContainer = groupedMatch ? groupedMatch[1] : 'mp4';
+      const resolvedQuality = groupedMatch ? `${groupedMatch[2]}p` : normalizedVideoQuality;
+      const qualityNumber = resolvedQuality.replace('p', '');
+      const finalQuality = resolvedQuality === '144p' ? '144p' : qualityNumber;
       const videoAudioBitrate = '128';
 
-      // Override for explicit WEBM or MKV (Case A)
-      const isExplicitFormat = ['webm', 'mkv'].includes(videoQuality);
-
-      if (isExplicitFormat) {
-
-        if (videoQuality === 'webm') {
-          targetContainer = 'webm';
-        } else if (videoQuality === 'mkv') {
-          targetContainer = 'mkv';
-        }
-        finalQuality = '';
-      }
-
       formatData = {
-        id: `video|${targetContainer}-${videoQuality}`,
+        id: `video|${targetContainer}-${resolvedQuality}`,
         vid: videoId,
         category: 'video',
         type: 'VIDEO',
         format: targetContainer,
-        quality: videoQuality,
+        quality: resolvedQuality,
         sizeText: 'Processing...',
         isFakeData: true,
         extractV2Options: {
@@ -327,34 +317,51 @@ export async function handleAutoDownload(
           ...(Number.isFinite(options.trimEnd) ? { trimEnd: options.trimEnd } : {})
         }
       };
-      formatId = `video|${targetContainer}-${videoQuality}`;
+      formatId = `video|${targetContainer}-${resolvedQuality}`;
 
     } else {
-      // Audio format - All formats need audioBitrate
-      // M4A, OGG, WAV, Opus: Fixed '128'
-      // MP3: User selection (64/128/192/320)
-      const isNonBitrateFormat = ['m4a', 'ogg', 'wav', 'opus'].includes(audioFormat.toLowerCase());
-      const finalBitrate = isNonBitrateFormat ? '128' : audioBitrate;
-      const finalQuality = isNonBitrateFormat ? audioFormat.toUpperCase() : `${audioBitrate}kbps`;
+      if (audioFormat === 'mp3') {
+        const finalBitrate = audioBitrate || '128';
 
-      formatData = {
-        id: isNonBitrateFormat ? `audio|${audioFormat}` : `audio|${audioFormat}-${audioBitrate}kbps`,
-        vid: videoId,
-        category: 'audio',
-        type: 'AUDIO',
-        format: audioFormat,
-        quality: finalQuality,
-        sizeText: 'Processing...',
-        isFakeData: true,
-        extractV2Options: {
-          downloadMode: 'audio',
-          audioBitrate: finalBitrate,  // '128' for M4A/OGG/WAV/Opus, user choice for MP3
-          audioFormat: audioFormat,
-          trackId,
-          ...(Number.isFinite(options.trimStart) ? { trimStart: options.trimStart } : {}),
-          ...(Number.isFinite(options.trimEnd) ? { trimEnd: options.trimEnd } : {})
-        }
-      };
+        formatData = {
+          id: `audio|mp3-${finalBitrate}kbps`,
+          vid: videoId,
+          category: 'audio',
+          type: 'AUDIO',
+          format: 'mp3',
+          quality: `${finalBitrate}kbps`,
+          sizeText: 'Processing...',
+          isFakeData: true,
+          extractV2Options: {
+            downloadMode: 'audio',
+            audioBitrate: finalBitrate,
+            audioFormat: 'mp3',
+            trackId,
+            ...(Number.isFinite(options.trimStart) ? { trimStart: options.trimStart } : {}),
+            ...(Number.isFinite(options.trimEnd) ? { trimEnd: options.trimEnd } : {})
+          }
+        };
+      } else {
+        formatData = {
+          id: `audio|${audioFormat}`,
+          vid: videoId,
+          category: 'audio',
+          type: 'AUDIO',
+          format: audioFormat,
+          quality: `${audioFormat.toUpperCase()} - 128kbps`,
+          sizeText: 'Processing...',
+          isFakeData: true,
+          extractV2Options: {
+            downloadMode: 'audio',
+            audioFormat: audioFormat,
+            audioBitrate: '128',
+            trackId,
+            ...(Number.isFinite(options.trimStart) ? { trimStart: options.trimStart } : {}),
+            ...(Number.isFinite(options.trimEnd) ? { trimEnd: options.trimEnd } : {})
+          }
+        };
+      }
+
       formatId = formatData.id;
     }
 
@@ -726,7 +733,7 @@ function selectCurrentSuggestion(state: ReturnType<typeof getState>): void {
 
   // Trigger form submission
   if (form) {
-    form.requestSubmit();
+    submitForm(form);
   }
 }
 
@@ -786,7 +793,7 @@ function handleSuggestionClick(event: MouseEvent): void {
     // Auto-submit after slight delay
     setTimeout(() => {
       if (form) {
-        form.requestSubmit();
+        submitForm(form);
       }
     }, 50);
   }
@@ -946,6 +953,20 @@ function extractYouTubeVideoId(url: string): string | null {
   }
 }
 
+function getVideoResolutionLabel(videoQuality: string | undefined): string {
+  const normalized = (videoQuality || '').toLowerCase();
+  const grouped = normalized.match(/^(?:mp4|webm|mkv)-(\d+)p$/);
+  if (grouped) return `${grouped[1]}p`;
+
+  const plain = normalized.match(/^(\d+)p$/);
+  if (plain) return `${plain[1]}p`;
+
+  const numeric = normalized.match(/^(\d+)$/);
+  if (numeric) return `${numeric[1]}p`;
+
+  return '';
+}
+
 /**
  * Handle media extraction (URL input)
  * Supports any URL (not just YouTube). YouTube URLs get preview thumbnail + metadata.
@@ -966,7 +987,8 @@ export async function handleExtractMedia(
     // ── Early Limit Check (Before Skeleton UI) ────────────────────────
     if (autoDownload) {
       const state = getState();
-      const is4K = state.selectedFormat === 'mp4' && state.videoQuality === '2160p';
+      const selectedResolution = getVideoResolutionLabel(state.videoQuality);
+      const is4K = selectedResolution === '2160p';
       const is320kbps = state.selectedFormat === 'mp3' && state.audioFormat === 'mp3' && state.audioBitrate === '320';
 
       if (is4K) {
@@ -979,7 +1001,7 @@ export async function handleExtractMedia(
         }
       }
 
-      const is2K = state.selectedFormat === 'mp4' && state.videoQuality === '1440p';
+      const is2K = selectedResolution === '1440p';
       if (is2K) {
         const limitResult = checkLimit(FEATURE_KEYS.HIGH_QUALITY_2K);
         if (!limitResult.allowed) {
@@ -1018,7 +1040,7 @@ export async function handleExtractMedia(
       if (state.selectedFormat === 'mp4') {
         navigateToVideo(videoId, { format: 'mp4', quality: state.videoQuality || undefined, audioTrack: urlAudioTrack });
       } else {
-        const audioQuality = state.audioFormat === 'mp3' ? (state.audioBitrate || undefined) : undefined;
+        const audioQuality = state.audioFormat === 'mp3' ? (state.audioBitrate || undefined) : '128';
         navigateToVideo(videoId, { format: state.audioFormat || 'mp3', quality: audioQuality, audioTrack: urlAudioTrack });
       }
     }

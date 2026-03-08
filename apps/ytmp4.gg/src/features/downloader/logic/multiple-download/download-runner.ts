@@ -1,9 +1,10 @@
 
 import { apiV3, v3Config } from '../../../../api/v3';
-import { mapToV3DownloadRequest } from '@downloader/core';
+import { mapToV3DownloadRequest, FEATURE_KEYS } from '@downloader/core';
 import { retryWithBackoff, RETRY_CONFIGS, isTimeoutError } from '../conversion/retry-helper';
 import { VideoItemSettings, ProgressPhase } from '../../state/multiple-download-types';
 import { extractMediaInfoFromCreateJob, hasExtractedMediaInfo, type ExtractedMediaInfo } from '../conversion/v3/extract-media-info';
+import { checkLimit, recordUsage } from '../../../download-limit';
 
 export interface DownloadCallbacks {
     onPhaseChange: (phase: ProgressPhase) => void;
@@ -26,6 +27,7 @@ const MAX_POLL_ITERATIONS = 5400; // 3 hours at 2s intervals
 
 export async function runSingleDownload(config: DownloadConfig): Promise<void> {
     const { url, settings, signal, callbacks } = config;
+    enforceQualityLimits(settings);
 
     // Phase 1: Extract (create job)
     callbacks.onPhaseChange('extracting');
@@ -55,7 +57,66 @@ export async function runSingleDownload(config: DownloadConfig): Promise<void> {
 
     // Phase 2: Poll status
     callbacks.onPhaseChange('processing');
-    await pollStatus(statusUrl, signal, callbacks);
+    await pollStatus(statusUrl, signal, callbacks, settings);
+}
+
+function getVideoResolutionLabel(quality: string | undefined): string {
+    const normalized = (quality || '').toLowerCase();
+    const grouped = normalized.match(/^(?:mp4|webm|mkv)-(\d+)p$/);
+    if (grouped) return `${grouped[1]}p`;
+
+    const plain = normalized.match(/^(\d+)p$/);
+    if (plain) return `${plain[1]}p`;
+
+    return '';
+}
+
+function enforceQualityLimits(settings: VideoItemSettings): void {
+    const format = (settings.format || 'mp4').toLowerCase();
+
+    if (format !== 'mp3') {
+        const resolution = getVideoResolutionLabel(settings.quality || settings.videoQuality || '720p');
+        if (resolution === '2160p') {
+            const limitResult = checkLimit(FEATURE_KEYS.HIGH_QUALITY_4K);
+            if (!limitResult.allowed) {
+                throw new Error('4K daily limit reached. Add license key to continue.');
+            }
+        }
+
+        if (resolution === '1440p') {
+            const limitResult = checkLimit(FEATURE_KEYS.HIGH_QUALITY_2K);
+            if (!limitResult.allowed) {
+                throw new Error('2K daily limit reached. Add license key to continue.');
+            }
+        }
+        return;
+    }
+
+    const audioFormat = (settings.audioFormat || 'mp3').toLowerCase();
+    const bitrate = settings.audioBitrate || '128';
+    if (audioFormat === 'mp3' && bitrate === '320') {
+        const limitResult = checkLimit(FEATURE_KEYS.HIGH_QUALITY_320K);
+        if (!limitResult.allowed) {
+            throw new Error('320kbps daily limit reached. Add license key to continue.');
+        }
+    }
+}
+
+function recordQualityUsage(settings: VideoItemSettings): void {
+    const format = (settings.format || 'mp4').toLowerCase();
+
+    if (format !== 'mp3') {
+        const resolution = getVideoResolutionLabel(settings.quality || settings.videoQuality || '720p');
+        if (resolution === '2160p') recordUsage(FEATURE_KEYS.HIGH_QUALITY_4K);
+        if (resolution === '1440p') recordUsage(FEATURE_KEYS.HIGH_QUALITY_2K);
+        return;
+    }
+
+    const audioFormat = (settings.audioFormat || 'mp3').toLowerCase();
+    const bitrate = settings.audioBitrate || '128';
+    if (audioFormat === 'mp3' && bitrate === '320') {
+        recordUsage(FEATURE_KEYS.HIGH_QUALITY_320K);
+    }
 }
 
 async function extractWithRetries(
@@ -77,7 +138,8 @@ async function extractWithRetries(
 async function pollStatus(
     statusUrl: string,
     signal: AbortSignal,
-    callbacks: DownloadCallbacks
+    callbacks: DownloadCallbacks,
+    settings: VideoItemSettings
 ): Promise<void> {
     const pollingInterval = v3Config.timeout.pollingInterval || POLLING_INTERVAL;
     const { maxConsecutiveErrors } = RETRY_CONFIGS.polling;
@@ -112,6 +174,7 @@ async function pollStatus(
                     const filename = statusData.title
                         ? `${statusData.title}.${getExtension(callbacks)}`
                         : undefined;
+                    recordQualityUsage(settings);
                     callbacks.onComplete(statusData.downloadUrl, filename);
                     return;
                 }
@@ -148,20 +211,25 @@ async function pollStatus(
     throw new Error('Download timed out');
 }
 
-const VIDEO_CONTAINERS = new Set(['webm', 'mkv']);
-const AUDIO_FORMATS = new Set(['ogg', 'wav', 'opus', 'm4a', 'flac']);
-
 function buildV3Request(url: string, settings: VideoItemSettings) {
     const isAudio = settings.format === 'mp3';
-    const isFormatOverride = isAudio && AUDIO_FORMATS.has(settings.audioBitrate || '');
-    const isContainerOverride = !isAudio && VIDEO_CONTAINERS.has(settings.quality || '');
+    const quality = settings.quality || '720p';
+    const groupedMatch = quality.match(/^(webm|mkv)-(\d+)p$/i);
+    const resolutionMatch = quality.match(/^(\d+)p$/i);
+    const youtubeVideoContainer = groupedMatch ? groupedMatch[1].toLowerCase() : 'mp4';
+    const videoQuality = groupedMatch
+        ? groupedMatch[2]
+        : (resolutionMatch ? resolutionMatch[1] : '720');
+
+    const audioFormat = settings.audioFormat || 'mp3';
+    const audioBitrate = audioFormat === 'mp3' ? (settings.audioBitrate || '128') : '128';
 
     return mapToV3DownloadRequest(url, {
         downloadMode: isAudio ? 'audio' : 'video',
-        videoQuality: isContainerOverride ? undefined : (settings.quality?.replace('p', '') || '720'),
-        youtubeVideoContainer: isAudio ? undefined : (isContainerOverride ? settings.quality : 'mp4'),
-        audioFormat: isAudio ? (isFormatOverride ? settings.audioBitrate : (settings.audioFormat || 'mp3')) : undefined,
-        audioBitrate: isFormatOverride ? undefined : (settings.audioBitrate || '128'),
+        videoQuality: isAudio ? undefined : videoQuality,
+        youtubeVideoContainer: isAudio ? undefined : youtubeVideoContainer,
+        audioFormat: isAudio ? audioFormat : undefined,
+        audioBitrate: isAudio ? audioBitrate : undefined,
         trackId: settings.audioTrack,
     });
 }

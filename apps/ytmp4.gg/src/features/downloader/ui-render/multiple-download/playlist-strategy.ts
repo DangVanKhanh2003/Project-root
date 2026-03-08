@@ -1,10 +1,11 @@
-
+﻿
 import { RendererStrategy } from './renderer-strategy.interface';
 import { VideoItem } from '../../state/multiple-download-types';
 import { isMobileDevice } from '../../../../utils';
 import { escapeAttr } from './video-item-renderer';
 import { LANGUAGES } from '../../logic/data/languages';
 import { autoResizeSelect } from '../../../../utils/dom-utils';
+import { syncCustomVideoGroupDropdown } from '../video-group-dropdown';
 
 /**
  * Strategy for Playlist Mode
@@ -22,6 +23,14 @@ export class PlaylistStrategy implements RendererStrategy {
                 (select as any)._hasResizeListener = true;
             }
         });
+
+        const videoQualitySelect = el.querySelector('select.item-quality-select[data-field="quality"]') as HTMLSelectElement | null;
+        if (videoQualitySelect) {
+            syncCustomVideoGroupDropdown(videoQualitySelect, {
+                valueMode: 'p',
+                dropdownClassName: 'item-video-group-dropdown',
+            });
+        }
     }
 
     buildSettingsContent(item: VideoItem): string {
@@ -90,7 +99,8 @@ export class PlaylistStrategy implements RendererStrategy {
 
     private buildEditableSettings(item: VideoItem): string {
         const format = item.settings?.format || 'mp4';
-        const quality = item.settings?.quality || '720p';
+        const rawQuality = item.settings?.quality || '720p';
+        const quality = /^(webm|mkv)$/.test(rawQuality) ? `${rawQuality}-720p` : rawQuality;
 
         const formatSelect = `
             <select class="item-format-select" data-id="${item.id}" data-field="format">
@@ -102,28 +112,50 @@ export class PlaylistStrategy implements RendererStrategy {
         if (format === 'mp4') {
             qualitySelect = `
                 <select class="item-quality-select" data-id="${item.id}" data-field="quality">
-                    <option value="2160p" ${quality === '2160p' ? 'selected' : ''}>4K</option>
-                    <option value="1440p" ${quality === '1440p' ? 'selected' : ''}>2K</option>
-                    <option value="1080p" ${quality === '1080p' ? 'selected' : ''}>1080p</option>
-                    <option value="720p" ${quality === '720p' ? 'selected' : ''}>720p</option>
-                    <option value="480p" ${quality === '480p' ? 'selected' : ''}>480p</option>
-                    <option value="360p" ${quality === '360p' ? 'selected' : ''}>360p</option>
-                    <option value="144p" ${quality === '144p' ? 'selected' : ''}>144p</option>
-                    <option value="webm" ${quality === 'webm' ? 'selected' : ''}>WEBM</option>
-                    <option value="mkv" ${quality === 'mkv' ? 'selected' : ''}>MKV</option>
+                    <optgroup label="MP4">
+                        <option value="2160p" ${quality === '2160p' ? 'selected' : ''}>mp4 - 4K</option>
+                        <option value="1440p" ${quality === '1440p' ? 'selected' : ''}>mp4 - 2K</option>
+                        <option value="1080p" ${quality === '1080p' ? 'selected' : ''}>mp4 - 1080p</option>
+                        <option value="720p" ${quality === '720p' ? 'selected' : ''}>mp4 - 720p</option>
+                        <option value="480p" ${quality === '480p' ? 'selected' : ''}>mp4 - 480p</option>
+                        <option value="360p" ${quality === '360p' ? 'selected' : ''}>mp4 - 360p</option>
+                        <option value="144p" ${quality === '144p' ? 'selected' : ''}>mp4 - 144p</option>
+                    </optgroup>
+                    <optgroup label="WEBM">
+                        <option value="webm-2160p" ${quality === 'webm-2160p' ? 'selected' : ''}>webm - 4K</option>
+                        <option value="webm-1440p" ${quality === 'webm-1440p' ? 'selected' : ''}>webm - 2K</option>
+                        <option value="webm-1080p" ${quality === 'webm-1080p' ? 'selected' : ''}>webm - 1080p</option>
+                        <option value="webm-720p" ${quality === 'webm-720p' ? 'selected' : ''}>webm - 720p</option>
+                        <option value="webm-480p" ${quality === 'webm-480p' ? 'selected' : ''}>webm - 480p</option>
+                        <option value="webm-360p" ${quality === 'webm-360p' ? 'selected' : ''}>webm - 360p</option>
+                        <option value="webm-144p" ${quality === 'webm-144p' ? 'selected' : ''}>webm - 144p</option>
+                    </optgroup>
+                    <optgroup label="MKV">
+                        <option value="mkv-2160p" ${quality === 'mkv-2160p' ? 'selected' : ''}>mkv - 4K</option>
+                        <option value="mkv-1440p" ${quality === 'mkv-1440p' ? 'selected' : ''}>mkv - 2K</option>
+                        <option value="mkv-1080p" ${quality === 'mkv-1080p' ? 'selected' : ''}>mkv - 1080p</option>
+                        <option value="mkv-720p" ${quality === 'mkv-720p' ? 'selected' : ''}>mkv - 720p</option>
+                        <option value="mkv-480p" ${quality === 'mkv-480p' ? 'selected' : ''}>mkv - 480p</option>
+                        <option value="mkv-360p" ${quality === 'mkv-360p' ? 'selected' : ''}>mkv - 360p</option>
+                        <option value="mkv-144p" ${quality === 'mkv-144p' ? 'selected' : ''}>mkv - 144p</option>
+                    </optgroup>
                 </select>`;
         } else {
             const bitrate = item.settings?.audioBitrate || '128';
+            const audioFormat = item.settings?.audioFormat || 'mp3';
+            const legacyFormatBitrate = ['wav', 'm4a', 'ogg', 'opus', 'flac'].includes(bitrate) ? bitrate : '';
+            const selectedAudioValue = legacyFormatBitrate || (audioFormat === 'mp3' ? `mp3-${bitrate}` : audioFormat);
             qualitySelect = `
-                <select class="item-quality-select" data-id="${item.id}" data-field="audioBitrate">
-                    <option value="320" ${bitrate === '320' ? 'selected' : ''}>320kbps</option>
-                    <option value="192" ${bitrate === '192' ? 'selected' : ''}>192kbps</option>
-                    <option value="128" ${bitrate === '128' ? 'selected' : ''}>128kbps</option>
-                    <option value="64" ${bitrate === '64' ? 'selected' : ''}>64kbps</option>
-                    <option value="ogg" ${bitrate === 'ogg' ? 'selected' : ''}>OGG</option>
-                    <option value="wav" ${bitrate === 'wav' ? 'selected' : ''}>WAV</option>
-                    <option value="opus" ${bitrate === 'opus' ? 'selected' : ''}>Opus</option>
-                    <option value="m4a" ${bitrate === 'm4a' ? 'selected' : ''}>M4A</option>
+                <select class="item-quality-select" data-id="${item.id}" data-field="audioChoice">
+                    <option value="mp3-320" ${selectedAudioValue === 'mp3-320' ? 'selected' : ''}>MP3 - 320kbps</option>
+                    <option value="mp3-192" ${selectedAudioValue === 'mp3-192' ? 'selected' : ''}>MP3 - 192kbps</option>
+                    <option value="mp3-128" ${selectedAudioValue === 'mp3-128' ? 'selected' : ''}>MP3 - 128kbps</option>
+                    <option value="mp3-64" ${selectedAudioValue === 'mp3-64' ? 'selected' : ''}>MP3 - 64kbps</option>
+                    <option value="wav" ${selectedAudioValue === 'wav' ? 'selected' : ''}>WAV - 128kbps</option>
+                    <option value="m4a" ${selectedAudioValue === 'm4a' ? 'selected' : ''}>M4A - 128kbps</option>
+                    <option value="ogg" ${selectedAudioValue === 'ogg' ? 'selected' : ''}>OGG - 128kbps</option>
+                    <option value="opus" ${selectedAudioValue === 'opus' ? 'selected' : ''}>Opus - 128kbps</option>
+                    <option value="flac" ${selectedAudioValue === 'flac' ? 'selected' : ''}>FLAC - 128kbps</option>
                 </select>`;
         }
 
@@ -141,25 +173,25 @@ export class PlaylistStrategy implements RendererStrategy {
     }
 
     private buildLockedSettings(item: VideoItem): string {
-        const format = (item.settings?.format || 'mp4').toUpperCase();
+        const baseFormat = (item.settings?.format || 'mp4').toLowerCase();
         const quality = item.settings?.quality || '720p';
         const audioTrack = item.settings?.audioTrack;
 
         // Only show audio track if it's explicitly set and not 'original'
-        const trackLabel = (audioTrack && audioTrack !== 'original') ? ` · ${audioTrack.toUpperCase()}` : '';
+        const trackLabel = (audioTrack && audioTrack !== 'original') ? ` - ${audioTrack.toUpperCase()}` : '';
 
-        const details = format === 'MP3'
-            ? formatAudioDetail(item.settings?.audioBitrate, item.settings?.audioFormat)
-            : quality;
+        const display = baseFormat === 'mp3'
+            ? getAudioDisplay(item.settings?.audioFormat, item.settings?.audioBitrate)
+            : getVideoDisplay(quality, baseFormat);
 
-        return `<span class="item-setting-text">${format} · ${details}${trackLabel}</span>`;
+        return `<span class="item-setting-text">${display.format} - ${display.details}${trackLabel}</span>`;
     }
 
     private getDesktopActionButton(item: VideoItem, context: { isFileDownloading?: boolean, currentDownloadingItemId?: string, isGlobalLocked?: boolean }): string {
         if (item.status === 'downloading' || item.status === 'converting') {
             return `
                 <button class="btn-icon btn-cancel" data-action="cancel" data-id="${item.id}" title="Cancel">
-                    <span class="icon-cancel">✕</span>
+                    <span class="icon-cancel">âœ•</span>
                 </button>
             `;
         }
@@ -208,7 +240,7 @@ export class PlaylistStrategy implements RendererStrategy {
         if (item.status === 'downloading' || item.status === 'converting') {
             return `
                 <button class="btn-icon btn-cancel" data-action="cancel" data-id="${item.id}" title="Cancel">
-                    <span class="icon-cancel">✕</span>
+                    <span class="icon-cancel">âœ•</span>
                 </button>
             `;
         }
@@ -263,19 +295,40 @@ export class PlaylistStrategy implements RendererStrategy {
     }
 }
 
-function formatAudioDetail(bitrate: string | undefined, audioFormat: string | undefined): string {
-    if (bitrate) {
-        const numeric = Number(bitrate);
-        if (!Number.isNaN(numeric)) {
-            return numeric + 'kbps';
-        }
-        return bitrate.toUpperCase();
+function getVideoDisplay(quality: string, fallbackFormat: string): { format: string; details: string } {
+    const normalizedQuality = (quality || '720p').toLowerCase();
+    const grouped = normalizedQuality.match(/^(webm|mkv)-(\d+p)$/);
+    if (grouped) {
+        return { format: grouped[1].toUpperCase(), details: normalizeResolutionLabel(grouped[2]) };
     }
 
-    if (audioFormat && audioFormat !== 'mp3') {
-        return audioFormat.toUpperCase();
+    const plain = normalizedQuality.match(/^(\d+)p$/);
+    if (plain) {
+        return { format: fallbackFormat.toUpperCase(), details: normalizeResolutionLabel(`${plain[1]}p`) };
     }
 
-    return '128kbps';
+    return { format: fallbackFormat.toUpperCase(), details: quality };
 }
+
+function getAudioDisplay(audioFormat: string | undefined, bitrate: string | undefined): { format: string; details: string } {
+    const normalizedFormat = (audioFormat || 'mp3').toLowerCase();
+    if (normalizedFormat !== 'mp3') {
+        return { format: normalizedFormat.toUpperCase(), details: '128kbps' };
+    }
+
+    const numericBitrate = Number(bitrate || '128');
+    const resolved = Number.isNaN(numericBitrate) ? '128' : String(numericBitrate);
+    return { format: 'MP3', details: `${resolved}kbps` };
+}
+
+function normalizeResolutionLabel(resolution: string): string {
+    const normalized = (resolution || '').toLowerCase();
+    if (normalized === '2160p') return '4K';
+    if (normalized === '1440p') return '2K';
+    return normalized;
+}
+
+
+
+
 

@@ -457,7 +457,7 @@
 <section class="hero-section">
     <div class="container hero-container">
 
-        <div class="hero-card">
+        ﻿<div class="hero-card">
     <h1 class="title-hero">YTMP4 – Download 1080p Video YouTube</h1>
     <div id="search-view" class="">
         <form id="downloadForm" class="form-container" onsubmit="return false">
@@ -504,23 +504,42 @@
                                     <option value="mp3-192">MP3 - 192kbps</option>
                                     <option value="mp3-128" selected>MP3 - 128kbps</option>
                                     <option value="mp3-64">MP3 - 64kbps</option>
-                                    <option value="ogg">OGG</option>
-                                    <option value="wav">WAV - Lossless</option>
-                                    <option value="opus">Opus</option>
-                                    <option value="m4a">M4A</option>
+                                    <option value="wav">WAV - 128kbps</option>
+                                    <option value="m4a">M4A - 128kbps</option>
+                                    <option value="ogg">OGG - 128kbps</option>
+                                    <option value="opus">Opus - 128kbps</option>
+                                    <option value="flac">FLAC - 128kbps</option>
                                 </select>
                                 <select id="quality-select-mp4"
                                     class="quality-select quality-select--mp4"
                                     aria-label="Video quality" data-quality-select>
-                                    <option value="mp4-2160">MP4 - 4K</option>
-                                    <option value="mp4-1440">MP4 - 2K</option>
-                                    <option value="mp4-1080">MP4 - 1080p</option>
-                                    <option value="mp4-720" selected>MP4 - 720p</option>
-                                    <option value="mp4-480">MP4 - 480p</option>
-                                    <option value="mp4-360">MP4 - 360p</option>
-                                    <option value="mp4-144">MP4 - 144p</option>
-                                    <option value="webm">WEBM</option>
-                                    <option value="mkv">MKV</option>
+                                    <optgroup label="MP4">
+                                        <option value="mp4-2160">mp4 - 4K</option>
+                                        <option value="mp4-1440">mp4 - 2K</option>
+                                        <option value="mp4-1080">mp4 - 1080p</option>
+                                        <option value="mp4-720" selected>mp4 - 720p</option>
+                                        <option value="mp4-480">mp4 - 480p</option>
+                                        <option value="mp4-360">mp4 - 360p</option>
+                                        <option value="mp4-144">mp4 - 144p</option>
+                                    </optgroup>
+                                    <optgroup label="WEBM">
+                                        <option value="webm-2160">webm - 4K</option>
+                                        <option value="webm-1440">webm - 2K</option>
+                                        <option value="webm-1080">webm - 1080p</option>
+                                        <option value="webm-720">webm - 720p</option>
+                                        <option value="webm-480">webm - 480p</option>
+                                        <option value="webm-360">webm - 360p</option>
+                                        <option value="webm-144">webm - 144p</option>
+                                    </optgroup>
+                                    <optgroup label="MKV">
+                                        <option value="mkv-2160">mkv - 4K</option>
+                                        <option value="mkv-1440">mkv - 2K</option>
+                                        <option value="mkv-1080">mkv - 1080p</option>
+                                        <option value="mkv-720">mkv - 720p</option>
+                                        <option value="mkv-480">mkv - 480p</option>
+                                        <option value="mkv-360">mkv - 360p</option>
+                                        <option value="mkv-144">mkv - 144p</option>
+                                    </optgroup>
                                 </select>
                                 <div class="select-arrow">
                                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
@@ -580,7 +599,7 @@
                                     <input type="hidden" id="audio-track-value" value="original">
                                 </div>
                             </div>
-                            <script>(function () { try { var p = JSON.parse(localStorage.getItem('ytmp4_format_preferences')); if (!p) return; var s = p.selectedFormat === 'mp4' ? document.getElementById('quality-select-mp4') : document.getElementById('quality-select-mp3'); if (!s) return; var v; if (p.selectedFormat === 'mp4') { var vq = p.videoQuality || '720p'; v = (vq === 'webm' || vq === 'mkv') ? vq : 'mp4-' + vq.replace('p', '') } else { var af = p.audioFormat || 'mp3'; v = (af === 'mp3') ? 'mp3-' + (p.audioBitrate || '128') : af } s.value = v } catch (e) { } })()</script>
+                            <script>(function () { try { var p = JSON.parse(localStorage.getItem('ytmp4_format_preferences')); if (!p) return; var s = p.selectedFormat === 'mp4' ? document.getElementById('quality-select-mp4') : document.getElementById('quality-select-mp3'); if (!s) return; var v; if (p.selectedFormat === 'mp4') { var vq = (p.videoQuality || '720p').toLowerCase(); var m = vq.match(/^(webm|mkv)-(\d+)p$/); v = m ? (m[1] + '-' + m[2]) : ((vq === 'webm' || vq === 'mkv') ? (vq + '-720') : 'mp4-' + vq.replace('p', '')) } else { var af = (p.audioFormat || 'mp3').toLowerCase(); var ab = p.audioBitrate || '128'; v = af === 'mp3' ? ('mp3-' + ab) : af } s.value = v } catch (e) { } })()</script>
                         </div>
                         <button type="submit" class="btn-convert" disabled>
                             <span>Convert</span>
@@ -598,6 +617,10 @@
 
    
 </div>
+
+
+
+
 
     </div>
 </section>

@@ -6,7 +6,7 @@
  * consistent, state-driven UI updates without polling.
  */
 
-import { initExpandableText } from '../../../utils';
+import { initExpandableText, submitForm } from '../../../utils';
 import { LANGUAGES } from '../logic/data/languages';
 import { addRippleEffect } from '@downloader/core/utils';
 import { TaskState } from '../logic/conversion/types';
@@ -243,24 +243,18 @@ function getCurrentFormatId(state: AppState): string | null {
 
   // Build formatId (same logic as in input-form.ts result)
   if (selectedFormat === 'mp4') {
-    const videoQuality = state.videoQuality || '720p';
-
-    // Check if explicit format (webm/mkv)
-    // Note: videoQuality stores the raw value "webm" or "mkv" when selected
-    const isExplicitFormat = ['webm', 'mkv'].includes(videoQuality);
-    const container = isExplicitFormat ? videoQuality : 'mp4';
-
-    return `video|${container}-${videoQuality}`;
+    const videoQuality = (state.videoQuality || '720p').toLowerCase();
+    const grouped = videoQuality.match(/^(webm|mkv)-(\d+p)$/i);
+    const container = grouped ? grouped[1] : 'mp4';
+    const quality = grouped ? grouped[2] : videoQuality;
+    return `video|${container}-${quality}`;
   } else {
-    // Audio formats - apply same fallback as input-form.ts
     const audioFormat = state.audioFormat || 'mp3';
-    const audioBitrate = state.audioBitrate || '128';
-
     if (audioFormat === 'mp3') {
+      const audioBitrate = state.audioBitrate || '128';
       return `audio|mp3-${audioBitrate}kbps`;
-    } else {
-      return `audio|${audioFormat}`;
     }
+    return `audio|${audioFormat}`;
   }
 }
 
@@ -718,7 +712,7 @@ function handleRetryButtonClick(_formatId: string): void {
 
   const form = document.getElementById('downloadForm') as HTMLFormElement | null;
   if (form) {
-    form.requestSubmit();
+    submitForm(form);
   }
 }
 

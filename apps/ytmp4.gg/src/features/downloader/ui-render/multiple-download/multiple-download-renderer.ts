@@ -283,17 +283,27 @@ export class MultipleDownloadRenderer {
                 const id = (target as HTMLSelectElement).dataset.id;
                 const value = (target as HTMLSelectElement).value as 'mp3' | 'mp4';
                 if (id) {
-                    videoStore.updateSettings(id, { format: value });
-                    // Re-render settings to swap quality dropdown
                     const item = videoStore.getItem(id);
-                    if (item) {
+                    if (value === 'mp4') {
+                        const currentQuality = item?.settings?.quality || '720p';
+                        const isVideoQuality = /^(?:\d+p|webm-\d+p|mkv-\d+p)$/i.test(currentQuality);
+                        const nextQuality = isVideoQuality ? currentQuality : '720p';
+                        videoStore.updateSettings(id, { format: value, quality: nextQuality, videoQuality: nextQuality });
+                    } else {
+                        const audioFormat = item?.settings?.audioFormat || 'mp3';
+                        const audioBitrate = audioFormat === 'mp3' ? (item?.settings?.audioBitrate || '128') : undefined;
+                        videoStore.updateSettings(id, { format: value, audioFormat, audioBitrate });
+                    }
+                    // Re-render settings to swap quality dropdown
+                    const updatedItem = videoStore.getItem(id);
+                    if (updatedItem) {
                         const el = this.listContainer?.querySelector(`.multi-video-item[data-id="${id}"]`) as HTMLElement;
                         if (el) {
                             const settingsEl = el.querySelector('.item-settings') as HTMLElement;
                             if (settingsEl) {
-                                settingsEl.innerHTML = this.strategy.buildSettingsContent(item);
+                                settingsEl.innerHTML = this.strategy.buildSettingsContent(updatedItem);
                                 if (this.strategy.afterRender) {
-                                    this.strategy.afterRender(el, item);
+                                    this.strategy.afterRender(el, updatedItem);
                                 }
                             }
                         }
@@ -308,7 +318,30 @@ export class MultipleDownloadRenderer {
                 const field = (target as HTMLSelectElement).dataset.field;
                 const value = (target as HTMLSelectElement).value;
                 if (id && field) {
-                    videoStore.updateSettings(id, { [field]: value });
+                    if (field === 'audioChoice') {
+                        if (value.startsWith('mp3-')) {
+                            const bitrate = value.split('-')[1] || '128';
+                            videoStore.updateSettings(id, {
+                                audioFormat: 'mp3',
+                                audioBitrate: bitrate,
+                                quality: `${bitrate}kbps`
+                            });
+                        } else {
+                            videoStore.updateSettings(id, {
+                                audioFormat: value,
+                                audioBitrate: '128',
+                                quality: `${value.toUpperCase()} - 128kbps`
+                            });
+                        }
+                    } else if (field === 'quality') {
+                        const normalizedQuality = /^(webm|mkv)$/i.test(value) ? `${value.toLowerCase()}-720p` : value;
+                        videoStore.updateSettings(id, {
+                            quality: normalizedQuality,
+                            videoQuality: normalizedQuality
+                        });
+                    } else {
+                        videoStore.updateSettings(id, { [field]: value });
+                    }
                 }
                 return;
             }

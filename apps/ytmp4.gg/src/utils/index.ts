@@ -328,3 +328,5 @@ export function triggerBlobDownload(blob: Blob | null, filename?: string): void 
  * Export ripple effect utility (from @downloader/core)
  */
 export { addRippleEffect } from '@downloader/core/utils';
+
+export { submitForm } from './dom-utils';

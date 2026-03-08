@@ -72,6 +72,10 @@ let currentVideoId: string | null = null;
 let startTime = 0;
 let endTime = 0;
 let seekPreviewPauseTimer: number | null = null;
+const VIDEO_RESOLUTIONS = ['2160', '1440', '1080', '720', '480', '360', '144'] as const;
+type VideoGroup = 'mp4' | 'webm' | 'mkv';
+const VIDEO_GROUPS: readonly VideoGroup[] = ['mp4', 'webm', 'mkv'];
+let streamGroupListenersBound = false;
 
 function extractVideoId(url: string): string | null {
   const normalized = (url || '').trim();
@@ -220,10 +224,11 @@ function syncInputToSlider(inputId: 'trim-start' | 'trim-end'): void {
 
 function applyQualityValueToState(format: 'mp3' | 'mp4', value: string): void {
   if (format === 'mp4') {
-    if (value.startsWith('mp4-')) {
-      setVideoQuality(`${value.split('-')[1]}p`);
-    } else {
-      setVideoQuality(value);
+    const videoMatch = value.match(/^(mp4|webm|mkv)-(\d+)$/);
+    if (videoMatch) {
+      const container = videoMatch[1];
+      const resolution = `${videoMatch[2]}p`;
+      setVideoQuality(container === 'mp4' ? resolution : `${container}-${resolution}`);
     }
     return;
   }
@@ -236,56 +241,277 @@ function applyQualityValueToState(format: 'mp3' | 'mp4', value: string): void {
   }
 
   setAudioFormat(value as 'wav' | 'm4a' | 'opus' | 'ogg' | 'flac' | 'mp3');
-  setAudioBitrate('');
+  setAudioBitrate('128');
 }
 
 function getCurrentQualityValue(format: 'mp3' | 'mp4'): string {
   const state = getState();
   if (format === 'mp4') {
-    if (state.videoQuality === 'webm' || state.videoQuality === 'mkv') {
-      return state.videoQuality;
+    const groupedMatch = (state.videoQuality || '').match(/^(webm|mkv)-(\d+)p$/);
+    if (groupedMatch) {
+      return `${groupedMatch[1]}-${groupedMatch[2]}`;
     }
-    return `mp4-${(state.videoQuality || '720p').replace('p', '')}`;
+
+    const resolution = (state.videoQuality || '720p').replace('p', '');
+    return `mp4-${resolution}`;
   }
 
-  if (state.audioFormat === 'mp3') {
+  if ((state.audioFormat || 'mp3') === 'mp3') {
     return `mp3-${state.audioBitrate || '128'}`;
   }
-  return state.audioFormat || 'mp3-128';
+
+  return state.audioFormat || 'mp3';
+}
+
+function getVideoResolutionLabel(videoQuality: string | undefined): string {
+  const normalized = (videoQuality || '').toLowerCase();
+  const grouped = normalized.match(/^(?:mp4|webm|mkv)-(\d+)p$/);
+  if (grouped) return `${grouped[1]}p`;
+
+  const plain = normalized.match(/^(\d+)p$/);
+  if (plain) return `${plain[1]}p`;
+
+  const numeric = normalized.match(/^(\d+)$/);
+  if (numeric) return `${numeric[1]}p`;
+
+  return '';
+}
+
+function getQualityLabel(resolution: string): string {
+  if (resolution === '2160') return '4K';
+  if (resolution === '1440') return '2K';
+  return `${resolution}p`;
+}
+
+function getGroupFromVideoValue(value: string): VideoGroup | null {
+  const match = value.match(/^(mp4|webm|mkv)-\d+$/);
+  return (match ? match[1] : null) as VideoGroup | null;
+}
+
+function getVideoOptionLabel(value: string): string {
+  const match = value.match(/^(mp4|webm|mkv)-(\d+)$/);
+  if (!match) return value;
+  return `${match[1]} - ${getQualityLabel(match[2])}`;
+}
+
+function buildVideoOptions(container: VideoGroup): string {
+  return VIDEO_RESOLUTIONS.map((resolution) => {
+    const value = `${container}-${resolution}`;
+    const label = `${container} - ${getQualityLabel(resolution)}`;
+    return `<option value="${value}">${label}</option>`;
+  }).join('');
+}
+
+function parseOpenGroups(raw: string | undefined, selectedValue: string): Set<VideoGroup> {
+  const groups = new Set<VideoGroup>();
+  if (raw !== undefined) {
+    raw.split(',').forEach((part) => {
+      const normalized = part.trim().toLowerCase();
+      if (normalized === 'mp4' || normalized === 'webm' || normalized === 'mkv') {
+        groups.add(normalized as VideoGroup);
+      }
+    });
+  } else {
+    groups.add(getGroupFromVideoValue(selectedValue) || 'mp4');
+  }
+
+  return groups;
+}
+
+function setOpenGroups(dropdown: HTMLElement, groups: Set<VideoGroup>): void {
+  dropdown.dataset.openGroups = Array.from(groups).join(',');
+}
+
+function getStreamSelectFromDropdown(dropdown: HTMLElement): HTMLSelectElement | null {
+  const wrapper = dropdown.closest('.quality-dropdown-wrapper') as HTMLElement | null;
+  if (!wrapper) return null;
+  return wrapper.querySelector('#stream-quality-select') as HTMLSelectElement | null;
+}
+
+function renderStreamGroupedDropdown(dropdown: HTMLElement, selectedValue: string): void {
+  const openGroups = parseOpenGroups(dropdown.dataset.openGroups, selectedValue);
+  const menuOpen = dropdown.dataset.menuOpen === '1';
+
+  const groupsHtml = VIDEO_GROUPS.map((group) => {
+    const isOpen = openGroups.has(group);
+    const icon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>';
+    const items = VIDEO_RESOLUTIONS.map((resolution) => {
+      const value = `${group}-${resolution}`;
+      const label = `${group} - ${getQualityLabel(resolution)}`;
+      const selectedClass = value === selectedValue ? ' is-selected' : '';
+      return `<button type="button" class="video-group-item${selectedClass}" data-stream-group-item="${value}">${label}</button>`;
+    }).join('');
+
+    return `
+      <div class="video-group-section${isOpen ? ' is-open' : ''}" data-video-group="${group}">
+        <button type="button" class="video-group-header" data-stream-group-toggle="${group}">
+          <span class="video-group-header-icon">${icon}</span>
+          <span class="video-group-header-label">${group.toUpperCase()}</span>
+        </button>
+        <div class="video-group-items"${isOpen ? '' : ' hidden'}>${items}</div>
+      </div>
+    `;
+  }).join('');
+
+  dropdown.innerHTML = `
+    <button type="button" class="video-group-trigger" data-stream-group-trigger aria-expanded="${menuOpen ? 'true' : 'false'}">
+      <span class="video-group-trigger-label">${getVideoOptionLabel(selectedValue)}</span>
+      <span class="video-group-trigger-icon">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+      </span>
+    </button>
+    <div class="video-group-menu"${menuOpen ? '' : ' hidden'}>
+      ${groupsHtml}
+    </div>
+  `;
+
+  const trigger = dropdown.querySelector('[data-stream-group-trigger]') as HTMLElement | null;
+  if (trigger) {
+    trigger.addEventListener('click', (event) => {
+      event.stopPropagation();
+      toggleStreamGroupMenu(dropdown);
+    });
+  }
+
+  dropdown.querySelectorAll<HTMLElement>('[data-stream-group-toggle]').forEach((toggle) => {
+    toggle.addEventListener('click', (event) => {
+      event.stopPropagation();
+      const group = (toggle.dataset.streamGroupToggle || '').toLowerCase() as VideoGroup;
+      if (group === 'mp4' || group === 'webm' || group === 'mkv') {
+        toggleStreamGroupSection(dropdown, group);
+      }
+    });
+  });
+
+  dropdown.querySelectorAll<HTMLElement>('[data-stream-group-item]').forEach((item) => {
+    item.addEventListener('click', (event) => {
+      event.stopPropagation();
+      const value = item.dataset.streamGroupItem || '';
+      if (value) {
+        selectStreamGroupItem(dropdown, value);
+      }
+    });
+  });
+}
+
+function syncStreamGroupedDropdown(select: HTMLSelectElement): void {
+  const wrapper = select.closest('.quality-dropdown-wrapper') as HTMLElement | null;
+  if (!wrapper) return;
+
+  wrapper.classList.add('quality-dropdown-wrapper--grouped');
+  select.classList.add('quality-select--native-hidden');
+
+  let dropdown = wrapper.querySelector('[data-stream-group-dropdown]') as HTMLElement | null;
+  if (!dropdown) {
+    dropdown = document.createElement('div');
+    dropdown.className = 'video-group-dropdown stream-video-group-dropdown';
+    dropdown.setAttribute('data-stream-group-dropdown', '');
+    wrapper.appendChild(dropdown);
+  }
+
+  renderStreamGroupedDropdown(dropdown, select.value || 'mp4-720');
+}
+
+function toggleStreamGroupMenu(dropdown: HTMLElement): void {
+  const select = getStreamSelectFromDropdown(dropdown);
+  if (!select) return;
+
+  const willOpen = dropdown.dataset.menuOpen !== '1';
+  dropdown.dataset.menuOpen = willOpen ? '1' : '0';
+
+  if (willOpen) {
+    const selected = select.value || 'mp4-720';
+    const selectedGroup = getGroupFromVideoValue(selected) || 'mp4';
+    const groups = parseOpenGroups(dropdown.dataset.openGroups, selected);
+    if (groups.size === 0) {
+      groups.add(selectedGroup);
+      setOpenGroups(dropdown, groups);
+    }
+  }
+
+  renderStreamGroupedDropdown(dropdown, select.value || 'mp4-720');
+}
+
+function closeStreamGroupMenu(dropdown: HTMLElement): void {
+  dropdown.dataset.menuOpen = '0';
+  const select = getStreamSelectFromDropdown(dropdown);
+  if (!select) return;
+  renderStreamGroupedDropdown(dropdown, select.value || 'mp4-720');
+}
+
+function closeAllStreamGroupMenus(): void {
+  document.querySelectorAll<HTMLElement>('[data-stream-group-dropdown]').forEach((dropdown) => {
+    if (dropdown.dataset.menuOpen === '1') {
+      closeStreamGroupMenu(dropdown);
+    }
+  });
+}
+
+function toggleStreamGroupSection(dropdown: HTMLElement, group: VideoGroup): void {
+  const select = getStreamSelectFromDropdown(dropdown);
+  if (!select) return;
+  const groups = parseOpenGroups(dropdown.dataset.openGroups, select.value || 'mp4-720');
+  if (groups.has(group)) groups.delete(group);
+  else groups.add(group);
+  setOpenGroups(dropdown, groups);
+  dropdown.dataset.menuOpen = '1';
+  renderStreamGroupedDropdown(dropdown, select.value || 'mp4-720');
+}
+
+function selectStreamGroupItem(dropdown: HTMLElement, value: string): void {
+  const select = getStreamSelectFromDropdown(dropdown);
+  if (!select) return;
+  select.value = value;
+
+  const selectedGroup = getGroupFromVideoValue(value);
+  const groups = parseOpenGroups(dropdown.dataset.openGroups, value);
+  if (selectedGroup) groups.add(selectedGroup);
+  setOpenGroups(dropdown, groups);
+
+  dropdown.dataset.menuOpen = '0';
+  renderStreamGroupedDropdown(dropdown, value);
+  select.dispatchEvent(new Event('change', { bubbles: true }));
 }
 
 function renderQualityOptions(format: 'mp3' | 'mp4'): void {
   const select = document.getElementById('stream-quality-select') as HTMLSelectElement | null;
   if (!select) return;
 
-  const options = format === 'mp4'
-    ? [
-      { value: 'mp4-2160', label: 'MP4 - 4K' },
-      { value: 'mp4-1440', label: 'MP4 - 2K' },
-      { value: 'mp4-1080', label: 'MP4 - 1080p' },
-      { value: 'mp4-720', label: 'MP4 - 720p' },
-      { value: 'mp4-480', label: 'MP4 - 480p' },
-      { value: 'mp4-360', label: 'MP4 - 360p' },
-      { value: 'mp4-144', label: 'MP4 - 144p' },
-      { value: 'webm', label: 'WEBM' },
-      { value: 'mkv', label: 'MKV' },
-    ]
-    : [
+  if (format === 'mp4') {
+    select.innerHTML = `
+      <optgroup label="MP4">${buildVideoOptions('mp4')}</optgroup>
+      <optgroup label="WEBM">${buildVideoOptions('webm')}</optgroup>
+      <optgroup label="MKV">${buildVideoOptions('mkv')}</optgroup>
+    `;
+  } else {
+    const options = [
       { value: 'mp3-320', label: 'MP3 - 320kbps' },
       { value: 'mp3-192', label: 'MP3 - 192kbps' },
       { value: 'mp3-128', label: 'MP3 - 128kbps' },
-      { value: 'wav', label: 'WAV - Lossless' },
-      { value: 'm4a', label: 'M4A' },
-      { value: 'opus', label: 'Opus' },
-      { value: 'ogg', label: 'OGG' },
-      { value: 'flac', label: 'FLAC - Lossless' },
+      { value: 'mp3-64', label: 'MP3 - 64kbps' },
+      { value: 'wav', label: 'WAV - 128kbps' },
+      { value: 'm4a', label: 'M4A - 128kbps' },
+      { value: 'ogg', label: 'OGG - 128kbps' },
+      { value: 'opus', label: 'Opus - 128kbps' },
+      { value: 'flac', label: 'FLAC - 128kbps' },
     ];
+    select.innerHTML = options.map((item) => `<option value="${item.value}">${item.label}</option>`).join('');
+  }
 
-  select.innerHTML = options
-    .map((item) => `<option value="${item.value}">${item.label}</option>`)
-    .join('');
   select.value = getCurrentQualityValue(format);
+  if (!select.value) {
+    select.selectedIndex = 0;
+  }
   applyQualityValueToState(format, select.value);
+  if (format === 'mp4') {
+    syncStreamGroupedDropdown(select);
+  } else {
+    const wrapper = select.closest('.quality-dropdown-wrapper');
+    wrapper?.classList.remove('quality-dropdown-wrapper--grouped');
+    select.classList.remove('quality-select--native-hidden');
+    const dropdown = wrapper?.querySelector('[data-stream-group-dropdown]');
+    if (dropdown) dropdown.remove();
+  }
 }
 
 function syncStreamControlsFromState(): void {
@@ -521,7 +747,28 @@ function setupEventListeners(): void {
     qualitySelect.addEventListener('change', () => {
       const format = (getState().selectedFormat || 'mp3') as 'mp3' | 'mp4';
       applyQualityValueToState(format, qualitySelect.value);
+      if (format === 'mp4') syncStreamGroupedDropdown(qualitySelect);
     });
+  }
+
+  if (!streamGroupListenersBound) {
+    document.addEventListener('click', (event) => {
+      const path = event.composedPath ? event.composedPath() : [];
+      const isInside = path.some((node) => {
+        const el = node as HTMLElement;
+        return !!el?.closest?.('[data-stream-group-dropdown]');
+      });
+      if (!isInside) {
+        closeAllStreamGroupMenus();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        closeAllStreamGroupMenus();
+      }
+    });
+    streamGroupListenersBound = true;
   }
 
   const convertBtn = document.getElementById('stream-convert-btn');
@@ -535,8 +782,9 @@ function setupEventListeners(): void {
       // ── Quality Limit Check (before conversion starts) ──────────────────────
       const currentState = getState();
       const fmt = (currentState.selectedFormat || 'mp3') as 'mp3' | 'mp4';
-      const is4K = fmt === 'mp4' && (currentState.videoQuality || '') === '2160p';
-      const is2K = fmt === 'mp4' && (currentState.videoQuality || '') === '1440p';
+      const selectedResolution = getVideoResolutionLabel(currentState.videoQuality);
+      const is4K = selectedResolution === '2160p';
+      const is2K = selectedResolution === '1440p';
       const is320kbps = fmt === 'mp3' && currentState.audioFormat === 'mp3' && currentState.audioBitrate === '320';
 
       if (is4K) {
