@@ -1,4 +1,5 @@
-npm run/* =========================================================
+npm run
+/* =========================================================
    Section - Main Content Card
    ---------------------------------------------------------
    Tokenized styles for SEO main-content block
@@ -7,12 +8,21 @@ npm run/* =========================================================
 .main-content {
     width: 100%;
     padding: 24px 12px;
+    box-sizing: border-box;
     scroll-margin-top: 24px;
     display: flex;
     justify-content: center;
     padding-top: 20px !important;
     flex-direction: column;
     align-items: center;
+}
+
+@media (max-width: 599px) {
+    .main-content {
+        padding-left: 12px;
+        padding-right: 12px;
+
+    }
 }
 
 #multi-playlist-banner-wrapper {
@@ -60,13 +70,13 @@ npm run/* =========================================================
     }
 }
 
-.main-content > .main-content-card {
+.main-content>.main-content-card {
     background: var(--main-content-bg);
     border-radius: var(--main-content-radius);
     padding: clamp(12px, 2.5vw, 24px);
     font-family: var(--main-content-font-family);
     box-shadow: var(--main-content-shadow);
-    margin: 0 var(--main-content-margin-inline);
+    margin: 0;
     width: 100%;
     max-width: 100% !important;
     box-sizing: border-box;
@@ -77,62 +87,69 @@ npm run/* =========================================================
 
 }
 
-.main-content > .main-content-card.container {
+.main-content>.main-content-card.container {
     padding-top: clamp(12px, 2.5vw, 24px);
     padding-bottom: clamp(12px, 2.5vw, 24px);
 }
 
 @media (min-width: 351px) {
-    .main-content > .main-content-card {
+    .main-content>.main-content-card {
         max-width: var(--main-content-max-width-sm) !important;
         padding: clamp(16px, 2.5vw, 24px);
     }
 }
 
 @media (min-width: 600px) {
-    .main-content > .main-content-card {
+    .main-content>.main-content-card {
         max-width: var(--main-content-max-width-md) !important;
     }
 
     .main-content {
         padding: 28px 18px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
     }
 }
 
 @media (min-width: 840px) {
-    .main-content > .main-content-card {
+    .main-content>.main-content-card {
         max-width: var(--main-content-max-width-lg) !important;
         padding: clamp(20px, 2vw, 28px);
-        margin: 40px var(--main-content-margin-inline);
     }
 
     .main-content {
         padding: 32px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
     }
 }
 
 @media (min-width: 1240px) {
-    .main-content > .main-content-card {
+    .main-content>.main-content-card {
         max-width: var(--main-content-max-width-xl) !important;
         padding: clamp(24px, 2vw, 32px);
     }
 }
 
 @media (min-width: 1920px) {
-    .main-content > .main-content-card {
+    .main-content>.main-content-card {
         max-width: var(--main-content-max-width-2xl) !important;
         padding: 28px;
     }
 }
 
 @media (min-width: 2560px) {
-    .main-content > .main-content-card {
+    .main-content>.main-content-card {
         max-width: var(--main-content-max-width-3xl) !important;
         padding: 32px;
     }
 }
 
-.main-content-card .content-section + .content-section {
+.main-content-card .content-section+.content-section {
     margin-top: clamp(10px, 1vw, 14px);
 }
 
@@ -223,7 +240,7 @@ npm run/* =========================================================
     text-decoration: underline;
 }
 
-.main-content-card .content-section > :last-child {
+.main-content-card .content-section> :last-child {
     margin-bottom: 0 !important;
 }
 
@@ -246,6 +263,7 @@ npm run/* =========================================================
 .content-section.content-section--white {
     width: 100%;
     padding: 24px 12px;
+    box-sizing: border-box;
     scroll-margin-top: 24px;
     display: flex;
     justify-content: center;
@@ -254,7 +272,7 @@ npm run/* =========================================================
 
 /* Main content card */
 .seo-container,
-.content-section.content-section--white > .container {
+.content-section.content-section--white>.container {
     background: var(--main-content-bg);
     border-radius: var(--main-content-radius);
     padding: clamp(12px, 2.5vw, 24px);
@@ -271,7 +289,7 @@ npm run/* =========================================================
 @media (min-width: 351px) {
 
     .seo-container,
-    .content-section.content-section--white > .container {
+    .content-section.content-section--white>.container {
         padding: clamp(16px, 2.5vw, 24px);
         max-width: var(--main-content-max-width-sm) !important;
     }
@@ -280,7 +298,7 @@ npm run/* =========================================================
 @media (min-width: 600px) {
 
     .seo-container,
-    .content-section.content-section--white > .container {
+    .content-section.content-section--white>.container {
         max-width: var(--main-content-max-width-md) !important;
     }
 
@@ -293,7 +311,7 @@ npm run/* =========================================================
 @media (min-width: 840px) {
 
     .seo-container,
-    .content-section.content-section--white > .container {
+    .content-section.content-section--white>.container {
         padding: clamp(20px, 2vw, 28px);
         margin: 40px var(--main-content-margin-inline);
         max-width: var(--main-content-max-width-lg) !important;
@@ -308,7 +326,7 @@ npm run/* =========================================================
 @media (min-width: 1240px) {
 
     .seo-container,
-    .content-section.content-section--white > .container {
+    .content-section.content-section--white>.container {
         padding: clamp(24px, 2vw, 32px);
         max-width: var(--main-content-max-width-xl) !important;
     }
@@ -317,7 +335,7 @@ npm run/* =========================================================
 @media (min-width: 1920px) {
 
     .seo-container,
-    .content-section.content-section--white > .container {
+    .content-section.content-section--white>.container {
         padding: 28px;
         max-width: var(--main-content-max-width-2xl) !important;
     }
@@ -326,7 +344,7 @@ npm run/* =========================================================
 @media (min-width: 2560px) {
 
     .seo-container,
-    .content-section.content-section--white > .container {
+    .content-section.content-section--white>.container {
         padding: 32px;
         max-width: var(--main-content-max-width-3xl) !important;
     }

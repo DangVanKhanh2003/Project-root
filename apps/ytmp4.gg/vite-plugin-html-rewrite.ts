@@ -22,6 +22,28 @@ function getEleventyPages(): string[] {
     .map(file => file.replace('.html', ''));
 }
 
+function injectFredokaFont(html: string): string {
+  const fontMarker = 'Fredoka_SemiCondensed-Bold.woff2?v=2';
+  if (html.includes(fontMarker) || !html.includes('</head>')) {
+    return html;
+  }
+
+  const fontSnippet = [
+    '    <link rel="preload" href="/fonts/Fredoka_SemiCondensed-Bold.woff2?v=2" as="font" type="font/woff2" crossorigin>',
+    '    <style>',
+    '        @font-face {',
+    "            font-family: 'Fredoka SemiCondensed';",
+    "            src: url('/fonts/Fredoka_SemiCondensed-Bold.woff2?v=2') format('woff2');",
+    '            font-weight: 700;',
+    '            font-style: normal;',
+    '            font-display: swap;',
+    '        }',
+    '    </style>'
+  ].join('\n');
+
+  return html.replace('</head>', `${fontSnippet}\n\n</head>`);
+}
+
 /**
  * URL Rewriting function - handles both dev and preview servers
  * Maps clean URLs to actual HTML file paths
@@ -90,6 +112,9 @@ export function htmlRewritePlugin(): Plugin {
 
   return {
     name: 'vite-plugin-html-rewrite',
+    transformIndexHtml(html) {
+      return injectFredokaFont(html);
+    },
     configureServer(server) {
       server.middlewares.use((req, res, next) => {
         const url = req.url || '';

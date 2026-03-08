@@ -21,15 +21,12 @@
 .status-container,
 .action-container {
   padding: 0px !important;
-  margin: 15px 0px;
+  margin: 16px 0px;
   border-radius: 12px;
   min-height: 40px;
   /* Mobile-first: 40px height */
 }
 
-.status-container {
-  margin-bottom: 10px;
-}
 
 .action-container {
   margin: 12px 0 0 0;
