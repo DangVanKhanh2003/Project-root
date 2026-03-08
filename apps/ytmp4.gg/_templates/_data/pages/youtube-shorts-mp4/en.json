@@ -7,110 +7,139 @@
     "ogTitle": "YouTube Shorts to MP4 – Download Online | YTMP4",
     "ogDescription": "Download YouTube Shorts video in MP4 format quickly and easily using YTMP4."
   },
-  "defaultFormat": "mp4",
-  "hero": {
-    "title": "YTMP4 – YouTube Shorts to MP4",
-    "subtitle": "Download YouTube Shorts Video Online in MP4 Format"
-  },
-  "form": {
-    "title": "Download YouTube Shorts MP4",
-    "placeholder": "Paste YouTube Shorts URL here...",
-    "convertButton": "Download Shorts MP4"
-  },
-  "overview": {
-    "howTo": {
-      "title": "How to Download YouTube Shorts Video",
-      "steps": [
-        {
-          "number": "1",
-          "title": "Copy the Shorts Link",
-          "description": "Open the YouTube Shorts video and copy its URL."
-        },
-        {
-          "number": "2",
-          "title": "Paste the URL",
-          "description": "Paste the Shorts link into the YTMP4 downloader above."
-        },
-        {
-          "number": "3",
-          "title": "Convert to MP4",
-          "description": "The tool will convert YouTube Shorts to MP4 format automatically."
-        },
-        {
-          "number": "4",
-          "title": "Download the Video",
-          "description": "Click download to save the YouTube Shorts video to your device."
-        }
-      ]
-    }
-  },
   "content": {
-    "intro": {
-      "title": "What Is YTMP4 YouTube Shorts Downloader?",
-      "description": "YTMP4 allows you to <strong>convert YouTube Shorts to MP4</strong> and download short videos directly from your browser. Whether you want to save a vertical clip for offline viewing or share it later, this <strong>YouTube Shorts downloader online</strong> makes the process simple."
+    "form": {
+      "h1": "YTMP4 – YouTube Shorts to MP4",
+      "placeholder": "Paste YouTube Shorts URL here...",
+      "button": "Convert"
     },
-    "columns": [
+    "sections": [
       {
-        "title": "Download YouTube Short Video Easily",
-        "description": "You can <strong>download YouTube short video</strong> instantly without installing software. Simply paste the link and start the <strong>YouTube Shorts MP4 download</strong> process."
+        "h2": "What Is YTMP4 YouTube Shorts Downloader?",
+        "p": [
+          "YTMP4 allows you to <strong>convert YouTube Shorts to MP4</strong> and download short videos directly from your browser.",
+          "Whether you want to save a vertical clip for offline viewing or share it later, this <strong>YouTube Shorts downloader online</strong> provides a fast and simple solution."
+        ]
       },
       {
-        "title": "YouTube Shorts MP4 Converter",
-        "description": "This tool works as a <strong>YouTube Shorts MP4</strong> converter that supports <strong>convert YouTube Shorts to MP4</strong> and <strong>download MP4 YouTube Shorts</strong> for better device compatibility."
+        "h2": "How to Download YouTube Shorts Video",
+        "ol": [
+          {
+            "h3": "Copy the Shorts Link",
+            "p": [
+              "Open the YouTube Shorts video and copy its URL."
+            ]
+          },
+          {
+            "h3": "Paste the URL",
+            "p": [
+              "Paste the Shorts link into the YTMP4 downloader above."
+            ]
+          },
+          {
+            "h3": "Convert to MP4",
+            "p": [
+              "The tool will convert YouTube Shorts to MP4 format automatically."
+            ]
+          },
+          {
+            "h3": "Download the Video",
+            "p": [
+              "Click download to save the YouTube Shorts video to your device."
+            ]
+          }
+        ]
       },
       {
-        "title": "Fast Shorts Download Online",
-        "description": "If you are looking for <strong>YouTube Shorts video download online</strong> or <strong>download YouTube Shorts online</strong>, YTMP4 provides a clean and efficient solution."
+        "h2": "Download YouTube Short Video Easily",
+        "p": [
+          "You can <strong>download YouTube short video</strong> instantly without installing software.",
+          "Simply paste the link and start the <strong>YouTube Shorts MP4 download</strong> process."
+        ]
       },
       {
-        "title": "Need Full Video Download?",
-        "description": "For longer videos, visit the <a href=\"/\"><strong>YTMP4 YouTube to MP4 converter</strong></a>. If you need higher resolution, check the <a href=\"/download-youtube-1080p-video\"><strong>YouTube 1080p video downloader</strong></a> or the <a href=\"/download-youtube-4k-video\"><strong>YouTube 4K video downloader</strong></a>."
-      }
-    ],
-    "whyDownload": {
-      "title": "Why Download YouTube Shorts as MP4?",
-      "description": "Downloading Shorts in MP4 format allows you to watch offline, repost content where permitted, or archive short clips. Using a <strong>YouTube short MP4</strong> format ensures compatibility across most devices."
-    },
-    "quality": {
-      "title": "YouTube Short Video Download MP4 Format",
-      "description": "YTMP4 supports <strong>YouTube short video download MP4</strong> so you can save vertical videos in a widely supported format suitable for smartphones and tablets."
-    },
-    "useCases": {
-      "title": "When Should You Use a Shorts Downloader?",
-      "items": [
-        {
-          "title": "Offline Viewing",
-          "description": "Save Shorts videos to watch without internet access."
-        },
-        {
-          "title": "Share Clips Easily",
-          "description": "Download and share short video highlights quickly."
-        },
-        {
-          "title": "Content Collection",
-          "description": "Keep a personal archive of your favorite Shorts videos."
-        }
-      ]
-    }
-  },
-  "faqs": {
-    "title": "Frequently Asked Questions",
-    "items": [
-      {
-        "question": "Can I convert YouTube Shorts to MP4?",
-        "answer": "Yes. YTMP4 allows you to convert YouTube Shorts to MP4 and download the video instantly."
+        "h2": "YouTube Shorts MP4 Converter",
+        "p": [
+          "This tool works as a <strong>YouTube Shorts MP4</strong> converter that supports <strong>convert YouTube Shorts to MP4</strong> and <strong>download MP4 YouTube Shorts</strong> for better device compatibility."
+        ]
       },
       {
-        "question": "Is this YouTube Shorts downloader online?",
-        "answer": "Yes. The tool works entirely online in your browser with no installation required."
+        "h2": "Fast Shorts Download Online",
+        "p": [
+          "If you are looking for <strong>YouTube Shorts video download online</strong> or <strong>download YouTube Shorts online</strong>, YTMP4 provides a clean and efficient solution."
+        ]
       },
       {
-        "question": "Can I download YouTube Shorts online?",
-        "answer": "Yes. Simply paste the Shorts URL and download the video in MP4 format."
+        "h2": "Need Full Video Download?",
+        "p": [
+          "For longer videos, visit the <a href=\"/\"><strong>YTMP4 YouTube to MP4 converter</strong></a>.",
+          "If you need higher resolution, check the <a href=\"/download-youtube-1080p-video\"><strong>YouTube 1080p video downloader</strong></a> or the <a href=\"/download-youtube-4k-video\"><strong>YouTube 4K video downloader</strong></a>."
+        ]
       },
       {
-        "question": "Is YTMP4 affiliated with YouTube?",
-        "answer": "No. YTMP4 is an independent tool and is not affiliated with YouTube or Google."
+        "h2": "Why Download YouTube Shorts as MP4?",
+        "p": [
+          "Downloading Shorts in MP4 format allows you to watch videos offline, repost content where permitted, or archive short clips.",
+          "Using a <strong>YouTube short MP4</strong> format ensures compatibility across most devices."
+        ]
+      },
+      {
+        "h2": "YouTube Short Video Download MP4 Format",
+        "p": [
+          "YTMP4 supports <strong>YouTube short video download MP4</strong> so you can save vertical videos in a widely supported format suitable for smartphones and tablets."
+        ]
+      },
+      {
+        "h2": "When Should You Use a Shorts Downloader?",
+        "ul": [
+          {
+            "h3": "Offline Viewing",
+            "p": [
+              "Save Shorts videos to watch without internet access."
+            ]
+          },
+          {
+            "h3": "Share Clips Easily",
+            "p": [
+              "Download and share short video highlights quickly."
+            ]
+          },
+          {
+            "h3": "Content Collection",
+            "p": [
+              "Keep a personal archive of your favorite Shorts videos."
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "Frequently Asked Questions",
+        "ul": [
+          {
+            "h3": "Can I convert YouTube Shorts to MP4?",
+            "p": [
+              "Yes. YTMP4 allows you to convert YouTube Shorts to MP4 and download the video instantly."
+            ]
+          },
+          {
+            "h3": "Is this YouTube Shorts downloader online?",
+            "p": [
+              "Yes. The tool works entirely online in your browser with no installation required."
+            ]
+          },
+          {
+            "h3": "Can I download YouTube Shorts online?",
+            "p": [
+              "Yes. Simply paste the Shorts URL and download the video in MP4 format."
+            ]
+          },
+          {
+            "h3": "Is YTMP4 affiliated with YouTube?",
+            "p": [
+              "No. YTMP4 is an independent tool and is not affiliated with YouTube or Google."
+            ]
+          }
+        ]
       }
     ]
   }

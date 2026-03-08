@@ -10,8 +10,9 @@
 
     /* Theme tokens needed by reusable packages (light theme) */
     /* Colors */
-    --primary-color: #000000;
+    --primary-color: #60A5FA;
     --primary-color-hover: #003f8a;
+    --color-primary: var(--primary-color);
     --background-hero-section: #60A5FA;
     --hero-section-bg: #60A5FA;
     /* Slightly darker for hover */
@@ -29,6 +30,8 @@
 
     --text-main: var(--text);
     --text-muted: var(--muted);
+    --color-text-muted: #7f8d96;
+    --color-text-soft: #7f8d96;
     --text-accent: var(--brand);
 
     --border-glass: 1px solid #e5e7eb;
@@ -36,8 +39,13 @@
 
     --color-accent: var(--brand);
     --color-accent-hover: #003f8a;
+    --color-accent-soft-05: rgba(0, 85, 185, 0.05);
+    --color-accent-soft-08: rgba(0, 85, 185, 0.08);
+    --color-accent-soft-10: rgba(0, 85, 185, 0.10);
+    --color-accent-soft-12: rgba(0, 85, 185, 0.12);
     --color-accent-dark: rgba(0, 79, 171, 0.12);
     --color-status-error: #e74c3c;
+    --video-input-active-border: var(--color-primary);
 
     --radius-small: 8px;
     --radius-md: 12px;
@@ -48,6 +56,7 @@
     /* Surface tokens */
     --bg-page: #FAF9F5;
     --bg-card: #ffffff;
+    --yt-preview-card-bg: #a1c3ed3b;
     --bg-surface-soft: rgba(0, 79, 171, 0.05);
     --bg-hover: rgba(0, 79, 171, 0.08);
 
@@ -59,7 +68,8 @@
 
     /* Border tokens */
     --border-default: rgba(137, 137, 137, 0.33);
-    --border-input: #b0b0b0;
+    --color-border: #cfdcdd;
+    --border-input: var(--color-border);
     --border-subtle: #e5e7eb;
 
     /* Link visited */
@@ -89,6 +99,11 @@
     --status-analyzing-color: #0369a1;
     --status-converting-bg: #fff7ed;
     --status-converting-color: #c2410c;
+    --color-next-btn-bg: var(--bg-card);
+    --color-next-btn-text: var(--text-main);
+    --color-next-btn-border: var(--border-secondary);
+    --color-next-btn-hover-bg: #edf1f4;
+    --color-next-btn-hover-border: #8b959e;
 
     /* Main Content Card */
     --main-content-bg: #ffffff;
@@ -107,6 +122,7 @@
     --main-content-max-width-xl: 900px;
     --main-content-max-width-2xl: 1000px;
     --main-content-max-width-3xl: 1200px;
+    --container-max-width-3xl: 1200px;
     --padding-card: 12px;
 
 }
@@ -146,14 +162,20 @@
     --brand-hover: #B14F2F;
     --primary-color: #C65D3B;
     --primary-color-hover: #B14F2F;
+    --color-primary: var(--primary-color);
     --color-accent: #C65D3B;
     --color-accent-hover: #B14F2F;
+    --color-accent-soft-05: rgba(198, 93, 59, 0.10);
+    --color-accent-soft-08: rgba(198, 93, 59, 0.08);
+    --color-accent-soft-10: rgba(198, 93, 59, 0.10);
+    --color-accent-soft-12: rgba(198, 93, 59, 0.12);
     --color-accent-dark: rgba(198, 93, 59, 0.20);
     --background-hero-section: var(--bg-secondary);
     --hero-section-bg: var(--bg-secondary);
 
     --bg-page: #262624;
     --bg-card: #30302E;
+    --yt-preview-card-bg: var(--bg-card);
     --bg-primary: #1F1F1E;
     --bg-secondary: #262624;
     --bg-surface-soft: #383836;
@@ -166,16 +188,20 @@
     --text: #D6D4CF;
     --text-main: #D6D4CF;
     --text-muted: #C9C7C2;
+    --color-text-muted: #C9C7C2;
+    --color-text-soft: #C9C7C2;
     --text-placeholder: #8A8884;
     --text-primary: #E8E6E3;
     --hero-title-color: var(--text-heading);
     --muted: #C9C7C2;
 
     --border-default: #4A4A48;
-    --border-input: #555553;
+    --color-border: #555553;
+    --border-input: var(--color-border);
     --border-subtle: #3A3A38;
     --border-secondary: #4A4A48;
     --border-glass: 1px solid #4A4A48;
+    --video-input-active-border: var(--color-primary);
 
     --link-visited: var(--brand);
 
@@ -200,6 +226,11 @@
     --status-analyzing-color: #D9785B;
     --status-converting-bg: rgba(198, 93, 59, 0.10);
     --status-converting-color: #C65D3B;
+    --color-next-btn-bg: var(--bg-card);
+    --color-next-btn-text: var(--text-main);
+    --color-next-btn-border: var(--border-secondary);
+    --color-next-btn-hover-bg: #3f3f3d;
+    --color-next-btn-hover-border: #6a6a66;
 
     --color-status-error: #E74C3C;
 

@@ -78,7 +78,7 @@
 
 .input-shell:focus-within .input-wrapper,
 .input-wrapper:focus-within {
-    border-color: var(--color-accent);
+    border-color: var(--video-input-active-border, var(--color-primary, var(--primary-color)));
 }
 
 .input-shell .input-content {
@@ -101,10 +101,10 @@
     width: 100%;
     min-width: 0;
     background: var(--bg-card);
-    border: 1px solid var(--border-input);
+    border: 2px solid var(--border-input);
     border-radius: var(--radius-xl);
     overflow: hidden;
-    transition: border-color 0.3s, box-shadow 0.3s;
+    transition: border-color 0.3s;
 }
 
 
@@ -112,7 +112,7 @@
 .video-input {
     flex: 1;
     min-width: 0;
-    height: 60px;
+    height: 52px;
     padding: 0 20px;
     font-size: 16px;
     border: none;
@@ -189,16 +189,20 @@
 
 /* Shared Button Styles */
 .btn-convert {
-    background: var(--primary-color);
+    background: #000000;
     border: none;
     color: #fff;
     border-radius: var(--radius-xl);
     cursor: pointer;
 }
 
+[data-theme="dark"] .btn-convert {
+    background: var(--primary-color);
+}
+
 @media (max-width: 768px) {
     .video-input {
-        height: 54px;
+        height: 48px;
         font-size: 16px;
     }
 

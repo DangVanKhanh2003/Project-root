@@ -1,5 +1,5 @@
 <div class="hero-card">
-    <h2 class="stream-hero-card-title">{{ page.form.title }}</h2>
+    <h1 class="stream-hero-card-title">{{ page.content.form.h1 }}</h1>
     <div id="search-view" class="">
         <form id="downloadForm" class="form-container" autocomplete="off" onsubmit="return false">
             <div id="input-container" class="input-group">
@@ -7,7 +7,7 @@
                     <div class="input-shell" id="input-wrapper">
                         <div class="input-wrapper input-content">
                             <input type="text" id="videoUrl" class="video-input"
-                                placeholder="{{ page.form.placeholder }}" autocomplete="off" required>
+                                placeholder="{{ page.content.form.placeholder }}" autocomplete="off" required>
                             <div class="input-actions">
                                 <button type="button" id="input-action-button" class="btn-paste"
                                     data-action="paste" aria-label="{{ base.hero.pasteBtn }}">
@@ -30,7 +30,7 @@
                         </div>
                     </div>
                     <button type="button" id="stream-start-btn" class="stream-start-btn">
-                        {{ base.strim.startBtn }}
+                        {{ page.content.form["button-start"] }}
                     </button>
                 </div>
                 <div id="suggestion-container" class="suggestion-container"></div>
@@ -169,7 +169,7 @@
                     <div class="stream-convert-row">
                         <button type="button" id="stream-convert-btn"
                             class="btn-convert stream-convert-btn">
-                            <span>{{ page.form.convertButton }}</span>
+                            <span>{{ page.content.form["button-convert"] }}</span>
                         </button>
                     </div>
                 </div>
@@ -184,13 +184,3 @@
 
   
 </div>
-
-  <div class="support-platforms-bar">
-        <span class="support-platforms-label">{{ base.hero.supportedPlatforms }}</span>
-        <div class="support-platforms-icons">
-            <img class="support-platform-icon" src="/assest/social-icon/youtube.png" alt="YouTube" loading="lazy" decoding="async">
-            <img class="support-platform-icon" src="/assest/social-icon/tiktok.png" alt="TikTok" loading="lazy" decoding="async">
-            <!-- YouTube -->
-           
-        </div>
-    </div>

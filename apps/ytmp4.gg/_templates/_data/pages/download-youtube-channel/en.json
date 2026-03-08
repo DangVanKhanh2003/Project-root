@@ -7,85 +7,106 @@
     "ogTitle": "Download Entire YouTube Channel | YTMP4",
     "ogDescription": "Download all videos from a YouTube channel online using YTMP4."
   },
-  "defaultFormat": "mp4",
-  "hero": {
-    "title": "YTMP4 – YouTube Channel Downloader",
-    "subtitle": "Download All Videos from a YouTube Channel Online"
-  },
-  "form": {
-    "title": "Download Entire YouTube Channel",
-    "placeholder": "Paste YouTube channel URL here...",
-    "convertButton": "Start"
-  },
-  "overview": {
-    "howTo": {
-      "title": "How to Download a YouTube Channel",
-      "steps": [
-        {
-          "number": "1",
-          "title": "Copy the Channel URL",
-          "description": "Open the YouTube channel you want to download and copy its URL."
-        },
-        {
-          "number": "2",
-          "title": "Paste the Link",
-          "description": "Paste the channel link into the YTMP4 channel downloader above."
-        },
-        {
-          "number": "3",
-          "title": "Load Available Videos",
-          "description": "YTMP4 will scan the channel and display the available videos."
-        },
-        {
-          "number": "4",
-          "title": "Download the Videos",
-          "description": "Choose the videos you want to save and download them in MP4 format."
-        }
-      ]
-    }
-  },
   "content": {
-    "intro": {
-      "title": "Download an Entire YouTube Channel with YTMP4",
-      "description": "YTMP4 allows you to download all videos from a YouTube channel directly in your browser. Instead of saving videos one by one, you can load a channel and quickly download its available content in MP4 format."
+    "form": {
+      "h1": "YTMP4 – YouTube Channel Downloader",
+      "placeholder": "Paste YouTube channel URL here...",
+      "button": "Convert"
     },
-    "columns": [
+    "sections": [
       {
-        "title": "Save All Channel Videos at Once",
-        "description": "If you want to archive content from a creator, YTMP4 makes it easy to download multiple videos from the same channel without repeating the process for each one."
+        "h2": "Download an Entire YouTube Channel with YTMP4",
+        "p": [
+          "YTMP4 allows you to download all videos from a YouTube channel directly from your browser.",
+          "Instead of saving videos one by one, you can load a channel and quickly download its available content in MP4 format."
+        ]
       },
       {
-        "title": "Simple and Online",
-        "description": "There is no need to install software. YTMP4 works as an online YouTube channel downloader that runs entirely in your browser."
+        "h2": "How to Download a YouTube Channel",
+        "ol": [
+          {
+            "h3": "Copy the Channel URL",
+            "p": [
+              "Open the YouTube channel you want to download and copy its URL."
+            ]
+          },
+          {
+            "h3": "Paste the Link",
+            "p": [
+              "Paste the channel link into the YTMP4 channel downloader above."
+            ]
+          },
+          {
+            "h3": "Load Available Videos",
+            "p": [
+              "YTMP4 will scan the channel and display the available videos."
+            ]
+          },
+          {
+            "h3": "Download the Videos",
+            "p": [
+              "Choose the videos you want to save and download them in MP4 format."
+            ]
+          }
+        ]
       },
       {
-        "title": "Need a Playlist Instead?",
-        "description": "If you only need a specific collection of videos, try the <a href=\"/download-youtube-playlist\"><strong>YouTube playlist downloader</strong></a>. For single video conversions, visit the <a href=\"/\"><strong>YTMP4 YouTube to MP4 converter</strong></a> homepage."
-      }
-    ],
-    "whyDownload": {
-      "title": "Why Download a Full YouTube Channel?",
-      "description": "Downloading an entire channel can be useful for offline viewing, educational materials, or long-term archiving. With YTMP4, the process is straightforward and does not require registration."
-    },
-    "quality": {
-      "title": "Download Channel Videos in MP4 Format",
-      "description": "All downloaded videos are saved in MP4 format, ensuring compatibility across devices including smartphones, tablets, laptops, and desktop computers."
-    }
-  },
-  "faqs": {
-    "title": "Frequently Asked Questions",
-    "items": [
-      {
-        "question": "Can I download all videos from a YouTube channel?",
-        "answer": "Yes. YTMP4 allows you to load a channel and download its available videos directly online."
+        "h2": "Save All Channel Videos at Once",
+        "p": [
+          "If you want to archive content from a creator, YTMP4 makes it easy to download multiple videos from the same channel.",
+          "You do not need to repeat the download process for each video individually."
+        ]
       },
       {
-        "question": "Do I need to install any software?",
-        "answer": "No. The YTMP4 YouTube channel downloader works entirely in your browser."
+        "h2": "Simple and Online",
+        "p": [
+          "There is no need to install software or extensions.",
+          "YTMP4 works as an online YouTube channel downloader that runs entirely in your browser."
+        ]
       },
       {
-        "question": "Is YTMP4 affiliated with YouTube?",
-        "answer": "No. YTMP4 is an independent tool and is not affiliated with YouTube or Google."
+        "h2": "Need a Playlist Instead?",
+        "p": [
+          "If you only need a specific collection of videos, you can use the <a href=\"/download-youtube-playlist\"><strong>YouTube playlist downloader</strong></a>.",
+          "For downloading individual videos, visit the <a href=\"/\"><strong>YTMP4 YouTube to MP4 converter</strong></a> homepage."
+        ]
+      },
+      {
+        "h2": "Why Download a Full YouTube Channel?",
+        "p": [
+          "Downloading an entire channel can be useful for offline viewing, educational resources, or content archiving.",
+          "With YTMP4, the process is simple and does not require registration."
+        ]
+      },
+      {
+        "h2": "Download Channel Videos in MP4 Format",
+        "p": [
+          "All videos downloaded using YTMP4 are saved in MP4 format.",
+          "This ensures compatibility across most devices including smartphones, tablets, laptops, and desktop computers."
+        ]
+      },
+      {
+        "h2": "Frequently Asked Questions",
+        "ul": [
+          {
+            "h3": "Can I download all videos from a YouTube channel?",
+            "p": [
+              "Yes. YTMP4 allows you to load a channel and download its available videos directly online."
+            ]
+          },
+          {
+            "h3": "Do I need to install any software?",
+            "p": [
+              "No. The YTMP4 YouTube channel downloader works entirely in your browser."
+            ]
+          },
+          {
+            "h3": "Is YTMP4 affiliated with YouTube?",
+            "p": [
+              "No. YTMP4 is an independent tool and is not affiliated with YouTube or Google."
+            ]
+          }
+        ]
       }
     ]
   }

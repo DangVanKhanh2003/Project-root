@@ -15,6 +15,51 @@
     align-items: center;
 }
 
+#multi-playlist-banner-wrapper {
+    width: 100%;
+    max-width: 100% !important;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 !important;
+    box-sizing: border-box;
+}
+
+@media (min-width: 351px) {
+    #multi-playlist-banner-wrapper {
+        max-width: 600px !important;
+    }
+}
+
+@media (min-width: 600px) {
+    #multi-playlist-banner-wrapper {
+        max-width: 700px !important;
+    }
+}
+
+@media (min-width: 840px) {
+    #multi-playlist-banner-wrapper {
+        max-width: 800px !important;
+    }
+}
+
+@media (min-width: 1240px) {
+    #multi-playlist-banner-wrapper {
+        max-width: 900px !important;
+    }
+}
+
+@media (min-width: 1920px) {
+    #multi-playlist-banner-wrapper {
+        max-width: 1000px !important;
+    }
+}
+
+@media (min-width: 2560px) {
+    #multi-playlist-banner-wrapper {
+        max-width: var(--container-max-width-3xl) !important;
+    }
+}
+
 .main-content > .main-content-card {
     background: var(--main-content-bg);
     border-radius: var(--main-content-radius);
@@ -124,8 +169,27 @@
     color: var(--main-content-text);
 }
 
+.main-content-card .content-section ol {
+    counter-reset: main-content-step;
+}
+
 .main-content-card .content-section li {
     margin: clamp(6px, 1vw, 10px) 0;
+}
+
+.main-content-card .content-section ol>li {
+    counter-increment: main-content-step;
+    position: relative;
+    padding-left: 30px;
+}
+
+.main-content-card .content-section ol>li::before {
+    content: counter(main-content-step) ".";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--main-content-heading);
+    font-weight: 700;
 }
 
 .main-content-card .content-section a {
@@ -306,8 +370,29 @@
     margin: 0 0 clamp(10px, 1vw, 14px);
     padding-left: 0;
     list-style: none;
-    counter-reset: item;
     color: var(--main-content-text);
+}
+
+.seo-container .prose ol,
+.content-section.content-section--white ol {
+    counter-reset: main-content-ordered-step;
+}
+
+.seo-container .prose ol>li,
+.content-section.content-section--white ol>li {
+    counter-increment: main-content-ordered-step;
+    position: relative;
+    padding-left: 28px;
+}
+
+.seo-container .prose ol>li::before,
+.content-section.content-section--white ol>li::before {
+    content: counter(main-content-ordered-step) ".";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--main-content-heading);
+    font-weight: 600;
 }
 
 .seo-container .prose li::marker,

@@ -64,6 +64,17 @@
     <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
+    <link rel="preload" href="/fonts/Fredoka_SemiCondensed-Bold.woff2" as="font" type="font/woff2" crossorigin>
+    <style>
+        @font-face {
+            font-family: 'Fredoka SemiCondensed';
+            src: url('/fonts/Fredoka_SemiCondensed-Bold.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+    </style>
+
     <!-- Critical: Read format preference before render to prevent FOUC -->
     <script>
         function setTheme(theme) {
@@ -173,40 +184,6 @@
           }
         }
       ]
-    },
-    {
-      "@type": "HowTo",
-      "@id": "https://ytmp4.gg/youtube-video-cutter#howto",
-      "isPartOf": {
-        "@id": "https://ytmp4.gg/youtube-video-cutter#webpage"
-      },
-      "name": "How to Trim a YouTube Video Online",
-      "step": [
-        {
-          "@type": "HowToStep",
-          "position": 1,
-          "name": "Paste the YouTube Video Link",
-          "text": "Copy the video URL and paste it into the YTMP4 YouTube video cutter."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 2,
-          "name": "Set Start and End Time",
-          "text": "Choose the exact time range you want to keep."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 3,
-          "name": "Preview the Clip",
-          "text": "Make sure the selected part is correct before downloading."
-        },
-        {
-          "@type": "HowToStep",
-          "position": 4,
-          "name": "Download the Trimmed Video",
-          "text": "Click download to save the trimmed YouTube video as an MP4 file."
-        }
-      ]
     }
   ]
 }
@@ -221,13 +198,6 @@
     <div class="container">
         <div class="header-inner">
             <a href="/" class="header-logo" aria-label="YTMP4 home">
-                <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 58 58" fill="none"
-                    aria-hidden="true" focusable="false">
-                    <rect x="4.1676" y="0" width="53.8323" height="53.8323" rx="8" ry="8" fill="#000000" />
-                    <rect x="0" y="4.16766" width="53.8323" height="53.8323" rx="8" ry="8" fill="white" />
-                    <path d="M39.2054 46.1916H14.6268C10.3869 46.1866 6.95113 42.7687 6.94604 38.5509V23.2695C6.95113 19.0517 10.3869 15.6338 14.6268 15.6287H39.2054C43.4453 15.6338 46.8811 19.0517 46.8862 23.2695V38.5509C46.8811 42.7687 43.4453 46.1866 39.2054 46.1916ZM14.6268 18.685C12.0816 18.685 10.0184 20.7375 10.0184 23.2695V38.5509C10.0184 41.0828 12.0816 43.1353 14.6268 43.1353H39.2054C41.7506 43.1353 43.8138 41.0828 43.8138 38.5509V23.2695C43.8138 20.7375 41.7506 18.685 39.2054 18.685H14.6268Z" fill="#003f8a" />
-                    <path d="M24.0174 38.965C22.3238 38.9575 20.9527 37.5935 20.9451 35.9087V25.9162C20.9451 24.2283 22.3207 22.8599 24.0175 22.86C24.5568 22.86 25.0866 23.0013 25.5535 23.2694L34.2467 28.2634C35.7161 29.1074 36.2195 30.9766 35.371 32.4384C35.1014 32.903 34.7137 33.2886 34.2467 33.5569L25.5535 38.5509C25.0872 38.8214 24.5572 38.9642 24.0174 38.965ZM32.712 30.9102L24.0174 25.9162V35.9041L32.712 30.9102Z" fill="#003f8a" />
-                </svg>
                 <span class="header-logo-text">YTMP4.gg</span>
             </a>
             <nav class="header-nav" aria-label="Primary">
@@ -387,13 +357,6 @@
     <div id="mobile-drawer-content" class="drawer-content" role="dialog" aria-modal="true" aria-label="Mobile menu">
         <div class="drawer-header">
             <a href="/" class="drawer-logo" aria-label="YTMP4 home">
-                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 58 58" fill="none"
-                    aria-hidden="true" focusable="false">
-                    <rect x="4.1676" y="0" width="53.8323" height="53.8323" rx="8" ry="8" fill="#000000" />
-                    <rect x="0" y="4.16766" width="53.8323" height="53.8323" rx="8" ry="8" fill="white" />
-                    <path d="M39.2054 46.1916H14.6268C10.3869 46.1866 6.95113 42.7687 6.94604 38.5509V23.2695C6.95113 19.0517 10.3869 15.6338 14.6268 15.6287H39.2054C43.4453 15.6338 46.8811 19.0517 46.8862 23.2695V38.5509C46.8811 42.7687 43.4453 46.1866 39.2054 46.1916ZM14.6268 18.685C12.0816 18.685 10.0184 20.7375 10.0184 23.2695V38.5509C10.0184 41.0828 12.0816 43.1353 14.6268 43.1353H39.2054C41.7506 43.1353 43.8138 41.0828 43.8138 38.5509V23.2695C43.8138 20.7375 41.7506 18.685 39.2054 18.685H14.6268Z" fill="#003f8a" />
-                    <path d="M24.0174 38.965C22.3238 38.9575 20.9527 37.5935 20.9451 35.9087V25.9162C20.9451 24.2283 22.3207 22.8599 24.0175 22.86C24.5568 22.86 25.0866 23.0013 25.5535 23.2694L34.2467 28.2634C35.7161 29.1074 36.2195 30.9766 35.371 32.4384C35.1014 32.903 34.7137 33.2886 34.2467 33.5569L25.5535 38.5509C25.0872 38.8214 24.5572 38.9642 24.0174 38.965ZM32.712 30.9102L24.0174 25.9162V35.9041L32.712 30.9102Z" fill="#003f8a" />
-                </svg>
                 <span class="drawer-logo-text">YTMP4.gg</span>
             </a>
             <button id="close-drawer-btn" class="drawer-close" type="button" aria-label="Close menu">
@@ -494,11 +457,11 @@
 <section class="hero-section">
     <div class="container hero-container">
         <div id="hero-header" class="hero-header">
-            <h1 class="title-hero">YTMP4 – YouTube Video Cutter</h1>
-            <p class="subtitle-hero">Trim YouTube Video Online and Download the Clip as MP4</p>
+            <h1 class="title-hero"></h1>
+            <p class="subtitle-hero"></p>
         </div>
         <div class="hero-card">
-    <h2 class="stream-hero-card-title">Cut YouTube Video Online</h2>
+    <h1 class="stream-hero-card-title">YTMP4 – YouTube Video Cutter</h1>
     <div id="search-view" class="">
         <form id="downloadForm" class="form-container" autocomplete="off" onsubmit="return false">
             <div id="input-container" class="input-group">
@@ -668,7 +631,7 @@
                     <div class="stream-convert-row">
                         <button type="button" id="stream-convert-btn"
                             class="btn-convert stream-convert-btn">
-                            <span>Trim &amp; Download</span>
+                            <span>Convert</span>
                         </button>
                     </div>
                 </div>
@@ -683,17 +646,6 @@
 
   
 </div>
-
-  <div class="support-platforms-bar">
-        <span class="support-platforms-label">Supported platforms:</span>
-        <div class="support-platforms-icons">
-            <img class="support-platform-icon" src="/assest/social-icon/youtube.png" alt="YouTube" loading="lazy" decoding="async">
-            <img class="support-platform-icon" src="/assest/social-icon/tiktok.png" alt="TikTok" loading="lazy" decoding="async">
-            <!-- YouTube -->
-           
-        </div>
-    </div>
-
     </div>
 </section>
 
@@ -714,6 +666,261 @@
         </div>
     </div>
     <div class="container main-content-card">
+        
+        <div class="content-section">
+            <h2>What Is YTMP4 YouTube Video Cutter?</h2>
+
+            
+            
+                
+                <p>YTMP4 provides a simple <strong>youtube video cutter</strong> that allows you to trim and download specific parts of a video.</p>
+                
+                <p>Instead of downloading the entire file, you can <strong>cut part of YouTube video</strong> and save only the section you need.</p>
+                
+            
+
+            
+            
+
+            
+            
+        </div>
+        
+        <div class="content-section">
+            <h2>How to Trim a YouTube Video Online</h2>
+
+            
+            
+
+            
+            
+            <ol>
+                
+                <li>
+                    <h3>Paste the YouTube Video Link</h3>
+                    
+                    <p>Copy the video URL and paste it into the YTMP4 YouTube video cutter.</p>
+                    
+                </li>
+                
+                <li>
+                    <h3>Set Start and End Time</h3>
+                    
+                    <p>Choose the exact time range you want to keep.</p>
+                    
+                </li>
+                
+                <li>
+                    <h3>Preview the Clip</h3>
+                    
+                    <p>Make sure the selected part is correct before downloading.</p>
+                    
+                </li>
+                
+                <li>
+                    <h3>Download the Trimmed Video</h3>
+                    
+                    <p>Click download to save the trimmed YouTube video as an MP4 file.</p>
+                    
+                </li>
+                
+            </ol>
+            
+
+            
+            
+        </div>
+        
+        <div class="content-section">
+            <h2>Trim YouTube Video Online</h2>
+
+            
+            
+                
+                <p>With this <strong>youtube video cut online</strong> tool, you can select a custom start and end time and instantly <strong>trim YouTube video online</strong> without installing software.</p>
+                
+            
+
+            
+            
+
+            
+            
+        </div>
+        
+        <div class="content-section">
+            <h2>YouTube Trimmer and Clip Maker</h2>
+
+            
+            
+                
+                <p>YTMP4 works as a <strong>youtube trimmer</strong> and <strong>youtube video trimmer</strong> that helps you create short clips.</p>
+                
+                <p>It can also function as a <strong>youtube clip maker</strong> or <strong>youtube video clipper</strong> for sharing highlights.</p>
+                
+            
+
+            
+            
+
+            
+            
+        </div>
+        
+        <div class="content-section">
+            <h2>Fast and Simple YouTube Cutter Online</h2>
+
+            
+            
+                
+                <p>If you are looking for a <strong>youtube cutter online free</strong> solution, YTMP4 lets you <strong>cut YouTube online</strong> and download the trimmed clip quickly in MP4 format.</p>
+                
+            
+
+            
+            
+
+            
+            
+        </div>
+        
+        <div class="content-section">
+            <h2>Need Full Video Download?</h2>
+
+            
+            
+                
+                <p>If you prefer downloading the entire video instead of trimming it, visit the <a href="/"><strong>YTMP4 YouTube to MP4 converter</strong></a>.</p>
+                
+                <p>For high-resolution downloads, check the <a href="/download-youtube-4k-video"><strong>YouTube 4K video downloader</strong></a> page.</p>
+                
+            
+
+            
+            
+
+            
+            
+        </div>
+        
+        <div class="content-section">
+            <h2>Why Use a YouTube Video Cutter?</h2>
+
+            
+            
+                
+                <p>A <strong>youtube video cutter online free</strong> tool is useful when you only need a specific segment of a video.</p>
+                
+                <p>Whether you want to create a short highlight, remove unnecessary parts, or share a clip, trimming saves storage space and time.</p>
+                
+            
+
+            
+            
+
+            
+            
+        </div>
+        
+        <div class="content-section">
+            <h2>Clip YouTube Video Online with MP4 Output</h2>
+
+            
+            
+                
+                <p>You can <strong>clip YouTube video online</strong> and download it in MP4 format for compatibility across devices including smartphones, tablets, and desktop computers.</p>
+                
+            
+
+            
+            
+
+            
+            
+        </div>
+        
+        <div class="content-section">
+            <h2>When Should You Trim a YouTube Video?</h2>
+
+            
+            
+
+            
+            
+
+            
+            
+            <ul>
+                
+                <li>
+                    <h3>Create Highlights</h3>
+                    
+                    <p>Cut the best moments from longer videos for sharing.</p>
+                    
+                </li>
+                
+                <li>
+                    <h3>Remove Unwanted Sections</h3>
+                    
+                    <p>Trim out intros or outros and keep only the useful content.</p>
+                    
+                </li>
+                
+                <li>
+                    <h3>Save Storage Space</h3>
+                    
+                    <p>Download only the part you need instead of the full video file.</p>
+                    
+                </li>
+                
+            </ul>
+            
+        </div>
+        
+        <div class="content-section">
+            <h2>Frequently Asked Questions</h2>
+
+            
+            
+
+            
+            
+
+            
+            
+            <ul>
+                
+                <li>
+                    <h3>Can I cut part of a YouTube video online?</h3>
+                    
+                    <p>Yes. YTMP4 allows you to select a start and end time and download the trimmed section as an MP4 file.</p>
+                    
+                </li>
+                
+                <li>
+                    <h3>Is this YouTube video cutter online free?</h3>
+                    
+                    <p>Yes. YTMP4 works online with no ads and no registration required.</p>
+                    
+                </li>
+                
+                <li>
+                    <h3>Do I need to install any software?</h3>
+                    
+                    <p>No. The YouTube video trimmer works entirely in your browser.</p>
+                    
+                </li>
+                
+                <li>
+                    <h3>Is YTMP4 affiliated with YouTube?</h3>
+                    
+                    <p>No. YTMP4 is an independent tool and is not affiliated with YouTube or Google.</p>
+                    
+                </li>
+                
+            </ul>
+            
+        </div>
         
     </div>
 </section>

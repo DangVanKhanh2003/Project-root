@@ -21,18 +21,14 @@
     color: #fff;
     text-decoration: none;
     font-weight: 700;
-    font-size: 18px;
+    font-size: 48px;
 }
 
-.header-logo svg {
-    display: block;
-    width: 36px;
-    height: 36px;
-}
+
 
 .header-logo-text,
 .drawer-logo-text {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Fredoka SemiCondensed', sans-serif;
 }
 
 /* Logo icon fill overrides — match actual SVG fill attributes */
@@ -751,6 +747,7 @@
 
     .header-logo {
         justify-content: flex-start;
+        font-size: 40px;
     }
 
     .header-nav {

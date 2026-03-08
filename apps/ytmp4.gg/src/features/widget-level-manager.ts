@@ -60,7 +60,7 @@ function ensureMainContentBelowContainerSlot(
         wrapper.id = id;
     }
 
-    wrapper.classList.add('container', 'main-content-below-container-slot');
+    wrapper.classList.add('main-content-below-container-slot');
     if (options.className) {
         wrapper.classList.add(...options.className.split(/\s+/).filter(Boolean));
     }

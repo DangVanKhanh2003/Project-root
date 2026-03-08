@@ -1,7 +1,7 @@
 /* Hero Section */
 .hero-section {
     background-color: var(--hero-section-bg);
-    padding: 50px 16px 40px 16px;
+    padding: 40px 16px 40px 16px;
     color: var(--color-white);
     text-align: center;
     position: relative;
@@ -18,7 +18,6 @@
 
 .hero-container {
     display: flex;
-    flex-direction: column;
     align-items: center;
     width: 100%;
     max-width: var(--main-content-max-width-3xl);
@@ -59,11 +58,11 @@
 }
 
 .logo-text-hero {
-    font-size: 32px;
+    font-size: 48px;
     font-weight: 700;
-    font-family: 'Roboto', sans-serif;
-    /* Updated to Roboto */
-    letter-spacing: -0.5px;
+    font-family: 'Fredoka SemiCondensed', sans-serif;
+    color: var(--color-white);
+    letter-spacing: 1px;
 }
 
 .title-hero {
@@ -177,10 +176,6 @@
     box-shadow: none;
 }
 
-/* Result View */
-#result-view {
-    margin-top: 20px;
-}
 
 /* Fade In Animation */
 .fade-in {
@@ -189,7 +184,7 @@
 
 @media (max-width: 768px) {
     .hero-section {
-        padding: 50px 12px 20px 12px;
+        padding: 30px 12px 20px 12px;
         /* Reduced bottom padding to 0 to let mask cover more of the form (half-in/half-out) */
     }
 
@@ -200,6 +195,7 @@
 
     .title-hero {
         padding: 0 20px;
+        font-size: 16px;
     }
 
     .subtitle-hero {
@@ -228,8 +224,7 @@
     }
 
     .logo-text-hero {
-        font-size: 20px;
-        /* Smaller logo text */
+        font-size: 40px;
     }
 
 }

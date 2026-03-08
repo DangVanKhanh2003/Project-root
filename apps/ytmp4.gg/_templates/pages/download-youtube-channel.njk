@@ -19,18 +19,14 @@ pageScript: "/src/playlist-downloader-main.ts"
 <!-- HERO SECTION -->
 <section class="hero-section">
     <div class="container hero-container">
-        <div id="hero-header" class="hero-header">
-            <h1 class="title-hero">{{ page.hero.title }}</h1>
-            <p class="subtitle-hero">{{ page.hero.subtitle }}</p>
-        </div>
-
         <!-- Playlist Download Form -->
         <div id="playlist-download-form" class="multiple-download-card">
+            <h1 class="title-hero">{{ page.content.form.h1 }}</h1>
           
             <div class="urls-input-container" style="border: none;">
                 <div class="input-wrapper">
                     <input type="text" id="playlistUrl" class="video-input"
-                        placeholder="{{ page.form.placeholder }}" autocomplete="off"
+                        placeholder="{{ page.content.form.placeholder }}" autocomplete="off"
                         aria-label="YouTube playlist URL" />
                     <button type="button" id="input-action-button" class="input-action-btn" data-action="paste">
                         <span class="btn-state btn-state--paste">
@@ -147,7 +143,7 @@ pageScript: "/src/playlist-downloader-main.ts"
                         </div>
                         <script>(function () { try { var p = JSON.parse(localStorage.getItem('ytmp4_format_preferences')); if (!p) return; var f = p.selectedFormat; if (f === 'mp3' || f === 'mp4') { var btns = document.querySelectorAll('.multi-format-btn'); btns.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-format') === f) }) } var s = f === 'mp4' ? document.getElementById('multi-quality-select-mp4') : document.getElementById('multi-quality-select-mp3'); if (!s) return; var v; if (f === 'mp4') { var vq = p.videoQuality || '720p'; v = (vq === 'webm' || vq === 'mkv') ? vq : 'mp4-' + vq.replace('p', '') } else { var af = p.audioFormat || 'mp3'; v = (af === 'mp3') ? 'mp3-' + (p.audioBitrate || '128') : af } s.value = v } catch (e) { } })()</script>
                         <button type="submit" id="fetchPlaylistBtn" class="multi-btn-convert" disabled>
-                            <span>{{ page.form.convertButton }}</span>
+                            <span>{{ page.content.form.button }}</span>
                         </button>
                     </div>
                 </div>

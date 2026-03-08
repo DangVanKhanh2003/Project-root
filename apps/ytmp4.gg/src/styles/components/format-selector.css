@@ -3,9 +3,15 @@
     margin-top: 12px;
 }
 
+@media (max-width: 768px) {
+    #format-selector-container {
+        margin-top: 14px;
+    }
+}
+
 .format-selector-wrapper {
     border-radius: var(--radius-xl);
-    margin-top: 5px;
+    min-height: 46px;
 }
 
 .format-selector {
@@ -139,7 +145,7 @@ html[data-format="mp3"] .quality-select--mp3 {
 
 .quality-select:hover,
 .quality-select:focus {
-    border-color: var(--brand);
+    border-color: var(--video-input-active-border, var(--color-primary, var(--primary-color)));
 }
 
 .quality-select--mp4 {
@@ -187,7 +193,7 @@ html[data-format="mp3"] .quality-select--mp3 {
     .format-selector {
         flex-direction: row;
         flex-wrap: wrap;
-        gap: 10px;
+        gap: 8px;
     }
 
     /* Row 1: Quality + Audio */
@@ -207,17 +213,32 @@ html[data-format="mp3"] .quality-select--mp3 {
     .format-toggle {
         order: 2;
         flex: 0 0 auto;
+        height: 40px;
+        box-sizing: border-box;
+        align-items: center;
     }
 
     .btn-convert {
         order: 3;
         flex: 0 0 auto;
         margin-left: auto;
+        height: 40px;
+        min-height: 40px;
+        padding: 0 20px;
+    }
+
+    .format-btn {
+        height: 100%;
+        padding: 0 16px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .quality-select {
         width: 100%;
         min-width: 0;
+        height: 40px;
     }
 
     .btn-convert span {
@@ -228,7 +249,7 @@ html[data-format="mp3"] .quality-select--mp3 {
 
 @media (max-width: 480px) {
     .format-btn {
-        padding: 8px 16px;
+        padding: 0 14px;
         font-size: 13px;
     }
 
@@ -237,7 +258,7 @@ html[data-format="mp3"] .quality-select--mp3 {
     }
 
     .quality-select {
-        height: 42px;
+        height: 40px;
         font-size: 13px;
         border-radius: calc(var(--radius-xl) - 10px);
     }
@@ -248,7 +269,8 @@ html[data-format="mp3"] .quality-select--mp3 {
     }
 
     .btn-convert {
-        height: 42px;
+        height: 40px;
+        min-height: 40px;
         font-size: 14px;
         border-radius: calc(var(--radius-xl) - 10px);
     }

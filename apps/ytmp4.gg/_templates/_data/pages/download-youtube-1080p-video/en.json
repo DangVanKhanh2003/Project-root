@@ -7,93 +7,119 @@
     "ogTitle": "Download 1080p Video YouTube – Full HD MP4 Online | YTMP4",
     "ogDescription": "Download YouTube 1080p video in Full HD MP4 format online using YTMP4."
   },
-  "defaultFormat": "mp4",
-  "hero": {
-    "title": "YTMP4 – Download 1080p Video YouTube",
-    "subtitle": "YouTube 1080p Download – Full HD MP4, No Ads"
-  },
-  "form": {
-    "title": "YTMP4 YouTube 1080p Video Downloader",
-    "placeholder": "Paste YouTube 1080p video URL here...",
-    "convertButton": "Download 1080p MP4"
-  },
-  "overview": {
-    "howTo": {
-      "title": "How to Download YouTube 1080p Video with YTMP4",
-      "steps": [
-        {
-          "number": "1",
-          "title": "Copy the YouTube Video Link",
-          "description": "Copy the URL of the YouTube video available in 1080p resolution."
-        },
-        {
-          "number": "2",
-          "title": "Paste the URL",
-          "description": "Paste the link into the YTMP4 YouTube 1080p downloader above."
-        },
-        {
-          "number": "3",
-          "title": "Select 1080p Quality",
-          "description": "Choose the Full HD (1080p) option if available."
-        },
-        {
-          "number": "4",
-          "title": "Download the MP4 File",
-          "description": "Click download to save the 1080p YouTube video as an MP4 file."
-        }
-      ]
-    }
-  },
   "content": {
-    "intro": {
-      "title": "What Is YTMP4 YouTube 1080p Downloader?",
-      "description": "YTMP4 allows you to <strong>download 1080p video YouTube</strong> in Full HD quality and save it as an MP4 file. If the original upload supports 1080p resolution, you can complete a fast <strong>youtube 1080p download</strong> directly from your browser using YTMP4 with no ads and no registration."
+    "form": {
+      "h1": "YTMP4 – Download 1080p Video YouTube",
+      "placeholder": "Paste YouTube 1080p video URL here...",
+      "button": "Convert"
     },
-    "columns": [
+    "sections": [
       {
-        "title": "YouTube Full HD Download Online",
-        "description": "With YTMP4, you can perform a <strong>youtube full hd download</strong> in seconds. The tool supports <strong>download youtube 1080p video</strong> instantly without installing any software."
+        "h2": "What Is YTMP4 YouTube 1080p Downloader?",
+        "p": [
+          "YTMP4 allows you to <strong>download 1080p video YouTube</strong> in Full HD quality and save it as an MP4 file.",
+          "If the original upload supports 1080p resolution, you can perform a fast <strong>youtube 1080p download</strong> directly from your browser using YTMP4 with no ads and no registration required."
+        ]
       },
       {
-        "title": "Download 1080p MP4 with Smooth Playback",
-        "description": "The YTMP4 downloader supports <strong>youtube 1080p mp4</strong> format and works across devices. You can easily <strong>download mp4 youtube 1080p</strong> for better compatibility on phones, tablets, and desktops."
+        "h2": "How to Download YouTube 1080p Video with YTMP4",
+        "ol": [
+          {
+            "h3": "Copy the YouTube Video Link",
+            "p": [
+              "Copy the URL of the YouTube video available in 1080p resolution."
+            ]
+          },
+          {
+            "h3": "Paste the URL",
+            "p": [
+              "Paste the link into the YTMP4 YouTube 1080p downloader above."
+            ]
+          },
+          {
+            "h3": "Select 1080p Quality",
+            "p": [
+              "Choose the Full HD (1080p) option if available from the original source."
+            ]
+          },
+          {
+            "h3": "Download the MP4 File",
+            "p": [
+              "Click download to save the YouTube video as a Full HD MP4 file."
+            ]
+          }
+        ]
       },
       {
-        "title": "Supports 1080p 60 FPS When Available",
-        "description": "If the original upload includes higher frame rates, YTMP4 allows you to <strong>download video youtube 1080p 60 fps</strong> for smoother motion and improved viewing experience."
+        "h2": "YouTube Full HD Download Online",
+        "p": [
+          "With YTMP4, you can perform a <strong>youtube full hd download</strong> in seconds directly from your browser.",
+          "The tool supports <strong>download youtube 1080p video</strong> instantly without installing any software."
+        ]
       },
       {
-        "title": "Need Other Quality Options?",
-        "description": "If you require ultra-high resolution, visit the <a href=\"/download-youtube-4k-video\"><strong>YouTube 4K video downloader</strong></a>. For general conversions, return to the <a href=\"/\"><strong>YTMP4 YouTube to MP4 converter</strong></a> homepage."
-      }
-    ],
-    "whyDownload": {
-      "title": "Why Choose YTMP4 for 1080p Downloads?",
-      "description": "Full HD offers excellent clarity while keeping file sizes manageable. A <strong>full hd youtube video download</strong> using YTMP4 is ideal for offline viewing, everyday playback, and professional presentations."
-    },
-    "quality": {
-      "title": "Reliable YouTube 1080p Converter",
-      "description": "YTMP4 works as a fast <strong>youtube 1080p converter</strong> that allows you to <strong>download video youtube 1080 p</strong> in MP4 format depending on the original source quality."
-    }
-  },
-  "faqs": {
-    "title": "Frequently Asked Questions",
-    "items": [
-      {
-        "question": "Can I download 1080p video YouTube as MP4 using YTMP4?",
-        "answer": "Yes. If the original video supports 1080p resolution, YTMP4 allows you to download it in MP4 format instantly."
+        "h2": "Download 1080p MP4 with Smooth Playback",
+        "p": [
+          "YTMP4 supports <strong>youtube 1080p mp4</strong> format for better compatibility across devices.",
+          "You can easily <strong>download mp4 youtube 1080p</strong> and watch videos smoothly on phones, tablets, and desktop computers."
+        ]
       },
       {
-        "question": "Does YTMP4 support YouTube 1080p 60fps?",
-        "answer": "Yes. If the video includes 60fps in 1080p, you can download that version for smoother playback."
+        "h2": "Supports 1080p 60 FPS When Available",
+        "p": [
+          "If the original upload includes higher frame rates, YTMP4 allows you to <strong>download video youtube 1080p 60 fps</strong> for smoother playback.",
+          "This improves motion clarity and creates a better viewing experience."
+        ]
       },
       {
-        "question": "Do I need to install any software?",
-        "answer": "No. YTMP4 works entirely online in your browser."
+        "h2": "Need Other Quality Options?",
+        "p": [
+          "If you need higher resolution, you can visit the <a href=\"/download-youtube-4k-video\"><strong>YouTube 4K video downloader</strong></a> page.",
+          "For standard conversions, return to the <a href=\"/\"><strong>YTMP4 YouTube to MP4 converter</strong></a> homepage."
+        ]
       },
       {
-        "question": "Is YTMP4 affiliated with YouTube?",
-        "answer": "No. YTMP4 is an independent tool and is not affiliated with YouTube or Google."
+        "h2": "Why Choose YTMP4 for 1080p Downloads?",
+        "p": [
+          "Full HD resolution offers excellent image clarity while keeping file sizes manageable.",
+          "A <strong>full hd youtube video download</strong> using YTMP4 is ideal for offline viewing, everyday playback, and professional presentations."
+        ]
+      },
+      {
+        "h2": "Reliable YouTube 1080p Converter",
+        "p": [
+          "YTMP4 works as a fast <strong>youtube 1080p converter</strong> that allows you to convert and download YouTube videos in Full HD.",
+          "You can easily <strong>download video youtube 1080 p</strong> in MP4 format depending on the original source quality."
+        ]
+      },
+      {
+        "h2": "Frequently Asked Questions",
+        "ul": [
+          {
+            "h3": "Can I download 1080p video YouTube as MP4 using YTMP4?",
+            "p": [
+              "Yes. If the original video supports 1080p resolution, YTMP4 allows you to download it instantly in MP4 format."
+            ]
+          },
+          {
+            "h3": "Does YTMP4 support YouTube 1080p 60fps?",
+            "p": [
+              "Yes. If the original video includes 1080p at 60fps, you can download that version for smoother playback."
+            ]
+          },
+          {
+            "h3": "Do I need to install any software?",
+            "p": [
+              "No. YTMP4 works entirely online in your browser without requiring installation."
+            ]
+          },
+          {
+            "h3": "Is YTMP4 affiliated with YouTube?",
+            "p": [
+              "No. YTMP4 is an independent tool and is not affiliated with YouTube or Google."
+            ]
+          }
+        ]
       }
     ]
   }

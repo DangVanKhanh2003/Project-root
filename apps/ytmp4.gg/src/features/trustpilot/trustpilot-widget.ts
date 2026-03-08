@@ -68,7 +68,6 @@ function ensureTrustpilotWidget(attachToDom = true): HTMLElement {
         widget.setAttribute('data-style-width', '100%');
         widget.setAttribute('data-token', '28a35c2e-ddaa-47cf-8bd4-a08c016ed263');
         widget.innerHTML = `<a href="${TRUSTPILOT_REVIEW_URL}" target="_blank" rel="noopener">Trustpilot</a>`;
-        widget.style.marginTop = '20px';
 
         if (attachToDom) {
             const fallbackHost =
@@ -126,8 +125,8 @@ export function showTrustpilotWidget(): void {
         if (!wrapper) {
             wrapper = document.createElement('div');
             wrapper.id = TRUSTPILOT_WRAPPER_ID;
-            wrapper.style.marginTop = '16px';
             wrapper.style.width = '100%';
+            wrapper.style.height = '52px';
 
             // Insert inside conversion-state-wrapper, after action-container
             const conversionWrapper = document.querySelector('.conversion-state-wrapper');

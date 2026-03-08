@@ -94,6 +94,17 @@
     <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
+    <link rel="preload" href="/fonts/Fredoka_SemiCondensed-Bold.woff2?v=2" as="font" type="font/woff2" crossorigin>
+    <style>
+        @font-face {
+            font-family: 'Fredoka SemiCondensed';
+            src: url('/fonts/Fredoka_SemiCondensed-Bold.woff2?v=2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+    </style>
+
     <!-- Critical: Read format preference before render to prevent FOUC -->
     <script>
         function setTheme(theme) {
