@@ -15,6 +15,7 @@ import { getMergingEstimator, clearMergingEstimator } from './merging-progress-e
 import { showVidToolPopup } from '@downloader/vidtool-popup';
 import { logEvent } from '../../../libs/firebase';
 import { onAfterDownload, onDownloadFailed, onReset, incrementDownloadCount } from '../../widget-level-manager';
+import { showHeroFeatureLinks } from '../../hero-feature-links';
 
 // ============================================================
 // TYPE DEFINITIONS
@@ -749,6 +750,7 @@ async function handleNewConvertButtonClick(): Promise<void> {
 
   // Hide Trustpilot widget on reset
   onReset();
+  showHeroFeatureLinks();
 
   const { showSearchView } = await import('./view-switcher');
   const { setInputValue, focusInput } = await import('./ui-renderer');

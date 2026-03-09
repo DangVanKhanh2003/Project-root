@@ -45,6 +45,7 @@ import { evaluateFeatureAccess } from '../../allowed-features';
 import { show as showPaywall } from 'https://media.ytmp3.gg/poppurchase.v3.js?v=1';
 import { checkLimit } from '../../download-limit';
 import { FEATURE_KEYS, FEATURE_ACCESS_REASONS } from '@downloader/core';
+import { hideHeroFeatureLinks } from '../../hero-feature-links';
 
 
 /**
@@ -901,6 +902,7 @@ async function handleSubmit(event: Event): Promise<void> {
         setLoading(true);
       }
 
+      hideHeroFeatureLinks();
       onAfterSubmit();
       await handleExtractMedia(value);
     } else {

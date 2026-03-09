@@ -89,6 +89,16 @@
   transition: none !important;
 }
 
+.status--processing.status--merging::before,
+.status--processing.status--merging::after {
+  background: linear-gradient(90deg, var(--color-accent-soft-08) 0%, var(--color-accent-soft-12) 100%);
+}
+
+[data-theme="dark"] .status--processing.status--merging::before,
+[data-theme="dark"] .status--processing.status--merging::after {
+  background: linear-gradient(90deg, var(--color-accent-soft-10) 0%, var(--color-accent-soft-12) 100%);
+}
+
 @keyframes merging-progress {
   from {
     width: 0%;
@@ -107,6 +117,16 @@
 .status--completing::before {
   animation: none !important;
   transition: width 0.4s ease-out !important;
+}
+
+.status--completing::before,
+.status--completing::after {
+  background: linear-gradient(90deg, var(--color-accent-soft-08) 0%, var(--color-accent-soft-12) 100%);
+}
+
+[data-theme="dark"] .status--completing::before,
+[data-theme="dark"] .status--completing::after {
+  background: linear-gradient(90deg, var(--color-accent-soft-10) 0%, var(--color-accent-soft-12) 100%);
 }
 
 /* Hide status bar on success and error - controlled by JavaScript */
