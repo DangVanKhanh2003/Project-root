@@ -108,33 +108,6 @@ function initLogoClickHandler() {
 }
 
 /**
- * Initialize header scroll effect
- * Uses requestAnimationFrame throttling for better performance
- */
-function initHeaderScroll() {
-  const header = document.getElementById('main-header');
-  if (!header) return;
-
-  let ticking = false;
-
-  const updateHeader = () => {
-    if (window.scrollY > 10) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
-    ticking = false;
-  };
-
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      requestAnimationFrame(updateHeader);
-      ticking = true;
-    }
-  }, { passive: true });
-}
-
-/**
  * Initialize language selector dropdown
  */
 function initLangSelector() {
@@ -231,7 +204,6 @@ function initFeedbackWidget(): void {
  * Initialize app
  */
 function loadFeatures() {
-  initHeaderScroll(); // Initialize header scroll effect
   initMobileMenu(); // Initialize mobile menu
   initLangSelector(); // Initialize language selector dropdown
   initDrawerLangSelector(); // Initialize drawer language selector dropdown

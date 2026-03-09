@@ -117,22 +117,6 @@ function initLogoClickHandler() {
 }
 
 /**
- * Initialize header scroll effect
- */
-function initHeaderScroll() {
-  const header = document.getElementById('main-header');
-  if (!header) return;
-
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 10) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
-  });
-}
-
-/**
  * Initialize language selector dropdown
  */
 function initLangSelector() {
@@ -238,7 +222,6 @@ function initFeedbackWidget(): void {
 async function loadFeatures() {
   await applyInitialVisibility();   // Initialize license button + supporter badge
   initLicenseOnPageLoad();          // Background revalidation if cache is stale (fire-and-forget)
-  initHeaderScroll(); // Initialize header scroll effect
   initMobileMenu(); // Initialize mobile menu
   initLangSelector(); // Initialize language selector dropdown
   initDrawerLangSelector(); // Initialize drawer language selector dropdown

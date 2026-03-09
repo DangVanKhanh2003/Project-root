@@ -160,18 +160,6 @@ export function initDrawerLangSelector(): void {
 }
 
 // ==========================================
-// Header Scroll Effect
-// ==========================================
-
-export function initHeaderScroll(): void {
-    const header = document.getElementById('main-header');
-    if (!header) return;
-    window.addEventListener('scroll', () => {
-        header.classList.toggle('scrolled', window.scrollY > 10);
-    });
-}
-
-// ==========================================
 // Firebase Analytics (lazy, after 5s)
 // ==========================================
 

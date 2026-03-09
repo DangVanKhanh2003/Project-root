@@ -50,18 +50,6 @@ function initMobileMenu(): void {
   });
 }
 
-function initHeaderScroll(): void {
-  const header = document.getElementById('main-header');
-  if (!header) return;
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 10) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
-  });
-}
-
 function initLangSelector(): void {
   const langSelector = document.querySelector('.lang-selector');
   const langButton = document.querySelector('.lang-button');
@@ -107,7 +95,6 @@ function initFeedbackWidget(): void {
 
 async function loadFeatures(): Promise<void> {
   await applyInitialVisibility();
-  initHeaderScroll();
   initMobileMenu();
   initLangSelector();
   initDrawerLangSelector();

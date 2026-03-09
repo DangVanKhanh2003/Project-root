@@ -109,22 +109,6 @@ function initLogoClickHandler() {
 }
 
 /**
- * Initialize header scroll effect
- */
-function initHeaderScroll() {
-  const header = document.getElementById('main-header');
-  if (!header) return;
-
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 10) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
-  });
-}
-
-/**
  * Initialize language switcher
  */
 async function initLanguageSwitcher() {
@@ -173,7 +157,6 @@ function initFeedbackWidget(): void {
  * Initialize app
  */
 function loadFeatures() {
-  initHeaderScroll(); // Initialize header scroll effect
   initMobileMenu(); // Initialize mobile menu
   initLanguageSwitcher(); // Initialize language switcher
   initDownloaderUI();
