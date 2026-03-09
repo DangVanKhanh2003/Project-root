@@ -64,6 +64,7 @@
     color: var(--hero-feature-link-text);
     transition: color var(--transition-normal);
     white-space: nowrap;
+    line-height: 1.4;
 }
 
 .hero-feature-link:hover span,

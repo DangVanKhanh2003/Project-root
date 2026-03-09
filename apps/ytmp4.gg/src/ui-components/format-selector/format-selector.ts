@@ -65,7 +65,7 @@ function toAudioSelectValue(audioFormat: AudioFormatType, audioBitrate: string):
 function getQualityLabel(resolution: string): string {
   if (resolution === '2160') return '4K';
   if (resolution === '1440') return '2K';
-  return `${resolution}p`;
+  return `${resolution}P`;
 }
 
 function getVideoGroup(value: string): VideoGroup | null {
@@ -76,13 +76,13 @@ function getVideoGroup(value: string): VideoGroup | null {
 function getVideoOptionLabel(value: string): string {
   const match = value.match(/^(mp4|webm|mkv)-(\d+)$/);
   if (!match) return value;
-  return `${match[1]} - ${getQualityLabel(match[2])}`;
+  return `${match[1].toUpperCase()} - ${getQualityLabel(match[2])}`;
 }
 
 function buildVideoOptions(container: VideoGroup): string {
   return VIDEO_RESOLUTIONS.map((resolution) => {
     const value = `${container}-${resolution}`;
-    const label = `${container} - ${getQualityLabel(resolution)}`;
+    const label = `${container.toUpperCase()} - ${getQualityLabel(resolution)}`;
     return `<option value="${value}">${label}</option>`;
   }).join('');
 }
@@ -125,7 +125,7 @@ function renderGroupedVideoDropdown(dropdown: HTMLElement, selectedValue: string
     const itemsHtml = VIDEO_RESOLUTIONS.map((resolution) => {
       const value = `${group}-${resolution}`;
       const selectedClass = value === selectedValue ? ' is-selected' : '';
-      const label = `${group} - ${getQualityLabel(resolution)}`;
+      const label = `${group.toUpperCase()} - ${getQualityLabel(resolution)}`;
       return `<button type="button" class="video-group-item${selectedClass}" data-group-item="${value}">${label}</button>`;
     }).join('');
 

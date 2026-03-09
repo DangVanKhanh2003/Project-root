@@ -34,6 +34,9 @@
     --text-muted: var(--muted);
     --color-text-muted: #7f8d96;
     --color-text-soft: #7f8d96;
+    --color-input-placeholder: #7F8D96;
+    --color-text-disabled: #9CA3AF;
+    --color-control-placeholder: var(--color-text-disabled);
     --text-accent: var(--brand);
 
     --border-glass: 1px solid #e5e7eb;
@@ -70,7 +73,7 @@
 
     /* Border tokens */
     --border-default: rgba(137, 137, 137, 0.33);
-    --color-border: #cfdcdd;
+    --color-border: #e5e5e5;
     --border-input: var(--color-border);
     --border-subtle: #e5e7eb;
 
@@ -186,7 +189,7 @@
 
     --bg-page: #262624;
     --bg-card: #30302E;
-    --yt-preview-card-bg: rgba(0, 0, 0, .1);
+    --yt-preview-card-bg: rgb(66 66 66);
     --bg-primary: #1F1F1E;
     --bg-secondary: #262624;
     --bg-surface-soft: #383836;
@@ -201,6 +204,9 @@
     --text-muted: #C9C7C2;
     --color-text-muted: #C9C7C2;
     --color-text-soft: #C9C7C2;
+    --color-input-placeholder: rgba(255, 255, 255, 0.56);
+    --color-text-disabled: rgba(255, 255, 255, 0.56);
+    --color-control-placeholder: var(--color-text-disabled);
     --text-placeholder: #8A8884;
     --text-primary: #E8E6E3;
     --hero-title-color: var(--text-heading);

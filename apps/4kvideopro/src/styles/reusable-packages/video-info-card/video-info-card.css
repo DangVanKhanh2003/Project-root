@@ -141,7 +141,7 @@
 
 .video-title-skeleton .skeleton-line {
   height: 17px;
-  border-radius: 4px;
+  border-radius: 12px;
   background: linear-gradient(90deg, var(--color-skeleton-dark) 25%, var(--color-skeleton-light) 50%, var(--color-skeleton-dark) 75%);
   background-size: 200% 100%;
   animation: shimmer 0.75s linear infinite;

@@ -280,7 +280,7 @@ function getVideoResolutionLabel(videoQuality: string | undefined): string {
 function getQualityLabel(resolution: string): string {
   if (resolution === '2160') return '4K';
   if (resolution === '1440') return '2K';
-  return `${resolution}p`;
+  return `${resolution}P`;
 }
 
 function getGroupFromVideoValue(value: string): VideoGroup | null {
@@ -291,13 +291,13 @@ function getGroupFromVideoValue(value: string): VideoGroup | null {
 function getVideoOptionLabel(value: string): string {
   const match = value.match(/^(mp4|webm|mkv)-(\d+)$/);
   if (!match) return value;
-  return `${match[1]} - ${getQualityLabel(match[2])}`;
+  return `${match[1].toUpperCase()} - ${getQualityLabel(match[2])}`;
 }
 
 function buildVideoOptions(container: VideoGroup): string {
   return VIDEO_RESOLUTIONS.map((resolution) => {
     const value = `${container}-${resolution}`;
-    const label = `${container} - ${getQualityLabel(resolution)}`;
+    const label = `${container.toUpperCase()} - ${getQualityLabel(resolution)}`;
     return `<option value="${value}">${label}</option>`;
   }).join('');
 }
@@ -337,7 +337,7 @@ function renderStreamGroupedDropdown(dropdown: HTMLElement, selectedValue: strin
     const icon = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>';
     const items = VIDEO_RESOLUTIONS.map((resolution) => {
       const value = `${group}-${resolution}`;
-      const label = `${group} - ${getQualityLabel(resolution)}`;
+      const label = `${group.toUpperCase()} - ${getQualityLabel(resolution)}`;
       const selectedClass = value === selectedValue ? ' is-selected' : '';
       return `<button type="button" class="video-group-item${selectedClass}" data-stream-group-item="${value}">${label}</button>`;
     }).join('');

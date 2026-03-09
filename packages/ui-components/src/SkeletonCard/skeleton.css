@@ -156,19 +156,6 @@
   }
 }
 
-/* 2K Display (1920px+) */
-@media (min-width: 1920px) {
-  .skeleton-title {
-    height: 20px;
-  }
-}
-
-/* 4K Display (2560px+) */
-@media (min-width: 2560px) {
-  .skeleton-title {
-    height: 22px;
-  }
-}
 
 /* ========== SKELETON SUBTITLE ========== */
 .skeleton-subtitle {

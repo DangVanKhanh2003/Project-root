@@ -196,7 +196,6 @@ html[data-format="mp3"] .quality-dropdown-wrapper .video-group-dropdown {
     background: var(--bg-card);
     cursor: pointer;
     font-size: 14px;
-    font-weight: 600;
     color: var(--text-body);
     display: flex;
     align-items: center;
@@ -243,7 +242,7 @@ html[data-format="mp3"] .quality-dropdown-wrapper .video-group-dropdown {
     border-radius: 10px;
 }
 
-.video-group-section + .video-group-section {
+.video-group-section+.video-group-section {
     margin-top: 6px;
 }
 
@@ -378,7 +377,7 @@ html[data-format="mp3"] .quality-dropdown-wrapper .video-group-dropdown {
 
     .format-btn {
         height: 100%;
-        padding: 0 16px;
+        padding: 0 18px;
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -401,11 +400,6 @@ html[data-format="mp3"] .quality-dropdown-wrapper .video-group-dropdown {
 }
 
 @media (max-width: 480px) {
-    .format-btn {
-        padding: 0 14px;
-        font-size: 13px;
-    }
-
     .format-toggle {
         border-radius: calc(var(--radius-xl) - 10px);
     }
@@ -417,7 +411,6 @@ html[data-format="mp3"] .quality-dropdown-wrapper .video-group-dropdown {
     }
 
     .video-group-trigger {
-        font-size: 13px;
         border-radius: calc(var(--radius-xl) - 10px);
     }
 

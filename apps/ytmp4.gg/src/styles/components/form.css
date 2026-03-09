@@ -114,13 +114,18 @@
     min-width: 0;
     height: 56px;
     padding: 0 16px;
-    font-size: 14px;
+    font-size: 18px;
     line-height: 1.5;
     border: none;
     outline: none;
     background: transparent;
     color: var(--text-main);
     caret-color: var(--input-caret-color);
+}
+
+.video-input::placeholder {
+    color: var(--color-input-placeholder, #7F8D96);
+    opacity: 1;
 }
 
 .input-actions {
@@ -204,7 +209,7 @@
 @media (max-width: 768px) {
     .video-input {
         height: 48px;
-        font-size: 14px;
+        font-size: 16px;
     }
 
     .input-actions {
@@ -230,7 +235,7 @@
 @media (max-width: 480px) {
     .video-input {
         height: 48px;
-        font-size: 14px;
+        font-size: 16px;
     }
 
     .input-wrapper {
