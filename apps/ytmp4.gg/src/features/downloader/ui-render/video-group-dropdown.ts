@@ -22,7 +22,7 @@ let globalListenersBound = false;
 function getQualityLabel(resolution: string): string {
     if (resolution === '2160') return '4K';
     if (resolution === '1440') return '2K';
-    return `${resolution}p`;
+    return `${resolution}P`;
 }
 
 function getValueMode(dropdown: DropdownWithSelect): VideoValueMode {
@@ -101,7 +101,7 @@ function getSelectedLabel(select: HTMLSelectElement, mode: VideoValueMode): stri
     const resolution = getResolutionFromValue(selectedValue, mode);
 
     if (group && resolution) {
-        return `${group} - ${getQualityLabel(resolution)}`;
+        return `${group.toUpperCase()} - ${getQualityLabel(resolution)}`;
     }
 
     const selectedOption = select.selectedOptions?.[0];
@@ -123,7 +123,7 @@ function renderDropdown(dropdown: DropdownWithSelect): void {
         const itemsHtml = VIDEO_RESOLUTIONS.map((resolution) => {
             const value = buildValue(group, resolution, mode);
             const selectedClass = value === selectedValue ? ' is-selected' : '';
-            const label = `${group} - ${getQualityLabel(resolution)}`;
+            const label = `${group.toUpperCase()} - ${getQualityLabel(resolution)}`;
             return `<button type="button" class="video-group-item${selectedClass}" data-custom-group-item="${value}">${label}</button>`;
         }).join('');
 

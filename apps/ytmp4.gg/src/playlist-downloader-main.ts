@@ -7,6 +7,7 @@
 import './styles/index.css';
 
 import { applyInitialVisibility } from './features/widget-level-manager';
+import { initHeroFeatureLinks } from './features/hero-feature-links';
 import { showTipMessageWidget } from './features/tip-message/tip-message-widget';
 
 // Import API and services
@@ -446,6 +447,7 @@ async function init() {
     initMobileMenu();
     initLangSelector();
     initDrawerLangSelector();
+    initHeroFeatureLinks();
     initFormatToggle();
     initInputActions();
     initAudioDropdown({ dropdownId: 'multi-audio-track-dropdown', hiddenInputId: 'multi-audio-track-value' });

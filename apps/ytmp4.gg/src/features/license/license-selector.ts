@@ -47,7 +47,7 @@ function getButtonLabel(cache: CachedLicense): string {
     if (cache.planType === 'lifetime') return 'Lifetime';
 
     const days = getDaysRemaining(cache);
-    if (days === null) return 'License';
+    if (days === null) return 'Get Premium';
     if (!isPlanActive(cache)) return 'Expired';
     if (days === 0) return 'Last day';
     if (days === 1) return '1 day';
@@ -116,7 +116,7 @@ function updateButtonLabels(): void {
             textSpan.textContent = getButtonLabel(cache);
             btn.classList.add('license-active');
         } else {
-            const defaultLabel = btn.getAttribute('data-license-default-label') || 'License';
+            const defaultLabel = btn.getAttribute('data-license-default-label') || 'Get Premium';
             textSpan.textContent = defaultLabel;
             btn.classList.remove('license-active');
         }

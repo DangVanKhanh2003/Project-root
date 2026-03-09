@@ -38,6 +38,7 @@
 @import './components/format-selector.css';
 @import './components/dropdown.css';
 @import './components/material-popup.css';
+@import './features/hero-feature-links.css';
 @import './features/strim-downloader.css';
 
 /* 7. Reusable Packages (TypeScript features) */

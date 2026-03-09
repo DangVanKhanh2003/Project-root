@@ -9,6 +9,7 @@ import './styles/index.css';
 
 import { applyInitialVisibility } from './features/widget-level-manager';
 import { initLicenseOnPageLoad } from './features/license/license-token';
+import { initHeroFeatureLinks } from './features/hero-feature-links';
 
 
 
@@ -242,6 +243,7 @@ async function loadFeatures() {
   initMobileMenu(); // Initialize mobile menu
   initLangSelector(); // Initialize language selector dropdown
   initDrawerLangSelector(); // Initialize drawer language selector dropdown
+  initHeroFeatureLinks(); // Initialize hero feature link buttons (mobile)
   initDownloaderUI(); // Initialize downloader (async/lazy loaded)
   initLogoClickHandler(); // Prevent logo reload issue
   initFirebaseAnalytics(); // Initialize Firebase Analytics (lazy loaded after 5s)

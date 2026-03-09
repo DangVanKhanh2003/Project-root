@@ -112,9 +112,10 @@
 .video-input {
     flex: 1;
     min-width: 0;
-    height: 52px;
-    padding: 0 20px;
-    font-size: 16px;
+    height: 56px;
+    padding: 0 16px;
+    font-size: 14px;
+    line-height: 1.5;
     border: none;
     outline: none;
     background: transparent;
@@ -203,7 +204,7 @@
 @media (max-width: 768px) {
     .video-input {
         height: 48px;
-        font-size: 16px;
+        font-size: 14px;
     }
 
     .input-actions {
@@ -229,7 +230,7 @@
 @media (max-width: 480px) {
     .video-input {
         height: 48px;
-        font-size: 16px;
+        font-size: 14px;
     }
 
     .input-wrapper {

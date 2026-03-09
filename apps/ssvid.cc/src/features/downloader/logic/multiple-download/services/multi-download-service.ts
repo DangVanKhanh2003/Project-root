@@ -469,7 +469,12 @@ export class MultiDownloadService {
                         videoStore.updateProgress(id, progress, phase);
                     },
                     onComplete: (downloadUrl, filename) => {
-                        videoStore.setCompleted(id, downloadUrl, filename);
+                        const completeAfterMs = 350;
+                        window.setTimeout(() => {
+                            const latest = videoStore.getItem(id);
+                            if (!latest || latest.status !== 'converting') return;
+                            videoStore.setCompleted(id, downloadUrl, filename);
+                        }, completeAfterMs);
                     },
                     onError: (message) => {
                         videoStore.setError(id, message);

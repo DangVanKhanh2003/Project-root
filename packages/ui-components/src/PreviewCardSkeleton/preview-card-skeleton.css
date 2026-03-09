@@ -10,24 +10,20 @@
    ========================================== */
 
 .yt-preview-card.skeleton .yt-preview-thumbnail {
-  background: linear-gradient(
-    90deg,
-    var(--skeleton-base, #d7d7d7) 25%,
-    var(--skeleton-shimmer, #c7c7c7) 50%,
-    var(--skeleton-base, #d7d7d7) 75%
-  );
+  background: linear-gradient(90deg,
+      var(--skeleton-base, #d7d7d7) 25%,
+      var(--skeleton-shimmer, #c7c7c7) 50%,
+      var(--skeleton-base, #d7d7d7) 75%);
   background-size: 200% 100%;
   animation: skeleton-loading 1s linear infinite;
 }
 
 /* Namespace skeleton lines specifically for YT preview card */
 .yt-preview-card.skeleton .skeleton-line {
-  background: linear-gradient(
-    90deg,
-    var(--skeleton-base, #d7d7d7) 25%,
-    var(--skeleton-shimmer, #c7c7c7) 50%,
-    var(--skeleton-base, #d7d7d7) 75%
-  );
+  background: linear-gradient(90deg,
+      var(--skeleton-base, #d7d7d7) 25%,
+      var(--skeleton-shimmer, #c7c7c7) 50%,
+      var(--skeleton-base, #d7d7d7) 75%);
   background-size: 200% 100%;
   animation: skeleton-loading 1s linear infinite;
   border-radius: 4px;
@@ -43,7 +39,7 @@
 
 .yt-preview-card.skeleton .skeleton-line.skeleton-badge {
   height: 24px;
-  border-radius: 36px;
+  border-radius: 6px;
   padding: 0px !important;
   margin: 0px !important;
 }
@@ -66,6 +62,7 @@
   0% {
     background-position: -200% 0;
   }
+
   100% {
     background-position: 200% 0;
   }
@@ -77,6 +74,7 @@
 
 /* Mobile devices */
 @media (max-width: 600px) {
+
   /* Skeleton adjustments for mobile */
   .yt-preview-card.skeleton .skeleton-line.skeleton-title {
     height: 21px;
@@ -90,6 +88,7 @@
 
 /* Small mobile devices */
 @media (max-width: 400px) {
+
   /* Skeleton adjustments for small mobile */
   .yt-preview-card.skeleton .skeleton-line.skeleton-title {
     height: 19px;

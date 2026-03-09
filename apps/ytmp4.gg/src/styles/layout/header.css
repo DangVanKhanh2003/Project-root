@@ -5,6 +5,7 @@
     z-index: 20;
     background: var(--background-hero-section);
     backdrop-filter: blur(10px);
+    padding: 5px 0px;
 }
 
 .header-inner {
@@ -29,6 +30,15 @@
 .header-logo-text,
 .drawer-logo-text {
     font-family: 'Fredoka SemiCondensed', sans-serif;
+    letter-spacing: 1px;
+}
+
+@media (min-width: 641px) {
+    .header-logo-text {
+        height: 72px;
+        display: flex;
+        align-items: center;
+    }
 }
 
 /* Logo icon fill overrides — match actual SVG fill attributes */
@@ -360,11 +370,11 @@
     display: flex;
     align-items: center;
     gap: 4px;
-    background: transparent;
-    border: 1.5px solid rgba(255, 255, 255, .754);
+    background: var(--header-license-button-bg);
+    border: 1.5px solid var(--header-license-button-bg);
     border-radius: 4px;
     padding: 6px 10px;
-    color: #fff;
+    color: var(--header-license-button-text);
     font-family: inherit;
     font-size: 11px;
     font-weight: 500;
@@ -392,9 +402,9 @@
         font-size: 13px;
         padding: 8px 14px;
         gap: 6px;
-        background: var(--bg-card);
-        color: var(--text-body);
-        border-color: var(--border-default);
+        background: var(--header-license-button-bg);
+        color: var(--header-license-button-text);
+        border-color: var(--header-license-button-bg);
         width: auto;
     }
 }
@@ -423,22 +433,38 @@
 
 .license-button:hover {
     opacity: 1;
-    background: rgba(255, 255, 255, 0.15);
-    border-color: #fff;
+    background: color-mix(in srgb, var(--header-license-button-bg) 86%, #000);
+    border-color: color-mix(in srgb, var(--header-license-button-bg) 86%, #000);
+    color: var(--header-license-button-text);
 }
 
 @media (min-width: 840px) {
     .header-nav .license-button:hover {
-        background: #f5f6f8;
-        border-color: #dde0e6;
-        color: var(--text-body);
+        background: color-mix(in srgb, var(--header-license-button-bg) 86%, #000);
+        border-color: color-mix(in srgb, var(--header-license-button-bg) 86%, #000);
+        color: var(--header-license-button-text);
     }
 }
 
 [data-theme="dark"] .license-button:hover {
-    background: var(--accent-fill-soft);
-    border-color: var(--brand);
-    color: var(--brand);
+    background: color-mix(in srgb, var(--header-license-button-bg) 86%, #000);
+    border-color: color-mix(in srgb, var(--header-license-button-bg) 86%, #000);
+    color: var(--header-license-button-text);
+}
+
+.license-button.license-active,
+.header-nav .license-button.license-active {
+    background: #ffffff;
+    border-color: #ffffff;
+    color: #1f1f1f;
+}
+
+.license-button.license-active:hover,
+.header-nav .license-button.license-active:hover,
+[data-theme="dark"] .license-button.license-active:hover {
+    background: #ffffff;
+    border-color: #ffffff;
+    color: #1f1f1f;
 }
 
 
@@ -466,6 +492,10 @@
     width: 16px;
     height: 16px;
     flex-shrink: 0;
+}
+
+.license-button .license-icon {
+    color: var(--header-license-button-icon);
 }
 
 .license-icon svg {

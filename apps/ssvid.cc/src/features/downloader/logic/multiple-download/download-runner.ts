@@ -21,6 +21,7 @@ export interface DownloadConfig {
 
 const POLLING_INTERVAL = 2000;
 const MAX_POLL_ITERATIONS = 5400; // 3 hours at 2s intervals
+const TERMINAL_JOB_STATUSES = new Set(['error', 'not_found', 'failed', 'faild']);
 
 export async function runSingleDownload(config: DownloadConfig): Promise<void> {
     const { url, settings, signal, callbacks } = config;
@@ -83,6 +84,7 @@ async function pollStatus(
 
         try {
             const statusData = await apiV3.getStatusByUrl(statusUrl);
+            const normalizedStatus = normalizeStatus(statusData.status);
             consecutiveErrors = 0;
 
             // Progress floor - never go backwards
@@ -93,6 +95,9 @@ async function pollStatus(
 
             // Phase detection
             let phase: ProgressPhase = 'processing';
+            if (normalizedStatus === 'pending' && lastProgress >= 100) {
+                phase = 'merging';
+            }
             if (statusData.detail) {
                 if (statusData.detail.video === 100 && statusData.detail.audio === 100) {
                     phase = 'merging';
@@ -101,8 +106,12 @@ async function pollStatus(
 
             callbacks.onProgress(lastProgress, phase);
 
-            if (statusData.status === 'completed') {
+            if (normalizedStatus === 'completed') {
                 if (statusData.downloadUrl) {
+                    if (lastProgress < 100) {
+                        await animateProgressTo100(lastProgress, 'processing', signal, callbacks.onProgress);
+                    }
+                    callbacks.onProgress(100, 'merging');
                     const filename = statusData.title
                         ? `${statusData.title}.${getExtension(callbacks)}`
                         : undefined;
@@ -112,9 +121,14 @@ async function pollStatus(
                 throw new Error('Completed but no download URL');
             }
 
-            if (statusData.status === 'error' || statusData.status === 'not_found' || statusData.status === 'failed') {
+            if (
+                normalizedStatus === 'error' ||
+                normalizedStatus === 'not_found' ||
+                normalizedStatus === 'failed' ||
+                normalizedStatus === 'faild'
+            ) {
                 // Terminal status - stop polling immediately, no retry
-                throw new Error(statusData.jobError || 'Job failed');
+                throw createTerminalJobError(statusData.jobError || 'Job failed');
             }
         } catch (error: any) {
             if (signal.aborted || error.name === 'AbortError') return;
@@ -126,7 +140,7 @@ async function pollStatus(
             }
 
             // Job error from API - check retries
-            if (error.isJobError || error.message?.includes('Job failed')) {
+            if (error.isJobError || isTerminalJobError(error)) {
                 throw error;
             }
 
@@ -167,4 +181,60 @@ function getExtension(callbacks: DownloadCallbacks): string {
 
 function sleep(ms: number): Promise<void> {
     return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function animateProgressTo100(
+    from: number,
+    phase: ProgressPhase,
+    signal: AbortSignal,
+    onProgress: (progress: number, phase?: ProgressPhase) => void
+): Promise<void> {
+    const start = Math.max(0, Math.min(100, Math.round(from)));
+    if (start >= 100) return;
+
+    const durationMs = 450;
+    const stepMs = 30;
+    const steps = Math.max(1, Math.floor(durationMs / stepMs));
+
+    for (let i = 1; i <= steps; i++) {
+        if (signal.aborted) return;
+        const next = Math.min(100, Math.round(start + ((100 - start) * i) / steps));
+        onProgress(next, phase);
+        await sleep(stepMs);
+        if (next >= 100) return;
+    }
+}
+
+function isTerminalJobError(error: unknown): boolean {
+    const e = error as any;
+    const normalizedMessage = String(e?.message || '').toLowerCase();
+    const responseStatus = normalizeStatus(e?.response?.status);
+
+    if (responseStatus && TERMINAL_JOB_STATUSES.has(responseStatus)) {
+        return true;
+    }
+
+    if (typeof e?.status === 'number' && e.status >= 400 && e.status < 500 && e.status !== 429) {
+        return true;
+    }
+
+    return (
+        normalizedMessage.includes('not_found') ||
+        normalizedMessage.includes('not found') ||
+        normalizedMessage.includes('job failed') ||
+        normalizedMessage.includes('invalid_job_id') ||
+        normalizedMessage.includes('job_not_found') ||
+        normalizedMessage.includes('extract_failed')
+    );
+}
+
+function normalizeStatus(value: unknown): string | null {
+    if (typeof value !== 'string') return null;
+    return value.trim().toLowerCase().replace(/[\s-]+/g, '_');
+}
+
+function createTerminalJobError(message: string): Error & { isJobError: true } {
+    const error = new Error(message) as Error & { isJobError: true };
+    error.isJobError = true;
+    return error;
 }

@@ -1,5 +1,6 @@
 import './styles/index.css';
 import { applyInitialVisibility } from './features/widget-level-manager';
+import { initHeroFeatureLinks } from './features/hero-feature-links';
 
 
 function prepareStreamSubmitInterception(): void {
@@ -110,6 +111,7 @@ async function loadFeatures(): Promise<void> {
   initMobileMenu();
   initLangSelector();
   initDrawerLangSelector();
+  initHeroFeatureLinks();
   prepareStreamSubmitInterception();
   await initDownloaderUI();
 
