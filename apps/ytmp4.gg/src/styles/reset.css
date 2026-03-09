@@ -1,8 +1,18 @@
-* {
+/* ========== RESET & SCROLL OPTIMIZATION ========== */
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -10,13 +20,45 @@ body {
     color: var(--text-body);
     background: var(--bg-page);
     line-height: 1;
-    overflow-x: hidden;
+    text-rendering: optimizeSpeed;
+    min-height: 100vh;
 }
 
 p {
     font-size: 18px;
 }
 
-html {
-    overflow-x: hidden;
+/* Make images easier to work with */
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+/* Remove all animations/transitions for reduced-motion users */
+@media (prefers-reduced-motion: reduce) {
+    html:focus-within {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }

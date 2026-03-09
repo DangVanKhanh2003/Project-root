@@ -104,7 +104,7 @@ html[data-format="mp3"] .quality-dropdown-wrapper .video-group-dropdown {
     font-weight: 600;
     font-size: 14px;
     color: var(--text);
-    transition: all 0.3s;
+    transition: background 0.3s, color 0.3s, box-shadow 0.3s;
     border-radius: var(--radius-xl);
 }
 
@@ -319,7 +319,7 @@ html[data-format="mp3"] .quality-dropdown-wrapper .video-group-dropdown {
     font-weight: 700;
     height: 45px;
     padding: 0 28px;
-    transition: all 0.3s;
+    transition: filter 0.3s, transform 0.3s;
     display: inline-flex;
     align-items: center;
     justify-content: center;
