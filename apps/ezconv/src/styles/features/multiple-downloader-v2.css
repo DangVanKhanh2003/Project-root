@@ -112,6 +112,14 @@
     z-index: 5;
 }
 
+.multi-search-shell:has(> [hidden]) {
+    margin: 0;
+}
+
+.multi-search-shell:has(> :not([hidden])) {
+    margin: 20px 0;
+}
+
 .multi-search-place {
     width: 100%;
     background: var(--bg-card);

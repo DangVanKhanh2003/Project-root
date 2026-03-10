@@ -7,13 +7,13 @@
  */
 
 import {
-    showTrustpilotWidget,
-    hideTrustpilotWidget
-} from './trustpilot/trustpilot-widget';
-import {
     showTipMessageWidgetWithPricing,
     hideTipMessageWidget
 } from './tip-message/tip-message-widget';
+import {
+    showSupportBanner,
+    hideSupportBanner
+} from './support-banner/support-banner-widget';
 import {
     hasValidLicense,
     getStoredRawKey,
@@ -158,7 +158,7 @@ function hideMultiPlaylistBannerWidget(): void {
  * Easy to extend: just add new entries for future widgets.
  */
 const WIDGET_RULES: Record<string, { timing: string; levels: Record<number, boolean> }> = {
-    'trustpilot-widget': {
+    'support-banner': {
         timing: 'afterSubmit',
         levels: { 1: true, 2: true, 3: true }
     },
@@ -177,7 +177,7 @@ export interface WidgetState {
     downloadCount: number;
     hasLicenseKey: boolean;
     licenseKey: string | null;
-    showTrustpilotWidget: boolean;
+    showSupportBanner: boolean;
     showLicenseButton: boolean;
 }
 
@@ -332,7 +332,7 @@ async function resolveState(forceRefresh = false): Promise<WidgetState> {
                 downloadCount: summary.totalSuccessfulDownloads,
                 hasLicenseKey,
                 licenseKey,
-                showTrustpilotWidget: shouldShowByRule('trustpilot-widget', 'afterSubmit', summary.level),
+                showSupportBanner: shouldShowByRule('support-banner', 'afterSubmit', summary.level),
                 showLicenseButton: shouldShowLicenseButton(summary.level, hasLicenseKey)
             };
 
@@ -401,7 +401,7 @@ export async function incrementDownloadCount(method: DownloadMethod = 'single', 
  * Always shows Trustpilot widget immediately.
  */
 export function onAfterSubmit(): void {
-    showTrustpilotWidget();
+    showSupportBanner();
     showTipMessageWidgetWithPricing();
     showMultiPlaylistBannerWidget();
     void resolveState();
@@ -420,7 +420,7 @@ export function onAfterDownload(): void {
  * Hides all widgets.
  */
 export function onReset(): void {
-    hideTrustpilotWidget();
+    hideSupportBanner();
     hideTipMessageWidget();
     hideMultiPlaylistBannerWidget();
 }
@@ -430,7 +430,7 @@ export function onReset(): void {
  * Hides Trustpilot widget.
  */
 export function onDownloadFailed(): void {
-    hideTrustpilotWidget();
+    hideSupportBanner();
     hideTipMessageWidget();
     hideMultiPlaylistBannerWidget();
 }

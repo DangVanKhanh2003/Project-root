@@ -16,7 +16,7 @@ import { evaluateFeatureAccess, type FeatureAccessReason, type FeatureAccessResu
 import { FEATURE_KEYS, FEATURE_ACCESS_REASONS } from '@downloader/core';
 import { showLimitReachedPopup, showVideoLimitPopup, showSupporterUpsellPopup, showPlaylistInstructionPopup, showChannelInstructionPopup } from '@downloader/ui-shared';
 import { POPUP_CONFIG } from '../supporter-popup-config';
-import { incrementDownloadCount } from '../widget-level-manager';
+import { incrementDownloadCount, onAfterSubmit, onReset } from '../widget-level-manager';
 
 const MAX_BATCH_URLS = 100; // Physical technical limit, business limit is checked via checkLimit
 
@@ -136,7 +136,10 @@ export function initConvertForm(config: ConvertFormConfig): void {
             } else {
                 proceeded = await handleBatchConvert(rawText, settings, onItemsAdded);
             }
-            if (proceeded) isSuccess = true;
+            if (proceeded) {
+                isSuccess = true;
+                onAfterSubmit();
+            }
         } catch (err) {
             showError(errorMessage, err instanceof Error ? err.message : 'Failed to process URLs.');
         } finally {
