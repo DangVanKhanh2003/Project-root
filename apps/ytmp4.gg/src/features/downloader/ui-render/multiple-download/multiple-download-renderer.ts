@@ -5,7 +5,13 @@ import { VideoItemRenderer } from './video-item-renderer';
 import { MultiDownloadStrategy } from './multi-download-strategy';
 import { PlaylistStrategy } from './playlist-strategy';
 import { RendererStrategy } from './renderer-strategy.interface';
-import { createStoreChangeHandler, updateGroupCount, DOWNLOAD_TAB_CLICKED_KEY, showDownloadTabGuide } from './handle-store-change';
+import {
+    createStoreChangeHandler,
+    updateGroupCount,
+    DOWNLOAD_TAB_CLICKED_KEY,
+    showDownloadTabGuide,
+    hideConvertButtonGuide
+} from './handle-store-change';
 import { triggerDownload, isIOS } from '../../../../utils';
 import { MaterialPopup } from '../../../../ui-components/material-popup/material-popup';
 import { showTipMessageWidget } from '../../../../features/tip-message/tip-message-widget';
@@ -207,6 +213,9 @@ export class MultipleDownloadRenderer {
                     break;
                 case 'download-group':
                     if (groupId) {
+                        const groupEl = this.listContainer?.querySelector(`[data-group-id="${groupId}"].playlist-group`) as HTMLElement | null;
+                        if (groupEl) hideConvertButtonGuide(groupEl);
+
                         const items = videoStore.getAllItems().filter(i =>
                             i.groupId === groupId && i.isSelected
                         );

@@ -265,6 +265,9 @@ function createGroupElement(groupId: string, groupTitle: string): HTMLElement {
                         <path fill="currentColor" d="M475.095,131.992c-0.032-2.526-0.833-5.021-2.568-6.993L366.324,3.694c-0.021-0.034-0.053-0.045-0.084-0.076c-0.633-0.707-1.36-1.29-2.141-1.804c-0.232-0.15-0.465-0.285-0.707-0.422c-0.686-0.366-1.393-0.67-2.131-0.892c-0.2-0.058-0.379-0.14-0.58-0.192C359.87,0.114,359.047,0,358.203,0H97.2C85.292,0,75.6,9.693,75.6,21.601v507.6c0,11.913,9.692,21.601,21.6,21.601H453.6c11.918,0,21.601-9.688,21.601-21.601V133.202C475.2,132.796,475.137,132.398,475.095,131.992z M243.599,523.494H141.75v-15.936l62.398-89.797v-0.785h-56.565v-24.484h95.051v17.106l-61.038,88.636v0.771h62.002V523.494z M292.021,523.494h-29.744V392.492h29.744V523.494z M399.705,463.44c-10.104,9.524-25.069,13.796-42.566,13.796c-3.893,0-7.383-0.19-10.104-0.58v46.849h-29.352V394.242c9.134-1.561,21.958-2.721,40.036-2.721c18.277,0,31.292,3.491,40.046,10.494c8.354,6.607,13.996,17.486,13.996,30.322C411.761,445.163,407.479,456.053,399.705,463.44z M97.2,366.752V21.601h129.167v-3.396h32.756v3.396h88.28v110.515c0,5.961,4.831,10.8,10.8,10.8H453.6l.011,223.836H97.2z"></path>
                     </svg>
                     Download ZIP (0)</button>
+                    <div class="convert-hand-guide" style="display: none;" aria-hidden="true">
+                        <img src="/hand-click.gif" alt="" width="48" height="48">
+                    </div>
                 </div>
             </div>
         </div>
@@ -385,8 +388,14 @@ export function updateGroupCount(groupEl: HTMLElement, isLocked: boolean = false
             const downloadableCount = convertItems.filter(i => i.isSelected && ['ready', 'error', 'cancelled'].includes(i.status)).length;
             (convertAllBtn as HTMLButtonElement).disabled = downloadableCount === 0 || isLocked;
             convertAllBtn.textContent = `Convert selected (${downloadableCount})`;
+            if ((convertAllBtn as HTMLButtonElement).disabled) {
+                hideConvertButtonGuide(groupEl);
+            } else {
+                showConvertButtonGuide(groupEl);
+            }
         } else {
             convertAllBtn.style.display = 'none';
+            hideConvertButtonGuide(groupEl);
 
             if (isIOS()) {
                 zipBtn.style.display = 'none';
@@ -422,6 +431,7 @@ export function updateGroupCount(groupEl: HTMLElement, isLocked: boolean = false
 }
 
 export const DOWNLOAD_TAB_CLICKED_KEY = 'hasClickedPlaylistTab';
+export const CONVERT_BUTTON_GUIDE_SHOWN_KEY = 'hasShownPlaylistConvertGuide';
 
 /**
  * Show hand pointer guide on the Download tab if user hasn't discovered it yet
@@ -452,4 +462,41 @@ export function showDownloadTabGuide(groupEl: HTMLElement, offsetX: number = 0):
         handGuide.style.display = 'none';
         (handGuide as any)._autoHideTimer = null;
     }, 5000);
+}
+
+/**
+ * Show hand pointer guide on the Convert selected button
+ * until user clicks it at least once.
+ */
+export function showConvertButtonGuide(groupEl: HTMLElement, offsetX: number = 0): void {
+    if (!groupEl) return;
+    if (localStorage.getItem(CONVERT_BUTTON_GUIDE_SHOWN_KEY) === 'true') return;
+
+    const actionsContainer = groupEl.querySelector('.group-actions') as HTMLElement | null;
+    const convertBtn = actionsContainer?.querySelector('[data-action="download-group"]') as HTMLElement | null;
+    const handGuide = actionsContainer?.querySelector('.convert-hand-guide') as HTMLElement | null;
+    if (!actionsContainer || !convertBtn || !handGuide) return;
+
+    const guideWidth = 50;
+    const left = Math.max(0, convertBtn.offsetLeft - guideWidth + offsetX);
+    handGuide.style.left = `${left}px`;
+    handGuide.style.right = '';
+    handGuide.style.display = '';
+    localStorage.setItem(CONVERT_BUTTON_GUIDE_SHOWN_KEY, 'true');
+
+    if ((handGuide as any)._autoHideTimer) clearTimeout((handGuide as any)._autoHideTimer);
+    (handGuide as any)._autoHideTimer = setTimeout(() => {
+        handGuide.style.display = 'none';
+        (handGuide as any)._autoHideTimer = null;
+    }, 5000);
+}
+
+export function hideConvertButtonGuide(groupEl: HTMLElement): void {
+    const handGuide = groupEl.querySelector('.convert-hand-guide') as HTMLElement | null;
+    if (!handGuide) return;
+    if ((handGuide as any)._autoHideTimer) {
+        clearTimeout((handGuide as any)._autoHideTimer);
+        (handGuide as any)._autoHideTimer = null;
+    }
+    handGuide.style.display = 'none';
 }

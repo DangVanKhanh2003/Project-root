@@ -83,6 +83,18 @@
     /* Accent fill tokens */
     --accent-fill-soft: rgba(0, 79, 171, 0.08);
     --accent-fill-strong: rgba(0, 79, 171, 0.16);
+    --multi-list-playlist-tabs-bg: #f5f5f5;
+    --multi-list-selection-accent: #3b82f6;
+    --multi-list-extracting-glow-color: rgba(96, 165, 250, 0.38);
+    --multi-list-group-action-bg: var(--accent-fill-soft);
+    --multi-list-group-action-text: var(--brand);
+    --multi-list-group-action-hover-bg: var(--accent-fill-strong);
+    --multi-list-group-action-hover-text: var(--brand);
+    --multi-list-group-action-active-bg: var(--accent-fill-strong);
+    --multi-list-group-action-active-text: var(--brand);
+    --multi-list-group-action-disabled-bg: var(--accent-fill-soft);
+    --multi-list-group-action-disabled-text: var(--brand);
+    --multi-list-group-action-disabled-opacity: 0.6;
 
     /* Animated border: RGB only (for conic-gradient trick) */
     --input-border-glow-rgb: 52, 107, 241;
@@ -224,6 +236,18 @@
 
     --accent-fill-soft: rgba(198, 93, 59, 0.12);
     --accent-fill-strong: rgba(198, 93, 59, 0.20);
+    --multi-list-playlist-tabs-bg: var(--border-subtle);
+    --multi-list-selection-accent: var(--brand);
+    --multi-list-extracting-glow-color: rgba(198, 93, 59, 0.38);
+    --multi-list-group-action-bg: color-mix(in srgb, var(--primary-color) 34%, transparent);
+    --multi-list-group-action-text: var(--primary-color);
+    --multi-list-group-action-hover-bg: var(--primary-color);
+    --multi-list-group-action-hover-text: var(--text-heading);
+    --multi-list-group-action-active-bg: color-mix(in srgb, var(--primary-color) 42%, transparent);
+    --multi-list-group-action-active-text: var(--primary-color);
+    --multi-list-group-action-disabled-bg: var(--accent-fill-soft);
+    --multi-list-group-action-disabled-text: var(--brand);
+    --multi-list-group-action-disabled-opacity: 1;
 
     --input-border-glow-rgb: 198, 93, 59;
     --input-glow-radial-rgb: 198, 93, 59;
