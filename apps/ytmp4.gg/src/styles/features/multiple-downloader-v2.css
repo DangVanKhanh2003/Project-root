@@ -1413,6 +1413,10 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
     position: relative;
 }
 
+:root[data-theme="dark"] .multiple-downloads-container .playlist-header-tabs {
+    background: #3A3A38;
+}
+
 /* Tab Glider — slides under active tab */
 .tab-glider {
     position: absolute;
@@ -1807,6 +1811,14 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
     border: none;
     color: var(--brand, #000000);
     opacity: 0.6;
+}
+
+:root[data-theme="dark"] .multiple-downloads-container .btn-playlist-group-action:not(.btn-success) {
+    background: #4A4A47;
+}
+
+:root[data-theme="dark"] .multiple-downloads-container .btn-playlist-group-action:not(.btn-success):hover:not(:disabled) {
+    background: #575753;
 }
 
 .btn-playlist-group-action.btn-success {

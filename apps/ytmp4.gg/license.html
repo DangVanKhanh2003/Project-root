@@ -30,6 +30,8 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#000000">
+    <link rel="stylesheet" href="/src/styles/index.css">
+    <link rel="stylesheet" href="/src/styles/features/license-page.css">
 
     <link rel="preload" href="/fonts/Fredoka_SemiCondensed-Bold.woff2?v=2" as="font" type="font/woff2" crossorigin>
     <style>
@@ -149,8 +151,8 @@
                             copy it.</p>
                         <figure class="license-email-figure">
                             <img src="/images/image-mail-license-key.JPG"
-                                alt="Supporter email with license key highlighted" class="license-email-image"
-                                loading="lazy">
+                                alt="Supporter email with license key highlighted" class="license-email-image is-loading"
+                                width="808" height="561" loading="lazy" decoding="async">
                             <figcaption id="license-email-caption" style="text-align: center;">Example email with your
                                 license key highlighted.</figcaption>
                         </figure>
@@ -161,12 +163,13 @@
                             click Submit to finish.</p>
                         <figure class="license-email-figure">
                             <img src="/images/Image-input-license-key.JPG" alt="Paste license key and press Submit"
-                                class="license-email-image" loading="lazy">
+                                class="license-email-image is-loading" width="1066" height="213" loading="lazy"
+                                decoding="async">
                             <figcaption id="license-step3-caption">Paste the key and press Submit.</figcaption>
                         </figure>
                     </div>
                     <div class="license-step">
-                        <p id="license-step3-caption" style="font-size: 0.9em; color: #64748b;">
+                        <p id="license-step3-caption" class="license-supporter-note">
                             Don't have a license key yet?
                             <a href="https://ko-fi.com/s/d242437374" target="_blank" rel="noopener nofollow noreferrer">
                                 Join as a Supporter on Ko-fi
@@ -189,7 +192,7 @@
         });
     </script>
 
-    <!-- License page entry point (Vite bundles styles + logic) -->
+    <!-- License page entry point -->
     <script type="module" src="/src/license-main.ts"></script>
 </body>
 

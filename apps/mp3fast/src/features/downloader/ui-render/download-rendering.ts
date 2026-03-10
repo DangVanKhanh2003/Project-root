@@ -12,6 +12,7 @@ import { TaskState } from '../logic/conversion/types';
 import type { AppState, ConversionTask } from '../state/types';
 import { getMergingEstimator, clearMergingEstimator } from './merging-progress-estimator';
 import { showVidToolPopup } from '@downloader/vidtool-popup';
+import { showExpireModal } from '@downloader/ui-components';
 
 // ============================================================
 // TYPE DEFINITIONS
@@ -438,18 +439,16 @@ function setupButtonHandlers(formatId: string): void {
 /**
  * Handle download button click
  */
-let _ezconvPopupShown = false;
 async function handleDownloadButtonClick(formatId: string): Promise<void> {
   console.log('[renderConversionStatus] Download button clicked for:', formatId);
 
-  // Show EzConv Intro popup once per session
-  if (!_ezconvPopupShown && (window as any).EzConvIntro) {
-    _ezconvPopupShown = true;
-    (window as any).EzConvIntro.showPopup();
-  }
-
   const { handleDownloadClick } = await import('../logic/conversion');
   const result = handleDownloadClick(formatId);
+
+  if (result === 'expired') {
+    showExpireModal({ onTryAgain: () => window.location.reload() });
+    return;
+  }
 
   if (result === 'error') {
     alert('Download failed. Please try again.');

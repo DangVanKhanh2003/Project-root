@@ -129,6 +129,37 @@ async function checkLicenseKey(licenseKey: string): Promise<{
     }
 }
 
+function initLicenseImageSkeletons(): void {
+    const images = document.querySelectorAll<HTMLImageElement>('.license-email-image');
+    if (images.length === 0) return;
+
+    const markLoaded = (img: HTMLImageElement): void => {
+        img.classList.remove('is-loading', 'is-error');
+        img.classList.add('is-loaded');
+    };
+
+    const markError = (img: HTMLImageElement): void => {
+        img.classList.remove('is-loading', 'is-loaded');
+        img.classList.add('is-error');
+    };
+
+    images.forEach((img) => {
+        if (img.complete && img.naturalWidth > 0) {
+            markLoaded(img);
+            return;
+        }
+
+        if (img.complete) {
+            markError(img);
+            return;
+        }
+
+        img.classList.add('is-loading');
+        img.addEventListener('load', () => markLoaded(img), { once: true });
+        img.addEventListener('error', () => markError(img), { once: true });
+    });
+}
+
 // ============================================================
 // INITIALIZATION
 // ============================================================
@@ -246,6 +277,7 @@ async function initActivationForm(): Promise<void> {
 // ============================================================
 
 export function initLicensePage(): void {
+    initLicenseImageSkeletons();
     initActivationForm();
 }
 

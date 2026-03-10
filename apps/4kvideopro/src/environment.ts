@@ -162,7 +162,7 @@ const environment: Environment = {
         // Data expiry times (in milliseconds)
         expiry: {
             static: 25 * 60 * 1000, // 25 minutes for static extract data
-            downloadLink: 6 * 1000, // 6 seconds for download links (test)
+            downloadLink: 25 * 60 * 1000, // 25 minutes for download links
         }
     },
 

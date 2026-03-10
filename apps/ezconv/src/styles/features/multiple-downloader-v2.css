@@ -4,7 +4,7 @@
    1. Main Layout & Card
    ========================================= */
 .multiple-downloads-container {
-    --multi-list-extracting-glow: rgba(96, 165, 250, 0.38);
+    --multi-list-extracting-glow: rgba(198, 93, 59, 0.3);
     border-radius: var(--radius-lg, 16px);
     margin-top: 2rem;
     display: none;
@@ -1629,8 +1629,8 @@ html[data-theme="dark"] .multi-search-input::placeholder {
     content: '';
     position: absolute;
     inset: 0;
-    background: var(--color-primary, #60A5FA);
-    box-shadow: 0 0 10px var(--color-primary, #60A5FA), 0 0 30px var(--multi-list-extracting-glow, rgba(96, 165, 250, 0.38));
+    background: var(--brand-soft, #D9785B);
+    box-shadow: 0 0 10px var(--brand-soft, #D9785B), 0 0 30px var(--multi-list-extracting-glow, rgba(198, 93, 59, 0.3));
     animation: item-neon-pulse 1s ease-in-out infinite alternate;
     opacity: 0;
     border-radius: inherit;
@@ -1644,20 +1644,20 @@ html[data-theme="dark"] .multi-search-input::placeholder {
     left: -40%;
     width: 40%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, var(--color-primary, #60A5FA), transparent);
-    box-shadow: 0 0 12px var(--color-primary, #60A5FA);
+    background: linear-gradient(90deg, transparent, var(--brand-soft, #D9785B), transparent);
+    box-shadow: 0 0 12px var(--brand-soft, #D9785B);
     animation: item-progress-slide 1.2s ease-in-out infinite;
     border-radius: inherit;
 }
 
 /* Processing: solid color, không gradient */
 .multi-video-progress.phase-processing .progress-bar {
-    background: var(--color-primary, #60A5FA);
+    background: var(--brand, #C65D3B);
 }
 
 /* Dark theme glow override */
 :root[data-theme="dark"] .multiple-downloads-container {
-    --multi-list-extracting-glow: rgba(198, 93, 59, 0.38);
+    --multi-list-extracting-glow: rgba(198, 93, 59, 0.35);
 }
 
 /* =========================================

@@ -82,16 +82,68 @@
     line-height: 1.6;
 }
 
+.license-supporter-note {
+    margin: 0;
+    font-size: 0.9em;
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+
+.license-supporter-note a {
+    color: var(--brand);
+    font-weight: 600;
+    text-underline-offset: 2px;
+}
+
+.license-supporter-note a:hover {
+    color: var(--brand-hover);
+}
+
+:root[data-theme="dark"] .license-supporter-note a {
+    color: #ffd2b3;
+}
+
+:root[data-theme="dark"] .license-supporter-note a:hover {
+    color: #ffe3cd;
+}
+
 .license-email-figure {
     margin: 10px 0 0;
 }
 
 .license-email-image {
+    display: block;
     width: 100%;
     max-width: 600px;
+    height: auto;
     border-radius: 14px;
-    background: var(--bg-surface-soft);
+    background-color: var(--bg-surface-soft);
+    background-image: linear-gradient(110deg,
+            rgba(148, 163, 184, 0.14) 8%,
+            rgba(148, 163, 184, 0.32) 18%,
+            rgba(148, 163, 184, 0.14) 33%);
+    background-size: 200% 100%;
     border: 1px solid var(--license-border);
+}
+
+.license-email-image.is-loading {
+    animation: license-image-skeleton 1.2s linear infinite;
+}
+
+.license-email-image.is-loaded,
+.license-email-image.is-error {
+    animation: none;
+    background-image: none;
+}
+
+@keyframes license-image-skeleton {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
 }
 
 .license-email-figure figcaption {

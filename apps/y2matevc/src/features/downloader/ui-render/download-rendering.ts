@@ -12,6 +12,7 @@ import { TaskState } from '../logic/conversion/types';
 import type { AppState, ConversionTask } from '../state/types';
 import { getMergingEstimator, clearMergingEstimator } from './merging-progress-estimator';
 import { showVidToolPopup } from '@downloader/vidtool-popup';
+import { showExpireModal } from '@downloader/ui-components';
 
 // ============================================================
 // TYPE DEFINITIONS
@@ -437,8 +438,11 @@ async function handleDownloadButtonClick(formatId: string): Promise<void> {
   const result = handleDownloadClick(formatId);
 
   if (result === 'expired') {
-    alert('Download link has expired. Please refresh the page and try again.');
-  } else if (result === 'error') {
+    showExpireModal({ onTryAgain: () => window.location.reload() });
+    return;
+  }
+
+  if (result === 'error') {
     alert('Download failed. Please try again.');
   }
 }

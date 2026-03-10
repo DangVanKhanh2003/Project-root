@@ -12,6 +12,7 @@ import { TaskState } from '../logic/conversion/types';
 import type { AppState, ConversionTask } from '../state/types';
 import { getMergingEstimator, clearMergingEstimator } from './merging-progress-estimator';
 import { showVidToolPopup } from '@downloader/vidtool-popup';
+import { showExpireModal } from '@downloader/ui-components';
 import { logEvent } from '../../../libs/firebase';
 import { LANGUAGES } from '../../downloader/data/languages';
 
@@ -473,6 +474,11 @@ async function handleDownloadButtonClick(formatId: string): Promise<void> {
 
   const { handleDownloadClick } = await import('../logic/conversion');
   const result = handleDownloadClick(formatId);
+
+  if (result === 'expired') {
+    showExpireModal({ onTryAgain: () => window.location.reload() });
+    return;
+  }
 
   if (result === 'error') {
     alert('Download failed. Please try again.');
