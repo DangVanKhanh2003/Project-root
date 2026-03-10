@@ -389,6 +389,14 @@ html[data-format="mp3"] .quality-dropdown-wrapper .video-group-dropdown {
         height: 40px;
     }
 
+    .quality-dropdown-wrapper--grouped .video-group-dropdown {
+        width: 100%;
+    }
+
+    .quality-dropdown-wrapper--grouped .video-group-trigger {
+        width: 100%;
+    }
+
     .btn-convert span {
         display: inline;
     }

@@ -1205,6 +1205,14 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
         min-width: 0;
     }
 
+    .multi-quality-dropdown-wrapper--grouped .multi-video-group-dropdown {
+        width: 100%;
+    }
+
+    .multi-quality-dropdown-wrapper--grouped .video-group-trigger {
+        width: 100%;
+    }
+
     /* Audio dropdown mobile: icon-only collapsed, expand on active */
     .multi-audio-dropdown-wrapper {
         flex: 0 0 auto;
