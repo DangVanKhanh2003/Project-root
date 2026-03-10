@@ -174,12 +174,19 @@ function renderBanner(wrapper: HTMLElement, koFiUrl: string): void {
 // PUBLIC API
 // ============================================================
 
+function injectMobileHideStyle(): void {
+    if (document.getElementById('support-banner-style')) return;
+    const style = document.createElement('style');
+    style.id = 'support-banner-style';
+    style.textContent = `@media(max-width:768px){#${SUPPORT_BANNER_ID}{display:none!important}}`;
+    document.head.appendChild(style);
+}
+
 export function showSupportBanner(): void {
+    injectMobileHideStyle();
     const requestId = ++bannerRequestId;
 
-    const wrapper = ensureHeroBelowContainerSlot(SUPPORT_BANNER_ID, {
-        marginTop: '20px'
-    });
+    const wrapper = ensureHeroBelowContainerSlot(SUPPORT_BANNER_ID);
     if (!wrapper) return;
 
     renderBanner(wrapper, DEFAULT_KOFI_URL);
