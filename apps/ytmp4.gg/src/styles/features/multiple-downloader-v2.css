@@ -783,6 +783,7 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
     gap: 0px;
     min-height: 40px;
     font-size: 12px;
+    line-height: 1.4;
 }
 
 .multi-video-status {
