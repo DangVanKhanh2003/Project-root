@@ -324,6 +324,7 @@
 }
 
 .license-icon {
+    color: var(--brand);
     display: inline-flex;
     align-items: center;
     justify-content: center;

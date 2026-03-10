@@ -332,7 +332,7 @@
     gap: 4px;
     background: var(--header-license-button-bg);
     border: 1.5px solid var(--header-license-button-bg);
-    border-radius: 4px;
+    border-radius: 12px;
     padding: 6px 10px;
     color: var(--header-license-button-text);
     font-family: inherit;
@@ -414,7 +414,7 @@
 }
 
 .license-button.license-active .license-icon {
-    display: none;
+    color: var(--header-license-button-icon);
 }
 
 .license-arrow {
@@ -461,7 +461,8 @@
     flex-shrink: 0;
 }
 
-.license-button .license-icon {
+.license-button .license-icon,
+.drawer-license-trigger .license-icon {
     color: var(--header-license-button-icon);
 }
 

@@ -37,6 +37,10 @@
 }
 
 
+.yt-preview-card.skeleton .yt-preview-format {
+  width: 100%;
+}
+
 .yt-preview-card.skeleton .skeleton-line.skeleton-audio-track {
   width: 35%;
   height: var(--skeleton-audio-track-height, 20px);
@@ -52,11 +56,11 @@
 
 @keyframes skeleton-loading {
   0% {
-    background-position: 200% 0;
+    background-position: -200% 0;
   }
 
   100% {
-    background-position: -200% 0;
+    background-position: 200% 0;
   }
 }
 

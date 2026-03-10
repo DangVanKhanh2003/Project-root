@@ -59,7 +59,7 @@
     /* Surface tokens */
     --bg-page: #F3F1ED;
     --bg-card: #FFFFFF;
-    --yt-preview-card-bg: rgba(198, 93, 59, 0.06);
+    --yt-preview-card-bg: #f0eee6;
     --bg-surface-soft: #EBE7E0;
     --bg-hover: #EFECE7;
 
@@ -170,10 +170,10 @@
     --license-status-indicator: #22c55e;
 
     /* License button active */
-    --license-active-bg: #ffffff;
-    --license-active-text: #1f1f1f;
-    --license-active-hover-bg: #ffffff;
-    --license-active-hover-text: #1f1f1f;
+    --license-active-bg: var(--header-license-button-bg);
+    --license-active-text: var(--header-license-button-text);
+    --license-active-hover-bg: var(--license-hover-bg);
+    --license-active-hover-text: var(--header-license-button-text);
 
     /* License button hover darkening */
     --license-hover-bg: color-mix(in srgb, var(--header-license-button-bg) 86%, #000);
@@ -355,10 +355,10 @@
     --license-status-indicator: #22c55e;
 
     /* License button active */
-    --license-active-bg: #ffffff;
-    --license-active-text: #1f1f1f;
-    --license-active-hover-bg: #ffffff;
-    --license-active-hover-text: #1f1f1f;
+    --license-active-bg: var(--header-license-button-bg);
+    --license-active-text: var(--header-license-button-text);
+    --license-active-hover-bg: var(--license-hover-bg);
+    --license-active-hover-text: var(--header-license-button-text);
 
     /* License button hover darkening */
     --license-hover-bg: color-mix(in srgb, var(--header-license-button-bg) 86%, #000);
