@@ -58,9 +58,11 @@ function updateToggleIcons(theme: string): void {
 }
 
 export function initThemeToggle(): void {
-    // Apply stored theme or default to light
+    // Apply stored theme or follow browser preference
     const stored = getStoredTheme();
-    const theme = (stored === 'dark') ? 'dark' : 'light';
+    const theme = stored
+        ? (stored === 'dark' ? 'dark' : 'light')
+        : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
     setTheme(theme);
 
     // Bind toggle buttons

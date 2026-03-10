@@ -1175,35 +1175,27 @@
 /* Skeleton Loading Animation */
 @keyframes skeleton-loading {
     0% {
-        background-position: 100% 50%;
+        background-position: 200% 0;
     }
 
     100% {
-        background-position: 0 50%;
+        background-position: -200% 0;
     }
 }
 
 .skeleton-div {
-    background: var(--bg-surface-soft);
-    background: linear-gradient(110deg, var(--bg-surface-soft) 8%, var(--bg-card) 18%, var(--bg-surface-soft) 33%);
+    background: linear-gradient(135deg, var(--bg-surface-soft) 25%, var(--bg-card) 50%, var(--bg-surface-soft) 75%);
     border-radius: 5px;
     background-size: 200% 100%;
-    animation: 1.5s shine linear infinite;
+    animation: skeleton-loading 1.5s infinite;
 }
 
 .skeleton-box,
 .skeleton-text {
-    background: var(--bg-surface-soft);
-    background: linear-gradient(110deg, var(--bg-surface-soft) 8%, var(--bg-card) 18%, var(--bg-surface-soft) 33%);
+    background: linear-gradient(135deg, var(--bg-surface-soft) 25%, var(--bg-card) 50%, var(--bg-surface-soft) 75%);
     border-radius: 5px;
     background-size: 200% 100%;
-    animation: 1.5s shine linear infinite;
-}
-
-@keyframes shine {
-    to {
-        background-position-x: -200%;
-    }
+    animation: skeleton-loading 1.5s infinite;
 }
 
 /* =========================================

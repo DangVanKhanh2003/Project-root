@@ -33,7 +33,7 @@
     --multi-list-skeleton-shimmer: var(--color-skeleton-light);
     --multi-list-skeleton-base: var(--color-skeleton-dark);
     --multi-list-skeleton-highlight: var(--color-skeleton-light);
-    --multi-list-skeleton-duration: 1s;
+    --multi-list-skeleton-duration: 1.5s;
     --multi-list-progress-fill: linear-gradient(90deg, var(--multi-list-border-brand), var(--color-primary));
     --multi-list-extracting-glow: var(--multi-list-extracting-glow-color);
     --multi-list-checkbox-accent: var(--multi-list-selection-accent, var(--multi-list-border-brand));
@@ -662,7 +662,7 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
 
 .multi-video-item.skeleton-loading .multi-video-thumb,
 .multi-video-item.skeleton-loading .multi-video-thumb .skeleton-box {
-    background: linear-gradient(90deg, var(--multi-list-skeleton-base) 25%, var(--multi-list-skeleton-highlight) 50%, var(--multi-list-skeleton-base) 75%);
+    background: linear-gradient(135deg, var(--multi-list-skeleton-base) 25%, var(--multi-list-skeleton-highlight) 50%, var(--multi-list-skeleton-base) 75%);
     background-size: 200% 100%;
     animation: multi-skeleton-shimmer var(--multi-list-skeleton-duration) linear infinite;
 }
@@ -1385,16 +1385,16 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
 /* Skeleton Loading Animation */
 @keyframes multi-skeleton-shimmer {
     0% {
-        background-position: -200% 0;
+        background-position: 200% 0;
     }
 
     100% {
-        background-position: 200% 0;
+        background-position: -200% 0;
     }
 }
 
 .skeleton-div {
-    background: linear-gradient(90deg, var(--multi-list-skeleton-base) 25%, var(--multi-list-skeleton-highlight) 50%, var(--multi-list-skeleton-base) 75%);
+    background: linear-gradient(135deg, var(--multi-list-skeleton-base) 25%, var(--multi-list-skeleton-highlight) 50%, var(--multi-list-skeleton-base) 75%);
     border-radius: 5px;
     background-size: 200% 100%;
     animation: multi-skeleton-shimmer var(--multi-list-skeleton-duration) linear infinite;
@@ -1404,7 +1404,7 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
 .skeleton-text {
 
     margin: 0px !important;
-    background: linear-gradient(90deg, var(--multi-list-skeleton-base) 25%, var(--multi-list-skeleton-highlight) 50%, var(--multi-list-skeleton-base) 75%);
+    background: linear-gradient(135deg, var(--multi-list-skeleton-base) 25%, var(--multi-list-skeleton-highlight) 50%, var(--multi-list-skeleton-base) 75%);
     border-radius: 5px;
     background-size: 200% 100%;
     animation: multi-skeleton-shimmer var(--multi-list-skeleton-duration) linear infinite;

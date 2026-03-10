@@ -360,7 +360,7 @@
 .skeleton-card .skeleton-segment {
     background: linear-gradient(90deg, #d7d7d7 25%, #c7c7c7, #d7d7d7 75%);
     background-size: 200% 100%;
-    animation: shimmer 1s linear infinite;
+    animation: shimmer 1.5s linear infinite;
 }
 
 /* Ensure skeleton card-content is visible */
@@ -382,7 +382,7 @@
     left: 0;
     background: linear-gradient(90deg, #d7d7d7 25%, #c7c7c7, #d7d7d7 75%);
     background-size: 200% 100%;
-    animation: shimmer 1s linear infinite;
+    animation: shimmer 1.5s linear infinite;
     border-radius: 0px;
     aspect-ratio: 16 / 9;
 }
@@ -420,7 +420,7 @@
     height: 13px;
     background: linear-gradient(90deg, #d7d7d7 25%, #c7c7c7 50%, #d7d7d7 75%);
     background-size: 200% 100%;
-    animation: shimmer 1s linear infinite;
+    animation: shimmer 1.5s linear infinite;
     border-radius: var(--pkg-radius-xs);
     margin-bottom: 6px;
     color: transparent;
@@ -457,18 +457,18 @@
     width: 50px;
     background: linear-gradient(90deg, #d7d7d7 25%, #c7c7c7 50%, #d7d7d7 75%);
     background-size: 200% 100%;
-    animation: shimmer 1s linear infinite;
+    animation: shimmer 1.5s linear infinite;
     border-radius: var(--pkg-radius-xs);
 }
 
 /* Note: @keyframes shimmer is defined in base.css or skeleton.css */
 @keyframes shimmer {
     0% {
-        background-position: -200% 0;
+        background-position: 200% 0;
     }
 
     100% {
-        background-position: 200% 0;
+        background-position: -200% 0;
     }
 }
 

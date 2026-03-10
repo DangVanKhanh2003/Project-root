@@ -80,7 +80,7 @@
         (function () {
             try {
                 var savedTheme = localStorage.getItem('theme');
-                if (savedTheme === 'dark') {
+                if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                     document.documentElement.setAttribute('data-theme', 'dark');
                 }
             } catch (e) { }
@@ -273,6 +273,9 @@
                             </svg>
                         </span>
                         <span>License</span>
+                        <svg class="license-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                            <path d="M6 9l6 6 6-6" />
+                        </svg>
                     </button>
                     <div class="license-dropdown" data-license-dropdown>
                         <!-- Items rendered dynamically via JS -->
@@ -458,6 +461,9 @@
                             </svg>
                         </span>
                         <span>License</span>
+                        <svg class="license-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                            <path d="M6 9l6 6 6-6" />
+                        </svg>
                     </button>
                     <div class="license-dropdown drawer-license-actions">
                         <!-- Items rendered dynamically via JS -->

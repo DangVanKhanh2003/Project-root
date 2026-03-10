@@ -37,9 +37,7 @@ export function createPreviewCardSkeleton(): string {
         <div class="skeleton-line skeleton-title"></div>
         <div class="yt-preview-meta">
           <div class="yt-preview-format">
-            <div class="skeleton-line skeleton-badge" style="width: 45px"></div>
-            <div class="skeleton-line skeleton-badge" style="width: 60px"></div>
-            <div class="skeleton-line skeleton-badge" style="width: 80px"></div>
+            <div class="skeleton-line" style="width: 60%; display: inline-block;"></div>
           </div>
           <div class="skeleton-line skeleton-author"></div>
         </div>

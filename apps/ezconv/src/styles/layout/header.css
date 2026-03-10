@@ -284,6 +284,20 @@
     background: color-mix(in srgb, var(--brand) 22%, transparent);
 }
 
+.license-arrow {
+    flex-shrink: 0;
+    transition: transform 0.18s ease;
+}
+
+.license-button[aria-expanded="true"] .license-arrow,
+.drawer-license-trigger[aria-expanded="true"] .license-arrow {
+    transform: rotate(180deg);
+}
+
+.license-button.license-active .license-icon {
+    display: none;
+}
+
 .drawer-license-trigger:hover {
     color: var(--brand);
     opacity: 1;
