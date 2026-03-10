@@ -20,7 +20,7 @@ import { syncCustomVideoGroupDropdown } from './features/downloader/ui-render/vi
 import { MaterialPopup } from './ui-components/material-popup/material-popup';
 import { confirmRedirectPopup } from '@downloader/ui-shared';
 import { shouldPromptPlaylistRedirectForMulti, getUrlRedirectTarget, FEATURE_KEYS } from '@downloader/core';
-import { evaluateFeatureAccess, initAllowedFeatures } from './features/allowed-features';
+import { evaluateFeatureAccessAsync, initAllowedFeatures } from './features/allowed-features';
 import { recordStartUsage, hasLicenseKey, checkDailyItemQuota, recordDailyItemsUsage } from './features/download-limit';
 import { showPaywall } from './features/paywall-popup';
 
@@ -335,7 +335,7 @@ function initMultiDownloadForm() {
         showTipMessageWidget();
 
         // Check feature access for multiple download (country-tier-aware)
-        const access = evaluateFeatureAccess(FEATURE_KEYS.BATCH_DOWNLOAD);
+        const access = await evaluateFeatureAccessAsync(FEATURE_KEYS.BATCH_DOWNLOAD);
         if (!access.allowed) {
             addUrlsBtn.classList.remove('loading');
             addUrlsBtn.removeAttribute('disabled');
@@ -491,8 +491,8 @@ function initFeedbackWidget(): void {
 async function init() {
     console.log('[Multi Downloader] Initializing...');
 
-    await applyInitialVisibility();
     initAllowedFeatures();
+    await applyInitialVisibility();
     // Initialize UI components
     initMobileMenu();
     initLangSelector();

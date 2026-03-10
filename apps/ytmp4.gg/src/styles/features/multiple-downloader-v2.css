@@ -1571,7 +1571,7 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
    NEW: Phase-specific progress bar colors
    ========================================= */
 .multi-video-progress.phase-merging .progress-bar {
-    background: var(--multi-list-warning);
+    background: var(--multi-list-progress-fill);
 }
 
 /* =========================================

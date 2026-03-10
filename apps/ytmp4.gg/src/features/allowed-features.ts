@@ -182,6 +182,20 @@ export function initAllowedFeatures(): void {
 }
 
 /**
+ * Ensure geo cache is ready for restricted features before a user-triggered check.
+ * Uses localStorage cache when available; otherwise waits for API once.
+ */
+async function ensureCountryContextReady(normalizedFeature: string): Promise<void> {
+    if (!GEO_RESTRICTED_FEATURES.has(normalizedFeature)) return;
+    if (readLocalStorageCache()) return;
+    try {
+        await fetchAndCacheAllowedFeatures();
+    } catch {
+        // Keep graceful fallback behavior when API fails.
+    }
+}
+
+/**
  * Full access check with country-tier-aware limits.
  *
  * Layer 1: License key → bypass all
@@ -232,6 +246,16 @@ export function evaluateFeatureAccess(feature: string): FeatureAccessResult {
 }
 
 /**
+ * Async variant for submit-time checks:
+ * wait for geo cache warmup once (if missing), then evaluate.
+ */
+export async function evaluateFeatureAccessAsync(feature: string): Promise<FeatureAccessResult> {
+    const normalizedFeature = normalizeFeature(feature);
+    await ensureCountryContextReady(normalizedFeature);
+    return evaluateFeatureAccess(normalizedFeature);
+}
+
+/**
  * Resolve feature limit tier without applying start/day gate.
  * Use this for convert-time item checks.
  */
@@ -259,6 +283,20 @@ export function getFeatureLimitContext(feature: string): {
         country,
         limitsResolved: resolveFeatureLimits(normalizedFeature, { countryAllowed }),
     };
+}
+
+/**
+ * Async variant for submit/convert-time item quota checks.
+ */
+export async function getFeatureLimitContextAsync(feature: string): Promise<{
+    countryAllowed: boolean;
+    source: 'license' | 'api' | 'fallback' | 'unrestricted';
+    country: string;
+    limitsResolved: ResolvedLimits;
+}> {
+    const normalizedFeature = normalizeFeature(feature);
+    await ensureCountryContextReady(normalizedFeature);
+    return getFeatureLimitContext(normalizedFeature);
 }
 
 /**

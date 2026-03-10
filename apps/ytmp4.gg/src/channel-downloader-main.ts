@@ -21,7 +21,7 @@ import { MaterialPopup } from './ui-components/material-popup/material-popup';
 import { isChannelUrl } from './features/downloader/logic/multiple-download/url-parser';
 import { initAudioDropdown } from './features/downloader/ui-render/dropdown-logic';
 import { syncCustomVideoGroupDropdown } from './features/downloader/ui-render/video-group-dropdown';
-import { evaluateFeatureAccess, initAllowedFeatures } from './features/allowed-features';
+import { evaluateFeatureAccessAsync, initAllowedFeatures } from './features/allowed-features';
 import { recordStartUsage } from './features/download-limit';
 import { showPaywall } from './features/paywall-popup';
 
@@ -310,7 +310,7 @@ function initChannelForm() {
         urlInput.dispatchEvent(new Event('input'));
 
         // Feature Access Check (country-tier-aware)
-        const access = evaluateFeatureAccess(FEATURE_KEYS.CHANNEL_DOWNLOAD);
+        const access = await evaluateFeatureAccessAsync(FEATURE_KEYS.CHANNEL_DOWNLOAD);
         if (!access.allowed) {
             fetchBtn.classList.remove('loading');
             fetchBtn.removeAttribute('disabled');
@@ -433,8 +433,8 @@ function initFeedbackWidget(): void {
 async function init() {
     console.log('[Channel Downloader] Initializing...');
 
-    await applyInitialVisibility();
     initAllowedFeatures();
+    await applyInitialVisibility();
     // Initialize UI components
     initMobileMenu();
     initLangSelector();

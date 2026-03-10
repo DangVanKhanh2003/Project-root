@@ -19,7 +19,7 @@ import { confirmRedirectPopup } from '@downloader/ui-shared';
 import { MaterialPopup } from './ui-components/material-popup/material-popup';
 import { initAudioDropdown } from './features/downloader/ui-render/dropdown-logic';
 import { syncCustomVideoGroupDropdown } from './features/downloader/ui-render/video-group-dropdown';
-import { evaluateFeatureAccess, initAllowedFeatures } from './features/allowed-features';
+import { evaluateFeatureAccessAsync, initAllowedFeatures } from './features/allowed-features';
 import { recordStartUsage } from './features/download-limit';
 import { showPaywall } from './features/paywall-popup';
 
@@ -310,7 +310,7 @@ function initPlaylistForm() {
         playlistUrlInput.dispatchEvent(new Event('input'));
 
         // Feature Access Check (country-tier-aware)
-        const access = evaluateFeatureAccess(FEATURE_KEYS.PLAYLIST_DOWNLOAD);
+        const access = await evaluateFeatureAccessAsync(FEATURE_KEYS.PLAYLIST_DOWNLOAD);
         if (!access.allowed) {
             fetchPlaylistBtn.classList.remove('loading');
             fetchPlaylistBtn.removeAttribute('disabled');
@@ -441,8 +441,8 @@ function initFeedbackWidget(): void {
 async function init() {
     console.log('[Playlist Downloader] Initializing...');
 
-    await applyInitialVisibility();
     initAllowedFeatures();
+    await applyInitialVisibility();
     // Initialize UI components
     initMobileMenu();
     initLangSelector();
