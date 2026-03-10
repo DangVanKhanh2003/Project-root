@@ -14,7 +14,12 @@ const YOUTUBE_QUEUE_CONCURRENCY = 5;
 const OTHER_LINK_QUEUE_CONCURRENCY = 10;
 
 export class MultiDownloadService {
-    private queue = new DownloadQueue(YOUTUBE_QUEUE_CONCURRENCY);
+    private youtubeQueue = new DownloadQueue(YOUTUBE_QUEUE_CONCURRENCY);
+    private otherQueue = new DownloadQueue(OTHER_LINK_QUEUE_CONCURRENCY);
+
+    private getQueueForUrl(url: string): DownloadQueue {
+        return isYouTubeUrl(url) ? this.youtubeQueue : this.otherQueue;
+    }
 
     // ==========================================
     // Add URLs (batch mode)
@@ -465,13 +470,7 @@ export class MultiDownloadService {
     // Download Control
     // ==========================================
 
-    private syncQueueLimit(): void {
-        const hasYouTube = videoStore.getAllItems().some(i => isYouTubeUrl(i.url));
-        this.queue.setMaxConcurrent(hasYouTube ? YOUTUBE_QUEUE_CONCURRENCY : OTHER_LINK_QUEUE_CONCURRENCY);
-    }
-
     startDownload(id: string): void {
-        this.syncQueueLimit();
         const item = videoStore.getItem(id);
         if (!item) return;
 
@@ -481,7 +480,8 @@ export class MultiDownloadService {
             videoStore.setStatus(id, 'queued');
         }
 
-        this.queue.add(id, (signal) => {
+        const queue = this.getQueueForUrl(item.url);
+        queue.add(id, (signal) => {
             return this.executeDownload(id, signal);
         }).catch(() => {
             // Cancelled or error — handled in executeDownload
@@ -539,9 +539,13 @@ export class MultiDownloadService {
     }
 
     cancelDownload(id: string): void {
-        this.queue.cancel(id);
         const item = videoStore.getItem(id);
-        if (item && item.abortController) {
+        if (!item) return;
+
+        const queue = this.getQueueForUrl(item.url);
+        queue.cancel(id);
+
+        if (item.abortController) {
             item.abortController.abort();
         }
         videoStore.setCancelled(id);
@@ -556,7 +560,8 @@ export class MultiDownloadService {
             }
             videoStore.setCancelled(item.id);
         }
-        this.queue.cancelAll();
+        this.youtubeQueue.cancelAll();
+        this.otherQueue.cancelAll();
     }
 
     retryDownload(id: string): void {
@@ -643,7 +648,10 @@ export class MultiDownloadService {
     }
 
     getQueueStatus() {
-        return this.queue.getStatus();
+        return {
+            youtube: this.youtubeQueue.getStatus(),
+            other: this.otherQueue.getStatus(),
+        };
     }
 }
 
