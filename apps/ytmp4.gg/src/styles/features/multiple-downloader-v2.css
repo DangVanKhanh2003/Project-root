@@ -4,48 +4,48 @@
    1. Main Layout & Card
    ========================================= */
 .multiple-downloads-container {
-    --multi-list-bg-card: var(--color-bg-card, var(--bg-card, #ffffff));
-    --multi-list-bg-subtle: var(--color-bg-card-subtle, var(--bg-surface-soft, #f5f5f5));
+    --multi-list-bg-card: var(--bg-card);
+    --multi-list-bg-subtle: var(--bg-surface-soft);
     --multi-list-tabs-bg: var(--multi-list-playlist-tabs-bg, var(--multi-list-bg-subtle));
-    --multi-list-bg-info-soft: var(--color-bg-card-info-soft, var(--bg-surface-soft, #f0f7ff));
-    --multi-list-bg-warning: var(--color-bg-card-warning, #fef3c7);
-    --multi-list-text-primary: var(--color-text-primary, var(--text-heading, #002438));
-    --multi-list-text-soft: var(--color-text-soft, var(--text-secondary, #666666));
-    --multi-list-text-muted: var(--color-text-muted-soft, var(--text-muted, #888888));
-    --multi-list-border-light: var(--color-border-light, var(--border-subtle, #e5e5e5));
-    --multi-list-border-soft: var(--color-border-soft, var(--border-subtle, #e5e7eb));
-    --multi-list-border-strong: var(--color-border-strong, var(--border-default, #e0e0e0));
-    --multi-list-border-muted: var(--color-border-muted-alpha, #e7e7e773);
-    --multi-list-border-brand: var(--color-border-brand, var(--color-primary, #3b82f6));
-    --multi-list-control-bg: var(--color-control-bg, var(--bg-card, #ffffff));
-    --multi-list-control-border: var(--color-control-border, var(--border-default, #e5e5e5));
-    --multi-list-control-focus: var(--color-control-focus-border, var(--video-input-active-border, #0055b9));
-    --multi-list-control-icon: var(--color-control-icon, var(--text-placeholder, #9ca3af));
-    --multi-list-control-menu-bg: var(--color-control-menu-bg, var(--bg-card, #ffffff));
-    --multi-list-control-active: var(--color-control-option-active, var(--accent-fill-soft, #e3f2fd));
-    --multi-list-control-active-text: var(--color-control-option-active-text, var(--color-primary, #60A5FA));
-    --multi-list-control-text: var(--color-control-text, var(--text-body, #333333));
-    --multi-list-error: var(--color-error-alt, var(--color-status-error, #f44336));
-    --multi-list-warning: var(--color-warning, #f59e0b);
-    --multi-list-warning-accent: var(--color-warning-accent, #ff8800);
-    --multi-list-warning-text: var(--color-warning-text, #92400e);
-    --multi-list-shadow-75: var(--color-shadow-75, rgba(0, 0, 0, 0.75));
-    --multi-list-skeleton-shimmer: var(--color-skeleton-shimmer, #f0f0f0);
-    --multi-list-skeleton-base: var(--skeleton-base, #d7d7d7);
-    --multi-list-skeleton-highlight: var(--skeleton-shimmer, #c7c7c7);
-    --multi-list-skeleton-duration: var(--skeleton-duration, 1s);
-    --multi-list-progress-fill: linear-gradient(90deg, var(--multi-list-border-brand), var(--color-primary, #60A5FA));
-    --multi-list-extracting-glow: var(--multi-list-extracting-glow-color, rgba(96, 165, 250, 0.38));
+    --multi-list-bg-info-soft: var(--bg-surface-soft);
+    --multi-list-bg-warning: var(--color-warning-bg);
+    --multi-list-text-primary: var(--text-heading);
+    --multi-list-text-soft: var(--text-secondary);
+    --multi-list-text-muted: var(--text-muted);
+    --multi-list-border-light: var(--border-subtle);
+    --multi-list-border-soft: var(--border-subtle);
+    --multi-list-border-strong: var(--border-default);
+    --multi-list-border-muted: color-mix(in srgb, var(--border-default) 50%, transparent);
+    --multi-list-border-brand: var(--color-primary);
+    --multi-list-control-bg: var(--bg-card);
+    --multi-list-control-border: var(--border-default);
+    --multi-list-control-focus: var(--video-input-active-border);
+    --multi-list-control-icon: var(--text-placeholder);
+    --multi-list-control-menu-bg: var(--bg-card);
+    --multi-list-control-active: var(--accent-fill-soft);
+    --multi-list-control-active-text: var(--color-primary);
+    --multi-list-control-text: var(--text-body);
+    --multi-list-error: var(--color-status-error);
+    --multi-list-warning: var(--color-warning);
+    --multi-list-warning-accent: var(--color-warning);
+    --multi-list-warning-text: var(--color-warning-text);
+    --multi-list-shadow-75: rgba(0, 0, 0, 0.75);
+    --multi-list-skeleton-shimmer: var(--color-skeleton-light);
+    --multi-list-skeleton-base: var(--color-skeleton-dark);
+    --multi-list-skeleton-highlight: var(--color-skeleton-light);
+    --multi-list-skeleton-duration: 1s;
+    --multi-list-progress-fill: linear-gradient(90deg, var(--multi-list-border-brand), var(--color-primary));
+    --multi-list-extracting-glow: var(--multi-list-extracting-glow-color);
     --multi-list-checkbox-accent: var(--multi-list-selection-accent, var(--multi-list-border-brand));
-    --multi-list-group-btn-bg: var(--multi-list-group-action-bg, var(--accent-fill-soft));
-    --multi-list-group-btn-text: var(--multi-list-group-action-text, var(--brand, #000000));
-    --multi-list-group-btn-hover-bg: var(--multi-list-group-action-hover-bg, var(--accent-fill-strong));
-    --multi-list-group-btn-hover-text: var(--multi-list-group-action-hover-text, var(--brand, #000000));
-    --multi-list-group-btn-active-bg: var(--multi-list-group-action-active-bg, var(--multi-list-group-btn-hover-bg));
-    --multi-list-group-btn-active-text: var(--multi-list-group-action-active-text, var(--multi-list-group-btn-hover-text));
-    --multi-list-group-btn-disabled-bg: var(--multi-list-group-action-disabled-bg, var(--accent-fill-soft));
-    --multi-list-group-btn-disabled-text: var(--multi-list-group-action-disabled-text, var(--brand, #000000));
-    --multi-list-group-btn-disabled-opacity: var(--multi-list-group-action-disabled-opacity, 0.6);
+    --multi-list-group-btn-bg: var(--multi-list-group-action-bg);
+    --multi-list-group-btn-text: var(--multi-list-group-action-text);
+    --multi-list-group-btn-hover-bg: var(--multi-list-group-action-hover-bg);
+    --multi-list-group-btn-hover-text: var(--multi-list-group-action-hover-text);
+    --multi-list-group-btn-active-bg: var(--multi-list-group-action-active-bg);
+    --multi-list-group-btn-active-text: var(--multi-list-group-action-active-text);
+    --multi-list-group-btn-disabled-bg: var(--multi-list-group-action-disabled-bg);
+    --multi-list-group-btn-disabled-text: var(--multi-list-group-action-disabled-text);
+    --multi-list-group-btn-disabled-opacity: var(--multi-list-group-action-disabled-opacity);
     border-radius: var(--radius-lg, 16px);
     margin-top: 2rem;
     display: none;
@@ -110,7 +110,7 @@
     font-weight: 700;
     text-align: center;
     margin-bottom: 2rem;
-    color: var(--brand, #000000);
+    color: var(--brand);
 }
 
 .content-row {
@@ -169,7 +169,7 @@
     font-size: 1rem;
     line-height: 1.5;
     background: transparent;
-    color: var(--text-main, #333);
+    color: var(--text-main);
 }
 
 .urls-textarea::placeholder {
@@ -245,11 +245,11 @@
     padding: 0 50px 0 16px !important;
     font-size: 18px;
     line-height: 1.5;
-    color: var(--text-main, #333);
+    color: var(--text-main);
 }
 
 .urls-input-container .video-input::placeholder {
-    color: var(--color-control-placeholder, var(--color-text-disabled, #9CA3AF));
+    color: var(--color-control-placeholder);
     opacity: 1;
 }
 
@@ -275,7 +275,7 @@
 
 .input-action-btn:hover {
     background: var(--accent-fill-soft);
-    color: var(--brand, #000000);
+    color: var(--brand);
     transform: translateY(-50%);
 }
 
@@ -339,14 +339,14 @@
     cursor: pointer;
     font-weight: 600;
     font-size: 14px;
-    color: var(--text-main, #333);
+    color: var(--text-main);
     transition: all 0.3s;
     border-radius: var(--radius-xl);
 }
 
 .multi-format-btn.active {
-    background: var(--brand, #000000);
-    color: #fff;
+    background: var(--brand);
+    color: var(--color-white);
 }
 
 .multi-format-btn:hover:not(.active) {
@@ -432,8 +432,8 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
     align-items: center;
     justify-content: center;
     gap: 8px;
-    background: var(--brand, #000000);
-    color: #fff;
+    background: var(--brand);
+    color: var(--color-white);
     border: none;
     border-radius: var(--radius-xl);
     cursor: pointer;
@@ -566,7 +566,7 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
 }
 
 .group-download-btn:hover:not(:disabled) {
-    background: var(--color-primary, #60A5FA);
+    background: var(--color-primary);
 }
 
 .group-download-btn:disabled {
@@ -676,7 +676,7 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
     bottom: 6px;
     right: 6px;
     background: var(--multi-list-shadow-75);
-    color: #fff;
+    color: var(--color-white);
     font-size: 0.75rem;
     font-weight: 500;
     padding: 2px 6px;
@@ -1069,27 +1069,27 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
 }
 
 .btn-primary {
-    background-color: var(--brand, #000000);
+    background-color: var(--brand);
     color: white;
 }
 
 .btn-primary:hover {
-    background-color: var(--color-accent-hover, #003f8a);
+    background-color: var(--color-accent-hover);
     transform: translateY(-1px);
 }
 
 .btn-success {
-    background-color: var(--brand, #000000);
+    background-color: var(--brand);
     color: white;
 }
 
 .btn-success:hover:not(:disabled) {
-    background-color: var(--color-accent-hover, #003f8a);
+    background-color: var(--color-accent-hover);
 }
 
 .btn-success:disabled {
     cursor: not-allowed;
-    background-color: var(--brand, #000000);
+    background-color: var(--brand);
     opacity: 0.6;
     color: white;
 }
@@ -1633,8 +1633,8 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
     content: '';
     position: absolute;
     inset: 0;
-    background: var(--color-primary, #60A5FA);
-    box-shadow: 0 0 10px var(--color-primary, #60A5FA), 0 0 30px var(--multi-list-extracting-glow, rgba(96, 165, 250, 0.38));
+    background: var(--color-primary);
+    box-shadow: 0 0 10px var(--color-primary), 0 0 30px var(--multi-list-extracting-glow, rgba(198, 93, 59, 0.38));
     animation: item-neon-pulse 1s ease-in-out infinite alternate;
     opacity: 0;
     border-radius: inherit;
@@ -1648,15 +1648,15 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
     left: -40%;
     width: 40%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, var(--color-primary, #60A5FA), transparent);
-    box-shadow: 0 0 12px var(--color-primary, #60A5FA);
+    background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+    box-shadow: 0 0 12px var(--color-primary);
     animation: item-progress-slide 1.2s ease-in-out infinite;
     border-radius: inherit;
 }
 
 /* Processing: solid color, không gradient */
 .multi-video-progress.phase-processing .progress-bar {
-    background: var(--color-primary, #60A5FA);
+    background: var(--color-primary);
 }
 
 /* =========================================
@@ -1977,7 +1977,7 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
 .multi-video-actions .btn-retry {
     background: var(--multi-list-error);
     border: none;
-    color: #fff;
+    color: var(--color-white);
     border-radius: 6px;
     padding: 0.25rem 0.75rem;
     font-size: 0.8rem;
@@ -2003,8 +2003,8 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
     border-radius: 6px;
     font-size: 0.8125rem;
     font-weight: 600;
-    background: var(--brand, #000000);
-    color: #fff;
+    background: var(--brand);
+    color: var(--color-white);
     border: none;
     height: 32px;
 }
@@ -2119,22 +2119,22 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
 .btn-download-multi-download.is-outline {
     background: var(--color-primary, var(--brand));
     border: 1px solid var(--color-primary, var(--brand));
-    color: #fff;
+    color: var(--color-white);
 }
 
 .btn-download-multi-download.is-outline .btn-icon {
     display: block !important;
-    color: #fff;
+    color: var(--color-white);
 }
 
 .btn-download-multi-download.is-outline:hover {
     background: var(--primary-color-hover, var(--brand-hover));
     border-color: var(--primary-color-hover, var(--brand-hover));
-    color: #fff;
+    color: var(--color-white);
 }
 
 .btn-download-multi-download.is-outline:hover .btn-icon {
-    color: #fff;
+    color: var(--color-white);
 }
 
 @keyframes spin {

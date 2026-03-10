@@ -7,7 +7,7 @@ const messageEl = document.getElementById('reset-key-message') as HTMLDivElement
 
 function showMessage(text: string, type: 'success' | 'error' | 'loading') {
     if (!messageEl) return;
-    messageEl.textContent = text;
+    messageEl.innerHTML = text;
     messageEl.className = `license-message show ${type}`;
 }
 
@@ -40,7 +40,7 @@ form?.addEventListener('submit', async (e) => {
     try {
         await supporterService.resetKey(email);
         showMessage(
-            '\u2713 If this email has a valid license, a new key has been sent to your inbox. Please also check your Spam/Junk folder.',
+            '\u2713 If this email has a valid license, a new key has been sent to your inbox. <strong>Please also check your Spam/Junk folder.</strong>',
             'success'
         );
     } catch {

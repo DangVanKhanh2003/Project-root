@@ -113,21 +113,13 @@
 }
 
 .license-supporter-note a {
-    color: var(--brand);
+    color: var(--brand-light);
     font-weight: 600;
     text-underline-offset: 2px;
 }
 
 .license-supporter-note a:hover {
-    color: var(--brand-hover);
-}
-
-:root[data-theme="dark"] .license-supporter-note a {
-    color: #ffd2b3;
-}
-
-:root[data-theme="dark"] .license-supporter-note a:hover {
-    color: #ffe3cd;
+    color: var(--brand-light-hover);
 }
 
 .license-email-figure {
@@ -300,7 +292,7 @@
     border-radius: 12px;
     padding: 14px 20px;
     background: var(--brand);
-    color: #ffffff;
+    color: var(--color-white);
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;

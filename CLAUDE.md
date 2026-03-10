@@ -27,6 +27,12 @@ Dự án sử dụng công nghệ web chuẩn với kiến trúc hiện đại:
 ### Mobile Tap Highlight
 - **Tap highlight**: Sử dụng `-webkit-tap-highlight-color: transparent` để bỏ hiệu ứng nền mờ khi chạm vào các element trên mobile
 
+## HTML & Templates
+
+- Một số app sử dụng template engine (Eleventy/Nunjucks) để generate HTML. Ví dụ: `apps/ytmp4.gg/_templates/`
+- **KHÔNG BAO GIỜ sửa trực tiếp file HTML nếu nó được generate từ template.** Phải tìm và sửa file template gốc (`.njk`, `.liquid`, v.v.) rồi rebuild.
+- Khi cần sửa HTML, **luôn kiểm tra trước** xem file đó có template tương ứng không (tìm trong thư mục `_templates/`). Nếu có → sửa template. Nếu không có → sửa trực tiếp HTML.
+
 ## Monorepo Structure
 
 Dự án sử dụng kiến trúc monorepo với các apps trong `apps/`.

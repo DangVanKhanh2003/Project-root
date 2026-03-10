@@ -32,7 +32,7 @@
 .format-btn[data-format="mp4"]:hover {
     background: var(--brand);
     /* Primary Color */
-    color: #fff;
+    color: var(--color-white);
     box-shadow: none;
 }
 
@@ -66,7 +66,7 @@ html[data-format="mp3"] .format-btn[data-format="mp3"],
 html[data-format="mp3"] .format-btn[data-format="mp3"]:hover {
     background: var(--brand);
     /* Primary Color */
-    color: #fff;
+    color: var(--color-white);
     box-shadow: none;
 }
 
@@ -111,12 +111,12 @@ html[data-format="mp3"] .quality-dropdown-wrapper .video-group-dropdown {
 .format-btn.active {
     background: var(--brand);
     /* Primary Color */
-    color: #fff;
+    color: var(--color-white);
 }
 
 .format-btn:hover:not(.active) {
     background: var(--brand);
-    color: #fff;
+    color: var(--color-white);
 }
 
 /* Quality Wrapper */
@@ -317,7 +317,8 @@ html[data-format="mp3"] .quality-dropdown-wrapper .video-group-dropdown {
 .btn-convert {
     font-size: 16px;
     font-weight: 700;
-    height: 50px;
+    height: 40px;
+    max-height: 40px;
     padding: 0 30px;
     transition: filter 0.3s, transform 0.3s;
     display: inline-flex;
@@ -370,8 +371,9 @@ html[data-format="mp3"] .quality-dropdown-wrapper .video-group-dropdown {
         order: 3;
         flex: 0 0 auto;
         margin-left: auto;
-        height: 44px;
-        min-height: 44px;
+        height: 40px;
+        max-height: 40px;
+        min-height: 40px;
         padding: 0 20px;
     }
 
@@ -420,8 +422,9 @@ html[data-format="mp3"] .quality-dropdown-wrapper .video-group-dropdown {
     }
 
     .btn-convert {
-        height: 44px;
-        min-height: 44px;
+        height: 40px;
+        max-height: 40px;
+        min-height: 40px;
         font-size: 14px;
         border-radius: calc(var(--radius-xl) - 10px);
     }

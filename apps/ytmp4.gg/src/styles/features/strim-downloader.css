@@ -19,7 +19,7 @@ body[data-page="strim-downloader"] .stream-input-row {
 
 body[data-page="strim-downloader"] .stream-hero-note {
   margin: 0 0 12px;
-  color: rgba(255, 255, 255, 0.88);
+  color: var(--text-secondary);
   font-size: 14px;
   line-height: 1.5;
 }
@@ -58,8 +58,8 @@ body[data-page="strim-downloader"] .stream-start-btn {
   max-height: 50px;
   border: none;
   border-radius: 999px;
-  background: var(--brand, #000000);
-  color: #fff;
+  background: var(--brand);
+  color: var(--color-white);
   font-weight: 700;
   padding: 0 22px;
   cursor: pointer;
@@ -82,7 +82,7 @@ body[data-page="strim-downloader"] .stream-player-wrap {
   padding-bottom: 56.25%;
   overflow: hidden;
   border-radius: 12px;
-  background: #000;
+  background: var(--player-bg);
 }
 
 body[data-page="strim-downloader"] .stream-player,
@@ -129,21 +129,21 @@ body[data-page="strim-downloader"] #stream-format-toggle {
   display: flex;
   border-radius: 999px;
   overflow: hidden;
-  border: 1px solid #b0b0b0ad;
+  border: 1px solid var(--border-default);
 }
 
 body[data-page="strim-downloader"] #stream-format-toggle .format-btn {
   flex: 1;
   border: none;
-  background: #fff;
+  background: var(--bg-card);
   color: var(--text-primary);
   cursor: pointer;
   font-weight: 600;
 }
 
 body[data-page="strim-downloader"] #stream-format-toggle .format-btn.selected {
-  background: var(--brand, #000000);
-  color: #fff;
+  background: var(--brand);
+  color: var(--color-white);
 }
 
 body[data-page="strim-downloader"] #stream-quality-select {
@@ -167,7 +167,7 @@ body[data-page="strim-downloader"] .stream-settings .quality-dropdown-wrapper .d
   opacity: 0.8;
   z-index: 2;
   pointer-events: none;
-  color: var(--text-primary, #333);
+  color: var(--text-primary);
 }
 
 body[data-page="strim-downloader"] .stream-settings .quality-dropdown-wrapper--grouped .dropdown-arrow {
@@ -258,7 +258,7 @@ body[data-page="strim-downloader"] .stream-settings .dropdown-menu {
 }
 
 body[data-page="strim-downloader"] .noUi-target {
-  background: #eef2f8;
+  background: var(--slider-track-bg);
   border: none;
   border-radius: 999px;
   box-shadow: none;
@@ -275,7 +275,7 @@ body[data-page="strim-downloader"] .noUi-horizontal .noUi-handle {
   right: -8px;
   top: -4px;
   border-radius: 50%;
-  border: 2px solid #fff;
+  border: 2px solid var(--color-white);
   background: var(--primary-color);
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
 }

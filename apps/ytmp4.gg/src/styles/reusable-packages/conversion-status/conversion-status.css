@@ -59,18 +59,14 @@
   left: 0;
   height: 100%;
   width: var(--progress-width, 0%);
-  background: var(--surface-weak, #cfe0ff);
+  background: var(--surface-weak);
   box-shadow: none;
   transition: width 0.1s ease;
   z-index: 1;
 }
 
 .status--processing::before {
-  background: linear-gradient(90deg, var(--color-accent-soft-08) 0%, var(--color-accent-soft-12) 100%);
-}
-
-[data-theme="dark"] .status--processing::before {
-  background: linear-gradient(90deg, var(--color-accent-soft-10) 0%, var(--color-accent-soft-12) 100%);
+  background: var(--processing-bg);
 }
 
 /* Disable transition for instant reset (e.g., when transitioning between phases) */
@@ -91,12 +87,7 @@
 
 .status--processing.status--merging::before,
 .status--processing.status--merging::after {
-  background: linear-gradient(90deg, var(--color-accent-soft-08) 0%, var(--color-accent-soft-12) 100%);
-}
-
-[data-theme="dark"] .status--processing.status--merging::before,
-[data-theme="dark"] .status--processing.status--merging::after {
-  background: linear-gradient(90deg, var(--color-accent-soft-10) 0%, var(--color-accent-soft-12) 100%);
+  background: var(--processing-bg);
 }
 
 @keyframes merging-progress {
@@ -121,12 +112,7 @@
 
 .status--completing::before,
 .status--completing::after {
-  background: linear-gradient(90deg, var(--color-accent-soft-08) 0%, var(--color-accent-soft-12) 100%);
-}
-
-[data-theme="dark"] .status--completing::before,
-[data-theme="dark"] .status--completing::after {
-  background: linear-gradient(90deg, var(--color-accent-soft-10) 0%, var(--color-accent-soft-12) 100%);
+  background: var(--processing-bg);
 }
 
 /* Hide status bar on success and error - controlled by JavaScript */
@@ -135,7 +121,7 @@
 
 /* Error state - red border */
 .status-container:has(.status--error) {
-  border-color: var(--status-error, #e74c3c);
+  border-color: var(--status-error-color);
 }
 
 .status {
@@ -174,29 +160,19 @@
   gap: 8px;
   padding: 10px 16px;
   margin: 10px 0;
-  background: #fef3c7;
-  border: 1px solid #f59e0b;
+  background: var(--color-warning-bg);
+  border: 1px solid var(--color-warning-border);
   border-radius: var(--radius-small, 8px);
-  color: #ff8800;
+  color: var(--color-warning);
   font-size: 13px;
   font-weight: 500;
   line-height: 1;
   text-align: center;
 }
 
-[data-theme="dark"] .audio-language-warning {
-  background: rgba(245, 158, 11, 0.15);
-  border-color: rgba(245, 158, 11, 0.5);
-  color: #f59e0b;
-}
-
 .audio-language-warning strong {
   font-weight: 700;
-  color: #92400e;
-}
-
-[data-theme="dark"] .audio-language-warning strong {
-  color: #fbbf24;
+  color: var(--color-warning-strong);
 }
 
 /* ===== ICON STATES ===== */
@@ -322,19 +298,11 @@
 }
 
 .download-btn {
-  background: #000000;
+  background: var(--brand);
 }
 
 .download-btn:hover {
-  background: #111111;
-}
-
-[data-theme="dark"] .download-btn {
-  background: var(--primary-color);
-}
-
-[data-theme="dark"] .download-btn:hover {
-  background: var(--primary-color-hover);
+  background: var(--brand-hover);
 }
 
 .download-btn.is-loading {

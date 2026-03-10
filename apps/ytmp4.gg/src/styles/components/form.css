@@ -124,7 +124,7 @@
 }
 
 .video-input::placeholder {
-    color: var(--color-input-placeholder, #7F8D96);
+    color: var(--color-input-placeholder);
     opacity: 1;
 }
 
@@ -154,8 +154,8 @@
 }
 
 .btn-paste:hover {
-    background: var(--color-accent-dark, rgba(0, 79, 171, 0.1));
-    color: var(--brand, #000000);
+    background: var(--color-accent-dark);
+    color: var(--brand);
 }
 
 .btn-paste:active {
@@ -183,7 +183,7 @@
 /* Error Message */
 .error-message {
     display: none;
-    color: #dc3545;
+    color: var(--color-form-error);
     font-size: 14px;
     margin-top: 12px;
     min-height: 20px;
@@ -195,16 +195,13 @@
 
 /* Shared Button Styles */
 .btn-convert {
-    background: #000000;
+    background: var(--brand);
     border: none;
-    color: #fff;
+    color: var(--color-white);
     border-radius: var(--radius-xl);
     cursor: pointer;
 }
 
-[data-theme="dark"] .btn-convert {
-    background: var(--primary-color);
-}
 
 @media (max-width: 768px) {
     .video-input {

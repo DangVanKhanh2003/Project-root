@@ -136,15 +136,15 @@
 }
 
 .license-message.success {
-    background: var(--status-success-bg);
-    color: var(--status-success-color);
-    border-color: var(--status-success-color);
+    background: color-mix(in srgb, var(--color-status-success) 12%, transparent);
+    color: var(--color-status-success);
+    border-color: color-mix(in srgb, var(--color-status-success) 35%, transparent);
 }
 
 .license-message.error {
-    background: var(--status-error-bg);
-    color: var(--status-error-color);
-    border-color: var(--status-error-color);
+    background: color-mix(in srgb, var(--color-status-error) 12%, transparent);
+    color: var(--color-status-error);
+    border-color: color-mix(in srgb, var(--color-status-error) 35%, transparent);
 }
 
 /* Steps */

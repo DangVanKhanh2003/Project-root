@@ -49,9 +49,9 @@
 
 /* Background Patterns */
 .bg-tech-grid {
-    background-color: #fff;
+    background-color: var(--bg-card, #fff);
     background-image:
-        linear-gradient(rgba(0, 79, 171, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 79, 171, 0.03) 1px, transparent 1px);
+        linear-gradient(rgba(198, 93, 59, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(198, 93, 59, 0.03) 1px, transparent 1px);
     background-size: 40px 40px;
 }

@@ -194,47 +194,31 @@
    --pkg-shadow-lg: var(--pkg-elevation-4);
    --pkg-shadow-xl: var(--pkg-elevation-5);
 
-   /* ----- Colors - Base Palette (Dark Nebula Theme) ----- */
+   /* ----- Colors - Base Palette (Warm Beige Theme) ----- */
 
-   /* Grayscale - Dark Theme Adjusted */
+   /* Grayscale - Warm Light Adjusted */
    --pkg-color-white: #ffffff;
    --pkg-color-black: #000000;
-   --pkg-color-gray-50: #f1f5f9;
-   /* Slate-100 (light theme bg) */
-   --pkg-color-gray-100: #e2e8f0;
-   /* Slate-200 */
-   --pkg-color-gray-200: #cbd5e1;
-   /* Slate-300 */
-   --pkg-color-gray-300: #94a3b8;
-   /* Slate-400 */
-   --pkg-color-gray-400: #64748b;
-   /* Slate-500 */
-   --pkg-color-gray-500: #475569;
-   /* Slate-600 */
-   --pkg-color-gray-600: #334155;
-   /* Slate-700 */
-   --pkg-color-gray-700: #1e293b;
-   /* Slate-800 */
-   --pkg-color-gray-800: #0f172a;
-   /* Slate-900 */
-   --pkg-color-gray-900: #030014;
-   /* Dark Nebula bg */
+   --pkg-color-gray-50: #F7F5F2;
+   --pkg-color-gray-100: #EFECE7;
+   --pkg-color-gray-200: #E3E0DA;
+   --pkg-color-gray-300: #DCD7CF;
+   --pkg-color-gray-400: #9B9B9B;
+   --pkg-color-gray-500: #5C5C5C;
+   --pkg-color-gray-600: #3A3A3A;
+   --pkg-color-gray-700: #2F2F2F;
+   --pkg-color-gray-800: #1F1F1E;
+   --pkg-color-gray-900: #1F1F1E;
 
-   /* Primary Color System - Blue Theme */
-   --pkg-color-primary: #000000;
-   /* Primary brand color */
+   /* Primary Color System */
+   --pkg-color-primary: #C65D3B;
    --pkg-color-on-primary: #ffffff;
-   /* White text on primary */
-   --pkg-color-primary-container: rgba(0, 79, 171, 0.1);
-   /* Primary tint container */
-   --pkg-color-on-primary-container: #003f8a;
-   /* Dark blue text on container */
+   --pkg-color-primary-container: rgba(198, 93, 59, 0.1);
+   --pkg-color-on-primary-container: #B14F2F;
 
-   /* Accent Colors - Blue Scale */
-   --pkg-color-accent: #003f8a;
-   /* Darker blue for accents */
-   --pkg-color-accent-bright: #2563eb;
-   /* Bright blue for highlights */
+   /* Accent Colors */
+   --pkg-color-accent: #B14F2F;
+   --pkg-color-accent-bright: #D9785B;
 
    /* Surface Color System - Dark Glassmorphism */
    --pkg-color-surface: var(--bg-card, rgba(255, 255, 255, 0.03));
@@ -456,7 +440,7 @@
 
 [data-theme="light"] {
    /* Search Results Typography - Light Theme */
-   --pkg-search-results-title-color: #000000;
+   --pkg-search-results-title-color: var(--text-heading);
 }
 
 [data-theme="dark"] {

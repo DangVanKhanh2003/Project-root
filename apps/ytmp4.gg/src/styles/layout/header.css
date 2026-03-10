@@ -17,11 +17,19 @@
 .header-logo {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    color: #fff;
+    gap: 8px;
+    color: var(--text-heading);
     text-decoration: none;
     font-weight: 700;
-    font-size: 48px;
+    font-size: 18px;
+}
+
+.header-logo-icon {
+    display: block;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 6px;
 }
 
 
@@ -49,14 +57,14 @@
     fill: var(--brand-hover);
 }
 
-/* Dark mode: swap blue fills → orange */
-[data-theme="dark"] .header-logo svg rect[fill="#000000"],
-[data-theme="dark"] .drawer-logo svg rect[fill="#000000"] {
+/* Both themes: swap original SVG fills → brand */
+.header-logo svg rect[fill="#000000"],
+.drawer-logo svg rect[fill="#000000"] {
     fill: var(--brand);
 }
 
-[data-theme="dark"] .header-logo svg path[fill="#003f8a"],
-[data-theme="dark"] .drawer-logo svg path[fill="#003f8a"] {
+.header-logo svg path[fill="#003f8a"],
+.drawer-logo svg path[fill="#003f8a"] {
     fill: var(--brand-hover);
 }
 
@@ -79,28 +87,19 @@
     justify-content: center;
     width: 36px;
     height: 36px;
-    border: 1.5px solid rgba(255, 255, 255, 0.75);
+    border: 1px solid var(--border-default);
     background: transparent;
     border-radius: 50%;
     cursor: pointer;
-    color: #fff;
-    transition: background .2s, color .2s, border-color .2s;
+    color: var(--text-heading);
+    transition: background 0.2s, color 0.2s;
     -webkit-tap-highlight-color: transparent;
     flex-shrink: 0;
     margin-left: 10px;
 }
 
 .theme-toggle-btn:hover {
-    background: rgba(255, 255, 255, 0.12);
-}
-
-[data-theme="dark"] .theme-toggle-btn {
-    border-color: var(--brand);
-    color: var(--brand);
-}
-
-[data-theme="dark"] .theme-toggle-btn:hover {
-    background: var(--accent-fill-soft);
+    background: var(--bg-hover);
 }
 
 .theme-toggle-btn:focus-visible {
@@ -134,7 +133,7 @@
     height: 44px;
     border: 0;
     background: transparent;
-    color: #fff;
+    color: var(--text-heading);
     cursor: pointer;
 }
 
@@ -208,7 +207,7 @@
     justify-content: space-between;
     padding: 14px 18px;
     background: var(--primary-color);
-    color: #fff;
+    color: var(--color-white);
 }
 
 .drawer-scroll {
@@ -224,43 +223,34 @@
 .drawer-scroll>.theme-toggle-btn {
     align-self: flex-start;
     margin-left: 0;
-    color: var(--text-body);
-    border-color: var(--border-default);
 }
 
 .drawer-scroll>.theme-toggle-btn:hover {
     background: var(--bg-hover);
 }
 
-[data-theme="dark"] .drawer-scroll>.theme-toggle-btn {
-    color: var(--brand);
-    border-color: var(--brand);
-}
-
-[data-theme="dark"] .drawer-scroll>.theme-toggle-btn:hover {
-    background: var(--accent-fill-soft);
-}
-
 .drawer-logo {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    color: #fff;
+    gap: 8px;
+    color: var(--color-white);
     text-decoration: none;
     font-weight: 700;
     font-size: 16px;
 }
 
-.drawer-logo svg {
+.drawer-logo-icon {
     display: block;
     width: 28px;
     height: 28px;
+    flex-shrink: 0;
+    border-radius: 4px;
 }
 
 .drawer-close {
     border: 0;
     background: transparent;
-    color: #fff;
+    color: var(--color-white);
     font-size: 28px;
     line-height: 1;
     cursor: pointer;
@@ -323,14 +313,14 @@
 }
 
 .header-link {
-    color: #fff;
+    color: var(--text-heading);
     text-decoration: none;
     font-weight: 500;
     font-size: 16px;
 }
 
 .header-link:hover {
-    color: #fff;
+    color: var(--text-heading);
     opacity: 0.85;
 }
 
@@ -430,38 +420,31 @@
 
 .license-button:hover {
     opacity: 1;
-    background: color-mix(in srgb, var(--header-license-button-bg) 86%, #000);
-    border-color: color-mix(in srgb, var(--header-license-button-bg) 86%, #000);
+    background: var(--license-hover-bg);
+    border-color: var(--license-hover-bg);
     color: var(--header-license-button-text);
 }
 
 @media (min-width: 840px) {
     .header-nav .license-button:hover {
-        background: color-mix(in srgb, var(--header-license-button-bg) 86%, #000);
-        border-color: color-mix(in srgb, var(--header-license-button-bg) 86%, #000);
+        background: var(--license-hover-bg);
+        border-color: var(--license-hover-bg);
         color: var(--header-license-button-text);
     }
 }
 
-[data-theme="dark"] .license-button:hover {
-    background: color-mix(in srgb, var(--header-license-button-bg) 86%, #000);
-    border-color: color-mix(in srgb, var(--header-license-button-bg) 86%, #000);
-    color: var(--header-license-button-text);
-}
-
 .license-button.license-active,
 .header-nav .license-button.license-active {
-    background: #ffffff;
-    border-color: #ffffff;
-    color: #1f1f1f;
+    background: var(--license-active-bg);
+    border-color: var(--license-active-bg);
+    color: var(--license-active-text);
 }
 
 .license-button.license-active:hover,
-.header-nav .license-button.license-active:hover,
-[data-theme="dark"] .license-button.license-active:hover {
-    background: #ffffff;
-    border-color: #ffffff;
-    color: #1f1f1f;
+.header-nav .license-button.license-active:hover {
+    background: var(--license-active-hover-bg);
+    border-color: var(--license-active-hover-bg);
+    color: var(--license-active-hover-text);
 }
 
 
@@ -608,9 +591,9 @@
 
 /* Mobile: small active indicator on trigger */
 .drawer-license-trigger.license-active {
-    background: color-mix(in srgb, var(--status-success-color, #16a34a) 14%, transparent);
-    border-color: color-mix(in srgb, var(--status-success-color, #16a34a) 32%, rgba(20, 20, 20, 0.12));
-    color: var(--status-success-color, #16a34a);
+    background: color-mix(in srgb, var(--license-status-color) 14%, transparent);
+    border-color: color-mix(in srgb, var(--license-status-color) 32%, rgba(20, 20, 20, 0.12));
+    color: var(--license-status-color);
 }
 
 /* Dropdown status header */
@@ -621,25 +604,19 @@
     padding: 10px 14px;
     font-size: 12px;
     font-weight: 600;
-    color: var(--status-success-color, #16a34a);
-    background: var(--status-success-bg, #ecfdf5);
-    border-bottom: 1px solid color-mix(in srgb, var(--status-success-color, #16a34a) 20%, transparent);
+    color: var(--license-status-color);
+    background: var(--license-status-bg);
+    border-bottom: 1px solid var(--license-status-border);
     border-radius: 6px 6px 0 0;
     margin: -6px -6px 4px -6px;
     line-height: 1.3;
-}
-
-[data-theme="dark"] .license-dropdown-status {
-    background: color-mix(in srgb, var(--status-success-color, #16a34a) 12%, transparent);
-    color: var(--status-success-color, #4ade80);
-    border-bottom-color: color-mix(in srgb, var(--status-success-color, #4ade80) 15%, transparent);
 }
 
 .license-status-dot {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: var(--status-success-color, #22c55e);
+    background: var(--license-status-indicator);
     flex-shrink: 0;
     animation: license-dot-pulse 2s ease-in-out infinite;
 }
@@ -686,14 +663,14 @@
     padding: 6px 8px;
     border: 0;
     background: transparent;
-    color: #fff;
+    color: var(--text-heading);
     font-weight: 600;
     font-size: 16px;
     cursor: pointer;
 }
 
 .lang-button:hover {
-    color: #fff;
+    color: var(--text-heading);
     opacity: 0.85;
 }
 
@@ -774,7 +751,12 @@
 
     .header-logo {
         justify-content: flex-start;
-        font-size: 40px;
+        font-size: 16px;
+    }
+
+    .header-logo-icon {
+        width: 38px;
+        height: 38px;
     }
 
     .header-nav {

@@ -18,13 +18,8 @@
 }
 
 :root {
-  --yt-preview-skeleton-base: #e7ebf0;
-  --yt-preview-skeleton-shimmer: #d9e0e8;
-}
-
-:root[data-theme="dark"] {
-  --yt-preview-skeleton-base: #3b3b39;
-  --yt-preview-skeleton-shimmer: #4a4a48;
+  --yt-preview-skeleton-base: var(--color-skeleton-dark);
+  --yt-preview-skeleton-shimmer: var(--color-skeleton-light);
 }
 
 .yt-preview-card.skeleton {

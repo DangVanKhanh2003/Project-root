@@ -44,12 +44,12 @@
     width: 64px;
     height: 64px;
     border-radius: 50%;
-    background-color: #fff9c4; /* Light warning yellow circle */
+    background-color: var(--popup-warning-bg);
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 24px;
-    color: #fbc02d; /* Solid warning yellow icon */
+    color: var(--popup-warning-icon);
 }
 
 .m3-dialog-icon-wrapper svg {
@@ -104,8 +104,8 @@
     width: 100%;
     border-radius: 99px;
     border: none;
-    background-color: #ffca28; /* Solid warning amber/yellow */
-    color: #332100; /* Darker text for contrast */
+    background-color: var(--popup-warning-btn-bg);
+    color: var(--popup-warning-btn-text);
     font-size: 16px;
     font-weight: 700;
     cursor: pointer;
@@ -117,7 +117,7 @@
 }
 
 .m3-button-solid:hover {
-    background-color: #ffb300;
+    background-color: var(--popup-warning-btn-hover);
 }
 
 .m3-button-solid:active {
@@ -147,16 +147,16 @@
 
 /* Handle Info/Error variants if needed, but primary focus is Warning */
 .m3-dialog.info .m3-dialog-icon-wrapper {
-    background-color: #e3f2fd;
-    color: #1976d2;
+    background-color: var(--popup-info-bg);
+    color: var(--popup-info-color);
 }
 
 .m3-dialog.error .m3-dialog-icon-wrapper {
-    background-color: #ffebee;
-    color: #d32f2f;
+    background-color: var(--popup-error-bg);
+    color: var(--popup-error-color);
 }
 
 .m3-dialog.error .m3-button-solid {
-    background-color: #d32f2f;
-    color: #fff;
+    background-color: var(--popup-error-color);
+    color: var(--color-white);
 }
