@@ -182,7 +182,7 @@ class ApiLogger {
      * Determine tool string from pathname
      */
     private getToolFromUrl(pathname: string): string {
-        if (pathname.includes('/youtube-multi-downloader')) return 'multiple';
+        if (pathname.includes('/multi-youtube-downloader')) return 'multiple';
         if (pathname.includes('/download-mp3-youtube-playlist')) return 'playlist';
         if (pathname.includes('/youtube-cut-video')) return 'cut-video';
         return 'single';

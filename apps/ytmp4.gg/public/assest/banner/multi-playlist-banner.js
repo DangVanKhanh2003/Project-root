@@ -380,7 +380,7 @@ const BANNER_HTML = `
     <!-- Right Interactive Buttons -->
     <div class="mp-banner-right">
       <!-- Card 1: Download Multiple Videos -->
-      <a href="/youtube-multi-downloader" class="mp-banner-card mp-banner-card-white mp-banner-link-multi">
+      <a href="/multi-youtube-downloader" class="mp-banner-card mp-banner-card-white mp-banner-link-multi">
         <div class="mp-banner-card-icon">
           <svg viewBox="0 0 24 24" fill="currentColor">
             <path d="M4 6H2V20C2 21.1 2.9 22 4 22H18V20H4V6ZM20 2H8C6.9 2 6 2.9 6 4V16C6 17.1 6.9 18 8 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2ZM12 14.5V5.5L18 10L12 14.5Z" />
@@ -452,7 +452,7 @@ function createBannerElement(options = {}) {
     container.innerHTML = BANNER_HTML;
 
     const {
-        multiPath = '/youtube-multi-downloader',
+        multiPath = '/multi-youtube-downloader',
         playlistPath = '/download-mp3-youtube-playlist',
         multiParams = {},
         playlistParams = {}

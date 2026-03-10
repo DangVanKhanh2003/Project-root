@@ -114,7 +114,7 @@ function loadMultiPlaylistBannerModule(): Promise<MultiPlaylistBannerModule> {
 
 function buildBannerLinkOptions() {
     return {
-        multiPath: '/youtube-multi-downloader',
+        multiPath: '/multi-youtube-downloader',
         playlistPath: '/download-mp3-youtube-playlist',
         multiParams: {},
         playlistParams: {}
