@@ -10,9 +10,11 @@ import { initExpandableText, submitForm } from '../../../utils';
 import { LANGUAGES } from '../logic/data/languages';
 import { addRippleEffect } from '@downloader/core/utils';
 import { TaskState } from '../logic/conversion/types';
+import { getState as getDownloaderState } from '../state';
 import type { AppState, ConversionTask } from '../state/types';
 import { getMergingEstimator, clearMergingEstimator } from './merging-progress-estimator';
 import { showVidToolPopup } from '@downloader/vidtool-popup';
+import { MaterialPopup } from '../../../ui-components/material-popup/material-popup';
 import { logEvent } from '../../../libs/firebase';
 import { onAfterDownload, onDownloadFailed, onReset, incrementDownloadCount } from '../../widget-level-manager';
 import { showHeroFeatureLinks } from '../../hero-feature-links';
@@ -166,6 +168,44 @@ function stopExtractingRotator(formatId: string) {
     window.clearInterval(interval);
     extractingIntervals.delete(formatId);
   }
+}
+
+function showSingleExpirePopup(videoTitle?: string): void {
+  const existingOverlay = document.querySelector('.m3-dialog-overlay.is-visible');
+  if (existingOverlay) {
+    return;
+  }
+
+  const warningIconSvg = `
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M12 3.5l8.2 14.2a1.5 1.5 0 0 1-1.3 2.3H5.1a1.5 1.5 0 0 1-1.3-2.3L12 3.5z"></path>
+      <circle cx="12" cy="16.2" r="0.6" fill="currentColor" stroke="none"></circle>
+      <path d="M12 9.2v4.2"></path>
+    </svg>
+  `;
+
+  const message = `
+    <strong>Download link has expired.</strong><br>
+    Please choose <strong>Try Again</strong> to generate a new link.
+  `;
+
+  MaterialPopup.show({
+    title: 'Link Expired',
+    message,
+    iconSvg: warningIconSvg,
+    type: 'warning',
+    confirmText: 'Try Again',
+    cancelText: 'Close',
+    buttonLayout: 'row',
+    onConfirm: () => {
+      const form = document.getElementById('downloadForm') as HTMLFormElement | null;
+      if (form) {
+        submitForm(form);
+        return;
+      }
+      window.location.reload();
+    }
+  });
 }
 
 /**
@@ -698,6 +738,12 @@ async function handleDownloadButtonClick(formatId: string): Promise<void> {
 
   const { handleDownloadClick } = await import('../logic/conversion');
   const result = handleDownloadClick(formatId);
+
+  if (result === 'expired') {
+    const videoTitle = getDownloaderState().videoDetail?.meta?.title || 'Video';
+    showSingleExpirePopup(videoTitle);
+    return;
+  }
 
   if (result === 'error') {
     alert('Download failed. Please try again.');

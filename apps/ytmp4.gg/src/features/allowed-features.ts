@@ -8,6 +8,7 @@
 
 import { supporterService } from '../api';
 import { hasLicenseKey, checkStartLimit } from './download-limit';
+import { ensureLicenseCacheFromSavedKey } from './license/license-token';
 import { resolveFeatureLimits, type ResolvedLimits } from './feature-limit-policy';
 import {
     FEATURE_KEY_ALIASES,
@@ -251,6 +252,7 @@ export function evaluateFeatureAccess(feature: string): FeatureAccessResult {
  */
 export async function evaluateFeatureAccessAsync(feature: string): Promise<FeatureAccessResult> {
     const normalizedFeature = normalizeFeature(feature);
+    await ensureLicenseCacheFromSavedKey();
     await ensureCountryContextReady(normalizedFeature);
     return evaluateFeatureAccess(normalizedFeature);
 }
@@ -295,6 +297,7 @@ export async function getFeatureLimitContextAsync(feature: string): Promise<{
     limitsResolved: ResolvedLimits;
 }> {
     const normalizedFeature = normalizeFeature(feature);
+    await ensureLicenseCacheFromSavedKey();
     await ensureCountryContextReady(normalizedFeature);
     return getFeatureLimitContext(normalizedFeature);
 }

@@ -19,12 +19,13 @@ export interface VideoItem {
     id: string;
     url: string;
     meta: VideoMeta;
-    status: 'pending' | 'analyzing' | 'fetching_metadata' | 'ready' | 'queued' | 'downloading' | 'converting' | 'completed' | 'error' | 'cancelled';
+    status: 'pending' | 'analyzing' | 'fetching_metadata' | 'ready' | 'queued' | 'downloading' | 'converting' | 'completed' | 'expired' | 'error' | 'cancelled';
     progress: number;
     progressPhase?: ProgressPhase;
     error?: string;
     settings: VideoItemSettings;
     downloadUrl?: string;
+    completedAt?: number;
     filename?: string;
     isSelected: boolean;
     isDownloaded: boolean;

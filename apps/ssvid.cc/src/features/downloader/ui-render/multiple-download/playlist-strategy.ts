@@ -25,7 +25,7 @@ export class PlaylistStrategy implements RendererStrategy {
     }
 
     buildSettingsContent(item: VideoItem): string {
-        const isEditable = ['pending', 'ready', 'error', 'cancelled'].includes(item.status);
+        const isEditable = ['pending', 'ready', 'expired', 'error', 'cancelled'].includes(item.status);
 
         if (isEditable) {
             return this.buildEditableSettings(item);
@@ -34,12 +34,12 @@ export class PlaylistStrategy implements RendererStrategy {
     }
 
     getSettingsClass(item: VideoItem): string {
-        const isEditable = ['pending', 'ready', 'error', 'cancelled'].includes(item.status);
+        const isEditable = ['pending', 'ready', 'expired', 'error', 'cancelled'].includes(item.status);
         return isEditable ? ' is-dropdowns' : ' is-badges';
     }
 
     getCheckboxHtml(item: VideoItem): string {
-        const isSelectable = ['ready', 'error', 'cancelled', 'completed'].includes(item.status);
+        const isSelectable = ['ready', 'expired', 'error', 'cancelled', 'completed'].includes(item.status);
         const disabledAttr = isSelectable ? '' : 'disabled';
         const checkedAttr = item.isSelected ? 'checked' : '';
 
@@ -65,6 +65,7 @@ export class PlaylistStrategy implements RendererStrategy {
                 return item.isDownloaded
                     ? '<span class="status-badge success">Downloaded</span>'
                     : '<span class="status-badge success">Ready</span>';
+            case 'expired': return '<span class="status-badge expired">Expired</span>';
             case 'error': return '<span class="status-badge error">Failed</span>';
             case 'cancelled': return '<span class="status-badge cancelled">Cancelled</span>';
             default: return '';
@@ -159,7 +160,7 @@ export class PlaylistStrategy implements RendererStrategy {
         if (item.status === 'downloading' || item.status === 'converting') {
             return `
                 <button class="btn-icon btn-cancel" data-action="cancel" data-id="${item.id}" title="Cancel">
-                    <span class="icon-cancel">✕</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
                 </button>
             `;
         }
@@ -191,7 +192,7 @@ export class PlaylistStrategy implements RendererStrategy {
             `;
         }
 
-        if (item.status === 'error') {
+        if (item.status === 'error' || item.status === 'expired') {
             return `<button class="btn-retry" data-action="retry" data-id="${item.id}">Retry</button>`;
         }
 
@@ -208,7 +209,7 @@ export class PlaylistStrategy implements RendererStrategy {
         if (item.status === 'downloading' || item.status === 'converting') {
             return `
                 <button class="btn-icon btn-cancel" data-action="cancel" data-id="${item.id}" title="Cancel">
-                    <span class="icon-cancel">✕</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
                 </button>
             `;
         }
@@ -255,7 +256,7 @@ export class PlaylistStrategy implements RendererStrategy {
             `;
         }
 
-        if (item.status === 'error') {
+        if (item.status === 'error' || item.status === 'expired') {
             return `<button class="btn-retry" data-action="retry" data-id="${item.id}">Retry</button>`;
         }
 

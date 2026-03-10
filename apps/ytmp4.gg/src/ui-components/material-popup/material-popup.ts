@@ -2,6 +2,7 @@
 export interface PopupOptions {
     title: string;
     message: string;
+    iconSvg?: string;
     confirmText?: string;
     cancelText?: string;
     buttonLayout?: 'stack' | 'row';
@@ -15,6 +16,7 @@ export class MaterialPopup {
         const {
             title,
             message,
+            iconSvg,
             confirmText = 'OK',
             cancelText,
             buttonLayout = 'stack',
@@ -59,9 +61,15 @@ export class MaterialPopup {
         `;
 
         let iconContent = '';
-        if (type === 'warning') iconContent = warningIcon;
-        else if (type === 'error') iconContent = errorIcon;
-        else iconContent = infoIcon;
+        if (iconSvg) {
+            iconContent = iconSvg;
+        } else if (type === 'warning') {
+            iconContent = warningIcon;
+        } else if (type === 'error') {
+            iconContent = errorIcon;
+        } else {
+            iconContent = infoIcon;
+        }
 
         const confirmButtonHtml = `<button class="m3-button-solid m3-confirm-btn" type="button">${confirmText}</button>`;
         const cancelButtonHtml = cancelText

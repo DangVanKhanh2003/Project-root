@@ -18,6 +18,7 @@ import {
   getState,
 } from '../../state';
 import { triggerDownload } from '../../../../utils';
+import { isLinkExpired } from '../../../../utils/link-validator';
 
 import { recordUsage } from '../../../download-limit';
 
@@ -287,9 +288,11 @@ export function handleDownloadClick(formatId: string): 'success' | 'error' | 'ex
     return 'error';
   }
 
-  // Check if download URL has expired (V3 URLs typically expire after some time)
-  // For now, we don't have expiration tracking, so just try to download
-  // TODO: Add expiration check if V3 API provides expiration info
+  // Check if download URL has expired using local completedAt + configured TTL.
+  if (isLinkExpired(task.completedAt)) {
+    log('Download URL expired for:', formatId);
+    return 'expired';
+  }
 
   log('Triggering download:', task.downloadUrl);
   triggerDownload(task.downloadUrl, task.filename || 'download');

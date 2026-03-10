@@ -19,9 +19,9 @@ export interface StoreChangeHandlerConfig {
 }
 
 const CONVERT_TAB_STATUSES = new Set(['pending', 'analyzing', 'fetching_metadata', 'ready', 'cancelled']);
-const DOWNLOAD_TAB_STATUSES = new Set(['queued', 'downloading', 'converting', 'completed', 'error']);
-const SELECTABLE_STATUSES = new Set(['ready', 'error', 'cancelled', 'completed']);
-const DOWNLOADABLE_STATUSES = new Set(['ready', 'error', 'cancelled']);
+const DOWNLOAD_TAB_STATUSES = new Set(['queued', 'downloading', 'converting', 'completed', 'expired', 'error']);
+const SELECTABLE_STATUSES = new Set(['ready', 'expired', 'error', 'cancelled', 'completed']);
+const DOWNLOADABLE_STATUSES = new Set(['ready', 'expired', 'error', 'cancelled']);
 
 function isConvertTabStatus(status: string) {
     return CONVERT_TAB_STATUSES.has(status);

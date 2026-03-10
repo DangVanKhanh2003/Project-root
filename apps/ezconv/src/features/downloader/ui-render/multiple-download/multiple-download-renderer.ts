@@ -8,6 +8,8 @@ import { RendererStrategy } from './renderer-strategy.interface';
 import { createStoreChangeHandler, updateGroupCount, DOWNLOAD_TAB_CLICKED_KEY, showDownloadTabGuide } from './handle-store-change';
 import { triggerDownload, isIOS } from '../../../../utils';
 import { MaterialPopup } from '../../../../ui-components/material-popup/material-popup';
+import { isLinkExpired } from '../../../../utils/link-validator';
+import type { VideoItem } from '../../state/multiple-download-types';
 
 export class MultipleDownloadRenderer {
     private container: HTMLElement | null = null;
@@ -232,6 +234,10 @@ export class MultipleDownloadRenderer {
                     const itemId = itemEl.dataset.id;
                     const checkbox = itemEl.querySelector('.item-checkbox') as HTMLInputElement | null;
                     if (itemId && checkbox && !checkbox.disabled) {
+                        const item = videoStore.getItem(itemId);
+                        if (item && this.handleExpiredItems([item], { markAsExpired: true }).length > 0) {
+                            return;
+                        }
                         videoStore.toggleSelect(itemId);
                     }
                     return;
@@ -312,7 +318,15 @@ export class MultipleDownloadRenderer {
             // Item checkbox
             if (target.classList.contains('item-checkbox')) {
                 const id = (target as HTMLInputElement).dataset.id;
-                if (id) videoStore.toggleSelect(id);
+                const checkbox = target as HTMLInputElement;
+                if (id) {
+                    const item = videoStore.getItem(id);
+                    if (checkbox.checked && item && this.handleExpiredItems([item], { markAsExpired: true }).length > 0) {
+                        checkbox.checked = false;
+                        return;
+                    }
+                    videoStore.toggleSelect(id);
+                }
                 return;
             }
 
@@ -332,9 +346,11 @@ export class MultipleDownloadRenderer {
                             activeTab === 'all' ? true
                                 : activeTab === 'convert' ? isConvertTabStatus(i.status) : isDownloadTabStatus(i.status)
                         );
+                        const expiredItems = this.handleExpiredItems(tabItems, { markAsExpired: true });
+                        const expiredIds = new Set(expiredItems.map(item => item.id));
 
                         const processingCount = tabItems.filter(i => ['analyzing', 'fetching_metadata', 'queued', 'downloading', 'converting'].includes(i.status)).length;
-                        const failedCount = tabItems.filter(i => i.status === 'error').length;
+                        const failedCount = tabItems.filter(i => i.status === 'error' && !expiredIds.has(i.id)).length;
 
                         if (processingCount > 0 || failedCount > 0) {
                             (target as HTMLInputElement).checked = false;
@@ -416,8 +432,10 @@ export class MultipleDownloadRenderer {
                 const items = videoStore.getAllItems().filter(i => !i.groupId);
 
                 if (checked) {
+                    const expiredItems = this.handleExpiredItems(items, { markAsExpired: true });
+                    const expiredIds = new Set(expiredItems.map(item => item.id));
                     const processingCount = items.filter(i => ['analyzing', 'fetching_metadata', 'queued', 'downloading', 'converting'].includes(i.status)).length;
-                    const failedCount = items.filter(i => i.status === 'error').length;
+                    const failedCount = items.filter(i => i.status === 'error' && !expiredIds.has(i.id)).length;
 
                     if (processingCount > 0 || failedCount > 0) {
                         (target as HTMLInputElement).checked = false;
@@ -454,9 +472,15 @@ export class MultipleDownloadRenderer {
         btn.innerHTML = 'Creating ZIP...';
 
         try {
-            const completedIds = videoStore.getAllItems()
-                .filter(i => !i.groupId && i.status === 'completed' && i.isSelected)
-                .map(i => i.id);
+            const selectedCompletedItems = videoStore.getAllItems()
+                .filter(i => !i.groupId && i.status === 'completed' && i.isSelected);
+
+            const expired = this.handleExpiredItems(selectedCompletedItems, { markAsExpired: true });
+            if (expired.length > 0) {
+                return;
+            }
+
+            const completedIds = selectedCompletedItems.map(i => i.id);
 
             if (completedIds.length === 0) {
                 throw new Error('No selected completed items');
@@ -487,9 +511,15 @@ export class MultipleDownloadRenderer {
         btn.innerHTML = 'Creating ZIP...';
 
         try {
-            const completedIds = videoStore.getItemsByGroup(groupId)
-                .filter(i => i.status === 'completed' && i.isSelected)
-                .map(i => i.id);
+            const selectedCompletedItems = videoStore.getItemsByGroup(groupId)
+                .filter(i => i.status === 'completed' && i.isSelected);
+
+            const expired = this.handleExpiredItems(selectedCompletedItems, { markAsExpired: true });
+            if (expired.length > 0) {
+                return;
+            }
+
+            const completedIds = selectedCompletedItems.map(i => i.id);
 
             if (completedIds.length === 0) {
                 throw new Error('No selected completed items in this group');
@@ -518,6 +548,12 @@ export class MultipleDownloadRenderer {
 
         if (!downloadUrl) return;
         if (btn instanceof HTMLButtonElement && btn.disabled) return;
+        if (id) {
+            const item = videoStore.getItem(id);
+            if (item && this.handleExpiredItems([item], { markAsExpired: true }).length > 0) {
+                return;
+            }
+        }
 
         const hadSuccess = btn.classList.contains('is-success');
         btn.classList.remove('is-success');
@@ -575,6 +611,76 @@ export class MultipleDownloadRenderer {
         buttons.forEach((button) => {
             button.disabled = false;
             button.classList.remove('is-disabled');
+        });
+    }
+
+    private getExpiredCompletedItems(items: VideoItem[]): VideoItem[] {
+        return items.filter(
+            (item) =>
+                (item.status === 'completed' || item.status === 'expired') &&
+                typeof item.completedAt === 'number' &&
+                isLinkExpired(item.completedAt)
+        );
+    }
+
+    private handleExpiredItems(items: VideoItem[], options: { markAsExpired?: boolean; showPopup?: boolean } = {}): VideoItem[] {
+        const expiredItems = this.getExpiredCompletedItems(items);
+        if (expiredItems.length === 0) {
+            return [];
+        }
+
+        const selectedExpiredIds = expiredItems.filter(item => item.isSelected).map(item => item.id);
+        if (selectedExpiredIds.length > 0) {
+            videoStore.setItemsSelection(selectedExpiredIds, false);
+        }
+
+        if (options.markAsExpired) {
+            expiredItems.forEach((item) => {
+                if (item.status !== 'expired') {
+                    videoStore.setExpired(item.id, 'Download link expired. Please convert again to generate a new link.');
+                }
+            });
+        }
+
+        if (options.showPopup !== false) {
+            this.showExpiredLinksPopup(expiredItems);
+        }
+
+        return expiredItems;
+    }
+
+    private showExpiredLinksPopup(expiredItems: VideoItem[]): void {
+        if (expiredItems.length <= 0) return;
+
+        if (expiredItems.length === 1) {
+            const title = this.escapeHtml(expiredItems[0]?.meta?.title || 'this video');
+            MaterialPopup.show({
+                title: 'Link Expired',
+                type: 'warning',
+                message: `<strong>Download link expired.</strong><br>The link for <strong>${title}</strong> is no longer valid. Please <strong>convert again</strong>.`,
+                confirmText: 'OK'
+            });
+            return;
+        }
+
+        MaterialPopup.show({
+            title: 'Some Links Expired',
+            type: 'warning',
+            message: `<strong>${expiredItems.length} download links expired.</strong><br>Please <strong>convert again</strong> to refresh these links before downloading.`,
+            confirmText: 'OK'
+        });
+    }
+
+    private escapeHtml(text: string): string {
+        return text.replace(/[&<>"']/g, (m) => {
+            switch (m) {
+                case '&': return '&amp;';
+                case '<': return '&lt;';
+                case '>': return '&gt;';
+                case '"': return '&quot;';
+                case '\'': return '&#039;';
+                default: return m;
+            }
         });
     }
 
@@ -662,7 +768,7 @@ export class MultipleDownloadRenderer {
 }
 
 const CONVERT_TAB_STATUSES = new Set(['pending', 'analyzing', 'fetching_metadata', 'ready', 'cancelled']);
-const DOWNLOAD_TAB_STATUSES = new Set(['queued', 'downloading', 'converting', 'completed', 'error']);
+const DOWNLOAD_TAB_STATUSES = new Set(['queued', 'downloading', 'converting', 'completed', 'expired', 'error']);
 
 function isConvertTabStatus(status: string) {
     return CONVERT_TAB_STATUSES.has(status);

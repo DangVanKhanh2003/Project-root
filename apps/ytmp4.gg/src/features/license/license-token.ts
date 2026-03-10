@@ -104,9 +104,13 @@ function decodeLicenseCache(raw: string): CachedLicense | null {
  */
 export function saveLicenseCache(response: CheckKeyResponse): void {
     try {
+        const normalizedStatus = typeof response.status === 'string'
+            ? response.status.trim().toLowerCase()
+            : 'active';
+
         const data: CachedLicense = {
             planType: (response.planType as CachedLicense['planType']) || 'lifetime',
-            status: response.status || 'active',
+            status: normalizedStatus || 'active',
             activatedAt: response.activatedAt || new Date().toISOString(),
             expiresAt: response.expiresAt ?? null,
             tierPurchased: response.tierPurchased ?? 0,
@@ -170,7 +174,7 @@ function endOfDay(date: Date): number {
  */
 export function isPlanActive(cache: CachedLicense): boolean {
     // Status must be active
-    if (cache.status !== 'active') return false;
+    if ((cache.status || '').trim().toLowerCase() !== 'active') return false;
 
     // Lifetime never expires
     if (cache.expiresAt === null) return true;
@@ -189,6 +193,33 @@ export function hasValidLicense(): boolean {
     const cache = getLicenseCache();
     if (!cache) return false;
     return isPlanActive(cache);
+}
+
+/**
+ * Optimistic license check:
+ * - If cache is valid: supporter
+ * - If cache missing but key exists: treat as supporter and sync in background
+ */
+export function hasLicenseKeyOptimistic(): boolean {
+    const cache = getLicenseCache();
+    if (cache) {
+        return isPlanActive(cache);
+    }
+    const savedKey = getSavedLicenseKey();
+    if (savedKey) {
+        revalidateLicense();
+        return true;
+    }
+    return false;
+}
+
+/**
+ * Ensure license state is synced in background when key exists but cache is missing.
+ * Always non-blocking for user actions.
+ */
+export async function ensureLicenseCacheFromSavedKey(): Promise<boolean> {
+    const supporter = hasLicenseKeyOptimistic();
+    return Promise.resolve(supporter);
 }
 
 /**
@@ -285,7 +316,12 @@ export function revalidateLicense(): void {
  */
 export function initLicenseOnPageLoad(): void {
     const cache = getLicenseCache();
-    if (!cache) return;
+    if (!cache) {
+        if (getSavedLicenseKey()) {
+            revalidateLicense();
+        }
+        return;
+    }
 
     if (needsRevalidation(cache)) {
         revalidateLicense();

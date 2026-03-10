@@ -17,6 +17,7 @@ const extractingIntervals = new Map<string, number>();
 const extractingElements = new Map<string, HTMLElement[]>();
 const previousMergingPhase = new Map<string, boolean>();
 const mergingTransitionInProgress = new Map<string, boolean>();
+const wasExtractingPhase = new Map<string, boolean>();
 const TRANSPARENT_PIXEL = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
 
 function stopExtractingRotator(itemId: string): void {
@@ -158,7 +159,7 @@ export class VideoItemRenderer {
         // Error message
         const errorEl = el.querySelector('.multi-video-error') as HTMLElement;
         if (errorEl) {
-            if (item.status === 'error' && item.error) {
+            if ((item.status === 'error' || item.status === 'expired') && item.error) {
                 errorEl.textContent = item.error;
                 errorEl.style.display = '';
             } else {
@@ -201,7 +202,7 @@ export class VideoItemRenderer {
             const checkbox = checkboxWrapper.querySelector('.item-checkbox') as HTMLInputElement;
             if (checkbox) {
                 checkbox.checked = item.isSelected;
-                const isSelectable = ['ready', 'error', 'cancelled', 'completed'].includes(item.status);
+                const isSelectable = ['ready', 'expired', 'error', 'cancelled', 'completed'].includes(item.status);
                 checkbox.disabled = !isSelectable;
             }
         }
@@ -290,7 +291,7 @@ export class VideoItemRenderer {
                 <div class="multi-video-meta">
                     ${item.meta.author ? `<span class="multi-video-author">${escapeHtml(item.meta.author)}</span>` : ''}
                 </div>
-                <div class="multi-video-error" style="${item.status === 'error' ? '' : 'display:none'}">${escapeHtml(item.error || '')}</div>
+                <div class="multi-video-error" style="${item.status === 'error' || item.status === 'expired' ? '' : 'display:none'}">${escapeHtml(item.error || '')}</div>
                 ${VideoItemRenderer.getAudioLanguageWarningHtml(item)}
                 <div class="settings-progress-wrapper">
                     <div class="item-settings${strategy.getSettingsClass(item)}">${strategy.buildSettingsContent(item)}</div>
@@ -321,13 +322,42 @@ export class VideoItemRenderer {
         const activeWrapper = el.querySelector('.item-active-progress') as HTMLElement;
         const progressPercent = Math.round(item.progress || 0);
         const isMergingPhase = VideoItemRenderer.isMergingPhase(item);
+        const isExtractingPhase = item.status === 'converting' && item.progressPhase === 'extracting';
+        const isProcessingPhase = item.status === 'converting' && item.progressPhase === 'processing';
         const wasMerging = previousMergingPhase.get(item.id) || false;
+        const prevWasExtracting = wasExtractingPhase.get(item.id) || false;
 
         if (isActive) {
             if (activeWrapper) activeWrapper.style.display = 'block';
 
             const bar = el.querySelector('.progress-bar') as HTMLElement;
             const percentLabel = el.querySelector('.progress-percentage-label') as HTMLElement;
+            const progressContainer = el.querySelector('.multi-video-progress');
+
+            // --- EXTRACTING: indeterminate, ẩn % ---
+            if (isExtractingPhase) {
+                wasExtractingPhase.set(item.id, true);
+                if (percentLabel) percentLabel.style.visibility = 'hidden';
+                if (progressContainer) {
+                    progressContainer.classList.add('phase-extracting');
+                    progressContainer.classList.remove('phase-processing', 'phase-merging');
+                }
+                // Không set bar width — CSS animation tự quản
+                return;
+            }
+
+            // --- Transition: extracting → phase khác, snap không giật ---
+            if (prevWasExtracting) {
+                wasExtractingPhase.delete(item.id);
+                if (progressContainer) progressContainer.classList.remove('phase-extracting');
+                if (percentLabel) percentLabel.style.visibility = '';
+                if (bar) {
+                    bar.style.transition = 'none';
+                    bar.style.width = `${progressPercent}%`;
+                    void bar.offsetWidth; // force reflow
+                    bar.style.transition = '';
+                }
+            }
 
             if (isMergingPhase) {
                 if (!wasMerging) {
@@ -345,7 +375,6 @@ export class VideoItemRenderer {
                             const previousTransition = bar.style.transition;
                             bar.style.transition = 'none';
                             bar.style.width = '0%';
-                            // Force reflow so reset-to-zero is applied immediately without animation.
                             void bar.offsetWidth;
                             bar.style.transition = previousTransition;
                         }
@@ -376,23 +405,33 @@ export class VideoItemRenderer {
                 }
             } else {
                 clearMergingEstimator(item.id);
-                if (bar) bar.style.width = `${progressPercent}%`;
+                if (!prevWasExtracting) {
+                    if (bar) bar.style.width = `${progressPercent}%`;
+                }
                 if (percentLabel) percentLabel.textContent = `${progressPercent}%`;
             }
 
-            // Phase-specific color
-            const progressContainer = el.querySelector('.multi-video-progress');
+            // Phase-specific CSS classes
             if (progressContainer) {
                 if (isMergingPhase && !mergingTransitionInProgress.get(item.id)) {
                     progressContainer.classList.add('phase-merging');
-                } else {
+                    progressContainer.classList.remove('phase-processing');
+                } else if (isProcessingPhase) {
+                    progressContainer.classList.add('phase-processing');
                     progressContainer.classList.remove('phase-merging');
+                } else {
+                    progressContainer.classList.remove('phase-merging', 'phase-processing');
                 }
             }
         } else {
             if (activeWrapper) activeWrapper.style.display = 'none';
             stopExtractingRotator(item.id);
             clearMergingEstimator(item.id);
+            wasExtractingPhase.delete(item.id);
+            const progressContainer = el.querySelector('.multi-video-progress');
+            if (progressContainer) {
+                progressContainer.classList.remove('phase-extracting', 'phase-processing');
+            }
         }
 
         if (isMergingPhase) {
@@ -407,7 +446,7 @@ export class VideoItemRenderer {
         // Remove all status classes
         el.classList.remove(
             'pending', 'analyzing', 'fetching_metadata', 'ready', 'queued',
-            'downloading', 'converting', 'completed', 'error', 'cancelled',
+            'downloading', 'converting', 'completed', 'expired', 'error', 'cancelled',
             'skeleton-loading'
         );
         el.classList.add(item.status);

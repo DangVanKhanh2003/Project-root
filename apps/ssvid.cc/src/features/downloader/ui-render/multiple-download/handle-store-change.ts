@@ -15,7 +15,7 @@ export interface StoreChangeHandlerConfig {
 }
 
 const CONVERT_TAB_STATUSES = new Set(['pending', 'analyzing', 'fetching_metadata', 'ready', 'cancelled']);
-const DOWNLOAD_TAB_STATUSES = new Set(['queued', 'downloading', 'converting', 'completed', 'error']);
+const DOWNLOAD_TAB_STATUSES = new Set(['queued', 'downloading', 'converting', 'completed', 'expired', 'error']);
 
 function isConvertTabStatus(status: string) {
     return CONVERT_TAB_STATUSES.has(status);
@@ -397,7 +397,7 @@ export function updateGroupCount(groupEl: HTMLElement, isLocked: boolean = false
         const groupCheckbox = groupEl.querySelector('.group-checkbox') as HTMLInputElement;
         if (groupCheckbox) {
             const tabItems = activeTab === 'convert' ? convertItems : downloadItems;
-            const selectableItems = tabItems.filter(i => ['ready', 'error', 'cancelled', 'completed'].includes(i.status));
+            const selectableItems = tabItems.filter(i => ['ready', 'expired', 'error', 'cancelled', 'completed'].includes(i.status));
             const allSelected = selectableItems.length > 0 && selectableItems.every(i => i.isSelected);
             const someSelected = selectableItems.some(i => i.isSelected);
             groupCheckbox.checked = allSelected;

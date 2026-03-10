@@ -4,7 +4,7 @@ import { VideoMeta } from './types';
 
 type StoreListener = (eventName: VideoStoreEventName, data: any) => void;
 
-const DOWNLOADABLE_STATUSES: VideoItem['status'][] = ['ready', 'error', 'cancelled'];
+const DOWNLOADABLE_STATUSES: VideoItem['status'][] = ['ready', 'expired', 'error', 'cancelled'];
 
 const DEFAULT_SETTINGS: VideoItemSettings = {
     format: 'mp4',
@@ -162,7 +162,7 @@ class VideoStore {
         const item = this.items.get(id);
         if (!item) return;
         item.status = status;
-        if (status === 'ready' || status === 'error' || status === 'cancelled') {
+        if (status === 'ready' || status === 'expired' || status === 'error' || status === 'cancelled') {
             item.progress = 0;
             item.progressPhase = undefined;
         }
@@ -179,8 +179,19 @@ class VideoStore {
         item.status = 'completed';
         item.progress = 100;
         item.downloadUrl = downloadUrl;
+        item.completedAt = Date.now();
         item.filename = filename;
         item.isDownloaded = false;
+        item.progressPhase = undefined;
+        this.notify('item:updated', item);
+    }
+
+    setExpired(id: string, message: string): void {
+        const item = this.items.get(id);
+        if (!item) return;
+        item.status = 'expired';
+        item.error = message;
+        item.progress = 0;
         item.progressPhase = undefined;
         this.notify('item:updated', item);
     }

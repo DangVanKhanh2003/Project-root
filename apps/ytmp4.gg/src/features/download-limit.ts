@@ -10,7 +10,7 @@
 // ============================================================
 
 import { FEATURE_KEYS, FEATURE_ACCESS_REASONS, type FeatureAccessReason } from '@downloader/core';
-import { hasValidLicense } from './license/license-token';
+import { hasLicenseKeyOptimistic } from './license/license-token';
 import { MULTIPLE_MAX_ITEMS_ALLOWED } from './feature-limit-policy';
 
 /** Default maximum uses per day for non-license users (fallback for any unlisted feature). */
@@ -96,7 +96,7 @@ function writeUsage(storageKey: string, usage: DailyUsage): void {
  * Check if a valid license key is stored.
  */
 export function hasLicenseKey(): boolean {
-    return hasValidLicense();
+    return hasLicenseKeyOptimistic();
 }
 
 /**

@@ -74,7 +74,7 @@
 
 .m3-dialog-message {
     font-size: 15px; /* Slightly smaller message */
-    line-height: 1;
+    line-height: 1.45;
     letter-spacing: 0.1px;
     color: var(--text-secondary);
     text-align: center;
