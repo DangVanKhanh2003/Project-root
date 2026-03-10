@@ -184,7 +184,7 @@
 
 @media (max-width: 768px) {
     .hero-section {
-        padding: 30px 12px 20px 12px;
+        padding: 20px 12px 20px 12px;
         /* Reduced bottom padding to 0 to let mask cover more of the form (half-in/half-out) */
     }
 
@@ -195,7 +195,7 @@
 
     .title-hero {
         padding: 0 20px;
-        font-size: 16px;
+        font-size: 22px;
     }
 
     .subtitle-hero {
@@ -287,4 +287,16 @@
 
 .support-platforms-icons svg.support-platform-icon {
     display: none;
+}
+
+/* Tip Message */
+@media (max-width: 768px) {
+    #tip-message-wrapper svg {
+        display: none;
+    }
+
+    #tip-message-wrapper {
+        font-size: 14px;
+        padding: 4px 16px 0px;
+    }
 }

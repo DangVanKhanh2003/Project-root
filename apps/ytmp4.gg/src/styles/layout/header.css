@@ -461,9 +461,12 @@
     flex-shrink: 0;
 }
 
-.license-button .license-icon,
-.drawer-license-trigger .license-icon {
+.license-button .license-icon {
     color: var(--header-license-button-icon);
+}
+
+.drawer-license-trigger .license-icon {
+    color: inherit;
 }
 
 .license-icon svg {

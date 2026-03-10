@@ -143,9 +143,6 @@ function renderDropdown(dropdown: DropdownWithSelect): void {
     dropdown.innerHTML = `
         <button type="button" class="video-group-trigger" data-custom-video-group-trigger aria-expanded="${menuOpen ? 'true' : 'false'}">
             <span class="video-group-trigger-label">${getSelectedLabel(select, mode)}</span>
-            <span class="video-group-trigger-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-            </span>
         </button>
         <div class="video-group-menu"${menuOpen ? '' : ' hidden'}>
             ${groupsHtml}

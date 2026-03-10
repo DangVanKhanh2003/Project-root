@@ -38,6 +38,12 @@
   gap: 8px;
 }
 
+@media (max-width: 768px) {
+  .yt-preview-card.skeleton .yt-preview-format {
+    justify-content: center;
+  }
+}
+
 .yt-preview-card.skeleton .yt-preview-thumbnail,
 .yt-preview-card.skeleton .skeleton-line {
   background: linear-gradient(90deg,

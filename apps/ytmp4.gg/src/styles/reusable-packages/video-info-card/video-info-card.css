@@ -334,7 +334,7 @@
   align-items: center;
   justify-content: center;
   gap: var(--space-xs, 4px);
-  padding: var(--space-sm, 6px) var(--space-xl, 20px);
+  padding: 6px 30px;
   font-size: 13px;
   font-weight: var(--font-weight-semibold, 600);
   transition: all 0.2s ease;
@@ -446,7 +446,7 @@
   }
 
   .btn-convert {
-    padding: var(--space-sm, 6px) var(--space-2xl, 24px);
+    padding: 6px 30px;
     font-size: var(--font-size-sm, 14px);
   }
 

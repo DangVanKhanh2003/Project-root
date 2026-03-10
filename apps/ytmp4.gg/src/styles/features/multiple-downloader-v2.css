@@ -405,10 +405,6 @@
     color: var(--text-body);
 }
 
-.multi-quality-dropdown-wrapper--grouped .multi-select-arrow {
-    display: none;
-}
-
 .multi-quality-dropdown-wrapper .multi-video-group-dropdown {
     min-width: 180px;
 }

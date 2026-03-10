@@ -463,6 +463,15 @@
   }
 }
 
+:root[data-theme="dark"] .status-container {
+  border-color: var(--text-muted);
+  color: var(--text-muted);
+}
+
+:root[data-theme="dark"] .status-container .status-text {
+  color: var(--text-muted);
+}
+
 .download-btn:focus-visible,
 .retry-btn:focus-visible,
 .btn-new-convert:focus-visible {
