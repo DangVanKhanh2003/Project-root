@@ -46,33 +46,6 @@
     }
 }
 
-/* Logo icon fill overrides — match actual SVG fill attributes */
-.header-logo svg rect[fill="#CB0E35"],
-.drawer-logo svg rect[fill="#CB0E35"] {
-    fill: var(--brand);
-}
-
-.header-logo svg path[fill="#8D021F"],
-.drawer-logo svg path[fill="#8D021F"] {
-    fill: var(--brand-hover);
-}
-
-/* Both themes: swap original SVG fills → brand */
-.header-logo svg rect[fill="#000000"],
-.drawer-logo svg rect[fill="#000000"] {
-    fill: var(--brand);
-}
-
-.header-logo svg path[fill="#003f8a"],
-.drawer-logo svg path[fill="#003f8a"] {
-    fill: var(--brand-hover);
-}
-
-/* Dark mode: white background rect → card surface */
-[data-theme="dark"] .header-logo svg rect[fill="white"],
-[data-theme="dark"] .drawer-logo svg rect[fill="white"] {
-    fill: var(--bg-card);
-}
 
 
 .header-nav {

@@ -33,6 +33,11 @@ Dự án sử dụng công nghệ web chuẩn với kiến trúc hiện đại:
 - **KHÔNG BAO GIỜ sửa trực tiếp file HTML nếu nó được generate từ template.** Phải tìm và sửa file template gốc (`.njk`, `.liquid`, v.v.) rồi rebuild.
 - Khi cần sửa HTML, **luôn kiểm tra trước** xem file đó có template tương ứng không (tìm trong thư mục `_templates/`). Nếu có → sửa template. Nếu không có → sửa trực tiếp HTML.
 
+## Vite Build
+
+- Mỗi app có file `vite.config.ts` với danh sách `staticPages` chứa các trang HTML tĩnh (không qua template).
+- **Khi thêm file HTML mới** vào root của app, **PHẢI thêm tên file (không có `.html`)** vào mảng `staticPages` trong `vite.config.ts` của app đó. Nếu không, trang sẽ không được build.
+
 ## Monorepo Structure
 
 Dự án sử dụng kiến trúc monorepo với các apps trong `apps/`.
