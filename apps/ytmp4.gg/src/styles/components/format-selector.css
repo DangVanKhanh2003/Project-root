@@ -317,8 +317,8 @@ html[data-format="mp3"] .quality-dropdown-wrapper .video-group-dropdown {
 .btn-convert {
     font-size: 16px;
     font-weight: 700;
-    height: 45px;
-    padding: 0 28px;
+    height: 50px;
+    padding: 0 30px;
     transition: filter 0.3s, transform 0.3s;
     display: inline-flex;
     align-items: center;
@@ -370,8 +370,8 @@ html[data-format="mp3"] .quality-dropdown-wrapper .video-group-dropdown {
         order: 3;
         flex: 0 0 auto;
         margin-left: auto;
-        height: 40px;
-        min-height: 40px;
+        height: 44px;
+        min-height: 44px;
         padding: 0 20px;
     }
 
@@ -420,8 +420,8 @@ html[data-format="mp3"] .quality-dropdown-wrapper .video-group-dropdown {
     }
 
     .btn-convert {
-        height: 40px;
-        min-height: 40px;
+        height: 44px;
+        min-height: 44px;
         font-size: 14px;
         border-radius: calc(var(--radius-xl) - 10px);
     }

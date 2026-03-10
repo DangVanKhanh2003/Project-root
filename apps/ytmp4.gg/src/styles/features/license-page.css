@@ -85,6 +85,26 @@
     line-height: 1.6;
 }
 
+.license-step-note {
+    margin: 2px 0 0;
+    padding: 8px 10px;
+    border-left: 3px solid var(--brand);
+    border-radius: 8px;
+    background: var(--accent-fill-soft);
+    color: var(--brand);
+    font-size: 14px;
+    line-height: 1.55;
+}
+
+.license-step-note strong {
+    font-weight: 700;
+    color: var(--brand);
+}
+
+.license-step-note em {
+    font-style: italic;
+}
+
 .license-email-figure {
     margin: 10px 0 0;
 }
