@@ -35,10 +35,16 @@ export interface SupporterPricingResponse {
     plans: Record<string, SupporterPricingPlan>;
 }
 
+export interface ResetKeyResponse {
+    success: boolean;
+    message?: string;
+}
+
 export interface ISupporterService {
     fetchAllowedFeatures(): Promise<AllowedFeaturesResponse>;
     checkLicenseKey(key: string): Promise<CheckKeyResponse>;
     fetchPricing(): Promise<SupporterPricingResponse>;
+    resetKey(email: string): Promise<ResetKeyResponse>;
 }
 
 class SupporterServiceImpl implements ISupporterService {
@@ -76,6 +82,15 @@ class SupporterServiceImpl implements ISupporterService {
             user: user && typeof user.email === 'string' && typeof user.name === 'string'
                 ? { email: user.email, name: user.name }
                 : undefined,
+        };
+    }
+
+    async resetKey(email: string): Promise<ResetKeyResponse> {
+        const response = await this.supporterClient.post<Record<string, unknown>>('/api/reset-key', { email });
+
+        return {
+            success: response?.success === true || response?.message !== undefined,
+            message: typeof response?.message === 'string' ? response.message : undefined,
         };
     }
 

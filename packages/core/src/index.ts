@@ -173,5 +173,6 @@ export {
   type ISupporterService,
   type AllowedFeaturesResponse,
   type CheckKeyResponse,
+  type ResetKeyResponse,
   type SupporterPricingResponse,
 } from './services/supporter';

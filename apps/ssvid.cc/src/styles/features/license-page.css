@@ -317,6 +317,22 @@
     border-color: var(--status-error-color);
 }
 
+/* Reset key hint */
+.license-reset-hint {
+    margin: 14px 0 0;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.license-reset-hint a {
+    color: var(--brand);
+    text-underline-offset: 2px;
+}
+
+.license-reset-hint a:hover {
+    color: var(--brand-hover);
+}
+
 /* Plan info panel */
 .license-plan-info {
     margin-top: 16px;

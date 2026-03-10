@@ -87,7 +87,7 @@ function renderDropdownItems(licenseDropdown: Element): void {
             <span class="license-dropdown-icon" aria-hidden="true">${isActive ? checkIcon : plusIcon}</span>
             <span>${isActive ? 'Manage License' : 'Add License Key'}</span>
         </a>
-        <a href="https://ytmp3-supporter.ytmp3.gg/reset/" target="_blank" rel="noopener nofollow noreferrer" class="${itemClass} license-item" id="resetLicenseBtn" role="menuitem" data-license-action="reset">
+        <a href="/reset-key" class="${itemClass} license-item" id="resetLicenseBtn" role="menuitem" data-license-action="reset">
             <span class="license-dropdown-icon" aria-hidden="true">${resetIcon}</span>
             <span>Reset license key</span>
         </a>
@@ -194,7 +194,7 @@ export function initLicenseSelector(): void {
                 e.preventDefault();
                 e.stopPropagation();
 
-                const href = (resetBtn as HTMLAnchorElement).href || 'https://ytmp3-supporter.ytmp3.gg/reset/';
+                const href = (resetBtn as HTMLAnchorElement).href || '/reset-key';
                 resetLicenseKey();
 
                 // Re-render all dropdowns + reset button labels
