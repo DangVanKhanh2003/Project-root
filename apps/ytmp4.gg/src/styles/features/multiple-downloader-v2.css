@@ -69,7 +69,7 @@
     width: 100%;
 }
 
-.multiple-download-card #tip-message-wrapper > div {
+.multiple-download-card .tip-message-content {
     padding-top: 28px !important;
 }
 
@@ -450,7 +450,7 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
 
 /* Format Switching Logic Helpers (Optional if JS toggles display) */
 .multi-quality-select--mp4 {
-    display: block;
+    display: none;
 }
 
 .multi-quality-select--mp3 {

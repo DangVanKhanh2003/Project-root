@@ -464,12 +464,14 @@
 }
 
 :root[data-theme="dark"] .status-container {
-  border-color: var(--text-muted);
-  color: var(--text-muted);
+  border-color: rgba(198, 93, 59, 0.30);
+  background: rgba(198, 93, 59, 0.06);
 }
 
-:root[data-theme="dark"] .status-container .status-text {
-  color: var(--text-muted);
+:root[data-theme="dark"] .status--processing::before,
+:root[data-theme="dark"] .status--merging::before,
+:root[data-theme="dark"] .status--completing::before {
+  background: linear-gradient(90deg, rgba(198, 93, 59, 0.18) 0%, rgba(198, 93, 59, 0.24) 100%);
 }
 
 .download-btn:focus-visible,

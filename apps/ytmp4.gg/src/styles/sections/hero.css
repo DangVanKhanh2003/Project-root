@@ -290,13 +290,42 @@
 }
 
 /* Tip Message */
+.tip-message-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px 16px 0;
+    text-align: center;
+}
+
+.tip-message-content svg {
+    width: 1rem;
+    height: 1rem;
+    fill: #f45d22;
+    flex-shrink: 0;
+}
+
+.tip-message-text {
+    color: var(--text-body);
+}
+
+#tip-message-kofi-link {
+    text-decoration: underline;
+    font-weight: 700;
+    color: #f45d22 !important;
+}
+
 @media (max-width: 768px) {
-    #tip-message-wrapper svg {
+    .tip-message-content svg {
         display: none;
+    }
+
+    .tip-message-content {
+        padding-top: 5px;
     }
 
     #tip-message-wrapper {
         font-size: 14px;
-        padding: 4px 16px 0px;
     }
 }
