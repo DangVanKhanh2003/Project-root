@@ -448,65 +448,90 @@ export class MultipleDownloadRenderer {
     private async handleConvertAction(actionBtn: HTMLElement, ids: string[], groupId?: string) {
         if (ids.length === 0) return;
 
-        // 1. Determine which feature limit applies based on current URL
-        let featureKey: string = FEATURE_KEYS.BATCH_DOWNLOAD;
-        if (window.location.pathname.includes('playlist')) {
-            featureKey = FEATURE_KEYS.PLAYLIST_DOWNLOAD;
-        } else if (window.location.pathname.includes('channel')) {
-            featureKey = FEATURE_KEYS.CHANNEL_DOWNLOAD;
+        // Set loading state on the button
+        const btn = actionBtn instanceof HTMLButtonElement ? actionBtn : null;
+        const originalText = btn?.textContent || '';
+        if (btn) {
+            btn.disabled = true;
+            btn.classList.add('is-loading');
+            btn.textContent = 'Converting...';
         }
 
-        const access = await evaluateFeatureAccessAsync(featureKey);
-        if (!access.allowed) {
-            const dailyStart = access.limitsResolved?.startPerDay;
-            const title = typeof dailyStart === 'number'
-                ? `Start limit: ${dailyStart}/day`
-                : 'Download limit reached';
-            showPaywall(featureKey, { title });
-            return;
-        }
+        try {
+            // 1. Determine which feature limit applies based on current URL
+            let featureKey: string = FEATURE_KEYS.BATCH_DOWNLOAD;
+            if (window.location.pathname.includes('playlist')) {
+                featureKey = FEATURE_KEYS.PLAYLIST_DOWNLOAD;
+            } else if (window.location.pathname.includes('channel')) {
+                featureKey = FEATURE_KEYS.CHANNEL_DOWNLOAD;
+            }
 
-        const limitContext = await getFeatureLimitContextAsync(featureKey);
+            const access = await evaluateFeatureAccessAsync(featureKey);
+            if (!access.allowed) {
+                const dailyStart = access.limitsResolved?.startPerDay;
+                const title = typeof dailyStart === 'number'
+                    ? `Start limit: ${dailyStart}/day`
+                    : 'Download limit reached';
+                showPaywall(featureKey, { title });
+                return;
+            }
 
-        const itemsToConvert = ids.length;
+            const limitContext = await getFeatureLimitContextAsync(featureKey);
 
-        // 2. Check daily item quota
-        const maxLimit = limitContext.limitsResolved?.maxItemsPerConvert || 0;
-        const remainingItemQuota = checkDailyItemQuota(featureKey, maxLimit, itemsToConvert);
+            const itemsToConvert = ids.length;
 
-        if (!remainingItemQuota.allowed) {
-            showPaywall(featureKey, {
-                title: `Daily limit: ${maxLimit} items/day`,
-                noCountdown: true,
-                noCountdownMessage: "Support us to unlock more daily items."
-            });
-            return;
-        }
+            // 2. Check daily item quota
+            const maxLimit = limitContext.limitsResolved?.maxItemsPerConvert || 0;
+            const remainingItemQuota = checkDailyItemQuota(featureKey, maxLimit, itemsToConvert);
 
-        // 3. Record usage and proceed
-        recordDailyItemsUsage(featureKey, itemsToConvert);
+            if (!remainingItemQuota.allowed) {
+                showPaywall(featureKey, {
+                    title: `Daily limit: ${maxLimit} items/day`,
+                    noCountdown: true,
+                    noCountdownMessage: "Support us to unlock more daily items."
+                });
+                return;
+            }
 
-        // 4. Show tip message
-        showTipMessageWidget();
+            // 3. Record usage and proceed
+            recordDailyItemsUsage(featureKey, itemsToConvert);
 
-        if (groupId) {
-            multiDownloadService.startSelectedGroupDownloads(groupId);
-            const groupElForGuide = this.listContainer?.querySelector(`[data-group-id="${groupId}"].playlist-group`) as HTMLElement;
-            showDownloadTabGuide(groupElForGuide);
-            this.switchToTab(groupId, 'download', true);
-            videoStore.setGroupSelection(groupId, false);
-        } else if (ids.length === 1) {
-            const groupElForItemGuide = actionBtn.closest('.playlist-group') as HTMLElement;
-            multiDownloadService.startDownload(ids[0]);
-            if (groupElForItemGuide) showDownloadTabGuide(groupElForItemGuide, 50);
+            // 4. Show tip message
+            showTipMessageWidget();
+
+            if (groupId) {
+                multiDownloadService.startSelectedGroupDownloads(groupId);
+                const groupElForGuide = this.listContainer?.querySelector(`[data-group-id="${groupId}"].playlist-group`) as HTMLElement;
+                showDownloadTabGuide(groupElForGuide);
+                this.switchToTab(groupId, 'download', true);
+                videoStore.setGroupSelection(groupId, false);
+            } else if (ids.length === 1) {
+                const groupElForItemGuide = actionBtn.closest('.playlist-group') as HTMLElement;
+                multiDownloadService.startDownload(ids[0]);
+                if (groupElForItemGuide) showDownloadTabGuide(groupElForItemGuide, 50);
+            }
+        } finally {
+            if (btn) {
+                btn.disabled = false;
+                btn.classList.remove('is-loading');
+                // Re-render via updateGroupCount to restore correct text/state
+                if (groupId) {
+                    const groupEl = this.listContainer?.querySelector(`[data-group-id="${groupId}"].playlist-group`) as HTMLElement;
+                    if (groupEl) {
+                        updateGroupCount(groupEl, this.isGlobalDownloadLocked);
+                    }
+                } else {
+                    btn.textContent = originalText;
+                }
+            }
         }
     }
 
     private async handleDownloadZipBatch(btn: HTMLElement) {
         if (!(btn instanceof HTMLButtonElement)) return;
 
-        const originalText = btn.textContent;
         btn.disabled = true;
+        btn.classList.add('is-loading');
         btn.textContent = 'Creating ZIP...';
 
         try {
@@ -537,7 +562,7 @@ export class MultipleDownloadRenderer {
             alert(error.message || 'Failed to create ZIP');
         } finally {
             btn.disabled = false;
-            btn.textContent = originalText;
+            btn.classList.remove('is-loading');
             this.updateBatchHeader();
         }
     }
@@ -545,8 +570,8 @@ export class MultipleDownloadRenderer {
     private async handleDownloadZipGroup(groupId: string, btn: HTMLElement) {
         if (!(btn instanceof HTMLButtonElement)) return;
 
-        const originalText = btn.textContent;
         btn.disabled = true;
+        btn.classList.add('is-loading');
         btn.textContent = 'Creating ZIP...';
 
         try {
@@ -577,7 +602,12 @@ export class MultipleDownloadRenderer {
             alert(error.message || 'Failed to create ZIP');
         } finally {
             btn.disabled = false;
-            btn.textContent = originalText;
+            btn.classList.remove('is-loading');
+            // Re-render the button with correct count via updateGroupCount
+            const groupEl = this.listContainer?.querySelector(`[data-group-id="${groupId}"].playlist-group`) as HTMLElement;
+            if (groupEl) {
+                updateGroupCount(groupEl, this.isGlobalDownloadLocked);
+            }
         }
     }
 

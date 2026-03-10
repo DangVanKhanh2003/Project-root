@@ -28,6 +28,7 @@ const BANNER_STYLES = `
     border-radius: 1.5rem;
     background: linear-gradient(to right, #dbeafe, #eef2ff, #dbeafe);
     position: relative;
+    z-index: 0;
     overflow: hidden;
     display: flex;
     flex-direction: column;

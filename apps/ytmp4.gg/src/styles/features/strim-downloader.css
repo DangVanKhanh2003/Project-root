@@ -175,7 +175,7 @@ body[data-page="strim-downloader"] .stream-settings .quality-dropdown-wrapper--g
 }
 
 body[data-page="strim-downloader"] .stream-settings .stream-video-group-dropdown {
-  width: 100%;
+  width: fit-content;
 }
 
 body[data-page="strim-downloader"] .stream-settings .stream-video-group-dropdown .video-group-menu {

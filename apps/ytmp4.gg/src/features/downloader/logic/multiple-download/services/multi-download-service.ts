@@ -443,7 +443,7 @@ export class MultiDownloadService {
         }
 
         const timestamp = Date.now();
-        const zipName = `ytmp4_cc_${timestamp}.zip`;
+        const zipName = `list_${timestamp}.zip`;
 
         const result = await api.zipDownload.createZipDownload({
             files: urls,
