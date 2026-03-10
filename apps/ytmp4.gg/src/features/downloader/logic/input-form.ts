@@ -896,7 +896,7 @@ async function handleSubmit(event: Event): Promise<void> {
         if (go) {
           window.location.href = redirectTarget === 'channel'
             ? '/download-youtube-channel'
-            : '/download-youtube-playlist';
+            : '/multi-youtube-downloader';
           return;
         }
         setLoading(true);

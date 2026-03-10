@@ -13,7 +13,7 @@ const newFooterLinks = `
                 <a href="/download-youtube-4k-video" style="color: inherit; text-decoration: none;">YouTube HD / 4K</a>
                 <a href="/youtube-shorts-mp4" style="color: inherit; text-decoration: none;">Shorts Downloader</a>
                 <a href="/youtube-video-cutter" style="color: inherit; text-decoration: none;">Cut Video</a>
-                <a href="/download-youtube-playlist" style="color: inherit; text-decoration: none;">Playlist Downloader</a>
+                <a href="/multi-youtube-downloader" style="color: inherit; text-decoration: none;">Playlist Downloader</a>
                 <a href="/multi-youtube-downloader" style="color: inherit; text-decoration: none;">Multi Downloader</a>
                 <a href="/download-youtube-channel" style="color: inherit; text-decoration: none;">Channel Downloader</a>
             </div>
@@ -32,7 +32,7 @@ for (const file of staticFiles) {
         const newDrawerLinks = `<a href="/download-youtube-4k-video" class="drawer-link">YouTube HD / 4K</a>
                 <a href="/youtube-shorts-mp4" class="drawer-link">Shorts Downloader</a>
                 <a href="/youtube-video-cutter" class="drawer-link">Cut Video</a>
-                <a href="/download-youtube-playlist" class="drawer-link">Playlist Downloader</a>
+                <a href="/multi-youtube-downloader" class="drawer-link">Playlist Downloader</a>
                 <a href="/multi-youtube-downloader" class="drawer-link">Multi Downloader</a>
                 <a href="/download-youtube-channel" class="drawer-link">Channel Downloader</a>`;
         content = content.replace(drawerRegex, newDrawerLinks.trim());

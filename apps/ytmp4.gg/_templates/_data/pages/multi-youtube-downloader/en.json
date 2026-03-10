@@ -72,7 +72,7 @@
       {
         "h2": "Need Playlist or Channel Download?",
         "p": [
-          "If the videos are grouped into a list, try the <a href=\"/download-youtube-playlist\"><strong>YouTube playlist downloader</strong></a>.",
+          "If the videos are grouped into a list, try the <a href=\"/multi-youtube-downloader\"><strong>YouTube playlist downloader</strong></a>.",
           "To download all videos from a creator page, you can use the <a href=\"/download-youtube-channel\"><strong>YouTube channel downloader</strong></a>."
         ]
       },

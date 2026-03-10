@@ -7,7 +7,7 @@ import './styles/index.css';
 
 import { multipleDownloadRenderer } from './features/downloader/ui-render/multiple-download/multiple-download-renderer';
 import { initAudioDropdown } from './features/downloader/ui-render/dropdown-logic';
-import { initMobileMenu, initLangSelector, initDrawerLangSelector, initHeaderScroll, initFirebaseAnalytics, initFeedbackWidget, initSupporterUi } from './features/shared/init/common-init';
+import { initMobileMenu, initLangSelector, initDrawerLangSelector, initFirebaseAnalytics, initFeedbackWidget, initSupporterUi } from './features/shared/init/common-init';
 import { getCurrentSettings, initFormatToggle } from './features/shared/form/format-settings';
 import { initAdvancedSettings } from './features/multi-mode-downloader/advanced-settings-controller';
 import { initConvertForm } from './features/multi-mode-downloader/convert-submit-controller';
@@ -18,8 +18,7 @@ import { initWaveAnimation } from './features/shared/init/wave-animation';
 
 function init(): void {
     initThemeToggle();
-    initHeaderScroll();
-    initWaveAnimation();
+initWaveAnimation();
     initMobileMenu();
     initSupporterUi();
     initLangSelector();

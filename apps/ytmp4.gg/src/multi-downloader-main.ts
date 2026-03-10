@@ -375,14 +375,14 @@ function initMultiDownloadForm() {
                 if (go) {
                     window.location.href = redirectTarget === 'channel'
                         ? '/download-youtube-channel'
-                        : '/download-youtube-playlist';
+                        : '/multi-youtube-downloader';
                     return;
                 }
             }
         } else if (shouldPromptPlaylistRedirectForMulti(rawText)) {
             const go = await confirmRedirectPopup({ popup: MaterialPopup, target: 'playlist', cancelText: 'Continue' });
             if (go) {
-                window.location.href = '/download-youtube-playlist';
+                window.location.href = '/multi-youtube-downloader';
                 return;
             }
         }
