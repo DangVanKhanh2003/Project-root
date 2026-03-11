@@ -4,7 +4,7 @@
  * Uses the v3 API which accepts title/noCountdown as options directly.
  */
 
-import { show as baseShowPaywall } from 'https://media.ytmp3.gg/poppurchase.v3.js?v=4';
+import { show as baseShowPaywall } from 'https://media.ytmp3.gg/poppurchase.v3.js?v=5';
 
 export interface PaywallOptions {
     /** Override popup header text */

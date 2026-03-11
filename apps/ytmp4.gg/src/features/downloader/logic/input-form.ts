@@ -42,10 +42,11 @@ import { showResultView } from '../ui-render/view-switcher';
 import { MaterialPopup } from '../../../ui-components/material-popup/material-popup';
 import { getUrlRedirectTarget } from '@downloader/core';
 import { evaluateFeatureAccess } from '../../allowed-features';
-import { show as showPaywall } from 'https://media.ytmp3.gg/poppurchase.v3.js?v=4';
+import { show as showPaywall } from 'https://media.ytmp3.gg/poppurchase.v3.js?v=5';
 import { checkLimit } from '../../download-limit';
 import { FEATURE_KEYS, FEATURE_ACCESS_REASONS } from '@downloader/core';
 import { hideHeroFeatureLinks } from '../../hero-feature-links';
+import { startConversion } from './conversion';
 
 
 /**
@@ -381,8 +382,6 @@ export async function handleAutoDownload(
 
     // Trigger conversion with built formatData
     console.log('[Auto-Download] Triggering conversion...');
-    const { startConversion } = await import('./conversion');
-
     await startConversion({
       formatId,
       videoUrl: url,
@@ -884,11 +883,12 @@ async function handleSubmit(event: Event): Promise<void> {
     return;
   }
 
-  // Get input type to show appropriate skeleton
-  const state = getState();
+  // Re-detect input type from actual value (don't rely on state which may be stale)
+  const isUrl = value.startsWith('http://') || value.startsWith('https://');
+  setInputType(isUrl ? 'url' : 'keyword');
 
   try {
-    if (state.inputType === 'url') {
+    if (isUrl) {
       const redirectTarget = getUrlRedirectTarget(value);
       if (redirectTarget) {
         setLoading(false);
