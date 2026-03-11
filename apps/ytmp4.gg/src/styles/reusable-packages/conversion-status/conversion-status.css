@@ -386,14 +386,26 @@
     min-height: 48px;
   }
 
+  .status {
+    width: auto;
+    min-width: 250px;
+    justify-content: center;
+  }
+
   .status-text {
     font-size: 15px;
     color: var(--color-primary);
+    flex: none;
   }
 
   .cancel-btn {
+    position: relative;
+    right: auto;
     font-size: 15px;
-    text-underline-offset: 4px;
+    text-decoration: none;
+    padding-left: 18px;
+    border-left: 1px solid var(--status-container-border);
+    margin-left: 18px;
   }
 }
 
