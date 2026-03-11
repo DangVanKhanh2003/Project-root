@@ -38,9 +38,14 @@
     letter-spacing: 1px;
 }
 
-@media (min-width: 641px) {
+.header-logo-text {
+    font-size: 40px;
+    color: var(--brand);
+}
+
+@media (min-width: 768px) {
     .header-logo-text {
-        line-height: 1.5;
+        font-size: 48px;
     }
 }
 
@@ -58,11 +63,11 @@
     justify-content: center;
     width: 36px;
     height: 36px;
-    border: 1px solid var(--border-default);
-    background: transparent;
+    border: 1px solid var(--theme-toggle-border);
+    background: var(--theme-toggle-bg);
     border-radius: 50%;
     cursor: pointer;
-    color: var(--text-heading);
+    color: var(--theme-toggle-color);
     transition: background 0.2s, color 0.2s;
     -webkit-tap-highlight-color: transparent;
     flex-shrink: 0;

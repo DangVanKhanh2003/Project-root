@@ -273,7 +273,7 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
     z-index: 5;
 }
 
@@ -344,7 +344,7 @@
     font-weight: 600;
     font-size: 14px;
     color: var(--text-main);
-    transition: all 0.3s;
+    transition: background 0.3s, color 0.3s;
     border-radius: var(--radius-xl);
 }
 
@@ -427,7 +427,7 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
     font-weight: 700;
     height: 45px;
     padding: 0 28px;
-    transition: all 0.3s;
+    transition: background 0.3s, color 0.3s, transform 0.3s, opacity 0.3s;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -440,7 +440,7 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
 }
 
 .multi-btn-convert:hover {
-    filter: brightness(1.1);
+    opacity: 0.85;
     transform: translateY(-1px);
 }
 
@@ -630,6 +630,7 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
     gap: 20px;
     position: relative;
     background: var(--multi-list-bg-card);
+    contain: layout style paint;
 }
 
 .multi-video-item.selected {
@@ -980,7 +981,7 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
     border-radius: 50%;
     cursor: pointer;
     color: white;
-    transition: all 0.2s ease;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
 
@@ -1062,7 +1063,7 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
     font-weight: 600;
     font-size: 0.95rem;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
     border: none;
     text-decoration: none;
     line-height: 1;
@@ -1101,7 +1102,7 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
 
 .btn-danger:hover {
     background-color: var(--multi-list-error);
-    filter: brightness(0.9);
+    opacity: 0.85;
 }
 
 .empty-list {
@@ -1391,32 +1392,50 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
 
 }
 
-/* Skeleton Loading Animation */
+/* Skeleton Loading Animation — GPU-composited via transform instead of background-position */
 @keyframes multi-skeleton-shimmer {
     0% {
-        background-position: 200% 0;
+        transform: translateX(-100%);
     }
 
     100% {
-        background-position: -200% 0;
+        transform: translateX(100%);
     }
 }
 
 .skeleton-div {
-    background: linear-gradient(135deg, var(--multi-list-skeleton-base) 25%, var(--multi-list-skeleton-highlight) 50%, var(--multi-list-skeleton-base) 75%);
+    background: var(--multi-list-skeleton-base);
     border-radius: 5px;
-    background-size: 200% 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.skeleton-div::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 0%, var(--multi-list-skeleton-highlight) 50%, transparent 100%);
     animation: multi-skeleton-shimmer var(--multi-list-skeleton-duration) linear infinite;
+    will-change: transform;
 }
 
 .skeleton-box,
 .skeleton-text {
-
     margin: 0px !important;
-    background: linear-gradient(135deg, var(--multi-list-skeleton-base) 25%, var(--multi-list-skeleton-highlight) 50%, var(--multi-list-skeleton-base) 75%);
+    background: var(--multi-list-skeleton-base);
     border-radius: 5px;
-    background-size: 200% 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.skeleton-box::after,
+.skeleton-text::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 0%, var(--multi-list-skeleton-highlight) 50%, transparent 100%);
     animation: multi-skeleton-shimmer var(--multi-list-skeleton-duration) linear infinite;
+    will-change: transform;
 }
 
 /* =========================================
@@ -1444,6 +1463,9 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1;
     pointer-events: none;
+    will-change: transform, width;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
 /* Hand pointer guide for Download tab discovery */
@@ -1643,10 +1665,12 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
     position: absolute;
     inset: 0;
     background: var(--color-primary);
-    box-shadow: 0 0 10px var(--color-primary), 0 0 30px var(--multi-list-extracting-glow, rgba(198, 93, 59, 0.38));
     animation: item-neon-pulse 1s ease-in-out infinite alternate;
     opacity: 0;
     border-radius: inherit;
+    will-change: opacity;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
 /* Tia sáng chạy qua */
@@ -1658,9 +1682,11 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
     width: 40%;
     height: 100%;
     background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
-    box-shadow: 0 0 12px var(--color-primary);
     animation: item-progress-slide 1.2s ease-in-out infinite;
     border-radius: inherit;
+    will-change: transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
 /* Processing: solid color, không gradient */
@@ -1736,7 +1762,7 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
     font-size: 0.875rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: background 0.2s, color 0.2s, opacity 0.2s;
 }
 
 .btn-load-more-group:hover:not(:disabled) {
@@ -1804,7 +1830,7 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
     font-size: 0.875rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: background 0.2s, color 0.2s, opacity 0.2s;
     height: 38px;
     display: flex;
     align-items: center;
@@ -2024,7 +2050,7 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
 
 .multi-video-actions .btn-retry:hover {
     background: var(--multi-list-error);
-    filter: brightness(0.9);
+    opacity: 0.85;
     box-shadow: none;
     transform: none;
 }
@@ -2045,7 +2071,7 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
 }
 
 .btn-icon.btn-convert-single:hover {
-    filter: brightness(1.1);
+    opacity: 0.85;
 }
 
 /* =========================================

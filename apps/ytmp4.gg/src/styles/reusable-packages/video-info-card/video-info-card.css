@@ -337,7 +337,7 @@
   padding: 6px 30px;
   font-size: 13px;
   font-weight: var(--font-weight-semibold, 600);
-  transition: all 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
   white-space: nowrap;
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
@@ -345,7 +345,7 @@
 }
 
 .btn-convert:hover {
-  filter: brightness(1.1);
+  opacity: 0.85;
 }
 
 

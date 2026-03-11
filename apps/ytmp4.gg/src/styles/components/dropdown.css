@@ -108,6 +108,7 @@
     max-width: 0;
     visibility: hidden;
     transition: none;
+    contain: layout style;
 }
 
 /* Active State (Open) - Smooth Width Expansion */
@@ -116,6 +117,7 @@
     /* Expand to fit content */
     visibility: visible;
     transition: max-width 0.5s ease, visibility 0.5s ease;
+    will-change: max-width;
 }
 
 .dropdown-search {
@@ -206,6 +208,8 @@
         width: 42px;
         margin-left: auto;
         transition: width 0.5s ease;
+        will-change: width;
+        contain: layout style;
         z-index: 20;
     }
 

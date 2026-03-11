@@ -326,7 +326,7 @@ html[data-format="mp3"] .quality-dropdown-wrapper .video-group-dropdown {
 }
 
 .btn-convert:hover {
-    filter: brightness(1.1);
+    opacity: 0.85;
     transform: translateY(-1px);
 }
 
