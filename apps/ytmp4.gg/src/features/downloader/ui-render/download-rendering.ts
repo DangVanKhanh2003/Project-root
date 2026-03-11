@@ -351,10 +351,20 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
   const actionContainer = document.getElementById('action-container') as HTMLElement | null;
   const downloadBtn = document.getElementById('conversion-download-btn') as HTMLElement | null;
   const retryBtn = document.getElementById('conversion-retry-btn') as HTMLElement | null;
+  const cancelBtn = statusContainer.querySelector('.cancel-btn') as HTMLElement | null;
 
   if (!statusElement || !statusTextElement || !iconElement || !actionContainer) {
     console.warn('[renderConversionStatus] Required DOM elements not found');
     return;
+  }
+
+  // Show cancel button only during active conversion states
+  if (cancelBtn) {
+    const isActiveConversion = task.state === TaskState.EXTRACTING
+      || task.state === TaskState.PROCESSING
+      || task.state === TaskState.DOWNLOADING
+      || task.state === TaskState.POLLING;
+    cancelBtn.style.display = isActiveConversion ? '' : 'none';
   }
 
   // Calculate progress and detect merging phase
@@ -518,7 +528,7 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
       statusElement.classList.add('status--success');
       iconElement.classList.add('checkmark');
       iconElement.textContent = '✓';
-      iconElement.style.display = ''; // Show icon again
+      iconElement.style.display = '';
       // Add completing class for fast 0.3s transition to 100%
       statusElement.classList.add('status--completing');
       statusElement.classList.remove('status--no-transition', 'status--merging');
@@ -725,6 +735,15 @@ function setupButtonHandlers(formatId: string): void {
     addRippleEffect(newNewConvertBtn);
   }
 
+  // Setup cancel button (inside status-container, not action-container)
+  const cancelBtn = document.getElementById('conversion-cancel-btn');
+  if (cancelBtn) {
+    const newCancelBtn = cancelBtn.cloneNode(true) as HTMLElement;
+    cancelBtn.parentNode?.replaceChild(newCancelBtn, cancelBtn);
+    newCancelBtn.addEventListener('click', () => handleCancelButtonClick(formatId));
+    addRippleEffect(newCancelBtn);
+  }
+
   actionContainer.dataset.handlersAttached = 'true';
   actionContainer.dataset.formatId = formatId;
 }
@@ -786,12 +805,10 @@ function clearSearchUrl(): void {
 }
 
 /**
- * Handle Next button click
- * Switches back to search view and clears input
+ * Shared reset logic - switches back to search view and clears all state
+ * Used by both "Start Over" button and "Cancel" button
  */
-async function handleNewConvertButtonClick(): Promise<void> {
-  console.log('[renderConversionStatus] Next button clicked');
-  logEvent('next_button_click');
+async function resetToSearchView(): Promise<void> {
   document.dispatchEvent(new CustomEvent('resetForm'));
 
   // Hide Trustpilot widget on reset
@@ -816,6 +833,31 @@ async function handleNewConvertButtonClick(): Promise<void> {
 
   // Focus input for better UX
   focusInput();
+}
+
+/**
+ * Handle Next button click
+ * Switches back to search view and clears input
+ */
+async function handleNewConvertButtonClick(): Promise<void> {
+  console.log('[renderConversionStatus] Next button clicked');
+  logEvent('next_button_click');
+  await resetToSearchView();
+}
+
+/**
+ * Handle Cancel button click
+ * Cancels active download and switches back to search view
+ */
+async function handleCancelButtonClick(formatId: string): Promise<void> {
+  console.log('[renderConversionStatus] Cancel button clicked for:', formatId);
+  logEvent('cancel_button_click', { format_id: formatId });
+
+  // Cancel the active download flow
+  window.dispatchEvent(new CustomEvent('conversion:cancel', { detail: { formatId } }));
+
+  // Reset to search view (same as Start Over)
+  await resetToSearchView();
 }
 
 // ============================================================

@@ -177,6 +177,7 @@ html[data-format="mp3"] .quality-dropdown-wrapper .video-group-dropdown {
 .video-group-dropdown {
     position: relative;
     width: fit-content;
+    min-width: 170px;
 }
 
 .video-group-trigger {
@@ -196,6 +197,7 @@ html[data-format="mp3"] .quality-dropdown-wrapper .video-group-dropdown {
     padding: 0 14px 0 18px;
     text-align: left;
     transition: border-color 0.3s;
+    width: 100%;
 }
 
 .video-group-trigger:hover,
@@ -387,6 +389,7 @@ html[data-format="mp3"] .quality-dropdown-wrapper .video-group-dropdown {
 
     .quality-dropdown-wrapper--grouped .video-group-dropdown {
         width: 100%;
+        min-width: 0;
     }
 
     .quality-dropdown-wrapper--grouped .video-group-trigger {

@@ -59,7 +59,7 @@
     /* Surface tokens */
     --bg-page: #F3F1ED;
     --bg-card: #FFFFFF;
-    --yt-preview-card-bg: #f0eee6;
+    --yt-preview-card-bg: #f0eee6a1;
     --bg-surface-soft: #EBE7E0;
     --bg-hover: #EFECE7;
 
@@ -145,9 +145,9 @@
     --hero-feature-link-desktop-bg: #ffffff;
     --hero-feature-links-icon: var(--primary-color);
     --hero-feature-links-divider: var(--border-default);
-    --header-license-button-bg: var(--brand);
-    --header-license-button-text: var(--color-white);
-    --header-license-button-icon: var(--color-white);
+    --header-license-button-bg: #ffffff;
+    --header-license-button-text: #000000;
+    --header-license-button-icon: #000000;
 
     /* Warning tokens */
     --color-warning: #f59e0b;
@@ -157,7 +157,7 @@
     --color-warning-strong: #92400e;
 
     /* Processing state backgrounds */
-    --processing-bg: linear-gradient(90deg, var(--color-accent-soft-05) 0%, var(--color-accent-soft-08) 100%);
+    --processing-bg: linear-gradient(90deg, var(--color-accent-soft-10) 0%, var(--color-accent-soft-12) 100%);
 
     /* Brand light (for links on dark surfaces) */
     --brand-light: var(--brand);
@@ -330,9 +330,9 @@
     --hero-feature-link-desktop-bg: #2d2d2d;
     --hero-feature-links-icon: #ffffff;
     --hero-feature-links-divider: #ffffff;
-    --header-license-button-bg: var(--brand);
-    --header-license-button-text: var(--color-white);
-    --header-license-button-icon: var(--color-white);
+    --header-license-button-bg: #ffffff;
+    --header-license-button-text: #000000;
+    --header-license-button-icon: #000000;
 
     /* Warning tokens */
     --color-warning: #f59e0b;
@@ -342,7 +342,7 @@
     --color-warning-strong: #fbbf24;
 
     /* Processing state backgrounds */
-    --processing-bg: linear-gradient(90deg, var(--color-accent-soft-10) 0%, var(--color-accent-soft-12) 100%);
+    --processing-bg: linear-gradient(90deg, rgba(198, 93, 59, 0.18) 0%, rgba(198, 93, 59, 0.24) 100%);
 
     /* Brand light (for links on dark surfaces) */
     --brand-light: #ffd2b3;
