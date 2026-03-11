@@ -36,7 +36,7 @@
 .status-container {
   position: relative;
   background: var(--color-accent-soft-10, rgba(0, 0, 0, 0.06));
-  border: none;
+  border: 1px solid rgba(198, 93, 59, 0.25);
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -506,6 +506,7 @@
 
 :root[data-theme="dark"] .status-container {
   background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(198, 93, 59, 0.35);
 }
 
 :root[data-theme="dark"] .status--processing::before,

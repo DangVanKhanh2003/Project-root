@@ -543,7 +543,7 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
     gap: 0.75rem;
 }
 
-.selected-text,
+.header-select-dropdown .selected-text,
 .playlist-group-selected-count {
     font-size: 0.95rem;
     color: var(--multi-list-text-soft);
