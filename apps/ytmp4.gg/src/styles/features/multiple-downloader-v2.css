@@ -499,8 +499,8 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
     border: none !important;
     border-radius: 0 !important;
     overflow: hidden;
-    display: flex !important;
-    flex-direction: column !important;
+    display: flex;
+    flex-direction: column;
     width: 100%;
 }
 
@@ -1331,16 +1331,15 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
     }
 
     .multi-download-header {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
+        flex-direction: column;
         background: var(--multi-list-bg-card);
         border-bottom: 1px solid var(--multi-list-border-muted);
         padding: 6px 12px;
     }
 
     .multi-header-top-row {
-        padding: 0.5rem 1rem 0.25rem;
+        padding: 0.5rem 0 0.25rem;
+        margin: 0 12px;
     }
 
     .multiple-download-group-actions {

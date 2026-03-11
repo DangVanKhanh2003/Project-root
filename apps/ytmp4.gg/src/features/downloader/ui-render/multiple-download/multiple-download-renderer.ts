@@ -16,7 +16,7 @@ import { triggerDownload, isIOS } from '../../../../utils';
 import { MaterialPopup } from '../../../../ui-components/material-popup/material-popup';
 import { showTipMessageWidget } from '../../../../features/tip-message/tip-message-widget';
 import { checkDailyItemQuota, recordDailyItemsUsage } from '../../../../features/download-limit';
-import { evaluateFeatureAccessAsync, getFeatureLimitContextAsync } from '../../../../features/allowed-features';
+import { getFeatureLimitContextAsync } from '../../../../features/allowed-features';
 import { showPaywall } from '../../../../features/paywall-popup';
 import { FEATURE_KEYS } from '@downloader/core';
 import { isLinkExpired } from '../../../../utils/link-validator';
@@ -464,16 +464,6 @@ export class MultipleDownloadRenderer {
                 featureKey = FEATURE_KEYS.PLAYLIST_DOWNLOAD;
             } else if (window.location.pathname.includes('channel')) {
                 featureKey = FEATURE_KEYS.CHANNEL_DOWNLOAD;
-            }
-
-            const access = await evaluateFeatureAccessAsync(featureKey);
-            if (!access.allowed) {
-                const dailyStart = access.limitsResolved?.startPerDay;
-                const title = typeof dailyStart === 'number'
-                    ? `Start limit: ${dailyStart}/day`
-                    : 'Download limit reached';
-                showPaywall(featureKey, { title });
-                return;
             }
 
             const limitContext = await getFeatureLimitContextAsync(featureKey);
