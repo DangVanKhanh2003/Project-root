@@ -525,9 +525,9 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
 
     case TaskState.SUCCESS:
       statusElement.classList.add('status--success');
-      iconElement.classList.add('checkmark');
-      iconElement.textContent = '✓';
+      // Keep spinner during the 0.4s fill animation (status bar hides after 400ms anyway)
       iconElement.style.display = '';
+      iconElement.classList.add('spinner', 'active');
       // Add completing class for fast 0.3s transition to 100%
       statusElement.classList.add('status--completing');
       statusElement.classList.remove('status--no-transition', 'status--merging');
