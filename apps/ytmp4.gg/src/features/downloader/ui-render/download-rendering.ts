@@ -261,7 +261,7 @@ function smoothTransitionTo100(
   }
 
   // Always set to 100% first (so UI displays it)
-  statusContainer.style.setProperty('--progress-width', '100%');
+  statusContainer.style.setProperty('--progress-scale', '1');
 
   // Then delay 400ms for user to see 100%, then callback
   setTimeout(callback, totalDelay);
@@ -389,9 +389,6 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
   if (isTransitionToMerging) {
     transitionInProgress.set(formatId, true);
 
-    // Hide spinner immediately (before delay)
-    iconElement.style.display = 'none';
-
     smoothTransitionTo100(statusContainer, () => {
       // FIX: Check if task completed during the transition delay
       // completionState is set in renderConversionStatus when state is SUCCESS or FAILED
@@ -410,7 +407,7 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
 
       // Temporarily disable transition for instant reset
       statusElement.classList.add('status--no-transition');
-      statusContainer.style.setProperty('--progress-width', '0%');
+      statusContainer.style.setProperty('--progress-scale', '0');
 
       // Force browser reflow to apply instant reset
       void statusElement.offsetWidth;
@@ -421,7 +418,7 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
         if (statusContainer.dataset.completionState) return;
 
         // 1. Reset progress to 0% so animation starts from 0
-        statusContainer.style.setProperty('--progress-width', '0%');
+        statusContainer.style.setProperty('--progress-scale', '0');
 
         // 2. Remove no-transition, add merging class (triggers animation)
         statusElement.classList.remove('status--no-transition');
@@ -483,18 +480,19 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
     }
   }
 
-  // Update progress fill background
-  const currentWidth = statusContainer.style.getPropertyValue('--progress-width') || '0%';
+  // Update progress fill background (using scaleX for GPU-accelerated compositing)
+  const currentScale = statusContainer.style.getPropertyValue('--progress-scale') || '0';
 
-  // During merging phase, don't update progress (already at 0% after transition)
+  // During merging phase, don't update progress (already at 0 after transition)
   if (!isMergingPhase) {
-    // If jumping from 0% to 100%, use requestAnimationFrame to ensure browser paints 0% first
-    if (progress === 100 && (currentWidth === '0%' || currentWidth === '')) {
+    const scale = progress / 100;
+    // If jumping from 0 to 1, use requestAnimationFrame to ensure browser paints 0 first
+    if (progress === 100 && (currentScale === '0' || currentScale === '')) {
       requestAnimationFrame(() => {
-        statusContainer.style.setProperty('--progress-width', `${progress}%`);
+        statusContainer.style.setProperty('--progress-scale', `${scale}`);
       });
     } else {
-      statusContainer.style.setProperty('--progress-width', `${progress}%`);
+      statusContainer.style.setProperty('--progress-scale', `${scale}`);
     }
   }
 
@@ -515,8 +513,9 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
     case TaskState.POLLING:
       statusElement.classList.add('status--processing');
       if (isMergingPhase) {
-        // Merging phase: hide spinner (status--merging class added in transition handler)
-        iconElement.style.display = 'none';
+        // Merging phase: show spinner
+        iconElement.style.display = '';
+        iconElement.classList.add('spinner', 'active');
       } else {
         // Processing phase: show spinner
         iconElement.style.display = '';
@@ -541,7 +540,7 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
         clearMergingEstimator(formatId);
       }
       // Set progress to 100%
-      statusContainer.style.setProperty('--progress-width', '100%');
+      statusContainer.style.setProperty('--progress-scale', '1');
       // Cleanup merging phase tracking
       previousMergingPhase.delete(formatId);
       break;
