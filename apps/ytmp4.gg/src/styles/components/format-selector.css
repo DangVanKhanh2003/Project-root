@@ -230,6 +230,8 @@ html[data-format="mp3"] .quality-dropdown-wrapper .video-group-dropdown {
     padding: 8px;
     max-height: 360px;
     overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
 }
 
 .video-group-section {

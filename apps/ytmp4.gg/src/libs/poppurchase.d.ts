@@ -1,4 +1,4 @@
-declare module 'https://media.ytmp3.gg/poppurchase.v3.js?v=1' {
+declare module 'https://media.ytmp3.gg/poppurchase.v3.js?v=4' {
     type PaywallType =
         | 'download_multi'
         | 'download_playlist'
@@ -21,7 +21,7 @@ declare module 'https://media.ytmp3.gg/poppurchase.v3.js?v=1' {
     export function preload(): Promise<unknown>;
 }
 
-declare module 'https://media.ytmp3.gg/poppurchase.v3.js?v=2' {
+declare module 'https://media.ytmp3.gg/poppurchase.v3.js?v=4' {
     type PaywallType =
         | 'download_multi'
         | 'download_playlist'
@@ -45,7 +45,7 @@ declare module 'https://media.ytmp3.gg/poppurchase.v3.js?v=2' {
     export function preload(): Promise<unknown>;
 }
 
-declare module 'https://media.ytmp3.gg/poppurchase.v3.js?v=3' {
+declare module 'https://media.ytmp3.gg/poppurchase.v3.js?v=4' {
     type PaywallType =
         | 'download_multi'
         | 'download_playlist'
