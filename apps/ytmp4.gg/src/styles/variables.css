@@ -74,6 +74,9 @@
     --theme-toggle-bg: transparent;
     --theme-toggle-color: var(--text);
 
+    /* Status container */
+    --status-container-border: rgba(198, 93, 59, 0.25);
+
     /* Border tokens */
     --border-default: #E3E0DA;
     --color-border: #DCD7CF;
@@ -275,6 +278,9 @@
     --theme-toggle-border: #4A4A48;
     --theme-toggle-bg: transparent;
     --theme-toggle-color: var(--text);
+
+    /* Status container */
+    --status-container-border: #6A6A66;
 
     --border-default: #4A4A48;
     --color-border: #555553;

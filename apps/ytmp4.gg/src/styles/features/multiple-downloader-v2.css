@@ -495,7 +495,7 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
    4. Video List & Items
    ========================================= */
 .multi-download-header {
-    background: var(--multi-list-bg-card) !important;
+    background: var(--multi-list-bg-card);
     border: none !important;
     border-radius: 0 !important;
     overflow: hidden;
@@ -593,6 +593,10 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
     background: var(--multi-list-bg-card);
 }
 
+#playlist-download-form .multi-download-header {
+    display: none;
+}
+
 .multi-header-title {
     font-size: 1.25rem;
     font-weight: 600;
@@ -630,7 +634,7 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
     gap: 20px;
     position: relative;
     background: var(--multi-list-bg-card);
-    contain: layout style paint;
+    contain: style;
 }
 
 .multi-video-item.selected {
@@ -651,7 +655,7 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
     position: relative;
     border-radius: var(--radius-small, 8px);
     overflow: hidden;
-    background: var(--multi-list-bg-subtle);
+    background: #e0e0e0;
     box-shadow: none;
 }
 
@@ -664,7 +668,7 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
 
 .multi-video-item.skeleton-loading .multi-video-thumb,
 .multi-video-item.skeleton-loading .multi-video-thumb .skeleton-box {
-    background: linear-gradient(135deg, var(--multi-list-skeleton-base) 25%, var(--multi-list-skeleton-highlight) 50%, var(--multi-list-skeleton-base) 75%);
+    background: linear-gradient(90deg, var(--multi-list-skeleton-base) 25%, var(--multi-list-skeleton-highlight) 50%, var(--multi-list-skeleton-base) 75%);
     background-size: 200% 100%;
     animation: multi-skeleton-shimmer var(--multi-list-skeleton-duration) linear infinite;
 }
@@ -1392,50 +1396,25 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
 
 }
 
-/* Skeleton Loading Animation — GPU-composited via transform instead of background-position */
+/* Skeleton Loading Animation — background-position based (matches single download) */
 @keyframes multi-skeleton-shimmer {
     0% {
-        transform: translateX(-100%);
+        background-position: -200% 0;
     }
 
     100% {
-        transform: translateX(100%);
+        background-position: 200% 0;
     }
 }
 
-.skeleton-div {
-    background: var(--multi-list-skeleton-base);
-    border-radius: 5px;
-    position: relative;
-    overflow: hidden;
-}
-
-.skeleton-div::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, transparent 0%, var(--multi-list-skeleton-highlight) 50%, transparent 100%);
-    animation: multi-skeleton-shimmer var(--multi-list-skeleton-duration) linear infinite;
-    will-change: transform;
-}
-
+.skeleton-div,
 .skeleton-box,
 .skeleton-text {
     margin: 0px !important;
-    background: var(--multi-list-skeleton-base);
-    border-radius: 5px;
-    position: relative;
-    overflow: hidden;
-}
-
-.skeleton-box::after,
-.skeleton-text::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, transparent 0%, var(--multi-list-skeleton-highlight) 50%, transparent 100%);
+    background: linear-gradient(90deg, var(--multi-list-skeleton-base) 25%, var(--multi-list-skeleton-highlight) 50%, var(--multi-list-skeleton-base) 75%);
+    background-size: 200% 100%;
     animation: multi-skeleton-shimmer var(--multi-list-skeleton-duration) linear infinite;
-    will-change: transform;
+    border-radius: 5px;
 }
 
 /* =========================================
@@ -1986,8 +1965,13 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
 
 
 
+.item-settings.is-dropdowns .item-video-group-dropdown {
+    min-width: 0;
+}
+
 .item-settings.is-dropdowns .item-video-group-dropdown .video-group-trigger {
     height: 24px;
+    width: fit-content;
     border: none;
     border-radius: 0;
     background: transparent;
@@ -2012,7 +1996,7 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
 .item-settings.is-dropdowns .item-video-group-dropdown .video-group-menu {
     min-width: 200px;
     max-height: 320px;
-    z-index: 40;
+    z-index: 1200;
 }
 
 .item-settings.is-dropdowns .item-video-group-dropdown .video-group-header,
@@ -2261,7 +2245,7 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
     }
 
     .group-header {
-        padding: 0.5rem 1rem;
+        padding: 0.5rem 12px;
     }
 
     .group-header-title-area {

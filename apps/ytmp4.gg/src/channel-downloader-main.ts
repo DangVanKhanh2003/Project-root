@@ -272,7 +272,7 @@ function initChannelForm() {
         if (redirectTarget === 'playlist') {
             const go = await confirmRedirectPopup({ popup: MaterialPopup, target: 'playlist' });
             if (go) {
-                window.location.href = '/multi-youtube-downloader';
+                window.location.href = '/download-youtube-playlist';
                 return;
             }
             if (errorMessage) {
