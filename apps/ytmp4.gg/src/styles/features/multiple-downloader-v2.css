@@ -682,7 +682,6 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
     font-weight: 500;
     padding: 2px 6px;
     border-radius: 4px;
-    backdrop-filter: blur(2px);
 }
 
 .multi-video-info {
@@ -1885,6 +1884,9 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
 .group-items {
     max-height: 800px;
     overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+    will-change: scroll-position;
 }
 
 .group-items::-webkit-scrollbar {

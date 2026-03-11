@@ -3,7 +3,6 @@
     position: relative;
     z-index: 20;
     background: var(--background-hero-section);
-    backdrop-filter: blur(10px);
     padding: 5px 0px;
 }
 
@@ -190,6 +189,9 @@
     overflow-y: auto;
     flex: 1;
     min-height: 0;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+    touch-action: pan-y;
 }
 
 .drawer-scroll>.theme-toggle-btn {
@@ -687,6 +689,8 @@
     overflow-y: auto;
     overflow-x: hidden;
     padding: 8px;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
 }
 
 .lang-option {
