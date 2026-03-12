@@ -128,6 +128,7 @@ export function showTrustpilotWidget(): void {
             wrapper.style.width = '100%';
             wrapper.style.height = '52px';
             wrapper.style.overflow = 'hidden';
+            wrapper.style.contain = 'strict';
 
             // Insert inside conversion-state-wrapper, after action-container
             const conversionWrapper = document.querySelector('.conversion-state-wrapper');
