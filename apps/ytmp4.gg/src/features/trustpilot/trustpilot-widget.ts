@@ -125,10 +125,11 @@ export function showTrustpilotWidget(): void {
         if (!wrapper) {
             wrapper = document.createElement('div');
             wrapper.id = TRUSTPILOT_WRAPPER_ID;
+            wrapper.style.height = '52px';
             wrapper.style.width = '100%';
-            wrapper.style.height = '0';
-            wrapper.style.overflow = 'hidden';
-            wrapper.style.transition = 'height 0.3s ease';
+            wrapper.style.display = 'flex';
+            wrapper.style.alignItems = 'center';
+            wrapper.style.justifyContent = 'center';
 
             // Insert inside conversion-state-wrapper, after action-container
             const conversionWrapper = document.querySelector('.conversion-state-wrapper');
@@ -141,11 +142,6 @@ export function showTrustpilotWidget(): void {
                     contentArea.appendChild(wrapper);
                 }
             }
-
-            // Expand to 52px in next frame (smooth transition, no layout shift)
-            requestAnimationFrame(() => {
-                wrapper!.style.height = '52px';
-            });
         }
 
         // Attach widget to wrapper
