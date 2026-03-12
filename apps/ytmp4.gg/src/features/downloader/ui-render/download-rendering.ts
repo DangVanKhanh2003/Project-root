@@ -17,6 +17,7 @@ import { showVidToolPopup } from '@downloader/vidtool-popup';
 import { MaterialPopup } from '../../../ui-components/material-popup/material-popup';
 import { logEvent } from '../../../libs/firebase';
 import { onAfterDownload, onDownloadFailed, onReset, incrementDownloadCount } from '../../widget-level-manager';
+import { hideTrustpilotWidget } from '../../trustpilot/trustpilot-widget';
 import { showHeroFeatureLinks } from '../../hero-feature-links';
 import { showSearchView } from './view-switcher';
 import { setInputValue, focusInput } from './ui-renderer';
@@ -365,6 +366,7 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
   // Audio language warning (insert after .status)
   if (task.audioLanguageChanged) {
     showAudioLanguageWarning(statusContainer, task.availableAudioLanguages || []);
+    hideTrustpilotWidget();
   } else {
     hideAudioLanguageWarning(statusContainer);
   }
