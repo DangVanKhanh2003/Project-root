@@ -6,13 +6,13 @@
 
 /* ===== WRAPPER TO PREVENT LAYOUT SHIFT ===== */
 .conversion-state-wrapper {
-  min-height: 100px;
+  min-height: 113px;
   /* Reserve space for status OR action container (mobile: 40px + 12px margin) */
 }
 
 @media (min-width: 768px) {
   .conversion-state-wrapper {
-    min-height: 110px;
+    min-height: 123px;
     /* Desktop: 52px + 12px margin */
   }
 }
@@ -28,7 +28,7 @@
 }
 
 .status-container {
-  margin-bottom: 10px;
+  margin-bottom: 18px;
 }
 
 .action-container {
@@ -255,6 +255,7 @@
   justify-content: center;
   gap: 12px;
   margin: 0px;
+  margin-bottom: 18px;
 }
 
 .download-btn,

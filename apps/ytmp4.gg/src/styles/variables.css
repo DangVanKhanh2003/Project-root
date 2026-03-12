@@ -27,6 +27,8 @@
     --text-primary: #3A3A3A;
     --hero-title-color: #2F2F2F;
     --bg-badge: #EBE7E0;
+    --meta-badge-bg: #e3dacc;
+    --meta-badge-color: #c65d3bf5;
 
     --text-main: var(--text);
     --text-muted: var(--muted);
@@ -306,6 +308,9 @@
     --multi-list-group-action-disabled-bg: var(--accent-fill-soft);
     --multi-list-group-action-disabled-text: var(--brand);
     --multi-list-group-action-disabled-opacity: 1;
+
+    --meta-badge-bg: #14141394;
+    --meta-badge-color: #d6d4cf;
 
     --input-border-glow-rgb: 198, 93, 59;
     --input-glow-radial-rgb: 198, 93, 59;

@@ -166,6 +166,7 @@
 .keyword-result-card-wrap {
     cursor: pointer;
     position: relative;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 .keyword-result-overlay-check {

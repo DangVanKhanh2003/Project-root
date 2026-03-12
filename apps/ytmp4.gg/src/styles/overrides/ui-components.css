@@ -68,7 +68,7 @@
 
 .search-result-card {
   background: var(--bg-card) !important;
-  border: 1px solid var(--border-subtle) !important;
+  border: none !important;
 }
 
 .search-result-card .card-title {

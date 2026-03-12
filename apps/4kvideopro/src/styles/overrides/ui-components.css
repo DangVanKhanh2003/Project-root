@@ -24,3 +24,7 @@
 .card-title {
   color: #0f0f0f;
 }
+
+.card-metadata {
+  font-size: 12px !important;
+}

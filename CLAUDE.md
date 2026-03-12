@@ -27,6 +27,11 @@ Dự án sử dụng công nghệ web chuẩn với kiến trúc hiện đại:
 ### Mobile Tap Highlight
 - **Tap highlight**: Sử dụng `-webkit-tap-highlight-color: transparent` để bỏ hiệu ứng nền mờ khi chạm vào các element trên mobile
 
+### Color Tokens
+- **Tất cả color đều PHẢI thông qua CSS custom properties (tokens)** được định nghĩa trong `variables.css`
+- **KHÔNG ĐƯỢC dùng `[data-theme="dark"]` selector** trong các file CSS component. Thay vào đó, định nghĩa token ở `:root` (light) và `:root[data-theme="dark"]` (dark) trong `variables.css`, rồi component chỉ dùng `var(--token-name)`
+- Điều này đảm bảo theme switching chỉ cần thay đổi ở một nơi duy nhất
+
 ## HTML & Templates
 
 - Một số app sử dụng template engine (Eleventy/Nunjucks) để generate HTML. Ví dụ: `apps/ytmp4.gg/_templates/`

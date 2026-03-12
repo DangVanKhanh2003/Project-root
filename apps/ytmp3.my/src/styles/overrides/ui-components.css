@@ -33,3 +33,7 @@
 .search-result-card .card-title {
   color: #0f0f0f;
 }
+
+.card-metadata span {
+  font-size: 12px !important;
+}

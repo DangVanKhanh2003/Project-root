@@ -11,9 +11,7 @@ Không phải 1 nguyên nhân đơn lẻ — mà là **nhiều yếu tố đắt
 
 ---
 
-## Issue #1: `backdrop-filter: blur(10px)` trên Header — CRITICAL
-
-### ytmp4.gg — `src/styles/layout/header.css:1-8`
+## 
 ```css
 .site-header {
     position: relative;

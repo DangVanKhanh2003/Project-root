@@ -22,6 +22,8 @@
     width: 100%;
     max-width: var(--main-content-max-width-3xl);
     margin: 0 auto;
+    padding-left: 12px;
+    padding-right: 12px;
     position: relative;
     z-index: 2;
 }
@@ -320,11 +322,15 @@
         display: none;
     }
 
-    .tip-message-content {
-        padding-top: 5px;
-    }
-
     #tip-message-wrapper {
         font-size: 14px;
     }
+}
+
+@media  (max-width: 400px)  {
+    
+    .tip-message-content {
+        padding-top: 0px;
+    }
+
 }

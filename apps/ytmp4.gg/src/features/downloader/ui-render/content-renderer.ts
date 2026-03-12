@@ -471,7 +471,6 @@ function createConversionStateWrapper(): string {
           <div class="icon"></div>
           <span class="status-text"></span>
         </div>
-        <button class="cancel-btn" id="conversion-cancel-btn">Cancel</button>
       </div>
       <div class="action-container" id="action-container">
         <button class="btn-new-convert" id="btn-new-convert">Start Over</button>

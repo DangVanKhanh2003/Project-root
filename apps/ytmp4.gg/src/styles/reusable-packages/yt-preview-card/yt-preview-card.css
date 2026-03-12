@@ -154,8 +154,8 @@
   padding: 0 0.5rem;
   border-radius: 4px;
   box-sizing: border-box;
-  background: var(--color-primary, var(--primary-color));
-  color: var(--color-white);
+  background: var(--meta-badge-bg);
+  color: var(--meta-badge-color);
   font-size: 0.6875rem;
   font-weight: 600;
   letter-spacing: 0.02em;
@@ -436,3 +436,4 @@
     padding: 0 0.9rem;
   }
 }
+

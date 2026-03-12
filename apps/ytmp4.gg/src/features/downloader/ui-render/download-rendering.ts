@@ -10,7 +10,7 @@ import { initExpandableText, submitForm } from '../../../utils';
 import { LANGUAGES } from '../logic/data/languages';
 import { addRippleEffect } from '@downloader/core/utils';
 import { TaskState } from '../logic/conversion/types';
-import { getState as getDownloaderState } from '../state';
+import { getState as getDownloaderState, clearYouTubePreview } from '../state';
 import type { AppState, ConversionTask } from '../state/types';
 import { getMergingEstimator, clearMergingEstimator } from './merging-progress-estimator';
 import { showVidToolPopup } from '@downloader/vidtool-popup';
@@ -18,6 +18,8 @@ import { MaterialPopup } from '../../../ui-components/material-popup/material-po
 import { logEvent } from '../../../libs/firebase';
 import { onAfterDownload, onDownloadFailed, onReset, incrementDownloadCount } from '../../widget-level-manager';
 import { showHeroFeatureLinks } from '../../hero-feature-links';
+import { showSearchView } from './view-switcher';
+import { setInputValue, focusInput } from './ui-renderer';
 
 // ============================================================
 // TYPE DEFINITIONS
@@ -351,20 +353,9 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
   const actionContainer = document.getElementById('action-container') as HTMLElement | null;
   const downloadBtn = document.getElementById('conversion-download-btn') as HTMLElement | null;
   const retryBtn = document.getElementById('conversion-retry-btn') as HTMLElement | null;
-  const cancelBtn = statusContainer.querySelector('.cancel-btn') as HTMLElement | null;
-
   if (!statusElement || !statusTextElement || !iconElement || !actionContainer) {
     console.warn('[renderConversionStatus] Required DOM elements not found');
     return;
-  }
-
-  // Show cancel button only during active conversion states
-  if (cancelBtn) {
-    const isActiveConversion = task.state === TaskState.EXTRACTING
-      || task.state === TaskState.PROCESSING
-      || task.state === TaskState.DOWNLOADING
-      || task.state === TaskState.POLLING;
-    cancelBtn.style.display = isActiveConversion ? '' : 'none';
   }
 
   // Calculate progress and detect merging phase
@@ -734,15 +725,6 @@ function setupButtonHandlers(formatId: string): void {
     addRippleEffect(newNewConvertBtn);
   }
 
-  // Setup cancel button (inside status-container, not action-container)
-  const cancelBtn = document.getElementById('conversion-cancel-btn');
-  if (cancelBtn) {
-    const newCancelBtn = cancelBtn.cloneNode(true) as HTMLElement;
-    cancelBtn.parentNode?.replaceChild(newCancelBtn, cancelBtn);
-    newCancelBtn.addEventListener('click', () => handleCancelButtonClick(formatId));
-    addRippleEffect(newCancelBtn);
-  }
-
   actionContainer.dataset.handlersAttached = 'true';
   actionContainer.dataset.formatId = formatId;
 }
@@ -807,16 +789,12 @@ function clearSearchUrl(): void {
  * Shared reset logic - switches back to search view and clears all state
  * Used by both "Start Over" button and "Cancel" button
  */
-async function resetToSearchView(): Promise<void> {
+function resetToSearchView(): void {
   document.dispatchEvent(new CustomEvent('resetForm'));
 
   // Hide Trustpilot widget on reset
   onReset();
   showHeroFeatureLinks();
-
-  const { showSearchView } = await import('./view-switcher');
-  const { setInputValue, focusInput } = await import('./ui-renderer');
-  const { clearYouTubePreview } = await import('../state');
 
   // Switch to search view
   showSearchView();
@@ -838,25 +816,10 @@ async function resetToSearchView(): Promise<void> {
  * Handle Next button click
  * Switches back to search view and clears input
  */
-async function handleNewConvertButtonClick(): Promise<void> {
+function handleNewConvertButtonClick(): void {
   console.log('[renderConversionStatus] Next button clicked');
   logEvent('next_button_click');
-  await resetToSearchView();
-}
-
-/**
- * Handle Cancel button click
- * Cancels active download and switches back to search view
- */
-async function handleCancelButtonClick(formatId: string): Promise<void> {
-  console.log('[renderConversionStatus] Cancel button clicked for:', formatId);
-  logEvent('cancel_button_click', { format_id: formatId });
-
-  // Cancel the active download flow
-  window.dispatchEvent(new CustomEvent('conversion:cancel', { detail: { formatId } }));
-
-  // Reset to search view (same as Start Over)
-  await resetToSearchView();
+  resetToSearchView();
 }
 
 // ============================================================

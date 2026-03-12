@@ -40,7 +40,7 @@ import { navigateToVideo } from '../routing/url-manager';
 import { setVideoPageSEO } from '../routing/seo-manager';
 import { showResultView } from '../ui-render/view-switcher';
 import { MaterialPopup } from '../../../ui-components/material-popup/material-popup';
-import { getUrlRedirectTarget } from '@downloader/core';
+import { getUrlRedirectTarget, looksLikeUrl } from '@downloader/core';
 import { evaluateFeatureAccess } from '../../allowed-features';
 import { show as showPaywall } from 'https://media.ytmp3.gg/poppurchase.v3.js?v=5';
 import { checkLimit } from '../../download-limit';
@@ -555,8 +555,8 @@ function handleInput(event: Event): void {
   const hasContent = value.length > 0;
   updateButtonVisibility(hasContent);
 
-  // Detect input type (simple version)
-  const isUrl = value.startsWith('http://') || value.startsWith('https://');
+  // Detect input type (handles URLs with or without protocol prefix)
+  const isUrl = looksLikeUrl(value);
   setInputType(isUrl ? 'url' : 'keyword');
 
   // Clear suggestions completely when typing URL
@@ -870,25 +870,25 @@ async function handleSubmit(event: Event): Promise<void> {
   clearSuggestions();          // Clear suggestions completely (array + state + flags)
   setLoading(true);
 
-  // Check feature access early before playlist prompt or extraction
-  const access = evaluateFeatureAccess('download_single');
-  if (!access.allowed) {
-    setLoading(false);
-    if (access.reason === FEATURE_ACCESS_REASONS.GEO_RESTRICTED) {
-      showPaywall();
-    } else {
-      showPaywall();
-    }
-    setSubmitting(false);
-    return;
-  }
-
   // Re-detect input type from actual value (don't rely on state which may be stale)
-  const isUrl = value.startsWith('http://') || value.startsWith('https://');
+  const isUrl = looksLikeUrl(value);
   setInputType(isUrl ? 'url' : 'keyword');
 
   try {
     if (isUrl) {
+      // Check feature access before download (only for URL, not keyword search)
+      const access = evaluateFeatureAccess('download_single');
+      if (!access.allowed) {
+        setLoading(false);
+        if (access.reason === FEATURE_ACCESS_REASONS.GEO_RESTRICTED) {
+          showPaywall();
+        } else {
+          showPaywall();
+        }
+        setSubmitting(false);
+        return;
+      }
+
       const redirectTarget = getUrlRedirectTarget(value);
       if (redirectTarget) {
         setLoading(false);
@@ -1045,6 +1045,10 @@ export async function handleExtractMedia(
         const audioQuality = state.audioFormat === 'mp3' ? (state.audioBitrate || undefined) : '128';
         navigateToVideo(videoId, { format: state.audioFormat || 'mp3', quality: audioQuality, audioTrack: urlAudioTrack });
       }
+
+      // Clean query params from URL after pushState — reload will go to home, back still works
+      const basePath = window.location.pathname.replace(/\/$/, '') || '/';
+      history.replaceState({ type: 'home' }, '', basePath);
     }
 
     // ✅ Update SEO meta tags (noindex for result pages)
