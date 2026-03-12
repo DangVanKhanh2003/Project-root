@@ -4,6 +4,8 @@
     z-index: 20;
     background: var(--background-hero-section);
     padding: 5px 0px;
+    display: flex;
+    justify-content: center;
 }
 
 .header-inner {
@@ -744,7 +746,7 @@
     .header-inner {
         flex-direction: row;
         gap: 12px;
-        padding: 8px 12px;
+        padding: 8px 0px;
     }
 
     .header-logo {

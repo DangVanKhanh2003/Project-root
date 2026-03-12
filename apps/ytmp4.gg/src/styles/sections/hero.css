@@ -1,7 +1,7 @@
 /* Hero Section */
 .hero-section {
     background-color: var(--hero-section-bg);
-    padding: 40px 12px 24px 12px;
+    padding: 40px 0px 24px 0px;
     color: var(--color-white);
     text-align: center;
     position: relative;
@@ -21,9 +21,6 @@
     align-items: center;
     width: 100%;
     max-width: var(--main-content-max-width-3xl);
-    margin: 0 auto;
-    padding-left: 12px;
-    padding-right: 12px;
     position: relative;
     z-index: 2;
 }
@@ -185,14 +182,11 @@
 
 @media (max-width: 768px) {
     .hero-section {
-        padding: 20px 12px 20px 12px;
+        padding: 20px 0px 20px 0px;
         /* Reduced bottom padding to 0 to let mask cover more of the form (half-in/half-out) */
     }
 
-    /* Remove container padding on mobile as requested */
-    .hero-container {
-        padding: 0;
-    }
+
 
     .title-hero {
         padding: 0 20px;
@@ -237,12 +231,7 @@
     margin-top: 30px;
 }
 
-@media (max-width: 768px) {
-    #search-results-section {
-        padding-left: 12px;
-        padding-right: 12px;
-    }
-}
+
 
 #hero-inline-message {
     margin-top: 12px;

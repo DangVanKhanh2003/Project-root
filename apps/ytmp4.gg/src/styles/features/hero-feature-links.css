@@ -5,8 +5,9 @@
 
 .hero-feature-links-wrap {
     width: 100%;
-    padding: 0 var(--container-padding-sm);
     margin-top: 15px;
+    display: flex;
+    justify-content: center ;
 }
 
 .hero-feature-links-desktop {
@@ -88,7 +89,6 @@
     .hero-feature-links-wrap {
         width: 100%;
         margin-top: 0;
-        padding-inline: 0;
     }
 
     .hero-feature-links-desktop {
@@ -141,9 +141,6 @@
 }
 
 @media (min-width: 840px) {
-    .hero-feature-links-wrap {
-        padding-inline: var(--container-padding-tablet);
-    }
 
     .hero-feature-links-desktop {
         gap: 16px;

@@ -3,27 +3,28 @@
  *
  * Detects whether user input looks like a URL (with or without protocol prefix).
  * Used by input forms to distinguish between URL and keyword search inputs.
+ *
+ * Adapted from ytmp3.gg's isLikelyUrl() with multiple-pass approach for accuracy.
  */
 
-/**
- * Regex to match input that looks like a URL.
- *
- * Matches:
- * - Inputs starting with http:// or https://
- * - Inputs starting with www.
- * - Inputs that look like a domain (word.tld pattern, optionally with path)
- *
- * The TLD part requires 2+ alpha characters to avoid false positives
- * like "node.js" or "v1.0" being treated as URLs.
- */
-const URL_PATTERN = /^(?:https?:\/\/|www\.|\w[\w-]*\.(?:[a-z]{2,})(?:[/?#:]|$))/i;
+/** Fast path: explicit http(s) scheme */
+const SCHEME_PATTERN = /^(https?):\/\//i;
+const FULL_URL_PATTERN = /^(https?):\/\/[^\s/$.?#].[^\s]*$/i;
+
+/** Scheme-less domain with path/query/fragment (e.g. youtube.com/watch?v=xxx) */
+const SCHEMELESS_DOMAIN_PATH = /^[a-z0-9.-]+\.[a-z]{2,}(?::\d+)?(?:\/|\?|#)[^\s]*$/i;
+
+/** Special-case YouTube hosts (with or without path) */
+const YT_HOST_ONLY = /^(?:[a-z0-9-]+\.)*(?:youtube\.com|youtube-nocookie\.com|youtu\.be)$/i;
+const YT_HOST_WITH_PATH = /^(?:www\.)?(?:youtu\.be|youtube(?:-nocookie)?\.com)(?:\/|$)/i;
 
 /**
  * Check if user input looks like a URL rather than a search keyword.
  *
- * This is intentionally loose to minimize false negatives — it's better
- * to treat ambiguous input as a URL (which will fail gracefully via API)
- * than to send a URL as a keyword search.
+ * Uses a multi-pass approach (matching ytmp3.gg's isLikelyUrl):
+ * 1. Explicit scheme (http:// or https://) — validate full URL format
+ * 2. Scheme-less domain with path/query/fragment (domain.tld/path)
+ * 3. Special-case YouTube hosts (even without trailing path)
  *
  * @param input - Raw user input string
  * @returns true if input looks like a URL
@@ -42,5 +43,20 @@ export function looksLikeUrl(input: string): boolean {
   const trimmed = input.trim();
   if (!trimmed) return false;
 
-  return URL_PATTERN.test(trimmed);
+  // 1) Fast path: explicit scheme
+  if (SCHEME_PATTERN.test(trimmed)) {
+    return FULL_URL_PATTERN.test(trimmed);
+  }
+
+  // 2) Scheme-less domain with path (e.g. tiktok.com/@user/video/123)
+  if (SCHEMELESS_DOMAIN_PATH.test(trimmed)) {
+    return true;
+  }
+
+  // 3) Special-case YouTube hosts (even bare domain like youtu.be)
+  if (YT_HOST_ONLY.test(trimmed) || YT_HOST_WITH_PATH.test(trimmed)) {
+    return true;
+  }
+
+  return false;
 }

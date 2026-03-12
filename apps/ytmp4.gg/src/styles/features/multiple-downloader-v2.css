@@ -1265,10 +1265,7 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
 
 @media (max-width: 640px) {
 
-    .video-list-section {
-        padding-left: 12px;
-        padding-right: 12px;
-    }
+
 
     /* Mobile for form */
     .multi-format-btn {
@@ -2249,7 +2246,6 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
 
     .group-header-title-area {
         min-width: 0;
-        overflow: hidden;
     }
 
     .group-title {
