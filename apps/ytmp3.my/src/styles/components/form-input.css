@@ -184,7 +184,6 @@
     padding: 18px 24px;
     border-radius: 16px;
     border: 1px solid transparent;
-    backdrop-filter: blur(6px);
     font-size: 0.95rem;
     text-align: center;
 }

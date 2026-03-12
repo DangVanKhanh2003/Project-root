@@ -47,9 +47,12 @@
   justify-content: center;
   overflow: hidden;
   transition: background 0.3s, border-color 0.3s;
+  contain: layout style paint;
 }
 
-/* Progress bar fill - shown during processing and success states */
+/* Progress bar fill - shown during processing and success states
+   Uses transform: scaleX() instead of width for GPU-accelerated compositing
+   (width triggers layout recalc every frame → jank on iOS/macOS) */
 .status--processing::before,
 .status--success::before {
   content: '';
@@ -57,12 +60,14 @@
   top: 0;
   left: 0;
   height: 100%;
-  width: var(--progress-width, 0%);
-
+  width: 100%;
   background: var(--color-accent-light);
   border-right: 1px solid var(--color-accent);
   box-shadow: none;
-  transition: width 0.1s ease;
+  transform: scaleX(var(--progress-scale, 0));
+  transform-origin: left center;
+  transition: transform 0.1s ease;
+  will-change: transform;
   z-index: 1;
 }
 
@@ -75,29 +80,29 @@
    - 0% → 50% in 15s (37.5% of 40s)
    - 50% → 98% in 25s (62.5% of 40s) */
 .status--processing.status--merging::before {
-  width: 0%;
+  transform: scaleX(0);
   animation: merging-progress 40s ease-out forwards;
   transition: none !important;
 }
 
 @keyframes merging-progress {
   from {
-    width: 0%;
+    transform: scaleX(0);
   }
 
   37.5% {
-    width: 50%;
+    transform: scaleX(0.5);
   }
 
   to {
-    width: 98%;
+    transform: scaleX(0.98);
   }
 }
 
 /* API complete → 100% in 0.5s */
 .status--completing::before {
   animation: none !important;
-  transition: width 0.5s ease-out !important;
+  transition: transform 0.5s ease-out !important;
 }
 
 /* Hide status bar on success and error - controlled by JavaScript */
