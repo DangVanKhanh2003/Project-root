@@ -505,15 +505,8 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
     case TaskState.DOWNLOADING:
     case TaskState.POLLING:
       statusElement.classList.add('status--processing');
-      if (isMergingPhase) {
-        // Merging phase: show spinner
-        iconElement.style.display = '';
-        iconElement.classList.add('spinner', 'active');
-      } else {
-        // Processing phase: show spinner
-        iconElement.style.display = '';
-        iconElement.classList.add('spinner', 'active');
-      }
+      // Hide spinner completely during processing/merging - text only
+      iconElement.style.display = 'none';
       break;
 
     case TaskState.SUCCESS:
