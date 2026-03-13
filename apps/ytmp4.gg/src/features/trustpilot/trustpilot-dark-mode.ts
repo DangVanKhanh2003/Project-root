@@ -126,10 +126,10 @@ export function showDarkTrustpilotWidget(): void {
         wrapper.appendChild(widget);
     }
 
-    // Place AFTER .conversion-state-wrapper (as sibling), not inside it
-    // This prevents layout shift caused by adding content inside a min-height container
-    if (wrapper.parentNode !== conversionWrapper.parentNode || wrapper.previousElementSibling !== conversionWrapper) {
-        conversionWrapper.insertAdjacentElement('afterend', wrapper);
+    // Append at the end of .conversion-state-wrapper
+    // min-height on the wrapper reserves space before trustpilot is injected
+    if (wrapper.parentNode !== conversionWrapper) {
+        conversionWrapper.appendChild(wrapper);
     }
 }
 
