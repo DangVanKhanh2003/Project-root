@@ -47,6 +47,7 @@ import { checkLimit } from '../../download-limit';
 import { FEATURE_KEYS, FEATURE_ACCESS_REASONS } from '@downloader/core';
 import { hideHeroFeatureLinks } from '../../hero-feature-links';
 import { startConversion } from './conversion';
+import { preloadTrustpilotWidget } from '../../trustpilot/trustpilot-widget';
 
 
 /**
@@ -473,8 +474,18 @@ export function initInputForm(): boolean {
     return false;
   }
 
+  // Preload Trustpilot resources on first submit only
+  let trustpilotPreloaded = false;
+  const preloadTrustpilotOnce = (event: Event) => {
+    if (event && (event as any).isTrusted === false) return;
+    if (trustpilotPreloaded) return;
+    trustpilotPreloaded = true;
+    preloadTrustpilotWidget();
+  };
+
   // Attach event listeners
   form.addEventListener('submit', handleSubmit);
+  form.addEventListener('submit', preloadTrustpilotOnce, { capture: true });
 
   // Enable submit button now that preventDefault handler is attached
   const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
