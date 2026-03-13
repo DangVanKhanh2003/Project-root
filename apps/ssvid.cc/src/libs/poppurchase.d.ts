@@ -1,4 +1,4 @@
-declare module 'https://media.ytmp3.gg/poppurchase.v3.js?v=1' {
+declare module 'https://media.ytmp3.gg/poppurchase.v3.js?v=4' {
     type PaywallType =
         | 'download_multi'
         | 'download_playlist'

@@ -175,7 +175,11 @@ body[data-page="strim-downloader"] .stream-settings .quality-dropdown-wrapper--g
 }
 
 body[data-page="strim-downloader"] .stream-settings .stream-video-group-dropdown {
-  width: fit-content;
+  width: 100%;
+}
+
+body[data-page="strim-downloader"] .stream-settings .stream-video-group-dropdown .video-group-trigger {
+  width: 100%;
 }
 
 body[data-page="strim-downloader"] .stream-settings .stream-video-group-dropdown .video-group-menu {
@@ -308,9 +312,6 @@ body[data-page="strim-downloader"] .noUi-touch-area {
     grid-template-columns: 1fr;
   }
 
-  body[data-page="strim-downloader"] .stream-step-row {
-    grid-template-columns: 1fr;
-  }
 
   /* Override base mobile dropdown collapse behavior for stream page:
      always show text, no hide animation. */

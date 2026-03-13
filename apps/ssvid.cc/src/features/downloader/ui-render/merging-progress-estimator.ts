@@ -1,11 +1,9 @@
 /**
  * Merging Progress Estimator
  *
- * CSS handles smooth animation from 0% → 98% in 50s
- * JS only sets target once, no continuous updates needed
- *
- * - Start: set 98% immediately, CSS animates over 50s
- * - Complete: add completing class, set 100%
+ * JS drives progress from 0% → 98% in 40s via --progress-width CSS variable
+ * Phase 1: 0→50% in 15s | Phase 2: 50→98% in 25s
+ * Caps at 98% until API returns success
  */
 
 export interface MergingEstimator {

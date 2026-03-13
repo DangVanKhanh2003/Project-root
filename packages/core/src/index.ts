@@ -156,6 +156,9 @@ export {
 } from './utils/playlist-redirect';
 export type { UrlRedirectTarget } from './utils/playlist-redirect';
 
+// URL detection utilities
+export { looksLikeUrl } from './utils/url-detection';
+
 // ========================================
 // Supporter
 // ========================================

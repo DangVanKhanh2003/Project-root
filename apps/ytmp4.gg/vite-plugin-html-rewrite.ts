@@ -113,7 +113,16 @@ export function htmlRewritePlugin(): Plugin {
   return {
     name: 'vite-plugin-html-rewrite',
     transformIndexHtml(html) {
-      return injectFredokaFont(html);
+      html = injectFredokaFont(html);
+      // Deduplicate identical <script> and <link> tags
+      const seen = new Set<string>();
+      html = html.replace(/ *<(script|link)\b[^>]*(?:\/>|>[\s\S]*?<\/\1>)\s*\n?/g, (match) => {
+        const key = match.trim();
+        if (seen.has(key)) return '';
+        seen.add(key);
+        return match;
+      });
+      return html;
     },
     configureServer(server) {
       server.middlewares.use((req, res, next) => {

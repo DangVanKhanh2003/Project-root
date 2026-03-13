@@ -133,7 +133,7 @@ function smoothTransitionTo100(
   callback: () => void,
   totalDelay: number = 400
 ): void {
-  statusContainer.style.setProperty('--progress-width', '100%');
+  statusContainer.style.setProperty('--progress-scale', '1');
   setTimeout(callback, totalDelay);
 }
 
@@ -240,7 +240,7 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
 
       // Temporarily disable transition for instant reset
       statusElement.classList.add('status--no-transition');
-      statusContainer.style.setProperty('--progress-width', '0%');
+      statusContainer.style.setProperty('--progress-scale', '0');
 
       // Force browser reflow to apply instant reset
       void statusElement.offsetWidth;
@@ -248,7 +248,7 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
       // Setup for CSS @keyframes animation (0%→50% in 15s, 50%→98% in 25s)
       requestAnimationFrame(() => {
         // 1. Reset progress to 0% so animation starts from 0
-        statusContainer.style.setProperty('--progress-width', '0%');
+        statusContainer.style.setProperty('--progress-scale', '0');
 
         // 2. Remove no-transition, add merging class (triggers animation)
         statusElement.classList.remove('status--no-transition');
@@ -284,18 +284,19 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
     statusTextElement.textContent = task.statusText || 'Processing...';
   }
 
-  // Update progress fill background
-  const currentWidth = statusContainer.style.getPropertyValue('--progress-width') || '0%';
+  // Update progress fill background (using scaleX for GPU-accelerated compositing)
+  const currentScale = statusContainer.style.getPropertyValue('--progress-scale') || '0';
 
   // During merging phase, don't update progress (CSS animation handles it)
   if (!isMergingPhase) {
-    // If jumping from 0% to 100%, use requestAnimationFrame to ensure browser paints 0% first
-    if (progress === 100 && (currentWidth === '0%' || currentWidth === '')) {
+    const scale = progress / 100;
+    // If jumping from 0 to 1, use requestAnimationFrame to ensure browser paints 0 first
+    if (progress === 100 && (currentScale === '0' || currentScale === '')) {
       requestAnimationFrame(() => {
-        statusContainer.style.setProperty('--progress-width', `${progress}%`);
+        statusContainer.style.setProperty('--progress-scale', `${scale}`);
       });
     } else {
-      statusContainer.style.setProperty('--progress-width', `${progress}%`);
+      statusContainer.style.setProperty('--progress-scale', `${scale}`);
     }
   }
 
@@ -342,7 +343,7 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
         clearMergingEstimator(formatId);
       }
       // Set progress to 100%
-      statusContainer.style.setProperty('--progress-width', '100%');
+      statusContainer.style.setProperty('--progress-scale', '1');
       // Cleanup merging phase tracking
       previousMergingPhase.delete(formatId);
       break;

@@ -6,13 +6,13 @@
 
 /* ===== WRAPPER TO PREVENT LAYOUT SHIFT ===== */
 .conversion-state-wrapper {
-  min-height: 100px;
+  min-height: 115px;
   /* Reserve space for status OR action container (mobile: 40px + 12px margin) */
 }
 
 @media (min-width: 768px) {
   .conversion-state-wrapper {
-    min-height: 110px;
+    min-height: 126px;
     /* Desktop: 52px + 12px margin */
   }
 }
@@ -28,7 +28,7 @@
 }
 
 .status-container {
-  margin-bottom: 10px;
+  margin-bottom: 18px;
 }
 
 .action-container {
@@ -47,6 +47,7 @@
   justify-content: center;
   overflow: hidden;
   transition: background 0.3s, border-color 0.3s;
+  contain: layout style paint;
 }
 
 /* Stack status + warning vertically when warning is present */
@@ -54,21 +55,28 @@
   flex-direction: column;
 }
 
-/* Progress bar fill - shown during processing and success states */
+/* Progress bar fill - shown during processing and success states
+   Hidden by default (display:none). JS adds .status--has-progress to reveal it.
+   Uses width for progress (matching ytmp3.gg pattern). */
 .status--processing::before,
 .status--success::before {
   content: '';
   position: absolute;
-  top: 0;
   left: 0;
+  top: 0;
   height: 100%;
   width: var(--progress-width, 0%);
   background: var(--surface-weak, #cfe0ff);
-  /* Primary color with lighter opacity */
   border-right: 1px solid var(--brand, rgba(0, 79, 171, 0.4));
   box-shadow: none;
   transition: width 0.1s ease;
   z-index: 1;
+  display: none;
+}
+
+/* Show progress bar only when JS has set --progress-width */
+.status.status--has-progress::before {
+  display: block;
 }
 
 [data-theme="dark"] .status--processing::before,
@@ -81,34 +89,13 @@
   transition: none !important;
 }
 
-/* Merging phase: 2-phase animation using @keyframes
-   - 0% → 50% in 15s (37.5% of 40s)
-   - 50% → 98% in 25s (62.5% of 40s)
-   Total: 40s */
+/* Merging phase styling */
 .status--processing.status--merging::before {
-  /* Override var(--progress-width) - animation controls width */
-  width: 0%;
-  animation: merging-progress 40s ease-out forwards;
-  transition: none !important;
+  background: var(--surface-weak, #cfe0ff);
 }
 
-@keyframes merging-progress {
-  from {
-    width: 0%;
-  }
-
-  37.5% {
-    width: 50%;
-  }
-
-  to {
-    width: 98%;
-  }
-}
-
-/* When API completes, stop animation and transition to 100% in 0.4s */
+/* When API completes, transition to 100% in 0.4s */
 .status--completing::before {
-  animation: none !important;
   transition: width 0.4s ease-out !important;
 }
 

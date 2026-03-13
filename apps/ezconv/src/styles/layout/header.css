@@ -4,7 +4,6 @@
     top: 0;
     z-index: 20;
     background: var(--bg-page);
-    backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border-subtle);
 }
 

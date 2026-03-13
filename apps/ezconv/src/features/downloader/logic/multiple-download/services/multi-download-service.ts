@@ -1,6 +1,6 @@
 
 import { api } from '../../../../../api';
-import { extractPlaylistId, extractVideoId, isPlaylistUrl, PlaylistDto } from '@downloader/core';
+import { extractPlaylistId, extractVideoId, isPlaylistUrl, PlaylistDto, isYouTubeUrl } from '@downloader/core';
 import { getApiBaseUrlV3, getYtMetaBaseUrl } from '../../../../../environment';
 import { videoStore } from '../../../state/video-store';
 import { VideoItem, VideoItemSettings } from '../../../state/multiple-download-types';
@@ -32,8 +32,16 @@ function inferDownloadMethod(item: VideoItem): DownloadMethod {
     return 'playlist';
 }
 
+const YOUTUBE_QUEUE_CONCURRENCY = 5;
+const OTHER_LINK_QUEUE_CONCURRENCY = 10;
+
 export class MultiDownloadService {
-    private queue = new DownloadQueue(5);
+    private youtubeQueue = new DownloadQueue(YOUTUBE_QUEUE_CONCURRENCY);
+    private otherQueue = new DownloadQueue(OTHER_LINK_QUEUE_CONCURRENCY);
+
+    private getQueueForUrl(url: string): DownloadQueue {
+        return isYouTubeUrl(url) ? this.youtubeQueue : this.otherQueue;
+    }
 
     // ==========================================
     // Add URLs (batch mode)
@@ -66,7 +74,7 @@ export class MultiDownloadService {
                 duration: 0,
                 url: p.url,
                 vid: p.videoId || '',
-                source: 'youtube',
+                source: p.videoId ? 'youtube' : 'url',
                 isFakeData: true,
             },
             status: 'fetching_metadata' as const,
@@ -109,17 +117,22 @@ export class MultiDownloadService {
         videoStore.setGroupMeta(groupId, false, 'Multiple', null);
 
         // 2. Fetch metadata in parallel
-        // updateMetadata auto-sets status to 'ready' when current status is 'fetching_metadata'
-        await fetchMetadataBatch(
-            newItems.map(i => ({ id: i.id, url: i.url })),
-            (result) => {
-                if (result.success && result.meta) {
-                    videoStore.updateMetadata(result.id, result.meta);
-                } else {
-                    videoStore.setError(result.id, result.error || 'Failed to fetch info');
+        // Only prefetch metadata for YouTube URLs.
+        // Non-YouTube URLs stay in skeleton state until extract/create-job returns metadata.
+        const youtubeItems = newItems.filter(i => isYouTubeUrl(i.url));
+        if (youtubeItems.length > 0) {
+            // updateMetadata auto-sets status to 'ready' when current status is 'fetching_metadata'
+            await fetchMetadataBatch(
+                youtubeItems.map(i => ({ id: i.id, url: i.url })),
+                (result) => {
+                    if (result.success && result.meta) {
+                        videoStore.updateMetadata(result.id, result.meta);
+                    } else {
+                        videoStore.setError(result.id, result.error || 'Failed to fetch info');
+                    }
                 }
-            }
-        );
+            );
+        }
         return groupId;
     }
 
@@ -132,6 +145,7 @@ export class MultiDownloadService {
         globalSettings?: Partial<VideoItemSettings>,
         onItemsAdded?: () => void
     ): Promise<{
+        groupId: string;
         title: string;
         thumbnail: string;
         itemCount: number;
@@ -226,6 +240,7 @@ export class MultiDownloadService {
         videoStore.setGroupMeta(groupId, false, realTitle, page1.nextPageToken ?? null);
 
         return {
+            groupId,
             title: realTitle,
             thumbnail: '',
             itemCount: page1Items.length,
@@ -312,6 +327,7 @@ export class MultiDownloadService {
         globalSettings?: Partial<VideoItemSettings>,
         onItemsAdded?: () => void
     ): Promise<{
+        groupId: string;
         title: string;
         itemCount: number;
     }> {
@@ -408,6 +424,7 @@ export class MultiDownloadService {
         videoStore.setGroupMeta(groupId, false, realTitle, page1.nextPageToken ?? null);
 
         return {
+            groupId,
             title: realTitle,
             itemCount: page1Items.length,
         };
@@ -596,61 +613,64 @@ export class MultiDownloadService {
         const item = videoStore.getItem(id);
         if (!item) return;
         if (!(await this.checkItemLimits([item]))) return;
-        
-        videoStore.setStatus(id, 'queued');
-        this.enqueueJob(id);
+
+        // Keep non-YouTube skeleton visible until extract response returns preview metadata.
+        const shouldKeepSkeleton = item.status === 'fetching_metadata' && item.meta.source === 'url';
+        if (!shouldKeepSkeleton) {
+            videoStore.setStatus(id, 'queued');
+        }
+
+        const queue = this.getQueueForUrl(item.url);
+        queue.add(id, (signal) => {
+            return this.executeDownload(id, signal);
+        }).catch(() => { });
     }
 
     async startAllDownloads(): Promise<void> {
-        const items = videoStore.getDownloadableItems();
+        const items = videoStore.getAllItems().filter(i =>
+            ['ready', 'error', 'cancelled', 'fetching_metadata'].includes(i.status)
+        );
         if (!(await this.checkItemLimits(items))) return;
-        
-        const ids = items.map(i => i.id);
-        videoStore.batchSetQueued(ids);
-        for (const id of ids) this.enqueueJob(id);
+
+        for (const item of items) {
+            await this.startDownload(item.id);
+        }
     }
 
     async startSelectedDownloads(): Promise<void> {
         const items = videoStore.getSelectedDownloadable();
         if (!(await this.checkItemLimits(items))) return;
-        
-        const ids = items.map(i => i.id);
-        videoStore.batchSetQueued(ids);
-        for (const id of ids) this.enqueueJob(id);
+
+        for (const item of items) {
+            await this.startDownload(item.id);
+        }
     }
 
     async startGroupDownloads(groupId: string): Promise<void> {
         const items = videoStore.getAllItems().filter(i =>
-            i.groupId === groupId && ['ready', 'error', 'cancelled'].includes(i.status)
+            i.groupId === groupId && ['ready', 'error', 'cancelled', 'fetching_metadata'].includes(i.status)
         );
         if (!(await this.checkItemLimits(items))) return;
-        
-        const ids = items.map(i => i.id);
-        videoStore.batchSetQueued(ids);
-        for (const id of ids) this.enqueueJob(id);
+
+        for (const item of items) {
+            await this.startDownload(item.id);
+        }
     }
 
     async startSelectedGroupDownloads(groupId: string): Promise<void> {
         const items = videoStore.getAllItems().filter(i =>
-            i.groupId === groupId && i.isSelected && ['ready', 'error', 'cancelled'].includes(i.status)
+            i.groupId === groupId && i.isSelected && ['ready', 'error', 'cancelled', 'fetching_metadata'].includes(i.status)
         );
         if (!(await this.checkItemLimits(items))) return;
-        
-        const ids = items.map(i => i.id);
-        videoStore.batchSetQueued(ids);
-        for (const id of ids) this.enqueueJob(id);
-    }
 
-    /** Add item to execution queue only (status must already be set). */
-    private enqueueJob(id: string): void {
-        this.queue.add(id, (signal) => {
-            return this.executeDownload(id, signal);
-        }).catch(() => { });
+        for (const item of items) {
+            await this.startDownload(item.id);
+        }
     }
 
     cancelGroupDownloads(groupId: string): void {
         const active = videoStore.getAllItems().filter(i =>
-            i.groupId === groupId && ['queued', 'downloading', 'converting'].includes(i.status)
+            i.groupId === groupId && ['fetching_metadata', 'queued', 'downloading', 'converting'].includes(i.status)
         );
         for (const item of active) {
             this.cancelDownload(item.id);
@@ -665,9 +685,13 @@ export class MultiDownloadService {
     }
 
     cancelDownload(id: string): void {
-        this.queue.cancel(id);
         const item = videoStore.getItem(id);
-        if (item && item.abortController) {
+        if (!item) return;
+
+        const queue = this.getQueueForUrl(item.url);
+        queue.cancel(id);
+
+        if (item.abortController) {
             item.abortController.abort();
         }
         videoStore.setCancelled(id);
@@ -675,14 +699,15 @@ export class MultiDownloadService {
 
     cancelAllDownloads(): void {
         // Cancel all items that are queued/downloading/converting
-        const active = videoStore.getItemsByStatus('queued', 'downloading', 'converting');
+        const active = videoStore.getItemsByStatus('fetching_metadata', 'queued', 'downloading', 'converting');
         for (const item of active) {
             if (item.abortController) {
                 item.abortController.abort();
             }
             videoStore.setCancelled(item.id);
         }
-        this.queue.cancelAll();
+        this.youtubeQueue.cancelAll();
+        this.otherQueue.cancelAll();
     }
 
     retryDownload(id: string): void {
@@ -698,6 +723,7 @@ export class MultiDownloadService {
         const item = videoStore.getItem(id);
         if (!item) return;
         const method = inferDownloadMethod(item);
+        const shouldKeepSkeleton = item.status === 'fetching_metadata' && item.meta.source === 'url';
 
         const controller = new AbortController();
         videoStore.setAbortController(id, controller);
@@ -705,7 +731,9 @@ export class MultiDownloadService {
         // Link the queue signal to our controller
         signal.addEventListener('abort', () => controller.abort(), { once: true });
 
-        videoStore.setStatus(id, 'converting');
+        if (!shouldKeepSkeleton) {
+            videoStore.setStatus(id, 'converting');
+        }
 
         try {
             await runSingleDownload({
@@ -756,6 +784,26 @@ export class MultiDownloadService {
                     onAudioTrackInfo: (languages, changed) => {
                         videoStore.setAudioTrackInfo(id, languages, changed);
                     },
+                    onExtracted: (info) => {
+                        const currentItem = videoStore.getItem(id);
+                        if (!currentItem) return;
+
+                        const nextTitle = info.title?.trim() || currentItem.meta.title;
+                        const nextThumbnail = info.thumbnail?.trim() || currentItem.meta.thumbnail;
+
+                        videoStore.updateMetadata(id, {
+                            title: nextTitle,
+                            thumbnail: nextThumbnail,
+                            duration: typeof info.duration === 'number' ? info.duration : currentItem.meta.duration,
+                            source: nextThumbnail ? 'external' : currentItem.meta.source,
+                            isFakeData: false,
+                        });
+
+                        // Once extract returns metadata, transition from skeleton to converting state.
+                        if (shouldKeepSkeleton) {
+                            videoStore.setStatus(id, 'converting');
+                        }
+                    },
                 },
             });
         } catch (error: any) {
@@ -798,7 +846,10 @@ export class MultiDownloadService {
     }
 
     getQueueStatus() {
-        return this.queue.getStatus();
+        return {
+            youtube: this.youtubeQueue.getStatus(),
+            other: this.otherQueue.getStatus(),
+        };
     }
 }
 

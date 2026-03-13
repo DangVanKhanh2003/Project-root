@@ -979,22 +979,22 @@ function mountPopup(
 
 export function showLimitReachedPopup(_config: MaintenancePopupConfig, mode?: string): void {
     // @ts-ignore — runtime CDN module
-    import('https://media.ytmp3.gg/poppurchase.v3.js?v=1').then((m: any) => m.show(mode || undefined));
+    import('https://media.ytmp3.gg/poppurchase.v3.js?v=4').then((m: any) => m.show(mode || undefined));
 }
 
 export function showVideoLimitPopup(_config: MaintenancePopupConfig, _maxVideos = 10): void {
     // @ts-ignore — runtime CDN module
-    import('https://media.ytmp3.gg/poppurchase.v3.js?v=1').then((m: any) => m.show('bulk_video_count'));
+    import('https://media.ytmp3.gg/poppurchase.v3.js?v=4').then((m: any) => m.show('bulk_video_count'));
 }
 
 export function showMaintenancePopup(_config: MaintenancePopupConfig): void {
     // @ts-ignore — runtime CDN module
-    import('https://media.ytmp3.gg/poppurchase.v3.js?v=1').then((m: any) => m.show('maintenance'));
+    import('https://media.ytmp3.gg/poppurchase.v3.js?v=4').then((m: any) => m.show('maintenance'));
 }
 
 export function showSupporterUpsellPopup(_config: MaintenancePopupConfig): void {
     // @ts-ignore — runtime CDN module
-    import('https://media.ytmp3.gg/poppurchase.v3.js?v=1').then((m: any) => m.show());
+    import('https://media.ytmp3.gg/poppurchase.v3.js?v=4').then((m: any) => m.show());
 }
 
 export function showPlaylistInstructionPopup(config: MaintenancePopupConfig): void {

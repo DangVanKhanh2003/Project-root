@@ -17,8 +17,22 @@ import { initThemeToggle } from './features/shared/init/theme-toggle';
 import { initWaveAnimation } from './features/shared/init/wave-animation';
 
 function init(): void {
+    // Auto-activate license from URL param (?license=XXXXX)
+    const urlParams = new URLSearchParams(window.location.search);
+    const autoLicenseKey = urlParams.get('license');
+
+    if (autoLicenseKey) {
+        const url = new URL(window.location.href);
+        url.searchParams.delete('license');
+        window.history.replaceState({}, '', url.toString());
+
+        import('./features/auto-license-checker').then(({ autoCheckLicense }) => {
+            autoCheckLicense(autoLicenseKey);
+        });
+    }
+
     initThemeToggle();
-initWaveAnimation();
+    initWaveAnimation();
     initMobileMenu();
     initSupporterUi();
     initLangSelector();

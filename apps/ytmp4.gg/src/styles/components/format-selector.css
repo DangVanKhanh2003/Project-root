@@ -138,6 +138,7 @@ html[data-format="mp3"] .quality-dropdown-wrapper .video-group-dropdown {
     border-radius: var(--radius-xl);
     background: var(--bg-card);
     cursor: pointer;
+    font-family: inherit;
     font-size: 14px;
     font-weight: 600;
     color: var(--text-body);
@@ -169,22 +170,14 @@ html[data-format="mp3"] .quality-dropdown-wrapper .video-group-dropdown {
     color: var(--text);
 }
 
-.quality-dropdown-wrapper--grouped .select-arrow {
-    display: none;
-}
-
 .quality-select--native-hidden {
-    position: absolute !important;
-    width: 1px !important;
-    height: 1px !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-    z-index: -1 !important;
+    display: none !important;
 }
 
 .video-group-dropdown {
     position: relative;
     width: fit-content;
+    min-width: 180px;
 }
 
 .video-group-trigger {
@@ -193,6 +186,7 @@ html[data-format="mp3"] .quality-dropdown-wrapper .video-group-dropdown {
     border-radius: var(--radius-xl);
     background: var(--bg-card);
     cursor: pointer;
+    font-family: inherit;
     font-size: 14px;
     font-weight: 600;
     color: var(--text-body);
@@ -202,7 +196,8 @@ html[data-format="mp3"] .quality-dropdown-wrapper .video-group-dropdown {
     gap: 10px;
     padding: 0 14px 0 18px;
     text-align: left;
-    transition: border-color 0.25s ease;
+    transition: border-color 0.3s;
+    width: 100%;
 }
 
 .video-group-trigger:hover,
@@ -235,6 +230,8 @@ html[data-format="mp3"] .quality-dropdown-wrapper .video-group-dropdown {
     padding: 8px;
     max-height: 360px;
     overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
 }
 
 .video-group-section {
@@ -256,6 +253,7 @@ html[data-format="mp3"] .quality-dropdown-wrapper .video-group-dropdown {
     gap: 8px;
     padding: 8px 10px;
     border-radius: 10px;
+    font-family: inherit;
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.06em;
@@ -297,6 +295,7 @@ html[data-format="mp3"] .quality-dropdown-wrapper .video-group-dropdown {
     text-align: left;
     padding: 8px 12px 8px 30px;
     border-radius: 8px;
+    font-family: inherit;
     font-size: 13px;
     font-weight: 400;
 }
@@ -327,7 +326,7 @@ html[data-format="mp3"] .quality-dropdown-wrapper .video-group-dropdown {
 }
 
 .btn-convert:hover {
-    filter: brightness(1.1);
+    opacity: 0.85;
     transform: translateY(-1px);
 }
 
@@ -392,6 +391,7 @@ html[data-format="mp3"] .quality-dropdown-wrapper .video-group-dropdown {
 
     .quality-dropdown-wrapper--grouped .video-group-dropdown {
         width: 100%;
+        min-width: 0;
     }
 
     .quality-dropdown-wrapper--grouped .video-group-trigger {
@@ -416,6 +416,7 @@ html[data-format="mp3"] .quality-dropdown-wrapper .video-group-dropdown {
     }
 
     .video-group-trigger {
+        font-size: 13px;
         border-radius: calc(var(--radius-xl) - 10px);
     }
 

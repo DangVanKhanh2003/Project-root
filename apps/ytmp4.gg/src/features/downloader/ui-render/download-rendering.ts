@@ -10,14 +10,17 @@ import { initExpandableText, submitForm } from '../../../utils';
 import { LANGUAGES } from '../logic/data/languages';
 import { addRippleEffect } from '@downloader/core/utils';
 import { TaskState } from '../logic/conversion/types';
-import { getState as getDownloaderState } from '../state';
+import { getState as getDownloaderState, clearYouTubePreview } from '../state';
 import type { AppState, ConversionTask } from '../state/types';
 import { getMergingEstimator, clearMergingEstimator } from './merging-progress-estimator';
 import { showVidToolPopup } from '@downloader/vidtool-popup';
 import { MaterialPopup } from '../../../ui-components/material-popup/material-popup';
 import { logEvent } from '../../../libs/firebase';
 import { onAfterDownload, onDownloadFailed, onReset, incrementDownloadCount } from '../../widget-level-manager';
+import { hideTrustpilotWidget } from '../../trustpilot/trustpilot-widget';
 import { showHeroFeatureLinks } from '../../hero-feature-links';
+import { showSearchView } from './view-switcher';
+import { setInputValue, focusInput } from './ui-renderer';
 
 // ============================================================
 // TYPE DEFINITIONS
@@ -225,7 +228,7 @@ function startExtractingRotator(formatId: string, statusContainer: HTMLElement) 
   const interval = window.setInterval(() => {
     const startTime = extractingStartTimes.get(formatId) || Date.now();
     const elapsed = Date.now() - startTime;
-    const msgIndex = Math.floor(elapsed / 2000) % EXTRACTING_MESSAGES.length;
+    const msgIndex = Math.floor(elapsed / 4000) % EXTRACTING_MESSAGES.length;
 
     // Check if element still exists
     try {
@@ -351,7 +354,6 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
   const actionContainer = document.getElementById('action-container') as HTMLElement | null;
   const downloadBtn = document.getElementById('conversion-download-btn') as HTMLElement | null;
   const retryBtn = document.getElementById('conversion-retry-btn') as HTMLElement | null;
-
   if (!statusElement || !statusTextElement || !iconElement || !actionContainer) {
     console.warn('[renderConversionStatus] Required DOM elements not found');
     return;
@@ -364,6 +366,7 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
   // Audio language warning (insert after .status)
   if (task.audioLanguageChanged) {
     showAudioLanguageWarning(statusContainer, task.availableAudioLanguages || []);
+    hideTrustpilotWidget();
   } else {
     hideAudioLanguageWarning(statusContainer);
   }
@@ -378,9 +381,6 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
   // If transitioning to merging phase, smooth tween to 100% first
   if (isTransitionToMerging) {
     transitionInProgress.set(formatId, true);
-
-    // Hide spinner immediately (before delay)
-    iconElement.style.display = 'none';
 
     smoothTransitionTo100(statusContainer, () => {
       // FIX: Check if task completed during the transition delay
@@ -405,31 +405,18 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
       // Force browser reflow to apply instant reset
       void statusElement.offsetWidth;
 
-      // Setup for CSS @keyframes animation (0%→50% in 20s, 50%→98% in 30s)
-      requestAnimationFrame(() => {
-        // Re-check completion just in case (though unlikely in this frame)
-        if (statusContainer.dataset.completionState) return;
+      // Remove no-transition, add merging class, start JS estimator
+      statusElement.classList.remove('status--no-transition');
+      statusElement.classList.add('status--merging');
+      transitionInProgress.set(formatId, false);
 
-        // 1. Reset progress to 0% so animation starts from 0
-        statusContainer.style.setProperty('--progress-width', '0%');
-
-        // 2. Remove no-transition, add merging class (triggers animation)
-        statusElement.classList.remove('status--no-transition');
-        statusElement.classList.add('status--merging');
-        transitionInProgress.set(formatId, false);
-
-        // 3. Update text
+      // Start estimator to drive progress bar via JS (matching ytmp3.gg pattern)
+      const estimator = getMergingEstimator(formatId);
+      estimator.start((p) => {
+        statusContainer.style.setProperty('--progress-width', `${p}%`);
         if (statusTextElement) {
-          statusTextElement.textContent = 'Merging...';
+          statusTextElement.textContent = `Merging... ${p}%`;
         }
-
-        // 4. Mark estimator as running for complete() to work
-        const estimator = getMergingEstimator(formatId);
-        estimator.start((p) => {
-          if (statusTextElement) {
-            statusTextElement.textContent = `Merging... ${p}%`;
-          }
-        });
       });
     });
 
@@ -463,7 +450,7 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
       // Immediate update
       const startTime = extractingStartTimes.get(formatId) || Date.now();
       const elapsed = Date.now() - startTime;
-      const msgIndex = Math.floor(elapsed / 2000) % EXTRACTING_MESSAGES.length;
+      const msgIndex = Math.floor(elapsed / 4000) % EXTRACTING_MESSAGES.length;
       statusTextElement.textContent = EXTRACTING_MESSAGES[msgIndex];
     } else {
       // Stop rotator if running
@@ -473,19 +460,10 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
     }
   }
 
-  // Update progress fill background
-  const currentWidth = statusContainer.style.getPropertyValue('--progress-width') || '0%';
-
-  // During merging phase, don't update progress (already at 0% after transition)
+  // Update progress fill background width
+  // During merging phase, don't update progress (estimator handles it)
   if (!isMergingPhase) {
-    // If jumping from 0% to 100%, use requestAnimationFrame to ensure browser paints 0% first
-    if (progress === 100 && (currentWidth === '0%' || currentWidth === '')) {
-      requestAnimationFrame(() => {
-        statusContainer.style.setProperty('--progress-width', `${progress}%`);
-      });
-    } else {
-      statusContainer.style.setProperty('--progress-width', `${progress}%`);
-    }
+    statusContainer.style.setProperty('--progress-width', `${progress}%`);
   }
 
   // Remove all state classes
@@ -497,28 +475,23 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
   switch (task.state) {
     case TaskState.EXTRACTING:
       statusElement.classList.add('status--extracting');
+      statusElement.classList.remove('status--has-progress');
       iconElement.classList.add('spinner', 'active');
       break;
 
     case TaskState.PROCESSING:
     case TaskState.DOWNLOADING:
     case TaskState.POLLING:
-      statusElement.classList.add('status--processing');
-      if (isMergingPhase) {
-        // Merging phase: hide spinner (status--merging class added in transition handler)
-        iconElement.style.display = 'none';
-      } else {
-        // Processing phase: show spinner
-        iconElement.style.display = '';
-        iconElement.classList.add('spinner', 'active');
-      }
+      statusElement.classList.add('status--processing', 'status--has-progress');
+      // Hide spinner completely during processing/merging - text only
+      iconElement.style.display = 'none';
       break;
 
     case TaskState.SUCCESS:
-      statusElement.classList.add('status--success');
-      iconElement.classList.add('checkmark');
-      iconElement.textContent = '✓';
-      iconElement.style.display = ''; // Show icon again
+      statusElement.classList.add('status--success', 'status--has-progress');
+      // Keep spinner during the 0.4s fill animation (status bar hides after 400ms anyway)
+      iconElement.style.display = '';
+      iconElement.classList.add('spinner', 'active');
       // Add completing class for fast 0.3s transition to 100%
       statusElement.classList.add('status--completing');
       statusElement.classList.remove('status--no-transition', 'status--merging');
@@ -786,21 +759,15 @@ function clearSearchUrl(): void {
 }
 
 /**
- * Handle Next button click
- * Switches back to search view and clears input
+ * Shared reset logic - switches back to search view and clears all state
+ * Used by both "Start Over" button and "Cancel" button
  */
-async function handleNewConvertButtonClick(): Promise<void> {
-  console.log('[renderConversionStatus] Next button clicked');
-  logEvent('next_button_click');
+function resetToSearchView(): void {
   document.dispatchEvent(new CustomEvent('resetForm'));
 
   // Hide Trustpilot widget on reset
   onReset();
   showHeroFeatureLinks();
-
-  const { showSearchView } = await import('./view-switcher');
-  const { setInputValue, focusInput } = await import('./ui-renderer');
-  const { clearYouTubePreview } = await import('../state');
 
   // Switch to search view
   showSearchView();
@@ -816,6 +783,16 @@ async function handleNewConvertButtonClick(): Promise<void> {
 
   // Focus input for better UX
   focusInput();
+}
+
+/**
+ * Handle Next button click
+ * Switches back to search view and clears input
+ */
+function handleNewConvertButtonClick(): void {
+  console.log('[renderConversionStatus] Next button clicked');
+  logEvent('next_button_click');
+  resetToSearchView();
 }
 
 // ============================================================

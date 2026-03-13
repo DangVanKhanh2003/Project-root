@@ -18,5 +18,8 @@ export * from './ripple-effect';
 // YouTube utilities
 export * from './youtube';
 
+// URL detection utilities
+export * from './url-detection';
+
 // Platform detection utilities
 export * from './platform-detection';

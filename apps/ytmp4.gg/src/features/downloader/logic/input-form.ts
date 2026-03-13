@@ -40,12 +40,14 @@ import { navigateToVideo } from '../routing/url-manager';
 import { setVideoPageSEO } from '../routing/seo-manager';
 import { showResultView } from '../ui-render/view-switcher';
 import { MaterialPopup } from '../../../ui-components/material-popup/material-popup';
-import { getUrlRedirectTarget } from '@downloader/core';
+import { getUrlRedirectTarget, looksLikeUrl } from '@downloader/core';
 import { evaluateFeatureAccess } from '../../allowed-features';
-import { show as showPaywall } from 'https://media.ytmp3.gg/poppurchase.v3.js?v=1';
+import { show as showPaywall } from 'https://media.ytmp3.gg/poppurchase.v3.js?v=5';
 import { checkLimit } from '../../download-limit';
 import { FEATURE_KEYS, FEATURE_ACCESS_REASONS } from '@downloader/core';
 import { hideHeroFeatureLinks } from '../../hero-feature-links';
+import { startConversion } from './conversion';
+import { preloadTrustpilotWidget } from '../../trustpilot/trustpilot-widget';
 
 
 /**
@@ -381,8 +383,6 @@ export async function handleAutoDownload(
 
     // Trigger conversion with built formatData
     console.log('[Auto-Download] Triggering conversion...');
-    const { startConversion } = await import('./conversion');
-
     await startConversion({
       formatId,
       videoUrl: url,
@@ -474,8 +474,18 @@ export function initInputForm(): boolean {
     return false;
   }
 
+  // Preload Trustpilot resources on first submit only
+  let trustpilotPreloaded = false;
+  const preloadTrustpilotOnce = (event: Event) => {
+    if (event && (event as any).isTrusted === false) return;
+    if (trustpilotPreloaded) return;
+    trustpilotPreloaded = true;
+    preloadTrustpilotWidget();
+  };
+
   // Attach event listeners
   form.addEventListener('submit', handleSubmit);
+  form.addEventListener('submit', preloadTrustpilotOnce, { capture: true });
 
   // Enable submit button now that preventDefault handler is attached
   const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
@@ -556,8 +566,8 @@ function handleInput(event: Event): void {
   const hasContent = value.length > 0;
   updateButtonVisibility(hasContent);
 
-  // Detect input type (simple version)
-  const isUrl = value.startsWith('http://') || value.startsWith('https://');
+  // Detect input type (handles URLs with or without protocol prefix)
+  const isUrl = looksLikeUrl(value);
   setInputType(isUrl ? 'url' : 'keyword');
 
   // Clear suggestions completely when typing URL
@@ -871,24 +881,25 @@ async function handleSubmit(event: Event): Promise<void> {
   clearSuggestions();          // Clear suggestions completely (array + state + flags)
   setLoading(true);
 
-  // Check feature access early before playlist prompt or extraction
-  const access = evaluateFeatureAccess('download_single');
-  if (!access.allowed) {
-    setLoading(false);
-    if (access.reason === FEATURE_ACCESS_REASONS.GEO_RESTRICTED) {
-      showPaywall();
-    } else {
-      showPaywall();
-    }
-    setSubmitting(false);
-    return;
-  }
-
-  // Get input type to show appropriate skeleton
-  const state = getState();
+  // Re-detect input type from actual value (don't rely on state which may be stale)
+  const isUrl = looksLikeUrl(value);
+  setInputType(isUrl ? 'url' : 'keyword');
 
   try {
-    if (state.inputType === 'url') {
+    if (isUrl) {
+      // Check feature access before download (only for URL, not keyword search)
+      const access = evaluateFeatureAccess('download_single');
+      if (!access.allowed) {
+        setLoading(false);
+        if (access.reason === FEATURE_ACCESS_REASONS.GEO_RESTRICTED) {
+          showPaywall();
+        } else {
+          showPaywall();
+        }
+        setSubmitting(false);
+        return;
+      }
+
       const redirectTarget = getUrlRedirectTarget(value);
       if (redirectTarget) {
         setLoading(false);
@@ -896,7 +907,9 @@ async function handleSubmit(event: Event): Promise<void> {
         if (go) {
           window.location.href = redirectTarget === 'channel'
             ? '/download-youtube-channel'
-            : '/multi-youtube-downloader';
+            : redirectTarget === 'playlist'
+              ? '/download-youtube-playlist'
+              : '/multi-youtube-downloader';
           return;
         }
         setLoading(true);
@@ -1045,6 +1058,10 @@ export async function handleExtractMedia(
         const audioQuality = state.audioFormat === 'mp3' ? (state.audioBitrate || undefined) : '128';
         navigateToVideo(videoId, { format: state.audioFormat || 'mp3', quality: audioQuality, audioTrack: urlAudioTrack });
       }
+
+      // Clean query params from URL after pushState — reload will go to home, back still works
+      const basePath = window.location.pathname.replace(/\/$/, '') || '/';
+      history.replaceState({ type: 'home' }, '', basePath);
     }
 
     // ✅ Update SEO meta tags (noindex for result pages)

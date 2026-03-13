@@ -360,7 +360,7 @@ main {
 /* ===== HERO SECTION ===== */
 .hero-section {
   width: 100%;
-  padding: 5rem 1rem;
+  padding: 5rem 12px;
   padding-bottom: 4rem;
   display: flex;
   justify-content: center;
@@ -690,7 +690,7 @@ select:disabled {
 .container {
   max-width: 950px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 12px;
 }
 
 /* ===== SEARCH RESULTS ===== */
@@ -703,6 +703,12 @@ select:disabled {
 /* Ensure search result cards fill grid cells properly */
 .search-result-card {
   width: 100%;
+  background: #f5f5f5;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.search-result-card .card-title {
+  color: #000;
 }
 
 /* ===== SUGGESTION DROPDOWN ===== */

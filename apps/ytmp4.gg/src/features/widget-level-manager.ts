@@ -8,6 +8,7 @@
 
 import {
     showTrustpilotWidget,
+    showTrustpilotCard,
     hideTrustpilotWidget
 } from './trustpilot/trustpilot-widget';
 import {

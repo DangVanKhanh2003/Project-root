@@ -38,6 +38,12 @@
   gap: 8px;
 }
 
+@media (max-width: 768px) {
+  .yt-preview-card.skeleton .yt-preview-format {
+    justify-content: center;
+  }
+}
+
 .yt-preview-card.skeleton .yt-preview-thumbnail,
 .yt-preview-card.skeleton .skeleton-line {
   background: linear-gradient(90deg,
@@ -76,8 +82,9 @@
 
 .yt-preview-thumbnail {
   height: 100px;
+  min-height: 100px;
   width: 133px;
-  aspect-ratio: 48 / 36;
+  min-width: 133px;
   flex-shrink: 0;
   overflow: hidden;
   border-radius: 6px;
@@ -85,8 +92,8 @@
 }
 
 .yt-preview-thumbnail img {
-  width: 100%;
   height: 100%;
+  width: auto;
   object-fit: cover;
   display: block;
 }
@@ -148,8 +155,8 @@
   padding: 0 0.5rem;
   border-radius: 4px;
   box-sizing: border-box;
-  background: var(--color-primary, var(--primary-color));
-  color: var(--color-white);
+  background: var(--meta-badge-bg);
+  color: var(--meta-badge-color);
   font-size: 0.6875rem;
   font-weight: 600;
   letter-spacing: 0.02em;
@@ -286,7 +293,9 @@
 
   .yt-preview-thumbnail {
     height: 140px;
+    min-height: 140px;
     width: 187px;
+    min-width: 187px;
   }
 
   .yt-preview-details {
@@ -325,7 +334,9 @@
 
   .yt-preview-thumbnail {
     height: 150px;
+    min-height: 150px;
     width: 200px;
+    min-width: 200px;
   }
 
   .yt-preview-details {
@@ -364,7 +375,9 @@
 
   .yt-preview-thumbnail {
     height: 200px;
+    min-height: 200px;
     width: 267px;
+    min-width: 267px;
   }
 
   .yt-preview-details {
@@ -403,7 +416,9 @@
 
   .yt-preview-thumbnail {
     height: 200px;
+    min-height: 200px;
     width: 267px;
+    min-width: 267px;
   }
 
   .yt-preview-details {
@@ -430,3 +445,4 @@
     padding: 0 0.9rem;
   }
 }
+

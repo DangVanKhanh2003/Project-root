@@ -165,8 +165,47 @@
    Skeleton Loading State
    ========================================== */
 
-/* Skeleton styles moved to @downloader/ui-components/PreviewCardSkeleton */
-/* Import via: import { createPreviewCardSkeleton } from '@downloader/ui-components' */
+.yt-preview-card.skeleton {
+  box-shadow: none;
+}
+
+.yt-preview-card.skeleton .yt-preview-details {
+  gap: 0.5rem;
+}
+
+.yt-preview-card.skeleton .yt-preview-meta {
+  row-gap: 8px;
+}
+
+.yt-preview-card.skeleton .yt-preview-format {
+  gap: 8px;
+}
+
+@media (max-width: 600px) {
+  .yt-preview-card.skeleton .yt-preview-format {
+    justify-content: center;
+  }
+}
+
+.yt-preview-card.skeleton .yt-preview-thumbnail,
+.yt-preview-card.skeleton .skeleton-line {
+  background: linear-gradient(90deg,
+      var(--color-skeleton-dark) 25%,
+      var(--color-skeleton-light) 50%,
+      var(--color-skeleton-dark) 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s linear infinite;
+}
+
+.yt-preview-card.skeleton .skeleton-line.skeleton-title {
+  width: 80%;
+  height: 16px;
+}
+
+.yt-preview-card.skeleton .skeleton-line.skeleton-author {
+  width: 48%;
+  height: 14px;
+}
 
 /* ==========================================
    Responsive Design
@@ -178,7 +217,7 @@
     flex-direction: column;
     gap: 16px;
     padding: 16px;
-    min-height: 280px;
+    min-height: 290px;
   }
 
   .yt-preview-thumbnail {

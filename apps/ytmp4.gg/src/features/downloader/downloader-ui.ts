@@ -19,14 +19,12 @@ import type { AudioFormatType } from './state/types';
 
 import { setupUrlSync } from './routing/url-sync';
 import { handleVideoRoute } from './logic/route-init';
-import { preloadTrustpilotWidget } from '../trustpilot/trustpilot-widget';
 
 /**
  * Initialize downloader UI
  */
 export async function init(): Promise<void> {
   // Step 0: Initialize shared services
-  preloadTrustpilotWidget();
   scrollManager.setHeaderConfig({ isFixed: false, height: 0 });
   scrollManager.init();
 

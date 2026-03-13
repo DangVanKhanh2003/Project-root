@@ -4,6 +4,7 @@
  */
 
 import { api, coreServices } from '../../../api';
+import { looksLikeUrl } from '@downloader/core';
 import { scrollManager } from '@downloader/ui-shared';
 import {
   getState,
@@ -227,8 +228,8 @@ function handleInput(event: Event): void {
   const hasContent = value.length > 0;
   updateButtonVisibility(hasContent);
 
-  // Detect input type (simple version)
-  const isUrl = value.startsWith('http://') || value.startsWith('https://');
+  // Detect input type (handles URLs with or without protocol prefix)
+  const isUrl = looksLikeUrl(value);
   setInputType(isUrl ? 'url' : 'keyword');
 
   // Clear suggestions completely when typing URL
@@ -534,12 +535,13 @@ async function handleSubmit(event: Event): Promise<void> {
   clearSuggestions();          // Clear suggestions completely (array + state + flags)
   setLoading(true);
 
-  // Get input type to show appropriate skeleton
-  const state = getState();
+  // Re-detect input type from actual value (don't rely on state which may be stale)
+  const isUrl = looksLikeUrl(value);
+  setInputType(isUrl ? 'url' : 'keyword');
 
   try {
     // Show appropriate skeleton based on input type
-    if (state.inputType === 'url') {
+    if (isUrl) {
       // showLoading('detail');
     } else {
       showLoading('list');
@@ -549,7 +551,7 @@ async function handleSubmit(event: Event): Promise<void> {
 
 
     // Execute the appropriate action
-    if (state.inputType === 'url') {
+    if (isUrl) {
       await handleExtractMedia(value);
     } else {
       await handleSearch(value);
@@ -594,6 +596,10 @@ async function handleExtractMedia(url: string): Promise<void> {
 
     // ✅ Push URL to browser history (enables back navigation)
     navigateToVideo(videoId);
+
+    // Clean query params from URL after pushState — reload will go to home, back still works
+    const basePath = window.location.pathname.replace(/\/$/, '') || '/';
+    history.replaceState({ type: 'home' }, '', basePath);
 
     // ✅ Update SEO meta tags (noindex for result pages)
     setVideoPageSEO();

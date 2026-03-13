@@ -7,7 +7,7 @@ npm run
 
 .main-content {
     width: 100%;
-    padding: 20px 20px 20px 32px;
+    padding: 20px 0px 32px 0px;
     box-sizing: border-box;
     scroll-margin-top: 24px;
     display: flex;
@@ -19,9 +19,8 @@ npm run
 
 @media (max-width: 599px) {
     .main-content {
-        padding-left: 12px;
-        padding-right: 12px;
-        padding-top: 20px;
+
+        padding-top: 10px;
     }
 }
 
@@ -70,7 +69,7 @@ npm run
     }
 }
 
-.main-content>.main-content-card {
+.main-content .main-content-card {
     background: var(--main-content-bg);
     border-radius: 12px;
     padding: clamp(12px, 2.5vw, 24px);
@@ -87,25 +86,25 @@ npm run
 
 }
 
-.main-content>.main-content-card.container {
+.main-content .main-content-card.container {
     padding-top: clamp(12px, 2.5vw, 24px);
     padding-bottom: clamp(12px, 2.5vw, 24px);
 }
 
 @media (min-width: 351px) {
-    .main-content>.main-content-card {
+    .main-content .main-content-card {
         max-width: var(--main-content-max-width-sm) !important;
         padding: clamp(16px, 2.5vw, 24px);
     }
 }
 
 @media (min-width: 600px) {
-    .main-content>.main-content-card {
+    .main-content .main-content-card {
         max-width: var(--main-content-max-width-md) !important;
     }
 
     .main-content {
-        padding: 28px 18px;
+        padding: 28px 0px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -114,7 +113,7 @@ npm run
 }
 
 @media (min-width: 840px) {
-    .main-content>.main-content-card {
+    .main-content .main-content-card {
         max-width: var(--main-content-max-width-lg) !important;
         padding: clamp(20px, 2vw, 28px);
         margin-top: 45px;
@@ -122,7 +121,7 @@ npm run
     }
 
     .main-content {
-        padding: 20px 20px 32px 20px;
+        padding: 20px 0px 32px 0px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -131,21 +130,21 @@ npm run
 }
 
 @media (min-width: 1240px) {
-    .main-content>.main-content-card {
+    .main-content .main-content-card {
         max-width: var(--main-content-max-width-xl) !important;
         padding: clamp(24px, 2vw, 32px);
     }
 }
 
 @media (min-width: 1920px) {
-    .main-content>.main-content-card {
+    .main-content .main-content-card {
         max-width: var(--main-content-max-width-2xl) !important;
         padding: 28px;
     }
 }
 
 @media (min-width: 2560px) {
-    .main-content>.main-content-card {
+    .main-content .main-content-card {
         max-width: var(--main-content-max-width-3xl) !important;
         padding: 32px;
     }
@@ -256,15 +255,14 @@ npm run
 /* Normalize container utility on this section so card controls width */
 .seo-section.container {
     max-width: 100%;
-    padding-left: 0;
-    padding-right: 0;
+
 }
 
 /* Base spacing for each section */
 .seo-section,
 .content-section.content-section--white {
     width: 100%;
-    padding: 24px 12px;
+    padding: 24px 0px;
     box-sizing: border-box;
     scroll-margin-top: 24px;
     display: flex;
@@ -306,7 +304,7 @@ npm run
 
     .seo-section,
     .content-section.content-section--white {
-        padding: 28px 18px;
+        padding: 28px 0px;
     }
 }
 
@@ -321,7 +319,7 @@ npm run
 
     .seo-section,
     .content-section.content-section--white {
-        padding: 32px 20px;
+        padding: 32px 0px;
     }
 }
 

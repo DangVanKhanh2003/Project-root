@@ -371,31 +371,18 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
       // Force browser reflow to apply instant reset
       void statusElement.offsetWidth;
 
-      // Setup for CSS @keyframes animation (0%→50% in 20s, 50%→98% in 30s)
-      requestAnimationFrame(() => {
-        // Re-check completion just in case (though unlikely in this frame)
-        if (statusContainer.dataset.completionState) return;
+      // Remove no-transition, add merging class, start JS estimator
+      statusElement.classList.remove('status--no-transition');
+      statusElement.classList.add('status--merging');
+      transitionInProgress.set(formatId, false);
 
-        // 1. Reset progress to 0% so animation starts from 0
-        statusContainer.style.setProperty('--progress-width', '0%');
-
-        // 2. Remove no-transition, add merging class (triggers animation)
-        statusElement.classList.remove('status--no-transition');
-        statusElement.classList.add('status--merging');
-        transitionInProgress.set(formatId, false);
-
-        // 3. Update text
+      // Start estimator to drive progress bar via JS (matching ytmp3.gg pattern)
+      const estimator = getMergingEstimator(formatId);
+      estimator.start((p) => {
+        statusContainer.style.setProperty('--progress-width', `${p}%`);
         if (statusTextElement) {
-          statusTextElement.textContent = 'Merging...';
+          statusTextElement.textContent = `Merging... ${p}%`;
         }
-
-        // 4. Mark estimator as running for complete() to work
-        const estimator = getMergingEstimator(formatId);
-        estimator.start((p) => {
-          if (statusTextElement) {
-            statusTextElement.textContent = `Merging... ${p}%`;
-          }
-        });
       });
     });
 
@@ -439,19 +426,10 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
     }
   }
 
-  // Update progress fill background
-  const currentWidth = statusContainer.style.getPropertyValue('--progress-width') || '0%';
-
-  // During merging phase, don't update progress (already at 0% after transition)
+  // Update progress fill background width
+  // During merging phase, don't update progress (estimator handles it)
   if (!isMergingPhase) {
-    // If jumping from 0% to 100%, use requestAnimationFrame to ensure browser paints 0% first
-    if (progress === 100 && (currentWidth === '0%' || currentWidth === '')) {
-      requestAnimationFrame(() => {
-        statusContainer.style.setProperty('--progress-width', `${progress}%`);
-      });
-    } else {
-      statusContainer.style.setProperty('--progress-width', `${progress}%`);
-    }
+    statusContainer.style.setProperty('--progress-width', `${progress}%`);
   }
 
   // Remove all state classes
@@ -463,13 +441,14 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
   switch (task.state) {
     case TaskState.EXTRACTING:
       statusElement.classList.add('status--extracting');
+      statusElement.classList.remove('status--has-progress');
       iconElement.classList.add('spinner', 'active');
       break;
 
     case TaskState.PROCESSING:
     case TaskState.DOWNLOADING:
     case TaskState.POLLING:
-      statusElement.classList.add('status--processing');
+      statusElement.classList.add('status--processing', 'status--has-progress');
       if (isMergingPhase) {
         // Merging phase: hide spinner (status--merging class added in transition handler)
         iconElement.style.display = 'none';
@@ -481,7 +460,7 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
       break;
 
     case TaskState.SUCCESS:
-      statusElement.classList.add('status--success');
+      statusElement.classList.add('status--success', 'status--has-progress');
       iconElement.classList.add('checkmark');
       iconElement.textContent = '✓';
       iconElement.style.display = ''; // Show icon again

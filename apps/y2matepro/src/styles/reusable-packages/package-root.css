@@ -417,7 +417,7 @@
    --pkg-search-results-card-radius: var(--pkg-radius-sm);
 
    /* Search Results Grid */
-   --pkg-search-results-gap-mobile: 10px;
+   --pkg-search-results-gap-mobile: 12px;
    --pkg-search-results-gap-tablet: var(--pkg-space-3);
 
    /* Search Results Typography */
@@ -426,7 +426,7 @@
    --pkg-search-results-metadata-color: var(--pkg-color-on-surface-variant);
 
    /* Search Results Duration Badge */
-   --pkg-search-results-duration-bg: rgba(0, 0, 0, 0.65);
+   --pkg-search-results-duration-bg: rgba(0, 0, 0, 0.6);
    --pkg-search-results-duration-color: var(--pkg-color-surface);
 
    /* Search Results Retry Button */

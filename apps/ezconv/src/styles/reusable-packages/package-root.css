@@ -421,7 +421,7 @@
   --pkg-search-results-metadata-color: var(--pkg-color-gray-400);
 
   /* Search Results Duration Badge */
-  --pkg-search-results-duration-bg: rgba(0, 0, 0, 0.75);
+  --pkg-search-results-duration-bg: rgba(0, 0, 0, 0.6);
   --pkg-search-results-duration-color: var(--pkg-color-white);
 
   /* Search Results Retry Button */
