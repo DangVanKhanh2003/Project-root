@@ -165,7 +165,6 @@ export function showTrustpilotWidget(): void {
             wrapper.style.alignItems = 'center';
             wrapper.style.justifyContent = 'center';
             wrapper.style.marginTop = '20px';
-            wrapper.style.background = 'rgba(255, 0, 0, 0.3)'; // DEBUG: red bg to spot layout shift
         }
 
         // Move widget into wrapper
@@ -174,11 +173,10 @@ export function showTrustpilotWidget(): void {
             wrapper.appendChild(widget);
         }
 
-        const actionContainer = conversionWrapper.querySelector('#action-container');
-        if (actionContainer && actionContainer.parentNode) {
-            actionContainer.parentNode.insertBefore(wrapper, actionContainer.nextSibling);
-        } else {
-            conversionWrapper.appendChild(wrapper);
+        // Place AFTER .conversion-state-wrapper (as sibling), not inside it
+        // This prevents layout shift caused by adding content inside a min-height container
+        if (wrapper.parentNode !== conversionWrapper.parentNode || wrapper.previousElementSibling !== conversionWrapper) {
+            conversionWrapper.insertAdjacentElement('afterend', wrapper);
         }
 
         widget.style.display = 'block';
@@ -223,7 +221,6 @@ export function showTrustpilotCard(anchorElement: HTMLElement | null): void {
         wrapper.style.alignItems = 'center';
         wrapper.style.justifyContent = 'center';
         wrapper.style.marginTop = '10px';
-        wrapper.style.background = 'rgba(0, 0, 255, 0.3)'; // DEBUG: blue bg to spot layout shift
     }
 
     // Move widget into wrapper

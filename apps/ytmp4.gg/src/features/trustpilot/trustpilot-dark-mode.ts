@@ -22,7 +22,6 @@ function ensureDarkModeStyles(): void {
             width: 100%;
             display: flex;
             justify-content: center;
-            background: rgba(0, 255, 0, 0.3); /* DEBUG: green bg to spot layout shift */
         }
         .tp-dark-shell {
             width: 100%;
@@ -127,11 +126,10 @@ export function showDarkTrustpilotWidget(): void {
         wrapper.appendChild(widget);
     }
 
-    const actionContainer = conversionWrapper.querySelector('#action-container');
-    if (actionContainer && actionContainer.parentNode) {
-        actionContainer.parentNode.insertBefore(wrapper, actionContainer.nextSibling);
-    } else {
-        conversionWrapper.appendChild(wrapper);
+    // Place AFTER .conversion-state-wrapper (as sibling), not inside it
+    // This prevents layout shift caused by adding content inside a min-height container
+    if (wrapper.parentNode !== conversionWrapper.parentNode || wrapper.previousElementSibling !== conversionWrapper) {
+        conversionWrapper.insertAdjacentElement('afterend', wrapper);
     }
 }
 
