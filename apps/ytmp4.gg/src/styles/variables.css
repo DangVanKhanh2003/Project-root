@@ -104,6 +104,12 @@
     --multi-list-group-action-disabled-text: var(--brand);
     --multi-list-group-action-disabled-opacity: 0.6;
 
+    /* Tooltip */
+    --color-tooltip-bg: var(--text-heading);
+    --color-tooltip-text: #ffffff;
+    --color-tooltip-border: transparent;
+    --color-tooltip-arrow: var(--text-heading);
+
     /* Animated border: RGB only (for conic-gradient trick) */
     --input-border-glow-rgb: 198, 93, 59;
     --input-glow-radial-rgb: 198, 93, 59;
@@ -308,6 +314,12 @@
     --multi-list-group-action-disabled-bg: var(--accent-fill-soft);
     --multi-list-group-action-disabled-text: var(--brand);
     --multi-list-group-action-disabled-opacity: 1;
+
+    /* Tooltip */
+    --color-tooltip-bg: #2a2a2c;
+    --color-tooltip-text: #ffffff;
+    --color-tooltip-border: rgba(255, 255, 255, 0.08);
+    --color-tooltip-arrow: #2a2a2c;
 
     --meta-badge-bg: #14141394;
     --meta-badge-color: #d6d4cf;

@@ -532,6 +532,7 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
     justify-content: space-between;
     width: 100%;
     padding: 0px 10px 15px 15px;
+    position: relative;
     background: var(--multi-list-bg-card);
     border-bottom: 1px solid var(--multi-list-border-muted);
 
@@ -565,14 +566,61 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
     min-width: 160px
 }
 
-.group-download-btn:hover:not(:disabled) {
+.group-download-btn:hover:not(.is-disabled) {
     background: var(--color-primary);
 }
 
-.group-download-btn:disabled {
-    opacity: 0.6;
+.group-download-btn.is-disabled {
     cursor: not-allowed;
-    background: var(--status-pending-color);
+    background: var(--status-pending-color) !important;
+    position: relative;
+    overflow: visible;
+}
+
+.group-download-btn.is-disabled:hover,
+.group-download-btn.is-disabled:active {
+    background: var(--status-pending-color) !important;
+}
+
+/* Tooltip for disabled batch download button */
+.group-download-btn.is-disabled::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-tooltip-bg);
+    color: var(--color-tooltip-text);
+    border: 1px solid var(--color-tooltip-border);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s;
+    z-index: 9999;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.group-download-btn.is-disabled::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-bottom-color: var(--color-tooltip-arrow);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s;
+    z-index: 9999;
+}
+
+.group-download-btn.is-disabled:hover::after,
+.group-download-btn.is-disabled:hover::before {
+    opacity: 1;
 }
 
 .btn-icon-zip {
@@ -1500,7 +1548,7 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
     border: 1px solid var(--multi-list-border-soft);
     border-radius: 16px;
     margin-bottom: 2rem;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .playlist-group.collapsed .group-items {
@@ -1683,6 +1731,9 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
     background: var(--multi-list-bg-subtle);
     border: none;
     border-bottom: 1px solid var(--multi-list-border-muted);
+    border-radius: 16px 16px 0 0;
+    position: relative;
+    z-index: 1;
 }
 
 .group-header-top-row {
@@ -1726,6 +1777,8 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
     justify-content: center;
     padding: 12px 16px;
     background: var(--multi-list-bg-subtle);
+    border-radius: 0 0 16px 16px;
+    overflow: hidden;
 }
 
 .btn-load-more-group {
@@ -1768,6 +1821,7 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    position: relative;
 }
 
 .group-selection-label {
@@ -1796,6 +1850,14 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
     pointer-events: none;
 }
 
+.checkbox-hand-guide {
+    position: absolute;
+    top: 18px;
+    left: -20px;
+    z-index: 9999;
+    pointer-events: none;
+}
+
 .btn-playlist-group-action {
     background: var(--multi-list-group-btn-bg);
     color: var(--multi-list-group-btn-text);
@@ -1813,24 +1875,31 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
     min-width: 178px;
 }
 
-.btn-playlist-group-action:hover:not(:disabled) {
+.btn-playlist-group-action:hover:not(.is-disabled) {
     background: var(--multi-list-group-btn-hover-bg);
     border: none;
     color: var(--multi-list-group-btn-hover-text);
 }
 
-.btn-playlist-group-action:not(.btn-success):active:not(:disabled),
-.btn-playlist-group-action:not(.btn-success).is-active:not(:disabled) {
+.btn-playlist-group-action:not(.btn-success):active:not(.is-disabled),
+.btn-playlist-group-action:not(.btn-success).is-active:not(.is-disabled) {
     background: var(--multi-list-group-btn-active-bg);
     color: var(--multi-list-group-btn-active-text);
 }
 
-.btn-playlist-group-action:disabled {
+/* Disabled state — no opacity to avoid dimming pseudo-element tooltips */
+.btn-playlist-group-action.is-disabled {
     cursor: not-allowed;
     background: var(--multi-list-group-btn-disabled-bg);
     border: none;
     color: var(--multi-list-group-btn-disabled-text);
-    opacity: var(--multi-list-group-btn-disabled-opacity);
+    position: relative;
+    overflow: visible;
+}
+
+.btn-playlist-group-action.is-disabled:hover,
+.btn-playlist-group-action.is-disabled:active {
+    background: var(--multi-list-group-btn-disabled-bg);
 }
 
 .btn-playlist-group-action.btn-success {
@@ -1839,16 +1908,62 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
     color: #ffffff;
 }
 
-.btn-playlist-group-action.btn-success:hover:not(:disabled) {
+.btn-playlist-group-action.btn-success:hover:not(.is-disabled) {
     background: #16a34a;
     border: none;
     color: #ffffff;
 }
 
-.btn-playlist-group-action.btn-success:disabled {
+.btn-playlist-group-action.btn-success.is-disabled {
     background: var(--status-success-bg, #dcfce7);
     border: none;
     color: var(--status-success-color, #166534);
+    opacity: 1;
+}
+
+.btn-playlist-group-action.btn-success.is-disabled:hover,
+.btn-playlist-group-action.btn-success.is-disabled:active {
+    background: var(--status-success-bg, #dcfce7);
+}
+
+/* Tooltip for disabled group buttons */
+.btn-playlist-group-action.is-disabled::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-tooltip-bg);
+    color: var(--color-tooltip-text);
+    border: 1px solid var(--color-tooltip-border);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s;
+    z-index: 9999;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.btn-playlist-group-action.is-disabled::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-bottom-color: var(--color-tooltip-arrow);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s;
+    z-index: 9999;
+}
+
+.btn-playlist-group-action.is-disabled:hover::after,
+.btn-playlist-group-action.is-disabled:hover::before {
     opacity: 1;
 }
 
@@ -1888,6 +2003,11 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
     -webkit-overflow-scrolling: touch;
     overscroll-behavior-y: contain;
     will-change: scroll-position;
+    border-radius: 0 0 16px 16px;
+}
+
+.group-items:has(~ .group-load-more:not([style*="display: none"])) {
+    border-radius: 0;
 }
 
 .group-items::-webkit-scrollbar {

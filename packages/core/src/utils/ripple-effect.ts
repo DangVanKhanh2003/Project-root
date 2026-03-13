@@ -1,5 +1,7 @@
 export function addRippleEffect(element: HTMLElement): void {
   element.addEventListener('click', function (event: MouseEvent) {
+    if (this.classList.contains('is-disabled')) return;
+
     const oldRipple = this.querySelector('.ripple');
     if (oldRipple) {
       oldRipple.remove();
