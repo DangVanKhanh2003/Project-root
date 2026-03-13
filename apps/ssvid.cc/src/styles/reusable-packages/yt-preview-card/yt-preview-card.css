@@ -181,6 +181,12 @@
   gap: 8px;
 }
 
+@media (max-width: 600px) {
+  .yt-preview-card.skeleton .yt-preview-format {
+    justify-content: center;
+  }
+}
+
 .yt-preview-card.skeleton .yt-preview-thumbnail,
 .yt-preview-card.skeleton .skeleton-line {
   background: linear-gradient(90deg,
@@ -211,7 +217,7 @@
     flex-direction: column;
     gap: 16px;
     padding: 16px;
-    min-height: 280px;
+    min-height: 290px;
   }
 
   .yt-preview-thumbnail {
