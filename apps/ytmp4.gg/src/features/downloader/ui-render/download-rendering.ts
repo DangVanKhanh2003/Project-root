@@ -228,7 +228,7 @@ function startExtractingRotator(formatId: string, statusContainer: HTMLElement) 
   const interval = window.setInterval(() => {
     const startTime = extractingStartTimes.get(formatId) || Date.now();
     const elapsed = Date.now() - startTime;
-    const msgIndex = Math.floor(elapsed / 2000) % EXTRACTING_MESSAGES.length;
+    const msgIndex = Math.floor(elapsed / 4000) % EXTRACTING_MESSAGES.length;
 
     // Check if element still exists
     try {
@@ -463,7 +463,7 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
       // Immediate update
       const startTime = extractingStartTimes.get(formatId) || Date.now();
       const elapsed = Date.now() - startTime;
-      const msgIndex = Math.floor(elapsed / 2000) % EXTRACTING_MESSAGES.length;
+      const msgIndex = Math.floor(elapsed / 4000) % EXTRACTING_MESSAGES.length;
       statusTextElement.textContent = EXTRACTING_MESSAGES[msgIndex];
     } else {
       // Stop rotator if running
@@ -498,19 +498,20 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
   switch (task.state) {
     case TaskState.EXTRACTING:
       statusElement.classList.add('status--extracting');
+      statusElement.classList.remove('status--has-progress');
       iconElement.classList.add('spinner', 'active');
       break;
 
     case TaskState.PROCESSING:
     case TaskState.DOWNLOADING:
     case TaskState.POLLING:
-      statusElement.classList.add('status--processing');
+      statusElement.classList.add('status--processing', 'status--has-progress');
       // Hide spinner completely during processing/merging - text only
       iconElement.style.display = 'none';
       break;
 
     case TaskState.SUCCESS:
-      statusElement.classList.add('status--success');
+      statusElement.classList.add('status--success', 'status--has-progress');
       // Keep spinner during the 0.4s fill animation (status bar hides after 400ms anyway)
       iconElement.style.display = '';
       iconElement.classList.add('spinner', 'active');

@@ -70,7 +70,6 @@
   transform: scaleX(var(--progress-scale, 0));
   transform-origin: left center;
   transition: transform 0.1s ease;
-  will-change: transform;
   z-index: 1;
   display: none;
 }
