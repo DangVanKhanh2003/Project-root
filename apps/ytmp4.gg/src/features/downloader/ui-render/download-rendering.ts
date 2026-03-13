@@ -264,7 +264,7 @@ function smoothTransitionTo100(
   }
 
   // Always set to 100% first (so UI displays it)
-  statusContainer.style.setProperty('--progress-scale', '1');
+  statusContainer.style.setProperty('--progress-width', '100%');
 
   // Then delay 400ms for user to see 100%, then callback
   setTimeout(callback, totalDelay);
@@ -400,36 +400,23 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
 
       // Temporarily disable transition for instant reset
       statusElement.classList.add('status--no-transition');
-      statusContainer.style.setProperty('--progress-scale', '0');
+      statusContainer.style.setProperty('--progress-width', '0%');
 
       // Force browser reflow to apply instant reset
       void statusElement.offsetWidth;
 
-      // Setup for CSS @keyframes animation (0%→50% in 20s, 50%→98% in 30s)
-      requestAnimationFrame(() => {
-        // Re-check completion just in case (though unlikely in this frame)
-        if (statusContainer.dataset.completionState) return;
+      // Remove no-transition, add merging class, start JS estimator
+      statusElement.classList.remove('status--no-transition');
+      statusElement.classList.add('status--merging');
+      transitionInProgress.set(formatId, false);
 
-        // 1. Reset progress to 0% so animation starts from 0
-        statusContainer.style.setProperty('--progress-scale', '0');
-
-        // 2. Remove no-transition, add merging class (triggers animation)
-        statusElement.classList.remove('status--no-transition');
-        statusElement.classList.add('status--merging');
-        transitionInProgress.set(formatId, false);
-
-        // 3. Update text
+      // Start estimator to drive progress bar via JS (matching ytmp3.gg pattern)
+      const estimator = getMergingEstimator(formatId);
+      estimator.start((p) => {
+        statusContainer.style.setProperty('--progress-width', `${p}%`);
         if (statusTextElement) {
-          statusTextElement.textContent = 'Merging...';
+          statusTextElement.textContent = `Merging... ${p}%`;
         }
-
-        // 4. Mark estimator as running for complete() to work
-        const estimator = getMergingEstimator(formatId);
-        estimator.start((p) => {
-          if (statusTextElement) {
-            statusTextElement.textContent = `Merging... ${p}%`;
-          }
-        });
       });
     });
 
@@ -473,20 +460,10 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
     }
   }
 
-  // Update progress fill background (using scaleX for GPU-accelerated compositing)
-  const currentScale = statusContainer.style.getPropertyValue('--progress-scale') || '0';
-
-  // During merging phase, don't update progress (already at 0 after transition)
+  // Update progress fill background width
+  // During merging phase, don't update progress (estimator handles it)
   if (!isMergingPhase) {
-    const scale = progress / 100;
-    // If jumping from 0 to 1, use requestAnimationFrame to ensure browser paints 0 first
-    if (progress === 100 && (currentScale === '0' || currentScale === '')) {
-      requestAnimationFrame(() => {
-        statusContainer.style.setProperty('--progress-scale', `${scale}`);
-      });
-    } else {
-      statusContainer.style.setProperty('--progress-scale', `${scale}`);
-    }
+    statusContainer.style.setProperty('--progress-width', `${progress}%`);
   }
 
   // Remove all state classes
@@ -527,7 +504,7 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
         clearMergingEstimator(formatId);
       }
       // Set progress to 100%
-      statusContainer.style.setProperty('--progress-scale', '1');
+      statusContainer.style.setProperty('--progress-width', '100%');
       // Cleanup merging phase tracking
       previousMergingPhase.delete(formatId);
       break;
