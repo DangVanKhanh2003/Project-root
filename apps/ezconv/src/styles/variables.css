@@ -70,6 +70,12 @@
     --color-accent-hover: var(--brand-hover);
     --color-accent-dark: rgba(198, 93, 59, 0.12);
 
+    /* Tooltip */
+    --color-tooltip-bg: var(--text-heading);
+    --color-tooltip-text: #ffffff;
+    --color-tooltip-border: transparent;
+    --color-tooltip-arrow: var(--text-heading);
+
     --font-display: 'Anthropic Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-title: 'Anthropic Serif Display', Georgia, 'Times New Roman', serif;
 }
@@ -101,4 +107,10 @@
     /* In dark mode, UI accent = orange */
     --accent-ui: #C65D3B;
     --accent-ui-hover: #B14F2F;
+
+    /* Tooltip */
+    --color-tooltip-bg: #2a2a2c;
+    --color-tooltip-text: #ffffff;
+    --color-tooltip-border: rgba(255, 255, 255, 0.08);
+    --color-tooltip-arrow: #2a2a2c;
 }

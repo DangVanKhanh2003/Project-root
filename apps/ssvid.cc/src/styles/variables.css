@@ -87,6 +87,12 @@
     --status-converting-bg: #fff7ed;
     --status-converting-color: #c2410c;
 
+    /* Tooltip */
+    --color-tooltip-bg: var(--text-heading);
+    --color-tooltip-text: #ffffff;
+    --color-tooltip-border: transparent;
+    --color-tooltip-arrow: var(--text-heading);
+
 }
 
 :root[data-theme="dark"] {
@@ -148,5 +154,11 @@
     --status-converting-color: #C65D3B;
 
     --color-status-error: #E74C3C;
+
+    /* Tooltip */
+    --color-tooltip-bg: #2a2a2c;
+    --color-tooltip-text: #ffffff;
+    --color-tooltip-border: rgba(255, 255, 255, 0.08);
+    --color-tooltip-arrow: #2a2a2c;
 
 }

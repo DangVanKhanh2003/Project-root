@@ -822,7 +822,7 @@ html[data-theme="dark"] .multi-search-input::placeholder {
     padding: 0px 10px 15px 15px;
     background: var(--bg-surface-soft);
     border-bottom: 1px solid var(--border-subtle);
-
+    position: relative;
 }
 
 .header-select-dropdown {
@@ -853,16 +853,67 @@ html[data-theme="dark"] .multi-search-input::placeholder {
     min-width: 160px
 }
 
-.group-download-btn:hover:not(:disabled) {
+.group-download-btn:hover:not(.is-disabled) {
     background: #059669 !important;
     border-color: #047857 !important;
 }
 
-.group-download-btn:disabled {
-    opacity: 0.6;
+.group-download-btn.is-disabled {
     cursor: not-allowed;
     background: #94a3b8 !important;
     border-color: #94a3b8 !important;
+    position: relative;
+    overflow: visible;
+}
+
+.group-download-btn.is-disabled:hover {
+    background: #94a3b8 !important;
+    border-color: #94a3b8 !important;
+}
+
+.group-download-btn.is-disabled:active {
+    transform: none;
+}
+
+/* Tooltip for disabled batch download button */
+.group-download-btn.is-disabled::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-tooltip-bg);
+    color: var(--color-tooltip-text);
+    border: 1px solid var(--color-tooltip-border);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s;
+    z-index: 9999;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.group-download-btn.is-disabled::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-bottom-color: var(--color-tooltip-arrow);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s;
+    z-index: 9999;
+}
+
+.group-download-btn.is-disabled:hover::after,
+.group-download-btn.is-disabled:hover::before {
+    opacity: 1;
 }
 
 .btn-icon-zip {
@@ -1506,7 +1557,7 @@ html[data-theme="dark"] .multi-search-input::placeholder {
     border: none;
     border-radius: 20px;
     margin-bottom: 2rem;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .playlist-group.collapsed .group-items {
@@ -1691,6 +1742,8 @@ html[data-theme="dark"] .multi-search-input::placeholder {
     padding: 10px 15px;
     background: var(--bg-surface-soft);
     border: none;
+    position: relative;
+    z-index: 1;
 }
 
 .group-header-top-row {
@@ -1734,6 +1787,8 @@ html[data-theme="dark"] .multi-search-input::placeholder {
     display: flex;
     justify-content: center;
     padding: 12px 16px;
+    border-radius: 0 0 16px 16px;
+    overflow: hidden;
 }
 
 .btn-load-more-group {
@@ -1776,6 +1831,7 @@ html[data-theme="dark"] .multi-search-input::placeholder {
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    position: relative;
 }
 
 .group-selection-label {
@@ -1813,17 +1869,28 @@ html[data-theme="dark"] .multi-search-input::placeholder {
     min-width: 178px;
 }
 
-.btn-playlist-group-action:hover:not(:disabled) {
+.btn-playlist-group-action:hover:not(.is-disabled) {
     background: var(--brand-hover, #B14F2F);
     border-color: transparent;
 }
 
-.btn-playlist-group-action:disabled {
+.btn-playlist-group-action.is-disabled {
     cursor: not-allowed;
     background: rgba(198, 93, 59, 0.2);
     border-color: rgba(198, 93, 59, 0.25);
     color: rgba(198, 93, 59, 0.75);
-    opacity: 0.8;
+    position: relative;
+    overflow: visible;
+}
+
+.btn-playlist-group-action.is-disabled:hover {
+    background: rgba(198, 93, 59, 0.2);
+    border-color: rgba(198, 93, 59, 0.25);
+    color: rgba(198, 93, 59, 0.75);
+}
+
+.btn-playlist-group-action.is-disabled:active {
+    transform: none;
 }
 
 .btn-playlist-group-action.btn-success {
@@ -1832,9 +1899,58 @@ html[data-theme="dark"] .multi-search-input::placeholder {
     border: none;
 }
 
-.btn-playlist-group-action.btn-success:hover:not(:disabled) {
+.btn-playlist-group-action.btn-success:hover:not(.is-disabled) {
     background: var(--brand-hover, #B14F2F);
     border: none;
+}
+
+/* Tooltip for disabled group buttons */
+.btn-playlist-group-action.is-disabled::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-tooltip-bg);
+    color: var(--color-tooltip-text);
+    border: 1px solid var(--color-tooltip-border);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s;
+    z-index: 9999;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.btn-playlist-group-action.is-disabled::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-bottom-color: var(--color-tooltip-arrow);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s;
+    z-index: 9999;
+}
+
+.btn-playlist-group-action.is-disabled:hover::after,
+.btn-playlist-group-action.is-disabled:hover::before {
+    opacity: 1;
+}
+
+.checkbox-hand-guide {
+    position: absolute;
+    top: 18px;
+    left: -20px;
+    z-index: 9999;
+    pointer-events: none;
 }
 
 html[data-theme="dark"] .btn-playlist-group-action:not(.btn-success) {
@@ -1843,14 +1959,14 @@ html[data-theme="dark"] .btn-playlist-group-action:not(.btn-success) {
     border-color: transparent;
 }
 
-html[data-theme="dark"] .btn-playlist-group-action:not(.btn-success):hover:not(:disabled) {
+html[data-theme="dark"] .btn-playlist-group-action:not(.btn-success):hover:not(.is-disabled) {
     background: var(--brand, #C65D3B);
     color: #ffffff;
     border-color: transparent;
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-html[data-theme="dark"] .btn-playlist-group-action:not(.btn-success):disabled {
+html[data-theme="dark"] .btn-playlist-group-action:not(.btn-success).is-disabled {
     background: #FAF9F5;
     color: #61615F;
     border-color: transparent;
@@ -1864,14 +1980,14 @@ html[data-theme="dark"] .btn-playlist-group-action.btn-success {
     border: none;
 }
 
-html[data-theme="dark"] .btn-playlist-group-action.btn-success:hover:not(:disabled) {
+html[data-theme="dark"] .btn-playlist-group-action.btn-success:hover:not(.is-disabled) {
     background: var(--brand, #C65D3B);
     color: #ffffff;
     border: none;
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-html[data-theme="dark"] .btn-playlist-group-action.btn-success:disabled {
+html[data-theme="dark"] .btn-playlist-group-action.btn-success.is-disabled {
     background: #FAF9F5;
     color: #61615F;
     border-color: transparent;
@@ -1903,12 +2019,12 @@ html[data-theme="light"] .btn-playlist-group-action {
     border-color: transparent;
 }
 
-html[data-theme="light"] .btn-playlist-group-action:hover:not(:disabled) {
+html[data-theme="light"] .btn-playlist-group-action:hover:not(.is-disabled) {
     background: var(--brand-hover, #B14F2F);
     border-color: transparent;
 }
 
-html[data-theme="light"] .btn-playlist-group-action:disabled {
+html[data-theme="light"] .btn-playlist-group-action.is-disabled {
     background: rgba(198, 93, 59, 0.2);
     color: rgba(198, 93, 59, 0.75);
     border-color: rgba(198, 93, 59, 0.25);
@@ -1923,6 +2039,7 @@ html[data-theme="light"] .btn-playlist-group-action:disabled {
 .group-items {
     max-height: 650px;
     overflow-y: scroll;
+    border-radius: 0 0 16px 16px;
 }
 
 .group-items::-webkit-scrollbar {
