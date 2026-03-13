@@ -165,7 +165,6 @@ export function showTrustpilotWidget(): void {
             wrapper.style.alignItems = 'center';
             wrapper.style.justifyContent = 'center';
             wrapper.style.marginTop = '20px';
-            wrapper.style.background = 'rgba(0, 255, 0, 0.3)'; // DEBUG: green - trustpilot wrapper
         }
 
         // Move widget into wrapper

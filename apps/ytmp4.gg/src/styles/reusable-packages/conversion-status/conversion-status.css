@@ -8,7 +8,6 @@
 .conversion-state-wrapper {
   min-height: 113px;
   /* Reserve space for status OR action container (mobile: 40px + 12px margin) */
-  background: rgba(255, 0, 0, 0.2); /* DEBUG: red - conversion-state-wrapper */
 }
 
 @media (min-width: 768px) {
@@ -37,7 +36,7 @@
 /* ===== STATUS BAR ===== */
 .status-container {
   position: relative;
-  background: rgba(0, 0, 255, 0.2) !important; /* DEBUG: blue - status-container */
+  background: var(--color-accent-soft-10, rgba(0, 0, 0, 0.06));
   border: 1px solid var(--status-container-border);
   border-radius: 8px;
   display: flex;
