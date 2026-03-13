@@ -22,6 +22,7 @@ function ensureDarkModeStyles(): void {
             width: 100%;
             display: flex;
             justify-content: center;
+            background: rgba(0, 255, 0, 0.3); /* DEBUG: green bg to spot layout shift */
         }
         .tp-dark-shell {
             width: 100%;

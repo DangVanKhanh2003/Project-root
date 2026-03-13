@@ -165,6 +165,7 @@ export function showTrustpilotWidget(): void {
             wrapper.style.alignItems = 'center';
             wrapper.style.justifyContent = 'center';
             wrapper.style.marginTop = '20px';
+            wrapper.style.background = 'rgba(255, 0, 0, 0.3)'; // DEBUG: red bg to spot layout shift
         }
 
         // Move widget into wrapper
@@ -222,6 +223,7 @@ export function showTrustpilotCard(anchorElement: HTMLElement | null): void {
         wrapper.style.alignItems = 'center';
         wrapper.style.justifyContent = 'center';
         wrapper.style.marginTop = '10px';
+        wrapper.style.background = 'rgba(0, 0, 255, 0.3)'; // DEBUG: blue bg to spot layout shift
     }
 
     // Move widget into wrapper
