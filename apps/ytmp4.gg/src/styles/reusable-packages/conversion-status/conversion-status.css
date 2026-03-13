@@ -54,7 +54,9 @@
 
 /* Progress bar fill - shown during processing and success states
    Uses transform: scaleX() instead of width for GPU-accelerated compositing
-   (width triggers layout recalc every frame → jank on iOS/macOS) */
+   (width triggers layout recalc every frame → jank on iOS/macOS)
+   Hidden by default (display:none) to prevent iOS Safari flash.
+   JS adds .status--has-progress AFTER setting --progress-scale to reveal it. */
 .status--processing::before,
 .status--success::before {
   content: '';
@@ -70,6 +72,12 @@
   transition: transform 0.1s ease;
   will-change: transform;
   z-index: 1;
+  display: none;
+}
+
+/* Show progress bar only when JS has set --progress-scale */
+.status.status--has-progress::before {
+  display: block;
 }
 
 .status--processing::before {
