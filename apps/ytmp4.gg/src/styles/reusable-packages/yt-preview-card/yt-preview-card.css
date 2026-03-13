@@ -82,7 +82,9 @@
 
 .yt-preview-thumbnail {
   height: 100px;
+  min-height: 100px;
   width: 133px;
+  min-width: 133px;
   aspect-ratio: 48 / 36;
   flex-shrink: 0;
   overflow: hidden;
@@ -292,7 +294,9 @@
 
   .yt-preview-thumbnail {
     height: 140px;
+    min-height: 140px;
     width: 187px;
+    min-width: 187px;
   }
 
   .yt-preview-details {
@@ -331,7 +335,9 @@
 
   .yt-preview-thumbnail {
     height: 150px;
+    min-height: 150px;
     width: 200px;
+    min-width: 200px;
   }
 
   .yt-preview-details {
@@ -370,7 +376,9 @@
 
   .yt-preview-thumbnail {
     height: 200px;
+    min-height: 200px;
     width: 267px;
+    min-width: 267px;
   }
 
   .yt-preview-details {
@@ -409,7 +417,9 @@
 
   .yt-preview-thumbnail {
     height: 200px;
+    min-height: 200px;
     width: 267px;
+    min-width: 267px;
   }
 
   .yt-preview-details {

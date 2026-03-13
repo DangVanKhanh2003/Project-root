@@ -554,8 +554,7 @@ export function renderPreviewCard(_data: any): void {
         <img src="${escapeHtml(thumbnail)}"
              alt="${escapeHtml(title)}"
              width="480"
-             height="360"
-             loading="lazy">
+             height="360">
       </div>` : ''}
       <div class="yt-preview-details">
         <h3 class="yt-preview-title">${escapeHtml(title)}</h3>
@@ -627,29 +626,71 @@ export function renderPreviewCard(_data: any): void {
           authorEl.remove();
         }
       } else {
-        // Different thumbnail - full replacement needed
-        existingPreviewCard.outerHTML = previewCardHtml;
+        // Different thumbnail - preload image before swapping to prevent flash on iOS
+        const doReplace = () => {
+          existingPreviewCard.outerHTML = previewCardHtml;
+          finalizePreviewCard();
+        };
+        if (showSourcePreview && thumbnail) {
+          const preloader = new Image();
+          preloader.onload = doReplace;
+          preloader.onerror = doReplace;
+          preloader.src = thumbnail;
+          return; // finalizePreviewCard called in callback
+        }
+        doReplace();
+        return;
       }
     } else {
       // Preview card doesn't exist - insert before wrapper
-      existingWrapper.insertAdjacentHTML('beforebegin', previewCardHtml);
+      const insertBeforeWrapper = () => {
+        existingWrapper.insertAdjacentHTML('beforebegin', previewCardHtml);
+        finalizePreviewCard();
+      };
+      if (showSourcePreview && thumbnail) {
+        const preloader = new Image();
+        preloader.onload = insertBeforeWrapper;
+        preloader.onerror = insertBeforeWrapper;
+        preloader.src = thumbnail;
+        return; // finalizePreviewCard called in callback
+      }
+      insertBeforeWrapper();
+      return;
     }
   } else {
     // First render - create both preview card AND conversion-state-wrapper
-    contentArea.innerHTML = previewCardHtml + createConversionStateWrapper();
+    const doFirstRender = () => {
+      contentArea!.innerHTML = previewCardHtml + createConversionStateWrapper();
+      finalizePreviewCard();
+    };
+    if (showSourcePreview && thumbnail) {
+      const preloader = new Image();
+      preloader.onload = doFirstRender;
+      preloader.onerror = doFirstRender;
+      preloader.src = thumbnail;
+      return; // finalizePreviewCard called in callback
+    }
+    doFirstRender();
+    return;
   }
 
-  // Remove loading class
-  contentArea.classList.remove('showing-loading');
+  finalizePreviewCard();
 
-  // Show content area
-  contentArea.style.display = 'block';
+  function finalizePreviewCard(): void {
+    if (!contentArea) return;
 
-  // Hide search results section
-  hideSearchResultsSection();
+    // Remove loading class
+    contentArea.classList.remove('showing-loading');
 
-  // Switch to result view (show result, hide search)
-  showResultView();
+    // Show content area
+    contentArea.style.display = 'block';
+
+    // Hide search results section
+    hideSearchResultsSection();
+
+    // Switch to result view (show result, hide search)
+    showResultView();
+  }
 }
 
 /**
