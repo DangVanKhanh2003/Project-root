@@ -3,6 +3,7 @@ import { apiV3, v3Config } from '../../../../api/v3';
 import { mapToV3DownloadRequest } from '@downloader/core';
 import { retryWithBackoff, RETRY_CONFIGS, isTimeoutError } from '../conversion/retry-helper';
 import { VideoItemSettings, ProgressPhase } from '../../state/multiple-download-types';
+import { extractMediaInfoFromCreateJob, hasExtractedMediaInfo, type ExtractedMediaInfo } from '../conversion/v3/extract-media-info';
 
 export interface DownloadCallbacks {
     onPhaseChange: (phase: ProgressPhase) => void;
@@ -10,6 +11,7 @@ export interface DownloadCallbacks {
     onComplete: (downloadUrl: string, filename?: string) => void;
     onError: (message: string) => void;
     onAudioTrackInfo?: (languages: string[], changed: boolean) => void;
+    onExtracted?: (info: ExtractedMediaInfo) => void;
 }
 
 export interface DownloadConfig {
@@ -34,13 +36,17 @@ export async function runSingleDownload(config: DownloadConfig): Promise<void> {
     if (signal.aborted) return;
 
     const response: any = (jobResponse && (jobResponse as any).data) ? (jobResponse as any).data : jobResponse;
+    const extractedInfo = extractMediaInfoFromCreateJob(response);
     const statusUrl = response?.statusUrl || jobResponse?.statusUrl;
-    const title = response?.title || jobResponse?.title;
     const audioLanguageChanged = response?.audioLanguageChanged ?? response?.audio_language_changed ?? jobResponse?.audioLanguageChanged;
     const availableAudioLanguages = response?.availableAudioLanguages ?? response?.available_audio_languages ?? jobResponse?.availableAudioLanguages;
 
     if (!statusUrl) {
         throw new Error('No status URL returned');
+    }
+
+    if (callbacks.onExtracted && hasExtractedMediaInfo(extractedInfo)) {
+        callbacks.onExtracted(extractedInfo);
     }
 
     // Report audio track info if available

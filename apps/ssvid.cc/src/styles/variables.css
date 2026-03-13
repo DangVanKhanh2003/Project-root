@@ -48,6 +48,10 @@
     --bg-surface-soft: rgba(0, 79, 171, 0.05);
     --bg-hover: rgba(0, 79, 171, 0.08);
 
+    /* Skeleton tokens */
+    --color-skeleton-dark: #E3E0DA;
+    --color-skeleton-light: #EFECE7;
+
     /* Text tokens */
     --text-heading: #374957;
     --text-body: #374957;
@@ -111,6 +115,10 @@
     --bg-secondary: #262624;
     --bg-surface-soft: #383836;
     --bg-hover: #383836;
+
+    /* Skeleton tokens */
+    --color-skeleton-dark: rgba(255, 255, 255, 0.10);
+    --color-skeleton-light: rgba(255, 255, 255, 0.05);
     --surface-weak: rgba(198, 93, 59, 0.10);
 
     --text-heading: #E8E6E3;

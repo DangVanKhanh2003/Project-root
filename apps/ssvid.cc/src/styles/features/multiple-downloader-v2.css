@@ -1218,30 +1218,36 @@
 
 }
 
-/* Skeleton Loading Animation */
+/* Skeleton Loading Animation — background-position based (matches single download) */
 @keyframes skeleton-loading {
     0% {
-        background-position: 200% 0;
+        background-position: -200% 0;
     }
 
     100% {
-        background-position: -200% 0;
+        background-position: 200% 0;
     }
 }
 
-.skeleton-div {
-    background: linear-gradient(135deg, var(--bg-surface-soft) 25%, var(--bg-card) 50%, var(--bg-surface-soft) 75%);
-    border-radius: 5px;
-    background-size: 200% 100%;
-    animation: skeleton-loading 1.5s infinite;
-}
-
+.skeleton-div,
 .skeleton-box,
 .skeleton-text {
-    background: linear-gradient(135deg, var(--bg-surface-soft) 25%, var(--bg-card) 50%, var(--bg-surface-soft) 75%);
-    border-radius: 5px;
+    margin: 0px !important;
+    background: linear-gradient(90deg, var(--color-skeleton-dark) 25%, var(--color-skeleton-light) 50%, var(--color-skeleton-dark) 75%);
     background-size: 200% 100%;
-    animation: skeleton-loading 1.5s infinite;
+    animation: skeleton-loading 1.5s linear infinite;
+    border-radius: 5px;
+}
+
+.multi-video-item.skeleton-loading .multi-video-thumb,
+.multi-video-item.skeleton-loading .multi-video-thumb .skeleton-box {
+    background: linear-gradient(90deg, var(--color-skeleton-dark) 25%, var(--color-skeleton-light) 50%, var(--color-skeleton-dark) 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s linear infinite;
+}
+
+.multi-video-item.skeleton-loading .multi-video-thumb .skeleton-box {
+    border-radius: inherit;
 }
 
 /* =========================================

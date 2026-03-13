@@ -379,6 +379,41 @@ export async function handleAutoDownload(
       formatId,
       videoUrl: url,
       videoTitle,
+      onExtracted: (info) => {
+        const currentState = getState();
+        const currentPreview = currentState.youtubePreview;
+
+        if (!currentPreview) {
+          setYouTubePreview({
+            videoId: '',
+            title: info.title?.trim() || url,
+            author: '',
+            thumbnail: info.thumbnail?.trim() || '',
+            url,
+            isLoading: false,
+          });
+          renderPreviewCard(null);
+          return;
+        }
+
+        const nextTitle = info.title?.trim() || currentPreview.title;
+        const nextThumbnail = info.thumbnail?.trim() || currentPreview.thumbnail;
+
+        const shouldUpdate =
+          nextTitle !== currentPreview.title ||
+          nextThumbnail !== currentPreview.thumbnail ||
+          currentPreview.isLoading;
+
+        if (!shouldUpdate) return;
+
+        setYouTubePreview({
+          ...currentPreview,
+          title: nextTitle,
+          thumbnail: nextThumbnail,
+          isLoading: false,
+        });
+        renderPreviewCard(null);
+      },
       extractV2Options: formatData.extractV2Options || {}
     });
 
@@ -1028,6 +1063,12 @@ export async function handleExtractMedia(
 
       // Delay 1s before update (UX smoothness)
       await new Promise(resolve => setTimeout(resolve, isYouTube ? 1000 : 0));
+
+      // Keep skeleton for non-YouTube in auto-download flow.
+      // Preview card will be filled by onExtracted callback after API create-job returns metadata.
+      if (!isYouTube && autoDownload) {
+        return;
+      }
 
       setYouTubePreview({
         videoId: videoId || '',

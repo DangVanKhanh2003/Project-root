@@ -29,7 +29,7 @@ import { getErrorMessage } from './v3/error-messages';
 
 // Retry helper
 import { retryWithBackoff, RETRY_CONFIGS } from './retry-helper';
-import { debug } from 'console';
+import { extractMediaInfoFromCreateJob, hasExtractedMediaInfo } from './v3/extract-media-info';
 
 // Debug logger
 const LOG_PREFIX = '[ConvertLogicV3]';
@@ -40,7 +40,7 @@ const logError = (...args: unknown[]) => console.error(LOG_PREFIX, ...args);
  * Main entry point for V3 conversion flow
  */
 export async function startConversion(params: V3ConversionParams): Promise<void> {
-  const { formatId, videoUrl, videoTitle, extractV2Options } = params;
+  const { formatId, videoUrl, videoTitle, extractV2Options, onExtracted } = params;
   const maxJobAttempts = Math.max(1, params.maxJobAttempts ?? 2);
 
   log('=== START CONVERSION V3 ===');
@@ -133,6 +133,18 @@ export async function startConversion(params: V3ConversionParams): Promise<void>
         if (abortController.signal.aborted) {
           log('Aborted after job creation');
           return;
+        }
+
+        // Fire onExtracted callback with media info from createJob response
+        if (onExtracted) {
+          try {
+            const extractedInfo = extractMediaInfoFromCreateJob(jobResponse);
+            if (hasExtractedMediaInfo(extractedInfo)) {
+              onExtracted(extractedInfo);
+            }
+          } catch (callbackError) {
+            logError('onExtracted callback failed:', callbackError);
+          }
         }
 
         // Update state with job info
