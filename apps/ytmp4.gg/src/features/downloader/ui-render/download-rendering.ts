@@ -542,15 +542,7 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
       // Show progress bar (::before is display:none until this class is added)
       // --progress-scale is already set above, so ::before renders at correct scaleX
       statusElement.classList.add('status--has-progress');
-      if (isMergingPhase) {
-        // Merging phase: show spinner
-        iconElement.style.display = '';
-        iconElement.classList.add('spinner', 'active');
-      } else {
-        // Processing phase: show spinner
-        iconElement.style.display = '';
-        iconElement.classList.add('spinner', 'active');
-      }
+      // No spinner for processing/merging - progress bar only
       break;
 
     case TaskState.SUCCESS:
