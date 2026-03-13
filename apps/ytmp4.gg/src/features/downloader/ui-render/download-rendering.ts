@@ -10,7 +10,7 @@ import { initExpandableText, submitForm } from '../../../utils';
 import { LANGUAGES } from '../logic/data/languages';
 import { addRippleEffect } from '@downloader/core/utils';
 import { TaskState } from '../logic/conversion/types';
-import { getState as getDownloaderState, clearYouTubePreview } from '../state';
+import { getState as getDownloaderState, clearYouTubePreview, clearConversionTasks } from '../state';
 import type { AppState, ConversionTask } from '../state/types';
 import { getMergingEstimator, clearMergingEstimator } from './merging-progress-estimator';
 import { showVidToolPopup } from '@downloader/vidtool-popup';
@@ -92,7 +92,11 @@ export function renderConversionStatus(state: AppState, _prevState?: AppState): 
       // SUCCESS: Wait for animation to complete before hiding
       // 200ms CSS transition + 150ms visible at 100% = 350ms
       const actionContainer = document.getElementById('action-container');
-      setTimeout(() => {
+      if (successHideTimeoutId !== null) {
+        window.clearTimeout(successHideTimeoutId);
+      }
+      successHideTimeoutId = window.setTimeout(() => {
+        successHideTimeoutId = null;
         statusContainer.style.display = 'none';  // Ẩn status trước
         if (actionContainer) {
           positionActionContainer(actionContainer);
@@ -122,6 +126,31 @@ export function renderConversionStatus(state: AppState, _prevState?: AppState): 
     return;
   }
 
+  // Cancel stale SUCCESS hide timeout from previous conversion
+  if (successHideTimeoutId !== null) {
+    window.clearTimeout(successHideTimeoutId);
+    successHideTimeoutId = null;
+  }
+  delete statusContainer.dataset.completionState;
+
+  // Reset stale CSS state BEFORE showing container to prevent iOS flash.
+  // Must happen before display:flex so browser never renders old merging/completing state.
+  const statusEl = statusContainer.querySelector('.status') as HTMLElement | null;
+  if (statusEl) {
+    const hadMerging = statusEl.classList.contains('status--merging');
+    const hadCompleting = statusEl.classList.contains('status--completing');
+    if (hadMerging || hadCompleting) {
+      statusEl.classList.remove('status--merging', 'status--completing', 'status--no-transition', 'status--has-progress');
+      statusContainer.style.setProperty('--progress-scale', '0');
+      // Stop merging estimator if still running
+      const currentFormatId = getCurrentFormatId(getDownloaderState());
+      if (currentFormatId) {
+        clearMergingEstimator(currentFormatId);
+        previousMergingPhase.delete(currentFormatId);
+      }
+    }
+  }
+
   // Show status bar for other states (processing, extracting, polling)
   statusContainer.style.display = 'flex';
   // Update status bar UI (with throttling)
@@ -135,6 +164,9 @@ export function renderConversionStatus(state: AppState, _prevState?: AppState): 
 // Track last update time per format ID to throttle UI updates
 const lastUpdateTimes = new Map<string, number>();
 const UPDATE_THROTTLE_MS = 1000; // Update UI max every 1 second
+
+// Track SUCCESS completion timeout so it can be cancelled on new conversion
+let successHideTimeoutId: number | null = null;
 
 // ============================================================
 // MERGING PHASE TRANSITION STATE
@@ -489,8 +521,9 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
     }
   }
 
-  // Remove all state classes
-  statusElement.classList.remove('status--extracting', 'status--processing', 'status--success', 'status--error');
+  // Remove all state classes (including completing/merging leftovers from previous conversion)
+  // status--has-progress is re-added below only for states that need the progress bar visible
+  statusElement.classList.remove('status--extracting', 'status--processing', 'status--success', 'status--error', 'status--completing', 'status--merging', 'status--no-transition', 'status--has-progress');
   iconElement.classList.remove('spinner', 'checkmark', 'error', 'active');
   iconElement.textContent = '';
 
@@ -498,6 +531,7 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
   switch (task.state) {
     case TaskState.EXTRACTING:
       statusElement.classList.add('status--extracting');
+      iconElement.style.display = '';
       iconElement.classList.add('spinner', 'active');
       break;
 
@@ -505,6 +539,9 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
     case TaskState.DOWNLOADING:
     case TaskState.POLLING:
       statusElement.classList.add('status--processing');
+      // Show progress bar (::before is display:none until this class is added)
+      // --progress-scale is already set above, so ::before renders at correct scaleX
+      statusElement.classList.add('status--has-progress');
       if (isMergingPhase) {
         // Merging phase: show spinner
         iconElement.style.display = '';
@@ -518,6 +555,7 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
 
     case TaskState.SUCCESS:
       statusElement.classList.add('status--success');
+      statusElement.classList.add('status--has-progress');
       // Keep spinner during the 0.4s fill animation (status bar hides after 400ms anyway)
       iconElement.style.display = '';
       iconElement.classList.add('spinner', 'active');
@@ -810,8 +848,47 @@ function resetToSearchView(): void {
   // Clear YouTube preview data
   clearYouTubePreview();
 
+  // Clear all conversion tasks (abort active, remove stale SUCCESS/FAILED state)
+  clearConversionTasks();
+
+  // Reset progress bar CSS state on status container
+  cleanupStatusBarCSS();
+
   // Focus input for better UX
   focusInput();
+}
+
+/**
+ * Reset progress bar CSS state so stale values don't flash on next conversion.
+ * Clears inline --progress-scale, leftover state classes, and pending timeouts.
+ */
+function cleanupStatusBarCSS(): void {
+  if (successHideTimeoutId !== null) {
+    window.clearTimeout(successHideTimeoutId);
+    successHideTimeoutId = null;
+  }
+
+  const statusContainer = document.getElementById('status-container');
+  if (statusContainer) {
+    statusContainer.style.removeProperty('--progress-scale');
+    delete statusContainer.dataset.completionState;
+    const statusElement = statusContainer.querySelector('.status') as HTMLElement | null;
+    if (statusElement) {
+      statusElement.classList.remove(
+        'status--completing', 'status--merging', 'status--no-transition',
+        'status--processing', 'status--success', 'status--error', 'status--extracting',
+        'status--has-progress'
+      );
+    }
+  }
+
+  // Clear all tracking maps
+  lastUpdateTimes.clear();
+  previousMergingPhase.clear();
+  transitionInProgress.clear();
+  extractingStartTimes.clear();
+  extractingIntervals.forEach((interval) => window.clearInterval(interval));
+  extractingIntervals.clear();
 }
 
 /**
