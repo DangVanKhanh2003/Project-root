@@ -114,6 +114,9 @@ export function initConvertForm(config: ConvertFormConfig): void {
         clearError(errorMessage);
         setLoading(addUrlsBtn, true);
 
+        // Show support banner immediately on submit — don't wait for API response
+        onAfterSubmit();
+
         // Clear input immediately — don't wait for API response
         urlsInput.value = '';
         updateConvertButtonCount(addUrlsBtn, '');
@@ -138,15 +141,15 @@ export function initConvertForm(config: ConvertFormConfig): void {
             }
             if (proceeded) {
                 isSuccess = true;
-                onAfterSubmit();
             }
         } catch (err) {
             showError(errorMessage, err instanceof Error ? err.message : 'Failed to process URLs.');
         } finally {
-            // Restore input if a limit popup was shown (no actual processing happened)
+            // Restore input & hide banner if a limit popup was shown (no actual processing happened)
             if (!proceeded) {
                 urlsInput.value = rawText;
                 updateConvertButtonCount(addUrlsBtn, rawText);
+                onReset();
             }
             if (isSuccess && isTrimMode()) {
                 resetTrimEditor();
@@ -223,26 +226,33 @@ async function handlePlaylistModeConvert(
         throw new Error('Playlist Mode only supports 1 URL at a time.');
     }
 
-    const accessResult = await evaluateFeatureAccess(FEATURE_KEYS.PLAYLIST_DOWNLOAD, { kind: 'playlist' });
-    if (!accessResult.allowed) {
-        showPopupForAccessResult(accessResult);
-        return false;
-    }
+    // Start access check in background — don't block skeleton creation
+    const accessPromise = evaluateFeatureAccess(FEATURE_KEYS.PLAYLIST_DOWNLOAD, { kind: 'playlist' });
 
-    const playlistUrls = parsed.filter(p => !!p.playlistId);
-
+    // Start adding items immediately — skeletons appear right away
+    const createdGroupIds: string[] = [];
     const tasks = parsed.map(async (p) => {
         if (p.playlistId) {
-            // Reconstruct a clean playlist URL - p.url was normalized to watch?v=...
-            // which strips the list= param, so extractPlaylistId would fail on it.
             const playlistUrl = `https://www.youtube.com/playlist?list=${p.playlistId}`;
-            await multiDownloadService.addPlaylist(playlistUrl, settings, onItemsAdded);
+            const result = await multiDownloadService.addPlaylist(playlistUrl, settings, onItemsAdded);
+            createdGroupIds.push(result.groupId);
         } else {
             const groupId = await multiDownloadService.addSingleVideoAsGroup(p.url, settings, onItemsAdded);
-            // In playlist mode, single-video URLs should auto-start after metadata is ready.
+            createdGroupIds.push(groupId);
             multiDownloadService.startGroupDownloads(groupId);
         }
     });
+
+    // Check access — if denied, clean up groups that were created and bail
+    const accessResult = await accessPromise;
+    if (!accessResult.allowed) {
+        for (const gid of createdGroupIds) {
+            multiDownloadService.cancelGroupDownloads(gid);
+            multiDownloadService.removeGroup(gid);
+        }
+        showPopupForAccessResult(accessResult);
+        return false;
+    }
 
     const results = await Promise.allSettled(tasks);
     const failed = results.filter((r): r is PromiseRejectedResult => r.status === 'rejected');
@@ -266,13 +276,28 @@ async function handleChannelModeConvert(
     if (urls.length === 0) throw new Error('Please paste a YouTube channel URL.');
     if (urls.length > 1) throw new Error('Channel Mode only supports 1 URL at a time.');
 
-    const accessResult = await evaluateFeatureAccess(FEATURE_KEYS.CHANNEL_DOWNLOAD, { kind: 'channel' });
+    // Start access check in background — don't block skeleton creation
+    const accessPromise = evaluateFeatureAccess(FEATURE_KEYS.CHANNEL_DOWNLOAD, { kind: 'channel' });
+
+    // Start adding channel immediately — skeletons appear right away
+    const addPromise = multiDownloadService.addChannel(urls[0], settings, onItemsAdded);
+
+    // Check access — if denied, clean up and bail
+    const accessResult = await accessPromise;
     if (!accessResult.allowed) {
+        // Wait for addChannel to finish (or fail) so we can get groupId for cleanup
+        try {
+            const result = await addPromise;
+            multiDownloadService.cancelGroupDownloads(result.groupId);
+            multiDownloadService.removeGroup(result.groupId);
+        } catch {
+            // addChannel failed on its own — no cleanup needed
+        }
         showPopupForAccessResult(accessResult);
         return false;
     }
 
-    await multiDownloadService.addChannel(urls[0], settings, onItemsAdded);
+    await addPromise;
     await incrementDownloadCount('channel', rawText);
     // Channel mode: no auto-start - user chooses per-group via Convert Selected
     return true;
@@ -355,16 +380,8 @@ function updateConvertButtonCount(btn: HTMLElement, rawText: string): void {
 }
 
 function scrollAfterSuccessfulConvert(): void {
-    const advancedPanel = document.getElementById('advanced-settings-panel');
-    const advancedToggle = document.getElementById('advanced-settings-toggle');
-    const isPanelOpenByHidden = !!advancedPanel && !advancedPanel.hasAttribute('hidden');
-    const isPanelOpenByAria = advancedToggle?.getAttribute('aria-expanded') === 'true';
-    if (!isPanelOpenByHidden && !isPanelOpenByAria) return;
-
     const isMobile = isMobileViewport();
-    const target = isMobile
-        ? document.querySelector('.video-list-section')
-        : document.querySelector('#multi-download-form, .multiple-download-card');
+    const target = document.getElementById('support-banner-wrapper') || document.querySelector('.video-list-section');
 
     if (!target) return;
 

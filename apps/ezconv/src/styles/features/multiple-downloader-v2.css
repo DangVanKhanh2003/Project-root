@@ -1472,7 +1472,7 @@ html[data-theme="dark"] .multi-search-input::placeholder {
 }
 
 .skeleton-div {
-    background: linear-gradient(135deg, var(--bg-hover) 25%, var(--bg-surface-soft) 50%, var(--bg-hover) 75%);
+    background: linear-gradient(90deg, var(--color-skeleton-dark) 25%, var(--color-skeleton-light) 50%, var(--color-skeleton-dark) 75%);
     border-radius: 5px;
     background-size: 200% 100%;
     animation: skeleton-loading 1.5s infinite;
@@ -1480,10 +1480,22 @@ html[data-theme="dark"] .multi-search-input::placeholder {
 
 .skeleton-box,
 .skeleton-text {
-    background: linear-gradient(135deg, var(--bg-hover) 25%, var(--bg-surface-soft) 50%, var(--bg-hover) 75%);
+    margin: 0px !important;
+    background: linear-gradient(90deg, var(--color-skeleton-dark) 25%, var(--color-skeleton-light) 50%, var(--color-skeleton-dark) 75%);
     border-radius: 5px;
     background-size: 200% 100%;
     animation: skeleton-loading 1.5s infinite;
+}
+
+.multi-video-item.skeleton-loading .multi-video-thumb,
+.multi-video-item.skeleton-loading .multi-video-thumb .skeleton-box {
+    background: linear-gradient(90deg, var(--color-skeleton-dark) 25%, var(--color-skeleton-light) 50%, var(--color-skeleton-dark) 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s linear infinite;
+}
+
+.multi-video-item.skeleton-loading .multi-video-thumb .skeleton-box {
+    border-radius: inherit;
 }
 
 /* =========================================

@@ -110,14 +110,30 @@ export function parseConvertibleURLs(inputText: string): ParsedUrl[] {
 }
 
 export function normalizeURL(videoIdOrUrl: string): string {
+    const value = (videoIdOrUrl || '').trim();
+    if (!value) return value;
+
     // If it's already a full URL, extract the video ID first
-    if (videoIdOrUrl.startsWith('http')) {
-        const vid = extractVideoId(videoIdOrUrl);
+    if (/^https?:\/\//i.test(value)) {
+        const vid = extractVideoId(value);
         if (vid) return `https://www.youtube.com/watch?v=${vid}`;
-        return videoIdOrUrl;
+        return value;
     }
-    // Assume it's a video ID
-    return `https://www.youtube.com/watch?v=${videoIdOrUrl}`;
+
+    // Accept bare domains/links by auto-prefixing https://
+    if (/^[^\s]+\.[^\s]+/.test(value)) {
+        const asUrl = `https://${value}`;
+        const vid = extractVideoId(asUrl);
+        if (vid) return `https://www.youtube.com/watch?v=${vid}`;
+        return asUrl;
+    }
+
+    // Support raw YouTube video IDs (11 chars)
+    if (/^[A-Za-z0-9_-]{11}$/.test(value)) {
+        return `https://www.youtube.com/watch?v=${value}`;
+    }
+
+    return value;
 }
 
 export function generateItemId(videoId: string | null): string {

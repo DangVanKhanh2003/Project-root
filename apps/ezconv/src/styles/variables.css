@@ -70,6 +70,10 @@
     --color-accent-hover: var(--brand-hover);
     --color-accent-dark: rgba(198, 93, 59, 0.12);
 
+    /* Skeleton */
+    --color-skeleton-dark: #E3E0DA;
+    --color-skeleton-light: #EFECE7;
+
     /* Tooltip */
     --color-tooltip-bg: var(--text-heading);
     --color-tooltip-text: #ffffff;
@@ -107,6 +111,10 @@
     /* In dark mode, UI accent = orange */
     --accent-ui: #C65D3B;
     --accent-ui-hover: #B14F2F;
+
+    /* Skeleton */
+    --color-skeleton-dark: rgba(255, 255, 255, 0.10);
+    --color-skeleton-light: rgba(255, 255, 255, 0.05);
 
     /* Tooltip */
     --color-tooltip-bg: #2a2a2c;
