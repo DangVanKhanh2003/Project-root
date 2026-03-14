@@ -16,13 +16,34 @@
     justify-content: center;
     align-items: center;
     height: fit-content;
-    margin-top: 100px;
+    margin-top: 40px;
 }
 
 .error-image {
-    max-width: 100%;
+    max-width: 280px;
+    width: 100%;
     height: auto;
     margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .error-image-container {
+        margin-top: 60px;
+    }
+
+    .error-image {
+        max-width: 360px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .error-image-container {
+        margin-top: 80px;
+    }
+
+    .error-image {
+        max-width: 420px;
+    }
 }
 
 /* Add some text styling for better context */
