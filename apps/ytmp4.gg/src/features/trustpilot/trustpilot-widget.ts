@@ -85,10 +85,10 @@ function ensureTrustpilotWidget(attachToDom = true): HTMLElement {
         widget.className = 'trustpilot-widget';
         widget.setAttribute('data-locale', 'en-US');
         widget.setAttribute('data-template-id', '56278e9abfbbba0bdcd568bc');
-        widget.setAttribute('data-businessunit-id', '6998778492d37a2f7c7afeb6');
+        widget.setAttribute('data-businessunit-id', '69b4d2062290ff602d26b209');
         widget.setAttribute('data-style-height', '52px');
         widget.setAttribute('data-style-width', '100%');
-        widget.setAttribute('data-token', '28a35c2e-ddaa-47cf-8bd4-a08c016ed263');
+        widget.setAttribute('data-token', '422782ef-f491-411d-b40d-351a93b1309f');
         widget.innerHTML = `<a href="${TRUSTPILOT_REVIEW_URL}" target="_blank" rel="noopener nofollow">Trustpilot</a>`;
         widget.style.marginTop = '20px';
 
