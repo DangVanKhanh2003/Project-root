@@ -285,23 +285,7 @@
 }
 
 .multi-search-shell #keyword-suggestion-container {
-    position: absolute;
-    left: 0;
-    right: 0;
-    width: 100%;
-    top: calc(100% + 8px);
-    z-index: 40;
-    background: transparent;
-    box-shadow: none;
-}
-
-.multi-search-shell #keyword-suggestion-container.suggestion-container--visible {
-    display: block;
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-    background: none;
-    box-shadow: none;
+    display: none !important;
 }
 
 html[data-theme="dark"] .keyword-suggest-list {

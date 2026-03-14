@@ -152,13 +152,9 @@
     display: none !important;
 }
 
-/* Suggestion Container */
+/* Suggestion Container — hidden */
 .suggestion-container {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    z-index: 100;
+    display: none !important;
 }
 
 /* Error Message */

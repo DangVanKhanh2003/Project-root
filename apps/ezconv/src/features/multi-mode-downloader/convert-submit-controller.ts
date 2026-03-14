@@ -375,7 +375,9 @@ function updateConvertButtonCount(btn: HTMLElement, rawText: string): void {
 
 function scrollAfterSuccessfulConvert(): void {
     const isMobile = isMobileViewport();
-    const target = document.getElementById('support-banner-wrapper') || document.querySelector('.video-list-section');
+    const target = isMobile
+        ? document.querySelector('.video-list-section')
+        : document.getElementById('support-banner-wrapper') || document.querySelector('.video-list-section');
 
     if (!target) return;
 
