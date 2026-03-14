@@ -6,6 +6,7 @@
  * Based on: ytmp3.gg/src/script/features/supporter-level-manager.js
  */
 
+import { STORAGE_KEYS } from '../utils/storage-keys';
 import {
     showTrustpilotWidget,
     showTrustpilotCard,
@@ -195,7 +196,7 @@ const DOWNLOAD_LEVEL_THRESHOLDS = {
     level2Max: 6
 };
 
-const STORAGE_KEY = 'ytmp4_download_count';
+const STORAGE_KEY = STORAGE_KEYS.DOWNLOAD_COUNT;
 
 // ============================================================
 // STATE

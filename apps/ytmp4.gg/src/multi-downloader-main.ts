@@ -7,6 +7,7 @@
 import './styles/index.css';
 
 import { applyInitialVisibility } from './features/widget-level-manager';
+import { STORAGE_KEYS } from './utils/storage-keys';
 import { initHeroFeatureLinks } from './features/hero-feature-links';
 import { showTipMessageWidget } from './features/tip-message/tip-message-widget';
 
@@ -82,7 +83,7 @@ function saveFormatPreferences() {
             audioBitrate: settings.audioBitrate || '',
             timestamp: Date.now()
         };
-        localStorage.setItem('ytmp4_format_preferences', JSON.stringify(prefs));
+        localStorage.setItem(STORAGE_KEYS.FORMAT_PREFERENCES, JSON.stringify(prefs));
     } catch (e) { }
 }
 

@@ -21,6 +21,7 @@ import { hideTrustpilotWidget } from '../../trustpilot/trustpilot-widget';
 import { showHeroFeatureLinks } from '../../hero-feature-links';
 import { showSearchView } from './view-switcher';
 import { setInputValue, focusInput } from './ui-renderer';
+import { reloadIfStale } from '../../../utils/page-freshness';
 
 // ============================================================
 // TYPE DEFINITIONS
@@ -763,6 +764,8 @@ function clearSearchUrl(): void {
  * Used by both "Start Over" button and "Cancel" button
  */
 function resetToSearchView(): void {
+  if (reloadIfStale()) return;
+
   document.dispatchEvent(new CustomEvent('resetForm'));
 
   // Hide Trustpilot widget on reset

@@ -4,6 +4,7 @@ import { videoStore } from '../../state/video-store';
 import { VideoItemRenderer } from './video-item-renderer';
 import { RendererStrategy } from './renderer-strategy.interface';
 import { isIOS } from '../../../../utils';
+import { STORAGE_KEYS } from '../../../../utils/storage-keys';
 
 export interface StoreChangeHandlerConfig {
     listContainer: HTMLElement;
@@ -445,8 +446,8 @@ export function updateGroupCount(groupEl: HTMLElement, isLocked: boolean = false
     }
 }
 
-export const DOWNLOAD_TAB_CLICKED_KEY = 'hasClickedPlaylistTab';
-export const CONVERT_BUTTON_GUIDE_SHOWN_KEY = 'hasShownPlaylistConvertGuide';
+export const DOWNLOAD_TAB_CLICKED_KEY = STORAGE_KEYS.PLAYLIST_TAB_CLICKED;
+export const CONVERT_BUTTON_GUIDE_SHOWN_KEY = STORAGE_KEYS.PLAYLIST_CONVERT_GUIDE_SHOWN;
 
 /**
  * Show hand pointer guide on the Download tab if user hasn't discovered it yet

@@ -15,12 +15,13 @@ import {
     FEATURE_ACCESS_REASONS,
     type FeatureAccessReason,
 } from '@downloader/core';
+import { STORAGE_KEYS } from '../utils/storage-keys';
 
 // ============================================================
 // CONFIGURATION
 // ============================================================
 
-const LS_CACHE_KEY = 'ytmp4_allowed_features';
+const LS_CACHE_KEY = STORAGE_KEYS.ALLOWED_FEATURES;
 const LS_CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
 const ALLOWED_FEATURES_MAX_ATTEMPTS = 2;
 

@@ -12,6 +12,7 @@
 import { FEATURE_KEYS, FEATURE_ACCESS_REASONS, type FeatureAccessReason } from '@downloader/core';
 import { hasLicenseKeyOptimistic } from './license/license-token';
 import { MULTIPLE_MAX_ITEMS_ALLOWED } from './feature-limit-policy';
+import { getStartUsageKey, getItemUsageKey } from '../utils/storage-keys';
 
 /** Default maximum uses per day for non-license users (fallback for any unlisted feature). */
 export const MAX_PER_DAY = 1;
@@ -59,11 +60,11 @@ function getTodayString(): string {
 }
 
 function getStartUsageStorageKey(featureKey: string): string {
-    return `${featureKey}_daily`;
+    return getStartUsageKey(featureKey);
 }
 
 function getItemUsageStorageKey(featureKey: string): string {
-    return `${featureKey}_items_daily`;
+    return getItemUsageKey(featureKey);
 }
 
 function readUsage(storageKey: string): DailyUsage {
