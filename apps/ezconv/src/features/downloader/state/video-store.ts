@@ -96,6 +96,10 @@ class VideoStore {
         return this.groupMeta.get(groupId);
     }
 
+    deleteGroupMeta(groupId: string): void {
+        this.groupMeta.delete(groupId);
+    }
+
     hasItem(id: string): boolean {
         return this.items.has(id);
     }

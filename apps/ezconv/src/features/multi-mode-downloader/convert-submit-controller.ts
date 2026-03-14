@@ -226,44 +226,30 @@ async function handlePlaylistModeConvert(
         throw new Error('Playlist Mode only supports 1 URL at a time.');
     }
 
-    // Start access check in background — don't block skeleton creation
-    const accessPromise = evaluateFeatureAccess(FEATURE_KEYS.PLAYLIST_DOWNLOAD, { kind: 'playlist' });
+    // Show skeleton while checking access
+    const skeletonGroupId = multiDownloadService.createSkeletonGroup('Playlist', 8, settings);
+    onItemsAdded?.();
 
-    // Start adding items immediately — skeletons appear right away
-    const createdGroupIds: string[] = [];
-    const tasks = parsed.map(async (p) => {
-        if (p.playlistId) {
-            const playlistUrl = `https://www.youtube.com/playlist?list=${p.playlistId}`;
-            const result = await multiDownloadService.addPlaylist(playlistUrl, settings, onItemsAdded);
-            createdGroupIds.push(result.groupId);
-        } else {
-            const groupId = await multiDownloadService.addSingleVideoAsGroup(p.url, settings, onItemsAdded);
-            createdGroupIds.push(groupId);
-            multiDownloadService.startGroupDownloads(groupId);
-        }
-    });
-
-    // Check access — if denied, clean up groups that were created and bail
-    const accessResult = await accessPromise;
+    const accessResult = await evaluateFeatureAccess(FEATURE_KEYS.PLAYLIST_DOWNLOAD, { kind: 'playlist' });
     if (!accessResult.allowed) {
-        for (const gid of createdGroupIds) {
-            multiDownloadService.cancelGroupDownloads(gid);
-            multiDownloadService.removeGroup(gid);
-        }
+        multiDownloadService.removeGroup(skeletonGroupId);
         showPopupForAccessResult(accessResult);
         return false;
     }
 
-    const results = await Promise.allSettled(tasks);
-    const failed = results.filter((r): r is PromiseRejectedResult => r.status === 'rejected');
-    if (failed.length > 0) {
-        const first = failed[0].reason;
-        throw new Error(first instanceof Error ? first.message : 'Failed to load one or more groups.');
+    // Access allowed — remove temp skeleton and proceed with real loading
+    multiDownloadService.removeGroup(skeletonGroupId);
+
+    const p = parsed[0];
+    if (p.playlistId) {
+        const playlistUrl = `https://www.youtube.com/playlist?list=${p.playlistId}`;
+        await multiDownloadService.addPlaylist(playlistUrl, settings, onItemsAdded);
+    } else {
+        const groupId = await multiDownloadService.addSingleVideoAsGroup(p.url, settings, onItemsAdded);
+        multiDownloadService.startGroupDownloads(groupId);
     }
 
-    // Successfully added playlist/single videos in playlist mode
     await incrementDownloadCount('playlist', rawText);
-    // Playlist mode: no auto-start - user chooses per-group via Convert Selected
     return true;
 }
 
@@ -276,30 +262,22 @@ async function handleChannelModeConvert(
     if (urls.length === 0) throw new Error('Please paste a YouTube channel URL.');
     if (urls.length > 1) throw new Error('Channel Mode only supports 1 URL at a time.');
 
-    // Start access check in background — don't block skeleton creation
-    const accessPromise = evaluateFeatureAccess(FEATURE_KEYS.CHANNEL_DOWNLOAD, { kind: 'channel' });
+    // Show skeleton while checking access
+    const skeletonGroupId = multiDownloadService.createSkeletonGroup('Channel', 8, settings);
+    onItemsAdded?.();
 
-    // Start adding channel immediately — skeletons appear right away
-    const addPromise = multiDownloadService.addChannel(urls[0], settings, onItemsAdded);
-
-    // Check access — if denied, clean up and bail
-    const accessResult = await accessPromise;
+    const accessResult = await evaluateFeatureAccess(FEATURE_KEYS.CHANNEL_DOWNLOAD, { kind: 'channel' });
     if (!accessResult.allowed) {
-        // Wait for addChannel to finish (or fail) so we can get groupId for cleanup
-        try {
-            const result = await addPromise;
-            multiDownloadService.cancelGroupDownloads(result.groupId);
-            multiDownloadService.removeGroup(result.groupId);
-        } catch {
-            // addChannel failed on its own — no cleanup needed
-        }
+        multiDownloadService.removeGroup(skeletonGroupId);
         showPopupForAccessResult(accessResult);
         return false;
     }
 
-    await addPromise;
+    // Access allowed — remove temp skeleton and proceed with real loading
+    multiDownloadService.removeGroup(skeletonGroupId);
+
+    await multiDownloadService.addChannel(urls[0], settings, onItemsAdded);
     await incrementDownloadCount('channel', rawText);
-    // Channel mode: no auto-start - user chooses per-group via Convert Selected
     return true;
 }
 

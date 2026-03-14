@@ -682,6 +682,52 @@ export class MultiDownloadService {
         for (const item of items) {
             videoStore.removeItem(item.id);
         }
+        videoStore.deleteGroupMeta(groupId);
+    }
+
+    createSkeletonGroup(
+        groupTitle: string,
+        count: number,
+        globalSettings?: Partial<VideoItemSettings>,
+    ): string {
+        const groupId = `skeleton_${Date.now()}`;
+        videoStore.setGroupMeta(groupId, true, groupTitle, null);
+
+        const skeletonItems: VideoItem[] = Array.from({ length: count }).map((_, i) => ({
+            id: generateItemId(`skeleton_${groupId}_${i}`),
+            url: '',
+            meta: {
+                title: 'Loading...',
+                originalUrl: '',
+                status: 'analyzing' as const,
+                author: '',
+                thumbnail: '',
+                duration: 0,
+                url: '',
+                vid: '',
+                source: 'youtube' as const,
+                isFakeData: true,
+            },
+            status: 'fetching_metadata' as const,
+            progress: 0,
+            settings: {
+                format: globalSettings?.format || 'mp4',
+                quality: globalSettings?.quality || '720p',
+                audioFormat: globalSettings?.audioFormat,
+                audioBitrate: globalSettings?.audioBitrate,
+                videoQuality: globalSettings?.videoQuality,
+                audioTrack: globalSettings?.audioTrack,
+                filenameStyle: globalSettings?.filenameStyle,
+                enableMetadata: globalSettings?.enableMetadata,
+            },
+            isSelected: false,
+            isDownloaded: false,
+            groupId,
+            groupTitle,
+        }));
+
+        for (const item of skeletonItems) videoStore.addItem(item);
+        return groupId;
     }
 
     cancelDownload(id: string): void {
