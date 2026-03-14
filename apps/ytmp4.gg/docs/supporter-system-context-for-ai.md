@@ -1,9 +1,9 @@
-# Supporter System — AI Context Document for ssvid.cc
+# Supporter System — AI Context Document for ytmp4.gg
 
-> **Mục đích tài liệu này**: Cung cấp đủ context để AI đọc xong và tạo ra implementation plan chi tiết cho việc port hệ thống Supporter từ `ytmp3.gg` sang `ssvid.cc`.
+> **Mục đích tài liệu này**: Cung cấp đủ context để AI đọc xong và tạo ra implementation plan chi tiết cho việc port hệ thống Supporter từ `ytmp3.gg` sang `ytmp4.gg`.
 
 > [!NOTE]
-> **Quy tắc copy**: Với **License Button (HTML/CSS)** và **trang `/license`**: copy **y hệt** từ ytmp3.gg, không thay đổi giao diện, không refactor HTML/CSS. Với **logic TypeScript**: tham chiếu ytmp3.gg rồi port sang TS theo cấu trúc ssvid.cc.
+> **Quy tắc copy**: Với **License Button (HTML/CSS)** và **trang `/license`**: copy **y hệt** từ ytmp3.gg, không thay đổi giao diện, không refactor HTML/CSS. Với **logic TypeScript**: tham chiếu ytmp3.gg rồi port sang TS theo cấu trúc ytmp4.gg.
 
 ---
 
@@ -11,7 +11,7 @@
 
 ### Project path
 ```
-F:\downloader\Project-root\apps\ssvid.cc\
+F:\downloader\Project-root\apps\ytmp4.gg\
 ```
 
 ### Tech stack
@@ -59,7 +59,7 @@ src/
 └── playlist-downloader-main.ts
 ```
 
-### Những gì ĐÃ CÓ trong ssvid.cc
+### Những gì ĐÃ CÓ trong ytmp4.gg
 | Thành phần | File | Trạng thái |
 |---|---|---|
 | Widget Level Manager (đơn giản) | `src/features/widget-level-manager.ts` | ✅ CÓ — chỉ đếm localStorage, không có License, không có Geo |
@@ -69,7 +69,7 @@ src/
 | Format selector state | `src/features/downloader/state/format-selector-state.ts` | ✅ CÓ — có 4K (2160p) và 320kbps |
 | Trustpilot widget | `src/features/trustpilot/` | ✅ CÓ |
 
-### Những gì CHƯA CÓ trong ssvid.cc (cần implement)
+### Những gì CHƯA CÓ trong ytmp4.gg (cần implement)
 | Thành phần | Trạng thái |
 |---|---|
 | `src/constants/feature-access.ts` | ❌ THIẾU |
@@ -105,9 +105,9 @@ F:\downloader\ytmp3.gg\
 
 ### ⚠️ Quan trọng: Sự khác biệt cấu trúc giữa 2 project
 
-ytmp3.gg và ssvid.cc có cấu trúc **khác nhau hoàn toàn**. Không được copy cấu trúc thư mục của ytmp3.gg vào ssvid.cc. Cần **tham chiếu logic** và **bố trí lại** theo cấu trúc TypeScript/Vite của ssvid.cc.
+ytmp3.gg và ytmp4.gg có cấu trúc **khác nhau hoàn toàn**. Không được copy cấu trúc thư mục của ytmp3.gg vào ytmp4.gg. Cần **tham chiếu logic** và **bố trí lại** theo cấu trúc TypeScript/Vite của ytmp4.gg.
 
-| Khía cạnh | ytmp3.gg | ssvid.cc |
+| Khía cạnh | ytmp3.gg | ytmp4.gg |
 |---|---|---|
 | Language | JavaScript (ES Modules) | **TypeScript** |
 | Build tool | Vite (JS) | **Vite (TS)** |
@@ -118,7 +118,7 @@ ytmp3.gg và ssvid.cc có cấu trúc **khác nhau hoàn toàn**. Không đượ
 | Temp/experimental | `src/temp/` | **Không có — đặt thẳng vào `src/features/`** |
 
 **Nguyên tắc port**:
-- Logic từ `src/temp/` của ytmp3.gg → đặt vào `src/features/` của ssvid.cc (không có folder `temp`)
+- Logic từ `src/temp/` của ytmp3.gg → đặt vào `src/features/` của ytmp4.gg (không có folder `temp`)
 - Logic từ `src/script/libs/` → đặt vào `src/features/` hoặc `src/libs/` tùy loại
 - Luôn viết TypeScript với proper types, không giữ nguyên JavaScript
 - API calls tuân theo pattern của `src/api/index.ts` (dùng `createHttpClient` từ `@downloader/core`)
@@ -153,7 +153,7 @@ export const FEATURE_KEYS = Object.freeze({
   PLAYLIST_DOWNLOAD: 'download_playlist',
   CHANNEL_DOWNLOAD: 'download_channel',
   HIGH_QUALITY_320: 'download_320kbps',
-  HIGH_QUALITY_4K: 'download_4k',       // THÊM MỚI — ssvid.cc có giới hạn 4K
+  HIGH_QUALITY_4K: 'download_4k',       // THÊM MỚI — ytmp4.gg có giới hạn 4K
 });
 
 export const FEATURE_KEY_ALIASES = Object.freeze({
@@ -288,7 +288,7 @@ Ko-fi link trong tất cả popup: `https://ko-fi.com/s/d242437374`
 ### Nhóm 7 — Header HTML
 
 #### [MODIFY] Header HTML của tất cả các trang
-Copy HTML của license button từ ytmp3.gg vào header ssvid.cc.
+Copy HTML của license button từ ytmp3.gg vào header ytmp4.gg.
 Mặc định `display:none`, `license-selector.ts` sẽ show/hide dựa trên level.
 
 ---
@@ -368,8 +368,8 @@ const API_CACHE_TTL_MS = 5 * 60 * 1000;
 const ALLOWED_FEATURES_MAX_ATTEMPTS = 2;
 ```
 
-### File mapping ytmp3.gg → ssvid.cc
-| Nguồn (ytmp3.gg) | Đích (ssvid.cc) | Cách xử lý |
+### File mapping ytmp3.gg → ytmp4.gg
+| Nguồn (ytmp3.gg) | Đích (ytmp4.gg) | Cách xử lý |
 |---|---|---|
 | `src/temp/allowed-features.js` | `src/features/allowed-features.ts` | Port TypeScript |
 | `src/script/constants/feature-access.js` | `src/constants/feature-access.ts` | Port TS + thêm `download_4k` |
@@ -385,7 +385,7 @@ const ALLOWED_FEATURES_MAX_ATTEMPTS = 2;
 ## PHẦN 6 — Lưu ý quan trọng khi implement
 
 1. **Popup HTML/CSS**: Copy nguyên xi từ ytmp3.gg `maintenance-popup.js`. Không refactor, không thay đổi style.
-2. **`logEventWithPrefix`**: ytmp3.gg dùng hàm này. Trong ssvid.cc thay bằng `logEvent` từ `src/libs/firebase`.
+2. **`logEventWithPrefix`**: ytmp3.gg dùng hàm này. Trong ytmp4.gg thay bằng `logEvent` từ `src/libs/firebase`.
 3. **API cho allowed-features**: Endpoint không cần auth — dùng `fetch` thẳng hoặc `createHttpClient` từ `@downloader/core`, không cần JWT.
 4. **Thứ tự init**: Thêm `applyInitialVisibility()` vào `loadFeatures()` trong `src/main.ts`.
 5. **`recordUsage` timing**: Chỉ gọi sau khi download **thực sự thành công**.

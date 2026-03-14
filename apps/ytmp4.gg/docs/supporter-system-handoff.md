@@ -55,12 +55,12 @@ import {
 
 **Cách dùng popup** — mỗi app tạo 1 config object:
 ```typescript
-// src/features/supporter-popup-config.ts (cần tạo cho ssvid.cc)
+// src/features/supporter-popup-config.ts (cần tạo cho ytmp4.gg)
 import type { MaintenancePopupConfig } from '@downloader/ui-shared';
 
 export const POPUP_CONFIG: MaintenancePopupConfig = {
   supporterCtaUrl: 'https://ko-fi.com/s/d242437374',
-  oneTimeDownloadUrl: 'https://ssvid.cc/',  // trang chủ ssvid
+  oneTimeDownloadUrl: 'https://ytmp4.gg/',  // trang chủ ssvid
   logEvent: (eventName, eventParams) => {
     import('../libs/firebase')
       .then(({ logEvent }) => logEvent(eventName, eventParams))
@@ -78,12 +78,12 @@ export const POPUP_CONFIG: MaintenancePopupConfig = {
 
 ### 1.2 Wiring vào apps
 
-#### `apps/ssvid.cc/src/api/index.ts` (đã cập nhật)
+#### `apps/ytmp4.gg/src/api/index.ts` (đã cập nhật)
 - Import `createSupporterService` từ `@downloader/core`
 - Tạo thêm `supporterHttpClient` (base: `getSupporterApiBaseUrl()` → `ytmp3-supporter.ytmp3.gg`)
 - **Export**: `export const supporterService = createSupporterService(ytMetaHttpClient, supporterHttpClient);`
 
-#### `apps/ssvid.cc/src/environment.ts` (đã cập nhật)
+#### `apps/ytmp4.gg/src/environment.ts` (đã cập nhật)
 - Thêm `supporterApiBaseUrl: 'https://ytmp3-supporter.ytmp3.gg'`
 - Thêm getter `getSupporterApiBaseUrl()`
 
@@ -94,7 +94,7 @@ export const POPUP_CONFIG: MaintenancePopupConfig = {
 
 ---
 
-### 1.3 Cleanup trong ssvid.cc
+### 1.3 Cleanup trong ytmp4.gg
 - Xóa `src/features/downloader/logic/redirect-helper.ts`
 - Xóa duplicate inline trong `multi-downloader-main.ts` và `input-form.ts`
 - Cả hai giờ import `shouldPromptPlaylistRedirect*` từ `@downloader/core`
@@ -103,7 +103,7 @@ export const POPUP_CONFIG: MaintenancePopupConfig = {
 
 ## PHẦN 2 — Những gì CHƯA làm (cần implement tiếp)
 
-Tất cả items dưới đây thuộc **ssvid.cc only** — ezconv đã có đủ.
+Tất cả items dưới đây thuộc **ytmp4.gg only** — ezconv đã có đủ.
 
 ### Nhóm A — Foundation (làm trước)
 
@@ -111,7 +111,7 @@ Tất cả items dưới đây thuộc **ssvid.cc only** — ezconv đã có đ�
 |---|------|--------|
 | A1 | `src/features/download-limit.ts` | Daily limit engine, localStorage |
 | A2 | `src/features/allowed-features.ts` | Orchestrator 3 lớp: license → geo → limit |
-| A3 | `src/features/supporter-popup-config.ts` | POPUP_CONFIG cho ssvid.cc |
+| A3 | `src/features/supporter-popup-config.ts` | POPUP_CONFIG cho ytmp4.gg |
 
 ### Nhóm B — License UI
 
@@ -184,11 +184,11 @@ export function getSecondsUntilNextMidnight(): number  // dùng cho popup countd
 **Điều chỉnh quan trọng**:
 - Import `supporterService` từ `'../api'` (đã wired)
 - Import `hasLicenseKey`, `checkLimit` từ `'./download-limit'`
-- **`GEO_RESTRICTED_FEATURES` của ssvid.cc** bao gồm `download_multi` (khác ezconv!):
+- **`GEO_RESTRICTED_FEATURES` của ytmp4.gg** bao gồm `download_multi` (khác ezconv!):
   ```typescript
   const GEO_RESTRICTED_FEATURES = new Set([
     'download_playlist',
-    'download_multi',      // ← ssvid.cc có, ezconv KHÔNG có
+    'download_multi',      // ← ytmp4.gg có, ezconv KHÔNG có
     'download_channel',
   ]);
   ```
@@ -216,7 +216,7 @@ import type { MaintenancePopupConfig } from '@downloader/ui-shared';
 
 export const POPUP_CONFIG: MaintenancePopupConfig = {
   supporterCtaUrl: 'https://ko-fi.com/s/d242437374',
-  oneTimeDownloadUrl: 'https://ssvid.cc/',
+  oneTimeDownloadUrl: 'https://ytmp4.gg/',
   logEvent: (eventName, eventParams) => {
     import('../libs/firebase')
       .then(({ logEvent }) => logEvent(eventName, eventParams))
@@ -364,13 +364,13 @@ if (audioFormat === 'mp3' && audioBitrate === '320') recordUsage('download_320kb
 ### 4.1 Discrepancy: GEO_RESTRICTED_FEATURES
 
 `packages/core` export `GEO_RESTRICTED_FEATURES` chỉ có `playlist` và `channel` (theo ezconv).
-**ssvid.cc cần define lại** trong `src/features/allowed-features.ts`:
+**ytmp4.gg cần define lại** trong `src/features/allowed-features.ts`:
 ```typescript
 // KHÔNG import GEO_RESTRICTED_FEATURES từ @downloader/core
 // Define riêng trong file này:
 const GEO_RESTRICTED_FEATURES = new Set([
   'download_playlist',
-  'download_multi',   // ← ssvid.cc có thêm cái này
+  'download_multi',   // ← ytmp4.gg có thêm cái này
   'download_channel',
 ]);
 ```
@@ -420,14 +420,14 @@ async function loadFeatures() {
    - `F:\downloader\ytmp3.gg\src\script\features\license-page.js`
    - `F:\downloader\ytmp3.gg\src\script\features\tag-supporter-user.js`
    - `F:\downloader\ytmp3.gg\src\script\features\supporter-level-manager.js`
-4. **Các file ssvid.cc hiện tại** (đọc để hiểu context):
-   - `F:\downloader\Project-root\apps\ssvid.cc\src\features\widget-level-manager.ts`
-   - `F:\downloader\Project-root\apps\ssvid.cc\src\features\downloader\logic\input-form.ts`
-   - `F:\downloader\Project-root\apps\ssvid.cc\src\api\index.ts`
-   - `F:\downloader\Project-root\apps\ssvid.cc\src\environment.ts`
-   - `F:\downloader\Project-root\apps\ssvid.cc\src\main.ts`
-   - `F:\downloader\Project-root\apps\ssvid.cc\src\multi-downloader-main.ts`
-   - `F:\downloader\Project-root\apps\ssvid.cc\src\playlist-downloader-main.ts`
+4. **Các file ytmp4.gg hiện tại** (đọc để hiểu context):
+   - `F:\downloader\Project-root\apps\ytmp4.gg\src\features\widget-level-manager.ts`
+   - `F:\downloader\Project-root\apps\ytmp4.gg\src\features\downloader\logic\input-form.ts`
+   - `F:\downloader\Project-root\apps\ytmp4.gg\src\api\index.ts`
+   - `F:\downloader\Project-root\apps\ytmp4.gg\src\environment.ts`
+   - `F:\downloader\Project-root\apps\ytmp4.gg\src\main.ts`
+   - `F:\downloader\Project-root\apps\ytmp4.gg\src\multi-downloader-main.ts`
+   - `F:\downloader\Project-root\apps\ytmp4.gg\src\playlist-downloader-main.ts`
 5. **Packages đã implement** (đọc để biết API):
    - `F:\downloader\Project-root\packages\core\src\services\supporter\supporter.service.ts`
    - `F:\downloader\Project-root\packages\ui-shared\src\supporter\maintenance-popup.ts`
@@ -437,18 +437,18 @@ async function loadFeatures() {
 ### Prompt mẫu cho AI tiếp theo
 
 ```
-Bạn là senior TypeScript developer đang implement Supporter System cho ssvid.cc.
+Bạn là senior TypeScript developer đang implement Supporter System cho ytmp4.gg.
 
 **ĐÃ LÀM RỒI** (đừng làm lại):
 - `packages/core`: FEATURE_KEYS, GEO_RESTRICTED_FEATURES, createSupporterService, shouldPromptPlaylistRedirect*
 - `packages/ui-shared`: showLimitReachedPopup, showVideoLimitPopup, showSupporterUpsellPopup, maintenance-popup.css
-- `apps/ssvid.cc/src/api/index.ts`: đã export `supporterService` (fetchAllowedFeatures + checkLicenseKey)
-- `apps/ssvid.cc/src/environment.ts`: đã có `getSupporterApiBaseUrl()`
+- `apps/ytmp4.gg/src/api/index.ts`: đã export `supporterService` (fetchAllowedFeatures + checkLicenseKey)
+- `apps/ytmp4.gg/src/environment.ts`: đã có `getSupporterApiBaseUrl()`
 
 **CÒN PHẢI LÀM** (theo thứ tự dependency):
 1. `src/features/download-limit.ts` — port từ ytmp3.gg download-limit.js sang TS
 2. `src/features/allowed-features.ts` — orchestrator 3 lớp (license → geo → limit)
-3. `src/features/supporter-popup-config.ts` — POPUP_CONFIG cho ssvid.cc
+3. `src/features/supporter-popup-config.ts` — POPUP_CONFIG cho ytmp4.gg
 4. `src/features/license/license-selector.ts` — license button dropdown
 5. `src/features/license/supporter-tag.ts` — supporter badge trên logo
 6. `src/features/license/license-page.ts` — form nhập key, gọi supporterService.checkLicenseKey()
@@ -472,7 +472,7 @@ Bạn là senior TypeScript developer đang implement Supporter System cho ssvid
 
 ---
 
-## PHẦN 6 — Cấu trúc file ssvid.cc sau khi hoàn thành
+## PHẦN 6 — Cấu trúc file ytmp4.gg sau khi hoàn thành
 
 ```
 src/

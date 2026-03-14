@@ -245,6 +245,10 @@
     align-items: flex-start;
   }
 
+  .yt-preview-card.skeleton .yt-preview-format {
+    justify-content: start;
+  }
+
   .yt-preview-author {
     font-size: 0.875rem;
   }

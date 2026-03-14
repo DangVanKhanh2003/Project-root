@@ -1,10 +1,10 @@
-# Prompt: Tạo Implementation Plan — Supporter System cho ssvid.cc
+# Prompt: Tạo Implementation Plan — Supporter System cho ytmp4.gg
 
 > Copy toàn bộ nội dung dưới đây và đính kèm file `supporter-system-context-for-ai.md` khi gửi cho AI.
 
 ---
 
-Bạn là một senior TypeScript developer. Tôi cần bạn tạo implementation plan chi tiết để implement hệ thống Supporter cho dự án ssvid.cc.
+Bạn là một senior TypeScript developer. Tôi cần bạn tạo implementation plan chi tiết để implement hệ thống Supporter cho dự án ytmp4.gg.
 
 Tài liệu context đầy đủ được đính kèm (`supporter-system-context-for-ai.md`). Đọc kỹ toàn bộ trước khi làm.
 
@@ -17,7 +17,7 @@ Tài liệu context đầy đủ được đính kèm (`supporter-system-context
    - File nào **"viết mới hoàn toàn"**
    - **License Button HTML/CSS và trang `/license`**: copy y hệt từ ytmp3.gg, không thay đổi giao diện
 4. Sau mỗi nhóm: đề xuất cách verify/test nhanh
-5. Không được thay đổi cấu trúc project ssvid.cc hiện tại
-6. Tuân thủ quy tắc port cấu trúc đã ghi trong tài liệu (ytmp3.gg JS → ssvid.cc TypeScript)
+5. Không được thay đổi cấu trúc project ytmp4.gg hiện tại
+6. Tuân thủ quy tắc port cấu trúc đã ghi trong tài liệu (ytmp3.gg JS → ytmp4.gg TypeScript)
 
 **File đính kèm**: `supporter-system-context-for-ai.md`

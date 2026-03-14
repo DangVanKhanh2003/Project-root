@@ -130,7 +130,7 @@ function hideMultiPlaylistBannerWidget(): void {
 const WIDGET_RULES: Record<string, { timing: string; levels: Record<number | string, boolean> }> = {
     'license-button': {
         timing: 'pageLoad',
-        levels: { 1: false, 2: true, 3: true, supporter: true }
+        levels: { 1: true, 2: true, 3: true, supporter: true }
     },
     'trustpilot-widget': {
         timing: 'afterSubmit',

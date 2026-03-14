@@ -42,8 +42,8 @@ export function ensureHeroBelowContainerSlot(
         wrapper.style.removeProperty('margin-bottom');
     }
 
-    if (wrapper.parentElement !== heroSection || wrapper.previousElementSibling !== heroContainer) {
-        heroContainer.insertAdjacentElement('afterend', wrapper);
+    if (wrapper.previousElementSibling !== heroSection) {
+        heroSection.insertAdjacentElement('afterend', wrapper);
     }
 
     return wrapper;

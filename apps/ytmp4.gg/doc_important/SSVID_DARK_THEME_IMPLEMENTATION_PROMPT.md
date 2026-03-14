@@ -4,7 +4,7 @@
 
 ---BEGIN PROMPT---
 
-Bạn là một AI lập trình chuyên CSS. Nhiệm vụ của bạn là implement dark theme cho project `apps/ssvid.cc` theo đúng chiến lược "Tokenize First, Override Once".
+Bạn là một AI lập trình chuyên CSS. Nhiệm vụ của bạn là implement dark theme cho project `apps/ytmp4.gg` theo đúng chiến lược "Tokenize First, Override Once".
 
 **QUAN TRỌNG: Đọc hết prompt này trước khi làm bất cứ thứ gì. Không implement từng phần rồi dừng lại hỏi — hãy làm theo đúng thứ tự được mô tả.**
 
@@ -12,7 +12,7 @@ Bạn là một AI lập trình chuyên CSS. Nhiệm vụ của bạn là implem
 
 ## 1. Bối cảnh project
 
-Project path: `F:/downloader/Project-root/apps/ssvid.cc`
+Project path: `F:/downloader/Project-root/apps/ytmp4.gg`
 
 Cấu trúc CSS chính:
 ```
@@ -33,7 +33,7 @@ src/styles/
 ```
 
 Tài liệu tham khảo:
-- `apps/ssvid.cc/doc_important/SSVID_DARK_THEME_ANALYSIS.md` — phân tích chi tiết
+- `apps/ytmp4.gg/doc_important/SSVID_DARK_THEME_ANALYSIS.md` — phân tích chi tiết
 - `apps/ezconv/doc_important/EZCONV_DARK_THEME_PALETTE.md` — palette source
 
 ---

@@ -1,8 +1,8 @@
-# Phân tích: Triển khai Dark Theme cho ssvid.cc
+# Phân tích: Triển khai Dark Theme cho ytmp4.gg
 
 ## Tóm tắt tình trạng hiện tại
 
-ssvid.cc hiện chỉ có **một theme** (light theme ngầm định) và **chưa có bất kỳ cơ chế chuyển theme** nào. CSS được viết theo kiểu "hard single-theme" — nghĩa là màu sắc ánh sáng, nền trắng, v.v. được nhúng trực tiếp trong selector gốc, không có layer `[data-theme="dark"]` hay `@media (prefers-color-scheme: dark)`. Để thêm dark theme mà không tạo ra **duplicate CSS** giữa default và light theme, bạn cần refactor theo một chiến lược rõ ràng.
+ytmp4.gg hiện chỉ có **một theme** (light theme ngầm định) và **chưa có bất kỳ cơ chế chuyển theme** nào. CSS được viết theo kiểu "hard single-theme" — nghĩa là màu sắc ánh sáng, nền trắng, v.v. được nhúng trực tiếp trong selector gốc, không có layer `[data-theme="dark"]` hay `@media (prefers-color-scheme: dark)`. Để thêm dark theme mà không tạo ra **duplicate CSS** giữa default và light theme, bạn cần refactor theo một chiến lược rõ ràng.
 
 ---
 
@@ -177,7 +177,7 @@ Tham khảo đầy đủ: `apps/ezconv/doc_important/EZCONV_DARK_THEME_PALETTE.m
 
 ## 8. Kết luận
 
-ssvid.cc có nền tảng token tốt nhưng chưa hoàn thiện. Chiến lược đúng:
+ytmp4.gg có nền tảng token tốt nhưng chưa hoàn thiện. Chiến lược đúng:
 
 1. **Tokenize trước** — chuyển hardcoded colors sang CSS variables, behavior không đổi
 2. **Override token 1 lần** — `[data-theme="dark"]` chỉ ở 2 file (`variables.css` + `package-root.css`)
