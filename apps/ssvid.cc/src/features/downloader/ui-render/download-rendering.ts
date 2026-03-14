@@ -16,6 +16,9 @@ import { showVidToolPopup } from '@downloader/vidtool-popup';
 import { showExpireModal } from '@downloader/ui-components';
 import { logEvent } from '../../../libs/firebase';
 import { onAfterDownload, onDownloadFailed, onReset, incrementDownloadCount } from '../../widget-level-manager';
+import { showSearchView } from './view-switcher';
+import { setInputValue, focusInput } from './ui-renderer';
+import { clearYouTubePreview } from '../state/youtube-preview-state';
 
 // ============================================================
 // TYPE DEFINITIONS
@@ -733,19 +736,13 @@ function clearSearchUrl(): void {
  * Handle Next button click
  * Switches back to search view and clears input
  */
-async function handleNewConvertButtonClick(): Promise<void> {
+function handleNewConvertButtonClick(): void {
   console.log('[renderConversionStatus] Next button clicked');
   logEvent('next_button_click');
   document.dispatchEvent(new CustomEvent('resetForm'));
 
-  // Hide Trustpilot widget on reset
+  // Hide widgets and switch view simultaneously
   onReset();
-
-  const { showSearchView } = await import('./view-switcher');
-  const { setInputValue, focusInput } = await import('./ui-renderer');
-  const { clearYouTubePreview } = await import('../state');
-
-  // Switch to search view
   showSearchView();
 
   // Clear input
