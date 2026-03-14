@@ -14,6 +14,7 @@ on:
           - 'ytmp3.my'
           - 'ssvid.cc'
           - 'ezconv'
+          - 'ytmp4.gg'
       environment:
         description: 'Target environment'
         required: true
@@ -68,6 +69,11 @@ jobs:
               echo "directory=apps/ezconv" >> $GITHUB_OUTPUT
               echo "filter_path=./apps/ezconv" >> $GITHUB_OUTPUT
               echo "domain=${{ vars.EZCONV_DOMAIN || 'ezconv.pro' }}" >> $GITHUB_OUTPUT
+              ;;
+            "ytmp4.gg")
+              echo "directory=apps/ytmp4.gg" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/ytmp4.gg" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.YTMP4_DOMAIN || 'ytmp4.gg' }}" >> $GITHUB_OUTPUT
               ;;
           esac
 
