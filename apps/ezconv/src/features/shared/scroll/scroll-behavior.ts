@@ -25,15 +25,17 @@ export function scrollToElementWithOffset(target: Element, offset: number): void
         pendingRafId = null;
     }
 
-    // Mobile: close keyboard/focus first to prevent viewport jump.
-    if (isMobileViewport() && document.activeElement instanceof HTMLElement) {
+    // Close keyboard/focus first to prevent viewport jump on mobile.
+    if (document.activeElement instanceof HTMLElement) {
         document.activeElement.blur();
     }
 
-    // Wait one frame for DOM/layout to settle after render updates.
-    pendingRafId = requestAnimationFrame(() => {
-        pendingRafId = null;
-        const targetTop = target.getBoundingClientRect().top + window.pageYOffset - offset;
-        performScroll(targetTop);
-    });
+    // Delay to let keyboard fully close and viewport settle before scrolling.
+    setTimeout(() => {
+        pendingRafId = requestAnimationFrame(() => {
+            pendingRafId = null;
+            const targetTop = target.getBoundingClientRect().top + window.pageYOffset - offset;
+            performScroll(targetTop);
+        });
+    }, 350);
 }
