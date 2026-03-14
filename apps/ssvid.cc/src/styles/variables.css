@@ -23,6 +23,8 @@
     /* Light gray for content sections */
     --text-primary: #333333;
     --bg-badge: #f2f4f7;
+    --meta-badge-bg: #0055b91a;
+    --meta-badge-color: var(--text-accent);
 
     --text-main: var(--text);
     --text-muted: var(--muted);
@@ -47,6 +49,9 @@
     --bg-card: #ffffff;
     --bg-surface-soft: rgba(0, 79, 171, 0.05);
     --bg-hover: rgba(0, 79, 171, 0.08);
+
+    /* YT Preview Card */
+    --yt-preview-card-bg: #0055b90d;
 
     /* Skeleton tokens */
     --color-skeleton-dark: #E3E0DA;
@@ -77,6 +82,9 @@
     /* Input caret */
     --input-caret-color: var(--text-body);
 
+    /* Color input placeholder */
+    --color-input-placeholder: #9B9B9B;
+
     /* Status badge backgrounds */
     --status-ready-bg: #eff6ff;
     --status-ready-color: #3b82f6;
@@ -90,6 +98,13 @@
     --status-analyzing-color: #0369a1;
     --status-converting-bg: #fff7ed;
     --status-converting-color: #c2410c;
+
+    /* Next/New Convert Button */
+    --color-next-btn-bg: var(--bg-card);
+    --color-next-btn-text: var(--text-main);
+    --color-next-btn-border: var(--border-secondary);
+    --color-next-btn-hover-bg: #EFECE7;
+    --color-next-btn-hover-border: #DCD7CF;
 
     /* Tooltip */
     --color-tooltip-bg: var(--text-heading);
@@ -115,6 +130,13 @@
     --bg-secondary: #262624;
     --bg-surface-soft: #383836;
     --bg-hover: #383836;
+
+    /* Meta badge */
+    --meta-badge-bg: #30302e;
+    --meta-badge-color: var(--color-white);
+
+    /* YT Preview Card */
+    --yt-preview-card-bg: rgb(66 66 66);
 
     /* Skeleton tokens */
     --color-skeleton-dark: rgba(255, 255, 255, 0.10);
@@ -148,6 +170,9 @@
     /* Input caret */
     --input-caret-color: #ffffff;
 
+    /* Color input placeholder */
+    --color-input-placeholder: rgba(255, 255, 255, 0.56);
+
     --status-ready-bg: rgba(198, 93, 59, 0.12);
     --status-ready-color: #D9785B;
     --status-success-bg: rgba(16, 185, 129, 0.15);
@@ -162,6 +187,13 @@
     --status-converting-color: #C65D3B;
 
     --color-status-error: #E74C3C;
+
+    /* Next/New Convert Button */
+    --color-next-btn-bg: var(--bg-card);
+    --color-next-btn-text: var(--text-main);
+    --color-next-btn-border: var(--border-secondary);
+    --color-next-btn-hover-bg: #3f3f3d;
+    --color-next-btn-hover-border: #6a6a66;
 
     /* Tooltip */
     --color-tooltip-bg: #2a2a2c;

@@ -1,8 +1,7 @@
 /* Hero Section */
 .hero-section {
     background-color: var(--background-hero-section);
-    /* Changed to Gray (Secondary) */
-    padding: 50px 0 40px 0;
+    padding: 40px 0px 24px 0px;
     color: var(--color-white);
     text-align: center;
     position: relative;
@@ -20,24 +19,10 @@
 
 .hero-container {
     display: flex;
-    flex-direction: column;
     align-items: center;
     width: 100%;
-    max-width: 1100px;
-    /* Constrain width for better centering */
-    margin: 0 auto;
     position: relative;
     z-index: 2;
-}
-
-/* Header within Hero */
-.hero-header {
-    margin-top: 30px;
-    margin-bottom: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
 }
 
 .logo-hero {
@@ -70,65 +55,97 @@
 }
 
 .title-hero {
-    font-size: 3rem;
-    /* 48px */
-    font-weight: 600;
-    margin: 0;
-    line-height: 1.1;
-    color: white;
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    font-weight: 700;
+    color: var(--text-heading);
+    line-height: 1.25;
+    margin: 0 0 20px 0;
+    text-align: center;
+    font-family: var(--font-display);
+    letter-spacing: 0;
 }
 
-.subtitle-hero {
-    font-size: 1.25rem;
-    font-weight: 400;
-    opacity: 1;
-    /* Ensure full opacity for pure white */
-    color: #ffffff;
-    /* Explicit white */
-    margin: 0;
+@media (min-width: 351px) {
+    .title-hero {
+        font-size: clamp(1.0625rem, 3vw, 1.375rem);
+        margin: 0 0 22px 0;
+    }
+}
+
+@media (min-width: 840px) {
+    .title-hero {
+        font-size: clamp(1.25rem, 3.5vw, 1.75rem);
+        margin: 0 0 24px 0;
+    }
+}
+
+@media (min-width: 1920px) {
+    .title-hero {
+        font-size: clamp(1.375rem, 4vw, 2rem);
+        margin: 0 0 28px 0;
+    }
+}
+
+@media (min-width: 2560px) {
+    .title-hero {
+        font-size: clamp(1.5rem, 4.5vw, 2.25rem);
+        margin: 0 0 32px 0;
+        line-height: 1.2;
+    }
 }
 
 .hero-card {
     background: var(--bg-card);
-    border-radius: 24px;
-    /* Slightly larger radius */
-    padding: 32px;
-    padding-bottom: 15px !important;
-    /* Increased padding as requested (was 8px) */
-    /* Softer, spread out shadow */
+    border-radius: 12px;
+    padding: 12px;
+    padding-bottom: 16px !important;
     width: 100%;
-    max-width: 1100px;
+    max-width: 100% !important;
     margin-bottom: 0;
-    /* No negative margin needed with mask approach */
     position: relative;
     z-index: 10;
     display: flex;
     flex-direction: column;
-    border: 0px;
-    /* Space between elements inside form */
+    border: 0;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 351px) {
     .hero-card {
-        padding: 16px;
+        max-width: 600px !important;
+    }
+}
+
+@media (min-width: 600px) {
+    .hero-card {
+        max-width: 700px !important;
     }
 }
 
 @media (min-width: 840px) {
     .hero-card {
+        max-width: 800px !important;
         padding: 20px;
     }
 }
 
 @media (min-width: 1240px) {
     .hero-card {
+        max-width: 900px !important;
         padding: 24px;
     }
 }
 
 @media (min-width: 1920px) {
     .hero-card {
+        max-width: 1000px !important;
         padding: 28px;
+    }
+}
+
+@media (min-width: 2560px) {
+    .hero-card {
+        max-width: 1200px !important;
+        padding: 32px;
     }
 }
 
@@ -139,10 +156,6 @@
     box-shadow: none;
 }
 
-/* Result View */
-#result-view {
-    margin-top: 20px;
-}
 
 /* Fade In Animation */
 .fade-in {
@@ -151,36 +164,12 @@
 
 @media (max-width: 768px) {
     .hero-section {
-        padding: 50px 0 0px;
-        /* Reduced bottom padding to 0 to let mask cover more of the form (half-in/half-out) */
-    }
-
-    /* Remove container padding on mobile as requested */
-    .hero-container {
-        padding: 0;
+        padding: 20px 0px 20px 0px;
     }
 
     .title-hero {
-        font-size: 26px;
-        /* Explicit 26px as requested */
-        margin-bottom: 8px;
-        /* Slightly reduce gap */
+        font-size: 22px;
         padding: 0 20px;
-        /* Added side padding as requested */
-    }
-
-    .subtitle-hero {
-        font-size: 16px;
-        /* Smaller subtitle for mobile */
-        padding: 0 20px;
-        /* Added side padding as requested */
-    }
-
-    .hero-header {
-        margin-top: 0;
-        margin-bottom: 30px;
-        /* Reduce gap between header and form */
-        gap: 12px;
     }
 
     .logo-hero {
@@ -190,26 +179,11 @@
 
     .logo-hero svg {
         width: 40px;
-        /* Smaller, proportional logo icon */
         height: 40px;
     }
 
     .logo-text-hero {
         font-size: 20px;
-        /* Smaller logo text */
-    }
-
-    /* Adjust Red Background Height on Mobile */
-    .hero-section::before {
-        height: 300px;
-        /* Adjusted for mobile */
-    }
-}
-
-@media (max-width: 480px) {
-    .hero-card {
-        padding: 24px 14px;
-        border-radius: calc(var(--radius-xl) - 10px);
     }
 }
 
@@ -227,9 +201,9 @@
     min-height: 20px;
 }
 
-/* Support Platforms Bar (inside hero-card) */
+/* Support Platforms Bar */
 .support-platforms-bar {
-    padding: 30px 24px 0px;
+    padding: 12px 0px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -238,7 +212,7 @@
 
 .support-platforms-label {
     font-size: 12px;
-    color: #111111;
+    color: var(--text-heading);
     font-weight: 700;
     white-space: nowrap;
 }
@@ -262,8 +236,4 @@
 
 .support-platforms-icons svg.support-platform-icon {
     display: none;
-}
-
-[data-theme="dark"] .support-platforms-label {
-    color: var(--text-primary);
 }

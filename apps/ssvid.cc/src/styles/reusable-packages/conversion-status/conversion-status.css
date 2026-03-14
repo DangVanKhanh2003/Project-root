@@ -245,45 +245,57 @@
 }
 
 .download-btn,
-.retry-btn {
+.retry-btn,
+.btn-new-convert {
   margin: 0;
-  padding: 5px 24px;
-  font-size: 16px;
+  height: 36px;
+  min-height: 36px;
+  padding: 0 25px;
+  width: fit-content;
+  border-radius: 12px;
+  font-size: 14px;
   font-weight: 600;
-  border-radius: var(--radius-xl);
-  border: none;
+  line-height: 1;
   cursor: pointer;
-  transition: all 0.2s ease;
-  display: none;
-  min-height: 40px;
-  /* Mobile: 40px height to match status-container */
+  transition: background 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   position: relative;
   overflow: hidden;
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
   user-select: none;
-  width: 130px;
 }
 
 .download-btn.active,
 .retry-btn.active {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: inline-flex;
+}
+
+.download-btn,
+.retry-btn {
+  border: none;
+  color: var(--color-white);
+  display: none;
 }
 
 .download-btn {
-  background-color: var(--color-accent);
-  color: var(--color-white);
+  background: var(--brand);
 }
 
 .download-btn:hover {
-  background-color: var(--color-accent-hover);
+  background: var(--brand-hover);
+}
+
+.download-btn.is-loading {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .retry-btn {
   background: var(--color-status-error);
-  color: var(--color-white);
 }
 
 .retry-btn:hover {
@@ -295,76 +307,126 @@
 }
 
 .btn-new-convert {
-  margin: 0;
-  padding: 5px 12px;
-  font-size: 16px;
-  font-weight: 600;
-  border-radius: var(--radius-xl);
-  border: 1px solid var(--text-main);
-  background: transparent;
-  color: var(--text-main);
-  cursor: pointer;
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 40px;
-  /* Mobile: 40px height to match status-container */
-  position: relative;
-  overflow: hidden;
-  -webkit-tap-highlight-color: transparent;
-  -webkit-touch-callout: none;
-  user-select: none;
-  width: 130px;
-}
-
-[data-theme="light"] .btn-new-convert {
-  border: 1px solid var(--color-black);
-  color: var(--color-black);
-}
-
-[data-theme="dark"] .btn-new-convert {
-  border: 1px solid var(--text-main);
-  color: var(--text-main);
+  background: var(--color-next-btn-bg);
+  color: var(--color-next-btn-text);
+  border: 1px solid var(--color-next-btn-border);
 }
 
 .btn-new-convert:hover {
-  border-color: var(--text-main);
-  color: var(--bg-primary);
-  background: var(--text-main);
-}
-
-[data-theme="light"] .btn-new-convert:hover {
-  background: var(--color-black);
-  color: var(--color-white);
-  border-color: var(--color-black);
-}
-
-[data-theme="dark"] .btn-new-convert:hover {
-  background: var(--text-main);
-  color: var(--bg-primary);
-  border-color: var(--text-main);
+  background: var(--color-next-btn-hover-bg);
+  border-color: var(--color-next-btn-hover-border);
 }
 
 /* ===== RESPONSIVE ===== */
 
 @media (min-width: 768px) {
 
-  .status-container,
-  .action-container {
-    min-height: 52px;
-    /* Desktop: 52px height */
+  .status-container {
+    min-height: 48px;
   }
 
   .status-text {
     font-size: 15px;
   }
+}
+
+@media (min-width: 0) and (max-width: 350px) {
+  .action-container.active {
+    min-height: 40px;
+    gap: 8px;
+  }
 
   .download-btn,
   .retry-btn,
   .btn-new-convert {
-    font-size: 17px;
+    height: 36px;
+    min-height: 36px;
+    font-size: 10px;
+    padding: 0 20px;
+  }
+}
+
+@media (min-width: 351px) and (max-width: 599px) {
+  .action-container.active {
+    min-height: 40px;
+  }
+
+  .download-btn,
+  .retry-btn,
+  .btn-new-convert {
+    height: 40px;
+    min-height: 40px;
+    font-size: 12px;
+    padding: 0 20px;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 839px) {
+  .action-container.active {
+    min-height: 36px;
+  }
+
+  .download-btn,
+  .retry-btn,
+  .btn-new-convert {
+    height: 36px;
+    min-height: 36px;
+  }
+}
+
+@media (min-width: 840px) and (max-width: 1239px) {
+  .action-container.active {
+    min-height: 44px;
+  }
+
+  .download-btn,
+  .retry-btn,
+  .btn-new-convert {
+    height: 44px;
+    min-height: 44px;
+    padding: 0 28px;
+  }
+}
+
+@media (min-width: 1240px) and (max-width: 1919px) {
+  .action-container.active {
+    min-height: 46px;
+  }
+
+  .download-btn,
+  .retry-btn,
+  .btn-new-convert {
+    height: 46px;
+    min-height: 46px;
+    padding: 0 30px;
+  }
+}
+
+@media (min-width: 1920px) and (max-width: 2559px) {
+  .action-container.active {
+    min-height: 48px;
+  }
+
+  .download-btn,
+  .retry-btn,
+  .btn-new-convert {
+    height: 48px;
+    min-height: 48px;
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 2560px) {
+  .action-container.active {
     min-height: 52px;
-    /* Desktop: 52px height */
+  }
+
+  .download-btn,
+  .retry-btn,
+  .btn-new-convert {
+    height: 52px;
+    min-height: 52px;
+    font-size: 18px;
+    padding: 0 32px;
   }
 }

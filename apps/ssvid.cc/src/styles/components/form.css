@@ -44,20 +44,24 @@
 .input-wrapper {
     display: flex;
     align-items: center;
+    width: 100%;
+    min-width: 0;
     background: var(--bg-card);
     border: 1px solid var(--border-input);
     border-radius: var(--radius-xl);
     overflow: hidden;
-    transition: border-color 0.3s, box-shadow 0.3s;
+    transition: none;
 }
 
 
 
 .video-input {
     flex: 1;
-    height: 60px;
-    padding: 0 20px;
-    font-size: 16px;
+    min-width: 0;
+    height: 52px;
+    padding: 0 16px;
+    font-size: 18px;
+    line-height: 1.5;
     border: none;
     outline: none;
     background: transparent;
@@ -65,7 +69,15 @@
     caret-color: var(--input-caret-color);
 }
 
+.video-input::placeholder {
+    color: var(--color-input-placeholder);
+    opacity: 1;
+}
+
 .input-actions {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
     padding-right: 12px;
 }
 
@@ -83,13 +95,13 @@
     border: none;
     border-radius: 12px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: background 0.2s ease, color 0.2s ease;
     height: 40px;
 }
 
 .btn-paste:hover {
-    background: var(--color-accent-dark, rgba(0, 79, 171, 0.1));
-    color: var(--brand, #004fab);
+    background: var(--color-accent-dark);
+    color: var(--brand);
 }
 
 .btn-paste:active {
@@ -117,7 +129,7 @@
 /* Error Message */
 .error-message {
     display: none;
-    color: #dc3545;
+    color: var(--color-status-error);
     font-size: 14px;
     margin-top: 12px;
     min-height: 20px;
@@ -129,9 +141,9 @@
 
 /* Shared Button Styles */
 .btn-convert {
-    background: var(--primary-color);
+    background: var(--brand);
     border: none;
-    color: #fff;
+    color: var(--color-white);
     border-radius: var(--radius-xl);
     cursor: pointer;
 }
@@ -144,8 +156,12 @@
 
 @media (max-width: 768px) {
     .video-input {
-        height: 54px;
+        height: 48px;
         font-size: 16px;
+    }
+
+    .input-actions {
+        padding-right: 6px;
     }
 
     .btn-paste,
@@ -165,11 +181,6 @@
 }
 
 @media (max-width: 480px) {
-    .video-input {
-        height: 48px;
-        font-size: 16px;
-    }
-
     .input-wrapper {
         border-radius: calc(var(--radius-xl) - 10px);
     }

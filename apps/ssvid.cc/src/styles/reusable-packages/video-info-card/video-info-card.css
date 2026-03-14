@@ -334,10 +334,10 @@
   align-items: center;
   justify-content: center;
   gap: var(--space-xs, 4px);
-  padding: var(--space-sm, 6px) var(--space-xl, 20px);
+  padding: 6px 30px;
   font-size: 13px;
   font-weight: var(--font-weight-semibold, 600);
-  transition: all 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
   white-space: nowrap;
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
@@ -345,7 +345,7 @@
 }
 
 .btn-convert:hover {
-  filter: brightness(1.1);
+  opacity: 0.85;
 }
 
 
@@ -446,7 +446,7 @@
   }
 
   .btn-convert {
-    padding: var(--space-sm, 6px) var(--space-2xl, 24px);
+    padding: 6px 30px;
     font-size: var(--font-size-sm, 14px);
   }
 
@@ -492,7 +492,7 @@
   }
 
   .btn-convert {
-    padding: var(--space-md, 8px) var(--space-2xl, 28px);
+    padding: 8px 28px;
     font-size: var(--font-size-base, 15px);
   }
 

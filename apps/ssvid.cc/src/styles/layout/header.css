@@ -378,10 +378,9 @@
     }
 }
 
-@media (min-width: 840px) {
+@media (min-width: 600px) {
 
-    .license-button,
-    .lang-button {
+    .license-button {
         font-size: 14px;
         padding: 9px 16px;
     }
@@ -394,6 +393,14 @@
         color: var(--text-body);
         border-color: var(--border-default);
         width: auto;
+    }
+}
+
+@media (min-width: 840px) {
+
+    .lang-button {
+        font-size: 14px;
+        padding: 9px 16px;
     }
 }
 
@@ -425,7 +432,7 @@
     border-color: #fff;
 }
 
-@media (min-width: 840px) {
+@media (min-width: 600px) {
     .header-nav .license-button:hover {
         background: #f5f6f8;
         border-color: #dde0e6;
@@ -466,6 +473,8 @@
     height: 16px;
     flex-shrink: 0;
 }
+
+
 
 .license-icon svg {
     width: 16px;
