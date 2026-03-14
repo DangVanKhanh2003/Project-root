@@ -227,10 +227,8 @@
   }
 
   .yt-preview-thumbnail {
-    height: 100%;
-    max-height: 150px;
-    max-width: 185px;
-    width: auto;
+    width: 133px;
+    height: 100px;
     align-self: center;
   }
 
