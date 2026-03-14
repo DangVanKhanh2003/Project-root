@@ -49,8 +49,8 @@
     {%- set cleanUrl = page.url | replace('/index.html', '/') | replace('.html', '') -%}
     <link rel="canonical" href="{{ site.url }}{{ cleanUrl }}">
 
-    <!-- hreflang tags for multilingual SEO (2-char language codes) -->
-    {#- Only index pages end with a trailing slash -#}
+    {#- hreflang tags: only render when multiple languages are active -#}
+    {%- if site.languages | length > 1 %}
     {%- set pageSlug = '' if pageKey == 'index' else pageKey -%}
     {%- for langItem in site.languages %}
     {%- if langItem.isDefault %}
@@ -61,6 +61,7 @@
     <link rel="alternate" hreflang="{{ langItem.code }}" href="{{ site.url }}{{ altUrl }}" />
     {%- endfor %}
     <link rel="alternate" hreflang="x-default" href="{{ site.url }}{{ '/' if pageSlug == '' else '/' + pageSlug }}" />
+    {%- endif %}
 
     <!-- Schema.org markup (2-char language code) -->
     <meta itemprop="name" content="{{ seo.schemaName }}" />

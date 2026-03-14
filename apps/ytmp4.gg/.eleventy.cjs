@@ -69,25 +69,26 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addGlobalData('site', {
     url: 'https://ytmp4.gg',
     languages: [
-      { code: 'en', name: 'English', flag: 'us.png', isDefault: true },
-      { code: 'ar', name: 'العربية', flag: 'sa.svg', isDefault: false },
-      { code: 'bn', name: 'বাংলা', flag: 'bd.svg', isDefault: false },
-      { code: 'de', name: 'Deutsch', flag: 'de.svg', isDefault: false },
-      { code: 'es', name: 'Español', flag: 'es.svg', isDefault: false },
-      { code: 'fr', name: 'Français', flag: 'fr.svg', isDefault: false },
-      { code: 'hi', name: 'हिन्दी', flag: 'in.svg', isDefault: false },
-      { code: 'id', name: 'Indonesia', flag: 'id.svg', isDefault: false },
-      { code: 'it', name: 'Italiano', flag: 'it.svg', isDefault: false },
-      { code: 'ja', name: '日本語', flag: 'jp.svg', isDefault: false },
-      { code: 'ko', name: '한국어', flag: 'kr.svg', isDefault: false },
-      { code: 'my', name: 'မြန်မာ', flag: 'mm.svg', isDefault: false },
-      { code: 'ms', name: 'Melayu', flag: 'my.svg', isDefault: false },
-      { code: 'pt', name: 'Português', flag: 'pt.svg', isDefault: false },
-      { code: 'ru', name: 'Русский', flag: 'ru.svg', isDefault: false },
-      { code: 'th', name: 'ไทย', flag: 'th.svg', isDefault: false },
-      { code: 'tr', name: 'Türkçe', flag: 'tr.svg', isDefault: false },
-      { code: 'ur', name: 'اردو', flag: 'pk.svg', isDefault: false },
-      { code: 'vi', name: 'Tiếng Việt', flag: 'vn.svg', isDefault: false }
+      { code: 'en', name: 'English', flag: 'us.png', isDefault: true }
+      // When adding multilingual support, uncomment languages below:
+      // { code: 'ar', name: 'العربية', flag: 'sa.svg', isDefault: false },
+      // { code: 'bn', name: 'বাংলা', flag: 'bd.svg', isDefault: false },
+      // { code: 'de', name: 'Deutsch', flag: 'de.svg', isDefault: false },
+      // { code: 'es', name: 'Español', flag: 'es.svg', isDefault: false },
+      // { code: 'fr', name: 'Français', flag: 'fr.svg', isDefault: false },
+      // { code: 'hi', name: 'हिन्दी', flag: 'in.svg', isDefault: false },
+      // { code: 'id', name: 'Indonesia', flag: 'id.svg', isDefault: false },
+      // { code: 'it', name: 'Italiano', flag: 'it.svg', isDefault: false },
+      // { code: 'ja', name: '日本語', flag: 'jp.svg', isDefault: false },
+      // { code: 'ko', name: '한국어', flag: 'kr.svg', isDefault: false },
+      // { code: 'my', name: 'မြန်မာ', flag: 'mm.svg', isDefault: false },
+      // { code: 'ms', name: 'Melayu', flag: 'my.svg', isDefault: false },
+      // { code: 'pt', name: 'Português', flag: 'pt.svg', isDefault: false },
+      // { code: 'ru', name: 'Русский', flag: 'ru.svg', isDefault: false },
+      // { code: 'th', name: 'ไทย', flag: 'th.svg', isDefault: false },
+      // { code: 'tr', name: 'Türkçe', flag: 'tr.svg', isDefault: false },
+      // { code: 'ur', name: 'اردو', flag: 'pk.svg', isDefault: false },
+      // { code: 'vi', name: 'Tiếng Việt', flag: 'vn.svg', isDefault: false }
     ]
   });
 
