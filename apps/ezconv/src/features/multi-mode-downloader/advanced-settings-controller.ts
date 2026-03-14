@@ -5,6 +5,7 @@
  */
 
 import { ensureTrimEditorDefaults, loadVideoForTrim, resetTrimEditor } from './trim-controller';
+import { logButtonClick } from '../../libs/firebase/firebase-analytics';
 
 let _playlistModeOn = false;
 let _trimModeOn = false;
@@ -121,6 +122,7 @@ export function initAdvancedSettings(): void {
             const expanded = toggleBtn.getAttribute('aria-expanded') === 'true';
             const nextExpanded = !expanded;
             toggleBtn.setAttribute('aria-expanded', String(nextExpanded));
+            logButtonClick('advanced_settings_toggle', { expanded: nextExpanded });
             if (expanded) {
                 panel.setAttribute('hidden', '');
             } else {
@@ -140,7 +142,9 @@ export function initAdvancedSettings(): void {
                     return;
                 }
             }
-            applyPlaylistMode(!_playlistModeOn);
+            const nextState = !_playlistModeOn;
+            applyPlaylistMode(nextState);
+            logButtonClick('playlist_mode_toggle', { enabled: nextState });
         });
     }
 
@@ -150,6 +154,7 @@ export function initAdvancedSettings(): void {
         channelSwitch.addEventListener('click', () => {
             if (_channelModeOn) {
                 applyChannelMode(false);
+                logButtonClick('channel_mode_toggle', { enabled: false });
                 return;
             }
             const count = countUrls();
@@ -158,6 +163,7 @@ export function initAdvancedSettings(): void {
                 return;
             }
             applyChannelMode(true);
+            logButtonClick('channel_mode_toggle', { enabled: true });
         });
     }
 
@@ -167,6 +173,7 @@ export function initAdvancedSettings(): void {
         trimSwitch.addEventListener('click', () => {
             if (_trimModeOn) {
                 applyTrimMode(false);
+                logButtonClick('trim_mode_toggle', { enabled: false });
                 return;
             }
             const count = countUrls();
@@ -175,6 +182,7 @@ export function initAdvancedSettings(): void {
                 return;
             }
             applyTrimMode(true);
+            logButtonClick('trim_mode_toggle', { enabled: true });
         });
     }
 

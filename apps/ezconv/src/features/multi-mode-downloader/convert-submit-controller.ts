@@ -17,6 +17,7 @@ import { FEATURE_KEYS, FEATURE_ACCESS_REASONS } from '@downloader/core';
 import { showLimitReachedPopup, showVideoLimitPopup, showSupporterUpsellPopup, showPlaylistInstructionPopup, showChannelInstructionPopup } from '@downloader/ui-shared';
 import { POPUP_CONFIG } from '../supporter-popup-config';
 import { incrementDownloadCount, onAfterSubmit, onReset } from '../widget-level-manager';
+import { logButtonClick } from '../../libs/firebase/firebase-analytics';
 
 const MAX_BATCH_URLS = 100; // Physical technical limit, business limit is checked via checkLimit
 
@@ -109,6 +110,10 @@ export function initConvertForm(config: ConvertFormConfig): void {
             showError(errorMessage, 'Please paste at least one URL.');
             return;
         }
+
+        const mode = isTrimMode() ? 'trim' : isChannelMode() ? 'channel' : isPlaylistMode() ? 'playlist' : 'batch';
+        const urlCount = rawText.split(/[\n\s,]+/).filter(Boolean).length;
+        logButtonClick('convert_button', { mode, url_count: urlCount });
 
         document.dispatchEvent(new CustomEvent('multi-download:convert-click'));
         clearError(errorMessage);
