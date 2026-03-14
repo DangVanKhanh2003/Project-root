@@ -587,7 +587,10 @@
    Active license button state — shows days remaining / Lifetime
    ============================================================ */
 
-/* Keep key icon visible when license is active */
+/* Hide key icon when license is active — text label (Lifetime / days) is enough */
+.license-button.license-active .license-icon {
+    display: none;
+}
 
 .license-arrow {
     flex-shrink: 0;
