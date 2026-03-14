@@ -1756,6 +1756,7 @@ html[data-theme="dark"] .multi-search-input::placeholder {
     border: none;
     position: relative;
     z-index: 1;
+    border-radius: 20px 20px 0 0;
 }
 
 .group-header-top-row {

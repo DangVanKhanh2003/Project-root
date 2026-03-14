@@ -678,6 +678,12 @@ export class MultiDownloadService {
     }
 
     removeGroup(groupId: string): void {
+        // Clear loading state before removing items so the last item:removed
+        // handler sees isGroupLoading=false and removes the group DOM element.
+        const meta = videoStore.getGroupMeta(groupId);
+        if (meta?.isLoading) {
+            videoStore.setGroupMeta(groupId, false, meta.title, meta.nextPageToken);
+        }
         const items = videoStore.getAllItems().filter(i => i.groupId === groupId);
         for (const item of items) {
             videoStore.removeItem(item.id);
