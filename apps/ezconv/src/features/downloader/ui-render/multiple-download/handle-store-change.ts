@@ -409,7 +409,7 @@ function createGroupElement(groupId: string, groupTitle: string): HTMLElement {
         <div class="group-items">
             <div class="group-empty" style="display: none;">No items in this tab</div>
         </div>
-        <div class="group-load-more" style="display: none;">
+        <div class="group-load-more" style="visibility: hidden;">
             <button type="button" class="btn-load-more-group" data-action="load-more-group" data-group-id="${groupId}">Load more</button>
         </div>
     `;
@@ -438,11 +438,11 @@ export function updateGroupCount(groupEl: HTMLElement, isLocked: boolean = false
     const loadMoreBtn = loadMoreContainer?.querySelector('.btn-load-more-group') as HTMLButtonElement;
     if (loadMoreContainer && loadMoreBtn) {
         if (groupMeta?.nextPageToken && (!hasTabs || activeTab !== 'download')) {
-            loadMoreContainer.style.display = '';
+            loadMoreContainer.style.visibility = '';
             loadMoreBtn.disabled = isGroupLoading;
             loadMoreBtn.textContent = isGroupLoading ? 'Loading...' : 'Load more';
         } else {
-            loadMoreContainer.style.display = 'none';
+            loadMoreContainer.style.visibility = 'hidden';
         }
     }
 

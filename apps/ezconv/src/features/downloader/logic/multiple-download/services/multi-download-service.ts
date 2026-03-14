@@ -159,8 +159,8 @@ export class MultiDownloadService {
         // Mark group as loading immediately so renderer keeps DOM stable during skeleton -> real items transition.
         videoStore.setGroupMeta(groupId, true, 'Playlist', null);
 
-        // Add 8 skeleton items for visual loading while fetching page 1
-        const skeletonItems: VideoItem[] = Array.from({ length: 8 }).map((_, i) => ({
+        // Add 10 skeleton items for visual loading while fetching page 1
+        const skeletonItems: VideoItem[] = Array.from({ length: 10 }).map((_, i) => ({
             id: generateItemId(`skeleton_${groupId}_${i}`),
             url: '',
             meta: {
@@ -340,8 +340,8 @@ export class MultiDownloadService {
         // Mark group as loading immediately
         videoStore.setGroupMeta(groupId, true, 'Channel', null);
 
-        // Add 8 skeleton items for visual loading
-        const skeletonItems: VideoItem[] = Array.from({ length: 8 }).map((_, i) => ({
+        // Add 10 skeleton items for visual loading
+        const skeletonItems: VideoItem[] = Array.from({ length: 10 }).map((_, i) => ({
             id: generateItemId(`skeleton_${groupId}_${i}`),
             url: '',
             meta: {
@@ -598,7 +598,7 @@ export class MultiDownloadService {
             else if (is320kbps) limitResult = await checkLimit({ kind: 'high_quality_320k' });
 
             if (limitResult && !limitResult.allowed) {
-                showLimitReachedPopup(POPUP_CONFIG, limitResult.mode ?? undefined);
+                showLimitReachedPopup(POPUP_CONFIG, limitResult.mode ?? undefined, limitResult.limit ?? undefined);
                 return false;
             }
         }

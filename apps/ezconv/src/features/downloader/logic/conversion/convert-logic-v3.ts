@@ -82,7 +82,7 @@ export async function startConversion(params: V3ConversionParams): Promise<void>
 
   if (!limitResult.allowed) {
     if (limitResult.type === 'daily_mode_limit') {
-      showLimitReachedPopup(POPUP_CONFIG, limitResult.mode ?? undefined);
+      showLimitReachedPopup(POPUP_CONFIG, limitResult.mode ?? undefined, limitResult.limit ?? undefined);
     } else if (limitResult.type === 'bulk_video_count') {
       showVideoLimitPopup(POPUP_CONFIG, limitResult.limit ?? undefined);
     }

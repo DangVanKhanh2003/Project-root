@@ -1546,6 +1546,15 @@ html[data-theme="dark"] .multi-search-input::placeholder {
     white-space: nowrap;
     position: relative;
     z-index: 2;
+    flex: 1;
+    text-align: center;
+}
+
+.tab-count {
+    font-variant-numeric: tabular-nums;
+    display: inline-block;
+    min-width: 4ch;
+    text-align: left;
 }
 
 .playlist-tab.active {
@@ -2050,7 +2059,7 @@ html[data-theme="light"] .btn-playlist-group-action.is-disabled {
 }
 
 .group-items {
-    max-height: 650px;
+    height: 650px;
     overflow-y: scroll;
     border-radius: 0 0 16px 16px;
 }

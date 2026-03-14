@@ -977,24 +977,40 @@ function mountPopup(
     });
 }
 
-export function showLimitReachedPopup(_config: MaintenancePopupConfig, mode?: string): void {
+const LIMIT_MODE_LABELS: Record<string, string> = {
+    batch: 'Multi Download',
+    playlist: 'Playlist Download',
+    channel: 'Channel Download',
+    trim: 'Trim/Cut',
+    high_quality_4k: '4K Download',
+    high_quality_2k: '2K Download',
+    high_quality_320k: '320kbps Download',
+};
+
+export function showLimitReachedPopup(_config: MaintenancePopupConfig, mode?: string, dailyLimit?: number): void {
+    const label = mode ? LIMIT_MODE_LABELS[mode] || mode : undefined;
+    const title = label && typeof dailyLimit === 'number'
+        ? `${label} Limit: ${dailyLimit}/day`
+        : label
+            ? `${label} Limit Reached`
+            : 'Daily Limit Reached';
     // @ts-ignore — runtime CDN module
-    import('https://media.ytmp3.gg/poppurchase.v3.js?v=4').then((m: any) => m.show(mode || undefined));
+    import('https://media.ytmp3.gg/poppurchase.v3.js?v=8').then((m: any) => m.show(mode || undefined, { title }));
 }
 
-export function showVideoLimitPopup(_config: MaintenancePopupConfig, _maxVideos = 10): void {
+export function showVideoLimitPopup(_config: MaintenancePopupConfig, maxVideos = 10): void {
     // @ts-ignore — runtime CDN module
-    import('https://media.ytmp3.gg/poppurchase.v3.js?v=4').then((m: any) => m.show('bulk_video_count'));
+    import('https://media.ytmp3.gg/poppurchase.v3.js?v=8').then((m: any) => m.show('none_title', { title: `Limit ${maxVideos} items per convert`, noCountdown: true }));
 }
 
 export function showMaintenancePopup(_config: MaintenancePopupConfig): void {
     // @ts-ignore — runtime CDN module
-    import('https://media.ytmp3.gg/poppurchase.v3.js?v=4').then((m: any) => m.show('maintenance'));
+    import('https://media.ytmp3.gg/poppurchase.v3.js?v=8').then((m: any) => m.show('maintenance'));
 }
 
 export function showSupporterUpsellPopup(_config: MaintenancePopupConfig): void {
     // @ts-ignore — runtime CDN module
-    import('https://media.ytmp3.gg/poppurchase.v3.js?v=4').then((m: any) => m.show());
+    import('https://media.ytmp3.gg/poppurchase.v3.js?v=8').then((m: any) => m.show());
 }
 
 export function showPlaylistInstructionPopup(config: MaintenancePopupConfig): void {

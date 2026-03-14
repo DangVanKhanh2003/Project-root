@@ -36,7 +36,7 @@ function showPopupForLimitResult(limit: Awaited<ReturnType<typeof checkLimit>>):
         return;
     }
 
-    showLimitReachedPopup(POPUP_CONFIG, limit.mode ?? undefined);
+    showLimitReachedPopup(POPUP_CONFIG, limit.mode ?? undefined, limit.limit ?? undefined);
 }
 
 function showPopupForAccessResult(result: FeatureAccessResult): void {
@@ -48,7 +48,7 @@ function showPopupForAccessResult(result: FeatureAccessResult): void {
         showVideoLimitPopup(POPUP_CONFIG, result.limit ?? undefined);
         return;
     }
-    showLimitReachedPopup(POPUP_CONFIG, result.limitMode ?? undefined);
+    showLimitReachedPopup(POPUP_CONFIG, result.limitMode ?? undefined, result.limit ?? undefined);
 }
 
 export function initConvertForm(config: ConvertFormConfig): void {
@@ -183,14 +183,22 @@ async function handleBatchConvert(
     const isBulkDownload = parsed.length >= 2;
 
     if (isBulkDownload) {
+        // Show skeleton while checking limit
+        const skeletonGroupId = multiDownloadService.createSkeletonGroup('Multiple', parsed.length, settings);
+        onItemsAdded?.();
+
         const limitResult = await checkLimit({
             kind: 'batch',
             itemCount: parsed.length
         });
         if (!limitResult.allowed) {
+            multiDownloadService.removeGroup(skeletonGroupId);
             showPopupForLimitResult(limitResult);
             return false;
         }
+
+        // Access allowed — remove temp skeleton and proceed with real loading
+        multiDownloadService.removeGroup(skeletonGroupId);
     }
 
     const purePlaylistUrls = parsed.filter(p => !p.videoId && p.playlistId);
@@ -227,7 +235,7 @@ async function handlePlaylistModeConvert(
     }
 
     // Show skeleton while checking access
-    const skeletonGroupId = multiDownloadService.createSkeletonGroup('Playlist', 8, settings);
+    const skeletonGroupId = multiDownloadService.createSkeletonGroup('Playlist', 10, settings);
     onItemsAdded?.();
 
     const accessResult = await evaluateFeatureAccess(FEATURE_KEYS.PLAYLIST_DOWNLOAD, { kind: 'playlist' });
@@ -263,7 +271,7 @@ async function handleChannelModeConvert(
     if (urls.length > 1) throw new Error('Channel Mode only supports 1 URL at a time.');
 
     // Show skeleton while checking access
-    const skeletonGroupId = multiDownloadService.createSkeletonGroup('Channel', 8, settings);
+    const skeletonGroupId = multiDownloadService.createSkeletonGroup('Channel', 10, settings);
     onItemsAdded?.();
 
     const accessResult = await evaluateFeatureAccess(FEATURE_KEYS.CHANNEL_DOWNLOAD, { kind: 'channel' });
@@ -293,11 +301,19 @@ export async function handleTrimConvert(
     const p = parsed[0];
     if (!p.videoId) throw new Error('Could not extract a video ID from the URL.');
 
+    // Show skeleton while checking limit
+    const skeletonGroupId = multiDownloadService.createSkeletonGroup('Trim/Cut', 1, settings);
+    onItemsAdded?.();
+
     const limitResult = await checkLimit({ kind: 'trim' });
     if (!limitResult.allowed) {
+        multiDownloadService.removeGroup(skeletonGroupId);
         showPopupForLimitResult(limitResult);
         return false;
     }
+
+    // Access allowed — remove temp skeleton and proceed with real loading
+    multiDownloadService.removeGroup(skeletonGroupId);
 
     const trimStart = getTrimStart();
     const trimEnd = getTrimEnd();
