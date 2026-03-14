@@ -101,7 +101,7 @@ function renderDropdownItems(licenseDropdown: Element): void {
 /**
  * Update all license button labels based on current cache.
  */
-function updateButtonLabels(): void {
+export function updateButtonLabels(): void {
     const cache = getLicenseCache();
     const isActive = cache && isPlanActive(cache);
 

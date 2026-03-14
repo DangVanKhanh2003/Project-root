@@ -587,10 +587,7 @@
    Active license button state — shows days remaining / Lifetime
    ============================================================ */
 
-/* Mobile: small active indicator on trigger */
-.license-button.license-active .license-icon {
-    display: none;
-}
+/* Keep key icon visible when license is active */
 
 .license-arrow {
     flex-shrink: 0;

@@ -222,6 +222,21 @@ function initFeedbackWidget(): void {
  */
 async function loadFeatures() {
   recordPageLoad();
+
+  // Auto-activate license from URL param (?license=XXXXX)
+  const urlParams = new URLSearchParams(window.location.search);
+  const autoLicenseKey = urlParams.get('license');
+
+  if (autoLicenseKey) {
+    const url = new URL(window.location.href);
+    url.searchParams.delete('license');
+    window.history.replaceState({}, '', url.toString());
+
+    import('./features/auto-license-checker').then(({ autoCheckLicense }) => {
+      autoCheckLicense(autoLicenseKey);
+    });
+  }
+
   await applyInitialVisibility();   // Initialize license button + supporter badge
   initLicenseOnPageLoad();          // Background revalidation if cache is stale (fire-and-forget)
   initMobileMenu(); // Initialize mobile menu
