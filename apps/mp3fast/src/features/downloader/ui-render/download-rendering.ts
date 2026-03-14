@@ -25,6 +25,25 @@ interface VideoMeta {
 }
 
 // ============================================================
+// PENDING TIMERS — cleared on reset to prevent race conditions
+// ============================================================
+
+let pendingTimers: ReturnType<typeof setTimeout>[] = [];
+
+function schedulePendingTimer(callback: () => void, delay: number): void {
+  const id = setTimeout(() => {
+    pendingTimers = pendingTimers.filter(t => t !== id);
+    callback();
+  }, delay);
+  pendingTimers.push(id);
+}
+
+function clearPendingTimers(): void {
+  pendingTimers.forEach(id => clearTimeout(id));
+  pendingTimers = [];
+}
+
+// ============================================================
 // MAIN RENDER FUNCTION
 // ============================================================
 
@@ -85,7 +104,7 @@ export function renderConversionStatus(state: AppState, _prevState?: AppState): 
       // SUCCESS: Wait for animation to complete before hiding
       // 200ms CSS transition + 150ms visible at 100% = 350ms
       const actionContainer = document.getElementById('action-container');
-      setTimeout(() => {
+      schedulePendingTimer(() => {
         statusContainer.style.display = 'none';  // Ẩn status trước
         actionContainer?.classList.add('active'); // Hiện action container
 
@@ -135,7 +154,7 @@ function smoothTransitionTo100(
   totalDelay: number = 400
 ): void {
   statusContainer.style.setProperty('--progress-scale', '1');
-  setTimeout(callback, totalDelay);
+  schedulePendingTimer(callback, totalDelay);
 }
 
 // ============================================================
@@ -505,6 +524,7 @@ function clearSearchUrl(): void {
  * Switches back to search view and clears input
  */
 async function handleNewConvertButtonClick(): Promise<void> {
+  clearPendingTimers();
   if (reloadIfStale()) return;
   console.log('[renderConversionStatus] Next button clicked');
 
