@@ -1,7 +1,7 @@
 /* Hero Section */
 .hero-section {
     background-color: var(--background-hero-section);
-    padding: 40px 0px 24px 0px;
+    padding: 45px 0px 24px 0px;
     color: var(--color-white);
     text-align: center;
     position: relative;
