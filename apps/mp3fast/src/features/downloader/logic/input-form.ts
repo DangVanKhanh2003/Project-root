@@ -37,6 +37,7 @@ import type { VideoData } from '@downloader/ui-components';
 import { navigateToVideo } from '../routing/url-manager';
 import { setVideoPageSEO } from '../routing/seo-manager';
 import { showResultView } from '../ui-render/view-switcher';
+import { startConversion } from './conversion';
 
 // Import YouTube helpers from @downloader/core (TODO: remove local duplicates)
 import {
@@ -90,8 +91,6 @@ async function handleAutoDownload(url: string, videoId: string): Promise<void> {
     }
 
     const videoTitle = state.youtubePreview?.title || 'Loading video information...';
-    const { startConversion } = await import('./conversion');
-
     await startConversion({
       formatId,
       videoUrl: url,

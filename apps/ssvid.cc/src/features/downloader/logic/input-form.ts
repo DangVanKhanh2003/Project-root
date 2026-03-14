@@ -38,6 +38,7 @@ import type { VideoData } from '@downloader/ui-components';
 import { navigateToVideo } from '../routing/url-manager';
 import { setVideoPageSEO } from '../routing/seo-manager';
 import { showResultView } from '../ui-render/view-switcher';
+import { startConversion } from './conversion';
 import { MaterialPopup } from '../../../ui-components/material-popup/material-popup';
 import { getUrlRedirectTarget, looksLikeUrl } from '@downloader/core';
 import { evaluateFeatureAccess } from '../../allowed-features';
@@ -373,8 +374,6 @@ export async function handleAutoDownload(
 
     // Trigger conversion with built formatData
     console.log('[Auto-Download] Triggering conversion...');
-    const { startConversion } = await import('./conversion');
-
     await startConversion({
       formatId,
       videoUrl: url,

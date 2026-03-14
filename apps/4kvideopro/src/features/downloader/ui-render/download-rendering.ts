@@ -16,6 +16,10 @@ import { showExpireModal } from '@downloader/ui-components';
 import { logEvent } from '../../../libs/firebase';
 import { LANGUAGES } from '../../downloader/data/languages';
 import { reloadIfStale } from '../../../utils/page-freshness';
+import { handleDownloadClick } from '../logic/conversion';
+import { clearYouTubePreview } from '../state';
+import { showSearchView } from './view-switcher';
+import { setInputValue, focusInput } from './ui-renderer';
 
 // ============================================================
 // TYPE DEFINITIONS
@@ -474,7 +478,6 @@ function setupButtonHandlers(formatId: string): void {
 async function handleDownloadButtonClick(formatId: string): Promise<void> {
   console.log('[renderConversionStatus] Download button clicked for:', formatId);
 
-  const { handleDownloadClick } = await import('../logic/conversion');
   const result = handleDownloadClick(formatId);
 
   if (result === 'expired') {
@@ -523,9 +526,6 @@ async function handleNewConvertButtonClick(): Promise<void> {
   if (reloadIfStale()) return;
   console.log('[renderConversionStatus] Next button clicked');
 
-  const { showSearchView } = await import('./view-switcher');
-  const { setInputValue, focusInput } = await import('./ui-renderer');
-  const { clearYouTubePreview } = await import('../state');
 
   // Switch to search view
   showSearchView();

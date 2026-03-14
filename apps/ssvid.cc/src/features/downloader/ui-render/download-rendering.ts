@@ -20,6 +20,7 @@ import { showSearchView } from './view-switcher';
 import { setInputValue, focusInput } from './ui-renderer';
 import { clearYouTubePreview } from '../state/youtube-preview-state';
 import { reloadIfStale } from '../../../utils/page-freshness';
+import { handleDownloadClick } from '../logic/conversion';
 
 // ============================================================
 // TYPE DEFINITIONS
@@ -685,7 +686,6 @@ async function handleDownloadButtonClick(formatId: string): Promise<void> {
   console.log('[renderConversionStatus] Download button clicked for:', formatId);
   logEvent('download_button_click', { format_id: formatId });
 
-  const { handleDownloadClick } = await import('../logic/conversion');
   const result = handleDownloadClick(formatId);
 
   if (result === 'expired') {

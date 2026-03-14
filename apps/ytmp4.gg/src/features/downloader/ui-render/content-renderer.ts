@@ -552,7 +552,8 @@ export function renderPreviewCard(_data: any): void {
     <div class="yt-preview-card${showSourcePreview ? '' : ' yt-preview-card--compact'}">
       ${showSourcePreview ? `<div class="yt-preview-thumbnail">
         <img src="${escapeHtml(thumbnail)}"
-             alt="${escapeHtml(title)}">
+             alt="${escapeHtml(title)}"
+             width="133" height="100">
       </div>` : ''}
       <div class="yt-preview-details">
         <h3 class="yt-preview-title">${escapeHtml(title)}</h3>

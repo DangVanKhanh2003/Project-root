@@ -9,9 +9,10 @@
 import {
   cancelConversion,
   handleDownloadClick,
-  clearSocialMediaCache
+  clearSocialMediaCache,
+  startConversion
 } from './convert-logic';
-import { getConversionTask } from '../../state';
+import { getConversionTask, getState } from '../../state';
 import { logEvent } from '../../../../libs/firebase/firebase-analytics';
 
 // Type definitions for custom events
@@ -74,9 +75,6 @@ const handleRetryEvent = async (event: CustomEvent<ConversionRetryEventDetail>) 
 
     // Get task and re-trigger conversion
     if (task?.formatData) {
-      // Re-import dynamically to avoid circular dependency
-      const { startConversion } = await import('./convert-logic');
-      const { getState } = await import('../../state');
       const state = getState();
       const videoTitle = state.videoDetail?.meta?.title || 'Video';
       const videoUrl = state.videoDetail?.meta?.originalUrl || '';

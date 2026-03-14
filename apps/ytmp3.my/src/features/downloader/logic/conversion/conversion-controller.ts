@@ -9,7 +9,8 @@
 import {
   cancelConversion,
   handleDownloadClick,
-  clearSocialMediaCache
+  clearSocialMediaCache,
+  startConversion
 } from './index';
 import { getConversionTask, getState } from '../../state';
 import { showExpireModal } from '@downloader/ui-components';
@@ -82,9 +83,6 @@ const handleRetryEvent = async (event: CustomEvent<ConversionRetryEventDetail>) 
     // Get task and re-trigger conversion
     const task = getConversionTask(formatId);
     if (task?.formatData) {
-      // Re-import dynamically to avoid circular dependency
-      const { startConversion } = await import('./index');
-      const { getState } = await import('../../state');
       const state = getState();
       const videoTitle = state.videoDetail?.meta?.title || 'Video';
       const videoUrl = state.videoDetail?.meta?.originalUrl || '';

@@ -13,6 +13,8 @@ import type { AppState, ConversionTask } from '../state/types';
 import { getMergingEstimator, clearMergingEstimator } from './merging-progress-estimator';
 import { showVidToolPopup } from '@downloader/vidtool-popup';
 import { showExpireModal } from '@downloader/ui-components';
+import { handleDownloadClick, startConversion } from '../logic/conversion';
+import { getState } from '../state';
 
 // ============================================================
 // TYPE DEFINITIONS
@@ -435,7 +437,6 @@ function setupButtonHandlers(wrapper: HTMLElement, formatId: string): void {
 async function handleDownloadButtonClick(formatId: string): Promise<void> {
   console.log('[renderConversionStatus] Download button clicked for:', formatId);
 
-  const { handleDownloadClick } = await import('../logic/conversion');
   const result = handleDownloadClick(formatId);
 
   if (result === 'expired') {
@@ -454,7 +455,6 @@ async function handleDownloadButtonClick(formatId: string): Promise<void> {
 async function handleRetryButtonClick(formatId: string): Promise<void> {
   console.log('[renderConversionStatus] Retry button clicked for:', formatId);
 
-  const { getState } = await import('../state');
   const state = getState();
   const task = state.conversionTasks[formatId];
 
@@ -463,7 +463,6 @@ async function handleRetryButtonClick(formatId: string): Promise<void> {
     return;
   }
 
-  const { startConversion } = await import('../logic/conversion');
   const videoTitle = state.youtubePreview?.title || 'Video';
   const videoUrl = state.youtubePreview?.url || '';
 

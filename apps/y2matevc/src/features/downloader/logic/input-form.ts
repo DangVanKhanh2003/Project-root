@@ -37,6 +37,7 @@ import { getInputValue as getInputValueFromRenderer, setInputValue as setInputVa
 import type { VideoData } from '@downloader/ui-components';
 import { navigateToVideo } from '../routing/url-manager';
 import { setVideoPageSEO } from '../routing/seo-manager';
+import { startConversion } from './conversion';
 
 // ============================================
 // YOUTUBE HELPERS
@@ -309,8 +310,6 @@ async function handleAutoDownload(url: string, videoId: string): Promise<void> {
 
     // Trigger conversion with built formatData
     console.log('[Auto-Download] Triggering conversion...');
-    const { startConversion } = await import('./conversion');
-
     await startConversion({
       formatId,
       videoUrl: url,
