@@ -11,6 +11,8 @@ import './styles/index.css';
 // Import format-selector CSS immediately (contains critical styles to prevent FOUC)
 import './ui-components/format-selector/format-selector.css';
 
+import { recordPageLoad } from './utils/page-freshness';
+
 /**
  * Initialize downloader UI
  */
@@ -204,6 +206,7 @@ function initFeedbackWidget(): void {
  * Initialize app
  */
 function loadFeatures() {
+  recordPageLoad();
   initMobileMenu(); // Initialize mobile menu
   initLangSelector(); // Initialize language selector dropdown
   initDrawerLangSelector(); // Initialize drawer language selector dropdown

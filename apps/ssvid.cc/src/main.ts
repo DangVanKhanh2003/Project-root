@@ -9,6 +9,7 @@ import './styles/index.css';
 
 import { applyInitialVisibility } from './features/widget-level-manager';
 import { initLicenseOnPageLoad } from './features/license/license-token';
+import { recordPageLoad } from './utils/page-freshness';
 
 
 
@@ -220,6 +221,7 @@ function initFeedbackWidget(): void {
  * Initialize app
  */
 async function loadFeatures() {
+  recordPageLoad();
   await applyInitialVisibility();   // Initialize license button + supporter badge
   initLicenseOnPageLoad();          // Background revalidation if cache is stale (fire-and-forget)
   initMobileMenu(); // Initialize mobile menu

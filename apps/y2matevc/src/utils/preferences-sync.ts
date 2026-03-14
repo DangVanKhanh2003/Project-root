@@ -3,6 +3,8 @@
  * Centralized logic for syncing user preferences from localStorage to UI
  */
 
+import { STORAGE_KEYS } from './storage-keys';
+
 export interface FormatPreferences {
   selectedFormat: 'mp4' | 'mp3';
   videoQuality?: string;
@@ -15,7 +17,7 @@ export interface FormatPreferences {
  */
 export function getFormatPreferences(): FormatPreferences | null {
   try {
-    const preferencesJson = localStorage.getItem('y2mate_format_preferences');
+    const preferencesJson = localStorage.getItem(STORAGE_KEYS.FORMAT_PREFERENCES);
     if (preferencesJson) {
       return JSON.parse(preferencesJson);
     }
@@ -68,7 +70,7 @@ export function syncFormatSelectors(): void {
  */
 export function syncAutoSubmitCheckbox(): void {
   try {
-    const autoSubmitValue = localStorage.getItem('y2mate_auto_submit');
+    const autoSubmitValue = localStorage.getItem(STORAGE_KEYS.AUTO_SUBMIT);
     const checkbox = document.getElementById('auto-submit-checkbox');
 
     if (checkbox && checkbox instanceof HTMLInputElement) {

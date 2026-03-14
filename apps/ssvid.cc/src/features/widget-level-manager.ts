@@ -19,6 +19,7 @@ import { hasLicenseKey } from './download-limit';
 import { initLicenseSelector } from './license/license-selector';
 import { init as initSupporterTag, show as showSupporterTag, hide as hideSupporterTag } from './license/supporter-tag';
 import { apiLogger } from '../libs/api-logger/api-logger';
+import { STORAGE_KEYS } from '../utils/storage-keys';
 
 const MULTI_PLAYLIST_BANNER_WRAPPER_ID = 'multi-playlist-banner-wrapper';
 const MULTI_PLAYLIST_BANNER_PUBLIC_URL = '/assest/banner/multi-playlist-banner.js';
@@ -150,7 +151,7 @@ const DOWNLOAD_LEVEL_THRESHOLDS = {
     level2Max: 6
 };
 
-const STORAGE_KEY = 'ssvid_download_count';
+const STORAGE_KEY = STORAGE_KEYS.DOWNLOAD_COUNT;
 
 // ============================================================
 // STATE

@@ -19,6 +19,7 @@ import { onAfterDownload, onDownloadFailed, onReset, incrementDownloadCount } fr
 import { showSearchView } from './view-switcher';
 import { setInputValue, focusInput } from './ui-renderer';
 import { clearYouTubePreview } from '../state/youtube-preview-state';
+import { reloadIfStale } from '../../../utils/page-freshness';
 
 // ============================================================
 // TYPE DEFINITIONS
@@ -737,6 +738,7 @@ function clearSearchUrl(): void {
  * Switches back to search view and clears input
  */
 function handleNewConvertButtonClick(): void {
+  if (reloadIfStale()) return;
   console.log('[renderConversionStatus] Next button clicked');
   logEvent('next_button_click');
   document.dispatchEvent(new CustomEvent('resetForm'));

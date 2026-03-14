@@ -11,6 +11,7 @@
 
 import { FEATURE_KEYS, FEATURE_ACCESS_REASONS, type FeatureAccessReason } from '@downloader/core';
 import { hasValidLicense } from './license/license-token';
+import { getStartUsageKey } from '../utils/storage-keys';
 
 /** Default maximum uses per day for non-license users (fallback for any unlisted feature). */
 export const MAX_PER_DAY = 1;
@@ -30,12 +31,6 @@ const FEATURE_DAILY_LIMITS: Readonly<Record<string, number>> = {
 
 /** Maximum videos per single multi-download action for non-license users. */
 export const MAX_MULTI_DOWNLOAD_VIDEOS = 10;
-
-// ============================================================
-// STORAGE KEYS
-// ============================================================
-
-const LICENSE_KEY_STORAGE_KEY = 'ssvid:license_key';
 
 interface DailyUsage {
     date: string;
@@ -93,7 +88,7 @@ export function hasLicenseKey(): boolean {
  */
 export function getUsageToday(featureKey: string): number {
     const today = getTodayString();
-    const usage = readUsage(`${featureKey}_daily`);
+    const usage = readUsage(getStartUsageKey(featureKey));
     return usage.date === today ? usage.count : 0;
 }
 
@@ -113,7 +108,7 @@ export function checkLimit(featureKey: string): {
     }
 
     const today = getTodayString();
-    const usage = readUsage(`${featureKey}_daily`);
+    const usage = readUsage(getStartUsageKey(featureKey));
     const count = usage.date === today ? usage.count : 0;
     const limit = FEATURE_DAILY_LIMITS[featureKey] ?? MAX_PER_DAY;
 
@@ -135,7 +130,7 @@ export function recordUsage(featureKey: string): void {
     if (hasLicenseKey()) return; // no limit for license holders
 
     const today = getTodayString();
-    const storageKey = `${featureKey}_daily`;
+    const storageKey = getStartUsageKey(featureKey);
     const usage = readUsage(storageKey);
     const count = usage.date === today ? usage.count : 0;
     const limit = FEATURE_DAILY_LIMITS[featureKey] ?? MAX_PER_DAY;

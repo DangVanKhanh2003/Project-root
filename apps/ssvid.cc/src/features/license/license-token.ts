@@ -11,13 +11,14 @@
 
 import { supporterService } from '../../api';
 import type { CheckKeyResponse } from '@downloader/core';
+import { STORAGE_KEYS } from '../../utils/storage-keys';
 
 // ============================================================
 // CONSTANTS
 // ============================================================
 
-const LICENSE_KEY_STORAGE_KEY = 'ssvid:license_key';
-const LICENSE_CACHE_STORAGE_KEY = 'ssvid:license_cache';
+const LICENSE_KEY_STORAGE_KEY = STORAGE_KEYS.LICENSE_KEY;
+const LICENSE_CACHE_STORAGE_KEY = STORAGE_KEYS.LICENSE_CACHE;
 
 /** Revalidate every 24 hours (fire-and-forget, never blocks) */
 const REVALIDATE_INTERVAL_MS = 24 * 60 * 60 * 1000;

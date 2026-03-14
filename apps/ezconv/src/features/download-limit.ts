@@ -1,5 +1,6 @@
 import { FEATURE_ACCESS_REASONS } from '@downloader/core';
 import { hasValidLicense } from './license-token';
+import { getDailyUsageKey } from '../utils/storage-keys';
 
 const DB_NAME = 'ezconv-supporter';
 const DB_VERSION = 1;
@@ -16,14 +17,14 @@ export const DAILY_HIGH_QUALITY_2K_LIMIT = 5;
 export const DAILY_HIGH_QUALITY_320K_LIMIT = 5;
 
 const DAILY_COUNTER_KEY_BY_MODE: Record<LimitedDailyMode | 'single' | 'trim', string> = {
-    batch: 'ezconv:download_batch_daily',
-    playlist: 'ezconv:download_playlist_daily',
-    channel: 'ezconv:download_channel_daily',
-    trim: 'ezconv:download_trim_daily',
-    single: 'ezconv:download_single_daily',
-    high_quality_4k: 'ezconv:download_4k_daily',
-    high_quality_2k: 'ezconv:download_2k_daily',
-    high_quality_320k: 'ezconv:download_320k_daily'
+    batch: getDailyUsageKey('download_batch'),
+    playlist: getDailyUsageKey('download_playlist'),
+    channel: getDailyUsageKey('download_channel'),
+    trim: getDailyUsageKey('download_trim'),
+    single: getDailyUsageKey('download_single'),
+    high_quality_4k: getDailyUsageKey('download_4k'),
+    high_quality_2k: getDailyUsageKey('download_2k'),
+    high_quality_320k: getDailyUsageKey('download_320k')
 };
 
 const MEMORY_FALLBACK_LOGS: DownloadLogRecord[] = [];

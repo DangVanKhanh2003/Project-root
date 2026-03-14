@@ -6,6 +6,7 @@
 
 import { VideoItemSettings } from '../../downloader/state/multiple-download-types';
 import { autoResizeSelect } from '../../../utils/dom-utils';
+import { STORAGE_KEYS } from '../../../utils/storage-keys';
 
 // ==========================================
 // Filename style preview templates
@@ -92,7 +93,7 @@ export function getCurrentSettings(): Partial<VideoItemSettings> {
 
 export function saveFormatPreferences(): void {
     try {
-        const stored = JSON.parse(localStorage.getItem('Ezconv_format_preferences') || '{}') as {
+        const stored = JSON.parse(localStorage.getItem(STORAGE_KEYS.FORMAT_PREFERENCES) || '{}') as {
             filenameStyle?: VideoItemSettings['filenameStyle'];
             enableMetadata?: boolean;
         };
@@ -113,7 +114,7 @@ export function saveFormatPreferences(): void {
         if (prefs.videoQuality === 'webmp' || prefs.videoQuality === 'mkvp') {
             prefs.videoQuality = settings.videoQuality!;
         }
-        localStorage.setItem('Ezconv_format_preferences', JSON.stringify(prefs));
+        localStorage.setItem(STORAGE_KEYS.FORMAT_PREFERENCES, JSON.stringify(prefs));
     } catch (_) { }
 }
 
@@ -210,7 +211,7 @@ export function initFormatToggle(): void {
 
     // --- Restore from localStorage ---
     try {
-        const stored = JSON.parse(localStorage.getItem('Ezconv_format_preferences') || '{}');
+        const stored = JSON.parse(localStorage.getItem(STORAGE_KEYS.FORMAT_PREFERENCES) || '{}');
 
         // Restore format visibility
         if (stored.selectedFormat) {

@@ -20,6 +20,7 @@ import { shouldPromptPlaylistRedirectForMulti, getUrlRedirectTarget, FEATURE_KEY
 import { evaluateFeatureAccess } from './features/allowed-features';
 import { recordUsage, hasLicenseKey, MAX_MULTI_DOWNLOAD_VIDEOS } from './features/download-limit';
 import { show as showPaywall } from 'https://media.ytmp3.gg/poppurchase.v3.js?v=4';
+import { STORAGE_KEYS } from './utils/storage-keys';
 
 
 /**
@@ -84,7 +85,7 @@ function saveFormatPreferences() {
         if (prefs.videoQuality === 'webmp' || prefs.videoQuality === 'mkvp') {
             prefs.videoQuality = settings.videoQuality!;
         }
-        localStorage.setItem('ssvid_format_preferences', JSON.stringify(prefs));
+        localStorage.setItem(STORAGE_KEYS.FORMAT_PREFERENCES, JSON.stringify(prefs));
     } catch (e) { }
 }
 

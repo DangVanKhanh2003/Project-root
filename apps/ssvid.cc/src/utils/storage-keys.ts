@@ -10,7 +10,7 @@
 // PREFIX — keeps keys namespaced per app
 // ============================================================
 
-const PREFIX = 'ytmp4';
+const PREFIX = 'ssvid';
 
 // ============================================================
 // STORAGE KEYS
@@ -19,9 +19,6 @@ const PREFIX = 'ytmp4';
 export const STORAGE_KEYS = {
   /** User's selected format/quality preferences (JSON) */
   FORMAT_PREFERENCES: `${PREFIX}_format_preferences`,
-
-  /** Geo-restricted features cache with 7-day TTL (JSON) */
-  ALLOWED_FEATURES: `${PREFIX}_allowed_features`,
 
   /** Raw license key string for background revalidation */
   LICENSE_KEY: `${PREFIX}:license_key`,
@@ -34,9 +31,6 @@ export const STORAGE_KEYS = {
 
   /** Whether user has clicked the Download tab in playlist view */
   PLAYLIST_TAB_CLICKED: 'hasClickedPlaylistTab',
-
-  /** Whether user has seen the convert-button hand guide */
-  PLAYLIST_CONVERT_GUIDE_SHOWN: 'hasShownPlaylistConvertGuide',
 } as const;
 
 // ============================================================

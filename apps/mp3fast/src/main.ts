@@ -7,6 +7,7 @@
 // === CSS Import ===
 // Single entry point for all styles (Phase 2: CSS Refactor)
 import './styles/index.css';
+import { recordPageLoad } from './utils/page-freshness';
 
 // Import UI components CSS
 import './ui-components/format-selector/format-selector.css';
@@ -157,6 +158,7 @@ function initFeedbackWidget(): void {
  * Initialize app
  */
 function loadFeatures() {
+  recordPageLoad();
   initMobileMenu(); // Initialize mobile menu
   initLanguageSwitcher(); // Initialize language switcher
   initDownloaderUI();

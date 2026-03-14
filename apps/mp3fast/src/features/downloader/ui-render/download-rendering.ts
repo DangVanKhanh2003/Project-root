@@ -8,6 +8,7 @@
 
 import { initExpandableText } from '../../../utils';
 import { addRippleEffect } from '@downloader/core/utils';
+import { reloadIfStale } from '../../../utils/page-freshness';
 import { TaskState } from '../logic/conversion/types';
 import type { AppState, ConversionTask } from '../state/types';
 import { getMergingEstimator, clearMergingEstimator } from './merging-progress-estimator';
@@ -504,6 +505,7 @@ function clearSearchUrl(): void {
  * Switches back to search view and clears input
  */
 async function handleNewConvertButtonClick(): Promise<void> {
+  if (reloadIfStale()) return;
   console.log('[renderConversionStatus] Next button clicked');
 
   const { showSearchView } = await import('./view-switcher');

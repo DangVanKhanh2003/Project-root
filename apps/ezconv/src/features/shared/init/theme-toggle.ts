@@ -4,7 +4,9 @@
  * Default: light theme.
  */
 
-const THEME_KEY = 'ezconv-theme';
+import { STORAGE_KEYS } from '../../../utils/storage-keys';
+
+const THEME_KEY = STORAGE_KEYS.THEME;
 const THEME_SWITCHING_CLASS = 'theme-switching';
 
 let themeTransitionResetId: number | null = null;

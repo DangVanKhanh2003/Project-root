@@ -5,13 +5,14 @@
 
 import { setState, getState } from './state-manager';
 import type { FormatType, AudioFormatType } from './types';
+import { STORAGE_KEYS } from '../../../utils/storage-keys';
 
 // ==========================================
 // Constants
 // ==========================================
 
-const STORAGE_KEY = 'y2mate_format_preferences';
-const AUTO_SUBMIT_STORAGE_KEY = 'y2mate_auto_submit';
+const STORAGE_KEY = STORAGE_KEYS.FORMAT_PREFERENCES;
+const AUTO_SUBMIT_STORAGE_KEY = STORAGE_KEYS.AUTO_SUBMIT;
 
 /**
  * Available quality options for each format

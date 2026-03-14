@@ -13,13 +13,14 @@
  */
 
 import type { CheckKeyResponse } from '@downloader/core';
+import { STORAGE_KEYS } from '../utils/storage-keys';
 
 // ============================================================
 // CONSTANTS
 // ============================================================
 
-const TOKEN_STORAGE_KEY = 'ezconv:license_token';
-const OLD_LICENSE_KEY = 'ezconv:license_key';
+const TOKEN_STORAGE_KEY = STORAGE_KEYS.LICENSE_TOKEN;
+const OLD_LICENSE_KEY = STORAGE_KEYS.LICENSE_KEY;
 const LICENSE_EVENT_NAME = 'ezconv:license-key-changed';
 
 /** After this duration, a background refresh is triggered (non-blocking) */

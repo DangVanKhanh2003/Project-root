@@ -15,6 +15,7 @@ import { getMergingEstimator, clearMergingEstimator } from './merging-progress-e
 import { showVidToolPopup } from '@downloader/vidtool-popup';
 import { showExpireModal } from '@downloader/ui-components';
 import { logEvent } from '../../../libs/firebase';
+import { reloadIfStale } from '../../../utils/page-freshness';
 
 // ============================================================
 // TYPE DEFINITIONS
@@ -627,6 +628,7 @@ function clearSearchUrl(): void {
  * Switches back to search view and clears input
  */
 async function handleNewConvertButtonClick(): Promise<void> {
+  if (reloadIfStale()) return;
   console.log('[renderConversionStatus] Next button clicked');
 
   const { showSearchView } = await import('./view-switcher');
