@@ -21,11 +21,11 @@ export const DAILY_HIGH_QUALITY_320K_LIMIT = 5;
 // Country-allowed users get higher quotas; others get fallback.
 // ============================================================
 
-export const PLAYLIST_MAX_ITEMS_PER_DAY_ALLOWED = 30;
-export const PLAYLIST_MAX_ITEMS_PER_DAY_FALLBACK = 15;
+export const PLAYLIST_MAX_ITEMS_PER_DAY_ALLOWED = 100;
+export const PLAYLIST_MAX_ITEMS_PER_DAY_FALLBACK = 50;
 
-export const CHANNEL_MAX_ITEMS_PER_DAY_ALLOWED = 30;
-export const CHANNEL_MAX_ITEMS_PER_DAY_FALLBACK = 15;
+export const CHANNEL_MAX_ITEMS_PER_DAY_ALLOWED = 100;
+export const CHANNEL_MAX_ITEMS_PER_DAY_FALLBACK = 50;
 
 interface TierPair { allowed: number; fallback: number; }
 interface FeaturePolicy { startPerDay: number; itemsPerDay: TierPair; }
