@@ -30,7 +30,7 @@
     font-weight: 700;
     text-align: center;
     margin-bottom: 2rem;
-    color: var(--brand, #004fab);
+    color: var(--text-heading);
 }
 
 .content-row {
