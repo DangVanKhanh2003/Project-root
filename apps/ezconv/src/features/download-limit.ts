@@ -1,4 +1,4 @@
-import { FEATURE_ACCESS_REASONS } from '@downloader/core';
+import { FEATURE_ACCESS_REASONS, FEATURE_KEYS } from '@downloader/core';
 import { hasValidLicense } from './license-token';
 import { getDailyUsageKey } from '../utils/storage-keys';
 
@@ -15,6 +15,53 @@ export const DAILY_TRIM_DOWNLOAD_LIMIT = 20;
 export const DAILY_HIGH_QUALITY_4K_LIMIT = 5;
 export const DAILY_HIGH_QUALITY_2K_LIMIT = 5;
 export const DAILY_HIGH_QUALITY_320K_LIMIT = 5;
+
+// ============================================================
+// Feature Limit Policy — 2-tier (allowed vs fallback)
+// Country-allowed users get higher quotas; others get fallback.
+// ============================================================
+
+export const PLAYLIST_MAX_ITEMS_PER_DAY_ALLOWED = 30;
+export const PLAYLIST_MAX_ITEMS_PER_DAY_FALLBACK = 15;
+
+export const CHANNEL_MAX_ITEMS_PER_DAY_ALLOWED = 30;
+export const CHANNEL_MAX_ITEMS_PER_DAY_FALLBACK = 15;
+
+interface TierPair { allowed: number; fallback: number; }
+interface FeaturePolicy { startPerDay: number; itemsPerDay: TierPair; }
+
+const FEATURE_LIMIT_POLICY: Readonly<Record<string, FeaturePolicy>> = {
+    [FEATURE_KEYS.PLAYLIST_DOWNLOAD]: {
+        startPerDay: DAILY_PLAYLIST_DOWNLOAD_LIMIT,
+        itemsPerDay: { allowed: PLAYLIST_MAX_ITEMS_PER_DAY_ALLOWED, fallback: PLAYLIST_MAX_ITEMS_PER_DAY_FALLBACK },
+    },
+    [FEATURE_KEYS.CHANNEL_DOWNLOAD]: {
+        startPerDay: DAILY_CHANNEL_DOWNLOAD_LIMIT,
+        itemsPerDay: { allowed: CHANNEL_MAX_ITEMS_PER_DAY_ALLOWED, fallback: CHANNEL_MAX_ITEMS_PER_DAY_FALLBACK },
+    },
+};
+
+export interface ResolvedLimits {
+    startPerDay: number | null;
+    maxItemsPerDay: number | null;
+}
+
+export function resolveFeatureLimits(
+    featureKey: string,
+    options: { countryAllowed?: boolean; isLicense?: boolean } = {}
+): ResolvedLimits {
+    const { countryAllowed = false, isLicense = false } = options;
+    const policy = FEATURE_LIMIT_POLICY[featureKey];
+
+    if (!policy) return { startPerDay: null, maxItemsPerDay: null };
+    if (isLicense) return { startPerDay: null, maxItemsPerDay: null };
+
+    const tierKey = countryAllowed ? 'allowed' : 'fallback';
+    return {
+        startPerDay: policy.startPerDay,
+        maxItemsPerDay: policy.itemsPerDay[tierKey],
+    };
+}
 
 const DAILY_COUNTER_KEY_BY_MODE: Record<LimitedDailyMode | 'single' | 'trim', string> = {
     batch: getDailyUsageKey('download_batch'),
@@ -462,6 +509,140 @@ export async function checkLimit(context: LimitCheckContext): Promise<LimitCheck
         resetAt: null,
         remainingSeconds: null
     };
+}
+
+// ============================================================
+// START LIMIT — Feature-level daily start counter (playlist/channel)
+// Separate from the per-item counters above.
+// ============================================================
+
+function getStartUsageStorageKey(featureKey: string): string {
+    return getDailyUsageKey(`${featureKey}_start`);
+}
+
+function getItemUsageStorageKey(featureKey: string): string {
+    return getDailyUsageKey(`${featureKey}_items`);
+}
+
+function readGenericCounter(storageKey: string, now = Date.now()): DailyCounterRecord {
+    const today = getLocalDateKey(now);
+
+    if (typeof localStorage === 'undefined') {
+        return { date: today, count: 0 };
+    }
+
+    try {
+        const raw = localStorage.getItem(storageKey);
+        if (!raw) return { date: today, count: 0 };
+
+        const parsed = JSON.parse(raw) as Partial<DailyCounterRecord> | null;
+        if (!parsed || typeof parsed.date !== 'string' || typeof parsed.count !== 'number') {
+            return { date: today, count: 0 };
+        }
+
+        return parsed.date === today
+            ? { date: parsed.date, count: Math.max(0, Math.floor(parsed.count)) }
+            : { date: today, count: 0 };
+    } catch {
+        return { date: today, count: 0 };
+    }
+}
+
+function writeGenericCounter(storageKey: string, counter: DailyCounterRecord): void {
+    if (typeof localStorage === 'undefined') return;
+
+    try {
+        localStorage.setItem(storageKey, JSON.stringify(counter));
+    } catch {
+        // localStorage unavailable
+    }
+}
+
+export interface StartLimitResult {
+    allowed: boolean;
+    usedToday: number;
+    maxPerDay: number;
+}
+
+/**
+ * Check if user can start this feature today (does NOT increment).
+ */
+export function checkStartLimit(featureKey: string, startPerDay: number): StartLimitResult {
+    if (hasValidLicense()) {
+        return { allowed: true, usedToday: 0, maxPerDay: startPerDay };
+    }
+
+    const counter = readGenericCounter(getStartUsageStorageKey(featureKey));
+    return {
+        allowed: counter.count < startPerDay,
+        usedToday: counter.count,
+        maxPerDay: startPerDay,
+    };
+}
+
+/**
+ * Record one successful start for a feature.
+ */
+export function recordStartUsage(featureKey: string): void {
+    if (hasValidLicense()) return;
+
+    const storageKey = getStartUsageStorageKey(featureKey);
+    const counter = readGenericCounter(storageKey);
+    writeGenericCounter(storageKey, { date: counter.date, count: counter.count + 1 });
+}
+
+export interface DailyItemQuotaResult {
+    allowed: boolean;
+    requestedItems: number;
+    usedToday: number;
+    maxPerDay: number;
+    remainingToday: number;
+}
+
+/**
+ * Check if adding N items exceeds daily item quota (does NOT increment).
+ */
+export function checkDailyItemQuota(
+    featureKey: string,
+    maxItemsPerDay: number,
+    incomingItems = 1
+): DailyItemQuotaResult {
+    const requested = Math.max(1, Math.floor(incomingItems));
+
+    if (hasValidLicense()) {
+        return {
+            allowed: true,
+            requestedItems: requested,
+            usedToday: 0,
+            maxPerDay: maxItemsPerDay,
+            remainingToday: maxItemsPerDay,
+        };
+    }
+
+    const counter = readGenericCounter(getItemUsageStorageKey(featureKey));
+    const remaining = Math.max(0, maxItemsPerDay - counter.count);
+
+    return {
+        allowed: counter.count + requested <= maxItemsPerDay,
+        requestedItems: requested,
+        usedToday: counter.count,
+        maxPerDay: maxItemsPerDay,
+        remainingToday: remaining,
+    };
+}
+
+/**
+ * Record consumed items for a feature today.
+ */
+export function recordDailyItemsUsage(featureKey: string, consumedItems = 1): void {
+    if (hasValidLicense()) return;
+
+    const amount = Math.max(0, Math.floor(consumedItems));
+    if (amount <= 0) return;
+
+    const storageKey = getItemUsageStorageKey(featureKey);
+    const counter = readGenericCounter(storageKey);
+    writeGenericCounter(storageKey, { date: counter.date, count: counter.count + amount });
 }
 
 function getCurrentPageUrl(): string {

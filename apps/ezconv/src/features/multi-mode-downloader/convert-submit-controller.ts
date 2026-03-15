@@ -11,10 +11,10 @@ import { parseConvertibleURLs, parseYouTubeURLs, normalizeURL, isChannelUrl } fr
 import { isPlaylistMode, isTrimMode, isChannelMode } from './advanced-settings-controller';
 import { getTrimStart, getTrimEnd, getTrimRangeLabel, resetTrimEditor } from './trim-controller';
 import { isMobileViewport, scrollToElementWithOffset } from '../shared/scroll/scroll-behavior';
-import { checkLimit } from '../download-limit';
-import { evaluateFeatureAccess, type FeatureAccessReason, type FeatureAccessResult } from '../feature-access';
-import { FEATURE_KEYS, FEATURE_ACCESS_REASONS } from '@downloader/core';
-import { showLimitReachedPopup, showVideoLimitPopup, showSupporterUpsellPopup, showPlaylistInstructionPopup, showChannelInstructionPopup } from '@downloader/ui-shared';
+import { checkLimit, recordStartUsage, DAILY_PLAYLIST_DOWNLOAD_LIMIT, DAILY_CHANNEL_DOWNLOAD_LIMIT } from '../download-limit';
+import { evaluateFeatureAccess, type FeatureAccessResult } from '../feature-access';
+import { FEATURE_KEYS } from '@downloader/core';
+import { showLimitReachedPopup, showVideoLimitPopup, showPlaylistInstructionPopup, showChannelInstructionPopup } from '@downloader/ui-shared';
 import { POPUP_CONFIG } from '../supporter-popup-config';
 import { incrementDownloadCount, onAfterSubmit, onReset } from '../widget-level-manager';
 import { logButtonClick } from '../../libs/firebase/firebase-analytics';
@@ -40,16 +40,8 @@ function showPopupForLimitResult(limit: Awaited<ReturnType<typeof checkLimit>>):
     showLimitReachedPopup(POPUP_CONFIG, limit.mode ?? undefined, limit.limit ?? undefined);
 }
 
-function showPopupForAccessResult(result: FeatureAccessResult): void {
-    if (result.reason === FEATURE_ACCESS_REASONS.NOT_ALLOWED || result.reason === FEATURE_ACCESS_REASONS.API_UNAVAILABLE) {
-        showSupporterUpsellPopup(POPUP_CONFIG);
-        return;
-    }
-    if (result.reason === FEATURE_ACCESS_REASONS.VIDEO_LIMIT_EXCEEDED) {
-        showVideoLimitPopup(POPUP_CONFIG, result.limit ?? undefined);
-        return;
-    }
-    showLimitReachedPopup(POPUP_CONFIG, result.limitMode ?? undefined, result.limit ?? undefined);
+function showPopupForAccessResult(_result: FeatureAccessResult, mode?: string, dailyLimit?: number): void {
+    showLimitReachedPopup(POPUP_CONFIG, mode, dailyLimit);
 }
 
 export function initConvertForm(config: ConvertFormConfig): void {
@@ -243,14 +235,15 @@ async function handlePlaylistModeConvert(
     const skeletonGroupId = multiDownloadService.createSkeletonGroup('Playlist', 10, settings);
     onItemsAdded?.();
 
-    const accessResult = await evaluateFeatureAccess(FEATURE_KEYS.PLAYLIST_DOWNLOAD, { kind: 'playlist' });
+    const accessResult = await evaluateFeatureAccess(FEATURE_KEYS.PLAYLIST_DOWNLOAD);
     if (!accessResult.allowed) {
         multiDownloadService.removeGroup(skeletonGroupId);
-        showPopupForAccessResult(accessResult);
+        showPopupForAccessResult(accessResult, 'playlist', DAILY_PLAYLIST_DOWNLOAD_LIMIT);
         return false;
     }
 
-    // Access allowed — remove temp skeleton and proceed with real loading
+    // Access allowed — record start usage and proceed
+    recordStartUsage(FEATURE_KEYS.PLAYLIST_DOWNLOAD);
     multiDownloadService.removeGroup(skeletonGroupId);
 
     const p = parsed[0];
@@ -262,7 +255,6 @@ async function handlePlaylistModeConvert(
         multiDownloadService.startGroupDownloads(groupId);
     }
 
-    await incrementDownloadCount('playlist', rawText);
     return true;
 }
 
@@ -279,18 +271,18 @@ async function handleChannelModeConvert(
     const skeletonGroupId = multiDownloadService.createSkeletonGroup('Channel', 10, settings);
     onItemsAdded?.();
 
-    const accessResult = await evaluateFeatureAccess(FEATURE_KEYS.CHANNEL_DOWNLOAD, { kind: 'channel' });
+    const accessResult = await evaluateFeatureAccess(FEATURE_KEYS.CHANNEL_DOWNLOAD);
     if (!accessResult.allowed) {
         multiDownloadService.removeGroup(skeletonGroupId);
-        showPopupForAccessResult(accessResult);
+        showPopupForAccessResult(accessResult, 'channel', DAILY_CHANNEL_DOWNLOAD_LIMIT);
         return false;
     }
 
-    // Access allowed — remove temp skeleton and proceed with real loading
+    // Access allowed — record start usage and proceed
+    recordStartUsage(FEATURE_KEYS.CHANNEL_DOWNLOAD);
     multiDownloadService.removeGroup(skeletonGroupId);
 
     await multiDownloadService.addChannel(urls[0], settings, onItemsAdded);
-    await incrementDownloadCount('channel', rawText);
     return true;
 }
 

@@ -1,6 +1,6 @@
 
 import { api } from '../../../../../api';
-import { extractPlaylistId, extractVideoId, isPlaylistUrl, PlaylistDto, isYouTubeUrl } from '@downloader/core';
+import { extractPlaylistId, extractVideoId, isPlaylistUrl, PlaylistDto, isYouTubeUrl, FEATURE_KEYS } from '@downloader/core';
 import { getApiBaseUrlV3, getYtMetaBaseUrl } from '../../../../../environment';
 import { videoStore } from '../../../state/video-store';
 import { VideoItem, VideoItemSettings } from '../../../state/multiple-download-types';
@@ -9,12 +9,14 @@ import { DownloadQueue } from '../download-queue';
 import { runSingleDownload } from '../download-runner';
 import { fetchMetadataBatch } from '../metadata-fetcher';
 import { parseConvertibleURLs, parseYouTubeURLs, generateItemId, normalizeURL, extractChannelHandle } from '../url-parser';
-import { recordDownloadError, type DownloadMethod, checkLimit } from '../../../../download-limit';
+import { recordDownloadError, type DownloadMethod, checkLimit, checkDailyItemQuota, recordDailyItemsUsage } from '../../../../download-limit';
+import { getFeatureLimitContext } from '../../../../feature-access';
 import { incrementDownloadCount } from '../../../../widget-level-manager';
 import { showLimitReachedPopup } from '@downloader/ui-shared';
 import { POPUP_CONFIG } from '../../../../supporter-popup-config';
 
 function inferDownloadMethod(item: VideoItem): DownloadMethod {
+    if (item.groupId?.startsWith('playlist_')) return 'playlist';
     if (item.groupId?.startsWith('channel_')) return 'channel';
     if (item.groupId?.startsWith('single_')) return Number.isFinite(item.settings.trimStart) || Number.isFinite(item.settings.trimEnd)
         ? 'trim'
@@ -29,7 +31,7 @@ function inferDownloadMethod(item: VideoItem): DownloadMethod {
 
         return isBulkDownload ? 'batch' : 'single';
     }
-    return 'playlist';
+    return 'single';
 }
 
 const YOUTUBE_QUEUE_CONCURRENCY = 5;
@@ -155,7 +157,7 @@ export class MultiDownloadService {
             throw new Error('Could not extract playlist ID');
         }
 
-        const groupId = `${playlistId}_${Date.now()}`;
+        const groupId = `playlist_${playlistId}_${Date.now()}`;
         // Mark group as loading immediately so renderer keeps DOM stable during skeleton -> real items transition.
         videoStore.setGroupMeta(groupId, true, 'Playlist', null);
 
@@ -440,11 +442,15 @@ export class MultiDownloadService {
 
         // Determine if this is a channel group or playlist group
         const isChannelGroup = groupId.startsWith('channel_');
+        const isPlaylistGroup = groupId.startsWith('playlist_');
         // Extract the original ID for API calls
         let apiId: string;
         if (isChannelGroup) {
             // groupId format: channel_{channelId}_{timestamp}
             apiId = groupId.slice('channel_'.length, groupId.lastIndexOf('_'));
+        } else if (isPlaylistGroup) {
+            // groupId format: playlist_{playlistId}_{timestamp}
+            apiId = groupId.slice('playlist_'.length, groupId.lastIndexOf('_'));
         } else {
             apiId = groupId.slice(0, groupId.lastIndexOf('_'));
         }
@@ -585,7 +591,43 @@ export class MultiDownloadService {
     // Pre-Check Limits
     // ==========================================
 
+    /**
+     * Resolve feature key from items for daily item quota check.
+     * Only playlist and channel have daily item quotas.
+     */
+    /**
+     * Resolve feature key from items for daily item quota check.
+     * Only playlist and channel have daily item quotas.
+     */
+    private resolveItemQuotaFeatureKey(items: VideoItem[]): string | null {
+        const first = items[0];
+        if (!first?.groupId) return null;
+        if (first.groupId.startsWith('playlist_')) return FEATURE_KEYS.PLAYLIST_DOWNLOAD;
+        if (first.groupId.startsWith('channel_')) return FEATURE_KEYS.CHANNEL_DOWNLOAD;
+        return null;
+    }
+
     private async checkItemLimits(items: VideoItem[]): Promise<boolean> {
+        if (items.length === 0) return true;
+
+        // 1. Daily item quota check for playlist/channel
+        const featureKey = this.resolveItemQuotaFeatureKey(items);
+        if (featureKey) {
+            const context = await getFeatureLimitContext(featureKey);
+            const maxItemsPerDay = context.limitsResolved.maxItemsPerDay;
+            if (typeof maxItemsPerDay === 'number') {
+                const quotaResult = checkDailyItemQuota(featureKey, maxItemsPerDay, items.length);
+                if (!quotaResult.allowed) {
+                    const mode = featureKey === FEATURE_KEYS.PLAYLIST_DOWNLOAD ? 'playlist' : 'channel';
+                    showLimitReachedPopup(POPUP_CONFIG, mode, quotaResult.maxPerDay);
+                    return false;
+                }
+                // Consume quota upfront (like ytmp3.gg enforceAndConsumeDailyItemQuota)
+                recordDailyItemsUsage(featureKey, items.length);
+            }
+        }
+
+        // 2. Per-item quality limits (4K, 2K, 320kbps)
         for (const item of items) {
             const isAudio = item.settings.format === 'mp3';
             const is4K = !isAudio && item.settings.quality === '2160p';
@@ -614,16 +656,7 @@ export class MultiDownloadService {
         if (!item) return;
         if (!(await this.checkItemLimits([item]))) return;
 
-        // Keep non-YouTube skeleton visible until extract response returns preview metadata.
-        const shouldKeepSkeleton = item.status === 'fetching_metadata' && item.meta.source === 'url';
-        if (!shouldKeepSkeleton) {
-            videoStore.setStatus(id, 'queued');
-        }
-
-        const queue = this.getQueueForUrl(item.url);
-        queue.add(id, (signal) => {
-            return this.executeDownload(id, signal);
-        }).catch(() => { });
+        this.enqueueDownload(item);
     }
 
     async startAllDownloads(): Promise<void> {
@@ -633,7 +666,7 @@ export class MultiDownloadService {
         if (!(await this.checkItemLimits(items))) return;
 
         for (const item of items) {
-            await this.startDownload(item.id);
+            this.enqueueDownload(item);
         }
     }
 
@@ -642,7 +675,7 @@ export class MultiDownloadService {
         if (!(await this.checkItemLimits(items))) return;
 
         for (const item of items) {
-            await this.startDownload(item.id);
+            this.enqueueDownload(item);
         }
     }
 
@@ -653,7 +686,7 @@ export class MultiDownloadService {
         if (!(await this.checkItemLimits(items))) return;
 
         for (const item of items) {
-            await this.startDownload(item.id);
+            this.enqueueDownload(item);
         }
     }
 
@@ -664,8 +697,21 @@ export class MultiDownloadService {
         if (!(await this.checkItemLimits(items))) return;
 
         for (const item of items) {
-            await this.startDownload(item.id);
+            this.enqueueDownload(item);
         }
+    }
+
+    private enqueueDownload(item: VideoItem): void {
+        // Keep non-YouTube skeleton visible until extract response returns preview metadata.
+        const shouldKeepSkeleton = item.status === 'fetching_metadata' && item.meta.source === 'url';
+        if (!shouldKeepSkeleton) {
+            videoStore.setStatus(item.id, 'queued');
+        }
+
+        const queue = this.getQueueForUrl(item.url);
+        queue.add(item.id, (signal) => {
+            return this.executeDownload(item.id, signal);
+        }).catch(() => { });
     }
 
     cancelGroupDownloads(groupId: string): void {
