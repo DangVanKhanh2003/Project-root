@@ -1,5 +1,5 @@
 /**
- * Paywall Popup Wrapper — ytmp4.gg
+ * Paywall Popup Wrapper — onedownloader.net
  * Thin wrapper around the remote poppurchase v3 script.
  * Uses the v3 API which accepts title/noCountdown as options directly.
  */

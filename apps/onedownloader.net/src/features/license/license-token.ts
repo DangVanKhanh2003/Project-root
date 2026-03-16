@@ -5,8 +5,8 @@
  * Revalidation with server is fire-and-forget async (background, never blocks).
  *
  * Storage keys:
- *   ytmp4:license_key   → raw key string (for revalidation)
- *   ytmp4:license_cache  → {base64}.{hash} (encoded license data)
+ *   onedownloader:license_key   → raw key string (for revalidation)
+ *   onedownloader:license_cache  → {base64}.{hash} (encoded license data)
  */
 
 import { supporterService } from '../../api';
@@ -24,7 +24,7 @@ const LICENSE_CACHE_STORAGE_KEY = STORAGE_KEYS.LICENSE_CACHE;
 const REVALIDATE_INTERVAL_MS = 24 * 60 * 60 * 1000;
 
 /** Salt for integrity hash — just anti-casual-tampering, not crypto */
-const INTEGRITY_SALT = 'ytmp4_lk_2026';
+const INTEGRITY_SALT = 'onedownloader_lk_2026';
 
 // ============================================================
 // TYPES

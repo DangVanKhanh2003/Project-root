@@ -22,6 +22,7 @@ on:
           - 'ssvid.cc'
           - 'ezconv'
           - 'ytmp4.gg'
+          - 'onedownloader.net'
 
 concurrency:
   group: ci-${{ github.repository }}-${{ github.ref }}
@@ -67,13 +68,15 @@ jobs:
               - 'apps/ezconv/**'
             ytmp4.gg:
               - 'apps/ytmp4.gg/**'
+            onedownloader.net:
+              - 'apps/onedownloader.net/**'
 
       - name: Determine apps to deploy
         id: determine-apps
         env:
           COMMIT_MSG: ${{ github.event.head_commit.message }}
         run: |
-          ALL_APPS='["y2matepro","y2matevc","mp3fast","ytmp3.my","4kvideopro","ssvid.cc","ezconv","ytmp4.gg"]'
+          ALL_APPS='["y2matepro","y2matevc","mp3fast","ytmp3.my","4kvideopro","ssvid.cc","ezconv","ytmp4.gg","onedownloader.net"]'
 
           # Handle manual trigger with specific_app
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
@@ -167,6 +170,10 @@ jobs:
           if [[ "${{ steps.filter.outputs['ytmp4.gg'] }}" == "true" ]]; then
             CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["ytmp4.gg"]')
             echo "✅ ytmp4.gg changed"
+          fi
+          if [[ "${{ steps.filter.outputs['onedownloader.net'] }}" == "true" ]]; then
+            CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["onedownloader.net"]')
+            echo "✅ onedownloader.net changed"
           fi
 
           echo "📋 Changed apps: $CHANGED_APPS"
@@ -295,6 +302,20 @@ jobs:
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
+  deploy-onedownloader-net:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'onedownloader.net')
+    uses: ./.github/workflows/deploy-app.yml
+    with:
+      app_name: onedownloader.net
+      app_directory: apps/onedownloader.net
+      filter_path: ./apps/onedownloader.net
+      domain: ${{ vars.ONEDOWNLOADER_DOMAIN || 'onedownloader.net' }}
+    secrets:
+      SSH_HOST: ${{ secrets.SSH_HOST }}
+      SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
   # ============================================
   # Job 9: Summary
   # ============================================
@@ -309,6 +330,7 @@ jobs:
       - deploy-ssvid-cc
       - deploy-ezconv
       - deploy-ytmp4-gg
+      - deploy-onedownloader-net
     if: always()
     runs-on: ubuntu-latest
     steps:
@@ -331,3 +353,4 @@ jobs:
           echo "| ssvid.cc | ${{ needs.deploy-ssvid-cc.result || 'skipped' }} |"
           echo "| ezconv | ${{ needs.deploy-ezconv.result || 'skipped' }} |"
           echo "| ytmp4.gg | ${{ needs.deploy-ytmp4-gg.result || 'skipped' }} |"
+          echo "| onedownloader.net | ${{ needs.deploy-onedownloader-net.result || 'skipped' }} |"

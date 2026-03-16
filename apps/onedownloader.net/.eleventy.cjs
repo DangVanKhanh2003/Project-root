@@ -67,7 +67,7 @@ module.exports = function (eleventyConfig) {
   // ============================================
   // Make site config and i18n data available to all templates
   eleventyConfig.addGlobalData('site', {
-    url: 'https://ytmp4.gg',
+    url: 'https://onedownloader.net',
     languages: [
       { code: 'en', name: 'English', flag: 'us.png', isDefault: true }
       // When adding multilingual support, uncomment languages below:

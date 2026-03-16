@@ -15,6 +15,7 @@ on:
           - 'ssvid.cc'
           - 'ezconv'
           - 'ytmp4.gg'
+          - 'onedownloader.net'
       environment:
         description: 'Target environment'
         required: true
@@ -74,6 +75,11 @@ jobs:
               echo "directory=apps/ytmp4.gg" >> $GITHUB_OUTPUT
               echo "filter_path=./apps/ytmp4.gg" >> $GITHUB_OUTPUT
               echo "domain=${{ vars.YTMP4_DOMAIN || 'ytmp4.gg' }}" >> $GITHUB_OUTPUT
+              ;;
+            "onedownloader.net")
+              echo "directory=apps/onedownloader.net" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/onedownloader.net" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.ONEDOWNLOADER_DOMAIN || 'onedownloader.net' }}" >> $GITHUB_OUTPUT
               ;;
           esac
 

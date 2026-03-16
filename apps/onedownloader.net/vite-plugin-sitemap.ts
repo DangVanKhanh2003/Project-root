@@ -32,7 +32,7 @@ export function sitemapPlugin(config: SitemapConfig = {}): Plugin {
 
       // Read base URL from site.json
       const siteConfigPath = resolve(__dirname, '_templates/_data/site.json');
-      let baseUrl = 'https://ytmp4.gg';
+      let baseUrl = 'https://onedownloader.net';
 
       if (existsSync(siteConfigPath)) {
         try {

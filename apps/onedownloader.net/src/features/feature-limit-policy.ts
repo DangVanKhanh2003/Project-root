@@ -1,5 +1,5 @@
 /**
- * Feature Limit Policy — ytmp4.gg
+ * Feature Limit Policy — onedownloader.net
  * Single source of truth for all numeric limits.
  * Change values here to adjust quotas site-wide.
  *

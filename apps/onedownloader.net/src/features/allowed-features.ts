@@ -1,5 +1,5 @@
 /**
- * Feature Access Orchestrator — ytmp4.gg
+ * Feature Access Orchestrator — onedownloader.net
  * 3-layer check: License → Geo (API) → Daily Limit
  *
  * Geo result is cached in localStorage (7 days) and in-memory for the session.
@@ -26,13 +26,13 @@ const LS_CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
 const ALLOWED_FEATURES_MAX_ATTEMPTS = 2;
 
 /**
- * ytmp4.gg geo-restricted features.
+ * onedownloader.net geo-restricted features.
  * NOTE: Defined locally — do NOT import GEO_RESTRICTED_FEATURES from @downloader/core.
- * ytmp4.gg includes download_multi (ezconv does NOT).
+ * onedownloader.net includes download_multi (ezconv does NOT).
  */
 const GEO_RESTRICTED_FEATURES = new Set([
     'download_playlist',
-    'download_multi',    // ← ytmp4.gg specific
+    'download_multi',    // ← onedownloader.net specific
     'download_channel',
 ]);
 

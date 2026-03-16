@@ -1,6 +1,6 @@
 /**
  * Main Entry Point - TypeScript
- * YTMP4.gg - Video Downloader
+ * OneDownloader.net - Video Downloader
  */
 
 // === CSS Import ===

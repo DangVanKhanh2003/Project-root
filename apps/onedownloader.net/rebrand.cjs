@@ -5,12 +5,10 @@ const directoryPath = path.join(__dirname);
 const excludePaths = ['node_modules', 'dist', '.git', '_11ty-output', 'logs', '.claude', '.agent', 'doc_important', 'docs'];
 
 const replacements = [
-    { match: /ytmp4\.cc/g, replace: 'ytmp4.gg' },
-    { match: /YTMP4\.cc/g, replace: 'YTMP4.gg' },
-    { match: /YTMP4\.cc/g, replace: 'YTMP4.gg' },
-    { match: /ytmp4/g, replace: 'ytmp4' },
-    { match: /YTMP4/g, replace: 'YTMP4' },
-    { match: /YTMP4/g, replace: 'YTMP4' },
+    { match: /ytmp4\.gg/g, replace: 'onedownloader.net' },
+    { match: /YTMP4\.gg/g, replace: 'OneDownloader' },
+    { match: /YTMP4/g, replace: 'OneDownloader' },
+    { match: /ytmp4/g, replace: 'onedownloader' },
 ];
 
 function processFile(filePath) {

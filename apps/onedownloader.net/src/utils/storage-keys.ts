@@ -10,7 +10,7 @@
 // PREFIX — keeps keys namespaced per app
 // ============================================================
 
-const PREFIX = 'ytmp4';
+const PREFIX = 'onedownloader';
 
 // ============================================================
 // STORAGE KEYS

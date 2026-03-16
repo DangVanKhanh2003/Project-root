@@ -1,5 +1,5 @@
 /**
- * Download Daily Limit Engine — ytmp4.gg
+ * Download Daily Limit Engine — onedownloader.net
  * Tracks daily usage per feature. License key holders bypass all limits.
  *
  * Ported from: ytmp3.gg/src/script/libs/downloader-lib-standalone/download-limit.js
@@ -40,7 +40,7 @@ export const MAX_MULTI_DOWNLOAD_VIDEOS = MULTIPLE_MAX_ITEMS_ALLOWED;
 // STORAGE KEYS
 // ============================================================
 
-const LICENSE_KEY_STORAGE_KEY = 'ytmp4:license_key';
+const LICENSE_KEY_STORAGE_KEY = 'onedownloader:license_key';
 
 interface DailyUsage {
     date: string;
