@@ -22,7 +22,7 @@ import '../../assest/social-icon/icons8-twitter-circled-50.png';
 import '../../assest/social-icon/x-circal.png';
 
 // Social Info Images - Force build all
-import '../../assest/img-social/info-youtube.jpg';
+import '../..logo.png';
 import '../../assest/img-social/info-facebook.jpg';
 import '../../assest/img-social/info-instagram.jpg';
 import '../../assest/img-social/info-tiktok.jpg';
