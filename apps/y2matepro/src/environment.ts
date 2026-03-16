@@ -117,7 +117,7 @@ const environment: Environment = {
 
         // Search V2 API (YouTube search) - separate domain
         // Both dev and prod use production API (no local backend)
-        searchV2BaseUrl: import.meta.env.VITE_SEARCH_V2_BASE_URL || 'https://search.ytconvert.org',
+        searchV2BaseUrl: import.meta.env.VITE_SEARCH_V2_BASE_URL || 'https://yt-meta.ytconvert.org/',
 
         // YouTube Stream API (new service endpoint)
         // Both dev and prod use production API (no local backend)

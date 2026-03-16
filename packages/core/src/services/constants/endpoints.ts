@@ -71,7 +71,7 @@ export const YOUTUBE_DOWNLOAD_ENDPOINTS = {
  */
 export const SEARCH_V2_ENDPOINTS = {
   /** Search YouTube with rich metadata */
-  SEARCH: '/api/youtube/search',
+  SEARCH: '/search',
 } as const;
 
 /**
