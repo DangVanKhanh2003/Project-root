@@ -29,7 +29,7 @@
                     </div>
                 </div>
 
-                <!-- <div class="lang-selector">
+                <div class="lang-selector">
                     <button class="lang-button" type="button" aria-label="{{ base.langSelector.buttonLabel }}">
                         <span>{{ base.langSelector.buttonText }}</span>
                         <svg class="lang-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"
@@ -58,7 +58,7 @@
                             {%- endfor %}
                         </div>
                     </div>
-                </div> -->
+                </div>
                 <button
                     type="button"
                     class="theme-toggle-btn"
@@ -104,6 +104,8 @@
         <div class="drawer-scroll">
             <nav class="drawer-nav" aria-label="Mobile">
                 <a href="{{ langPrefix }}/" class="drawer-link">{{ base.drawer.links.home or 'Home' }}</a>
+                <a href="{{ langPrefix }}/youtube-to-mp3" class="drawer-link">{{ base.drawer.links.youtubeToMp3 or 'YouTube to MP3' }}</a>
+                <a href="{{ langPrefix }}/youtube-to-mp4" class="drawer-link">{{ base.drawer.links.youtubeToMp4 or 'YouTube to MP4' }}</a>
                 <!-- Mobile License Button -->
                 <div class="drawer-license-menu" data-license-button hidden aria-hidden="true">
                     <button type="button" class="drawer-license-trigger" data-license-trigger data-license-default-label="Get Premium" aria-haspopup="true" aria-expanded="false" aria-label="Get Premium options">
@@ -123,7 +125,7 @@
                     </div>
                 </div>
             </nav>
-            <!-- <div class="drawer-lang-selector">
+            <div class="drawer-lang-selector">
                 <button class="drawer-lang-button" type="button" aria-label="Choose language">
                     <span>{{ base.langSelector.currentLangFull }}</span>
                     <svg class="lang-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"
@@ -146,7 +148,7 @@
                     <a href="{{ langUrl }}" class="drawer-sublink{% if langItem.code == lang %} active{% endif %}" role="menuitem">{{ langItem.name }}</a>
                     {%- endfor %}
                 </div>
-            </div> -->
+            </div>
             <button
                 type="button"
                 class="theme-toggle-btn"
