@@ -89,7 +89,8 @@ module.exports = function (eleventyConfig) {
       { code: 'ur', name: 'اردو', flag: 'pk.svg', isDefault: false },
       { code: 'vi', name: 'Tiếng Việt', flag: 'vn.svg', isDefault: false },
       { code: 'zh-cn', name: '简体中文', flag: 'cn.svg', isDefault: false },
-      { code: 'zh-tw', name: '繁體中文', flag: 'tw.svg', isDefault: false }
+      { code: 'zh-tw', name: '繁體中文', flag: 'tw.svg', isDefault: false },
+      { code: 'tl', name: 'Filipino', flag: 'ph.svg', isDefault: false }
     ]
   });
 
@@ -137,7 +138,7 @@ module.exports = function (eleventyConfig) {
   // Example: /youtube-to-mp3/ → /vi/youtube-to-mp3/ (for Vietnamese)
   eleventyConfig.addFilter('getAlternateUrl', function (url, targetLang) {
     // Remove any existing language prefix
-    const cleanUrl = url.replace(/^\/(vi|es|fr|de|ja|ar|bn|hi|id|it|ko|ms|my|pt|ru|th|tr|ur)/, '');
+    const cleanUrl = url.replace(/^\/(vi|es|fr|de|ja|ar|bn|hi|id|it|ko|ms|my|pt|ru|th|tr|ur|zh-cn|zh-tw|tl)/, '');
 
     // Add target language prefix (except for English = default)
     if (targetLang === 'en') {
@@ -193,7 +194,7 @@ module.exports = function (eleventyConfig) {
     }
 
     // Get all language codes (except 'en')
-    const langCodes = ['ar', 'bn', 'de', 'es', 'fr', 'hi', 'id', 'it', 'ja', 'ko', 'my', 'ms', 'pt', 'ru', 'th', 'tr', 'ur', 'vi'];
+    const langCodes = ['ar', 'bn', 'de', 'es', 'fr', 'hi', 'id', 'it', 'ja', 'ko', 'my', 'ms', 'pt', 'ru', 'th', 'tr', 'ur', 'vi', 'zh-cn', 'zh-tw', 'tl'];
 
     // Read output directory
     const items = fs.readdirSync(outputDir, { withFileTypes: true });

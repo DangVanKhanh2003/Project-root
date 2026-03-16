@@ -137,7 +137,7 @@ module.exports = function (eleventyConfig) {
   // Example: /youtube-to-mp3/ → /vi/youtube-to-mp3/ (for Vietnamese)
   eleventyConfig.addFilter('getAlternateUrl', function (url, targetLang) {
     // Remove any existing language prefix
-    const cleanUrl = url.replace(/^\/(vi|es|fr|de|ja|ar|bn|hi|id|it|ko|ms|my|pt|ru|th|tr|ur)/, '');
+    const cleanUrl = url.replace(/^\/(vi|es|fr|de|ja|ar|bn|hi|id|it|ko|ms|my|pt|ru|th|tr|ur|zh-cn|zh-tw|tl)/, '');
 
     // Add target language prefix (except for English = default)
     if (targetLang === 'en') {
