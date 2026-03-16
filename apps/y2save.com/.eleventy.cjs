@@ -192,7 +192,7 @@ module.exports = function (eleventyConfig) {
     }
 
     // Get all language codes (except 'en')
-    const langCodes = ['ar', 'bn', 'de', 'es', 'fr', 'hi', 'id', 'it', 'ja', 'ko', 'my', 'ms', 'pt', 'ru', 'th', 'tr', 'ur', 'vi'];
+    const langCodes = ['ar', 'bn', 'de', 'es', 'fr', 'hi', 'id', 'it', 'ja', 'ko', 'my', 'ms', 'pt', 'ru', 'th', 'tr', 'ur', 'vi', 'zh-cn', 'zh-tw', 'tl'];
 
     // Read output directory
     const items = fs.readdirSync(outputDir, { withFileTypes: true });
