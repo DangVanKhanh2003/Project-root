@@ -5,11 +5,11 @@
  */
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyB3AllYBhQaCOtzIh7kaymm4q-lIBDktqQ",
-  authDomain: "ssivdcc.firebaseapp.com",
-  projectId: "ssivdcc",
-  storageBucket: "ssivdcc.firebasestorage.app",
-  messagingSenderId: "866971516017",
-  appId: "1:866971516017:web:950b13cacc925c0b372fd0",
-  measurementId: "G-C8F8XDW85Q"
+  apiKey: "AIzaSyBNHENqpRto2hWEJu810uvL4qIHsLPCCYE",
+  authDomain: "ytmp4gg.firebaseapp.com",
+  projectId: "ytmp4gg",
+  storageBucket: "ytmp4gg.firebasestorage.app",
+  messagingSenderId: "10574108936",
+  appId: "1:10574108936:web:12f6566344843fca0634bd",
+  measurementId: "G-2VGFR89G70"
 };
