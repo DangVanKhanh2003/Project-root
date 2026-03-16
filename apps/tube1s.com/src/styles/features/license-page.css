@@ -1,0 +1,381 @@
+/* =========================================================
+   License Activation Page — tube1s.com
+   ========================================================= */
+
+:root {
+    --license-accent: var(--brand);
+    --license-accent-soft: var(--surface-weak);
+    --license-ink: var(--text-heading);
+    --license-muted: var(--text-secondary);
+    --license-border: var(--border-subtle);
+}
+
+/* Layout wrapper */
+.license-section {
+    position: relative;
+    padding: clamp(32px, 6vw, 72px) 0;
+    display: flex;
+    justify-content: center;
+}
+
+.main-content-card {
+    background: var(--bg-card);
+    border-radius: 20px;
+    padding: clamp(28px, 5vw, 52px);
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--border-subtle);
+    margin-top: 16px;
+}
+
+.license-card {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border-subtle);
+}
+
+/* Hero */
+.license-hero {
+    position: relative;
+    padding: 0;
+    background: transparent;
+    color: var(--license-ink);
+    margin-bottom: clamp(20px, 3.5vw, 28px);
+}
+
+.license-hero h1 {
+    margin: 0 0 10px;
+    font-size: clamp(1.5rem, 3.5vw, 2.1rem);
+    color: var(--license-ink);
+    line-height: 1.2;
+}
+
+.license-hero p {
+    margin: 0;
+    color: var(--license-muted);
+    max-width: 640px;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* Steps */
+.license-steps {
+    display: grid;
+    gap: 28px;
+    margin: clamp(28px, 4.5vw, 40px) 0 0;
+    position: relative;
+    z-index: 1;
+}
+
+.license-step {
+    display: grid;
+    gap: 10px;
+}
+
+.license-step-title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--license-ink);
+}
+
+.license-step-desc {
+    margin: 0;
+    color: var(--license-muted);
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.license-step-note {
+    margin: 2px 0 0;
+    padding: 8px 10px;
+    border-left: 3px solid var(--brand);
+    border-radius: 8px;
+    background: var(--accent-fill-soft);
+    color: var(--brand);
+    font-size: 14px;
+    line-height: 1.55;
+}
+
+.license-step-note strong {
+    font-weight: 700;
+    color: var(--brand);
+}
+
+.license-step-note em {
+    font-style: italic;
+}
+
+.license-supporter-note {
+    margin: 0;
+    font-size: 0.9em;
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+
+.license-supporter-note a {
+    color: var(--brand-light);
+    font-weight: 600;
+    text-underline-offset: 2px;
+}
+
+.license-supporter-note a:hover {
+    color: var(--brand-light-hover);
+}
+
+.license-email-figure {
+    margin: 10px 0 0;
+}
+
+.license-email-image {
+    display: block;
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 14px;
+    background-color: var(--bg-surface-soft);
+    background-image: linear-gradient(110deg,
+            rgba(148, 163, 184, 0.14) 8%,
+            rgba(148, 163, 184, 0.32) 18%,
+            rgba(148, 163, 184, 0.14) 33%);
+    background-size: 200% 100%;
+    border: 1px solid var(--license-border);
+}
+
+.license-email-image.is-loading {
+    animation: license-image-skeleton 1.2s linear infinite;
+}
+
+.license-email-image.is-loaded,
+.license-email-image.is-error {
+    animation: none;
+    background-image: none;
+}
+
+@keyframes license-image-skeleton {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+.license-email-figure figcaption {
+    margin-top: 8px;
+    font-size: 14px;
+    color: var(--license-muted);
+    text-align: center;
+}
+
+/* Divider between steps and form */
+.license-steps+.license-form {
+    margin-top: clamp(28px, 4.5vw, 40px);
+}
+
+/* Form */
+.license-form {
+    background: var(--bg-surface-soft);
+    border-radius: 16px;
+    border: 1px solid var(--license-border);
+    padding: clamp(20px, 3.5vw, 28px);
+    position: relative;
+    z-index: 1;
+}
+
+.license-input-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--license-ink);
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+/* Status tag (Active / Inactive) */
+.license-status-tag {
+    display: none;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    background: var(--status-success-bg);
+    color: var(--status-success-color);
+    border: 1px solid var(--status-success-color);
+}
+
+.license-status-tag.active {
+    display: inline-flex;
+}
+
+.license-status-tag.inactive {
+    display: inline-flex;
+    background: var(--status-pending-bg);
+    color: var(--status-pending-color);
+    border-color: var(--border-subtle);
+}
+
+/* Input row */
+.license-input-row {
+    display: grid;
+    gap: 12px;
+}
+
+/* Message feedback */
+.license-message {
+    margin-top: 14px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 14px;
+    line-height: 1.5;
+    display: none;
+    border: 1px solid transparent;
+    background: var(--bg-surface-soft);
+    color: var(--license-muted);
+}
+
+.license-message.show {
+    display: block;
+}
+
+.license-message.loading {
+    background: var(--accent-fill-soft);
+    color: var(--brand);
+    border-color: var(--border-default);
+}
+
+.license-message.success {
+    background: var(--status-success-bg);
+    color: var(--status-success-color);
+    border-color: var(--status-success-color);
+}
+
+.license-message.error {
+    background: var(--status-error-bg);
+    color: var(--status-error-color);
+    border-color: var(--status-error-color);
+}
+
+/* Input field */
+.license-input {
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid var(--border-input);
+    padding: 14px 16px;
+    font-size: 16px;
+    font-family: "Courier New", monospace;
+    letter-spacing: 0.08em;
+    background: var(--bg-card);
+    color: var(--text-body);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+}
+
+.license-input::placeholder {
+    color: var(--text-placeholder);
+}
+
+.license-input:focus {
+    outline: none;
+    border-color: var(--brand);
+    box-shadow: 0 0 0 3px var(--accent-fill-soft);
+    background: var(--bg-card);
+}
+
+/* Submit button */
+.license-submit {
+    width: 100%;
+    border: none;
+    border-radius: 12px;
+    padding: 14px 20px;
+    background: var(--brand);
+    color: var(--color-white);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.license-submit:hover:not(:disabled) {
+    background: var(--brand-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px var(--accent-fill-strong);
+}
+
+.license-submit:disabled {
+    opacity: 0.65;
+    cursor: default;
+}
+
+/* Desktop: input + button side-by-side */
+@media (min-width: 700px) {
+    .license-input-row {
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: center;
+    }
+
+    .license-submit {
+        width: auto;
+        padding: 14px 32px;
+        white-space: nowrap;
+    }
+}
+
+/* Expired status tag */
+.license-status-tag.expired {
+    display: inline-flex;
+    background: var(--status-error-bg);
+    color: var(--status-error-color);
+    border-color: var(--status-error-color);
+}
+
+/* Reset key hint */
+.license-reset-hint {
+    margin: 14px 0 0;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.license-reset-hint a {
+    color: var(--brand);
+    text-underline-offset: 2px;
+}
+
+.license-reset-hint a:hover {
+    color: var(--brand-hover);
+}
+
+/* Plan info panel */
+.license-plan-info {
+    margin-top: 16px;
+    padding: 16px 20px;
+    border-radius: 12px;
+    background: var(--bg-card);
+    border: 1px solid var(--license-border);
+}
+
+.plan-info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+}
+
+.plan-info-row+.plan-info-row {
+    border-top: 1px solid var(--license-border);
+}
+
+.plan-info-label {
+    font-size: 14px;
+    color: var(--license-muted);
+    font-weight: 500;
+}
+
+.plan-info-value {
+    font-size: 14px;
+    color: var(--license-ink);
+    font-weight: 600;
+}

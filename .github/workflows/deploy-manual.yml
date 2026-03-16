@@ -16,6 +16,11 @@ on:
           - 'ezconv'
           - 'ytmp4.gg'
           - 'onedownloader.net'
+          - 'u2snap.com'
+          - 'convert1s.com'
+          - 'snap1s.com'
+          - 'y2save.com'
+          - 'tube1s.com'
       environment:
         description: 'Target environment'
         required: true
@@ -80,6 +85,31 @@ jobs:
               echo "directory=apps/onedownloader.net" >> $GITHUB_OUTPUT
               echo "filter_path=./apps/onedownloader.net" >> $GITHUB_OUTPUT
               echo "domain=${{ vars.ONEDOWNLOADER_DOMAIN || 'onedownloader.net' }}" >> $GITHUB_OUTPUT
+              ;;
+            "u2snap.com")
+              echo "directory=apps/u2snap.com" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/u2snap.com" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.U2SNAP_DOMAIN || 'u2snap.com' }}" >> $GITHUB_OUTPUT
+              ;;
+            "convert1s.com")
+              echo "directory=apps/convert1s.com" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/convert1s.com" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.CONVERT1S_DOMAIN || 'convert1s.com' }}" >> $GITHUB_OUTPUT
+              ;;
+            "snap1s.com")
+              echo "directory=apps/snap1s.com" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/snap1s.com" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.SNAP1S_DOMAIN || 'snap1s.com' }}" >> $GITHUB_OUTPUT
+              ;;
+            "tube1s.com")
+              echo "directory=apps/tube1s.com" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/tube1s.com" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.TUBE1S_DOMAIN || 'tube1s.com' }}" >> $GITHUB_OUTPUT
+              ;;
+            "y2save.com")
+              echo "directory=apps/y2save.com" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/y2save.com" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.Y2SAVE_DOMAIN || 'y2save.com' }}" >> $GITHUB_OUTPUT
               ;;
           esac
 

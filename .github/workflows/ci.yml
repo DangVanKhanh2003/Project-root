@@ -23,6 +23,11 @@ on:
           - 'ezconv'
           - 'ytmp4.gg'
           - 'onedownloader.net'
+          - 'u2snap.com'
+          - 'convert1s.com'
+          - 'snap1s.com'
+          - 'y2save.com'
+          - 'tube1s.com'
 
 concurrency:
   group: ci-${{ github.repository }}-${{ github.ref }}
@@ -70,13 +75,23 @@ jobs:
               - 'apps/ytmp4.gg/**'
             onedownloader.net:
               - 'apps/onedownloader.net/**'
+            u2snap.com:
+              - 'apps/u2snap.com/**'
+            convert1s.com:
+              - 'apps/convert1s.com/**'
+            snap1s.com:
+              - 'apps/snap1s.com/**'
+            y2save.com:
+              - 'apps/y2save.com/**'
+            tube1s.com:
+              - 'apps/tube1s.com/**'
 
       - name: Determine apps to deploy
         id: determine-apps
         env:
           COMMIT_MSG: ${{ github.event.head_commit.message }}
         run: |
-          ALL_APPS='["y2matepro","y2matevc","mp3fast","ytmp3.my","4kvideopro","ssvid.cc","ezconv","ytmp4.gg","onedownloader.net"]'
+          ALL_APPS='["y2matepro","y2matevc","mp3fast","ytmp3.my","4kvideopro","ssvid.cc","ezconv","ytmp4.gg","onedownloader.net","u2snap.com","convert1s.com","snap1s.com","y2save.com","tube1s.com"]'
 
           # Handle manual trigger with specific_app
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
@@ -174,6 +189,26 @@ jobs:
           if [[ "${{ steps.filter.outputs['onedownloader.net'] }}" == "true" ]]; then
             CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["onedownloader.net"]')
             echo "✅ onedownloader.net changed"
+          fi
+          if [[ "${{ steps.filter.outputs['u2snap.com'] }}" == "true" ]]; then
+            CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["u2snap.com"]')
+            echo "✅ u2snap.com changed"
+          fi
+          if [[ "${{ steps.filter.outputs['convert1s.com'] }}" == "true" ]]; then
+            CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["convert1s.com"]')
+            echo "✅ convert1s.com changed"
+          fi
+          if [[ "${{ steps.filter.outputs['snap1s.com'] }}" == "true" ]]; then
+            CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["snap1s.com"]')
+            echo "✅ snap1s.com changed"
+          fi
+          if [[ "${{ steps.filter.outputs['y2save.com'] }}" == "true" ]]; then
+            CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["y2save.com"]')
+            echo "✅ y2save.com changed"
+          fi
+          if [[ "${{ steps.filter.outputs['tube1s.com'] }}" == "true" ]]; then
+            CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["tube1s.com"]')
+            echo "✅ tube1s.com changed"
           fi
 
           echo "📋 Changed apps: $CHANGED_APPS"
@@ -316,6 +351,76 @@ jobs:
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
+  deploy-u2snap-com:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'u2snap.com')
+    uses: ./.github/workflows/deploy-app.yml
+    with:
+      app_name: u2snap.com
+      app_directory: apps/u2snap.com
+      filter_path: ./apps/u2snap.com
+      domain: ${{ vars.U2SNAP_DOMAIN || 'u2snap.com' }}
+    secrets:
+      SSH_HOST: ${{ secrets.SSH_HOST }}
+      SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
+  deploy-convert1s-com:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'convert1s.com')
+    uses: ./.github/workflows/deploy-app.yml
+    with:
+      app_name: convert1s.com
+      app_directory: apps/convert1s.com
+      filter_path: ./apps/convert1s.com
+      domain: ${{ vars.CONVERT1S_DOMAIN || 'convert1s.com' }}
+    secrets:
+      SSH_HOST: ${{ secrets.SSH_HOST }}
+      SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
+  deploy-snap1s-com:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'snap1s.com')
+    uses: ./.github/workflows/deploy-app.yml
+    with:
+      app_name: snap1s.com
+      app_directory: apps/snap1s.com
+      filter_path: ./apps/snap1s.com
+      domain: ${{ vars.SNAP1S_DOMAIN || 'snap1s.com' }}
+    secrets:
+      SSH_HOST: ${{ secrets.SSH_HOST }}
+      SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
+  deploy-tube1s-com:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'tube1s.com')
+    uses: ./.github/workflows/deploy-app.yml
+    with:
+      app_name: tube1s.com
+      app_directory: apps/tube1s.com
+      filter_path: ./apps/tube1s.com
+      domain: ${{ vars.TUBE1S_DOMAIN || 'tube1s.com' }}
+    secrets:
+      SSH_HOST: ${{ secrets.SSH_HOST }}
+      SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
+  deploy-y2save-com:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'y2save.com')
+    uses: ./.github/workflows/deploy-app.yml
+    with:
+      app_name: y2save.com
+      app_directory: apps/y2save.com
+      filter_path: ./apps/y2save.com
+      domain: ${{ vars.Y2SAVE_DOMAIN || 'y2save.com' }}
+    secrets:
+      SSH_HOST: ${{ secrets.SSH_HOST }}
+      SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
   # ============================================
   # Job 9: Summary
   # ============================================
@@ -331,6 +436,11 @@ jobs:
       - deploy-ezconv
       - deploy-ytmp4-gg
       - deploy-onedownloader-net
+      - deploy-u2snap-com
+      - deploy-convert1s-com
+      - deploy-snap1s-com
+      - deploy-y2save-com
+      - deploy-tube1s-com
     if: always()
     runs-on: ubuntu-latest
     steps:
@@ -354,3 +464,8 @@ jobs:
           echo "| ezconv | ${{ needs.deploy-ezconv.result || 'skipped' }} |"
           echo "| ytmp4.gg | ${{ needs.deploy-ytmp4-gg.result || 'skipped' }} |"
           echo "| onedownloader.net | ${{ needs.deploy-onedownloader-net.result || 'skipped' }} |"
+          echo "| u2snap.com | ${{ needs.deploy-u2snap-com.result || 'skipped' }} |"
+          echo "| convert1s.com | ${{ needs.deploy-convert1s-com.result || 'skipped' }} |"
+          echo "| snap1s.com | ${{ needs.deploy-snap1s-com.result || 'skipped' }} |"
+          echo "| y2save.com | ${{ needs.deploy-y2save-com.result || 'skipped' }} |"
+          echo "| tube1s.com | ${{ needs.deploy-tube1s-com.result || 'skipped' }} |"

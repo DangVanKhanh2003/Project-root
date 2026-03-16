@@ -1,0 +1,162 @@
+{
+  "seo": {
+    "title": "Y2Save – Free Online Video Downloader | Save Videos Instantly",
+    "description": "Y2Save is a free online video downloader. Paste any video link and save it as MP4 or MP3 instantly — no signup, no software required.",
+    "schemaName": "Y2Save - Free Online Video Downloader",
+    "schemaDescription": "Free online video downloader that lets you save videos and audio from any link. Paste a URL and download instantly in MP4 or MP3.",
+    "ogTitle": "Y2Save – Free Online Video Downloader",
+    "ogDescription": "Save videos online for free with Y2Save. Paste a link to download video or audio instantly in MP4 or MP3 format."
+  },
+  "content": {
+
+    "form": {
+      "h1": "Free Online Video Downloader – Save Videos Instantly",
+      "placeholder": "Paste video URL here...",
+      "button": "Download Now"
+    },
+
+    "sections": [
+
+      {
+        "h2": "What Is Y2Save?",
+        "p": [
+          "Y2Save is a fast and free <strong>online video downloader</strong> built for saving videos from the web.",
+          "Simply paste a video URL and download the file instantly. Y2Save works directly in your browser — no installation, registration, or extra software needed.",
+          "You can save videos in MP4 format or extract audio depending on the available options."
+        ]
+      },
+
+      {
+        "h2": "How to Save Videos Online",
+        "ol": [
+          {
+            "h3": "Copy the Video URL",
+            "p": [
+              "Find the video you want to save and copy its URL from the address bar."
+            ]
+          },
+          {
+            "h3": "Paste the Link",
+            "p": [
+              "Paste the video link into the input box above."
+            ]
+          },
+          {
+            "h3": "Process the Video",
+            "p": [
+              "Y2Save will process the link and prepare the available download formats."
+            ]
+          },
+          {
+            "h3": "Download the File",
+            "p": [
+              "Click the download button to save the video or audio file to your device."
+            ]
+          }
+        ]
+      },
+
+      {
+        "h2": "Save Videos in MP4 or Audio Format",
+        "p": [
+          "Y2Save supports saving videos in MP4 format or extracting audio from video links.",
+          "Many users need a quick way to convert video links into downloadable files. Y2Save handles this directly in your browser without any extra steps.",
+          "Download video files for offline viewing or extract audio — whatever you need."
+        ]
+      },
+
+      {
+        "h2": "High Quality Video Downloads",
+        "p": [
+          "Video quality matters. Y2Save supports multiple quality levels depending on the original source.",
+          "This includes HD and high-resolution downloads when available, ensuring smooth playback on desktop, tablet, and mobile devices."
+        ]
+      },
+
+      {
+        "h2": "Fast and Unlimited Downloads",
+        "p": [
+          "Y2Save provides a fast and straightforward downloading experience.",
+          "Download as many videos as you want without creating an account or installing software. Everything works directly in your browser.",
+          "The tool is web-based, so you can access it from any modern device — computer, tablet, or smartphone."
+        ]
+      },
+
+      {
+        "h2": "Why Use Y2Save?",
+        "ul": [
+          {
+            "h3": "No Software Required",
+            "p": [
+              "Y2Save runs entirely in your browser — no downloads or plugins needed."
+            ]
+          },
+          {
+            "h3": "Instant Link-Based Downloads",
+            "p": [
+              "Paste a video link and start downloading right away."
+            ]
+          },
+          {
+            "h3": "Works on All Devices",
+            "p": [
+              "Compatible with desktop, mobile, and tablet browsers."
+            ]
+          },
+          {
+            "h3": "Unlimited Downloads",
+            "p": [
+              "No daily limits on how many videos you can save."
+            ]
+          }
+        ]
+      },
+
+      {
+        "h2": "Save Videos for Offline Use",
+        "p": [
+          "Whether you want to save videos for offline viewing, build a personal media library, or keep important clips — Y2Save makes it simple.",
+          "Paste a link, choose your format, and download. That's it.",
+          "Y2Save focuses on speed and simplicity so you can save any video in seconds."
+        ]
+      },
+
+      {
+        "h2": "Frequently Asked Questions",
+        "ul": [
+          {
+            "h3": "Is Y2Save free to use?",
+            "p": [
+              "Yes. Y2Save is completely free with unlimited downloads."
+            ]
+          },
+          {
+            "h3": "Do I need to install anything?",
+            "p": [
+              "No. Y2Save works entirely in your web browser."
+            ]
+          },
+          {
+            "h3": "Can I save videos on my phone?",
+            "p": [
+              "Yes. Y2Save is compatible with most mobile browsers."
+            ]
+          },
+          {
+            "h3": "Is registration required?",
+            "p": [
+              "No registration or account is needed to use Y2Save."
+            ]
+          },
+          {
+            "h3": "Does Y2Save support HD video?",
+            "p": [
+              "Yes. HD and high-resolution downloads are supported when available from the source."
+            ]
+          }
+        ]
+      }
+
+    ]
+  }
+}
