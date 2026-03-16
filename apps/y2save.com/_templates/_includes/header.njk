@@ -31,7 +31,7 @@
 
                 <div class="lang-selector">
                     <button class="lang-button" type="button" aria-label="{{ base.langSelector.buttonLabel }}">
-                        <span>{{ base.langSelector.buttonText }}</span>
+                        <span>{{ (lang or 'en') | upper }}</span>
                         <svg class="lang-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2">
                             <path d="M6 9l6 6 6-6" />
@@ -127,7 +127,7 @@
             </nav>
             <div class="drawer-lang-selector">
                 <button class="drawer-lang-button" type="button" aria-label="Choose language">
-                    <span>{{ base.langSelector.currentLangFull }}</span>
+                    <span>{{ (lang or 'en') | upper }}</span>
                     <svg class="lang-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"
                         stroke="currentColor" stroke-width="2">
                         <path d="M6 9l6 6 6-6" />

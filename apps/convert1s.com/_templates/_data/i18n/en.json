@@ -22,6 +22,11 @@
   "footer": {
     "copyright": "\u00a9 2026 Convert1s. All rights reserved."
   },
+  "langSelector": {
+    "buttonLabel": "Change language",
+    "buttonText": "EN",
+    "currentLangFull": "English"
+  },
   "strim": {
     "startBtn": "Start",
     "selectFormatLabel": "1. Select format:",

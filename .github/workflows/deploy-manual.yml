@@ -168,7 +168,7 @@ jobs:
           fi
 
       - name: Archive and upload
-        run: tar -C ${{ steps.config.outputs.directory }}/dist -czf dist.tar.gz .
+        run: tar -C ${{ steps.config.outputs.directory }}/dist -czf ${{ inputs.app }}-dist.tar.gz .
 
       - name: Upload to server
         uses: appleboy/scp-action@v0.1.7
@@ -176,7 +176,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "dist.tar.gz"
+          source: "${{ inputs.app }}-dist.tar.gz"
           target: "/tmp"
           overwrite: true
 
@@ -202,20 +202,16 @@ jobs:
             fi
 
             RUN_DIR="$PROJECT_ROOT/run/$PROJECT_NAME"
-            SRC_TAR="/tmp/dist.tar.gz"
-            TMP_TAR="/tmp/${PROJECT_NAME}-dist.tar.gz"
+            APP_TAR="/tmp/${{ inputs.app }}-dist.tar.gz"
 
             echo "== /tmp listing for debug =="
             ls -l /tmp || true
 
-            # Clean up old directory if exists
-            [ -d "$TMP_TAR" ] && rm -rf "$TMP_TAR"
+            # Xoá thư mục rác trùng tên file tar (nếu có)
+            [ -d "$APP_TAR" ] && rm -rf "$APP_TAR"
 
             # Verify artifact exists
-            [ -f "$SRC_TAR" ] || { echo "Artifact not found: $SRC_TAR" >&2; exit 1; }
-
-            # Rename artifact
-            mv -f "$SRC_TAR" "$TMP_TAR"
+            [ -f "$APP_TAR" ] || { echo "Artifact not found: $APP_TAR" >&2; exit 1; }
 
             # Security check
             case "$RUN_DIR" in "$PROJECT_ROOT"/*) ;; *)
@@ -235,7 +231,7 @@ jobs:
 
             # Clean and extract
             find "$RUN_DIR" -mindepth 1 -maxdepth 1 -exec rm -rf {} +
-            tar -xzf "$TMP_TAR" -C "$RUN_DIR"
+            tar -xzf "$APP_TAR" -C "$RUN_DIR"
 
             # Set permissions
             find "$RUN_DIR" -type d -exec chmod 755 {} +
@@ -247,6 +243,6 @@ jobs:
             fi
 
             # Cleanup
-            rm -f "$TMP_TAR" || true
+            rm -f "$APP_TAR" || true
 
             echo "✅ Deployed $PROJECT_NAME ($ENV_TYPE) successfully!"
