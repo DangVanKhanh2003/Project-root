@@ -179,7 +179,7 @@ const WIDGET_RULES: Record<string, { timing: string; levels: Record<number | str
     },
     'trustpilot-widget': {
         timing: 'afterSubmit',
-        levels: { 1: true, 2: true, 3: true, supporter: true }
+        levels: { 1: false, 2: false, 3: false, supporter: false }
     },
     'supporter-badge': {
         timing: 'pageLoad',
@@ -337,9 +337,9 @@ export async function applyInitialVisibility(): Promise<void> {
  * Called after form submit (extract start).
  */
 export function onAfterSubmit(): void {
-    showTrustpilotWidget();
+   // showTrustpilotWidget();
     showTipMessageWidget();
-    showMultiPlaylistBannerWidget();
+   // showMultiPlaylistBannerWidget();
 }
 
 /**

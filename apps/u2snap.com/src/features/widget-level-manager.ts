@@ -337,9 +337,9 @@ export async function applyInitialVisibility(): Promise<void> {
  * Called after form submit (extract start).
  */
 export function onAfterSubmit(): void {
-    showTrustpilotWidget();
+   // showTrustpilotWidget();
     showTipMessageWidget();
-    showMultiPlaylistBannerWidget();
+   // showMultiPlaylistBannerWidget();
 }
 
 /**
