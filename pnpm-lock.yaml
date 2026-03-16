@@ -67,40 +67,6 @@ importers:
         specifier: ^3.1.4
         version: 3.1.4(vite@7.2.2(@types/node@20.19.25)(terser@5.44.1)(tsx@4.20.6))
 
-  apps/4k-downloader:
-    dependencies:
-      '@downloader/core':
-        specifier: workspace:*
-        version: link:../../packages/core
-      '@downloader/ui-components':
-        specifier: workspace:*
-        version: link:../../packages/ui-components
-      '@downloader/ui-shared':
-        specifier: workspace:*
-        version: link:../../packages/ui-shared
-      '@downloader/vidtool-popup':
-        specifier: workspace:*
-        version: link:../../packages/vidtool-popup
-      firebase:
-        specifier: ^12.8.0
-        version: 12.8.0
-    devDependencies:
-      '@11ty/eleventy':
-        specifier: ^3.0.0
-        version: 3.1.2
-      '@types/node':
-        specifier: ^20.19.25
-        version: 20.19.25
-      tsx:
-        specifier: ^4.20.6
-        version: 4.20.6
-      typescript:
-        specifier: ^5.3.3
-        version: 5.9.3
-      vite:
-        specifier: ^7.1.10
-        version: 7.2.2(@types/node@20.19.25)(terser@5.44.1)(tsx@4.20.6)
-
   apps/4kvideopro:
     dependencies:
       '@downloader/core':
@@ -135,7 +101,7 @@ importers:
         specifier: ^7.1.10
         version: 7.2.2(@types/node@20.19.25)(terser@5.44.1)(tsx@4.20.6)
 
-  apps/4kvideopro_new_ui:
+  apps/convert1s.com:
     dependencies:
       '@downloader/core':
         specifier: workspace:*
@@ -162,74 +128,6 @@ importers:
       shx:
         specifier: ^0.3.4
         version: 0.3.4
-      tsx:
-        specifier: ^4.20.6
-        version: 4.20.6
-      typescript:
-        specifier: ^5.3.3
-        version: 5.9.3
-      vite:
-        specifier: ^7.1.10
-        version: 7.2.2(@types/node@20.19.25)(terser@5.44.1)(tsx@4.20.6)
-
-  apps/clone-7:
-    dependencies:
-      '@downloader/core':
-        specifier: workspace:*
-        version: link:../../packages/core
-      '@downloader/ui-components':
-        specifier: workspace:*
-        version: link:../../packages/ui-components
-      '@downloader/ui-shared':
-        specifier: workspace:*
-        version: link:../../packages/ui-shared
-      '@downloader/vidtool-popup':
-        specifier: workspace:*
-        version: link:../../packages/vidtool-popup
-      firebase:
-        specifier: ^12.8.0
-        version: 12.8.0
-    devDependencies:
-      '@11ty/eleventy':
-        specifier: ^3.0.0
-        version: 3.1.2
-      '@types/node':
-        specifier: ^20.19.25
-        version: 20.19.25
-      tsx:
-        specifier: ^4.20.6
-        version: 4.20.6
-      typescript:
-        specifier: ^5.3.3
-        version: 5.9.3
-      vite:
-        specifier: ^7.1.10
-        version: 7.2.2(@types/node@20.19.25)(terser@5.44.1)(tsx@4.20.6)
-
-  apps/clone_ytmp3_6:
-    dependencies:
-      '@downloader/core':
-        specifier: workspace:*
-        version: link:../../packages/core
-      '@downloader/ui-components':
-        specifier: workspace:*
-        version: link:../../packages/ui-components
-      '@downloader/ui-shared':
-        specifier: workspace:*
-        version: link:../../packages/ui-shared
-      '@downloader/vidtool-popup':
-        specifier: workspace:*
-        version: link:../../packages/vidtool-popup
-      firebase:
-        specifier: ^12.8.0
-        version: 12.8.0
-    devDependencies:
-      '@11ty/eleventy':
-        specifier: ^3.0.0
-        version: 3.1.2
-      '@types/node':
-        specifier: ^20.19.25
-        version: 20.19.25
       tsx:
         specifier: ^4.20.6
         version: 4.20.6
@@ -308,7 +206,155 @@ importers:
         specifier: ^7.1.10
         version: 7.2.2(@types/node@20.19.25)(terser@5.44.1)(tsx@4.20.6)
 
+  apps/onedownloader.net:
+    dependencies:
+      '@downloader/core':
+        specifier: workspace:*
+        version: link:../../packages/core
+      '@downloader/ui-components':
+        specifier: workspace:*
+        version: link:../../packages/ui-components
+      '@downloader/ui-shared':
+        specifier: workspace:*
+        version: link:../../packages/ui-shared
+      '@downloader/vidtool-popup':
+        specifier: workspace:*
+        version: link:../../packages/vidtool-popup
+      firebase:
+        specifier: ^12.8.0
+        version: 12.8.0
+    devDependencies:
+      '@11ty/eleventy':
+        specifier: ^3.0.0
+        version: 3.1.2
+      '@types/node':
+        specifier: ^20.19.25
+        version: 20.19.25
+      shx:
+        specifier: ^0.3.4
+        version: 0.3.4
+      tsx:
+        specifier: ^4.20.6
+        version: 4.20.6
+      typescript:
+        specifier: ^5.3.3
+        version: 5.9.3
+      vite:
+        specifier: ^7.1.10
+        version: 7.2.2(@types/node@20.19.25)(terser@5.44.1)(tsx@4.20.6)
+
+  apps/snap1s.com:
+    dependencies:
+      '@downloader/core':
+        specifier: workspace:*
+        version: link:../../packages/core
+      '@downloader/ui-components':
+        specifier: workspace:*
+        version: link:../../packages/ui-components
+      '@downloader/ui-shared':
+        specifier: workspace:*
+        version: link:../../packages/ui-shared
+      '@downloader/vidtool-popup':
+        specifier: workspace:*
+        version: link:../../packages/vidtool-popup
+      firebase:
+        specifier: ^12.8.0
+        version: 12.8.0
+    devDependencies:
+      '@11ty/eleventy':
+        specifier: ^3.0.0
+        version: 3.1.2
+      '@types/node':
+        specifier: ^20.19.25
+        version: 20.19.25
+      shx:
+        specifier: ^0.3.4
+        version: 0.3.4
+      tsx:
+        specifier: ^4.20.6
+        version: 4.20.6
+      typescript:
+        specifier: ^5.3.3
+        version: 5.9.3
+      vite:
+        specifier: ^7.1.10
+        version: 7.2.2(@types/node@20.19.25)(terser@5.44.1)(tsx@4.20.6)
+
   apps/ssvid.cc:
+    dependencies:
+      '@downloader/core':
+        specifier: workspace:*
+        version: link:../../packages/core
+      '@downloader/ui-components':
+        specifier: workspace:*
+        version: link:../../packages/ui-components
+      '@downloader/ui-shared':
+        specifier: workspace:*
+        version: link:../../packages/ui-shared
+      '@downloader/vidtool-popup':
+        specifier: workspace:*
+        version: link:../../packages/vidtool-popup
+      firebase:
+        specifier: ^12.8.0
+        version: 12.8.0
+    devDependencies:
+      '@11ty/eleventy':
+        specifier: ^3.0.0
+        version: 3.1.2
+      '@types/node':
+        specifier: ^20.19.25
+        version: 20.19.25
+      shx:
+        specifier: ^0.3.4
+        version: 0.3.4
+      tsx:
+        specifier: ^4.20.6
+        version: 4.20.6
+      typescript:
+        specifier: ^5.3.3
+        version: 5.9.3
+      vite:
+        specifier: ^7.1.10
+        version: 7.2.2(@types/node@20.19.25)(terser@5.44.1)(tsx@4.20.6)
+
+  apps/tube1s.com:
+    dependencies:
+      '@downloader/core':
+        specifier: workspace:*
+        version: link:../../packages/core
+      '@downloader/ui-components':
+        specifier: workspace:*
+        version: link:../../packages/ui-components
+      '@downloader/ui-shared':
+        specifier: workspace:*
+        version: link:../../packages/ui-shared
+      '@downloader/vidtool-popup':
+        specifier: workspace:*
+        version: link:../../packages/vidtool-popup
+      firebase:
+        specifier: ^12.8.0
+        version: 12.8.0
+    devDependencies:
+      '@11ty/eleventy':
+        specifier: ^3.0.0
+        version: 3.1.2
+      '@types/node':
+        specifier: ^20.19.25
+        version: 20.19.25
+      shx:
+        specifier: ^0.3.4
+        version: 0.3.4
+      tsx:
+        specifier: ^4.20.6
+        version: 4.20.6
+      typescript:
+        specifier: ^5.3.3
+        version: 5.9.3
+      vite:
+        specifier: ^7.1.10
+        version: 7.2.2(@types/node@20.19.25)(terser@5.44.1)(tsx@4.20.6)
+
+  apps/u2snap.com:
     dependencies:
       '@downloader/core':
         specifier: workspace:*
@@ -404,7 +450,7 @@ importers:
         specifier: ^7.1.10
         version: 7.2.2(@types/node@20.19.25)(terser@5.44.1)(tsx@4.20.6)
 
-  apps/yt-downloader:
+  apps/y2save.com:
     dependencies:
       '@downloader/core':
         specifier: workspace:*
@@ -428,99 +474,9 @@ importers:
       '@types/node':
         specifier: ^20.19.25
         version: 20.19.25
-      tsx:
-        specifier: ^4.20.6
-        version: 4.20.6
-      typescript:
-        specifier: ^5.3.3
-        version: 5.9.3
-      vite:
-        specifier: ^7.1.10
-        version: 7.2.2(@types/node@20.19.25)(terser@5.44.1)(tsx@4.20.6)
-
-  apps/yt-gold:
-    dependencies:
-      '@downloader/core':
-        specifier: workspace:*
-        version: link:../../packages/core
-      '@downloader/ui-components':
-        specifier: workspace:*
-        version: link:../../packages/ui-components
-      '@downloader/ui-shared':
-        specifier: workspace:*
-        version: link:../../packages/ui-shared
-      '@downloader/vidtool-popup':
-        specifier: workspace:*
-        version: link:../../packages/vidtool-popup
-      firebase:
-        specifier: ^12.8.0
-        version: 12.8.0
-    devDependencies:
-      '@11ty/eleventy':
-        specifier: ^3.0.0
-        version: 3.1.2
-      '@types/node':
-        specifier: ^20.19.25
-        version: 20.19.25
-      tsx:
-        specifier: ^4.20.6
-        version: 4.20.6
-      typescript:
-        specifier: ^5.3.3
-        version: 5.9.3
-      vite:
-        specifier: ^7.1.10
-        version: 7.2.2(@types/node@20.19.25)(terser@5.44.1)(tsx@4.20.6)
-
-  apps/ytmp3-clone-3:
-    dependencies:
-      '@downloader/core':
-        specifier: workspace:*
-        version: link:../../packages/core
-      '@downloader/ui-components':
-        specifier: workspace:*
-        version: link:../../packages/ui-components
-      '@downloader/ui-shared':
-        specifier: workspace:*
-        version: link:../../packages/ui-shared
-      '@downloader/vidtool-popup':
-        specifier: workspace:*
-        version: link:../../packages/vidtool-popup
-    devDependencies:
-      '@types/node':
-        specifier: ^20.19.25
-        version: 20.19.25
-      tsx:
-        specifier: ^4.20.6
-        version: 4.20.6
-      typescript:
-        specifier: ^5.3.3
-        version: 5.9.3
-      vite:
-        specifier: ^7.1.10
-        version: 7.2.2(@types/node@20.19.25)(terser@5.44.1)(tsx@4.20.6)
-
-  apps/ytmp3-clone-5:
-    dependencies:
-      '@downloader/core':
-        specifier: workspace:*
-        version: link:../../packages/core
-      '@downloader/history':
-        specifier: workspace:*
-        version: link:../../packages/history
-      '@downloader/ui-components':
-        specifier: workspace:*
-        version: link:../../packages/ui-components
-      '@downloader/ui-shared':
-        specifier: workspace:*
-        version: link:../../packages/ui-shared
-      '@downloader/vidtool-popup':
-        specifier: workspace:*
-        version: link:../../packages/vidtool-popup
-    devDependencies:
-      '@types/node':
-        specifier: ^20.19.25
-        version: 20.19.25
+      shx:
+        specifier: ^0.3.4
+        version: 0.3.4
       tsx:
         specifier: ^4.20.6
         version: 4.20.6
@@ -532,40 +488,6 @@ importers:
         version: 7.2.2(@types/node@20.19.25)(terser@5.44.1)(tsx@4.20.6)
 
   apps/ytmp3.my:
-    dependencies:
-      '@downloader/core':
-        specifier: workspace:*
-        version: link:../../packages/core
-      '@downloader/ui-components':
-        specifier: workspace:*
-        version: link:../../packages/ui-components
-      '@downloader/ui-shared':
-        specifier: workspace:*
-        version: link:../../packages/ui-shared
-      '@downloader/vidtool-popup':
-        specifier: workspace:*
-        version: link:../../packages/vidtool-popup
-      firebase:
-        specifier: ^12.8.0
-        version: 12.8.0
-    devDependencies:
-      '@11ty/eleventy':
-        specifier: ^3.0.0
-        version: 3.1.2
-      '@types/node':
-        specifier: ^20.19.25
-        version: 20.19.25
-      tsx:
-        specifier: ^4.20.6
-        version: 4.20.6
-      typescript:
-        specifier: ^5.3.3
-        version: 5.9.3
-      vite:
-        specifier: ^7.1.10
-        version: 7.2.2(@types/node@20.19.25)(terser@5.44.1)(tsx@4.20.6)
-
-  apps/ytmp3fast:
     dependencies:
       '@downloader/core':
         specifier: workspace:*
