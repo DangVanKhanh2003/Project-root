@@ -34,7 +34,7 @@ export const QUALITY_OPTIONS = {
  */
 const PAGE_DEFAULTS: Record<string, { format: FormatType; videoQuality?: string; audioFormat?: AudioFormatType; audioBitrate?: string }> = {
   // Main pages
-  'youtube-to-mp3': { format: 'mp3', audioFormat: 'mp3', audioBitrate: '128' },
+  'youtube-to-mp3': { format: 'mp3', audioFormat: 'mp3', audioBitrate: '320' },
   'youtube-to-mp4': { format: 'mp4', videoQuality: '720p' },
   // Audio format converter pages (non-MP3 formats don't have bitrate)
   'youtube-to-wav-converter': { format: 'mp3', audioFormat: 'wav', audioBitrate: '' },
@@ -60,8 +60,8 @@ interface StoredPreferences {
 }
 
 function normalizeStoredAudioBitrate(bitrate: string | undefined): string {
-  if (!bitrate) return '128';
-  return QUALITY_OPTIONS.mp3.bitrates.includes(bitrate as any) ? bitrate : '128';
+  if (!bitrate) return '320';
+  return QUALITY_OPTIONS.mp3.bitrates.includes(bitrate as any) ? bitrate : '320';
 }
 
 // ==========================================
@@ -96,10 +96,10 @@ function getPageDefaults(): { format: FormatType; videoQuality: string; audioFor
   // Fallback defaults (App-level defaults)
   // IMPORTANT: Must match HTML defaults to prevent FOUC
   return {
-    format: 'mp4',
+    format: 'mp3',
     videoQuality: '720p',
     audioFormat: 'mp3',
-    audioBitrate: '128'
+    audioBitrate: '320'
   };
 }
 

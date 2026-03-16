@@ -75,7 +75,7 @@
 
     <!-- Critical: Read format preference before render to prevent FOUC -->
     <script>
-        (function () { var f = 'mp4'; try { var p = JSON.parse(localStorage.getItem('Ezconv_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat } catch (e) { } document.documentElement.dataset.format = f; document.write('<style>html[data-format="mp3"] .quality-select--mp4,html[data-format="mp3"] .multi-quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3,html[data-format="mp3"] .multi-quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3,html[data-format="mp4"] .multi-quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4,html[data-format="mp4"] .multi-quality-select--mp4{display:block!important}</style>') })()
+        (function () { var f = 'mp3'; try { var p = JSON.parse(localStorage.getItem('Ezconv_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat } catch (e) { } document.documentElement.dataset.format = f; document.write('<style>html[data-format="mp3"] .quality-select--mp4,html[data-format="mp3"] .multi-quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3,html[data-format="mp3"] .multi-quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3,html[data-format="mp4"] .multi-quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4,html[data-format="mp4"] .multi-quality-select--mp4{display:block!important}</style>') })()
     </script>
     <script>
             /* Prevent theme FOUC: apply saved theme immediately */
@@ -733,8 +733,8 @@ https://youtube.com/watch?v=VID_2" rows="5"></textarea>
                                     <div class="multi-format-dropdown-wrapper">
                                         <select id="multi-format-select" class="multi-format-select"
                                             aria-label="Format">
-                                            <option value="mp4" selected>MP4</option>
-                                            <option value="mp3">MP3</option>
+                                            <option value="mp4">MP4</option>
+                                            <option value="mp3" selected>MP3</option>
                                         </select>
                                         <div class="multi-select-arrow">
                                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
@@ -747,9 +747,9 @@ https://youtube.com/watch?v=VID_2" rows="5"></textarea>
                                         <select id="multi-quality-select-mp3"
                                             class="multi-quality-select multi-quality-select--mp3"
                                             aria-label="Audio quality" data-quality-select style="display: none;">
-                                            <option value="mp3-128" selected>MP3 - 128kbps</option>
+                                            <option value="mp3-128">MP3 - 128kbps</option>
                                             <option value="mp3-192">MP3 - 192kbps</option>
-                                            <option value="mp3-320">MP3 - 320kbps</option>
+                                            <option value="mp3-320" selected>MP3 - 320kbps</option>
                                             <option value="mp3-64">MP3 - 64kbps</option>
                                             <option value="flac">FLAC - Lossless</option>
                                             <option value="ogg">OGG</option>
@@ -777,7 +777,7 @@ https://youtube.com/watch?v=VID_2" rows="5"></textarea>
                                             </svg>
                                         </div>
                                     </div>
-                                    <script>(function () { try { var p = JSON.parse(localStorage.getItem('Ezconv_format_preferences')); if (!p) return; var f = p.selectedFormat; if (f === 'mp3' || f === 'mp4') { var btns = document.querySelectorAll('.multi-format-btn'); btns.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-format') === f) }) } var s = f === 'mp4' ? document.getElementById('multi-quality-select-mp4') : document.getElementById('multi-quality-select-mp3'); if (!s) return; var v; if (f === 'mp4') { var vq = p.videoQuality || '720p'; v = (vq === 'webm' || vq === 'mkv') ? vq : 'mp4-' + vq.replace('p', '') } else { var af = p.audioFormat || 'mp3'; v = (af === 'mp3') ? 'mp3-' + (p.audioBitrate || '128') : af } s.value = v } catch (e) { } })()</script>
+                                    <script>(function () { try { var p = JSON.parse(localStorage.getItem('Ezconv_format_preferences')); if (!p) return; var f = p.selectedFormat; if (f === 'mp3' || f === 'mp4') { var btns = document.querySelectorAll('.multi-format-btn'); btns.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-format') === f) }) } var s = f === 'mp4' ? document.getElementById('multi-quality-select-mp4') : document.getElementById('multi-quality-select-mp3'); if (!s) return; var v; if (f === 'mp4') { var vq = p.videoQuality || '720p'; v = (vq === 'webm' || vq === 'mkv') ? vq : 'mp4-' + vq.replace('p', '') } else { var af = p.audioFormat || 'mp3'; v = (af === 'mp3') ? 'mp3-' + (p.audioBitrate || '320') : af } s.value = v } catch (e) { } })()</script>
                                     <button type="button" id="addUrlsBtn" class="multi-btn-convert"
                                         aria-label="Convert">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"

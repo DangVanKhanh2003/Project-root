@@ -162,8 +162,8 @@ function renderAudioQualityDropdown(selectedAudioFormat: AudioFormatType, select
 
   // Determine selected value
   const selectedValue = selectedAudioFormat === 'mp3'
-    ? `mp3-${selectedBitrate || '128'}`
-    : (selectedAudioFormat || 'mp3-128');
+    ? `mp3-${selectedBitrate || '320'}`
+    : (selectedAudioFormat || 'mp3-320');
 
   return `
     <div class="quality-dropdown-wrapper">
@@ -311,7 +311,7 @@ function renderAudioDropdownOnly(selectedAudioFormat: AudioFormatType, selectedB
   } else if (selectedAudioFormat) {
     selectedValue = selectedAudioFormat;
   } else {
-    selectedValue = 'mp3-128'; // Default
+    selectedValue = 'mp3-320'; // Default
   }
 
   return `

@@ -103,7 +103,7 @@ export function saveFormatPreferences(): void {
             selectedFormat: settings.format || 'mp4',
             videoQuality: settings.videoQuality ? settings.videoQuality + 'p' : '720p',
             audioFormat: audioFmt,
-            audioBitrate: audioFmt === 'mp3' ? (settings.audioBitrate || '128') : '',
+            audioBitrate: audioFmt === 'mp3' ? (settings.audioBitrate || '320') : '',
             filenameStyle: settings.filenameStyle || stored.filenameStyle || 'basic',
             enableMetadata: typeof settings.enableMetadata === 'boolean'
                 ? settings.enableMetadata
