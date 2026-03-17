@@ -1,0 +1,115 @@
+{
+  "seo": {
+    "title": "Vimeo Downloader – I-download ang Video sa HD | SNAP1S",
+    "description": "Mag-download ng Vimeo video sa HD quality gamit ang SNAP1S. Libreng Vimeo video downloader na nagse-save ng video sa iyong device. Walang registration o app.",
+    "schemaName": "SNAP1S - Vimeo Video Downloader",
+    "schemaDescription": "Ang SNAP1S ay isang libreng Vimeo video downloader na nagpapahintulot sa mga user na mag-download ng Vimeo video sa HD quality diretso sa kahit anong device.",
+    "ogTitle": "Vimeo Downloader – I-download ang Video sa HD | SNAP1S",
+    "ogDescription": "Mag-download ng Vimeo video sa HD gamit ang SNAP1S. Libre, mabilis, at mataas ang kalidad."
+  },
+  "content": {
+    "form": {
+      "h1": "SNAP1S – Vimeo Video Downloader",
+      "placeholder": "I-paste ang Vimeo video URL dito...",
+      "button": "I-download ang Video"
+    },
+    "sections": [
+      {
+        "h2": "Ano ang SNAP1S Vimeo Downloader?",
+        "p": [
+          "Ang SNAP1S ay isang libreng <strong>Vimeo downloader</strong> na nagpapahintulot sa iyo na i-save ang Vimeo video diretso sa iyong phone, tablet, o computer sa HD quality.",
+          "I-paste lang ang Vimeo video link, i-click ang download, at mase-save ang video sa iyong device sa ilang segundo.",
+          "Ang <strong>Vimeo video downloader</strong> na ito ay gumagana sa lahat ng device at browser nang hindi kailangang mag-install ng app o gumawa ng account."
+        ]
+      },
+      {
+        "h2": "Paano Mag-download ng Vimeo Video",
+        "ol": [
+          {
+            "h3": "Kopyahin ang Vimeo Video Link",
+            "p": [
+              "Buksan ang Vimeo at kopyahin ang URL ng video na gusto mong i-download mula sa address bar o share button."
+            ]
+          },
+          {
+            "h3": "I-paste ang Link",
+            "p": [
+              "I-paste ang Vimeo video URL sa SNAP1S Vimeo downloader sa itaas."
+            ]
+          },
+          {
+            "h3": "I-download ang Video",
+            "p": [
+              "I-click ang download button at i-save ang Vimeo video sa HD quality sa iyong device."
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "I-save ang Vimeo Video sa HD Quality",
+        "p": [
+          "Pinapayagan ka ng SNAP1S na <strong>mag-download ng Vimeo video</strong> sa pinakamataas na available na resolution, kasama ang 720p, 1080p, at maging 4K kapag available.",
+          "I-enjoy ang iyong paboritong Vimeo content offline — maging ito ay mga pelikula, tutorial, music video, o creative project."
+        ]
+      },
+      {
+        "h2": "Bakit Gamitin ang SNAP1S Vimeo Downloader?",
+        "ul": [
+          {
+            "h3": "HD Quality Downloads",
+            "p": [
+              "Mag-download ng Vimeo video sa Full HD o 4K resolution para ma-enjoy ang pinakamagandang offline viewing experience."
+            ]
+          },
+          {
+            "h3": "Mabilis at Madali",
+            "p": [
+              "I-paste lang ang link at i-click ang download. Ang proseso ng <strong>pag-save ng Vimeo video HD</strong> ay ilang segundo lang."
+            ]
+          },
+          {
+            "h3": "Libre at Walang Limitasyon",
+            "p": [
+              "Mag-download ng maraming Vimeo video hangga't gusto mo nang libre, walang daily limit o nakatagong bayad."
+            ]
+          },
+          {
+            "h3": "Hindi Kailangan ng App",
+            "p": [
+              "Ang <strong>Vimeo video downloader</strong> ay gumagana diretso sa iyong browser sa kahit anong device nang hindi nag-i-install ng app."
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "Mga Madalas Itanong",
+        "ul": [
+          {
+            "h3": "Libre ba ang SNAP1S Vimeo downloader?",
+            "p": [
+              "Oo. Ang SNAP1S ay isang ganap na libreng Vimeo downloader na walang nakatagong bayad o subscription."
+            ]
+          },
+          {
+            "h3": "Maaari ba akong mag-download ng Vimeo video sa HD?",
+            "p": [
+              "Oo. Sinusuportahan ng SNAP1S ang pag-download ng Vimeo video sa HD, Full HD, at 4K quality kapag available."
+            ]
+          },
+          {
+            "h3": "Gumagana ba ito sa iPhone at Android?",
+            "p": [
+              "Oo. Ang Vimeo downloader ay gumagana sa lahat ng mobile device at desktop browser."
+            ]
+          },
+          {
+            "h3": "Kailangan ko ba ng Vimeo account para mag-download?",
+            "p": [
+              "Hindi. Kailangan mo lang ang video link para mag-download ng Vimeo video gamit ang SNAP1S."
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "seo": {
+    "title": "Twitter Video İndirici – X Videoları Kaydet | U2SNAP",
+    "description": "U2SNAP ile Twitter videoları indirin. HD kalitede video kaydeden ücretsiz Twitter/X video indirici. Kayıt veya uygulama gerekmez.",
+    "schemaName": "U2SNAP - Twitter Video İndirici",
+    "schemaDescription": "U2SNAP, kullanıcıların Twitter/X videolarını HD kalitede kaydetmesini sağlayan ücretsiz bir Twitter video indiricidir.",
+    "ogTitle": "Twitter Video İndirici – X Videoları Kaydet | U2SNAP",
+    "ogDescription": "U2SNAP ile Twitter/X videoları indirin. Ücretsiz, hızlı ve HD kalite."
+  },
+  "content": {
+    "form": {
+      "h1": "U2SNAP – Twitter Video İndirici",
+      "placeholder": "Twitter/X video URL'sini buraya yapıştırın...",
+      "button": "Video İndir"
+    },
+    "sections": [
+      {
+        "h2": "U2SNAP Twitter Video İndirici Nedir?",
+        "p": [
+          "U2SNAP, Twitter (X) videolarını HD kalitede doğrudan cihazınıza kaydetmenizi sağlayan ücretsiz bir <strong>Twitter video indirici</strong>dir.",
+          "Tweet URL'sini yapıştırın, indir'e tıklayın ve videoyu saniyeler içinde telefonunuza veya bilgisayarınıza kaydedin.",
+          "Bu <strong>X video indirici</strong> tüm cihazlarda ve browser'larda uygulama kurulumu veya hesap gerektirmeden çalışır."
+        ]
+      },
+      {
+        "h2": "Twitter Videoları Nasıl İndirilir",
+        "ol": [
+          {
+            "h3": "Tweet URL'sini Kopyalayın",
+            "p": [
+              "Twitter/X'i açın ve video içeren tweetteki Paylaş düğmesine dokunun, ardından Bağlantıyı Kopyala'yı seçin."
+            ]
+          },
+          {
+            "h3": "Bağlantıyı Yapıştırın",
+            "p": [
+              "Twitter video URL'sini yukarıdaki U2SNAP Twitter video indiriciye yapıştırın."
+            ]
+          },
+          {
+            "h3": "Videoyu İndirin",
+            "p": [
+              "İndir düğmesine tıklayın ve Twitter videosunu tercih ettiğiniz kalitede cihazınıza kaydedin."
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "Twitter/X Videolarını HD Kalitede Kaydedin",
+        "p": [
+          "U2SNAP, HD ve Full HD dahil mevcut en yüksek çözünürlükte <strong>Twitter video indirmenizi</strong> sağlar.",
+          "Çevrimdışı izleme veya diğer platformlarda paylaşım için Twitter/X'ten tweet, thread ve GIF videolarını kaydedin."
+        ]
+      },
+      {
+        "h2": "Neden U2SNAP Twitter Video İndirici Kullanmalısınız?",
+        "ul": [
+          {
+            "h3": "HD Kalite İndirme",
+            "p": [
+              "Sıkıştırma veya kalite kaybı olmadan HD ve Full HD kalitede Twitter videoları indirin."
+            ]
+          },
+          {
+            "h3": "Twitter ve X Desteği",
+            "p": [
+              "Herhangi bir herkese açık tweetten video indirmek için twitter.com ve x.com URL'leriyle çalışır."
+            ]
+          },
+          {
+            "h3": "Ücretsiz ve Sınırsız",
+            "p": [
+              "Günlük sınır olmadan istediğiniz kadar Twitter videosu ücretsiz indirin."
+            ]
+          },
+          {
+            "h3": "Uygulama Gerekmez",
+            "p": [
+              "Twitter video indirici herhangi bir yazılım yüklemeden doğrudan browser'ınızda çalışır."
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "Sıkça Sorulan Sorular",
+        "ul": [
+          {
+            "h3": "U2SNAP Twitter video indirici ücretsiz mi?",
+            "p": [
+              "Evet. U2SNAP gizli ücret olmadan tamamen ücretsiz bir Twitter video indiricidir."
+            ]
+          },
+          {
+            "h3": "X.com'dan video indirebilir miyim?",
+            "p": [
+              "Evet. U2SNAP video indirmek için hem twitter.com hem de x.com bağlantılarını destekler."
+            ]
+          },
+          {
+            "h3": "iPhone ve Android'de çalışıyor mu?",
+            "p": [
+              "Evet. Twitter video indirici tüm mobil cihazlarda ve masaüstü browser'larda çalışır."
+            ]
+          },
+          {
+            "h3": "İndirmek için Twitter hesabına ihtiyacım var mı?",
+            "p": [
+              "Hayır. U2SNAP ile Twitter videoları indirmek için sadece tweet bağlantısına ihtiyacınız var."
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

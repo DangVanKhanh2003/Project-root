@@ -5,7 +5,13 @@
   "drawer": {
     "logoText": "U2Snap",
     "links": {
-      "home": "Home"
+      "home": "Home",
+      "tiktokDownloader": "TikTok Downloader",
+      "facebookDownloader": "Facebook Downloader",
+      "instagramDownloader": "Instagram Downloader",
+      "twitterDownloader": "Twitter Downloader",
+      "soundcloudDownloader": "SoundCloud Downloader",
+      "redditDownloader": "Reddit Downloader"
     }
   },
   "hero": {
@@ -20,6 +26,14 @@
     "supportedPlatforms": "Supported platforms:"
   },
   "footer": {
+    "links": {
+      "tiktokDownloader": "TikTok Downloader",
+      "facebookDownloader": "Facebook Downloader",
+      "instagramDownloader": "Instagram Downloader",
+      "twitterDownloader": "Twitter Downloader",
+      "soundcloudDownloader": "SoundCloud Downloader",
+      "redditDownloader": "Reddit Downloader"
+    },
     "copyright": "© 2026 U2Snap. All rights reserved."
   },
   "langSelector": {

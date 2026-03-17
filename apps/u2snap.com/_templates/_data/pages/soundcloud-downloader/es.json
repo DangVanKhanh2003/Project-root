@@ -1,0 +1,115 @@
+{
+  "seo": {
+    "title": "SoundCloud Downloader – Descargar Música Gratis | U2SNAP",
+    "description": "Descarga música de SoundCloud con U2SNAP. Descargador gratuito que guarda pistas y playlists como MP3 en alta calidad. Sin registro ni app necesaria.",
+    "schemaName": "U2SNAP - SoundCloud Downloader",
+    "schemaDescription": "U2SNAP es un descargador gratuito de SoundCloud que permite descargar música y guardar pistas como MP3 en alta calidad.",
+    "ogTitle": "SoundCloud Downloader – Descargar Música Gratis | U2SNAP",
+    "ogDescription": "Descarga música de SoundCloud con U2SNAP. Gratis, rápido y descargas de SoundCloud a MP3 en alta calidad."
+  },
+  "content": {
+    "form": {
+      "h1": "U2SNAP – SoundCloud Downloader",
+      "placeholder": "Pega la URL de SoundCloud aquí...",
+      "button": "Descargar"
+    },
+    "sections": [
+      {
+        "h2": "¿Qué es U2SNAP SoundCloud Downloader?",
+        "p": [
+          "U2SNAP es un <strong>descargador de SoundCloud</strong> gratuito que te permite descargar música de SoundCloud y guardar pistas en tu dispositivo.",
+          "Simplemente pega la URL de SoundCloud, haz clic en descargar y guarda la pista como MP3 directamente en tu teléfono o computadora.",
+          "Este convertidor de <strong>SoundCloud a MP3</strong> funciona en todos los dispositivos y navegadores sin necesidad de instalar aplicaciones."
+        ]
+      },
+      {
+        "h2": "Cómo descargar música de SoundCloud",
+        "ol": [
+          {
+            "h3": "Copia la URL de SoundCloud",
+            "p": [
+              "Abre SoundCloud y copia la URL de la pista o playlist que quieres descargar desde la barra de direcciones o el botón de compartir."
+            ]
+          },
+          {
+            "h3": "Pega el enlace",
+            "p": [
+              "Pega la URL de SoundCloud en el descargador U2SNAP de arriba."
+            ]
+          },
+          {
+            "h3": "Descarga la música",
+            "p": [
+              "Haz clic en el botón de descarga y guarda la pista de SoundCloud como MP3 en tu dispositivo."
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "Descargar música de SoundCloud como MP3",
+        "p": [
+          "U2SNAP convierte pistas de SoundCloud a formato MP3 para que puedas <strong>descargar música de SoundCloud</strong> y escuchar sin conexión en cualquier dispositivo.",
+          "Guarda tus canciones, mixes y podcasts favoritos de SoundCloud para escuchar sin conexión en cualquier momento y lugar."
+        ]
+      },
+      {
+        "h2": "¿Por qué usar U2SNAP SoundCloud Downloader?",
+        "ul": [
+          {
+            "h3": "Audio de alta calidad",
+            "p": [
+              "Descarga pistas de SoundCloud en la más alta calidad de audio disponible para la mejor experiencia auditiva."
+            ]
+          },
+          {
+            "h3": "SoundCloud a MP3",
+            "p": [
+              "Convierte y guarda música de SoundCloud como archivos MP3 que funcionan en cualquier dispositivo o reproductor de música."
+            ]
+          },
+          {
+            "h3": "Gratis e ilimitado",
+            "p": [
+              "Descarga todas las pistas de SoundCloud que quieras gratis sin límites diarios."
+            ]
+          },
+          {
+            "h3": "Sin app necesaria",
+            "p": [
+              "El descargador de SoundCloud funciona directamente en tu browser en cualquier dispositivo sin instalar aplicaciones."
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "Preguntas frecuentes",
+        "ul": [
+          {
+            "h3": "¿Es gratis el descargador de SoundCloud U2SNAP?",
+            "p": [
+              "Sí. U2SNAP es un descargador de SoundCloud completamente gratis sin cargos ocultos."
+            ]
+          },
+          {
+            "h3": "¿Puedo descargar música de SoundCloud como MP3?",
+            "p": [
+              "Sí. U2SNAP convierte pistas de SoundCloud a formato MP3 para descarga fácil y reproducción sin conexión."
+            ]
+          },
+          {
+            "h3": "¿Funciona en iPhone y Android?",
+            "p": [
+              "Sí. El descargador de SoundCloud funciona en todos los dispositivos móviles y navegadores de escritorio."
+            ]
+          },
+          {
+            "h3": "¿Necesito una cuenta de SoundCloud para descargar?",
+            "p": [
+              "No. Solo necesitas la URL de la pista para descargar música de SoundCloud con U2SNAP."
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

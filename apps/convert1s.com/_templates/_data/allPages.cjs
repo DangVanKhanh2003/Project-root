@@ -40,6 +40,19 @@ module.exports = function () {
   const pageConfigs = [
     { pageKey: 'index', slug: '' },
     { pageKey: 'download-youtube-playlist', slug: 'download-youtube-playlist' },
+    { pageKey: 'youtube-to-mp3', slug: 'youtube-to-mp3' },
+    { pageKey: 'youtube-to-mp4', slug: 'youtube-to-mp4' },
+    { pageKey: 'tiktok-downloader', slug: 'tiktok-downloader' },
+    { pageKey: 'facebook-downloader', slug: 'facebook-downloader' },
+    { pageKey: 'instagram-downloader', slug: 'instagram-downloader' },
+    { pageKey: 'twitter-downloader', slug: 'twitter-downloader' },
+    { pageKey: 'vimeo-downloader', slug: 'vimeo-downloader' },
+    { pageKey: 'youtube-shorts-downloader', slug: 'youtube-shorts-downloader' },
+    { pageKey: 'linkedin-downloader', slug: 'linkedin-downloader' },
+    { pageKey: 'bili-downloader', slug: 'bili-downloader' },
+    { pageKey: 'kwai-downloader', slug: 'kwai-downloader' },
+    { pageKey: 'vk-downloader', slug: 'vk-downloader' },
+    { pageKey: '9gag-downloader', slug: '9gag-downloader' },
   ];
 
   // Check which pages have data files

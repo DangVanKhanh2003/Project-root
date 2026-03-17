@@ -1,0 +1,115 @@
+{
+  "seo": {
+    "title": "Facebook视频下载器 – 保存FB视频 | U2SNAP",
+    "description": "使用U2SNAP下载Facebook视频。免费的Facebook视频下载器，以HD画质保存视频。无需注册或安装软件。",
+    "schemaName": "U2SNAP - Facebook视频下载器",
+    "schemaDescription": "U2SNAP是一款免费的Facebook视频下载器，允许用户以HD画质保存Facebook视频。",
+    "ogTitle": "Facebook视频下载器 – 保存FB视频 | U2SNAP",
+    "ogDescription": "使用U2SNAP下载Facebook视频。免费、快速、HD画质。"
+  },
+  "content": {
+    "form": {
+      "h1": "U2SNAP – Facebook视频下载器",
+      "placeholder": "在此粘贴Facebook视频URL...",
+      "button": "下载视频"
+    },
+    "sections": [
+      {
+        "h2": "什么是U2SNAP Facebook视频下载器？",
+        "p": [
+          "U2SNAP是一款免费的<strong>Facebook视频下载器</strong>，可让您将Facebook视频直接以HD画质保存到您的设备。",
+          "只需粘贴Facebook视频链接，点击下载，几秒钟内即可将视频保存到手机或电脑。",
+          "这款<strong>FB视频下载器</strong>无需安装任何应用或注册账号，即可在所有设备和浏览器上使用。"
+        ]
+      },
+      {
+        "h2": "如何下载Facebook视频",
+        "ol": [
+          {
+            "h3": "复制Facebook视频链接",
+            "p": [
+              "打开Facebook，找到您想下载的视频。点击帖子上的三点菜单，选择复制链接。"
+            ]
+          },
+          {
+            "h3": "粘贴链接",
+            "p": [
+              "将Facebook视频URL粘贴到上方的U2SNAP Facebook视频下载器中。"
+            ]
+          },
+          {
+            "h3": "下载视频",
+            "p": [
+              "点击下载按钮，将Facebook视频以您喜欢的画质保存到设备。"
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "以HD画质保存Facebook视频",
+        "p": [
+          "U2SNAP让您以最高可用分辨率<strong>下载Facebook视频</strong>，包括HD和Full HD。",
+          "保存Facebook帖子、快拍、Reels和主页中的视频，用于离线观看或分享。"
+        ]
+      },
+      {
+        "h2": "为什么使用U2SNAP Facebook视频下载器？",
+        "ul": [
+          {
+            "h3": "HD画质下载",
+            "p": [
+              "以HD和Full HD画质下载Facebook视频，无压缩或画质损失。"
+            ]
+          },
+          {
+            "h3": "快速简便",
+            "p": [
+              "只需粘贴链接并点击一下，几秒钟内即可保存Facebook视频。"
+            ]
+          },
+          {
+            "h3": "免费且无限制",
+            "p": [
+              "免费下载任意数量的Facebook视频，没有每日限制。"
+            ]
+          },
+          {
+            "h3": "无需安装应用",
+            "p": [
+              "Facebook视频下载器直接在浏览器中运行，无需安装任何软件。"
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "常见问题",
+        "ul": [
+          {
+            "h3": "U2SNAP Facebook视频下载器是免费的吗？",
+            "p": [
+              "是的。U2SNAP是完全免费的Facebook视频下载器，没有任何隐藏费用。"
+            ]
+          },
+          {
+            "h3": "我可以下载HD画质的Facebook视频吗？",
+            "p": [
+              "可以。U2SNAP支持HD和Full HD画质的Facebook视频下载。"
+            ]
+          },
+          {
+            "h3": "在iPhone和Android上能用吗？",
+            "p": [
+              "可以。Facebook视频下载器适用于所有移动设备和桌面浏览器。"
+            ]
+          },
+          {
+            "h3": "下载需要Facebook账号吗？",
+            "p": [
+              "不需要。使用U2SNAP下载Facebook视频只需要视频链接即可。"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

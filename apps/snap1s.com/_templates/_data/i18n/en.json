@@ -5,7 +5,10 @@
   "drawer": {
     "logoText": "Snap1s",
     "links": {
-      "home": "Home"
+      "home": "Home",
+      "tiktokDownloader": "TikTok Downloader",
+      "vimeoDownloader": "Vimeo Downloader",
+      "youtubeDownloader": "YouTube Downloader"
     }
   },
   "hero": {
@@ -20,6 +23,11 @@
     "supportedPlatforms": "Supported platforms:"
   },
   "footer": {
+    "links": {
+      "tiktokDownloader": "TikTok Downloader",
+      "vimeoDownloader": "Vimeo Downloader",
+      "youtubeDownloader": "YouTube Downloader"
+    },
     "copyright": "© 2026 Snap1s. All rights reserved."
   },
   "langSelector": {

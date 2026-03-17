@@ -6,7 +6,7 @@ import { movePagesPlugin } from './vite-plugin-move-pages';
 import { sitemapPlugin } from './vite-plugin-sitemap';
 
 // Auto-detect all HTML pages from Eleventy output directory
-const excludedPageNames = new Set(['youtube-to-mp3', 'youtube-to-mp4', 'youtube-shorts-downloader']);
+const excludedPageNames = new Set([]);
 
 const eleventyOutputDir = resolve(__dirname, '_11ty-output');
 const eleventyHtmlFiles = existsSync(eleventyOutputDir)

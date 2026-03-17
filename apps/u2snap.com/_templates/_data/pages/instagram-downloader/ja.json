@@ -1,0 +1,115 @@
+{
+  "seo": {
+    "title": "Instagram ダウンローダー – Reels・動画を保存 | U2SNAP",
+    "description": "U2SNAPでInstagramの動画、Reels、写真をダウンロード。無料のHD画質Instagram ダウンローダー。ログイン不要。",
+    "schemaName": "U2SNAP - Instagram ダウンローダー",
+    "schemaDescription": "U2SNAPはInstagramの動画、Reels、写真をHD画質で保存できる無料のInstagramダウンローダーです。",
+    "ogTitle": "Instagram ダウンローダー – Reels・動画を保存 | U2SNAP",
+    "ogDescription": "U2SNAPでInstagramの動画やReelsをダウンロード。無料・高速・HD画質。"
+  },
+  "content": {
+    "form": {
+      "h1": "U2SNAP – Instagram ダウンローダー",
+      "placeholder": "Instagram URLをここに貼り付け...",
+      "button": "ダウンロード"
+    },
+    "sections": [
+      {
+        "h2": "U2SNAP Instagram ダウンローダーとは？",
+        "p": [
+          "U2SNAPは、Instagramの動画、Reels、ストーリー、写真をデバイスに保存できる無料の<strong>Instagramダウンローダー</strong>です。",
+          "Instagram URLを貼り付けてダウンロードをクリックするだけで、HD画質のコンテンツをスマホやパソコンに直接保存できます。",
+          "この<strong>Instagram Reelsダウンローダー</strong>は、アプリのインストールやログインなしで、すべてのデバイスとbrowserで動作します。"
+        ]
+      },
+      {
+        "h2": "Instagram動画のダウンロード方法",
+        "ol": [
+          {
+            "h3": "Instagram URLをコピー",
+            "p": [
+              "Instagramを開き、ダウンロードしたい投稿、Reel、またはストーリーの三点メニューをタップして、リンクをコピーを選択します。"
+            ]
+          },
+          {
+            "h3": "リンクを貼り付け",
+            "p": [
+              "上のU2SNAP InstagramダウンローダーにInstagram URLを貼り付けます。"
+            ]
+          },
+          {
+            "h3": "コンテンツをダウンロード",
+            "p": [
+              "ダウンロードボタンをクリックして、Instagramの動画、Reel、または写真をデバイスに保存します。"
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "Instagram Reels・動画・写真をダウンロード",
+        "p": [
+          "U2SNAPでは、Reels、IGTV、ストーリー、写真投稿を含む<strong>Instagram動画をダウンロード</strong>でき、オリジナルのHD画質で保存できます。",
+          "お気に入りのInstagramコンテンツをオフライン視聴や他のプラットフォームでの再投稿のために保存しましょう。"
+        ]
+      },
+      {
+        "h2": "U2SNAP Instagramダウンローダーを使う理由",
+        "ul": [
+          {
+            "h3": "すべてのコンテンツタイプ",
+            "p": [
+              "公開アカウントからInstagram Reels、動画、ストーリー、写真をダウンロードできます。"
+            ]
+          },
+          {
+            "h3": "HD画質",
+            "p": [
+              "Full HD解像度を含む最高画質でInstagramコンテンツを保存できます。"
+            ]
+          },
+          {
+            "h3": "無料・無制限",
+            "p": [
+              "1日の制限なく、Instagramの動画や写真を何本でも無料でダウンロードできます。"
+            ]
+          },
+          {
+            "h3": "ログイン不要",
+            "p": [
+              "Instagramダウンローダーは、Instagramアカウントなしでbrowserから直接利用できます。"
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "よくある質問",
+        "ul": [
+          {
+            "h3": "U2SNAP Instagramダウンローダーは無料ですか？",
+            "p": [
+              "はい。U2SNAPは隠れた料金のない完全無料のInstagramダウンローダーです。"
+            ]
+          },
+          {
+            "h3": "Instagram Reelsをダウンロードできますか？",
+            "p": [
+              "はい。U2SNAPはInstagram Reels、動画、ストーリー、写真のダウンロードに対応しています。"
+            ]
+          },
+          {
+            "h3": "iPhoneやAndroidで使えますか？",
+            "p": [
+              "はい。Instagramダウンローダーはすべてのモバイルデバイスとデスクトップbrowserで動作します。"
+            ]
+          },
+          {
+            "h3": "ダウンロードにInstagramアカウントは必要ですか？",
+            "p": [
+              "いいえ。U2SNAPでInstagram動画をダウンロードするにはコンテンツリンクだけが必要です。"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

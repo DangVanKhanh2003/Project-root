@@ -5,7 +5,11 @@
   "drawer": {
     "logoText": "Tube1s",
     "links": {
-      "home": "Home"
+      "home": "Home",
+      "youtubeToMp3": "YouTube to MP3",
+      "youtubeToMp4": "YouTube to MP4",
+      "tiktokDownloader": "TikTok Downloader",
+      "tiktokToMp3": "TikTok to MP3"
     }
   },
   "hero": {
@@ -20,6 +24,12 @@
     "supportedPlatforms": "Supported platforms:"
   },
   "footer": {
+    "links": {
+      "youtubeToMp3": "YouTube to MP3",
+      "youtubeToMp4": "YouTube to MP4",
+      "tiktokDownloader": "TikTok Downloader",
+      "tiktokToMp3": "TikTok to MP3"
+    },
     "copyright": "© 2026 Tube1s. All rights reserved."
   },
   "langSelector": {
