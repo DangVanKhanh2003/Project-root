@@ -50,8 +50,9 @@ Dự án sử dụng kiến trúc monorepo với các apps trong `apps/`.
 ## CI/CD & Deploy
 
 - CI/CD dùng GitHub Actions, trigger khi push lên `main`.
-- **Khi commit, PHẢI ghi rõ deploy site nào** bằng tag `[deploy:site1,site2]` trong commit message.
+- **Khi commit, PHẢI ghi rõ deploy site nào** bằng tag `[deploy:site1,site2]` **ở dòng title** (dòng đầu tiên) của commit message, không phải trong body.
 - Ví dụ: `feat: add tool pages [deploy:convert1s.com,tube1s.com]`
+- **KHÔNG được đặt deploy tag ở body** — CI/CD chỉ đọc title line.
 - Deploy tất cả: `[deploy:all]`
 - Chỉ ghi các site **thực sự có thay đổi** vào deploy tag, không deploy site không liên quan.
 - Danh sách site names hợp lệ: `convert1s.com`, `tube1s.com`, `u2snap.com`, `snap1s.com`, `y2save.com`, `onedownloader.net`, `ssvid.cc`, `ytmp4.gg`, `y2matepro`, `y2matevc`, `mp3fast`, `ytmp3.my`, `4kvideopro`, `ezconv`
