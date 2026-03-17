@@ -116,7 +116,7 @@ function loadMultiPlaylistBannerModule(): Promise<MultiPlaylistBannerModule> {
 
 function buildBannerLinkOptions() {
     return {
-        playlistPath: '/download-youtube-playlist',
+        playlistPath: '/youtube-playlist-to-mp3-converter',
         playlistParams: {}
     };
 }

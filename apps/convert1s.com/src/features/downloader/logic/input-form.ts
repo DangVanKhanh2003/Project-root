@@ -908,7 +908,7 @@ async function handleSubmit(event: Event): Promise<void> {
           window.location.href = redirectTarget === 'channel'
             ? '/download-youtube-channel'
             : redirectTarget === 'playlist'
-              ? '/download-youtube-playlist'
+              ? '/youtube-playlist-to-mp3-converter'
               : '/multi-youtube-downloader';
           return;
         }

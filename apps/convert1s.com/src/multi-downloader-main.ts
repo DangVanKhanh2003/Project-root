@@ -376,14 +376,14 @@ function initMultiDownloadForm() {
                 if (go) {
                     window.location.href = redirectTarget === 'channel'
                         ? '/download-youtube-channel'
-                        : '/download-youtube-playlist';
+                        : '/youtube-playlist-to-mp3-converter';
                     return;
                 }
             }
         } else if (shouldPromptPlaylistRedirectForMulti(rawText)) {
             const go = await confirmRedirectPopup({ popup: MaterialPopup, target: 'playlist', cancelText: 'Continue' });
             if (go) {
-                window.location.href = '/download-youtube-playlist';
+                window.location.href = '/youtube-playlist-to-mp3-converter';
                 return;
             }
         }
