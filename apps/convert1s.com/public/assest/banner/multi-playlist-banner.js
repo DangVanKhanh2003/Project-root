@@ -380,26 +380,8 @@ const BANNER_HTML = `
 
     <!-- Right Interactive Buttons -->
     <div class="mp-banner-right">
-      <!-- Card 1: Download Multiple Videos -->
-      <a href="/multi-youtube-downloader" class="mp-banner-card mp-banner-card-white mp-banner-link-multi">
-        <div class="mp-banner-card-icon">
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M4 6H2V20C2 21.1 2.9 22 4 22H18V20H4V6ZM20 2H8C6.9 2 6 2.9 6 4V16C6 17.1 6.9 18 8 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2ZM12 14.5V5.5L18 10L12 14.5Z" />
-          </svg>
-        </div>
-        <div class="mp-banner-card-text">
-          <div class="mp-banner-card-title">Download Multiple Videos</div>
-          <p class="mp-banner-card-subtitle">Batch processing for maximum efficiency.</p>
-        </div>
-        <div class="mp-banner-card-arrow">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M9 18l6-6-6-6" />
-          </svg>
-        </div>
-      </a>
-
-      <!-- Card 2: Download Playlist -->
-      <a href="/download-mp3-youtube-playlist" class="mp-banner-card mp-banner-card-indigo mp-banner-link-playlist">
+      <!-- Card: Download Playlist -->
+      <a href="/download-youtube-playlist" class="mp-banner-card mp-banner-card-indigo mp-banner-link-playlist">
         <div class="mp-banner-card-icon">
           <svg viewBox="0 0 24 24" fill="currentColor">
             <path d="M15 6H3V8H15V6ZM15 10H3V12H15V10ZM3 16H11V14H3V16ZM17 6V14.18C16.69 14.07 16.35 14 16 14C14.34 14 13 15.34 13 17C13 18.66 14.34 20 16 20C17.66 20 19 18.66 19 17V8H22V6H17Z" />
@@ -453,16 +435,9 @@ function createBannerElement(options = {}) {
     container.innerHTML = BANNER_HTML;
 
     const {
-        multiPath = '/multi-youtube-downloader',
-        playlistPath = '/download-mp3-youtube-playlist',
-        multiParams = {},
+        playlistPath = '/download-youtube-playlist',
         playlistParams = {}
     } = options;
-
-    const multiLink = container.querySelector('.mp-banner-link-multi');
-    if (multiLink) {
-        multiLink.setAttribute('href', buildHref(multiPath, multiParams));
-    }
 
     const playlistLink = container.querySelector('.mp-banner-link-playlist');
     if (playlistLink) {

@@ -39,6 +39,7 @@ module.exports = function () {
   // Define page configs with their URL slugs
   const pageConfigs = [
     { pageKey: 'index', slug: '' },
+    { pageKey: 'download-youtube-playlist', slug: 'download-youtube-playlist' },
   ];
 
   // Check which pages have data files

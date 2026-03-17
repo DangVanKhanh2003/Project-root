@@ -1,11 +1,13 @@
 {
   "nav": {
-    "home": "Home"
+    "home": "Home",
+    "playlistDownloader": "Playlist Downloader"
   },
   "drawer": {
     "logoText": "Convert1s",
     "links": {
-      "home": "Home"
+      "home": "Home",
+      "playlistDownloader": "Download YouTube Playlist"
     }
   },
   "hero": {
@@ -20,6 +22,9 @@
     "supportedPlatforms": "Supported platforms:"
   },
   "footer": {
+    "links": {
+      "playlistDownloader": "YouTube Playlist Downloader"
+    },
     "copyright": "\u00a9 2026 Convert1s. All rights reserved."
   },
   "langSelector": {
