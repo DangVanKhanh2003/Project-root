@@ -42,7 +42,7 @@ import { startConversion } from './conversion';
 import { MaterialPopup } from '../../../ui-components/material-popup/material-popup';
 import { getUrlRedirectTarget, looksLikeUrl } from '@downloader/core';
 import { evaluateFeatureAccess } from '../../allowed-features';
-import { show as showPaywall } from 'https://media.ytmp3.gg/poppurchase.v3.js?v=4';
+import { show as showPaywall } from 'https://media.ytmp3.gg/poppurchase.v3.js?v=11';
 import { checkLimit } from '../../download-limit';
 import { FEATURE_KEYS, FEATURE_ACCESS_REASONS } from '@downloader/core';
 

@@ -16,7 +16,7 @@ import { isPlaylistUrl, extractVideoId, FEATURE_KEYS, FEATURE_ACCESS_REASONS } f
 import { initAudioDropdown } from './features/downloader/ui-render/dropdown-logic';
 import { evaluateFeatureAccess } from './features/allowed-features';
 import { recordUsage } from './features/download-limit';
-import { show as showPaywall } from 'https://media.ytmp3.gg/poppurchase.v3.js?v=4';
+import { show as showPaywall } from 'https://media.ytmp3.gg/poppurchase.v3.js?v=11';
 import { STORAGE_KEYS } from './utils/storage-keys';
 
 /**

@@ -1,5 +1,5 @@
 import { scrollManager } from '@downloader/ui-shared';
-import { show as showPaywall } from 'https://media.ytmp3.gg/poppurchase.v3.js?v=5';
+import { show as showPaywall } from 'https://media.ytmp3.gg/poppurchase.v3.js?v=11';
 import { handleAutoDownload, handleExtractMedia, handleSearch } from '../downloader/logic/input-form';
 import { clearContent, showLoading } from '../downloader/ui-render/content-renderer';
 import { showResultView } from '../downloader/ui-render/view-switcher';
