@@ -43,6 +43,15 @@
   background: var(--bg-input);
 }
 
+.yt-preview-thumbnail.skeleton-thumbnail {
+  background: linear-gradient(90deg,
+      var(--color-skeleton-dark) 25%,
+      var(--color-skeleton-light) 50%,
+      var(--color-skeleton-dark) 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s linear infinite;
+}
+
 .yt-preview-thumbnail img {
   width: 100%;
   height: auto;

@@ -517,7 +517,7 @@ export function renderPreviewCard(_data: any): void {
   }
 
   const { videoId, title, thumbnail, author, trimRangeLabel } = youtubePreview;
-  const showSourcePreview = Boolean(thumbnail);
+  const hasThumbnail = Boolean(thumbnail);
   const selectedFormat = state.selectedFormat;
   const audioTrackInput = document.getElementById('audio-track-value') as HTMLInputElement | null;
   const audioTrackCode = audioTrackInput?.value || 'original';
@@ -556,14 +556,14 @@ export function renderPreviewCard(_data: any): void {
   }
 
   const previewCardHtml = `
-    <div class="yt-preview-card${showSourcePreview ? '' : ' yt-preview-card--compact'}">
-      ${showSourcePreview ? `<div class="yt-preview-thumbnail">
-        <img src="${escapeHtml(thumbnail)}"
+    <div class="yt-preview-card">
+      <div class="yt-preview-thumbnail${hasThumbnail ? '' : ' skeleton-thumbnail'}">
+        ${hasThumbnail ? `<img src="${escapeHtml(thumbnail)}"
              alt="${escapeHtml(title)}"
              width="480"
              height="360"
-             loading="lazy">
-      </div>` : ''}
+             loading="lazy">` : ''}
+      </div>
       <div class="yt-preview-details">
         <h3 class="yt-preview-title">${escapeHtml(title)}</h3>
         <div class="yt-preview-meta">
@@ -576,7 +576,7 @@ export function renderPreviewCard(_data: any): void {
             </span>
             ${trimRangeLabel ? `<span class="meta-badge badge-quality badge-trim-range">${escapeHtml(trimRangeLabel)}</span>` : ''}
           </div>
-          ${showSourcePreview && author ? `<p class="yt-preview-author">${escapeHtml(author)}</p>` : ''}
+          ${author ? `<p class="yt-preview-author">${escapeHtml(author)}</p>` : ''}
         </div>
       </div>
     </div>
@@ -591,7 +591,7 @@ export function renderPreviewCard(_data: any): void {
     if (existingPreviewCard) {
       // Check if thumbnail is the same - only update text to prevent flicker
       const existingImg = existingPreviewCard.querySelector('.yt-preview-thumbnail img') as HTMLImageElement;
-      if (showSourcePreview && existingImg && existingImg.src === thumbnail) {
+      if (hasThumbnail && existingImg && existingImg.src === thumbnail) {
         // Same thumbnail - only update text elements (no DOM replacement = no flicker)
         const titleEl = existingPreviewCard.querySelector('.yt-preview-title');
         const formatBadgeEl = existingPreviewCard.querySelector('.badge-format');

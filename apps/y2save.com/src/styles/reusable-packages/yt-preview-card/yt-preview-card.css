@@ -90,6 +90,15 @@
   background: var(--bg-input);
 }
 
+.yt-preview-thumbnail.skeleton-thumbnail {
+  background: linear-gradient(90deg,
+      var(--yt-preview-skeleton-base) 25%,
+      var(--yt-preview-skeleton-shimmer) 50%,
+      var(--yt-preview-skeleton-base) 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s linear infinite;
+}
+
 .yt-preview-thumbnail img {
   width: 100%;
   height: auto;
