@@ -39,7 +39,7 @@ module.exports = function () {
   // Define page configs with their URL slugs
   const pageConfigs = [
     { pageKey: 'index', slug: '' },
-    { pageKey: 'download-youtube-playlist', slug: 'download-youtube-playlist' },
+    { pageKey: 'youtube-playlist-to-mp3-converter', slug: 'youtube-playlist-to-mp3-converter' },
     { pageKey: 'youtube-to-mp3', slug: 'youtube-to-mp3' },
     { pageKey: 'youtube-to-mp4', slug: 'youtube-to-mp4' },
     { pageKey: 'tiktok-downloader', slug: 'tiktok-downloader' },

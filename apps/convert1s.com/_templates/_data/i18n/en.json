@@ -7,7 +7,7 @@
     "logoText": "Convert1s",
     "links": {
       "home": "Home",
-      "playlistDownloader": "Download YouTube Playlist",
+      "playlistDownloader": "YouTube Playlist to MP3",
       "youtubeToMp3": "YouTube to MP3",
       "youtubeToMp4": "YouTube to MP4",
       "youtubeShortsDownloader": "YouTube Shorts Downloader",
@@ -36,7 +36,7 @@
   },
   "footer": {
     "links": {
-      "playlistDownloader": "YouTube Playlist Downloader",
+      "playlistDownloader": "YouTube Playlist to MP3",
       "youtubeToMp3": "YouTube to MP3",
       "youtubeToMp4": "YouTube to MP4",
       "youtubeShortsDownloader": "YouTube Shorts Downloader",
