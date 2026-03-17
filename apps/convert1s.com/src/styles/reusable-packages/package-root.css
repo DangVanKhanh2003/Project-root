@@ -211,14 +211,14 @@
    --pkg-color-gray-900: #1F1F1E;
 
    /* Primary Color System */
-   --pkg-color-primary: #C65D3B;
+   --pkg-color-primary: #75a954;
    --pkg-color-on-primary: #ffffff;
-   --pkg-color-primary-container: rgba(198, 93, 59, 0.1);
-   --pkg-color-on-primary-container: #B14F2F;
+   --pkg-color-primary-container: rgba(117, 169, 84, 0.1);
+   --pkg-color-on-primary-container: #648F47;
 
    /* Accent Colors */
-   --pkg-color-accent: #B14F2F;
-   --pkg-color-accent-bright: #D9785B;
+   --pkg-color-accent: #648F47;
+   --pkg-color-accent-bright: #90C470;
 
    /* Surface Color System - Dark Glassmorphism */
    --pkg-color-surface: var(--bg-card, rgba(255, 255, 255, 0.03));
@@ -444,10 +444,10 @@
 }
 
 [data-theme="dark"] {
-   --pkg-color-primary: #C65D3B;
+   --pkg-color-primary: #75a954;
    --pkg-color-on-primary: #ffffff;
-   --pkg-color-primary-container: rgba(198, 93, 59, 0.12);
-   --pkg-color-on-primary-container: #D9785B;
+   --pkg-color-primary-container: rgba(117, 169, 84, 0.12);
+   --pkg-color-on-primary-container: #90C470;
 
    --pkg-color-surface: #2A2A28;
    --pkg-color-surface-variant: #1F1F1E;
@@ -460,16 +460,16 @@
 
    --pkg-suggestions-bg: #2A2A28;
    --pkg-suggestions-text-color: #E8E6E3;
-   --pkg-suggestions-hover-bg: rgba(198, 93, 59, 0.10);
-   --pkg-suggestions-highlight-bg: rgba(198, 93, 59, 0.12);
-   --pkg-suggestions-highlight-color: #D9785B;
+   --pkg-suggestions-hover-bg: rgba(117, 169, 84, 0.10);
+   --pkg-suggestions-highlight-bg: rgba(117, 169, 84, 0.12);
+   --pkg-suggestions-highlight-color: #90C470;
 
    --pkg-search-results-section-bg: #1F1F1E;
    --pkg-search-results-card-bg: #2A2A28;
    --pkg-search-results-title-color: #E8E6E3;
    --pkg-search-results-channel-color: #C9C7C2;
    --pkg-search-results-metadata-color: #C9C7C2;
-   --pkg-search-results-card-shadow-hover: 0 4px 20px rgba(198, 93, 59, 0.15);
+   --pkg-search-results-card-shadow-hover: 0 4px 20px rgba(117, 169, 84, 0.15);
 
    --pkg-expire-modal-bg: #2A2A28;
    --pkg-captcha-modal-bg: #1F1F1E;
