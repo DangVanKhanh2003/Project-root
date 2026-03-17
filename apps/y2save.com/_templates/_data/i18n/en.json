@@ -12,7 +12,8 @@
     "links": {
       "home": "Home",
       "youtubeToMp3": "YouTube to MP3",
-      "youtubeToMp4": "YouTube to MP4"
+      "youtubeToMp4": "YouTube to MP4",
+      "playlistDownloader": "Download YouTube Playlist"
     }
   },
   "hero": {
@@ -29,7 +30,8 @@
   "footer": {
     "links": {
       "youtubeToMp3": "YouTube to MP3",
-      "youtubeToMp4": "YouTube to MP4"
+      "youtubeToMp4": "YouTube to MP4",
+      "playlistDownloader": "YouTube Playlist Downloader"
     },
     "copyright": "© 2026 Y2Save. All rights reserved."
   },

@@ -116,9 +116,7 @@ function loadMultiPlaylistBannerModule(): Promise<MultiPlaylistBannerModule> {
 
 function buildBannerLinkOptions() {
     return {
-        multiPath: '/multi-youtube-downloader',
-        playlistPath: '/download-mp3-youtube-playlist',
-        multiParams: {},
+        playlistPath: '/download-youtube-playlist',
         playlistParams: {}
     };
 }
@@ -339,7 +337,7 @@ export async function applyInitialVisibility(): Promise<void> {
 export function onAfterSubmit(): void {
    // showTrustpilotWidget();
     showTipMessageWidget();
-    //showMultiPlaylistBannerWidget();
+    showMultiPlaylistBannerWidget();
 }
 
 /**
