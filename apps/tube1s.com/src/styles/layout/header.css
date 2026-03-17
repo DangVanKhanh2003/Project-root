@@ -650,6 +650,11 @@
     display: none;
 }
 
+/* Ensure hidden attribute works (author CSS display:flex overrides UA hidden) */
+[data-license-button][hidden] {
+    display: none !important;
+}
+
 .lang-selector {
     position: relative;
 }
