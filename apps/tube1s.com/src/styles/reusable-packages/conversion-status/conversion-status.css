@@ -36,8 +36,8 @@
 /* ===== STATUS BAR ===== */
 .status-container {
   position: relative;
-  background: #F0EBE3;
-  border: 1px solid #D4C9B8;
+  background: var(--status-container-bg);
+  border: 1px solid var(--status-container-border);
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -63,7 +63,7 @@
   top: 0;
   height: 100%;
   width: var(--progress-width, 0%);
-  background: #E3DACC;
+  background: var(--status-progress-bg);
   box-shadow: none;
   transition: width 0.1s ease;
   z-index: 1;
@@ -76,7 +76,7 @@
 }
 
 .status--processing::before {
-  background: #E3DACC;
+  background: var(--status-progress-bg);
 }
 
 /* Disable transition for instant reset (e.g., when transitioning between phases) */
@@ -86,7 +86,7 @@
 
 /* Merging phase styling */
 .status--processing.status--merging::before {
-  background: #E3DACC;
+  background: var(--status-progress-bg);
 }
 
 /* When API completes, stop and transition to 100% in 0.4s */
@@ -96,7 +96,7 @@
 
 .status--completing::before,
 .status--completing::after {
-  background: #E3DACC;
+  background: var(--status-progress-bg);
 }
 
 /* Hide status bar on success and error - controlled by JavaScript */
@@ -120,7 +120,7 @@
   z-index: 2;
   font-size: 12px;
   font-weight: 500;
-  color: #746654;
+  color: var(--status-text-color);
   text-transform: capitalize;
   display: flex;
   align-items: center;
@@ -166,8 +166,8 @@
 /* Spinner (extracting, processing) - Purple theme */
 .icon.spinner {
   visibility: hidden;
-  border: 2px solid #D4C9B8;
-  border-top: 2px solid #746654;
+  border: 2px solid var(--spinner-border-color);
+  border-top: 2px solid var(--spinner-top-color);
   border-radius: 50%;
   margin: 0px;
   display: none;
@@ -261,11 +261,11 @@
 }
 
 .download-btn {
-  background: var(--brand);
+  background: var(--btn-action-bg);
 }
 
 .download-btn:hover {
-  background: var(--brand-hover);
+  background: var(--btn-action-bg-hover);
 }
 
 .download-btn.is-loading {
@@ -326,7 +326,7 @@
 
   .status-text {
     font-size: 15px;
-    color: #746654;
+    color: var(--status-text-color);
     flex: none;
   }
 
@@ -433,25 +433,7 @@
   }
 }
 
-:root[data-theme="dark"] .status-container {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: var(--status-container-border);
-}
-
-:root[data-theme="dark"] .status--processing::before,
-:root[data-theme="dark"] .status--merging::before,
-:root[data-theme="dark"] .status--completing::before {
-  background: rgba(255, 255, 255, 0.08);
-}
-
-:root[data-theme="dark"] .status-text {
-  color: #E8E6E3;
-}
-
-:root[data-theme="dark"] .icon.spinner {
-  border-color: rgba(255, 255, 255, 0.20);
-  border-top-color: #E8E6E3;
-}
+/* Dark theme handled via token overrides in variables.css */
 
 .download-btn:focus-visible,
 .retry-btn:focus-visible,

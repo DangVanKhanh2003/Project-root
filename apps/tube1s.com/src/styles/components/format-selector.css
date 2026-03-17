@@ -109,13 +109,13 @@ html[data-format="mp3"] .quality-dropdown-wrapper .video-group-dropdown {
 }
 
 .format-btn.active {
-    background: var(--brand);
+    background: var(--btn-action-bg);
     /* Primary Color */
     color: var(--color-white);
 }
 
 .format-btn:hover:not(.active) {
-    background: var(--brand);
+    background: var(--btn-action-bg);
     color: var(--color-white);
 }
 
