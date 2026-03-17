@@ -211,14 +211,14 @@
    --pkg-color-gray-900: #1F1F1E;
 
    /* Primary Color System */
-   --pkg-color-primary: #43bdfa;
+   --pkg-color-primary: #4AADDB;
    --pkg-color-on-primary: #ffffff;
-   --pkg-color-primary-container: rgba(67, 189, 250, 0.1);
-   --pkg-color-on-primary-container: #2AA8E8;
+   --pkg-color-primary-container: rgba(74, 173, 219, 0.1);
+   --pkg-color-on-primary-container: #3E96C2;
 
    /* Accent Colors */
-   --pkg-color-accent: #2AA8E8;
-   --pkg-color-accent-bright: #6DD0FF;
+   --pkg-color-accent: #3E96C2;
+   --pkg-color-accent-bright: #72C4E8;
 
    /* Surface Color System - Dark Glassmorphism */
    --pkg-color-surface: var(--bg-card, rgba(255, 255, 255, 0.03));
@@ -444,10 +444,10 @@
 }
 
 [data-theme="dark"] {
-   --pkg-color-primary: #43bdfa;
+   --pkg-color-primary: #4AADDB;
    --pkg-color-on-primary: #ffffff;
-   --pkg-color-primary-container: rgba(67, 189, 250, 0.12);
-   --pkg-color-on-primary-container: #6DD0FF;
+   --pkg-color-primary-container: rgba(74, 173, 219, 0.12);
+   --pkg-color-on-primary-container: #72C4E8;
 
    --pkg-color-surface: #2A2A28;
    --pkg-color-surface-variant: #1F1F1E;
@@ -460,16 +460,16 @@
 
    --pkg-suggestions-bg: #2A2A28;
    --pkg-suggestions-text-color: #E8E6E3;
-   --pkg-suggestions-hover-bg: rgba(67, 189, 250, 0.10);
-   --pkg-suggestions-highlight-bg: rgba(67, 189, 250, 0.12);
-   --pkg-suggestions-highlight-color: #6DD0FF;
+   --pkg-suggestions-hover-bg: rgba(74, 173, 219, 0.10);
+   --pkg-suggestions-highlight-bg: rgba(74, 173, 219, 0.12);
+   --pkg-suggestions-highlight-color: #72C4E8;
 
    --pkg-search-results-section-bg: #1F1F1E;
    --pkg-search-results-card-bg: #2A2A28;
    --pkg-search-results-title-color: #E8E6E3;
    --pkg-search-results-channel-color: #C9C7C2;
    --pkg-search-results-metadata-color: #C9C7C2;
-   --pkg-search-results-card-shadow-hover: 0 4px 20px rgba(67, 189, 250, 0.15);
+   --pkg-search-results-card-shadow-hover: 0 4px 20px rgba(74, 173, 219, 0.15);
 
    --pkg-expire-modal-bg: #2A2A28;
    --pkg-captcha-modal-bg: #1F1F1E;

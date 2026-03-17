@@ -53,7 +53,7 @@
 .bg-tech-grid {
     background-color: var(--bg-card, #fff);
     background-image:
-        linear-gradient(rgba(67, 189, 250, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(67, 189, 250, 0.03) 1px, transparent 1px);
+        linear-gradient(rgba(74, 173, 219, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(74, 173, 219, 0.03) 1px, transparent 1px);
     background-size: 40px 40px;
 }
