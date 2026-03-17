@@ -381,7 +381,7 @@ const BANNER_HTML = `
     <!-- Right Interactive Buttons -->
     <div class="mp-banner-right">
       <!-- Card: Download Playlist -->
-      <a href="/download-youtube-playlist" class="mp-banner-card mp-banner-card-indigo mp-banner-link-playlist">
+      <a href="/youtube-playlist-downloader" class="mp-banner-card mp-banner-card-indigo mp-banner-link-playlist">
         <div class="mp-banner-card-icon">
           <svg viewBox="0 0 24 24" fill="currentColor">
             <path d="M15 6H3V8H15V6ZM15 10H3V12H15V10ZM3 16H11V14H3V16ZM17 6V14.18C16.69 14.07 16.35 14 16 14C14.34 14 13 15.34 13 17C13 18.66 14.34 20 16 20C17.66 20 19 18.66 19 17V8H22V6H17Z" />
@@ -435,7 +435,7 @@ function createBannerElement(options = {}) {
     container.innerHTML = BANNER_HTML;
 
     const {
-        playlistPath = '/download-youtube-playlist',
+        playlistPath = '/youtube-playlist-downloader',
         playlistParams = {}
     } = options;
 
