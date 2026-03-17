@@ -40,7 +40,7 @@
   flex-shrink: 0;
   overflow: hidden;
   border-radius: 6px;
-  background: var(--bg-input);
+  background: var(--color-skeleton-dark);
 }
 
 .yt-preview-thumbnail.skeleton-thumbnail {

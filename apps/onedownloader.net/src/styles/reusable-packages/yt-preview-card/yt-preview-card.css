@@ -87,7 +87,7 @@
   flex-shrink: 0;
   overflow: hidden;
   border-radius: 6px;
-  background: var(--bg-input);
+  background: var(--yt-preview-skeleton-base);
 }
 
 .yt-preview-thumbnail.skeleton-thumbnail {
