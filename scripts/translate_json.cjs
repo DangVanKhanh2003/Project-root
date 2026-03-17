@@ -6,7 +6,7 @@ const sourceFile = 'f:/downloader/Project-root/apps/onedownloader.net/_templates
 const sourceData = JSON.parse(fs.readFileSync(sourceFile, 'utf8'));
 
 const protectWords = (text) => text.replace(/OneDownloader/g, '<span class="notranslate">OneDownloader</span>');
-const unprotectWords = (text) => text.replace(/<span class="notranslate">OneDownloader<\/span>/gi, 'OneDownloader');
+const unprotectWords = (text) => text.replace(/<span class=["']notranslate["']>(.*?)<\/span>/gi, '$1');
 
 async function translateText(text, targetLang) {
     if (!text || typeof text !== 'string') return text;
