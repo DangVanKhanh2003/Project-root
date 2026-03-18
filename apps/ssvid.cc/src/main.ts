@@ -10,6 +10,7 @@ import './styles/index.css';
 import { applyInitialVisibility } from './features/widget-level-manager';
 import { initLicenseOnPageLoad } from './features/license/license-token';
 import { recordPageLoad } from './utils/page-freshness';
+import { init as initDownloaderUICore } from './features/downloader/downloader-ui';
 
 
 
@@ -26,8 +27,7 @@ if (typeof window !== 'undefined') {
  */
 async function initDownloaderUI() {
   try {
-    const { init } = await import('./features/downloader/downloader-ui');
-    await init();
+    await initDownloaderUICore();
   } catch (err) {
     console.error('Failed to initialize downloader UI:', err);
   }
@@ -237,12 +237,12 @@ async function loadFeatures() {
     });
   }
 
-  await applyInitialVisibility();   // Initialize license button + supporter badge
+  applyInitialVisibility();          // Fire-and-forget: license button + supporter badge (non-blocking)
   initLicenseOnPageLoad();          // Background revalidation if cache is stale (fire-and-forget)
   initMobileMenu(); // Initialize mobile menu
   initLangSelector(); // Initialize language selector dropdown
   initDrawerLangSelector(); // Initialize drawer language selector dropdown
-  initDownloaderUI(); // Initialize downloader (async/lazy loaded)
+  initDownloaderUI(); // Initialize downloader (static import, no extra round-trip)
   initLogoClickHandler(); // Prevent logo reload issue
   initFirebaseAnalytics(); // Initialize Firebase Analytics (lazy loaded after 5s)
   initFeedbackWidget(); // Initialize Feedback Widget (lazy loaded after 5s)
