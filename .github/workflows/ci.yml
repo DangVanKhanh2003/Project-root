@@ -28,6 +28,7 @@ on:
           - 'snap1s.com'
           - 'y2save.com'
           - 'tube1s.com'
+          - 'snackeloader.com'
 
 concurrency:
   group: ci-${{ github.repository }}-${{ github.ref }}
@@ -85,13 +86,15 @@ jobs:
               - 'apps/y2save.com/**'
             tube1s.com:
               - 'apps/tube1s.com/**'
+            snackeloader.com:
+              - 'apps/snackeloader.com/**'
 
       - name: Determine apps to deploy
         id: determine-apps
         env:
           COMMIT_MSG: ${{ github.event.head_commit.message }}
         run: |
-          ALL_APPS='["y2matepro","y2matevc","mp3fast","ytmp3.my","4kvideopro","ssvid.cc","ezconv","ytmp4.gg","onedownloader.net","u2snap.com","convert1s.com","snap1s.com","y2save.com","tube1s.com"]'
+          ALL_APPS='["y2matepro","y2matevc","mp3fast","ytmp3.my","4kvideopro","ssvid.cc","ezconv","ytmp4.gg","onedownloader.net","u2snap.com","convert1s.com","snap1s.com","y2save.com","tube1s.com","snackeloader.com"]'
 
           # Handle manual trigger with specific_app
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
@@ -209,6 +212,10 @@ jobs:
           if [[ "${{ steps.filter.outputs['tube1s.com'] }}" == "true" ]]; then
             CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["tube1s.com"]')
             echo "✅ tube1s.com changed"
+          fi
+          if [[ "${{ steps.filter.outputs['snackeloader.com'] }}" == "true" ]]; then
+            CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["snackeloader.com"]')
+            echo "✅ snackeloader.com changed"
           fi
 
           echo "📋 Changed apps: $CHANGED_APPS"
@@ -421,6 +428,20 @@ jobs:
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
+  deploy-snackeloader-com:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'snackeloader.com')
+    uses: ./.github/workflows/deploy-app.yml
+    with:
+      app_name: snackeloader.com
+      app_directory: apps/snackeloader.com
+      filter_path: ./apps/snackeloader.com
+      domain: ${{ vars.SNACKELOADER_DOMAIN || 'snackeloader.com' }}
+    secrets:
+      SSH_HOST: ${{ secrets.SSH_HOST }}
+      SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
   # ============================================
   # Job 9: Summary
   # ============================================
@@ -441,6 +462,7 @@ jobs:
       - deploy-snap1s-com
       - deploy-y2save-com
       - deploy-tube1s-com
+      - deploy-snackeloader-com
     if: always()
     runs-on: ubuntu-latest
     steps:
@@ -469,3 +491,4 @@ jobs:
           echo "| snap1s.com | ${{ needs.deploy-snap1s-com.result || 'skipped' }} |"
           echo "| y2save.com | ${{ needs.deploy-y2save-com.result || 'skipped' }} |"
           echo "| tube1s.com | ${{ needs.deploy-tube1s-com.result || 'skipped' }} |"
+          echo "| snackeloader.com | ${{ needs.deploy-snackeloader-com.result || 'skipped' }} |"

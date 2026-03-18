@@ -21,6 +21,7 @@ on:
           - 'snap1s.com'
           - 'y2save.com'
           - 'tube1s.com'
+          - 'snackeloader.com'
       environment:
         description: 'Target environment'
         required: true
@@ -110,6 +111,11 @@ jobs:
               echo "directory=apps/y2save.com" >> $GITHUB_OUTPUT
               echo "filter_path=./apps/y2save.com" >> $GITHUB_OUTPUT
               echo "domain=${{ vars.Y2SAVE_DOMAIN || 'y2save.com' }}" >> $GITHUB_OUTPUT
+              ;;
+            "snackeloader.com")
+              echo "directory=apps/snackeloader.com" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/snackeloader.com" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.SNACKELOADER_DOMAIN || 'snackeloader.com' }}" >> $GITHUB_OUTPUT
               ;;
           esac
 
