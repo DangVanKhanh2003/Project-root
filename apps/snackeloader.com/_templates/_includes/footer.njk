@@ -1,0 +1,8 @@
+{%- set base = i18nBase[lang] or i18nBase['en'] -%}
+{%- set langPrefix = '' if (lang == 'en' or not lang) else '/' + lang -%}
+
+<footer>
+    <div class="container">
+        <div class="copyright">{{ base.footer.copyright }}</div>
+    </div>
+</footer>
