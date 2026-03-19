@@ -1,11 +1,25 @@
 {
   "nav": {
-    "home": "Home"
+    "home": "Home",
+    "youtubeDownloader": "YouTube Downloader",
+    "tiktokDownloader": "TikTok Downloader",
+    "facebookDownloader": "Facebook Downloader",
+    "instagramDownloader": "Instagram Downloader",
+    "twitterDownloader": "Twitter Downloader",
+    "mp3Downloader": "MP3 Downloader",
+    "videoDownloader": "Video Downloader"
   },
   "drawer": {
     "logoText": "SnackeLoader",
     "links": {
-      "home": "Home"
+      "home": "Home",
+      "youtubeDownloader": "YouTube Downloader",
+      "tiktokDownloader": "TikTok Downloader",
+      "facebookDownloader": "Facebook Downloader",
+      "instagramDownloader": "Instagram Downloader",
+      "twitterDownloader": "Twitter Downloader",
+      "mp3Downloader": "MP3 Downloader",
+      "videoDownloader": "Video Downloader"
     }
   },
   "hero": {
@@ -20,7 +34,16 @@
     "supportedPlatforms": "Supported platforms:"
   },
   "footer": {
-    "copyright": "© 2026 SnackeLoader. All rights reserved."
+    "copyright": "© 2026 SnackeLoader. All rights reserved.",
+    "nav": {
+      "youtubeDownloader": "YouTube Downloader",
+      "tiktokDownloader": "TikTok Downloader",
+      "facebookDownloader": "Facebook Downloader",
+      "instagramDownloader": "Instagram Downloader",
+      "twitterDownloader": "Twitter Downloader",
+      "mp3Downloader": "MP3 Downloader",
+      "videoDownloader": "Video Downloader"
+    }
   },
   "langSelector": {
     "buttonLabel": "Change language",
