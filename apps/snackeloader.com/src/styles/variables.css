@@ -1,6 +1,6 @@
 :root {
     /* ===== Brand Accent (emerald, same for light & dark) ===== */
-    --brand: #2E917C;
+    --brand: #1c6a4d;
     --brand-hover: #267A69;
     --text: #2F2F2F;
     --muted: #5C5C5C;
@@ -16,8 +16,8 @@
     --primary-color: var(--brand);
     --primary-color-hover: var(--brand-hover);
     --color-primary: var(--primary-color);
-    --background-hero-section: #2E917C;
-    --hero-section-bg: #2E917C;
+    --background-hero-section: #1c6a4d;
+    --hero-section-bg: #1c6a4d;
     --secondary-color: var(--bg-card);
     --color-black: #2F2F2F;
     --color-white: #ffffff;
@@ -128,7 +128,7 @@
 
     /* Status badge backgrounds */
     --status-ready-bg: rgba(46, 145, 124, 0.08);
-    --status-ready-color: #2E917C;
+    --status-ready-color: #1c6a4d;
     --status-success-bg: #dcfce7;
     --status-success-color: #166534;
     --status-error-bg: #fee2e2;
@@ -136,9 +136,9 @@
     --status-pending-bg: #EFECE7;
     --status-pending-color: #5C5C5C;
     --status-analyzing-bg: rgba(46, 145, 124, 0.08);
-    --status-analyzing-color: #2E917C;
+    --status-analyzing-color: #1c6a4d;
     --status-converting-bg: rgba(46, 145, 124, 0.08);
-    --status-converting-color: #2E917C;
+    --status-converting-color: #1c6a4d;
     --color-next-btn-bg: var(--bg-card);
     --color-next-btn-text: var(--text-main);
     --color-next-btn-border: var(--border-secondary);
@@ -362,7 +362,7 @@
     --status-analyzing-bg: rgba(46, 145, 124, 0.10);
     --status-analyzing-color: #4DB8A3;
     --status-converting-bg: rgba(46, 145, 124, 0.10);
-    --status-converting-color: #2E917C;
+    --status-converting-color: #1c6a4d;
     --color-next-btn-bg: var(--bg-card);
     --color-next-btn-text: var(--text-main);
     --color-next-btn-border: var(--border-secondary);
@@ -399,7 +399,7 @@
     --processing-bg: linear-gradient(90deg, rgba(46, 145, 124, 0.18) 0%, rgba(46, 145, 124, 0.24) 100%);
 
     /* Logo text color */
-    --logo-text-color: #2E917C;
+    --logo-text-color: #1c6a4d;
 
     /* Brand light (for links on dark surfaces) */
     --brand-light: #7DD4C2;
