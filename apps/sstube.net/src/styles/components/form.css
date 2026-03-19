@@ -120,7 +120,7 @@
 
 /* Shared Button Styles */
 .btn-convert {
-    background: var(--brand);
+    background: var(--btn-primary-bg);
     border: none;
     color: var(--color-white);
     border-radius: var(--radius-xl);
