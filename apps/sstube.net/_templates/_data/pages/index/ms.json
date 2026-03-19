@@ -1,147 +1,142 @@
 {
   "seo": {
-    "title": "Muat Turun Video Percuma – Muat Turun Dalam Talian Tanpa Had | SStube",
-    "description": "Pemuat turun video percuma untuk muat turun dalam talian tanpa had. Tampal pautan video dan muat turun video atau audio serta-merta dalam format MP4 atau MP3 menggunakan SStube.",
-    "schemaName": "SStube - Pemuat Turun Video Percuma",
-    "schemaDescription": "Pemuat turun video percuma yang membenarkan muat turun dalam talian tanpa had. Tampal pautan video dan muat turun video atau audio serta-merta.",
-    "ogTitle": "Muat Turun Video Percuma – Muat Turun Dalam Talian Tanpa Had",
-    "ogDescription": "Muat turun video dalam talian secara percuma. Tampal pautan dan muat turun video atau audio serta-merta menggunakan SStube."
+    "title": "Simpan Video YouTube Dalam Talian Percuma - Tiada Iklan | SSTube",
+    "description": "Simpan video YouTube dalam talian percuma dengan SSTube. Tampal URL YouTube dan simpan video serta-merta tanpa iklan, tanpa pendaftaran, dan pemprosesan pantas pada mana-mana peranti.",
+    "schemaName": "SSTube - Simpan Video YouTube Dalam Talian",
+    "schemaDescription": "Alat dalam talian untuk menyimpan video YouTube serta-merta. Tampal pautan YouTube, proses dengan pantas, dan simpan video dalam talian tanpa iklan dan tanpa pendaftaran.",
+    "ogTitle": "Simpan Video YouTube Dalam Talian Percuma - Tiada Iklan | SSTube",
+    "ogDescription": "Simpan video dari YouTube dalam talian dengan SSTube. Tiada iklan, tiada pendaftaran, dan penyimpanan video pantas di desktop atau telefon bimbit."
   },
   "content": {
     "form": {
-      "h1": "Muat Turun Video Percuma – Muat Turun Dalam Talian Tanpa Had",
-      "placeholder": "Tampal URL video di sini...",
-      "button": "Muat turun Sekarang"
+      "h1": "SSTube – Simpan Video YouTube",
+      "placeholder": "Tampal URL video YouTube di sini...",
+      "button": "Simpan Video"
     },
     "sections": [
       {
-        "h2": "Apakah SStube Muat Turun Video Percuma?",
+        "h2": "Apakah Alat SSTube Simpan Video YouTube?",
         "p": [
-          "SStube ialah <strong>pemuat turun video percuma</strong> yang berkuasa untuk muat turun dalam talian yang pantas dan tanpa had.",
-          "Hanya tampal URL video ke dalam pemuat turun dan simpan fail dengan serta-merta. Alat ini berfungsi secara langsung dalam penyemak imbas anda tanpa memerlukan pemasangan, pendaftaran atau perisian tambahan.",
-          "Pengguna boleh memuat turun video dalam talian atau mengekstrak audio bergantung pada format yang tersedia."
+          "SSTube ialah alat <strong>simpan video YouTube</strong> yang pantas dan mudah yang membantu anda <strong>menyimpan video dari YouTube</strong> terus dari pelayar anda.",
+          "Hanya tampal pautan video, proses URL, dan simpan kandungan dalam beberapa saat tanpa iklan, tanpa pendaftaran, dan tanpa pemasangan perisian.",
+          "Jika anda mencari cara mudah untuk <strong>menyimpan video YouTube dalam talian</strong>, SSTube menawarkan pengalaman yang bersih dan berfungsi pada desktop, tablet, dan peranti mudah alih."
         ]
       },
       {
-        "h2": "Cara Muat Turun Video Dalam Talian",
+        "h2": "Cara Menyimpan Video YouTube Dalam Talian",
         "ol": [
           {
-            "h3": "Salin URL Video",
+            "h3": "Salin Pautan Video YouTube",
             "p": [
-              "Cari video yang ingin anda muat turun dan salin URLnya dari bar alamat."
+              "Buka YouTube dan salin URL video yang ingin anda simpan."
             ]
           },
           {
-            "h3": "Tampalkan Pautan Video",
+            "h3": "Tampal URL ke SSTube",
             "p": [
-              "Tampalkan pautan ke dalam kotak input pemuat turun video di atas."
+              "Tampal pautan video ke dalam kotak input di bahagian atas halaman."
             ]
           },
           {
-            "h3": "Memproses Video",
+            "h3": "Proses Video",
             "p": [
-              "Pemuat turun akan memproses pautan dan menyediakan format muat turun yang tersedia."
+              "SSTube membaca pautan dan menyediakan pilihan video yang tersedia untuk penyimpanan pantas."
             ]
           },
           {
-            "h3": "Muat turun Fail",
+            "h3": "Simpan Video YouTube",
             "p": [
-              "Klik butang muat turun untuk menyimpan video atau fail audio terus ke peranti anda."
+              "Pilih format atau kualiti yang anda inginkan dan simpan video YouTube ke peranti anda."
             ]
           }
         ]
       },
       {
-        "h2": "Muat Turun Video Dalam Talian dalam Format MP4 atau Audio",
-        "p": [
-          "Alat SStube menyokong keperluan muat turun biasa seperti menyimpan video dalam format MP4 atau mengekstrak audio daripada video.",
-          "Ramai pengguna mencari cara untuk menukar pautan video kepada fail yang boleh dimuat turun. Pemuat turun video percuma ini memudahkan proses dengan mengendalikan penukaran terus dalam penyemak imbas anda.",
-          "Anda boleh memuat turun fail video untuk tontonan luar talian atau mengekstrak fail audio bergantung pada pilihan yang tersedia."
-        ]
-      },
-      {
-        "h2": "Muat Turun Video Berkualiti Tinggi",
-        "p": [
-          "Kualiti video adalah penting apabila memuat turun kandungan dalam talian. Pemuat turun menyokong berbilang tahap kualiti bergantung pada sumber asal.",
-          "Ini termasuk muat turun HD dan pilihan video resolusi tinggi apabila tersedia. Matlamatnya adalah untuk menyediakan main balik yang lancar merentas desktop, tablet dan peranti mudah alih."
-        ]
-      },
-      {
-        "h2": "Muat Turun Dalam Talian Pantas dan Tanpa Had",
-        "p": [
-          "SStube memfokuskan pada menyediakan pengalaman muat turun yang pantas dan mudah.",
-          "Pengguna boleh melakukan muat turun tanpa had tanpa membuat akaun atau memasang perisian. Semuanya berfungsi secara langsung di dalam penyemak imbas.",
-          "Oleh kerana alat ini berasaskan web, ia boleh diakses daripada kebanyakan peranti moden termasuk komputer, tablet dan telefon pintar."
-        ]
-      },
-      {
-        "h2": "Mengapa Menggunakan Pemuat Turun Video Dalam Talian Percuma?",
+        "h2": "Terokai Lebih Banyak Alat Simpan YouTube",
         "ul": [
           {
-            "h3": "Tiada Pemasangan Perisian",
+            "h3": "Simpan YouTube Shorts dengan Pantas",
             "p": [
-              "Pemuat turun berfungsi terus dalam penyemak imbas anda jadi tidak perlu memasang perisian tambahan."
+              "Perlu menyimpan video pendek menegak? Gunakan halaman <a href=\"/save-youtube-shorts\"><strong>Simpan YouTube Shorts</strong></a> untuk pemprosesan pantas dan penyimpanan mesra mudah alih."
             ]
           },
           {
-            "h3": "Muat Turun Berasaskan Pautan Pantas",
+            "h3": "Simpan Audio YouTube Dalam Talian",
             "p": [
-              "Tampal pautan video dan mula memuat turun serta-merta."
+              "Jika anda hanya memerlukan bunyi, lawati <a href=\"/save-youtube-audio\"><strong>Simpan Audio YouTube</strong></a> untuk mengekstrak audio dari video YouTube dengan aliran kerja yang lebih mudah."
             ]
           },
           {
-            "h3": "Serasi dengan Banyak Peranti",
+            "h3": "Simpan Video YouTube dalam HD atau 4K",
             "p": [
-              "Pemuat turun berfungsi merentas penyemak imbas desktop, mudah alih dan tablet."
-            ]
-          },
-          {
-            "h3": "Muat Turun Tanpa Had",
-            "p": [
-              "Tiada had pada bilangan video yang boleh anda muat turun."
+              "Untuk kualiti output yang lebih tinggi, pergi ke <a href=\"/save-youtube-video-hd\"><strong>Simpan Video YouTube HD</strong></a> dan terokai pilihan HD, 1080p, dan 4K."
             ]
           }
         ]
       },
       {
-        "h2": "Pemuat Turun Video Percuma untuk Kegunaan Setiap Hari",
+        "h2": "Mengapa Menggunakan SSTube untuk Menyimpan Video dari YouTube?",
         "p": [
-          "Ramai orang menggunakan alat muat turun video untuk menyimpan kandungan untuk tontonan luar talian, membuat koleksi media peribadi atau menyimpan klip penting untuk rujukan kemudian.",
-          "SStube menyediakan penyelesaian mudah dengan membenarkan pengguna memuat turun video dalam talian dengan langkah yang minimum.",
-          "Dengan memfokuskan pada kelajuan dan kebolehcapaian, pemuat turun membantu pengguna menukar pautan video kepada fail yang boleh dimuat turun dengan cepat."
+          "SSTube direka untuk pengguna yang ingin <strong>menyimpan dari YouTube</strong> tanpa langkah yang tidak perlu.",
+          "Alat ini berfungsi dalam talian, tidak memerlukan pemasangan aplikasi, dan mengekalkan proses yang mudah sama ada anda ingin menyimpan klip, tutorial, video muzik, atau kandungan video awam lain.",
+          "Kerana antara muka yang ringan dan bebas iklan, ia terasa lebih pantas dan lebih mudah berbanding banyak halaman pemuat turun video YouTube tradisional."
+        ]
+      },
+      {
+        "h2": "Simpan Video YouTube pada Mana-mana Peranti",
+        "p": [
+          "Anda boleh menggunakan SSTube pada komputer desktop, komputer riba, tablet, telefon Android, dan iPhone melalui pelayar web moden.",
+          "Ini memudahkan untuk <strong>menyimpan video YouTube dalam talian</strong> tanpa menukar peranti atau memasang alat tambahan."
+        ]
+      },
+      {
+        "h2": "Pengalaman Penyimpanan Video YouTube yang Pantas dan Bersih",
+        "ul": [
+          {
+            "h3": "Tiada Iklan dan Tiada Pendaftaran",
+            "p": [
+              "SSTube memberikan anda pengalaman yang lebih bersih tanpa proses pendaftaran dan tanpa antara muka yang dipenuhi iklan mengganggu."
+            ]
+          },
+          {
+            "h3": "Aliran Kerja Mudah Berasaskan URL",
+            "p": [
+              "Hanya tampal pautan dan mula. Ini sesuai untuk pengguna yang mencari istilah seperti <strong>muat turun video YouTube menggunakan pautan</strong> atau <strong>muat turun video YouTube dari URL</strong>."
+            ]
+          }
         ]
       },
       {
         "h2": "Soalan Lazim",
         "ul": [
           {
-            "h3": "Adakah SStube percuma untuk digunakan?",
+            "h3": "Bagaimana cara menyimpan video YouTube dalam talian?",
             "p": [
-              "ya. SStube adalah percuma sepenuhnya dan membenarkan muat turun dalam talian tanpa had."
+              "Salin URL YouTube, tampal ke SSTube, proses pautan, dan pilih pilihan yang tersedia untuk menyimpan video."
             ]
           },
           {
-            "h3": "Adakah saya perlu memasang aplikasi?",
+            "h3": "Bolehkah saya menyimpan video dari YouTube tanpa memasang perisian?",
             "p": [
-              "Tidak. Alat ini berfungsi sepenuhnya dalam penyemak imbas web anda."
+              "Ya. SSTube berfungsi terus dalam pelayar anda, jadi anda tidak perlu memasang aplikasi atau program desktop."
             ]
           },
           {
-            "h3": "Bolehkah saya memuat turun video pada peranti mudah alih?",
+            "h3": "Adakah SSTube berfungsi pada peranti mudah alih?",
             "p": [
-              "ya. Pemuat turun serasi dengan kebanyakan penyemak imbas mudah alih."
+              "Ya. SSTube direka untuk berfungsi pada telefon dan tablet serta pelayar desktop."
             ]
           },
           {
-            "h3": "Adakah pendaftaran diperlukan?",
+            "h3": "Adakah saya perlu membuat akaun untuk menggunakan SSTube?",
             "p": [
-              "Tiada pendaftaran atau penciptaan akaun diperlukan untuk memuat turun video."
+              "Tidak. Anda boleh menggunakan alat ini tanpa pendaftaran."
             ]
           },
           {
-            "h3": "Adakah pemuat turun menyokong video berkualiti tinggi?",
+            "h3": "Adakah SSTube bergabung dengan YouTube?",
             "p": [
-              "Kualiti video bergantung pada sumber asal, tetapi muat turun HD disokong apabila tersedia."
+              "Tidak. SSTube ialah alat bebas dan tidak bergabung dengan YouTube atau Google."
             ]
           }
         ]

@@ -1,147 +1,142 @@
 {
   "seo": {
-    "title": "Ücretsiz Video İndirici – Sınırsız Çevrimiçi İndirme | SStube",
-    "description": "Sınırsız çevrimiçi indirme için ücretsiz video indirici. Bir video bağlantısını yapıştırın ve SStube'ı kullanarak video veya sesi anında MP4 veya MP3 formatında indirin.",
-    "schemaName": "SStube - Ücretsiz Video İndirici",
-    "schemaDescription": "Sınırsız çevrimiçi indirmeye izin veren ücretsiz video indirici. Bir video bağlantısını yapıştırın ve videoları veya sesleri anında indirin.",
-    "ogTitle": "Ücretsiz Video İndirici – Sınırsız Çevrimiçi İndirme",
-    "ogDescription": "Videoları çevrimiçi olarak ücretsiz indirin. SStube'ı kullanarak bir bağlantıyı yapıştırın ve video veya sesi anında indirin."
+    "title": "YouTube Videosunu Çevrimiçi Ücretsiz Kaydet - Reklamsız | SSTube",
+    "description": "SSTube ile YouTube videosunu çevrimiçi ücretsiz kaydedin. Bir YouTube URL'si yapıştırın ve reklamsız, kayıt gerektirmeden, herhangi bir cihazda hızlı işleme ile videoları anında kaydedin.",
+    "schemaName": "SSTube - YouTube Videosunu Çevrimiçi Kaydet",
+    "schemaDescription": "YouTube videolarını anında kaydetmek için çevrimiçi araç. YouTube bağlantısını yapıştırın, hızlıca işleyin ve reklamsız, kayıt gerektirmeden videoyu çevrimiçi kaydedin.",
+    "ogTitle": "YouTube Videosunu Çevrimiçi Ücretsiz Kaydet - Reklamsız | SSTube",
+    "ogDescription": "SSTube ile YouTube'dan çevrimiçi video kaydedin. Reklamsız, kayıt gerektirmez, masaüstü veya mobilde hızlı video kaydetme."
   },
   "content": {
     "form": {
-      "h1": "Ücretsiz Video İndirici – Sınırsız Çevrimiçi İndirme",
-      "placeholder": "Video URL'sini buraya yapıştırın...",
-      "button": "Şimdi İndir"
+      "h1": "SSTube – YouTube Videosunu Kaydet",
+      "placeholder": "YouTube video URL'sini buraya yapıştırın...",
+      "button": "Videoyu Kaydet"
     },
     "sections": [
       {
-        "h2": "SStube Ücretsiz Video İndirici Nedir?",
+        "h2": "SSTube YouTube Video Kaydetme Aracı Nedir?",
         "p": [
-          "SStube, hızlı ve sınırsız çevrimiçi indirmeler için tasarlanmış güçlü bir <strong>ücretsiz video indiricisidir</strong>.",
-          "İndiriciye bir video URL'si yapıştırmanız ve dosyayı anında kaydetmeniz yeterlidir. Araç, kurulum, kayıt veya ek yazılım gerektirmeden doğrudan tarayıcınızda çalışır.",
-          "Kullanıcılar mevcut formatlara bağlı olarak videoları çevrimiçi olarak indirebilir veya ses çıkarabilirler."
+          "SSTube, doğrudan tarayıcınızdan <strong>YouTube'dan video kaydetmenize</strong> yardımcı olan hızlı ve basit bir <strong>YouTube video kaydetme</strong> aracıdır.",
+          "Video bağlantısını yapıştırın, URL'yi işleyin ve saniyeler içinde içeriği kaydedin - reklamsız, kayıt gerektirmez, yazılım kurulumu gerekmez.",
+          "<strong>YouTube videosunu çevrimiçi kaydetmenin</strong> kolay bir yolunu arıyorsanız, SSTube masaüstü, tablet ve mobil cihazlarda çalışan temiz bir deneyim sunar."
         ]
       },
       {
-        "h2": "Çevrimiçi Videolar Nasıl İndirilir",
+        "h2": "YouTube Videosunu Çevrimiçi Nasıl Kaydedersiniz",
         "ol": [
           {
-            "h3": "Video URL'sini kopyalayın",
+            "h3": "YouTube Video Bağlantısını Kopyalayın",
             "p": [
-              "İndirmek istediğiniz videoyu bulun ve URL'sini adres çubuğundan kopyalayın."
+              "YouTube'u açın ve kaydetmek istediğiniz videonun URL'sini kopyalayın."
             ]
           },
           {
-            "h3": "Video Bağlantısını Yapıştırın",
+            "h3": "URL'yi SSTube'a Yapıştırın",
             "p": [
-              "Bağlantıyı yukarıdaki video indirici giriş kutusuna yapıştırın."
+              "Video bağlantısını sayfanın üst kısmındaki giriş kutusuna yapıştırın."
             ]
           },
           {
-            "h3": "Videoyu İşle",
+            "h3": "Videoyu İşleyin",
             "p": [
-              "İndirici bağlantıyı işleyecek ve mevcut indirme formatlarını hazırlayacaktır."
+              "SSTube bağlantıyı okur ve hızlı kaydetme için mevcut video seçeneklerini hazırlar."
             ]
           },
           {
-            "h3": "Dosyayı İndir",
+            "h3": "YouTube Videosunu Kaydedin",
             "p": [
-              "Video veya ses dosyasını doğrudan cihazınıza kaydetmek için indirme düğmesine tıklayın."
+              "Tercih ettiğiniz formatı veya kaliteyi seçin ve YouTube videosunu cihazınıza kaydedin."
             ]
           }
         ]
       },
       {
-        "h2": "Videoları MP4 veya Ses Formatında Çevrimiçi İndirin",
-        "p": [
-          "SStube aracı, videoları MP4 formatında kaydetme veya videolardan ses çıkarma gibi genel indirme ihtiyaçlarını destekler.",
-          "Birçok kullanıcı video bağlantılarını indirilebilir dosyalara dönüştürmenin yollarını arar. Bu ücretsiz video indirici, dönüşümü doğrudan tarayıcınızda gerçekleştirerek süreci basitleştirir.",
-          "Mevcut seçeneklere bağlı olarak video dosyalarını çevrimdışı görüntülemek için indirebilir veya ses dosyalarını çıkarabilirsiniz."
-        ]
-      },
-      {
-        "h2": "Yüksek Kaliteli Video İndirmeleri",
-        "p": [
-          "Çevrimiçi içerik indirirken video kalitesi önemlidir. İndirici, orijinal kaynağa bağlı olarak birden fazla kalite düzeyini destekler.",
-          "Buna HD indirmeler ve mevcut olduğunda yüksek çözünürlüklü video seçenekleri de dahildir. Amaç, masaüstü, tablet ve mobil cihazlarda sorunsuz oynatma sağlamaktır."
-        ]
-      },
-      {
-        "h2": "Hızlı ve Sınırsız Çevrimiçi İndirme",
-        "p": [
-          "SStube hızlı ve basit bir indirme deneyimi sağlamaya odaklanır.",
-          "Kullanıcılar hesap oluşturmadan veya yazılım yüklemeden sınırsız indirme gerçekleştirebilir. Her şey doğrudan tarayıcının içinde çalışır.",
-          "Araç web tabanlı olduğundan, bilgisayarlar, tabletler ve akıllı telefonlar dahil çoğu modern cihazdan erişilebilir."
-        ]
-      },
-      {
-        "h2": "Neden Ücretsiz Çevrimiçi Video İndirici Kullanmalı?",
+        "h2": "Daha Fazla YouTube Kaydetme Aracını Keşfedin",
         "ul": [
           {
-            "h3": "Yazılım Kurulumu Yok",
+            "h3": "YouTube Shorts'u Hızlıca Kaydedin",
             "p": [
-              "İndirici doğrudan tarayıcınızda çalışır, dolayısıyla ekstra yazılım yüklemenize gerek yoktur."
+              "Kısa dikey videoları kaydetmeniz mi gerekiyor? Hızlı işleme ve mobil dostu kaydetme için <a href=\"/save-youtube-shorts\"><strong>YouTube Shorts Kaydet</strong></a> sayfasını kullanın."
             ]
           },
           {
-            "h3": "Hızlı Bağlantı Tabanlı İndirme",
+            "h3": "YouTube Sesini Çevrimiçi Kaydedin",
             "p": [
-              "Bir video bağlantısını yapıştırın ve anında indirmeye başlayın."
+              "Sadece sese ihtiyacınız varsa, daha basit bir iş akışıyla YouTube videolarından ses çıkarmak için <a href=\"/save-youtube-audio\"><strong>YouTube Ses Kaydet</strong></a> sayfasını ziyaret edin."
             ]
           },
           {
-            "h3": "Birçok Cihazla Uyumlu",
+            "h3": "YouTube Videosunu HD veya 4K Olarak Kaydedin",
             "p": [
-              "İndirici masaüstü, mobil ve tablet tarayıcılarında çalışır."
-            ]
-          },
-          {
-            "h3": "Sınırsız İndirme",
-            "p": [
-              "Kaç video indirebileceğiniz konusunda herhangi bir sınırlama yoktur."
+              "Daha yüksek kaliteli çıktı için <a href=\"/save-youtube-video-hd\"><strong>YouTube Video HD Kaydet</strong></a> sayfasına gidin ve HD, 1080p ve 4K seçeneklerini keşfedin."
             ]
           }
         ]
       },
       {
-        "h2": "Günlük Kullanım için Ücretsiz Video İndirici",
+        "h2": "YouTube'dan Video Kaydetmek İçin Neden SSTube Kullanmalısınız?",
         "p": [
-          "Birçok kişi, içeriği çevrimdışı görüntülemek üzere kaydetmek, kişisel medya koleksiyonları oluşturmak veya önemli klipleri daha sonra başvurmak üzere saklamak için video indirme araçlarını kullanır.",
-          "SStube, kullanıcıların videoları çevrimiçi olarak minimum adımlarla indirmelerine olanak tanıyarak basit bir çözüm sunar.",
-          "İndirici, hıza ve erişilebilirliğe odaklanarak kullanıcıların video bağlantılarını hızlı bir şekilde indirilebilir dosyalara dönüştürmesine yardımcı olur."
+          "SSTube, gereksiz adımlar olmadan <strong>YouTube'dan kaydetmek</strong> isteyen kullanıcılar için tasarlanmıştır.",
+          "Araç çevrimiçi çalışır, uygulama kurulumu gerektirmez ve bir klip, eğitim, müzik videosu veya diğer herkese açık video içeriklerini kaydetmek isteyip istemediğinize bakılmaksızın süreci basit tutar.",
+          "Arayüzü hafif ve reklamsız olduğu için birçok geleneksel YouTube video indirme sayfasından daha hızlı ve kolay hissedilir."
         ]
       },
       {
-        "h2": "Sıkça Sorulan Sorular",
+        "h2": "Herhangi Bir Cihazda YouTube Videolarını Kaydedin",
+        "p": [
+          "Modern bir web tarayıcısı aracılığıyla masaüstü bilgisayarlarda, dizüstü bilgisayarlarda, tabletlerde, Android telefonlarda ve iPhone'larda SSTube'u kullanabilirsiniz.",
+          "Bu, cihaz değiştirmeden veya ek araçlar kurmadan <strong>YouTube videosunu çevrimiçi kaydetmeyi</strong> kolaylaştırır."
+        ]
+      },
+      {
+        "h2": "Hızlı ve Temiz YouTube Video Kaydetme Deneyimi",
         "ul": [
           {
-            "h3": "SStube'ın kullanımı ücretsiz mi?",
+            "h3": "Reklamsız ve Kayıt Gerektirmez",
             "p": [
-              "Evet. SStube tamamen ücretsizdir ve sınırsız çevrimiçi indirmeye izin verir."
+              "SSTube, kayıt süreci olmadan ve dikkat dağıtıcı reklamlarla dolu arayüz olmadan daha temiz bir deneyim sunar."
             ]
           },
           {
-            "h3": "Bir uygulama yüklemem gerekiyor mu?",
+            "h3": "Basit URL Tabanlı İş Akışı",
             "p": [
-              "Hayır. Araç tamamen web tarayıcınızda çalışır."
+              "Bağlantıyı yapıştırın ve başlayın. Bu, <strong>bağlantıyla YouTube videosu indir</strong> veya <strong>YouTube URL video indir</strong> gibi terimler arayan kullanıcılar için idealdir."
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "Sık Sorulan Sorular",
+        "ul": [
+          {
+            "h3": "YouTube videosunu çevrimiçi nasıl kaydederim?",
+            "p": [
+              "YouTube URL'sini kopyalayın, SSTube'a yapıştırın, bağlantıyı işleyin ve videoyu kaydetmek için mevcut seçeneği seçin."
             ]
           },
           {
-            "h3": "Videoları mobil cihazlara indirebilir miyim?",
+            "h3": "Yazılım kurmadan YouTube'dan video kaydedebilir miyim?",
             "p": [
-              "Evet. İndirici çoğu mobil tarayıcıyla uyumludur."
+              "Evet. SSTube doğrudan tarayıcınızda çalışır, bu nedenle bir uygulama veya masaüstü programı kurmanıza gerek yoktur."
             ]
           },
           {
-            "h3": "Kayıt gerekli mi?",
+            "h3": "SSTube mobil cihazlarda çalışır mı?",
             "p": [
-              "Videoları indirmek için kayıt olmanıza veya hesap oluşturmanıza gerek yoktur."
+              "Evet. SSTube, telefonlarda ve tabletlerde olduğu kadar masaüstü tarayıcılarda da çalışacak şekilde tasarlanmıştır."
             ]
           },
           {
-            "h3": "İndirici yüksek kaliteli videoları destekliyor mu?",
+            "h3": "SSTube'u kullanmak için hesap oluşturmam gerekiyor mu?",
             "p": [
-              "Video kalitesi orijinal kaynağa bağlıdır ancak HD indirmeler mümkün olduğunda desteklenir."
+              "Hayır. Aracı kayıt olmadan kullanabilirsiniz."
+            ]
+          },
+          {
+            "h3": "SSTube YouTube ile bağlantılı mı?",
+            "p": [
+              "Hayır. SSTube bağımsız bir araçtır ve YouTube veya Google ile bağlantılı değildir."
             ]
           }
         ]
