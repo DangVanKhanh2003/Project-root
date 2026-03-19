@@ -83,3 +83,24 @@
 .skeleton-card {
   background-color: var(--bg-card) !important;
 }
+
+/* ==========================================
+   Button Color Override (Light Theme)
+   Brand #D19783 is too light for white text,
+   so use black bg for action buttons.
+   ========================================== */
+
+:root:not([data-theme="dark"]) .btn-convert,
+:root:not([data-theme="dark"]) .format-btn.active,
+:root:not([data-theme="dark"]) .download-btn,
+:root:not([data-theme="dark"]) #conversion-download-btn {
+  background: #2F2F2F !important;
+  color: #ffffff !important;
+}
+
+:root:not([data-theme="dark"]) .btn-convert:hover,
+:root:not([data-theme="dark"]) .format-btn.active:hover,
+:root:not([data-theme="dark"]) .download-btn:hover,
+:root:not([data-theme="dark"]) #conversion-download-btn:hover {
+  background: #1a1a1a !important;
+}
