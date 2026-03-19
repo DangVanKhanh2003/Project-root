@@ -202,6 +202,7 @@ Kiểm tra `excludedPageNames` — xóa entries không liên quan.
      DOMAIN="${{ vars.{DOMAIN_VAR} || '{DOMAIN}' }}"
      ;;
    ```
+### Note: chú ý là nhớ xóa config trong src\libs\firebase\firebase-config.ts
 
 ### Domain variable
 Set `vars.{DOMAIN_VAR}` trên GitHub repo settings (ví dụ `vars.SNACKELOADER_DOMAIN`).
