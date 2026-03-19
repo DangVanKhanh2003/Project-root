@@ -1,0 +1,128 @@
+{
+  "seo": {
+    "title": "Twitter Video Downloader Online Libre – SnackeLoader",
+    "description": "Gamitin ang SnackeLoader Twitter Video Downloader upang mag-download ng mga video mula sa X at Twitter online nang libre. I-save ang mga tweet, clip, at naka-embed na video sa MP4 nang mabilis.",
+    "keywords": "twitter video downloader, i-download ang twitter video, x video downloader, twitter sa mp4, i-download ang twitter video hd libre, i-save ang twitter video online walang watermark, twitter gif downloader, twitter video saver mp4",
+    "schemaName": "SnackeLoader - Twitter Video Downloader",
+    "schemaDescription": "Libreng Twitter at X video downloader. Mag-download ng mga video mula sa mga tweet at naka-embed na post online sa MP4 nang walang kinakailangang pag-login.",
+    "ogTitle": "Twitter Video Downloader Online Libre – SnackeLoader",
+    "ogDescription": "Mag-download ng mga Twitter at X video online sa MP4. Mabilis, libre, at madaling gamitin."
+  },
+  "content": {
+    "form": {
+      "h1": "SnackeLoader – Twitter Video Downloader",
+      "placeholder": "I-paste ang Twitter o X link dito...",
+      "button": "I-download"
+    },
+    "sections": [
+      {
+        "h2": "Ano Ang SnackeLoader Twitter Video Downloader?",
+        "p": [
+          "Ang SnackeLoader ay isang maaasahang <strong>Twitter video downloader</strong> na tumutulong sa iyong <strong>mag-download ng mga Twitter video</strong> at X video post online.",
+          "Maaari mong i-save ang mga tweet video, clip, at naka-embed na media sa isang simpleng format tulad ng MP4.",
+          "Ang buong proseso ay gumagana online nang walang pag-install at walang kinakailangang account."
+        ]
+      },
+      {
+        "h2": "Paano Mag-download ng mga Twitter o X Video",
+        "ol": [
+          {
+            "h3": "Kopyahin ang Tweet Link",
+            "p": [
+              "Buksan ang tweet o X post at kopyahin ang URL."
+            ]
+          },
+          {
+            "h3": "I-paste ang URL",
+            "p": [
+              "I-paste ang link sa kahon sa itaas."
+            ]
+          },
+          {
+            "h3": "Iproseso ang Video",
+            "p": [
+              "I-click ang I-download upang hayaan ang SnackeLoader na ihanda ang media file."
+            ]
+          },
+          {
+            "h3": "I-save ang MP4 File",
+            "p": [
+              "I-download ang video at itago ito sa iyong device para sa offline na panonood."
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "Ano Ang Maaari Mong I-download",
+        "ul": [
+          {
+            "h3": "Mga Tweet Video",
+            "p": [
+              "Mag-download ng mga video na naka-attach sa mga regular na tweet at X post."
+            ]
+          },
+          {
+            "h3": "Mga Naka-embed na Video",
+            "p": [
+              "I-save ang sinusuportahang naka-embed na media mula sa mga ibinahaging post."
+            ]
+          },
+          {
+            "h3": "Output ng MP4",
+            "p": [
+              "Gamitin ang tool bilang isang Twitter sa MP4 downloader para sa malawak na pagiging tugma sa device."
+            ]
+          },
+          {
+            "h3": "Hindi Kailangang Mag-login",
+            "p": [
+              "Mag-download nang hindi nagla-log in o nag-i-install ng software."
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "Bakit Gamitin Ang SnackeLoader?",
+        "p": [
+          "Kung gusto mo ng isang <strong>mabilis na Twitter downloader online</strong>, nag-aalok ang SnackeLoader ng isang simpleng daloy ng trabaho at madaling pag-access sa buong mga device.",
+          "Ito ay binuo para sa bilis, kaginhawahan, at isang malinis na karanasan ng gumagamit."
+        ]
+      },
+      {
+        "h2": "Mga Madalas Itanong",
+        "ul": [
+          {
+            "h3": "Maaari ba akong mag-download ng mga video mula sa X?",
+            "p": [
+              "Oo. Gumagana ang SnackeLoader sa mga link ng video ng Twitter at X."
+            ]
+          },
+          {
+            "h3": "Sini-save ba nito ang mga video bilang MP4?",
+            "p": [
+              "Oo. Ang MP4 ay sinusuportahan para sa madaling pag-playback."
+            ]
+          },
+          {
+            "h3": "Libre ba ang downloader?",
+            "p": [
+              "Oo. Ang serbisyo ay libreng gamitin."
+            ]
+          },
+          {
+            "h3": "Kailangan ko bang mag-install ng software?",
+            "p": [
+              "Hindi. Ang lahat ay gumagana online sa iyong browser."
+            ]
+          },
+          {
+            "h3": "Maaari ko ba itong gamitin sa aking telepono?",
+            "p": [
+              "Oo. Gumagana ito sa mga mobile at desktop device."
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

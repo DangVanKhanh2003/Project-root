@@ -1,0 +1,128 @@
+{
+  "seo": {
+    "title": "MP3 Downloader Online Libre – SnackeLoader",
+    "description": "Gamitin ang SnackeLoader MP3 Downloader upang i-convert ang video sa MP3 online nang libre. Mag-download ng audio mula sa YouTube, TikTok, at iba pang suportadong link nang mabilis at madali.",
+    "keywords": "mp3 downloader, video sa mp3, i-convert ang video sa mp3, audio downloader, i-download ang mp3 mula sa video online, i-convert ang video sa audio libre",
+    "schemaName": "SnackeLoader - MP3 Downloader",
+    "schemaDescription": "Libreng MP3 downloader at audio converter. I-convert ang video sa MP3 online at mabilis na i-save ang mga audio file nang walang kinakailangang pag-install.",
+    "ogTitle": "MP3 Downloader Online Libre – SnackeLoader",
+    "ogDescription": "I-convert ang video sa MP3 online nang libre. Mabilis na pag-download ng audio gamit ang isang simpleng tool na nakabatay sa browser."
+  },
+  "content": {
+    "form": {
+      "h1": "SnackeLoader – MP3 Downloader",
+      "placeholder": "I-paste ang video o audio link dito...",
+      "button": "I-convert"
+    },
+    "sections": [
+      {
+        "h2": "Ano Ang SnackeLoader MP3 Downloader?",
+        "p": [
+          "Ang SnackeLoader ay isang <strong>MP3 downloader</strong> na nakabatay sa browser na nagbibigay-daan sa iyong <strong>i-convert ang video sa MP3</strong> nang mabilis at madali.",
+          "Ito ay kapaki-pakinabang para sa mga user na gustong mag-save ng audio mula sa mga suportadong video link nang hindi nag-i-install ng software.",
+          "Ang proseso ay simple, mabilis, at direktang gumagana online."
+        ]
+      },
+      {
+        "h2": "Paano I-convert ang Video sa MP3",
+        "ol": [
+          {
+            "h3": "Kopyahin ang Link",
+            "p": [
+              "Kopyahin ang sinusuportahang video o audio URL na gusto mong i-convert."
+            ]
+          },
+          {
+            "h3": "I-paste Ito sa Itaas",
+            "p": [
+              "I-paste ang link sa field ng input ng converter."
+            ]
+          },
+          {
+            "h3": "Simulan ang Conversion",
+            "p": [
+              "I-click ang I-convert at hayaan ang tool na iproseso ang file."
+            ]
+          },
+          {
+            "h3": "I-download ang MP3",
+            "p": [
+              "I-save ang audio file sa iyong telepono, tablet, o computer."
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "Bakit Gamitin Ang Aming MP3 Downloader?",
+        "ul": [
+          {
+            "h3": "Mabilis na Conversion",
+            "p": [
+              "I-convert ang mga link sa MP3 sa ilang segundo na may simpleng daloy ng trabaho."
+            ]
+          },
+          {
+            "h3": "Online at Libre",
+            "p": [
+              "Gamitin ang tool nang hindi nagbabayad, nagda-download ng mga app, o gumagawa ng account."
+            ]
+          },
+          {
+            "h3": "Malawak na Suporta sa Device",
+            "p": [
+              "Gumagana sa desktop, Android, iPhone, at mga tablet."
+            ]
+          },
+          {
+            "h3": "Malinis na Pag-download ng Audio",
+            "p": [
+              "Mag-save ng mga audio file para sa offline na pakikinig nang may madaling pag-access anumang oras."
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "Mataas na Kalidad ng Audio Conversion",
+        "p": [
+          "Ang SnackeLoader ay idinisenyo para sa mga user na gustong magkaroon ng isang <strong>libreng audio downloader online</strong> na may madaling hakbang at maaasahang performance.",
+          "Pinapanatili ng tool na simple ang proseso ng conversion."
+        ]
+      },
+      {
+        "h2": "Mga Madalas Itanong",
+        "ul": [
+          {
+            "h3": "Maaari ba akong mag-convert ng video sa MP3 online?",
+            "p": [
+              "Oo. Sinusuportahan ng SnackeLoader ang online video sa pag-convert ng MP3."
+            ]
+          },
+          {
+            "h3": "Libre ba ang MP3 downloader?",
+            "p": [
+              "Oo. Ito ay libreng gamitin."
+            ]
+          },
+          {
+            "h3": "Kailangan ko bang mag-install ng software?",
+            "p": [
+              "Hindi. Direktang gumagana ang converter sa iyong browser."
+            ]
+          },
+          {
+            "h3": "Maaari ko ba itong gamitin sa mobile?",
+            "p": [
+              "Oo. Gumagana ito sa karamihan ng mga modernong mobile browser."
+            ]
+          },
+          {
+            "h3": "May limitasyon ba?",
+            "p": [
+              "Walang nakapirming limitasyon na ipinapakita para sa normal na paggamit."
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

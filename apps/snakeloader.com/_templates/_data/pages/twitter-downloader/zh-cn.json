@@ -1,0 +1,128 @@
+{
+  "seo": {
+    "title": "免费在线 Twitter 视频下载器 – SnackeLoader",
+    "description": "使用 SnackeLoader Twitter 视频下载器免费在线下载来自 X 和 Twitter 的视频。快速将推文、推特动图和嵌入式视频保存为 MP4。",
+    "keywords": "twitter 视频下载, 下载 twitter 视频, x 视频下载器, twitter 转 mp4, 免费下载 twitter 视频 hd, 在线保存 twitter 视频无水印, twitter gif 下载器, twitter 视频保存 mp4",
+    "schemaName": "SnackeLoader - Twitter 视频下载器",
+    "schemaDescription": "免费的 Twitter 和 X 视频下载器。无需登录即可在线将推文和嵌入帖子中的视频下载为 MP4。",
+    "ogTitle": "免费在线 Twitter 视频下载器 – SnackeLoader",
+    "ogDescription": "在线将 Twitter 和 X 视频下载为 MP4。快速、免费且易于使用。"
+  },
+  "content": {
+    "form": {
+      "h1": "SnackeLoader – Twitter 视频下载器",
+      "placeholder": "在此处粘贴 Twitter 或 X 链接...",
+      "button": "下载"
+    },
+    "sections": [
+      {
+        "h2": "什么是 SnackeLoader Twitter 视频下载器？",
+        "p": [
+          "SnackeLoader 是一个可靠的<strong>Twitter 视频下载器</strong>，可帮助您在线<strong>下载 Twitter 视频</strong>和 X 视频帖子。",
+          "您可以将推文视频、短片和嵌入媒体保存为 MP4 等简单格式。",
+          "整个过程在线工作，无需安装，也无需注册账号。"
+        ]
+      },
+      {
+        "h2": "如何下载 Twitter 或 X 视频",
+        "ol": [
+          {
+            "h3": "复制推文链接",
+            "p": [
+              "打开推文或 X 帖子并复制其 URL。"
+            ]
+          },
+          {
+            "h3": "粘贴 URL",
+            "p": [
+              "将链接粘贴到上方的输入框中。"
+            ]
+          },
+          {
+            "h3": "处理视频",
+            "p": [
+              "点击“下载”让 SnackeLoader 准备媒体文件。"
+            ]
+          },
+          {
+            "h3": "保存 MP4 文件",
+            "p": [
+              "下载视频并将其保存在您的设备上以供离线观看。"
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "您可以下载什么",
+        "ul": [
+          {
+            "h3": "推文视频",
+            "p": [
+              "下载附加到常规推文和 X 帖子上的视频。"
+            ]
+          },
+          {
+            "h3": "嵌入式视频",
+            "p": [
+              "保存从分享帖子中支持的嵌入媒体。"
+            ]
+          },
+          {
+            "h3": "MP4 输出",
+            "p": [
+              "使用该工具作为 Twitter 转 MP4 下载器，获得广泛的设备兼容性。"
+            ]
+          },
+          {
+            "h3": "无需登录",
+            "p": [
+              "无需登录或安装软件即可下载。"
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "为什么要使用 SnackeLoader？",
+        "p": [
+          "如果您需要一个<strong>快速的在线 Twitter 下载器</strong>，SnackeLoader 提供了简单的工作流程，并在不同设备上轻松访问。",
+          "它专为速度、便利和干净的用户体验而打造。"
+        ]
+      },
+      {
+        "h2": "常见问题",
+        "ul": [
+          {
+            "h3": "我可以从 X 下载视频吗？",
+            "p": [
+              "可以。SnackeLoader 支持 Twitter 和 X 视频链接。"
+            ]
+          },
+          {
+            "h3": "它是否将视频保存为 MP4？",
+            "p": [
+              "是的。支持 MP4 格式以便于播放。"
+            ]
+          },
+          {
+            "h3": "该下载器是免费的吗？",
+            "p": [
+              "是的。该服务完全免费。"
+            ]
+          },
+          {
+            "h3": "我需要安装软件吗？",
+            "p": [
+              "不需要。一切都在您的浏览器中在线运行。"
+            ]
+          },
+          {
+            "h3": "我可以在我的手机上使用它吗？",
+            "p": [
+              "可以。它支持手机和电脑设备。"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "seo": {
+    "title": "Trình tải MP3 Miễn phí Trực tuyến – SnackeLoader",
+    "description": "Sử dụng Trình tải MP3 SnackeLoader để chuyển đổi video sang MP3 trực tuyến miễn phí. Tải âm thanh từ YouTube, TikTok và các liên kết hỗ trợ khác một cách nhanh chóng và dễ dàng.",
+    "keywords": "tải mp3, chuyển video sang mp3, tải âm thanh, tải nhạc mp3 miễn phí, chuyển đổi mp3",
+    "schemaName": "SnackeLoader - Trình tải MP3",
+    "schemaDescription": "Trình tải MP3 và chuyển đổi âm thanh miễn phí. Chuyển video sang MP3 trực tuyến và tải file âm thanh nhanh chóng không cần cài đặt.",
+    "ogTitle": "Trình tải MP3 Miễn phí Trực tuyến – SnackeLoader",
+    "ogDescription": "Chuyển video sang MP3 trực tuyến miễn phí. Tải âm thanh nhanh chóng với công cụ dễ dàng."
+  },
+  "content": {
+    "form": {
+      "h1": "SnackeLoader – Trình tải MP3",
+      "placeholder": "Dán liên kết video hoặc âm thanh vào đây...",
+      "button": "Chuyển đổi"
+    },
+    "sections": [
+      {
+        "h2": "Trình tải MP3 SnackeLoader là gì?",
+        "p": [
+          "SnackeLoader là một <strong>trình tải MP3</strong> qua trình duyệt cho phép bạn <strong>chuyển đổi video sang MP3</strong> nhanh chóng và dễ dàng.",
+          "Nó hữu ích cho những người muốn lưu âm thanh từ các liên kết video được hỗ trợ mà không cần cài đặt phần mềm.",
+          "Quá trình này đơn giản, nhanh chóng và hoạt động trực tuyến 100%."
+        ]
+      },
+      {
+        "h2": "Cách chuyển đổi video sang MP3",
+        "ol": [
+          {
+            "h3": "Sao chép liên kết",
+            "p": [
+              "Sao chép URL của video hoặc âm thanh bạn muốn chuyển đổi."
+            ]
+          },
+          {
+            "h3": "Dán lên trên",
+            "p": [
+              "Dán liên kết vào ô nhập của công cụ chuyển đổi."
+            ]
+          },
+          {
+            "h3": "Bắt đầu chuyển đổi",
+            "p": [
+              "Nhấn Chuyển đổi và để công cụ xử lý tệp tin."
+            ]
+          },
+          {
+            "h3": "Tải xuống MP3",
+            "p": [
+              "Lưu file âm thanh vào điện thoại, máy tính bảng hoặc máy tính của bạn."
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "Tại sao nên dùng Trình tải MP3 của chúng tôi?",
+        "ul": [
+          {
+            "h3": "Chuyển đổi nhanh",
+            "p": [
+              "Chuyển đổi các liên kết sang MP3 chỉ trong vài giây."
+            ]
+          },
+          {
+            "h3": "Trực tuyến và miễn phí",
+            "p": [
+              "Dùng công cụ mà không cần trả phí hay tạo tài khoản."
+            ]
+          },
+          {
+            "h3": "Hỗ trợ nhiều thiết bị",
+            "p": [
+              "Hoạt động trên máy tính, Android, iPhone và máy tính bảng."
+            ]
+          },
+          {
+            "h3": "Tải âm thanh chất lượng",
+            "p": [
+              "Lưu file âm thanh để nghe ngoại tuyến mọi lúc mọi nơi."
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "Tải âm thanh chất lượng cao",
+        "p": [
+          "SnackeLoader được thiết kế dành cho người dùng muốn tìm <strong>công cụ tải âm thanh miễn phí</strong> dễ sử dụng và đáng tin cậy.",
+          "Nó giúp giữ quá trình tải và chuyển đổi thật đơn giản."
+        ]
+      },
+      {
+        "h2": "Câu hỏi thường gặp",
+        "ul": [
+          {
+            "h3": "Tôi có thể chuyển video sang MP3 trực tuyến không?",
+            "p": [
+              "Có. SnackeLoader hỗ trợ chuyển đổi video thành MP3 trực tuyến."
+            ]
+          },
+          {
+            "h3": "Trình tải MP3 có miễn phí không?",
+            "p": [
+              "Có. Nó hoàn toàn miễn phí."
+            ]
+          },
+          {
+            "h3": "Tôi có cần cài đặt phần mềm không?",
+            "p": [
+              "Không. Công cụ hoạt động trực tiếp trong trình duyệt của bạn."
+            ]
+          },
+          {
+            "h3": "Tôi có thể dùng trên điện thoại không?",
+            "p": [
+              "Có. SnackeLoader hỗ trợ hầu hết mọi trình duyệt di động hiện nay."
+            ]
+          },
+          {
+            "h3": "Có bị giới hạn không?",
+            "p": [
+              "Không có giới hạn cụ thể cho nhu cầu dùng thông thường."
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

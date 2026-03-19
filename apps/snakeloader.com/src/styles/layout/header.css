@@ -763,6 +763,10 @@
         width: 57px;
     }
 
+    .header-logo-text {
+        font-size: 34px;
+    }
+
     .header-nav {
         display: none;
     }

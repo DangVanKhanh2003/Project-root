@@ -1,0 +1,128 @@
+{
+  "seo": {
+    "title": "Ücretsiz Çevrimiçi Twitter Video İndirici – SnackeLoader",
+    "description": "Twitter ve X'ten videoları ücretsiz indirmek için SnackeLoader Twitter Video İndiricisini kullanın. Tweetleri, klipleri ve gömülü videoları hızla MP4 olarak kaydedin.",
+    "keywords": "twitter video indir, x video indirici, twitter'dan mp4'e, ücretsiz twitter video indir hd, twitter videosunu çevrimiçi filigransız kaydet, twitter gif indirici, twitter video kaydedici mp4",
+    "schemaName": "SnackeLoader - Twitter Video İndirici",
+    "schemaDescription": "Ücretsiz Twitter ve X video indirici. Tweetlerden ve gömülü gönderilerden videoları çevrimiçi olarak MP4 formatında, giriş yapmadan indirin.",
+    "ogTitle": "Ücretsiz Çevrimiçi Twitter Video İndirici – SnackeLoader",
+    "ogDescription": "Twitter ve X videolarını MP4 olarak çevrimiçi indirin. Hızlı, ücretsiz ve kullanımı kolay."
+  },
+  "content": {
+    "form": {
+      "h1": "SnackeLoader – Twitter Video İndirici",
+      "placeholder": "Twitter veya X bağlantısını buraya yapıştırın...",
+      "button": "İndir"
+    },
+    "sections": [
+      {
+        "h2": "SnackeLoader Twitter Video İndirici Nedir?",
+        "p": [
+          "SnackeLoader, <strong>Twitter videolarını</strong> ve X video gönderilerini çevrimiçi <strong>indirmenize</strong> yardımcı olan güvenilir bir <strong>Twitter video indiricisidir</strong>.",
+          "Tweet videolarını, klipleri ve gömülü medyayı MP4 gibi basit bir formatta kaydedebilirsiniz.",
+          "Tüm süreç, kurulum ve hesap gerektirmeden tamamen çevrimiçi çalışır."
+        ]
+      },
+      {
+        "h2": "Twitter veya X Videoları Nasıl İndirilir?",
+        "ol": [
+          {
+            "h3": "Tweet Bağlantısını Kopyalayın",
+            "p": [
+              "Tweeti veya X gönderisini açın ve URL'sini kopyalayın."
+            ]
+          },
+          {
+            "h3": "URL'yi Yapıştırın",
+            "p": [
+              "Bağlantıyı yukarıdaki kutuya yapıştırın."
+            ]
+          },
+          {
+            "h3": "Videoyu İşleyin",
+            "p": [
+              "SnackeLoader'ın medya dosyasını hazırlamasına izin vermek için İndir'e tıklayın."
+            ]
+          },
+          {
+            "h3": "MP4 Dosyasını Kaydedin",
+            "p": [
+              "Videoyu indirin ve çevrimdışı izlemek için cihazınızda saklayın."
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "Neler İndirebilirsiniz?",
+        "ul": [
+          {
+            "h3": "Tweet Videoları",
+            "p": [
+              "Normal tweetlere ve X gönderilerine eklenmiş videoları indirin."
+            ]
+          },
+          {
+            "h3": "Gömülü Videolar",
+            "p": [
+              "Paylaşılan gönderilerden desteklenen gömülü medyayı kaydedin."
+            ]
+          },
+          {
+            "h3": "MP4 Çıktısı",
+            "p": [
+              "Aracı, geniş cihaz uyumluluğu için bir Twitter'dan MP4'e indirici olarak kullanın."
+            ]
+          },
+          {
+            "h3": "Giriş Gerekmez",
+            "p": [
+              "Giriş yapmadan veya yazılım yüklemeden indirin."
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "Neden SnackeLoader'ı Kullanmalısınız?",
+        "p": [
+          "<strong>Hızlı bir çevrimiçi Twitter indiricisi</strong> istiyorsanız, SnackeLoader cihazlar arası basit bir iş akışı ve kolay erişim sunar.",
+          "Hız, kolaylık ve temiz bir kullanıcı deneyimi için tasarlanmıştır."
+        ]
+      },
+      {
+        "h2": "Sıkça Sorulan Sorular",
+        "ul": [
+          {
+            "h3": "X'ten video indirebilir miyim?",
+            "p": [
+              "Evet. SnackeLoader, Twitter ve X video bağlantılarıyla çalışır."
+            ]
+          },
+          {
+            "h3": "Videoları MP4 olarak kaydediyor mu?",
+            "p": [
+              "Evet. Kolay oynatma için MP4 desteklenmektedir."
+            ]
+          },
+          {
+            "h3": "İndirici ücretsiz mi?",
+            "p": [
+              "Evet. Hizmetin kullanımı ücretsizdir."
+            ]
+          },
+          {
+            "h3": "Yazılım yüklemem gerekiyor mu?",
+            "p": [
+              "Hayır. Her şey tarayıcınızda çevrimiçi çalışır."
+            ]
+          },
+          {
+            "h3": "Telefonumda kullanabilir miyim?",
+            "p": [
+              "Evet. Mobil ve masaüstü cihazlarda çalışır."
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
