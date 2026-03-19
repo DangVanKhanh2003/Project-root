@@ -26,7 +26,12 @@
     "supportedPlatforms": "Supported platforms:"
   },
   "footer": {
-    "copyright": "© 2026 SStube. All rights reserved."
+    "copyright": "© 2026 SStube. All rights reserved.",
+    "nav": {
+      "saveYoutubeAudio": "Save YouTube Audio",
+      "saveYoutubeShorts": "Save YouTube Shorts",
+      "saveYoutubeVideoHd": "Save YouTube Video HD"
+    }
   },
   "langSelector": {
     "buttonLabel": "Change language",

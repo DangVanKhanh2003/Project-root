@@ -3,6 +3,11 @@
 
 <footer>
     <div class="container">
+        <nav class="footer-nav" aria-label="Footer navigation">
+            <a href="{{ langPrefix }}/save-youtube-audio">{{ base.footer.nav.saveYoutubeAudio or 'Save YouTube Audio' }}</a>
+            <a href="{{ langPrefix }}/save-youtube-shorts">{{ base.footer.nav.saveYoutubeShorts or 'Save YouTube Shorts' }}</a>
+            <a href="{{ langPrefix }}/save-youtube-video-hd">{{ base.footer.nav.saveYoutubeVideoHd or 'Save YouTube Video HD' }}</a>
+        </nav>
         <div class="copyright">{{ base.footer.copyright }}</div>
     </div>
 </footer>
