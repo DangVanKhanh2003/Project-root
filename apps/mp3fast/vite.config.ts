@@ -4,6 +4,7 @@ import { readdirSync, existsSync, statSync } from 'fs';
 import { htmlRewritePlugin } from './vite-plugin-html-rewrite';
 import { movePagesPlugin } from './vite-plugin-move-pages';
 import { sitemapPlugin } from './vite-plugin-sitemap';
+import htmlMinifier from 'vite-plugin-html-minifier';
 
 const rootDir = resolve(__dirname);
 
@@ -89,7 +90,19 @@ export default defineConfig({
           next();
         });
       }
-    }
+    },
+    htmlMinifier({
+      minify: {
+        collapseWhitespace: true,
+        conservativeCollapse: true,
+        removeComments: true,
+        keepClosingSlash: true,
+        removeRedundantAttributes: false,
+        removeEmptyAttributes: false,
+        removeOptionalTags: false,
+        minifyJS: true
+      }
+    }),
   ],
   build: {
     outDir: 'dist',

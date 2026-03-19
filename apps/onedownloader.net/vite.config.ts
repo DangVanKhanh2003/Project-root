@@ -4,6 +4,7 @@ import { readdirSync, existsSync } from 'fs';
 import { htmlRewritePlugin } from './vite-plugin-html-rewrite';
 import { movePagesPlugin } from './vite-plugin-move-pages';
 import { sitemapPlugin } from './vite-plugin-sitemap';
+import htmlMinifier from 'vite-plugin-html-minifier';
 
 // Auto-detect all HTML pages from Eleventy output directory
 const excludedPageNames = new Set(['youtube-to-mp3', 'youtube-to-mp4', 'youtube-shorts-downloader']);
@@ -76,7 +77,19 @@ export default defineConfig({
   plugins: [
     htmlRewritePlugin(),
     movePagesPlugin(),
-    sitemapPlugin()
+    sitemapPlugin(),
+    htmlMinifier({
+      minify: {
+        collapseWhitespace: true,
+        conservativeCollapse: true,
+        removeComments: true,
+        keepClosingSlash: true,
+        removeRedundantAttributes: false,
+        removeEmptyAttributes: false,
+        removeOptionalTags: false,
+        minifyJS: true
+      }
+    }),
   ],
   build: {
     outDir: 'dist',
