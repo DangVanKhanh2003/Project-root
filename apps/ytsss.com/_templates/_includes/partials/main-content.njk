@@ -1,0 +1,48 @@
+<!-- MAIN CONTENT -->
+<section class="main-content">
+    <div class="container">
+            <div class=" main-content-card">
+        {% for section in page.content.sections %}
+        <div class="content-section">
+            <h2>{{ section.h2 }}</h2>
+
+            {# --- Simple paragraphs --- #}
+            {% if section.p %}
+                {% for para in section.p %}
+                <p>{{ para | safe }}</p>
+                {% endfor %}
+            {% endif %}
+
+            {# --- Ordered list (e.g. how-to steps) --- #}
+            {% if section.ol %}
+            <ol>
+                {% for item in section.ol %}
+                <li>
+                    <h3>{{ item.h3 }}</h3>
+                    {% for para in item.p %}
+                    <p>{{ para | safe }}</p>
+                    {% endfor %}
+                </li>
+                {% endfor %}
+            </ol>
+            {% endif %}
+
+            {# --- Unordered list (e.g. features, FAQs, comparisons) --- #}
+            {% if section.ul %}
+            <ul>
+                {% for item in section.ul %}
+                <li>
+                    <h3>{{ item.h3 }}</h3>
+                    {% for para in item.p %}
+                    <p>{{ para | safe }}</p>
+                    {% endfor %}
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+    </div>
+
+</section>

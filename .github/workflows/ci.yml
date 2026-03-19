@@ -29,6 +29,7 @@ on:
           - 'y2save.com'
           - 'tube1s.com'
           - 'snakeloader.com'
+          - 'ytsss.com'
 
 concurrency:
   group: ci-${{ github.repository }}-${{ github.ref }}
@@ -88,13 +89,15 @@ jobs:
               - 'apps/tube1s.com/**'
             snakeloader.com:
               - 'apps/snakeloader.com/**'
+            ytsss.com:
+              - 'apps/ytsss.com/**'
 
       - name: Determine apps to deploy
         id: determine-apps
         env:
           COMMIT_MSG: ${{ github.event.head_commit.message }}
         run: |
-          ALL_APPS='["y2matepro","y2matevc","mp3fast","ytmp3.my","4kvideopro","ssvid.cc","ezconv","ytmp4.gg","onedownloader.net","u2snap.com","convert1s.com","snap1s.com","y2save.com","tube1s.com","snakeloader.com"]'
+          ALL_APPS='["y2matepro","y2matevc","mp3fast","ytmp3.my","4kvideopro","ssvid.cc","ezconv","ytmp4.gg","onedownloader.net","u2snap.com","convert1s.com","snap1s.com","y2save.com","tube1s.com","snakeloader.com","ytsss.com"]'
 
           # Handle manual trigger with specific_app
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
@@ -216,6 +219,10 @@ jobs:
           if [[ "${{ steps.filter.outputs['snakeloader.com'] }}" == "true" ]]; then
             CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["snakeloader.com"]')
             echo "✅ snakeloader.com changed"
+          fi
+          if [[ "${{ steps.filter.outputs['ytsss.com'] }}" == "true" ]]; then
+            CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["ytsss.com"]')
+            echo "✅ ytsss.com changed"
           fi
 
           echo "📋 Changed apps: $CHANGED_APPS"
@@ -442,6 +449,20 @@ jobs:
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
+  deploy-ytsss-com:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'ytsss.com')
+    uses: ./.github/workflows/deploy-app.yml
+    with:
+      app_name: ytsss.com
+      app_directory: apps/ytsss.com
+      filter_path: ./apps/ytsss.com
+      domain: ${{ vars.YTSSS_DOMAIN || 'ytsss.com' }}
+    secrets:
+      SSH_HOST: ${{ secrets.SSH_HOST }}
+      SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
   # ============================================
   # Job 9: Summary
   # ============================================
@@ -463,6 +484,7 @@ jobs:
       - deploy-y2save-com
       - deploy-tube1s-com
       - deploy-snackeloader-com
+      - deploy-ytsss-com
     if: always()
     runs-on: ubuntu-latest
     steps:
@@ -492,3 +514,4 @@ jobs:
           echo "| y2save.com | ${{ needs.deploy-y2save-com.result || 'skipped' }} |"
           echo "| tube1s.com | ${{ needs.deploy-tube1s-com.result || 'skipped' }} |"
           echo "| snakeloader.com | ${{ needs.deploy-snackeloader-com.result || 'skipped' }} |"
+          echo "| ytsss.com | ${{ needs.deploy-ytsss-com.result || 'skipped' }} |"

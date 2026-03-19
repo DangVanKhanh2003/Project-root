@@ -1,0 +1,786 @@
+/* Header */
+.site-header {
+    position: relative;
+    z-index: 20;
+    background: var(--background-hero-section);
+    padding: 5px 0px;
+    display: flex;
+    justify-content: center;
+}
+
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 64px;
+}
+
+.header-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--header-control-color);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.header-logo-icon {
+    display: block;
+    width: 60px;
+    height: auto;
+    flex-shrink: 0;
+}
+
+
+
+.header-logo-text,
+.drawer-logo-text {
+    font-family: 'Fredoka SemiCondensed', sans-serif;
+    letter-spacing: 1px;
+}
+
+.header-logo-text {
+    font-size: 40px;
+    color: var(--logo-text-color);
+}
+
+@media (min-width: 768px) {
+    .header-logo-text {
+        font-size: 48px;
+    }
+}
+
+
+
+.header-nav {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.theme-toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--theme-toggle-border);
+    background: var(--theme-toggle-bg);
+    border-radius: 50%;
+    cursor: pointer;
+    color: var(--theme-toggle-color);
+    transition: background 0.2s, color 0.2s;
+    -webkit-tap-highlight-color: transparent;
+    flex-shrink: 0;
+    margin-left: 10px;
+}
+
+.theme-toggle-btn:hover {
+    background: var(--bg-hover);
+}
+
+.theme-toggle-btn:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.theme-toggle-icon {
+    display: block;
+    width: 18px;
+    height: 18px;
+}
+
+.icon-moon {
+    display: none;
+}
+
+[data-theme="dark"] .theme-toggle-btn .icon-sun {
+    display: none;
+}
+
+[data-theme="dark"] .theme-toggle-btn .icon-moon {
+    display: block;
+}
+
+.mobile-menu-btn {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 0;
+    background: transparent;
+    color: var(--header-control-color);
+    cursor: pointer;
+}
+
+.mobile-menu-bars {
+    position: relative;
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: currentColor;
+    border-radius: 2px;
+}
+
+.mobile-menu-bars::before,
+.mobile-menu-bars::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 22px;
+    height: 2px;
+    background: currentColor;
+    border-radius: 2px;
+}
+
+.mobile-menu-bars::before {
+    top: -7px;
+}
+
+.mobile-menu-bars::after {
+    top: 7px;
+}
+
+.mobile-drawer {
+    position: fixed;
+    inset: 0;
+    background: rgba(8, 8, 8, 0.55);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    z-index: 50;
+}
+
+.mobile-drawer.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.drawer-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: min(82vw, 320px);
+    background: var(--bg-card);
+    color: var(--text-body);
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    overflow: hidden;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+}
+
+.mobile-drawer.open .drawer-content {
+    transform: translateX(0);
+}
+
+.drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    background: var(--primary-color);
+    color: var(--color-white);
+}
+
+.drawer-scroll {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 6px 18px 18px;
+    overflow-y: auto;
+    flex: 1;
+    min-height: 0;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+    touch-action: pan-y;
+}
+
+.drawer-scroll>.theme-toggle-btn {
+    align-self: flex-start;
+    margin-left: 0;
+}
+
+.drawer-scroll>.theme-toggle-btn:hover {
+    background: var(--bg-hover);
+}
+
+.drawer-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-white);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.drawer-logo-icon {
+    display: block;
+    width: 42px;
+    height: auto;
+    flex-shrink: 0;
+}
+
+.drawer-close {
+    border: 0;
+    background: transparent;
+    color: var(--color-white);
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.drawer-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.drawer-link,
+.drawer-sublink {
+    color: var(--text-body);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.drawer-link:hover,
+.drawer-sublink:hover {
+    opacity: 0.85;
+}
+
+.drawer-lang-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.drawer-lang-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 8px;
+    padding: 10px 12px;
+    border: 1px solid var(--border-default);
+    border-radius: 10px;
+    background: var(--bg-surface-soft);
+    color: var(--text-body);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.drawer-lang-menu {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 12px;
+}
+
+.drawer-lang-selector.active .drawer-lang-menu {
+    display: flex;
+}
+
+.drawer-sublink.active {
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.header-link {
+    color: var(--header-control-color);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.header-link:hover {
+    color: var(--header-control-color);
+    opacity: 0.85;
+}
+
+.license-menu,
+.drawer-license-menu {
+    position: relative;
+}
+
+.license-menu {
+    display: flex;
+    align-items: center;
+}
+
+.drawer-license-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.license-button,
+.drawer-license-trigger,
+.drawer-license-reset,
+.drawer-license-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    border: 0;
+    cursor: pointer;
+    font: inherit;
+}
+
+.license-button {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--header-license-button-bg);
+    border: 1.5px solid var(--header-license-button-bg);
+    border-radius: 8px;
+    padding: 6px 10px;
+    color: var(--header-license-button-text);
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+    white-space: nowrap;
+}
+
+@media (min-width: 351px) {
+    .license-button {
+        font-size: 12px;
+        padding: 7px 12px;
+    }
+}
+
+@media (min-width: 840px) {
+
+    .license-button,
+    .lang-button {
+        font-size: 14px;
+        padding: 9px 16px;
+    }
+
+    .header-nav .license-button {
+        font-size: 13px;
+        padding: 8px 14px;
+        gap: 6px;
+        background: var(--header-license-button-bg);
+        color: var(--header-license-button-text);
+        border-color: var(--header-license-button-bg);
+        width: auto;
+    }
+}
+
+@media (min-width: 1920px) {
+
+    .license-button,
+    .lang-button {
+        font-size: 15px;
+        padding: 10px 18px;
+    }
+}
+
+.drawer-license-trigger {
+    gap: 8px;
+    width: max-content;
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--primary-color) 14%, transparent);
+    border: 1px solid color-mix(in srgb, var(--primary-color) 32%, rgba(20, 20, 20, 0.12));
+    color: var(--primary-color);
+    font-weight: 700;
+    line-height: 1;
+    transition: background 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+}
+
+.license-button:hover {
+    opacity: 1;
+    background: var(--license-hover-bg);
+    border-color: var(--license-hover-bg);
+    color: var(--header-license-button-text);
+}
+
+@media (min-width: 840px) {
+    .header-nav .license-button:hover {
+        background: var(--license-hover-bg);
+        border-color: var(--license-hover-bg);
+        color: var(--header-license-button-text);
+    }
+}
+
+.license-button.license-active,
+.header-nav .license-button.license-active {
+    background: var(--license-active-bg);
+    border-color: var(--license-active-bg);
+    color: var(--license-active-text);
+}
+
+.license-button.license-active .license-icon {
+    color: var(--header-license-button-icon);
+}
+
+.license-arrow {
+    flex-shrink: 0;
+    transition: transform 0.18s ease;
+}
+
+.license-button[aria-expanded="true"] .license-arrow,
+.drawer-license-trigger[aria-expanded="true"] .license-arrow {
+    transform: rotate(180deg);
+}
+
+.license-button.license-active:hover,
+.header-nav .license-button.license-active:hover {
+    background: var(--license-active-hover-bg);
+    border-color: var(--license-active-hover-bg);
+    color: var(--license-active-hover-text);
+}
+
+
+
+.drawer-license-trigger:hover {
+    color: var(--primary-color);
+    opacity: 1;
+    background: color-mix(in srgb, var(--primary-color) 22%, transparent);
+    border-color: color-mix(in srgb, var(--primary-color) 42%, rgba(20, 20, 20, 0.12));
+    transform: translateY(-1px);
+}
+
+.drawer-license-trigger:focus-visible,
+.license-button:focus-visible,
+.license-dropdown-item:focus-visible,
+.drawer-license-link:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--primary-color) 55%, white);
+    outline-offset: 2px;
+}
+
+.license-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.license-button .license-icon {
+    color: var(--header-license-button-icon);
+}
+
+.drawer-license-trigger .license-icon {
+    color: inherit;
+}
+
+.license-icon svg {
+    width: 16px;
+    height: 16px;
+}
+
+.license-dropdown {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 10px);
+    min-width: 220px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-default);
+    border-radius: 8px;
+    padding: 6px;
+    display: none;
+    z-index: 35;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.18);
+}
+
+.license-dropdown.open {
+    display: block;
+}
+
+.license-menu:focus-within .license-dropdown {
+    display: block;
+}
+
+.drawer-license-menu .license-dropdown {
+    position: static;
+    right: auto;
+    top: auto;
+    min-width: 0;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+}
+
+.license-dropdown-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    padding: 10px 12px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text-body);
+    text-decoration: none;
+    font: inherit;
+    cursor: pointer;
+}
+
+.license-dropdown-item:hover {
+    background: var(--bg-hover);
+}
+
+.license-dropdown-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    color: var(--primary-color);
+    flex-shrink: 0;
+}
+
+.license-dropdown-icon svg {
+    width: 16px;
+    height: 16px;
+}
+
+.drawer-license-actions {
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px;
+    margin-top: 10px;
+    align-self: stretch;
+}
+
+.license-dropdown.drawer-license-actions.open {
+    display: flex;
+    border: 1px solid var(--border-default);
+    border-radius: 14px;
+    background: var(--bg-surface-soft);
+}
+
+.drawer-license-menu:focus-within .drawer-license-actions {
+    display: flex;
+    border: 1px solid var(--border-default);
+    border-radius: 14px;
+    background: var(--bg-surface-soft);
+}
+
+.drawer-license-link {
+    color: var(--text-body);
+    font-weight: 500;
+}
+
+.drawer-license-menu .license-dropdown-item {
+    padding: 10px 12px;
+}
+
+/* ============================================================
+   Active license button state — shows days remaining / Lifetime
+   ============================================================ */
+
+/* Mobile: small active indicator on trigger */
+.drawer-license-trigger.license-active {
+    background: color-mix(in srgb, var(--license-status-color) 14%, transparent);
+    border-color: color-mix(in srgb, var(--license-status-color) 32%, rgba(20, 20, 20, 0.12));
+    color: var(--license-status-color);
+}
+
+/* Dropdown status header */
+.license-dropdown-status {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--license-status-color);
+    background: var(--license-status-bg);
+    border-bottom: 1px solid var(--license-status-border);
+    border-radius: 6px 6px 0 0;
+    margin: -6px -6px 4px -6px;
+    line-height: 1.3;
+}
+
+.license-status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--license-status-indicator);
+    flex-shrink: 0;
+    animation: license-dot-pulse 2s ease-in-out infinite;
+}
+
+@keyframes license-dot-pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.license-dropdown-status-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Mobile drawer status header */
+.drawer-license-actions .license-dropdown-status {
+    margin: -10px -10px 6px -10px;
+    border-radius: 14px 14px 0 0;
+    padding: 10px 14px;
+}
+
+.license-button.is-hidden,
+.license-menu.is-hidden,
+.drawer-license-menu.is-hidden {
+    display: none;
+}
+
+/* Ensure hidden attribute works (author CSS display:flex overrides UA hidden) */
+[data-license-button][hidden] {
+    display: none !important;
+}
+
+.lang-selector {
+    position: relative;
+}
+
+.lang-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 8px;
+    border: 0;
+    background: transparent;
+    color: var(--header-control-color);
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.lang-button:hover {
+    color: var(--header-control-color);
+    opacity: 0.85;
+}
+
+.lang-dropdown {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 8px);
+    min-width: 220px;
+    background: var(--bg-card);
+    color: var(--text-body);
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.18);
+    padding: 0;
+    display: none;
+    overflow: hidden;
+    z-index: 30;
+}
+
+.lang-selector.active .lang-dropdown {
+    display: block;
+}
+
+.lang-dropdown-scroll {
+    max-height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 8px;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+}
+
+.lang-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    color: inherit;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.lang-option:hover {
+    background: var(--bg-hover);
+}
+
+.lang-flag {
+    width: 18px;
+    height: 14px;
+    object-fit: cover;
+    border-radius: 2px;
+}
+
+.lang-arrow {
+    display: block;
+}
+
+.lang-dropdown-scroll::-webkit-scrollbar,
+.drawer-scroll::-webkit-scrollbar {
+    width: 4px;
+}
+
+.lang-dropdown-scroll::-webkit-scrollbar-thumb,
+.drawer-scroll::-webkit-scrollbar-thumb {
+    background: var(--border-default);
+    border-radius: 999px;
+}
+
+.lang-dropdown-scroll::-webkit-scrollbar-track,
+.drawer-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+@media (max-width: 640px) {
+    .header-inner {
+        flex-direction: row;
+        gap: 12px;
+        padding: 8px 0px;
+    }
+
+    .header-logo {
+        justify-content: flex-start;
+        font-size: 16px;
+    }
+
+    .header-logo-icon {
+        width: 57px;
+    }
+
+    .header-logo-text {
+        font-size: 34px;
+    }
+
+    .header-nav {
+        display: none;
+    }
+
+    .mobile-menu-btn {
+        display: inline-flex;
+    }
+
+    .lang-dropdown {
+        right: 0;
+        max-width: calc(100vw - 24px);
+    }
+
+    .lang-dropdown-scroll {
+        max-height: calc(100vh - 120px);
+    }
+}
