@@ -1,41 +1,4 @@
-# Clone Site Guide — Tạo site mới từ template trong monorepo
 
-Hướng dẫn cho AI tự động clone app `apps/onedownloader.net` thành site mới, rebrand, và cấu hình CI/CD.
-
----
-
-## Prompt — Copy & Paste
-
-Chỉ cần thay **1 link** data folder. AI sẽ tự lấy domain + brand từ tên folder.
-
-```
-Đọc file hướng dẫn F:\downloader\Project-root\docs\clone-new-site\CLONE-SITE-GUIDE.md và clone site mới.
-
-- Source template: F:\downloader\Project-root\apps\onedownloader.net
-- Data folder: C:\Users\khanh084\Downloads\{tên-site}\{tên-site}
-
-Lấy domain từ tên folder data (ví dụ folder "snakeloader.com" → domain là snakeloader.com).
-Tự suy ra brand name từ domain (ví dụ snakeloader.com → SnackeLoader).
-Target app: F:\downloader\Project-root\apps\{domain}
-
-Thực hiện đầy đủ theo CLONE-SITE-GUIDE.md. Thảo luận trước khi sửa GitHub workflows.
-```
-
-**Ví dụ — bạn chỉ paste đúng 1 dòng thay đổi:**
-```
-Đọc file hướng dẫn F:\downloader\Project-root\docs\clone-new-site\CLONE-SITE-GUIDE.md và clone site mới.
-
-- Source template: F:\downloader\Project-root\apps\onedownloader.net
-- Data folder: C:\Users\khanh084\Downloads\snakeloader.com\snakeloader.com
-
-Lấy domain từ tên folder data (ví dụ folder "snakeloader.com" → domain là snakeloader.com).
-Tự suy ra brand name từ domain (ví dụ snakeloader.com → SnackeLoader).
-Target app: F:\downloader\Project-root\apps\snakeloader.com
-
-Thực hiện đầy đủ theo CLONE-SITE-GUIDE.md. Thảo luận trước khi sửa GitHub workflows.
-```
-
----
 
 ## Bước 1: Copy và dọn dẹp
 
@@ -151,6 +114,43 @@ const replacements = [
 
 ---
 
+## Bước 3h: Thêm Navigation cho tool pages (NẾU có thêm tool pages từ data folder)
+
+Nếu data folder chứa thêm tool pages (ví dụ `save-youtube-audio/`, `save-youtube-shorts/`...), cần thêm navigation ở **3 nơi**:
+
+### 1. Footer (`_templates/_includes/footer.njk`)
+Thêm `<nav class="footer-nav">` với links đến các tool pages:
+```njk
+<nav class="footer-nav" aria-label="Footer navigation">
+    <a href="{{ langPrefix }}/save-youtube-audio">{{ base.footer.nav.saveYoutubeAudio or 'Save YouTube Audio' }}</a>
+    <!-- ... thêm các pages khác -->
+</nav>
+```
+
+### 2. Mobile Drawer (`_templates/_includes/header.njk`)
+Thêm drawer links trong `<nav class="drawer-nav">` sau link Home:
+```njk
+<a href="{{ langPrefix }}/save-youtube-audio" class="drawer-link">{{ base.drawer.links.saveYoutubeAudio or 'Save YouTube Audio' }}</a>
+```
+
+### 3. i18n data (`_templates/_data/i18n/en.json`)
+Thêm labels vào `nav`, `drawer.links`, và `footer.nav`:
+```json
+"nav": { "saveYoutubeAudio": "Save YouTube Audio" },
+"drawer": { "links": { "saveYoutubeAudio": "Save YouTube Audio" } },
+"footer": { "nav": { "saveYoutubeAudio": "Save YouTube Audio" } }
+```
+
+### 4. Footer CSS (`src/styles/layout/footer.css`)
+Đảm bảo có styles cho `.footer-nav`:
+```css
+.footer-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 20px; padding: 10px 0 0; }
+.footer-nav a { color: rgba(255, 255, 255, 0.85); text-decoration: none; font-size: 14px; }
+.footer-nav a:hover { color: #fff; text-decoration: underline; }
+```
+
+---
+
 ## KHÔNG SỬA (giữ nguyên)
 
 - `src/libs/firebase/firebase-config.ts` — dùng chung Firebase project
@@ -237,6 +237,7 @@ grep -ri "onedownloader" --include="*.ts" --include="*.json" --include="*.html" 
 - [ ] Rebrand: CSS comment headers
 - [ ] Rebrand: static HTML (404, license, reset-key)
 - [ ] Rebrand: rebrand.cjs
+- [ ] Thêm navigation: footer.njk, header.njk drawer, i18n/en.json, footer.css
 - [ ] Dọn dead links: i18n, header.njk, 404.html
 - [ ] Update vite.config.ts staticPages
 - [ ] Thêm vào ci.yml (6 chỗ) — **thảo luận trước**

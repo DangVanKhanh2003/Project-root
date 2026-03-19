@@ -1,0 +1,38 @@
+# Clone Site Guide — Tạo site mới từ template trong monorepo
+
+Hướng dẫn cho AI tự động clone app `apps/onedownloader.net` thành site mới, rebrand, và cấu hình CI/CD.
+
+---
+
+## Prompt — Copy & Paste
+
+Chỉ cần thay **1 link** data folder. AI sẽ tự lấy domain + brand từ tên folder.
+
+```
+Đọc file hướng dẫn F:\downloader\Project-root\docs\clone-new-site\CLONE-SITE-GUIDE.md và clone site mới.
+
+- Source template: F:\downloader\Project-root\apps\onedownloader.net
+- Data folder: C:\Users\khanh084\Downloads\{tên-site}\{tên-site}
+
+Lấy domain từ tên folder data (ví dụ folder "ytsss.com" → domain là ytsss.com).
+Tự suy ra brand name từ domain (ví dụ ytsss.com → YTSSS).
+Target app: F:\downloader\Project-root\apps\{domain}
+
+Thực hiện đầy đủ theo CLONE-SITE-GUIDE.md. Thảo luận trước khi sửa GitHub workflows.
+```
+
+**Ví dụ — bạn chỉ paste đúng 1 dòng thay đổi:**
+```
+Đọc file hướng dẫn F:\downloader\Project-root\docs\clone-new-site\CLONE-SITE-GUIDE.md và clone site mới.
+
+- Source template: F:\downloader\Project-root\apps\onedownloader.net
+- Data folder: C:\Users\khanh084\Downloads\ytsss.com\ytsss.com
+
+Lấy domain từ tên folder data (ví dụ folder "ytsss.com" → domain là ytsss.com).
+Tự suy ra brand name từ domain (ví dụ ytsss.com → YTSSS).
+Target app: F:\downloader\Project-root\apps\ytsss.com
+
+Thực hiện đầy đủ theo CLONE-SITE-GUIDE.md. Thảo luận trước khi sửa GitHub workflows.
+```
+
+---
