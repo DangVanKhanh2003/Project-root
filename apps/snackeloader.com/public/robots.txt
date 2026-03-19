@@ -1,6 +1,0 @@
-User-agent: *
-
-# Block API endpoints
-Disallow: /api/
-
-Sitemap: https://snackeloader.com/sitemap.xml

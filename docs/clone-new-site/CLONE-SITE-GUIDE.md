@@ -14,8 +14,8 @@ Chỉ cần thay **1 link** data folder. AI sẽ tự lấy domain + brand từ 
 - Source template: F:\downloader\Project-root\apps\onedownloader.net
 - Data folder: C:\Users\khanh084\Downloads\{tên-site}\{tên-site}
 
-Lấy domain từ tên folder data (ví dụ folder "snackeloader.com" → domain là snackeloader.com).
-Tự suy ra brand name từ domain (ví dụ snackeloader.com → SnackeLoader).
+Lấy domain từ tên folder data (ví dụ folder "snakeloader.com" → domain là snakeloader.com).
+Tự suy ra brand name từ domain (ví dụ snakeloader.com → SnackeLoader).
 Target app: F:\downloader\Project-root\apps\{domain}
 
 Thực hiện đầy đủ theo CLONE-SITE-GUIDE.md. Thảo luận trước khi sửa GitHub workflows.
@@ -26,11 +26,11 @@ Thực hiện đầy đủ theo CLONE-SITE-GUIDE.md. Thảo luận trước khi 
 Đọc file hướng dẫn F:\downloader\Project-root\docs\clone-new-site\CLONE-SITE-GUIDE.md và clone site mới.
 
 - Source template: F:\downloader\Project-root\apps\onedownloader.net
-- Data folder: C:\Users\khanh084\Downloads\snackeloader.com\snackeloader.com
+- Data folder: C:\Users\khanh084\Downloads\snakeloader.com\snakeloader.com
 
-Lấy domain từ tên folder data (ví dụ folder "snackeloader.com" → domain là snackeloader.com).
-Tự suy ra brand name từ domain (ví dụ snackeloader.com → SnackeLoader).
-Target app: F:\downloader\Project-root\apps\snackeloader.com
+Lấy domain từ tên folder data (ví dụ folder "snakeloader.com" → domain là snakeloader.com).
+Tự suy ra brand name từ domain (ví dụ snakeloader.com → SnackeLoader).
+Target app: F:\downloader\Project-root\apps\snakeloader.com
 
 Thực hiện đầy đủ theo CLONE-SITE-GUIDE.md. Thảo luận trước khi sửa GitHub workflows.
 ```

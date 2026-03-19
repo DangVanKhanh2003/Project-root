@@ -28,7 +28,7 @@ on:
           - 'snap1s.com'
           - 'y2save.com'
           - 'tube1s.com'
-          - 'snackeloader.com'
+          - 'snakeloader.com'
 
 concurrency:
   group: ci-${{ github.repository }}-${{ github.ref }}
@@ -86,15 +86,15 @@ jobs:
               - 'apps/y2save.com/**'
             tube1s.com:
               - 'apps/tube1s.com/**'
-            snackeloader.com:
-              - 'apps/snackeloader.com/**'
+            snakeloader.com:
+              - 'apps/snakeloader.com/**'
 
       - name: Determine apps to deploy
         id: determine-apps
         env:
           COMMIT_MSG: ${{ github.event.head_commit.message }}
         run: |
-          ALL_APPS='["y2matepro","y2matevc","mp3fast","ytmp3.my","4kvideopro","ssvid.cc","ezconv","ytmp4.gg","onedownloader.net","u2snap.com","convert1s.com","snap1s.com","y2save.com","tube1s.com","snackeloader.com"]'
+          ALL_APPS='["y2matepro","y2matevc","mp3fast","ytmp3.my","4kvideopro","ssvid.cc","ezconv","ytmp4.gg","onedownloader.net","u2snap.com","convert1s.com","snap1s.com","y2save.com","tube1s.com","snakeloader.com"]'
 
           # Handle manual trigger with specific_app
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
@@ -213,9 +213,9 @@ jobs:
             CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["tube1s.com"]')
             echo "✅ tube1s.com changed"
           fi
-          if [[ "${{ steps.filter.outputs['snackeloader.com'] }}" == "true" ]]; then
-            CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["snackeloader.com"]')
-            echo "✅ snackeloader.com changed"
+          if [[ "${{ steps.filter.outputs['snakeloader.com'] }}" == "true" ]]; then
+            CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["snakeloader.com"]')
+            echo "✅ snakeloader.com changed"
           fi
 
           echo "📋 Changed apps: $CHANGED_APPS"
@@ -430,13 +430,13 @@ jobs:
 
   deploy-snackeloader-com:
     needs: detect-changes
-    if: needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'snackeloader.com')
+    if: needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'snakeloader.com')
     uses: ./.github/workflows/deploy-app.yml
     with:
-      app_name: snackeloader.com
-      app_directory: apps/snackeloader.com
-      filter_path: ./apps/snackeloader.com
-      domain: ${{ vars.SNACKELOADER_DOMAIN || 'snackeloader.com' }}
+      app_name: snakeloader.com
+      app_directory: apps/snakeloader.com
+      filter_path: ./apps/snakeloader.com
+      domain: ${{ vars.SNACKELOADER_DOMAIN || 'snakeloader.com' }}
     secrets:
       SSH_HOST: ${{ secrets.SSH_HOST }}
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
@@ -491,4 +491,4 @@ jobs:
           echo "| snap1s.com | ${{ needs.deploy-snap1s-com.result || 'skipped' }} |"
           echo "| y2save.com | ${{ needs.deploy-y2save-com.result || 'skipped' }} |"
           echo "| tube1s.com | ${{ needs.deploy-tube1s-com.result || 'skipped' }} |"
-          echo "| snackeloader.com | ${{ needs.deploy-snackeloader-com.result || 'skipped' }} |"
+          echo "| snakeloader.com | ${{ needs.deploy-snackeloader-com.result || 'skipped' }} |"
