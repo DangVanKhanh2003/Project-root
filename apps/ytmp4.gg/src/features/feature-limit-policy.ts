@@ -13,7 +13,7 @@ import { FEATURE_KEYS } from '@downloader/core';
 // ============================================================
 
 /** Default maximum starts per day for non-license users. */
-export const DEFAULT_START_PER_DAY = 1;
+export const DEFAULT_START_PER_DAY = 50;
 
 // Multiple download limits
 export const MULTIPLE_MAX_ITEMS_ALLOWED = 10;
