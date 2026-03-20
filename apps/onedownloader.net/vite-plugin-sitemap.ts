@@ -45,8 +45,16 @@ export function sitemapPlugin(config: SitemapConfig = {}): Plugin {
         }
       }
 
+      // Collect HTML filenames from public/ directory to exclude them from sitemap
+      // (Vite copies public/ files to dist root, but they are not actual pages)
+      const publicDir = resolve(__dirname, 'public');
+      const publicHtmlFiles = new Set<string>();
+      if (existsSync(publicDir)) {
+        collectHtmlFiles(publicDir, publicDir).forEach(f => publicHtmlFiles.add(f));
+      }
+
       // Collect all HTML files from dist directory (final build output)
-      const htmlFiles = collectHtmlFiles(distDir, distDir);
+      const htmlFiles = collectHtmlFiles(distDir, distDir).filter(f => !publicHtmlFiles.has(f));
 
       if (htmlFiles.length === 0) {
         console.warn('[sitemap] No HTML files found in dist directory');

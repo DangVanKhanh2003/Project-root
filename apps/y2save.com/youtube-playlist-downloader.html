@@ -611,7 +611,7 @@
                         </div>
                         <script>(function () { try { var p = JSON.parse(localStorage.getItem('y2save_format_preferences')); if (!p) return; var f = p.selectedFormat; if (f === 'mp3' || f === 'mp4') { var btns = document.querySelectorAll('.multi-format-btn'); btns.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-format') === f) }) } var s = f === 'mp4' ? document.getElementById('multi-quality-select-mp4') : document.getElementById('multi-quality-select-mp3'); if (!s) return; var v; if (f === 'mp4') { var vq = (p.videoQuality || '720p').toLowerCase(); var m = vq.match(/^(webm|mkv)-(\d+)p$/); v = m ? (m[1] + '-' + m[2]) : ((vq === 'webm' || vq === 'mkv') ? (vq + '-720') : 'mp4-' + vq.replace('p', '')) } else { var af = (p.audioFormat || 'mp3').toLowerCase(); var ab = p.audioBitrate || '128'; v = af === 'mp3' ? ('mp3-' + ab) : af } s.value = v } catch (e) { } })()</script>
                         <button type="submit" id="fetchPlaylistBtn" class="multi-btn-convert" disabled>
-                            <span>Download Playlist</span>
+                            <span>Convert</span>
                         </button>
                     </div>
                 </div>

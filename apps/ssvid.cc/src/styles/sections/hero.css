@@ -22,7 +22,7 @@
     align-items: center;
     width: 100%;
     position: relative;
-    z-index: 2;
+    z-index: 200;
 }
 
 .logo-hero {

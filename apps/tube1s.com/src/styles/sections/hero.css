@@ -22,7 +22,7 @@
     width: 100%;
     max-width: var(--main-content-max-width-3xl);
     position: relative;
-    z-index: 2;
+    z-index: 200;
 }
 
 /* Header within Hero */
