@@ -21,7 +21,7 @@
 
     <!-- Critical: Read format preference before render to prevent FOUC (YTMP4) -->
     <script>
-        (function () { var f = 'mp4'; try { var p = JSON.parse(localStorage.getItem('ytmp4_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat } catch (e) { } document.documentElement.dataset.format = f; document.write('<style>html[data-format="mp3"] .quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4{display:block!important}</style>') })()
+        (function () { var f = 'mp4'; try { var p = JSON.parse(localStorage.getItem('ytmp4_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat } catch (e) { } document.documentElement.dataset.format = f; document.write('<style>html[data-format="mp3"] .quality-select--mp4{display:none}html[data-format="mp3"] .quality-select--mp3{display:block}html[data-format="mp4"] .quality-select--mp3{display:none}html[data-format="mp4"] .quality-select--mp4{display:block}</style>') })()
     </script>
 
 

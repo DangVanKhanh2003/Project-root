@@ -414,11 +414,7 @@
 }
 
 html[data-format="mp3"] .multi-quality-dropdown-wrapper .multi-video-group-dropdown {
-    display: none !important;
-}
-
-html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropdown {
-    display: block !important;
+    display: none;
 }
 
 /* Convert Button */
@@ -448,13 +444,21 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
     transform: scale(0.98);
 }
 
-/* Format Switching Logic Helpers (Optional if JS toggles display) */
+/* Format Switching — matches format-selector.css pattern (no !important) */
 .multi-quality-select--mp4 {
-    display: none;
+    display: block;
 }
 
 .multi-quality-select--mp3 {
     display: none;
+}
+
+html[data-format="mp3"] .multi-quality-select--mp4 {
+    display: none;
+}
+
+html[data-format="mp3"] .multi-quality-select--mp3 {
+    display: block;
 }
 
 /* Audio Dropdown - reuse base styles from dropdown.css */

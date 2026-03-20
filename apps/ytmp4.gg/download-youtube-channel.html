@@ -20,7 +20,6 @@
     <meta property="og:url" content="https://ytmp4.gg/download-youtube-channel">
     <meta property="og:title" content="Download Entire YouTube Channel | YTMP4">
     <meta property="og:description" content="Download all videos from a YouTube channel online using YTMP4.">
-    <meta property="og:image" content="https://ytmp4.gglogo.png">
     <meta property="og:image:alt" content="Download Entire YouTube Channel | YTMP4">
     <meta property="og:locale" content="en_US">
 
@@ -29,7 +28,7 @@
     <meta name="twitter:url" content="https://ytmp4.gg/download-youtube-channel">
     <meta name="twitter:title" content="Download Entire YouTube Channel | YTMP4">
     <meta name="twitter:description" content="Download all videos from a YouTube channel online using YTMP4.">
-    <meta name="twitter:image" content="https://ytmp4.gglogo.png">
+
 
     <!-- Favicon -->
     <link rel="icon" href="/favicon.ico" sizes="any">
@@ -81,7 +80,7 @@
             } catch (e) { }
 
             document.documentElement.dataset.format = f;
-            document.write('<style>html[data-format="mp3"] .quality-select--mp4,html[data-format="mp3"] .multi-quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3,html[data-format="mp3"] .multi-quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3,html[data-format="mp4"] .multi-quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4,html[data-format="mp4"] .multi-quality-select--mp4{display:block!important}html[data-format="mp4"] .quality-select--mp4.quality-select--native-hidden,html[data-format="mp4"] .multi-quality-select--mp4.quality-select--native-hidden{display:none!important}</style>');
+            document.write('<style>html[data-format="mp3"] .quality-select--mp4,html[data-format="mp3"] .multi-quality-select--mp4{display:none}html[data-format="mp3"] .quality-select--mp3,html[data-format="mp3"] .multi-quality-select--mp3{display:block}html[data-format="mp4"] .quality-select--mp3,html[data-format="mp4"] .multi-quality-select--mp3{display:none}html[data-format="mp4"] .quality-select--mp4,html[data-format="mp4"] .multi-quality-select--mp4{display:block}</style>');
         })();
     </script>
 
@@ -372,7 +371,7 @@
                             <div class="multi-quality-dropdown-wrapper">
                                 <select id="multi-quality-select-mp3"
                                     class="multi-quality-select multi-quality-select--mp3"
-                                    aria-label="Audio quality" data-quality-select style="display: none;">
+                                    aria-label="Audio quality" data-quality-select>
                                     <option value="mp3-320">MP3 - 320kbps</option>
                                     <option value="mp3-192">MP3 - 192kbps</option>
                                     <option value="mp3-128" selected>MP3 - 128kbps</option>
