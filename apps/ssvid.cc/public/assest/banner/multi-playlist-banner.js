@@ -28,7 +28,7 @@ const BANNER_STYLES = `
     width: 100%;
     min-height: 16rem;
     border-radius: 1.5rem;
-    background: linear-gradient(to right, #dbeafe, #eef2ff, #dbeafe);
+    background: linear-gradient(to right, #DDE8F3, #EBF0F7, #DDE8F3);
     position: relative;
     overflow: hidden;
     display: flex;
@@ -64,7 +64,7 @@ const BANNER_STYLES = `
   .mp-banner-badge {
     display: inline-block;
     padding: 0.25rem 0.75rem;
-    background-color: #4f46e5;
+    background-color: #004fab;
     border-radius: 9999px;
     font-size: 10px;
     font-weight: 700;
@@ -79,7 +79,7 @@ const BANNER_STYLES = `
     font-weight: 800;
     margin-bottom: 0.5rem;
     line-height: 1;
-    color: #0f172a;
+    color: #2F2F2F;
   }
 
   @media (min-width: 768px) {
@@ -89,11 +89,11 @@ const BANNER_STYLES = `
   }
 
   .mp-banner-title-highlight {
-    color: #4f46e5;
+    color: #004fab;
   }
 
   .mp-banner-description {
-    color: #475569;
+    color: #5C5C5C;
     font-size: 0.875rem;
     font-weight: 500;
     line-height: 1;
@@ -133,7 +133,7 @@ const BANNER_STYLES = `
     border-radius: 9999px;
     border: 2px solid white;
     background-color: white;
-    color: #475569;
+    color: #5C5C5C;
     font-size: 10px;
     display: flex;
     align-items: center;
@@ -160,13 +160,13 @@ const BANNER_STYLES = `
   .mp-banner-rating-value {
     font-size: 0.875rem;
     font-weight: 700;
-    color: #0f172a;
+    color: #2F2F2F;
   }
 
   .mp-banner-rating-label {
     font-size: 10px;
     font-weight: 600;
-    color: #64748b;
+    color: #9B9B9B;
   }
 
   .mp-banner-right {
@@ -207,17 +207,17 @@ const BANNER_STYLES = `
 
   .mp-banner-card-white {
     background-color: white;
-    border: 1px solid rgba(226, 232, 240, 0.6);
+    border: 1px solid rgba(227, 224, 218, 0.6);
   }
 
   .mp-banner-card-white:hover {
-    border-color: #c7d2fe;
+    border-color: #B3CCE6;
     transform: translateY(-2px);
   }
 
   .mp-banner-card-indigo {
-    background-color: #4f46e5;
-    border: 1px solid #6366f1;
+    background-color: #004fab;
+    border: 1px solid #5B9BD5;
   }
 
   .mp-banner-card-indigo:hover {
@@ -233,11 +233,11 @@ const BANNER_STYLES = `
   }
 
   .mp-banner-card-white .mp-banner-card-icon {
-    background-color: #f1f5f9;
+    background-color: #EBE7E0;
   }
 
   .mp-banner-card-white:hover .mp-banner-card-icon {
-    background-color: #eef2ff;
+    background-color: #EBF2FA;
   }
 
   .mp-banner-card-indigo .mp-banner-card-icon {
@@ -251,7 +251,7 @@ const BANNER_STYLES = `
   }
 
   .mp-banner-card-white .mp-banner-card-icon svg {
-    color: #4f46e5;
+    color: #004fab;
   }
 
   .mp-banner-card-indigo .mp-banner-card-icon svg {
@@ -277,11 +277,11 @@ const BANNER_STYLES = `
   }
 
   .mp-banner-card-white .mp-banner-card-title {
-    color: #0f172a;
+    color: #2F2F2F;
   }
 
   .mp-banner-card-white:hover .mp-banner-card-title {
-    color: #4338ca;
+    color: #003f8a;
   }
 
   .mp-banner-card-indigo .mp-banner-card-title {
@@ -295,11 +295,11 @@ const BANNER_STYLES = `
   }
 
   .mp-banner-card-white .mp-banner-card-subtitle {
-    color: #64748b;
+    color: #9B9B9B;
   }
 
   .mp-banner-card-indigo .mp-banner-card-subtitle {
-    color: #c7d2fe;
+    color: #5B9BD5;
   }
 
   .mp-banner-card-arrow {
@@ -314,7 +314,7 @@ const BANNER_STYLES = `
   }
 
   .mp-banner-card-white:hover .mp-banner-card-arrow {
-    background-color: #eef2ff;
+    background-color: #EBF2FA;
   }
 
   .mp-banner-card-indigo .mp-banner-card-arrow {
@@ -331,15 +331,96 @@ const BANNER_STYLES = `
   }
 
   .mp-banner-card-white .mp-banner-card-arrow svg {
-    color: #94a3b8;
+    color: #9B9B9B;
   }
 
   .mp-banner-card-white:hover .mp-banner-card-arrow svg {
-    color: #4f46e5;
+    color: #004fab;
   }
 
   .mp-banner-card-indigo .mp-banner-card-arrow svg {
-    color: #c7d2fe;
+    color: #5B9BD5;
+  }
+
+  /* ===== Dark Theme ===== */
+  :root[data-theme="dark"] .mp-banner-content {
+    background: linear-gradient(to right, #2E2C2A, #333130, #2E2C2A);
+    border-color: rgba(255, 255, 255, 0.06);
+  }
+
+  :root[data-theme="dark"] .mp-banner-title {
+    color: #E8E6E3;
+  }
+
+  :root[data-theme="dark"] .mp-banner-title-highlight {
+    color: #5B9BD5;
+  }
+
+  :root[data-theme="dark"] .mp-banner-description {
+    color: #C9C7C2;
+  }
+
+  :root[data-theme="dark"] .mp-banner-avatar {
+    border-color: #383836;
+  }
+
+  :root[data-theme="dark"] .mp-banner-avatar-count {
+    border-color: #383836;
+    background-color: #383836;
+    color: #C9C7C2;
+  }
+
+  :root[data-theme="dark"] .mp-banner-rating-value {
+    color: #E8E6E3;
+  }
+
+  :root[data-theme="dark"] .mp-banner-rating-label {
+    color: #8A8884;
+  }
+
+  :root[data-theme="dark"] .mp-banner-card-white {
+    background-color: #30302E;
+    border-color: #4A4A48;
+  }
+
+  :root[data-theme="dark"] .mp-banner-card-white:hover {
+    border-color: rgba(0, 79, 171, 0.4);
+  }
+
+  :root[data-theme="dark"] .mp-banner-card-white .mp-banner-card-icon {
+    background-color: #383836;
+  }
+
+  :root[data-theme="dark"] .mp-banner-card-white:hover .mp-banner-card-icon {
+    background-color: rgba(0, 79, 171, 0.15);
+  }
+
+  :root[data-theme="dark"] .mp-banner-card-white .mp-banner-card-icon svg {
+    color: #5B9BD5;
+  }
+
+  :root[data-theme="dark"] .mp-banner-card-white .mp-banner-card-title {
+    color: #E8E6E3;
+  }
+
+  :root[data-theme="dark"] .mp-banner-card-white:hover .mp-banner-card-title {
+    color: #5B9BD5;
+  }
+
+  :root[data-theme="dark"] .mp-banner-card-white .mp-banner-card-subtitle {
+    color: #8A8884;
+  }
+
+  :root[data-theme="dark"] .mp-banner-card-white .mp-banner-card-arrow svg {
+    color: #8A8884;
+  }
+
+  :root[data-theme="dark"] .mp-banner-card-white:hover .mp-banner-card-arrow svg {
+    color: #5B9BD5;
+  }
+
+  :root[data-theme="dark"] .mp-banner-card-white:hover .mp-banner-card-arrow {
+    background-color: rgba(0, 79, 171, 0.12);
   }
 `;
 
@@ -400,7 +481,7 @@ const BANNER_HTML = `
       </a>
 
       <!-- Card 2: Download Playlist -->
-      <a href="/download-mp3-youtube-playlist" class="mp-banner-card mp-banner-card-indigo mp-banner-link-playlist">
+      <a href="/download-mp3-youtube-playlist" class="mp-banner-card mp-banner-card-white mp-banner-link-playlist">
         <div class="mp-banner-card-icon">
           <svg viewBox="0 0 24 24" fill="currentColor">
             <path d="M15 6H3V8H15V6ZM15 10H3V12H15V10ZM3 16H11V14H3V16ZM17 6V14.18C16.69 14.07 16.35 14 16 14C14.34 14 13 15.34 13 17C13 18.66 14.34 20 16 20C17.66 20 19 18.66 19 17V8H22V6H17Z" />
