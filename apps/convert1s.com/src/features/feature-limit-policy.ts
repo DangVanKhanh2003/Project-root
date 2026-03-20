@@ -30,6 +30,12 @@ export const CHANNEL_MAX_ITEMS_ALLOWED = 30;
 export const CHANNEL_MAX_ITEMS_FALLBACK = 15;
 export const CHANNEL_START_PER_DAY = DEFAULT_START_PER_DAY;
 
+// High quality / cut limits (start-per-day only, no item tiers)
+export const HIGH_QUALITY_4K_START_PER_DAY = 20;
+export const HIGH_QUALITY_2K_START_PER_DAY = 20;
+export const HIGH_QUALITY_320K_START_PER_DAY = 20;
+export const CUT_VIDEO_START_PER_DAY = 200;
+
 // ============================================================
 // POLICY MAP
 // ============================================================
@@ -72,6 +78,18 @@ const FEATURE_LIMIT_POLICY: Readonly<Record<string, FeaturePolicy>> = {
             allowed: CHANNEL_MAX_ITEMS_ALLOWED,
             fallback: CHANNEL_MAX_ITEMS_FALLBACK,
         },
+    },
+    [FEATURE_KEYS.HIGH_QUALITY_4K]: {
+        startPerDay: HIGH_QUALITY_4K_START_PER_DAY,
+    },
+    [FEATURE_KEYS.HIGH_QUALITY_2K]: {
+        startPerDay: HIGH_QUALITY_2K_START_PER_DAY,
+    },
+    [FEATURE_KEYS.HIGH_QUALITY_320K]: {
+        startPerDay: HIGH_QUALITY_320K_START_PER_DAY,
+    },
+    [FEATURE_KEYS.CUT_VIDEO_YOUTUBE]: {
+        startPerDay: CUT_VIDEO_START_PER_DAY,
     },
 };
 
