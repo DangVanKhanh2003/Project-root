@@ -100,7 +100,7 @@ eleventyComputed:
         {% for faq in page.faqs.items %}
         <div class="faq-item">
             <h3>{{ faq.question }}</h3>
-            <p>{{ faq.answer | safe }}</p>
+            <p>{{ faq.answer | localizeLinks(langPrefix) | safe }}</p>
         </div>
         {% endfor %}
     </div>

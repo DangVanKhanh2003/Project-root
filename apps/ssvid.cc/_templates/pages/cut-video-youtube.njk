@@ -75,13 +75,13 @@ bodyDataPage: strim-downloader
 <section class="content-section content-section--white">
     <div class="container">
         <h2 class="titles">{{ page.content.intro2.title }}</h2>
-        <p>{{ page.content.intro2.description | safe }}</p>
+        <p>{{ page.content.intro2.description | localizeLinks(langPrefix) | safe }}</p>
 
         <h2 class="titles">{{ page.content.whyDownload.title }}</h2>
-        <p>{{ page.content.whyDownload.description | safe }}</p>
+        <p>{{ page.content.whyDownload.description | localizeLinks(langPrefix) | safe }}</p>
 
         <h2 class="titles">{{ page.content.quality.title }}</h2>
-        <p>{{ page.content.quality.description | safe }}</p>
+        <p>{{ page.content.quality.description | localizeLinks(langPrefix) | safe }}</p>
     </div>
 </section>
 
@@ -92,14 +92,14 @@ bodyDataPage: strim-downloader
         {% for section in page.content.comparison.sections %}
         <div class="subsection">
             <h3>{{ section.title }}</h3>
-            <p>{{ section.description | safe }}</p>
+            <p>{{ section.description | localizeLinks(langPrefix) | safe }}</p>
         </div>
         {% endfor %}
 
         <div class="subsection">
             <h3>{{ page.content.useCases.title }}</h3>
             {% for item in page.content.useCases.items %}
-            <p><strong>{{ item.title }}:</strong> {{ item.description | safe }}</p>
+            <p><strong>{{ item.title }}:</strong> {{ item.description | localizeLinks(langPrefix) | safe }}</p>
             {% endfor %}
         </div>
     </div>
@@ -112,7 +112,7 @@ bodyDataPage: strim-downloader
         {% for faq in page.faqs.items %}
         <div class="faq-item">
             <h3>{{ faq.question }}</h3>
-            <p>{{ faq.answer | safe }}</p>
+            <p>{{ faq.answer | localizeLinks(langPrefix) | safe }}</p>
         </div>
         {% endfor %}
     </div>

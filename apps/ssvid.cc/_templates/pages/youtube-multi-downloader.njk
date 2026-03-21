@@ -159,7 +159,7 @@ eleventyComputed:
                 <span>{{ base.overview.badge }}</span>
             </div>
             <h2 class="overview-title">{{ page.content.intro.title }}</h2>
-            <p class="overview-desc">{{ page.content.intro.description | safe }}</p>
+            <p class="overview-desc">{{ page.content.intro.description | localizeLinks(langPrefix) | safe }}</p>
         </div>
 
         <div class="overview-steps-card">
@@ -183,10 +183,10 @@ eleventyComputed:
 <section class="content-section content-section--white">
     <div class="container">
         <h2 class="titles">{{ page.content.whyUse.title }}</h2>
-        <p>{{ page.content.whyUse.description | safe }}</p>
+        <p>{{ page.content.whyUse.description | localizeLinks(langPrefix) | safe }}</p>
 
         <h2 class="titles">{{ page.content.supportedFormats.title }}</h2>
-        <p>{{ page.content.supportedFormats.description | safe }}</p>
+        <p>{{ page.content.supportedFormats.description | localizeLinks(langPrefix) | safe }}</p>
 
         <h2 class="titles">{{ page.content.comparison.title }}</h2>
         {% for section in page.content.comparison.items %}
@@ -200,7 +200,7 @@ eleventyComputed:
         {% for section in page.content.whenUse.items %}
         <div class="subsection">
             <h3>{{ section.title }}</h3>
-            <p>{{ section.description | safe }}</p>
+            <p>{{ section.description | localizeLinks(langPrefix) | safe }}</p>
         </div>
         {% endfor %}
     </div>
@@ -213,7 +213,7 @@ eleventyComputed:
         {% for faq in page.faqs.items %}
         <div class="faq-item">
             <h3>{{ faq.question }}</h3>
-            <p>{{ faq.answer | safe }}</p>
+            <p>{{ faq.answer | localizeLinks(langPrefix) | safe }}</p>
         </div>
         {% endfor %}
     </div>

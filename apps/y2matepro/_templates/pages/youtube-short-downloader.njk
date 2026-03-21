@@ -81,7 +81,7 @@ eleventyComputed:
             <h3>{{ page.instructions.title }}</h3>
             <ol>
                 {% for step in page.instructions.steps %}
-                <li>{{ step | safe }}</li>
+                <li>{{ step | localizeLinks(langPrefix) | safe }}</li>
                 {% endfor %}
             </ol>
         </div>
@@ -89,7 +89,7 @@ eleventyComputed:
             <h3>{{ page.whyChoose.title }}</h3>
             <ul>
                 {% for reason in page.whyChoose.reasons %}
-                <li>{{ reason | safe }}</li>
+                <li>{{ reason | localizeLinks(langPrefix) | safe }}</li>
                 {% endfor %}
             </ul>
         </div>
@@ -188,7 +188,7 @@ eleventyComputed:
             <div class="guide-data">
                 {% for faq in page.faqs.items %}
                 <h3>{{ faq.question }}</h3>
-                <p>{{ faq.answer | safe }}</p>
+                <p>{{ faq.answer | localizeLinks(langPrefix) | safe }}</p>
                 {% endfor %}
             </div>
         </div>

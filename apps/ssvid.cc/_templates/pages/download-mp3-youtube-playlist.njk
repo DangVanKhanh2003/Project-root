@@ -176,7 +176,7 @@ pageScript: "/src/playlist-downloader-main.ts"
                 <span>{{ base.overview.badge }}</span>
             </div>
             <h2 class="overview-title">{{ page.content.intro.title }}</h2>
-            <p class="overview-desc">{{ page.content.intro.description | safe }}</p>
+            <p class="overview-desc">{{ page.content.intro.description | localizeLinks(langPrefix) | safe }}</p>
         </div>
 
         <div class="overview-steps-card">
@@ -201,14 +201,14 @@ pageScript: "/src/playlist-downloader-main.ts"
     <div class="container">
         {% if page.content.columns and page.content.columns.length > 1 %}
         <h2 class="titles">{{ page.content.columns[1].title }}</h2>
-        <p>{{ page.content.columns[1].description | safe }}</p>
+        <p>{{ page.content.columns[1].description | localizeLinks(langPrefix) | safe }}</p>
         {% endif %}
 
         <h2 class="titles">{{ page.content.whyDownload.title }}</h2>
-        <p>{{ page.content.whyDownload.description | safe }}</p>
+        <p>{{ page.content.whyDownload.description | localizeLinks(langPrefix) | safe }}</p>
 
         <h2 class="titles">{{ page.content.quality.title }}</h2>
-        <p>{{ page.content.quality.description | safe }}</p>
+        <p>{{ page.content.quality.description | localizeLinks(langPrefix) | safe }}</p>
 
         <h2 class="titles">{{ page.content.comparison.title }}</h2>
         {% for section in page.content.comparison.sections %}
@@ -222,7 +222,7 @@ pageScript: "/src/playlist-downloader-main.ts"
         {% for item in page.content.useCases.items %}
         <div class="subsection">
             <h3>{{ item.title }}</h3>
-            <p>{{ item.description | safe }}</p>
+            <p>{{ item.description | localizeLinks(langPrefix) | safe }}</p>
         </div>
         {% endfor %}
     </div>
@@ -235,7 +235,7 @@ pageScript: "/src/playlist-downloader-main.ts"
         {% for faq in page.faqs.items %}
         <div class="faq-item">
             <h3>{{ faq.question }}</h3>
-            <p>{{ faq.answer | safe }}</p>
+            <p>{{ faq.answer | localizeLinks(langPrefix) | safe }}</p>
         </div>
         {% endfor %}
     </div>

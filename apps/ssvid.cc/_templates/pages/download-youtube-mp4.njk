@@ -89,7 +89,7 @@ eleventyComputed:
         <p style="text-align: center;">{{ page.whyDownload.description }}</p>
         <br><br>
         <h2 class="titles">{{ page.qualityOptions.title }}</h2>
-        <p style="text-align: center;">{{ page.qualityOptions.description | safe }}</p>
+        <p style="text-align: center;">{{ page.qualityOptions.description | localizeLinks(langPrefix) | safe }}</p>
     </div>
 </section>
 
