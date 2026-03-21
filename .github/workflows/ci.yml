@@ -244,7 +244,7 @@ jobs:
           fi
 
   # ============================================
-  # Job 2-7: Deploy apps (parallel)
+  # Wave 1: Deploy apps (max 5 parallel per wave)
   # ============================================
   deploy-y2matepro:
     needs: detect-changes
@@ -316,9 +316,12 @@ jobs:
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
+  # ============================================
+  # Wave 2: Waits for Wave 1 to finish
+  # ============================================
   deploy-ssvid-cc:
-    needs: detect-changes
-    if: needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'ssvid.cc')
+    needs: [detect-changes, deploy-y2matepro, deploy-y2matevc, deploy-mp3fast, deploy-ytmp3-my, deploy-4kvideopro]
+    if: ${{ !cancelled() && needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'ssvid.cc') }}
     uses: ./.github/workflows/deploy-app.yml
     with:
       app_name: ssvid.cc
@@ -331,8 +334,8 @@ jobs:
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
   deploy-ezconv:
-    needs: detect-changes
-    if: needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'ezconv')
+    needs: [detect-changes, deploy-y2matepro, deploy-y2matevc, deploy-mp3fast, deploy-ytmp3-my, deploy-4kvideopro]
+    if: ${{ !cancelled() && needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'ezconv') }}
     uses: ./.github/workflows/deploy-app.yml
     with:
       app_name: ezconv
@@ -345,8 +348,8 @@ jobs:
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
   deploy-ytmp4-gg:
-    needs: detect-changes
-    if: needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'ytmp4.gg')
+    needs: [detect-changes, deploy-y2matepro, deploy-y2matevc, deploy-mp3fast, deploy-ytmp3-my, deploy-4kvideopro]
+    if: ${{ !cancelled() && needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'ytmp4.gg') }}
     uses: ./.github/workflows/deploy-app.yml
     with:
       app_name: ytmp4.gg
@@ -359,8 +362,8 @@ jobs:
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
   deploy-onedownloader-net:
-    needs: detect-changes
-    if: needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'onedownloader.net')
+    needs: [detect-changes, deploy-y2matepro, deploy-y2matevc, deploy-mp3fast, deploy-ytmp3-my, deploy-4kvideopro]
+    if: ${{ !cancelled() && needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'onedownloader.net') }}
     uses: ./.github/workflows/deploy-app.yml
     with:
       app_name: onedownloader.net
@@ -373,8 +376,8 @@ jobs:
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
   deploy-u2snap-com:
-    needs: detect-changes
-    if: needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'u2snap.com')
+    needs: [detect-changes, deploy-y2matepro, deploy-y2matevc, deploy-mp3fast, deploy-ytmp3-my, deploy-4kvideopro]
+    if: ${{ !cancelled() && needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'u2snap.com') }}
     uses: ./.github/workflows/deploy-app.yml
     with:
       app_name: u2snap.com
@@ -386,9 +389,12 @@ jobs:
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
+  # ============================================
+  # Wave 3: Waits for Wave 2 to finish
+  # ============================================
   deploy-convert1s-com:
-    needs: detect-changes
-    if: needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'convert1s.com')
+    needs: [detect-changes, deploy-ssvid-cc, deploy-ezconv, deploy-ytmp4-gg, deploy-onedownloader-net, deploy-u2snap-com]
+    if: ${{ !cancelled() && needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'convert1s.com') }}
     uses: ./.github/workflows/deploy-app.yml
     with:
       app_name: convert1s.com
@@ -401,8 +407,8 @@ jobs:
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
   deploy-snap1s-com:
-    needs: detect-changes
-    if: needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'snap1s.com')
+    needs: [detect-changes, deploy-ssvid-cc, deploy-ezconv, deploy-ytmp4-gg, deploy-onedownloader-net, deploy-u2snap-com]
+    if: ${{ !cancelled() && needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'snap1s.com') }}
     uses: ./.github/workflows/deploy-app.yml
     with:
       app_name: snap1s.com
@@ -415,8 +421,8 @@ jobs:
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
   deploy-tube1s-com:
-    needs: detect-changes
-    if: needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'tube1s.com')
+    needs: [detect-changes, deploy-ssvid-cc, deploy-ezconv, deploy-ytmp4-gg, deploy-onedownloader-net, deploy-u2snap-com]
+    if: ${{ !cancelled() && needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'tube1s.com') }}
     uses: ./.github/workflows/deploy-app.yml
     with:
       app_name: tube1s.com
@@ -429,8 +435,8 @@ jobs:
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
   deploy-y2save-com:
-    needs: detect-changes
-    if: needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'y2save.com')
+    needs: [detect-changes, deploy-ssvid-cc, deploy-ezconv, deploy-ytmp4-gg, deploy-onedownloader-net, deploy-u2snap-com]
+    if: ${{ !cancelled() && needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'y2save.com') }}
     uses: ./.github/workflows/deploy-app.yml
     with:
       app_name: y2save.com
@@ -443,8 +449,8 @@ jobs:
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
   deploy-snackeloader-com:
-    needs: detect-changes
-    if: needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'snakeloader.com')
+    needs: [detect-changes, deploy-ssvid-cc, deploy-ezconv, deploy-ytmp4-gg, deploy-onedownloader-net, deploy-u2snap-com]
+    if: ${{ !cancelled() && needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'snakeloader.com') }}
     uses: ./.github/workflows/deploy-app.yml
     with:
       app_name: snakeloader.com
@@ -456,9 +462,12 @@ jobs:
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
+  # ============================================
+  # Wave 4: Waits for Wave 3 to finish
+  # ============================================
   deploy-ytsss-com:
-    needs: detect-changes
-    if: needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'ytsss.com')
+    needs: [detect-changes, deploy-convert1s-com, deploy-snap1s-com, deploy-tube1s-com, deploy-y2save-com, deploy-snackeloader-com]
+    if: ${{ !cancelled() && needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'ytsss.com') }}
     uses: ./.github/workflows/deploy-app.yml
     with:
       app_name: ytsss.com
@@ -471,8 +480,8 @@ jobs:
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
   deploy-sstube-net:
-    needs: detect-changes
-    if: needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'sstube.net')
+    needs: [detect-changes, deploy-convert1s-com, deploy-snap1s-com, deploy-tube1s-com, deploy-y2save-com, deploy-snackeloader-com]
+    if: ${{ !cancelled() && needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'sstube.net') }}
     uses: ./.github/workflows/deploy-app.yml
     with:
       app_name: sstube.net
