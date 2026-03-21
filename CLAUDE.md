@@ -55,4 +55,4 @@ Dự án sử dụng kiến trúc monorepo với các apps trong `apps/`.
 - **KHÔNG được đặt deploy tag ở body** — CI/CD chỉ đọc title line.
 - Deploy tất cả: `[deploy:all]`
 - Chỉ ghi các site **thực sự có thay đổi** vào deploy tag, không deploy site không liên quan.
-- Danh sách site names hợp lệ: `convert1s.com`, `tube1s.com`, `u2snap.com`, `snap1s.com`, `y2save.com`, `onedownloader.net`, `ssvid.cc`, `ytmp4.gg`, `y2matepro`, `y2matevc`, `mp3fast`, `ytmp3.my`, `4kvideopro`, `ezconv`, `sstube.net`
+- Danh sách site names hợp lệ: tên thư mục trong `apps/` chính là site name. Ví dụ: `apps/convert1s.com/` → deploy tag là `convert1s.com`
