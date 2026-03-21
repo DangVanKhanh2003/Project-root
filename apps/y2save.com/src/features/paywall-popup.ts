@@ -4,7 +4,7 @@
  * Uses the v3 API which accepts title/noCountdown as options directly.
  */
 
-import { show as baseShowPaywall } from 'https://media.ytmp3.gg/poppurchase.v3.js?v=12';
+import { show as baseShowPaywall } from 'https://media.ytmp3.gg/poppurchase.v3.js?v=13';
 
 export interface PaywallOptions {
     /** Override popup header text */
@@ -13,6 +13,10 @@ export interface PaywallOptions {
     noCountdown?: boolean;
     /** Custom message when countdown is disabled */
     noCountdownMessage?: string;
+    /** Text for secondary button (normal mode). If omitted, no secondary button shown */
+    secondaryLabel?: string;
+    /** Callback when secondary button is clicked. Popup auto-closes before calling */
+    onSecondaryClick?: () => void;
 }
 
 /**
@@ -26,5 +30,7 @@ export function showPaywall(type?: string, options: PaywallOptions = {}): void {
         title: options.title,
         noCountdown: options.noCountdown,
         noCountdownMessage: options.noCountdownMessage,
+        secondaryLabel: options.secondaryLabel,
+        onSecondaryClick: options.onSecondaryClick,
     });
 }

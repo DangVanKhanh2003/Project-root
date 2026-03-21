@@ -29,6 +29,8 @@ import {
   setSearchPagination,
   setYouTubePreview,
   updateYouTubePreviewMetadata,
+  setVideoQuality,
+  setAudioBitrate,
 } from '../state';
 import { renderResults, renderMessage, renderPreviewCard, showLoading, clearContent, clearHeroMessage } from '../ui-render/content-renderer';
 import { updateVideoTitle } from '../ui-render/download-rendering';
@@ -42,7 +44,7 @@ import { startConversion } from './conversion';
 import { MaterialPopup } from '../../../ui-components/material-popup/material-popup';
 import { getUrlRedirectTarget, looksLikeUrl } from '@downloader/core';
 import { evaluateFeatureAccess } from '../../allowed-features';
-import { show as showPaywall } from 'https://media.ytmp3.gg/poppurchase.v3.js?v=12';
+import { show as showPaywall } from 'https://media.ytmp3.gg/poppurchase.v3.js?v=13';
 import { checkLimit } from '../../download-limit';
 import { FEATURE_KEYS, FEATURE_ACCESS_REASONS } from '@downloader/core';
 
@@ -969,7 +971,17 @@ export async function handleExtractMedia(
       if (is4K) {
         const limitResult = checkLimit(FEATURE_KEYS.HIGH_QUALITY_4K);
         if (!limitResult.allowed) {
-          showPaywall('download_4k');
+          showPaywall('download_4k', {
+            secondaryLabel: 'Continue with 720p',
+            onSecondaryClick: () => {
+              setVideoQuality('720p');
+              const badge = document.querySelector('.badge-main-quality');
+              if (badge) badge.textContent = '720p';
+              setLoading(true);
+              setSubmitting(true);
+              handleExtractMedia(url);
+            },
+          });
           setSubmitting(false);
           setLoading(false);
           return;
@@ -980,7 +992,17 @@ export async function handleExtractMedia(
       if (is2K) {
         const limitResult = checkLimit(FEATURE_KEYS.HIGH_QUALITY_2K);
         if (!limitResult.allowed) {
-          showPaywall('download_2k');
+          showPaywall('download_2k', {
+            secondaryLabel: 'Continue with 720p',
+            onSecondaryClick: () => {
+              setVideoQuality('720p');
+              const badge = document.querySelector('.badge-main-quality');
+              if (badge) badge.textContent = '720p';
+              setLoading(true);
+              setSubmitting(true);
+              handleExtractMedia(url);
+            },
+          });
           setSubmitting(false);
           setLoading(false);
           return;
@@ -990,7 +1012,17 @@ export async function handleExtractMedia(
       if (is320kbps) {
         const limitResult = checkLimit(FEATURE_KEYS.HIGH_QUALITY_320K);
         if (!limitResult.allowed) {
-          showPaywall('download_320kbps');
+          showPaywall('download_320kbps', {
+            secondaryLabel: 'Continue with 128kbps',
+            onSecondaryClick: () => {
+              setAudioBitrate('128');
+              const badge = document.querySelector('.badge-main-quality');
+              if (badge) badge.textContent = '128kbps';
+              setLoading(true);
+              setSubmitting(true);
+              handleExtractMedia(url);
+            },
+          });
           setSubmitting(false);
           setLoading(false);
           return;

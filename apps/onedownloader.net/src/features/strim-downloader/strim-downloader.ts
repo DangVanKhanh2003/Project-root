@@ -1,5 +1,5 @@
 import { scrollManager } from '@downloader/ui-shared';
-import { show as showPaywall } from 'https://media.ytmp3.gg/poppurchase.v3.js?v=12';
+import { show as showPaywall } from 'https://media.ytmp3.gg/poppurchase.v3.js?v=13';
 import { handleAutoDownload, handleExtractMedia, handleSearch } from '../downloader/logic/input-form';
 import { clearContent, showLoading } from '../downloader/ui-render/content-renderer';
 import { showResultView } from '../downloader/ui-render/view-switcher';
@@ -787,47 +787,75 @@ function setupEventListeners(): void {
       const is2K = selectedResolution === '1440p';
       const is320kbps = fmt === 'mp3' && currentState.audioFormat === 'mp3' && currentState.audioBitrate === '320';
 
+      const proceedWithConversion = async () => {
+        const streamAudioTrack = getStreamAudioTrackInput()?.value || 'original';
+        const mainAudioTrack = getMainAudioTrackInput();
+        if (mainAudioTrack) {
+          mainAudioTrack.value = streamAudioTrack;
+        }
+
+        setEditorVisible(false);
+        setStartButtonVisible(false);
+
+        showLoading('detail');
+        showResultView();
+        onAfterSubmit();
+
+        await handleAutoDownload(url, videoId, {
+          trimStart: startTime,
+          trimEnd: endTime,
+          trimRangeLabel: `${formatTime(startTime)} - ${formatTime(endTime)}`,
+        });
+      };
+
       if (is4K) {
         const limitResult = checkLimit(FEATURE_KEYS.HIGH_QUALITY_4K);
         if (!limitResult.allowed) {
-          showPaywall('download_4k');
+          showPaywall('download_4k', {
+            secondaryLabel: 'Continue with 720p',
+            onSecondaryClick: () => {
+              setVideoQuality('720p');
+              const badge = document.querySelector('.badge-main-quality');
+              if (badge) badge.textContent = '720p';
+              proceedWithConversion();
+            },
+          });
           return;
         }
       }
       if (is2K) {
         const limitResult = checkLimit(FEATURE_KEYS.HIGH_QUALITY_2K);
         if (!limitResult.allowed) {
-          showPaywall('download_2k');
+          showPaywall('download_2k', {
+            secondaryLabel: 'Continue with 720p',
+            onSecondaryClick: () => {
+              setVideoQuality('720p');
+              const badge = document.querySelector('.badge-main-quality');
+              if (badge) badge.textContent = '720p';
+              proceedWithConversion();
+            },
+          });
           return;
         }
       }
       if (is320kbps) {
         const limitResult = checkLimit(FEATURE_KEYS.HIGH_QUALITY_320K);
         if (!limitResult.allowed) {
-          showPaywall('download_320kbps');
+          showPaywall('download_320kbps', {
+            secondaryLabel: 'Continue with 128kbps',
+            onSecondaryClick: () => {
+              setAudioBitrate('128');
+              const badge = document.querySelector('.badge-main-quality');
+              if (badge) badge.textContent = '128kbps';
+              proceedWithConversion();
+            },
+          });
           return;
         }
       }
       // ───────────────────────────────────────────────────────────────────────
 
-      const streamAudioTrack = getStreamAudioTrackInput()?.value || 'original';
-      const mainAudioTrack = getMainAudioTrackInput();
-      if (mainAudioTrack) {
-        mainAudioTrack.value = streamAudioTrack;
-      }
-
-      setEditorVisible(false);
-      setStartButtonVisible(false);
-
-      showLoading('detail');
-      showResultView();
-      onAfterSubmit();
-
-      await handleAutoDownload(url, videoId, {
-        trimStart: startTime,
-        trimEnd: endTime,
-        trimRangeLabel: `${formatTime(startTime)} - ${formatTime(endTime)}`,
-      });
+      await proceedWithConversion();
     });
   }
 

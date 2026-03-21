@@ -1,4 +1,4 @@
-declare module 'https://media.ytmp3.gg/poppurchase.v3.js?v=12' {
+declare module 'https://media.ytmp3.gg/poppurchase.v3.js?v=13' {
     type PaywallType =
         | 'download_multi'
         | 'download_playlist'
@@ -17,6 +17,8 @@ declare module 'https://media.ytmp3.gg/poppurchase.v3.js?v=12' {
         title?: string;
         noCountdown?: boolean;
         noCountdownMessage?: string;
+        secondaryLabel?: string;
+        onSecondaryClick?: () => void;
     }
 
     export function show(type?: PaywallType, options?: ShowOptions): void;
