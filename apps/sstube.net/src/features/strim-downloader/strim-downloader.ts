@@ -811,7 +811,7 @@ function setupEventListeners(): void {
       if (is4K) {
         const limitResult = checkLimit(FEATURE_KEYS.HIGH_QUALITY_4K);
         if (!limitResult.allowed) {
-          const secondaryLabel = 'Download 720p instead';
+          const secondaryLabel = 'Continue with 720p';
           const onSecondaryClick = () => {
             setVideoQuality('720p');
             const badge = document.querySelector('.badge-main-quality');
@@ -825,7 +825,7 @@ function setupEventListeners(): void {
       if (is2K) {
         const limitResult = checkLimit(FEATURE_KEYS.HIGH_QUALITY_2K);
         if (!limitResult.allowed) {
-          const secondaryLabel = 'Download 720p instead';
+          const secondaryLabel = 'Continue with 720p';
           const onSecondaryClick = () => {
             setVideoQuality('720p');
             const badge = document.querySelector('.badge-main-quality');
@@ -839,7 +839,7 @@ function setupEventListeners(): void {
       if (is320kbps) {
         const limitResult = checkLimit(FEATURE_KEYS.HIGH_QUALITY_320K);
         if (!limitResult.allowed) {
-          const secondaryLabel = 'Download 128kbps instead';
+          const secondaryLabel = 'Continue with 128kbps';
           const onSecondaryClick = () => {
             setAudioBitrate('128');
             const badge = document.querySelector('.badge-main-quality');
