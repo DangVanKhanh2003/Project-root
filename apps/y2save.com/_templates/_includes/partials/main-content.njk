@@ -9,7 +9,7 @@
             {# --- Simple paragraphs --- #}
             {% if section.p %}
                 {% for para in section.p %}
-                <p>{{ para | safe }}</p>
+                <p>{{ para | localizeLinks(langPrefix) | safe }}</p>
                 {% endfor %}
             {% endif %}
 
@@ -20,7 +20,7 @@
                 <li>
                     <h3>{{ item.h3 }}</h3>
                     {% for para in item.p %}
-                    <p>{{ para | safe }}</p>
+                    <p>{{ para | localizeLinks(langPrefix) | safe }}</p>
                     {% endfor %}
                 </li>
                 {% endfor %}
@@ -34,7 +34,7 @@
                 <li>
                     <h3>{{ item.h3 }}</h3>
                     {% for para in item.p %}
-                    <p>{{ para | safe }}</p>
+                    <p>{{ para | localizeLinks(langPrefix) | safe }}</p>
                     {% endfor %}
                 </li>
                 {% endfor %}
