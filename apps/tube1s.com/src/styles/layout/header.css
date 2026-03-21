@@ -1,7 +1,7 @@
 /* Header */
 .site-header {
     position: relative;
-    z-index: 20;
+    z-index: 200;
     background: var(--background-hero-section);
     padding: 5px 0px;
     display: flex;
