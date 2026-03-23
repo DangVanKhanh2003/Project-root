@@ -2,8 +2,7 @@ I need you to translate the English JSON data from the following 7 source files 
 ar, bn, de, es, fr, hi, id, it, ja, ko, ms, my, pt, ru, th, tl, tr, ur, vi, zh-cn, zh-tw.
 
 The source files to translate are located at:
-1. f:\downloader\Project-root\apps\snakeloader.com\_templates\_data\pages\tiktok-downloader\en.json
-
+1. F:\downloader\Project-root\apps\ytconvert.org\_templates\_data\pages
 
 For each source file, please read its content and generate the corresponding translated JSON files (e.g., vi.json, es.json) and save them in the EXACT SAME directory as their respective source en.json file.
 
@@ -13,3 +12,6 @@ CRITICAL RULES:
 3. Keep all HTML tags intact within the text (e.g., <strong>, </strong>). Do not translate the tag names.
 4. The output must be valid JSON format.
 5. The translations must sound natural and be optimized for SEO in the target language.
+
+
+NOTE: You need crate many angent to translate. it will qickly for translate
