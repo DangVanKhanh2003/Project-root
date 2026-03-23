@@ -1,6 +1,7 @@
 
 import { VideoItem, VideoItemSettings, VideoStoreEventName, ProgressPhase } from './multiple-download-types';
 import { VideoMeta } from './types';
+import { isLinkExpired } from '../../../utils/link-validator';
 
 type StoreListener = (eventName: VideoStoreEventName, data: any) => void;
 
@@ -194,6 +195,15 @@ class VideoStore {
         item.progress = 0;
         item.progressPhase = undefined;
         this.notify('item:updated', item);
+    }
+
+    syncExpiredItems(): void {
+        const completed = this.getItemsByStatus('completed');
+        for (const item of completed) {
+            if (isLinkExpired(item.completedAt)) {
+                this.setExpired(item.id, 'Download link expired. Please convert again.');
+            }
+        }
     }
 
     setError(id: string, message: string): void {
