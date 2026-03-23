@@ -1,0 +1,65 @@
+{
+  "nav": {
+    "home": "Главная",
+    "youtubeToMp3Converter": "YouTube в MP3",
+    "youtubeToMp4Converter": "YouTube в MP4",
+    "youtubeAudioConverter": "Аудио конвертер YouTube",
+    "youtubePlaylistToMp3": "Плейлист YouTube в MP3",
+    "youtubeShortsToMp4": "YouTube Shorts в MP4",
+    "youtubeToMp3320kbps": "YouTube в MP3 320kbps",
+    "youtubeToMp44k": "YouTube в MP4 4K",
+    "youtubeToMp4Hd": "YouTube в MP4 HD"
+  },
+  "drawer": {
+    "logoText": "YTConvert",
+    "links": {
+      "home": "Главная",
+      "youtubeToMp3Converter": "YouTube в MP3",
+      "youtubeToMp4Converter": "YouTube в MP4",
+      "youtubeAudioConverter": "Аудио конвертер YouTube",
+      "youtubePlaylistToMp3": "Плейлист YouTube в MP3",
+      "youtubeShortsToMp4": "YouTube Shorts в MP4",
+      "youtubeToMp3320kbps": "YouTube в MP3 320kbps",
+      "youtubeToMp44k": "YouTube в MP4 4K",
+      "youtubeToMp4Hd": "YouTube в MP4 HD"
+    }
+  },
+  "hero": {
+    "placeholder": "Вставьте ссылку на видео сюда...",
+    "pasteBtn": "Вставить",
+    "clearBtn": "Очистить",
+    "convertBtn": "Конвертировать",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "Аудиодорожка",
+    "searchPlaceholder": "Поиск...",
+    "supportedPlatforms": "Поддерживаемые платформы:"
+  },
+  "footer": {
+    "copyright": "© 2026 YTConvert. Все права защищены.",
+    "nav": {
+      "youtubeToMp3Converter": "Конвертер YouTube в MP3",
+      "youtubeToMp4Converter": "Конвертер YouTube в MP4",
+      "youtubeAudioConverter": "Аудио конвертер YouTube",
+      "youtubePlaylistToMp3": "Плейлист YouTube в MP3",
+      "youtubeShortsToMp4": "YouTube Shorts в MP4",
+      "youtubeToMp3320kbps": "YouTube в MP3 320kbps",
+      "youtubeToMp44k": "YouTube в MP4 4K",
+      "youtubeToMp4Hd": "YouTube в MP4 HD"
+    }
+  },
+  "langSelector": {
+    "buttonLabel": "Сменить язык",
+    "buttonText": "RU",
+    "currentLangFull": "Русский"
+  },
+  "strim": {
+    "startBtn": "Начать",
+    "selectFormatLabel": "1. Выберите формат:",
+    "selectQualityLabel": "2. Выберите качество:",
+    "audioTrackLabel": "3. Выберите аудиодорожку:",
+    "trimLabel": "4. Обрезать видео (Начало – Конец):",
+    "startTimeLabel": "Начало",
+    "endTimeLabel": "Конец"
+  }
+}

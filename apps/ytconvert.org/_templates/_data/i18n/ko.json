@@ -1,0 +1,65 @@
+{
+  "nav": {
+    "home": "홈",
+    "youtubeToMp3Converter": "YouTube MP3 변환",
+    "youtubeToMp4Converter": "YouTube MP4 변환",
+    "youtubeAudioConverter": "YouTube 오디오 변환기",
+    "youtubePlaylistToMp3": "YouTube 재생목록 MP3 변환",
+    "youtubeShortsToMp4": "YouTube Shorts MP4 변환",
+    "youtubeToMp3320kbps": "YouTube MP3 320kbps 변환",
+    "youtubeToMp44k": "YouTube MP4 4K 변환",
+    "youtubeToMp4Hd": "YouTube MP4 HD 변환"
+  },
+  "drawer": {
+    "logoText": "YTConvert",
+    "links": {
+      "home": "홈",
+      "youtubeToMp3Converter": "YouTube MP3 변환",
+      "youtubeToMp4Converter": "YouTube MP4 변환",
+      "youtubeAudioConverter": "YouTube 오디오 변환기",
+      "youtubePlaylistToMp3": "YouTube 재생목록 MP3 변환",
+      "youtubeShortsToMp4": "YouTube Shorts MP4 변환",
+      "youtubeToMp3320kbps": "YouTube MP3 320kbps 변환",
+      "youtubeToMp44k": "YouTube MP4 4K 변환",
+      "youtubeToMp4Hd": "YouTube MP4 HD 변환"
+    }
+  },
+  "hero": {
+    "placeholder": "여기에 동영상 링크를 붙여넣으세요...",
+    "pasteBtn": "붙여넣기",
+    "clearBtn": "지우기",
+    "convertBtn": "변환",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "오디오 트랙",
+    "searchPlaceholder": "검색...",
+    "supportedPlatforms": "지원 플랫폼:"
+  },
+  "footer": {
+    "copyright": "© 2026 YTConvert. 모든 권리 보유.",
+    "nav": {
+      "youtubeToMp3Converter": "YouTube MP3 변환기",
+      "youtubeToMp4Converter": "YouTube MP4 변환기",
+      "youtubeAudioConverter": "YouTube 오디오 변환기",
+      "youtubePlaylistToMp3": "YouTube 재생목록 MP3 변환",
+      "youtubeShortsToMp4": "YouTube Shorts MP4 변환",
+      "youtubeToMp3320kbps": "YouTube MP3 320kbps 변환",
+      "youtubeToMp44k": "YouTube MP4 4K 변환",
+      "youtubeToMp4Hd": "YouTube MP4 HD 변환"
+    }
+  },
+  "langSelector": {
+    "buttonLabel": "언어 변경",
+    "buttonText": "KO",
+    "currentLangFull": "한국어"
+  },
+  "strim": {
+    "startBtn": "시작",
+    "selectFormatLabel": "1. 형식 선택:",
+    "selectQualityLabel": "2. 화질 선택:",
+    "audioTrackLabel": "3. 오디오 트랙 선택:",
+    "trimLabel": "4. 동영상 자르기 (시작 – 종료 시간):",
+    "startTimeLabel": "시작",
+    "endTimeLabel": "종료"
+  }
+}

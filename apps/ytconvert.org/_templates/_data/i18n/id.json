@@ -1,0 +1,65 @@
+{
+  "nav": {
+    "home": "Beranda",
+    "youtubeToMp3Converter": "YouTube ke MP3",
+    "youtubeToMp4Converter": "YouTube ke MP4",
+    "youtubeAudioConverter": "Konverter Audio YouTube",
+    "youtubePlaylistToMp3": "Playlist YouTube ke MP3",
+    "youtubeShortsToMp4": "YouTube Shorts ke MP4",
+    "youtubeToMp3320kbps": "YouTube ke MP3 320kbps",
+    "youtubeToMp44k": "YouTube ke MP4 4K",
+    "youtubeToMp4Hd": "YouTube ke MP4 HD"
+  },
+  "drawer": {
+    "logoText": "YTConvert",
+    "links": {
+      "home": "Beranda",
+      "youtubeToMp3Converter": "YouTube ke MP3",
+      "youtubeToMp4Converter": "YouTube ke MP4",
+      "youtubeAudioConverter": "Konverter Audio YouTube",
+      "youtubePlaylistToMp3": "Playlist YouTube ke MP3",
+      "youtubeShortsToMp4": "YouTube Shorts ke MP4",
+      "youtubeToMp3320kbps": "YouTube ke MP3 320kbps",
+      "youtubeToMp44k": "YouTube ke MP4 4K",
+      "youtubeToMp4Hd": "YouTube ke MP4 HD"
+    }
+  },
+  "hero": {
+    "placeholder": "Tempel tautan video di sini...",
+    "pasteBtn": "Tempel",
+    "clearBtn": "Hapus",
+    "convertBtn": "Konversi",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "Trek audio",
+    "searchPlaceholder": "Cari...",
+    "supportedPlatforms": "Platform yang didukung:"
+  },
+  "footer": {
+    "copyright": "© 2026 YTConvert. Semua hak dilindungi.",
+    "nav": {
+      "youtubeToMp3Converter": "Konverter YouTube ke MP3",
+      "youtubeToMp4Converter": "Konverter YouTube ke MP4",
+      "youtubeAudioConverter": "Konverter Audio YouTube",
+      "youtubePlaylistToMp3": "Playlist YouTube ke MP3",
+      "youtubeShortsToMp4": "YouTube Shorts ke MP4",
+      "youtubeToMp3320kbps": "YouTube ke MP3 320kbps",
+      "youtubeToMp44k": "YouTube ke MP4 4K",
+      "youtubeToMp4Hd": "YouTube ke MP4 HD"
+    }
+  },
+  "langSelector": {
+    "buttonLabel": "Ubah bahasa",
+    "buttonText": "ID",
+    "currentLangFull": "Bahasa Indonesia"
+  },
+  "strim": {
+    "startBtn": "Mulai",
+    "selectFormatLabel": "1. Pilih format:",
+    "selectQualityLabel": "2. Pilih kualitas:",
+    "audioTrackLabel": "3. Pilih trek audio:",
+    "trimLabel": "4. Potong video (Waktu Mulai – Selesai):",
+    "startTimeLabel": "Mulai",
+    "endTimeLabel": "Selesai"
+  }
+}

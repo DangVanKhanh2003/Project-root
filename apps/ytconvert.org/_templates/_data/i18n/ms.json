@@ -1,0 +1,65 @@
+{
+  "nav": {
+    "home": "Laman Utama",
+    "youtubeToMp3Converter": "YouTube ke MP3",
+    "youtubeToMp4Converter": "YouTube ke MP4",
+    "youtubeAudioConverter": "Penukar Audio YouTube",
+    "youtubePlaylistToMp3": "Senarai Main YouTube ke MP3",
+    "youtubeShortsToMp4": "YouTube Shorts ke MP4",
+    "youtubeToMp3320kbps": "YouTube ke MP3 320kbps",
+    "youtubeToMp44k": "YouTube ke MP4 4K",
+    "youtubeToMp4Hd": "YouTube ke MP4 HD"
+  },
+  "drawer": {
+    "logoText": "YTConvert",
+    "links": {
+      "home": "Laman Utama",
+      "youtubeToMp3Converter": "YouTube ke MP3",
+      "youtubeToMp4Converter": "YouTube ke MP4",
+      "youtubeAudioConverter": "Penukar Audio YouTube",
+      "youtubePlaylistToMp3": "Senarai Main YouTube ke MP3",
+      "youtubeShortsToMp4": "YouTube Shorts ke MP4",
+      "youtubeToMp3320kbps": "YouTube ke MP3 320kbps",
+      "youtubeToMp44k": "YouTube ke MP4 4K",
+      "youtubeToMp4Hd": "YouTube ke MP4 HD"
+    }
+  },
+  "hero": {
+    "placeholder": "Tampal pautan video di sini...",
+    "pasteBtn": "Tampal",
+    "clearBtn": "Padam",
+    "convertBtn": "Tukar",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "Trek audio",
+    "searchPlaceholder": "Cari...",
+    "supportedPlatforms": "Platform yang disokong:"
+  },
+  "footer": {
+    "copyright": "© 2026 YTConvert. Hak cipta terpelihara.",
+    "nav": {
+      "youtubeToMp3Converter": "Penukar YouTube ke MP3",
+      "youtubeToMp4Converter": "Penukar YouTube ke MP4",
+      "youtubeAudioConverter": "Penukar Audio YouTube",
+      "youtubePlaylistToMp3": "Senarai Main YouTube ke MP3",
+      "youtubeShortsToMp4": "YouTube Shorts ke MP4",
+      "youtubeToMp3320kbps": "YouTube ke MP3 320kbps",
+      "youtubeToMp44k": "YouTube ke MP4 4K",
+      "youtubeToMp4Hd": "YouTube ke MP4 HD"
+    }
+  },
+  "langSelector": {
+    "buttonLabel": "Tukar bahasa",
+    "buttonText": "MS",
+    "currentLangFull": "Bahasa Melayu"
+  },
+  "strim": {
+    "startBtn": "Mula",
+    "selectFormatLabel": "1. Pilih format:",
+    "selectQualityLabel": "2. Pilih kualiti:",
+    "audioTrackLabel": "3. Pilih trek audio:",
+    "trimLabel": "4. Potong video (Masa Mula – Tamat):",
+    "startTimeLabel": "Mula",
+    "endTimeLabel": "Tamat"
+  }
+}

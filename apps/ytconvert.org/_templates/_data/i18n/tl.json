@@ -1,0 +1,65 @@
+{
+  "nav": {
+    "home": "Home",
+    "youtubeToMp3Converter": "YouTube sa MP3",
+    "youtubeToMp4Converter": "YouTube sa MP4",
+    "youtubeAudioConverter": "YouTube Audio Converter",
+    "youtubePlaylistToMp3": "YouTube Playlist sa MP3",
+    "youtubeShortsToMp4": "YouTube Shorts sa MP4",
+    "youtubeToMp3320kbps": "YouTube sa MP3 320kbps",
+    "youtubeToMp44k": "YouTube sa MP4 4K",
+    "youtubeToMp4Hd": "YouTube sa MP4 HD"
+  },
+  "drawer": {
+    "logoText": "YTConvert",
+    "links": {
+      "home": "Home",
+      "youtubeToMp3Converter": "YouTube sa MP3",
+      "youtubeToMp4Converter": "YouTube sa MP4",
+      "youtubeAudioConverter": "YouTube Audio Converter",
+      "youtubePlaylistToMp3": "YouTube Playlist sa MP3",
+      "youtubeShortsToMp4": "YouTube Shorts sa MP4",
+      "youtubeToMp3320kbps": "YouTube sa MP3 320kbps",
+      "youtubeToMp44k": "YouTube sa MP4 4K",
+      "youtubeToMp4Hd": "YouTube sa MP4 HD"
+    }
+  },
+  "hero": {
+    "placeholder": "I-paste ang link ng video dito...",
+    "pasteBtn": "I-paste",
+    "clearBtn": "Burahin",
+    "convertBtn": "I-convert",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "Audio track",
+    "searchPlaceholder": "Maghanap...",
+    "supportedPlatforms": "Mga sinusuportahang platform:"
+  },
+  "footer": {
+    "copyright": "© 2026 YTConvert. Lahat ng karapatan ay nakalaan.",
+    "nav": {
+      "youtubeToMp3Converter": "YouTube sa MP3 Converter",
+      "youtubeToMp4Converter": "YouTube sa MP4 Converter",
+      "youtubeAudioConverter": "YouTube Audio Converter",
+      "youtubePlaylistToMp3": "YouTube Playlist sa MP3",
+      "youtubeShortsToMp4": "YouTube Shorts sa MP4",
+      "youtubeToMp3320kbps": "YouTube sa MP3 320kbps",
+      "youtubeToMp44k": "YouTube sa MP4 4K",
+      "youtubeToMp4Hd": "YouTube sa MP4 HD"
+    }
+  },
+  "langSelector": {
+    "buttonLabel": "Palitan ang wika",
+    "buttonText": "TL",
+    "currentLangFull": "Filipino"
+  },
+  "strim": {
+    "startBtn": "Simulan",
+    "selectFormatLabel": "1. Pumili ng format:",
+    "selectQualityLabel": "2. Pumili ng kalidad:",
+    "audioTrackLabel": "3. Pumili ng audio track:",
+    "trimLabel": "4. I-cut ang video (Simula – Katapusan):",
+    "startTimeLabel": "Simula",
+    "endTimeLabel": "Katapusan"
+  }
+}

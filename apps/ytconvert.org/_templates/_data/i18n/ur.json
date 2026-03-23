@@ -1,0 +1,65 @@
+{
+  "nav": {
+    "home": "ہوم",
+    "youtubeToMp3Converter": "یوٹیوب سے MP3",
+    "youtubeToMp4Converter": "یوٹیوب سے MP4",
+    "youtubeAudioConverter": "یوٹیوب آڈیو کنورٹر",
+    "youtubePlaylistToMp3": "یوٹیوب پلے لسٹ سے MP3",
+    "youtubeShortsToMp4": "یوٹیوب شارٹس سے MP4",
+    "youtubeToMp3320kbps": "یوٹیوب سے MP3 320kbps",
+    "youtubeToMp44k": "یوٹیوب سے MP4 4K",
+    "youtubeToMp4Hd": "یوٹیوب سے MP4 HD"
+  },
+  "drawer": {
+    "logoText": "YTConvert",
+    "links": {
+      "home": "ہوم",
+      "youtubeToMp3Converter": "یوٹیوب سے MP3",
+      "youtubeToMp4Converter": "یوٹیوب سے MP4",
+      "youtubeAudioConverter": "یوٹیوب آڈیو کنورٹر",
+      "youtubePlaylistToMp3": "یوٹیوب پلے لسٹ سے MP3",
+      "youtubeShortsToMp4": "یوٹیوب شارٹس سے MP4",
+      "youtubeToMp3320kbps": "یوٹیوب سے MP3 320kbps",
+      "youtubeToMp44k": "یوٹیوب سے MP4 4K",
+      "youtubeToMp4Hd": "یوٹیوب سے MP4 HD"
+    }
+  },
+  "hero": {
+    "placeholder": "ویڈیو لنک یہاں پیسٹ کریں...",
+    "pasteBtn": "پیسٹ",
+    "clearBtn": "صاف کریں",
+    "convertBtn": "تبدیل کریں",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "آڈیو ٹریک",
+    "searchPlaceholder": "تلاش کریں...",
+    "supportedPlatforms": "معاون پلیٹ فارمز:"
+  },
+  "footer": {
+    "copyright": "© 2026 YTConvert. جملہ حقوق محفوظ ہیں۔",
+    "nav": {
+      "youtubeToMp3Converter": "یوٹیوب سے MP3 کنورٹر",
+      "youtubeToMp4Converter": "یوٹیوب سے MP4 کنورٹر",
+      "youtubeAudioConverter": "یوٹیوب آڈیو کنورٹر",
+      "youtubePlaylistToMp3": "یوٹیوب پلے لسٹ سے MP3",
+      "youtubeShortsToMp4": "یوٹیوب شارٹس سے MP4",
+      "youtubeToMp3320kbps": "یوٹیوب سے MP3 320kbps",
+      "youtubeToMp44k": "یوٹیوب سے MP4 4K",
+      "youtubeToMp4Hd": "یوٹیوب سے MP4 HD"
+    }
+  },
+  "langSelector": {
+    "buttonLabel": "زبان تبدیل کریں",
+    "buttonText": "UR",
+    "currentLangFull": "اردو"
+  },
+  "strim": {
+    "startBtn": "شروع کریں",
+    "selectFormatLabel": "1. فارمیٹ منتخب کریں:",
+    "selectQualityLabel": "2. کوالٹی منتخب کریں:",
+    "audioTrackLabel": "3. آڈیو ٹریک منتخب کریں:",
+    "trimLabel": "4. ویڈیو کاٹیں (شروع – اختتام وقت):",
+    "startTimeLabel": "شروع",
+    "endTimeLabel": "اختتام"
+  }
+}
