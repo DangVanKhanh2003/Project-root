@@ -509,6 +509,7 @@ jobs:
       app_directory: apps/ytconvert.org
       filter_path: ./apps/ytconvert.org
       domain: ${{ vars.YTCONVERT_DOMAIN || 'ytconvert.org' }}
+      deploy_root: /var/www/KhanhHAUI/ssl_sites
     secrets:
       SSH_HOST: ${{ secrets.SSH_HOST }}
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}

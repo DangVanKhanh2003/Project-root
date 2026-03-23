@@ -19,6 +19,10 @@ on:
         description: 'Domain/project name for server path'
         required: true
         type: string
+      deploy_root:
+        description: 'Server root directory for deploy (e.g. /var/www/KhanhHAUI/CICD/run)'
+        default: '/var/www/KhanhHAUI/CICD/run'
+        type: string
       build_command:
         description: 'Build script name for production'
         default: 'build'
@@ -41,8 +45,8 @@ on:
 
 env:
   PROJECT_NAME: ${{ github.ref_name == 'test-production' && format('{0}-test', inputs.domain) || inputs.domain }}
-  PROJECT_ROOT: /var/www/KhanhHAUI/CICD
-  RUN_DIR: ${{ format('/var/www/KhanhHAUI/CICD/run/{0}', github.ref_name == 'test-production' && format('{0}-test', inputs.domain) || inputs.domain) }}
+  PROJECT_ROOT: ${{ inputs.deploy_root }}
+  RUN_DIR: ${{ format('{0}/{1}', inputs.deploy_root, github.ref_name == 'test-production' && format('{0}-test', inputs.domain) || inputs.domain) }}
   DEPLOY_USER: ${{ secrets.SSH_USERNAME }}
   DEPLOY_GROUP: nginx
 
