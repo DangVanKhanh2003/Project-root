@@ -1,0 +1,77 @@
+{
+  "seo": {
+    "title": "YouTube'dan HD MP4'e Dönüştürücü - 1080p Video İndir | YTConvert",
+    "description": "YTConvert ile YouTube videolarını çevrimiçi olarak HD MP4'e dönüştürün. Reklamsız, kayıt gerektirmeden ve yazılım olmadan 720p veya 1080p kalitesinde hızla video indirin.",
+    "schemaName": "YTConvert - YouTube HD Dönüştürücü",
+    "schemaDescription": "YouTube videolarını HD ve 1080p MP4'e dönüştürmek için çevrimiçi araç. Bir YouTube URL'si yapıştırın ve reklamsız olarak yüksek çözünürlüklü videoları hızla indirin.",
+    "ogTitle": "YouTube'dan HD MP4'e Dönüştürücü - 1080p Video İndir | YTConvert",
+    "ogDescription": "YTConvert ile YouTube videolarını HD ve 1080p MP4 olarak indirin. Hızlı, ücretsiz, reklamsız ve tüm cihazlarda çalışır."
+  },
+  "content": {
+    "form": {
+      "h1": "YTConvert – YouTube'dan HD MP4'e",
+      "placeholder": "YouTube video URL'sini buraya yapıştırın...",
+      "button": "Dönüştür"
+    },
+    "sections": [
+      {
+        "h2": "YTConvert YouTube HD Dönüştürücü Nedir?",
+        "p": [
+          "YTConvert, video bağlantısı kullanarak <strong>YouTube videolarını HD MP4</strong> formatlarına (720p ve 1080p) dönüştürmenize yardımcı olur.",
+          "URL'yi yapıştırın, videoyu işleyin ve reklamsız, kayıt gerektirmeden ve yazılım yüklemeden yüksek çözünürlükte indirin.",
+          "Günlük video indirmeleri için güvenilir bir <strong>YouTube HD dönüştürücüdür</strong>."
+        ]
+      },
+      {
+        "h2": "YouTube Videosu HD'ye Nasıl Dönüştürülür",
+        "ol": [
+          {"h3": "YouTube Video Bağlantısını Kopyalayın", "p": ["HD kalitesinde istediğiniz videonun URL'sini kopyalayın."]},
+          {"h3": "YTConvert'e Yapıştırın", "p": ["Bağlantıyı yukarıdaki giriş kutusuna yapıştırın."]},
+          {"h3": "Videoyu İşleyin", "p": ["YTConvert, 720p veya 1080p gibi mevcut HD formatlarını hazırlar."]},
+          {"h3": "HD Videoyu İndirin", "p": ["Tercih ettiğiniz kaliteyi seçin ve indirin."]}
+        ]
+      },
+      {
+        "h2": "YouTube Videolarını HD Olarak İndirin",
+        "p": [
+          "720p ve 1080p gibi HD formatları, kalite ve dosya boyutu arasında denge sunar.",
+          "YTConvert, çevrimdışı izleme için <strong>YouTube video 1080p indirmeyi</strong> kolaylaştırır.",
+          "Bu araç, <strong>YouTube HD video dönüştürücü</strong> arayan kullanıcılar için mükemmeldir."
+        ]
+      },
+      {
+        "h2": "HD Dönüştürme İçin Neden YTConvert Kullanmalısınız?",
+        "ul": [
+          {"h3": "Yüksek Kaliteli Video", "p": ["Net oynatma için HD ve 1080p kalitesinde video indirin."]},
+          {"h3": "Hızlı ve Ücretsiz", "p": ["Ödeme yapmadan veya kaydolmadan videoları hızla dönüştürün."]},
+          {"h3": "Reklamsız ve Kayıt Gerektirmez", "p": ["Temiz ve basit bir arayüzün keyfini çıkarın."]},
+          {"h3": "Her Yerde Çalışır", "p": ["Masaüstü ve mobil cihazlarla uyumludur."]}
+        ]
+      },
+      {
+        "h2": "Herhangi Bir Cihazda HD Dönüştürücüyü Kullanın",
+        "p": [
+          "YTConvert Windows, Mac, Android ve iOS'ta çalışır.",
+          "Herhangi bir yazılım yüklemeden <strong>YouTube videosunu çevrimiçi HD'ye dönüştürebilirsiniz</strong>.",
+          "Bu, yüksek çözünürlüklü indirmeler için esnek bir çözüm sunar."
+        ]
+      },
+      {
+        "h2": "Daha Fazla Araç Keşfedin",
+        "ul": [
+          {"h3": "YouTube Dönüştürücü", "p": ["<a href=\"/\"><strong>YouTube Dönüştürücü</strong></a>"]},
+          {"h3": "YouTube'dan MP4'e", "p": ["<a href=\"/youtube-to-mp4-converter\"><strong>YouTube'dan MP4'e Dönüştürücü</strong></a>"]},
+          {"h3": "YouTube 4K Dönüştürücü", "p": ["<a href=\"/youtube-to-mp4-4k\"><strong>YouTube 4K Dönüştürücü</strong></a>"]}
+        ]
+      },
+      {
+        "h2": "Sıkça Sorulan Sorular",
+        "ul": [
+          {"h3": "YouTube videolarını 1080p olarak indirebilir miyim?", "p": ["Evet, video HD çözünürlüğü destekliyorsa."]},
+          {"h3": "Bu dönüştürücü ücretsiz mi?", "p": ["Evet. YTConvert ücretsiz olarak kullanılabilir."]},
+          {"h3": "Bir şey yüklemem gerekiyor mu?", "p": ["Hayır. Doğrudan tarayıcınızda çalışır."]}
+        ]
+      }
+    ]
+  }
+}

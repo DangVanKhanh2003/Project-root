@@ -1,0 +1,77 @@
+{
+  "seo": {
+    "title": "YouTube'dan 4K MP4 Dönüştürücü - 4K Video İndir | YTConvert",
+    "description": "YTConvert ile YouTube videolarını çevrimiçi olarak 4K MP4'e dönüştürün. Bir YouTube URL'si yapıştırın ve reklamsız, kayıt gerektirmeden, yazılım yüklemeden ultra HD videoları hızla indirin.",
+    "schemaName": "YTConvert - YouTube 4K Dönüştürücü",
+    "schemaDescription": "YouTube videolarını 4K MP4'e dönüştürmek için çevrimiçi araç. Bir YouTube URL'si yapıştırın ve reklamsız, kayıt gerektirmeden yüksek çözünürlüklü videoları hızla indirin.",
+    "ogTitle": "YouTube'dan 4K MP4 Dönüştürücü - 4K Video İndir | YTConvert",
+    "ogDescription": "YTConvert ile 4K MP4 kalitesinde YouTube videoları indirin. Hızlı, ücretsiz, reklamsız ve tüm cihazlarda çalışır."
+  },
+  "content": {
+    "form": {
+      "h1": "YTConvert – YouTube'dan 4K MP4",
+      "placeholder": "YouTube video URL'sini buraya yapıştırın...",
+      "button": "Dönüştür"
+    },
+    "sections": [
+      {
+        "h2": "YTConvert YouTube 4K Dönüştürücü Nedir?",
+        "p": [
+          "YTConvert, video bağlantısı kullanarak <strong>YouTube videolarını 4K MP4'e dönüştürmenize</strong> yardımcı olan hızlı ve basit bir araçtır.",
+          "URL'yi yapıştırın, videoyu işleyin ve reklamsız, kayıt gerektirmeden, yazılım yüklemeden ultra HD kalitesinde indirin.",
+          "Güvenilir bir <strong>YouTube 4K dönüştürücü</strong> arıyorsanız, YTConvert tüm cihazlarda sorunsuz bir deneyim sunar."
+        ]
+      },
+      {
+        "h2": "YouTube Videosunu 4K'ya Nasıl Dönüştürülür",
+        "ol": [
+          {"h3": "YouTube Video Bağlantısını Kopyalayın", "p": ["YouTube'u açın ve 4K kalitesinde istediğiniz videonun URL'sini kopyalayın."]},
+          {"h3": "URL'yi YTConvert'e Yapıştırın", "p": ["Video bağlantısını sayfanın üstündeki giriş kutusuna yapıştırın."]},
+          {"h3": "Videoyu İşleyin", "p": ["YTConvert bağlantıyı analiz eder ve mevcut yüksek çözünürlüklü formatları hazırlar."]},
+          {"h3": "4K Videoyu İndirin", "p": ["4K kalitesini seçin (varsa) ve videoyu cihazınıza indirin."]}
+        ]
+      },
+      {
+        "h2": "YouTube Videolarını 4K Kalitesinde İndirin",
+        "p": [
+          "YTConvert, en iyi görsel deneyim için <strong>YouTube videolarını 4K'da indirmek</strong> isteyen kullanıcılar için tasarlanmıştır.",
+          "4K videolar, standart HD formatlara kıyasla daha keskin detaylar ve daha yüksek netlik sunar.",
+          "Bu araç, <strong>YouTube'dan MP4 4K dönüştürücü</strong> veya ultra HD video indirme çözümleri arayan kullanıcılar için idealdir."
+        ]
+      },
+      {
+        "h2": "4K Dönüştürme İçin Neden YTConvert Kullanmalısınız?",
+        "ul": [
+          {"h3": "Ultra HD Video Kalitesi", "p": ["En yüksek görsel kalite için 4K çözünürlükte video indirin."]},
+          {"h3": "Ücretsiz ve Kullanımı Kolay", "p": ["Ödeme yapmadan veya kayıt olmadan video dönüştürün."]},
+          {"h3": "Reklamsız ve Kayıt Gerektirmez", "p": ["Kesintisiz temiz bir arayüzün keyfini çıkarın."]},
+          {"h3": "Tüm Cihazlarda Çalışır", "p": ["Masaüstü, dizüstü bilgisayar, Android, iPhone ve tabletlerde kullanın."]}
+        ]
+      },
+      {
+        "h2": "Herhangi Bir Cihazda 4K Dönüştürücüyü Kullanın",
+        "p": [
+          "YTConvert Windows, Mac, Android ve iOS'ta çalışır.",
+          "Herhangi bir yazılım yüklemeden <strong>YouTube videosunu çevrimiçi 4K'ya dönüştürebilirsiniz</strong>.",
+          "Bu, yüksek kaliteli video indirmeleri için pratik bir çözümdür."
+        ]
+      },
+      {
+        "h2": "Daha Fazla YouTube Dönüştürücü Aracı Keşfedin",
+        "ul": [
+          {"h3": "YouTube Dönüştürücü", "p": ["<a href=\"/\"><strong>YouTube Dönüştürücü</strong></a>'ye geri dönün."]},
+          {"h3": "YouTube'dan MP4 Dönüştürücü", "p": ["<a href=\"/youtube-to-mp4-converter\"><strong>YouTube'dan MP4 Dönüştürücü</strong></a>'de standart video formatı."]},
+          {"h3": "YouTube HD Dönüştürücü", "p": ["HD videolar için <a href=\"/youtube-to-mp4-hd\"><strong>YouTube HD Dönüştürücü</strong></a>'yü ziyaret edin."]}
+        ]
+      },
+      {
+        "h2": "Sıkça Sorulan Sorular",
+        "ul": [
+          {"h3": "YouTube videolarını 4K olarak indirebilir miyim?", "p": ["Evet, orijinal video 4K çözünürlüğü destekliyorsa."]},
+          {"h3": "Bu dönüştürücü ücretsiz mi?", "p": ["Evet. YTConvert tamamen ücretsizdir."]},
+          {"h3": "Yazılım yüklemem gerekiyor mu?", "p": ["Hayır. Her şey çevrimiçi çalışır."]}
+        ]
+      }
+    ]
+  }
+}

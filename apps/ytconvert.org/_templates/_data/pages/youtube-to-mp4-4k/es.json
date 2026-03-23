@@ -1,0 +1,77 @@
+{
+  "seo": {
+    "title": "Convertidor de YouTube a MP4 4K - Descargar video 4K | YTConvert",
+    "description": "Convierte videos de YouTube a MP4 4K en línea con YTConvert. Pega una URL de YouTube y descarga videos ultra HD rápidamente sin anuncios, sin registro y sin instalar software.",
+    "schemaName": "YTConvert - Convertidor YouTube 4K",
+    "schemaDescription": "Herramienta en línea para convertir videos de YouTube a MP4 4K. Pega una URL de YouTube y descarga videos de alta resolución rápidamente sin anuncios ni registro.",
+    "ogTitle": "Convertidor de YouTube a MP4 4K - Descargar video 4K | YTConvert",
+    "ogDescription": "Descarga videos de YouTube en calidad MP4 4K con YTConvert. Rápido, gratis, sin anuncios y funciona en todos los dispositivos."
+  },
+  "content": {
+    "form": {
+      "h1": "YTConvert – YouTube a MP4 4K",
+      "placeholder": "Pega la URL del video de YouTube aquí...",
+      "button": "Convertir"
+    },
+    "sections": [
+      {
+        "h2": "¿Qué es el convertidor YTConvert YouTube 4K?",
+        "p": [
+          "YTConvert es una herramienta rápida y sencilla que te ayuda a <strong>convertir videos de YouTube a MP4 4K</strong> usando un enlace de video.",
+          "Pega la URL, procesa el video y descárgalo en calidad ultra HD sin anuncios, sin registro y sin instalar software.",
+          "Si buscas un <strong>convertidor YouTube 4K</strong> confiable, YTConvert ofrece una experiencia fluida en todos los dispositivos."
+        ]
+      },
+      {
+        "h2": "Cómo convertir un video de YouTube a 4K",
+        "ol": [
+          {"h3": "Copia el enlace del video de YouTube", "p": ["Abre YouTube y copia la URL del video que deseas en calidad 4K."]},
+          {"h3": "Pega la URL en YTConvert", "p": ["Pega el enlace del video en el campo de entrada en la parte superior de la página."]},
+          {"h3": "Procesa el video", "p": ["YTConvert analiza el enlace y prepara los formatos de alta resolución disponibles."]},
+          {"h3": "Descarga el video en 4K", "p": ["Selecciona la calidad 4K (si está disponible) y descarga el video a tu dispositivo."]}
+        ]
+      },
+      {
+        "h2": "Descargar videos de YouTube en calidad 4K",
+        "p": [
+          "YTConvert está diseñado para usuarios que quieren <strong>descargar videos de YouTube en 4K</strong> para la mejor experiencia visual.",
+          "Los videos 4K ofrecen detalles más nítidos y mayor claridad en comparación con los formatos HD estándar.",
+          "Esta herramienta es ideal para usuarios que buscan un <strong>convertidor de YouTube a MP4 4K</strong> o soluciones de descarga de video ultra HD."
+        ]
+      },
+      {
+        "h2": "¿Por qué usar YTConvert para la conversión 4K?",
+        "ul": [
+          {"h3": "Calidad de video ultra HD", "p": ["Descarga videos en resolución 4K para la máxima calidad visual."]},
+          {"h3": "Gratis y fácil de usar", "p": ["Convierte videos sin pagar ni registrarte."]},
+          {"h3": "Sin anuncios y sin registro", "p": ["Disfruta de una interfaz limpia sin interrupciones."]},
+          {"h3": "Funciona en todos los dispositivos", "p": ["Úsalo en escritorio, portátil, Android, iPhone y tabletas."]}
+        ]
+      },
+      {
+        "h2": "Usa el convertidor 4K en cualquier dispositivo",
+        "p": [
+          "YTConvert funciona en Windows, Mac, Android e iOS.",
+          "Puedes <strong>convertir videos de YouTube a 4K en línea</strong> sin instalar ningún software.",
+          "Esto lo convierte en una solución conveniente para descargas de video de alta calidad."
+        ]
+      },
+      {
+        "h2": "Explora más herramientas de conversión de YouTube",
+        "ul": [
+          {"h3": "Convertidor de YouTube", "p": ["Volver al <a href=\"/\"><strong>Convertidor de YouTube</strong></a>."]},
+          {"h3": "Convertidor de YouTube a MP4", "p": ["Formato de video estándar en <a href=\"/youtube-to-mp4-converter\"><strong>Convertidor de YouTube a MP4</strong></a>."]},
+          {"h3": "Convertidor YouTube HD", "p": ["Para videos HD, visita <a href=\"/youtube-to-mp4-hd\"><strong>Convertidor YouTube HD</strong></a>."]}
+        ]
+      },
+      {
+        "h2": "Preguntas frecuentes",
+        "ul": [
+          {"h3": "¿Puedo descargar videos de YouTube en 4K?", "p": ["Sí, si el video original admite resolución 4K."]},
+          {"h3": "¿Es gratuito este convertidor?", "p": ["Sí. YTConvert es completamente gratuito."]},
+          {"h3": "¿Necesito instalar software?", "p": ["No. Todo funciona en línea."]}
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "seo": {
+    "title": "YouTube轉4K MP4轉換器 - 下載4K影片 | YTConvert",
+    "description": "使用YTConvert線上將YouTube影片轉換為4K MP4。貼上YouTube網址，快速下載超高畫質影片，無廣告、無需註冊、無需安裝軟體。",
+    "schemaName": "YTConvert - YouTube 4K轉換器",
+    "schemaDescription": "線上將YouTube影片轉換為4K MP4的工具。貼上YouTube網址，快速下載高解析度影片，無廣告且無需註冊。",
+    "ogTitle": "YouTube轉4K MP4轉換器 - 下載4K影片 | YTConvert",
+    "ogDescription": "使用YTConvert下載4K MP4品質的YouTube影片。快速、免費、無廣告，適用於所有裝置。"
+  },
+  "content": {
+    "form": {
+      "h1": "YTConvert – YouTube轉4K MP4",
+      "placeholder": "在此貼上YouTube影片網址...",
+      "button": "轉換"
+    },
+    "sections": [
+      {
+        "h2": "什麼是YTConvert YouTube 4K轉換器？",
+        "p": [
+          "YTConvert是一款快速簡便的工具，幫助您透過影片連結<strong>將YouTube影片轉換為4K MP4</strong>。",
+          "貼上網址，處理影片，即可以超高畫質下載，無廣告、無需註冊、無需安裝軟體。",
+          "如果您正在尋找可靠的<strong>YouTube 4K轉換器</strong>，YTConvert在所有裝置上提供流暢的使用體驗。"
+        ]
+      },
+      {
+        "h2": "如何將YouTube影片轉換為4K",
+        "ol": [
+          {"h3": "複製YouTube影片連結", "p": ["開啟YouTube並複製您想要4K品質的影片網址。"]},
+          {"h3": "將網址貼到YTConvert", "p": ["將影片連結貼到頁面頂部的輸入框中。"]},
+          {"h3": "處理影片", "p": ["YTConvert會分析連結並準備可用的高解析度格式。"]},
+          {"h3": "下載4K影片", "p": ["選擇4K品質（如果可用）並將影片下載到您的裝置。"]}
+        ]
+      },
+      {
+        "h2": "下載4K品質的YouTube影片",
+        "p": [
+          "YTConvert專為希望<strong>以4K下載YouTube影片</strong>以獲得最佳視覺體驗的使用者而設計。",
+          "與標準高畫質格式相比，4K影片提供更清晰的細節和更高的畫質。",
+          "此工具非常適合尋找<strong>YouTube轉MP4 4K轉換器</strong>或超高畫質影片下載解決方案的使用者。"
+        ]
+      },
+      {
+        "h2": "為什麼使用YTConvert進行4K轉換？",
+        "ul": [
+          {"h3": "超高畫質影片品質", "p": ["以4K解析度下載影片，獲得最高視覺品質。"]},
+          {"h3": "免費且易於使用", "p": ["無需付費或註冊即可轉換影片。"]},
+          {"h3": "無廣告且無需註冊", "p": ["享受簡潔無干擾的介面。"]},
+          {"h3": "適用於所有裝置", "p": ["在桌上型電腦、筆記型電腦、Android、iPhone和平板電腦上使用。"]}
+        ]
+      },
+      {
+        "h2": "在任何裝置上使用4K轉換器",
+        "p": [
+          "YTConvert適用於Windows、Mac、Android和iOS。",
+          "您可以<strong>線上將YouTube影片轉換為4K</strong>，無需安裝任何軟體。",
+          "這使其成為高品質影片下載的便利解決方案。"
+        ]
+      },
+      {
+        "h2": "探索更多YouTube轉換工具",
+        "ul": [
+          {"h3": "YouTube轉換器", "p": ["返回<a href=\"/\"><strong>YouTube轉換器</strong></a>。"]},
+          {"h3": "YouTube轉MP4轉換器", "p": ["在<a href=\"/youtube-to-mp4-converter\"><strong>YouTube轉MP4轉換器</strong></a>取得標準影片格式。"]},
+          {"h3": "YouTube高畫質轉換器", "p": ["如需高畫質影片，請造訪<a href=\"/youtube-to-mp4-hd\"><strong>YouTube高畫質轉換器</strong></a>。"]}
+        ]
+      },
+      {
+        "h2": "常見問題",
+        "ul": [
+          {"h3": "我可以下載4K的YouTube影片嗎？", "p": ["可以，前提是原始影片支援4K解析度。"]},
+          {"h3": "這個轉換器免費嗎？", "p": ["是的。YTConvert完全免費。"]},
+          {"h3": "我需要安裝軟體嗎？", "p": ["不需要。一切線上運作。"]}
+        ]
+      }
+    ]
+  }
+}

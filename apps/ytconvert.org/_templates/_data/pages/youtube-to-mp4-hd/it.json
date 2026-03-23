@@ -1,0 +1,77 @@
+{
+  "seo": {
+    "title": "Convertitore YouTube in MP4 HD - Scarica Video 1080p | YTConvert",
+    "description": "Converti video YouTube in MP4 HD online con YTConvert. Scarica video in qualità 720p o 1080p velocemente senza pubblicità, senza registrazione e senza software.",
+    "schemaName": "YTConvert - Convertitore YouTube HD",
+    "schemaDescription": "Strumento online per convertire video YouTube in HD e 1080p MP4. Incolla un URL YouTube e scarica video ad alta definizione rapidamente senza pubblicità.",
+    "ogTitle": "Convertitore YouTube in MP4 HD - Scarica Video 1080p | YTConvert",
+    "ogDescription": "Scarica video YouTube in HD e 1080p MP4 con YTConvert. Veloce, gratuito, senza pubblicità e funziona su tutti i dispositivi."
+  },
+  "content": {
+    "form": {
+      "h1": "YTConvert – YouTube in MP4 HD",
+      "placeholder": "Incolla l'URL del video YouTube qui...",
+      "button": "Converti"
+    },
+    "sections": [
+      {
+        "h2": "Cos'è il convertitore YouTube HD YTConvert?",
+        "p": [
+          "YTConvert ti aiuta a <strong>convertire video YouTube in MP4 HD</strong> in formati come 720p e 1080p usando un link video.",
+          "Incolla l'URL, elabora il video e scaricalo in alta definizione senza pubblicità, senza registrazione e senza installazione di software.",
+          "È un <strong>convertitore YouTube HD</strong> affidabile per i download video quotidiani."
+        ]
+      },
+      {
+        "h2": "Come convertire video YouTube in HD",
+        "ol": [
+          {"h3": "Copia il link del video YouTube", "p": ["Copia l'URL del video che desideri in qualità HD."]},
+          {"h3": "Incolla in YTConvert", "p": ["Incolla il link nella casella di input sopra."]},
+          {"h3": "Elabora il video", "p": ["YTConvert prepara i formati HD disponibili come 720p o 1080p."]},
+          {"h3": "Scarica il video HD", "p": ["Scegli la qualità preferita e scarica."]}
+        ]
+      },
+      {
+        "h2": "Scarica video YouTube in HD",
+        "p": [
+          "I formati HD come 720p e 1080p offrono un equilibrio tra qualità e dimensione del file.",
+          "YTConvert rende facile <strong>scaricare video YouTube in 1080p</strong> per la visione offline.",
+          "Questo strumento è perfetto per gli utenti che cercano un <strong>convertitore video YouTube HD</strong>."
+        ]
+      },
+      {
+        "h2": "Perché usare YTConvert per la conversione HD?",
+        "ul": [
+          {"h3": "Video di alta qualità", "p": ["Scarica video in HD e 1080p per una riproduzione nitida."]},
+          {"h3": "Veloce e gratuito", "p": ["Converti video rapidamente senza pagare o registrarti."]},
+          {"h3": "Senza pubblicità e senza registrazione", "p": ["Goditi un'interfaccia pulita e semplice."]},
+          {"h3": "Funziona ovunque", "p": ["Compatibile con dispositivi desktop e mobile."]}
+        ]
+      },
+      {
+        "h2": "Usa il convertitore HD su qualsiasi dispositivo",
+        "p": [
+          "YTConvert funziona su Windows, Mac, Android e iOS.",
+          "Puoi <strong>convertire video YouTube in HD online</strong> senza installare alcun software.",
+          "Questo lo rende una soluzione flessibile per download ad alta definizione."
+        ]
+      },
+      {
+        "h2": "Esplora altri strumenti",
+        "ul": [
+          {"h3": "Convertitore YouTube", "p": ["<a href=\"/\"><strong>Convertitore YouTube</strong></a>"]},
+          {"h3": "YouTube in MP4", "p": ["<a href=\"/youtube-to-mp4-converter\"><strong>Convertitore YouTube in MP4</strong></a>"]},
+          {"h3": "Convertitore YouTube 4K", "p": ["<a href=\"/youtube-to-mp4-4k\"><strong>Convertitore YouTube 4K</strong></a>"]}
+        ]
+      },
+      {
+        "h2": "Domande frequenti",
+        "ul": [
+          {"h3": "Posso scaricare video YouTube in 1080p?", "p": ["Sì, se il video supporta la risoluzione HD."]},
+          {"h3": "Questo convertitore è gratuito?", "p": ["Sì. YTConvert è gratuito."]},
+          {"h3": "Devo installare qualcosa?", "p": ["No. Funziona direttamente nel tuo browser."]}
+        ]
+      }
+    ]
+  }
+}

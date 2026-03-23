@@ -1,0 +1,88 @@
+{
+  "seo": {
+    "title": "YouTube转MP4在线转换器 - 免费无广告 | YTConvert",
+    "description": "使用YTConvert免费在线将YouTube视频转换为MP4。粘贴YouTube链接，无广告、无需注册、快速处理，下载MP4格式视频。",
+    "schemaName": "YTConvert - YouTube转MP4转换器",
+    "schemaDescription": "在线将YouTube视频转换为MP4格式的工具。粘贴YouTube链接，无广告、无需注册即可快速下载视频文件。",
+    "ogTitle": "YouTube转MP4在线转换器 - 免费无广告 | YTConvert",
+    "ogDescription": "使用YTConvert在线将YouTube视频转换为MP4。快速、免费、无广告，适用于所有设备。"
+  },
+  "content": {
+    "form": {
+      "h1": "YTConvert – YouTube转MP4转换器",
+      "placeholder": "在此粘贴YouTube视频链接...",
+      "button": "转换"
+    },
+    "sections": [
+      {
+        "h2": "什么是YTConvert YouTube转MP4转换器？",
+        "p": [
+          "YTConvert是一款快速简便的工具，让您通过简单的视频链接<strong>将YouTube视频转换为MP4</strong>。",
+          "粘贴链接，处理视频，即可以MP4格式下载，无广告、无需注册、无需安装软件。",
+          "如果您需要一个可靠的<strong>YouTube转MP4转换器</strong>，YTConvert在所有设备上提供干净流畅的体验。"
+        ]
+      },
+      {
+        "h2": "如何将YouTube视频转换为MP4",
+        "ol": [
+          {"h3": "复制YouTube视频链接", "p": ["打开YouTube并复制您想转换的视频URL。"]},
+          {"h3": "将URL粘贴到YTConvert", "p": ["将视频链接粘贴到页面顶部的输入框中。"]},
+          {"h3": "处理视频", "p": ["YTConvert读取链接并准备将视频转换为MP4。"]},
+          {"h3": "下载MP4文件", "p": ["点击转换，将MP4视频下载到您的设备。"]}
+        ]
+      },
+      {
+        "h2": "轻松将YouTube视频转换为MP4",
+        "p": [
+          "YTConvert专为希望快速<strong>将YouTube视频转换为MP4</strong>而无需复杂步骤的用户设计。",
+          "适用于教程、电影、Vlog以及任何您想离线观看的内容。",
+          "此工具非常适合寻找<strong>免费YouTube转MP4转换器</strong>或从YouTube保存视频的简单方法的用户。"
+        ]
+      },
+      {
+        "h2": "为什么使用YTConvert进行MP4转换？",
+        "ul": [
+          {"h3": "免费快速转换", "p": ["无需付费或注册，快速将YouTube视频转换为MP4。"]},
+          {"h3": "无广告无需注册", "p": ["YTConvert提供干净的体验，无需登录，没有烦人的广告。"]},
+          {"h3": "兼容的MP4格式", "p": ["MP4在包括手机、平板和电脑在内的所有设备上广泛支持。"]},
+          {"h3": "适用于所有设备", "p": ["在Windows、Mac、Android、iPhone和平板上直接通过浏览器使用转换器。"]}
+        ]
+      },
+      {
+        "h2": "在任何设备上下载MP4视频",
+        "p": [
+          "YTConvert在桌面和移动设备上运行流畅。",
+          "您可以<strong>在线将YouTube视频转换为MP4</strong>，无需安装任何应用。",
+          "这使其成为随时访问<strong>YouTube MP4转换器</strong>的最简单方式之一。"
+        ]
+      },
+      {
+        "h2": "探索更多YouTube转换工具",
+        "ul": [
+          {"h3": "YouTube转换器", "p": ["返回<a href=\"/\"><strong>YouTube转换器</strong></a>查看所有格式。"]},
+          {"h3": "YouTube转MP3转换器", "p": ["需要音频？访问<a href=\"/youtube-to-mp3-converter\"><strong>YouTube转MP3转换器</strong></a>。"]},
+          {"h3": "YouTube音频转换器", "p": ["更多音频格式请查看<a href=\"/youtube-audio-converter\"><strong>YouTube音频转换器</strong></a>。"]},
+          {"h3": "YouTube 4K转换器", "p": ["高质量视频请访问<a href=\"/youtube-to-mp4-4k\"><strong>YouTube 4K转换器</strong></a>。"]}
+        ]
+      },
+      {
+        "h2": "快速干净的MP4转换体验",
+        "ul": [
+          {"h3": "基于链接的简单工作流程", "p": ["粘贴链接，转换视频，几秒钟内下载MP4文件。"]},
+          {"h3": "无需安装软件", "p": ["一切直接在浏览器中运行，无需任何安装。"]},
+          {"h3": "为视频下载优化", "p": ["YTConvert专注于提供快速流畅的视频转换过程。"]}
+        ]
+      },
+      {
+        "h2": "常见问题",
+        "ul": [
+          {"h3": "如何将YouTube视频转换为MP4？", "p": ["复制YouTube链接，粘贴到YTConvert，处理链接，下载MP4文件。"]},
+          {"h3": "这个YouTube转MP4转换器免费吗？", "p": ["是的。YTConvert完全免费使用。"]},
+          {"h3": "需要安装软件吗？", "p": ["不需要。该工具完全在线运行。"]},
+          {"h3": "可以在移动设备上使用吗？", "p": ["可以。支持Android、iPhone、平板和桌面设备。"]},
+          {"h3": "YTConvert与YouTube有关联吗？", "p": ["没有。YTConvert是独立工具，与YouTube或Google没有任何关联。"]}
+        ]
+      }
+    ]
+  }
+}

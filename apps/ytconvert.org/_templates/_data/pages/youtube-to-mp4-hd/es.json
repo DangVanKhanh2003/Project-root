@@ -1,0 +1,77 @@
+{
+  "seo": {
+    "title": "Convertidor de YouTube a MP4 HD - Descargar Video 1080p | YTConvert",
+    "description": "Convierte videos de YouTube a MP4 HD en línea con YTConvert. Descarga videos en calidad 720p o 1080p rápidamente sin anuncios, sin registro y sin software.",
+    "schemaName": "YTConvert - Convertidor HD de YouTube",
+    "schemaDescription": "Herramienta en línea para convertir videos de YouTube a HD y 1080p MP4. Pega una URL de YouTube y descarga videos en alta definición rápidamente sin anuncios.",
+    "ogTitle": "Convertidor de YouTube a MP4 HD - Descargar Video 1080p | YTConvert",
+    "ogDescription": "Descarga videos de YouTube en HD y 1080p MP4 con YTConvert. Rápido, gratis, sin anuncios y funciona en todos los dispositivos."
+  },
+  "content": {
+    "form": {
+      "h1": "YTConvert – YouTube a MP4 HD",
+      "placeholder": "Pega la URL del video de YouTube aquí...",
+      "button": "Convertir"
+    },
+    "sections": [
+      {
+        "h2": "¿Qué es el convertidor HD de YouTube YTConvert?",
+        "p": [
+          "YTConvert te ayuda a <strong>convertir videos de YouTube a MP4 HD</strong> en formatos como 720p y 1080p usando un enlace de video.",
+          "Pega la URL, procesa el video y descárgalo en alta definición sin anuncios, sin registro y sin instalación de software.",
+          "Es un <strong>convertidor HD de YouTube</strong> confiable para descargas de video diarias."
+        ]
+      },
+      {
+        "h2": "Cómo convertir videos de YouTube a HD",
+        "ol": [
+          {"h3": "Copia el enlace del video de YouTube", "p": ["Copia la URL del video que deseas en calidad HD."]},
+          {"h3": "Pégalo en YTConvert", "p": ["Pega el enlace en el cuadro de entrada de arriba."]},
+          {"h3": "Procesa el video", "p": ["YTConvert prepara los formatos HD disponibles como 720p o 1080p."]},
+          {"h3": "Descarga el video en HD", "p": ["Elige tu calidad preferida y descarga."]}
+        ]
+      },
+      {
+        "h2": "Descarga videos de YouTube en HD",
+        "p": [
+          "Los formatos HD como 720p y 1080p ofrecen un equilibrio entre calidad y tamaño de archivo.",
+          "YTConvert facilita <strong>descargar videos de YouTube en 1080p</strong> para verlos sin conexión.",
+          "Esta herramienta es perfecta para usuarios que buscan un <strong>convertidor de video HD de YouTube</strong>."
+        ]
+      },
+      {
+        "h2": "¿Por qué usar YTConvert para conversión HD?",
+        "ul": [
+          {"h3": "Video de alta calidad", "p": ["Descarga videos en HD y 1080p para una reproducción nítida."]},
+          {"h3": "Rápido y gratis", "p": ["Convierte videos rápidamente sin pagar ni registrarte."]},
+          {"h3": "Sin anuncios ni registro", "p": ["Disfruta de una interfaz limpia y sencilla."]},
+          {"h3": "Funciona en todas partes", "p": ["Compatible con dispositivos de escritorio y móviles."]}
+        ]
+      },
+      {
+        "h2": "Usa el convertidor HD en cualquier dispositivo",
+        "p": [
+          "YTConvert funciona en Windows, Mac, Android e iOS.",
+          "Puedes <strong>convertir videos de YouTube a HD en línea</strong> sin instalar ningún software.",
+          "Esto lo convierte en una solución flexible para descargas en alta definición."
+        ]
+      },
+      {
+        "h2": "Explora más herramientas",
+        "ul": [
+          {"h3": "Convertidor de YouTube", "p": ["<a href=\"/\"><strong>Convertidor de YouTube</strong></a>"]},
+          {"h3": "YouTube a MP4", "p": ["<a href=\"/youtube-to-mp4-converter\"><strong>Convertidor de YouTube a MP4</strong></a>"]},
+          {"h3": "Convertidor YouTube 4K", "p": ["<a href=\"/youtube-to-mp4-4k\"><strong>Convertidor YouTube 4K</strong></a>"]}
+        ]
+      },
+      {
+        "h2": "Preguntas frecuentes",
+        "ul": [
+          {"h3": "¿Puedo descargar videos de YouTube en 1080p?", "p": ["Sí, si el video admite resolución HD."]},
+          {"h3": "¿Es gratis este convertidor?", "p": ["Sí. YTConvert es de uso gratuito."]},
+          {"h3": "¿Necesito instalar algo?", "p": ["No. Funciona directamente en tu navegador."]}
+        ]
+      }
+    ]
+  }
+}
