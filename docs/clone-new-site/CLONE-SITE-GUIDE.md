@@ -160,12 +160,46 @@ Thêm labels vào `nav`, `drawer.links`, và `footer.nav`:
 
 ---
 
-## Bước 4: vite.config.ts
+## Bước 4: Tạo static legal/info pages
 
-Cập nhật `staticPages` — chỉ giữ pages có file `.html` thực tế ở root:
+⚠️ **Nếu data folder thiếu các trang about/contact/copyright/privacy-policy/terms-of-use, phải tạo thủ công.**
+
+### 4a. Tạo 5 file HTML thuần ở root app:
+
+```
+about.html
+contact.html
+copyright.html
+privacy-policy.html
+terms-of-use.html
+```
+
+Pattern: copy từ `apps/ytsss.com/` rồi thay `YTSSS` → `{BRAND}`, `ytsss.com` → `{DOMAIN}`, `meta.ytsss@gmail.com` → email mới.
+
+Cần có CSS: `src/styles/features/text-page.css` — copy từ `apps/ytsss.com/src/styles/features/text-page.css` nếu chưa có.
+
+### 4b. Thêm legal nav vào `_templates/_includes/footer.njk`:
+
+```njk
+<nav class="footer-nav footer-nav--legal" aria-label="Legal navigation">
+    <a href="/about">{{ base.footer.legal.about or 'About' }}</a>
+    <a href="/contact">{{ base.footer.legal.contact or 'Contact' }}</a>
+    <a href="/copyright">{{ base.footer.legal.copyright or 'Copyright &amp; DMCA' }}</a>
+    <a href="/privacy-policy">{{ base.footer.legal.privacyPolicy or 'Privacy Policy' }}</a>
+    <a href="/terms-of-use">{{ base.footer.legal.termsOfUse or 'Terms of Use' }}</a>
+</nav>
+```
+
+Đặt **trước** dòng `<div class="copyright">`.
+
+---
+
+## Bước 5: vite.config.ts
+
+Cập nhật `staticPages` — bao gồm tất cả file `.html` thực tế ở root (kể cả legal pages):
 
 ```ts
-const staticPages = ['404', 'license', 'reset-key'];
+const staticPages = ['404', 'license', 'reset-key', 'about', 'contact', 'copyright', 'privacy-policy', 'terms-of-use'];
 ```
 
 Kiểm tra `excludedPageNames` — xóa entries không liên quan.
@@ -237,9 +271,12 @@ grep -ri "onedownloader" --include="*.ts" --include="*.json" --include="*.html" 
 - [ ] Rebrand: CSS comment headers
 - [ ] Rebrand: static HTML (404, license, reset-key)
 - [ ] Rebrand: rebrand.cjs
-- [ ] Thêm navigation: footer.njk, header.njk drawer, i18n/en.json, footer.css
+- [ ] Tạo legal/info pages: about, contact, copyright, privacy-policy, terms-of-use (copy từ ytsss.com, thay brand/domain/email)
+- [ ] Copy `src/styles/features/text-page.css` từ ytsss.com nếu chưa có
+- [ ] Thêm legal nav vào footer.njk (trước dòng copyright)
+- [ ] Thêm navigation: footer.njk tool links, header.njk drawer, i18n/en.json, footer.css
 - [ ] Dọn dead links: i18n, header.njk, 404.html
-- [ ] Update vite.config.ts staticPages
+- [ ] Update vite.config.ts staticPages (bao gồm cả 5 legal pages)
 - [ ] Thêm vào ci.yml (6 chỗ) — **thảo luận trước**
 - [ ] Thêm vào deploy-manual.yml (2 chỗ) — **thảo luận trước**
 - [ ] Rebuild templates và verify không còn old references
