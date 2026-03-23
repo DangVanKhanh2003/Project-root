@@ -281,6 +281,8 @@ export class MultipleDownloadRenderer {
                     // Only need to block when checking on; uncheck should always pass.
                     if (checkbox.checked && item && this.handleExpiredItems([item], { markAsExpired: true }).length > 0) {
                         checkbox.checked = false;
+                        const { expiredCount, errorCount } = this.getExpiredAndErrorCounts();
+                        showRetryAllModal({ expiredCount, errorCount });
                         return;
                     }
                     videoStore.toggleSelect(id);
@@ -583,7 +585,12 @@ export class MultipleDownloadRenderer {
             link.click();
             document.body.removeChild(link);
         } catch (error: any) {
-            alert(error.message || 'Failed to create ZIP');
+            MaterialPopup.show({
+                title: 'Error',
+                type: 'warning',
+                message: error.message || 'Failed to create ZIP',
+                confirmText: 'OK'
+            });
         } finally {
             btn.classList.remove('is-loading');
             this.updateBatchHeader();
@@ -627,7 +634,12 @@ export class MultipleDownloadRenderer {
             link.click();
             document.body.removeChild(link);
         } catch (error: any) {
-            alert(error.message || 'Failed to create ZIP');
+            MaterialPopup.show({
+                title: 'Error',
+                type: 'warning',
+                message: error.message || 'Failed to create ZIP',
+                confirmText: 'OK'
+            });
         } finally {
             btn.classList.remove('is-loading');
             // Re-render the button with correct count via updateGroupCount

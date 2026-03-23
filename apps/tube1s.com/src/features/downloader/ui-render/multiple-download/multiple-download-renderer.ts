@@ -21,6 +21,7 @@ import { getFeatureLimitContextAsync } from '../../../../features/allowed-featur
 import { showPaywall } from '../../../../features/paywall-popup';
 import { FEATURE_KEYS } from '@downloader/core';
 import { isLinkExpired } from '../../../../utils/link-validator';
+import { showRetryAllModal } from './expire-retry-modal';
 import type { VideoItem } from '../../state/multiple-download-types';
 
 export class MultipleDownloadRenderer {
@@ -54,6 +55,10 @@ export class MultipleDownloadRenderer {
             this.bindEvents();
             this.subscribeToStore();
             this.isInitialized = true;
+
+            document.addEventListener('retryAllExpiredItems', () => {
+                multiDownloadService.retryAllExpiredAndError();
+            });
         }
     }
 
@@ -276,6 +281,8 @@ export class MultipleDownloadRenderer {
                     // Only need to block when checking on; uncheck should always pass.
                     if (checkbox.checked && item && this.handleExpiredItems([item], { markAsExpired: true }).length > 0) {
                         checkbox.checked = false;
+                        const { expiredCount, errorCount } = this.getExpiredAndErrorCounts();
+                        showRetryAllModal({ expiredCount, errorCount });
                         return;
                     }
                     videoStore.toggleSelect(id);
@@ -300,20 +307,23 @@ export class MultipleDownloadRenderer {
                         const expiredItems = this.handleExpiredItems(tabItems, { markAsExpired: true });
                         const expiredIds = new Set(expiredItems.map(item => item.id));
 
-                        const processingCount = tabItems.filter(i => ['analyzing', 'fetching_metadata', 'queued', 'downloading', 'converting'].includes(i.status)).length;
+                        // Show expire modal if there are expired/error items
+                        const expiredCount = tabItems.filter(i => i.status === 'expired').length;
                         const failedCount = tabItems.filter(i => i.status === 'error' && !expiredIds.has(i.id)).length;
 
-                        if (processingCount > 0 || failedCount > 0) {
-                            (target as HTMLInputElement).checked = false;
+                        if (expiredCount > 0 || failedCount > 0) {
+                            showRetryAllModal({ expiredCount, errorCount: failedCount });
+                        }
 
-                            const parts: string[] = [];
-                            if (processingCount > 0) parts.push(`<strong>${processingCount} video${processingCount > 1 ? 's' : ''}</strong> still processing`);
-                            if (failedCount > 0) parts.push(`<strong>${failedCount} video${failedCount > 1 ? 's' : ''}</strong> failed`);
+                        const processingCount = tabItems.filter(i => ['analyzing', 'fetching_metadata', 'queued', 'downloading', 'converting'].includes(i.status)).length;
+
+                        if (processingCount > 0) {
+                            (target as HTMLInputElement).checked = false;
 
                             MaterialPopup.show({
                                 title: 'Warning',
                                 type: 'warning',
-                                message: `There ${parts.length === 1 && processingCount === 1 ? 'is' : 'are'} ${parts.join(' and ')}. Are you sure you want to continue?`,
+                                message: `There ${processingCount === 1 ? 'is' : 'are'} <strong>${processingCount} video${processingCount > 1 ? 's' : ''}</strong> still processing. Are you sure you want to continue?`,
                                 confirmText: 'OK',
                                 onConfirm: () => {
                                     (target as HTMLInputElement).checked = true;
@@ -415,20 +425,24 @@ export class MultipleDownloadRenderer {
                 if (checked) {
                     const expiredItems = this.handleExpiredItems(items, { markAsExpired: true });
                     const expiredIds = new Set(expiredItems.map(item => item.id));
-                    const processingCount = items.filter(i => ['analyzing', 'fetching_metadata', 'queued', 'downloading', 'converting'].includes(i.status)).length;
+
+                    // Show expire modal if there are expired/error items
+                    const expiredCount = items.filter(i => i.status === 'expired').length;
                     const failedCount = items.filter(i => i.status === 'error' && !expiredIds.has(i.id)).length;
 
-                    if (processingCount > 0 || failedCount > 0) {
-                        (target as HTMLInputElement).checked = false;
+                    if (expiredCount > 0 || failedCount > 0) {
+                        showRetryAllModal({ expiredCount, errorCount: failedCount });
+                    }
 
-                        const parts: string[] = [];
-                        if (processingCount > 0) parts.push(`<strong>${processingCount} video${processingCount > 1 ? 's' : ''}</strong> still processing`);
-                        if (failedCount > 0) parts.push(`<strong>${failedCount} video${failedCount > 1 ? 's' : ''}</strong> failed`);
+                    const processingCount = items.filter(i => ['analyzing', 'fetching_metadata', 'queued', 'downloading', 'converting'].includes(i.status)).length;
+
+                    if (processingCount > 0) {
+                        (target as HTMLInputElement).checked = false;
 
                         MaterialPopup.show({
                             title: 'Warning',
                             type: 'warning',
-                            message: `There ${parts.length === 1 && processingCount === 1 ? 'is' : 'are'} ${parts.join(' and ')}. Are you sure you want to continue?`,
+                            message: `There ${processingCount === 1 ? 'is' : 'are'} <strong>${processingCount} video${processingCount > 1 ? 's' : ''}</strong> still processing. Are you sure you want to continue?`,
                             confirmText: 'OK',
                             onConfirm: () => {
                                 (target as HTMLInputElement).checked = true;
@@ -542,20 +556,26 @@ export class MultipleDownloadRenderer {
         btn.textContent = 'Creating ZIP...';
 
         try {
-            const selectedCompletedItems = videoStore.getAllItems()
-                .filter(i => !i.groupId && i.status === 'completed' && i.isSelected);
+            const selectedItems = videoStore.getAllItems()
+                .filter(i => !i.groupId && i.isSelected);
 
-            // Re-check TTL when user clicks Download ZIP.
-            const expired = this.handleExpiredItems(selectedCompletedItems, { markAsExpired: true });
-            if (expired.length > 0) {
-                return;
+            // Re-check TTL + sync expired
+            videoStore.syncExpiredItems();
+            const selectedExpiredCount = selectedItems.filter(i => i.status === 'expired').length;
+            const selectedErrorCount = selectedItems.filter(i => i.status === 'error').length;
+
+            if (selectedExpiredCount > 0 || selectedErrorCount > 0) {
+                const { expiredCount, errorCount } = this.getExpiredAndErrorCounts();
+                const action = await showRetryAllModal({ showContinue: true, expiredCount, errorCount });
+                if (action !== 'continue') return;
             }
 
-            const completedIds = selectedCompletedItems.map(i => i.id);
+            // Continue with valid completed items only
+            const completedIds = videoStore.getAllItems()
+                .filter(i => !i.groupId && i.status === 'completed' && i.isSelected && i.downloadUrl)
+                .map(i => i.id);
 
-            if (completedIds.length === 0) {
-                throw new Error('No selected completed items');
-            }
+            if (completedIds.length === 0) return;
 
             const downloadUrl = await multiDownloadService.createZipDownload(completedIds);
 
@@ -566,7 +586,12 @@ export class MultipleDownloadRenderer {
             link.click();
             document.body.removeChild(link);
         } catch (error: any) {
-            alert(error.message || 'Failed to create ZIP');
+            MaterialPopup.show({
+                title: 'Error',
+                type: 'warning',
+                message: error.message || 'Failed to create ZIP',
+                confirmText: 'OK'
+            });
         } finally {
             btn.classList.remove('is-loading');
             this.updateBatchHeader();
@@ -580,20 +605,26 @@ export class MultipleDownloadRenderer {
         btn.textContent = 'Creating ZIP...';
 
         try {
-            const selectedCompletedItems = videoStore.getItemsByGroup(groupId)
-                .filter(i => i.status === 'completed' && i.isSelected);
+            const selectedItems = videoStore.getItemsByGroup(groupId)
+                .filter(i => i.isSelected);
 
-            // Re-check TTL when user clicks Download ZIP.
-            const expired = this.handleExpiredItems(selectedCompletedItems, { markAsExpired: true });
-            if (expired.length > 0) {
-                return;
+            // Re-check TTL + sync expired
+            videoStore.syncExpiredItems();
+            const selectedExpiredCount = selectedItems.filter(i => i.status === 'expired').length;
+            const selectedErrorCount = selectedItems.filter(i => i.status === 'error').length;
+
+            if (selectedExpiredCount > 0 || selectedErrorCount > 0) {
+                const { expiredCount, errorCount } = this.getExpiredAndErrorCounts();
+                const action = await showRetryAllModal({ showContinue: true, expiredCount, errorCount });
+                if (action !== 'continue') return;
             }
 
-            const completedIds = selectedCompletedItems.map(i => i.id);
+            // Continue with valid completed items only
+            const completedIds = videoStore.getItemsByGroup(groupId)
+                .filter(i => i.status === 'completed' && i.isSelected && i.downloadUrl)
+                .map(i => i.id);
 
-            if (completedIds.length === 0) {
-                throw new Error('No selected completed items in this group');
-            }
+            if (completedIds.length === 0) return;
 
             const downloadUrl = await multiDownloadService.createZipDownload(completedIds);
 
@@ -604,7 +635,12 @@ export class MultipleDownloadRenderer {
             link.click();
             document.body.removeChild(link);
         } catch (error: any) {
-            alert(error.message || 'Failed to create ZIP');
+            MaterialPopup.show({
+                title: 'Error',
+                type: 'warning',
+                message: error.message || 'Failed to create ZIP',
+                confirmText: 'OK'
+            });
         } finally {
             btn.classList.remove('is-loading');
             // Re-render the button with correct count via updateGroupCount
@@ -627,6 +663,8 @@ export class MultipleDownloadRenderer {
         if (id) {
             const item = videoStore.getItem(id);
             if (item && this.handleExpiredItems([item], { markAsExpired: true }).length > 0) {
+                const { expiredCount, errorCount } = this.getExpiredAndErrorCounts();
+                showRetryAllModal({ expiredCount, errorCount });
                 return;
             }
         }
@@ -723,7 +761,7 @@ export class MultipleDownloadRenderer {
         );
     }
 
-    private handleExpiredItems(items: VideoItem[], options: { markAsExpired?: boolean; showPopup?: boolean } = {}): VideoItem[] {
+    private handleExpiredItems(items: VideoItem[], options: { markAsExpired?: boolean } = {}): VideoItem[] {
         const expiredItems = this.getExpiredCompletedItems(items);
         if (expiredItems.length === 0) {
             return [];
@@ -742,33 +780,17 @@ export class MultipleDownloadRenderer {
             });
         }
 
-        if (options.showPopup !== false) {
-            this.showExpiredLinksPopup(expiredItems);
-        }
 
         return expiredItems;
     }
 
-    private showExpiredLinksPopup(expiredItems: VideoItem[]): void {
-        if (expiredItems.length <= 0) return;
 
-        if (expiredItems.length === 1) {
-            const title = this.escapeHtml(expiredItems[0]?.meta?.title || 'this video');
-            MaterialPopup.show({
-                title: 'Link Expired',
-                type: 'warning',
-                message: `<strong>Download link expired.</strong><br>The link for <strong>${title}</strong> is no longer valid. Please <strong>convert again</strong>.`,
-                confirmText: 'OK'
-            });
-            return;
-        }
-
-        MaterialPopup.show({
-            title: 'Some Links Expired',
-            type: 'warning',
-            message: `<strong>${expiredItems.length} download links expired.</strong><br>Please <strong>convert again</strong> to refresh these links before downloading.`,
-            confirmText: 'OK'
-        });
+    private getExpiredAndErrorCounts(): { expiredCount: number; errorCount: number } {
+        const allItems = videoStore.getAllItems();
+        return {
+            expiredCount: allItems.filter(i => i.status === 'expired').length,
+            errorCount: allItems.filter(i => i.status === 'error').length
+        };
     }
 
     private escapeHtml(text: string): string {

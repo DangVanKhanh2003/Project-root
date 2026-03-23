@@ -813,6 +813,14 @@ export class MultiDownloadService {
         this.startDownload(id);
     }
 
+    retryAllExpiredAndError(): void {
+        const targets = videoStore.getItemsByStatus('expired', 'error');
+        if (targets.length === 0) return;
+        for (const item of targets) {
+            this.retryDownload(item.id);
+        }
+    }
+
     // ==========================================
     // Private
     // ==========================================
