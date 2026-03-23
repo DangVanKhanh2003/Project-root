@@ -31,6 +31,7 @@ on:
           - 'snakeloader.com'
           - 'ytsss.com'
           - 'sstube.net'
+          - 'ytconvert.org'
 
 concurrency:
   group: ci-${{ github.repository }}-${{ github.ref }}
@@ -94,13 +95,15 @@ jobs:
               - 'apps/ytsss.com/**'
             sstube.net:
               - 'apps/sstube.net/**'
+            ytconvert.org:
+              - 'apps/ytconvert.org/**'
 
       - name: Determine apps to deploy
         id: determine-apps
         env:
           COMMIT_MSG: ${{ github.event.head_commit.message }}
         run: |
-          ALL_APPS='["y2matepro","y2matevc","mp3fast","ytmp3.my","4kvideopro","ssvid.cc","ezconv","ytmp4.gg","onedownloader.net","u2snap.com","convert1s.com","snap1s.com","y2save.com","tube1s.com","snakeloader.com","ytsss.com","sstube.net"]'
+          ALL_APPS='["y2matepro","y2matevc","mp3fast","ytmp3.my","4kvideopro","ssvid.cc","ezconv","ytmp4.gg","onedownloader.net","u2snap.com","convert1s.com","snap1s.com","y2save.com","tube1s.com","snakeloader.com","ytsss.com","sstube.net","ytconvert.org"]'
 
           # Handle manual trigger with specific_app
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
@@ -230,6 +233,10 @@ jobs:
           if [[ "${{ steps.filter.outputs['sstube.net'] }}" == "true" ]]; then
             CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["sstube.net"]')
             echo "✅ sstube.net changed"
+          fi
+          if [[ "${{ steps.filter.outputs['ytconvert.org'] }}" == "true" ]]; then
+            CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["ytconvert.org"]')
+            echo "✅ ytconvert.org changed"
           fi
 
           echo "📋 Changed apps: $CHANGED_APPS"
@@ -493,6 +500,20 @@ jobs:
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
+  deploy-ytconvert-org:
+    needs: [detect-changes, deploy-convert1s-com, deploy-snap1s-com, deploy-tube1s-com, deploy-y2save-com, deploy-snackeloader-com]
+    if: ${{ !cancelled() && needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'ytconvert.org') }}
+    uses: ./.github/workflows/deploy-app.yml
+    with:
+      app_name: ytconvert.org
+      app_directory: apps/ytconvert.org
+      filter_path: ./apps/ytconvert.org
+      domain: ${{ vars.YTCONVERT_DOMAIN || 'ytconvert.org' }}
+    secrets:
+      SSH_HOST: ${{ secrets.SSH_HOST }}
+      SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
   # ============================================
   # Job 9: Summary
   # ============================================
@@ -516,6 +537,7 @@ jobs:
       - deploy-snackeloader-com
       - deploy-ytsss-com
       - deploy-sstube-net
+      - deploy-ytconvert-org
     if: always()
     runs-on: ubuntu-latest
     steps:
@@ -547,3 +569,4 @@ jobs:
           echo "| snakeloader.com | ${{ needs.deploy-snackeloader-com.result || 'skipped' }} |"
           echo "| ytsss.com | ${{ needs.deploy-ytsss-com.result || 'skipped' }} |"
           echo "| sstube.net | ${{ needs.deploy-sstube-net.result || 'skipped' }} |"
+          echo "| ytconvert.org | ${{ needs.deploy-ytconvert-org.result || 'skipped' }} |"

@@ -1,0 +1,65 @@
+{
+  "nav": {
+    "home": "Home",
+    "youtubeToMp3Converter": "YouTube to MP3",
+    "youtubeToMp4Converter": "YouTube to MP4",
+    "youtubeAudioConverter": "YouTube Audio Converter",
+    "youtubePlaylistToMp3": "YouTube Playlist to MP3",
+    "youtubeShortsToMp4": "YouTube Shorts to MP4",
+    "youtubeToMp3320kbps": "YouTube to MP3 320kbps",
+    "youtubeToMp44k": "YouTube to MP4 4K",
+    "youtubeToMp4Hd": "YouTube to MP4 HD"
+  },
+  "drawer": {
+    "logoText": "YTConvert",
+    "links": {
+      "home": "Home",
+      "youtubeToMp3Converter": "YouTube to MP3",
+      "youtubeToMp4Converter": "YouTube to MP4",
+      "youtubeAudioConverter": "YouTube Audio Converter",
+      "youtubePlaylistToMp3": "YouTube Playlist to MP3",
+      "youtubeShortsToMp4": "YouTube Shorts to MP4",
+      "youtubeToMp3320kbps": "YouTube to MP3 320kbps",
+      "youtubeToMp44k": "YouTube to MP4 4K",
+      "youtubeToMp4Hd": "YouTube to MP4 HD"
+    }
+  },
+  "hero": {
+    "placeholder": "Paste video link here...",
+    "pasteBtn": "Paste",
+    "clearBtn": "Clear",
+    "convertBtn": "Convert",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "Audio track",
+    "searchPlaceholder": "Search...",
+    "supportedPlatforms": "Supported platforms:"
+  },
+  "footer": {
+    "copyright": "© 2026 YTConvert. All rights reserved.",
+    "nav": {
+      "youtubeToMp3Converter": "YouTube to MP3 Converter",
+      "youtubeToMp4Converter": "YouTube to MP4 Converter",
+      "youtubeAudioConverter": "YouTube Audio Converter",
+      "youtubePlaylistToMp3": "YouTube Playlist to MP3",
+      "youtubeShortsToMp4": "YouTube Shorts to MP4",
+      "youtubeToMp3320kbps": "YouTube to MP3 320kbps",
+      "youtubeToMp44k": "YouTube to MP4 4K",
+      "youtubeToMp4Hd": "YouTube to MP4 HD"
+    }
+  },
+  "langSelector": {
+    "buttonLabel": "Change language",
+    "buttonText": "EN",
+    "currentLangFull": "English"
+  },
+  "strim": {
+    "startBtn": "Start",
+    "selectFormatLabel": "1. Select format:",
+    "selectQualityLabel": "2. Select quality:",
+    "audioTrackLabel": "3. Select audio track:",
+    "trimLabel": "4. Cut video (Start – End time):",
+    "startTimeLabel": "Start",
+    "endTimeLabel": "End"
+  }
+}

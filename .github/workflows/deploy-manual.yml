@@ -23,6 +23,7 @@ on:
           - 'tube1s.com'
           - 'snakeloader.com'
           - 'ytsss.com'
+          - 'ytconvert.org'
       environment:
         description: 'Target environment'
         required: true
@@ -122,6 +123,11 @@ jobs:
               echo "directory=apps/ytsss.com" >> $GITHUB_OUTPUT
               echo "filter_path=./apps/ytsss.com" >> $GITHUB_OUTPUT
               echo "domain=${{ vars.YTSSS_DOMAIN || 'ytsss.com' }}" >> $GITHUB_OUTPUT
+              ;;
+            "ytconvert.org")
+              echo "directory=apps/ytconvert.org" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/ytconvert.org" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.YTCONVERT_DOMAIN || 'ytconvert.org' }}" >> $GITHUB_OUTPUT
               ;;
           esac
 
