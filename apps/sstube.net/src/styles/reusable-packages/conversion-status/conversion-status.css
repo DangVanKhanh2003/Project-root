@@ -226,8 +226,8 @@
 .retry-btn,
 .btn-new-convert {
   margin: 0;
-  height: 36px;
-  min-height: 36px;
+  height: 40px;
+  min-height: 40px;
   padding: 0 25px;
   width: fit-content;
   border-radius: 12px;
@@ -332,79 +332,25 @@
 
 }
 
-@media (min-width: 0) and (max-width: 350px) {
-  .action-container.active {
-    min-height: 40px;
-    gap: 8px;
-  }
-
+@media (max-width: 350px) {
   .download-btn,
   .retry-btn,
   .btn-new-convert {
-    height: 36px;
-    min-height: 36px;
     font-size: 10px;
     padding: 0 20px;
   }
 }
 
-@media (min-width: 351px) and (max-width: 599px) {
-  .action-container.active {
-    min-height: 40px;
-  }
-
+@media (min-width: 351px) and (max-width: 767px) {
   .download-btn,
   .retry-btn,
   .btn-new-convert {
-    height: 40px;
-    min-height: 40px;
     font-size: 12px;
     padding: 0 20px;
   }
 }
 
-@media (min-width: 600px) and (max-width: 839px) {
-  .action-container.active {
-    min-height: 36px;
-  }
-
-  .download-btn,
-  .retry-btn,
-  .btn-new-convert {
-    height: 36px;
-    min-height: 36px;
-  }
-}
-
-@media (min-width: 840px) and (max-width: 1239px) {
-  .action-container.active {
-    min-height: 44px;
-  }
-
-  .download-btn,
-  .retry-btn,
-  .btn-new-convert {
-    height: 44px;
-    min-height: 44px;
-    padding: 0 28px;
-  }
-}
-
-@media (min-width: 1240px) and (max-width: 1919px) {
-  .action-container.active {
-    min-height: 46px;
-  }
-
-  .download-btn,
-  .retry-btn,
-  .btn-new-convert {
-    height: 46px;
-    min-height: 46px;
-    padding: 0 30px;
-  }
-}
-
-@media (min-width: 1920px) and (max-width: 2559px) {
+@media (min-width: 768px) {
   .action-container.active {
     min-height: 48px;
   }
@@ -414,22 +360,7 @@
   .btn-new-convert {
     height: 48px;
     min-height: 48px;
-    font-size: 16px;
-  }
-}
-
-@media (min-width: 2560px) {
-  .action-container.active {
-    min-height: 52px;
-  }
-
-  .download-btn,
-  .retry-btn,
-  .btn-new-convert {
-    height: 52px;
-    min-height: 52px;
-    font-size: 18px;
-    padding: 0 32px;
+    padding: 0 28px;
   }
 }
 

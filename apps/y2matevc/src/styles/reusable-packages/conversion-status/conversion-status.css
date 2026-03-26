@@ -241,7 +241,7 @@
   width: 100%;
 
   /* Touch-friendly */
-  min-height: 50px;
+  min-height: 40px;
 
   /* Ripple effect support */
   position: relative;
@@ -288,5 +288,6 @@
   .download-btn,
   .retry-btn {
     font-size: 17px;
+    min-height: 48px;
   }
 }

@@ -233,7 +233,7 @@
   cursor: pointer;
   transition: all 0.2s ease;
   display: none;
-  min-height: 2rem;
+  min-height: 40px;
   position: relative;
   overflow: hidden;
   -webkit-tap-highlight-color: transparent;
@@ -333,6 +333,6 @@
   .download-btn,
   .retry-btn,
   .btn-new-convert {
-    min-height: 2.25rem;
+    min-height: 48px;
   }
 }

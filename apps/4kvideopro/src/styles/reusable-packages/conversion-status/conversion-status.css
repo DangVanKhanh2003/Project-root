@@ -348,8 +348,8 @@
 
   .status-container,
   .action-container {
-    min-height: 52px;
-    /* Desktop: 52px height */
+    min-height: 48px;
+    /* Desktop: 48px height */
   }
 
   .status-text {
@@ -360,7 +360,7 @@
   .retry-btn,
   .btn-new-convert {
     font-size: 17px;
-    min-height: 52px;
-    /* Desktop: 52px height */
+    min-height: 48px;
+    /* Desktop: 48px height */
   }
 }
