@@ -6,20 +6,20 @@
  * Based on: ytmp3.gg/src/script/features/supporter-level-manager.js
  */
 
+import { STORAGE_KEYS } from '../utils/storage-keys';
 import {
     showTrustpilotWidget,
+    showTrustpilotCard,
     hideTrustpilotWidget
 } from './trustpilot/trustpilot-widget';
 import {
     showTipMessageWidget,
     hideTipMessageWidget
 } from './tip-message/tip-message-widget';
-import { ensureHeroBelowContainerSlot } from './hero-below-container-slot';
 import { hasLicenseKey } from './download-limit';
 import { initLicenseSelector } from './license/license-selector';
 import { init as initSupporterTag, show as showSupporterTag, hide as hideSupporterTag } from './license/supporter-tag';
 import { apiLogger } from '../libs/api-logger/api-logger';
-import { STORAGE_KEYS } from '../utils/storage-keys';
 
 const MULTI_PLAYLIST_BANNER_WRAPPER_ID = 'multi-playlist-banner-wrapper';
 const MULTI_PLAYLIST_BANNER_PUBLIC_URL = '/assest/banner/multi-playlist-banner.js';
@@ -41,6 +41,55 @@ let multiPlaylistBannerShowTimeoutId: ReturnType<typeof setTimeout> | null = nul
 
 const MULTI_PLAYLIST_BANNER_RETRY_DELAY_MS = 250;
 const MULTI_PLAYLIST_BANNER_MAX_RETRIES = 20;
+
+type MainContentBelowContainerSlotOptions = {
+    className?: string;
+    marginTop?: string;
+    marginBottom?: string;
+};
+
+function ensureMainContentBelowContainerSlot(
+    id: string,
+    options: MainContentBelowContainerSlotOptions = {}
+): HTMLElement | null {
+    const mainContent = document.querySelector('.main-content') as HTMLElement | null;
+    if (!mainContent) return null;
+    const mainContentCard = mainContent.querySelector('.main-content-card') as HTMLElement | null;
+
+    let wrapper = document.getElementById(id) as HTMLElement | null;
+    if (!wrapper) {
+        wrapper = document.createElement('div');
+        wrapper.id = id;
+    }
+
+    wrapper.classList.add('main-content-below-container-slot');
+    if (options.className) {
+        wrapper.classList.add(...options.className.split(/\s+/).filter(Boolean));
+    }
+    wrapper.style.width = '100%';
+
+    if (options.marginTop) {
+        wrapper.style.marginTop = options.marginTop;
+    } else {
+        wrapper.style.removeProperty('margin-top');
+    }
+
+    if (options.marginBottom) {
+        wrapper.style.marginBottom = options.marginBottom;
+    } else {
+        wrapper.style.removeProperty('margin-bottom');
+    }
+
+    if (mainContentCard) {
+        if (wrapper.parentElement !== mainContent || wrapper.nextElementSibling !== mainContentCard) {
+            mainContentCard.insertAdjacentElement('beforebegin', wrapper);
+        }
+    } else if (wrapper.parentElement !== mainContent || wrapper !== mainContent.lastElementChild) {
+        mainContent.appendChild(wrapper);
+    }
+
+    return wrapper;
+}
 
 function loadMultiPlaylistBannerModule(): Promise<MultiPlaylistBannerModule> {
     if (!multiPlaylistBannerModulePromise) {
@@ -67,7 +116,7 @@ function loadMultiPlaylistBannerModule(): Promise<MultiPlaylistBannerModule> {
 
 function buildBannerLinkOptions() {
     return {
-        multiPath: '/youtube-multi-downloader',
+        multiPath: '/multi-youtube-downloader',
         playlistPath: '/download-mp3-youtube-playlist',
         multiParams: {},
         playlistParams: {}
@@ -75,7 +124,7 @@ function buildBannerLinkOptions() {
 }
 
 function tryShowMultiPlaylistBannerWidget(retryCount = 0): void {
-    const wrapper = ensureHeroBelowContainerSlot(MULTI_PLAYLIST_BANNER_WRAPPER_ID, {
+    const wrapper = ensureMainContentBelowContainerSlot(MULTI_PLAYLIST_BANNER_WRAPPER_ID, {
         marginTop: '50px'
     });
     if (!wrapper) {
@@ -119,10 +168,6 @@ function hideMultiPlaylistBannerWidget(): void {
     if (wrapper) wrapper.remove();
 }
 
-// ============================================================
-// CONFIGURATION CONSTANTS
-// ============================================================
-
 /**
  * Widget rules mapped by element name and timing.
  * 'supporter' key = override for license holders.
@@ -130,7 +175,7 @@ function hideMultiPlaylistBannerWidget(): void {
 const WIDGET_RULES: Record<string, { timing: string; levels: Record<number | string, boolean> }> = {
     'license-button': {
         timing: 'pageLoad',
-        levels: { 1: true, 2: true, 3: true, supporter: true }
+        levels: { 1: false, 2: false, 3: false, supporter: true }
     },
     'trustpilot-widget': {
         timing: 'afterSubmit',
