@@ -242,7 +242,6 @@
     outline: none;
     appearance: none;
     transition: border-color 0.3s;
-    min-width: 180px;
 }
 
 .multi-quality-select:hover,

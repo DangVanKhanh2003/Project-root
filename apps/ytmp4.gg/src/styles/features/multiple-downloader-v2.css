@@ -388,7 +388,6 @@
     outline: none;
     appearance: none;
     transition: border-color 0.3s;
-    min-width: 180px;
 }
 
 .multi-quality-select:hover,
@@ -406,7 +405,6 @@
 }
 
 .multi-quality-dropdown-wrapper .multi-video-group-dropdown {
-    min-width: 180px;
 }
 
 .multi-quality-dropdown-wrapper .multi-video-group-dropdown .video-group-menu {
