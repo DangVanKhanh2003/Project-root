@@ -68,8 +68,10 @@ function loadEzConvIntroBannerModule(): Promise<EzConvIntroModule> {
 }
 
 function ensureEzConvSlot(): HTMLElement | null {
-    let wrapper = document.getElementById(EZCONV_INTRO_BANNER_WRAPPER_ID);
-    if (wrapper) return wrapper;
+    const existing = document.getElementById(EZCONV_INTRO_BANNER_WRAPPER_ID);
+    if (existing) {
+        return (existing.querySelector('.container') as HTMLElement) || existing;
+    }
 
     const heroSection = document.querySelector('.hero-section') as HTMLElement | null;
     if (!heroSection || !heroSection.parentElement) return null;
@@ -79,16 +81,14 @@ function ensureEzConvSlot(): HTMLElement | null {
     section.id = EZCONV_INTRO_BANNER_WRAPPER_ID;
     section.style.marginTop = '50px';
 
-    wrapper = document.createElement('div');
-    wrapper.className = 'container';
-    wrapper.style.paddingLeft = '0';
-    wrapper.style.paddingRight = '0';
-    section.appendChild(wrapper);
+    const container = document.createElement('div');
+    container.className = 'container';
+    section.appendChild(container);
 
     // Insert after hero-section as a sibling section
     heroSection.insertAdjacentElement('afterend', section);
 
-    return wrapper;
+    return container;
 }
 
 function tryShowEzConvIntroBanner(retryCount = 0): void {
@@ -206,25 +206,29 @@ function ensureMainContentBelowContainerSlot(
     const heroSection = document.querySelector('.hero-section') as HTMLElement | null;
     if (!heroSection || !heroSection.parentElement) return null;
 
-    if (wrapper) return wrapper;
+    // Already exists — return .container child inside
+    if (wrapper) {
+        return (wrapper.querySelector('.container') as HTMLElement) || wrapper;
+    }
 
-    wrapper = document.createElement('section');
-    wrapper.id = id;
-    wrapper.style.maxWidth = '900px';
-    wrapper.style.marginLeft = 'auto';
-    wrapper.style.marginRight = 'auto';
-    wrapper.style.padding = '0 16px';
+    // Full-width section with .container inside for consistent width
+    const section = document.createElement('section');
+    section.id = id;
 
     if (options.marginTop) {
-        wrapper.style.marginTop = options.marginTop;
+        section.style.marginTop = options.marginTop;
     }
+
+    const container = document.createElement('div');
+    container.className = 'container';
+    section.appendChild(container);
 
     // Insert after the last banner slot or after hero-section
     const ezconvSlot = document.getElementById(EZCONV_INTRO_BANNER_WRAPPER_ID);
     const insertAfter = ezconvSlot || heroSection;
-    insertAfter.insertAdjacentElement('afterend', wrapper);
+    insertAfter.insertAdjacentElement('afterend', section);
 
-    return wrapper;
+    return container;
 }
 
 function loadMultiPlaylistBannerModule(): Promise<MultiPlaylistBannerModule> {
