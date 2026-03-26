@@ -11,7 +11,7 @@ CRITICAL RULES:
 2. You MUST keep the brand name "SnackeLoader" EXACTLY as is. DO NOT translate, transliterate, or modify the brand name.
 3. Keep all HTML tags intact within the text (e.g., <strong>, </strong>). Do not translate the tag names.
 4. The output must be valid JSON format.
-5. The translations must sound natural and be optimized for SEO in the target language.
+5. The translations must sound natural and be optimized for SEO in the target language. 
 
 
 NOTE: You need crate many angent to translate. it will qickly for translate
