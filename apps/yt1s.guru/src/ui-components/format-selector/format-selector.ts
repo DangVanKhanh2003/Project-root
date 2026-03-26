@@ -350,6 +350,14 @@ function handleFormatSelectorClick(event: Event): void {
     if (format) {
       logEvent('format_change', { format });
       handleFormatChange(format);
+
+      // Toggle active class on format buttons
+      const toggle = formatBtn.closest('.format-toggle');
+      if (toggle) {
+        toggle.querySelectorAll('.format-btn').forEach(btn => btn.classList.remove('active'));
+        formatBtn.classList.add('active');
+      }
+
       const container = formatBtn.closest('#format-selector-container');
       if (container) {
         initGroupedVideoDropdown(container);
