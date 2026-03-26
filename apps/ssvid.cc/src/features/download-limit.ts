@@ -5,32 +5,16 @@
  * Ported from: ytmp3.gg/src/script/libs/downloader-lib-standalone/download-limit.js
  */
 
-// ============================================================
-// CONFIGURABLE CONSTANTS — change here to adjust free quotas
-// ============================================================
-
-import { FEATURE_KEYS, FEATURE_ACCESS_REASONS, type FeatureAccessReason } from '@downloader/core';
+import { FEATURE_ACCESS_REASONS, type FeatureAccessReason } from '@downloader/core';
 import { hasValidLicense } from './license/license-token';
+import { getFeatureLimitPolicy, DEFAULT_START_PER_DAY, MULTIPLE_MAX_ITEMS_ALLOWED } from './feature-limit-policy';
 import { getStartUsageKey } from '../utils/storage-keys';
 
-/** Default maximum uses per day for non-license users (fallback for any unlisted feature). */
-export const MAX_PER_DAY = 1;
+export { DEFAULT_START_PER_DAY, MULTIPLE_MAX_ITEMS_ALLOWED };
 
-/**
- * Per-feature daily limits. Overrides MAX_PER_DAY for specific features.
- * Features not listed here fall back to MAX_PER_DAY.
- */
-const FEATURE_DAILY_LIMITS: Readonly<Record<string, number>> = {
-    [FEATURE_KEYS.HIGH_QUALITY_4K]: 2,
-    [FEATURE_KEYS.HIGH_QUALITY_2K]: 2,
-    [FEATURE_KEYS.HIGH_QUALITY_320K]: 2,
-    [FEATURE_KEYS.PLAYLIST_DOWNLOAD]: 2,
-    [FEATURE_KEYS.BATCH_DOWNLOAD]: 2,
-    [FEATURE_KEYS.CUT_VIDEO_YOUTUBE]: 20,
-};
-
-/** Maximum videos per single multi-download action for non-license users. */
-export const MAX_MULTI_DOWNLOAD_VIDEOS = 10;
+/** Re-export for backward compat with existing consumers. */
+export const MAX_PER_DAY = DEFAULT_START_PER_DAY;
+export const MAX_MULTI_DOWNLOAD_VIDEOS = MULTIPLE_MAX_ITEMS_ALLOWED;
 
 interface DailyUsage {
     date: string;
@@ -110,7 +94,7 @@ export function checkLimit(featureKey: string): {
     const today = getTodayString();
     const usage = readUsage(getStartUsageKey(featureKey));
     const count = usage.date === today ? usage.count : 0;
-    const limit = FEATURE_DAILY_LIMITS[featureKey] ?? MAX_PER_DAY;
+    const limit = getFeatureLimitPolicy(featureKey)?.startPerDay ?? DEFAULT_START_PER_DAY;
 
     if (count < limit) {
         console.log(`[DailyLimit:${featureKey}] check OK (${count}/${limit})`);
@@ -133,7 +117,7 @@ export function recordUsage(featureKey: string): void {
     const storageKey = getStartUsageKey(featureKey);
     const usage = readUsage(storageKey);
     const count = usage.date === today ? usage.count : 0;
-    const limit = FEATURE_DAILY_LIMITS[featureKey] ?? MAX_PER_DAY;
+    const limit = getFeatureLimitPolicy(featureKey)?.startPerDay ?? DEFAULT_START_PER_DAY;
     writeUsage(storageKey, { date: today, count: count + 1 });
     console.log(`[DailyLimit:${featureKey}] recorded (${count + 1}/${limit})`);
 }

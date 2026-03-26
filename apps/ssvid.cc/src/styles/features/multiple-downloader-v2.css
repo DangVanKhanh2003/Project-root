@@ -1326,7 +1326,7 @@
 
 .playlist-group.collapsed .group-items,
 .playlist-group.collapsed .group-load-more {
-    display: none;
+    display: none !important;
 }
 
 .playlist-group.collapsed .group-header {
@@ -1702,7 +1702,7 @@
 
 .playlist-group.collapsed .group-items,
 .playlist-group.collapsed .group-load-more {
-    display: none;
+    display: none !important;
 }
 
 .group-items {

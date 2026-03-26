@@ -1,67 +1,33 @@
-import { FEATURE_ACCESS_REASONS, FEATURE_KEYS } from '@downloader/core';
+import { FEATURE_ACCESS_REASONS } from '@downloader/core';
 import { hasValidLicense } from './license-token';
 import { getDailyUsageKey } from '../utils/storage-keys';
+import {
+    BULK_DOWNLOAD_LIMIT,
+    DAILY_BULK_DOWNLOAD_LIMIT,
+    DAILY_PLAYLIST_DOWNLOAD_LIMIT,
+    DAILY_CHANNEL_DOWNLOAD_LIMIT,
+    DAILY_TRIM_DOWNLOAD_LIMIT,
+    DAILY_HIGH_QUALITY_4K_LIMIT,
+    DAILY_HIGH_QUALITY_2K_LIMIT,
+    DAILY_HIGH_QUALITY_320K_LIMIT,
+} from './feature-limit-policy';
+
+export {
+    BULK_DOWNLOAD_LIMIT,
+    DAILY_BULK_DOWNLOAD_LIMIT,
+    DAILY_PLAYLIST_DOWNLOAD_LIMIT,
+    DAILY_CHANNEL_DOWNLOAD_LIMIT,
+    DAILY_TRIM_DOWNLOAD_LIMIT,
+    DAILY_HIGH_QUALITY_4K_LIMIT,
+    DAILY_HIGH_QUALITY_2K_LIMIT,
+    DAILY_HIGH_QUALITY_320K_LIMIT,
+};
+export { resolveFeatureLimits, type ResolvedLimits } from './feature-limit-policy';
 
 const DB_NAME = 'ezconv-supporter';
 const DB_VERSION = 1;
 const STORE_NAME = 'successful_converts';
 const MAX_STORED_LOGS = 100;
-
-export const BULK_DOWNLOAD_LIMIT = 10;
-export const DAILY_BULK_DOWNLOAD_LIMIT = 5;
-export const DAILY_PLAYLIST_DOWNLOAD_LIMIT = 5;
-export const DAILY_CHANNEL_DOWNLOAD_LIMIT = 5;
-export const DAILY_TRIM_DOWNLOAD_LIMIT = 20;
-export const DAILY_HIGH_QUALITY_4K_LIMIT = 5;
-export const DAILY_HIGH_QUALITY_2K_LIMIT = 5;
-export const DAILY_HIGH_QUALITY_320K_LIMIT = 50;
-
-// ============================================================
-// Feature Limit Policy — 2-tier (allowed vs fallback)
-// Country-allowed users get higher quotas; others get fallback.
-// ============================================================
-
-export const PLAYLIST_MAX_ITEMS_PER_DAY_ALLOWED = 100;
-export const PLAYLIST_MAX_ITEMS_PER_DAY_FALLBACK = 50;
-
-export const CHANNEL_MAX_ITEMS_PER_DAY_ALLOWED = 100;
-export const CHANNEL_MAX_ITEMS_PER_DAY_FALLBACK = 50;
-
-interface TierPair { allowed: number; fallback: number; }
-interface FeaturePolicy { startPerDay: number; itemsPerDay: TierPair; }
-
-const FEATURE_LIMIT_POLICY: Readonly<Record<string, FeaturePolicy>> = {
-    [FEATURE_KEYS.PLAYLIST_DOWNLOAD]: {
-        startPerDay: DAILY_PLAYLIST_DOWNLOAD_LIMIT,
-        itemsPerDay: { allowed: PLAYLIST_MAX_ITEMS_PER_DAY_ALLOWED, fallback: PLAYLIST_MAX_ITEMS_PER_DAY_FALLBACK },
-    },
-    [FEATURE_KEYS.CHANNEL_DOWNLOAD]: {
-        startPerDay: DAILY_CHANNEL_DOWNLOAD_LIMIT,
-        itemsPerDay: { allowed: CHANNEL_MAX_ITEMS_PER_DAY_ALLOWED, fallback: CHANNEL_MAX_ITEMS_PER_DAY_FALLBACK },
-    },
-};
-
-export interface ResolvedLimits {
-    startPerDay: number | null;
-    maxItemsPerDay: number | null;
-}
-
-export function resolveFeatureLimits(
-    featureKey: string,
-    options: { countryAllowed?: boolean; isLicense?: boolean } = {}
-): ResolvedLimits {
-    const { countryAllowed = false, isLicense = false } = options;
-    const policy = FEATURE_LIMIT_POLICY[featureKey];
-
-    if (!policy) return { startPerDay: null, maxItemsPerDay: null };
-    if (isLicense) return { startPerDay: null, maxItemsPerDay: null };
-
-    const tierKey = countryAllowed ? 'allowed' : 'fallback';
-    return {
-        startPerDay: policy.startPerDay,
-        maxItemsPerDay: policy.itemsPerDay[tierKey],
-    };
-}
 
 const DAILY_COUNTER_KEY_BY_MODE: Record<LimitedDailyMode | 'single' | 'trim', string> = {
     batch: getDailyUsageKey('download_batch'),
