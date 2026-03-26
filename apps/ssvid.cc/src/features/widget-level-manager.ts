@@ -512,3 +512,11 @@ export function onDownloadFailed(): void {
     hideEzConvIntroBanner();
     hideMultiPlaylistBannerWidget();
 }
+
+/**
+ * Called when audio language warning is shown.
+ * Hides Trustpilot widget to avoid UI overlap.
+ */
+export function onAudioLanguageWarning(): void {
+    hideTrustpilotWidget();
+}

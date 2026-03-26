@@ -15,7 +15,7 @@ import { getMergingEstimator, clearMergingEstimator } from './merging-progress-e
 import { showVidToolPopup } from '@downloader/vidtool-popup';
 import { showExpireModal } from '@downloader/ui-components';
 import { logEvent } from '../../../libs/firebase';
-import { onAfterDownload, onDownloadFailed, onReset, incrementDownloadCount } from '../../widget-level-manager';
+import { onAfterDownload, onDownloadFailed, onReset, incrementDownloadCount, onAudioLanguageWarning } from '../../widget-level-manager';
 import { showSearchView } from './view-switcher';
 import { setInputValue, focusInput } from './ui-renderer';
 import { clearYouTubePreview } from '../state/youtube-preview-state';
@@ -335,6 +335,7 @@ function updateStatusBarUI(statusContainer: HTMLElement, task: ConversionTask, f
   // Audio language warning (insert after .status)
   if (task.audioLanguageChanged) {
     showAudioLanguageWarning(statusContainer, task.availableAudioLanguages || []);
+    onAudioLanguageWarning();
   } else {
     hideAudioLanguageWarning(statusContainer);
   }
