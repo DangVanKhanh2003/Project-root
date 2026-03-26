@@ -306,6 +306,7 @@ export class MultiDownloadService {
         const page1Items = this.buildVideoItems(page1.items.map(v => ({
             id: v.id,
             title: v.title,
+            channel: v.channel,
             thumbnail: v.thumbnail,
         })), groupId, realTitle, globalSettings);
 
@@ -373,6 +374,7 @@ export class MultiDownloadService {
                 page.items = (page.items || []).map((v: any) => ({
                     id: v.id,
                     title: v.title,
+                    channel: v.channel,
                     thumbnail: v.thumbnail,
                 }));
             } else {
@@ -410,7 +412,7 @@ export class MultiDownloadService {
                 title: video.title || 'Unknown Title',
                 originalUrl: `https://www.youtube.com/watch?v=${video.id}`,
                 status: 'ready',
-                author: video.author || 'Unknown',
+                author: video.author || video.channel || 'Unknown',
                 thumbnail: video.thumbnail || '',
                 duration: video.duration || 0,
                 url: `https://www.youtube.com/watch?v=${video.id}`,

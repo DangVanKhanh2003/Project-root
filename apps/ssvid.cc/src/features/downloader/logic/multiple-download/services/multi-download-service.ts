@@ -294,7 +294,7 @@ export class MultiDownloadService {
     }
 
     private buildVideoItems(
-        videos: Array<{ id: string; title?: string; author?: string; thumbnail?: string; duration?: number }>,
+        videos: Array<{ id: string; title?: string; author?: string; channel?: string; thumbnail?: string; duration?: number }>,
         groupId: string,
         groupTitle: string,
         globalSettings?: Partial<VideoItemSettings>
@@ -306,7 +306,7 @@ export class MultiDownloadService {
                 title: video.title || 'Unknown Title',
                 originalUrl: `https://www.youtube.com/watch?v=${video.id}`,
                 status: 'ready',
-                author: video.author || 'Unknown',
+                author: video.author || video.channel || 'Unknown',
                 thumbnail: video.thumbnail || '',
                 duration: video.duration || 0,
                 url: `https://www.youtube.com/watch?v=${video.id}`,
@@ -566,7 +566,7 @@ export const multiDownloadService = new MultiDownloadService();
 // ==========================================
 
 interface PlaylistPageResult {
-    items: Array<{ id: string; title?: string; author?: string; thumbnail?: string; duration?: number }>;
+    items: Array<{ id: string; title?: string; author?: string; channel?: string; thumbnail?: string; duration?: number }>;
     nextPageToken: string | null;
     title?: string;
 }
