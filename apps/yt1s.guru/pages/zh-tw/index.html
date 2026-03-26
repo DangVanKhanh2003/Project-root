@@ -96,7 +96,7 @@
                 }
             } catch (e) { }
 
-            var f = 'mp4';
+            var f = 'mp3';
             try {
                 var p = JSON.parse(localStorage.getItem('ytconvert_format_preferences'));
                 if (p && p.selectedFormat) f = p.selectedFormat;
@@ -461,9 +461,9 @@
                 <div class="format-selector-wrapper">
                     <div class="format-selector">
                         <div class="format-toggle">
-                            <button type="button" class="format-btn active"
+                            <button type="button" class="format-btn"
                                 data-format="mp4">MP4</button>
-                            <button type="button" class="format-btn" data-format="mp3">MP3</button>
+                            <button type="button" class="format-btn active" data-format="mp3">MP3</button>
                         </div>
                         <div class="quality-wrapper">
                             <div class="quality-dropdown-wrapper">
@@ -472,9 +472,9 @@
                                     aria-label="Audio quality" data-quality-select>
                                     <option value="mp3-320">MP3 - 320kbps</option>
                                     <option value="mp3-192">MP3 - 192kbps</option>
-                                    <option value="mp3-128" selected>MP3 - 128kbps</option>
+                                    <option value="mp3-128">MP3 - 128kbps</option>
                                     <option value="mp3-64">MP3 - 64kbps</option>
-                                    <option value="wav">WAV - 128kbps</option>
+                                    <option value="wav" selected>WAV - 128kbps</option>
                                     <option value="m4a">M4A - 128kbps</option>
                                     <option value="ogg">OGG - 128kbps</option>
                                     <option value="opus">Opus - 128kbps</option>
