@@ -1,0 +1,325 @@
+/* Hero Section */
+.hero-section {
+    background-color: var(--hero-section-bg);
+    padding: 40px 0px 24px 0px;
+    color: var(--color-white);
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.hero-section>* {
+    z-index: 2;
+}
+
+.hero-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: var(--main-content-max-width-3xl);
+    position: relative;
+    z-index: 200;
+}
+
+/* Header within Hero */
+.hero-header {
+    margin-top: 30px;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo-hero {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: white;
+    margin-bottom: 24px;
+}
+
+.logo-hero svg rect[fill="white"] {
+    fill: white;
+}
+
+.logo-hero svg rect[fill="#CB0E35"] {
+    fill: var(--brand);
+}
+
+.logo-hero svg path[fill="#8D021F"] {
+    fill: var(--brand-hover);
+}
+
+.logo-text-hero {
+    font-size: 48px;
+    font-weight: 700;
+    font-family: 'Fredoka SemiCondensed', sans-serif;
+    color: var(--color-white);
+    letter-spacing: 1px;
+}
+
+.title-hero {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    /* 16px → 20px fluid scaling */
+    font-weight: 700;
+    color: var(--hero-title-color);
+    line-height: 1.25;
+    /* Comfortable for smaller text */
+    margin: 0 0 20px 0;
+    /* Only bottom margin increased */
+    text-align: center;
+    font-family: var(--font-display);
+    letter-spacing: 0;
+}
+
+@media (min-width: 351px) {
+    .title-hero {
+        font-size: clamp(1.0625rem, 3vw, 1.375rem);
+        margin: 0 0 22px 0;
+    }
+}
+
+@media (min-width: 840px) {
+    .title-hero {
+        font-size: clamp(1.25rem, 3.5vw, 1.75rem);
+        margin: 0 0 24px 0;
+    }
+}
+
+@media (min-width: 1920px) {
+    .title-hero {
+        font-size: clamp(1.375rem, 4vw, 2rem);
+        margin: 0 0 28px 0;
+    }
+}
+
+@media (min-width: 2560px) {
+    .title-hero {
+        font-size: clamp(1.5rem, 4.5vw, 2.25rem);
+        margin: 0 0 32px 0;
+        line-height: 1.2;
+    }
+}
+
+.subtitle-hero {
+    font-size: 1.25rem;
+    font-weight: 400;
+    opacity: 1;
+    /* Ensure full opacity for pure white */
+    color: var(--text-heading);
+    margin: 0;
+}
+
+.hero-card {
+    background: var(--bg-card);
+    border-radius: 12px;
+    padding: var(--padding-card);
+    padding-bottom: 16px !important;
+    width: 100%;
+    max-width: 100% !important;
+    margin-bottom: 0;
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    border: 0;
+}
+
+@media (min-width: 351px) {
+    .hero-card {
+        max-width: var(--main-content-max-width-sm) !important;
+    }
+}
+
+@media (min-width: 600px) {
+    .hero-card {
+        max-width: var(--main-content-max-width-md) !important;
+    }
+}
+
+@media (min-width: 840px) {
+    .hero-card {
+        max-width: var(--main-content-max-width-lg) !important;
+    }
+}
+
+@media (min-width: 1240px) {
+    .hero-card {
+        max-width: var(--main-content-max-width-xl) !important;
+    }
+}
+
+@media (min-width: 1920px) {
+    .hero-card {
+        max-width: var(--main-content-max-width-2xl) !important;
+    }
+}
+
+@media (min-width: 2560px) {
+    .hero-card {
+        max-width: var(--main-content-max-width-3xl) !important;
+    }
+}
+
+/* Override existing form styles if necessary to fit the new look */
+.input-group {
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
+}
+
+
+/* Fade In Animation */
+.fade-in {
+    animation: fadeIn 0.3s ease-out;
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        padding: 20px 0px 20px 0px;
+        /* Reduced bottom padding to 0 to let mask cover more of the form (half-in/half-out) */
+    }
+
+
+
+    .title-hero {
+        padding: 0 20px;
+        font-size: 22px;
+    }
+
+    .subtitle-hero {
+        font-size: 16px;
+        /* Smaller subtitle for mobile */
+        padding: 0 20px;
+        /* Added side padding as requested */
+    }
+
+    .hero-header {
+        margin-top: 0;
+        margin-bottom: 30px;
+        /* Reduce gap between header and form */
+        gap: 12px;
+    }
+
+    .logo-hero {
+        margin-bottom: 16px;
+        gap: 8px;
+    }
+
+    .logo-hero svg {
+        width: 40px;
+        /* Smaller, proportional logo icon */
+        height: 40px;
+    }
+
+    .logo-text-hero {
+        font-size: 40px;
+    }
+
+}
+
+
+
+/* Search Results Container */
+#search-results-container {
+    margin-top: 30px;
+}
+
+
+
+#hero-inline-message {
+    margin-top: 12px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--primary-color);
+    font-weight: 500;
+    min-height: 20px;
+}
+
+/* Support Platforms Bar (inside hero-card) */
+.support-platforms-bar {
+    padding: 12px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.support-platforms-label {
+    font-size: 12px;
+    color: var(--text-heading);
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.support-platforms-icons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.support-platform-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+.support-platforms-icons img.support-platform-icon {
+    object-fit: contain;
+    display: block;
+}
+
+.support-platforms-icons svg.support-platform-icon {
+    display: none;
+}
+
+/* Tip Message */
+.tip-message-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px 16px 0;
+    text-align: center;
+}
+
+.tip-message-content svg {
+    width: 1rem;
+    height: 1rem;
+    fill: #f45d22;
+    flex-shrink: 0;
+}
+
+.tip-message-text {
+    color: var(--text-body);
+}
+
+#tip-message-kofi-link {
+    text-decoration: underline;
+    font-weight: 700;
+    color: #f45d22 !important;
+}
+
+@media (max-width: 768px) {
+    .tip-message-content svg {
+        display: none;
+    }
+
+    #tip-message-wrapper {
+        font-size: 14px;
+    }
+}
+
+@media  (max-width: 400px)  {
+    
+    .tip-message-content {
+        padding-top: 0px;
+    }
+
+}
