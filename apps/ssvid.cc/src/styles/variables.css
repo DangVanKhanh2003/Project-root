@@ -99,6 +99,15 @@
     --status-converting-bg: #fff7ed;
     --status-converting-color: #c2410c;
 
+    /* Progress fill */
+    --progress-fill-bg: var(--surface-weak);
+
+    /* Warning */
+    --color-warning: #ff8800;
+    --color-warning-bg: #fef3c7;
+    --color-warning-border: #f59e0b;
+    --color-warning-strong: #92400e;
+
     /* Next/New Convert Button */
     --color-next-btn-bg: var(--bg-card);
     --color-next-btn-text: var(--text-main);
@@ -187,6 +196,15 @@
     --status-converting-color: #C65D3B;
 
     --color-status-error: #E74C3C;
+
+    /* Progress fill */
+    --progress-fill-bg: var(--accent-fill-strong);
+
+    /* Warning */
+    --color-warning: #f59e0b;
+    --color-warning-bg: rgba(245, 158, 11, 0.15);
+    --color-warning-border: rgba(245, 158, 11, 0.5);
+    --color-warning-strong: #fbbf24;
 
     /* Next/New Convert Button */
     --color-next-btn-bg: var(--bg-card);
