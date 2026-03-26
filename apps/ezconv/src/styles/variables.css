@@ -10,6 +10,7 @@
 
     /* ===== Background Layers ===== */
     --bg-page: #F3F1ED;
+    --bg-404-page: #fff;
     --bg-card: #FFFFFF;
     --bg-surface-soft: #EBE7E0;
     --bg-hover: #EFECE7;
@@ -87,6 +88,7 @@
 /* ===== Dark Mode ===== */
 [data-theme="dark"] {
     --bg-page: #262624;
+    --bg-404-page: var(--bg-page);
     --bg-card: #2A2A28;
     --bg-surface-soft: #383836;
     --bg-hover: #383836;

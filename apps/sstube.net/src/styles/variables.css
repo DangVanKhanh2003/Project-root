@@ -60,6 +60,7 @@
 
     /* Surface tokens */
     --bg-page: #F3F1ED;
+    --bg-404-page: #fff;
     --bg-card: #FFFFFF;
     --yt-preview-card-bg: rgba(107, 132, 212, 0.08);
     --bg-surface-soft: #EBE7E0;
@@ -274,6 +275,7 @@
     --hero-section-bg: var(--bg-secondary);
 
     --bg-page: #262624;
+    --bg-404-page: var(--bg-page);
     --bg-card: #30302E;
     --yt-preview-card-bg: rgb(66 66 66);
     --bg-primary: #1F1F1E;

@@ -24,6 +24,7 @@ on:
           - 'snakeloader.com'
           - 'ytsss.com'
           - 'ytconvert.org'
+          - 'yt1s.guru'
       environment:
         description: 'Target environment'
         required: true
@@ -128,6 +129,11 @@ jobs:
               echo "directory=apps/ytconvert.org" >> $GITHUB_OUTPUT
               echo "filter_path=./apps/ytconvert.org" >> $GITHUB_OUTPUT
               echo "domain=${{ vars.YTCONVERT_DOMAIN || 'ytconvert.org' }}" >> $GITHUB_OUTPUT
+              ;;
+            "yt1s.guru")
+              echo "directory=apps/yt1s.guru" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/yt1s.guru" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.YT1S_GURU_DOMAIN || 'yt1s.guru' }}" >> $GITHUB_OUTPUT
               ;;
           esac
 

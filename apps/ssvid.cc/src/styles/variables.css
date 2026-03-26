@@ -46,6 +46,7 @@
 
     /* Surface tokens */
     --bg-page: #FAF9F5;
+    --bg-404-page: #fff;
     --bg-card: #ffffff;
     --bg-surface-soft: rgba(0, 79, 171, 0.05);
     --bg-hover: rgba(0, 79, 171, 0.08);
@@ -134,6 +135,7 @@
     --background-hero-section: var(--bg-secondary);
 
     --bg-page: #262624;
+    --bg-404-page: var(--bg-page);
     --bg-card: #30302E;
     --bg-primary: #1F1F1E;
     --bg-secondary: #262624;
