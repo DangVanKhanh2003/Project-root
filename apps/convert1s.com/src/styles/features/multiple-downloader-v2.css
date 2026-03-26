@@ -1554,7 +1554,7 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
 
 .playlist-group.collapsed .group-items,
 .playlist-group.collapsed .group-load-more {
-    display: none;
+    display: none !important;
 }
 
 .playlist-group.collapsed .group-header {
@@ -1997,7 +1997,7 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
 
 .playlist-group.collapsed .group-items,
 .playlist-group.collapsed .group-load-more {
-    display: none;
+    display: none !important;
 }
 
 .group-items {

@@ -1567,7 +1567,7 @@ html[data-theme="dark"] .multi-search-input::placeholder {
 
 .playlist-group.collapsed .group-items,
 .playlist-group.collapsed .group-load-more {
-    display: none;
+    display: none !important;
 }
 
 .playlist-group.collapsed .group-header {
@@ -2041,7 +2041,7 @@ html[data-theme="light"] .btn-playlist-group-action.is-disabled {
 
 .playlist-group.collapsed .group-items,
 .playlist-group.collapsed .group-load-more {
-    display: none;
+    display: none !important;
 }
 
 .group-items {

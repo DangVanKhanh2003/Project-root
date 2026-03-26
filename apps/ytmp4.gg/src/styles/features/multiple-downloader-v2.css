@@ -1558,7 +1558,7 @@ html[data-format="mp3"] .multi-quality-select--mp3 {
 
 .playlist-group.collapsed .group-items,
 .playlist-group.collapsed .group-load-more {
-    display: none;
+    display: none !important;
 }
 
 .playlist-group.collapsed .group-header {
@@ -2001,7 +2001,7 @@ html[data-format="mp3"] .multi-quality-select--mp3 {
 
 .playlist-group.collapsed .group-items,
 .playlist-group.collapsed .group-load-more {
-    display: none;
+    display: none !important;
 }
 
 .group-items {
