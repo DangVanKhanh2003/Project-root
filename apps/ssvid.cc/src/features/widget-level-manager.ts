@@ -21,8 +21,117 @@ import { initLicenseSelector } from './license/license-selector';
 import { init as initSupporterTag, show as showSupporterTag, hide as hideSupporterTag } from './license/supporter-tag';
 import { apiLogger } from '../libs/api-logger/api-logger';
 
+const EZCONV_INTRO_BANNER_WRAPPER_ID = 'ezconv-intro-banner-wrapper';
+const EZCONV_INTRO_BANNER_PUBLIC_URL = '/intro_oganic_ezconv.js?v=1';
+
 const MULTI_PLAYLIST_BANNER_WRAPPER_ID = 'multi-playlist-banner-wrapper';
 const MULTI_PLAYLIST_BANNER_PUBLIC_URL = '/assest/banner/multi-playlist-banner.js';
+
+type EzConvIntroModule = {
+    injectBanner: (container: HTMLElement, options?: Record<string, unknown>) => void;
+    showPopup: (options?: Record<string, unknown>) => void;
+    hidePopup: () => void;
+    preloadPopup: (options?: Record<string, unknown>) => void;
+};
+
+let ezconvIntroBannerModulePromise: Promise<EzConvIntroModule> | null = null;
+let ezconvIntroBannerShowTimeoutId: ReturnType<typeof setTimeout> | null = null;
+
+const EZCONV_INTRO_BANNER_RETRY_DELAY_MS = 250;
+const EZCONV_INTRO_BANNER_MAX_RETRIES = 20;
+
+function loadEzConvIntroBannerModule(): Promise<EzConvIntroModule> {
+    if (!ezconvIntroBannerModulePromise) {
+        // Check if already loaded (e.g. via static <script>)
+        const existing = (globalThis as unknown as Record<string, EzConvIntroModule>).EzConvIntro;
+        if (existing) {
+            ezconvIntroBannerModulePromise = Promise.resolve(existing);
+            return ezconvIntroBannerModulePromise;
+        }
+
+        ezconvIntroBannerModulePromise = new Promise((resolve, reject) => {
+            const script = document.createElement('script');
+            script.src = EZCONV_INTRO_BANNER_PUBLIC_URL;
+            script.onload = () => {
+                const mod = (globalThis as unknown as Record<string, EzConvIntroModule>).EzConvIntro;
+                if (mod) {
+                    resolve(mod);
+                } else {
+                    reject(new Error('EzConvIntro not found on globalThis'));
+                }
+            };
+            script.onerror = () => reject(new Error('Failed to load ezconv intro banner script'));
+            document.head.appendChild(script);
+        });
+    }
+    return ezconvIntroBannerModulePromise;
+}
+
+function ensureEzConvSlot(): HTMLElement | null {
+    let wrapper = document.getElementById(EZCONV_INTRO_BANNER_WRAPPER_ID);
+    if (wrapper) return wrapper;
+
+    const heroSection = document.querySelector('.hero-section') as HTMLElement | null;
+    if (!heroSection || !heroSection.parentElement) return null;
+
+    // Full-width section with .container inside for consistent width
+    const section = document.createElement('section');
+    section.id = EZCONV_INTRO_BANNER_WRAPPER_ID;
+    section.style.marginTop = '50px';
+
+    wrapper = document.createElement('div');
+    wrapper.className = 'container';
+    wrapper.style.paddingLeft = '0';
+    wrapper.style.paddingRight = '0';
+    section.appendChild(wrapper);
+
+    // Insert after hero-section as a sibling section
+    heroSection.insertAdjacentElement('afterend', section);
+
+    return wrapper;
+}
+
+function tryShowEzConvIntroBanner(retryCount = 0): void {
+    const wrapper = ensureEzConvSlot();
+    if (!wrapper) {
+        if (retryCount < EZCONV_INTRO_BANNER_MAX_RETRIES) {
+            ezconvIntroBannerShowTimeoutId = setTimeout(() => {
+                tryShowEzConvIntroBanner(retryCount + 1);
+            }, EZCONV_INTRO_BANNER_RETRY_DELAY_MS);
+        }
+        return;
+    }
+
+    wrapper.innerHTML = '';
+    wrapper.style.display = '';
+
+    loadEzConvIntroBannerModule()
+        .then(({ injectBanner }) => {
+            injectBanner(wrapper);
+        })
+        .catch(() => {
+            wrapper.remove();
+        });
+}
+
+function showEzConvIntroBanner(): void {
+    if (ezconvIntroBannerShowTimeoutId) {
+        clearTimeout(ezconvIntroBannerShowTimeoutId);
+        ezconvIntroBannerShowTimeoutId = null;
+    }
+
+    tryShowEzConvIntroBanner();
+}
+
+function hideEzConvIntroBanner(): void {
+    if (ezconvIntroBannerShowTimeoutId) {
+        clearTimeout(ezconvIntroBannerShowTimeoutId);
+        ezconvIntroBannerShowTimeoutId = null;
+    }
+
+    const section = document.getElementById(EZCONV_INTRO_BANNER_WRAPPER_ID);
+    if (section) section.remove();
+}
 
 type MultiPlaylistBannerModule = {
     initMultiPlaylistBanner: (
@@ -52,41 +161,68 @@ function ensureMainContentBelowContainerSlot(
     id: string,
     options: MainContentBelowContainerSlotOptions = {}
 ): HTMLElement | null {
-    const mainContent = document.querySelector('.main-content') as HTMLElement | null;
-    if (!mainContent) return null;
-    const mainContentCard = mainContent.querySelector('.main-content-card') as HTMLElement | null;
-
     let wrapper = document.getElementById(id) as HTMLElement | null;
-    if (!wrapper) {
-        wrapper = document.createElement('div');
-        wrapper.id = id;
+
+    // Try .main-content first (ytmp4-style layout)
+    const mainContent = document.querySelector('.main-content') as HTMLElement | null;
+    if (mainContent) {
+        const mainContentCard = mainContent.querySelector('.main-content-card') as HTMLElement | null;
+
+        if (!wrapper) {
+            wrapper = document.createElement('div');
+            wrapper.id = id;
+        }
+
+        wrapper.classList.add('main-content-below-container-slot');
+        if (options.className) {
+            wrapper.classList.add(...options.className.split(/\s+/).filter(Boolean));
+        }
+        wrapper.style.width = '100%';
+
+        if (options.marginTop) {
+            wrapper.style.marginTop = options.marginTop;
+        } else {
+            wrapper.style.removeProperty('margin-top');
+        }
+
+        if (options.marginBottom) {
+            wrapper.style.marginBottom = options.marginBottom;
+        } else {
+            wrapper.style.removeProperty('margin-bottom');
+        }
+
+        if (mainContentCard) {
+            if (wrapper.parentElement !== mainContent || wrapper.nextElementSibling !== mainContentCard) {
+                mainContentCard.insertAdjacentElement('beforebegin', wrapper);
+            }
+        } else if (wrapper.parentElement !== mainContent || wrapper !== mainContent.lastElementChild) {
+            mainContent.appendChild(wrapper);
+        }
+
+        return wrapper;
     }
 
-    wrapper.classList.add('main-content-below-container-slot');
-    if (options.className) {
-        wrapper.classList.add(...options.className.split(/\s+/).filter(Boolean));
-    }
-    wrapper.style.width = '100%';
+    // Fallback: insert after .hero-section (ssvid.cc layout)
+    const heroSection = document.querySelector('.hero-section') as HTMLElement | null;
+    if (!heroSection || !heroSection.parentElement) return null;
+
+    if (wrapper) return wrapper;
+
+    wrapper = document.createElement('section');
+    wrapper.id = id;
+    wrapper.style.maxWidth = '900px';
+    wrapper.style.marginLeft = 'auto';
+    wrapper.style.marginRight = 'auto';
+    wrapper.style.padding = '0 16px';
 
     if (options.marginTop) {
         wrapper.style.marginTop = options.marginTop;
-    } else {
-        wrapper.style.removeProperty('margin-top');
     }
 
-    if (options.marginBottom) {
-        wrapper.style.marginBottom = options.marginBottom;
-    } else {
-        wrapper.style.removeProperty('margin-bottom');
-    }
-
-    if (mainContentCard) {
-        if (wrapper.parentElement !== mainContent || wrapper.nextElementSibling !== mainContentCard) {
-            mainContentCard.insertAdjacentElement('beforebegin', wrapper);
-        }
-    } else if (wrapper.parentElement !== mainContent || wrapper !== mainContent.lastElementChild) {
-        mainContent.appendChild(wrapper);
-    }
+    // Insert after the last banner slot or after hero-section
+    const ezconvSlot = document.getElementById(EZCONV_INTRO_BANNER_WRAPPER_ID);
+    const insertAfter = ezconvSlot || heroSection;
+    insertAfter.insertAdjacentElement('afterend', wrapper);
 
     return wrapper;
 }
@@ -339,7 +475,8 @@ export async function applyInitialVisibility(): Promise<void> {
 export function onAfterSubmit(): void {
     showTrustpilotWidget();
     showTipMessageWidget();
-    showMultiPlaylistBannerWidget();
+    showEzConvIntroBanner();          // #1 — ezconv intro banner
+    showMultiPlaylistBannerWidget();  // #2 — multi/playlist banner
 }
 
 /**
@@ -357,6 +494,7 @@ export function onAfterDownload(): void {
 export function onReset(): void {
     hideTrustpilotWidget();
     hideTipMessageWidget();
+    hideEzConvIntroBanner();
     hideMultiPlaylistBannerWidget();
 }
 
@@ -367,5 +505,6 @@ export function onReset(): void {
 export function onDownloadFailed(): void {
     hideTrustpilotWidget();
     hideTipMessageWidget();
+    hideEzConvIntroBanner();
     hideMultiPlaylistBannerWidget();
 }
