@@ -1556,7 +1556,8 @@ html[data-format="mp3"] .multi-quality-select--mp3 {
     overflow: visible;
 }
 
-.playlist-group.collapsed .group-items {
+.playlist-group.collapsed .group-items,
+.playlist-group.collapsed .group-load-more {
     display: none;
 }
 
@@ -1998,7 +1999,8 @@ html[data-format="mp3"] .multi-quality-select--mp3 {
 
 
 
-.playlist-group.collapsed .group-items {
+.playlist-group.collapsed .group-items,
+.playlist-group.collapsed .group-load-more {
     display: none;
 }
 

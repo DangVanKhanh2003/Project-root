@@ -1324,7 +1324,8 @@
     overflow: visible;
 }
 
-.playlist-group.collapsed .group-items {
+.playlist-group.collapsed .group-items,
+.playlist-group.collapsed .group-load-more {
     display: none;
 }
 
@@ -1503,7 +1504,6 @@
     display: flex;
     flex-direction: column;
     padding: 10px 15px;
-    background: var(--bg-surface-soft);
     border: none;
     position: relative;
     z-index: 1;
@@ -1700,7 +1700,8 @@
     pointer-events: none;
 }
 
-.playlist-group.collapsed .group-items {
+.playlist-group.collapsed .group-items,
+.playlist-group.collapsed .group-load-more {
     display: none;
 }
 

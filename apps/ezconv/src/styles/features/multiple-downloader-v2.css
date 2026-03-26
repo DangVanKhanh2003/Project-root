@@ -1565,7 +1565,8 @@ html[data-theme="dark"] .multi-search-input::placeholder {
     overflow: visible;
 }
 
-.playlist-group.collapsed .group-items {
+.playlist-group.collapsed .group-items,
+.playlist-group.collapsed .group-load-more {
     display: none;
 }
 
@@ -2038,7 +2039,8 @@ html[data-theme="light"] .btn-playlist-group-action.is-disabled {
 
 
 
-.playlist-group.collapsed .group-items {
+.playlist-group.collapsed .group-items,
+.playlist-group.collapsed .group-load-more {
     display: none;
 }
 
