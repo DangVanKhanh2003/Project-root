@@ -6,12 +6,12 @@
  */
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { PollingStrategy } from './PollingStrategy';
-import type { IStateUpdater } from '../state-interface/IStateUpdater';
-import type { IPollingManager, PollingOptions } from '../polling/IPollingManager';
-import type { StrategyContext } from './IConversionStrategy';
-import { TaskState, RouteType } from '../types';
-import { PollingProgressMapper } from '../progress/PollingProgressMapper';
+import { PollingStrategy } from '@/conversion/strategies/PollingStrategy';
+import type { IStateUpdater } from '@/conversion/state-interface/IStateUpdater';
+import type { IPollingManager, PollingOptions } from '@/conversion/polling/IPollingManager';
+import type { StrategyContext } from '@/conversion/strategies/IConversionStrategy';
+import { TaskState, RouteType } from '@/conversion/types';
+import { PollingProgressMapper } from '@/conversion/progress/PollingProgressMapper';
 
 describe('PollingStrategy', () => {
   let mockStateUpdater: IStateUpdater;

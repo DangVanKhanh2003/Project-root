@@ -6,10 +6,10 @@
  */
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { BaseStrategy } from './BaseStrategy';
-import type { IStateUpdater } from '../state-interface/IStateUpdater';
-import type { StrategyContext, StrategyResult } from './IConversionStrategy';
-import { TaskState, RouteType } from '../types';
+import { BaseStrategy } from '@/conversion/strategies/BaseStrategy';
+import type { IStateUpdater } from '@/conversion/state-interface/IStateUpdater';
+import type { StrategyContext, StrategyResult } from '@/conversion/strategies/IConversionStrategy';
+import { TaskState, RouteType } from '@/conversion/types';
 
 // Concrete implementation for testing
 class TestStrategy extends BaseStrategy {

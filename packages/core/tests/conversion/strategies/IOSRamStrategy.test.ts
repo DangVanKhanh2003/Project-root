@@ -5,17 +5,17 @@
  */
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { IOSRamStrategy } from './IOSRamStrategy';
-import type { IStateUpdater } from '../state-interface/IStateUpdater';
-import type { StrategyContext } from './IConversionStrategy';
-import { TaskState, RouteType } from '../types';
+import { IOSRamStrategy } from '@/conversion/strategies/IOSRamStrategy';
+import type { IStateUpdater } from '@/conversion/state-interface/IStateUpdater';
+import type { StrategyContext } from '@/conversion/strategies/IConversionStrategy';
+import { TaskState, RouteType } from '@/conversion/types';
 
 // Mock downloadStreamToRAM
-vi.mock('../../utils/download-stream', () => ({
+vi.mock('@/utils/download-stream', () => ({
   downloadStreamToRAM: vi.fn()
 }));
 
-import { downloadStreamToRAM } from '../../utils/download-stream';
+import { downloadStreamToRAM } from '@/utils/download-stream';
 
 describe('IOSRamStrategy', () => {
   let mockStateUpdater: IStateUpdater;

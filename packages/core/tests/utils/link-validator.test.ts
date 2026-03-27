@@ -7,7 +7,7 @@ import {
     getLinkStatus,
     getTTLConfig,
     DOWNLOAD_LINK_TTL
-} from './link-validator';
+} from '@/utils/link-validator';
 
 describe('link-validator', () => {
     beforeEach(() => {

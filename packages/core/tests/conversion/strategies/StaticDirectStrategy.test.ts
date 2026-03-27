@@ -5,10 +5,10 @@
  */
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { StaticDirectStrategy } from './StaticDirectStrategy';
-import type { IStateUpdater } from '../state-interface/IStateUpdater';
-import type { StrategyContext } from './IConversionStrategy';
-import { TaskState, RouteType } from '../types';
+import { StaticDirectStrategy } from '@/conversion/strategies/StaticDirectStrategy';
+import type { IStateUpdater } from '@/conversion/state-interface/IStateUpdater';
+import type { StrategyContext } from '@/conversion/strategies/IConversionStrategy';
+import { TaskState, RouteType } from '@/conversion/types';
 
 describe('StaticDirectStrategy', () => {
   let mockStateUpdater: IStateUpdater;

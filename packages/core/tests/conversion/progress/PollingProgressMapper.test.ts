@@ -5,7 +5,7 @@
  */
 
 import { describe, it, expect, beforeEach } from 'vitest';
-import { PollingProgressMapper } from './PollingProgressMapper';
+import { PollingProgressMapper } from '@/conversion/progress/PollingProgressMapper';
 
 describe('PollingProgressMapper', () => {
   beforeEach(() => {

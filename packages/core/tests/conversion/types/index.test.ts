@@ -20,10 +20,10 @@ import {
   type ExtractResult,
   type FormatData,
   type ApiProgressData
-} from './index';
+} from '@/conversion/types/index';
 
 // Mock platform detection
-vi.mock('../../utils/platform-detection', () => ({
+vi.mock('@/utils/platform-detection', () => ({
   isIOS: vi.fn(() => false),
   isWindows: vi.fn(() => false),
   isAndroid: vi.fn(() => false),
@@ -33,7 +33,7 @@ vi.mock('../../utils/platform-detection', () => ({
   getPlatform: vi.fn(() => 'unknown' as const)
 }));
 
-import * as platformDetection from '../../utils/platform-detection';
+import * as platformDetection from '@/utils/platform-detection';
 
 describe('TaskState Enum', () => {
   it('should have lowercase values', () => {

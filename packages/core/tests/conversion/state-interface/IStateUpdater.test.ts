@@ -5,7 +5,7 @@
  */
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import type { IStateUpdater, StateUpdate, TaskData } from './IStateUpdater';
+import type { IStateUpdater, StateUpdate, TaskData } from '@/conversion/state-interface/IStateUpdater';
 
 describe('IStateUpdater Interface', () => {
   let mockStateUpdater: IStateUpdater;
