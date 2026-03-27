@@ -60,6 +60,22 @@ Giữ nguyên các file khác trong `public/` (fonts, worker, BingSiteAuth, v.v.
 | `_templates/_data/pages/index/en.json` | SEO title/description, h1, brand trong content — **viết lại phù hợp brand mới** |
 | `_templates/_data/allPages.cjs` | Kiểm tra danh sách pages, chỉ giữ pages tồn tại |
 
+#### ⚠️ QUAN TRỌNG: Xóa bản dịch cũ khi nội dung thay đổi
+
+Source template (ví dụ `onedownloader.net`) có sẵn 21 bản dịch trong `_templates/_data/pages/index/` (ar.json, bn.json, de.json, ...). Nội dung các file dịch này tương ứng với nội dung **index EN gốc** của source template.
+
+**Nếu data folder cung cấp nội dung index EN mới** (ví dụ chuyển từ "Free Video Downloader" sang "YouTube Shorts Downloader"), thì các bản dịch cũ sẽ **không khớp** với nội dung mới — chúng vẫn nói về chủ đề cũ, chỉ được thay brand name.
+
+→ **PHẢI xóa tất cả file dịch cũ** (`ar.json`, `bn.json`, ...) trong `_templates/_data/pages/index/`, chỉ giữ `en.json` mới từ data folder.
+
+```bash
+cd _templates/_data/pages/index/
+# Xóa tất cả trừ en.json
+ls *.json | grep -v en.json | xargs rm
+```
+
+Tương tự cho các tool pages: chỉ copy `en.json` từ data folder, không cần bản dịch.
+
 ### 3c. Template files (.njk)
 
 | File | Thay đổi |
