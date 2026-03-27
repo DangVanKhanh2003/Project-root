@@ -232,6 +232,12 @@ export function initLicenseSelector(): void {
         document.querySelectorAll('.license-dropdown').forEach(d => {
             renderDropdownItems(d);
         });
+        // Force-show license button containers (may be hidden by widget-level-manager)
+        document.querySelectorAll<HTMLElement>('[data-license-button]').forEach(el => {
+            el.hidden = false;
+            el.removeAttribute('aria-hidden');
+            el.style.removeProperty('display');
+        });
     });
 
     console.log('✅ License selectors initialized');
