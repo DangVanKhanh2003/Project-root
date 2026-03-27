@@ -1,4 +1,4 @@
-declare module 'https://media.ytmp3.gg/poppurchase.v3.js?v=13' {
+declare module 'https://media.ytmp3.gg/poppurchase.v3.js?v=15' {
     type PaywallType =
         | 'download_multi'
         | 'download_playlist'
@@ -19,14 +19,18 @@ declare module 'https://media.ytmp3.gg/poppurchase.v3.js?v=13' {
         noCountdownMessage?: string;
         secondaryLabel?: string;
         onSecondaryClick?: () => void;
+        isShowCheckKey?: boolean;
+    }
+
+    interface ConfigureOptions {
+        pricingUrl?: string;
+        onUpgradeClick?: (plan: string) => void;
+        onClose?: () => void;
+        onActivateSuccess?: (licenseKey: string, result: import('@downloader/core').CheckKeyResponse) => void;
     }
 
     export function show(type?: PaywallType, options?: ShowOptions): void;
     export function hide(): void;
-    export function configure(opts: {
-        pricingUrl?: string;
-        onUpgradeClick?: (plan: string) => void;
-        onClose?: () => void;
-    }): void;
+    export function configure(opts: ConfigureOptions): void;
     export function preload(): Promise<unknown>;
 }

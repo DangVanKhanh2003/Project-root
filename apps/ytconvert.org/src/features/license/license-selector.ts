@@ -226,5 +226,11 @@ export function initLicenseSelector(): void {
         });
     });
 
+
+    // Listen for license activation from paywall popup
+    document.addEventListener('license:activated', () => {
+        updateButtonLabels();
+    });
+
     console.log('✅ License selectors initialized');
 }
