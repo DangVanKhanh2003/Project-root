@@ -5,7 +5,7 @@
  */
 
 import { logEvent } from '../../libs/firebase';
-import { show as showPaywall } from 'https://media.ytmp3.gg/poppurchase.v3.js?v=15';
+import { showPaywall } from '../paywall-popup';
 import {
     getSavedLicenseKey,
     saveLicenseKey,
@@ -223,6 +223,14 @@ export function initLicenseSelector(): void {
             if (!licenseButton.contains(e.target as Node) && !licenseDropdown.contains(e.target as Node)) {
                 closeDropdown();
             }
+        });
+    });
+
+    // Listen for license activation from paywall popup (or any source)
+    document.addEventListener('license:activated', () => {
+        updateButtonLabels();
+        document.querySelectorAll('.license-dropdown').forEach(d => {
+            renderDropdownItems(d);
         });
     });
 

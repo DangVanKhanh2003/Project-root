@@ -44,7 +44,7 @@ import { startConversion } from './conversion';
 import { MaterialPopup } from '../../../ui-components/material-popup/material-popup';
 import { getUrlRedirectTarget, looksLikeUrl } from '@downloader/core';
 import { evaluateFeatureAccess } from '../../allowed-features';
-import { show as showPaywall } from 'https://media.ytmp3.gg/poppurchase.v3.js?v=15';
+import { showPaywall } from '../../paywall-popup';
 import { checkLimit } from '../../download-limit';
 import { FEATURE_KEYS, FEATURE_ACCESS_REASONS } from '@downloader/core';
 
@@ -972,11 +972,13 @@ export async function handleExtractMedia(
         const limitResult = checkLimit(FEATURE_KEYS.HIGH_QUALITY_4K);
         if (!limitResult.allowed) {
           showPaywall('download_4k', {
-            secondaryLabel: 'Continue with 720p',
+            secondaryLabel: 'Continue without 4K',
             onSecondaryClick: () => {
               setVideoQuality('720p');
               const badge = document.querySelector('.badge-main-quality');
               if (badge) badge.textContent = '720p';
+              const sel = document.getElementById('quality-select-mp4') as HTMLSelectElement | null;
+              if (sel) sel.value = 'mp4-720';
               setLoading(true);
               setSubmitting(true);
               handleExtractMedia(url);
@@ -993,11 +995,13 @@ export async function handleExtractMedia(
         const limitResult = checkLimit(FEATURE_KEYS.HIGH_QUALITY_2K);
         if (!limitResult.allowed) {
           showPaywall('download_2k', {
-            secondaryLabel: 'Continue with 720p',
+            secondaryLabel: 'Continue without 2K',
             onSecondaryClick: () => {
               setVideoQuality('720p');
               const badge = document.querySelector('.badge-main-quality');
               if (badge) badge.textContent = '720p';
+              const sel = document.getElementById('quality-select-mp4') as HTMLSelectElement | null;
+              if (sel) sel.value = 'mp4-720';
               setLoading(true);
               setSubmitting(true);
               handleExtractMedia(url);
@@ -1013,11 +1017,13 @@ export async function handleExtractMedia(
         const limitResult = checkLimit(FEATURE_KEYS.HIGH_QUALITY_320K);
         if (!limitResult.allowed) {
           showPaywall('download_320kbps', {
-            secondaryLabel: 'Continue with 128kbps',
+            secondaryLabel: 'Continue without 320kbps',
             onSecondaryClick: () => {
               setAudioBitrate('128');
               const badge = document.querySelector('.badge-main-quality');
               if (badge) badge.textContent = '128kbps';
+              const sel = document.getElementById('quality-select-mp3') as HTMLSelectElement | null;
+              if (sel) sel.value = 'mp3-128';
               setLoading(true);
               setSubmitting(true);
               handleExtractMedia(url);

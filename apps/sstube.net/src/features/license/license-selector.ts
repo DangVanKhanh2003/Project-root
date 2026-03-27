@@ -230,6 +230,9 @@ export function initLicenseSelector(): void {
     // Listen for license activation from paywall popup
     document.addEventListener('license:activated', () => {
         updateButtonLabels();
+        document.querySelectorAll('.license-dropdown').forEach(d => {
+            renderDropdownItems(d);
+        });
     });
 
     console.log('✅ License selectors initialized');

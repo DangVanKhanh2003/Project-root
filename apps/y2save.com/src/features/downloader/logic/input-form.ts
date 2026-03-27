@@ -1011,7 +1011,7 @@ export async function handleExtractMedia(
       if (is4K) {
         const limitResult = checkLimit(FEATURE_KEYS.HIGH_QUALITY_4K);
         if (!limitResult.allowed) {
-          showPaywall('download_4k', { secondaryLabel: 'Continue with 720p', onSecondaryClick: () => { setVideoQuality('720p'); const badge = document.querySelector('.badge-main-quality'); if (badge) badge.textContent = '720p'; setLoading(true); setSubmitting(true); handleExtractMedia(url); } });
+          showPaywall('download_4k', { secondaryLabel: 'Continue without 4K', onSecondaryClick: () => { setVideoQuality('720p'); const badge = document.querySelector('.badge-main-quality'); if (badge) badge.textContent = '720p'; const sel = document.getElementById('quality-select-mp4') as HTMLSelectElement | null; if (sel) sel.value = 'mp4-720'; setLoading(true); setSubmitting(true); handleExtractMedia(url); } });
           setSubmitting(false);
           setLoading(false);
           return;
@@ -1022,7 +1022,7 @@ export async function handleExtractMedia(
       if (is2K) {
         const limitResult = checkLimit(FEATURE_KEYS.HIGH_QUALITY_2K);
         if (!limitResult.allowed) {
-          showPaywall('download_2k', { secondaryLabel: 'Continue with 720p', onSecondaryClick: () => { setVideoQuality('720p'); const badge = document.querySelector('.badge-main-quality'); if (badge) badge.textContent = '720p'; setLoading(true); setSubmitting(true); handleExtractMedia(url); } });
+          showPaywall('download_2k', { secondaryLabel: 'Continue without 2K', onSecondaryClick: () => { setVideoQuality('720p'); const badge = document.querySelector('.badge-main-quality'); if (badge) badge.textContent = '720p'; const sel = document.getElementById('quality-select-mp4') as HTMLSelectElement | null; if (sel) sel.value = 'mp4-720'; setLoading(true); setSubmitting(true); handleExtractMedia(url); } });
           setSubmitting(false);
           setLoading(false);
           return;
@@ -1032,7 +1032,7 @@ export async function handleExtractMedia(
       if (is320kbps) {
         const limitResult = checkLimit(FEATURE_KEYS.HIGH_QUALITY_320K);
         if (!limitResult.allowed) {
-          showPaywall('download_320kbps', { secondaryLabel: 'Continue with 128kbps', onSecondaryClick: () => { setAudioBitrate('128'); const badge = document.querySelector('.badge-main-quality'); if (badge) badge.textContent = '128kbps'; setLoading(true); setSubmitting(true); handleExtractMedia(url); } });
+          showPaywall('download_320kbps', { secondaryLabel: 'Continue without 320kbps', onSecondaryClick: () => { setAudioBitrate('128'); const badge = document.querySelector('.badge-main-quality'); if (badge) badge.textContent = '128kbps'; const sel = document.getElementById('quality-select-mp3') as HTMLSelectElement | null; if (sel) sel.value = 'mp3-128'; setLoading(true); setSubmitting(true); handleExtractMedia(url); } });
           setSubmitting(false);
           setLoading(false);
           return;
