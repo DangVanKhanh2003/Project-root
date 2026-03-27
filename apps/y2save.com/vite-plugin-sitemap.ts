@@ -1,6 +1,7 @@
 import type { Plugin } from 'vite';
-import { readdirSync, writeFileSync, readFileSync, existsSync, statSync } from 'fs';
+import { readdirSync, writeFileSync, readFileSync, existsSync } from 'fs';
 import { resolve, join, relative } from 'path';
+import { execSync } from 'child_process';
 
 interface SitemapConfig {
   baseUrl?: string;
@@ -54,14 +55,14 @@ export function sitemapPlugin(config: SitemapConfig = {}): Plugin {
       }
 
       // Generate sitemap XML
-      const today = new Date().toISOString().split('T')[0];
       const urls = htmlFiles.map(file => {
         const urlPath = file.replace(/\\/g, '/').replace(/index\.html$/, '').replace(/\.html$/, '');
         const fullUrl = urlPath ? `${baseUrl}/${urlPath}` : baseUrl;
         const isHome = urlPath === '' || urlPath.match(/^[a-z]{2}$/) !== null;
         const priority = isHome ? homePriority : defaultPriority;
+        const lastmod = getGitLastModified(file);
 
-        return generateUrlEntry(fullUrl, today, changefreq, priority);
+        return generateUrlEntry(fullUrl, lastmod, changefreq, priority);
       });
 
       const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
@@ -127,6 +128,40 @@ function collectHtmlFiles(dir: string, baseDir: string): string[] {
   }
 
   return files;
+}
+
+/**
+ * Get the last modified date of a source file from git history.
+ * Maps dist HTML files back to their source (template .njk or direct .html).
+ */
+function getGitLastModified(distFile: string): string {
+  const normalized = distFile.replace(/\\/g, '/');
+  // Strip locale prefix (e.g., "ar/index.html" → "index.html")
+  const withoutLocale = normalized.replace(/^[a-z]{2}\//, '');
+  const njkName = withoutLocale.replace(/\.html$/, '.njk');
+  const templatePath = `_templates/pages/${njkName}`;
+  const directPath = withoutLocale;
+
+  // Determine source file: template (.njk) takes priority, then direct HTML
+  let sourcePath: string;
+  if (existsSync(resolve(__dirname, templatePath))) {
+    sourcePath = templatePath;
+  } else if (existsSync(resolve(__dirname, directPath))) {
+    sourcePath = directPath;
+  } else {
+    sourcePath = normalized;
+  }
+
+  try {
+    const result = execSync(`git log -1 --format=%aI -- "${sourcePath}"`, {
+      cwd: __dirname,
+      encoding: 'utf-8',
+    }).trim();
+    if (result) {
+      return result.split('T')[0];
+    }
+  } catch {}
+  return new Date().toISOString().split('T')[0]; // fallback
 }
 
 /**
