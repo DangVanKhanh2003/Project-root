@@ -89,7 +89,8 @@ module.exports = function (eleventyConfig) {
       { code: 'ur', name: 'اردو', flag: 'pk.svg', isDefault: false },
       { code: 'vi', name: 'Tiếng Việt', flag: 'vn.svg', isDefault: false },
       { code: 'zh-cn', name: '简体中文', flag: 'cn.svg', isDefault: false },
-      { code: 'zh-tw', name: '繁體中文', flag: 'tw.svg', isDefault: false }
+      { code: 'zh-tw', name: '繁體中文', flag: 'tw.svg', isDefault: false },
+      { code: 'tl', name: 'Filipino', flag: 'ph.svg', isDefault: false }
     ]
   });
 

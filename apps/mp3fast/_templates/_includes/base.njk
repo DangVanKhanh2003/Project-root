@@ -78,8 +78,15 @@
     <meta property="og:locale" content="{{ locale }}">
     <meta property="og:title" content="{{ seo.ogTitle or seo.title }}">
     <meta property="og:description" content="{{ seo.ogDescription or seo.description }}">
-    <meta property="og:image" content="{{ site.url }}/logo.png">
+    <meta property="og:image" content="{{ site.url }}/favicon-512x512.png">
     <meta property="og:url" content="{{ site.url }}{{ cleanUrl }}">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="{{ site.url }}{{ cleanUrl }}">
+    <meta name="twitter:title" content="{{ seo.ogTitle or seo.title }}">
+    <meta name="twitter:description" content="{{ seo.ogDescription or seo.description }}">
+    <meta name="twitter:image" content="{{ site.url }}/favicon-512x512.png">
 
     <!-- Fonts -->
     <link rel="preload" href="/assest/fonts/fredoka/Fredoka-Bold.woff2" as="font" type="font/woff2" crossorigin>

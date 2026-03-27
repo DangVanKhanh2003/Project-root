@@ -70,9 +70,11 @@
 
     <!-- Open Graph / Facebook (FULL locale code required) -->
     <meta property="og:type" content="website">
+    <meta property="og:site_name" content="{{ site.name }}">
     <meta property="og:url" content="{{ site.url }}{{ cleanUrl }}">
     <meta property="og:title" content="{{ seo.ogTitle }}">
     <meta property="og:description" content="{{ seo.ogDescription }}">
+    <meta property="og:image" content="{{ site.url }}/favicon-512x512.png">
     <meta property="og:image:alt" content="{{ seo.ogTitle }}">
     <meta property="og:locale" content="{{ ogLocale }}">
 
@@ -81,7 +83,7 @@
     <meta name="twitter:url" content="{{ site.url }}{{ cleanUrl }}">
     <meta name="twitter:title" content="{{ seo.ogTitle }}">
     <meta name="twitter:description" content="{{ seo.ogDescription }}">
-
+    <meta name="twitter:image" content="{{ site.url }}/favicon-512x512.png">
 
     <!-- Favicon -->
     <link rel="icon" href="/favicon.ico" sizes="any">

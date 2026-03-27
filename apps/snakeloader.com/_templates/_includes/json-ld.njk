@@ -26,11 +26,11 @@
     {
       "@type": "Organization",
       "@id": "{{ site.url }}/#organization",
-      "name": "SnackeLoader",
+      "name": "SnakeLoader",
       "url": "{{ site.url }}/",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://snakeloader.com/logo.png"
+        "url": "{{ site.url }}/favicon-512x512.png"
       },
       "contactPoint": {
         "@type": "ContactPoint",
@@ -41,7 +41,7 @@
     {
       "@type": "WebSite",
       "@id": "{{ site.url }}/#website",
-      "name": "SnackeLoader",
+      "name": "SnakeLoader",
       "url": "{{ site.url }}/",
       "description": "{{ seo.description | jsonString | safe }}",
       "inLanguage": "en",

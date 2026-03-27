@@ -23,7 +23,7 @@
       "url": "{{ site.url }}",
       "logo": {
         "@type": "ImageObject",
-        "url": "{{ site.url }}/logo.png"
+        "url": "{{ site.url }}/favicon-512x512.png"
       },
       "contactPoint": {
         "@type": "ContactPoint",
@@ -67,6 +67,9 @@
       "operatingSystem": "All",
       "browserRequirements": "Requires JavaScript. Requires HTML5.",
       "inLanguage": "{{ lang or 'en' }}",
+      "publisher": {
+        "@id": "{{ site.url }}/#organization"
+      },
       "offers": {
         "@type": "Offer",
         "price": "0",
