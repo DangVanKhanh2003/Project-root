@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Downloader Monorepo — Test Dashboard</title>
+  <style>
+    :root { --bg:#0d1117; --card:#161b22; --border:#30363d; --text:#e6edf3; --dim:#8b949e; --green:#3fb950; --red:#f85149; --yellow:#d29922; --blue:#58a6ff; --purple:#bc8cff; --orange:#f0883e; --cyan:#39d353; }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);padding:20px 24px}
+
+    /* Header */
+    .hdr{display:flex;align-items:center;gap:12px;margin-bottom:4px}
+    h1{font-size:20px;font-weight:600}
+    .badge{font-size:10px;padding:2px 8px;border-radius:99px;font-weight:600}
+    .badge-on{background:rgba(63,185,80,.15);color:var(--green)}
+    .badge-off{background:rgba(248,81,73,.15);color:var(--red)}
+    .sub{color:var(--dim);font-size:12px;margin-bottom:20px}
+
+    /* Stats row - visual cards with ring charts */
+    .stats{display:grid;grid-template-columns:280px 1fr;gap:16px;margin-bottom:20px}
+    .ring-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;display:flex;align-items:center;gap:20px}
+    .ring{position:relative;width:100px;height:100px;flex-shrink:0}
+    .ring svg{transform:rotate(-90deg)}
+    .ring-label{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center}
+    .ring-num{font-size:24px;font-weight:700;line-height:1}
+    .ring-sub{font-size:10px;color:var(--dim)}
+    .ring-details{display:flex;flex-direction:column;gap:6px;flex:1}
+    .ring-row{display:flex;align-items:center;gap:8px;font-size:13px}
+    .ring-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+
+    /* Mini stat cards */
+    .mini-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px}
+    .mini{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px}
+    .mini-label{font-size:10px;color:var(--dim);text-transform:uppercase;letter-spacing:.5px}
+    .mini-val{font-size:26px;font-weight:700;font-family:'SF Mono',monospace;margin-top:2px}
+    .mini-bar{height:3px;border-radius:2px;margin-top:8px;background:var(--border);overflow:hidden}
+    .mini-bar-fill{height:100%;border-radius:2px;transition:width .5s}
+
+    /* Progress */
+    .gprog{height:3px;background:var(--border);border-radius:2px;margin-bottom:16px;overflow:hidden}
+    .gprog-fill{height:100%;border-radius:2px;transition:width .4s,background .3s;background:var(--blue)}
+    .gprog-fill.ok{background:var(--green)}.gprog-fill.err{background:var(--red)}.gprog-fill.run{background:var(--yellow);animation:pulse 1.5s infinite}
+
+    /* Buttons */
+    .btns{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;align-items:center}
+    .b{padding:6px 14px;border-radius:6px;cursor:pointer;font-size:12px;font-weight:600;font-family:inherit;border:1px solid transparent;transition:all .15s}
+    .b:hover{filter:brightness(1.15)}.b:disabled{opacity:.35;cursor:not-allowed}
+    .b1{background:var(--blue);color:#fff}.b2{background:var(--orange);color:#fff}.b3{background:var(--purple);color:#fff}
+    .b4{background:var(--red);color:#fff}.b5{background:transparent;border-color:var(--red);color:var(--red);display:none}
+    .b5.on{display:inline-block}.bg{background:transparent;border-color:var(--border);color:var(--dim)}
+    .spacer{flex:1}
+    .rlabel{font-size:11px;color:var(--yellow);animation:pulse 1s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+    /* E2E sub-buttons */
+    .esub{display:none;gap:6px;margin-bottom:10px;flex-wrap:wrap}.esub.on{display:flex}
+    .esub .b{font-size:11px;padding:5px 12px;background:rgba(188,140,255,.12);color:var(--purple);border-color:rgba(188,140,255,.25)}
+
+    /* Tabs */
+    .tabs{display:flex;gap:3px;margin-bottom:12px;align-items:center}
+    .t{padding:5px 12px;border-radius:5px;cursor:pointer;font-size:12px;font-weight:500;border:1px solid var(--border);background:transparent;color:var(--dim);transition:all .15s}
+    .t.on{background:var(--blue);border-color:var(--blue);color:#fff}.t:hover:not(.on){border-color:var(--blue);color:var(--text)}
+    .tabs .spacer{flex:1}
+    .tabs input{background:var(--card);border:1px solid var(--border);color:var(--text);padding:5px 10px;border-radius:5px;font-size:12px;font-family:inherit;width:180px;outline:none}
+    .tabs input:focus{border-color:var(--blue)}
+
+    /* Suites */
+    .suite{background:var(--card);border:1px solid var(--border);border-radius:8px;margin-bottom:6px;overflow:hidden}
+    .sh{padding:8px 12px;display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none;font-size:13px}
+    .sh:hover{background:rgba(255,255,255,.02)}
+    .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+    .dot.p{background:var(--green)}.dot.f{background:var(--red)}.dot.r{background:var(--yellow);animation:pulse 1s infinite}
+    .sn{flex:1;font-weight:500}.sm{font-size:11px;color:var(--dim)}
+    .sb{display:none;border-top:1px solid var(--border)}.suite.open .sb{display:block}
+    .tc{padding:5px 12px 5px 28px;display:flex;align-items:center;gap:6px;font-size:12px}
+    .tc+.tc{border-top:1px solid rgba(255,255,255,.02)}
+    .ti{width:14px;text-align:center;font-weight:700;font-size:11px}.ti.p{color:var(--green)}.ti.f{color:var(--red)}.ti.s{color:var(--yellow)}
+    .tn{flex:1;color:var(--dim)}.tm{font-size:10px;color:var(--dim);font-family:monospace}
+
+    /* Log */
+    .log{background:#000;border-radius:8px;padding:12px;margin-top:12px;max-height:300px;overflow-y:auto;font-family:'SF Mono',monospace;font-size:11px;line-height:1.6;display:none}
+    .log.on{display:block}
+    .ll{white-space:pre-wrap;word-break:break-all}.ll.e{color:var(--red)}.ll.s{color:var(--green)}.ll.i{color:var(--blue)}.ll.d{color:var(--dim)}
+
+    .empty{text-align:center;padding:40px;color:var(--dim);font-size:13px}
+
+    /* Iframe site testing */
+    .iframe-section{display:none;margin-bottom:20px}
+    .iframe-section.on{display:block}
+    .iframe-hdr{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+    .iframe-hdr h2{font-size:16px;font-weight:600}
+    .iframe-hdr .count{font-size:12px;color:var(--dim)}
+    .iframe-picker{margin-bottom:10px}
+    .iframe-site-list{display:flex;flex-wrap:wrap;gap:4px 10px}
+    .iframe-site-list label{font-size:12px;cursor:pointer;display:flex;align-items:center;gap:3px;padding:2px 0;color:var(--fg)}
+    .iframe-site-list label.built{color:var(--green)}
+    .iframe-site-list label.not-built{color:var(--dim);opacity:.6}
+    .iframe-site-list input[type=checkbox]{margin:0}
+    .iframe-controls{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap;align-items:center}
+    .iframe-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(420px,1fr));gap:10px}
+    .iframe-card{background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden;position:relative}
+    .iframe-bar{display:flex;align-items:center;gap:6px;padding:6px 10px;font-size:11px;border-bottom:1px solid var(--border)}
+    .iframe-bar .idot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+    .idot.loading{background:var(--yellow);animation:pulse 1s infinite}
+    .idot.pass{background:var(--green)}.idot.fail{background:var(--red)}.idot.idle{background:var(--dim)}
+    .iframe-bar .iname{flex:1;font-weight:500}
+    .iframe-bar .istatus{font-size:10px;color:var(--dim)}
+    .iframe-bar .iport{font-size:10px;color:var(--dim);font-family:monospace}
+    .iframe-wrap{width:100%;height:320px;background:#111}
+    .iframe-wrap iframe{width:100%;height:100%;border:none}
+    .iframe-checks{padding:6px 10px;font-size:11px;display:flex;flex-wrap:wrap;gap:4px}
+    .icheck{padding:2px 8px;border-radius:4px;font-size:10px;font-weight:600}
+    .icheck.pass{background:rgba(63,185,80,.12);color:var(--green)}
+    .icheck.fail{background:rgba(248,81,73,.12);color:var(--red)}
+    .icheck.pending{background:rgba(139,148,158,.12);color:var(--dim)}
+    .iframe-summary{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px;margin-top:12px}
+
+    /* Per-site log panels (build/test) */
+    .site-logs{display:none;margin-bottom:16px}.site-logs.on{display:block}
+    .site-logs-hdr{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+    .site-logs-hdr h2{font-size:15px}
+    .site-logs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(480px,1fr));gap:8px}
+    .site-log{background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+    .site-log-bar{display:flex;align-items:center;gap:6px;padding:6px 10px;border-bottom:1px solid var(--border);cursor:pointer;user-select:none}
+    .site-log-bar:hover{background:rgba(255,255,255,.02)}
+    .site-log-bar .sldot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+    .sldot.idle{background:var(--dim)}.sldot.run{background:var(--yellow);animation:pulse 1s infinite}
+    .sldot.ok{background:var(--green)}.sldot.err{background:var(--red)}
+    .site-log-bar .slname{flex:1;font-size:12px;font-weight:500}
+    .site-log-bar .slstatus{font-size:10px;color:var(--dim)}
+    .site-log-body{max-height:200px;overflow-y:auto;font-family:'SF Mono',monospace;font-size:10px;line-height:1.5;padding:6px 8px;background:#000;display:none}
+    .site-log.open .site-log-body{display:block}
+
+    /* Suite description */
+    .sdesc{font-size:11px;color:var(--dim);padding:0 12px 8px 27px;line-height:1.4}
+
+    /* Conclusion panel */
+    .conclusion{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;margin-top:16px}
+    .conclusion h2{font-size:16px;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+    .conclusion .verdict{font-size:14px;font-weight:600;padding:6px 14px;border-radius:6px;display:inline-block;margin-bottom:14px}
+    .verdict-pass{background:rgba(63,185,80,.12);color:var(--green);border:1px solid rgba(63,185,80,.25)}
+    .verdict-fail{background:rgba(248,81,73,.12);color:var(--red);border:1px solid rgba(248,81,73,.25)}
+    .conclusion table{width:100%;border-collapse:collapse;font-size:12px;margin-top:10px}
+    .conclusion th{text-align:left;padding:6px 8px;border-bottom:1px solid var(--border);color:var(--dim);font-weight:500}
+    .conclusion td{padding:6px 8px;border-bottom:1px solid rgba(255,255,255,.03)}
+    .conclusion td:first-child{font-weight:500}
+    .conclusion .fc-pass{color:var(--green)}.conclusion .fc-fail{color:var(--red)}
+    .conclusion .fc-desc{color:var(--dim);font-size:11px}
+    .conclusion .summary-text{margin-top:14px;font-size:12px;color:var(--dim);line-height:1.6}
+  </style>
+</head>
+<body>
+
+<div class="hdr">
+  <h1>Downloader Monorepo — Test Dashboard</h1>
+  <div class="badge badge-off" id="ws">Disconnected</div>
+</div>
+<p class="sub">
+  Project: <strong>downloader-monorepo</strong> &bull;
+  <span id="siteListLabel">Connecting...</span>
+  <br>Packages: @downloader/core, @downloader/ui-components, @downloader/ui-shared, @downloader/i18n, @downloader/vidtool-popup
+</p>
+
+<div class="gprog"><div class="gprog-fill" id="gp"></div></div>
+
+<!-- VISUAL STATS -->
+<div class="stats">
+  <!-- Pass Rate Ring Chart -->
+  <div class="ring-card">
+    <div class="ring" id="ringChart">
+      <svg viewBox="0 0 100 100" width="100" height="100">
+        <circle cx="50" cy="50" r="42" fill="none" stroke="var(--border)" stroke-width="6"/>
+        <circle id="ringPass" cx="50" cy="50" r="42" fill="none" stroke="var(--green)" stroke-width="6" stroke-dasharray="0 264" stroke-linecap="round"/>
+        <circle id="ringFail" cx="50" cy="50" r="42" fill="none" stroke="var(--red)" stroke-width="6" stroke-dasharray="0 264" stroke-linecap="round"/>
+      </svg>
+      <div class="ring-label">
+        <div class="ring-num" id="ringPct">-</div>
+        <div class="ring-sub">pass rate</div>
+      </div>
+    </div>
+    <div class="ring-details">
+      <div class="ring-row"><div class="ring-dot" style="background:var(--green)"></div><span id="rdPass">0 passed</span></div>
+      <div class="ring-row"><div class="ring-dot" style="background:var(--red)"></div><span id="rdFail">0 failed</span></div>
+      <div class="ring-row"><div class="ring-dot" style="background:var(--yellow)"></div><span id="rdSkip">0 skipped</span></div>
+      <div class="ring-row"><div class="ring-dot" style="background:var(--blue)"></div><span id="rdTotal">0 total</span></div>
+    </div>
+  </div>
+
+  <!-- Mini stat cards -->
+  <div class="mini-stats">
+    <div class="mini">
+      <div class="mini-label">Test Files</div>
+      <div class="mini-val" style="color:var(--blue)" id="mFiles">-</div>
+      <div class="mini-bar"><div class="mini-bar-fill" id="mbFiles" style="width:0;background:var(--blue)"></div></div>
+    </div>
+    <div class="mini">
+      <div class="mini-label">Duration</div>
+      <div class="mini-val" style="color:var(--purple)" id="mTime">-</div>
+      <div class="mini-bar"><div class="mini-bar-fill" id="mbTime" style="width:0;background:var(--purple)"></div></div>
+    </div>
+    <div class="mini">
+      <div class="mini-label">Unit Tests</div>
+      <div class="mini-val" style="color:var(--cyan)" id="mUnit">-</div>
+      <div class="mini-bar"><div class="mini-bar-fill" id="mbUnit" style="width:0;background:var(--cyan)"></div></div>
+    </div>
+    <div class="mini">
+      <div class="mini-label">Stress Tests</div>
+      <div class="mini-val" style="color:var(--orange)" id="mStress">-</div>
+      <div class="mini-bar"><div class="mini-bar-fill" id="mbStress" style="width:0;background:var(--orange)"></div></div>
+    </div>
+    <div class="mini">
+      <div class="mini-label">E2E Tests</div>
+      <div class="mini-val" style="color:var(--purple)" id="mE2e">-</div>
+      <div class="mini-bar"><div class="mini-bar-fill" id="mbE2e" style="width:0;background:var(--purple)"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTROLS -->
+<div class="btns">
+  <button class="b b4" onclick="send('run-full-all')">Run ALL (Unit+Stress+Build+E2E All Sites)</button>
+  <button class="b b4" onclick="send('run-full')" style="background:var(--orange)">Run Full (1 Site)</button>
+  <button class="b b1" onclick="send('run-all-unit')">Unit+Stress</button>
+  <button class="b b2" onclick="send('run-stress')">Stress Only</button>
+  <button class="b bg" onclick="send('build-all-sites')" style="border-color:var(--cyan);color:var(--cyan)">Build All Sites</button>
+  <button class="b b3" onclick="toggleE()">E2E (Browser)</button>
+  <button class="b bg" onclick="toggleIframe()" style="border-color:var(--purple);color:var(--purple)">Live Site Test (iframes)</button>
+  <button class="b b5" id="bStop" onclick="doStop()">Stop All</button>
+  <div class="spacer"></div>
+  <span class="rlabel" id="rl" style="display:none"></span>
+  <button class="b bg" onclick="toggleLog()">Log</button>
+</div>
+<div class="esub" id="es">
+  <button class="b" onclick="send('run-e2e')">E2E 1 Site (Chrome)</button>
+  <button class="b" onclick="send('run-e2e-all-sites')">E2E ALL Sites (Parallel)</button>
+  <button class="b" onclick="send('run-e2e-smoke')">Smoke Tests</button>
+  <button class="b" onclick="send('run-e2e-download')">Download Flow</button>
+  <button class="b" onclick="send('run-e2e-i18n')">i18n / Languages</button>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <div class="t on" onclick="tab('all',this)">All</div>
+  <div class="t" onclick="tab('unit',this)">Unit</div>
+  <div class="t" onclick="tab('stress',this)">Stress</div>
+  <div class="t" onclick="tab('e2e',this)">E2E</div>
+  <div class="t" onclick="tab('fail',this)">Failed</div>
+  <div class="spacer"></div>
+  <input placeholder="Filter..." oninput="fq=this.value;draw()">
+</div>
+
+<!-- PER-SITE LOG PANELS (shown during parallel build/test) -->
+<div class="site-logs" id="siteLogs">
+  <div class="site-logs-hdr">
+    <h2>Per-Site Logs</h2>
+    <span style="font-size:11px;color:var(--dim)" id="siteLogsCount"></span>
+  </div>
+  <div class="site-logs-grid" id="siteLogsGrid"></div>
+</div>
+
+<!-- IFRAME SITE TESTING -->
+<div class="iframe-section" id="iframeSection">
+  <div class="iframe-hdr">
+    <h2>Live Site Testing</h2>
+    <span class="count" id="iframeCount"></span>
+  </div>
+  <!-- Site picker: checkboxes -->
+  <div class="iframe-picker" id="iframePicker">
+    <div style="display:flex;gap:6px;margin-bottom:6px;align-items:center">
+      <label style="font-size:11px;color:var(--dim);cursor:pointer"><input type="checkbox" id="iframeSelectAll" onchange="iframeToggleAll(this.checked)" checked> Select All</label>
+    </div>
+    <div class="iframe-site-list" id="iframeSiteList"></div>
+  </div>
+  <div class="iframe-controls">
+    <button class="b b1" onclick="iframeTestSelected()">Test Selected Sites</button>
+    <button class="b bg" onclick="iframeStop()">Close All</button>
+    <span style="font-size:11px;color:var(--dim)" id="iframeProgress"></span>
+  </div>
+  <!-- Realtime summary (always visible, updates live) -->
+  <div class="iframe-summary" id="iframeSummary" style="display:none"></div>
+  <div class="iframe-grid" id="iframeGrid"></div>
+</div>
+
+<div id="list"></div>
+
+<!-- CONCLUSION (shown after tests finish) -->
+<div id="conclusion" style="display:none"></div>
+
+<div class="log" id="log"></div>
+
+<script>
+let ws,suites=[],fq='',atab='all',running=false,t0=0,timer;
+
+// File descriptions: what each test file tests (shown in UI + conclusion)
+const FILE_DESC = {
+  'download.mapper.test.ts': 'V3 API request mapping — chuyển đổi lựa chọn user (format MP4/MP3, quality 720p/1080p, bitrate 128k/320k, trim, OS) thành V3 DownloadRequest gửi tới API server.',
+  'error.mapper.test.ts': 'Phân loại V3 error codes — map mã lỗi API (INVALID_URL, INTERNAL_ERROR...) thành message user-friendly, xác định lỗi nào retryable, lỗi user input, video unavailable.',
+  'http-client.test.ts': 'HttpClient (Fetch API wrapper) — URL building, GET/POST request, headers, JSON parse, error extraction từ response, timeout, user cancellation qua AbortSignal.',
+  'http-error.test.ts': 'HTTP error class hierarchy — ApiError (status code), NetworkError (no response), TimeoutError (quá thời gian), ValidationError (400), CancellationError (user cancel). Kiểm tra serialization toJSON().',
+  'download.service.test.ts': 'V3 DownloadService — gọi API tạo download job (POST /api/download) và poll status (GET statusUrl). Kiểm tra validation URL, output type/format, xử lý error response từ server.',
+  'retry-helper.test.ts': 'Auto-retry logic — retryWithBackoff() retry tối đa N lần khi API fail, dừng ngay khi user cancel (AbortError). isTimeoutError(), isNetworkError(), isRetryableError() phân loại lỗi.',
+  'download-queue.test.ts': 'DownloadQueue — quản lý download song song tối đa N concurrent. FIFO ordering, skip duplicate, cancel running (abort signal), cancel pending (reject promise), setMaxConcurrent.',
+  'polling.test.ts': 'Polling loop — check status conversion mỗi Nms. Xử lý: pending→progress, completed→downloadUrl, error/failed→stop. Timeout không tính lỗi (unlimited retry). Consecutive error tracking.',
+  'download.mapper.stress.test.ts': 'STRESS: 200+ combinations format×quality×bitrate, 15 URL variations, 15 user agents, trim boundaries, unknown values fallback, 1000 rapid mappings performance benchmark.',
+  'http-client.stress.test.ts': 'STRESS: 16 HTTP status codes, 7 error message formats, 10 concurrent requests, mixed success/failure, URL building edge cases, 50 query params, special chars, 10 concurrent cancellations.',
+  'polling.stress.test.ts': 'STRESS: 50 polls before complete, alternating error-success pattern, 20 consecutive timeouts, maxConsecutiveErrors boundary, all terminal statuses, progress never-backwards verification.',
+  'PollingProgressMapper.test.ts': 'Progress calculation — video: 60%×videoProgress + 40%×audioProgress, audio: chỉ audioProgress. Phase tracking (processing→merging). Never-backwards rule.',
+  'IStateUpdater.test.ts': 'State updater contract — interface IStateUpdater cho updateTask() và getTask(). Kiểm tra state management pattern.',
+  'BaseStrategy.test.ts': 'Base conversion strategy — abstract class, abort handling qua AbortSignal, state update lifecycle, error propagation.',
+  'IOSRamStrategy.test.ts': 'iOS RAM download strategy — tối ưu memory cho iOS devices, audio ≤150MB dùng RAM, video/large audio dùng polling.',
+  'OtherStreamStrategy.test.ts': 'Direct stream download — download trực tiếp không cần polling, dùng cho non-YouTube sources.',
+  'PollingStrategy.test.ts': 'Polling conversion strategy — 3-layer animation (initial 0→5%, fake 5→90%, merging 90→100%), fake progress khi API chưa trả real progress.',
+  'StaticDirectStrategy.test.ts': 'Static direct download — URL có sẵn, không cần server processing. Download ngay lập tức.',
+  'index.test.ts': 'Type validation + routing logic — determineRoute() quyết định strategy theo platform/format/size. FileFormat enum, TaskState transitions.',
+  'link-validator.test.ts': 'Link expiration — isLinkExpired(), getRemainingTime(), formatRemainingTime(). Download link TTL 25 phút, cảnh báo khi gần hết hạn.',
+  'link-validator.stress.test.ts': 'STRESS: Link validator performance — edge cases (null, undefined, NaN), boundary values (exactly at TTL, 1ms before/after), large-scale validation.',
+};
+
+// WebSocket
+function conn(){
+  ws=new WebSocket('ws://'+location.host);
+  ws.onopen=()=>{$('ws').className='badge badge-on';$('ws').textContent='Connected'};
+  ws.onclose=()=>{$('ws').className='badge badge-off';$('ws').textContent='Disconnected';setTimeout(conn,2000)};
+  ws.onerror=()=>ws.close();
+  ws.onmessage=e=>{try{handle(JSON.parse(e.data))}catch{}};
+}
+function send(a){ws&&ws.readyState===1&&ws.send(JSON.stringify({action:a}))}
+
+// Per-site log state
+const siteLogs = {}; // {taskName: {lines:[], status:'run'|'ok'|'err'}}
+
+function ensureSiteLog(task) {
+  if (siteLogs[task]) return;
+  siteLogs[task] = { lines: [], status: 'run' };
+
+  // Show the section
+  $('siteLogs').classList.add('on');
+
+  // Create DOM panel
+  const grid = $('siteLogsGrid');
+  const id = 'sl-' + task.replace(/[^a-zA-Z0-9]/g, '_');
+  const panel = document.createElement('div');
+  panel.className = 'site-log';
+  panel.id = id;
+  panel.innerHTML = `
+    <div class="site-log-bar" onclick="this.parentElement.classList.toggle('open')">
+      <div class="sldot run"></div>
+      <span class="slname">${esc(task)}</span>
+      <span class="slstatus">Running...</span>
+    </div>
+    <div class="site-log-body"></div>
+  `;
+  grid.appendChild(panel);
+  updateSiteLogsCount();
+}
+
+function appendSiteLog(task, text, isError) {
+  ensureSiteLog(task);
+  const id = 'sl-' + task.replace(/[^a-zA-Z0-9]/g, '_');
+  const body = document.querySelector(`#${id} .site-log-body`);
+  if (!body) return;
+  const line = document.createElement('div');
+  line.style.color = isError ? 'var(--red)' : 'var(--dim)';
+  line.style.whiteSpace = 'pre-wrap';
+  line.style.wordBreak = 'break-all';
+  line.textContent = text;
+  body.appendChild(line);
+  body.scrollTop = 1e6;
+}
+
+function finishSiteLog(task, code) {
+  if (!siteLogs[task]) return;
+  siteLogs[task].status = code === 0 ? 'ok' : 'err';
+  const id = 'sl-' + task.replace(/[^a-zA-Z0-9]/g, '_');
+  const panel = document.getElementById(id);
+  if (!panel) return;
+  const dot = panel.querySelector('.sldot');
+  const status = panel.querySelector('.slstatus');
+  dot.className = 'sldot ' + (code === 0 ? 'ok' : 'err');
+  status.textContent = code === 0 ? 'DONE' : `FAILED (${code})`;
+  status.style.color = code === 0 ? 'var(--green)' : 'var(--red)';
+  updateSiteLogsCount();
+}
+
+function updateSiteLogsCount() {
+  const all = Object.values(siteLogs);
+  const done = all.filter(s => s.status !== 'run').length;
+  const ok = all.filter(s => s.status === 'ok').length;
+  const err = all.filter(s => s.status === 'err').length;
+  $('siteLogsCount').textContent = `${done}/${all.length} done` + (err ? ` (${err} failed)` : '');
+}
+
+function clearSiteLogs() {
+  for (const k in siteLogs) delete siteLogs[k];
+  $('siteLogsGrid').innerHTML = '';
+  $('siteLogsCount').textContent = '';
+}
+
+function handle(m){
+  if(m.type==='connected'){
+    if(m.sites){
+      ALL_SITES_LIST=m.sites;
+      SITE_PORTS=m.sitePorts||{};
+      $('siteListLabel').textContent=`${ALL_SITES_LIST.length} sites: ${ALL_SITES_LIST.join(', ')}`;
+      document.title=`Downloader Monorepo — Test Dashboard (${ALL_SITES_LIST.length} sites)`;
+      log(`Server connected. ${ALL_SITES_LIST.length} sites detected: ${ALL_SITES_LIST.join(', ')}`,'s');
+    }
+    if(m.running)setRun(true,'running');
+    return;
+  }
+  if(m.type==='start'){suites=[];clearSiteLogs();setRun(true,'running');log('Starting '+m.testType+'...','i');draw()}
+  if(m.type==='stdout'){log(m.text,'d');parseLine(m.text)}
+  if(m.type==='stderr')log(m.text,'e');
+  if(m.type==='task-stdout')appendSiteLog(m.task,m.text,false);
+  if(m.type==='task-stderr')appendSiteLog(m.task,m.text,true);
+  if(m.type==='task-done')finishSiteLog(m.task,m.code);
+  if(m.type==='done'){setRun(false);log('\nDone (exit '+m.code+')',m.code===0?'s':'e');draw()}
+  if(m.type==='stopping'){setRun(true,'stopping');log('Stopping all processes (killing browsers, workers)...','i')}
+  if(m.type==='stopped'){setRun(false);log('All tests stopped.','s');draw()}
+  if(m.type==='vitest-json'){parseVJ(m.data);draw()}
+  if(m.type==='playwright-json'){parsePJ(m.data);draw()}
+}
+
+function doStop(){
+  send('stop');
+  $('bStop').textContent='Stopping...';
+  $('bStop').disabled=true;
+  $('rl').textContent='Stopping...';
+  // Server sends 'stopped' immediately now — UI resets via handle()
+  // Safety: re-enable button after 2s in case message lost
+  setTimeout(()=>{
+    if(running){
+      running=false;
+      setRun(false);
+    }
+  },2000);
+}
+
+function parseLine(t){
+  t.split('\n').forEach(l=>{
+    let m=l.match(/([✓✗])\s+(.+?)\s+\((\d+)\s+tests?\)\s+(\d+)ms/);
+    if(m){
+      let n=m[2].replace(/.*[/\\]/,''),c=n.includes('stress')?'stress':n.includes('spec')?'e2e':'unit';
+      if(!suites.find(s=>s.n===n))suites.push({n,c,ok:m[1]==='✓',d:+m[4],ts:Array.from({length:+m[3]},(_,i)=>({n:'test '+(i+1),s:m[1]==='✓'?'p':'f',d:Math.round(m[4]/m[3])}))});
+      draw();
+    }
+  });
+}
+function parseVJ(d){if(!d?.testResults)return;suites=[];d.testResults.forEach(f=>{let n=f.name?.replace(/.*[/\\]/,'')||'?';suites.push({n,c:n.includes('stress')?'stress':'unit',ok:f.status==='passed',d:(f.endTime||0)-(f.startTime||0),ts:(f.assertionResults||[]).map(t=>({n:(t.ancestorTitles||[]).join(' > ')+' > '+t.title,s:t.status==='passed'?'p':t.status==='failed'?'f':'s',d:t.duration||0}))})});draw()}
+function parsePJ(d){if(!d?.suites)return;function w(s){let ts=[];(s.specs||[]).forEach(sp=>(sp.tests||[]).forEach(t=>(t.results||[]).forEach(r=>ts.push({n:sp.title,s:r.status==='passed'?'p':r.status==='failed'?'f':'s',d:r.duration||0}))));if(ts.length)suites.push({n:s.title||'E2E',c:'e2e',ok:!ts.some(t=>t.s==='f'),d:ts.reduce((a,t)=>a+t.d,0),ts});(s.suites||[]).forEach(w)}d.suites.forEach(w);draw()}
+
+// Render
+function draw(){drawStats();drawList();drawConclusion()}
+function drawStats(){
+  let all=filtered(),tot=0,p=0,f=0,sk=0,dur=0,unit=0,stress=0,e2e=0;
+  all.forEach(s=>s.ts.forEach(t=>{tot++;if(t.s==='p')p++;else if(t.s==='f')f++;else sk++;dur+=t.d}));
+  suites.forEach(s=>{let c=s.ts.length;if(s.c==='unit')unit+=c;if(s.c==='stress')stress+=c;if(s.c==='e2e')e2e+=c});
+
+  // Ring chart
+  let pct=tot?Math.round(p/tot*100):0;
+  let circ=2*Math.PI*42; // ~264
+  $('ringPass').setAttribute('stroke-dasharray',`${circ*p/Math.max(tot,1)} ${circ}`);
+  $('ringFail').setAttribute('stroke-dasharray',`${circ*f/Math.max(tot,1)} ${circ}`);
+  $('ringFail').setAttribute('stroke-dashoffset',`${-circ*p/Math.max(tot,1)}`);
+  $('ringPct').textContent=tot?pct+'%':'-';
+  $('rdPass').textContent=p+' passed';$('rdFail').textContent=f+' failed';
+  $('rdSkip').textContent=sk+' skipped';$('rdTotal').textContent=tot+' total';
+
+  // Mini stats
+  $('mFiles').textContent=suites.length||'-';
+  if(!running)$('mTime').textContent=dur>0?(dur/1000).toFixed(1)+'s':'-';
+  $('mUnit').textContent=unit||'-';$('mStress').textContent=stress||'-';$('mE2e').textContent=e2e||'-';
+  let mx=Math.max(unit,stress,e2e,1);
+  $('mbUnit').style.width=(unit/mx*100)+'%';$('mbStress').style.width=(stress/mx*100)+'%';
+  $('mbE2e').style.width=(e2e/mx*100)+'%';$('mbFiles').style.width='100%';$('mbTime').style.width='100%';
+
+  // Global progress
+  let gp=$('gp');
+  if(running){gp.style.width='60%';gp.className='gprog-fill run'}
+  else if(tot){gp.style.width='100%';gp.className='gprog-fill '+(f?'err':'ok')}
+}
+
+function filtered(){
+  return suites.filter(s=>{
+    if(atab!=='all'&&atab!=='fail'&&s.c!==atab)return false;
+    if(atab==='fail'&&s.ok)return false;
+    if(fq){let q=fq.toLowerCase();if(!s.n.toLowerCase().includes(q)&&!s.ts.some(t=>t.n.toLowerCase().includes(q)))return false}
+    return true;
+  });
+}
+
+function getDesc(name){
+  // Try exact match first, then partial match
+  if(FILE_DESC[name]) return FILE_DESC[name];
+  for(const [k,v] of Object.entries(FILE_DESC)){
+    if(name.includes(k) || k.includes(name)) return v;
+  }
+  return '';
+}
+
+function drawList(){
+  let el=$('list'),fl=filtered();
+  if(!fl.length){el.innerHTML='<div class="empty">'+(suites.length?'No matches.':'Click a button above to run tests.')+'</div>';return}
+  el.innerHTML=fl.map(s=>{
+    let pc=s.ts.filter(t=>t.s==='p').length,fc=s.ts.filter(t=>t.s==='f').length,tc=s.ts.length;
+    let vis=fq?s.ts.filter(t=>t.n.toLowerCase().includes(fq.toLowerCase())):(atab==='fail'?s.ts.filter(t=>t.s==='f'):s.ts);
+    let desc=getDesc(s.n);
+    let statusLabel=s.ok?'<span style="color:var(--green)">PASS</span>':'<span style="color:var(--red)">FAIL</span>';
+    return `<div class="suite" onclick="this.classList.toggle('open')">
+      <div class="sh">
+        <div class="dot ${s.ok?'p':'f'}"></div>
+        <div class="sn">${esc(s.n)}</div>
+        <div class="sm">${statusLabel} · ${pc}/${tc} passed${fc?' · <span style="color:var(--red)">'+fc+' failed</span>':''} · ${(s.d/1000).toFixed(1)}s</div>
+      </div>
+      ${desc?'<div class="sdesc">'+esc(desc)+'</div>':''}
+      <div class="sb">${vis.map(t=>`<div class="tc"><div class="ti ${t.s}">${t.s==='p'?'✓':t.s==='f'?'✗':'○'}</div><div class="tn">${esc(t.n)}</div><div class="tm">${t.d}ms</div></div>`).join('')}</div>
+    </div>`;
+  }).join('');
+}
+
+// UI
+function setRun(r,state){
+  running=r;$('bStop').classList.toggle('on',r);
+  $('rl').style.display=r?'':'none';
+  if(state==='stopping'){
+    $('rl').textContent='Stopping...';$('rl').style.color='var(--red)';
+    $('bStop').textContent='Stopping...';$('bStop').disabled=true;
+  } else if(r){
+    $('rl').textContent='Running...';$('rl').style.color='var(--yellow)';
+    $('bStop').textContent='Stop All';$('bStop').disabled=false;
+  } else {
+    $('rl').style.color='';$('bStop').textContent='Stop All';$('bStop').disabled=false;
+  }
+  document.querySelectorAll('.b1,.b2,.b3,.b4').forEach(b=>b.disabled=r);
+  if(r&&state!=='stopping'){t0=Date.now();timer=setInterval(()=>{$('mTime').textContent=((Date.now()-t0)/1000).toFixed(1)+'s'},200)}
+  if(!r)clearInterval(timer);
+}
+function tab(v,el){atab=v;document.querySelectorAll('.t').forEach(t=>t.classList.remove('on'));el.classList.add('on');draw()}
+function toggleE(){$('es').classList.toggle('on')}
+function toggleLog(){$('log').classList.toggle('on')}
+function log(t,c){let l=$('log'),d=document.createElement('div');d.className='ll '+(c||'');d.textContent=t;l.appendChild(d);l.scrollTop=1e6;if(!l.classList.contains('on')&&t.trim())l.classList.add('on')}
+function $(id){return document.getElementById(id)}
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+
+// ==========================================
+// IFRAME LIVE SITE TESTING (same-origin proxy)
+// ==========================================
+
+let ALL_SITES_LIST = [];
+let SITE_PORTS = {};
+let iframeSitesInfo = []; // [{site, built}] — populated from /api/sites
+
+const IFRAME_VARIANTS = [
+  { label: 'Desktop Home', path: '/', mobile: false },
+  { label: 'Desktop /vi/', path: '/pages/vi/', mobile: false },
+  { label: 'Mobile Home', path: '/', mobile: true },
+  { label: 'Mobile /ar/ (RTL)', path: '/pages/ar/', mobile: true },
+];
+
+let iframeResults = []; // {site, variant, status, checks:[]}
+
+function toggleIframe(){
+  const sec = $('iframeSection');
+  sec.classList.toggle('on');
+  if (sec.classList.contains('on') && !iframeSitesInfo.length) loadSitePicker();
+}
+
+// Fetch site list from server + populate checkboxes
+async function loadSitePicker() {
+  try {
+    const res = await fetch('/api/sites');
+    iframeSitesInfo = await res.json(); // [{site, port, built}]
+  } catch { iframeSitesInfo = []; }
+
+  const list = $('iframeSiteList');
+  list.innerHTML = '';
+  iframeSitesInfo.forEach(s => {
+    const lbl = document.createElement('label');
+    lbl.className = s.built ? 'built' : 'not-built';
+    lbl.title = s.built ? 'Built — ready to test' : 'Not built yet — build first';
+    lbl.innerHTML = `<input type="checkbox" data-site="${esc(s.site)}" ${s.built ? 'checked' : ''}> ${esc(s.site)}${s.built ? '' : ' <span style="font-size:10px">(no build)</span>'}`;
+    list.appendChild(lbl);
+  });
+  // Update select-all state
+  syncSelectAll();
+}
+
+function iframeToggleAll(checked) {
+  const boxes = $('iframeSiteList').querySelectorAll('input[type=checkbox]');
+  boxes.forEach(cb => cb.checked = checked);
+}
+
+function syncSelectAll() {
+  const boxes = [...$('iframeSiteList').querySelectorAll('input[type=checkbox]')];
+  const all = boxes.length && boxes.every(cb => cb.checked);
+  $('iframeSelectAll').checked = all;
+}
+
+function getSelectedSites() {
+  return [...$('iframeSiteList').querySelectorAll('input[type=checkbox]:checked')]
+    .map(cb => cb.dataset.site);
+}
+
+// ---- Realtime summary — updates after each iframe finishes ----
+function updateIframeSummary() {
+  const el = $('iframeSummary');
+  if (!iframeResults.length) { el.style.display = 'none'; return; }
+  el.style.display = 'block';
+
+  const total = iframeResults.length;
+  const done = iframeResults.filter(r => r.status !== 'loading').length;
+  const passed = iframeResults.filter(r => r.status === 'pass').length;
+  const failed = iframeResults.filter(r => r.status === 'fail').length;
+  const loading = total - done;
+
+  // Group by site
+  const bySite = {};
+  iframeResults.forEach(r => {
+    if (!bySite[r.site]) bySite[r.site] = [];
+    bySite[r.site].push(r);
+  });
+
+  const siteRows = Object.entries(bySite).map(([site, results]) => {
+    const sp = results.filter(r => r.status === 'pass').length;
+    const sf = results.filter(r => r.status === 'fail').length;
+    const sl = results.filter(r => r.status === 'loading').length;
+    let icon;
+    if (sl > 0) icon = '<span style="color:var(--yellow)">⏳</span>';
+    else if (sf === 0) icon = '<span class="fc-pass">PASS</span>';
+    else icon = '<span class="fc-fail">FAIL</span>';
+    const failChecks = results.flatMap(r => r.checks.filter(c => !c.pass).map(c => `${r.variant}: ${c.name}`));
+    return `<tr>
+      <td style="padding:3px 8px">${esc(site)}</td>
+      <td style="text-align:center">${icon}</td>
+      <td style="text-align:center">${sp}/${results.length}</td>
+      <td style="padding:3px 8px">${failChecks.length ? '<span style="color:var(--red);font-size:11px">' + failChecks.join(', ') + '</span>' : '-'}</td>
+    </tr>`;
+  }).join('');
+
+  let verdictHtml = '';
+  if (loading > 0) {
+    verdictHtml = `<div class="verdict" style="background:var(--yellow);color:#000">Testing... ${done}/${total} done — ${passed} pass, ${failed} fail</div>`;
+  } else if (failed === 0) {
+    verdictHtml = `<div class="verdict verdict-pass">ALL ${total} PASSED (${Object.keys(bySite).length} sites × ${IFRAME_VARIANTS.length} variants)</div>`;
+  } else {
+    verdictHtml = `<div class="verdict verdict-fail">${failed} FAILED — ${passed}/${total} passed (${total ? Math.round(passed/total*100) : 0}%)</div>`;
+  }
+
+  el.innerHTML = `
+    <h2 style="font-size:14px;margin-bottom:8px">Live Test Summary</h2>
+    ${verdictHtml}
+    <table style="width:100%;border-collapse:collapse;font-size:12px;margin-top:8px">
+      <thead><tr>
+        <th style="text-align:left;padding:3px 8px;border-bottom:1px solid var(--border);color:var(--dim)">Site</th>
+        <th style="border-bottom:1px solid var(--border);color:var(--dim)">Result</th>
+        <th style="border-bottom:1px solid var(--border);color:var(--dim)">Passed</th>
+        <th style="text-align:left;border-bottom:1px solid var(--border);color:var(--dim)">Failed Checks</th>
+      </tr></thead>
+      <tbody>${siteRows}</tbody>
+    </table>
+  `;
+}
+
+// ---- Main test: only selected sites ----
+async function iframeTestSelected(){
+  const selected = getSelectedSites();
+  if (!selected.length) {
+    $('iframeProgress').textContent = 'No sites selected!';
+    return;
+  }
+
+  const grid = $('iframeGrid');
+  grid.innerHTML = '';
+  iframeResults = [];
+  $('iframeSection').classList.add('on');
+
+  // Start preview servers
+  $('iframeProgress').textContent = 'Starting preview servers...';
+  let previews;
+  try {
+    const res = await fetch('/api/start-previews');
+    previews = await res.json();
+  } catch(e) {
+    $('iframeProgress').textContent = 'Error: cannot start previews.';
+    return;
+  }
+
+  // Filter to only selected sites that have previews running
+  const previewMap = {};
+  previews.forEach(p => previewMap[p.site] = p);
+  const sitesToTest = selected.filter(s => previewMap[s]);
+  const skipped = selected.filter(s => !previewMap[s]);
+
+  if (!sitesToTest.length) {
+    $('iframeProgress').textContent = 'None of the selected sites are built. Build first!';
+    return;
+  }
+
+  if (skipped.length) {
+    $('iframeProgress').textContent = `Skipping ${skipped.length} unbuilt: ${skipped.join(', ')}. Testing ${sitesToTest.length}...`;
+  } else {
+    $('iframeProgress').textContent = `Testing ${sitesToTest.length} sites...`;
+  }
+
+  const total = sitesToTest.length * IFRAME_VARIANTS.length;
+  let done = 0;
+  $('iframeCount').textContent = `0/${total}`;
+  updateIframeSummary();
+
+  sitesToTest.forEach((site, si) => {
+    const proxyBase = `/site/${site}`;
+
+    IFRAME_VARIANTS.forEach((v, vi) => {
+      const id = `iframe-${si}-${vi}`;
+      const url = proxyBase + v.path;
+
+      const card = document.createElement('div');
+      card.className = 'iframe-card';
+      card.id = id;
+      const iframeStyle = v.mobile
+        ? 'width:375px;height:320px;transform-origin:top left;'
+        : 'width:100%;height:320px;';
+      card.innerHTML = `
+        <div class="iframe-bar">
+          <div class="idot loading"></div>
+          <span class="iname">${esc(site)}</span>
+          <span class="istatus">${v.label}</span>
+          <span class="iport">${v.path}</span>
+        </div>
+        <div class="iframe-wrap" style="overflow:hidden">
+          <iframe src="${url}" style="${iframeStyle}border:none"></iframe>
+        </div>
+        <div class="iframe-checks" id="${id}-checks">
+          <span class="icheck pending">Loading...</span>
+        </div>
+      `;
+      grid.appendChild(card);
+
+      const result = { site, variant: v.label, path: v.path, status: 'loading', checks: [] };
+      iframeResults.push(result);
+
+      const iframe = card.querySelector('iframe');
+      const checksEl = card.querySelector(`#${id}-checks`);
+      const dot = card.querySelector('.idot');
+
+      const timeout = setTimeout(() => {
+        if (result.status === 'loading') {
+          result.status = 'fail';
+          result.checks = [{ name: 'Load', pass: false, detail: 'Timeout 20s' }];
+          dot.className = 'idot fail';
+          checksEl.innerHTML = '<span class="icheck fail">TIMEOUT</span>';
+          onDone();
+        }
+      }, 20000);
+
+      iframe.onload = () => {
+        clearTimeout(timeout);
+        try {
+          const doc = iframe.contentDocument || iframe.contentWindow.document;
+          const checks = runIframeChecks(doc, v);
+          result.checks = checks;
+          result.status = checks.every(c => c.pass) ? 'pass' : 'fail';
+          dot.className = 'idot ' + result.status;
+          checksEl.innerHTML = checks.map(c =>
+            `<span class="icheck ${c.pass?'pass':'fail'}">${c.pass?'✓':'✗'} ${esc(c.name)}</span>`
+          ).join('');
+        } catch(e) {
+          result.status = 'fail';
+          result.checks = [{ name: 'Access', pass: false, detail: e.message }];
+          dot.className = 'idot fail';
+          checksEl.innerHTML = `<span class="icheck fail">✗ ${esc(e.message.substring(0,50))}</span>`;
+        }
+        onDone();
+      };
+
+      iframe.onerror = () => {
+        clearTimeout(timeout);
+        result.status = 'fail';
+        result.checks = [{ name: 'Load', pass: false }];
+        dot.className = 'idot fail';
+        checksEl.innerHTML = '<span class="icheck fail">✗ Load failed</span>';
+        onDone();
+      };
+
+      function onDone() {
+        done++;
+        $('iframeCount').textContent = `${done}/${total}`;
+        $('iframeProgress').textContent = done < total ? `Testing ${done}/${total}...` : 'All done!';
+        updateIframeSummary();
+      }
+    });
+  });
+}
+
+function runIframeChecks(doc, variant) {
+  const checks = [];
+
+  // 1. Title exists
+  const title = doc.title || '';
+  checks.push({ name: 'Title', pass: title.length > 3, detail: title.substring(0, 40) });
+
+  // 2. Has #videoUrl input
+  const input = doc.getElementById('videoUrl');
+  checks.push({ name: '#videoUrl', pass: !!input, detail: input ? 'found' : 'missing' });
+
+  // 3. Input font >= 16px
+  if (input) {
+    const fs = parseFloat(getComputedStyle(input).fontSize);
+    checks.push({ name: 'Font≥16px', pass: fs >= 16, detail: fs + 'px' });
+  }
+
+  // 4. Has .btn-convert
+  const btn = doc.querySelector('.btn-convert');
+  checks.push({ name: '.btn-convert', pass: !!btn, detail: btn ? 'found' : 'missing' });
+
+  // 5. Has format-btn
+  const mp4 = doc.querySelector('.format-btn[data-format="mp4"]');
+  const mp3 = doc.querySelector('.format-btn[data-format="mp3"]');
+  checks.push({ name: 'Format btns', pass: !!(mp4 || mp3), detail: [mp4&&'mp4',mp3&&'mp3'].filter(Boolean).join('+') || 'missing' });
+
+  // 6. Has header + footer
+  const header = doc.querySelector('header');
+  const footer = doc.querySelector('footer');
+  checks.push({ name: 'Header+Footer', pass: !!(header && footer) });
+
+  // 7. Meta description
+  const desc = doc.querySelector('meta[name="description"]');
+  const descContent = desc?.getAttribute('content') || '';
+  checks.push({ name: 'Meta desc', pass: descContent.length > 10, detail: descContent.substring(0, 30) });
+
+  // 8. No horizontal scroll (for mobile variants)
+  if (variant.width <= 500) {
+    const scrollW = doc.documentElement.scrollWidth;
+    const clientW = doc.documentElement.clientWidth;
+    checks.push({ name: 'No h-scroll', pass: scrollW <= clientW + 5, detail: `${scrollW}/${clientW}` });
+  }
+
+  // 9. RTL check for Arabic
+  if (variant.path.includes('/ar/')) {
+    const dir = doc.documentElement.getAttribute('dir') || doc.body?.getAttribute('dir') || '';
+    checks.push({ name: 'RTL dir', pass: dir === 'rtl', detail: dir || 'not set' });
+  }
+
+  return checks;
+}
+
+function iframeStop() {
+  $('iframeGrid').innerHTML = '';
+  iframeResults = [];
+  $('iframeCount').textContent = '';
+  $('iframeProgress').textContent = '';
+  $('iframeSummary').style.display = 'none';
+}
+
+// ==========================================
+// Conclusion: summary after all tests done
+// ==========================================
+function drawConclusion(){
+  let el=$('conclusion');
+  // Only show when not running and have results
+  if(running||!suites.length){el.style.display='none';return}
+  el.style.display='block';
+
+  let tot=0,p=0,f=0,sk=0,dur=0;
+  suites.forEach(s=>s.ts.forEach(t=>{tot++;if(t.s==='p')p++;else if(t.s==='f')f++;else sk++;dur+=t.d}));
+  let pct=tot?Math.round(p/tot*100):0;
+  let allPass=f===0;
+  let failedSuites=suites.filter(s=>!s.ok);
+  let passedSuites=suites.filter(s=>s.ok);
+
+  let verdictClass=allPass?'verdict-pass':'verdict-fail';
+  let verdictText=allPass
+    ?`ALL TESTS PASSED — ${p}/${tot} tests (${pct}%) in ${suites.length} files`
+    :`${f} TESTS FAILED — ${p} passed, ${f} failed out of ${tot} in ${suites.length} files`;
+
+  // Build per-file summary table
+  let rows=suites.map(s=>{
+    let pc=s.ts.filter(t=>t.s==='p').length;
+    let fc=s.ts.filter(t=>t.s==='f').length;
+    let tc=s.ts.length;
+    let desc=getDesc(s.n);
+    let statusHtml=s.ok?'<span class="fc-pass">PASS</span>':'<span class="fc-fail">FAIL</span>';
+    return `<tr>
+      <td>${esc(s.n)}</td>
+      <td>${statusHtml}</td>
+      <td>${pc}/${tc}</td>
+      <td>${fc||'-'}</td>
+      <td>${(s.d/1000).toFixed(2)}s</td>
+      <td class="fc-desc">${esc(desc)}</td>
+    </tr>`;
+  }).join('');
+
+  // Build failed test details (if any)
+  let failDetails='';
+  if(failedSuites.length){
+    failDetails='<h3 style="margin-top:16px;font-size:13px;color:var(--red)">Failed Tests Detail:</h3>';
+    failedSuites.forEach(s=>{
+      let failedTests=s.ts.filter(t=>t.s==='f');
+      failDetails+=`<div style="margin:8px 0 4px;font-size:12px;font-weight:600">${esc(s.n)} (${failedTests.length} failed):</div>`;
+      failedTests.forEach(t=>{
+        failDetails+=`<div style="padding:2px 0 2px 16px;font-size:12px;color:var(--red)">✗ ${esc(t.n)}</div>`;
+      });
+    });
+  }
+
+  el.innerHTML=`<div class="conclusion">
+    <h2>Conclusion — Test Results</h2>
+    <div class="verdict ${verdictClass}">${verdictText}</div>
+
+    <table>
+      <thead>
+        <tr><th>File</th><th>Result</th><th>Passed</th><th>Failed</th><th>Duration</th><th>Content</th></tr>
+      </thead>
+      <tbody>${rows}</tbody>
+    </table>
+
+    ${failDetails}
+
+    <div class="summary-text">
+      <strong>Summary:</strong>
+      Tested ${suites.length} test files containing ${tot} test cases in ${(dur/1000).toFixed(1)}s.
+      ${allPass
+        ?`All ${tot} tests passed successfully across ${suites.filter(s=>s.c==='unit').length} unit files, ${suites.filter(s=>s.c==='stress').length} stress files, and ${suites.filter(s=>s.c==='e2e').length} E2E files. No issues found.`
+        :`${f} test(s) failed in ${failedSuites.length} file(s): ${failedSuites.map(s=>s.n).join(', ')}. Please review the failed tests above.`
+      }
+      <br><br>
+      <strong>Project:</strong> downloader-monorepo (19 sites) — @downloader/core, @downloader/ui-components, @downloader/ui-shared, @downloader/i18n
+    </div>
+  </div>`;
+}
+
+conn();
+</script>
+</body>
+</html>
