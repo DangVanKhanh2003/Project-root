@@ -19,7 +19,7 @@ import { confirmRedirectPopup } from '@downloader/ui-shared';
 import { shouldPromptPlaylistRedirectForMulti, getUrlRedirectTarget, FEATURE_KEYS, FEATURE_ACCESS_REASONS } from '@downloader/core';
 import { evaluateFeatureAccess } from './features/allowed-features';
 import { recordUsage, hasLicenseKey, MAX_MULTI_DOWNLOAD_VIDEOS } from './features/download-limit';
-import { show as showPaywall } from 'https://media.ytmp3.gg/poppurchase.v3.js?v=15';
+import { showPaywall } from './features/paywall-popup';
 import { STORAGE_KEYS } from './utils/storage-keys';
 
 

@@ -78,6 +78,19 @@ export default defineConfig({
     htmlRewritePlugin(),
     movePagesPlugin(),
     sitemapPlugin(),
+    // Deduplicate external <script> tags (e.g. poppurchase CDN) in built HTML
+    {
+      name: 'dedup-external-scripts',
+      enforce: 'post' as const,
+      transformIndexHtml(html: string) {
+        const seen = new Set<string>();
+        return html.replace(/<script[^>]*\bsrc="(https?:\/\/[^"]+)"[^>]*><\/script>/g, (match, src) => {
+          if (seen.has(src)) return '';
+          seen.add(src);
+          return match;
+        });
+      }
+    },
     htmlMinifier({
       minify: {
         collapseWhitespace: true,
