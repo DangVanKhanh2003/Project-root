@@ -23,14 +23,24 @@ export interface PaywallOptions {
     isShowCheckKey?: boolean;
 }
 
+// Track whether a license was just activated inside the popup
+let _justActivated = false;
+
 // Configure activate-key callbacks once
 baseConfigurePaywall({
     onActivateSuccess(licenseKey: string, result: CheckKeyResponse) {
         saveLicenseKey(licenseKey);
         saveLicenseCache(result);
+        _justActivated = true;
         document.dispatchEvent(new CustomEvent('license:activated', {
             detail: { planType: result.planType, expiresAt: result.expiresAt },
         }));
+    },
+    onClose() {
+        if (_justActivated) {
+            _justActivated = false;
+            window.location.reload();
+        }
     },
 });
 
