@@ -14,12 +14,24 @@ import { isMobileViewport, scrollToElementWithOffset } from '../shared/scroll/sc
 import { checkLimit, recordStartUsage, DAILY_PLAYLIST_DOWNLOAD_LIMIT, DAILY_CHANNEL_DOWNLOAD_LIMIT } from '../download-limit';
 import { evaluateFeatureAccess, type FeatureAccessResult } from '../feature-access';
 import { FEATURE_KEYS } from '@downloader/core';
-import { showLimitReachedPopup, showVideoLimitPopup, showPlaylistInstructionPopup, showChannelInstructionPopup } from '@downloader/ui-shared';
+import { showPlaylistInstructionPopup, showChannelInstructionPopup } from '@downloader/ui-shared';
 import { POPUP_CONFIG } from '../supporter-popup-config';
+import { showPaywall } from '../paywall-popup';
 import { incrementDownloadCount, onAfterSubmit, onReset } from '../widget-level-manager';
 import { logButtonClick } from '../../libs/firebase/firebase-analytics';
 
 const MAX_BATCH_URLS = 100; // Physical technical limit, business limit is checked via checkLimit
+
+/** Map limit kind → paywall type */
+const LIMIT_PAYWALL_MAP: Record<string, string> = {
+    batch: 'download_multi',
+    playlist: 'download_playlist',
+    channel: 'download_channel',
+    trim: 'cut_video_youtube',
+    '4k': 'download_4k',
+    '2k': 'download_2k',
+    '320kbps': 'download_320kbps',
+};
 
 export interface ConvertFormConfig {
     getSettings: () => Partial<VideoItemSettings>;
@@ -32,16 +44,13 @@ function dismissKeyboard(target: HTMLInputElement | HTMLTextAreaElement): void {
 }
 
 function showPopupForLimitResult(limit: Awaited<ReturnType<typeof checkLimit>>): void {
-    if (limit.type === 'bulk_video_count') {
-        showVideoLimitPopup(POPUP_CONFIG, limit.limit ?? undefined);
-        return;
-    }
-
-    showLimitReachedPopup(POPUP_CONFIG, limit.mode ?? undefined, limit.limit ?? undefined);
+    const paywallType = LIMIT_PAYWALL_MAP[limit.mode ?? ''] ?? 'none_title';
+    showPaywall(paywallType);
 }
 
-function showPopupForAccessResult(_result: FeatureAccessResult, mode?: string, dailyLimit?: number): void {
-    showLimitReachedPopup(POPUP_CONFIG, mode, dailyLimit);
+function showPopupForAccessResult(_result: FeatureAccessResult, mode?: string, _dailyLimit?: number): void {
+    const paywallType = LIMIT_PAYWALL_MAP[mode ?? ''] ?? 'none_title';
+    showPaywall(paywallType);
 }
 
 export function initConvertForm(config: ConvertFormConfig): void {

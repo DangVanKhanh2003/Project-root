@@ -25,8 +25,7 @@ import { TaskState, type V3ConversionParams } from './v3/types';
 import { startPolling } from './v3/polling';
 import { getErrorMessage } from './v3/error-messages';
 import { checkLimit, recordDownloadError, type DownloadMethod } from '../../../../features/download-limit';
-import { showLimitReachedPopup, showVideoLimitPopup } from '@downloader/ui-shared';
-import { POPUP_CONFIG } from '../../../../features/supporter-popup-config';
+import { showPaywall } from '../../../../features/paywall-popup';
 import { incrementDownloadCount } from '../../../../features/widget-level-manager';
 
 // Retry helper
@@ -81,11 +80,40 @@ export async function startConversion(params: V3ConversionParams): Promise<void>
   });
 
   if (!limitResult.allowed) {
-    if (limitResult.type === 'daily_mode_limit') {
-      showLimitReachedPopup(POPUP_CONFIG, limitResult.mode ?? undefined, limitResult.limit ?? undefined);
-    } else if (limitResult.type === 'bulk_video_count') {
-      showVideoLimitPopup(POPUP_CONFIG, limitResult.limit ?? undefined);
-    }
+    const qualityMap: Record<string, string> = {
+      high_quality_4k: 'download_4k', high_quality_2k: 'download_2k', high_quality_320k: 'download_320kbps',
+      trim: 'cut_video_youtube',
+    };
+    const paywallType = qualityMap[limitResult.mode ?? ''] ?? 'none_title';
+
+    // Build fallback "Continue without ..." for quality limits
+    const fallbackOptions: Record<string, {
+      label: string;
+      override: Partial<NonNullable<V3ConversionParams['extractV2Options']>>;
+      uiSelectId: string;
+      uiSelectValue: string;
+    }> = {
+      high_quality_4k: { label: 'Continue without 4K', override: { videoQuality: '720' }, uiSelectId: 'multi-quality-select-mp4', uiSelectValue: 'mp4-720' },
+      high_quality_2k: { label: 'Continue without 2K', override: { videoQuality: '720' }, uiSelectId: 'multi-quality-select-mp4', uiSelectValue: 'mp4-720' },
+      high_quality_320k: { label: 'Continue without 320kbps', override: { audioBitrate: '128' }, uiSelectId: 'multi-quality-select-mp3', uiSelectValue: 'mp3-128' },
+    };
+    const fallback = fallbackOptions[kindToCheck];
+
+    showPaywall(paywallType, fallback ? {
+      secondaryLabel: fallback.label,
+      onSecondaryClick: () => {
+        // Update the UI quality selector
+        const sel = document.getElementById(fallback.uiSelectId) as HTMLSelectElement | null;
+        if (sel) {
+          sel.value = fallback.uiSelectValue;
+          sel.dispatchEvent(new Event('change'));
+        }
+        startConversion({
+          ...params,
+          extractV2Options: { ...extractV2Options, ...fallback.override },
+        });
+      },
+    } : undefined);
 
     updateConversionTask(formatId, {
       state: TaskState.FAILED,

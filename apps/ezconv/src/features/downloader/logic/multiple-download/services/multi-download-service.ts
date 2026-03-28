@@ -12,8 +12,7 @@ import { parseConvertibleURLs, parseYouTubeURLs, generateItemId, normalizeURL, e
 import { recordDownloadError, type DownloadMethod, checkLimit, checkDailyItemQuota, recordDailyItemsUsage } from '../../../../download-limit';
 import { getFeatureLimitContext } from '../../../../feature-access';
 import { incrementDownloadCount } from '../../../../widget-level-manager';
-import { showLimitReachedPopup } from '@downloader/ui-shared';
-import { POPUP_CONFIG } from '../../../../supporter-popup-config';
+import { showPaywall } from '../../../../paywall-popup';
 
 function inferDownloadMethod(item: VideoItem): DownloadMethod {
     if (item.groupId?.startsWith('playlist_')) return 'playlist';
@@ -620,8 +619,8 @@ export class MultiDownloadService {
             if (typeof maxItemsPerDay === 'number') {
                 const quotaResult = checkDailyItemQuota(featureKey, maxItemsPerDay, items.length);
                 if (!quotaResult.allowed) {
-                    const mode = featureKey === FEATURE_KEYS.PLAYLIST_DOWNLOAD ? 'playlist' : 'channel';
-                    showLimitReachedPopup(POPUP_CONFIG, mode, quotaResult.maxPerDay);
+                    const paywallType = featureKey === FEATURE_KEYS.PLAYLIST_DOWNLOAD ? 'download_playlist' : 'download_channel';
+                    showPaywall(paywallType);
                     return false;
                 }
                 // Consume quota upfront (like ytmp3.gg enforceAndConsumeDailyItemQuota)
@@ -642,7 +641,41 @@ export class MultiDownloadService {
             else if (is320kbps) limitResult = await checkLimit({ kind: 'high_quality_320k' });
 
             if (limitResult && !limitResult.allowed) {
-                showLimitReachedPopup(POPUP_CONFIG, limitResult.mode ?? undefined, limitResult.limit ?? undefined);
+                const qualityMap: Record<string, string> = {
+                    high_quality_4k: 'download_4k', high_quality_2k: 'download_2k', high_quality_320k: 'download_320kbps',
+                };
+                const fallbackMap: Record<string, string> = {
+                    high_quality_4k: 'Continue without 4K',
+                    high_quality_2k: 'Continue without 2K',
+                    high_quality_320k: 'Continue without 320kbps',
+                };
+                const kind = is4K ? 'high_quality_4k' : is2K ? 'high_quality_2k' : 'high_quality_320k';
+                const uiUpdate = (is4K || is2K)
+                    ? { selectId: 'multi-quality-select-mp4', value: 'mp4-720' }
+                    : { selectId: 'multi-quality-select-mp3', value: 'mp3-128' };
+
+                showPaywall(qualityMap[kind] ?? 'none_title', {
+                    secondaryLabel: fallbackMap[kind],
+                    onSecondaryClick: () => {
+                        // Update UI quality selector
+                        const sel = document.getElementById(uiUpdate.selectId) as HTMLSelectElement | null;
+                        if (sel) {
+                            sel.value = uiUpdate.value;
+                            sel.dispatchEvent(new Event('change'));
+                        }
+                        // Downgrade quality for all items and retry
+                        for (const it of items) {
+                            if (is4K || is2K) {
+                                videoStore.updateSettings(it.id, { quality: '720p' });
+                            } else {
+                                videoStore.updateSettings(it.id, { audioBitrate: '128' });
+                            }
+                        }
+                        void this.checkItemLimits(items).then(ok => {
+                            if (ok) items.forEach(it => void this.startDownload(it.id));
+                        });
+                    },
+                });
                 return false;
             }
         }

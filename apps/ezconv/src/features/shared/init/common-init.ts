@@ -229,6 +229,15 @@ export function initSupporterUi(): void {
                 closeMenus();
             }
         });
+
+        // Handle "Get License Key" buttons → show paywall with license check form
+        document.addEventListener('click', (event) => {
+            const trigger = (event.target as HTMLElement).closest('[data-paywall-trigger]');
+            if (!trigger) return;
+            event.preventDefault();
+            closeMenus();
+            import('../../paywall-popup').then(m => m.showPaywall('none_title'));
+        });
     }
 
     licenseMenus.forEach((menu) => {
