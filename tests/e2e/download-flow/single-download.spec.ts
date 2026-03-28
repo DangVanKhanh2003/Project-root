@@ -76,27 +76,39 @@ test.describe('Download Flow — User Simulation', () => {
     const mp4Btn = page.locator('.format-btn[data-format="mp4"]');
     const mp3Btn = page.locator('.format-btn[data-format="mp3"]');
 
-    // Some sites use unified dropdown instead of format buttons — skip if no format-btn
+    // Pattern 1: .format-btn toggle buttons (majority of sites)
     const hasFormatBtns = await mp4Btn.isVisible().catch(() => false);
-    if (!hasFormatBtns) {
-      // Site uses a different format selector (e.g., unified dropdown) — verify it exists
-      const hasDropdown = await page.locator('.custom-dropdown-trigger, [data-unified-select], .quality-select').first().isVisible().catch(() => false);
-      expect(hasDropdown).toBeTruthy();
+    if (hasFormatBtns) {
+      // Default: MP4 active
+      await expect(mp4Btn).toHaveClass(/active/);
+
+      // Click MP3
+      await mp3Btn.click();
+      await page.waitForTimeout(300);
+      // Sau click, MP3 selector phải hiện (quality-select-mp3 visible)
+      await expect(page.locator('#quality-select-mp3')).toBeVisible();
+
+      // Click lại MP4
+      await mp4Btn.click();
+      await page.waitForTimeout(300);
       return;
     }
 
-    // Default: MP4 active
-    await expect(mp4Btn).toHaveClass(/active/);
+    // Pattern 2: <select> dropdown (multi-format-select, format-select)
+    const selectEl = page.locator('#multi-format-select, select.format-select, select[data-format-select]').first();
+    if (await selectEl.isVisible().catch(() => false)) {
+      await selectEl.selectOption('mp3');
+      await page.waitForTimeout(300);
+      const val = await selectEl.inputValue();
+      expect(val).toBe('mp3');
+      await selectEl.selectOption('mp4');
+      return;
+    }
 
-    // Click MP3
-    await mp3Btn.click();
-    await page.waitForTimeout(300);
-    // Sau click, MP3 selector phải hiện (quality-select-mp3 visible)
-    await expect(page.locator('#quality-select-mp3')).toBeVisible();
-
-    // Click lại MP4
-    await mp4Btn.click();
-    await page.waitForTimeout(300);
+    // Pattern 3: unified custom dropdown or format-toggle-btn
+    const hasUnified = await page.locator('[data-unified-select]').isVisible().catch(() => false);
+    const hasToggle = await page.locator('[data-toggle-format]').isVisible().catch(() => false);
+    expect(hasUnified || hasToggle).toBeTruthy();
   });
 
   // ==========================================
@@ -126,19 +138,23 @@ test.describe('Download Flow — User Simulation', () => {
     await pasteUrl(page, YT_URL);
     await clickConvert(page);
 
-    // Chờ 1 trong 2: preview card hoặc status container
+    // Chờ 1 trong các phản hồi: preview card, status container, error, hoặc multiple downloads
     await Promise.race([
       page.waitForSelector('.yt-preview-card', { timeout: 20000 }),
       page.waitForSelector('#status-container', { timeout: 20000 }),
       page.waitForSelector('#error-message:not(:empty)', { timeout: 20000 }),
+      page.waitForSelector('#multiple-downloads-container .video-item, #multiple-downloads-container .download-item', { timeout: 20000 }),
     ]).catch(() => {});
 
     // Ít nhất 1 phản hồi phải xuất hiện
     const hasPreview = await page.locator('.yt-preview-card').isVisible().catch(() => false);
     const hasStatus = await page.locator('#status-container').isVisible().catch(() => false);
     const hasError = await page.locator('#error-message').evaluate(el => el.textContent?.trim().length! > 0).catch(() => false);
+    const hasMultiItems = await page.locator('#multiple-downloads-container').evaluate(
+      el => el.style.display !== 'none' && el.children.length > 0
+    ).catch(() => false);
 
-    expect(hasPreview || hasStatus || hasError).toBeTruthy();
+    expect(hasPreview || hasStatus || hasError || hasMultiItems).toBeTruthy();
   });
 
   // ==========================================

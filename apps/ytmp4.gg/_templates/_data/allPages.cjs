@@ -4,12 +4,6 @@ const path = require('path');
 /**
  * Generate all page variants for all languages
  * This creates an array that can be used with Eleventy pagination
-const fs = require('fs');
-const path = require('path');
-
-/**
- * Generate all page variants for all languages
- * This creates an array that can be used with Eleventy pagination
  * to generate multilingual pages from a single template
  */
 module.exports = function () {

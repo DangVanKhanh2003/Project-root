@@ -46,6 +46,42 @@ async function pasteAndConvert(page: Page, url: string) {
 }
 
 // ==========================================
+// Helper: select format (MP3/MP4) across different site layouts
+// ==========================================
+async function selectFormat(page: Page, format: 'mp3' | 'mp4') {
+  // Pattern 1: .format-btn toggle buttons (majority of sites)
+  const formatBtn = page.locator(`.format-btn[data-format="${format}"]`);
+  if (await formatBtn.isVisible().catch(() => false)) {
+    await formatBtn.click();
+    return;
+  }
+  // Pattern 2: <select> dropdown (#multi-format-select or .format-select)
+  const select = page.locator('#multi-format-select, select.format-select, select[data-format-select]').first();
+  if (await select.isVisible().catch(() => false)) {
+    await select.selectOption(format);
+    return;
+  }
+  // Pattern 3: unified custom dropdown (data-unified-select)
+  const unified = page.locator('.custom-dropdown-trigger').first();
+  if (await unified.isVisible().catch(() => false)) {
+    await unified.click();
+    await page.waitForTimeout(300);
+    const prefix = format === 'mp4' ? 'video|' : 'audio|';
+    const option = page.locator(`.dropdown-option[data-value^="${prefix}"]`).first();
+    if (await option.isVisible().catch(() => false)) {
+      await option.click();
+    }
+    return;
+  }
+  // Pattern 4: format-toggle-btn (y2matevc)
+  const toggleBtn = page.locator('[data-toggle-format]');
+  if (await toggleBtn.isVisible().catch(() => false)) {
+    const side = page.locator(`[data-toggle-format] .toggle-side[data-format="${format}"]`);
+    if (await side.isVisible().catch(() => false)) await side.click();
+  }
+}
+
+// ==========================================
 // Helper: select quality from dropdown
 // ==========================================
 async function selectQuality(page: Page, value: string) {
@@ -146,8 +182,7 @@ test.describe('Feature Limits & License Key', () => {
     await freshStart(page);
 
     // Chọn MP4 format
-    const mp4Btn = page.locator('.format-btn[data-format="mp4"]');
-    if (await mp4Btn.isVisible()) await mp4Btn.click();
+    await selectFormat(page, 'mp4');
 
     // Chọn 4K quality
     await selectQuality(page, 'mp4-2160');
@@ -179,8 +214,7 @@ test.describe('Feature Limits & License Key', () => {
   test('2K (1440p): chọn quality 2K → convert → kiểm tra limit', async ({ page }) => {
     await freshStart(page);
 
-    const mp4Btn = page.locator('.format-btn[data-format="mp4"]');
-    if (await mp4Btn.isVisible()) await mp4Btn.click();
+    await selectFormat(page, 'mp4');
 
     await selectQuality(page, 'mp4-1440');
     await pasteAndConvert(page, YT_URL);
@@ -204,14 +238,17 @@ test.describe('Feature Limits & License Key', () => {
     await freshStart(page);
 
     // Chọn MP3
-    const mp3Btn = page.locator('.format-btn[data-format="mp3"]');
-    if (await mp3Btn.isVisible()) await mp3Btn.click();
+    await selectFormat(page, 'mp3');
     await page.waitForTimeout(300);
 
     // Chọn 320kbps
-    const mp3Select = page.locator('#quality-select-mp3');
-    if (await mp3Select.isVisible()) {
-      await mp3Select.selectOption('mp3-320');
+    const mp3Select = page.locator('#quality-select-mp3, #multi-format-select');
+    if (await mp3Select.isVisible().catch(() => false)) {
+      // Sites with quality-select-mp3 have separate quality options
+      const hasQualitySelect = await page.locator('#quality-select-mp3').isVisible().catch(() => false);
+      if (hasQualitySelect) {
+        await page.locator('#quality-select-mp3').selectOption('mp3-320');
+      }
     }
 
     await pasteAndConvert(page, YT_URL);
@@ -242,14 +279,15 @@ test.describe('Feature Limits & License Key', () => {
     // Reload
     await page.reload();
     await page.waitForLoadState('networkidle');
-    await page.waitForFunction(() => {
-      const btn = document.querySelector('.btn-convert') as HTMLButtonElement;
-      return btn && !btn.disabled;
-    }, { timeout: 15000 });
+    await page.waitForFunction((sel) => {
+      const btn = document.querySelector(sel) as HTMLElement;
+      if (!btn) return false;
+      if (btn.tagName === 'BUTTON') return !(btn as HTMLButtonElement).disabled;
+      return true;
+    }, BTN_SELECTOR, { timeout: 15000 });
 
     // Chọn 4K
-    const mp4Btn = page.locator('.format-btn[data-format="mp4"]');
-    if (await mp4Btn.isVisible()) await mp4Btn.click();
+    await selectFormat(page, 'mp4');
     await selectQuality(page, 'mp4-2160');
 
     // Convert
@@ -319,14 +357,15 @@ test.describe('Feature Limits & License Key', () => {
 
     await page.reload();
     await page.waitForLoadState('networkidle');
-    await page.waitForFunction(() => {
-      const btn = document.querySelector('.btn-convert') as HTMLButtonElement;
-      return btn && !btn.disabled;
-    }, { timeout: 15000 });
+    await page.waitForFunction((sel) => {
+      const btn = document.querySelector(sel) as HTMLElement;
+      if (!btn) return false;
+      if (btn.tagName === 'BUTTON') return !(btn as HTMLButtonElement).disabled;
+      return true;
+    }, BTN_SELECTOR, { timeout: 15000 });
 
     // Chọn 4K
-    const mp4Btn = page.locator('.format-btn[data-format="mp4"]');
-    if (await mp4Btn.isVisible()) await mp4Btn.click();
+    await selectFormat(page, 'mp4');
     await selectQuality(page, 'mp4-2160');
 
     await pasteAndConvert(page, YT_URL);
@@ -411,8 +450,7 @@ test.describe('Feature Limits & License Key', () => {
   test('720p MP4: luôn được phép, không bị paywall', async ({ page }) => {
     await freshStart(page);
 
-    const mp4Btn = page.locator('.format-btn[data-format="mp4"]');
-    if (await mp4Btn.isVisible()) await mp4Btn.click();
+    await selectFormat(page, 'mp4');
 
     // 720p là default, không cần chọn
     await pasteAndConvert(page, YT_URL);
@@ -435,8 +473,7 @@ test.describe('Feature Limits & License Key', () => {
   test('MP3 128kbps: luôn được phép, không bị paywall', async ({ page }) => {
     await freshStart(page);
 
-    const mp3Btn = page.locator('.format-btn[data-format="mp3"]');
-    if (await mp3Btn.isVisible()) await mp3Btn.click();
+    await selectFormat(page, 'mp3');
     await page.waitForTimeout(300);
 
     // 128kbps là default cho MP3

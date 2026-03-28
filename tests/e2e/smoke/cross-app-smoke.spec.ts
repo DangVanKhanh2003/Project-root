@@ -46,11 +46,16 @@ test.describe('Smoke Test', () => {
 
   test('Has format selector (MP3/MP4)', async ({ page }) => {
     await page.goto('/');
-    const mp4 = page.locator(S.formatBtnMp4);
-    const mp3 = page.locator(S.formatBtnMp3);
-    const hasMp4 = await mp4.isVisible().catch(() => false);
-    const hasMp3 = await mp3.isVisible().catch(() => false);
-    expect(hasMp4 || hasMp3).toBeTruthy();
+    // Pattern 1: .format-btn toggle buttons (majority of sites)
+    const hasMp4 = await page.locator(S.formatBtnMp4).isVisible().catch(() => false);
+    const hasMp3 = await page.locator(S.formatBtnMp3).isVisible().catch(() => false);
+    // Pattern 2: <select> dropdown (multi-format-select, format-select)
+    const hasSelect = await page.locator('#multi-format-select, select.format-select, select[data-format-select]').first().isVisible().catch(() => false);
+    // Pattern 3: unified custom dropdown (data-unified-select)
+    const hasUnified = await page.locator('[data-unified-select]').isVisible().catch(() => false);
+    // Pattern 4: format-toggle-btn (y2matevc)
+    const hasToggle = await page.locator('[data-toggle-format]').isVisible().catch(() => false);
+    expect(hasMp4 || hasMp3 || hasSelect || hasUnified || hasToggle).toBeTruthy();
   });
 
   test('SEO: title > 5 chars, meta description, canonical, viewport', async ({ page }) => {
