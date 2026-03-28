@@ -14,12 +14,12 @@ import { FEATURE_KEYS } from '@downloader/core';
 export const DEFAULT_START_PER_DAY = 1;
 
 // Daily limits by download mode
-export const DAILY_BULK_DOWNLOAD_LIMIT = 5;
-export const DAILY_PLAYLIST_DOWNLOAD_LIMIT = 5;
-export const DAILY_CHANNEL_DOWNLOAD_LIMIT = 5;
+export const DAILY_BULK_DOWNLOAD_LIMIT = 50;
+export const DAILY_PLAYLIST_DOWNLOAD_LIMIT = 50;
+export const DAILY_CHANNEL_DOWNLOAD_LIMIT = 50;
 export const DAILY_TRIM_DOWNLOAD_LIMIT = 20;
-export const DAILY_HIGH_QUALITY_4K_LIMIT = 5;
-export const DAILY_HIGH_QUALITY_2K_LIMIT = 5;
+export const DAILY_HIGH_QUALITY_4K_LIMIT = 50;
+export const DAILY_HIGH_QUALITY_2K_LIMIT = 50;
 export const DAILY_HIGH_QUALITY_320K_LIMIT = 50;
 
 // Bulk download — max videos per single paste
