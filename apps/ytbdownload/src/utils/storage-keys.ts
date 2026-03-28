@@ -10,7 +10,7 @@
 // PREFIX — keeps keys namespaced per app
 // ============================================================
 
-const PREFIX = 'ytbdownload';
+const PREFIX = 'ytbdownloader';
 
 // ============================================================
 // STORAGE KEYS

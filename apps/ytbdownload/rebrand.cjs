@@ -5,10 +5,19 @@ const directoryPath = path.join(__dirname);
 const excludePaths = ['node_modules', 'dist', '.git', '_11ty-output', 'logs', '.claude', '.agent', 'doc_important', 'docs'];
 
 const replacements = [
-    { match: /onedownloader\.net/g, replace: 'ytbdownload' },
-    { match: /OneDownloader/g, replace: 'YTBDown' },
-    { match: /ONEDOWNLOADER/g, replace: 'YTBDOWNLOAD' },
-    { match: /onedownloader/g, replace: 'ytbdownload' },
+    // URLs: domain with https
+    { match: /https:\/\/ytbdownloader\.com/g, replace: 'https://ytbdownloader.com' },
+    // Email addresses
+    { match: /support@ytbdownloader\.com/g, replace: 'support@ytbdownloader.com' },
+    { match: /meta\.ytbdownloader@/g, replace: 'meta.ytbdownloader@' },
+    // Brand name (PascalCase)
+    { match: /Ytbdownloader\b/g, replace: 'Ytbdownloader' },
+    // Uppercase
+    { match: /YTBDOWNLOADER/g, replace: 'YTBDOWNLOADER' },
+    // Remaining lowercase (storage keys, comments, namespaces)
+    { match: /ytbdownloader\b/g, replace: 'ytbdownloader' },
+    // With underscore suffix (storage prefixes like ytbdownloader_)
+    { match: /ytbdownloader_/g, replace: 'ytbdownloader_' },
 ];
 
 function processFile(filePath) {

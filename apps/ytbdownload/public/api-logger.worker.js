@@ -12,7 +12,7 @@
 
 class ApiLoggerDB {
   constructor() {
-    this.dbName = 'ytbdownload_ApiLogsDB';
+    this.dbName = 'ytbdownloader_ApiLogsDB';
     this.storeName = 'logs';
     this.version = 1;
     this.maxEntries = 1000; // 10x more than sessionStorage

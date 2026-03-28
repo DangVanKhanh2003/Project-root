@@ -1,5 +1,5 @@
 /**
- * Download Daily Limit Engine — ytbdownload
+ * Download Daily Limit Engine — ytbdownloader
  * Tracks daily usage per feature. License key holders bypass all limits.
  *
  * Ported from: ytmp3.gg/src/script/libs/downloader-lib-standalone/download-limit.js

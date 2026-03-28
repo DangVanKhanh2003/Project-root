@@ -1,5 +1,5 @@
 /**
- * Feature Access Orchestrator — ytbdownload
+ * Feature Access Orchestrator — ytbdownloader
  * 3-layer check: License → Geo (API) → Daily Limit
  *
  * Geo result is cached in localStorage (7 days) and in-memory for the session.
@@ -26,13 +26,13 @@ const LS_CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
 const ALLOWED_FEATURES_MAX_ATTEMPTS = 2;
 
 /**
- * ytbdownload geo-restricted features.
+ * ytbdownloader geo-restricted features.
  * NOTE: Defined locally — do NOT import GEO_RESTRICTED_FEATURES from @downloader/core.
- * ytbdownload includes download_multi (ezconv does NOT).
+ * ytbdownloader includes download_multi (ezconv does NOT).
  */
 const GEO_RESTRICTED_FEATURES = new Set([
     'download_playlist',
-    'download_multi',    // ← ytbdownload specific
+    'download_multi',    // ← ytbdownloader specific
     'download_channel',
 ]);
 

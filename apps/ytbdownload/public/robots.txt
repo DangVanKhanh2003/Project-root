@@ -3,4 +3,4 @@ User-agent: *
 # Block API endpoints
 Disallow: /api/
 
-Sitemap: https://ytbdownload/sitemap.xml
+Sitemap: https://ytbdownloader.com/sitemap.xml

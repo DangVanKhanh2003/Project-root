@@ -124,7 +124,7 @@ const ytMetaApiConfig = {
 
 // 2. Create JWT Store (namespaced to prevent collision) - MUST be created before verifier
 const jwtStore = new LocalStorageJwtStore(
-  createNamespacedKey('ytbdownload', 'downloader')
+  createNamespacedKey('ytbdownloader', 'downloader')
 );
 
 // 3. Create Core Services (JWT handling moved to Domain Layer - Verifier)

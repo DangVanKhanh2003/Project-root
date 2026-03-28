@@ -33,7 +33,7 @@ export function sitemapPlugin(config: SitemapConfig = {}): Plugin {
 
       // Read base URL from site.json
       const siteConfigPath = resolve(__dirname, '_templates/_data/site.json');
-      let baseUrl = 'https://ytbdownload';
+      let baseUrl = 'https://ytbdownloader.com';
 
       if (existsSync(siteConfigPath)) {
         try {

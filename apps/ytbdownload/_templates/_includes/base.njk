@@ -133,7 +133,7 @@
 
             var f = 'mp4';
             try {
-                var p = JSON.parse(localStorage.getItem('ytbdownload_format_preferences'));
+                var p = JSON.parse(localStorage.getItem('ytbdownloader_format_preferences'));
                 if (p && p.selectedFormat) f = p.selectedFormat;
             } catch (e) { }
 

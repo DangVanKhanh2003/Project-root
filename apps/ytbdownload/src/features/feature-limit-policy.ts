@@ -1,5 +1,5 @@
 /**
- * Feature Limit Policy — ytbdownload
+ * Feature Limit Policy — ytbdownloader
  * Single source of truth for all numeric limits.
  * Change values here to adjust quotas site-wide.
  *
