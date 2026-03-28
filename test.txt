@@ -1,11 +1,11 @@
 server {
     listen 80;
-    server_name y2save.com www.y2save.com;
+    server_name ytbdownloader.com www.ytbdownloader.com;
     
-    root  /var/www/KhanhHAUI/CICD/run/y2save.com;
+    root  /var/www/KhanhHAUI/CICD/run/ytbdownloader.com;
     index index.html;
     
-    add_header X-VHost y2save.com always;
+    add_header X-VHost ytbdownloader.com always;
 
     # Canonical cho /index(.html) – chỉ khi CLIENT thật sự gõ /index
     if ($request_uri ~* ^/index(?:\.html)?$) { return 301 /; }
@@ -32,7 +32,7 @@ server {
 
     # robots.txt riêng
     location = /robots.txt {
-        alias  /var/www/KhanhHAUI/CICD/run/y2save.com/robots.txt;
+        alias  /var/www/KhanhHAUI/CICD/run/ytbdownloader.com/robots.txt;
         access_log off;
         log_not_found off;
         add_header Cache-Control "no-cache, no-store, must-revalidate";
@@ -87,7 +87,7 @@ server {
 
    location = /404.html {
     # root LÀ FOLDER chứa file 404.html
-    root /var/www/KhanhHAUI/CICD/run/v1.ytmp3.gg;
+    root /var/www/KhanhHAUI/CICD/run/ytbdownloader.com;
     try_files /404.html =404;
     add_header Cache-Control "no-cache, no-store, must-revalidate";
    }
@@ -100,12 +100,12 @@ server {
 
 server {
     listen 80;
-    server_name test.y2save.com;
+    server_name test.ytbdownloader.com;
 
-    root  /var/www/KhanhHAUI/CICD/run/y2save.com-test;
+    root  /var/www/KhanhHAUI/CICD/run/ytbdownloader.com-test;
     index index.html;
 
-    add_header X-VHost test.y2save.com always;
+    add_header X-VHost test.ytbdownloader.com always;
     add_header X-Robots-Tag "noindex, nofollow, noarchive" always;
     
     # Canonical cho /index(.html) – chỉ khi CLIENT thật sự gõ /index
@@ -125,7 +125,7 @@ server {
 
     # robots.txt riêng
     location = /robots.txt {
-         alias  /var/www/KhanhHAUI/CICD/run/y2save.com-test/robots.txt;
+         alias  /var/www/KhanhHAUI/CICD/run/ytbdownloader.com-test/robots.txt;
         access_log off;
         log_not_found off;
         add_header Cache-Control "no-cache, no-store, must-revalidate";
@@ -156,7 +156,7 @@ server {
 
    location = /404.html {
       # root LÀ FOLDER chứa file 404.html
-      root /var/www/KhanhHAUI/CICD/run/y2save.com;
+      root /var/www/KhanhHAUI/CICD/run/ytbdownloader.com;
       try_files /404.html =404;
       add_header Cache-Control "no-cache, no-store, must-revalidate";
     }

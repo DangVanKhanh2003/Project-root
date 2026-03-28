@@ -4,7 +4,7 @@
  * Uses the v3 API which accepts title/noCountdown as options directly.
  */
 
-import { show as baseShowPaywall, configure as baseConfigurePaywall } from 'https://media.ytmp3.gg/poppurchase.v3.js?v=15';
+import { show as baseShowPaywall, configure as baseConfigurePaywall } from 'https://media.ytmp3.gg/poppurchase.v3.js?v=16';
 import { saveLicenseKey, saveLicenseCache } from './license/license-token';
 import type { CheckKeyResponse } from '@downloader/core';
 
