@@ -232,6 +232,7 @@ function runCommand(type, command, args, cwd = ROOT, extraEnv = {}) {
     activeProcessPid = null;
   }
 
+  clearOldResults();
   isStopping = false;
   broadcast({ type: 'start', testType: type, timestamp: Date.now() });
 
@@ -271,15 +272,14 @@ function runCommand(type, command, args, cwd = ROOT, extraEnv = {}) {
       broadcast({ type: 'stopped', timestamp: Date.now() });
     } else {
       console.log(`[Dashboard] Test finished (code=${code}, signal=${signal})`);
-      broadcast({ type: 'done', code, testType: type, timestamp: Date.now() });
-
-      // After vitest finishes, try to send JSON results
+      // Load JSON results BEFORE done — so client has data when conclusion renders
       if (type === 'unit' || type === 'stress' || type === 'all-unit' || type === 'full') {
         tryLoadVitestResults();
       }
       if (type === 'e2e' || type === 'full') {
         tryLoadPlaywrightResults();
       }
+      broadcast({ type: 'done', code, testType: type, timestamp: Date.now() });
     }
   });
 
@@ -391,6 +391,24 @@ if (wss) {
       sites,
       sitePorts: Object.fromEntries(sites.map((s, i) => [s, 4001 + i])),
     }));
+
+    // Send existing test results from disk (so refreshing page still shows last run)
+    if (!activeProcess) {
+      const vitestPath = path.join(RESULTS_DIR, 'vitest-results.json');
+      const playwrightPath = path.join(RESULTS_DIR, 'results.json');
+      try {
+        if (fs.existsSync(vitestPath)) {
+          const data = JSON.parse(fs.readFileSync(vitestPath, 'utf-8'));
+          ws.send(JSON.stringify({ type: 'vitest-json', data }));
+        }
+      } catch { /* ignore */ }
+      try {
+        if (fs.existsSync(playwrightPath)) {
+          const data = JSON.parse(fs.readFileSync(playwrightPath, 'utf-8'));
+          ws.send(JSON.stringify({ type: 'playwright-json', data }));
+        }
+      } catch { /* ignore */ }
+    }
   });
 }
 
@@ -408,6 +426,7 @@ function runSteps(type, steps) {
   if (activeProcess) { killProcessTree(activeProcess); activeProcess = null; activeProcessPid = null; }
   for (const p of allActiveProcs) { try { killProcessTree(p); } catch {} }
   allActiveProcs.clear();
+  clearOldResults();
   isStopping = false;
   broadcast({ type: 'start', testType: type, timestamp: Date.now() });
 
@@ -416,9 +435,10 @@ function runSteps(type, steps) {
   function nextStep() {
     if (isStopping) { broadcast({ type: 'stopped', timestamp: Date.now() }); return; }
     if (stepIndex >= steps.length) {
-      broadcast({ type: 'done', code: 0, testType: type, timestamp: Date.now() });
+      // Load JSON results BEFORE sending done — so client has data when conclusion renders
       if (type.includes('unit') || type === 'full') tryLoadVitestResults();
       if (type.includes('e2e') || type === 'full') tryLoadPlaywrightResults();
+      broadcast({ type: 'done', code: 0, testType: type, timestamp: Date.now() });
       return;
     }
 
@@ -528,6 +548,22 @@ function runSteps(type, steps) {
   nextStep();
 }
 
+// Ensure test-results directory exists for JSON output
+const RESULTS_DIR = path.join(ROOT, 'tests', 'test-results');
+try { fs.mkdirSync(RESULTS_DIR, { recursive: true }); } catch {}
+
+// Vitest JSON output path
+const VITEST_JSON = path.join(RESULTS_DIR, 'vitest-results.json');
+
+/** Clear old test result files before each run */
+function clearOldResults() {
+  const files = ['vitest-results.json', 'results.json'];
+  for (const f of files) {
+    try { fs.unlinkSync(path.join(RESULTS_DIR, f)); } catch {}
+  }
+  console.log('[Dashboard] Cleared old test results.');
+}
+
 function handleDashboardCommand(msg) {
   const CORE = path.join(ROOT, 'packages', 'core');
   const site = msg.site || 'onedownloader.net';
@@ -536,13 +572,13 @@ function handleDashboardCommand(msg) {
   switch (msg.action) {
     // ---- Unit / Stress ----
     case 'run-unit':
-      runCommand('unit', 'npx', ['vitest', 'run', '--exclude', '**/*.stress.test.ts'], CORE);
+      runCommand('unit', 'npx', ['vitest', 'run', '--exclude', '**/*.stress.test.ts', '--reporter=verbose', '--reporter=json', '--outputFile', VITEST_JSON], CORE);
       break;
     case 'run-stress':
-      runCommand('stress', 'npx', ['vitest', 'run', 'stress'], CORE);
+      runCommand('stress', 'npx', ['vitest', 'run', 'stress', '--reporter=verbose', '--reporter=json', '--outputFile', VITEST_JSON], CORE);
       break;
     case 'run-all-unit':
-      runCommand('all-unit', 'npx', ['vitest', 'run'], CORE);
+      runCommand('all-unit', 'npx', ['vitest', 'run', '--reporter=verbose', '--reporter=json', '--outputFile', VITEST_JSON], CORE);
       break;
 
     // ---- E2E (build → test) ----
@@ -601,19 +637,86 @@ function handleDashboardCommand(msg) {
       }]);
       break;
 
-    // ---- Full pipeline ----
+    // ---- Selected sites (from dashboard config panel) ----
+    case 'build-selected': {
+      const sites = (msg.sites && msg.sites.length) ? msg.sites : getAllSites();
+      runSteps('build', [{
+        parallel: true,
+        label: `Building ${sites.length} selected sites...`,
+        tasks: sites.map(s => ({
+          label: s, cmd: 'npm', args: ['run', 'build'], cwd: path.join(ROOT, 'apps', s),
+        })),
+        ignoreError: true,
+      }]);
+      break;
+    }
+    case 'run-e2e-selected': {
+      const sites = (msg.sites && msg.sites.length) ? msg.sites : getAllSites();
+      const mode = msg.mode || 'build-test';
+      const filter = msg.testFilter; // 'smoke', 'i18n', 'download', or undefined
+      const steps = [];
+
+      if (mode === 'build-test') {
+        steps.push({
+          parallel: true,
+          label: `Building ${sites.length} sites...`,
+          tasks: sites.map(s => ({
+            label: s, cmd: 'npm', args: ['run', 'build'], cwd: path.join(ROOT, 'apps', s),
+          })),
+          ignoreError: true,
+        });
+      }
+
+      const playwrightArgs = ['playwright', 'test'];
+      if (filter === 'smoke') playwrightArgs.push('tests/e2e/smoke');
+      else if (filter === 'i18n') playwrightArgs.push('tests/e2e/i18n');
+      else if (filter === 'download') playwrightArgs.push('tests/e2e/download-flow');
+
+      steps.push({
+        label: `Running E2E${filter ? ' (' + filter + ')' : ''} on ${sites.length} sites...`,
+        cmd: 'npx', args: playwrightArgs,
+        env: { TEST_SITES: sites.join(',') },
+      });
+
+      runSteps('e2e', steps);
+      break;
+    }
+    case 'run-full-selected': {
+      const sites = (msg.sites && msg.sites.length) ? msg.sites : getAllSites();
+      const mode = msg.mode || 'build-test';
+      const steps = [
+        { label: 'Step 1: Unit + Stress tests...', cmd: 'npx', args: ['vitest', 'run', '--reporter=verbose', '--reporter=json', '--outputFile', VITEST_JSON], cwd: CORE },
+      ];
+      if (mode === 'build-test') {
+        steps.push({
+          parallel: true,
+          label: `Step 2: Building ${sites.length} sites...`,
+          tasks: sites.map(s => ({
+            label: s, cmd: 'npm', args: ['run', 'build'], cwd: path.join(ROOT, 'apps', s),
+          })),
+          ignoreError: true,
+        });
+      }
+      steps.push({
+        label: `Step ${mode === 'build-test' ? '3' : '2'}: E2E on ${sites.length} sites...`,
+        cmd: 'npx', args: ['playwright', 'test'],
+        env: { TEST_SITES: sites.join(',') },
+      });
+      runSteps('full', steps);
+      break;
+    }
+
+    // ---- Full pipeline (legacy) ----
     case 'run-full':
       runSteps('full', [
-        { label: 'Step 1: Unit + Stress tests...', cmd: 'npx', args: ['vitest', 'run'], cwd: CORE },
+        { label: 'Step 1: Unit + Stress tests...', cmd: 'npx', args: ['vitest', 'run', '--reporter=verbose', '--reporter=json', '--outputFile', VITEST_JSON], cwd: CORE },
         { label: `Step 2: Building ${site}...`, cmd: 'npm', args: ['run', 'build'], cwd: appDir },
         { label: 'Step 3: E2E tests (opens browser)...', cmd: 'npx', args: ['playwright', 'test'] },
       ]);
       break;
     case 'run-full-all':
       runSteps('full', [
-        // Step 1: Unit + Stress (sequential, must pass first)
-        { label: 'Step 1: Unit + Stress tests...', cmd: 'npx', args: ['vitest', 'run'], cwd: CORE },
-        // Step 2: Build ALL sites in PARALLEL
+        { label: 'Step 1: Unit + Stress tests...', cmd: 'npx', args: ['vitest', 'run', '--reporter=verbose', '--reporter=json', '--outputFile', VITEST_JSON], cwd: CORE },
         {
           parallel: true,
           label: `Step 2: Building ALL ${getAllSites().length} sites in parallel...`,
@@ -622,7 +725,6 @@ function handleDashboardCommand(msg) {
           })),
           ignoreError: true,
         },
-        // Step 3: E2E all sites parallel
         { label: `Step 3: E2E ALL sites (${getAllSites().length * 2} workers)...`, cmd: 'npx', args: ['playwright', 'test'], env: { TEST_ALL_SITES: '1' } },
       ]);
       break;

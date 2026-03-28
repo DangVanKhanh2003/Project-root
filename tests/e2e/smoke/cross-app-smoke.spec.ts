@@ -30,7 +30,7 @@ test.describe('Smoke Test', () => {
 
   test('Has URL input #videoUrl', async ({ page }) => {
     await page.goto('/');
-    const input = page.locator(S.urlInput);
+    const input = page.locator(S.urlInput).first();
     await expect(input).toBeVisible();
 
     // Font-size >= 16px (iOS zoom prevention)

@@ -9,22 +9,30 @@ import { test, expect, type Page } from '@playwright/test';
 const YT_URL = 'https://www.youtube.com/watch?v=jNQXAC9IVRw';
 const YT_URL2 = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
 
+// Flexible selectors: different sites use different element IDs/classes
+const INPUT_SELECTOR = '#videoUrl, #urlsInput, #url-input, input[name="q"], input[name="url"]';
+const BTN_SELECTOR = '.btn-convert, .multi-btn-convert, .converter-btn, button[type="submit"]';
+
 async function waitForAppReady(page: Page) {
   await page.goto('/');
   await page.evaluate(() => localStorage.clear());
   await page.reload();
   await page.waitForLoadState('networkidle');
-  await page.waitForFunction(() => {
-    const btn = document.querySelector('.btn-convert') as HTMLButtonElement;
-    return btn && !btn.disabled;
-  }, { timeout: 15000 });
+  // Wait for any convert/submit button to be ready (different sites use different selectors)
+  await page.waitForFunction((sel) => {
+    const btn = document.querySelector(sel) as HTMLElement;
+    if (!btn) return false;
+    // For <button>, check disabled. For <div> (converter-btn), just check existence
+    if (btn.tagName === 'BUTTON') return !(btn as HTMLButtonElement).disabled;
+    return true;
+  }, BTN_SELECTOR, { timeout: 15000 });
 }
 
 test.describe('Concurrent & Stress Tests', () => {
 
   test('Rapid URL changes không crash', async ({ page }) => {
     await waitForAppReady(page);
-    const input = page.locator('#videoUrl');
+    const input = page.locator(INPUT_SELECTOR).first();
 
     const urls = [YT_URL, YT_URL2, 'https://youtu.be/jNQXAC9IVRw', YT_URL];
     for (const url of urls) {
@@ -39,8 +47,8 @@ test.describe('Concurrent & Stress Tests', () => {
 
   test('Submit mới cancel request cũ (không stale)', async ({ page }) => {
     await waitForAppReady(page);
-    const input = page.locator('#videoUrl');
-    const btn = page.locator('.btn-convert');
+    const input = page.locator(INPUT_SELECTOR).first();
+    const btn = page.locator(BTN_SELECTOR).first();
 
     await input.fill(YT_URL);
     await btn.click();
@@ -61,8 +69,8 @@ test.describe('Concurrent & Stress Tests', () => {
 
   test('Back/forward navigation không crash', async ({ page }) => {
     await waitForAppReady(page);
-    await page.locator('#videoUrl').fill(YT_URL);
-    await page.locator('.btn-convert').click();
+    await page.locator(INPUT_SELECTOR).first().fill(YT_URL);
+    await page.locator(BTN_SELECTOR).first().click();
     await page.waitForTimeout(2000);
 
     await page.goBack().catch(() => {});
@@ -81,8 +89,8 @@ test.describe('Concurrent & Stress Tests', () => {
     await page.route('**/*api*/**', route => route.abort());
     await page.route('**/*hub*/**', route => route.abort());
 
-    await page.locator('#videoUrl').fill(YT_URL);
-    await page.locator('.btn-convert').click();
+    await page.locator(INPUT_SELECTOR).first().fill(YT_URL);
+    await page.locator(BTN_SELECTOR).first().click();
     await page.waitForTimeout(5000);
 
     // Unblock

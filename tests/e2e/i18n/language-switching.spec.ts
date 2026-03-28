@@ -17,7 +17,7 @@ test.describe('i18n - Language Support', () => {
     for (const lang of LANGUAGES) {
       test(`${lang.code} (${lang.name}) page loads`, async ({ page }) => {
         // Try language-specific URL patterns
-        const langUrl = lang.code === 'en' ? '/' : `/pages/${lang.code}/`;
+        const langUrl = lang.code === 'en' ? '/' : `/${lang.code}/`;
 
         const response = await page.goto(langUrl);
 
@@ -37,7 +37,7 @@ test.describe('i18n - Language Support', () => {
   test.describe('RTL Language Layout', () => {
     for (const lang of RTL_LANGUAGES) {
       test(`${lang.code} (${lang.name}) has RTL direction`, async ({ page }) => {
-        const langUrl = `/pages/${lang.code}/`;
+        const langUrl = `/${lang.code}/`;
         await page.goto(langUrl);
 
         // Check dir attribute on html or body
@@ -49,7 +49,7 @@ test.describe('i18n - Language Support', () => {
       });
 
       test(`${lang.code} input field text-align is correct for RTL`, async ({ page }) => {
-        const langUrl = `/pages/${lang.code}/`;
+        const langUrl = `/${lang.code}/`;
         await page.goto(langUrl);
 
         const input = page.locator(SELECTORS.urlInput).first();
@@ -63,7 +63,7 @@ test.describe('i18n - Language Support', () => {
       });
 
       test(`${lang.code} page has no layout overflow`, async ({ page }) => {
-        const langUrl = `/pages/${lang.code}/`;
+        const langUrl = `/${lang.code}/`;
         await page.goto(langUrl);
 
         const scrollWidth = await page.evaluate(() => document.documentElement.scrollWidth);
@@ -80,7 +80,7 @@ test.describe('i18n - Language Support', () => {
   test.describe('Translation content', () => {
     for (const lang of LANGUAGES) {
       test(`${lang.code} has translated page title (not English fallback)`, async ({ page }) => {
-        const langUrl = lang.code === 'en' ? '/' : `/pages/${lang.code}/`;
+        const langUrl = lang.code === 'en' ? '/' : `/${lang.code}/`;
         await page.goto(langUrl);
 
         const title = await page.title();
@@ -94,7 +94,7 @@ test.describe('i18n - Language Support', () => {
       });
 
       test(`${lang.code} has translated hero section text`, async ({ page }) => {
-        const langUrl = lang.code === 'en' ? '/' : `/pages/${lang.code}/`;
+        const langUrl = lang.code === 'en' ? '/' : `/${lang.code}/`;
         await page.goto(langUrl);
 
         const hero = page.locator(SELECTORS.heroSection).first();
@@ -177,7 +177,7 @@ test.describe('i18n - Language Support', () => {
 
     for (const { code, script } of scriptTests) {
       test(`${script} script renders on ${code} page`, async ({ page }) => {
-        await page.goto(`/pages/${code}/`);
+        await page.goto(`/${code}/`);
 
         const bodyText = await page.locator('body').innerText();
 

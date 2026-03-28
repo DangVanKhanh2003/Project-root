@@ -88,8 +88,8 @@ export const LTR_LANGUAGES = LANGUAGES.filter(l => l.dir === 'ltr');
 
 export const SELECTORS = {
   // Input form
-  urlInput: '#url-input, input[name="url"], input[type="url"], .input-url, .hero-input input',
-  submitButton: '#submit-btn, button[type="submit"], .hero-input button, .btn-download',
+  urlInput: '#videoUrl, #urlsInput, #url-input, input[name="url"], input[name="q"], input[type="url"], .input-url, .hero-input input',
+  submitButton: '#submit-btn, button[type="submit"], .hero-input button, .btn-download, .btn-convert, .multi-btn-convert, .converter-btn',
   pasteButton: '.paste-btn, [data-action="paste"]',
 
   // Format selector

@@ -13,6 +13,10 @@ import { test, expect, type Page } from '@playwright/test';
 const YT_URL = 'https://www.youtube.com/watch?v=jNQXAC9IVRw';
 const TEST_LICENSE_KEY = 'test@gmail.com';
 
+// Flexible selectors: different sites use different element IDs/classes
+const INPUT_SELECTOR = '#videoUrl, #urlsInput, #url-input, input[name="q"], input[name="url"]';
+const BTN_SELECTOR = '.btn-convert, .multi-btn-convert, .converter-btn, button[type="submit"]';
+
 // ==========================================
 // Helper: clear ALL localStorage before each test
 // ==========================================
@@ -24,19 +28,21 @@ async function freshStart(page: Page) {
   await page.reload();
   await page.waitForLoadState('networkidle');
   // Chờ JS init (convert button enabled)
-  await page.waitForFunction(() => {
-    const btn = document.querySelector('.btn-convert') as HTMLButtonElement;
-    return btn && !btn.disabled;
-  }, { timeout: 15000 });
+  await page.waitForFunction((sel) => {
+    const btn = document.querySelector(sel) as HTMLElement;
+    if (!btn) return false;
+    if (btn.tagName === 'BUTTON') return !(btn as HTMLButtonElement).disabled;
+    return true;
+  }, BTN_SELECTOR, { timeout: 15000 });
 }
 
 // ==========================================
 // Helper: paste URL + select format + click convert
 // ==========================================
 async function pasteAndConvert(page: Page, url: string) {
-  await page.locator('#videoUrl').fill(url);
+  await page.locator(INPUT_SELECTOR).first().fill(url);
   await page.waitForTimeout(200);
-  await page.locator('.btn-convert').click();
+  await page.locator(BTN_SELECTOR).first().click();
 }
 
 // ==========================================
@@ -48,16 +54,35 @@ async function selectQuality(page: Page, value: string) {
   if (await trigger.isVisible().catch(() => false)) {
     await trigger.click();
     await page.waitForTimeout(300);
+
+    // The item might be inside a collapsed group section — open it first
+    // value format: "mp4-2160" → group is "mp4"
+    const groupName = value.split('-')[0];
+    const groupToggle = page.locator(`[data-group-toggle="${groupName}"]`);
+    if (await groupToggle.isVisible().catch(() => false)) {
+      // Check if the group is already open
+      const groupSection = page.locator(`[data-video-group="${groupName}"]`);
+      const isOpen = await groupSection.evaluate(el => el.classList.contains('is-open')).catch(() => false);
+      if (!isOpen) {
+        await groupToggle.click();
+        await page.waitForTimeout(200);
+      }
+    }
+
     const item = page.locator(`[data-group-item="${value}"]`);
     if (await item.isVisible().catch(() => false)) {
       await item.click();
       return;
     }
   }
-  // Fallback: native select
+  // Fallback: force-set via native select (even if hidden)
   const select = page.locator('#quality-select-mp4');
-  if (await select.isVisible().catch(() => false)) {
-    await select.selectOption(value);
+  const selectExists = await select.count() > 0;
+  if (selectExists) {
+    await select.evaluate((el: HTMLSelectElement, val: string) => {
+      el.value = val;
+      el.dispatchEvent(new Event('change', { bubbles: true }));
+    }, value);
   }
 }
 

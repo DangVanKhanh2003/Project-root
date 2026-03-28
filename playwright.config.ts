@@ -22,6 +22,8 @@ const isCI = !!process.env.CI;
 const isHeadless = isCI || !!process.env.HEADLESS;
 const SINGLE_SITE = process.env.TEST_SITE || 'onedownloader.net';
 const TEST_ALL = !!process.env.TEST_ALL_SITES;
+// TEST_SITES=site1,site2,site3 — test specific selected sites (from dashboard)
+const TEST_SITES_CSV = process.env.TEST_SITES || '';
 
 // All app directories with vite config
 const APPS_DIR = path.resolve(__dirname, 'apps');
@@ -37,8 +39,10 @@ try {
 const SITE_PORTS: Record<string, number> = {};
 ALL_SITES.forEach((site, i) => { SITE_PORTS[site] = 4001 + i; });
 
-// Which sites to test
-const sitesToTest = TEST_ALL ? ALL_SITES : [SINGLE_SITE];
+// Which sites to test: TEST_SITES (csv) > TEST_ALL_SITES > TEST_SITE (single)
+const sitesToTest = TEST_SITES_CSV
+  ? TEST_SITES_CSV.split(',').filter(s => ALL_SITES.includes(s))
+  : TEST_ALL ? ALL_SITES : [SINGLE_SITE];
 
 // Create a project per site × device (parallel testing)
 const projects = sitesToTest.flatMap(site => {

@@ -9,6 +9,10 @@ import { test, expect, type Page } from '@playwright/test';
 
 const YT_URL = 'https://www.youtube.com/watch?v=jNQXAC9IVRw';
 
+// Flexible selectors: different sites use different element IDs/classes
+const INPUT_SELECTOR = '#videoUrl, #urlsInput, #url-input, input[name="q"], input[name="url"]';
+const BTN_SELECTOR = '.btn-convert, .multi-btn-convert, .converter-btn, button[type="submit"]';
+
 /** Chờ JS init xong (btn-convert enabled = JS đã load). Xóa localStorage mỗi lần. */
 async function waitForAppReady(page: Page) {
   await page.goto('/');
@@ -17,15 +21,17 @@ async function waitForAppReady(page: Page) {
   await page.reload();
   await page.waitForLoadState('networkidle');
   // JS enables the convert button after init — wait for it
-  await page.waitForFunction(() => {
-    const btn = document.querySelector('.btn-convert') as HTMLButtonElement;
-    return btn && !btn.disabled;
-  }, { timeout: 15000 });
+  await page.waitForFunction((sel) => {
+    const btn = document.querySelector(sel) as HTMLElement;
+    if (!btn) return false;
+    if (btn.tagName === 'BUTTON') return !(btn as HTMLButtonElement).disabled;
+    return true;
+  }, BTN_SELECTOR, { timeout: 15000 });
 }
 
 /** Paste URL vào ô input và chờ convert button sẵn sàng */
 async function pasteUrl(page: Page, url: string) {
-  const input = page.locator('#videoUrl');
+  const input = page.locator(INPUT_SELECTOR).first();
   await input.click();
   await input.fill(url);
   // Chờ input event xử lý xong
@@ -34,8 +40,12 @@ async function pasteUrl(page: Page, url: string) {
 
 /** Click Convert và chờ phản hồi (preview card hoặc status bar) */
 async function clickConvert(page: Page) {
-  const btn = page.locator('.btn-convert');
-  await expect(btn).toBeEnabled({ timeout: 5000 });
+  const btn = page.locator(BTN_SELECTOR).first();
+  // For <div> elements (converter-btn), skip toBeEnabled check
+  const tagName = await btn.evaluate(el => el.tagName);
+  if (tagName === 'BUTTON') {
+    await expect(btn).toBeEnabled({ timeout: 5000 });
+  }
   await btn.click();
 }
 
@@ -46,7 +56,7 @@ test.describe('Download Flow — User Simulation', () => {
   // ==========================================
   test('Step 1: Paste YouTube URL vào ô input #videoUrl', async ({ page }) => {
     await waitForAppReady(page);
-    const input = page.locator('#videoUrl');
+    const input = page.locator(INPUT_SELECTOR).first();
 
     await input.click();
     await input.fill(YT_URL);
@@ -63,17 +73,29 @@ test.describe('Download Flow — User Simulation', () => {
   test('Step 2: Click MP3 → MP4 format toggle', async ({ page }) => {
     await waitForAppReady(page);
 
+    const mp4Btn = page.locator('.format-btn[data-format="mp4"]');
+    const mp3Btn = page.locator('.format-btn[data-format="mp3"]');
+
+    // Some sites use unified dropdown instead of format buttons — skip if no format-btn
+    const hasFormatBtns = await mp4Btn.isVisible().catch(() => false);
+    if (!hasFormatBtns) {
+      // Site uses a different format selector (e.g., unified dropdown) — verify it exists
+      const hasDropdown = await page.locator('.custom-dropdown-trigger, [data-unified-select], .quality-select').first().isVisible().catch(() => false);
+      expect(hasDropdown).toBeTruthy();
+      return;
+    }
+
     // Default: MP4 active
-    await expect(page.locator('.format-btn[data-format="mp4"]')).toHaveClass(/active/);
+    await expect(mp4Btn).toHaveClass(/active/);
 
     // Click MP3
-    await page.locator('.format-btn[data-format="mp3"]').click();
+    await mp3Btn.click();
     await page.waitForTimeout(300);
     // Sau click, MP3 selector phải hiện (quality-select-mp3 visible)
     await expect(page.locator('#quality-select-mp3')).toBeVisible();
 
     // Click lại MP4
-    await page.locator('.format-btn[data-format="mp4"]').click();
+    await mp4Btn.click();
     await page.waitForTimeout(300);
   });
 
@@ -218,7 +240,7 @@ test.describe('Download Flow — User Simulation', () => {
       await page.waitForTimeout(1000);
 
       // Ô input phải hiện lại
-      await expect(page.locator('#videoUrl')).toBeVisible();
+      await expect(page.locator(INPUT_SELECTOR).first()).toBeVisible();
     }
   });
 
@@ -231,8 +253,11 @@ test.describe('Download Flow — User Simulation', () => {
     // 1. Paste URL
     await pasteUrl(page, YT_URL);
 
-    // 2. Verify MP4 đang active
-    await expect(page.locator('.format-btn[data-format="mp4"]')).toHaveClass(/active/);
+    // 2. Verify MP4 đang active (if format buttons exist)
+    const mp4Btn = page.locator('.format-btn[data-format="mp4"]');
+    if (await mp4Btn.isVisible().catch(() => false)) {
+      await expect(mp4Btn).toHaveClass(/active/);
+    }
 
     // 3. Click Convert
     await clickConvert(page);
@@ -259,7 +284,7 @@ test.describe('Download Flow — User Simulation', () => {
     if (await startOver.isVisible()) {
       await startOver.click();
       await page.waitForTimeout(1000);
-      await expect(page.locator('#videoUrl')).toBeVisible();
+      await expect(page.locator(INPUT_SELECTOR).first()).toBeVisible();
     }
   });
 
@@ -272,14 +297,17 @@ test.describe('Download Flow — User Simulation', () => {
     // 1. Paste URL
     await pasteUrl(page, YT_URL);
 
-    // 2. Chọn MP3
-    await page.locator('.format-btn[data-format="mp3"]').click();
-    await page.waitForTimeout(300);
+    // 2. Chọn MP3 (if format buttons exist)
+    const mp3FormatBtn = page.locator('.format-btn[data-format="mp3"]');
+    if (await mp3FormatBtn.isVisible().catch(() => false)) {
+      await mp3FormatBtn.click();
+      await page.waitForTimeout(300);
 
-    // 3. Chọn 320kbps từ native select (MP3 select vẫn visible)
-    const mp3Select = page.locator('#quality-select-mp3');
-    if (await mp3Select.isVisible()) {
-      await mp3Select.selectOption('mp3-320');
+      // 3. Chọn 320kbps từ native select (MP3 select vẫn visible)
+      const mp3Select = page.locator('#quality-select-mp3');
+      if (await mp3Select.isVisible()) {
+        await mp3Select.selectOption('mp3-320');
+      }
     }
 
     // 4. Convert
@@ -308,7 +336,7 @@ test.describe('Download Flow — User Simulation', () => {
     const hasError = await page.locator('#error-message').evaluate(
       el => el.textContent?.trim().length! > 0
     ).catch(() => false);
-    const formVisible = await page.locator('#videoUrl').isVisible();
+    const formVisible = await page.locator(INPUT_SELECTOR).first().isVisible();
 
     expect(hasError || formVisible).toBeTruthy();
   });
@@ -320,11 +348,11 @@ test.describe('Download Flow — User Simulation', () => {
     await waitForAppReady(page);
 
     // Submit form trống
-    const btn = page.locator('.btn-convert');
+    const btn = page.locator(BTN_SELECTOR).first();
     await btn.click();
 
     await page.waitForTimeout(2000);
-    await expect(page.locator('#videoUrl')).toBeVisible();
+    await expect(page.locator(INPUT_SELECTOR).first()).toBeVisible();
   });
 
   // ==========================================
@@ -365,7 +393,7 @@ test.describe('Download Flow — User Simulation', () => {
 
     for (let i = 0; i < 3; i++) {
       // Đảm bảo input visible (có thể bị ẩn sau convert trước đó)
-      const input = page.locator('#videoUrl');
+      const input = page.locator(INPUT_SELECTOR).first();
       const isVisible = await input.isVisible().catch(() => false);
       if (!isVisible) {
         // Click Start Over nếu đang ở result view
@@ -383,7 +411,7 @@ test.describe('Download Flow — User Simulation', () => {
 
       await input.fill(YT_URL);
       await page.waitForTimeout(100);
-      const btn = page.locator('.btn-convert');
+      const btn = page.locator(BTN_SELECTOR).first();
       if (await btn.isEnabled()) {
         await btn.click();
       }

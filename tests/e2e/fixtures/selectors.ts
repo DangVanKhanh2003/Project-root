@@ -15,10 +15,10 @@ export const S = {
   // Input Form
   // ==========================================
   form: '#downloadForm',
-  urlInput: '#videoUrl',
+  urlInput: '#videoUrl, #urlsInput, #url-input, input[name="q"]',
   pasteBtn: '#input-action-button',
   submitBtn: '#downloadForm button[type="submit"]',
-  convertBtn: '.btn-convert',
+  convertBtn: '.btn-convert, .multi-btn-convert, .converter-btn',
   errorMessage: '#error-message',
 
   // ==========================================

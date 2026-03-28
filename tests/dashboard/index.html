@@ -57,6 +57,19 @@
     .esub{display:none;gap:6px;margin-bottom:10px;flex-wrap:wrap}.esub.on{display:flex}
     .esub .b{font-size:11px;padding:5px 12px;background:rgba(188,140,255,.12);color:var(--purple);border-color:rgba(188,140,255,.25)}
 
+    /* Test Config Panel */
+    .tconfig{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;margin-bottom:12px}
+    .tconfig-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+    .tconfig-row:last-child{margin-bottom:0}
+    .tconfig-label{font-size:12px;font-weight:600;color:var(--dim);min-width:45px}
+    .tconfig-radio{font-size:12px;cursor:pointer;display:flex;align-items:center;gap:4px}
+    .tconfig-radio input{margin:0}
+    .tconfig-sites{display:flex;flex-wrap:wrap;gap:3px 12px;margin-top:6px}
+    .tconfig-sites label{font-size:12px;cursor:pointer;display:flex;align-items:center;gap:3px;padding:2px 0}
+    .tconfig-sites label.has-dist{color:var(--green)}
+    .tconfig-sites label.no-dist{color:var(--dim);opacity:.6}
+    .tconfig-sites input[type=checkbox]{margin:0}
+
     /* Tabs */
     .tabs{display:flex;gap:3px;margin-bottom:12px;align-items:center}
     .t{padding:5px 12px;border-radius:5px;cursor:pointer;font-size:12px;font-weight:500;border:1px solid var(--border);background:transparent;color:var(--dim);transition:all .15s}
@@ -217,13 +230,28 @@
   </div>
 </div>
 
+<!-- TEST CONFIG: Mode + Site Selection -->
+<div class="tconfig" id="testConfig">
+  <div class="tconfig-row">
+    <span class="tconfig-label">Mode</span>
+    <label class="tconfig-radio"><input type="radio" name="tmode" value="build-test" checked> Build + Test</label>
+    <label class="tconfig-radio"><input type="radio" name="tmode" value="test-only"> Test on existing dist</label>
+  </div>
+  <div class="tconfig-row">
+    <span class="tconfig-label">Sites</span>
+    <button class="b bg" onclick="siteSelectAll()" style="padding:3px 10px;font-size:11px">Select All</button>
+    <button class="b bg" onclick="siteUnselectAll()" style="padding:3px 10px;font-size:11px">Unselect All</button>
+    <span id="siteCount" style="font-size:11px;color:var(--dim)"></span>
+  </div>
+  <div class="tconfig-sites" id="testSiteList"></div>
+</div>
+
 <!-- CONTROLS -->
 <div class="btns">
-  <button class="b b4" onclick="send('run-full-all')">Run ALL (Unit+Stress+Build+E2E All Sites)</button>
-  <button class="b b4" onclick="send('run-full')" style="background:var(--orange)">Run Full (1 Site)</button>
+  <button class="b b4" onclick="sendWithConfig('run-full-selected')">Run Full (Unit+Stress+E2E)</button>
   <button class="b b1" onclick="send('run-all-unit')">Unit+Stress</button>
   <button class="b b2" onclick="send('run-stress')">Stress Only</button>
-  <button class="b bg" onclick="send('build-all-sites')" style="border-color:var(--cyan);color:var(--cyan)">Build All Sites</button>
+  <button class="b bg" onclick="sendWithConfig('build-selected')" style="border-color:var(--cyan);color:var(--cyan)">Build Sites</button>
   <button class="b b3" onclick="toggleE()">E2E (Browser)</button>
   <button class="b bg" onclick="toggleIframe()" style="border-color:var(--purple);color:var(--purple)">Live Site Test (iframes)</button>
   <button class="b b5" id="bStop" onclick="doStop()">Stop All</button>
@@ -232,11 +260,10 @@
   <button class="b bg" onclick="toggleLog()">Log</button>
 </div>
 <div class="esub" id="es">
-  <button class="b" onclick="send('run-e2e')">E2E 1 Site (Chrome)</button>
-  <button class="b" onclick="send('run-e2e-all-sites')">E2E ALL Sites (Parallel)</button>
-  <button class="b" onclick="send('run-e2e-smoke')">Smoke Tests</button>
-  <button class="b" onclick="send('run-e2e-download')">Download Flow</button>
-  <button class="b" onclick="send('run-e2e-i18n')">i18n / Languages</button>
+  <button class="b" onclick="sendWithConfig('run-e2e-selected')">Run E2E</button>
+  <button class="b" onclick="sendWithConfig('run-e2e-selected',{testFilter:'smoke'})">Smoke Tests</button>
+  <button class="b" onclick="sendWithConfig('run-e2e-selected',{testFilter:'download'})">Download Flow</button>
+  <button class="b" onclick="sendWithConfig('run-e2e-selected',{testFilter:'i18n'})">i18n / Languages</button>
 </div>
 
 <!-- TABS -->
@@ -326,6 +353,28 @@ function conn(){
   ws.onmessage=e=>{try{handle(JSON.parse(e.data))}catch{}};
 }
 function send(a){ws&&ws.readyState===1&&ws.send(JSON.stringify({action:a}))}
+function sendWithConfig(action,extra){const sites=getSelectedTestSites();const mode=getTestMode();if(!sites.length){alert('No sites selected!');return}ws&&ws.readyState===1&&ws.send(JSON.stringify({action,sites,mode,...(extra||{})}))}
+
+// Test config: site picker + mode
+function populateSitePicker(){
+  fetch('/api/sites').then(r=>r.json()).then(data=>{
+    const list=$('testSiteList');
+    list.innerHTML='';
+    data.forEach(s=>{
+      const lbl=document.createElement('label');
+      lbl.className=s.built?'has-dist':'no-dist';
+      lbl.title=s.built?'Built — ready to test':'Not built — needs build first';
+      lbl.innerHTML=`<input type="checkbox" data-site="${esc(s.name)}" onchange="updateSiteCount()"> ${esc(s.name)}${s.built?'':' <span style="font-size:10px">(no dist)</span>'}`;
+      list.appendChild(lbl);
+    });
+    updateSiteCount();
+  }).catch(()=>{});
+}
+function siteSelectAll(){$('testSiteList').querySelectorAll('input[type=checkbox]').forEach(cb=>cb.checked=true);updateSiteCount()}
+function siteUnselectAll(){$('testSiteList').querySelectorAll('input[type=checkbox]').forEach(cb=>cb.checked=false);updateSiteCount()}
+function getSelectedTestSites(){return[...$('testSiteList').querySelectorAll('input[type=checkbox]:checked')].map(cb=>cb.dataset.site)}
+function getTestMode(){return document.querySelector('input[name="tmode"]:checked')?.value||'build-test'}
+function updateSiteCount(){const a=$('testSiteList').querySelectorAll('input[type=checkbox]').length;const s=$('testSiteList').querySelectorAll('input[type=checkbox]:checked').length;$('siteCount').textContent=s+'/'+a+' selected'}
 
 // Per-site log state
 const siteLogs = {}; // {taskName: {lines:[], status:'run'|'ok'|'err'}}
@@ -405,6 +454,7 @@ function handle(m){
       $('siteListLabel').textContent=`${ALL_SITES_LIST.length} sites: ${ALL_SITES_LIST.join(', ')}`;
       document.title=`Downloader Monorepo — Test Dashboard (${ALL_SITES_LIST.length} sites)`;
       log(`Server connected. ${ALL_SITES_LIST.length} sites detected: ${ALL_SITES_LIST.join(', ')}`,'s');
+      populateSitePicker();
     }
     if(m.running)setRun(true,'running');
     return;
@@ -415,7 +465,10 @@ function handle(m){
   if(m.type==='task-stdout')appendSiteLog(m.task,m.text,false);
   if(m.type==='task-stderr')appendSiteLog(m.task,m.text,true);
   if(m.type==='task-done')finishSiteLog(m.task,m.code);
-  if(m.type==='done'){setRun(false);log('\nDone (exit '+m.code+')',m.code===0?'s':'e');draw()}
+  if(m.type==='done'){setRun(false);log('\nDone (exit '+m.code+')',m.code===0?'s':'e');draw();
+    // JSON results may arrive right after done — redraw again shortly
+    setTimeout(draw,500);setTimeout(draw,1500);
+  }
   if(m.type==='stopping'){setRun(true,'stopping');log('Stopping all processes (killing browsers, workers)...','i')}
   if(m.type==='stopped'){setRun(false);log('All tests stopped.','s');draw()}
   if(m.type==='vitest-json'){parseVJ(m.data);draw()}
@@ -579,7 +632,7 @@ async function loadSitePicker() {
     const lbl = document.createElement('label');
     lbl.className = s.built ? 'built' : 'not-built';
     lbl.title = s.built ? 'Built — ready to test' : 'Not built yet — build first';
-    lbl.innerHTML = `<input type="checkbox" data-site="${esc(s.site)}" ${s.built ? 'checked' : ''}> ${esc(s.site)}${s.built ? '' : ' <span style="font-size:10px">(no build)</span>'}`;
+    lbl.innerHTML = `<input type="checkbox" data-site="${esc(s.name)}" ${s.built ? 'checked' : ''}> ${esc(s.name)}${s.built ? '' : ' <span style="font-size:10px">(no build)</span>'}`;
     list.appendChild(lbl);
   });
   // Update select-all state
@@ -700,7 +753,7 @@ async function iframeTestSelected(){
   if (skipped.length) {
     $('iframeProgress').textContent = `Skipping ${skipped.length} unbuilt: ${skipped.join(', ')}. Testing ${sitesToTest.length}...`;
   } else {
-    $('iframeProgress').textContent = `Testing ${sitesToTest.length} sites...`;
+    $('iframeProgress').textContent = `Testing ${sitesToTest.length} sites × ${IFRAME_VARIANTS.length} variants...`;
   }
 
   const total = sitesToTest.length * IFRAME_VARIANTS.length;
@@ -708,12 +761,20 @@ async function iframeTestSelected(){
   $('iframeCount').textContent = `0/${total}`;
   updateIframeSummary();
 
+  // Wait for preview servers to be ready
+  await new Promise(r => setTimeout(r, 1500));
+
+  const promises = [];
+
   sitesToTest.forEach((site, si) => {
-    const proxyBase = `/site/${site}`;
+    const port = previewMap[site].port;
 
     IFRAME_VARIANTS.forEach((v, vi) => {
       const id = `iframe-${si}-${vi}`;
-      const url = proxyBase + v.path;
+      // Iframe loads directly from vite preview port (assets work correctly)
+      const previewUrl = `http://localhost:${port}${v.path}`;
+      // Fetch HTML via proxy for DOM checks (same-origin, no rendering needed)
+      const proxyUrl = `/site/${site}${v.path}`;
 
       const card = document.createElement('div');
       card.className = 'iframe-card';
@@ -729,10 +790,10 @@ async function iframeTestSelected(){
           <span class="iport">${v.path}</span>
         </div>
         <div class="iframe-wrap" style="overflow:hidden">
-          <iframe src="${url}" style="${iframeStyle}border:none"></iframe>
+          <iframe src="${previewUrl}" style="${iframeStyle}border:none"></iframe>
         </div>
         <div class="iframe-checks" id="${id}-checks">
-          <span class="icheck pending">Loading...</span>
+          <span class="icheck pending">Checking...</span>
         </div>
       `;
       grid.appendChild(card);
@@ -740,57 +801,41 @@ async function iframeTestSelected(){
       const result = { site, variant: v.label, path: v.path, status: 'loading', checks: [] };
       iframeResults.push(result);
 
-      const iframe = card.querySelector('iframe');
       const checksEl = card.querySelector(`#${id}-checks`);
       const dot = card.querySelector('.idot');
 
-      const timeout = setTimeout(() => {
-        if (result.status === 'loading') {
-          result.status = 'fail';
-          result.checks = [{ name: 'Load', pass: false, detail: 'Timeout 20s' }];
-          dot.className = 'idot fail';
-          checksEl.innerHTML = '<span class="icheck fail">TIMEOUT</span>';
-          onDone();
-        }
-      }, 20000);
-
-      iframe.onload = () => {
-        clearTimeout(timeout);
-        try {
-          const doc = iframe.contentDocument || iframe.contentWindow.document;
+      // Use fetch + DOMParser for checks (avoids cross-origin & broken-asset issues)
+      const p = fetch(proxyUrl, { signal: AbortSignal.timeout(15000) })
+        .then(res => {
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          return res.text();
+        })
+        .then(html => {
+          const doc = new DOMParser().parseFromString(html, 'text/html');
           const checks = runIframeChecks(doc, v);
           result.checks = checks;
           result.status = checks.every(c => c.pass) ? 'pass' : 'fail';
+        })
+        .catch(e => {
+          result.status = 'fail';
+          result.checks = [{ name: 'Fetch', pass: false, detail: e.message }];
+        })
+        .finally(() => {
           dot.className = 'idot ' + result.status;
-          checksEl.innerHTML = checks.map(c =>
+          checksEl.innerHTML = result.checks.map(c =>
             `<span class="icheck ${c.pass?'pass':'fail'}">${c.pass?'✓':'✗'} ${esc(c.name)}</span>`
           ).join('');
-        } catch(e) {
-          result.status = 'fail';
-          result.checks = [{ name: 'Access', pass: false, detail: e.message }];
-          dot.className = 'idot fail';
-          checksEl.innerHTML = `<span class="icheck fail">✗ ${esc(e.message.substring(0,50))}</span>`;
-        }
-        onDone();
-      };
+          done++;
+          $('iframeCount').textContent = `${done}/${total}`;
+          $('iframeProgress').textContent = done < total ? `Testing ${done}/${total}...` : 'All done!';
+          updateIframeSummary();
+        });
 
-      iframe.onerror = () => {
-        clearTimeout(timeout);
-        result.status = 'fail';
-        result.checks = [{ name: 'Load', pass: false }];
-        dot.className = 'idot fail';
-        checksEl.innerHTML = '<span class="icheck fail">✗ Load failed</span>';
-        onDone();
-      };
-
-      function onDone() {
-        done++;
-        $('iframeCount').textContent = `${done}/${total}`;
-        $('iframeProgress').textContent = done < total ? `Testing ${done}/${total}...` : 'All done!';
-        updateIframeSummary();
-      }
+      promises.push(p);
     });
   });
+
+  await Promise.all(promises);
 }
 
 function runIframeChecks(doc, variant) {
@@ -804,10 +849,12 @@ function runIframeChecks(doc, variant) {
   const input = doc.getElementById('videoUrl');
   checks.push({ name: '#videoUrl', pass: !!input, detail: input ? 'found' : 'missing' });
 
-  // 3. Input font >= 16px
+  // 3. Input font >= 16px (only works on rendered documents, not DOMParser)
   if (input) {
-    const fs = parseFloat(getComputedStyle(input).fontSize);
-    checks.push({ name: 'Font≥16px', pass: fs >= 16, detail: fs + 'px' });
+    try {
+      const fs = parseFloat(getComputedStyle(input).fontSize);
+      if (!isNaN(fs)) checks.push({ name: 'Font≥16px', pass: fs >= 16, detail: fs + 'px' });
+    } catch {}
   }
 
   // 4. Has .btn-convert
