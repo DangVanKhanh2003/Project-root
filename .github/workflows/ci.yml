@@ -33,6 +33,7 @@ on:
           - 'sstube.net'
           - 'ytconvert.org'
           - 'yt1s.guru'
+          - 'Ytbdownloader.com'
 
 concurrency:
   group: ci-${{ github.repository }}-${{ github.ref }}
@@ -100,13 +101,15 @@ jobs:
               - 'apps/ytconvert.org/**'
             yt1s.guru:
               - 'apps/yt1s.guru/**'
+            Ytbdownloader.com:
+              - 'apps/Ytbdownloader.com/**'
 
       - name: Determine apps to deploy
         id: determine-apps
         env:
           COMMIT_MSG: ${{ github.event.head_commit.message }}
         run: |
-          ALL_APPS='["y2matepro","y2matevc","mp3fast","ytmp3.my","4kvideopro","ssvid.cc","ezconv","ytmp4.gg","onedownloader.net","u2snap.com","convert1s.com","snap1s.com","y2save.com","tube1s.com","snakeloader.com","ytsss.com","sstube.net","ytconvert.org","yt1s.guru"]'
+          ALL_APPS='["y2matepro","y2matevc","mp3fast","ytmp3.my","4kvideopro","ssvid.cc","ezconv","ytmp4.gg","onedownloader.net","u2snap.com","convert1s.com","snap1s.com","y2save.com","tube1s.com","snakeloader.com","ytsss.com","sstube.net","ytconvert.org","yt1s.guru","Ytbdownloader.com"]'
 
           # Handle manual trigger with specific_app
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
@@ -244,6 +247,10 @@ jobs:
           if [[ "${{ steps.filter.outputs['yt1s.guru'] }}" == "true" ]]; then
             CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["yt1s.guru"]')
             echo "✅ yt1s.guru changed"
+          fi
+          if [[ "${{ steps.filter.outputs['Ytbdownloader.com'] }}" == "true" ]]; then
+            CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["Ytbdownloader.com"]')
+            echo "✅ Ytbdownloader.com changed"
           fi
 
           echo "📋 Changed apps: $CHANGED_APPS"
@@ -389,6 +396,20 @@ jobs:
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
+  deploy-ytbdownloader-com:
+    needs: [detect-changes, deploy-y2matepro, deploy-y2matevc, deploy-mp3fast, deploy-ytmp3-my, deploy-4kvideopro]
+    if: ${{ !cancelled() && needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'Ytbdownloader.com') }}
+    uses: ./.github/workflows/deploy-app.yml
+    with:
+      app_name: Ytbdownloader.com
+      app_directory: apps/Ytbdownloader.com
+      filter_path: ./apps/Ytbdownloader.com
+      domain: ${{ vars.YTBDOWNLOADER_DOMAIN || 'ytbdownloader.com' }}
+    secrets:
+      SSH_HOST: ${{ secrets.SSH_HOST }}
+      SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
   deploy-u2snap-com:
     needs: [detect-changes, deploy-y2matepro, deploy-y2matevc, deploy-mp3fast, deploy-ytmp3-my, deploy-4kvideopro]
     if: ${{ !cancelled() && needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'u2snap.com') }}
@@ -407,7 +428,7 @@ jobs:
   # Wave 3: Waits for Wave 2 to finish
   # ============================================
   deploy-convert1s-com:
-    needs: [detect-changes, deploy-ssvid-cc, deploy-ezconv, deploy-ytmp4-gg, deploy-onedownloader-net, deploy-u2snap-com]
+    needs: [detect-changes, deploy-ssvid-cc, deploy-ezconv, deploy-ytmp4-gg, deploy-onedownloader-net, deploy-u2snap-com, deploy-ytbdownloader-com]
     if: ${{ !cancelled() && needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'convert1s.com') }}
     uses: ./.github/workflows/deploy-app.yml
     with:
@@ -421,7 +442,7 @@ jobs:
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
   deploy-snap1s-com:
-    needs: [detect-changes, deploy-ssvid-cc, deploy-ezconv, deploy-ytmp4-gg, deploy-onedownloader-net, deploy-u2snap-com]
+    needs: [detect-changes, deploy-ssvid-cc, deploy-ezconv, deploy-ytmp4-gg, deploy-onedownloader-net, deploy-u2snap-com, deploy-ytbdownloader-com]
     if: ${{ !cancelled() && needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'snap1s.com') }}
     uses: ./.github/workflows/deploy-app.yml
     with:
@@ -435,7 +456,7 @@ jobs:
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
   deploy-tube1s-com:
-    needs: [detect-changes, deploy-ssvid-cc, deploy-ezconv, deploy-ytmp4-gg, deploy-onedownloader-net, deploy-u2snap-com]
+    needs: [detect-changes, deploy-ssvid-cc, deploy-ezconv, deploy-ytmp4-gg, deploy-onedownloader-net, deploy-u2snap-com, deploy-ytbdownloader-com]
     if: ${{ !cancelled() && needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'tube1s.com') }}
     uses: ./.github/workflows/deploy-app.yml
     with:
@@ -449,7 +470,7 @@ jobs:
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
   deploy-y2save-com:
-    needs: [detect-changes, deploy-ssvid-cc, deploy-ezconv, deploy-ytmp4-gg, deploy-onedownloader-net, deploy-u2snap-com]
+    needs: [detect-changes, deploy-ssvid-cc, deploy-ezconv, deploy-ytmp4-gg, deploy-onedownloader-net, deploy-u2snap-com, deploy-ytbdownloader-com]
     if: ${{ !cancelled() && needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'y2save.com') }}
     uses: ./.github/workflows/deploy-app.yml
     with:
@@ -463,7 +484,7 @@ jobs:
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
   deploy-snackeloader-com:
-    needs: [detect-changes, deploy-ssvid-cc, deploy-ezconv, deploy-ytmp4-gg, deploy-onedownloader-net, deploy-u2snap-com]
+    needs: [detect-changes, deploy-ssvid-cc, deploy-ezconv, deploy-ytmp4-gg, deploy-onedownloader-net, deploy-u2snap-com, deploy-ytbdownloader-com]
     if: ${{ !cancelled() && needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'snakeloader.com') }}
     uses: ./.github/workflows/deploy-app.yml
     with:
@@ -561,6 +582,7 @@ jobs:
       - deploy-sstube-net
       - deploy-ytconvert-org
       - deploy-yt1s-guru
+      - deploy-ytbdownloader-com
     if: always()
     runs-on: ubuntu-latest
     steps:
@@ -594,3 +616,4 @@ jobs:
           echo "| sstube.net | ${{ needs.deploy-sstube-net.result || 'skipped' }} |"
           echo "| ytconvert.org | ${{ needs.deploy-ytconvert-org.result || 'skipped' }} |"
           echo "| yt1s.guru | ${{ needs.deploy-yt1s-guru.result || 'skipped' }} |"
+          echo "| Ytbdownloader.com | ${{ needs.deploy-ytbdownloader-com.result || 'skipped' }} |"

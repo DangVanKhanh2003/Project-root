@@ -25,6 +25,7 @@ on:
           - 'ytsss.com'
           - 'ytconvert.org'
           - 'yt1s.guru'
+          - 'Ytbdownloader.com'
       environment:
         description: 'Target environment'
         required: true
@@ -134,6 +135,11 @@ jobs:
               echo "directory=apps/yt1s.guru" >> $GITHUB_OUTPUT
               echo "filter_path=./apps/yt1s.guru" >> $GITHUB_OUTPUT
               echo "domain=${{ vars.YT1S_GURU_DOMAIN || 'yt1s.guru' }}" >> $GITHUB_OUTPUT
+              ;;
+            "Ytbdownloader.com")
+              echo "directory=apps/Ytbdownloader.com" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/Ytbdownloader.com" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.YTBDOWNLOADER_DOMAIN || 'ytbdownloader.com' }}" >> $GITHUB_OUTPUT
               ;;
           esac
 
