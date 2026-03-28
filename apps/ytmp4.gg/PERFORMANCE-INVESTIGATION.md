@@ -15,7 +15,7 @@ Không phải 1 nguyên nhân đơn lẻ — mà là **nhiều yếu tố đắt
 ```css
 .site-header {
     position: relative;
-    z-index: 200;
+    z-index: 210;
     background: var(--background-hero-section);
     backdrop-filter: blur(10px);        /* ← TẠO COMPOSITING LAYER ĐẮT ĐỎ */
     padding: 5px 0px;
