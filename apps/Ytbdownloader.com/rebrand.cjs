@@ -11,7 +11,7 @@ const replacements = [
     { match: /support@ytbdownloader\.com/g, replace: 'support@ytbdownloader.com' },
     { match: /meta\.ytbdownloader@/g, replace: 'meta.ytbdownloader@' },
     // Brand name (PascalCase)
-    { match: /Ytbdownloader\b/g, replace: 'Ytbdownloader' },
+    { match: /Ytbdownloader\b/g, replace: 'YTBDown' },
     // Uppercase
     { match: /YTBDOWNLOADER/g, replace: 'YTBDOWNLOADER' },
     // Remaining lowercase (storage keys, comments, namespaces)

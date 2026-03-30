@@ -1,6 +1,6 @@
 /**
  * Main Entry Point - TypeScript
- * Ytbdownloader - Video Downloader
+ * YTBDown - Video Downloader
  */
 
 // === CSS Import ===
