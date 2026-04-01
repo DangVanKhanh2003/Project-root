@@ -144,17 +144,6 @@ export class VideoItemRenderer {
             authorEl.textContent = item.meta.author || '';
         }
 
-        // Duration badge
-        const durationEl = el.querySelector('.multi-video-duration') as HTMLElement;
-        if (durationEl) {
-            const dur = formatDuration(item.meta.duration);
-            if (dur) {
-                durationEl.textContent = dur;
-                durationEl.style.display = '';
-            } else {
-                durationEl.style.display = 'none';
-            }
-        }
 
         // Error message
         const errorEl = el.querySelector('.multi-video-error') as HTMLElement;
@@ -274,7 +263,6 @@ export class VideoItemRenderer {
 
         const isDownloading = ['downloading', 'converting', 'analyzing', 'queued'].includes(item.status);
         const checkboxHtml = strategy.getCheckboxHtml(item);
-        const durationStr = formatDuration(item.meta.duration);
         const hideSourcePreview = VideoItemRenderer.shouldHideSourcePreview(item);
         const thumbSrc = hideSourcePreview ? TRANSPARENT_PIXEL : (item.meta.thumbnail || TRANSPARENT_PIXEL);
         const progressPercent = Math.round(item.progress || 0);
@@ -284,7 +272,6 @@ export class VideoItemRenderer {
             ${checkboxHtml}
             <div class="multi-video-thumb">
                 <img src="${escapeAttr(thumbSrc)}" alt="${escapeAttr(item.meta.title)}" loading="lazy">
-                ${!hideSourcePreview && durationStr ? `<span class="multi-video-duration">${durationStr}</span>` : ''}
             </div>
             <div class="multi-video-info">
                 <div class="multi-video-title" title="${escapeAttr(item.meta.title)}">${escapeHtml(item.meta.title)}</div>
