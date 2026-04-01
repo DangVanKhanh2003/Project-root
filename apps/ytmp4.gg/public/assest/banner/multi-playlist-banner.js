@@ -2,7 +2,7 @@
  * Multi-Playlist Banner Component
  * A self-contained banner with 2 cards:
  * 1. Download Multiple Videos -> youtube-multi-downloader
- * 2. Download Playlist -> download-mp3-youtube-playlist
+ * 2. Download Playlist -> download-youtube-playlist
  * 
  * Usage:
  * import { initMultiPlaylistBanner } from './multi-playlist-banner.js';
@@ -480,7 +480,7 @@ const BANNER_HTML = `
       </a>
 
       <!-- Card 2: Download Playlist -->
-      <a href="/download-mp3-youtube-playlist" class="mp-banner-card mp-banner-card-white mp-banner-link-playlist">
+      <a href="/download-youtube-playlist" class="mp-banner-card mp-banner-card-white mp-banner-link-playlist">
         <div class="mp-banner-card-icon">
           <svg viewBox="0 0 24 24" fill="currentColor">
             <path d="M15 6H3V8H15V6ZM15 10H3V12H15V10ZM3 16H11V14H3V16ZM17 6V14.18C16.69 14.07 16.35 14 16 14C14.34 14 13 15.34 13 17C13 18.66 14.34 20 16 20C17.66 20 19 18.66 19 17V8H22V6H17Z" />
@@ -535,7 +535,7 @@ function createBannerElement(options = {}) {
 
     const {
         multiPath = '/multi-youtube-downloader',
-        playlistPath = '/download-mp3-youtube-playlist',
+        playlistPath = '/download-youtube-playlist',
         multiParams = {},
         playlistParams = {}
     } = options;

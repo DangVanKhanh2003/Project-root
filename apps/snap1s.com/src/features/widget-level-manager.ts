@@ -155,7 +155,7 @@ function showMultiPlaylistBannerWidget(): void {
         multiPlaylistBannerShowTimeoutId = null;
     }
 
-    tryShowMultiPlaylistBannerWidget();
+    // tryShowMultiPlaylistBannerWidget(); // disabled: no playlist/multi pages exist on this site
 }
 
 function hideMultiPlaylistBannerWidget(): void {
