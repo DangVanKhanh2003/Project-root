@@ -534,7 +534,7 @@
 }
 
 .multi-video-thumb img {
-    height: 100%;
+    width: 100%;
     object-fit: cover;
     display: block;
 }
@@ -1123,7 +1123,7 @@
     }
 
     .multi-video-thumb img {
-        height: 100%;
+        width: 100%;
         object-fit: cover;
     }
 

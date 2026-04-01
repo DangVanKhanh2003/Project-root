@@ -975,7 +975,7 @@ html[data-theme="dark"] .multi-search-input::placeholder {
 }
 
 .multi-video-thumb img {
-    height: 100%;
+    width: 100%;
     object-fit: cover;
     display: block;
 }
@@ -2958,7 +2958,7 @@ html[data-theme="dark"] .btn-download-multi-download.is-outline:hover {
     }
 
     .multi-video-thumb img {
-        height: 100%;
+        width: 100%;
         object-fit: cover;
     }
 

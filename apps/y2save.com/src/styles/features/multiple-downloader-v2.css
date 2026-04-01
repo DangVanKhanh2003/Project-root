@@ -707,7 +707,7 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
 }
 
 .multi-video-thumb img {
-    height: 100%;
+    width: 100%;
     object-fit: cover;
     display: block;
 }
@@ -1345,7 +1345,7 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
     }
 
     .multi-video-thumb img {
-        height: 100%;
+        width: 100%;
         object-fit: cover;
     }
 
