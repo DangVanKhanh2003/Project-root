@@ -159,6 +159,8 @@ async function onItemCompleted(itemId: string, downloadUrl: string, groupId?: st
     if (!s.taskId) {
         console.error(`[MobileSaveZip] No taskId after init for group=${groupId || DEFAULT_GROUP}, cannot add file`);
         s.pendingItemIds.delete(itemId);
+        s.failedItemIds.add(itemId); // Track so retry can pick it up
+        updateZipButtonCount(groupId);
         return;
     }
 
@@ -183,15 +185,19 @@ async function onItemCompleted(itemId: string, downloadUrl: string, groupId?: st
 }
 
 async function ensureSession(s: GroupSession): Promise<void> {
-    try {
-        const result = await coreServices.saveZip!.saveInit();
-        if (result.success && result.taskId) {
-            s.taskId = result.taskId;
-        } else {
-            console.error('[MobileSaveZip] Init failed:', result.error);
+    // Retry init up to 3 times (iOS Safari drops requests when backgrounded)
+    for (let attempt = 1; attempt <= 3; attempt++) {
+        try {
+            const result = await coreServices.saveZip!.saveInit();
+            if (result.success && result.taskId) {
+                s.taskId = result.taskId;
+                return;
+            }
+            console.error(`[MobileSaveZip] Init failed (attempt ${attempt}/3):`, result.error);
+        } catch (err) {
+            console.error(`[MobileSaveZip] Init error (attempt ${attempt}/3):`, err);
         }
-    } catch (err) {
-        console.error('[MobileSaveZip] Init error:', err);
+        if (attempt < 3) await sleep(1000 * attempt); // backoff: 1s, 2s
     }
 }
 
@@ -216,21 +222,48 @@ export async function mobileSaveZipDownload(
     console.log(`[MobileSaveZip] ZIP requested, group=${groupId || DEFAULT_GROUP}, success=${s.successItemIds.size}, pending=${s.pendingItemIds.size}, failed=${s.failedItemIds.size}, taskId=${s.taskId}`);
 
     // Retry failed items before giving up
-    if (s.failedItemIds.size > 0 && s.taskId) {
+    if (s.failedItemIds.size > 0) {
         console.log(`[MobileSaveZip] Retrying ${s.failedItemIds.size} failed items...`);
+        updateBtn(btn, 'Retrying uploads...');
+
+        // If session init failed previously, re-init
+        if (!s.taskId && !s.isInitializing) {
+            s.isInitializing = true;
+            s.initPromise = ensureSession(s);
+            try { await s.initPromise; } finally { s.isInitializing = false; }
+        }
+
         const failedIds = [...s.failedItemIds];
         for (const failedId of failedIds) {
             const item = videoStore.getItem(failedId);
             if (item?.status === 'completed' && item.downloadUrl) {
                 s.failedItemIds.delete(failedId);
-                // Re-trigger (will skip if already in success/pending)
                 onItemCompleted(failedId, item.downloadUrl, groupId);
             } else {
                 s.failedItemIds.delete(failedId);
             }
         }
-        // Wait briefly for retries to complete
-        await sleep(2000);
+        // Wait for retries to complete
+        await sleep(3000);
+    }
+
+    // Also pick up any completed items not tracked at all (edge case: init failed on first attempt)
+    if (s.successItemIds.size === 0 && s.failedItemIds.size === 0 && s.pendingItemIds.size === 0) {
+        console.log('[MobileSaveZip] No tracked items, scanning store for completed items...');
+        const items: VideoItem[] = groupId
+            ? videoStore.getItemsByGroup(groupId)
+            : videoStore.getAllItems().filter(i => !i.groupId);
+        const completedItems = items.filter(i =>
+            i.status === 'completed' && i.downloadUrl && !s.lastZippedItemIds.has(i.id)
+        );
+        if (completedItems.length > 0) {
+            updateBtn(btn, 'Uploading files...');
+            for (const item of completedItems) {
+                onItemCompleted(item.id, item.downloadUrl!, groupId);
+            }
+            // Wait for uploads
+            await sleep(3000);
+        }
     }
 
     // Wait for any pending uploads to finish
