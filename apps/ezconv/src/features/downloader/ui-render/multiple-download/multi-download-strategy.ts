@@ -30,6 +30,10 @@ export class MultiDownloadStrategy implements RendererStrategy {
         return ' is-badges';
     }
 
+    getThumbClass(): string {
+        return '';
+    }
+
     getCheckboxHtml(item: VideoItem): string {
         const isSelectable = ['ready', 'expired', 'error', 'cancelled', 'completed'].includes(item.status);
         const disabledAttr = isSelectable ? '' : 'disabled';

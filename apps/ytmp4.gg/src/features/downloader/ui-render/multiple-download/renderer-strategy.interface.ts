@@ -10,6 +10,7 @@ export interface RendererStrategy {
     getActionButton(item: VideoItem, context: { isFileDownloading?: boolean, currentDownloadingItemId?: string, isGlobalLocked?: boolean }): string;
     getSettingsClass(item: VideoItem): string;
     getCheckboxHtml(item: VideoItem): string;
+    getThumbClass(): string;
     getStatusHtml(item: VideoItem): string;
     getPhaseHtml(item: VideoItem): string;
     afterRender?(el: HTMLElement, item: VideoItem): void;

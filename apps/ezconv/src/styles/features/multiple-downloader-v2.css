@@ -2957,6 +2957,14 @@ html[data-theme="dark"] .btn-download-multi-download.is-outline:hover {
         flex-shrink: 0;
     }
 
+    .multi-video-thumb--playlist {
+        height: 52px;
+    }
+
+    .multi-video-thumb--playlist img {
+        height: 100%;
+    }
+
     .multi-video-thumb img {
         width: 100%;
         object-fit: cover;

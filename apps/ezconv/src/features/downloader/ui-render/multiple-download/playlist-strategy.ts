@@ -70,6 +70,10 @@ export class PlaylistStrategy implements RendererStrategy {
         return isEditable ? ' is-dropdowns' : ' is-badges';
     }
 
+    getThumbClass(): string {
+        return 'multi-video-thumb--playlist';
+    }
+
     getCheckboxHtml(item: VideoItem): string {
         const isSelectable = ['ready', 'expired', 'error', 'cancelled', 'completed'].includes(item.status);
         const disabledAttr = isSelectable ? '' : 'disabled';

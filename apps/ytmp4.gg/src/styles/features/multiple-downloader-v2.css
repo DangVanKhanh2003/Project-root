@@ -562,13 +562,19 @@ html[data-format="mp3"] .multi-quality-select--mp3 {
     border-radius: 36px !important;
     margin-left: auto;
     font-weight: 700 !important;
-    font-size: 12px !important;
     display: flex !important;
     align-items: center !important;
     gap: 4px !important;
     height: 44px !important;
     cursor: pointer !important;
     min-width: 160px !important;
+}
+
+/* ZIP button text — desktop 14px, mobile 12px */
+.zip-btn-text {
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
 }
 
 .group-download-btn:hover:not(.is-disabled) {
@@ -1348,6 +1354,14 @@ html[data-format="mp3"] .multi-quality-select--mp3 {
         min-width: 70px;
         height: 52px;
         flex-shrink: 0;
+    }
+
+    .multi-video-thumb--playlist {
+        height: 52px;
+    }
+
+    .multi-video-thumb--playlist img {
+        height: 100%;
     }
 
     .multi-video-thumb img {
@@ -2385,7 +2399,10 @@ html[data-format="mp3"] .multi-quality-select--mp3 {
         height: 30px !important;
         width: 165px !important;
         min-width: 165px !important;
-        font-size: 0.75rem !important;
+    }
+
+    .zip-btn-text {
+        font-size: 12px;
     }
 
     .multi-video-title {

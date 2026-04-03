@@ -242,7 +242,7 @@ export class VideoItemRenderer {
             el.classList.add('skeleton-loading');
             el.innerHTML = `
                 ${strategy.getCheckboxHtml(item)}
-                <div class="multi-video-thumb">
+                <div class="multi-video-thumb ${strategy.getThumbClass()}">
                     <div class="skeleton-box"></div>
                 </div>
                 <div class="multi-video-info">
@@ -275,7 +275,7 @@ export class VideoItemRenderer {
 
         el.innerHTML = `
             ${checkboxHtml}
-            <div class="multi-video-thumb">
+            <div class="multi-video-thumb ${strategy.getThumbClass()}">
                 <img src="${escapeAttr(thumbSrc)}" alt="${escapeAttr(item.meta.title)}" loading="lazy">
             </div>
             <div class="multi-video-info">
