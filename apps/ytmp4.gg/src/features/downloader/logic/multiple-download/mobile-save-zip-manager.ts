@@ -342,7 +342,9 @@ function resetSession(groupId?: string): void {
     s.skippedWhileFrozen.length = 0;
 
     // Also scan store for completed items in this group not in lastZippedItemIds
-    const groupItems: VideoItem[] = groupId ? videoStore.getItemsByGroup(groupId) : videoStore.getAllItems();
+    const groupItems: VideoItem[] = groupId
+        ? videoStore.getItemsByGroup(groupId)
+        : videoStore.getAllItems().filter(i => !i.groupId); // Batch: only ungrouped items
     for (const item of groupItems) {
         if (item.status === 'completed' && item.downloadUrl && !s.lastZippedItemIds.has(item.id)) {
             const alreadyQueued = itemsToRetry.some(q => q.id === item.id);

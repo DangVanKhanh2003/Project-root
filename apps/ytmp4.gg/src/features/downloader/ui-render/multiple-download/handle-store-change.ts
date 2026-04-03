@@ -384,6 +384,7 @@ export function updateGroupCount(groupEl: HTMLElement, isLocked: boolean = false
     // Toggle Action Buttons based on active tab
     const convertAllBtn = groupEl.querySelector('[data-action="download-group"]') as HTMLElement;
     const zipBtn = groupEl.querySelector('[data-action="download-zip-group"]') as HTMLElement;
+    const isMobile = isMobileDevice();
 
     if (convertAllBtn && zipBtn) {
         if (activeTab === 'convert') {
@@ -411,7 +412,6 @@ export function updateGroupCount(groupEl: HTMLElement, isLocked: boolean = false
             if (!zipBtn.classList.contains('is-loading')) {
                 zipBtn.style.display = '';
 
-                const isMobile = isMobileDevice();
                 const zipCount = isMobile
                     ? getAddedCount(groupId) // Mobile: count from server session
                     : downloadItems.filter(i => i.status === 'completed' && i.isSelected).length;
@@ -426,7 +426,6 @@ export function updateGroupCount(groupEl: HTMLElement, isLocked: boolean = false
         }
 
         // Mobile + Download tab: hide checkbox/selection (auto-upload, no manual selection)
-        const isMobile = isMobileDevice();
         const selectionLabel = groupEl.querySelector('.group-selection-label') as HTMLElement;
         if (selectionLabel) {
             selectionLabel.style.display = (isMobile && activeTab === 'download') ? 'none' : '';
