@@ -27,7 +27,7 @@ server {
      default_type text/plain;
      try_files $uri $uri.txt;
      add_header Cache-Control "public, max-age=600";
-    }
+    } 
 
 
     # robots.txt riêng
