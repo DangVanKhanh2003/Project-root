@@ -6,7 +6,7 @@ Tài liệu này chia sẻ kinh nghiệm thực tế khi implement Mobile Save Z
 
 ### Pattern tuân thủ chặt chẽ
 
-Core package có pattern cố định cho mỗi service mới. Khi thêm Save ZIP service, đã tuân thủ đúng:
+Core package có pattern cố định cho mỗi service mới:
 
 - Interface file riêng → Implementation file riêng → Export qua barrel files → Export từ index.ts
 - Factory function pattern: `createSaveZipService(httpClient, config)`
@@ -17,177 +17,145 @@ Core package có pattern cố định cho mỗi service mới. Khi thêm Save ZI
 
 Core có `CoreServices` interface và `createVerifiedServices()` wrapper. Khi thêm service mới:
 
-1. Thêm field vào `CoreServices` interface (optional, vì không phải site nào cũng dùng)
+1. Thêm field vào `CoreServices` interface (optional)
 2. Thêm methods vào `methodRegistry` trong `createVerifiedServices()`
 3. Thêm namespace vào return object
 
-Nếu bỏ sót bước nào, `api.saveZip` sẽ không tồn tại trên type level → TypeScript error.
+Bỏ sót bước nào → TypeScript error.
 
 ### Service không cần JWT/CAPTCHA → gọi trực tiếp
 
-Save ZIP API không yêu cầu authentication. Nếu gọi qua `api.saveZip.*` (verified services), response bị wrap trong `VerifiedResult<T>` — phải unwrap qua `.data`. Đơn giản hơn là gọi trực tiếp qua `coreServices.saveZip!.*` để nhận raw response.
-
-Bài học: không phải mọi service đều cần đi qua verified services. Chọn đường ngắn nhất phù hợp.
+Save ZIP API không cần authentication. Gọi qua verified services wrapper bị wrap trong `VerifiedResult<T>` — phải unwrap. Đơn giản hơn là gọi trực tiếp `coreServices.saveZip!.*`.
 
 ## 2. Thiết kế Mobile Save ZIP Manager
 
 ### Per-group session là bắt buộc
 
-Mỗi playlist group cần session riêng. Nếu dùng 1 session chung, user click ZIP ở group A sẽ ZIP luôn files của group B.
-
-Dùng `Map<string, GroupSession>` với key là `groupId`. Batch items (không có group) dùng key `'__default__'`.
+Mỗi playlist group cần session riêng. Dùng `Map<string, GroupSession>` với key là `groupId`. Batch items dùng key `'__default__'`.
 
 ### Count chỉ tính items thành công, dots hiện khi còn items đang xử lý
 
-Ban đầu dùng optimistic count (pending + success), nhưng gây confusing khi API fail — count cao hơn thực tế. Sau nhiều iteration, approach cuối cùng:
-
-- `getAddedCount()` chỉ trả `successItemIds.size` — count chính xác
-- Dots `...` hiện khi còn items đang xử lý: scan store cho processing statuses (pending, analyzing, fetching_metadata, queued, downloading, converting) HOẶC có pending API uploads
-- Dots biến mất khi **TẤT CẢ items** không còn processing — không chỉ khi pending uploads xong
+- `getAddedCount()` chỉ trả `successItemIds.size` — count chính xác, không optimistic
+- Dots `...` hiện khi còn items ở processing status trong store (pending, analyzing, fetching_metadata, queued, downloading, converting) HOẶC có pending API uploads
+- Dots biến mất khi **TẤT CẢ items** không còn processing
 
 ### Timing: delete pending TRƯỚC update button
 
-Bug khó debug: dots không biến mất dù tất cả items đã upload xong. Nguyên nhân: `pendingItemIds.delete()` nằm trong `finally` block, chạy SAU `updateZipButtonCount()`. Lúc update, item vẫn trong pending set → dots vẫn hiện.
+`pendingItemIds.delete()` PHẢI chạy TRƯỚC `updateZipButtonCount()`. Nếu nằm trong `finally` block (chạy sau) → lúc update, item vẫn trong pending → dots không biến mất.
 
-Fix: move `pendingItemIds.delete(itemId)` lên TRƯỚC `updateZipButtonCount()`, đặt ngay sau khi biết success/fail, không dùng `finally`.
+### Track failed items để retry
 
-### Track failed items để retry khi click ZIP
+Thêm `failedItemIds` set. Mọi failure path phải add vào set này (bao gồm cả khi `taskId = null` sau init fail). Khi click ZIP:
+1. Re-init session nếu `taskId` null
+2. Retry tất cả failed items
+3. Nếu không có items nào tracked → scan store tìm completed items → upload lại
+4. Đợi pending hoàn thành
+5. Rồi mới freeze + tạo ZIP
 
-Nếu `saveAddFile` fail (network error, server error), item biến mất khỏi tracking (không pending, không success) → user thấy count thấp hơn expected → click ZIP → "No files uploaded yet".
+### Freeze mechanism
 
-Fix: thêm `failedItemIds` set. Khi click ZIP:
-1. Retry tất cả failed items trước
-2. Đợi pending uploads hoàn thành (max 30s)
-3. Rồi mới freeze + tạo ZIP
-
-### Freeze mechanism ngăn race condition
-
-Khi user click ZIP → session freeze → items complete sau đó bị queue vào `skippedWhileFrozen`. Sau khi ZIP xong và reset session → tự động re-add các items bị skip.
-
-Không có freeze, items mới complete sẽ add vào session đang tạo ZIP → server behavior không xác định.
+Khi user click ZIP → freeze → items complete sau đó bị queue. ZIP xong → reset → re-add skipped items.
 
 ### Batch resetSession phải filter ungrouped items
 
-Bug: `resetSession()` khi batch mode (không có groupId) scan `videoStore.getAllItems()` → trả về items từ TẤT CẢ groups → cố add items của playlist group vào default session → server reject.
+Batch mode scan store PHẢI filter `!item.groupId`. Không filter → lẫn items của playlist groups vào default session.
 
-Fix: batch mode phải filter `videoStore.getAllItems().filter(i => !i.groupId)`.
+## 3. iOS Resilience
 
-## 3. Bài học về DOM và re-render
+### iOS Safari drop requests khi backgrounded
+
+Đây là nguyên nhân chính gây "items not uploaded" trên iPhone. iOS Safari kill/suspend network requests khi user chuyển tab, lock screen, hoặc nhận notification.
+
+### saveInit retry 3 lần với backoff
+
+`ensureSession()` retry 3 lần: attempt 1, đợi 1s, attempt 2, đợi 2s, attempt 3. Đủ cho iOS re-establish network sau khi focus lại.
+
+### KHÔNG DROP items khi init fail
+
+Khi `taskId = null` sau init → item PHẢI vào `failedItemIds`. Trước đó chỉ xóa khỏi `pendingItemIds` → item biến mất hoàn toàn → "No files uploaded yet" dù items hiện completed trong UI.
+
+### Full recovery khi click ZIP
+
+Khi user click ZIP mà không có items nào tracked:
+1. Re-init session
+2. Scan store tìm tất cả completed items chưa ZIP
+3. Upload lại từ đầu
+4. Đợi uploads xong → tạo ZIP
+
+Kết quả: kể cả khi iOS drop mọi request, user click ZIP → hệ thống tự recover.
+
+## 4. DOM và re-render
 
 ### innerHTML re-render phá hủy DOM references
 
-Đây là bug nghiêm trọng nhất gặp phải. Flow:
+Flow nguy hiểm:
+1. `mobileSaveZipDownload(btn)` giữ reference tới button element
+2. Store events fire → `updateBatchHeader()` re-render toàn bộ `headerEl.innerHTML`
+3. Button cũ bị detach → `updateBtn(btn, 'Zipping...')` update node không trong DOM
 
-1. User click ZIP → `mobileSaveZipDownload(btn)` nhận reference tới button DOM element
-2. Trong lúc polling, store events fire (items complete, progress update)
-3. Store subscription → `updateBatchHeader()` → **re-render toàn bộ `headerEl.innerHTML`**
-4. Button DOM element cũ bị **detach khỏi DOM**, thay bằng element mới
-5. `updateBtn(btn, 'Zipping 3/5...')` update element đã detach → user không thấy gì
+Fix: `is-loading` class trên button. `updateBatchHeader()` check → skip re-render nếu `is-loading`.
 
-**Giải pháp đã dùng**: Thêm `is-loading` class vào button trước khi bắt đầu. Trong `updateBatchHeader()`, check nếu button có `is-loading` → skip toàn bộ re-render. Khi ZIP xong → remove `is-loading` → re-render lại bình thường.
+### is-loading guard: protect content, KHÔNG protect visibility
 
-Bài học: khi có function chạy async lâu (polling) và giữ DOM reference, PHẢI bảo vệ element khỏi bị re-render bởi các handler khác.
+Guard chỉ ngăn re-render override text/count. Show/hide theo tab KHÔNG bị guard:
 
-### is-loading guard: chỉ protect content, không protect visibility
+- Convert tab → luôn hide ZIP button (`zipBtn.style.display = 'none'`)
+- Download tab → luôn show ZIP button (`zipBtn.style.display = ''`) — đặt NGOÀI guard
+- Guard chỉ bọc phần update innerHTML/disabled bên trong
 
-`is-loading` guard ngăn re-render override button text khi đang polling. Nhưng KHÔNG nên ngăn show/hide theo tab:
+Sai lầm: đặt cả show lẫn content update bên trong guard → chuyển tab convert rồi quay lại download → button không hiện lại.
 
-- Convert tab → luôn hide ZIP button (kể cả khi đang polling)
-- Download tab → luôn show ZIP button
+### Sau re-render phải sync state
 
-Tách `zipBtn.style.display = ''` (show) ra **ngoài** `is-loading` guard. Chỉ đặt update content (innerHTML, disabled state) bên trong guard.
+`updateBatchHeader()` render button với `getAddedCount()` có thể stale (API async chưa xong). Sau re-render → gọi `updateHeaderZipButton()` từ mobile manager để sync lại.
 
-Sai lầm trước đó: đặt cả show lẫn content update bên trong guard → chuyển tab convert rồi quay lại download → button không hiện lại.
+### `is-disabled` class vs `disabled` attribute
 
-### Sau re-render phải sync lại state từ source of truth
+Phải sync CẢ HAI: `classList.toggle('is-disabled')` + `setAttribute('aria-disabled')` + `disabled` property.
 
-`updateBatchHeader()` render ZIP button với count từ `getAddedCount()`. Nhưng `getAddedCount()` có thể trả về giá trị cũ nếu API async chưa xong. Sau khi re-render, gọi `updateHeaderZipButton()` (từ mobile manager) để sync lại count/disabled/dots state từ session manager — source of truth cho mobile count.
+## 5. Performance
 
-### `is-disabled` class vs `disabled` attribute là hai thứ khác nhau
+### Đừng re-render trên mọi event
 
-CSS dùng `.is-disabled` class để style. Một số chỗ chỉ set `disabled` attribute mà quên toggle `.is-disabled` class → button trông enabled nhưng thực ra disabled, hoặc ngược lại.
+`item:progress` fire ~1 lần/giây/item. Với 20 items = 20 events/giây. Skip `updateBatchHeader()` cho `item:progress` và `items:settings-changed`.
 
-Khi update button state, phải sync CẢ HAI: `classList.toggle('is-disabled')` + `setAttribute('aria-disabled')` + `disabled` property.
+## 6. Global download lock
 
-## 4. Performance: Đừng re-render trên mọi event
+Mobile ZIP button bỏ qua global lock (server-side, không conflict với individual downloads).
 
-### Vấn đề
+## 7. Checkbox visibility
 
-Store subscription handler chạy trên MỌI store event. Trong đó `item:progress` fire rất thường xuyên (~1 lần/giây/item đang download). Với playlist 20 items = ~20 events/giây.
+- Page có tabs: convert tab giữ checkbox, download tab ẩn
+- Page flat list: ẩn toàn bộ trên mobile
+- Dùng CSS class `.is-mobile-zip` trên `<html>` element
 
-Ban đầu, `updateBatchHeader()` (full innerHTML re-render) chạy cho mọi event → 20 lần re-render header/giây → lag rõ rệt.
+## 8. Group container
 
-### Giải pháp
+KHÔNG xóa group khi hết items. User có thể muốn load more hoặc xem lại. Bỏ logic auto-remove group.
 
-Filter event types: chỉ chạy `updateBatchHeader()` cho events thực sự thay đổi header content:
+## 9. CSS notes
 
-- `item:added`, `item:removed` — thay đổi item count
-- `item:updated` — thay đổi status (pending → completed)
-- `items:selection-changed` — thay đổi selected count
-- `items:cleared`, `group:updated` — thay đổi structure
-
-Skip cho:
-
-- `item:progress` — chỉ thay đổi progress bar, không ảnh hưởng header
-- `items:settings-changed` — chỉ thay đổi format/quality dropdowns
-
-## 5. Global download lock và mobile ZIP
-
-### Vấn đề
-
-Một số site có `isGlobalDownloadLocked` flag — lock TẤT CẢ download/ZIP buttons khi một individual item đang download. Logic này hợp lý cho desktop (tránh concurrent downloads), nhưng trên mobile, ZIP là server-side và không conflict với individual downloads.
-
-### Giải pháp
-
-ZIP button disabled check trên mobile bỏ qua global lock. Nếu site có global lock mechanism, cần tương tự exempt mobile ZIP button.
-
-## 6. Checkbox visibility theo context
-
-### Nguyên tắc
-
-Checkbox phục vụ cho 2 tác vụ **ĐỘC LẬP**:
-1. Chọn items để **convert** (manual action)
-2. Chọn items để **ZIP download** (desktop only)
-
-Trên mobile, ZIP auto-upload → checkbox cho mục đích (2) không cần. Nhưng checkbox cho mục đích (1) vẫn cần nếu page có batch convert.
-
-### Cách xác định cho mỗi site
-
-- Nếu page có tabs (convert/download) riêng biệt: convert tab giữ checkbox, download tab ẩn checkbox
-- Nếu page là flat list và checkbox CHỈ dùng cho ZIP selection: ẩn toàn bộ trên mobile
-- Nếu page là flat list và checkbox dùng cho CẢ convert lẫn ZIP: cần phân tích kỹ hơn — có thể ẩn checkbox chỉ cho items ở download status
-
-Đây là phần phụ thuộc nhiều nhất vào cấu trúc cụ thể của từng site. Không có giải pháp one-size-fits-all.
-
-### Cách hide checkbox bằng CSS
-
-Dùng CSS class trên `<html>` element (e.g., `.is-mobile-zip`) thay vì JS per-element hide. Ưu điểm:
-
-- Một class control tất cả
-- Dễ target theo DOM structure: items trong group vs items ngoài group
-- Không cần chạy JS mỗi khi item mới xuất hiện
-
-## 7. CSS notes
-
-- ZIP button cố định width trên mobile (ví dụ 165px) để tránh nhảy layout khi count/dots thay đổi
+- ZIP button cố định width trên mobile, font-size 12px
 - Animated dots (`.automation-dots`) đặt SAU dấu `)` — `Download ZIP (3)...`
-- `margin-left: auto` trên button và button container để đẩy sang phải khi checkbox ẩn
-- Đảm bảo responsive breakpoint không override `min-width` thành `unset`
+- `margin-left: auto` đẩy button sang phải
+- Responsive breakpoint không override width
 
-## 8. Checklist verify sau khi implement
+## 10. Checklist verify
 
 - [ ] Build thành công
-- [ ] Desktop flow không bị ảnh hưởng (ZIP button vẫn hoạt động như cũ)
-- [ ] Mobile: listener start khi load page (check console log)
-- [ ] Mobile: items complete → count trên ZIP button tăng khi upload thành công
-- [ ] Mobile: khi còn items đang xử lý → button hiện animated dots `...` sau count
-- [ ] Mobile: khi TẤT CẢ items xong (completed/error/cancelled/ready) → dots biến mất
-- [ ] Mobile: click ZIP → retry failed items → wait pending → button text đổi sang progress
-- [ ] Mobile: ZIP thành công → download trigger → items bị xóa khỏi list
+- [ ] Desktop flow không bị ảnh hưởng
+- [ ] Mobile: listener start khi load page
+- [ ] Mobile: count tăng khi upload thành công (không optimistic)
+- [ ] Mobile: dots `...` hiện khi còn items đang xử lý
+- [ ] Mobile: dots biến mất khi TẤT CẢ items xong
+- [ ] Mobile: click ZIP → retry failed → re-init if needed → scan store fallback
+- [ ] Mobile: ZIP thành công → items xóa khỏi list, group giữ lại
 - [ ] Mobile: ZIP button không bị lock bởi global download lock
-- [ ] Mobile: ZIP button ẩn trên convert tab, hiện lại khi quay về download tab (kể cả khi đang polling)
-- [ ] Mobile: checkbox ẩn/hiện đúng theo context (tab-based vs flat list)
-- [ ] Performance: không lag khi nhiều items đang download
-- [ ] Per-group: mỗi group có session riêng, count riêng
-- [ ] Batch mode: resetSession chỉ scan ungrouped items
-- [ ] Entry points: listener init ở TẤT CẢ download pages có multiple items
+- [ ] Mobile: ZIP button ẩn trên convert tab, hiện lại trên download tab (kể cả khi polling)
+- [ ] Mobile: checkbox ẩn/hiện đúng theo context
+- [ ] iOS: saveInit retry 3x, failed items tracked, full recovery on ZIP click
+- [ ] Performance: item:progress không trigger heavy re-render
+- [ ] Per-group: session riêng, count riêng
+- [ ] Batch: resetSession chỉ scan ungrouped items
+- [ ] Group: không bị xóa khi hết items
+- [ ] Entry points: listener init ở TẤT CẢ download pages

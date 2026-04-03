@@ -84,11 +84,7 @@ export function createStoreChangeHandler(config: StoreChangeHandlerConfig) {
                     if (groupEl) {
                         const isLocked = config.getGlobalLockState?.() || false;
                         updateGroupCount(groupEl, isLocked);
-                        // Remove group if no video items remain
-                        const groupItems = groupEl.querySelector('.group-items');
-                        if (groupItems && groupItems.querySelectorAll('.multi-video-item').length === 0) {
-                            groupEl.remove();
-                        }
+                        // Keep group visible even when all items downloaded (user may want to load more)
                     }
                 }
 

@@ -562,6 +562,7 @@ html[data-format="mp3"] .multi-quality-select--mp3 {
     border-radius: 36px !important;
     margin-left: auto;
     font-weight: 700 !important;
+    font-size: 12px !important;
     display: flex !important;
     align-items: center !important;
     gap: 4px !important;
