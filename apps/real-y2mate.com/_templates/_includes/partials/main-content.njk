@@ -4,7 +4,7 @@
             <div class=" main-content-card">
         {% for section in page.content.sections %}
         <div class="content-section">
-            <h2>{{ section.h2 }}</h2>
+            <h2>{{ section.h2 | localizeLinks(langPrefix) | safe }}</h2>
 
             {# --- Simple paragraphs --- #}
             {% if section.p %}
@@ -18,7 +18,7 @@
             <ol>
                 {% for item in section.ol %}
                 <li>
-                    <h3>{{ item.h3 }}</h3>
+                    <h3>{{ item.h3 | localizeLinks(langPrefix) | safe }}</h3>
                     {% for para in item.p %}
                     <p>{{ para | localizeLinks(langPrefix) | safe }}</p>
                     {% endfor %}
@@ -32,7 +32,7 @@
             <ul>
                 {% for item in section.ul %}
                 <li>
-                    <h3>{{ item.h3 }}</h3>
+                    <h3>{{ item.h3 | localizeLinks(langPrefix) | safe }}</h3>
                     {% for para in item.p %}
                     <p>{{ para | localizeLinks(langPrefix) | safe }}</p>
                     {% endfor %}
