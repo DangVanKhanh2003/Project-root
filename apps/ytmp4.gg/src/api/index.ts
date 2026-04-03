@@ -15,6 +15,7 @@ import {
   createV3PlaylistService,
   createV3DownloadService,
   createV3ZipDownloadService,
+  createSaveZipService,
   createExternalExtractService,
   createSupporterService,
 
@@ -125,6 +126,13 @@ const zipApiConfig = {
   timeout: getTimeout('zipDownload'),
 };
 
+const saveZipApiConfig = {
+  saveZip: {
+    baseUrl: MUTI_DOWNLOAD_BASE_URL,
+    timeout: getTimeout('saveZipInit'),
+  },
+};
+
 const ytMetaApiConfig = {
   baseUrl: YT_META_BASE_URL,
   timeout: getTimeout('playlist'),
@@ -161,6 +169,9 @@ const coreServices = {
     ...apiConfig,
     zip: zipApiConfig
   }),
+
+  // Save ZIP (server-side ZIP session for mobile — same base URL as ZIP Download)
+  saveZip: createSaveZipService(zipHttpClient, saveZipApiConfig),
 
   // External Extract (cc.ytconvert.org — direct download, no polling)
   externalExtract: createExternalExtractService(externalExtractHttpClient, {

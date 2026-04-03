@@ -560,6 +560,7 @@ html[data-format="mp3"] .multi-quality-select--mp3 {
     border: none !important;
     padding: 8px 24px !important;
     border-radius: 36px !important;
+    margin-left: auto;
     font-weight: 700 !important;
     display: flex !important;
     align-items: center !important;
@@ -1832,6 +1833,7 @@ html[data-format="mp3"] .multi-quality-select--mp3 {
     display: flex;
     gap: 0.75rem;
     position: relative;
+    margin-left: auto;
 }
 
 .convert-hand-guide {
@@ -2460,5 +2462,55 @@ html[data-format="mp3"] .multi-quality-select--mp3 {
     .multi-video-item.fetching_metadata .btn-remove,
     .btn-icon.btn-cancel {
         display: none !important;
+    }
+}
+
+/* ─── Mobile Save ZIP ─────────────────────────────────────── */
+
+/* Batch mode (items NOT in playlist group): hide ALL checkboxes on mobile */
+.is-mobile-zip .multi-download-list > .multi-video-item .item-checkbox-wrapper {
+    display: none !important;
+}
+
+/* Playlist/Channel mode (items inside .playlist-group):
+   Hide checkboxes only for download-status items (auto-upload, no manual selection).
+   Convert-status items keep checkbox for "Convert selected" action. */
+.is-mobile-zip .playlist-group .multi-video-item.queued .item-checkbox-wrapper,
+.is-mobile-zip .playlist-group .multi-video-item.downloading .item-checkbox-wrapper,
+.is-mobile-zip .playlist-group .multi-video-item.converting .item-checkbox-wrapper,
+.is-mobile-zip .playlist-group .multi-video-item.completed .item-checkbox-wrapper,
+.is-mobile-zip .playlist-group .multi-video-item.expired .item-checkbox-wrapper,
+.is-mobile-zip .playlist-group .multi-video-item.error .item-checkbox-wrapper {
+    display: none !important;
+}
+
+/* Animated dots for ZIP progress button */
+.automation-dots {
+    display: inline;
+}
+
+.automation-dots span {
+    animation: dotFade 1.4s infinite;
+    opacity: 0;
+}
+
+.automation-dots span:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.automation-dots span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.automation-dots span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes dotFade {
+    0%, 80%, 100% {
+        opacity: 0;
+    }
+    40% {
+        opacity: 1;
     }
 }

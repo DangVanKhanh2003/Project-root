@@ -22,6 +22,7 @@ import type { IYouTubePublicApiService } from '../services/public-api/interfaces
 import type { IV3PlaylistService } from '../services/v3/interfaces/playlist.interface';
 import type { IV3DownloadService } from '../services/v3/interfaces/download.interface';
 import type { IExternalExtractService } from '../services/v3/interfaces/external-extract.interface';
+import type { ISaveZipService } from '../services/v3/interfaces/save-zip.interface';
 
 /**
  * Core Services Collection
@@ -45,6 +46,7 @@ export interface CoreServices {
   playlistV3?: IV3PlaylistService;
   downloadV3?: IV3DownloadService;
   zipDownload?: IZipDownloadService;
+  saveZip?: ISaveZipService;
   externalExtract?: IExternalExtractService;
 }
 
@@ -153,6 +155,17 @@ export function createVerifiedServices(
   if (services.zipDownload) {
     methodRegistry['zipDownload.createZipDownload'] = (request: any) =>
       services.zipDownload!.createZipDownload(request);
+  }
+
+  if (services.saveZip) {
+    methodRegistry['saveZip.saveInit'] = () =>
+      services.saveZip!.saveInit();
+    methodRegistry['saveZip.saveAddFile'] = (request: any) =>
+      services.saveZip!.saveAddFile(request);
+    methodRegistry['saveZip.saveZip'] = (request: any) =>
+      services.saveZip!.saveZip(request);
+    methodRegistry['saveZip.saveStatus'] = (taskId: string) =>
+      services.saveZip!.saveStatus(taskId);
   }
 
   if (services.externalExtract) {
@@ -381,6 +394,18 @@ export function createVerifiedServices(
     zipDownload: {
       createZipDownload: (request: Parameters<IZipDownloadService['createZipDownload']>[0]) =>
         wrap<ZipDownloadResponse>('zipDownload.createZipDownload', request),
+    },
+
+    // Save ZIP (server-side ZIP session for mobile)
+    saveZip: {
+      saveInit: () =>
+        wrap('saveZip.saveInit'),
+      saveAddFile: (request: Parameters<ISaveZipService['saveAddFile']>[0]) =>
+        wrap('saveZip.saveAddFile', request),
+      saveZip: (request: Parameters<ISaveZipService['saveZip']>[0]) =>
+        wrap('saveZip.saveZip', request),
+      saveStatus: (taskId: string) =>
+        wrap('saveZip.saveStatus', taskId),
     },
 
     // External Extract (cc.ytconvert.org)

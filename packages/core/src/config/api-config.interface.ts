@@ -115,6 +115,24 @@ export interface ApiConfig {
   };
 
   /**
+   * Save ZIP API configuration (optional)
+   * Server-side ZIP session for mobile batch downloads
+   */
+  saveZip?: {
+    /**
+     * Full base URL for Save ZIP API
+     * @example 'https://muti-download.ytconvert.org'
+     */
+    baseUrl: string;
+
+    /**
+     * Optional timeout for Save ZIP requests (ms)
+     * @default 15000
+     */
+    timeout?: number;
+  };
+
+  /**
    * Per-operation timeout overrides (optional)
    * These override the default timeouts for specific operations
    */
@@ -156,6 +174,18 @@ export interface ApiConfig {
 
     /** V3: Get status timeout (55 seconds) */
     v3GetStatus?: number;
+
+    /** Save ZIP: Init session timeout */
+    saveZipInit?: number;
+
+    /** Save ZIP: Add file timeout */
+    saveZipAdd?: number;
+
+    /** Save ZIP: Create ZIP timeout */
+    saveZip?: number;
+
+    /** Save ZIP: Poll status timeout */
+    saveZipStatus?: number;
   };
 }
 
@@ -184,6 +214,11 @@ export const DEFAULT_TIMEOUTS = {
   // V3 API timeouts
   v3CreateJob: 3600000, // 1 hour
   v3GetStatus: 55000, // 55 seconds
+  // Save ZIP API timeouts (mobile)
+  saveZipInit: 15000,
+  saveZipAdd: 15000,
+  saveZip: 15000,
+  saveZipStatus: 10000,
 } as const;
 
 /**

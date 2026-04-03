@@ -115,6 +115,24 @@ export const V3_ENDPOINTS = {
  * Base URL: https://cc.ytconvert.org
  * Direct download — no polling needed.
  */
+/**
+ * Save ZIP API endpoints (server-side ZIP session for mobile)
+ * Base URL: https://muti-download.ytconvert.org
+ */
+export const SAVE_ZIP_ENDPOINTS = {
+  /** Initialize ZIP session - POST /save/init */
+  INIT: '/save/init',
+
+  /** Add file to session - POST /save/add */
+  ADD: '/save/add',
+
+  /** Create ZIP from session - POST /save/zip */
+  ZIP: '/save/zip',
+
+  /** Get session status - GET /save/status/{taskId} */
+  STATUS: '/save/status',
+} as const;
+
 export const EXTERNAL_EXTRACT_ENDPOINTS = {
   /** Extract media - POST /api/v2/download */
   DOWNLOAD: '/api/v2/download',

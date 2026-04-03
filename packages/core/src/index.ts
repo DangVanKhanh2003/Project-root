@@ -52,10 +52,12 @@ export {
   createV3DownloadService,
   createV3PlaylistService,
   createV3ZipDownloadService,
+  createSaveZipService,
   createExternalExtractService,
   type IV3DownloadService,
   type IV3PlaylistService,
   type IZipDownloadService,
+  type ISaveZipService,
   type IExternalExtractService,
 } from './services/v3';
 
