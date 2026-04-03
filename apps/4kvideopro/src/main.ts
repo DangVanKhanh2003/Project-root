@@ -12,6 +12,7 @@ import './styles/index.css';
 import './ui-components/format-selector/format-selector.css';
 
 import { recordPageLoad } from './utils/page-freshness';
+import { initAllowedFeatures } from './features/allowed-features';
 
 /**
  * Initialize downloader UI
@@ -207,6 +208,7 @@ function initFeedbackWidget(): void {
  */
 function loadFeatures() {
   recordPageLoad();
+  initAllowedFeatures(); // Pre-warm country cache for priority extract routing
   initMobileMenu(); // Initialize mobile menu
   initLangSelector(); // Initialize language selector dropdown
   initDrawerLangSelector(); // Initialize drawer language selector dropdown

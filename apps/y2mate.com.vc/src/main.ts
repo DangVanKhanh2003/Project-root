@@ -11,6 +11,7 @@ import { applyInitialVisibility } from './features/widget-level-manager';
 import { initLicenseOnPageLoad } from './features/license/license-token';
 import { initHeroFeatureLinks } from './features/hero-feature-links';
 import { recordPageLoad } from './utils/page-freshness';
+import { initAllowedFeatures } from './features/allowed-features';
 
 
 
@@ -225,6 +226,7 @@ async function loadFeatures() {
   recordPageLoad();                  // Record page load timestamp for stale-page detection
   await applyInitialVisibility();   // Initialize license button + supporter badge
   initLicenseOnPageLoad();          // Background revalidation if cache is stale (fire-and-forget)
+  initAllowedFeatures();            // Pre-warm country cache for priority extract routing
   initMobileMenu(); // Initialize mobile menu
   initLangSelector(); // Initialize language selector dropdown
   initDrawerLangSelector(); // Initialize drawer language selector dropdown

@@ -1,10 +1,11 @@
 
 import { apiV3, v3Config } from '../../../../api/v3';
-import { mapToV3DownloadRequest } from '@downloader/core';
+import { mapToV3DownloadRequest, type ExtractV2Options } from '@downloader/core';
 import { retryWithBackoff, RETRY_CONFIGS, isTimeoutError } from '../conversion/retry-helper';
 import { VideoItemSettings, ProgressPhase } from '../../state/multiple-download-types';
 import { extractMediaInfoFromCreateJob, hasExtractedMediaInfo, type ExtractedMediaInfo } from '../conversion/v3/extract-media-info';
 import { checkLimit } from '../../../../features/download-limit';
+import { resolveExtractStrategy, callExternalExtract, EXTRACT_STRATEGY } from '../priority-extract-router';
 
 export interface DownloadCallbacks {
     onPhaseChange: (phase: ProgressPhase) => void;
@@ -29,55 +30,123 @@ const TERMINAL_JOB_STATUSES = new Set(['error', 'not_found', 'failed', 'faild'])
 
 export async function runSingleDownload(config: DownloadConfig): Promise<void> {
     const { url, settings, signal, callbacks } = config;
+
+    // Resolve extract strategy
+    const extractOptions = buildExtractV2Options(settings);
+    const strategy = resolveExtractStrategy(extractOptions);
+
+    callbacks.onPhaseChange('extracting');
+
+    if (strategy === EXTRACT_STRATEGY.EXTERNAL_FIRST) {
+        // Try External Extract first -> V3 fallback
+        const extResult = await callExternalExtract(url, extractOptions, signal);
+        if (signal.aborted) return;
+
+        if (extResult.ok && extResult.data) {
+            callbacks.onProgress(100, 'processing');
+            callbacks.onComplete(extResult.data.url, extResult.data.filename);
+            return;
+        }
+
+        // External failed -> silent fallback to V3
+    }
+
+    // V3 flow (primary or fallback from external-first)
+    const v3Success = await runV3Flow(url, settings, signal, callbacks);
+
+    if (v3Success || signal.aborted) return;
+
+    // V3 failed -> try External Extract as fallback (only for v3-first + mp3/mp4)
+    if (strategy === EXTRACT_STRATEGY.V3_FIRST) {
+        const outputFormat = extractOptions.downloadMode === 'video'
+            ? (extractOptions.youtubeVideoContainer || 'mp4')
+            : (extractOptions.audioFormat || 'mp3');
+
+        if (outputFormat === 'mp3' || outputFormat === 'mp4') {
+            const extResult = await callExternalExtract(url, extractOptions, signal);
+            if (signal.aborted) return;
+
+            if (extResult.ok && extResult.data) {
+                callbacks.onProgress(100, 'processing');
+                callbacks.onComplete(extResult.data.url, extResult.data.filename);
+                return;
+            }
+        }
+    }
+
+    // Both failed
+    callbacks.onError('Download failed. Please try again.');
+}
+
+/**
+ * Run V3 flow: create job -> poll status.
+ * Returns true if successful, false if failed.
+ */
+async function runV3Flow(
+    url: string,
+    settings: VideoItemSettings,
+    signal: AbortSignal,
+    callbacks: DownloadCallbacks,
+): Promise<boolean> {
     let lastError: any = null;
 
     for (let attempt = 1; attempt <= MAX_JOB_ATTEMPTS; attempt++) {
-        if (signal.aborted) return;
+        if (signal.aborted) return false;
 
         try {
-            // Phase 1: Extract (create job)
-            callbacks.onPhaseChange('extracting');
-
             const jobResponse = await extractWithRetries(url, settings, signal);
 
-            if (signal.aborted) return;
+            if (signal.aborted) return false;
 
             const response: any = (jobResponse && (jobResponse as any).data) ? (jobResponse as any).data : jobResponse;
             const extractedInfo = extractMediaInfoFromCreateJob(response);
             const statusUrl = response?.statusUrl || jobResponse?.statusUrl;
-            const title = response?.title || jobResponse?.title;
             const audioLanguageChanged = response?.audioLanguageChanged ?? response?.audio_language_changed ?? jobResponse?.audioLanguageChanged;
             const availableAudioLanguages = response?.availableAudioLanguages ?? response?.available_audio_languages ?? jobResponse?.availableAudioLanguages;
 
             if (!statusUrl) {
-                throw new Error('No status URL returned');
+                return false;
             }
 
             if (callbacks.onExtracted && hasExtractedMediaInfo(extractedInfo)) {
                 callbacks.onExtracted(extractedInfo);
             }
 
-            // Report audio track info if available
             if (callbacks.onAudioTrackInfo && (availableAudioLanguages || audioLanguageChanged !== undefined)) {
                 callbacks.onAudioTrackInfo(availableAudioLanguages || [], audioLanguageChanged || false);
             }
 
-            // Phase 2: Poll status
             callbacks.onPhaseChange('processing');
             await pollStatus(statusUrl, signal, callbacks);
-            return;
+            return true;
         } catch (error: any) {
-            if (signal.aborted || error?.name === 'AbortError') return;
+            if (signal.aborted || error?.name === 'AbortError') return false;
             lastError = error;
 
-            // Retry full flow (extract + poll) if attempts remain.
             if (attempt < MAX_JOB_ATTEMPTS) {
                 continue;
             }
         }
     }
 
-    throw lastError || new Error('Download failed');
+    return false;
+}
+
+/**
+ * Build ExtractV2Options from VideoItemSettings for strategy resolution.
+ */
+function buildExtractV2Options(settings: VideoItemSettings): ExtractV2Options {
+    const isAudio = settings.format === 'mp3';
+    const AUDIO_FORMATS_SET = new Set(['ogg', 'wav', 'opus', 'm4a', 'flac']);
+    const isFormatOverride = isAudio && AUDIO_FORMATS_SET.has(settings.audioBitrate || '');
+
+    return {
+        downloadMode: isAudio ? 'audio' : 'video',
+        videoQuality: isAudio ? undefined : (settings.quality?.replace('p', '') || '720'),
+        youtubeVideoContainer: isAudio ? undefined : 'mp4',
+        audioFormat: isAudio ? (isFormatOverride ? settings.audioBitrate : (settings.audioFormat || 'mp3')) : undefined,
+        audioBitrate: isFormatOverride ? undefined : (settings.audioBitrate || '128'),
+    };
 }
 
 async function extractWithRetries(

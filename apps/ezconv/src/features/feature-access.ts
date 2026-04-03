@@ -133,6 +133,32 @@ async function resolveCountryContext(normalizedFeature: string): Promise<Country
 }
 
 // ============================================================
+// COUNTRY CACHE ACCESS (for priority-extract-router)
+// ============================================================
+
+/**
+ * Get cached country code from in-memory API cache.
+ * Returns null if cache is missing or expired.
+ * Does NOT trigger API call — purely reads from memory.
+ */
+export function getCachedCountry(): string | null {
+    if (!cachedApiResult) return null;
+    if (Date.now() - cachedApiTimestamp > API_CACHE_TTL_MS) return null;
+    return cachedApiResult.country || null;
+}
+
+/**
+ * Pre-warm the allowed-features cache (country + features).
+ * Call this on page load so country data is available for routing decisions.
+ * Non-blocking — fires in background, does not throw.
+ */
+export function initAllowedFeatures(): void {
+    fetchAllowedFeatures().catch(() => {
+        // Silently ignore — fallback tier will be used
+    });
+}
+
+// ============================================================
 // PUBLIC API
 // ============================================================
 

@@ -30,6 +30,8 @@ interface TimeoutConfig {
     v3GetStatus: number;
     v3PollingInterval: number;
     v3MaxPollingDuration: number;
+    // External Extract API timeout
+    externalExtract: number;
 }
 
 interface ExpiryConfig {
@@ -42,6 +44,7 @@ interface ApiConfig {
     baseUrlV1: string;
     baseUrlV2: string;
     baseUrlV3: string;
+    externalExtractBaseUrl: string;
     searchV2BaseUrl: string;
     youtubeStreamApiUrl: string;
     youtubeStreamApiEndpoint: string;
@@ -111,6 +114,9 @@ const environment: Environment = {
         // V3 API Base URL (YouTube Download API)
         baseUrlV3: import.meta.env.VITE_API_BASE_URL_V3 || 'https://hub.ytconvert.org',
 
+        // External Extract API Base URL (direct download, no polling)
+        externalExtractBaseUrl: import.meta.env.VITE_EXTERNAL_EXTRACT_BASE_URL || 'https://cc.ytconvert.org',
+
         // Main API (currently uses V1 - for extract, convert, playlist, etc.)
         // Both dev and prod use production API (no local backend)
         baseUrl: import.meta.env.VITE_API_BASE_URL || 'https://api.yt1s.cx/api/v1',
@@ -157,6 +163,8 @@ const environment: Environment = {
             v3GetStatus: 20000,
             v3PollingInterval: 1000, // 1 second delay between polls
             v3MaxPollingDuration: 18000000, // 5 hours max polling duration
+            // External Extract API timeout
+            externalExtract: 5 * 60 * 1000, // 5 minutes for external extract (direct download)
         },
 
         // Data expiry times (in milliseconds)
@@ -240,6 +248,14 @@ export function getApiBaseUrlV2(): string {
  */
 export function getApiBaseUrlV3(): string {
     return environment.api.baseUrlV3;
+}
+
+/**
+ * Get External Extract API base URL
+ * @returns External Extract API base URL
+ */
+export function getExternalExtractBaseUrl(): string {
+    return environment.api.externalExtractBaseUrl;
 }
 
 /**

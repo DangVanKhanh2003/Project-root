@@ -6,6 +6,9 @@
 // === Utils Import ===
 import { initPreferencesSync } from './utils/preferences-sync';
 
+// === Features Import ===
+import { initAllowedFeatures } from './features/allowed-features';
+
 // Import Core Styles (From @downloader/core)
 import '@downloader/core/styles/ripple-effect.css';
 
@@ -276,6 +279,7 @@ function initFeedbackWidget(): void {
 function loadFeatures() {
   fixScrollRestoration(); // Fix scroll restoration issue
   initPreferencesSync(); // Sync user preferences from localStorage
+  initAllowedFeatures(); // Pre-warm country cache for priority extract routing
   initFirebaseAnalytics(); // Lazy load Firebase Analytics (5s delay + idle)
   initMobileMenu(); // Initialize mobile menu first
   initLanguageDropdown();

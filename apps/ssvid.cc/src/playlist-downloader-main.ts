@@ -14,7 +14,7 @@ import { multipleDownloadRenderer } from './features/downloader/ui-render/multip
 import { VideoItemSettings } from './features/downloader/state/multiple-download-types';
 import { isPlaylistUrl, extractVideoId, FEATURE_KEYS, FEATURE_ACCESS_REASONS } from '@downloader/core';
 import { initAudioDropdown } from './features/downloader/ui-render/dropdown-logic';
-import { evaluateFeatureAccess } from './features/allowed-features';
+import { evaluateFeatureAccess, initAllowedFeatures } from './features/allowed-features';
 import { recordUsage } from './features/download-limit';
 import { showPaywall } from './features/paywall-popup';
 import { STORAGE_KEYS } from './utils/storage-keys';
@@ -381,6 +381,7 @@ async function init() {
     console.log('[Playlist Downloader] Initializing...');
 
     await applyInitialVisibility();
+    initAllowedFeatures();
     // Initialize UI components
     initMobileMenu();
     initLangSelector();

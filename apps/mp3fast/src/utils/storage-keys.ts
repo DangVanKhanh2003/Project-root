@@ -11,4 +11,7 @@ const PREFIX = 'mp3fast';
 export const STORAGE_KEYS = {
   /** User's selected format/quality preferences (JSON) */
   FORMAT_PREFERENCES: `${PREFIX}_format_preferences`,
+
+  /** Allowed features + country cache from API (JSON) */
+  ALLOWED_FEATURES: `${PREFIX}_allowed_features`,
 } as const;

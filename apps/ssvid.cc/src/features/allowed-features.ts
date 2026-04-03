@@ -12,13 +12,16 @@ import {
     FEATURE_ACCESS_REASONS,
     type FeatureAccessReason,
 } from '@downloader/core';
+import { STORAGE_KEYS } from '../utils/storage-keys';
 
 // ============================================================
 // CONFIGURATION
 // ============================================================
 
-const API_CACHE_TTL_MS = 5 * 60 * 1000; // 5 minutes
+const API_CACHE_TTL_MS = 5 * 60 * 1000; // 5 minutes (memory)
+const LS_CACHE_TTL_MS = 7 * 24 * 60 * 60 * 1000; // 7 days (localStorage)
 const ALLOWED_FEATURES_MAX_ATTEMPTS = 2;
+const LS_CACHE_KEY = STORAGE_KEYS.ALLOWED_FEATURES;
 
 /**
  * ssvid.cc geo-restricted features.
@@ -40,9 +43,45 @@ interface AllowedState {
     allowedFeatures: Set<string>;
 }
 
+interface StoredAllowedState {
+    country: string;
+    allowedFeatures: string[];
+    timestamp: number;
+}
+
 let cachedApiResult: AllowedState | null = null;
 let cachedApiTimestamp = 0;
 let inflightApiPromise: Promise<AllowedState> | null = null;
+
+// ============================================================
+// LOCALSTORAGE CACHE
+// ============================================================
+
+function readLocalStorageCache(): AllowedState | null {
+    try {
+        const raw = localStorage.getItem(LS_CACHE_KEY);
+        if (!raw) return null;
+        const parsed: StoredAllowedState = JSON.parse(raw);
+        if (Date.now() - parsed.timestamp > LS_CACHE_TTL_MS) return null;
+        return {
+            country: parsed.country,
+            allowedFeatures: new Set(parsed.allowedFeatures),
+        };
+    } catch {
+        return null;
+    }
+}
+
+function writeLocalStorageCache(state: AllowedState): void {
+    try {
+        const data: StoredAllowedState = {
+            country: state.country,
+            allowedFeatures: Array.from(state.allowedFeatures),
+            timestamp: Date.now(),
+        };
+        localStorage.setItem(LS_CACHE_KEY, JSON.stringify(data));
+    } catch { }
+}
 
 // ============================================================
 // INTERNAL HELPERS
@@ -83,6 +122,7 @@ async function fetchAllowedFeatures(): Promise<AllowedState> {
 
                 cachedApiResult = allowedState;
                 cachedApiTimestamp = Date.now();
+                writeLocalStorageCache(allowedState);
                 return allowedState;
             } catch (error) {
                 lastError = error;
@@ -107,6 +147,15 @@ export interface FeatureAccessResult {
     allowed: boolean;
     reason: FeatureAccessReason;
     country?: string;
+}
+
+/**
+ * Pre-warm the allowed features cache at page init.
+ * Checks localStorage first; if expired or missing, fetches from API.
+ */
+export function initAllowedFeatures(): void {
+    if (readLocalStorageCache()) return;
+    fetchAllowedFeatures().catch(() => {});
 }
 
 /**

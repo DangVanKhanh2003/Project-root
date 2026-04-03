@@ -31,6 +31,8 @@ interface TimeoutConfig {
     v3PollingInterval: number;
     v3MaxPollingDuration: number;
     zipDownload: number;
+    // External Extract API timeout
+    externalExtract: number;
 }
 
 interface ExpiryConfig {
@@ -51,6 +53,7 @@ interface ApiConfig {
     mutiDownloadBaseUrl: string;
     queueApiUrl: string;
     supporterApiBaseUrl: string;
+    externalExtractBaseUrl: string;
     searchEndpoint: string;
     timeout: TimeoutConfig;
     expiry: ExpiryConfig;
@@ -147,6 +150,9 @@ const environment: Environment = {
         // Supporter API (license key check)
         supporterApiBaseUrl: import.meta.env.VITE_SUPPORTER_API_BASE_URL || 'https://ytmp3-supporter.ytmp3.gg',
 
+        // External Extract API (direct download, no polling)
+        externalExtractBaseUrl: import.meta.env.VITE_EXTERNAL_EXTRACT_BASE_URL || 'https://cc.ytconvert.org',
+
         // Search endpoint (specific for search functionality)
         searchEndpoint: '/index.php',
 
@@ -171,6 +177,7 @@ const environment: Environment = {
             v3PollingInterval: 1000, // 1 second delay between polls
             v3MaxPollingDuration: 5 * 60 * 60 * 1000, // 5 hours max polling
             zipDownload: 30000, // 30 seconds for ZIP download creation
+            externalExtract: 5 * 60 * 1000, // 5 minutes for external extract (direct download)
         },
 
         // Data expiry times (in milliseconds)
@@ -269,6 +276,14 @@ export function getMutiDownloadBaseUrl(): string {
  */
 export function getSupporterApiBaseUrl(): string {
     return environment.api.supporterApiBaseUrl;
+}
+
+/**
+ * Get External Extract API base URL (cc.ytconvert.org)
+ * @returns External Extract base URL
+ */
+export function getExternalExtractBaseUrl(): string {
+    return environment.api.externalExtractBaseUrl;
 }
 
 /**

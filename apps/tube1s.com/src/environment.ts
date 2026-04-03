@@ -31,6 +31,8 @@ interface TimeoutConfig {
     v3PollingInterval: number;
     v3MaxPollingDuration: number;
     zipDownload: number;
+    // External Extract API timeout
+    externalExtract: number;
 }
 
 interface ExpiryConfig {
@@ -43,6 +45,7 @@ interface ApiConfig {
     baseUrlV1: string;
     baseUrlV2: string;
     baseUrlV3: string;
+    externalExtractBaseUrl: string;
     ytMetaBaseUrl: string;
     searchV2BaseUrl: string;
     youtubeStreamApiUrl: string;
@@ -115,6 +118,9 @@ const environment: Environment = {
         // V3 API Base URL (YouTube Download API)
         baseUrlV3: import.meta.env.VITE_API_BASE_URL_V3 || 'https://hub.ytconvert.org',
 
+        // External Extract API Base URL (direct download, no polling)
+        externalExtractBaseUrl: import.meta.env.VITE_EXTERNAL_EXTRACT_BASE_URL || 'https://cc.ytconvert.org',
+
         // YT Meta API Base URL (playlist metadata)
         ytMetaBaseUrl: import.meta.env.VITE_YT_META_BASE_URL || 'https://yt-meta.ytconvert.org',
 
@@ -171,6 +177,8 @@ const environment: Environment = {
             v3PollingInterval: 1000, // 1 second delay between polls
             v3MaxPollingDuration: 5 * 60 * 60 * 1000, // 5 hours max polling
             zipDownload: 30000, // 30 seconds for ZIP download creation
+            // External Extract API timeout
+            externalExtract: 5 * 60 * 1000, // 5 minutes for external extract (direct download)
         },
 
         // Data expiry times (in milliseconds)
@@ -254,6 +262,14 @@ export function getApiBaseUrlV2(): string {
  */
 export function getApiBaseUrlV3(): string {
     return environment.api.baseUrlV3;
+}
+
+/**
+ * Get External Extract API base URL
+ * @returns External Extract base URL
+ */
+export function getExternalExtractBaseUrl(): string {
+    return environment.api.externalExtractBaseUrl;
 }
 
 /**

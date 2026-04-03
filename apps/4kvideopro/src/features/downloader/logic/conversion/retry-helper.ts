@@ -24,11 +24,10 @@ export interface RetryConfig {
  */
 export const RETRY_CONFIGS = {
   // Extracting phase (API calls to get download URL)
+  // Reduced to 2 retries (total 3 attempts) since we have External Extract fallback
   extracting: {
-    maxRetries: 10, // Max retries matching the delays array length
-    // Custom progressive delays as requested:
-    // [1s, 1s, 3s, 5s, 6s, 7s, 8s, 15s, 15s, 20s]
-    delays: [1000, 1000, 3000, 5000, 6000, 7000, 8000, 15000, 15000, 20000],
+    maxRetries: 2,
+    delays: [1000, 2000],
     retryOnError: (error: any) => {
       // Retry ALL errors except user cancellation
       if (error.name === 'AbortError') return false; // User cancelled - don't retry

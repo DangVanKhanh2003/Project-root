@@ -17,7 +17,7 @@ import { initAudioDropdown } from './features/downloader/ui-render/dropdown-logi
 import { MaterialPopup } from './ui-components/material-popup/material-popup';
 import { confirmRedirectPopup } from '@downloader/ui-shared';
 import { shouldPromptPlaylistRedirectForMulti, getUrlRedirectTarget, FEATURE_KEYS, FEATURE_ACCESS_REASONS } from '@downloader/core';
-import { evaluateFeatureAccess } from './features/allowed-features';
+import { evaluateFeatureAccess, initAllowedFeatures } from './features/allowed-features';
 import { recordUsage, hasLicenseKey, MAX_MULTI_DOWNLOAD_VIDEOS } from './features/download-limit';
 import { showPaywall } from './features/paywall-popup';
 import { STORAGE_KEYS } from './utils/storage-keys';
@@ -395,6 +395,7 @@ async function init() {
     console.log('[Multi Downloader] Initializing...');
 
     await applyInitialVisibility();
+    initAllowedFeatures();
     // Initialize UI components
     initMobileMenu();
     initLangSelector();

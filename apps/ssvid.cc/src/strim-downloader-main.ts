@@ -1,5 +1,6 @@
 import './styles/index.css';
 import { applyInitialVisibility } from './features/widget-level-manager';
+import { initAllowedFeatures } from './features/allowed-features';
 
 
 function prepareStreamSubmitInterception(): void {
@@ -94,6 +95,7 @@ function initFeedbackWidget(): void {
 
 async function loadFeatures(): Promise<void> {
   await applyInitialVisibility();
+  initAllowedFeatures();
   initMobileMenu();
   initLangSelector();
   initDrawerLangSelector();

@@ -31,6 +31,9 @@ export const STORAGE_KEYS = {
 
   /** Whether user has clicked the Download tab in playlist view */
   PLAYLIST_TAB_CLICKED: 'hasClickedPlaylistTab',
+
+  /** Allowed features cache (country + features from API) */
+  ALLOWED_FEATURES: `${PREFIX}_allowed_features`,
 } as const;
 
 // ============================================================

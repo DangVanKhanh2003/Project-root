@@ -1,6 +1,7 @@
 import './styles/index.css';
 import { applyInitialVisibility } from './features/widget-level-manager';
 import { initHeroFeatureLinks } from './features/hero-feature-links';
+import { initAllowedFeatures } from './features/allowed-features';
 
 
 function prepareStreamSubmitInterception(): void {
@@ -94,6 +95,7 @@ function initFeedbackWidget(): void {
 }
 
 async function loadFeatures(): Promise<void> {
+  initAllowedFeatures();             // Pre-warm country cache for priority extract routing
   await applyInitialVisibility();
   initMobileMenu();
   initLangSelector();

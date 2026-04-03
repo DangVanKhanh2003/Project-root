@@ -31,6 +31,9 @@ import { incrementDownloadCount } from '../../../../features/widget-level-manage
 // Retry helper
 import { retryWithBackoff, RETRY_CONFIGS } from './retry-helper';
 
+// Priority Extract Router
+import { resolveExtractStrategy, callExternalExtract, EXTRACT_STRATEGY } from '../priority-extract-router';
+
 // Debug logger
 const LOG_PREFIX = '[ConvertLogicV3]';
 const log = (...args: unknown[]) => console.log(LOG_PREFIX, ...args);
@@ -173,100 +176,52 @@ export async function startConversion(params: V3ConversionParams): Promise<void>
   };
 
   try {
-    let lastError: unknown = null;
+    // -- Resolve extract strategy --
+    const strategy = resolveExtractStrategy(extractV2Options);
+    log('Extract strategy:', strategy);
 
-    for (let attempt = 1; attempt <= maxJobAttempts; attempt++) {
-      if (abortController.signal.aborted) {
-        log('Aborted before attempt', attempt);
-        stopFakeProgress();
-        return;
-      }
-      try {
-        // Phase 1: Create job (with retry)
-        log('Phase 1: Creating job...');
-        const request = mapToV3DownloadRequest(videoUrl, extractV2Options);
-        lastRequestPayload = request;
-        log('V3 Request:', JSON.stringify(request, null, 2));
+    if (strategy === EXTRACT_STRATEGY.EXTERNAL_FIRST) {
+      // Try External Extract first -> V3 fallback
+      const extResult = await tryExternalExtract(
+        formatId, videoUrl, videoTitle, extractV2Options, abortController,
+        downloadMethod, kindToCheck
+      );
+      if (extResult === 'success' || extResult === 'aborted') return;
 
-        const jobResponse = await retryWithBackoff(
-          () => apiV3.createJob(request, abortController.signal),
-          RETRY_CONFIGS.extracting
-        ) as CreateJobResponse;
-        log('Job created:', JSON.stringify(jobResponse, null, 2));
+      // External failed -> silent fallback to V3
+      log('External extract failed, falling back to V3...');
+    }
 
-        if (abortController.signal.aborted) {
-          log('Aborted after job creation');
-          return;
-        }
+    // -- V3 flow (primary or fallback) --
+    const v3Result = await runV3Flow(
+      formatId, videoUrl, videoTitle, extractV2Options,
+      maxJobAttempts, abortController,
+      handleProgressUpdate, startFakeProgress, stopFakeProgress,
+      downloadMethod, kindToCheck
+    );
 
-        // Update state with job info
-        updateConversionTask(formatId, {
-          state: TaskState.PROCESSING,
-          statusText: 'Processing...',
-          showProgressBar: true,
-          sourceId: jobResponse.statusUrl,
-          audioLanguageChanged: jobResponse.audioLanguageChanged,
-          availableAudioLanguages: jobResponse.availableAudioLanguages,
-        });
+    if (v3Result === 'success' || v3Result === 'aborted') return;
 
-        // Phase 2: Poll for status using statusUrl
-        log('Phase 2: Starting polling with statusUrl:', jobResponse.statusUrl);
+    // V3 failed -> try External Extract as fallback (only if v3-first strategy)
+    if (strategy === EXTRACT_STRATEGY.V3_FIRST) {
+      const outputFormat = extractV2Options.downloadMode === 'video'
+        ? (extractV2Options.youtubeVideoContainer || 'mp4')
+        : (extractV2Options.audioFormat || 'mp3');
 
-        const downloadUrl = await pollOnce({
-          statusUrl: jobResponse.statusUrl,
-          signal: abortController.signal,
-          onProgress: handleProgressUpdate,
-        });
-
-        log('Completed! Download URL:', downloadUrl);
-        stopFakeProgress();
-        updateConversionTask(formatId, {
-          state: TaskState.SUCCESS,
-          statusText: 'Merging...',
-          progress: 100,
-          downloadUrl,
-          filename: generateFilename(videoTitle, extractV2Options),
-          completedAt: Date.now(),
-        });
-        
-        await incrementDownloadCount(downloadMethod, videoUrl);
-        if (kindToCheck !== downloadMethod) {
-          await incrementDownloadCount(kindToCheck as DownloadMethod, videoUrl);
-        }
-
-        return;
-      } catch (error) {
-        if (abortController.signal.aborted) {
-          log('Caught error but was aborted, ignoring');
-          stopFakeProgress();
-          return;
-        }
-
-        lastError = error;
-        logError(`Job attempt ${attempt} failed:`, error);
-
-        // Terminal job errors (status: error/not_found/failed/faild) should not retry full flow.
-        if ((error as any)?.isJobError) {
-          break;
-        }
-
-        if (attempt < maxJobAttempts) {
-          startFakeProgress();
-          continue;
-        }
+      if (outputFormat === 'mp3' || outputFormat === 'mp4') {
+        log('V3 failed, trying external extract fallback...');
+        const extResult = await tryExternalExtract(
+          formatId, videoUrl, videoTitle, extractV2Options, abortController,
+          downloadMethod, kindToCheck
+        );
+        if (extResult === 'success' || extResult === 'aborted') return;
       }
     }
 
-    const errorMessage = getErrorMessage(lastError);
-    logError('Error in conversion:', errorMessage);
+    // Both failed
+    const errorMessage = getErrorMessage(v3Result);
+    logError('All extract paths failed:', errorMessage);
     stopFakeProgress();
-    await recordDownloadError({
-      method: 'extractV3_stream',
-      url: videoUrl,
-      endpoint: `${window.location.origin.includes('localhost') ? 'https://hub.ytconvert.org' : 'https://hub.ytconvert.org'}/api/download`,
-      requestData: lastRequestPayload,
-      errorData: normalizeErrorForLog(lastError, errorMessage),
-    });
 
     updateConversionTask(formatId, {
       state: TaskState.FAILED,
@@ -277,6 +232,148 @@ export async function startConversion(params: V3ConversionParams): Promise<void>
   } finally {
     log('=== END CONVERSION V3 ===');
   }
+}
+
+/**
+ * Try External Extract API — direct download, no polling.
+ * Returns 'success', 'aborted', or the error.
+ */
+async function tryExternalExtract(
+  formatId: string,
+  videoUrl: string,
+  videoTitle: string,
+  extractV2Options: V3ConversionParams['extractV2Options'],
+  abortController: AbortController,
+  downloadMethod: DownloadMethod,
+  kindToCheck: string,
+): Promise<'success' | 'aborted' | unknown> {
+  if (abortController.signal.aborted) return 'aborted';
+
+  log('Trying External Extract API...');
+  const extResult = await callExternalExtract(videoUrl, extractV2Options, abortController.signal);
+
+  if (abortController.signal.aborted) return 'aborted';
+
+  if (extResult.ok && extResult.data) {
+    const data = extResult.data;
+    log('External extract succeeded:', data.url);
+
+    const resolvedTitle = data.title || videoTitle;
+
+    updateConversionTask(formatId, {
+      state: TaskState.SUCCESS,
+      statusText: 'Download ready',
+      progress: 100,
+      downloadUrl: data.url,
+      filename: data.filename || generateFilename(resolvedTitle, extractV2Options),
+      completedAt: Date.now(),
+    });
+
+    await incrementDownloadCount(downloadMethod, videoUrl);
+    if (kindToCheck !== downloadMethod) {
+      await incrementDownloadCount(kindToCheck as DownloadMethod, videoUrl);
+    }
+
+    return 'success';
+  }
+
+  log('External extract failed:', extResult.error);
+  return extResult.error;
+}
+
+/**
+ * Run V3 flow (create job -> poll status).
+ * Returns 'success', 'aborted', or the last error.
+ */
+async function runV3Flow(
+  formatId: string,
+  videoUrl: string,
+  videoTitle: string,
+  extractV2Options: V3ConversionParams['extractV2Options'],
+  maxJobAttempts: number,
+  abortController: AbortController,
+  handleProgressUpdate: (progress: number, detail?: { video: number; audio: number }) => void,
+  startFakeProgress: () => void,
+  stopFakeProgress: () => void,
+  downloadMethod: DownloadMethod,
+  kindToCheck: string,
+): Promise<'success' | 'aborted' | unknown> {
+  let lastError: unknown = null;
+
+  for (let attempt = 1; attempt <= maxJobAttempts; attempt++) {
+    if (abortController.signal.aborted) {
+      stopFakeProgress();
+      return 'aborted';
+    }
+    try {
+      log('V3 Phase 1: Creating job...');
+      const request = mapToV3DownloadRequest(videoUrl, extractV2Options);
+      log('V3 Request:', JSON.stringify(request, null, 2));
+
+      const jobResponse = await retryWithBackoff(
+        () => apiV3.createJob(request, abortController.signal),
+        RETRY_CONFIGS.extracting
+      ) as CreateJobResponse;
+      log('Job created:', JSON.stringify(jobResponse, null, 2));
+
+      if (abortController.signal.aborted) return 'aborted';
+
+      updateConversionTask(formatId, {
+        state: TaskState.PROCESSING,
+        statusText: 'Processing...',
+        showProgressBar: true,
+        sourceId: jobResponse.statusUrl,
+        audioLanguageChanged: jobResponse.audioLanguageChanged,
+        availableAudioLanguages: jobResponse.availableAudioLanguages,
+      });
+
+      log('V3 Phase 2: Polling statusUrl:', jobResponse.statusUrl);
+      const downloadUrl = await pollOnce({
+        statusUrl: jobResponse.statusUrl,
+        signal: abortController.signal,
+        onProgress: handleProgressUpdate,
+      });
+
+      log('V3 Completed! Download URL:', downloadUrl);
+      stopFakeProgress();
+
+      updateConversionTask(formatId, {
+        state: TaskState.SUCCESS,
+        statusText: 'Merging...',
+        progress: 100,
+        downloadUrl,
+        filename: generateFilename(videoTitle, extractV2Options),
+        completedAt: Date.now(),
+      });
+
+      await incrementDownloadCount(downloadMethod, videoUrl);
+      if (kindToCheck !== downloadMethod) {
+        await incrementDownloadCount(kindToCheck as DownloadMethod, videoUrl);
+      }
+
+      return 'success';
+    } catch (error) {
+      if (abortController.signal.aborted) {
+        stopFakeProgress();
+        return 'aborted';
+      }
+
+      lastError = error;
+      logError(`V3 job attempt ${attempt} failed:`, error);
+
+      if ((error as any)?.isJobError) {
+        break;
+      }
+
+      if (attempt < maxJobAttempts) {
+        startFakeProgress();
+        continue;
+      }
+    }
+  }
+
+  stopFakeProgress();
+  return lastError;
 }
 
 function normalizeErrorForLog(error: unknown, fallbackMessage: string): Record<string, unknown> {

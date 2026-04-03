@@ -25,7 +25,7 @@ export interface RetryConfig {
 export const RETRY_CONFIGS = {
   // Extracting phase (API calls to get download URL)
   extracting: {
-    maxRetries: 10, // Max 11 attempts total (1 original + 10 retries)
+    maxRetries: 2, // Max 3 attempts total (1 original + 2 retries)
     delays: [], // NO delays - retry immediately
     retryOnError: (error: any) => {
       // Retry ALL errors except user cancellation

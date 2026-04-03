@@ -15,6 +15,7 @@ import { initTrimController, getTrimStart, getTrimEnd } from './features/multi-m
 import { initSearchSuggestController } from './features/multi-mode-downloader/search-suggest-controller';
 import { initThemeToggle } from './features/shared/init/theme-toggle';
 import { initWaveAnimation } from './features/shared/init/wave-animation';
+import { initAllowedFeatures } from './features/feature-access';
 
 function init(): void {
     // Auto-activate license from URL param (?license=XXXXX)
@@ -31,6 +32,7 @@ function init(): void {
         });
     }
 
+    initAllowedFeatures();
     initThemeToggle();
     initWaveAnimation();
     initMobileMenu();

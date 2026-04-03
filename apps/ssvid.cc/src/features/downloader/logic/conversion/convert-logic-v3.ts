@@ -6,6 +6,10 @@
  * 2. Poll status (GET /api/status/:id)
  * 3. Get download URL when completed
  *
+ * Priority Extract Router:
+ * - External Extract first (IN/ID countries) → V3 fallback
+ * - V3 first (default) → External Extract fallback (mp3/mp4 only)
+ *
  * NO cross-imports with V2 - completely isolated
  */
 
@@ -31,10 +35,27 @@ import { getErrorMessage } from './v3/error-messages';
 import { retryWithBackoff, RETRY_CONFIGS } from './retry-helper';
 import { extractMediaInfoFromCreateJob, hasExtractedMediaInfo } from './v3/extract-media-info';
 
+// Priority Extract Router
+import { resolveExtractStrategy, callExternalExtract, EXTRACT_STRATEGY } from '../priority-extract-router';
+
 // Debug logger
 const LOG_PREFIX = '[ConvertLogicV3]';
 const log = (...args: unknown[]) => console.log(LOG_PREFIX, ...args);
 const logError = (...args: unknown[]) => console.error(LOG_PREFIX, ...args);
+
+function normalizeVideoResolution(videoQuality: string | undefined): string {
+  const normalized = (videoQuality || '').toLowerCase();
+  const grouped = normalized.match(/^(?:mp4|webm|mkv)-(\d+)p$/);
+  if (grouped) return `${grouped[1]}p`;
+
+  const plain = normalized.match(/^(\d+)p$/);
+  if (plain) return `${plain[1]}p`;
+
+  const numeric = normalized.match(/^(\d+)$/);
+  if (numeric) return `${numeric[1]}p`;
+
+  return '';
+}
 
 /**
  * Main entry point for V3 conversion flow
@@ -110,106 +131,48 @@ export async function startConversion(params: V3ConversionParams): Promise<void>
   };
 
   try {
-    let lastError: unknown = null;
+    // ── Resolve extract strategy ──
+    const strategy = resolveExtractStrategy(extractV2Options);
+    log('Extract strategy:', strategy);
 
-    for (let attempt = 1; attempt <= maxJobAttempts; attempt++) {
-      if (abortController.signal.aborted) {
-        log('Aborted before attempt', attempt);
-        stopFakeProgress();
-        return;
-      }
-      try {
-        // Phase 1: Create job (with retry)
-        log('Phase 1: Creating job...');
-        const request = mapToV3DownloadRequest(videoUrl, extractV2Options);
-        log('V3 Request:', JSON.stringify(request, null, 2));
+    if (strategy === EXTRACT_STRATEGY.EXTERNAL_FIRST) {
+      // Try External Extract first → V3 fallback
+      const extResult = await tryExternalExtract(
+        formatId, videoUrl, videoTitle, extractV2Options, abortController, onExtracted
+      );
+      if (extResult === 'success' || extResult === 'aborted') return;
 
-        const jobResponse = await retryWithBackoff(
-          () => apiV3.createJob(request, abortController.signal),
-          RETRY_CONFIGS.extracting
-        ) as CreateJobResponse;
-        log('Job created:', JSON.stringify(jobResponse, null, 2));
+      // External failed → silent fallback to V3
+      log('External extract failed, falling back to V3...');
+    }
 
-        if (abortController.signal.aborted) {
-          log('Aborted after job creation');
-          return;
-        }
+    // ── V3 flow (primary or fallback) ──
+    const v3Result = await runV3Flow(
+      formatId, videoUrl, videoTitle, extractV2Options,
+      maxJobAttempts, abortController, onExtracted,
+      handleProgressUpdate, startFakeProgress, stopFakeProgress
+    );
 
-        // Fire onExtracted callback with media info from createJob response
-        if (onExtracted) {
-          try {
-            const extractedInfo = extractMediaInfoFromCreateJob(jobResponse);
-            if (hasExtractedMediaInfo(extractedInfo)) {
-              onExtracted(extractedInfo);
-            }
-          } catch (callbackError) {
-            logError('onExtracted callback failed:', callbackError);
-          }
-        }
+    if (v3Result === 'success' || v3Result === 'aborted') return;
 
-        // Update state with job info
-        updateConversionTask(formatId, {
-          state: TaskState.PROCESSING,
-          statusText: 'Processing...',
-          showProgressBar: true,
-          sourceId: jobResponse.statusUrl,
-          audioLanguageChanged: jobResponse.audioLanguageChanged,
-          availableAudioLanguages: jobResponse.availableAudioLanguages,
-        });
+    // V3 failed → try External Extract as fallback (only if v3-first strategy)
+    if (strategy === EXTRACT_STRATEGY.V3_FIRST) {
+      const outputFormat = extractV2Options.downloadMode === 'video'
+        ? (extractV2Options.youtubeVideoContainer || 'mp4')
+        : (extractV2Options.audioFormat || 'mp3');
 
-        // Phase 2: Poll for status using statusUrl
-        log('Phase 2: Starting polling with statusUrl:', jobResponse.statusUrl);
-
-        const downloadUrl = await pollOnce({
-          statusUrl: jobResponse.statusUrl,
-          signal: abortController.signal,
-          onProgress: handleProgressUpdate,
-        });
-
-        log('Completed! Download URL:', downloadUrl);
-        stopFakeProgress();
-
-        // Record usage AFTER success
-        const { videoQuality, audioBitrate, audioFormat, downloadMode, trimStart } = extractV2Options ?? {};
-        const is4K = extractV2Options?.downloadMode === 'video' && extractV2Options?.videoQuality === '2160';
-        const is2K = extractV2Options?.downloadMode === 'video' && extractV2Options?.videoQuality === '1440';
-        const is320kbps = extractV2Options?.downloadMode === 'audio' && extractV2Options?.audioBitrate === '320';
-        const isCutVideo = typeof extractV2Options?.trimStart === 'number' && typeof extractV2Options?.trimEnd === 'number';
-
-        if (is4K) recordUsage(FEATURE_KEYS.HIGH_QUALITY_4K);
-        if (is2K) recordUsage(FEATURE_KEYS.HIGH_QUALITY_2K);
-        if (is320kbps) recordUsage(FEATURE_KEYS.HIGH_QUALITY_320K);
-        if (isCutVideo) recordUsage(FEATURE_KEYS.CUT_VIDEO_YOUTUBE);
-
-        updateConversionTask(formatId, {
-          state: TaskState.SUCCESS,
-          statusText: 'Merging...',
-          progress: 100,
-          downloadUrl,
-          filename: generateFilename(videoTitle, extractV2Options),
-          completedAt: Date.now(),
-        });
-
-        return;
-      } catch (error) {
-        if (abortController.signal.aborted) {
-          log('Caught error but was aborted, ignoring');
-          stopFakeProgress();
-          return;
-        }
-
-        lastError = error;
-        logError(`Job attempt ${attempt} failed:`, error);
-
-        if (attempt < maxJobAttempts) {
-          startFakeProgress();
-          continue;
-        }
+      if (outputFormat === 'mp3' || outputFormat === 'mp4') {
+        log('V3 failed, trying external extract fallback...');
+        const extResult = await tryExternalExtract(
+          formatId, videoUrl, videoTitle, extractV2Options, abortController, onExtracted
+        );
+        if (extResult === 'success' || extResult === 'aborted') return;
       }
     }
 
-    const errorMessage = getErrorMessage(lastError);
-    logError('Error in conversion:', errorMessage);
+    // Both failed
+    const errorMessage = getErrorMessage(v3Result);
+    logError('All extract paths failed:', errorMessage);
     stopFakeProgress();
 
     updateConversionTask(formatId, {
@@ -221,6 +184,166 @@ export async function startConversion(params: V3ConversionParams): Promise<void>
   } finally {
     log('=== END CONVERSION V3 ===');
   }
+}
+
+/**
+ * Try External Extract API — direct download, no polling.
+ * Returns 'success', 'aborted', or the error.
+ */
+async function tryExternalExtract(
+  formatId: string,
+  videoUrl: string,
+  videoTitle: string,
+  extractV2Options: V3ConversionParams['extractV2Options'],
+  abortController: AbortController,
+  onExtracted?: V3ConversionParams['onExtracted'],
+): Promise<'success' | 'aborted' | unknown> {
+  if (abortController.signal.aborted) return 'aborted';
+
+  log('Trying External Extract API...');
+  const extResult = await callExternalExtract(videoUrl, extractV2Options, abortController.signal);
+
+  if (abortController.signal.aborted) return 'aborted';
+
+  if (extResult.ok && extResult.data) {
+    const data = extResult.data;
+    log('External extract succeeded:', data.url);
+
+    // Record usage
+    const isVideoDownload = extractV2Options?.downloadMode === 'video';
+    const selectedResolution = normalizeVideoResolution(extractV2Options?.videoQuality);
+    const is4K = isVideoDownload && selectedResolution === '2160p';
+    const is2K = isVideoDownload && selectedResolution === '1440p';
+    const is320kbps = extractV2Options?.downloadMode === 'audio' && extractV2Options?.audioBitrate === '320';
+    const isCutVideo = typeof extractV2Options?.trimStart === 'number' && typeof extractV2Options?.trimEnd === 'number';
+
+    if (is4K) recordUsage(FEATURE_KEYS.HIGH_QUALITY_4K);
+    if (is2K) recordUsage(FEATURE_KEYS.HIGH_QUALITY_2K);
+    if (is320kbps) recordUsage(FEATURE_KEYS.HIGH_QUALITY_320K);
+    if (isCutVideo) recordUsage(FEATURE_KEYS.CUT_VIDEO_YOUTUBE);
+
+    const resolvedTitle = data.title || videoTitle;
+
+    updateConversionTask(formatId, {
+      state: TaskState.SUCCESS,
+      statusText: 'Download ready',
+      progress: 100,
+      downloadUrl: data.url,
+      filename: data.filename || generateFilename(resolvedTitle, extractV2Options),
+      completedAt: Date.now(),
+    });
+
+    return 'success';
+  }
+
+  log('External extract failed:', extResult.error);
+  return extResult.error;
+}
+
+/**
+ * Run V3 flow (create job → poll status).
+ * Returns 'success', 'aborted', or the last error.
+ */
+async function runV3Flow(
+  formatId: string,
+  videoUrl: string,
+  videoTitle: string,
+  extractV2Options: V3ConversionParams['extractV2Options'],
+  maxJobAttempts: number,
+  abortController: AbortController,
+  onExtracted: V3ConversionParams['onExtracted'] | undefined,
+  handleProgressUpdate: (progress: number, detail?: { video: number; audio: number }) => void,
+  startFakeProgress: () => void,
+  stopFakeProgress: () => void,
+): Promise<'success' | 'aborted' | unknown> {
+  let lastError: unknown = null;
+  let resolvedVideoTitle = videoTitle;
+
+  for (let attempt = 1; attempt <= maxJobAttempts; attempt++) {
+    if (abortController.signal.aborted) {
+      stopFakeProgress();
+      return 'aborted';
+    }
+    try {
+      log('V3 Phase 1: Creating job...');
+      const request = mapToV3DownloadRequest(videoUrl, extractV2Options);
+
+      const jobResponse = await retryWithBackoff(
+        () => apiV3.createJob(request, abortController.signal),
+        RETRY_CONFIGS.extracting
+      ) as CreateJobResponse;
+      log('Job created:', JSON.stringify(jobResponse, null, 2));
+
+      const extractedInfo = extractMediaInfoFromCreateJob(jobResponse);
+      if (extractedInfo.title) {
+        resolvedVideoTitle = extractedInfo.title;
+      }
+      if (onExtracted && hasExtractedMediaInfo(extractedInfo)) {
+        try { onExtracted(extractedInfo); } catch (e) { logError('onExtracted callback failed:', e); }
+      }
+
+      if (abortController.signal.aborted) return 'aborted';
+
+      updateConversionTask(formatId, {
+        state: TaskState.PROCESSING,
+        statusText: 'Processing...',
+        showProgressBar: true,
+        sourceId: extractedInfo.statusUrl || jobResponse.statusUrl,
+        audioLanguageChanged: jobResponse.audioLanguageChanged,
+        availableAudioLanguages: jobResponse.availableAudioLanguages,
+      });
+
+      log('V3 Phase 2: Polling statusUrl:', jobResponse.statusUrl);
+      const downloadUrl = await pollOnce({
+        statusUrl: jobResponse.statusUrl,
+        signal: abortController.signal,
+        onProgress: handleProgressUpdate,
+      });
+
+      log('V3 Completed! Download URL:', downloadUrl);
+      stopFakeProgress();
+
+      // Record usage
+      const isVideoDownload = extractV2Options?.downloadMode === 'video';
+      const selectedResolution = normalizeVideoResolution(extractV2Options?.videoQuality);
+      const is4K = isVideoDownload && selectedResolution === '2160p';
+      const is2K = isVideoDownload && selectedResolution === '1440p';
+      const is320kbps = extractV2Options?.downloadMode === 'audio' && extractV2Options?.audioBitrate === '320';
+      const isCutVideo = typeof extractV2Options?.trimStart === 'number' && typeof extractV2Options?.trimEnd === 'number';
+
+      if (is4K) recordUsage(FEATURE_KEYS.HIGH_QUALITY_4K);
+      if (is2K) recordUsage(FEATURE_KEYS.HIGH_QUALITY_2K);
+      if (is320kbps) recordUsage(FEATURE_KEYS.HIGH_QUALITY_320K);
+      if (isCutVideo) recordUsage(FEATURE_KEYS.CUT_VIDEO_YOUTUBE);
+
+      updateConversionTask(formatId, {
+        state: TaskState.SUCCESS,
+        statusText: 'Merging...',
+        progress: 100,
+        downloadUrl,
+        filename: generateFilename(resolvedVideoTitle, extractV2Options),
+        completedAt: Date.now(),
+      });
+
+      return 'success';
+    } catch (error) {
+      if (abortController.signal.aborted) {
+        stopFakeProgress();
+        return 'aborted';
+      }
+
+      lastError = error;
+      logError(`V3 job attempt ${attempt} failed:`, error);
+
+      if (attempt < maxJobAttempts) {
+        startFakeProgress();
+        continue;
+      }
+    }
+  }
+
+  stopFakeProgress();
+  return lastError;
 }
 
 interface PollOnceOptions {

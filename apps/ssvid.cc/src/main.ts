@@ -11,6 +11,7 @@ import { applyInitialVisibility } from './features/widget-level-manager';
 import { initLicenseOnPageLoad } from './features/license/license-token';
 import { recordPageLoad } from './utils/page-freshness';
 import { init as initDownloaderUICore } from './features/downloader/downloader-ui';
+import { initAllowedFeatures } from './features/allowed-features';
 
 
 
@@ -239,6 +240,7 @@ async function loadFeatures() {
 
   applyInitialVisibility();          // Fire-and-forget: license button + supporter badge (non-blocking)
   initLicenseOnPageLoad();          // Background revalidation if cache is stale (fire-and-forget)
+  initAllowedFeatures();            // Pre-warm country cache for priority extract routing (fire-and-forget)
   initMobileMenu(); // Initialize mobile menu
   initLangSelector(); // Initialize language selector dropdown
   initDrawerLangSelector(); // Initialize drawer language selector dropdown

@@ -14,4 +14,7 @@ export const STORAGE_KEYS = {
 
   /** Auto-submit checkbox state */
   AUTO_SUBMIT: `${PREFIX}_auto_submit`,
+
+  /** Allowed features + country cache (JSON, from geo API) */
+  ALLOWED_FEATURES: `${PREFIX}_allowed_features`,
 } as const;
