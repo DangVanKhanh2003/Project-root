@@ -32,6 +32,7 @@ interface GroupSession {
     frozen: boolean;
     pendingItemIds: Set<string>;
     successItemIds: Set<string>;
+    failedItemIds: Set<string>; // Items that failed saveAddFile (for retry)
     lastZippedItemIds: Set<string>;
     skippedWhileFrozen: Array<{ id: string; url: string; groupId?: string }>;
 }
@@ -52,6 +53,7 @@ function getSession(groupId?: string): GroupSession {
             frozen: false,
             pendingItemIds: new Set(),
             successItemIds: new Set(),
+            failedItemIds: new Set(),
             lastZippedItemIds: new Set(),
             skippedWhileFrozen: [],
         });
@@ -97,12 +99,19 @@ export function isZipping(): boolean {
 }
 
 /**
- * Number of items added (or being added) to a group's server session.
- * Includes pending items for instant UI feedback (optimistic count).
+ * Number of items successfully added to a group's server session.
  */
 export function getAddedCount(groupId?: string): number {
     const s = getSession(groupId);
-    return s.successItemIds.size + s.pendingItemIds.size;
+    return s.successItemIds.size;
+}
+
+/**
+ * Whether items are still being uploaded to server (pending API calls).
+ */
+export function hasPendingUploads(groupId?: string): boolean {
+    const s = getSession(groupId);
+    return s.pendingItemIds.size > 0;
 }
 
 /**
@@ -117,6 +126,7 @@ async function onItemCompleted(itemId: string, downloadUrl: string, groupId?: st
         return;
     }
     if (s.successItemIds.has(itemId) || s.pendingItemIds.has(itemId)) return;
+    s.failedItemIds.delete(itemId); // Clear previous failure if retrying
     s.pendingItemIds.add(itemId);
     // Optimistic: update button count immediately (includes pending)
     updateZipButtonCount(groupId);
@@ -149,18 +159,20 @@ async function onItemCompleted(itemId: string, downloadUrl: string, groupId?: st
     try {
         console.log(`[MobileSaveZip] Adding file: ${itemId} to group=${groupId || DEFAULT_GROUP}`);
         const result = await coreServices.saveZip!.saveAddFile({ taskId: s.taskId, url: downloadUrl });
+        s.pendingItemIds.delete(itemId);
         if (result.success) {
             s.successItemIds.add(itemId);
             console.log(`[MobileSaveZip] Added OK: ${itemId}, group=${groupId || DEFAULT_GROUP}, total added = ${s.successItemIds.size}`);
-            updateZipButtonCount(groupId);
         } else {
             console.warn('[MobileSaveZip] Failed to add file:', itemId, result.error);
+            s.failedItemIds.add(itemId);
         }
     } catch (err) {
-        console.warn('[MobileSaveZip] Failed to add file:', itemId, err);
-    } finally {
         s.pendingItemIds.delete(itemId);
+        console.warn('[MobileSaveZip] Failed to add file:', itemId, err);
+        s.failedItemIds.add(itemId);
     }
+    updateZipButtonCount(groupId);
 }
 
 async function ensureSession(s: GroupSession): Promise<void> {
@@ -194,10 +206,39 @@ export async function mobileSaveZipDownload(
     groupId?: string,
 ): Promise<{ success: boolean; downloadUrl?: string; error?: string }> {
     const s = getSession(groupId);
-    console.log(`[MobileSaveZip] ZIP requested, group=${groupId || DEFAULT_GROUP}, successItemIds size = ${s.successItemIds.size}, taskId = ${s.taskId}`);
+    console.log(`[MobileSaveZip] ZIP requested, group=${groupId || DEFAULT_GROUP}, success=${s.successItemIds.size}, pending=${s.pendingItemIds.size}, failed=${s.failedItemIds.size}, taskId=${s.taskId}`);
+
+    // Retry failed items before giving up
+    if (s.failedItemIds.size > 0 && s.taskId) {
+        console.log(`[MobileSaveZip] Retrying ${s.failedItemIds.size} failed items...`);
+        const failedIds = [...s.failedItemIds];
+        for (const failedId of failedIds) {
+            const item = videoStore.getItem(failedId);
+            if (item?.status === 'completed' && item.downloadUrl) {
+                s.failedItemIds.delete(failedId);
+                // Re-trigger (will skip if already in success/pending)
+                onItemCompleted(failedId, item.downloadUrl, groupId);
+            } else {
+                s.failedItemIds.delete(failedId);
+            }
+        }
+        // Wait briefly for retries to complete
+        await sleep(2000);
+    }
+
+    // Wait for any pending uploads to finish
+    if (s.pendingItemIds.size > 0) {
+        console.log(`[MobileSaveZip] Waiting for ${s.pendingItemIds.size} pending uploads...`);
+        updateBtn(btn, 'Uploading files...');
+        const maxWait = 30000; // 30 seconds max
+        const start = Date.now();
+        while (s.pendingItemIds.size > 0 && Date.now() - start < maxWait) {
+            await sleep(500);
+        }
+    }
 
     if (s.successItemIds.size === 0) {
-        return { success: false, error: 'No files uploaded yet' };
+        return { success: false, error: 'No files uploaded yet. Please wait for items to finish processing.' };
     }
 
     const timestamp = Date.now();
@@ -283,11 +324,18 @@ function updateZipButtonCount(groupId?: string): void {
             const btn = groupEl.querySelector('[data-action="download-zip-group"]');
             if (btn) {
                 const textEl = btn.querySelector('.btn-text');
-                if (textEl) textEl.textContent = `Download ZIP (${count})`;
-                btn.classList.toggle('is-disabled', count === 0);
-                btn.setAttribute('aria-disabled', count === 0 ? 'true' : 'false');
+                const pending = s.pendingItemIds.size > 0;
+                if (textEl) {
+                    if (pending) {
+                        textEl.innerHTML = `Download ZIP (${count})${ANIMATED_DOTS}`;
+                    } else {
+                        textEl.textContent = `Download ZIP (${count})`;
+                    }
+                }
+                btn.classList.toggle('is-disabled', count === 0 && !pending);
+                btn.setAttribute('aria-disabled', count === 0 && !pending ? 'true' : 'false');
                 if (count > 0) btn.removeAttribute('data-tooltip');
-                (btn as HTMLButtonElement).disabled = count === 0;
+                (btn as HTMLButtonElement).disabled = count === 0 && !pending;
             }
         }
     }
@@ -307,19 +355,27 @@ export function updateHeaderZipButton(): void {
     }
 
     let totalCount = 0;
+    let hasPending = false;
     for (const s of sessions.values()) {
         totalCount += s.successItemIds.size;
+        if (s.pendingItemIds.size > 0) hasPending = true;
     }
 
     const headerBtn = document.querySelector('#multiDownloadActionBtn');
     if (headerBtn) {
         const textEl = headerBtn.querySelector('.btn-text');
-        if (textEl) textEl.textContent = `Download ZIP (${totalCount})`;
-        (headerBtn as HTMLButtonElement).disabled = totalCount === 0;
-        // Sync is-disabled class + aria-disabled (used by CSS/renderer)
-        headerBtn.classList.toggle('is-disabled', totalCount === 0);
-        headerBtn.setAttribute('aria-disabled', totalCount === 0 ? 'true' : 'false');
-        if (totalCount > 0) {
+        if (textEl) {
+            if (hasPending) {
+                textEl.innerHTML = `Download ZIP (${totalCount})${ANIMATED_DOTS}`;
+            } else {
+                textEl.textContent = `Download ZIP (${totalCount})`;
+            }
+        }
+        const isEmpty = totalCount === 0 && !hasPending;
+        (headerBtn as HTMLButtonElement).disabled = isEmpty;
+        headerBtn.classList.toggle('is-disabled', isEmpty);
+        headerBtn.setAttribute('aria-disabled', isEmpty ? 'true' : 'false');
+        if (!isEmpty) {
             headerBtn.removeAttribute('data-tooltip');
         }
     }
@@ -332,6 +388,7 @@ function resetSession(groupId?: string): void {
     s.frozen = false;
     s.pendingItemIds.clear();
     s.successItemIds.clear();
+    s.failedItemIds.clear();
     // NOTE: lastZippedItemIds is NOT cleared — callers need it after reset
 
     // Update button to reflect cleared session (count = 0) immediately

@@ -567,7 +567,7 @@ html[data-format="mp3"] .multi-quality-select--mp3 {
     gap: 4px !important;
     height: 44px !important;
     cursor: pointer !important;
-    min-width: 160px
+    min-width: 160px !important;
 }
 
 .group-download-btn:hover:not(.is-disabled) {
@@ -2382,7 +2382,8 @@ html[data-format="mp3"] .multi-quality-select--mp3 {
     .group-download-btn {
         padding: 0px 0.75rem !important;
         height: 30px !important;
-        min-width: unset !important;
+        width: 165px !important;
+        min-width: 165px !important;
         font-size: 0.75rem !important;
     }
 
