@@ -33,6 +33,11 @@ interface TimeoutConfig {
     zipDownload: number;
     // External Extract API timeout
     externalExtract: number;
+    // Save ZIP API timeouts (mobile)
+    saveZipInit: number;
+    saveZipAdd: number;
+    saveZip: number;
+    saveZipStatus: number;
 }
 
 interface ExpiryConfig {
@@ -179,6 +184,11 @@ const environment: Environment = {
             zipDownload: 30000, // 30 seconds for ZIP download creation
             // External Extract API timeout
             externalExtract: 5 * 60 * 1000, // 5 minutes
+            // Save ZIP API timeouts (server-side ZIP session for mobile)
+            saveZipInit: 15000,
+            saveZipAdd: 15000,
+            saveZip: 15000,
+            saveZipStatus: 10000,
         },
 
         // Data expiry times (in milliseconds)

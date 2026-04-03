@@ -33,6 +33,11 @@ interface TimeoutConfig {
     v3PollingInterval: number;
     v3MaxPollingDuration: number;
     zipDownload: number;
+    // Save ZIP API timeouts (mobile)
+    saveZipInit: number;
+    saveZipAdd: number;
+    saveZip: number;
+    saveZipStatus: number;
 }
 
 interface ExpiryConfig {
@@ -179,6 +184,11 @@ const environment: Environment = {
             v3PollingInterval: 1000, // 1 second delay between polls
             v3MaxPollingDuration: 5 * 60 * 60 * 1000, // 5 hours max polling
             zipDownload: 30000, // 30 seconds for ZIP download creation
+            // Save ZIP API timeouts (server-side ZIP session for mobile)
+            saveZipInit: 15000,
+            saveZipAdd: 15000,
+            saveZip: 15000,
+            saveZipStatus: 10000,
         },
 
         // Data expiry times (in milliseconds)

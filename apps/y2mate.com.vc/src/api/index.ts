@@ -15,6 +15,7 @@ import {
   createV3PlaylistService,
   createV3DownloadService,
   createV3ZipDownloadService,
+  createSaveZipService,
   createSupporterService,
 
   // Domain Layer
@@ -122,6 +123,13 @@ const ytMetaApiConfig = {
   timeout: getTimeout('playlist'),
 };
 
+const saveZipApiConfig = {
+  saveZip: {
+    baseUrl: MUTI_DOWNLOAD_BASE_URL,
+    timeout: getTimeout('saveZipInit'),
+  },
+};
+
 // 2. Create JWT Store (namespaced to prevent collision) - MUST be created before verifier
 const jwtStore = new LocalStorageJwtStore(
   createNamespacedKey('y2mate', 'downloader')
@@ -153,6 +161,9 @@ const coreServices = {
     ...apiConfig,
     zip: zipApiConfig
   }),
+
+  // Save ZIP (server-side ZIP session for mobile — same base URL as ZIP Download)
+  saveZip: createSaveZipService(zipHttpClient, saveZipApiConfig),
 };
 
 // 4. Create Verifier (Domain Layer)

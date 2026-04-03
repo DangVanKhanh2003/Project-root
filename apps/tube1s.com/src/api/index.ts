@@ -15,6 +15,7 @@ import {
   createV3PlaylistService,
   createV3DownloadService,
   createV3ZipDownloadService,
+  createSaveZipService,
   createSupporterService,
 
   // Domain Layer
@@ -117,6 +118,13 @@ const zipApiConfig = {
   timeout: getTimeout('zipDownload'),
 };
 
+const saveZipApiConfig = {
+  saveZip: {
+    baseUrl: MUTI_DOWNLOAD_BASE_URL,
+    timeout: getTimeout('saveZipInit'),
+  },
+};
+
 const ytMetaApiConfig = {
   baseUrl: YT_META_BASE_URL,
   timeout: getTimeout('playlist'),
@@ -153,6 +161,9 @@ const coreServices = {
     ...apiConfig,
     zip: zipApiConfig
   }),
+
+  // Save ZIP (server-side ZIP session for mobile — same base URL as ZIP Download)
+  saveZip: createSaveZipService(zipHttpClient, saveZipApiConfig),
 };
 
 // 4. Create Verifier (Domain Layer)

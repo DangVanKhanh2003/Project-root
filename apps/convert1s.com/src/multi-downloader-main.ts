@@ -506,6 +506,10 @@ async function init() {
     multipleDownloadRenderer.useBatchStrategy();
     multipleDownloadRenderer.init();
 
+    // Initialize mobile save ZIP listener (auto-skip on desktop)
+    const { initMobileSaveZipListener } = await import('./features/downloader/logic/multiple-download/mobile-save-zip-manager');
+    initMobileSaveZipListener();
+
     // Initialize form handlers
     initMultiDownloadForm();
     initFeedbackWidget();
