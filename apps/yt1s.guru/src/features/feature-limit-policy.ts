@@ -31,9 +31,9 @@ export const CHANNEL_MAX_ITEMS_FALLBACK = 15;
 export const CHANNEL_START_PER_DAY = DEFAULT_START_PER_DAY;
 
 // High quality / cut limits (start-per-day only, no item tiers)
-export const HIGH_QUALITY_4K_START_PER_DAY = 20;
-export const HIGH_QUALITY_2K_START_PER_DAY = 20;
-export const HIGH_QUALITY_320K_START_PER_DAY = 20;
+export const HIGH_QUALITY_4K_START_PER_DAY = 1000;
+export const HIGH_QUALITY_2K_START_PER_DAY = 1000;
+export const HIGH_QUALITY_320K_START_PER_DAY = 1000;
 export const CUT_VIDEO_START_PER_DAY = 200;
 
 // ============================================================

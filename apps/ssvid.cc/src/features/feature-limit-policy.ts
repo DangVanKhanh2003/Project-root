@@ -16,9 +16,9 @@ import { FEATURE_KEYS } from '@downloader/core';
 export const DEFAULT_START_PER_DAY = 1;
 
 // High quality / cut limits (start-per-day)
-export const HIGH_QUALITY_4K_START_PER_DAY = 20;
-export const HIGH_QUALITY_2K_START_PER_DAY = 20;
-export const HIGH_QUALITY_320K_START_PER_DAY = 20;
+export const HIGH_QUALITY_4K_START_PER_DAY = 1000;
+export const HIGH_QUALITY_2K_START_PER_DAY = 1000;
+export const HIGH_QUALITY_320K_START_PER_DAY = 1000;
 export const CUT_VIDEO_START_PER_DAY = 20;
 
 // Multiple download limits
