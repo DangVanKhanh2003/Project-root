@@ -1,0 +1,14 @@
+/* =========================================================
+   Reset License Key Page — y2mate.com.vc
+   ========================================================= */
+
+.license-submit {
+    width: 100% !important;
+    margin-top: 12px;
+}
+
+.reset-rate-limit {
+    margin: 10px 0 0;
+    font-size: 13px;
+    color: var(--text-secondary);
+}

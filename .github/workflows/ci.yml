@@ -34,6 +34,8 @@ on:
           - 'ytconvert.org'
           - 'yt1s.guru'
           - 'Ytbdownloader.com'
+          - 'y2mate.com.vc'
+          - 'real-y2mate.com'
 
 concurrency:
   group: ci-${{ github.repository }}-${{ github.ref }}
@@ -103,13 +105,17 @@ jobs:
               - 'apps/yt1s.guru/**'
             Ytbdownloader.com:
               - 'apps/Ytbdownloader.com/**'
+            y2mate.com.vc:
+              - 'apps/y2mate.com.vc/**'
+            real-y2mate.com:
+              - 'apps/real-y2mate.com/**'
 
       - name: Determine apps to deploy
         id: determine-apps
         env:
           COMMIT_MSG: ${{ github.event.head_commit.message }}
         run: |
-          ALL_APPS='["y2matepro","y2matevc","mp3fast","ytmp3.my","4kvideopro","ssvid.cc","ezconv","ytmp4.gg","onedownloader.net","u2snap.com","convert1s.com","snap1s.com","y2save.com","tube1s.com","snakeloader.com","ytsss.com","sstube.net","ytconvert.org","yt1s.guru","Ytbdownloader.com"]'
+          ALL_APPS='["y2matepro","y2matevc","mp3fast","ytmp3.my","4kvideopro","ssvid.cc","ezconv","ytmp4.gg","onedownloader.net","u2snap.com","convert1s.com","snap1s.com","y2save.com","tube1s.com","snakeloader.com","ytsss.com","sstube.net","ytconvert.org","yt1s.guru","Ytbdownloader.com","y2mate.com.vc","real-y2mate.com"]'
 
           # Handle manual trigger with specific_app
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
@@ -251,6 +257,14 @@ jobs:
           if [[ "${{ steps.filter.outputs['Ytbdownloader.com'] }}" == "true" ]]; then
             CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["Ytbdownloader.com"]')
             echo "✅ Ytbdownloader.com changed"
+          fi
+          if [[ "${{ steps.filter.outputs['y2mate.com.vc'] }}" == "true" ]]; then
+            CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["y2mate.com.vc"]')
+            echo "✅ y2mate.com.vc changed"
+          fi
+          if [[ "${{ steps.filter.outputs['real-y2mate.com'] }}" == "true" ]]; then
+            CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["real-y2mate.com"]')
+            echo "✅ real-y2mate.com changed"
           fi
 
           echo "📋 Changed apps: $CHANGED_APPS"
@@ -557,6 +571,34 @@ jobs:
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
+  deploy-y2mate-com-vc:
+    needs: [detect-changes, deploy-convert1s-com, deploy-snap1s-com, deploy-tube1s-com, deploy-y2save-com, deploy-snackeloader-com]
+    if: ${{ !cancelled() && needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'y2mate.com.vc') }}
+    uses: ./.github/workflows/deploy-app.yml
+    with:
+      app_name: y2mate.com.vc
+      app_directory: apps/y2mate.com.vc
+      filter_path: ./apps/y2mate.com.vc
+      domain: ${{ vars.Y2MATE_COM_VC_DOMAIN || 'y2mate.com.vc' }}
+    secrets:
+      SSH_HOST: ${{ secrets.SSH_HOST }}
+      SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
+  deploy-real-y2mate-com:
+    needs: [detect-changes, deploy-convert1s-com, deploy-snap1s-com, deploy-tube1s-com, deploy-y2save-com, deploy-snackeloader-com]
+    if: ${{ !cancelled() && needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'real-y2mate.com') }}
+    uses: ./.github/workflows/deploy-app.yml
+    with:
+      app_name: real-y2mate.com
+      app_directory: apps/real-y2mate.com
+      filter_path: ./apps/real-y2mate.com
+      domain: ${{ vars.REAL_Y2MATE_DOMAIN || 'real-y2mate.com' }}
+    secrets:
+      SSH_HOST: ${{ secrets.SSH_HOST }}
+      SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
   # ============================================
   # Job 9: Summary
   # ============================================
@@ -583,6 +625,8 @@ jobs:
       - deploy-ytconvert-org
       - deploy-yt1s-guru
       - deploy-ytbdownloader-com
+      - deploy-y2mate-com-vc
+      - deploy-real-y2mate-com
     if: always()
     runs-on: ubuntu-latest
     steps:
@@ -617,3 +661,5 @@ jobs:
           echo "| ytconvert.org | ${{ needs.deploy-ytconvert-org.result || 'skipped' }} |"
           echo "| yt1s.guru | ${{ needs.deploy-yt1s-guru.result || 'skipped' }} |"
           echo "| Ytbdownloader.com | ${{ needs.deploy-ytbdownloader-com.result || 'skipped' }} |"
+          echo "| y2mate.com.vc | ${{ needs.deploy-y2mate-com-vc.result || 'skipped' }} |"
+          echo "| real-y2mate.com | ${{ needs.deploy-real-y2mate-com.result || 'skipped' }} |"

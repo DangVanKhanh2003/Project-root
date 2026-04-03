@@ -1,0 +1,2460 @@
+/* Multiple Downloader Styles */
+
+/* =========================================
+   1. Main Layout & Card
+   ========================================= */
+.multiple-downloads-container {
+    --multi-list-bg-card: var(--bg-card);
+    --multi-list-bg-subtle: var(--bg-surface-soft);
+    --multi-list-tabs-bg: var(--multi-list-playlist-tabs-bg, var(--multi-list-bg-subtle));
+    --multi-list-bg-info-soft: var(--bg-surface-soft);
+    --multi-list-bg-warning: var(--color-warning-bg);
+    --multi-list-text-primary: var(--text-heading);
+    --multi-list-text-soft: var(--text-secondary);
+    --multi-list-text-muted: var(--text-muted);
+    --multi-list-border-light: var(--border-subtle);
+    --multi-list-border-soft: var(--border-subtle);
+    --multi-list-border-strong: var(--border-default);
+    --multi-list-border-muted: color-mix(in srgb, var(--border-default) 50%, transparent);
+    --multi-list-border-brand: var(--color-primary);
+    --multi-list-control-bg: var(--bg-card);
+    --multi-list-control-border: var(--border-default);
+    --multi-list-control-focus: var(--video-input-active-border);
+    --multi-list-control-icon: var(--text-placeholder);
+    --multi-list-control-menu-bg: var(--bg-card);
+    --multi-list-control-active: var(--accent-fill-soft);
+    --multi-list-control-active-text: var(--color-primary);
+    --multi-list-control-text: var(--text-body);
+    --multi-list-error: var(--color-status-error);
+    --multi-list-warning: var(--color-warning);
+    --multi-list-warning-accent: var(--color-warning);
+    --multi-list-warning-text: var(--color-warning-text);
+    --multi-list-shadow-75: rgba(0, 0, 0, 0.75);
+    --multi-list-skeleton-shimmer: var(--color-skeleton-light);
+    --multi-list-skeleton-base: var(--color-skeleton-dark);
+    --multi-list-skeleton-highlight: var(--color-skeleton-light);
+    --multi-list-skeleton-duration: 1.5s;
+    --multi-list-progress-fill: linear-gradient(90deg, var(--multi-list-border-brand), var(--color-primary));
+    --multi-list-extracting-glow: var(--multi-list-extracting-glow-color);
+    --multi-list-checkbox-accent: var(--multi-list-selection-accent, var(--multi-list-border-brand));
+    --multi-list-group-btn-bg: var(--multi-list-group-action-bg);
+    --multi-list-group-btn-text: var(--multi-list-group-action-text);
+    --multi-list-group-btn-hover-bg: var(--multi-list-group-action-hover-bg);
+    --multi-list-group-btn-hover-text: var(--multi-list-group-action-hover-text);
+    --multi-list-group-btn-active-bg: var(--multi-list-group-action-active-bg);
+    --multi-list-group-btn-active-text: var(--multi-list-group-action-active-text);
+    --multi-list-group-btn-disabled-bg: var(--multi-list-group-action-disabled-bg);
+    --multi-list-group-btn-disabled-text: var(--multi-list-group-action-disabled-text);
+    --multi-list-group-btn-disabled-opacity: var(--multi-list-group-action-disabled-opacity);
+    border-radius: var(--radius-lg, 16px);
+    margin-top: 2rem;
+    display: none;
+    overflow: hidden;
+    border: none;
+    background: none;
+}
+
+/* Card Container for Form */
+.multiple-download-card {
+    background: var(--bg-card);
+    border-radius: 12px;
+    padding: var(--padding-card);
+    padding-bottom: 16px;
+    box-shadow: none;
+    border: 0;
+    margin-bottom: 0;
+    max-width: 100% !important;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+.multiple-download-card .tip-message-content {
+    padding-top: 28px !important;
+}
+
+@media (min-width: 351px) {
+    .multiple-download-card {
+        max-width: var(--main-content-max-width-sm) !important;
+    }
+}
+
+@media (min-width: 600px) {
+    .multiple-download-card {
+        max-width: var(--main-content-max-width-md) !important;
+    }
+}
+
+@media (min-width: 840px) {
+    .multiple-download-card {
+        max-width: var(--main-content-max-width-lg) !important;
+    }
+}
+
+@media (min-width: 1240px) {
+    .multiple-download-card {
+        max-width: var(--main-content-max-width-xl) !important;
+    }
+}
+
+@media (min-width: 1920px) {
+    .multiple-download-card {
+        max-width: var(--main-content-max-width-2xl) !important;
+    }
+}
+
+@media (min-width: 2560px) {
+    .multiple-download-card {
+        max-width: var(--main-content-max-width-3xl) !important;
+    }
+}
+
+.multiple-download-card h1:not(.title-hero) {
+    font-size: 1.75rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: var(--brand);
+}
+
+.content-row {
+    display: block;
+    gap: 24px;
+    margin: 12px 0 6px;
+    position: relative;
+}
+
+.content-col {
+    flex: 1;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
+}
+
+.content-col .titles {
+    margin-top: 0;
+}
+
+.content-col p {
+    margin-bottom: 0;
+    color: var(--text-secondary);
+    line-height: 1;
+}
+
+/* =========================================
+   2. Input Areas
+   ========================================= */
+.urls-input-container {
+    margin-bottom: 10px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-input);
+    border-radius: 10px;
+    transition: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.urls-input-container:focus-within {
+    border-color: var(--video-input-active-border, var(--color-primary, var(--primary-color)));
+}
+
+
+.urls-textarea {
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 16px 124px 16px 20px;
+    min-height: 140px;
+    border-radius: 8px;
+    resize: vertical;
+    font-family: inherit;
+    font-size: 1rem;
+    line-height: 1.5;
+    background: transparent;
+    color: var(--text-main);
+}
+
+.urls-textarea::placeholder {
+    color: var(--text-placeholder);
+}
+
+.urls-textarea {
+    scrollbar-width: thin;
+    scrollbar-color: var(--multi-list-border-soft) transparent;
+}
+
+.urls-textarea::-webkit-scrollbar {
+    width: 1px;
+}
+
+.urls-textarea::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.urls-textarea::-webkit-scrollbar-thumb {
+    background: var(--multi-list-border-soft);
+    border-radius: 999px;
+}
+
+.urls-input-container .input-actions {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    margin-right: 5px;
+    transform: translateY(-50%);
+    padding-right: 0;
+    z-index: 3;
+}
+
+.urls-input-container .btn-paste {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    height: 36px;
+    padding: 0 12px;
+    border-radius: 999px;
+    border: 1px solid var(--border-default);
+    background: var(--bg-card);
+    margin-right: 10px;
+}
+
+.urls-input-container .btn-paste:hover {
+    background: var(--accent-fill-soft);
+}
+
+/* Single Line Input (Playlist) */
+.urls-input-container .input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 56px;
+    border: 1px solid var(--border-input);
+    background: var(--bg-card);
+    border-radius: var(--radius-xl);
+}
+
+.urls-input-container .input-wrapper:focus-within {
+    border-color: var(--video-input-active-border, var(--color-primary, var(--primary-color)));
+}
+
+.video-input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 0 50px 0 16px !important;
+    font-size: 18px;
+    line-height: 1.5;
+    color: var(--text-main);
+}
+
+.urls-input-container .video-input::placeholder {
+    color: var(--color-control-placeholder);
+    opacity: 1;
+}
+
+/* Action Button (Paste/Clear) */
+.input-action-btn {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    z-index: 5;
+}
+
+.input-action-btn:hover {
+    background: var(--accent-fill-soft);
+    color: var(--brand);
+    transform: translateY(-50%);
+}
+
+.input-action-btn:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.input-action-btn .btn-icon {
+    width: 18px;
+    height: 18px;
+    display: block;
+    pointer-events: none;
+    color: inherit;
+}
+
+.input-action-btn .hidden {
+    display: none !important;
+}
+
+.input-action-btn .btn-state {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* =========================================
+   3. Multi Format Selector (Renamed)
+   ========================================= */
+
+/* Main Container */
+#multi-format-selector-container {
+    margin-top: 8px;
+}
+
+.multi-format-selector-wrapper {
+    border-radius: var(--radius-xl);
+    margin-top: 5px;
+}
+
+.multi-format-selector {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* Format Toggle */
+.multi-format-toggle {
+    display: flex;
+    background: var(--bg-card);
+    border-radius: var(--radius-xl);
+    padding: 4px;
+    border: 1px solid var(--border-input);
+}
+
+.multi-format-btn {
+    padding: 7px 24px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-main);
+    transition: background 0.3s, color 0.3s;
+    border-radius: var(--radius-xl);
+}
+
+.multi-format-btn.active {
+    background: var(--brand);
+    color: var(--color-white);
+}
+
+.multi-format-btn:hover:not(.active) {
+    background: var(--accent-fill-soft);
+    color: var(--brand);
+}
+
+/* State-based styling (similar to format-selector.css) */
+/* When .multi-format-btn[data-format="mp4"] is active (default often handled by JS class .active) */
+/* We rely on the .active class added by JS for standard state */
+
+
+/* Quality Wrapper */
+.multi-quality-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: auto;
+}
+
+.multi-quality-dropdown-wrapper {
+    position: relative;
+}
+
+.multi-quality-select {
+    height: 40px;
+    padding: 0 40px 0 18px;
+    border: 1px solid var(--border-input);
+    border-radius: var(--radius-xl);
+    background: var(--bg-card);
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-body);
+    outline: none;
+    appearance: none;
+    transition: border-color 0.3s;
+}
+
+.multi-quality-select:hover,
+.multi-quality-select:focus {
+    border-color: var(--video-input-active-border, var(--color-primary, var(--primary-color)));
+}
+
+.multi-select-arrow {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: var(--text-body);
+}
+
+.multi-quality-dropdown-wrapper .multi-video-group-dropdown {
+}
+
+.multi-quality-dropdown-wrapper .multi-video-group-dropdown .video-group-menu {
+    max-height: 380px;
+}
+
+html[data-format="mp3"] .multi-quality-dropdown-wrapper .multi-video-group-dropdown {
+    display: none !important;
+}
+
+html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropdown {
+    display: block !important;
+}
+
+/* Convert Button */
+.multi-btn-convert {
+    font-size: 16px;
+    font-weight: 700;
+    height: 45px;
+    padding: 0 28px;
+    transition: background 0.3s, color 0.3s, transform 0.3s, opacity 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--brand);
+    color: var(--color-white);
+    border: none;
+    border-radius: var(--radius-xl);
+    cursor: pointer;
+}
+
+.multi-btn-convert:hover {
+    opacity: 0.85;
+    transform: translateY(-1px);
+}
+
+.multi-btn-convert:active {
+    transform: scale(0.98);
+}
+
+/* Format Switching Logic Helpers (Optional if JS toggles display) */
+.multi-quality-select--mp4 {
+    display: none;
+}
+
+.multi-quality-select--mp3 {
+    display: none;
+}
+
+/* Audio Dropdown - reuse base styles from dropdown.css */
+.multi-audio-dropdown-wrapper {
+    position: relative;
+}
+
+.multi-audio-dropdown-wrapper .dropdown-trigger {
+    padding: 0 10px;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.multi-audio-dropdown-wrapper .dropdown-arrow {
+    margin-left: auto;
+}
+
+.multi-audio-dropdown-wrapper .selected-icon {
+    flex-shrink: 0;
+}
+
+/* Show text/arrow when expanded */
+.multi-audio-dropdown-wrapper:has(.custom-dropdown.active) .dropdown-trigger {
+    padding: 0 10px;
+    justify-content: flex-start;
+}
+
+.multi-audio-dropdown-wrapper:has(.custom-dropdown.active) .selected-content,
+.multi-audio-dropdown-wrapper:has(.custom-dropdown.active) .dropdown-arrow {
+    opacity: 1;
+    max-width: 200px;
+    transition: opacity 0.5s, max-width 0.5s;
+    pointer-events: auto;
+}
+
+
+/* =========================================
+   4. Video List & Items
+   ========================================= */
+.multi-download-header {
+    background: var(--multi-list-bg-card);
+    border: none !important;
+    border-radius: 0 !important;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.multi-header-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 1rem 1.5rem 0.5rem;
+    background: var(--multi-list-bg-card);
+}
+
+.multi-header-title {
+    font-size: 16px;
+    color: var(--multi-list-text-primary);
+    font-weight: 700;
+    margin: 0;
+}
+
+.item-count-total {
+    font-size: 0.875rem;
+    color: var(--multi-list-text-soft);
+    font-weight: 500;
+}
+
+.multiple-download-group-actions {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0px 10px 15px 15px;
+    position: relative;
+    z-index: 10;
+    background: var(--multi-list-bg-card);
+    border-bottom: 1px solid var(--multi-list-border-muted);
+
+}
+
+.header-select-dropdown {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.header-select-dropdown .selected-text,
+.playlist-group-selected-count {
+    font-size: 0.95rem;
+    color: var(--multi-list-text-soft);
+    font-weight: 500;
+}
+
+.group-download-btn {
+    background: var(--multi-list-border-brand) !important;
+    color: white !important;
+    border: none !important;
+    padding: 8px 24px !important;
+    border-radius: 36px !important;
+    font-weight: 700 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+    height: 44px !important;
+    cursor: pointer !important;
+    min-width: 160px
+}
+
+.group-download-btn:hover:not(.is-disabled) {
+    background: var(--color-primary);
+}
+
+.group-download-btn.is-disabled {
+    cursor: not-allowed;
+    background: var(--status-pending-color) !important;
+    position: relative;
+    overflow: visible;
+}
+
+.group-download-btn.is-disabled:hover,
+.group-download-btn.is-disabled:active {
+    background: var(--status-pending-color) !important;
+}
+
+/* Tooltip for disabled batch download button */
+.group-download-btn.is-disabled::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-tooltip-bg);
+    color: var(--color-tooltip-text);
+    border: 1px solid var(--color-tooltip-border);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s;
+    z-index: 9999;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.group-download-btn.is-disabled::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-bottom-color: var(--color-tooltip-arrow);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s;
+    z-index: 9999;
+}
+
+.group-download-btn.is-disabled:hover::after,
+.group-download-btn.is-disabled:hover::before {
+    opacity: 1;
+}
+
+.btn-icon-zip {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+.btn-text {
+    font-size: 0.95rem;
+}
+
+.multi-download-header {
+    border-bottom: 1px solid var(--multi-list-border-muted);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--multi-list-bg-card);
+}
+
+#playlist-download-form .multi-download-header {
+    display: none;
+}
+
+.multi-header-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--multi-list-text-primary);
+    margin: 0;
+}
+
+.multi-download-list {
+    height: fit-content;
+    background: none;
+}
+
+.multi-download-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.multi-download-list::-webkit-scrollbar-track {
+    background: var(--multi-list-bg-card);
+}
+
+.multi-download-list::-webkit-scrollbar-thumb {
+    background: var(--multi-list-border-soft);
+    border-radius: 4px;
+}
+
+.multi-download-list::-webkit-scrollbar-thumb:hover {
+    background: var(--multi-list-border-strong);
+}
+
+.multi-video-item {
+    display: flex;
+    padding: 15px;
+    border-bottom: 1px solid var(--multi-list-border-muted);
+    align-items: center;
+    gap: 20px;
+    position: relative;
+    background: var(--multi-list-bg-card);
+    contain: style;
+}
+
+.multi-video-item.selected {
+    background: var(--multi-list-bg-info-soft);
+}
+
+.multi-video-item:last-child {
+    border-bottom: none;
+}
+
+
+
+.multi-video-thumb {
+    width: 160px;
+    height: 90px;
+    /* 16:9 ratio */
+    flex-shrink: 0;
+    position: relative;
+    border-radius: var(--radius-small, 8px);
+    overflow: hidden;
+    background: #e0e0e0;
+    box-shadow: none;
+}
+
+.multi-video-thumb img {
+    width: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.multi-video-item.skeleton-loading .multi-video-thumb,
+.multi-video-item.skeleton-loading .multi-video-thumb .skeleton-box {
+    background: linear-gradient(90deg, var(--multi-list-skeleton-base) 25%, var(--multi-list-skeleton-highlight) 50%, var(--multi-list-skeleton-base) 75%);
+    background-size: 200% 100%;
+    animation: multi-skeleton-shimmer var(--multi-list-skeleton-duration) linear infinite;
+}
+
+.multi-video-item.skeleton-loading .multi-video-thumb .skeleton-box {
+    border-radius: inherit;
+}
+
+
+.multi-video-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.btn-icon.btn-remove {
+    background: transparent;
+    border: none;
+    padding: 8px;
+    border-radius: 8px;
+    color: var(--multi-list-error);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.btn-icon.btn-remove:hover {
+    background: var(--multi-list-bg-subtle);
+}
+
+
+.icon-trash svg {
+    width: 20px;
+    height: 20px;
+}
+
+.multi-video-title {
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--multi-list-text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.multi-video-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.multi-video-author {
+    font-size: 0.875rem;
+    color: var(--multi-list-text-soft);
+}
+
+.multi-video-error {
+    color: var(--multi-list-error);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+.multi-video-item.expired .multi-video-error {
+    color: var(--multi-list-warning-text);
+}
+
+.multi-audio-language-warning {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-top: 0.35rem;
+    padding: 0.5rem 0.65rem;
+    border-radius: 8px;
+    background: var(--multi-list-bg-warning);
+    color: var(--multi-list-warning-accent);
+    font-size: 0.8rem;
+    line-height: 1;
+}
+
+.multi-audio-language-warning svg {
+    margin-top: 1px;
+    flex: 0 0 auto;
+    color: var(--multi-list-warning);
+}
+
+.multi-audio-language-warning strong {
+    font-weight: 700;
+    color: var(--multi-list-warning-text);
+}
+
+.item-setting-text {
+    font-size: inherit;
+    color: var(--multi-list-text-soft);
+    font-weight: 500;
+}
+
+.item-setting-badge {
+    display: inline-flex;
+    padding: 0.125rem 0.375rem;
+    background: var(--multi-list-bg-info-soft);
+    color: var(--multi-list-text-soft);
+    border-radius: 4px;
+    font-size: inherit;
+    font-weight: 600;
+    margin-left: 0.25rem;
+    text-transform: uppercase;
+}
+
+.settings-progress-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    min-height: 40px;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.multi-video-status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 120px;
+    flex-shrink: 0;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.status-badge.pending {
+    background: var(--status-pending-bg);
+    color: var(--status-pending-color);
+}
+
+.status-badge.ready {
+    background: var(--status-ready-bg);
+    color: var(--status-ready-color);
+    border: none;
+}
+
+.status-badge.success {
+    background: var(--status-success-bg);
+    color: var(--status-success-color);
+    border: none;
+}
+
+.status-badge.error {
+    background: var(--status-error-bg);
+    color: var(--status-error-color);
+    border: none;
+}
+
+.status-badge.expired {
+    background: var(--multi-list-bg-warning);
+    color: var(--multi-list-warning-text);
+    border: none;
+}
+
+.status-badge.cancelled {
+    background: var(--status-pending-bg);
+    color: var(--status-pending-color);
+}
+
+.item-active-progress {
+    width: 100%;
+    margin-top: 0.25rem;
+}
+
+/* Hide settings when progress is active */
+.multi-video-item.analyzing .item-settings,
+.multi-video-item.fetching_metadata .item-settings,
+.multi-video-item.downloading .item-settings,
+.multi-video-item.converting .item-settings {
+    display: none !important;
+}
+
+.progress-info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    line-height: 1.2;
+    margin-bottom: 7px;
+}
+
+.multi-video-phase-label {
+    font-size: 0.875rem;
+    color: var(--multi-list-border-brand);
+    font-weight: 600;
+    line-height: 1.25;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.progress-percentage-label {
+    font-size: 0.875rem;
+    color: var(--multi-list-text-primary);
+    font-weight: 700;
+    line-height: 1.25;
+}
+
+.multi-video-progress {
+    width: 100%;
+    height: 4px;
+    background: var(--multi-list-border-soft);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background: var(--multi-list-progress-fill);
+    border-radius: 3px;
+    display: block !important;
+}
+
+.multi-video-status:empty {
+    display: none;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.status-badge.ready {
+    background: var(--status-ready-bg);
+    color: var(--status-ready-color);
+    border: none;
+}
+
+.status-badge.pending {
+    background: var(--status-pending-bg);
+    color: var(--status-pending-color);
+}
+
+.status-badge.analyzing {
+    background: var(--status-analyzing-bg);
+    color: var(--status-analyzing-color);
+    animation: pulse 1.5s infinite;
+}
+
+.status-badge.downloading {
+    background: var(--status-success-bg);
+    color: var(--status-success-color);
+}
+
+.status-badge.converting {
+    background: var(--status-converting-bg);
+    color: var(--status-converting-color);
+}
+
+.status-badge.success,
+.status-badge.completed {
+    background: var(--status-success-bg);
+    color: var(--status-success-color);
+    border: none;
+}
+
+.status-badge.error {
+    background: var(--status-error-bg);
+    color: var(--status-error-color);
+    border: none;
+}
+
+.status-badge.expired {
+    background: var(--multi-list-bg-warning);
+    color: var(--multi-list-warning-text);
+    border: none;
+}
+
+.multi-video-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: 1rem;
+}
+
+.btn-icon {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid transparent;
+    background: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    color: white;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+
+
+
+.btn-icon.btn-download {
+    color: var(--multi-list-border-brand);
+    border: 1px solid var(--multi-list-control-border);
+}
+
+.btn-icon.btn-cancel {
+    color: var(--multi-list-text-soft);
+}
+
+.btn-icon.btn-cancel:hover {
+    color: var(--multi-list-error);
+    background: var(--color-accent-soft-08, rgba(231, 76, 60, 0.08));
+}
+
+/* Trash Icon SVG */
+.icon-trash {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-trash svg {
+    width: 18px;
+    height: 18px;
+    display: block;
+}
+
+/* Progress Bar */
+.multi-video-progress {
+    width: 100%;
+    height: 4px;
+    background: var(--multi-list-border-soft);
+    margin-top: 0.5rem;
+    border-radius: 10px;
+    overflow: visible;
+    /* Allow percentage to be visible if outside */
+    position: relative;
+}
+
+.progress-bar {
+    width: 0;
+    height: 100%;
+    background: var(--multi-list-progress-fill);
+    transition: width 0.3s ease;
+    border-radius: 10px;
+    display: block !important;
+}
+
+.progress-percentage {
+    position: absolute;
+    right: 0;
+    top: -16px;
+    /* Place it above/to the right of the bar */
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--multi-list-border-brand);
+}
+
+/* Footer Controls */
+.multi-download-footer,
+.multi-download-controls {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.multi-download-controls .btn,
+.multi-download-footer .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-md, 12px);
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    border: none;
+    text-decoration: none;
+    line-height: 1;
+}
+
+.btn-primary {
+    background-color: var(--brand);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-accent-hover);
+    transform: translateY(-1px);
+}
+
+.btn-success {
+    background-color: var(--brand);
+    color: white;
+}
+
+.btn-success:hover:not(:disabled) {
+    background-color: var(--color-accent-hover);
+}
+
+.btn-success:disabled {
+    cursor: not-allowed;
+    background-color: var(--brand);
+    opacity: 0.6;
+    color: white;
+}
+
+.btn-danger {
+    background-color: var(--multi-list-error);
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: var(--multi-list-error);
+    opacity: 0.85;
+}
+
+.empty-list {
+    padding: 4rem 2rem;
+    text-align: center;
+    color: var(--text-muted, #6b7280);
+    font-size: 1.1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Animation */
+@keyframes pulse {
+    0% {
+        opacity: 0.6;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.6;
+    }
+}
+
+/* Responsive */
+@media (min-width: 992px) {
+    .content-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 28px;
+    }
+}
+
+@media (max-width: 900px) {
+    .multiple-download-card {
+        margin-bottom: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .video-input {
+        font-size: 16px;
+    }
+
+    .urls-textarea {
+        padding: 14px 56px 14px 14px;
+    }
+
+    .urls-input-container .input-actions {
+        top: 50%;
+        right: 0;
+        margin-right: 5px;
+    }
+
+    .urls-input-container .btn-paste {
+        width: 40px;
+        min-width: 40px;
+        padding: 0;
+        gap: 0;
+    }
+
+    .multi-format-selector {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .multi-quality-wrapper {
+        width: 100%;
+        order: 1;
+        padding-right: 0;
+    }
+
+    .multi-quality-dropdown-wrapper {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .multi-format-toggle {
+        order: 2;
+        flex: 0 0 auto;
+    }
+
+    .multi-btn-convert {
+        order: 3;
+        flex: 0 0 auto;
+        margin-left: auto;
+    }
+
+    .multi-quality-select {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .multi-quality-dropdown-wrapper--grouped .multi-video-group-dropdown {
+        width: 100%;
+    }
+
+    .multi-quality-dropdown-wrapper--grouped .video-group-trigger {
+        width: 100%;
+    }
+
+    /* Audio dropdown mobile: icon-only collapsed, expand on active */
+    .multi-audio-dropdown-wrapper {
+        flex: 0 0 auto;
+        width: 42px;
+        margin-left: auto;
+        transition: width 0.5s ease;
+        z-index: 20;
+    }
+
+    .multi-audio-dropdown-wrapper:has(.custom-dropdown.active) {
+        width: 200px;
+    }
+
+    .multi-audio-dropdown-wrapper .selected-content,
+    .multi-audio-dropdown-wrapper .dropdown-arrow {
+        opacity: 0;
+        max-width: 0;
+        overflow: hidden;
+        transition: opacity 0.5s, max-width 0.5s;
+        pointer-events: none;
+    }
+
+    .multi-audio-dropdown-wrapper:has(.custom-dropdown.active) .selected-content,
+    .multi-audio-dropdown-wrapper:has(.custom-dropdown.active) .dropdown-arrow {
+        opacity: 1;
+        max-width: 200px;
+        transition: opacity 0.5s, max-width 0.5s;
+        pointer-events: auto;
+    }
+
+    .multi-audio-dropdown-wrapper .dropdown-trigger {
+        justify-content: center;
+        gap: 0;
+        transition: padding 0.5s, gap 0.5s;
+        min-width: 42px;
+        height: 42px;
+    }
+
+    .multi-audio-dropdown-wrapper:has(.custom-dropdown.active) .dropdown-trigger {
+        justify-content: flex-start;
+        gap: 10px;
+        padding: 0 10px;
+    }
+
+    .multi-audio-dropdown-wrapper .dropdown-menu {
+        left: auto;
+        right: 0;
+    }
+}
+
+@media (max-width: 640px) {
+
+
+
+    /* Mobile for form */
+    .multi-format-btn {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+
+    .multi-format-toggle {
+        border-radius: calc(var(--radius-xl) - 10px);
+    }
+
+    .multi-quality-select {
+        height: 42px;
+        font-size: 13px;
+        border-radius: calc(var(--radius-xl) - 10px);
+    }
+
+    .multi-format-selector-wrapper {
+        border-radius: calc(var(--radius-xl) - 10px);
+        margin-top: 0;
+    }
+
+    .multi-btn-convert {
+        height: 42px;
+        font-size: 14px;
+        border-radius: calc(var(--radius-xl) - 10px);
+    }
+
+    /* Mobile styles for list... */
+    .multi-video-item {
+        flex-direction: row;
+        align-items: center;
+        padding: 10px 12px;
+        gap: 0.5rem;
+    }
+
+    .multi-video-thumb {
+        width: 70px;
+        min-width: 70px;
+        height: 52px;
+        flex-shrink: 0;
+    }
+
+    .multi-video-thumb img {
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .multi-video-info {
+        flex: 1;
+        min-width: 0;
+        padding-top: 0px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .multi-video-status {
+        display: none !important;
+    }
+
+    .multi-download-header {
+        flex-direction: column;
+        background: var(--multi-list-bg-card);
+        border-bottom: 1px solid var(--multi-list-border-muted);
+        padding: 6px 12px;
+    }
+
+    .multi-header-top-row {
+        padding: 0.5rem 0 0.25rem;
+        margin: 0 12px;
+    }
+
+    .multiple-download-group-actions {
+        padding: 0px;
+        padding-bottom: 10px;
+    }
+
+    .multi-header-title,
+    .multi-download-header .group-title,
+    .multi-download-header .master-checkbox-label span {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--multi-list-text-primary);
+    }
+
+    .item-count-badge,
+    .item-count-total {
+        font-size: 0.75rem;
+    }
+
+    .multi-video-actions {
+        margin-left: 0;
+        width: auto;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        align-self: flex-start;
+        gap: 4px;
+    }
+
+    .btn-icon.btn-download {
+        background: var(--brand);
+        color: white;
+        border: none;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        box-shadow: none;
+    }
+
+
+
+    .btn-icon.btn-download svg,
+    .btn-icon.btn-download span {
+        width: 16px;
+        height: 16px;
+        font-size: 16px;
+    }
+
+    .status-badge {
+        display: none !important;
+    }
+
+}
+
+/* Skeleton Loading Animation — background-position based (matches single download) */
+@keyframes multi-skeleton-shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.skeleton-div,
+.skeleton-box,
+.skeleton-text {
+    margin: 0px !important;
+    background: linear-gradient(90deg, var(--multi-list-skeleton-base) 25%, var(--multi-list-skeleton-highlight) 50%, var(--multi-list-skeleton-base) 75%);
+    background-size: 200% 100%;
+    animation: multi-skeleton-shimmer var(--multi-list-skeleton-duration) linear infinite;
+    border-radius: 5px;
+}
+
+/* =========================================
+   7. Playlist Group Tabs (Pill Style)
+   ========================================= */
+.playlist-header-tabs {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    background: var(--multi-list-tabs-bg);
+    padding: 0.25rem;
+    border-radius: 6px;
+    border: 1px solid var(--multi-list-border-soft);
+    position: relative;
+}
+
+/* Tab Glider — slides under active tab */
+.tab-glider {
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    left: 0;
+    background: var(--multi-list-border-brand);
+    border-radius: 6px;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+    pointer-events: none;
+    will-change: transform, width;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+/* Hand pointer guide for Download tab discovery */
+.tab-hand-guide {
+    position: absolute;
+    bottom: -38px;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+.playlist-tab {
+    background: transparent;
+    border: none;
+    padding: 0.5rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--multi-list-text-soft);
+    cursor: pointer;
+    border-radius: 10px;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+    position: relative;
+    z-index: 2;
+}
+
+.playlist-tab.active {
+    color: #ffffff;
+    box-shadow: none;
+}
+
+.group-empty {
+    padding: 2rem;
+    text-align: center;
+    color: var(--multi-list-text-soft);
+    font-style: italic;
+    background: var(--multi-list-bg-subtle);
+    border-radius: 8px;
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.group-empty-icon {
+    color: var(--multi-list-border-brand);
+    opacity: 0.9;
+}
+
+.group-empty-text {
+    font-style: normal;
+    font-weight: 500;
+}
+
+.playlist-group {
+    border: 1px solid var(--multi-list-border-soft);
+    border-radius: 16px;
+    margin-bottom: 2rem;
+    overflow: visible;
+}
+
+.playlist-group.collapsed .group-items,
+.playlist-group.collapsed .group-load-more {
+    display: none !important;
+}
+
+.playlist-group.collapsed .group-header {
+    border-bottom: none;
+}
+
+.skeleton-box {
+    width: 100%;
+    height: 100%;
+    min-height: 90px;
+}
+
+.skeleton-text {
+    height: 16px;
+    display: block;
+}
+
+.skeleton-loading {
+    pointer-events: none;
+}
+
+/* =========================================
+   NEW: Header Layout
+   ========================================= */
+.multi-download-header-left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.item-count-badge {
+    font-size: 0.875rem;
+    color: var(--multi-list-text-soft);
+    font-weight: 500;
+}
+
+/* Master Checkbox */
+.master-checkbox-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.master-checkbox,
+.multiple-download-checkbox,
+.group-checkbox {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: var(--multi-list-checkbox-accent);
+}
+
+/* Item Checkbox */
+.item-checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.item-checkbox {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: var(--multi-list-checkbox-accent);
+    border: 2px solid var(--multi-list-border-soft);
+    border-radius: 4px;
+}
+
+.item-checkbox:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* =========================================
+   NEW: Extracting Rotator Animation
+   ========================================= */
+@keyframes extracting-rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.status-badge.converting::before {
+    content: '';
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border: 2px solid currentColor;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: extracting-rotate 0.8s linear infinite;
+    margin-right: 4px;
+    vertical-align: middle;
+}
+
+/* =========================================
+   NEW: Phase-specific progress bar colors
+   ========================================= */
+.multi-video-progress.phase-merging .progress-bar {
+    background: var(--multi-list-progress-fill);
+}
+
+/* =========================================
+   NEW: Extracting Phase — Indeterminate Neon Pulse
+   ========================================= */
+@keyframes item-neon-pulse {
+    from { opacity: 0.1; }
+    to   { opacity: 0.4; }
+}
+
+@keyframes item-progress-slide {
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(350%); }
+}
+
+.multi-video-progress.phase-extracting {
+    overflow: hidden;
+    position: relative;
+}
+
+/* Ẩn fill bar — container tự vẽ animation */
+.multi-video-progress.phase-extracting .progress-bar {
+    display: none !important;
+}
+
+/* Lớp glow nền — nhấp nháy nhẹ */
+.multi-video-progress.phase-extracting::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--color-primary);
+    animation: item-neon-pulse 1s ease-in-out infinite alternate;
+    opacity: 0;
+    border-radius: inherit;
+    will-change: opacity;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+/* Tia sáng chạy qua */
+.multi-video-progress.phase-extracting::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -40%;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+    animation: item-progress-slide 1.2s ease-in-out infinite;
+    border-radius: inherit;
+    will-change: transform;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+/* Processing: solid color, không gradient */
+.multi-video-progress.phase-processing .progress-bar {
+    background: var(--color-primary);
+}
+
+/* =========================================
+   NEW: Playlist Group Styles
+   ========================================= */
+.playlist-group {
+    background: var(--multi-list-bg-card);
+}
+
+.group-header {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 15px;
+    background: var(--multi-list-bg-subtle);
+    border: none;
+    border-bottom: 1px solid var(--multi-list-border-muted);
+    border-radius: 16px 16px 0 0;
+    position: relative;
+    z-index: 10;
+}
+
+.group-header-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 0.75rem;
+}
+
+.group-header-title-area {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.group-header-title-area::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-left: 2px solid var(--multi-list-text-soft);
+    border-top: 2px solid var(--multi-list-text-soft);
+    transform: translateY(2px) rotate(45deg);
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+}
+
+.playlist-group.collapsed .group-header-title-area::before {
+    transform: translateY(2px) rotate(-135deg);
+}
+
+.group-title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--multi-list-text-primary);
+}
+
+.group-load-more {
+    display: flex;
+    justify-content: center;
+    padding: 12px 16px;
+    background: var(--multi-list-bg-subtle);
+    border-radius: 0 0 16px 16px;
+    overflow: hidden;
+}
+
+.btn-load-more-group {
+    background: var(--multi-list-bg-card);
+    border: 1px solid var(--multi-list-control-border);
+    color: var(--multi-list-text-primary);
+    padding: 0.5rem 1.5rem;
+    border-radius: 36px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, opacity 0.2s;
+}
+
+.btn-load-more-group:hover:not(:disabled) {
+    background: var(--multi-list-bg-subtle);
+    border-color: var(--multi-list-border-brand);
+}
+
+.btn-load-more-group:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.group-collapse-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    font-size: 0.8rem;
+    color: var(--multi-list-text-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+
+.group-header-bottom-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+
+.group-selection-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.group-selection-text {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--multi-list-text-soft);
+}
+
+.group-actions {
+    display: flex;
+    gap: 0.75rem;
+    position: relative;
+}
+
+.convert-hand-guide {
+    position: absolute;
+    bottom: -38px;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+.checkbox-hand-guide {
+    position: absolute;
+    top: 18px;
+    left: -20px;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+.btn-playlist-group-action {
+    background: var(--multi-list-group-btn-bg);
+    color: var(--multi-list-group-btn-text);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 11px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, opacity 0.2s;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 178px;
+}
+
+.btn-playlist-group-action:hover:not(.is-disabled) {
+    background: var(--multi-list-group-btn-hover-bg);
+    border: none;
+    color: var(--multi-list-group-btn-hover-text);
+}
+
+.btn-playlist-group-action:not(.btn-success):active:not(.is-disabled),
+.btn-playlist-group-action:not(.btn-success).is-active:not(.is-disabled) {
+    background: var(--multi-list-group-btn-active-bg);
+    color: var(--multi-list-group-btn-active-text);
+}
+
+/* Disabled state — no opacity to avoid dimming pseudo-element tooltips */
+.btn-playlist-group-action.is-disabled {
+    cursor: not-allowed;
+    background: var(--multi-list-group-btn-disabled-bg);
+    border: none;
+    color: var(--multi-list-group-btn-disabled-text);
+    position: relative;
+    overflow: visible;
+}
+
+.btn-playlist-group-action.is-disabled:hover,
+.btn-playlist-group-action.is-disabled:active {
+    background: var(--multi-list-group-btn-disabled-bg);
+}
+
+.btn-playlist-group-action.btn-success {
+    background: #16a34a;
+    border: none;
+    color: #ffffff;
+}
+
+.btn-playlist-group-action.btn-success:hover:not(.is-disabled) {
+    background: #16a34a;
+    border: none;
+    color: #ffffff;
+}
+
+.btn-playlist-group-action.btn-success.is-disabled {
+    background: var(--status-success-bg, #dcfce7);
+    border: none;
+    color: var(--status-success-color, #166534);
+    opacity: 1;
+}
+
+.btn-playlist-group-action.btn-success.is-disabled:hover,
+.btn-playlist-group-action.btn-success.is-disabled:active {
+    background: var(--status-success-bg, #dcfce7);
+}
+
+/* Tooltip for disabled group buttons */
+.btn-playlist-group-action.is-disabled::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-tooltip-bg);
+    color: var(--color-tooltip-text);
+    border: 1px solid var(--color-tooltip-border);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s;
+    z-index: 9999;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.btn-playlist-group-action.is-disabled::before {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-bottom-color: var(--color-tooltip-arrow);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s;
+    z-index: 9999;
+}
+
+.btn-playlist-group-action.is-disabled:hover::after,
+.btn-playlist-group-action.is-disabled:hover::before {
+    opacity: 1;
+}
+
+.btn-playlist-group-action.is-loading {
+    pointer-events: none;
+    cursor: wait;
+    opacity: 0.85;
+}
+
+.btn-playlist-group-action.is-loading .btn-icon-zip {
+    display: none !important;
+}
+
+.btn-playlist-group-action.is-loading::before {
+    content: '';
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 2px solid currentColor;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+    margin-right: 8px;
+    vertical-align: middle;
+    flex-shrink: 0;
+}
+
+
+
+.playlist-group.collapsed .group-items,
+.playlist-group.collapsed .group-load-more {
+    display: none !important;
+}
+
+.group-items {
+    max-height: 800px;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+    will-change: scroll-position;
+    border-radius: 0 0 16px 16px;
+    position: relative;
+    z-index: 0;
+}
+
+.group-items:has(~ .group-load-more:not([style*="display: none"])) {
+    border-radius: 0;
+}
+
+.group-items::-webkit-scrollbar {
+    width: 2px;
+}
+
+.group-items::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.group-items::-webkit-scrollbar-thumb {
+    background: var(--multi-list-border-soft);
+    border-radius: 10px;
+}
+
+/* =========================================
+   NEW: Item Settings Dropdowns (Playlist)
+   ========================================= */
+.item-settings.is-dropdowns {
+    display: inline-flex;
+    width: fit-content;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 5px;
+    overflow-x: visible;
+}
+
+.item-settings.is-dropdowns .item-format-select,
+.item-settings.is-dropdowns .item-quality-select,
+.item-settings.is-dropdowns .item-audio-track-select {
+    padding: 0;
+    padding-right: 0.75rem;
+    border: none !important;
+    border-radius: 0;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    color: var(--multi-list-control-text);
+    cursor: pointer;
+    background: transparent;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0 center;
+    background-repeat: no-repeat;
+    background-size: 0.75rem 0.75rem;
+    font-family: inherit;
+    appearance: none;
+    outline: none;
+    flex-shrink: 0;
+}
+
+.item-settings.is-dropdowns .item-format-select:focus,
+.item-settings.is-dropdowns .item-quality-select:focus,
+.item-settings.is-dropdowns .item-audio-track-select:focus {
+    border: none !important;
+    box-shadow: none;
+}
+
+.item-settings.is-dropdowns .item-format-select option,
+.item-settings.is-dropdowns .item-quality-select option,
+.item-settings.is-dropdowns .item-audio-track-select option {
+    background: var(--multi-list-control-menu-bg);
+    color: var(--multi-list-control-text);
+}
+
+.item-settings.is-dropdowns .item-format-select option:checked,
+.item-settings.is-dropdowns .item-quality-select option:checked,
+.item-settings.is-dropdowns .item-audio-track-select option:checked {
+    background: var(--multi-list-control-active);
+    color: var(--multi-list-control-active-text);
+}
+
+
+
+.item-settings.is-dropdowns .item-video-group-dropdown {
+    min-width: 0;
+}
+
+.item-settings.is-dropdowns .item-video-group-dropdown .video-group-trigger {
+    height: 24px;
+    width: fit-content;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    color: var(--multi-list-control-text);
+    padding: 0 0.75rem 0 0;
+    gap: 4px;
+}
+
+.item-settings.is-dropdowns .item-video-group-dropdown .video-group-trigger:hover,
+.item-settings.is-dropdowns .item-video-group-dropdown .video-group-trigger:focus-visible {
+    border-color: transparent;
+    background: transparent;
+}
+
+.item-settings.is-dropdowns .item-video-group-dropdown .video-group-trigger-icon svg {
+    width: 12px;
+    height: 12px;
+}
+
+.item-settings.is-dropdowns .item-video-group-dropdown .video-group-menu {
+    min-width: 200px;
+    max-height: 320px;
+    z-index: 1200;
+}
+
+.item-settings.is-dropdowns .item-video-group-dropdown .video-group-header,
+.item-settings.is-dropdowns .item-video-group-dropdown .video-group-item {
+    font-size: 12px;
+}
+
+/* =========================================
+   NEW: Audio Warning Styles
+   ========================================= */
+.audio-language-warning {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.75rem;
+    color: var(--multi-list-warning-accent);
+    margin: 0.25rem 0px;
+}
+
+/* =========================================
+   Retry Button
+   ========================================= */
+.multi-video-actions .btn-retry {
+    background: var(--multi-list-error);
+    border: none;
+    color: var(--color-white);
+    border-radius: 6px;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: background-color 0.2s ease;
+}
+
+.multi-video-actions .btn-retry:hover {
+    background: var(--multi-list-error);
+    opacity: 0.85;
+    box-shadow: none;
+    transform: none;
+}
+
+/* =========================================
+   NEW: Convert Single Button (Mobile Playlist)
+   ========================================= */
+.btn-icon.btn-convert-single {
+    width: auto;
+    padding: 0 12px;
+    border-radius: 6px;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    background: var(--brand);
+    color: var(--color-white);
+    border: none;
+    height: 32px;
+}
+
+.btn-icon.btn-convert-single:hover {
+    opacity: 0.85;
+}
+
+/* =========================================
+   NEW: Status transition effects
+   ========================================= */
+
+
+/* Cancelled badge */
+.status-badge.cancelled {
+    background: var(--status-pending-bg);
+    color: var(--status-pending-color);
+}
+
+/* New Multi-Download Button */
+.btn-download-multi-download {
+    display: none;
+    /* Hidden on desktop */
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1.25rem;
+    background: var(--color-primary, var(--brand));
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    white-space: nowrap;
+    height: 36px;
+}
+
+/* Hide icons on desktop by default */
+.btn-download-multi-download .btn-icon,
+.btn-download-multi-download .btn-icon-spinner,
+.btn-download-multi-download .btn-icon-check {
+    display: none;
+}
+
+/* Show only text on desktop */
+.btn-download-multi-download .btn-text {
+    display: inline;
+}
+
+.btn-download-multi-download:hover {
+    background: var(--primary-color-hover, var(--brand-hover));
+}
+
+.btn-download-multi-download:active {
+    transform: scale(0.98);
+}
+
+.btn-download-multi-download .btn-icon-spinner {
+    animation: spin 1s linear infinite;
+}
+
+.btn-download-multi-download .btn-icon-check {
+    color: white;
+}
+
+/* Loading state */
+.btn-download-multi-download.is-loading {
+    background: var(--primary-color-hover, var(--brand-hover));
+    cursor: wait;
+}
+
+.btn-download-multi-download.is-loading .btn-icon,
+.btn-download-multi-download.is-loading .btn-icon-check {
+    display: none !important;
+}
+
+.btn-download-multi-download.is-loading .btn-icon-spinner {
+    display: block !important;
+}
+
+.btn-download-multi-download.is-loading .btn-icon-check {
+    display: none !important;
+}
+
+/* Success state */
+.btn-download-multi-download.is-success {
+    background: #15803d;
+}
+
+.btn-download-multi-download.is-success:hover {
+    background: #166534;
+}
+
+.btn-download-multi-download.is-success .btn-icon {
+    display: none !important;
+}
+
+.btn-download-multi-download.is-success .btn-icon-check {
+    display: block !important;
+}
+
+/* Disabled state */
+.btn-download-multi-download.is-disabled,
+.btn-download-multi-download:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* Outline variant for 'Ready' state */
+.btn-download-multi-download.is-outline {
+    background: var(--color-primary, var(--brand));
+    border: 1px solid var(--color-primary, var(--brand));
+    color: var(--color-white);
+}
+
+.btn-download-multi-download.is-outline .btn-icon {
+    display: block !important;
+    color: var(--color-white);
+}
+
+.btn-download-multi-download.is-outline:hover {
+    background: var(--primary-color-hover, var(--brand-hover));
+    border-color: var(--primary-color-hover, var(--brand-hover));
+    color: var(--color-white);
+}
+
+.btn-download-multi-download.is-outline:hover .btn-icon {
+    color: var(--color-white);
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* =========================================
+   NEW: Mobile Overrides for New Elements
+   ========================================= */
+@media (max-width: 640px) {
+
+    .master-checkbox-wrapper,
+    .header-select-dropdown,
+    .btn-remove {
+        display: none !important;
+    }
+
+    /* Show download button on mobile */
+    .btn-icon.btn-download {
+        display: flex !important;
+    }
+
+
+
+    /* Ensure input action buttons are shown correctly */
+    .input-action-btn,
+    .btn-paste,
+    #input-action-button {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    /* States should be flex, but respect the .hidden class */
+    #input-action-button .btn-state,
+    .btn-paste .btn-state,
+    .input-action-btn .btn-state {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #input-action-button .btn-state.hidden,
+    .btn-paste .btn-state.hidden,
+    .input-action-btn .btn-state.hidden {
+        display: none !important;
+    }
+
+    /* Make sure icons are visible inside these buttons */
+    .input-action-btn svg,
+    .btn-paste svg,
+    #input-action-button svg {
+        display: block;
+        width: 18px;
+        height: 18px;
+        color: inherit;
+    }
+
+    .group-header {
+        padding: 0.5rem 12px;
+    }
+
+    .group-header-title-area {
+        min-width: 0;
+    }
+
+    .group-title {
+        font-size: 0.875rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .group-selection-text {
+        font-size: 0.75rem;
+    }
+
+    .group-actions {
+        font-size: 0.75rem;
+    }
+
+    .group-download-btn {
+        padding: 0px 0.75rem !important;
+        height: 30px !important;
+        min-width: unset !important;
+        font-size: 0.75rem !important;
+    }
+
+    .multi-video-title {
+        font-size: 0.875rem;
+    }
+
+    .multi-video-author {
+        font-size: 0.75rem;
+    }
+
+    .playlist-header-tabs {
+        padding: 5px 3px;
+    }
+
+    .playlist-tab {
+        padding: 3px 8px;
+        font-size: 0.6875rem;
+    }
+
+    .btn-playlist-group-action {
+        padding: 0px 0.75rem;
+        font-size: 0.75rem;
+        min-width: unset;
+    }
+
+    .btn-icon-zip {
+        width: 12px !important;
+        height: 12px !important;
+    }
+
+    .item-settings.is-dropdowns {
+        flex-wrap: nowrap;
+        overflow-x: visible;
+    }
+
+    /* Mobile: Button show only icon */
+    .btn-download-multi-download {
+        display: inline-flex !important;
+        width: 32px;
+        min-width: 32px;
+        height: 32px;
+        padding: 0;
+        border-radius: 50%;
+    }
+
+    .btn-download-multi-download .btn-text {
+        display: none !important;
+    }
+
+    .btn-download-multi-download .btn-icon {
+        display: block !important;
+    }
+
+    /* If item is in some state show spinner/check instead */
+    .btn-download-multi-download .btn-icon-spinner[style*="display: block"],
+    .btn-download-multi-download .btn-icon-check[style*="display: block"] {
+        display: block !important;
+    }
+
+    /* Mobile: Container border radius 36px */
+    .multiple-download-card {
+        border-radius: 12px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .playlist-tab .tab-suffix {
+        display: none;
+    }
+}
+
+@media (max-width: 640px) {
+
+    /* Hide remove button AND cancel button during processing phases ONLY on mobile */
+    .multi-video-item.analyzing .btn-remove,
+    .multi-video-item.fetching_metadata .btn-remove,
+    .btn-icon.btn-cancel {
+        display: none !important;
+    }
+}

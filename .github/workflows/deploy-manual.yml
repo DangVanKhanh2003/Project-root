@@ -26,6 +26,8 @@ on:
           - 'ytconvert.org'
           - 'yt1s.guru'
           - 'Ytbdownloader.com'
+          - 'y2mate.com.vc'
+          - 'real-y2mate.com'
       environment:
         description: 'Target environment'
         required: true
@@ -140,6 +142,16 @@ jobs:
               echo "directory=apps/Ytbdownloader.com" >> $GITHUB_OUTPUT
               echo "filter_path=./apps/Ytbdownloader.com" >> $GITHUB_OUTPUT
               echo "domain=${{ vars.YTBDOWNLOADER_DOMAIN || 'ytbdownloader.com' }}" >> $GITHUB_OUTPUT
+              ;;
+            "y2mate.com.vc")
+              echo "directory=apps/y2mate.com.vc" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/y2mate.com.vc" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.Y2MATE_COM_VC_DOMAIN || 'y2mate.com.vc' }}" >> $GITHUB_OUTPUT
+              ;;
+            "real-y2mate.com")
+              echo "directory=apps/real-y2mate.com" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/real-y2mate.com" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.REAL_Y2MATE_DOMAIN || 'real-y2mate.com' }}" >> $GITHUB_OUTPUT
               ;;
           esac
 

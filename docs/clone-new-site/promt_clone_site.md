@@ -14,8 +14,8 @@ Chỉ cần thay **1 link** data folder. AI sẽ tự lấy domain + brand từ 
 - Source template: F:\downloader\Project-root\apps\onedownloader.net
 - Data folder: C:\Users\khanh084\Downloads\{tên-site}\{tên-site}
 
-Lấy domain từ tên folder data (ví dụ folder "ytbdownload" → domain là ytbdownload).
-Tự suy ra brand name từ domain (ví dụ ytbdownload → YTSSS).
+Lấy domain từ tên folder data (ví dụ folder "real-y2mate.com" → domain là real-y2mate.com).
+Tự suy ra brand name từ domain (ví dụ real-y2mate.com → YTSSS).
 Target app: F:\downloader\Project-root\apps\{domain}
 
 Thực hiện đầy đủ theo CLONE-SITE-GUIDE.md. Thảo luận trước khi sửa GitHub workflows.
@@ -26,11 +26,11 @@ Thực hiện đầy đủ theo CLONE-SITE-GUIDE.md. Thảo luận trước khi 
 Đọc file hướng dẫn F:\downloader\Project-root\docs\clone-new-site\CLONE-SITE-GUIDE.md và clone site mới.
 
 - Source template: F:\downloader\Project-root\apps\onedownloader.net
-- Data folder: C:\Users\khanh084\Downloads\ytbdownload\ytbdownload
+- Data folder:C:\Users\khanh084\Downloads\real-y2mate.com
 
-Lấy domain từ tên folder data (ví dụ folder "ytbdownload" → domain là ytbdownload).
-Tự suy ra brand name từ domain (ví dụ ytbdownload → ytconvert).
-Target app: F:\downloader\Project-root\apps\ytbdownload
+Lấy domain từ tên folder data (ví dụ folder "real-y2mate.com" → domain là real-y2mate.com).
+Tự suy ra brand name từ domain (ví dụ real-y2mate.com → y2mate).
+Target app: F:\downloader\Project-root\apps\real-y2mate.com
 
 Thực hiện đầy đủ theo CLONE-SITE-GUIDE.md. Thảo luận trước khi sửa GitHub workflows.
 
