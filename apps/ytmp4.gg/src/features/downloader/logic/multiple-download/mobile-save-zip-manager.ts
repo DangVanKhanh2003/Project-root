@@ -107,11 +107,18 @@ export function getAddedCount(groupId?: string): number {
 }
 
 /**
- * Whether items are still being uploaded to server (pending API calls).
+ * Whether there are still items being processed (converting, downloading, uploading, etc.).
+ * Dots show from first processing item until ALL items are done (completed/error/cancelled/ready).
  */
-export function hasPendingUploads(groupId?: string): boolean {
+export function hasItemsProcessing(groupId?: string): boolean {
+    const PROCESSING_STATUSES = new Set(['pending', 'analyzing', 'fetching_metadata', 'queued', 'downloading', 'converting']);
+    const items: VideoItem[] = groupId
+        ? videoStore.getItemsByGroup(groupId)
+        : videoStore.getAllItems().filter(i => !i.groupId);
+    const hasStoreProcessing = items.some(i => PROCESSING_STATUSES.has(i.status));
+    // Also check pending API uploads (saveAddFile in progress)
     const s = getSession(groupId);
-    return s.pendingItemIds.size > 0;
+    return hasStoreProcessing || s.pendingItemIds.size > 0;
 }
 
 /**
@@ -324,18 +331,18 @@ function updateZipButtonCount(groupId?: string): void {
             const btn = groupEl.querySelector('[data-action="download-zip-group"]');
             if (btn) {
                 const textEl = btn.querySelector('.btn-text');
-                const pending = s.pendingItemIds.size > 0;
+                const processing = hasItemsProcessing(groupId);
                 if (textEl) {
-                    if (pending) {
+                    if (processing) {
                         textEl.innerHTML = `Download ZIP (${count})${ANIMATED_DOTS}`;
                     } else {
                         textEl.textContent = `Download ZIP (${count})`;
                     }
                 }
-                btn.classList.toggle('is-disabled', count === 0 && !pending);
-                btn.setAttribute('aria-disabled', count === 0 && !pending ? 'true' : 'false');
-                if (count > 0) btn.removeAttribute('data-tooltip');
-                (btn as HTMLButtonElement).disabled = count === 0 && !pending;
+                btn.classList.toggle('is-disabled', count === 0 && !processing);
+                btn.setAttribute('aria-disabled', count === 0 && !processing ? 'true' : 'false');
+                if (count > 0 || processing) btn.removeAttribute('data-tooltip');
+                (btn as HTMLButtonElement).disabled = count === 0 && !processing;
             }
         }
     }
@@ -355,23 +362,23 @@ export function updateHeaderZipButton(): void {
     }
 
     let totalCount = 0;
-    let hasPending = false;
     for (const s of sessions.values()) {
         totalCount += s.successItemIds.size;
-        if (s.pendingItemIds.size > 0) hasPending = true;
     }
+    // Check if any items in store are still processing (across all groups)
+    const anyProcessing = hasItemsProcessing();
 
     const headerBtn = document.querySelector('#multiDownloadActionBtn');
     if (headerBtn) {
         const textEl = headerBtn.querySelector('.btn-text');
         if (textEl) {
-            if (hasPending) {
+            if (anyProcessing) {
                 textEl.innerHTML = `Download ZIP (${totalCount})${ANIMATED_DOTS}`;
             } else {
                 textEl.textContent = `Download ZIP (${totalCount})`;
             }
         }
-        const isEmpty = totalCount === 0 && !hasPending;
+        const isEmpty = totalCount === 0 && !anyProcessing;
         (headerBtn as HTMLButtonElement).disabled = isEmpty;
         headerBtn.classList.toggle('is-disabled', isEmpty);
         headerBtn.setAttribute('aria-disabled', isEmpty ? 'true' : 'false');
