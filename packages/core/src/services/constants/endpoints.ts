@@ -109,3 +109,13 @@ export const V3_ENDPOINTS = {
   /** Health check - GET /health */
   HEALTH: '/health',
 } as const;
+
+/**
+ * External Extract API endpoints
+ * Base URL: https://cc.ytconvert.org
+ * Direct download — no polling needed.
+ */
+export const EXTERNAL_EXTRACT_ENDPOINTS = {
+  /** Extract media - POST /api/v2/download */
+  DOWNLOAD: '/api/v2/download',
+} as const;

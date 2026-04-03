@@ -5,3 +5,4 @@
 export * from './download.interface';
 export * from './playlist.interface';
 export * from './zip.interface';
+export * from './external-extract.interface';

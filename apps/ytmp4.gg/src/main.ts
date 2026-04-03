@@ -11,6 +11,7 @@ import { applyInitialVisibility } from './features/widget-level-manager';
 import { initLicenseOnPageLoad } from './features/license/license-token';
 import { initHeroFeatureLinks } from './features/hero-feature-links';
 import { recordPageLoad } from './utils/page-freshness';
+import { initAllowedFeatures } from './features/allowed-features';
 
 
 
@@ -223,6 +224,7 @@ function initFeedbackWidget(): void {
  */
 async function loadFeatures() {
   recordPageLoad();                  // Record page load timestamp for stale-page detection
+  initAllowedFeatures();            // Pre-warm country cache for priority extract routing (fire-and-forget)
   await applyInitialVisibility();   // Initialize license button + supporter badge
   initLicenseOnPageLoad();          // Background revalidation if cache is stale (fire-and-forget)
   initMobileMenu(); // Initialize mobile menu

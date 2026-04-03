@@ -21,6 +21,7 @@ import type { IQueueService } from '../services/v2/interfaces/queue.interface';
 import type { IYouTubePublicApiService } from '../services/public-api/interfaces/public-api.interface';
 import type { IV3PlaylistService } from '../services/v3/interfaces/playlist.interface';
 import type { IV3DownloadService } from '../services/v3/interfaces/download.interface';
+import type { IExternalExtractService } from '../services/v3/interfaces/external-extract.interface';
 
 /**
  * Core Services Collection
@@ -44,6 +45,7 @@ export interface CoreServices {
   playlistV3?: IV3PlaylistService;
   downloadV3?: IV3DownloadService;
   zipDownload?: IZipDownloadService;
+  externalExtract?: IExternalExtractService;
 }
 
 /**
@@ -151,6 +153,11 @@ export function createVerifiedServices(
   if (services.zipDownload) {
     methodRegistry['zipDownload.createZipDownload'] = (request: any) =>
       services.zipDownload!.createZipDownload(request);
+  }
+
+  if (services.externalExtract) {
+    methodRegistry['externalExtract.extract'] = (request: any, signal?: AbortSignal) =>
+      services.externalExtract!.extract(request, signal);
   }
 
   /**
@@ -374,6 +381,12 @@ export function createVerifiedServices(
     zipDownload: {
       createZipDownload: (request: Parameters<IZipDownloadService['createZipDownload']>[0]) =>
         wrap<ZipDownloadResponse>('zipDownload.createZipDownload', request),
+    },
+
+    // External Extract (cc.ytconvert.org)
+    externalExtract: {
+      extract: (request: Parameters<IExternalExtractService['extract']>[0], signal?: AbortSignal) =>
+        wrap('externalExtract.extract', request, signal),
     },
 
     // Utility

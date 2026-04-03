@@ -15,6 +15,7 @@ import {
   createV3PlaylistService,
   createV3DownloadService,
   createV3ZipDownloadService,
+  createExternalExtractService,
   createSupporterService,
 
   // Domain Layer
@@ -26,7 +27,7 @@ import {
 } from '@downloader/core';
 
 // Import centralized environment configuration
-import { getApiBaseUrl, getApiBaseUrlV2, getApiBaseUrlV3, getYtMetaBaseUrl, getSearchV2BaseUrl, getQueueApiUrl, getMutiDownloadBaseUrl, getSupporterApiBaseUrl, getTimeout } from '../environment';
+import { getApiBaseUrl, getApiBaseUrlV2, getApiBaseUrlV3, getExternalExtractBaseUrl, getYtMetaBaseUrl, getSearchV2BaseUrl, getQueueApiUrl, getMutiDownloadBaseUrl, getSupporterApiBaseUrl, getTimeout } from '../environment';
 
 // Import CAPTCHA dependencies
 import { CaptchaModal } from '@downloader/ui-shared';
@@ -39,6 +40,7 @@ const API_V3_BASE_URL = getApiBaseUrlV3();
 const YT_META_BASE_URL = getYtMetaBaseUrl();
 const SEARCH_V2_BASE_URL = getSearchV2BaseUrl();
 const QUEUE_API_BASE_URL = getQueueApiUrl();
+const EXTERNAL_EXTRACT_BASE_URL = getExternalExtractBaseUrl();
 const MUTI_DOWNLOAD_BASE_URL = getMutiDownloadBaseUrl();
 const SUPPORTER_API_BASE_URL = getSupporterApiBaseUrl();
 const API_TIMEOUT = getTimeout('default');
@@ -66,6 +68,12 @@ const queueHttpClient = createHttpClient({
 const v3HttpClient = createHttpClient({
   baseUrl: API_V3_BASE_URL,
   timeout: getTimeout('v3CreateJob'),
+});
+
+// External Extract HTTP Client (cc.ytconvert.org)
+const externalExtractHttpClient = createHttpClient({
+  baseUrl: EXTERNAL_EXTRACT_BASE_URL,
+  timeout: getTimeout('externalExtract'),
 });
 
 // ZIP Download HTTP Client (muti-download.ytconvert.org)
@@ -152,6 +160,12 @@ const coreServices = {
   zipDownload: createV3ZipDownloadService(zipHttpClient, {
     ...apiConfig,
     zip: zipApiConfig
+  }),
+
+  // External Extract (cc.ytconvert.org — direct download, no polling)
+  externalExtract: createExternalExtractService(externalExtractHttpClient, {
+    v1: { baseUrl: '' },
+    v2: { baseUrl: '' },
   }),
 };
 

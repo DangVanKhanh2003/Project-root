@@ -52,9 +52,11 @@ export {
   createV3DownloadService,
   createV3PlaylistService,
   createV3ZipDownloadService,
+  createExternalExtractService,
   type IV3DownloadService,
   type IV3PlaylistService,
   type IZipDownloadService,
+  type IExternalExtractService,
 } from './services/v3';
 
 // ========================================
@@ -105,12 +107,15 @@ export {
 // ========================================
 export {
   mapToV3DownloadRequest,
+  mapToExternalExtractRequest,
+  mapExternalExtractResponse,
   detectOsType,
   mapErrorCodeToMessage,
   isRetryableError,
   isUserInputError,
   isVideoUnavailableError,
   type ExtractV2Options,
+  type NormalizedExternalExtractResult,
 } from './mappers/v3';
 
 // ========================================
