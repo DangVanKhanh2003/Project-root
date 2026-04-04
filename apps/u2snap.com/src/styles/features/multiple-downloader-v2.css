@@ -508,7 +508,7 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
     align-items: center;
     width: 100%;
     padding: 1rem 1.5rem 0.5rem;
-    background: var(--multi-list-bg-card);
+    background: none;
 }
 
 .multi-header-title {
@@ -532,7 +532,7 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
     padding: 0px 10px 15px 15px;
     position: relative;
     z-index: 10;
-    background: var(--multi-list-bg-card);
+    background: none;
     border-bottom: 1px solid var(--multi-list-border-muted);
 
 }
@@ -568,6 +568,10 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
 .group-download-btn:hover:not(.is-disabled) {
     background: var(--color-primary);
 }
+.group-download-btn.btn-success {
+    margin-left: auto;
+}
+
 
 .group-download-btn.is-disabled {
     cursor: not-allowed;
@@ -1836,6 +1840,7 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
     display: flex;
     gap: 0.75rem;
     position: relative;
+    margin-left: auto;
 }
 
 .convert-hand-guide {
@@ -1870,7 +1875,7 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
     min-width: 178px;
 }
 
-.btn-playlist-group-action:hover:not(.is-disabled) {
+.btn-playlist-group-action:hover {
     background: var(--multi-list-group-btn-hover-bg);
     border: none;
     color: var(--multi-list-group-btn-hover-text);
@@ -1901,6 +1906,7 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
     background: #16a34a;
     border: none;
     color: #ffffff;
+    margin-left: auto;
 }
 
 .btn-playlist-group-action.btn-success:hover:not(.is-disabled) {
@@ -1972,19 +1978,7 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
     display: none !important;
 }
 
-.btn-playlist-group-action.is-loading::before {
-    content: '';
-    display: inline-block;
-    width: 14px;
-    height: 14px;
-    border: 2px solid currentColor;
-    border-top-color: transparent;
-    border-radius: 50%;
-    animation: spin 0.6s linear infinite;
-    margin-right: 8px;
-    vertical-align: middle;
-    flex-shrink: 0;
-}
+
 
 
 

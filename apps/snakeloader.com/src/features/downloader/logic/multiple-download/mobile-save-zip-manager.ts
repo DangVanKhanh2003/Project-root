@@ -371,10 +371,10 @@ function updateZipButtonCount(groupId?: string): void {
                         textEl.textContent = `Download ZIP (${count})`;
                     }
                 }
-                btn.classList.toggle('is-disabled', count === 0 && !processing);
-                btn.setAttribute('aria-disabled', count === 0 && !processing ? 'true' : 'false');
-                if (count > 0 || processing) btn.removeAttribute('data-tooltip');
-                (btn as HTMLButtonElement).disabled = count === 0 && !processing;
+                btn.classList.remove('is-disabled');
+                btn.setAttribute('aria-disabled', 'false');
+                btn.removeAttribute('data-tooltip');
+                (btn as HTMLButtonElement).disabled = false;
             }
         }
     }
@@ -410,13 +410,10 @@ export function updateHeaderZipButton(): void {
                 textEl.textContent = `Download ZIP (${totalCount})`;
             }
         }
-        const isEmpty = totalCount === 0 && !anyProcessing;
-        (headerBtn as HTMLButtonElement).disabled = isEmpty;
-        headerBtn.classList.toggle('is-disabled', isEmpty);
-        headerBtn.setAttribute('aria-disabled', isEmpty ? 'true' : 'false');
-        if (!isEmpty) {
-            headerBtn.removeAttribute('data-tooltip');
-        }
+        (headerBtn as HTMLButtonElement).disabled = false;
+        headerBtn.classList.remove('is-disabled');
+        headerBtn.setAttribute('aria-disabled', 'false');
+        headerBtn.removeAttribute('data-tooltip');
     }
 }
 

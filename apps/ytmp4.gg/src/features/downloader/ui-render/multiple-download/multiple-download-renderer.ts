@@ -122,7 +122,7 @@ export class MultipleDownloadRenderer {
             const count = videoStore.getCount();
             if (count > 0) {
                 this.show();
-            } else if (count === 0) {
+            } else if (count === 0 && !this.container?.querySelector('.playlist-group')) {
                 this.hide();
             }
 
@@ -167,7 +167,7 @@ export class MultipleDownloadRenderer {
 
         const showCheckbox = !isMobile; // Batch mode: no checkbox on mobile
         // Mobile ZIP is server-side (doesn't conflict with individual downloads) — ignore global lock
-        const zipBtnDisabled = completedSelectedCount === 0 || (!isMobile && this.isGlobalDownloadLocked);
+        const zipBtnDisabled = !isMobile && (completedSelectedCount === 0 || this.isGlobalDownloadLocked);
 
         headerEl.innerHTML = `
             <div class="multi-header-top-row">

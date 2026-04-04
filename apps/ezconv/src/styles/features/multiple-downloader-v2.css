@@ -782,7 +782,7 @@ html[data-theme="dark"] .multi-search-input::placeholder {
     align-items: center;
     width: 100%;
     padding: 1rem 1.5rem 0.5rem;
-    background: var(--bg-surface-soft);
+    background: none;
 }
 
 .multi-header-title {
@@ -804,7 +804,7 @@ html[data-theme="dark"] .multi-search-input::placeholder {
     justify-content: space-between;
     width: 100%;
     padding: 0px 10px 15px 15px;
-    background: var(--bg-surface-soft);
+    background: none;
     border-bottom: 1px solid var(--border-subtle);
     position: relative;
 }
@@ -841,6 +841,10 @@ html[data-theme="dark"] .multi-search-input::placeholder {
     background: #059669 !important;
     border-color: #047857 !important;
 }
+.group-download-btn.btn-success {
+    margin-left: auto;
+}
+
 
 .group-download-btn.is-disabled {
     cursor: not-allowed;
@@ -1845,6 +1849,7 @@ html[data-theme="dark"] .multi-search-input::placeholder {
 .group-actions {
     display: flex;
     gap: 0.75rem;
+    margin-left: auto;
 }
 
 .btn-playlist-group-action {
@@ -1864,7 +1869,7 @@ html[data-theme="dark"] .multi-search-input::placeholder {
     min-width: 178px;
 }
 
-.btn-playlist-group-action:hover:not(.is-disabled) {
+.btn-playlist-group-action:hover {
     background: var(--brand-hover, #B14F2F);
     border-color: transparent;
 }
@@ -1892,6 +1897,7 @@ html[data-theme="dark"] .multi-search-input::placeholder {
     background: var(--brand, #C65D3B);
     color: #ffffff;
     border: none;
+    margin-left: auto;
 }
 
 .btn-playlist-group-action.btn-success:hover:not(.is-disabled) {
@@ -2014,7 +2020,7 @@ html[data-theme="light"] .btn-playlist-group-action {
     border-color: transparent;
 }
 
-html[data-theme="light"] .btn-playlist-group-action:hover:not(.is-disabled) {
+html[data-theme="light"] .btn-playlist-group-action:hover {
     background: var(--brand-hover, #B14F2F);
     border-color: transparent;
 }
@@ -3248,5 +3254,66 @@ html[data-theme="dark"] .btn-download-multi-download.is-outline:hover {
         flex: 1 1 100%;
         max-width: 100%;
         width: 100%;
+    }
+}
+
+/* ─── Mobile Save ZIP ─────────────────────────────────────── */
+
+/* Batch mode (items NOT in playlist group): hide ALL checkboxes on mobile */
+.is-mobile-zip .multi-download-list > .multi-video-item .item-checkbox-wrapper {
+    display: none !important;
+}
+
+/* Playlist/Channel mode (items inside .playlist-group):
+   Hide checkboxes only for download-status items (auto-upload, no manual selection).
+   Convert-status items keep checkbox for "Convert selected" action. */
+.is-mobile-zip .playlist-group .multi-video-item.queued .item-checkbox-wrapper,
+.is-mobile-zip .playlist-group .multi-video-item.downloading .item-checkbox-wrapper,
+.is-mobile-zip .playlist-group .multi-video-item.converting .item-checkbox-wrapper,
+.is-mobile-zip .playlist-group .multi-video-item.completed .item-checkbox-wrapper,
+.is-mobile-zip .playlist-group .multi-video-item.expired .item-checkbox-wrapper,
+.is-mobile-zip .playlist-group .multi-video-item.error .item-checkbox-wrapper {
+    display: none !important;
+}
+
+.btn-playlist-group-action.is-loading {
+    pointer-events: none;
+    cursor: wait;
+    opacity: 0.85;
+}
+
+.btn-playlist-group-action.is-loading .btn-icon-zip {
+    display: none !important;
+}
+
+
+/* Animated dots for ZIP progress button */
+.automation-dots {
+    display: inline;
+}
+
+.automation-dots span {
+    animation: dotFade 1.4s infinite;
+    opacity: 0;
+}
+
+.automation-dots span:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.automation-dots span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.automation-dots span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes dotFade {
+    0%, 80%, 100% {
+        opacity: 0;
+    }
+    40% {
+        opacity: 1;
     }
 }

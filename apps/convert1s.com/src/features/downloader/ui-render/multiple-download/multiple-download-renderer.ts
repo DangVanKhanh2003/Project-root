@@ -122,12 +122,22 @@ export class MultipleDownloadRenderer {
             const count = videoStore.getCount();
             if (count > 0) {
                 this.show();
-            } else if (count === 0) {
+            } else if (count === 0 && !this.container?.querySelector('.playlist-group')) {
                 this.hide();
             }
 
             handleChange(eventName, data);
-            this.updateBatchHeader();
+
+            // Only re-render batch header when item counts/status/selection actually change
+            // Skip for high-frequency events (item:progress, items:settings-changed)
+            if (eventName !== 'item:progress' && eventName !== 'items:settings-changed') {
+                this.updateBatchHeader();
+
+                // On mobile, re-sync ZIP button state after batch header re-render
+                if (isMobileDevice()) {
+                    updateHeaderZipButton();
+                }
+            }
         });
     }
 
@@ -157,7 +167,7 @@ export class MultipleDownloadRenderer {
 
         const showCheckbox = !isMobile; // Batch mode: no checkbox on mobile
         // Mobile ZIP is server-side (doesn't conflict with individual downloads) — ignore global lock
-        const zipBtnDisabled = completedSelectedCount === 0 || (!isMobile && this.isGlobalDownloadLocked);
+        const zipBtnDisabled = !isMobile && (completedSelectedCount === 0 || this.isGlobalDownloadLocked);
 
         headerEl.innerHTML = `
             <div class="multi-header-top-row">

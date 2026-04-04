@@ -135,7 +135,7 @@ export function createStoreChangeHandler(config: StoreChangeHandlerConfig) {
                 }
 
                 // Show empty state if no items
-                if (videoStore.getCount() === 0) {
+                if (videoStore.getCount() === 0 && !listContainer.querySelector('.playlist-group')) {
                     listContainer.innerHTML = '<div class="empty-list">No videos added yet.</div>';
                 }
 
