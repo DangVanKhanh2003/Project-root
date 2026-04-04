@@ -2,6 +2,7 @@
 import { VideoItem, VideoItemSettings, VideoStoreEventName, ProgressPhase } from './multiple-download-types';
 import { VideoMeta } from './types';
 import { isLinkExpired } from '../../../utils/link-validator';
+import { isMobileDevice } from '../../../utils';
 
 type StoreListener = (eventName: VideoStoreEventName, data: any) => void;
 
@@ -287,6 +288,10 @@ class VideoStore {
         // Auto-transition from loading → ready (like ytmp3.gg)
         if (item.status === 'pending' || item.status === 'fetching_metadata') {
             item.status = 'ready';
+            // On mobile, auto-select so ZIP button count updates without manual selection
+            if (isMobileDevice()) {
+                item.isSelected = true;
+            }
         }
 
         console.log('[VideoStore] updateMetadata:', id, 'status after:', item.status, 'firing item:updated');
