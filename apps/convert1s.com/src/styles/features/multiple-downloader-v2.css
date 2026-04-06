@@ -1991,12 +1991,7 @@ html[data-format="mp4"] .multi-quality-dropdown-wrapper .multi-video-group-dropd
 .group-items {
     max-height: 800px;
     overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior-y: contain;
-    will-change: scroll-position;
     border-radius: 0 0 16px 16px;
-    position: relative;
-    z-index: 0;
 }
 
 .group-items:has(~ .group-load-more:not([style*="display: none"])) {
