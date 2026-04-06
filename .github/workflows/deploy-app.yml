@@ -153,25 +153,20 @@ jobs:
           set -euo pipefail
           tar -C ${{ inputs.app_directory }}/${{ inputs.dist_path }} -czf ${{ inputs.app_name }}-dist.tar.gz .
 
-      - name: Setup SSH key
+      # Upload bang native scp (KHONG dung appleboy/scp-action — loi voi ed25519 key)
+      - name: Upload artifact to server
         run: |
+          set -euo pipefail
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
           ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts 2>/dev/null
-
-      - name: Upload artifact to server (with retry)
-        env:
-          SSH_HOST: ${{ secrets.SSH_HOST }}
-          SSH_USER: ${{ secrets.SSH_USERNAME }}
-        run: |
-          set -euo pipefail
           MAX_RETRIES=2
           for attempt in $(seq 1 $MAX_RETRIES); do
             echo "📤 SCP upload (attempt $attempt/$MAX_RETRIES)..."
             if scp -i ~/.ssh/deploy_key -o ConnectTimeout=30 \
               "${{ inputs.app_name }}-dist.tar.gz" \
-              "${SSH_USER}@${SSH_HOST}:/tmp/${{ inputs.app_name }}-dist.tar.gz"; then
+              "${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/tmp/${{ inputs.app_name }}-dist.tar.gz"; then
               echo "✅ Upload successful"
               break
             fi
@@ -183,17 +178,14 @@ jobs:
             sleep 15
           done
 
-      - name: Activate on server (with retry)
-        env:
-          SSH_HOST: ${{ secrets.SSH_HOST }}
-          SSH_USER: ${{ secrets.SSH_USERNAME }}
+      - name: Activate on server
         run: |
           set -euo pipefail
           MAX_RETRIES=2
           for attempt in $(seq 1 $MAX_RETRIES); do
             echo "🚀 SSH deploy (attempt $attempt/$MAX_RETRIES)..."
             if ssh -i ~/.ssh/deploy_key -o ConnectTimeout=30 \
-              "${SSH_USER}@${SSH_HOST}" bash -s <<'DEPLOY_SCRIPT'
+              "${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}" bash -s <<'DEPLOY_SCRIPT'
           set -euo pipefail
 
           PROJECT_NAME="${{ env.PROJECT_NAME }}"
@@ -206,9 +198,6 @@ jobs:
           : "${DEPLOY_USER:?}"; : "${DEPLOY_GROUP:?}"
 
           APP_TAR="/tmp/${{ inputs.app_name }}-dist.tar.gz"
-
-          echo "== /tmp listing for debug =="
-          ls -l /tmp || true
 
           # Xoá thư mục rác trùng tên file tar (nếu có từ cấu hình cũ)
           if [ -d "$APP_TAR" ]; then
@@ -223,33 +212,26 @@ jobs:
             echo "Unsafe RUN_DIR: $RUN_DIR" >&2; exit 1;;
           esac
 
-          # Tự tạo thư mục dự án
           mkdir -p "$RUN_DIR" || {
-            echo "❌ mkdir -p $RUN_DIR failed. Kiểm tra quyền x trên /var/www và /var/www/KhanhHAUI, hoặc dùng ACL cho gitdeploy."; exit 1;
+            echo "❌ mkdir -p $RUN_DIR failed."; exit 1;
           }
 
-          # Kiểm tra quyền ghi
           if ! ( : > "$RUN_DIR/.writetest" 2>/dev/null ); then
-            echo "❌ $RUN_DIR không ghi được bởi $(whoami). Nhờ admin chown/chmod hoặc setfacl cho gitdeploy."; exit 1
+            echo "❌ $RUN_DIR không ghi được bởi $(whoami)."; exit 1
           fi
           rm -f "$RUN_DIR/.writetest" || true
 
-          # Dọn bản cũ & bung bản mới
           find "$RUN_DIR" -mindepth 1 -maxdepth 1 -exec rm -rf {} +
           tar -xzf "$APP_TAR" -C "$RUN_DIR"
 
-          # Quyền đọc cho web
           find "$RUN_DIR" -type d -exec chmod 755 {} +
           find "$RUN_DIR" -type f -exec chmod 644 {} +
 
-          # Nếu gitdeploy thuộc DEPLOY_GROUP → đổi group (chgrp), không chown
           if id -nG "$USER" | grep -qw "$DEPLOY_GROUP"; then
             chgrp -R "$DEPLOY_GROUP" "$RUN_DIR" || true
           fi
 
-          # Xoá artifact tạm
           rm -f "$APP_TAR" || true
-
           echo "✅ Deployed $PROJECT_NAME successfully!"
           DEPLOY_SCRIPT
             then

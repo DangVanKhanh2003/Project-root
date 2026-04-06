@@ -290,7 +290,7 @@ const ANIMATED_DOTS = '<span class="automation-dots"><span>.</span><span>.</span
 
 function updateBtn(btn: HTMLElement | null, text: string): void {
     if (!btn) return;
-    const textEl = btn.querySelector('.btn-text');
+    const textEl = btn.querySelector('.zip-btn-text');
     const target = textEl || btn;
     if (text.endsWith('...')) {
         target.innerHTML = text.slice(0, -3) + ANIMATED_DOTS;
@@ -309,7 +309,7 @@ function updateZipButtonCount(groupId?: string): void {
         if (groupEl) {
             const btn = groupEl.querySelector('[data-action="download-zip-group"]');
             if (btn) {
-                const textEl = btn.querySelector('.btn-text');
+                const textEl = btn.querySelector('.zip-btn-text');
                 const processing = hasItemsProcessing(groupId);
                 if (textEl) {
                     if (processing) {
@@ -342,7 +342,7 @@ export function updateHeaderZipButton(): void {
 
     const headerBtn = document.querySelector('#multiDownloadActionBtn');
     if (headerBtn) {
-        const textEl = headerBtn.querySelector('.btn-text');
+        const textEl = headerBtn.querySelector('.zip-btn-text');
         if (textEl) {
             if (anyProcessing) {
                 textEl.innerHTML = `Download ZIP (${totalCount})${ANIMATED_DOTS}`;

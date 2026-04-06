@@ -506,6 +506,9 @@ async function init() {
     multipleDownloadRenderer.useBatchStrategy();
     multipleDownloadRenderer.init();
 
+    // Initialize mobile ZIP listener (auto-add items to ZIP session when complete)
+    const { initMobileSaveZipListener } = await import('./features/downloader/logic/multiple-download/mobile-save-zip-manager');
+    initMobileSaveZipListener();
     // Initialize form handlers
     initMultiDownloadForm();
     initFeedbackWidget();

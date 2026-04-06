@@ -212,79 +212,67 @@ jobs:
       - name: Archive and upload
         run: tar -C ${{ steps.config.outputs.directory }}/dist -czf ${{ inputs.app }}-dist.tar.gz .
 
+      # Upload bang native scp (KHONG dung appleboy/scp-action — loi voi ed25519 key)
       - name: Upload to server
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "${{ inputs.app }}-dist.tar.gz"
-          target: "/tmp"
-          overwrite: true
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts 2>/dev/null
+          scp -i ~/.ssh/deploy_key -o ConnectTimeout=30 \
+            "${{ inputs.app }}-dist.tar.gz" \
+            "${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/tmp/${{ inputs.app }}-dist.tar.gz"
 
       - name: Deploy on server
         env:
           DOMAIN: ${{ steps.config.outputs.domain }}
           ENV_TYPE: ${{ inputs.environment }}
-        uses: appleboy/ssh-action@v1.2.2
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          envs: DOMAIN,ENV_TYPE
-          script: |
-            set -euo pipefail
-            PROJECT_ROOT="/var/www/KhanhHAUI/CICD"
-            DEPLOY_GROUP="nginx"
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/deploy_key -o ConnectTimeout=30 \
+            "${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}" bash -s <<DEPLOY_SCRIPT
+          set -euo pipefail
+          PROJECT_ROOT="/var/www/KhanhHAUI/CICD"
+          DEPLOY_GROUP="nginx"
 
-            if [[ "$ENV_TYPE" == "test" ]]; then
-              PROJECT_NAME="${DOMAIN}-test"
-            else
-              PROJECT_NAME="$DOMAIN"
-            fi
+          if [[ "${{ env.ENV_TYPE }}" == "test" ]]; then
+            PROJECT_NAME="${{ env.DOMAIN }}-test"
+          else
+            PROJECT_NAME="${{ env.DOMAIN }}"
+          fi
 
-            RUN_DIR="$PROJECT_ROOT/run/$PROJECT_NAME"
-            APP_TAR="/tmp/${{ inputs.app }}-dist.tar.gz"
+          RUN_DIR="\$PROJECT_ROOT/run/\$PROJECT_NAME"
+          APP_TAR="/tmp/${{ inputs.app }}-dist.tar.gz"
 
-            echo "== /tmp listing for debug =="
-            ls -l /tmp || true
+          [ -d "\$APP_TAR" ] && rm -rf "\$APP_TAR"
+          [ -f "\$APP_TAR" ] || { echo "Artifact not found: \$APP_TAR" >&2; exit 1; }
 
-            # Xoá thư mục rác trùng tên file tar (nếu có)
-            [ -d "$APP_TAR" ] && rm -rf "$APP_TAR"
+          case "\$RUN_DIR" in "\$PROJECT_ROOT"/*) ;; *)
+            echo "Unsafe RUN_DIR: \$RUN_DIR" >&2; exit 1;;
+          esac
 
-            # Verify artifact exists
-            [ -f "$APP_TAR" ] || { echo "Artifact not found: $APP_TAR" >&2; exit 1; }
+          mkdir -p "\$RUN_DIR" || { echo "❌ mkdir failed"; exit 1; }
 
-            # Security check
-            case "$RUN_DIR" in "$PROJECT_ROOT"/*) ;; *)
-              echo "Unsafe RUN_DIR: $RUN_DIR" >&2; exit 1;;
-            esac
+          if ! ( : > "\$RUN_DIR/.writetest" 2>/dev/null ); then
+            echo "❌ \$RUN_DIR không ghi được"; exit 1
+          fi
+          rm -f "\$RUN_DIR/.writetest" || true
 
-            # Create and verify directory
-            mkdir -p "$RUN_DIR" || {
-              echo "❌ mkdir -p $RUN_DIR failed."; exit 1;
-            }
+          find "\$RUN_DIR" -mindepth 1 -maxdepth 1 -exec rm -rf {} +
+          tar -xzf "\$APP_TAR" -C "\$RUN_DIR"
 
-            # Verify write permissions
-            if ! ( : > "$RUN_DIR/.writetest" 2>/dev/null ); then
-              echo "❌ $RUN_DIR không ghi được bởi $(whoami)."; exit 1
-            fi
-            rm -f "$RUN_DIR/.writetest" || true
+          find "\$RUN_DIR" -type d -exec chmod 755 {} +
+          find "\$RUN_DIR" -type f -exec chmod 644 {} +
 
-            # Clean and extract
-            find "$RUN_DIR" -mindepth 1 -maxdepth 1 -exec rm -rf {} +
-            tar -xzf "$APP_TAR" -C "$RUN_DIR"
+          if id -nG "\$USER" | grep -qw "\$DEPLOY_GROUP"; then
+            chgrp -R "\$DEPLOY_GROUP" "\$RUN_DIR" || true
+          fi
 
-            # Set permissions
-            find "$RUN_DIR" -type d -exec chmod 755 {} +
-            find "$RUN_DIR" -type f -exec chmod 644 {} +
+          rm -f "\$APP_TAR" || true
+          echo "✅ Deployed \$PROJECT_NAME (${{ env.ENV_TYPE }}) successfully!"
+          DEPLOY_SCRIPT
 
-            # Change group if applicable
-            if id -nG "$USER" | grep -qw "$DEPLOY_GROUP"; then
-              chgrp -R "$DEPLOY_GROUP" "$RUN_DIR" || true
-            fi
-
-            # Cleanup
-            rm -f "$APP_TAR" || true
-
-            echo "✅ Deployed $PROJECT_NAME ($ENV_TYPE) successfully!"
+      - name: Cleanup SSH key
+        if: always()
+        run: rm -f ~/.ssh/deploy_key
