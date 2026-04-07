@@ -1,7 +1,7 @@
 :root {
-    /* ===== Brand Accent (emerald, same for light & dark) ===== */
-    --brand: #2E917C;
-    --brand-hover: #267A69;
+    /* ===== Brand Accent (pink, same for light & dark) ===== */
+    --brand: #F67AB6;
+    --brand-hover: #D66A9E;
     --text: #2F2F2F;
     --muted: #5C5C5C;
     --surface-weak: #EBE7E0;
@@ -16,8 +16,8 @@
     --primary-color: var(--brand);
     --primary-color-hover: var(--brand-hover);
     --color-primary: var(--primary-color);
-    --background-hero-section: #2E917C;
-    --hero-section-bg: #2E917C;
+    --background-hero-section: #F67AB6;
+    --hero-section-bg: #F67AB6;
     --secondary-color: var(--bg-card);
     --color-black: #2F2F2F;
     --color-white: #ffffff;
@@ -27,8 +27,8 @@
     --text-primary: #3A3A3A;
     --hero-title-color: #2F2F2F;
     --bg-badge: #EBE7E0;
-    --meta-badge-bg: rgba(46, 145, 124, 0.12);
-    --meta-badge-color: #2e917cf5;
+    --meta-badge-bg: var(--brand);
+    --meta-badge-color: #ffffff;
 
     --text-main: var(--text);
     --text-muted: var(--muted);
@@ -44,11 +44,11 @@
 
     --color-accent: var(--brand);
     --color-accent-hover: var(--brand-hover);
-    --color-accent-soft-05: rgba(46, 145, 124, 0.05);
-    --color-accent-soft-08: rgba(46, 145, 124, 0.08);
-    --color-accent-soft-10: rgba(46, 145, 124, 0.10);
-    --color-accent-soft-12: rgba(46, 145, 124, 0.12);
-    --color-accent-dark: rgba(46, 145, 124, 0.12);
+    --color-accent-soft-05: rgba(246, 122, 182, 0.05);
+    --color-accent-soft-08: rgba(246, 122, 182, 0.08);
+    --color-accent-soft-10: rgba(246, 122, 182, 0.10);
+    --color-accent-soft-12: rgba(246, 122, 182, 0.12);
+    --color-accent-dark: rgba(246, 122, 182, 0.12);
     --color-status-error: #e74c3c;
     --video-input-active-border: var(--color-primary);
 
@@ -62,7 +62,7 @@
     --bg-page: #F3F1ED;
     --bg-404-page: #fff;
     --bg-card: #FFFFFF;
-    --yt-preview-card-bg: rgba(46, 145, 124, 0.08);
+    --yt-preview-card-bg: #fae6eb;
     --bg-surface-soft: #EBE7E0;
     --bg-hover: #EFECE7;
 
@@ -78,11 +78,11 @@
     --theme-toggle-color: var(--color-white);
 
     /* Status container */
-    --status-container-bg: #E6F3F0;
-    --status-container-border: rgba(46, 145, 124, 0.25);
+    --status-container-bg: #FAE6EB;
+    --status-container-border: rgba(246, 122, 182, 0.25);
     --status-text-color: var(--brand-hover);
-    --status-progress-bg: #D4ECE7;
-    --spinner-border-color: #B0D9D0;
+    --status-progress-bg: #F5D2DA;
+    --spinner-border-color: #EBB4BC;
     --spinner-top-color: var(--brand);
 
     /* Header controls on hero */
@@ -99,11 +99,11 @@
     --link-visited: #888888;
 
     /* Accent fill tokens */
-    --accent-fill-soft: rgba(46, 145, 124, 0.08);
-    --accent-fill-strong: rgba(46, 145, 124, 0.16);
+    --accent-fill-soft: rgba(246, 122, 182, 0.08);
+    --accent-fill-strong: rgba(246, 122, 182, 0.16);
     --multi-list-playlist-tabs-bg: #EFECE7;
     --multi-list-selection-accent: var(--brand);
-    --multi-list-extracting-glow-color: rgba(46, 145, 124, 0.38);
+    --multi-list-extracting-glow-color: rgba(246, 122, 182, 0.38);
     --multi-list-group-action-bg: var(--accent-fill-soft);
     --multi-list-group-action-text: var(--brand);
     --multi-list-group-action-hover-bg: var(--accent-fill-strong);
@@ -121,25 +121,25 @@
     --color-tooltip-arrow: var(--text-heading);
 
     /* Animated border: RGB only (for conic-gradient trick) */
-    --input-border-glow-rgb: 46, 145, 124;
-    --input-glow-radial-rgb: 46, 145, 124;
+    --input-border-glow-rgb: 246, 122, 182;
+    --input-glow-radial-rgb: 246, 122, 182;
 
     /* Input caret */
     --input-caret-color: var(--text-body);
 
     /* Status badge backgrounds */
-    --status-ready-bg: rgba(46, 145, 124, 0.08);
-    --status-ready-color: #2E917C;
+    --status-ready-bg: rgba(246, 122, 182, 0.08);
+    --status-ready-color: #F67AB6;
     --status-success-bg: #dcfce7;
     --status-success-color: #166534;
     --status-error-bg: #fee2e2;
     --status-error-color: #b91c1c;
     --status-pending-bg: #EFECE7;
     --status-pending-color: #5C5C5C;
-    --status-analyzing-bg: rgba(46, 145, 124, 0.08);
-    --status-analyzing-color: #2E917C;
-    --status-converting-bg: rgba(46, 145, 124, 0.08);
-    --status-converting-color: #2E917C;
+    --status-analyzing-bg: rgba(246, 122, 182, 0.08);
+    --status-analyzing-color: #F67AB6;
+    --status-converting-bg: rgba(246, 122, 182, 0.08);
+    --status-converting-color: #F67AB6;
     --color-next-btn-bg: var(--bg-card);
     --color-next-btn-text: var(--text-main);
     --color-next-btn-border: var(--border-secondary);
@@ -262,11 +262,11 @@
 }
 
 :root[data-theme="dark"] {
-    --color-accent-soft-05: rgba(46, 145, 124, 0.10);
-    --color-accent-soft-08: rgba(46, 145, 124, 0.08);
-    --color-accent-soft-10: rgba(46, 145, 124, 0.10);
-    --color-accent-soft-12: rgba(46, 145, 124, 0.12);
-    --color-accent-dark: rgba(46, 145, 124, 0.20);
+    --color-accent-soft-05: rgba(246, 122, 182, 0.10);
+    --color-accent-soft-08: rgba(246, 122, 182, 0.08);
+    --color-accent-soft-10: rgba(246, 122, 182, 0.10);
+    --color-accent-soft-12: rgba(246, 122, 182, 0.12);
+    --color-accent-dark: rgba(246, 122, 182, 0.20);
     --background-hero-section: var(--bg-secondary);
     --hero-section-bg: var(--bg-secondary);
 
@@ -278,7 +278,7 @@
     --bg-secondary: #262624;
     --bg-surface-soft: #383836;
     --bg-hover: #383836;
-    --surface-weak: rgba(46, 145, 124, 0.10);
+    --surface-weak: rgba(246, 122, 182, 0.10);
 
     --text-heading: #E8E6E3;
     --text-body: #D6D4CF;
@@ -302,12 +302,12 @@
     --theme-toggle-color: var(--text);
 
     /* Status container */
-    --status-container-bg: rgba(46, 145, 124, 0.08);
-    --status-container-border: rgba(46, 145, 124, 0.30);
-    --status-text-color: #4DB8A3;
-    --status-progress-bg: rgba(46, 145, 124, 0.12);
-    --spinner-border-color: rgba(46, 145, 124, 0.25);
-    --spinner-top-color: #4DB8A3;
+    --status-container-bg: rgba(246, 122, 182, 0.08);
+    --status-container-border: rgba(246, 122, 182, 0.30);
+    --status-text-color: #F8A0B0;
+    --status-progress-bg: rgba(246, 122, 182, 0.12);
+    --spinner-border-color: rgba(246, 122, 182, 0.25);
+    --spinner-top-color: #F8A0B0;
 
     /* Header controls on hero */
     --header-control-color: var(--text);
@@ -323,11 +323,11 @@
 
     --link-visited: var(--brand);
 
-    --accent-fill-soft: rgba(46, 145, 124, 0.12);
-    --accent-fill-strong: rgba(46, 145, 124, 0.20);
+    --accent-fill-soft: rgba(246, 122, 182, 0.12);
+    --accent-fill-strong: rgba(246, 122, 182, 0.20);
     --multi-list-playlist-tabs-bg: var(--border-subtle);
     --multi-list-selection-accent: var(--brand);
-    --multi-list-extracting-glow-color: rgba(46, 145, 124, 0.38);
+    --multi-list-extracting-glow-color: rgba(246, 122, 182, 0.38);
     --multi-list-group-action-bg: color-mix(in srgb, var(--primary-color) 34%, transparent);
     --multi-list-group-action-text: var(--primary-color);
     --multi-list-group-action-hover-bg: var(--primary-color);
@@ -347,24 +347,24 @@
     --meta-badge-bg: #14141394;
     --meta-badge-color: #d6d4cf;
 
-    --input-border-glow-rgb: 46, 145, 124;
-    --input-glow-radial-rgb: 46, 145, 124;
+    --input-border-glow-rgb: 246, 122, 182;
+    --input-glow-radial-rgb: 246, 122, 182;
 
     /* Input caret */
     --input-caret-color: #ffffff;
 
-    --status-ready-bg: rgba(46, 145, 124, 0.12);
-    --status-ready-color: #4DB8A3;
+    --status-ready-bg: rgba(246, 122, 182, 0.12);
+    --status-ready-color: #F8A0B0;
     --status-success-bg: rgba(16, 185, 129, 0.15);
     --status-success-color: #10B981;
     --status-error-bg: rgba(231, 76, 60, 0.15);
     --status-error-color: #E74C3C;
     --status-pending-bg: #383836;
     --status-pending-color: #C9C7C2;
-    --status-analyzing-bg: rgba(46, 145, 124, 0.10);
-    --status-analyzing-color: #4DB8A3;
-    --status-converting-bg: rgba(46, 145, 124, 0.10);
-    --status-converting-color: #2E917C;
+    --status-analyzing-bg: rgba(246, 122, 182, 0.10);
+    --status-analyzing-color: #F8A0B0;
+    --status-converting-bg: rgba(246, 122, 182, 0.10);
+    --status-converting-color: #F07A90;
     --color-next-btn-bg: var(--bg-card);
     --color-next-btn-text: var(--text-main);
     --color-next-btn-border: var(--border-secondary);
@@ -398,14 +398,14 @@
     --color-warning-strong: #fbbf24;
 
     /* Processing state backgrounds */
-    --processing-bg: linear-gradient(90deg, rgba(46, 145, 124, 0.18) 0%, rgba(46, 145, 124, 0.24) 100%);
+    --processing-bg: linear-gradient(90deg, rgba(246, 122, 182, 0.18) 0%, rgba(246, 122, 182, 0.24) 100%);
 
     /* Logo text color */
-    --logo-text-color: #2E917C;
+    --logo-text-color: #F07A90;
 
     /* Brand light (for links on dark surfaces) */
-    --brand-light: #7DD4C2;
-    --brand-light-hover: #9DE3D5;
+    --brand-light: #F8A8B8;
+    --brand-light-hover: #FBC0CC;
 
     /* License status */
     --license-status-bg: color-mix(in srgb, var(--status-success-color) 12%, transparent);
