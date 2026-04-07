@@ -138,7 +138,7 @@ function getPageDefaults(): { format: FormatType; videoQuality: string; audioFor
   // Fallback defaults (App-level defaults)
   // IMPORTANT: Must match HTML defaults to prevent FOUC
   return {
-    format: 'mp4',
+    format: 'mp3',
     videoQuality: '720p',
     audioFormat: 'mp3',
     audioBitrate: '128'

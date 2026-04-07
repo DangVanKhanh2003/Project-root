@@ -63,7 +63,7 @@ const BANNER_STYLES = `
   .mp-banner-badge {
     display: inline-block;
     padding: 0.25rem 0.75rem;
-    background-color: #2E917C;
+    background-color: #54835D;
     border-radius: 9999px;
     font-size: 10px;
     font-weight: 700;
@@ -88,7 +88,7 @@ const BANNER_STYLES = `
   }
 
   .mp-banner-title-highlight {
-    color: #2E917C;
+    color: #54835D;
   }
 
   .mp-banner-description {
@@ -210,13 +210,13 @@ const BANNER_STYLES = `
   }
 
   .mp-banner-card-white:hover {
-    border-color: #B5DDD3;
+    border-color: #B5CCB9;
     transform: translateY(-2px);
   }
 
   .mp-banner-card-indigo {
-    background-color: #2E917C;
-    border: 1px solid #5BB8A5;
+    background-color: #54835D;
+    border: 1px solid #7AAF85;
   }
 
   .mp-banner-card-indigo:hover {
@@ -236,7 +236,7 @@ const BANNER_STYLES = `
   }
 
   .mp-banner-card-white:hover .mp-banner-card-icon {
-    background-color: #ECF7F4;
+    background-color: #EDF3EE;
   }
 
   .mp-banner-card-indigo .mp-banner-card-icon {
@@ -250,7 +250,7 @@ const BANNER_STYLES = `
   }
 
   .mp-banner-card-white .mp-banner-card-icon svg {
-    color: #2E917C;
+    color: #54835D;
   }
 
   .mp-banner-card-indigo .mp-banner-card-icon svg {
@@ -280,7 +280,7 @@ const BANNER_STYLES = `
   }
 
   .mp-banner-card-white:hover .mp-banner-card-title {
-    color: #267A69;
+    color: #48714F;
   }
 
   .mp-banner-card-indigo .mp-banner-card-title {
@@ -298,7 +298,7 @@ const BANNER_STYLES = `
   }
 
   .mp-banner-card-indigo .mp-banner-card-subtitle {
-    color: #5BB8A5;
+    color: #7AAF85;
   }
 
   .mp-banner-card-arrow {
@@ -313,7 +313,7 @@ const BANNER_STYLES = `
   }
 
   .mp-banner-card-white:hover .mp-banner-card-arrow {
-    background-color: #ECF7F4;
+    background-color: #EDF3EE;
   }
 
   .mp-banner-card-indigo .mp-banner-card-arrow {
@@ -334,11 +334,11 @@ const BANNER_STYLES = `
   }
 
   .mp-banner-card-white:hover .mp-banner-card-arrow svg {
-    color: #2E917C;
+    color: #54835D;
   }
 
   .mp-banner-card-indigo .mp-banner-card-arrow svg {
-    color: #5BB8A5;
+    color: #7AAF85;
   }
 
   /* ===== Dark Theme ===== */
@@ -352,7 +352,7 @@ const BANNER_STYLES = `
   }
 
   :root[data-theme="dark"] .mp-banner-title-highlight {
-    color: #5BB8A5;
+    color: #7AAF85;
   }
 
   :root[data-theme="dark"] .mp-banner-description {
@@ -383,7 +383,7 @@ const BANNER_STYLES = `
   }
 
   :root[data-theme="dark"] .mp-banner-card-white:hover {
-    border-color: rgba(46, 145, 124, 0.4);
+    border-color: rgba(84, 131, 93, 0.4);
   }
 
   :root[data-theme="dark"] .mp-banner-card-white .mp-banner-card-icon {
@@ -391,11 +391,11 @@ const BANNER_STYLES = `
   }
 
   :root[data-theme="dark"] .mp-banner-card-white:hover .mp-banner-card-icon {
-    background-color: rgba(46, 145, 124, 0.15);
+    background-color: rgba(84, 131, 93, 0.15);
   }
 
   :root[data-theme="dark"] .mp-banner-card-white .mp-banner-card-icon svg {
-    color: #5BB8A5;
+    color: #7AAF85;
   }
 
   :root[data-theme="dark"] .mp-banner-card-white .mp-banner-card-title {
@@ -403,7 +403,7 @@ const BANNER_STYLES = `
   }
 
   :root[data-theme="dark"] .mp-banner-card-white:hover .mp-banner-card-title {
-    color: #5BB8A5;
+    color: #7AAF85;
   }
 
   :root[data-theme="dark"] .mp-banner-card-white .mp-banner-card-subtitle {
@@ -415,11 +415,11 @@ const BANNER_STYLES = `
   }
 
   :root[data-theme="dark"] .mp-banner-card-white:hover .mp-banner-card-arrow svg {
-    color: #5BB8A5;
+    color: #7AAF85;
   }
 
   :root[data-theme="dark"] .mp-banner-card-white:hover .mp-banner-card-arrow {
-    background-color: rgba(46, 145, 124, 0.12);
+    background-color: rgba(84, 131, 93, 0.12);
   }
 `;
 
