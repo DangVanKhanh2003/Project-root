@@ -158,3 +158,6 @@ temp/
 /playwright/.auth/
 tests/test-results/
 packages/core/coverage/
+
+# Markdown files
+*.md
