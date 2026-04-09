@@ -219,8 +219,8 @@ jobs:
           mkdir -p ~/.ssh
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts 2>/dev/null
-          scp -i ~/.ssh/deploy_key -o ConnectTimeout=30 \
+          ssh-keyscan -p ${{ vars.SSH_PORT || '22' }} -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts 2>/dev/null
+          scp -P ${{ vars.SSH_PORT || '22' }} -i ~/.ssh/deploy_key -o ConnectTimeout=30 \
             "${{ inputs.app }}-dist.tar.gz" \
             "${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/tmp/${{ inputs.app }}-dist.tar.gz"
 
@@ -230,7 +230,7 @@ jobs:
           ENV_TYPE: ${{ inputs.environment }}
         run: |
           set -euo pipefail
-          ssh -i ~/.ssh/deploy_key -o ConnectTimeout=30 \
+          ssh -p ${{ vars.SSH_PORT || '22' }} -i ~/.ssh/deploy_key -o ConnectTimeout=30 \
             "${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}" bash -s <<DEPLOY_SCRIPT
           set -euo pipefail
           PROJECT_ROOT="/var/www/KhanhHAUI/CICD"
