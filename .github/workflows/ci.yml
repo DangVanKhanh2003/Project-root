@@ -36,6 +36,7 @@ on:
           - 'Ytbdownloader.com'
           - 'y2mate.com.vc'
           - 'real-y2mate.com'
+          - 'ytmp3.website'
 
 concurrency:
   group: ci-${{ github.repository }}-${{ github.ref }}
@@ -109,13 +110,15 @@ jobs:
               - 'apps/y2mate.com.vc/**'
             real-y2mate.com:
               - 'apps/real-y2mate.com/**'
+            ytmp3.website:
+              - 'apps/ytmp3.website/**'
 
       - name: Determine apps to deploy
         id: determine-apps
         env:
           COMMIT_MSG: ${{ github.event.head_commit.message }}
         run: |
-          ALL_APPS='["y2matepro","y2matevc","mp3fast","ytmp3.my","4kvideopro","ssvid.cc","ezconv","ytmp4.gg","onedownloader.net","u2snap.com","convert1s.com","snap1s.com","y2save.com","tube1s.com","snakeloader.com","ytsss.com","sstube.net","ytconvert.org","yt1s.guru","Ytbdownloader.com","y2mate.com.vc","real-y2mate.com"]'
+          ALL_APPS='["y2matepro","y2matevc","mp3fast","ytmp3.my","4kvideopro","ssvid.cc","ezconv","ytmp4.gg","onedownloader.net","u2snap.com","convert1s.com","snap1s.com","y2save.com","tube1s.com","snakeloader.com","ytsss.com","sstube.net","ytconvert.org","yt1s.guru","Ytbdownloader.com","y2mate.com.vc","real-y2mate.com","ytmp3.website"]'
 
           # Handle manual trigger with specific_app
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
@@ -265,6 +268,10 @@ jobs:
           if [[ "${{ steps.filter.outputs['real-y2mate.com'] }}" == "true" ]]; then
             CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["real-y2mate.com"]')
             echo "✅ real-y2mate.com changed"
+          fi
+          if [[ "${{ steps.filter.outputs['ytmp3.website'] }}" == "true" ]]; then
+            CHANGED_APPS=$(echo $CHANGED_APPS | jq -c '. + ["ytmp3.website"]')
+            echo "✅ ytmp3.website changed"
           fi
 
           echo "📋 Changed apps: $CHANGED_APPS"
@@ -621,6 +628,21 @@ jobs:
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
+  deploy-ytmp3-website:
+    needs: [detect-changes, deploy-convert1s-com, deploy-snap1s-com, deploy-tube1s-com, deploy-y2save-com, deploy-snackeloader-com]
+    if: ${{ !cancelled() && needs.detect-changes.outputs.has_changes == 'true' && contains(fromJson(needs.detect-changes.outputs.apps_to_deploy), 'ytmp3.website') }}
+    uses: ./.github/workflows/deploy-app.yml
+    with:
+      app_name: ytmp3.website
+      app_directory: apps/ytmp3.website
+      filter_path: ./apps/ytmp3.website
+      domain: ${{ vars.YTMP3_WEBSITE_DOMAIN || 'ytmp3.website' }}
+      ssh_port: ${{ vars.SSH_PORT || '22' }}
+    secrets:
+      SSH_HOST: ${{ secrets.SSH_HOST }}
+      SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+
   # ============================================
   # Job 9: Summary
   # ============================================
@@ -649,6 +671,7 @@ jobs:
       - deploy-ytbdownloader-com
       - deploy-y2mate-com-vc
       - deploy-real-y2mate-com
+      - deploy-ytmp3-website
     if: always()
     runs-on: ubuntu-latest
     steps:
@@ -685,3 +708,4 @@ jobs:
           echo "| Ytbdownloader.com | ${{ needs.deploy-ytbdownloader-com.result || 'skipped' }} |"
           echo "| y2mate.com.vc | ${{ needs.deploy-y2mate-com-vc.result || 'skipped' }} |"
           echo "| real-y2mate.com | ${{ needs.deploy-real-y2mate-com.result || 'skipped' }} |"
+          echo "| ytmp3.website | ${{ needs.deploy-ytmp3-website.result || 'skipped' }} |"

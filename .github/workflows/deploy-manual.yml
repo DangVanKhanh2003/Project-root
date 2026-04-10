@@ -28,6 +28,7 @@ on:
           - 'Ytbdownloader.com'
           - 'y2mate.com.vc'
           - 'real-y2mate.com'
+          - 'ytmp3.website'
       environment:
         description: 'Target environment'
         required: true
@@ -152,6 +153,11 @@ jobs:
               echo "directory=apps/real-y2mate.com" >> $GITHUB_OUTPUT
               echo "filter_path=./apps/real-y2mate.com" >> $GITHUB_OUTPUT
               echo "domain=${{ vars.REAL_Y2MATE_DOMAIN || 'real-y2mate.com' }}" >> $GITHUB_OUTPUT
+              ;;
+            "ytmp3.website")
+              echo "directory=apps/ytmp3.website" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/ytmp3.website" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.YTMP3_WEBSITE_DOMAIN || 'ytmp3.website' }}" >> $GITHUB_OUTPUT
               ;;
           esac
 
