@@ -261,11 +261,11 @@
 }
 
 .download-btn {
-  background: var(--brand);
+  background: var(--download-btn-bg);
 }
 
 .download-btn:hover {
-  background: var(--brand-hover);
+  background: var(--download-btn-bg-hover);
 }
 
 .download-btn.is-loading {

@@ -18,7 +18,6 @@
     "declarationMap": true,
     "sourceMap": true,
 
-    "baseUrl": ".",
     "paths": {
       "@downloader/core": ["./packages/core/src"],
       "@downloader/core/*": ["./packages/core/src/*"],
