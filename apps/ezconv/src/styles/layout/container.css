@@ -1,0 +1,19 @@
+/* =========================================================
+   Layout - Container Utility
+   ---------------------------------------------------------
+   Max-width container for content
+   Extracted from index.html - Phase 2
+   ========================================================= */
+
+.container {
+    width: 100%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+@media (max-width: 599px) {
+    .container {
+        padding: 0 12px;
+    }
+}

@@ -45,12 +45,19 @@
     <meta property="og:locale" content="hi_IN" />
     <meta property="og:title" content="Y2mate - YouTube शॉर्ट्स डाउनलोडर (मुफ्त, तेज़, HD)" />
     <meta property="og:description" content="HD में YouTube शॉर्ट्स डाउनलोड करें। वर्टिकल वीडियो तुरंत सहेजें — पोर्ट्रेट प्रारूप, 9:16 अनुपात, सुरक्षित और विज्ञापन-मुक्त।" />
-    <meta property="og:image" content="https://y2matepro.com/logo.png" />
+    <meta property="og:image" content="https://y2matepro.com/favicon-512x512.png" />
     <meta property="og:url" content="https://y2matepro.com/hi/youtube-short-downloader" />
 
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://y2matepro.com/hi/youtube-short-downloader">
+    <meta name="twitter:title" content="Y2mate - YouTube शॉर्ट्स डाउनलोडर (मुफ्त, तेज़, HD)">
+    <meta name="twitter:description" content="HD में YouTube शॉर्ट्स डाउनलोड करें। वर्टिकल वीडियो तुरंत सहेजें — पोर्ट्रेट प्रारूप, 9:16 अनुपात, सुरक्षित और विज्ञापन-मुक्त।">
+    <meta name="twitter:image" content="https://y2matepro.com/favicon-512x512.png">
 
     <!-- Favicons -->
-    <link rel="icon" href="/favicon.png">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.png" type="image/png">
     <link type="image/png" sizes="16x16" rel="icon" href="/favicon1616.png">
     <link type="image/png" sizes="32x32" rel="icon" href="/favicon3232.png">
     <link type="image/png" sizes="48x48" rel="icon" href="/favicon4848.png">
@@ -72,22 +79,29 @@
       "@type": "WebPage",
       "@id": "https://y2matepro.com/hi/youtube-short-downloader#webpage",
       "url": "https://y2matepro.com/hi/youtube-short-downloader",
-      "name": "Y2mate - YouTube शॉर्ट्स डाउनलोडर (मुफ्त, तेज़, HD)",
+      "name": "Y2mate - YouTube शॉर्ट्स डाउनलोडर",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/#website"
+      },
       "about": {
+        "@type": "SoftwareApplication",
         "@id": "https://y2matepro.com/hi/youtube-short-downloader#application"
       },
       "inLanguage": "hi"
     },
     {
-      "@type": "WebApplication",
+      "@type": "SoftwareApplication",
       "@id": "https://y2matepro.com/hi/youtube-short-downloader#application",
-      "name": "Y2mate",
+      "name": "Y2mate - YouTube शॉर्ट्स डाउनलोडर",
       "url": "https://y2matepro.com/hi/youtube-short-downloader",
       "description": "YouTube शॉर्ट्स तुरंत डाउनलोड करें। मोबाइल और डेस्कटॉप के लिए मुफ्त वर्टिकल वीडियो डाउनलोडर।",
       "applicationCategory": "MultimediaApplication",
       "operatingSystem": "All",
       "browserRequirements": "Requires JavaScript. Requires HTML5.",
       "inLanguage": "hi",
+      "publisher": {
+        "@id": "https://y2matepro.com/#organization"
+      },
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -199,9 +213,9 @@
                     <a href="/hi/youtube-to-mp3">यूट्यूब से MP3</a>
                 </li>
                 <li class="navbar language">
-                    <a href="javascript:void(0);">
+                    <button type="button" aria-haspopup="true" aria-expanded="false">
                         हिन्दी<span class="shape"></span>
-                    </a>
+                    </button>
                     <div class="dropdown-menu">
                         <ul class="lang-menu">
                             <li>
@@ -370,9 +384,6 @@
                         हमारी सेवा का उपयोग करके आप स्वीकार करते हैं <a href="/terms-condition">उपयोग की शर्तें</a>.
                     </p>
                 </form>
-                <div class="spinner" style="display: none;">
-                    <img id="loading_img" src="/loading.gif">
-                </div>
             </div>
 
             <!-- Video Detail Area -->
@@ -543,6 +554,15 @@
     <p>© 2025 y2mate</p>
     <ul class="footer_nav">
         <li class="fnav-menu">
+            <a href="/hi/youtube-to-mp4">यूट्यूब से MP4</a>
+        </li>
+        <li class="fnav-menu">
+            <a href="/hi/youtube-to-mp3">यूट्यूब से MP3</a>
+        </li>
+        <li class="fnav-menu">
+            <a href="/hi/youtube-short-downloader">शॉर्ट्स डाउनलोडर</a>
+        </li>
+        <li class="fnav-menu">
             <a href="/about-us">हमारे बारे में</a>
         </li>
         <li class="fnav-menu">
@@ -554,15 +574,23 @@
         <li class="fnav-menu">
             <a href="/privacy-policy">गोपनीयता नीति</a>
         </li>
-        <li class="fnav-menu">
-            <a href="/hi/youtube-short-downloader">शॉर्ट्स डाउनलोडर</a>
-        </li>
     </ul>
 </footer>
 
 
     <!-- Conversion Modal Wrapper -->
     <div id="progressBarWrapper"></div>
+
+    <!-- Ko-fi Support Widget -->
+    <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+    <script>
+      kofiWidgetOverlay.draw('metaconvert', {
+        'type': 'floating-chat',
+        'floating-chat.donateButton.text': 'Support me',
+        'floating-chat.donateButton.background-color': '#00b9fe',
+        'floating-chat.donateButton.text-color': '#fff'
+      });
+    </script>
 </body>
 
 </html>

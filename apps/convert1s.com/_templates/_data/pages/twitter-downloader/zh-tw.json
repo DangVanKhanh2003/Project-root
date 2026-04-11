@@ -1,0 +1,115 @@
+{
+  "seo": {
+    "title": "Twitter影片下載器 – 免費下載X影片 | CONVERT1S",
+    "description": "CONVERT1S的Twitter影片下載器。免費高畫質下載Twitter/X影片。快速、簡單、無需註冊。",
+    "schemaName": "CONVERT1S - Twitter影片下載器",
+    "schemaDescription": "CONVERT1S是一款免費的Twitter影片下載器，讓使用者可以即時儲存和下載Twitter/X的影片。",
+    "ogTitle": "Twitter影片下載器 – 免費下載X影片 | CONVERT1S",
+    "ogDescription": "使用CONVERT1S下載Twitter/X影片。免費、快速、簡單的線上Twitter影片下載器。"
+  },
+  "content": {
+    "form": {
+      "h1": "CONVERT1S – Twitter影片下載器",
+      "placeholder": "在此貼上Twitter/X影片URL...",
+      "button": "下載影片"
+    },
+    "sections": [
+      {
+        "h2": "什麼是CONVERT1S Twitter影片下載器？",
+        "p": [
+          "CONVERT1S是一款快速且免費的<strong>Twitter影片下載器</strong>，可讓您將Twitter (X)上的任何影片直接儲存到裝置上。",
+          "只需貼上Twitter/X影片URL，點擊下載，即可將影片檔案儲存到裝置上，無需安裝任何軟體。",
+          "這款<strong>X影片下載器</strong>可在所有裝置上使用，包括桌上型電腦、平板電腦和行動browser。"
+        ]
+      },
+      {
+        "h2": "如何下載Twitter影片",
+        "ol": [
+          {
+            "h3": "複製Twitter/X影片URL",
+            "p": [
+              "開啟Twitter (X)，複製包含您要下載的影片的推文連結。"
+            ]
+          },
+          {
+            "h3": "貼上連結",
+            "p": [
+              "將Twitter/X影片URL貼到上方的CONVERT1S Twitter影片下載器中。"
+            ]
+          },
+          {
+            "h3": "下載影片",
+            "p": [
+              "點擊下載按鈕，即時將Twitter影片儲存到您的裝置上。"
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "從Twitter和X儲存影片",
+        "p": [
+          "CONVERT1S讓您輕鬆<strong>下載Twitter影片</strong>以供離線觀看。",
+          "無論您想<strong>儲存Twitter影片</strong>、GIF還是推文中的媒體，這款下載器都能快速高效地處理。"
+        ]
+      },
+      {
+        "h2": "為什麼使用CONVERT1S Twitter影片下載器？",
+        "ul": [
+          {
+            "h3": "免費且無限制",
+            "p": [
+              "免費下載Twitter影片，下載次數無限制。"
+            ]
+          },
+          {
+            "h3": "支援Twitter和X",
+            "p": [
+              "無縫支援twitter.com和x.com連結。"
+            ]
+          },
+          {
+            "h3": "無需註冊",
+            "p": [
+              "無需建立帳戶或註冊即可立即使用Twitter影片下載器。"
+            ]
+          },
+          {
+            "h3": "適用於所有裝置",
+            "p": [
+              "下載器可在PC、Mac、Android、iPhone和平板電腦上直接透過browser使用。"
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "常見問題",
+        "ul": [
+          {
+            "h3": "CONVERT1S Twitter影片下載器是免費的嗎？",
+            "p": [
+              "是的。CONVERT1S是完全免費的Twitter影片下載器，下載次數不限。"
+            ]
+          },
+          {
+            "h3": "我可以從X（原Twitter）下載影片嗎？",
+            "p": [
+              "可以。下載器支援Twitter和X的URL。"
+            ]
+          },
+          {
+            "h3": "需要安裝軟體嗎？",
+            "p": [
+              "不需要。Twitter影片下載器完全在您的browser中線上運作。"
+            ]
+          },
+          {
+            "h3": "支援行動裝置嗎？",
+            "p": [
+              "支援。CONVERT1S可在Android、iPhone和所有行動browser上使用。"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

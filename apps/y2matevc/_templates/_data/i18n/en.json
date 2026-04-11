@@ -1,0 +1,102 @@
+{
+  "nav": {
+    "home": "YouTube Downloader",
+    "youtubeToMp4": "YouTube to MP4 Converter",
+    "youtubeToMp3": "YouTube to MP3 Converter",
+    "youtubeShorts": "YouTube Shorts Downloader",
+    "language": "English"
+  },
+  "hero": {
+    "placeholder": "Search or paste link here...",
+    "pasteLabel": "Paste from clipboard",
+    "clearLabel": "Clear input",
+    "submitButton": "Start",
+    "termsText": "By using our service you are accepting our",
+    "termsLink": "Terms of Use"
+  },
+  "formatSelector": {
+    "autoSubmit": "Auto submit",
+    "autoSubmitTooltip": "Automatically submit when pasting URL or keyword",
+    "formats": {
+      "mp4": "MP4",
+      "mp3": "MP3"
+    },
+    "quality": {
+      "videoLabel": "Video quality",
+      "audioLabel": "Audio quality"
+    },
+    "options": {
+      "mp4": {
+        "2160p": "MP4 - 4K",
+        "1440p": "MP4 - 2K",
+        "1080p": "MP4 - 1080p",
+        "720p": "MP4 - 720p",
+        "480p": "MP4 - 480p",
+        "360p": "MP4 - 360p",
+        "144p": "MP4 - 144p",
+        "webm": "WEBM",
+        "mkv": "MKV"
+      },
+      "mp3": {
+        "320kbps": "MP3 - 320kbps",
+        "256kbps": "MP3 - 256kbps",
+        "192kbps": "MP3 - 192kbps",
+        "128kbps": "MP3 - 128kbps",
+        "ogg": "OGG",
+        "opus": "OPUS",
+        "wav": "WAV",
+        "64kbps": "MP3 - 64kbps"
+      }
+    }
+  },
+  "status": {
+    "processing": "Processing...",
+    "preparing": "Preparing...",
+    "merging": "Merging...",
+    "zipping": "Zipping...",
+    "ready": "Ready 100%",
+    "completed": "Completed",
+    "failed": "Failed"
+  },
+  "buttons": {
+    "download": "Download",
+    "tryAgain": "Try Again",
+    "cancel": "Cancel",
+    "seeMore": "see more",
+    "seeLess": "see less",
+    "bulkDownload": "Download Selected"
+  },
+  "gallery": {
+    "title": "Gallery",
+    "noItems": "No gallery items to display",
+    "selected": "selected",
+    "selectAll": "Select All",
+    "deselectAll": "Deselect All"
+  },
+  "mobile": {
+    "menuToggleLabel": "Open navigation menu",
+    "menuCloseLabel": "Close navigation menu",
+    "langButtonLabel": "Select language"
+  },
+  "footer": {
+    "copyright": "© 2026 y2mate",
+    "about": "About",
+    "contact": "Contact",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "copyrightClaims": "Copyright Claims"
+  },
+  "errors": {
+    "invalidUrl": "Please enter a valid URL",
+    "networkError": "Network error. Please try again.",
+    "processingError": "Processing failed. Please try again.",
+    "timeout": "Request timeout. Please try again.",
+    "downloadExpired": "Download link expired",
+    "conversionFailed": "Conversion failed"
+  },
+  "messages": {
+    "downloadReady": "Your download is ready",
+    "processing": "Processing your request...",
+    "pleaseWait": "Please wait..."
+  }
+}

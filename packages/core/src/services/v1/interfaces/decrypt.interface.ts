@@ -1,21 +1,17 @@
 /**
  * Decrypt Service Interface (V1)
+ * Decodes encrypted URLs from media extraction
  */
 
-import type { DecodeDto } from '../../../models/dto/decrypt.dto';
-import type { DecryptListResponse } from '../../../models/remote/v1/responses/decrypt.response';
-import type { DecryptRequest, DecryptListRequest } from '../../../models/remote/v1/requests/decrypt.request';
-import type { ProtectionPayload } from '../../types/protection.types';
+export interface DecryptRequest {
+  encrypted_url: string;
+}
 
-/**
- * JWT save callback type
- */
-export type JwtSaveCallback = (jwt: string) => void;
+export interface DecryptListRequest {
+  encrypted_urls: string[];
+}
 
-/**
- * Decrypt service interface
- */
 export interface IDecryptService {
-  decodeUrl(params: DecryptRequest, protectionPayload?: ProtectionPayload): Promise<DecodeDto>;
-  decodeList(params: DecryptListRequest, protectionPayload?: ProtectionPayload): Promise<DecryptListResponse>;
+  decodeUrl(params: DecryptRequest): Promise<any>;
+  decodeList(params: DecryptListRequest): Promise<any>;
 }

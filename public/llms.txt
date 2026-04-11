@@ -1,23 +1,26 @@
-# LLMs Crawl Policy for https://yt1s.cx
-# Update contact and domain before release.
+# Ytmp3 LLM crawling policy
+# Non-standard file (llms.txt / ai.txt). For transparency only.
 
 User-agent: GPTBot
 Allow: /
-Crawl-Delay: 5
+Disallow: /api
+Disallow: /api/
+Disallow: /api/*
 
 User-agent: Claude-Web
 Allow: /
-Crawl-Delay: 5
+Disallow: /api
+Disallow: /api/
+Disallow: /api/*
 
 User-agent: PerplexityBot
 Allow: /
-Crawl-Delay: 5
+Disallow: /api
+Disallow: /api/
+Disallow: /api/*
 
 User-agent: Google-Extended
 Allow: /
-Crawl-Delay: 5
-
-User-agent: *
-Disallow: /build-output.log
-Disallow: /preview.log
-
+Disallow: /api
+Disallow: /api/
+Disallow: /api/*

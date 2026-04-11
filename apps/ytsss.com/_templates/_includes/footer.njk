@@ -1,0 +1,22 @@
+{%- set base = i18nBase[lang] or i18nBase['en'] -%}
+{%- set langPrefix = '' if (lang == 'en' or not lang) else '/' + lang -%}
+
+<footer>
+    <div class="container">
+        <nav class="footer-nav" aria-label="Footer">
+            <a href="{{ langPrefix }}/download-video-from-youtube-link">Download Video</a>
+            <a href="{{ langPrefix }}/download-audio-from-youtube">Download Audio</a>
+            <a href="{{ langPrefix }}/download-mp4-from-youtube">Download MP4</a>
+            <a href="{{ langPrefix }}/download-4k-from-youtube">Download 4K</a>
+            <a href="{{ langPrefix }}/download-shorts-from-youtube">Download Shorts</a>
+        </nav>
+        <nav class="footer-nav footer-nav--legal" aria-label="Legal navigation">
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+            <a href="/copyright">Copyright &amp; DMCA</a>
+            <a href="/privacy-policy">Privacy Policy</a>
+            <a href="/terms-of-use">Terms of Use</a>
+        </nav>
+        <div class="copyright">{{ base.footer.copyright }}</div>
+    </div>
+</footer>

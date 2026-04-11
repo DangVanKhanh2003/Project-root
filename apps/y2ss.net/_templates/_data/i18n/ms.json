@@ -1,0 +1,35 @@
+{
+  "nav": { "home": "Laman Utama" },
+  "drawer": { "logoText": "Y2SS", "links": { "home": "Laman Utama" } },
+  "hero": {
+    "placeholder": "Tampal URL senarai main YouTube di sini...",
+    "pasteBtn": "Tampal",
+    "clearBtn": "Kosongkan",
+    "convertBtn": "Tukar",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "Trek audio",
+    "searchPlaceholder": "Cari...",
+    "supportedPlatforms": "Platform yang disokong:"
+  },
+  "footer": {
+    "copyright": "© 2026 Y2SS. Semua hak terpelihara.",
+    "legal": {
+      "about": "Tentang Kami",
+      "contact": "Hubungi",
+      "copyright": "Hak Cipta & DMCA",
+      "privacyPolicy": "Dasar Privasi",
+      "termsOfUse": "Terma Penggunaan"
+    }
+  },
+  "langSelector": { "buttonLabel": "Tukar bahasa", "buttonText": "MS", "currentLangFull": "Bahasa Melayu" },
+  "strim": {
+    "startBtn": "Mula",
+    "selectFormatLabel": "1. Pilih format:",
+    "selectQualityLabel": "2. Pilih kualiti:",
+    "audioTrackLabel": "3. Pilih trek audio:",
+    "trimLabel": "4. Potong video (Masa Mula – Tamat):",
+    "startTimeLabel": "Mula",
+    "endTimeLabel": "Tamat"
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "nav": {
+    "home": "Home",
+    "youtubeToMp3": "YouTube to MP3",
+    "youtubeToMp4": "YouTube to MP4",
+    "youtubeShorts": "YouTube Shorts",
+    "about": "About"
+  },
+  "langSelector": {
+    "buttonText": "EN",
+    "buttonLabel": "Language",
+    "currentLangFull": "English"
+  },
+  "drawer": {
+    "logoText": "SSVid.cc",
+    "links": {
+      "home": "Home",
+      "youtubeToMp3": "Download youtube Mp3",
+      "youtubeToMp4": "Download youtube Mp4",
+      "youtubeShorts": "Download Youtube Shorts",
+      "about": "About",
+      "faq": "FAQ",
+      "contact": "Contact",
+      "terms": "Terms of Use",
+      "privacy": "Privacy",
+      "dmca": "DMCA",
+      "cutVideoYoutube": "Cut Video YouTube"
+    }
+  },
+  "hero": {
+    "placeholder": "Paste YouTube link here...",
+    "pasteBtn": "Paste",
+    "clearBtn": "Clear",
+    "convertBtn": "Convert",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "Audio track",
+    "searchPlaceholder": "Search...",
+    "supportedPlatforms": "Supported platforms:"
+  },
+  "overview": {
+    "badge": "Fast & Free"
+  },
+  "footer": {
+    "linksRow1": {
+      "youtubeToMp3": "Download youtube Mp3",
+      "youtubeToMp4": "Download youtube Mp4",
+      "youtubeShorts": "Download Youtube Shorts",
+      "cutVideoYoutube": "Cut Video YouTube"
+    },
+    "linksRow2": {
+      "about": "About",
+      "contact": "Contact",
+      "terms": "Terms of Use",
+      "privacyPolicy": "Privacy Policy",
+      "dmca": "DMCA",
+      "faq": "FAQ"
+    },
+    "copyright": "© 2026 SSVid. All rights reserved."
+  },
+  "strim": {
+    "startBtn": "Start",
+    "selectFormatLabel": "1. Select format:",
+    "selectQualityLabel": "2. Select quality:",
+    "audioTrackLabel": "3. Select audio track:",
+    "trimLabel": "4. Cut video (Start – End time):",
+    "startTimeLabel": "Start",
+    "endTimeLabel": "End"
+  }
+}

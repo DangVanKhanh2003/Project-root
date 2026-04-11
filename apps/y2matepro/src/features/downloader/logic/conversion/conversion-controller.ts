@@ -9,9 +9,11 @@
 import {
   cancelConversion,
   handleDownloadClick,
-  clearSocialMediaCache
-} from './convert-logic-v2';
-import { getConversionTask } from '../../state';
+  clearSocialMediaCache,
+  startConversion
+} from './convert-logic';
+import { getConversionTask, getState } from '../../state';
+import { logEvent } from '../../../../libs/firebase/firebase-analytics';
 
 // Type definitions for custom events
 interface ConversionCancelEventDetail {
@@ -50,7 +52,7 @@ declare global {
 const handleCancelEvent = (event: CustomEvent<ConversionCancelEventDetail>) => {
   const { formatId } = event.detail;
   if (formatId) {
-    cancelConversion();
+    cancelConversion(formatId);
   }
 };
 
@@ -64,12 +66,15 @@ const handleDownloadEvent = (event: CustomEvent<ConversionDownloadEventDetail>) 
 const handleRetryEvent = async (event: CustomEvent<ConversionRetryEventDetail>) => {
   const { formatId } = event.detail;
   if (formatId) {
-    // Get task and re-trigger conversion
+    // 📊 Analytics: Track retry attempt
     const task = getConversionTask(formatId);
+    logEvent('download_retry', {
+      format: task?.formatData?.format || 'unknown',
+      quality: task?.formatData?.quality || 'unknown'
+    });
+
+    // Get task and re-trigger conversion
     if (task?.formatData) {
-      // Re-import dynamically to avoid circular dependency
-      const { startConversion } = await import('./convert-logic-v2');
-      const { getState } = await import('../../state');
       const state = getState();
       const videoTitle = state.videoDetail?.meta?.title || 'Video';
       const videoUrl = state.videoDetail?.meta?.originalUrl || '';

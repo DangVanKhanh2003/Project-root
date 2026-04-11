@@ -1,0 +1,102 @@
+{
+  "nav": {
+    "home": "Trình tải xuống YouTube",
+    "youtubeToMp4": "Trình chuyển đổi YouTube sang MP4",
+    "youtubeToMp3": "Trình chuyển đổi YouTube sang MP3",
+    "youtubeShorts": "Trình tải xuống YouTube Shorts",
+    "language": "Tiếng Việt"
+  },
+  "hero": {
+    "placeholder": "Tìm kiếm hoặc dán liên kết tại đây...",
+    "pasteLabel": "Dán từ khay nhớ tạm",
+    "clearLabel": "Xóa đầu vào",
+    "submitButton": "Bắt đầu",
+    "termsText": "Bằng cách sử dụng dịch vụ của chúng tôi, bạn chấp nhận",
+    "termsLink": "Điều khoản sử dụng"
+  },
+  "formatSelector": {
+    "autoSubmit": "Tự động sumbit",
+    "autoSubmitTooltip": "Tự động submit khi dán URL hoặc từ khóa",
+    "formats": {
+      "mp4": "MP4",
+      "mp3": "MP3"
+    },
+    "quality": {
+      "videoLabel": "Chất lượng video",
+      "audioLabel": "Chất lượng âm thanh"
+    },
+    "options": {
+      "mp4": {
+        "2160p": "MP4 - 4K",
+        "1440p": "MP4 - 2K",
+        "1080p": "MP4 - 1080p",
+        "720p": "MP4 - 720p",
+        "480p": "MP4 - 480p",
+        "360p": "MP4 - 360p",
+        "144p": "MP4 - 144p",
+        "webm": "WEBM",
+        "mkv": "MKV"
+      },
+      "mp3": {
+        "320kbps": "MP3 - 320kbps",
+        "256kbps": "MP3 - 256kbps",
+        "192kbps": "MP3 - 192kbps",
+        "128kbps": "MP3 - 128kbps",
+        "ogg": "OGG",
+        "opus": "OPUS",
+        "wav": "WAV",
+        "64kbps": "MP3 - 64kbps"
+      }
+    }
+  },
+  "status": {
+    "processing": "Đang xử lý...",
+    "preparing": "Đang chuẩn bị...",
+    "merging": "Đang hợp nhất...",
+    "zipping": "Đang nén...",
+    "ready": "Sẵn sàng 100%",
+    "completed": "Đã hoàn tất",
+    "failed": "Thất bại"
+  },
+  "buttons": {
+    "download": "Tải xuống",
+    "tryAgain": "Thử lại",
+    "cancel": "Hủy",
+    "seeMore": "Xem thêm",
+    "seeLess": "Xem ít hơn",
+    "bulkDownload": "Tải xuống các mục đã chọn"
+  },
+  "gallery": {
+    "title": "Thư viện",
+    "noItems": "Không có mục thư viện nào để hiển thị",
+    "selected": "đã chọn",
+    "selectAll": "Chọn tất cả",
+    "deselectAll": "Bỏ chọn tất cả"
+  },
+  "mobile": {
+    "menuToggleLabel": "Mở menu điều hướng",
+    "menuCloseLabel": "Đóng menu điều hướng",
+    "langButtonLabel": "Chọn ngôn ngữ"
+  },
+  "footer": {
+    "copyright": "© 2026 y2mate",
+    "about": "Giới thiệu",
+    "contact": "Liên hệ",
+    "terms": "Điều khoản dịch vụ",
+    "privacy": "Chính sách bảo mật",
+    "copyrightClaims": "Tuyên bố bản quyền"
+  },
+  "errors": {
+    "invalidUrl": "Vui lòng nhập một URL hợp lệ",
+    "networkError": "Lỗi mạng. Vui lòng thử lại.",
+    "processingError": "Xử lý thất bại. Vui lòng thử lại.",
+    "timeout": "Yêu cầu đã hết thời gian chờ. Vui lòng thử lại.",
+    "downloadExpired": "Liên kết tải xuống đã hết hạn",
+    "conversionFailed": "Chuyển đổi thất bại"
+  },
+  "messages": {
+    "downloadReady": "Tải xuống của bạn đã sẵn sàng",
+    "processing": "Đang xử lý yêu cầu của bạn...",
+    "pleaseWait": "Vui lòng đợi..."
+  }
+}

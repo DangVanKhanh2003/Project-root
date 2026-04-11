@@ -1,0 +1,66 @@
+/* =========================================================
+   Content Section - About
+   ---------------------------------------------------------
+   Main about/description section with text content
+   Mobile-first responsive design
+   ========================================================= */
+
+/* ===== CONTENT SECTION ===== */
+.y2mate-content-pro {
+    padding: 0px;
+    text-align: center;
+    position: relative;
+}
+
+h1 {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin: var(--space-md) 0;
+    line-height: var(--line-height-tight);
+    width: 100%;
+    text-align: center;
+}
+
+h2 {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    margin: var(--space-md) 0;
+    line-height: var(--line-height-tight);
+    width: 100%;
+    text-align: left;
+}
+
+.y2mate-content-pro p {
+    font-size: var(--font-size-base);
+    color: var(--color-text-light);
+    line-height: var(--line-height-base);
+    margin: 0 0 var(--space-lg);
+    text-align: justify;
+}
+
+.y2mate-content-pro a {
+    color: black;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.y2mate-content-pro a:hover {
+    text-decoration: underline;
+}
+
+/* ===== MOBILE (max-width: 767px) ===== */
+@media (max-width: 767px) {
+    .y2mate-content-pro {
+        padding: 0px;
+    }
+}
+
+/* ===== SMALL MOBILE (max-width: 575px) ===== */
+@media (max-width: 575px) {
+    .y2mate-content-pro h2 {
+        font-size: var(--font-size-xl);
+        margin: 0;
+    }
+}

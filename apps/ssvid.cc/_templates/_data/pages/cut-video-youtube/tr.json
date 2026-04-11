@@ -1,0 +1,120 @@
+{
+  "seo": {
+    "title": "SSVID CC - YouTube video kesme online ücretsiz",
+    "description": "Ücretsiz YouTube cutter – MP4 veya MP3 indir.",
+    "schemaName": "SSVID - YouTube Video Kesme Aracı",
+    "schemaDescription": "Ücretsiz YouTube video kesme aracı. YouTube videolarını kesin ve MP4 veya MP3 olarak indirin. Reklamsız ve sınırsız.",
+    "ogTitle": "SSVID - YouTube video kesme online ücretsiz",
+    "ogDescription": "Ücretsiz YouTube cutter – MP4 veya MP3 indir."
+  },
+  "defaultFormat": "mp4",
+  "hero": {
+    "title": "SSVID - YouTube video kesme online",
+    "subtitle": "Ücretsiz, hızlı ve sınırsız MP4 & MP3"
+  },
+  "form": {
+    "title": "YouTube Video Kesme Aracı",
+    "placeholder": "YouTube video bağlantısını buraya yapıştırın...",
+    "convertButton": "Kes ve indir"
+  },
+  "overview": {
+    "howTo": {
+      "title": "YouTube videosu online nasıl kesilir",
+      "steps": [
+        {
+          "number": "1",
+          "title": "Video bağlantısını kopyalayın",
+          "description": "Kesmek istediğiniz YouTube videosunun URL’sini kopyalayın."
+        },
+        {
+          "number": "2",
+          "title": "Bağlantıyı yapıştırın",
+          "description": "YouTube bağlantısını SSVID aracına yapıştırın."
+        },
+        {
+          "number": "3",
+          "title": "Başlangıç ve bitiş süresini seçin",
+          "description": "İstediğiniz bölüm için başlangıç ve bitiş zamanını tam olarak belirleyin."
+        },
+        {
+          "number": "4",
+          "title": "MP4 veya MP3 olarak indirin",
+          "description": "Kes ve indir butonuna tıklayarak videoyu MP4 veya MP3 formatında kaydedin."
+        }
+      ]
+    }
+  },
+  "content": {
+    "intro": {
+      "title": "SSVID YouTube video kesme aracı nedir?",
+      "description": "SSVID, <strong>ücretsiz bir YouTube video kesme aracı</strong> olup videoları anında kesip indirmenizi sağlar. Tüm videoyu indirmek yerine sadece istediğiniz bölümü seçerek <strong>MP4 veya MP3</strong> formatında dışa aktarabilirsiniz. Araç tarayıcıda çalışır ve <strong>reklamsız ve sınırsız</strong> kullanım sunar."
+    },
+    "intro2": {
+      "title": "Mobil ve bilgisayar için MP4 & MP3 cutter",
+      "description": "SSVID <strong>akıllı telefonlar, tabletler ve masaüstü bilgisayarlarda</strong> sorunsuz çalışır. Yazılım yüklemeden YouTube videolarını online kesin. <strong>MP4 video</strong> indirin veya <strong>MP3 ses</strong> çıkarın."
+    },
+    "whyDownload": {
+      "title": "YouTube kesmek için neden SSVID?",
+      "description": "SSVID ile yalnızca ihtiyacınız olan kısmı indirerek zamandan ve depolama alanından tasarruf edersiniz. Öne çıkan anlar, kısa klipler, müzik veya podcast bölümleri için bu <strong>YouTube cutter</strong> hızlı ve pratiktir."
+    },
+    "quality": {
+      "title": "Yüksek kaliteli MP4 & MP3 dışa aktarma",
+      "description": "SSVID orijinal video ve ses kalitesini korur. Kesilmiş bölümleri yüksek kaliteli MP4 veya net MP3 olarak hızlı işlem ve akıcı oynatma ile dışa aktarın."
+    },
+    "comparison": {
+      "title": "YouTube Cutter vs Çoklu İndirme",
+      "sections": [
+        {
+          "title": "YouTube videosu kesme",
+          "description": "Tek bir videodan <strong>belirli bir bölüm</strong> gerektiğinde idealdir. Tam zaman aralığını seçin ve sadece o kısmı indirin."
+        },
+        {
+          "title": "YouTube çoklu indirme",
+          "description": "Birden fazla <strong>tam video</strong>yu aynı anda indirmek istiyorsanız çoklu indirme aracını kullanın. <strong>MP3 ve MP4</strong> formatlarını destekler."
+        }
+      ]
+    },
+    "useCases": {
+      "title": "SSVID ne zaman kullanılmalı?",
+      "items": [
+        {
+          "title": "Kısa klipler ve öne çıkan anlar oluşturma",
+          "description": "Uzun videolardan önemli anları keserek paylaşın veya düzenleyin."
+        },
+        {
+          "title": "Müzik veya podcast çıkarma",
+          "description": "Müzik videoları veya podcast’lerden belirli bölümleri MP3 olarak kaydedin."
+        },
+        {
+          "title": "Sadece gerekli kısmı indirme",
+          "description": "Tüm videoyu indirmek yerine yalnızca önemli bölümü kaydedin."
+        }
+      ]
+    }
+  },
+  "faqs": {
+    "title": "Sıkça Sorulan Sorular",
+    "items": [
+      {
+        "question": "SSVID ücretsiz mi?",
+        "answer": "Evet. SSVID tamamen ücretsizdir, reklamsız ve sınırsızdır."
+      },
+      {
+        "question": "YouTube videosunu MP3 olarak kesebilir miyim?",
+        "answer": "Evet. Seçtiğiniz bölümü MP3 formatında indirebilirsiniz."
+      },
+      {
+        "question": "Yazılım yüklemem gerekiyor mu?",
+        "answer": "Hayır. Araç tamamen tarayıcı üzerinden çalışır."
+      },
+      {
+        "question": "Mobil cihazları destekliyor mu?",
+        "answer": "Evet. Telefon, tablet ve bilgisayarlarda kullanılabilir."
+      },
+      {
+        "question": "Kesildikten sonra kalite düşer mi?",
+        "answer": "Hayır. Seçilen bölümün orijinal kalitesi korunur."
+      }
+    ]
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "seo": {
+    "title": "Downloader di YouTube Shorts – Scarica video di Shorts | Y2Mate",
+    "description": "Il downloader di YouTube Shorts ti consente di scaricare i video di Shorts nel formato verticale corretto 9:16. Nessun problema di rotazione, nessuna filigrana, funziona direttamente nel tuo browser.",
+    "ogTitle": "Y2mate - Downloader di YouTube Shorts (Gratuito, Veloce, HD)",
+    "ogDescription": "Scarica YouTube Shorts in HD. Salva istantaneamente i video verticali in formato verticale, rapporto 9:16.",
+    "schemaName": "Y2mate - Downloader di YouTube Shorts",
+    "schemaDescription": "Scarica istantaneamente YouTube Shorts. Downloader di video verticali gratuito per dispositivi mobili."
+  },
+  "hero": {
+    "title": "Y2Mate - Downloader di YouTube Shorts"
+  },
+  "content": {
+    "sections": [
+      {
+        "title": "Cos'è il downloader di YouTube Shorts su Y2Mate?",
+        "paragraphs": [
+          "Il downloader di YouTube Shorts di <a href=\"/\">Y2Mate</a> è creato appositamente per scaricare video di Shorts in formato breve da YouTube.",
+          "Gli Shorts sono fondamentalmente diversi dai normali video di YouTube in termini di durata, proporzioni e comportamento di riproduzione. Il download di Shorts richiede un processo di gestione dedicato per evitare problemi di visualizzazione."
+        ]
+      },
+      {
+        "title": "Perché i download di YouTube Shorts spesso falliscono?",
+        "paragraphs": [
+          "Molti strumenti di download di video non distinguono tra video di Shorts e video di YouTube standard di lunga durata.",
+          "Di conseguenza, i video di Shorts potrebbero essere scaricati con problemi comuni come rotazione orizzontale, audio mancante o proporzioni errate."
+        ]
+      },
+      {
+        "title": "Elaborazione dedicata per i video di Shorts",
+        "paragraphs": [
+          "Quando incolli un link di un video di Shorts, il sistema lo rileva come contenuto in formato breve e applica un metodo di elaborazione dedicato progettato per i video verticali.",
+          "Questo approccio aiuta a garantire download più veloci e a ridurre i problemi di riproduzione su diversi dispositivi."
+        ]
+      },
+      {
+        "title": "Conserva le proporzioni verticali originali",
+        "paragraphs": [
+          "I video di Shorts scaricati mantengono le stesse proporzioni verticali di come appaiono su YouTube. Il video non viene ruotato o ritagliato.",
+          "Ciò rende i video di Shorts adatti per la riproduzione su dispositivi mobili o per uso personale offline."
+        ]
+      },
+      {
+        "title": "In cosa differiscono gli Shorts dai normali video di YouTube",
+        "paragraphs": [
+          "Gli YouTube Shorts sono video brevi e verticali, mentre i normali video di YouTube sono in genere orizzontali e di durata maggiore.",
+          "Se hai bisogno di scaricare video di YouTube di lunga durata per la visualizzazione offline, puoi utilizzare lo strumento <a href=\"/youtube-to-mp4\">da YouTube a MP4</a> o visitare <a href=\"/\">Scarica video da YouTube</a> per esplorare altre opzioni di download."
+        ]
+      }
+    ]
+  },
+  "whyChoose": {
+    "title": "Perché scegliere Y2Mate per i download di YouTube Shorts",
+    "intro": "La maggior parte dei downloader di YouTube non gestisce correttamente i video di Shorts, il che si traduce in video ruotati o ritagliati. Il downloader di Shorts dedicato di Y2Mate conserva il formato verticale corretto.",
+    "reasons": [
+      "Conserva il formato verticale – mantiene le proporzioni originali 9:16",
+      "Elaborazione rapida – gli Shorts vengono rilevati ed elaborati rapidamente",
+      "Nessun problema di rotazione – i video vengono riprodotti correttamente su tutti i dispositivi",
+      "Funziona su dispositivi mobili – ottimizzato per i download su dispositivi mobili",
+      "Include l'audio – scarica gli Shorts con il loro audio originale"
+    ]
+  },
+  "instructions": {
+    "title": "Come scaricare i video di YouTube Shorts",
+    "steps": [
+      "Copia il link del video di YouTube Shorts che desideri scaricare.",
+      "Incolla il link nel campo di immissione in questa pagina.",
+      "Fai clic sul pulsante di avvio per analizzare il video di Shorts.",
+      "Scegli la tua qualità preferita e scarica il video verticale sul tuo dispositivo."
+    ],
+    "note": "Il downloader di Shorts rileva automaticamente i video verticali e li elabora correttamente senza problemi di rotazione."
+  },
+  "faqs": {
+    "title": "Domande frequenti su YouTube Shorts",
+    "items": [
+      {
+        "question": "Esiste un limite di download per YouTube Shorts?",
+        "answer": "No. Puoi scaricare YouTube Shorts senza un limite giornaliero o di utilizzo fisso."
+      },
+      {
+        "question": "Come salvo uno YouTube Short sul mio telefono?",
+        "answer": "Su Android, lo Short scaricato apparirà nella cartella Download o nella Galleria. Su iPhone, usa Safari per scaricare il video, quindi salvalo dalla sezione Download in Foto."
+      },
+      {
+        "question": "Posso scaricare gli Shorts con l'audio?",
+        "answer": "Sì. Gli Shorts vengono scaricati con il loro audio originale se il video di origine include l'audio."
+      },
+      {
+        "question": "Perché gli Shorts vengono elaborati più velocemente dei normali video di YouTube?",
+        "answer": "Gli Shorts hanno una durata inferiore e utilizzano un formato diverso, consentendo al sistema di analizzare e preparare il file più rapidamente."
+      },
+      {
+        "question": "Lo Short scaricato manterrà il suo formato verticale?",
+        "answer": "Sì. Lo strumento conserva le proporzioni verticali originali in modo che il video venga visualizzato correttamente sui dispositivi mobili."
+      },
+      {
+        "question": "Come dovrebbero essere utilizzati gli Shorts scaricati?",
+        "answer": "Gli Shorts scaricati sono destinati all'uso personale, come la visualizzazione o il salvataggio offline. Gli utenti sono responsabili del rispetto dei diritti dei creatori di contenuti originali."
+      }
+    ]
+  }
+}

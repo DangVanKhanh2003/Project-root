@@ -1,0 +1,15 @@
+{%- set base = i18nBase[lang] or i18nBase['en'] -%}
+{%- set langPrefix = '' if (lang == 'en' or not lang) else '/' + lang -%}
+
+<footer>
+    <div class="container">
+        <nav class="footer-nav footer-nav--legal" aria-label="Legal navigation">
+            <a href="/about">{{ base.footer.legal.about or 'About' }}</a>
+            <a href="/contact">{{ base.footer.legal.contact or 'Contact' }}</a>
+            <a href="/copyright">{{ base.footer.legal.copyright or 'Copyright & DMCA' }}</a>
+            <a href="/privacy-policy">{{ base.footer.legal.privacyPolicy or 'Privacy Policy' }}</a>
+            <a href="/terms-of-use">{{ base.footer.legal.termsOfUse or 'Terms of Use' }}</a>
+        </nav>
+        <div class="copyright">{{ base.footer.copyright }}</div>
+    </div>
+</footer>

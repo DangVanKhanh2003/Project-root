@@ -255,7 +255,7 @@
 
 .history-card__author {
   color: var(--google-grey-700);
-  max-width: 120px;
+  max-width: 120px !important;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -354,21 +354,24 @@
 .history-card__item--skeleton {
   display: flex;
   align-items: center;
-  gap: 16px;                    /* same as .history-card__item */
-  padding-bottom: 5px;          /* same as .history-card__item */
+  gap: 16px;
+  /* same as .history-card__item */
+  padding-bottom: 5px;
+  /* same as .history-card__item */
   background-color: #fff;
 }
 
 /* Skeleton thumbnail - match .history-card__thumbnail exactly */
 .history-card__item--skeleton .skeleton-thumbnail {
-  width: 48px;                  /* same as .history-card__thumbnail */
+  width: 48px;
+  /* same as .history-card__thumbnail */
   height: 48px;
   min-width: 48px;
   border-radius: 4px;
   flex-shrink: 0;
   background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
   background-size: 200% 100%;
-  animation: skeleton-shimmer 1.5s infinite ease-in-out;
+  animation: skeleton-shimmer 1s infinite ease-in-out;
 }
 
 /* Skeleton content - match .history-card__content exactly */
@@ -377,27 +380,30 @@
   min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 2px;                     /* small gap between title and meta */
+  gap: 2px;
+  /* small gap between title and meta */
 }
 
 /* Skeleton title - match .history-card__video-title line-height */
 .history-card__item--skeleton .skeleton-title {
-  height: 13px;                 /* font-size: 13px */
+  height: 13px;
+  /* font-size: 13px */
   width: 70%;
   border-radius: 3px;
   background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
   background-size: 200% 100%;
-  animation: skeleton-shimmer 1.5s infinite ease-in-out;
+  animation: skeleton-shimmer 1s infinite ease-in-out;
 }
 
 /* Skeleton meta - match .history-card__meta line-height */
 .history-card__item--skeleton .skeleton-meta {
-  height: 11px;                 /* font-size: 11px */
+  height: 11px;
+  /* font-size: 11px */
   width: 45%;
   border-radius: 3px;
   background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
   background-size: 200% 100%;
-  animation: skeleton-shimmer 1.5s infinite ease-in-out;
+  animation: skeleton-shimmer 1s infinite ease-in-out;
 }
 
 /* Skeleton button - disabled state */
@@ -411,6 +417,7 @@
   0% {
     background-position: 200% 0;
   }
+
   100% {
     background-position: -200% 0;
   }

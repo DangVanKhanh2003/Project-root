@@ -1,0 +1,128 @@
+{
+  "seo": {
+    "title": "Téléchargeur MP3 en ligne gratuit – SnackeLoader",
+    "description": "Utilisez le téléchargeur MP3 SnackeLoader pour convertir des vidéos en MP3 en ligne gratuitement. Téléchargez de l'audio à partir de YouTube, TikTok et d'autres liens rapidement et facilement.",
+    "keywords": "téléchargeur mp3, vidéo en mp3, convertir vidéo en mp3, téléchargeur audio, télécharger mp3 à partir d'une vidéo en ligne, convertir vidéo en audio gratuit, téléchargeur youtube en mp3 rapide, convertisseur tiktok en mp3, convertisseur mp3 haute qualité 320kbps, téléchargeur audio en ligne gratuit, convertisseur mp3 rapide sans connexion, comment convertir vidéo en mp3, meilleur outil de téléchargement mp3",
+    "schemaName": "SnackeLoader - Téléchargeur MP3",
+    "schemaDescription": "Téléchargeur MP3 et convertisseur audio gratuit. Convertissez des vidéos en MP3 en ligne et enregistrez des fichiers audio sans installation.",
+    "ogTitle": "Téléchargeur MP3 en ligne gratuit – SnackeLoader",
+    "ogDescription": "Convertissez des vidéos en MP3 en ligne gratuitement. Téléchargement audio rapide et facile."
+  },
+  "content": {
+    "form": {
+      "h1": "SnackeLoader – Téléchargeur MP3",
+      "placeholder": "Collez le lien vidéo ou audio ici...",
+      "button": "Convertir"
+    },
+    "sections": [
+      {
+        "h2": "Qu'est-ce que le téléchargeur MP3 SnackeLoader ?",
+        "p": [
+          "SnackeLoader est un <strong>téléchargeur MP3</strong> qui vous permet de <strong>convertir des vidéos en MP3</strong> rapidement et facilement.",
+          "C'est utile pour ceux qui veulent extraire de l'audio à partir de vidéos sans logiciel.",
+          "Le processus est simple, rapide et fonctionne directement en ligne."
+        ]
+      },
+      {
+        "h2": "Comment convertir une vidéo en MP3",
+        "ol": [
+          {
+            "h3": "Copier le lien",
+            "p": [
+              "Copiez l'URL de la vidéo ou de l'audio que vous souhaitez convertir."
+            ]
+          },
+          {
+            "h3": "Coller le lien",
+            "p": [
+              "Collez l'URL dans la barre de conversion."
+            ]
+          },
+          {
+            "h3": "Lancer la conversion",
+            "p": [
+              "Cliquez sur Convertir et laissez l'outil préparer le fichier."
+            ]
+          },
+          {
+            "h3": "Télécharger le MP3",
+            "p": [
+              "Enregistrez le fichier audio sur votre téléphone ou ordinateur."
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "Pourquoi utiliser notre téléchargeur MP3 ?",
+        "ul": [
+          {
+            "h3": "Conversion rapide",
+            "p": [
+              "Convertissez des vidéos en MP3 en quelques secondes."
+            ]
+          },
+          {
+            "h3": "En ligne et gratuit",
+            "p": [
+              "Utilisez l'outil sans payer ni créer de compte."
+            ]
+          },
+          {
+            "h3": "Compatible avec tous les appareils",
+            "p": [
+              "Fonctionne sur PC, Android, iPhone et tablettes."
+            ]
+          },
+          {
+            "h3": "Téléchargements audio de qualité",
+            "p": [
+              "Sauvegardez vos audios pour une écoute hors ligne."
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "Conversion audio de haute qualité",
+        "p": [
+          "SnackeLoader est conçu pour offrir un <strong>téléchargeur audio en ligne gratuit</strong> performant et simple d'utilisation.",
+          "Il garde le processus de conversion simple et pratique."
+        ]
+      },
+      {
+        "h2": "Questions fréquemment posées",
+        "ul": [
+          {
+            "h3": "Puis-je convertir des vidéos en MP3 en ligne ?",
+            "p": [
+              "Oui. SnackeLoader prend en charge la conversion de vidéos en MP3."
+            ]
+          },
+          {
+            "h3": "Le téléchargeur MP3 est-il gratuit ?",
+            "p": [
+              "Oui. Il est totalement gratuit."
+            ]
+          },
+          {
+            "h3": "Dois-je installer un logiciel ?",
+            "p": [
+              "Non. Le convertisseur fonctionne directement sur votre navigateur."
+            ]
+          },
+          {
+            "h3": "Puis-je l'utiliser sur mon téléphone ?",
+            "p": [
+              "Oui. Il est compatible avec les navigateurs mobiles."
+            ]
+          },
+          {
+            "h3": "Y a-t-il une limite ?",
+            "p": [
+              "Il n'y a pas de limite fixée pour une utilisation normale."
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

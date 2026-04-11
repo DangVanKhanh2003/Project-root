@@ -1,0 +1,114 @@
+/* src/styles/404.css */
+
+/* Ensure the main content takes up available space */
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem 1rem;
+    background-color: var(--bg-404-page, #fff);
+}
+
+.error-image-container {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+    margin-top: 40px;
+}
+
+.error-image {
+    max-width: 200px;
+    width: 100%;
+    height: auto;
+    margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .error-image-container {
+        margin-top: 60px;
+    }
+
+    .error-image {
+        max-width: 260px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .error-image-container {
+        margin-top: 80px;
+    }
+
+    .error-image {
+        max-width: 300px;
+    }
+}
+
+.error-home-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 32px;
+    background: var(--primary-color, #2563eb);
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    border-radius: 999px;
+    border: 0;
+    transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.error-home-btn:hover {
+    background: var(--primary-hover-color, #1d4ed8);
+    transform: translateY(-1px);
+}
+
+.error-home-btn:active {
+    transform: translateY(0);
+}
+
+/* Add some text styling for better context */
+.error-text {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.error-text h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.error-text p {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.error-text .btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--primary-color);
+    color: var(--text-main);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+}
+
+.error-text .btn:hover {
+    background-color: var(--primary-hover-color);
+}
+
+/* Ensure body is flex column to push footer down */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}

@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta name="robots" content="index, follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta charset="UTF-8">
+
+    <!-- SEO Metadata -->
+    <title>Descargador de YouTube Shorts – Descargar videos de Shorts | Y2Mate</title>
+    <meta name="description" content="El Descargador de YouTube Shorts te permite descargar videos de Shorts en el formato vertical correcto de 9:16. Sin problemas de rotación, sin marcas de agua, funciona directamente en tu navegador.">
+    
+    <link rel="canonical" href="https://y2mate.vc/es/youtube-short-downloader">
+
+    <!-- hreflang tags for multilingual SEO -->
+    <link rel="alternate" hreflang="en" href="https://y2mate.vc/youtube-short-downloader" />
+    <link rel="alternate" hreflang="ar" href="https://y2mate.vc/ar/youtube-short-downloader" />
+    <link rel="alternate" hreflang="bn" href="https://y2mate.vc/bn/youtube-short-downloader" />
+    <link rel="alternate" hreflang="de" href="https://y2mate.vc/de/youtube-short-downloader" />
+    <link rel="alternate" hreflang="es" href="https://y2mate.vc/es/youtube-short-downloader" />
+    <link rel="alternate" hreflang="fr" href="https://y2mate.vc/fr/youtube-short-downloader" />
+    <link rel="alternate" hreflang="hi" href="https://y2mate.vc/hi/youtube-short-downloader" />
+    <link rel="alternate" hreflang="id" href="https://y2mate.vc/id/youtube-short-downloader" />
+    <link rel="alternate" hreflang="it" href="https://y2mate.vc/it/youtube-short-downloader" />
+    <link rel="alternate" hreflang="ja" href="https://y2mate.vc/ja/youtube-short-downloader" />
+    <link rel="alternate" hreflang="ko" href="https://y2mate.vc/ko/youtube-short-downloader" />
+    <link rel="alternate" hreflang="my" href="https://y2mate.vc/my/youtube-short-downloader" />
+    <link rel="alternate" hreflang="ms" href="https://y2mate.vc/ms/youtube-short-downloader" />
+    <link rel="alternate" hreflang="pt" href="https://y2mate.vc/pt/youtube-short-downloader" />
+    <link rel="alternate" hreflang="ru" href="https://y2mate.vc/ru/youtube-short-downloader" />
+    <link rel="alternate" hreflang="th" href="https://y2mate.vc/th/youtube-short-downloader" />
+    <link rel="alternate" hreflang="tr" href="https://y2mate.vc/tr/youtube-short-downloader" />
+    <link rel="alternate" hreflang="ur" href="https://y2mate.vc/ur/youtube-short-downloader" />
+    <link rel="alternate" hreflang="vi" href="https://y2mate.vc/vi/youtube-short-downloader" />
+    <link rel="alternate" hreflang="x-default" href="https://y2mate.vc/youtube-short-downloader" />
+
+    <!-- Schema.org markup -->
+    <meta itemprop="name" content="Y2mate - Descargador de YouTube Shorts" />
+    <meta itemprop="description" content="Descarga YouTube Shorts al instante. Descargador de videos verticales gratuito para dispositivos móviles.">
+    <meta itemprop="inLanguage" content="es" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Y2Mate" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content="Y2mate - Descargador de YouTube Shorts (Gratis, Rápido, HD)" />
+    <meta property="og:description" content="Descarga YouTube Shorts en HD. Guarda videos verticales al instante en formato de retrato, relación 9:16." />
+    <meta property="og:image" content="https://y2mate.vc/favicon-512x512.png" />
+    <meta property="og:url" content="https://y2mate.vc/es/youtube-short-downloader" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://y2mate.vc/es/youtube-short-downloader">
+    <meta name="twitter:title" content="Y2mate - Descargador de YouTube Shorts (Gratis, Rápido, HD)">
+    <meta name="twitter:description" content="Descarga YouTube Shorts en HD. Guarda videos verticales al instante en formato de retrato, relación 9:16.">
+    <meta name="twitter:image" content="https://y2mate.vc/favicon-512x512.png">
+
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <link type="image/png" sizes="16x16" rel="icon" href="/favicon1616.png">
+    <link type="image/png" sizes="32x32" rel="icon" href="/favicon3232.png">
+    <link type="image/png" sizes="48x48" rel="icon" href="/favicon4848.png">
+    <link type="image/png" sizes="96x96" rel="icon" href="/favicon9696.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#c10841">
+    <meta name="color-scheme" content="light">
+
+    <!-- Google Analytics: Lazy loaded via analytics-loader.ts for better performance -->
+
+    <!-- Critical: Set format and auto-submit preferences before render to prevent FOUC -->
+    <script>(function(){var f='mp4',a='false';try{var p=JSON.parse(localStorage.getItem('y2mate_format_preferences'));if(p&&p.selectedFormat)f=p.selectedFormat;var s=localStorage.getItem('y2mate_auto_submit');if(s)a=s;}catch(e){}document.documentElement.dataset.format=f;document.documentElement.dataset.autoSubmit=a;})()</script>
+
+    <!-- Critical: Hide auto-submit tooltip before CSS loads -->
+    <style>
+        .custom-tooltip {
+            opacity: 0;
+            visibility: hidden;
+        }
+    </style>
+
+    <!-- Critical: Prevent default form submit before app init (avoid /search 404) -->
+    <script>(function(){document.addEventListener('submit',function(event){var target=event.target;if(target&&target.id==='downloadForm'){event.preventDefault();}},true);})();</script>
+
+    <!-- Critical CSS imported via Vite -->
+    <script type="module" src="/src/main.ts"></script>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://y2mate.vc/es/youtube-short-downloader#webpage",
+      "url": "https://y2mate.vc/es/youtube-short-downloader",
+      "name": "Y2Mate - Descargador de YouTube Shorts",
+      "isPartOf": {
+        "@id": "https://y2mate.vc/#website"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "@id": "https://y2mate.vc/es/youtube-short-downloader#application"
+      },
+      "inLanguage": "es"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://y2mate.vc/es/youtube-short-downloader#application",
+      "name": "Y2Mate - Descargador de YouTube Shorts",
+      "url": "https://y2mate.vc/es/youtube-short-downloader",
+      "description": "Descarga YouTube Shorts al instante. Descargador de videos verticales gratuito para dispositivos móviles.",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "es",
+      "publisher": {
+        "@id": "https://y2mate.vc/#organization"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://y2mate.vc/es/youtube-short-downloader#faq",
+      "isPartOf": {
+        "@id": "https://y2mate.vc/es/youtube-short-downloader#webpage"
+      },
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Hay un límite de descarga para YouTube Shorts?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Puedes descargar YouTube Shorts sin un límite diario o de uso fijo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo guardo un YouTube Short en mi teléfono?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "En Android, el Short descargado aparecerá en tu carpeta de Descargas o en la Galería. En iPhone, usa Safari para descargar el video y luego guárdalo desde la sección de Descargas a Fotos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Puedo descargar Shorts con sonido?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. Los Shorts se descargan con su audio original si el video de origen incluye sonido."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Por qué los Shorts se procesan más rápido que los videos normales de YouTube?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Los Shorts son de menor duración y utilizan un formato diferente, lo que permite que el sistema analice y prepare el archivo más rápidamente."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿El Short descargado mantendrá su formato vertical?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. La herramienta conserva la relación de aspecto vertical original para que el video se muestre correctamente en los dispositivos móviles."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo se deben usar los Shorts descargados?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Los Shorts descargados están destinados para uso personal, como verlos sin conexión o guardarlos. Los usuarios son responsables de respetar los derechos de los creadores de contenido originales."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://y2mate.vc/es/youtube-short-downloader#howto",
+      "isPartOf": {
+        "@id": "https://y2mate.vc/es/youtube-short-downloader#webpage"
+      },
+      "name": "Cómo descargar videos de YouTube Shorts",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "position": 1,
+          "text": "Copia el enlace del video de YouTube Shorts que quieres descargar."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 2,
+          "text": "Pega el enlace en el campo de entrada de esta página."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 3,
+          "text": "Haz clic en el botón de inicio para analizar el video de Shorts."
+        },
+        {
+          "@type": "HowToStep",
+          "position": 4,
+          "text": "Elige tu calidad preferida y descarga el video vertical en tu dispositivo."
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+</head>
+
+<body>
+    <header class="nav-header">
+    <div class="container">
+        <div class="nav_head">
+            <div class="navbar-logo">
+                <a href="/es/">
+                    <img height="46px" width="46px" src="/logo.png" alt="Y2Mate logo">
+                    <span class="logo-name">Y2mate</span>
+                </a>
+            </div>
+            <button type="button" class="navbar-toggler" id="mobileMenuToggle" aria-label="Abrir menú de navegación">
+                <span class="toggle-icon"></span>
+                <span class="toggle-icon"></span>
+                <span class="toggle-icon"></span>
+            </button>
+        </div>
+        <div class="header-menu">
+            <ul class="menu-navbar">
+              
+                <li class="navbar">
+                    <a href="/es/youtube-to-mp4">Convertidor de YouTube a MP4</a>
+                </li>
+                <li class="navbar">
+                    <a href="/es/youtube-to-mp3">Convertidor de YouTube a MP3</a>
+                </li>
+                <li class="navbar language">
+                    <a href="/">
+                        Español<span class="shape"></span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <ul class="lang-menu">
+                            <li>
+                                <a data-lang="en" href="/youtube-short-downloader">English</a>
+                            </li>
+                            <li>
+                                <a data-lang="ar" href="/ar/youtube-short-downloader">العربية</a>
+                            </li>
+                            <li>
+                                <a data-lang="bn" href="/bn/youtube-short-downloader">বাংলা</a>
+                            </li>
+                            <li>
+                                <a data-lang="de" href="/de/youtube-short-downloader">Deutsch</a>
+                            </li>
+                            <li>
+                                <a data-lang="es" href="/es/youtube-short-downloader">Español</a>
+                            </li>
+                            <li>
+                                <a data-lang="fr" href="/fr/youtube-short-downloader">Français</a>
+                            </li>
+                            <li>
+                                <a data-lang="hi" href="/hi/youtube-short-downloader">हिन्दी</a>
+                            </li>
+                            <li>
+                                <a data-lang="id" href="/id/youtube-short-downloader">Indonesia</a>
+                            </li>
+                            <li>
+                                <a data-lang="it" href="/it/youtube-short-downloader">Italiano</a>
+                            </li>
+                            <li>
+                                <a data-lang="ja" href="/ja/youtube-short-downloader">日本語</a>
+                            </li>
+                            <li>
+                                <a data-lang="ko" href="/ko/youtube-short-downloader">한국어</a>
+                            </li>
+                            <li>
+                                <a data-lang="my" href="/my/youtube-short-downloader">မြန်မာ</a>
+                            </li>
+                            <li>
+                                <a data-lang="ms" href="/ms/youtube-short-downloader">Melayu</a>
+                            </li>
+                            <li>
+                                <a data-lang="pt" href="/pt/youtube-short-downloader">Português</a>
+                            </li>
+                            <li>
+                                <a data-lang="ru" href="/ru/youtube-short-downloader">Русский</a>
+                            </li>
+                            <li>
+                                <a data-lang="th" href="/th/youtube-short-downloader">ไทย</a>
+                            </li>
+                            <li>
+                                <a data-lang="tr" href="/tr/youtube-short-downloader">Türkçe</a>
+                            </li>
+                            <li>
+                                <a data-lang="ur" href="/ur/youtube-short-downloader">اردو</a>
+                            </li>
+                            <li>
+                                <a data-lang="vi" href="/vi/youtube-short-downloader">Tiếng Việt</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+            <div class="mobile-menu-content">
+                <div class="mobile-header-top">
+                    <a href="/es/">
+                        <div class="mobile-logo">
+                            <img height="36px" width="36px" src="/logo.png" alt="Y2Mate logo">
+                            <span class="logo-name">Y2mate</span>
+                        </div>
+                    </a>
+                    <button type="button" class="mobile-close-btn" id="mobileCloseBtn" aria-label="Cerrar menú de navegación">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <nav class="mobile-nav">
+                    <ul class="mobile-menu">
+                        <li><a href="/es/">Descargador de YouTube</a></li>
+                        <li><a href="/es/youtube-to-mp4">Convertidor de YouTube a MP4</a></li>
+                        <li><a href="/es/youtube-to-mp3">Convertidor de YouTube a MP3</a></li>
+                        <li><a href="/es/youtube-short-downloader">Descargador de YouTube Shorts</a></li>
+                        <li class="mobile-language">
+                            <button type="button" class="mobile-language-toggle" aria-expanded="false">
+                                Español<span class="shape"></span>
+                            </button>
+                            <ul class="mobile-lang-menu">
+                                <li>
+                                    <a data-lang="en" href="/youtube-short-downloader">English</a>
+                                </li>
+                                <li>
+                                    <a data-lang="ar" href="/ar/youtube-short-downloader">العربية</a>
+                                </li>
+                                <li>
+                                    <a data-lang="bn" href="/bn/youtube-short-downloader">বাংলা</a>
+                                </li>
+                                <li>
+                                    <a data-lang="de" href="/de/youtube-short-downloader">Deutsch</a>
+                                </li>
+                                <li>
+                                    <a data-lang="es" href="/es/youtube-short-downloader">Español</a>
+                                </li>
+                                <li>
+                                    <a data-lang="fr" href="/fr/youtube-short-downloader">Français</a>
+                                </li>
+                                <li>
+                                    <a data-lang="hi" href="/hi/youtube-short-downloader">हिन्दी</a>
+                                </li>
+                                <li>
+                                    <a data-lang="id" href="/id/youtube-short-downloader">Indonesia</a>
+                                </li>
+                                <li>
+                                    <a data-lang="it" href="/it/youtube-short-downloader">Italiano</a>
+                                </li>
+                                <li>
+                                    <a data-lang="ja" href="/ja/youtube-short-downloader">日本語</a>
+                                </li>
+                                <li>
+                                    <a data-lang="ko" href="/ko/youtube-short-downloader">한국어</a>
+                                </li>
+                                <li>
+                                    <a data-lang="my" href="/my/youtube-short-downloader">မြန်မာ</a>
+                                </li>
+                                <li>
+                                    <a data-lang="ms" href="/ms/youtube-short-downloader">Melayu</a>
+                                </li>
+                                <li>
+                                    <a data-lang="pt" href="/pt/youtube-short-downloader">Português</a>
+                                </li>
+                                <li>
+                                    <a data-lang="ru" href="/ru/youtube-short-downloader">Русский</a>
+                                </li>
+                                <li>
+                                    <a data-lang="th" href="/th/youtube-short-downloader">ไทย</a>
+                                </li>
+                                <li>
+                                    <a data-lang="tr" href="/tr/youtube-short-downloader">Türkçe</a>
+                                </li>
+                                <li>
+                                    <a data-lang="ur" href="/ur/youtube-short-downloader">اردو</a>
+                                </li>
+                                <li>
+                                    <a data-lang="vi" href="/vi/youtube-short-downloader">Tiếng Việt</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- End Mobile Menu Overlay -->
+    </div>
+</header>
+
+
+    <main>
+    <div class="container">
+    <section class="y2mate-download-pro">
+        <div class="y2mate-search-form-pro d-flex">
+            <div class="form-wrap">
+                <h1 class="y2mate_title-pro">Y2Mate - Descargador de YouTube Shorts</h1>
+                <form id="downloadForm" class="search_form" method="POST" action="/search/">
+                    <div class="input-container">
+                        <div class=" input-wrapper">
+                            <input id="videoUrl" class="y2mate_query-pro keyword" type="text" name="q"
+                                placeholder="Busca o pega el enlace aquí..." autocomplete="off" autofocus=""
+                                role="combobox" aria-autocomplete="list" aria-controls="suggestion-container" aria-expanded="false">
+                            <button id="input-action-button" type="button" class="input-action-btn" data-action="paste"
+                                aria-label="Pegar desde el portapapeles">
+                                <svg class="paste-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                    viewBox="0 0 24 24">
+                                    <path fill="currentColor"
+                                        d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm7 16H5V5h2v3h10V5h2v14z" />
+                                </svg>
+                                <svg class="clear-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                    viewBox="0 0 24 24">
+                                    <path fill="currentColor"
+                                        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <button id="submit" type="submit" name="form_submit" class="submit-btn" aria-label="Search">
+                        <div class="converter-btn">Empezar</div>
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                            width="14px" height="14px" fill="#fff" id="Layer_1"
+                            style="enable-background:new 0 0 16 16;" version="1.1" viewBox="0 0 16 16"
+                            xml:space="preserve">
+                            <path
+                                d="M15.375,7L10,2.54C9.695,2.287,9.461,2,9,2C8.375,2,8,2.516,8,3v3H1C0.45,6,0,6.45,0,7v2c0,0.55,0.45,1,1,1h7v3  c0,0.484,0.375,1,1,1c0.461,0,0.695-0.287,1-0.54L15.375,9C15.758,8.688,16,8.445,16,8S15.758,7.313,15.375,7z">
+                            </path>
+                        </svg>
+                    </button>
+
+                    <!-- Format Selector -->
+                    <div id="format-selector-container" class="format-selector-wrapper">
+                        <div class="format-selector">
+                            <!-- Group 1: Format + Quality -->
+                            <div class="format-quality-group">
+                                <!-- Format Toggle -->
+                                <button type="button" class="format-toggle-btn" data-toggle-format>
+                                    <span class="toggle-side" data-format="mp4">
+                                        <span class="format-label">MP4</span>
+                                    </span>
+                                    <span class="toggle-side" data-format="mp3">
+                                        <span class="format-label">MP3</span>
+                                    </span>
+                                </button>
+                                <!-- Quality Dropdowns -->
+                                <div class="quality-selector">
+                                    <!-- MP4 Options -->
+                                    <select id="quality-select-mp4" class="quality-select quality-select--mp4"
+                                        aria-label="Calidad de vídeo" data-quality-select>
+                                        <option value="mp4-2160">MP4 - 4K</option>
+                                        <option value="mp4-1440">MP4 - 2K</option>
+                                        <option value="mp4-1080">MP4 - 1080p</option>
+                                        <option value="mp4-720" selected>MP4 - 720p</option>
+                                        <option value="mp4-480">MP4 - 480p</option>
+                                        <option value="mp4-360">MP4 - 360p</option>                                        <option value="mp4-144">MP4 - 144p</option>
+                                        <option value="webm">WEBM</option>
+                                        <option value="mkv">MKV</option>
+                                    </select>
+                                    <!-- MP3 Options -->
+                                    <select id="quality-select-mp3" class="quality-select quality-select--mp3"
+                                        aria-label="Calidad de audio" data-quality-select>
+                                        <option value="mp3-320">MP3 - 320kbps</option>
+                                        <option value="mp3-64">MP3 - 64kbps</option>
+                                        <option value="mp3-192">MP3 - 192kbps</option>
+                                        <option value="mp3-128" selected>MP3 - 128kbps</option>
+                                        <option value="ogg">OGG</option>
+                                        <option value="opus">OPUS</option>
+                                        <option value="wav">WAV</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <!-- Group 2: Auto Submit Toggle -->
+                            <div class="auto-submit-toggle"
+                                data-tooltip="Enviar automáticamente al pegar URL o palabra clave">
+                                <strong class="toggle-label">Envío automático</strong>
+                                <label class="toggle-switch" for="auto-submit-checkbox">
+                                    <input type="checkbox" id="auto-submit-checkbox" data-auto-submit-toggle aria-label="Auto submit after selecting format" />
+                                    <span class="toggle-slider"></span>
+                                </label>
+                                <span class="custom-tooltip"></span>
+                        </div>
+                    </div>
+                    <script>(function(){try{const preferencesJson=localStorage.getItem('y2mate_format_preferences');if(preferencesJson){const preferences=JSON.parse(preferencesJson);const selectElement=preferences.selectedFormat==='mp4'?document.getElementById('quality-select-mp4'):document.getElementById('quality-select-mp3');if(selectElement){let value;if(preferences.selectedFormat==='mp4'){const videoQuality=preferences.videoQuality||'720p';value=(videoQuality==='webm'||videoQuality==='mkv')?videoQuality:`mp4-${videoQuality.replace('p','')}`;}else{const audioFormat=preferences.audioFormat||'mp3';value=(audioFormat==='mp3')?`mp3-${preferences.audioBitrate||'128'}`:audioFormat;}selectElement.value=value;}}const autoSubmitValue=localStorage.getItem('y2mate_auto_submit');const checkbox=document.getElementById('auto-submit-checkbox');if(checkbox){checkbox.checked=autoSubmitValue==='true';}}catch(error){console.error('Error syncing UI from localStorage in inline script:',error);}})();</script>
+                    </div>
+
+                    <div id="suggestion-container" class="suggesstion-list suggesstion-box"></div>
+                </form>
+
+                <!-- Video Detail Area -->
+                <div id="content-area"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Results Section -->
+    <section id="search-results-section" class="search-results-section" style="display: none;">
+        <div id="search-results-container"></div>
+    </section>
+
+    <!-- Content Sections -->
+    <section class="y2mate-content-pro d-flex">
+        <div class="col-sm-12">
+            <h2>¿Qué es el Descargador de YouTube Shorts en Y2Mate?</h2>
+            <p>El Descargador de YouTube Shorts de <a href="/es/">Y2Mate</a> está diseñado específicamente para descargar videos cortos de Shorts de YouTube.</p>
+            <p>Los Shorts son fundamentalmente diferentes de los videos regulares de YouTube en términos de duración, relación de aspecto y comportamiento de reproducción. La descarga de Shorts requiere un proceso de manejo dedicado para evitar problemas de visualización.</p>
+        </div>
+    </section>
+    <section class="y2mate-content-pro d-flex">
+        <div class="col-sm-12">
+            <h2>¿Por qué a menudo fallan las descargas de YouTube Shorts?</h2>
+            <p>Muchas herramientas de descarga de videos no distinguen entre los videos de Shorts y los videos largos estándar de YouTube.</p>
+            <p>Como resultado, los videos de Shorts pueden descargarse con problemas comunes como rotación horizontal, falta de audio o relaciones de aspecto incorrectas.</p>
+        </div>
+    </section>
+    <section class="y2mate-content-pro d-flex">
+        <div class="col-sm-12">
+            <h2>Procesamiento dedicado para videos de Shorts</h2>
+            <p>Cuando pegas un enlace de video de Shorts, el sistema lo detecta como contenido de formato corto y aplica un método de procesamiento dedicado diseñado para videos verticales.</p>
+            <p>Este enfoque ayuda a garantizar descargas más rápidas y reduce los problemas de reproducción en diferentes dispositivos.</p>
+        </div>
+    </section>
+    <section class="y2mate-content-pro d-flex">
+        <div class="col-sm-12">
+            <h2>Conserva la relación de aspecto vertical original</h2>
+            <p>Los videos de Shorts descargados mantienen la misma relación de aspecto vertical que tienen en YouTube. El video no se rota ni se recorta.</p>
+            <p>Esto hace que los videos de Shorts sean adecuados para reproducirlos en dispositivos móviles o para uso personal sin conexión.</p>
+        </div>
+    </section>
+    <section class="y2mate-content-pro d-flex">
+        <div class="col-sm-12">
+            <h2>En qué se diferencian los Shorts de los videos regulares de YouTube</h2>
+            <p>Los YouTube Shorts son videos cortos y verticales, mientras que los videos regulares de YouTube suelen ser horizontales y de mayor duración.</p>
+            <p>Si necesitas descargar videos largos de YouTube para verlos sin conexión, puedes usar la herramienta <a href="/es/youtube-to-mp4">YouTube a MP4</a> o visitar <a href="/es/">Descargar Video YouTube</a> para explorar otras opciones de descarga.</p>
+        </div>
+    </section>
+
+    <!-- Why Choose Section -->
+    <section class="y2mate-instruction-pro">
+        <div class="y2mate-in-ad-pro">
+            <h2>Por qué elegir Y2Mate para las descargas de YouTube Shorts</h2>
+            <p>La mayoría de los descargadores de YouTube no manejan correctamente los videos de Shorts, lo que resulta en videos rotados o recortados. El descargador de Shorts dedicado de Y2Mate conserva el formato vertical correcto.</p>
+            <ul>
+                <li>Conserva el formato vertical: mantiene la relación de aspecto original de 9:16</li>
+                <li>Procesamiento rápido: los Shorts se detectan y procesan rápidamente</li>
+                <li>Sin problemas de rotación: los videos se reproducen correctamente en todos los dispositivos</li>
+                <li>Funciona en dispositivos móviles: optimizado para descargas en dispositivos móviles</li>
+                <li>Incluye audio: descarga Shorts con su sonido original</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Instructions Section -->
+    <section class="y2mate-instruction-pro">
+        <div class="y2mate-in-ad-pro">
+            <h2>Cómo descargar videos de YouTube Shorts</h2>
+            <ol>
+                <li>Copia el enlace del video de YouTube Shorts que quieres descargar.</li>
+                <li>Pega el enlace en el campo de entrada de esta página.</li>
+                <li>Haz clic en el botón de inicio para analizar el video de Shorts.</li>
+                <li>Elige tu calidad preferida y descarga el video vertical en tu dispositivo.</li>
+            </ol>
+            <p><em>El descargador de Shorts detecta automáticamente los videos verticales y los procesa correctamente sin problemas de rotación.</em></p>
+        </div>
+    </section>
+
+    <!-- FAQs Section -->
+    <section class="yt-content">
+        <h2>Preguntas frecuentes sobre YouTube Shorts</h2>
+        <div class="download-uses">
+            <div class="guide-data">
+                <h3>¿Hay un límite de descarga para YouTube Shorts?</h3>
+                <p>No. Puedes descargar YouTube Shorts sin un límite diario o de uso fijo.</p>
+            </div>
+            <div class="guide-data">
+                <h3>¿Cómo guardo un YouTube Short en mi teléfono?</h3>
+                <p>En Android, el Short descargado aparecerá en tu carpeta de Descargas o en la Galería. En iPhone, usa Safari para descargar el video y luego guárdalo desde la sección de Descargas a Fotos.</p>
+            </div>
+            <div class="guide-data">
+                <h3>¿Puedo descargar Shorts con sonido?</h3>
+                <p>Sí. Los Shorts se descargan con su audio original si el video de origen incluye sonido.</p>
+            </div>
+            <div class="guide-data">
+                <h3>¿Por qué los Shorts se procesan más rápido que los videos normales de YouTube?</h3>
+                <p>Los Shorts son de menor duración y utilizan un formato diferente, lo que permite que el sistema analice y prepare el archivo más rápidamente.</p>
+            </div>
+            <div class="guide-data">
+                <h3>¿El Short descargado mantendrá su formato vertical?</h3>
+                <p>Sí. La herramienta conserva la relación de aspecto vertical original para que el video se muestre correctamente en los dispositivos móviles.</p>
+            </div>
+            <div class="guide-data">
+                <h3>¿Cómo se deben usar los Shorts descargados?</h3>
+                <p>Los Shorts descargados están destinados para uso personal, como verlos sin conexión o guardarlos. Los usuarios son responsables de respetar los derechos de los creadores de contenido originales.</p>
+            </div>
+        </div>
+    </section>
+</div>
+
+    </main>
+
+    <footer class="footer">
+    <p>© 2026 y2mate</p>
+    <ul class="footer_nav">
+        <li class="fnav-menu">
+            <a href="/about-us">Acerca de</a>
+        </li>
+        <li class="fnav-menu">
+            <a href="/contact">Contacto</a>
+        </li>
+        <li class="fnav-menu">
+            <a href="/terms-condition">Términos de servicio</a>
+        </li>
+        <li class="fnav-menu">
+            <a href="/privacy-policy">Política de privacidad</a>
+        </li>
+        <li class="fnav-menu">
+            <a href="/copyright-claims">Reclamaciones de derechos de autor</a>
+        </li>
+        <li class="fnav-menu">
+            <a href="/es/youtube-short-downloader">Descargador de YouTube Shorts</a>
+        </li>
+    </ul>
+</footer>
+
+
+    <!-- Conversion Modal Wrapper -->
+    <div id="progressBarWrapper"></div>
+
+    <!-- Ko-fi Support Widget -->
+    <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+    <script>
+      kofiWidgetOverlay.draw('metaconvert', {
+        'type': 'floating-chat',
+        'floating-chat.donateButton.text': 'Support me',
+        'floating-chat.donateButton.background-color': '#00b9fe',
+        'floating-chat.donateButton.text-color': '#fff'
+      });
+    </script>
+</body>
+
+</html>

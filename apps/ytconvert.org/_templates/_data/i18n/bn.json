@@ -1,0 +1,65 @@
+{
+  "nav": {
+    "home": "হোম",
+    "youtubeToMp3Converter": "ইউটিউব থেকে MP3",
+    "youtubeToMp4Converter": "ইউটিউব থেকে MP4",
+    "youtubeAudioConverter": "ইউটিউব অডিও কনভার্টার",
+    "youtubePlaylistToMp3": "ইউটিউব প্লেলিস্ট থেকে MP3",
+    "youtubeShortsToMp4": "ইউটিউব শর্টস থেকে MP4",
+    "youtubeToMp3320kbps": "ইউটিউব থেকে MP3 320kbps",
+    "youtubeToMp44k": "ইউটিউব থেকে MP4 4K",
+    "youtubeToMp4Hd": "ইউটিউব থেকে MP4 HD"
+  },
+  "drawer": {
+    "logoText": "YTConvert",
+    "links": {
+      "home": "হোম",
+      "youtubeToMp3Converter": "ইউটিউব থেকে MP3",
+      "youtubeToMp4Converter": "ইউটিউব থেকে MP4",
+      "youtubeAudioConverter": "ইউটিউব অডিও কনভার্টার",
+      "youtubePlaylistToMp3": "ইউটিউব প্লেলিস্ট থেকে MP3",
+      "youtubeShortsToMp4": "ইউটিউব শর্টস থেকে MP4",
+      "youtubeToMp3320kbps": "ইউটিউব থেকে MP3 320kbps",
+      "youtubeToMp44k": "ইউটিউব থেকে MP4 4K",
+      "youtubeToMp4Hd": "ইউটিউব থেকে MP4 HD"
+    }
+  },
+  "hero": {
+    "placeholder": "এখানে ভিডিও লিংক পেস্ট করুন...",
+    "pasteBtn": "পেস্ট",
+    "clearBtn": "মুছুন",
+    "convertBtn": "কনভার্ট",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "অডিও ট্র্যাক",
+    "searchPlaceholder": "খুঁজুন...",
+    "supportedPlatforms": "সমর্থিত প্ল্যাটফর্ম:"
+  },
+  "footer": {
+    "copyright": "© 2026 YTConvert. সর্বস্বত্ব সংরক্ষিত।",
+    "nav": {
+      "youtubeToMp3Converter": "ইউটিউব থেকে MP3 কনভার্টার",
+      "youtubeToMp4Converter": "ইউটিউব থেকে MP4 কনভার্টার",
+      "youtubeAudioConverter": "ইউটিউব অডিও কনভার্টার",
+      "youtubePlaylistToMp3": "ইউটিউব প্লেলিস্ট থেকে MP3",
+      "youtubeShortsToMp4": "ইউটিউব শর্টস থেকে MP4",
+      "youtubeToMp3320kbps": "ইউটিউব থেকে MP3 320kbps",
+      "youtubeToMp44k": "ইউটিউব থেকে MP4 4K",
+      "youtubeToMp4Hd": "ইউটিউব থেকে MP4 HD"
+    }
+  },
+  "langSelector": {
+    "buttonLabel": "ভাষা পরিবর্তন করুন",
+    "buttonText": "BN",
+    "currentLangFull": "বাংলা"
+  },
+  "strim": {
+    "startBtn": "শুরু",
+    "selectFormatLabel": "1. ফরম্যাট নির্বাচন করুন:",
+    "selectQualityLabel": "2. গুণমান নির্বাচন করুন:",
+    "audioTrackLabel": "3. অডিও ট্র্যাক নির্বাচন করুন:",
+    "trimLabel": "4. ভিডিও কাটুন (শুরু – শেষ সময়):",
+    "startTimeLabel": "শুরু",
+    "endTimeLabel": "শেষ"
+  }
+}

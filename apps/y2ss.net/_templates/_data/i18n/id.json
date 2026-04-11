@@ -1,0 +1,35 @@
+{
+  "nav": { "home": "Beranda" },
+  "drawer": { "logoText": "Y2SS", "links": { "home": "Beranda" } },
+  "hero": {
+    "placeholder": "Tempel URL playlist YouTube di sini...",
+    "pasteBtn": "Tempel",
+    "clearBtn": "Hapus",
+    "convertBtn": "Konversi",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "Trek audio",
+    "searchPlaceholder": "Cari...",
+    "supportedPlatforms": "Platform yang didukung:"
+  },
+  "footer": {
+    "copyright": "© 2026 Y2SS. Semua hak dilindungi.",
+    "legal": {
+      "about": "Tentang",
+      "contact": "Kontak",
+      "copyright": "Hak Cipta & DMCA",
+      "privacyPolicy": "Kebijakan Privasi",
+      "termsOfUse": "Syarat Penggunaan"
+    }
+  },
+  "langSelector": { "buttonLabel": "Ganti bahasa", "buttonText": "ID", "currentLangFull": "Bahasa Indonesia" },
+  "strim": {
+    "startBtn": "Mulai",
+    "selectFormatLabel": "1. Pilih format:",
+    "selectQualityLabel": "2. Pilih kualitas:",
+    "audioTrackLabel": "3. Pilih trek audio:",
+    "trimLabel": "4. Potong video (Waktu Mulai – Selesai):",
+    "startTimeLabel": "Mulai",
+    "endTimeLabel": "Selesai"
+  }
+}

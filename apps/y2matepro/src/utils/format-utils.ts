@@ -186,7 +186,13 @@ export function processFormatArray(rawFormats: any[], category: string): Process
     return [];
   }
 
-  return rawFormats
+  const processed = rawFormats
     .map(item => mapFormat(item, category))
     .filter((item): item is ProcessedFormat => item !== null);
+
+  if (category === 'video') {
+    return processed.filter(item => item.quality?.toLowerCase() !== '240p');
+  }
+
+  return processed;
 }

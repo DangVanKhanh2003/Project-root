@@ -1,0 +1,120 @@
+{
+  "seo": {
+    "title": "SSVID CC - YouTube動画をオンラインで無料カット",
+    "description": "無料YouTubeカッター – MP4/MP3保存。",
+    "schemaName": "SSVID - YouTube動画カッター",
+    "schemaDescription": "無料のYouTube動画カッター。YouTube動画をカット・トリミングし、MP4またはMP3でダウンロードできます。広告なし・制限なし。",
+    "ogTitle": "SSVID - YouTube動画をオンラインで無料カット",
+    "ogDescription": "無料YouTubeカッター – MP4/MP3保存。"
+  },
+  "defaultFormat": "mp4",
+  "hero": {
+    "title": "SSVID - YouTube動画カッターオンライン",
+    "subtitle": "無料・高速・無制限 MP4 & MP3 カッター"
+  },
+  "form": {
+    "title": "YouTube動画カッター",
+    "placeholder": "ここにYouTube動画のURLを貼り付け...",
+    "convertButton": "カットしてダウンロード"
+  },
+  "overview": {
+    "howTo": {
+      "title": "YouTube動画をオンラインでカットする方法",
+      "steps": [
+        {
+          "number": "1",
+          "title": "動画リンクをコピー",
+          "description": "カットしたいYouTube動画のURLをコピーします。"
+        },
+        {
+          "number": "2",
+          "title": "リンクを貼り付け",
+          "description": "SSVIDツールにYouTubeリンクを貼り付けます。"
+        },
+        {
+          "number": "3",
+          "title": "開始と終了時間を選択",
+          "description": "切り取りたい部分の開始時間と終了時間を正確に設定します。"
+        },
+        {
+          "number": "4",
+          "title": "MP4またはMP3で保存",
+          "description": "「カットしてダウンロード」をクリックして、MP4動画またはMP3音声として保存します。"
+        }
+      ]
+    }
+  },
+  "content": {
+    "intro": {
+      "title": "SSVID YouTube動画カッターとは？",
+      "description": "SSVIDは<strong>無料のYouTube動画カッター</strong>で、動画をすぐにカットしてダウンロードできます。動画全体を保存する代わりに、必要な部分だけを選択して<strong>MP4またはMP3</strong>形式で書き出せます。ブラウザ上で動作し、<strong>広告なし・制限なし</strong>で利用できます。"
+    },
+    "intro2": {
+      "title": "スマホ・PC対応のMP4 & MP3カッター",
+      "description": "SSVIDは<strong>スマートフォン、タブレット、パソコン</strong>で利用可能。ソフトのインストール不要でYouTube動画をオンラインでカットできます。<strong>MP4動画</strong>の保存や<strong>MP3音声</strong>の抽出もブラウザから直接可能です。"
+    },
+    "whyDownload": {
+      "title": "なぜSSVIDでYouTube動画をカットするの？",
+      "description": "SSVIDなら必要な部分だけをダウンロードできるため、時間とストレージを節約できます。ハイライト、ショートクリップ、音楽、ポッドキャストの一部など、この<strong>YouTubeカッター</strong>で簡単かつ高速に作成できます。"
+    },
+    "quality": {
+      "title": "高品質MP4 & MP3エクスポート",
+      "description": "SSVIDは元の動画・音声品質を維持します。高品質なMP4動画やクリアなMP3音声として、スムーズかつ高速に書き出せます。"
+    },
+    "comparison": {
+      "title": "YouTubeカッター vs 一括ダウンロード",
+      "sections": [
+        {
+          "title": "YouTube動画をカット",
+          "description": "1つの動画から<strong>特定の部分</strong>だけ必要な場合に最適です。正確な時間範囲を選択して、その部分のみを保存できます。"
+        },
+        {
+          "title": "YouTube一括ダウンロード",
+          "description": "複数の<strong>フル動画</strong>をまとめて保存したい場合は、一括ダウンロードツールを利用してください。<strong>MP3とMP4</strong>の両方に対応しています。"
+        }
+      ]
+    },
+    "useCases": {
+      "title": "SSVIDを使うべき場面は？",
+      "items": [
+        {
+          "title": "ショート動画やハイライト作成",
+          "description": "長い動画から重要なシーンだけを切り取って共有や編集が可能です。"
+        },
+        {
+          "title": "音楽やポッドキャストの抽出",
+          "description": "音楽動画やポッドキャストの一部をMP3として保存できます。"
+        },
+        {
+          "title": "必要な部分だけ保存",
+          "description": "動画全体ではなく、重要な部分のみをダウンロードできます。"
+        }
+      ]
+    }
+  },
+  "faqs": {
+    "title": "よくある質問",
+    "items": [
+      {
+        "question": "SSVIDは無料ですか？",
+        "answer": "はい。SSVIDは完全無料で、広告や制限はありません。"
+      },
+      {
+        "question": "YouTube動画をMP3にカットできますか？",
+        "answer": "はい。選択した部分をMP3形式で保存できます。"
+      },
+      {
+        "question": "ソフトのインストールは必要ですか？",
+        "answer": "いいえ。ブラウザ上でそのまま利用できます。"
+      },
+      {
+        "question": "スマホでも使えますか？",
+        "answer": "はい。スマートフォン、タブレット、PCに対応しています。"
+      },
+      {
+        "question": "カット後に画質は落ちますか？",
+        "answer": "いいえ。選択した部分の元の品質を維持します。"
+      }
+    ]
+  }
+}

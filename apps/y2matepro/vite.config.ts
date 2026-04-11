@@ -4,6 +4,7 @@ import { readdirSync, existsSync } from 'fs';
 import { htmlRewritePlugin } from './vite-plugin-html-rewrite';
 import { movePagesPlugin } from './vite-plugin-move-pages';
 import { sitemapPlugin } from './vite-plugin-sitemap';
+import htmlMinifier from 'vite-plugin-html-minifier';
 
 // Auto-detect all HTML pages from Eleventy output directory
 const eleventyOutputDir = resolve(__dirname, '_11ty-output');
@@ -66,7 +67,23 @@ if (existsSync(pagesDir)) {
 }
 
 export default defineConfig({
-  plugins: [htmlRewritePlugin(), movePagesPlugin(), sitemapPlugin()],
+  plugins: [
+    htmlRewritePlugin(),
+    movePagesPlugin(),
+    sitemapPlugin(),
+    htmlMinifier({
+      minify: {
+        collapseWhitespace: true,
+        conservativeCollapse: true,
+        removeComments: true,
+        keepClosingSlash: true,
+        removeRedundantAttributes: false,
+        removeEmptyAttributes: false,
+        removeOptionalTags: false,
+        minifyJS: true
+      }
+    }),
+  ],
   build: {
     outDir: 'dist',
     rollupOptions: {

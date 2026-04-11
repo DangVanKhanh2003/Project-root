@@ -1,0 +1,69 @@
+{
+  "seo": {
+    "title": "Descargar Videos de YouTube Online – MP4 & MP3 | Y2Mate",
+    "description": "Descarga videos de YouTube online gratis con Y2Mate. Descarga videos de YouTube como video o audio (MP4, MP3) — sin marca de agua, sin anuncios, úsalo directamente en tu navegador.",
+    "ogTitle": "Y2mate - Descargador de YouTube Gratuito - Descargar Videos de YouTube Gratis",
+    "ogDescription": "Y2mate YouTube Downloader - conversiones gratuitas a MP3/MP4 (128-320kbps, 360p-1080p). Rápido, sin límites, sin aplicación.",
+    "schemaName": "Y2mate - Descargador de Videos de YouTube",
+    "schemaDescription": "Y2mate YouTube Downloader - convierte a MP3 de 128-320kbps o MP4 de 360p-1080p rápidamente. Sin límites, sin aplicación."
+  },
+  "hero": {
+    "title": "Y2Mate - Descargar Videos de YouTube"
+  },
+  "content": {
+    "sections": [
+      {
+        "title": "Qué Es Y2Mate – Descargador de Videos de YouTube",
+        "paragraphs": [
+          "Y2Mate es una herramienta en línea que permite a los usuarios descargar videos de YouTube en varios formatos y resoluciones. La herramienta está diseñada para personas que necesitan guardar contenido de YouTube para verlo sin conexión o para uso personal.",
+          "La herramienta se ejecuta directamente en tu navegador y es compatible con computadoras, teléfonos inteligentes y tabletas, lo que la hace adecuada para los casos de uso comunes de descarga de videos de YouTube en la actualidad."
+        ]
+      },
+      {
+        "title": "Descargador de Videos de YouTube Online",
+        "paragraphs": [
+          "Y2Mate funciona como un descargador de YouTube en línea, lo que te permite descargar contenido de YouTube sin instalar ninguna aplicación o extensión de navegador.",
+          "Después de pegar un enlace de video, el sistema analiza el contenido y muestra las opciones de descarga adecuadas. Puedes elegir descargar el video para verlo sin conexión o extraer el audio para uso personal."
+        ]
+      },
+      {
+        "title": "Más Opciones de Descarga de Y2Mate",
+        "paragraphs": [
+          "Si necesitas opciones más especializadas, Y2Mate también proporciona herramientas dedicadas para casos de uso específicos.",
+          "Puedes usar la herramienta <a href=\"/youtube-to-mp4\">YouTube a MP4</a> para descargar videos y seleccionar la resolución adecuada para verlos sin conexión.",
+          "Si solo necesitas el audio, la herramienta <a href=\"/youtube-to-mp3\">YouTube a MP3</a> ayuda a convertir videos a formato MP3 rápidamente.",
+          "Para contenido de formato corto, el <a href=\"/youtube-short-downloader\">Descargador de YouTube Shorts</a> está diseñado específicamente para descargar videos cortos verticales.",
+          "<em>Cada herramienta está construida por separado para servir a un propósito específico, lo que hace que la experiencia general sea clara y fácil de entender.</em>"
+        ]
+      },
+      {
+        "title": "¿Es Seguro Descargar Contenido de YouTube con Y2Mate?",
+        "paragraphs": [
+          "Y2Mate no requiere la instalación de software, no solicita credenciales de inicio de sesión y no recopila información personal. Todas las descargas se manejan directamente en tu navegador.",
+          "Los usuarios solo deben descargar contenido para uso personal y respetar los derechos de los creadores de contenido en YouTube."
+        ]
+      }
+    ]
+  },
+  "whyChoose": {
+    "title": "Por Qué Elegir Y2Mate para Descargar Contenido de YouTube",
+    "intro": "Hay muchos sitios web que permiten a los usuarios descargar contenido de YouTube, pero no todos brindan una experiencia clara y estable. Y2Mate está diseñado para resolver los problemas comunes que enfrentan las personas al descargar videos de YouTube.",
+    "reasons": [
+      "Sin marca de agua: el contenido descargado se mantiene fiel a la fuente original",
+      "Sin anuncios intrusivos: sin ventanas emergentes ni redireccionamientos inesperados",
+      "Descargas limpias: los archivos son claros y fáciles de usar",
+      "No se requiere registro: accede y úsalo al instante",
+      "Rendimiento estable: funciona bien con diferentes tipos de contenido de YouTube"
+    ]
+  },
+  "instructions": {
+    "title": "Cómo Descargar Videos de YouTube con Y2Mate",
+    "steps": [
+      "Copia el enlace del video de YouTube.",
+      "Pega el enlace en el campo de entrada de la página.",
+      "Haz clic en el botón de inicio para que el sistema analice el contenido.",
+      "Elige el formato que necesitas y descárgalo en tu dispositivo."
+    ],
+    "note": "Todo el proceso se ejecuta directamente en tu navegador y no requiere la instalación de ningún software."
+  }
+}

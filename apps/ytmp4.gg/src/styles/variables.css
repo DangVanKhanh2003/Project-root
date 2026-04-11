@@ -1,0 +1,423 @@
+:root {
+    /* ===== Brand Accent (warm orange-brown, same for light & dark) ===== */
+    --brand: #C65D3B;
+    --brand-hover: #B14F2F;
+    --text: #2F2F2F;
+    --muted: #5C5C5C;
+    --surface-weak: #EBE7E0;
+    --radius-xl: 36px;
+    --container-width: 1100px;
+    --container-padding-sm: 12px;
+    --container-padding-tablet: 22px;
+    --transition-normal: 0.2s ease;
+
+    /* Theme tokens needed by reusable packages (light theme) */
+    /* Colors */
+    --primary-color: var(--brand);
+    --primary-color-hover: var(--brand-hover);
+    --color-primary: var(--primary-color);
+    --background-hero-section: #E3DACC;
+    --hero-section-bg: #E3DACC;
+    --secondary-color: var(--bg-card);
+    --color-black: #2F2F2F;
+    --color-white: #ffffff;
+
+    --bg-primary: #ffffff;
+    --bg-secondary: #F3F1ED;
+    --text-primary: #3A3A3A;
+    --hero-title-color: #2F2F2F;
+    --bg-badge: #EBE7E0;
+    --meta-badge-bg: #e3dacc;
+    --meta-badge-color: #c65d3bf5;
+
+    --text-main: var(--text);
+    --text-muted: var(--muted);
+    --color-text-muted: #9B9B9B;
+    --color-text-soft: #9B9B9B;
+    --color-input-placeholder: #9B9B9B;
+    --color-text-disabled: #9B9B9B;
+    --color-control-placeholder: var(--color-text-disabled);
+    --text-accent: var(--brand);
+
+    --border-glass: 1px solid #E3E0DA;
+    --border-secondary: #E3E0DA;
+
+    --color-accent: var(--brand);
+    --color-accent-hover: var(--brand-hover);
+    --color-accent-soft-05: rgba(198, 93, 59, 0.05);
+    --color-accent-soft-08: rgba(198, 93, 59, 0.08);
+    --color-accent-soft-10: rgba(198, 93, 59, 0.10);
+    --color-accent-soft-12: rgba(198, 93, 59, 0.12);
+    --color-accent-dark: rgba(198, 93, 59, 0.12);
+    --color-status-error: #e74c3c;
+    --video-input-active-border: var(--color-primary);
+
+    --radius-small: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+
+    --font-display: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+    /* Surface tokens */
+    --bg-page: #F3F1ED;
+    --bg-404-page: #fff;
+    --bg-card: #FFFFFF;
+    --yt-preview-card-bg: #f0eee6a1;
+    --bg-surface-soft: #EBE7E0;
+    --bg-hover: #EFECE7;
+
+    /* Text tokens */
+    --text-heading: #2F2F2F;
+    --text-body: #3A3A3A;
+    --text-secondary: #5C5C5C;
+    --text-placeholder: #9B9B9B;
+
+    /* Theme toggle */
+    --theme-toggle-border: #2f2f2f36;
+    --theme-toggle-bg: transparent;
+    --theme-toggle-color: var(--text);
+
+    /* Status container */
+    --status-container-border: rgba(198, 93, 59, 0.25);
+
+    /* Border tokens */
+    --border-default: #E3E0DA;
+    --color-border: #DCD7CF;
+    --border-input: var(--color-border);
+    --border-subtle: #ECE9E4;
+
+    /* Link visited */
+    --link-visited: #888888;
+
+    /* Accent fill tokens */
+    --accent-fill-soft: rgba(198, 93, 59, 0.08);
+    --accent-fill-strong: rgba(198, 93, 59, 0.16);
+    --multi-list-playlist-tabs-bg: #EFECE7;
+    --multi-list-selection-accent: var(--brand);
+    --multi-list-extracting-glow-color: rgba(198, 93, 59, 0.38);
+    --multi-list-group-action-bg: var(--accent-fill-soft);
+    --multi-list-group-action-text: var(--brand);
+    --multi-list-group-action-hover-bg: var(--accent-fill-strong);
+    --multi-list-group-action-hover-text: var(--brand);
+    --multi-list-group-action-active-bg: var(--accent-fill-strong);
+    --multi-list-group-action-active-text: var(--brand);
+    --multi-list-group-action-disabled-bg: var(--accent-fill-soft);
+    --multi-list-group-action-disabled-text: var(--brand);
+    --multi-list-group-action-disabled-opacity: 0.6;
+
+    /* Tooltip */
+    --color-tooltip-bg: var(--text-heading);
+    --color-tooltip-text: #ffffff;
+    --color-tooltip-border: transparent;
+    --color-tooltip-arrow: var(--text-heading);
+
+    /* Animated border: RGB only (for conic-gradient trick) */
+    --input-border-glow-rgb: 198, 93, 59;
+    --input-glow-radial-rgb: 198, 93, 59;
+
+    /* Input caret */
+    --input-caret-color: var(--text-body);
+
+    /* Status badge backgrounds */
+    --status-ready-bg: rgba(198, 93, 59, 0.08);
+    --status-ready-color: #C65D3B;
+    --status-success-bg: #dcfce7;
+    --status-success-color: #166534;
+    --status-error-bg: #fee2e2;
+    --status-error-color: #b91c1c;
+    --status-pending-bg: #EFECE7;
+    --status-pending-color: #5C5C5C;
+    --status-analyzing-bg: rgba(198, 93, 59, 0.08);
+    --status-analyzing-color: #C65D3B;
+    --status-converting-bg: rgba(198, 93, 59, 0.08);
+    --status-converting-color: #C65D3B;
+    --color-next-btn-bg: var(--bg-card);
+    --color-next-btn-text: var(--text-main);
+    --color-next-btn-border: var(--border-secondary);
+    --color-next-btn-hover-bg: #EFECE7;
+    --color-next-btn-hover-border: #DCD7CF;
+
+    /* Main Content Card */
+    --main-content-bg: #ffffff;
+    --main-content-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    --main-content-text: var(--text-body);
+    --main-content-heading: var(--text-heading);
+    --main-content-link: var(--brand);
+    --main-content-link-hover: var(--brand-hover);
+    --main-content-font-family: var(--font-display);
+    --main-content-line-height: 1.65;
+    --main-content-radius: 8px;
+    --main-content-margin-inline: 12px;
+    --main-content-max-width-sm: 600px;
+    --main-content-max-width-md: 700px;
+    --main-content-max-width-lg: 800px;
+    --main-content-max-width-xl: 900px;
+    --main-content-max-width-2xl: 1000px;
+    --main-content-max-width-3xl: 1200px;
+    --container-max-width-3xl: 1200px;
+    --padding-card: 12px;
+    --hero-feature-link-text: #3A3A3A;
+    --hero-feature-link-text-hover: #2F2F2F;
+    --hero-feature-links-bg: #ffffff;
+    --hero-feature-link-desktop-bg: #ffffff;
+    --hero-feature-links-icon: var(--primary-color);
+    --hero-feature-links-divider: var(--border-default);
+    --header-license-button-bg: #ffffff;
+    --header-license-button-text: #000000;
+    --header-license-button-icon: #000000;
+
+    /* Warning tokens */
+    --color-warning: #f59e0b;
+    --color-warning-bg: #fef3c7;
+    --color-warning-border: #f59e0b;
+    --color-warning-text: #92400e;
+    --color-warning-strong: #92400e;
+
+    /* Processing state backgrounds */
+    --processing-bg: linear-gradient(90deg, var(--color-accent-soft-10) 0%, var(--color-accent-soft-12) 100%);
+
+    /* Brand light (for links on dark surfaces) */
+    --brand-light: var(--brand);
+    --brand-light-hover: var(--brand-hover);
+
+    /* License status */
+    --license-status-bg: #ecfdf5;
+    --license-status-color: #16a34a;
+    --license-status-border: rgba(22, 163, 74, 0.15);
+    --license-status-indicator: #22c55e;
+
+    /* License button active */
+    --license-active-bg: var(--header-license-button-bg);
+    --license-active-text: var(--header-license-button-text);
+    --license-active-hover-bg: var(--license-hover-bg);
+    --license-active-hover-text: var(--header-license-button-text);
+
+    /* License button hover darkening */
+    --license-hover-bg: color-mix(in srgb, var(--header-license-button-bg) 86%, #000);
+
+    /* Material popup tokens */
+    --popup-warning-bg: #fff9c4;
+    --popup-warning-icon: #fbc02d;
+    --popup-warning-btn-bg: #ffca28;
+    --popup-warning-btn-text: #332100;
+    --popup-warning-btn-hover: #ffb300;
+    --popup-info-bg: #e3f2fd;
+    --popup-info-color: #1976d2;
+    --popup-error-bg: #ffebee;
+    --popup-error-color: #d32f2f;
+
+    /* Strim downloader tokens */
+    --player-bg: #000;
+    --slider-track-bg: #EBE7E0;
+
+    /* Form error */
+    --color-form-error: #dc3545;
+
+    /* Skeleton */
+    --color-skeleton-dark: #E3E0DA;
+    --color-skeleton-light: #EFECE7;
+
+}
+
+@media (min-width: 768px) {
+    :root {
+        --padding-card: 16px;
+    }
+}
+
+@media (min-width: 840px) {
+    :root {
+        --padding-card: 20px;
+    }
+}
+
+@media (min-width: 1240px) {
+    :root {
+        --padding-card: 24px;
+    }
+}
+
+@media (min-width: 1920px) {
+    :root {
+        --padding-card: 28px;
+    }
+}
+
+@media (min-width: 2560px) {
+    :root {
+        --padding-card: 32px;
+    }
+}
+
+:root[data-theme="dark"] {
+    --color-accent-soft-05: rgba(198, 93, 59, 0.10);
+    --color-accent-soft-08: rgba(198, 93, 59, 0.08);
+    --color-accent-soft-10: rgba(198, 93, 59, 0.10);
+    --color-accent-soft-12: rgba(198, 93, 59, 0.12);
+    --color-accent-dark: rgba(198, 93, 59, 0.20);
+    --background-hero-section: var(--bg-secondary);
+    --hero-section-bg: var(--bg-secondary);
+
+    --bg-page: #262624;
+    --bg-404-page: var(--bg-page);
+    --bg-card: #30302E;
+    --yt-preview-card-bg: rgb(66 66 66);
+    --bg-primary: #1F1F1E;
+    --bg-secondary: #262624;
+    --bg-surface-soft: #383836;
+    --bg-hover: #383836;
+    --surface-weak: rgba(198, 93, 59, 0.10);
+
+    --text-heading: #E8E6E3;
+    --text-body: #D6D4CF;
+    --text-secondary: #C9C7C2;
+    --text: #D6D4CF;
+    --text-main: #D6D4CF;
+    --text-muted: #C9C7C2;
+    --color-text-muted: #C9C7C2;
+    --color-text-soft: #C9C7C2;
+    --color-input-placeholder: rgba(255, 255, 255, 0.56);
+    --color-text-disabled: rgba(255, 255, 255, 0.56);
+    --color-control-placeholder: var(--color-text-disabled);
+    --text-placeholder: #8A8884;
+    --text-primary: #E8E6E3;
+    --hero-title-color: var(--text-heading);
+    --muted: #C9C7C2;
+
+    /* Theme toggle */
+    --theme-toggle-border: #4A4A48;
+    --theme-toggle-bg: transparent;
+    --theme-toggle-color: var(--text);
+
+    /* Status container */
+    --status-container-border: #6A6A66;
+
+    --border-default: #4A4A48;
+    --color-border: #555553;
+    --border-input: var(--color-border);
+    --border-subtle: #3A3A38;
+    --border-secondary: #4A4A48;
+    --border-glass: 1px solid #4A4A48;
+    --video-input-active-border: var(--color-primary);
+
+    --link-visited: var(--brand);
+
+    --accent-fill-soft: rgba(198, 93, 59, 0.12);
+    --accent-fill-strong: rgba(198, 93, 59, 0.20);
+    --multi-list-playlist-tabs-bg: var(--border-subtle);
+    --multi-list-selection-accent: var(--brand);
+    --multi-list-extracting-glow-color: rgba(198, 93, 59, 0.38);
+    --multi-list-group-action-bg: color-mix(in srgb, var(--primary-color) 34%, transparent);
+    --multi-list-group-action-text: var(--primary-color);
+    --multi-list-group-action-hover-bg: var(--primary-color);
+    --multi-list-group-action-hover-text: var(--text-heading);
+    --multi-list-group-action-active-bg: color-mix(in srgb, var(--primary-color) 42%, transparent);
+    --multi-list-group-action-active-text: var(--primary-color);
+    --multi-list-group-action-disabled-bg: var(--accent-fill-soft);
+    --multi-list-group-action-disabled-text: var(--brand);
+    --multi-list-group-action-disabled-opacity: 1;
+
+    /* Tooltip */
+    --color-tooltip-bg: #2a2a2c;
+    --color-tooltip-text: #ffffff;
+    --color-tooltip-border: rgba(255, 255, 255, 0.08);
+    --color-tooltip-arrow: #2a2a2c;
+
+    --meta-badge-bg: #14141394;
+    --meta-badge-color: #d6d4cf;
+
+    --input-border-glow-rgb: 198, 93, 59;
+    --input-glow-radial-rgb: 198, 93, 59;
+
+    /* Input caret */
+    --input-caret-color: #ffffff;
+
+    --status-ready-bg: rgba(198, 93, 59, 0.12);
+    --status-ready-color: #D9785B;
+    --status-success-bg: rgba(16, 185, 129, 0.15);
+    --status-success-color: #10B981;
+    --status-error-bg: rgba(231, 76, 60, 0.15);
+    --status-error-color: #E74C3C;
+    --status-pending-bg: #383836;
+    --status-pending-color: #C9C7C2;
+    --status-analyzing-bg: rgba(198, 93, 59, 0.10);
+    --status-analyzing-color: #D9785B;
+    --status-converting-bg: rgba(198, 93, 59, 0.10);
+    --status-converting-color: #C65D3B;
+    --color-next-btn-bg: var(--bg-card);
+    --color-next-btn-text: var(--text-main);
+    --color-next-btn-border: var(--border-secondary);
+    --color-next-btn-hover-bg: #3f3f3d;
+    --color-next-btn-hover-border: #6a6a66;
+
+    --color-status-error: #E74C3C;
+
+    /* Main Content Card */
+    --main-content-bg: var(--bg-card);
+    --main-content-shadow: none;
+    --main-content-text: var(--text-body);
+    --main-content-heading: var(--text-heading);
+    --main-content-link: var(--brand);
+    --main-content-link-hover: var(--brand-hover);
+    --hero-feature-link-text: rgba(255, 255, 255, 0.72);
+    --hero-feature-link-text-hover: rgba(255, 255, 255, 0.92);
+    --hero-feature-links-bg: transparent;
+    --hero-feature-link-desktop-bg: #2d2d2d;
+    --hero-feature-links-icon: #ffffff;
+    --hero-feature-links-divider: #ffffff;
+    --header-license-button-bg: #ffffff;
+    --header-license-button-text: #000000;
+    --header-license-button-icon: #000000;
+
+    /* Warning tokens */
+    --color-warning: #f59e0b;
+    --color-warning-bg: rgba(245, 158, 11, 0.15);
+    --color-warning-border: rgba(245, 158, 11, 0.5);
+    --color-warning-text: #f59e0b;
+    --color-warning-strong: #fbbf24;
+
+    /* Processing state backgrounds */
+    --processing-bg: linear-gradient(90deg, rgba(198, 93, 59, 0.18) 0%, rgba(198, 93, 59, 0.24) 100%);
+
+    /* Brand light (for links on dark surfaces) */
+    --brand-light: #ffd2b3;
+    --brand-light-hover: #ffe3cd;
+
+    /* License status */
+    --license-status-bg: color-mix(in srgb, var(--status-success-color) 12%, transparent);
+    --license-status-color: #4ade80;
+    --license-status-border: color-mix(in srgb, var(--status-success-color) 15%, transparent);
+    --license-status-indicator: #22c55e;
+
+    /* License button active */
+    --license-active-bg: var(--header-license-button-bg);
+    --license-active-text: var(--header-license-button-text);
+    --license-active-hover-bg: var(--license-hover-bg);
+    --license-active-hover-text: var(--header-license-button-text);
+
+    /* License button hover darkening */
+    --license-hover-bg: color-mix(in srgb, var(--header-license-button-bg) 86%, #000);
+
+    /* Material popup tokens */
+    --popup-warning-bg: rgba(245, 158, 11, 0.15);
+    --popup-warning-icon: #fbbf24;
+    --popup-warning-btn-bg: #ffca28;
+    --popup-warning-btn-text: #ffffff;
+    --popup-warning-btn-hover: #ffb300;
+    --popup-info-bg: rgba(59, 130, 246, 0.12);
+    --popup-info-color: #60a5fa;
+    --popup-error-bg: rgba(231, 76, 60, 0.15);
+    --popup-error-color: #E74C3C;
+
+    /* Strim downloader tokens */
+    --player-bg: #000;
+    --slider-track-bg: #383836;
+
+    /* Form error */
+    --color-form-error: #E74C3C;
+
+    /* Skeleton */
+    --color-skeleton-dark: rgba(255, 255, 255, 0.10);
+    --color-skeleton-light: rgba(255, 255, 255, 0.05);
+
+}

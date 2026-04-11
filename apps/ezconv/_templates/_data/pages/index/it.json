@@ -1,0 +1,87 @@
+{
+  "seo": {
+    "title": "EzConv - Scaricare MP3 da YouTube Gratis (320kbps, Senza Pubblicità)",
+    "description": "EzConv è uno strumento gratuito per scaricare MP3 da YouTube che ti permette di convertire e scaricare audio online senza pubblicità, senza pop-up e senza registrazione. Qualità audio da 64kbps fino a 320kbps.",
+    "schemaName": "EzConv - Scaricare MP3 da YouTube",
+    "schemaDescription": "EzConv è uno strumento web gratuito per scaricare MP3 da YouTube, che converte i video di YouTube in file MP3 di alta qualità fino a 320kbps senza installare software.",
+    "ogTitle": "EzConv - Scaricare MP3 da YouTube Gratis (320kbps, Senza Pubblicità)",
+    "ogDescription": "Scarica MP3 da YouTube online con EzConv. Senza pubblicità, sicuro e senza registrazione. Audio di alta qualità fino a 320kbps."
+  },
+  "defaultFormat": "mp3",
+  "hero": {
+    "title": "EzConv - Scaricare MP3 da YouTube",
+    "subtitle": "Scarica MP3 da YouTube online gratis, senza pubblicità e senza pop-up"
+  },
+  "overview": {
+    "title": "Cos'è EzConv?",
+    "description": "EzConv è uno <strong>strumento web gratuito per scaricare MP3 da YouTube</strong> che converte i video di YouTube in file MP3 di alta qualità direttamente nel tuo browser. Conosciuto per offrire un'esperienza <strong>sicura e senza pubblicità</strong>, EzConv funziona senza installazione di software, senza pop-up e senza registrazione. Gli utenti possono scegliere la qualità audio da <strong>64kbps fino a 320kbps</strong> e utilizzare lo strumento di taglio integrato per rimuovere le parti indesiderate prima del download. Progettato per essere semplice e sicuro, EzConv funziona perfettamente su desktop, tablet e dispositivi mobili.",
+    "howTo": {
+      "title": "Come scaricare MP3 da YouTube con EzConv",
+      "steps": [
+        {
+          "number": "1",
+          "title": "Copia l'URL di YouTube",
+          "description": "Apri YouTube e copia il link del video che desideri convertire in MP3."
+        },
+        {
+          "number": "2",
+          "title": "Incolla in EzConv",
+          "description": "Incolla l'URL di YouTube nel campo di input di EzConv e scegli la qualità MP3 desiderata."
+        },
+        {
+          "number": "3",
+          "title": "Scarica MP3",
+          "description": "Fai clic sul pulsante di download e salva immediatamente il file MP3 di YouTube sul tuo dispositivo."
+        }
+      ]
+    }
+  },
+  "whatCanDownload": {
+    "title": "Cosa puoi scaricare con EzConv?",
+    "intro": "EzConv si concentra esclusivamente sul download MP3 da YouTube, offrendo un modo semplice e sicuro per estrarre l'audio dai video di YouTube per l'ascolto offline.",
+    "sections": [
+      {
+        "title": "Convertire video YouTube in MP3",
+        "description": "Converti qualsiasi video di YouTube in formato MP3 e scarica il file audio direttamente dal browser senza installare software."
+      },
+      {
+        "title": "Scaricare musica YouTube in MP3",
+        "description": "Scarica musica da YouTube in formato MP3 con opzioni di bitrate selezionabili da 64kbps fino a 320kbps per una migliore qualità audio."
+      },
+      {
+        "title": "Tagliare e personalizzare l'audio",
+        "description": "Utilizza lo strumento di taglio integrato per rimuovere le parti indesiderate prima di scaricare il tuo file MP3 da YouTube."
+      }
+    ]
+  },
+  "quality": {
+    "title": "Qualità 320kbps & Esperienza senza pubblicità",
+    "description1": "EzConv supporta diversi livelli di qualità MP3 da 64kbps fino a 320kbps, consentendo agli utenti di scegliere il miglior equilibrio tra dimensione del file e chiarezza audio.",
+    "description2": "La piattaforma è progettata per offrire un'esperienza di download MP3 da YouTube senza pubblicità, senza reindirizzamenti dannosi e senza necessità di registrazione."
+  },
+  "faqs": {
+    "title": "Domande frequenti",
+    "items": [
+      {
+        "question": "EzConv è gratuito?",
+        "answer": "Sì. EzConv è completamente gratuito e consente download MP3 da YouTube illimitati."
+      },
+      {
+        "question": "Devo installare un software per scaricare MP3 da YouTube?",
+        "answer": "No. EzConv funziona completamente online tramite il tuo browser web senza alcuna installazione."
+      },
+      {
+        "question": "Posso scegliere la qualità audio durante il download MP3?",
+        "answer": "Sì. EzConv supporta la selezione della qualità MP3 da 64kbps fino a 320kbps."
+      },
+      {
+        "question": "EzConv è sicuro e senza pubblicità?",
+        "answer": "EzConv è progettato per offrire un'esperienza pulita di download MP3 da YouTube senza pop-up o script di terze parti."
+      },
+      {
+        "question": "EzConv funziona su dispositivi mobili?",
+        "answer": "Sì. EzConv funziona su desktop, tablet e dispositivi mobili tramite browser moderni."
+      }
+    ]
+  }
+}

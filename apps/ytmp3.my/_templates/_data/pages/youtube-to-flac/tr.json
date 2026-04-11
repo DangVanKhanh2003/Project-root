@@ -1,0 +1,69 @@
+{
+  "seo": {
+    "title": "YouTube'dan FLAC'a (kayıpsız sıkıştırılmış) – YTMP3",
+    "description": "YTMP3 ile YouTube'u FLAC kayıpsız (sıkıştırılmış) formatına dönüştürün. WAV'dan daha küçük dosya boyutuyla %100 orijinal ses kalitesini koruyun. Ücretsiz, hızlı ve sınırsız.",
+    "ogTitle": "YouTube'dan FLAC'a – YTMP3",
+    "ogDescription": "YouTube'u FLAC kayıpsız sıkıştırılmış formatına dönüştürün. WAV'dan daha küçük dosya boyutuyla orijinal kalite."
+  },
+
+  "hero": {
+    "title": "YouTube'dan",
+    "titleAccent": "FLAC'a",
+    "subtitle": "Ücretsiz ve hızlı YouTube'dan FLAC'a kayıpsız dönüştürücü"
+  },
+
+  "content": {
+    "mainTitle": "YouTube'dan FLAC'a Nedir?",
+    "intro1": "YouTube'dan FLAC'a, bir YouTube videosundan sesi çıkarma ve FLAC (Free Lossless Audio Codec) formatına dönüştürme işlemidir.",
+    "intro2": "FLAC, <strong>kayıpsız sıkıştırılmış</strong> bir ses formatıdır, yani ses kalitesi orijinal kaynağın %100'ünde korunurken dosya boyutu sıkıştırılmamış formatlara göre azaltılır.",
+
+    "whatIsTitle": "FLAC, MP3 ve WAV'dan nasıl farklıdır?",
+    "whatIsText": "<ul><li><strong>MP3'e kıyasla:</strong> FLAC herhangi bir ses verisini kaldırmaz. <a href=\"/youtube-to-mp3-320kbps-converter\">MP3 320kbps</a> gibi yüksek kaliteli formatlar bile hala kayıplıdır ve bazı bilgileri atar.</li><li><strong>WAV'a kıyasla:</strong> FLAC aynı ses kalitesini korur ancak dosya boyutunu <a href=\"/youtube-to-wav-converter\">sıkıştırılmamış WAV</a>'a kıyasla yaklaşık %40-50 oranında azaltır.</li></ul>"
+  },
+
+  "whyChoose": {
+    "title": "YouTube'dan FLAC'a dönüştürme için neden YTMP3 kullanmalısınız?",
+    "reasons": [
+      {
+        "title": "%100 Ücretsiz",
+        "text": "Kayıt yok, kullanım sınırı yok."
+      },
+      {
+        "title": "Gerçek kayıpsız",
+        "text": "Ses verileri tamamen korunur."
+      },
+      {
+        "title": "Verimli sıkıştırma",
+        "text": "WAV'dan daha küçük, aynı kalite."
+      },
+      {
+        "title": "Çapraz platform",
+        "text": "Windows, macOS, iOS ve Android'de çalışır."
+      }
+    ]
+  },
+
+  "instructions": {
+    "title": "YouTube'u FLAC'a nasıl dönüştürülür",
+    "steps": [
+      "YouTube video bağlantısını kopyalayın.",
+      "YTMP3 dönüştürücüsüne yapıştırın.",
+      "Çıktı formatı olarak FLAC'ı seçin.",
+      "“Dönüştür”e tıklayın ve FLAC dosyanızı indirin."
+    ]
+  },
+
+  "faqs": {
+    "title": "Sıkça Sorulan Sorular",
+    "items": [
+      { "question": "YTMP3, YouTube'dan FLAC'a dönüştürme için ücretsiz mi?", "answer": "Evet. Tamamen ücretsiz, kayıt veya abonelik gerekmez." },
+      { "question": "FLAC'ta \"kayıpsız\" ne anlama geliyor?", "answer": "Kayıpsız, sesin herhangi bir veri kaybetmeden sıkıştırıldığı anlamına gelir. Çözüldüğünde, orijinaliyle bit bit aynıdır." },
+      { "question": "FLAC, MP3'ten daha mı iyi?", "answer": "Evet, kalite açısından. FLAC orijinal sesin %100'ünü korurken MP3 verileri atar. Ancak, FLAC dosyaları MP3 320kbps'den daha büyüktür." },
+      { "question": "16-bit ve 24-bit FLAC arasındaki fark nedir?", "answer": "24-bit daha yüksek dinamik aralık (144dB'ye karşı 96dB) sunar ve Yüksek Çözünürlüklü ses için kullanılır. 16-bit/44.1kHz CD kalitesindedir ve çoğu dinleyici için yeterlidir." },
+      { "question": "Cihazımda FLAC çalabilir miyim?", "answer": "Evet. FLAC, Windows 10, macOS, iOS, Android ve çoğu modern ses çalarda yerel olarak desteklenir. Daha geniş uyumluluk için M4A'yı düşünün." },
+      { "question": "FLAC, WAV'dan ne kadar küçüktür?", "answer": "FLAC, aynı ses kalitesini korurken sıkıştırılmamış WAV'a kıyasla dosya boyutunu tipik olarak %40-50 oranında azaltır." },
+      { "question": "YTMP3 verilerimi saklıyor mu?", "answer": "Hayır. Tüm dönüşümler geçicidir ve hiçbir kişisel veri saklanmaz." },
+      { "question": "FLAC, müzik arşivleme için iyi midir?", "answer": "Evet. FLAC, kayıpsız, açık kaynaklı olması ve nesil kaybı olmadan herhangi bir formata dönüştürülebilmesi nedeniyle arşivleme için idealdir." }
+    ]
+  }
+}

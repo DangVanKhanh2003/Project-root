@@ -22,24 +22,15 @@ export {
 } from './http';
 
 // ========================================
-// Services - V1
+// HTTP Errors
 // ========================================
 export {
-  createSearchService,
-  createPlaylistService,
-  createFeedbackService,
-  createDecryptService,
-  createMediaService,
-  createMultifileService,
-  createConversionService,
-  type ISearchService,
-  type IPlaylistService,
-  type IFeedbackService,
-  type IDecryptService,
-  type IMediaService,
-  type IMultifileService,
-  type IConversionService,
-} from './services/v1';
+  ApiError,
+  NetworkError,
+  TimeoutError,
+  ValidationError,
+  CancellationError,
+} from './http';
 
 // ========================================
 // Services - V2
@@ -59,8 +50,34 @@ export {
 // ========================================
 export {
   createV3DownloadService,
+  createV3PlaylistService,
+  createV3ZipDownloadService,
+  createSaveZipService,
+  createExternalExtractService,
   type IV3DownloadService,
+  type IV3PlaylistService,
+  type IZipDownloadService,
+  type ISaveZipService,
+  type IExternalExtractService,
 } from './services/v3';
+
+// ========================================
+// Services - V1 (Feedback, Decrypt, Multifile)
+// ========================================
+export {
+  createFeedbackService,
+} from './services/v1/implementations/feedback.service';
+export type { IFeedbackService } from './services/v1/interfaces/feedback.interface';
+
+export {
+  createDecryptService,
+} from './services/v1/implementations/decrypt.service';
+export type { IDecryptService } from './services/v1/interfaces/decrypt.interface';
+
+export {
+  createMultifileService,
+} from './services/v1/implementations/multifile.service';
+export type { IMultifileService } from './services/v1/interfaces/multifile.interface';
 
 // ========================================
 // Services - Public API
@@ -92,12 +109,15 @@ export {
 // ========================================
 export {
   mapToV3DownloadRequest,
+  mapToExternalExtractRequest,
+  mapExternalExtractResponse,
   detectOsType,
   mapErrorCodeToMessage,
   isRetryableError,
   isUserInputError,
   isVideoUnavailableError,
   type ExtractV2Options,
+  type NormalizedExternalExtractResult,
 } from './mappers/v3';
 
 // ========================================
@@ -129,6 +149,40 @@ export {
   isValidVideoId,
   extractVideoId,
   extractPlaylistId,
+  isPlaylistUrl,
   checkVideoExists,
   type VideoExistsResult,
 } from './utils/youtube-url-validator';
+
+// Playlist redirect helpers
+export {
+  shouldPromptPlaylistRedirect,
+  shouldPromptPlaylistRedirectForMulti,
+  shouldPromptChannelRedirect,
+  getUrlRedirectTarget,
+} from './utils/playlist-redirect';
+export type { UrlRedirectTarget } from './utils/playlist-redirect';
+
+// URL detection utilities
+export { looksLikeUrl } from './utils/url-detection';
+
+// ========================================
+// Supporter
+// ========================================
+export {
+  FEATURE_KEYS,
+  FEATURE_KEY_ALIASES,
+  GEO_RESTRICTED_FEATURES,
+  FEATURE_ACCESS_REASONS,
+  type FeatureKey,
+  type FeatureAccessReason,
+} from './supporter/feature-access-constants';
+
+export {
+  createSupporterService,
+  type ISupporterService,
+  type AllowedFeaturesResponse,
+  type CheckKeyResponse,
+  type ResetKeyResponse,
+  type SupporterPricingResponse,
+} from './services/supporter';

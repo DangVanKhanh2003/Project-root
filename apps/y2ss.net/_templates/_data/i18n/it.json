@@ -1,0 +1,35 @@
+{
+  "nav": { "home": "Home" },
+  "drawer": { "logoText": "Y2SS", "links": { "home": "Home" } },
+  "hero": {
+    "placeholder": "Incolla qui l'URL della playlist YouTube...",
+    "pasteBtn": "Incolla",
+    "clearBtn": "Cancella",
+    "convertBtn": "Converti",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "Traccia audio",
+    "searchPlaceholder": "Cerca...",
+    "supportedPlatforms": "Piattaforme supportate:"
+  },
+  "footer": {
+    "copyright": "© 2026 Y2SS. Tutti i diritti riservati.",
+    "legal": {
+      "about": "Chi siamo",
+      "contact": "Contatti",
+      "copyright": "Copyright e DMCA",
+      "privacyPolicy": "Informativa sulla privacy",
+      "termsOfUse": "Termini di utilizzo"
+    }
+  },
+  "langSelector": { "buttonLabel": "Cambia lingua", "buttonText": "IT", "currentLangFull": "Italiano" },
+  "strim": {
+    "startBtn": "Avvia",
+    "selectFormatLabel": "1. Seleziona formato:",
+    "selectQualityLabel": "2. Seleziona qualità:",
+    "audioTrackLabel": "3. Seleziona traccia audio:",
+    "trimLabel": "4. Taglia video (Inizio – Fine):",
+    "startTimeLabel": "Inizio",
+    "endTimeLabel": "Fine"
+  }
+}

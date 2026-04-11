@@ -1,0 +1,120 @@
+{
+  "seo": {
+    "title": "SSVID CC - Cut Video YouTube Online Free (No Ads)",
+    "description": "FREE YouTube Video Cutter – Cut, Trim & Download MP4 or MP3 instantly. NO ADS, NO LIMITS. Works on mobile & desktop.",
+    "schemaName": "SSVID - YouTube Video Cutter",
+    "schemaDescription": "FREE YouTube Video Cutter. Cut, trim and download YouTube videos in MP4 or MP3 with no ads and no limits.",
+    "ogTitle": "SSVID - Cut Video YouTube Online Free (No Ads)",
+    "ogDescription": "FREE YouTube Video Cutter – Cut, Trim & Download MP4 or MP3 instantly. NO ADS, NO LIMITS. Works on mobile & desktop."
+  },
+  "defaultFormat": "mp4",
+  "hero": {
+    "title": "SSVID - Cut Video YouTube Online",
+    "subtitle": "Free, fast & unlimited YouTube MP4 & MP3 Cutter"
+  },
+  "form": {
+    "title": "YouTube Video Cutter",
+    "placeholder": "Paste YouTube video URL here...",
+    "convertButton": "Cut & Download"
+  },
+  "overview": {
+    "howTo": {
+      "title": "How to Cut & Trim YouTube Videos Online",
+      "steps": [
+        {
+          "number": "1",
+          "title": "Copy the Video Link",
+          "description": "Copy the YouTube video URL you want to cut or trim."
+        },
+        {
+          "number": "2",
+          "title": "Paste the URL",
+          "description": "Paste the YouTube link into the SSVID cutter tool."
+        },
+        {
+          "number": "3",
+          "title": "Select Start & End Time",
+          "description": "Choose the exact start and end time to trim the video segment."
+        },
+        {
+          "number": "4",
+          "title": "Download MP4 or MP3",
+          "description": "Click Cut & Download to export the trimmed file in MP4 video or MP3 audio format."
+        }
+      ]
+    }
+  },
+  "content": {
+    "intro": {
+      "title": "What Is SSVID YouTube Video Cutter?",
+      "description": "SSVID is a <strong>FREE YouTube Video Cutter</strong> that lets you cut, trim and download YouTube videos instantly. Instead of downloading the entire video file, you can select a specific segment and export it as <strong>MP4 or MP3</strong>. The tool works online in your browser with <strong>NO ADS and NO LIMITS</strong>."
+    },
+    "intro2": {
+      "title": "MP4 & MP3 Cutter for Mobile and Desktop",
+      "description": "SSVID works perfectly on <strong>mobile phones, tablets and desktop computers</strong>. You can cut YouTube videos online without installing any software. Download trimmed <strong>MP4 videos</strong> or extract <strong>MP3 audio</strong> directly from your browser."
+    },
+    "whyDownload": {
+      "title": "Why Use SSVID to Cut & Trim YouTube Videos?",
+      "description": "With SSVID, you save time and storage by downloading only the part you need. Whether you want highlights, short clips, music segments, or podcast excerpts, this online <strong>YouTube cutter</strong> makes it fast and simple."
+    },
+    "quality": {
+      "title": "High Quality MP4 & MP3 Export",
+      "description": "SSVID preserves original video and audio quality. Export trimmed segments in high-quality MP4 video or clear MP3 audio with fast processing speed and smooth playback."
+    },
+    "comparison": {
+      "title": "YouTube Cutter vs YouTube Multi Download",
+      "sections": [
+        {
+          "title": "Cut & Trim YouTube Video",
+          "description": "Best when you need a <strong>specific part</strong> of a single YouTube video. Select the exact time range and download only that segment."
+        },
+        {
+          "title": "YouTube Multi Download",
+          "description": "If you want to download <strong>multiple full YouTube videos</strong> at once instead of trimming, use the Multi Download tool. It supports both <strong>MP3 and MP4</strong> formats for batch downloads."
+        }
+      ]
+    },
+    "useCases": {
+      "title": "When Should You Use SSVID YouTube Cutter?",
+      "items": [
+        {
+          "title": "Create Short Clips & Highlights",
+          "description": "Cut key moments from long YouTube videos for sharing or editing."
+        },
+        {
+          "title": "Extract Music or Podcast Segments",
+          "description": "Trim and convert specific parts of music videos or podcasts into MP3 files."
+        },
+        {
+          "title": "Download Only What You Need",
+          "description": "Avoid downloading full-length videos by selecting and saving only the important segment."
+        }
+      ]
+    }
+  },
+  "faqs": {
+    "title": "Frequently Asked Questions",
+    "items": [
+      {
+        "question": "Is SSVID YouTube cutter free?",
+        "answer": "Yes. SSVID is completely FREE with NO ADS and NO LIMITS."
+      },
+      {
+        "question": "Can I cut YouTube videos to MP3?",
+        "answer": "Yes. You can trim a YouTube video and export the selected segment as MP3 audio."
+      },
+      {
+        "question": "Do I need to install software?",
+        "answer": "No installation is required. SSVID works fully online in your browser."
+      },
+      {
+        "question": "Does SSVID support mobile devices?",
+        "answer": "Yes. The YouTube cutter works on mobile phones, tablets and desktop computers."
+      },
+      {
+        "question": "Will the video quality be reduced after cutting?",
+        "answer": "No. SSVID maintains the original quality of the selected video segment."
+      }
+    ]
+  }
+}

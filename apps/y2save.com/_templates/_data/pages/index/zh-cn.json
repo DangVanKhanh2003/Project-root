@@ -1,0 +1,115 @@
+{
+  "seo": {
+    "title": "YouTube 在线视频下载器 - 高清和 4K | Y2SAVE",
+    "description": "使用 Y2SAVE 在线下载 YouTube 视频。支持高清和 4K 质量的快速 YouTube 视频下载器。无需帐户，适用于所有设备。",
+    "schemaName": "Y2SAVE - YouTube 视频下载器",
+    "schemaDescription": "Y2SAVE 是一款免费的 YouTube 视频下载器，允许用户直接从浏览器下载高清或 4K 的 YouTube 视频。",
+    "ogTitle": "YouTube 在线视频下载器 - 高清和 4K | Y2SAVE",
+    "ogDescription": "使用 Y2SAVE 立即下载 YouTube 视频。免费的 YouTube 视频下载器，支持高清和 4K 下载。"
+  },
+  "content": {
+    "form": {
+      "h1": "Y2SAVE – YouTube 视频下载器",
+      "placeholder": "将 YouTube 视频 URL 粘贴到此处...",
+      "button": "下载视频"
+    },
+    "sections": [
+      {
+        "h2": "什么是 Y2SAVE YouTube 视频下载器？",
+        "p": [
+          "Y2SAVE 是一款功能强大的 <strong>YouTube 视频下载器</strong>，可让您将 YouTube 视频直接下载到您的设备。",
+          "只需将 YouTube URL 粘贴到该工具中，即可立即下载 MP4 格式的高品质视频，包括高清和 4K。",
+          "此<strong>YouTube 在线下载器</strong>可直接在您的浏览器中运行，无需注册，也无需安装软件。"
+        ]
+      },
+      {
+        "h2": "如何下载 YouTube 视频",
+        "ol": [
+          {
+            "h3": "复制 YouTube 视频网址",
+            "p": [
+              "打开 YouTube 并复制要下载的视频的链接。"
+            ]
+          },
+          {
+            "h3": "粘贴视频链接",
+            "p": [
+              "将 YouTube URL 粘贴到上面的 YouTube 视频下载器中。"
+            ]
+          },
+          {
+            "h3": "选择视频质量",
+            "p": [
+              "根据原始视频选择您喜欢的视频分辨率，例如 4K、1080p 或高清。"
+            ]
+          },
+          {
+            "h3": "下载视频",
+            "p": [
+              "单击下载按钮立即将 YouTube 视频保存到您的设备。"
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "下载 HD 或 4K 的 YouTube 视频",
+        "p": [
+          "Y2SAVE 支持高质量下载，包括 <strong>YouTube 视频下载 4K</strong> 和全高清格式。",
+          "根据原始视频质量，您可以下载 4K、1080p 或标准高清等分辨率的 YouTube 视频。"
+        ]
+      },
+      {
+        "h2": "为何使用 Y2SAVE YouTube 下载器？",
+        "ul": [
+          {
+            "h3": "快速 YouTube 视频下载器",
+            "p": [
+              "使用我们优化的在线转换器在几秒钟内转换和下载 YouTube 视频。"
+            ]
+          },
+          {
+            "h3": "适用于所有设备",
+            "p": [
+              "此 YouTube 下载器适用于手机、平板电脑、笔记本电脑和台式电脑。"
+            ]
+          },
+          {
+            "h3": "无需安装",
+            "p": [
+              "直接从浏览器在线使用 YouTube 视频下载器，无需安装应用程序或扩展程序。"
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "常见问题解答",
+        "ul": [
+          {
+            "h3": "Y2SAVE 可以免费使用吗？",
+            "p": [
+              "是的。 Y2SAVE 是一款完全免费的 YouTube 视频下载器，允许无限下载。"
+            ]
+          },
+          {
+            "h3": "我可以下载 4K 的 YouTube 视频吗？",
+            "p": [
+              "是的。如果原始视频支持 4K 分辨率，您可以使用 Y2SAVE 以 4K 格式下载。"
+            ]
+          },
+          {
+            "h3": "我需要创建一个帐户吗？",
+            "p": [
+              "不需要。您无需注册即可立即下载 YouTube 视频。"
+            ]
+          },
+          {
+            "h3": "这适用于移动设备吗？",
+            "p": [
+              "是的。 YouTube 下载器适用于 Android、iPhone、平板电脑和桌面浏览器。"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

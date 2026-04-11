@@ -1,0 +1,116 @@
+{
+  "seo": {
+    "title": "YouTube to MP4 – Download Long YouTube Videos as MP4 | Y2Mate",
+    "description": "Download YouTube videos as MP4 with Y2Mate. Optimized for long videos, lectures, and replays. Keep full video and audio for offline viewing, directly in your browser.",
+    "ogTitle": "Y2mate - Free YouTube to MP4 Converter (1080p, 2k, 4k)",
+    "ogDescription": "Y2mate to MP4: 360p-1080p, up to 2K/4K when available. Fast, free, no limits, no app.",
+    "schemaName": "Y2mate - Free YouTube to MP4 Converter",
+    "schemaDescription": "Y2mate to MP4: 360p-1080p, up to 2K/4K when available. Fast, free, no app."
+  },
+  "hero": {
+    "title": "Y2Mate – YouTube to MP4"
+  },
+  "content": {
+    "sections": [
+      {
+        "title": "What Is YouTube to MP4 on Y2Mate?",
+        "paragraphs": [
+          "The <strong>YouTube to MP4</strong> page from <a href=\"/\">Y2Mate</a> is built specifically for downloading YouTube videos in MP4 format while preserving both video and audio for offline viewing.",
+          "Unlike general video download tools, this page focuses on handling long-duration YouTube videos and multiple quality levels in a stable and reliable way."
+        ]
+      },
+      {
+        "title": "Designed for Downloading Long YouTube Videos",
+        "paragraphs": [
+          "This YouTube to MP4 tool is suitable for downloading long YouTube videos such as lectures, educational content, replayed livestreams, or videos longer than one hour.",
+          "It is especially useful for content that often fails to download or does not complete properly when using standard video download tools."
+        ]
+      },
+      {
+        "title": "Common Issues When Downloading Long YouTube Videos",
+        "paragraphs": [
+          "When downloading long YouTube videos, users often experience interrupted downloads, missing audio, or limited control over video quality.",
+          "These issues usually come from unstable video stream handling or incorrect separation of video and audio data."
+        ]
+      },
+      {
+        "title": "How the Tool Processes YouTube Videos into MP4",
+        "paragraphs": [
+          "After you paste a YouTube video link, the system analyzes the original video streams and generates an MP4 file compatible with your device.",
+          "This process ensures that the downloaded video contains both video and audio and plays correctly when viewed offline."
+        ]
+      },
+      {
+        "title": "MP4 Video Quality Availability",
+        "paragraphs": [
+          "The quality of the downloaded MP4 file depends on the resolutions provided by the original YouTube video.",
+          "Common options include SD, HD, or Full HD. Not all videos offer every resolution, and the tool displays only the options available for each specific video."
+        ]
+      },
+      {
+        "title": "Difference Between Downloading MP4 and Extracting MP3",
+        "paragraphs": [
+          "MP4 is a complete video format that includes both visuals and audio, making it suitable when you need to watch the video content.",
+          "If you only need the audio for music, podcasts, or background listening, you should use the <a href=\"/youtube-to-mp3\">YouTube to MP3</a> page to reduce file size and optimize offline listening."
+        ]
+      },
+      {
+        "title": "Related Download Options",
+        "paragraphs": [
+          "If you are looking to download YouTube content in general and have not decided on a specific format, you can visit the <a href=\"/\">Download Video YouTube</a> page to explore all available download options.",
+          "For short vertical videos, the <a href=\"/youtube-short-downloader\">YouTube Shorts Downloader</a> is designed specifically for handling Shorts content."
+        ]
+      }
+    ]
+  },
+  "whyChoose": {
+    "title": "Why Choose Y2Mate for YouTube to MP4 Downloads",
+    "intro": "Many YouTube video downloaders struggle with long videos, quality selection, or audio synchronization. Y2Mate provides reliable MP4 downloads optimized for long-form content.",
+    "reasons": [
+      "Handles long videos reliably – optimized for lectures and extended content",
+      "Multiple quality options – from 360p to 1080p or higher when available",
+      "Preserves audio and video sync – no audio/video mismatch issues",
+      "Fast processing – efficient video stream handling",
+      "Works on all devices – download on desktop or mobile"
+    ]
+  },
+  "instructions": {
+    "title": "How to Download YouTube Videos as MP4",
+    "steps": [
+      "Copy the YouTube video link you want to download.",
+      "Paste the link into the input field on this page.",
+      "Click the start button to analyze the video streams.",
+      "Select your preferred MP4 quality and download the video to your device."
+    ],
+    "note": "The entire download process runs in your browser without requiring any software installation."
+  },
+  "faqs": {
+    "title": "Frequently Asked Questions About YouTube to MP4",
+    "items": [
+      {
+        "question": "How do I download a YouTube video as MP4?",
+        "answer": "Paste the YouTube video link into the input box, start the process, choose an available MP4 quality, and download the video to your device."
+      },
+      {
+        "question": "Do I need to install any software to use this MP4 tool?",
+        "answer": "No. The YouTube to MP4 converter works entirely in your web browser and does not require software or extensions."
+      },
+      {
+        "question": "What video quality options are available?",
+        "answer": "Available MP4 resolutions depend on the original video and may include SD, HD, or Full HD options."
+      },
+      {
+        "question": "Can I download long YouTube videos as MP4?",
+        "answer": "Yes. The tool is designed to handle long videos, including lectures or extended content, as long as the video is publicly accessible."
+      },
+      {
+        "question": "Why are some videos unavailable for download?",
+        "answer": "Private or restricted videos cannot be processed by online download tools."
+      },
+      {
+        "question": "Will the MP4 file work on my phone or computer?",
+        "answer": "Yes. MP4 is a widely supported format and works on most smartphones, computers, and media players."
+      }
+    ]
+  }
+}

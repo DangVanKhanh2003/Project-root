@@ -1,4 +1,4 @@
-/* =========================================================
+﻿/* =========================================================
    REUSABLE PACKAGE: Conversion Modal
    ---------------------------------------------------------
    Version: 1.0.0
@@ -18,13 +18,13 @@
    - Zero layout shift architecture
 
    Breakpoints:
-   • Extra Small Mobile (0-350px)
-   • Small Mobile (351-599px)
-   • Medium (Tablet) - 600-839px
-   • Expanded (Desktop) - 840-1239px
-   • Large (Wide Desktop) - 1240-1919px
-   • Extra Large (2K) - 1920-2559px
-   • Ultra Large (4K) - 2560px+
+   â€¢ Extra Small Mobile (0-350px)
+   â€¢ Small Mobile (351-599px)
+   â€¢ Medium (Tablet) - 600-839px
+   â€¢ Expanded (Desktop) - 840-1239px
+   â€¢ Large (Wide Desktop) - 1240-1919px
+   â€¢ Extra Large (2K) - 1920-2559px
+   â€¢ Ultra Large (4K) - 2560px+
    ========================================================= */
 
 /* ======= Base Styles (0-350px) - Extra Small Mobile ======= */
@@ -58,7 +58,7 @@
 .conversion-modal-content {
     background: var(--pkg-conversion-modal-bg);
     border-radius: var(--pkg-radius-md);
-    box-shadow: var(--pkg-conversion-modal-shadow);
+    box-shadow: none;
     width: 100%;
     max-width: 400px; /* Mobile base - specific value for optimal UX */
     display: flex;
@@ -167,10 +167,11 @@
 
 /* ======= BODY - Content Area ======= */
 .conversion-modal-body {
-    padding: var(--pkg-space-6) var(--pkg-space-5);
+    position: relative;
+    padding: var(--pkg-space-6) var(--pkg-space-5) 20px !important;
     flex: 1;
     overflow-y: auto;
-    min-height: 180px; /* Maximum buffer for mobile - prevents layout shift */
+    min-height: 230px; /* Maximum buffer for mobile - prevents layout shift */
 }
 
 /* ======= State Container ======= */
@@ -180,6 +181,8 @@
     flex-direction: column;
     align-items: center;
     gap: 5px;
+    flex: 1;
+    min-height: 100%;
 
     /* Fixed margin-top - prevents layout shift, no flex centering */
     margin-top: 24px; /* Mobile base */
@@ -269,7 +272,7 @@
     font-size: 0.875rem;
     line-height: 1.5;
     color: var(--pkg-conversion-message-color);
-    margin: 0; /* Remove default margins - handled by flex gap */
+    margin: 8px 0; /* Add spacing for badges */
 }
 
 .conversion-message--error {
@@ -284,6 +287,55 @@
     margin: var(--pkg-space-2) 0 var(--pkg-space-4) 0;
 }
 
+/* ======= Format & Quality Info (Bottom) ======= */
+.conversion-format-info {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 0.8125rem;
+    line-height: 1.4;
+}
+
+.format-info-label {
+    font-weight: 500;
+    color: var(--pkg-conversion-message-color);
+}
+
+.format-info-value {
+    font-weight: 600;
+    color: var(--pkg-conversion-title-color);
+}
+
+.format-info-separator {
+    color: var(--pkg-conversion-message-color);
+    opacity: 0.5;
+    margin: 0 4px;
+}
+
+/* ======= Progress Status Text ======= */
+.status-text-container {
+    margin: 8px 0;
+}
+
+.main-status-text {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--pkg-conversion-title-color);
+    text-align: center;
+}
+
+.progress-detail-text {
+    font-size: 0.8125rem;
+    color: var(--pkg-conversion-message-color);
+    text-align: center;
+    margin-top: 4px;
+}
 
 .conversion-progress .progress-bar.progress-bar-striped.progress-bar-subtle {
     background-image: linear-gradient(
@@ -639,12 +691,12 @@
 
 .btn-conversion--download:hover, .btn-convert--success:hover, .btn-convert--direct-download:hover {
     transform: translateY(-1px);
-    box-shadow: var(--pkg-conversion-btn-success-hover-shadow);
+    box-shadow: none;
 }
 
 .btn-conversion--download:active, .btn-convert--success:active, .btn-convert--direct-download:active {
     transform: translateY(0);
-    box-shadow: var(--pkg-conversion-btn-success-active-shadow);
+    box-shadow: none;
 }
 
 /* Retry button (ERROR/EXPIRED state) - Warning color to emphasize action needed */
@@ -653,18 +705,18 @@
     color: #ffffff;
     min-width: 140px;
     font-weight: 600;
-    box-shadow: var(--pkg-conversion-btn-retry-shadow);
+    box-shadow: none;
 }
 
 .btn-conversion--retry:hover {
     background: var(--pkg-conversion-btn-retry-hover-bg);
     transform: translateY(-2px);
-    box-shadow: var(--pkg-conversion-btn-retry-hover-shadow);
+    box-shadow: none;
 }
 
 .btn-conversion--retry:active {
     transform: translateY(0);
-    box-shadow: var(--pkg-conversion-btn-retry-active-shadow);
+    box-shadow: none;
 }
 
 /* Single button layout (SUCCESS state) */
@@ -722,12 +774,12 @@
 .btn-retry:hover {
     background: linear-gradient(135deg, #fbbf24 0%, #b45309 100%);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+    box-shadow: none;
 }
 
 .btn-retry:active {
     transform: translateY(0);
-    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+    box-shadow: none;
 }
 
 .btn-retry:focus-visible {
@@ -747,7 +799,7 @@
 
     .conversion-modal-body {
         padding: var(--pkg-space-7) var(--pkg-space-6);
-        min-height: 220px; /* Maximum buffer - prevents layout shift on small mobile */
+        min-height: 270px; /* Maximum buffer - prevents layout shift on small mobile */
     }
 
     .conversion-title {
@@ -799,7 +851,7 @@
 
     .conversion-modal-body {
         padding: var(--pkg-space-8) var(--pkg-space-7);
-        min-height: 250px; /* Maximum buffer - prevents layout shift on tablets */
+        min-height: 300px; /* Maximum buffer - prevents layout shift on tablets */
     }
 
     .conversion-state {
@@ -856,7 +908,7 @@
 
     .conversion-modal-body {
         padding: var(--pkg-space-10) var(--pkg-space-8);
-        min-height: 250px; /* Optimized buffer - prevents layout shift on desktop */
+        min-height: 300px; /* Optimized buffer - prevents layout shift on desktop */
     }
 
     .conversion-state {
@@ -870,14 +922,14 @@
     .btn-download {
         padding: 12px 28px;
         font-size: 1.125rem;
-        border-radius: var(--pkg-radius-lg);
+        border-radius: 8px;
     }
 
     .btn-retry {
         min-width: 200px;
         padding: 16px 36px;
         font-size: 1.125rem;
-        border-radius: var(--pkg-radius-lg);
+        border-radius: 8px;
     }
 }
 
@@ -892,7 +944,7 @@
     }
 
     .conversion-modal-body {
-        min-height: 250px; /* Optimized buffer - prevents layout shift on wide desktop */
+        min-height: 300px; /* Optimized buffer - prevents layout shift on wide desktop */
     }
 
     .conversion-title {
@@ -945,7 +997,7 @@
 
     .conversion-modal-body {
         padding: var(--pkg-space-12) var(--pkg-space-10);
-        min-height: 280px; /* Optimized buffer - prevents layout shift on 2K displays */
+        min-height: 330px; /* Optimized buffer - prevents layout shift on 2K displays */
     }
 
 
@@ -1003,7 +1055,7 @@
 
     .conversion-modal-body {
         padding: var(--pkg-space-14) var(--pkg-space-12);
-        min-height: 280px; /* Optimized buffer - prevents layout shift on 4K+ displays */
+        min-height: 330px; /* Optimized buffer - prevents layout shift on 4K+ displays */
     }
 
     .conversion-title {

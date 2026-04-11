@@ -62,6 +62,41 @@ class YouTubePublicApiServiceImpl extends BaseService implements IYouTubePublicA
     // All retries exhausted
     throw lastError;
   }
+
+  /**
+   * Get search suggestions from Google/YouTube public API
+   * Uses JSONP-like endpoint that returns JSON (client=firefox)
+   *
+   * @param query - Search query
+   * @returns List of suggestion strings
+   */
+  async getSuggestions(query: string): Promise<string[]> {
+    if (!query || query.trim().length === 0) {
+      return [];
+    }
+
+    try {
+      // Use Google suggestion API with client=firefox for JSON response
+      // This is a direct public API call, bypassing our backend
+      const response = await this.makeRequest<any>({
+        method: 'GET',
+        url: `https://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=${encodeURIComponent(query)}`,
+        data: {},
+        timeout: 3000, // Short timeout for suggestions
+      });
+
+      // Response format: ["query", ["suggestion1", "suggestion2", ...]]
+      // We want the suggestions array at index 1
+      if (Array.isArray(response) && response.length > 1 && Array.isArray(response[1])) {
+        return response[1];
+      }
+
+      return [];
+    } catch (error) {
+      // Fail silently for suggestions - not critical
+      return [];
+    }
+  }
 }
 
 /**

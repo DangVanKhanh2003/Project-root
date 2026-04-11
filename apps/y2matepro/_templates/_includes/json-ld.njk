@@ -23,12 +23,12 @@
       "url": "{{ site.url }}",
       "logo": {
         "@type": "ImageObject",
-        "url": "{{ site.url }}/logo.png"
+        "url": "{{ site.url }}/favicon-512x512.png"
       },
       "contactPoint": {
         "@type": "ContactPoint",
         "contactType": "customer support",
-        "email": "y2matepro@gmail.com"
+        "email": "contact.y2matepro@gmail.com"
       }
     },
     {
@@ -47,24 +47,29 @@
       "@type": "WebPage",
       "@id": "{{ canonicalUrl }}#webpage",
       "url": "{{ canonicalUrl }}",
-      "name": "{{ seo.title | jsonString | safe }}",
-      {%- if not isRootHomePage %}
+      "name": "{{ pageData.hero.title | jsonString | safe }}",
       "isPartOf": {
         "@id": "{{ site.url }}/#website"
       },
-      {%- endif %}
+      "about": {
+        "@type": "SoftwareApplication",
+        "@id": "{{ canonicalUrl }}#application"
+      },
       "inLanguage": "{{ lang or 'en' }}"
     },
     {
-      "@type": "WebApplication",
+      "@type": "SoftwareApplication",
       "@id": "{{ canonicalUrl }}#application",
-      "name": "Y2mate",
+      "name": "{{ pageData.hero.title | jsonString | safe }}",
       "url": "{{ canonicalUrl }}",
       "description": "{{ seo.schemaDescription | jsonString | safe }}",
       "applicationCategory": "MultimediaApplication",
       "operatingSystem": "All",
       "browserRequirements": "Requires JavaScript. Requires HTML5.",
       "inLanguage": "{{ lang or 'en' }}",
+      "publisher": {
+        "@id": "{{ site.url }}/#organization"
+      },
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -122,25 +127,29 @@
       "@type": "WebPage",
       "@id": "{{ canonicalUrl }}#webpage",
       "url": "{{ canonicalUrl }}",
-      "name": "{{ seo.title | jsonString | safe }}",
+      "name": "{{ pageData.hero.title | jsonString | safe }}",
       "isPartOf": {
         "@id": "{{ site.url }}/#website"
       },
       "about": {
+        "@type": "SoftwareApplication",
         "@id": "{{ canonicalUrl }}#application"
       },
       "inLanguage": "{{ lang or 'en' }}"
     },
     {
-      "@type": "WebApplication",
+      "@type": "SoftwareApplication",
       "@id": "{{ canonicalUrl }}#application",
-      "name": "Y2mate",
+      "name": "{{ pageData.hero.title | jsonString | safe }}",
       "url": "{{ canonicalUrl }}",
       "description": "{{ seo.schemaDescription | jsonString | safe }}",
       "applicationCategory": "MultimediaApplication",
       "operatingSystem": "All",
       "browserRequirements": "Requires JavaScript. Requires HTML5.",
       "inLanguage": "{{ lang or 'en' }}",
+      "publisher": {
+        "@id": "{{ site.url }}/#organization"
+      },
       "offers": {
         "@type": "Offer",
         "price": "0",

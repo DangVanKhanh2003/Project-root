@@ -1,0 +1,115 @@
+{
+  "seo": {
+    "title": "YouTube a MP3 – Extraer audio de videos de YouTube | Y2Mate",
+    "description": "Extraiga audio de videos de YouTube como MP3 con Y2Mate. Convierta videos de YouTube a MP3 para escucharlos sin conexión, optimizado para música, podcasts y videos largos.",
+    "ogTitle": "Y2mate - Convertidor de YouTube a MP3 Gratis",
+    "ogDescription": "Y2mate a MP3: 128/192/320kbps. Rápido, gratis, sin límites, sin aplicación.",
+    "schemaName": "Y2mate - Convertidor de YouTube a MP3",
+    "schemaDescription": "Y2mate a MP3: 128/192/320kbps. Rápido, gratis, sin límites, sin aplicación."
+  },
+  "hero": {
+    "title": "Y2Mate – YouTube a MP3"
+  },
+  "content": {
+    "sections": [
+      {
+        "title": "¿Qué es YouTube a MP3 en Y2Mate?",
+        "paragraphs": [
+          "La página <strong>YouTube a MP3</strong> de <a href=\"/\">Y2Mate</a> está diseñada específicamente para extraer audio de videos de YouTube y guardarlo como archivos MP3.",
+          "Esta página no se enfoca en las imágenes del video. En cambio, procesa solo el flujo de audio para admitir casos de uso de escucha sin conexión."
+        ]
+      },
+      {
+        "title": "¿Cuándo deberías usar YouTube a MP3?",
+        "paragraphs": [
+          "YouTube a MP3 es adecuado para videos musicales, podcasts, conferencias, entrevistas y contenido de formato largo donde los usuarios solo necesitan el audio en lugar del video.",
+          "Al extraer solo el audio, los archivos MP3 son significativamente más pequeños que los archivos de video, lo que los hace más fáciles de almacenar y reproducir en dispositivos móviles."
+        ]
+      },
+      {
+        "title": "Problemas comunes al extraer audio de YouTube",
+        "paragraphs": [
+          "Muchas herramientas de YouTube a MP3 tienen dificultades con videos largos, videos con múltiples flujos de audio o una calidad de audio inconsistente.",
+          "Como resultado, los archivos MP3 pueden contener ruido, segmentos faltantes o duraciones incorrectas."
+        ]
+      },
+      {
+        "title": "Cómo la herramienta procesa y genera archivos MP3",
+        "paragraphs": [
+          "Cuando pegas un enlace de video de YouTube, el sistema analiza el flujo de audio original y genera un archivo MP3 correspondiente.",
+          "La calidad del audio depende del video de origen. Cuando está disponible, la herramienta muestra opciones de tasa de bits adecuadas para la descarga."
+        ]
+      },
+      {
+        "title": "Por qué extraer audio es más eficiente que descargar videos",
+        "paragraphs": [
+          "Separar el audio del video reduce significativamente el tamaño del archivo en comparación con la descarga de archivos MP4.",
+          "Esto es especialmente útil para los usuarios que escuchan música o podcasts en dispositivos móviles y desean ahorrar espacio de almacenamiento."
+        ]
+      },
+      {
+        "title": "Diferencia entre MP3 y MP4",
+        "paragraphs": [
+          "Los archivos MP3 contienen solo audio, mientras que los archivos MP4 incluyen tanto video como audio.",
+          "Si necesita ver el contenido del video, debe usar la página <a href=\"/youtube-to-mp4\">YouTube a MP4</a> en lugar de extraer el audio MP3."
+        ]
+      },
+      {
+        "title": "Elegir entre descargas de audio o video",
+        "paragraphs": [
+          "Si no está seguro de si necesita audio o video, puede visitar la página <a href=\"/\">Descargar video de YouTube</a> para explorar las opciones de descarga disponibles."
+        ]
+      }
+    ]
+  },
+  "whyChoose": {
+    "title": "Por qué elegir Y2Mate para la conversión de YouTube a MP3",
+    "intro": "Muchos convertidores de YouTube a MP3 no logran extraer el audio correctamente, lo que resulta في archivos de baja calidad o incompletos. Y2Mate proporciona una extracción de MP3 confiable con una calidad de audio constante.",
+    "reasons": [
+      "Extracción de audio de alta calidad: conserva la calidad de audio original",
+      "Múltiples opciones de tasa de bits: elija entre 128 kbps y 320 kbps",
+      "Procesamiento de audio rápido: extraiga audio rápidamente de cualquier video de YouTube",
+      "No se requiere software: funciona completamente en su navegador",
+      "Optimizado para música y podcasts: ideal para escuchar sin conexión"
+    ]
+  },
+  "instructions": {
+    "title": "Cómo extraer audio de videos de YouTube como MP3",
+    "steps": [
+      "Copie el enlace del video de YouTube que contiene el audio que desea extraer.",
+      "Pegue el enlace en el campo de entrada de esta página.",
+      "Haga clic en el botón de inicio para analizar el flujo de audio del video.",
+      "Seleccione su tasa de bits de MP3 preferida y descargue el archivo de audio en su dispositivo."
+    ],
+    "note": "Todo el proceso de extracción de audio se ejecuta en su navegador sin necesidad de instalar ningún software."
+  },
+  "faqs": {
+    "title": "Preguntas frecuentes sobre YouTube a MP3",
+    "items": [
+      {
+        "question": "¿Qué hace la conversión de YouTube a MP3?",
+        "answer": "Extrae el flujo de audio de un video de YouTube y lo guarda como un archivo MP3 para escucharlo sin conexión."
+      },
+      {
+        "question": "¿Qué calidad de MP3 debo elegir?",
+        "answer": "Las tasas de bits más bajas son adecuadas para el habla, mientras que las tasas de bits más altas brindan una mejor calidad de sonido para la música y el audio detallado."
+      },
+      {
+        "question": "¿El MP3 incluye el audio completo del video?",
+        "answer": "Sí. El MP3 convertido contiene la pista de audio completa del video original."
+      },
+      {
+        "question": "¿Puedo convertir videos largos de YouTube a MP3?",
+        "answer": "Sí. La extracción de audio funciona con videos largos siempre que el video de origen sea público o no listado."
+      },
+      {
+        "question": "¿La conversión de MP3 se realiza en línea?",
+        "answer": "Sí. Todo el proceso se ejecuta en su navegador sin instalar ningún software."
+      },
+      {
+        "question": "¿Se pueden convertir videos privados de YouTube a MP3?",
+        "answer": "No. El sistema no puede acceder ni procesar los videos privados."
+      }
+    ]
+  }
+}

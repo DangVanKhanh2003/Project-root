@@ -1,0 +1,96 @@
+{#- Calculate language prefix for internal links -#}
+{%- set langPrefix = '' if (lang == 'en' or not lang) else '/' + lang -%}
+<header class="nav-header">
+    <div class="container">
+        <div class="nav_head">
+            <div class="navbar-logo">
+                <a href="{{ langPrefix }}/">
+                    <img height="46px" width="46px" src="/logo.png" alt="Y2Mate logo">
+                    <span class="logo-name">Y2mate</span>
+                </a>
+            </div>
+            <button type="button" class="navbar-toggler" id="mobileMenuToggle" aria-label="{{ i18nBase[lang].mobile.menuToggleLabel }}">
+                <span class="toggle-icon"></span>
+                <span class="toggle-icon"></span>
+                <span class="toggle-icon"></span>
+            </button>
+        </div>
+        <div class="header-menu">
+            <ul class="menu-navbar">
+              
+                <li class="navbar">
+                    <a href="{{ langPrefix }}/youtube-to-mp4">{{ i18nBase[lang].nav.youtubeToMp4 }}</a>
+                </li>
+                <li class="navbar">
+                    <a href="{{ langPrefix }}/youtube-to-mp3">{{ i18nBase[lang].nav.youtubeToMp3 }}</a>
+                </li>
+                <li class="navbar language">
+                    <a href="/">
+                        {{ i18nBase[lang].nav.language }}<span class="shape"></span>
+                    </a>
+                    <div class="dropdown-menu">
+                        <ul class="lang-menu">
+                            {%- set pageSlug = '' if pageKey == 'index' else pageKey -%}
+                            {%- for langItem in site.languages %}
+                            <li>
+                                {%- if langItem.isDefault %}
+                                {%- set langUrl = '/' if pageSlug == '' else '/' + pageSlug %}
+                                {%- else %}
+                                {%- set langUrl = '/' + langItem.code + '/' if pageSlug == '' else '/' + langItem.code + '/' + pageSlug %}
+                                {%- endif %}
+                                <a data-lang="{{ langItem.code }}" href="{{ langUrl }}">{{ langItem.name }}</a>
+                            </li>
+                            {%- endfor %}
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+            <div class="mobile-menu-content">
+                <div class="mobile-header-top">
+                    <a href="{{ langPrefix }}/">
+                        <div class="mobile-logo">
+                            <img height="36px" width="36px" src="/logo.png" alt="Y2Mate logo">
+                            <span class="logo-name">Y2mate</span>
+                        </div>
+                    </a>
+                    <button type="button" class="mobile-close-btn" id="mobileCloseBtn" aria-label="{{ i18nBase[lang].mobile.menuCloseLabel }}">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <nav class="mobile-nav">
+                    <ul class="mobile-menu">
+                        <li><a href="{{ langPrefix }}/">{{ i18nBase[lang].nav.home }}</a></li>
+                        <li><a href="{{ langPrefix }}/youtube-to-mp4">{{ i18nBase[lang].nav.youtubeToMp4 }}</a></li>
+                        <li><a href="{{ langPrefix }}/youtube-to-mp3">{{ i18nBase[lang].nav.youtubeToMp3 }}</a></li>
+                        <li><a href="{{ langPrefix }}/youtube-short-downloader">{{ i18nBase[lang].nav.youtubeShorts }}</a></li>
+                        <li class="mobile-language">
+                            <button type="button" class="mobile-language-toggle" aria-expanded="false">
+                                {{ i18nBase[lang].nav.language }}<span class="shape"></span>
+                            </button>
+                            <ul class="mobile-lang-menu">
+                                {%- set pageSlug = '' if pageKey == 'index' else pageKey -%}
+                                {%- for langItem in site.languages %}
+                                <li>
+                                    {%- if langItem.isDefault %}
+                                    {%- set langUrl = '/' if pageSlug == '' else '/' + pageSlug %}
+                                    {%- else %}
+                                    {%- set langUrl = '/' + langItem.code + '/' if pageSlug == '' else '/' + langItem.code + '/' + pageSlug %}
+                                    {%- endif %}
+                                    <a data-lang="{{ langItem.code }}" href="{{ langUrl }}">{{ langItem.name }}</a>
+                                </li>
+                                {%- endfor %}
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- End Mobile Menu Overlay -->
+    </div>
+</header>

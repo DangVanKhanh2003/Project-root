@@ -1,0 +1,290 @@
+name: Manual Deploy Single App
+
+on:
+  workflow_dispatch:
+    inputs:
+      app:
+        description: 'App to deploy'
+        required: true
+        type: choice
+        options:
+          - 'y2matepro'
+          - 'y2matevc'
+          - 'mp3fast'
+          - 'ytmp3.my'
+          - 'ssvid.cc'
+          - 'ezconv'
+          - 'ytmp4.gg'
+          - 'onedownloader.net'
+          - 'u2snap.com'
+          - 'convert1s.com'
+          - 'snap1s.com'
+          - 'y2save.com'
+          - 'tube1s.com'
+          - 'snakeloader.com'
+          - 'ytsss.com'
+          - 'ytconvert.org'
+          - 'yt1s.guru'
+          - 'Ytbdownloader.com'
+          - 'y2mate.com.vc'
+          - 'real-y2mate.com'
+          - 'ytmp3.website'
+          - 'y2ss.net'
+      environment:
+        description: 'Target environment'
+        required: true
+        type: choice
+        options:
+          - 'production'
+          - 'test'
+
+concurrency:
+  group: manual-deploy-${{ github.repository }}-${{ inputs.app }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.environment == 'test' && 'test-production' || 'main' }}
+
+      - name: Get app config
+        id: config
+        run: |
+          case "${{ inputs.app }}" in
+            "y2matepro")
+              echo "directory=apps/y2matepro" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/y2matepro" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.Y2MATEPRO_DOMAIN || 'y2matepro.com' }}" >> $GITHUB_OUTPUT
+              ;;
+            "y2matevc")
+              echo "directory=apps/y2matevc" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/y2matevc" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.Y2MATEVC_DOMAIN || 'y2mate.vc' }}" >> $GITHUB_OUTPUT
+              ;;
+            "mp3fast")
+              echo "directory=apps/mp3fast" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/mp3fast" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.MP3FAST_DOMAIN || 'mp3fast.net' }}" >> $GITHUB_OUTPUT
+              ;;
+            "ytmp3.my")
+              echo "directory=apps/ytmp3.my" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/ytmp3.my" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.YTMP3_MY_DOMAIN || 'ytmp3.my' }}" >> $GITHUB_OUTPUT
+              ;;
+            "ssvid.cc")
+              echo "directory=apps/ssvid.cc" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/ssvid.cc" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.SSVID_DOMAIN || 'ssvid.cc' }}" >> $GITHUB_OUTPUT
+              ;;
+            "ezconv")
+              echo "directory=apps/ezconv" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/ezconv" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.EZCONV_DOMAIN || 'ezconv.pro' }}" >> $GITHUB_OUTPUT
+              ;;
+            "ytmp4.gg")
+              echo "directory=apps/ytmp4.gg" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/ytmp4.gg" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.YTMP4_DOMAIN || 'ytmp4.gg' }}" >> $GITHUB_OUTPUT
+              ;;
+            "onedownloader.net")
+              echo "directory=apps/onedownloader.net" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/onedownloader.net" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.ONEDOWNLOADER_DOMAIN || 'onedownloader.net' }}" >> $GITHUB_OUTPUT
+              ;;
+            "u2snap.com")
+              echo "directory=apps/u2snap.com" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/u2snap.com" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.U2SNAP_DOMAIN || 'u2snap.com' }}" >> $GITHUB_OUTPUT
+              ;;
+            "convert1s.com")
+              echo "directory=apps/convert1s.com" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/convert1s.com" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.CONVERT1S_DOMAIN || 'convert1s.com' }}" >> $GITHUB_OUTPUT
+              ;;
+            "snap1s.com")
+              echo "directory=apps/snap1s.com" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/snap1s.com" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.SNAP1S_DOMAIN || 'snap1s.com' }}" >> $GITHUB_OUTPUT
+              ;;
+            "tube1s.com")
+              echo "directory=apps/tube1s.com" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/tube1s.com" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.TUBE1S_DOMAIN || 'tube1s.com' }}" >> $GITHUB_OUTPUT
+              ;;
+            "y2save.com")
+              echo "directory=apps/y2save.com" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/y2save.com" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.Y2SAVE_DOMAIN || 'y2save.com' }}" >> $GITHUB_OUTPUT
+              ;;
+            "snakeloader.com")
+              echo "directory=apps/snakeloader.com" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/snakeloader.com" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.SNACKELOADER_DOMAIN || 'snakeloader.com' }}" >> $GITHUB_OUTPUT
+              ;;
+            "ytsss.com")
+              echo "directory=apps/ytsss.com" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/ytsss.com" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.YTSSS_DOMAIN || 'ytsss.com' }}" >> $GITHUB_OUTPUT
+              ;;
+            "ytconvert.org")
+              echo "directory=apps/ytconvert.org" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/ytconvert.org" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.YTCONVERT_DOMAIN || 'ytconvert.org' }}" >> $GITHUB_OUTPUT
+              ;;
+            "yt1s.guru")
+              echo "directory=apps/yt1s.guru" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/yt1s.guru" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.YT1S_GURU_DOMAIN || 'yt1s.guru' }}" >> $GITHUB_OUTPUT
+              ;;
+            "Ytbdownloader.com")
+              echo "directory=apps/Ytbdownloader.com" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/Ytbdownloader.com" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.YTBDOWNLOADER_DOMAIN || 'ytbdownloader.com' }}" >> $GITHUB_OUTPUT
+              ;;
+            "y2mate.com.vc")
+              echo "directory=apps/y2mate.com.vc" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/y2mate.com.vc" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.Y2MATE_COM_VC_DOMAIN || 'y2mate.com.vc' }}" >> $GITHUB_OUTPUT
+              ;;
+            "real-y2mate.com")
+              echo "directory=apps/real-y2mate.com" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/real-y2mate.com" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.REAL_Y2MATE_DOMAIN || 'real-y2mate.com' }}" >> $GITHUB_OUTPUT
+              ;;
+            "ytmp3.website")
+              echo "directory=apps/ytmp3.website" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/ytmp3.website" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.YTMP3_WEBSITE_DOMAIN || 'ytmp3.website' }}" >> $GITHUB_OUTPUT
+              ;;
+            "y2ss.net")
+              echo "directory=apps/y2ss.net" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/y2ss.net" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.Y2SS_NET_DOMAIN || 'y2ss.net' }}" >> $GITHUB_OUTPUT
+              ;;
+          esac
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Verify Vite exists
+        working-directory: ./${{ steps.config.outputs.directory }}
+        run: npx vite --version
+
+      - name: Build
+        env:
+          NODE_ENV: ${{ inputs.environment == 'test' && 'test' || 'production' }}
+        run: |
+          set -euo pipefail
+          if [[ "${{ inputs.environment }}" == "test" ]]; then
+            echo "🔧 Building ${{ inputs.app }} for test environment..."
+            pnpm --filter "${{ steps.config.outputs.filter_path }}" run build:test
+          else
+            echo "🏗️ Building ${{ inputs.app }} for production environment..."
+            pnpm --filter "${{ steps.config.outputs.filter_path }}" run build
+          fi
+          test -d ${{ steps.config.outputs.directory }}/dist
+
+      - name: Replace robots.txt for test
+        if: inputs.environment == 'test'
+        run: |
+          echo "User-agent: *" > ${{ steps.config.outputs.directory }}/dist/robots.txt
+          echo "Disallow: /" >> ${{ steps.config.outputs.directory }}/dist/robots.txt
+          echo "✅ Replaced robots.txt to block all crawlers for test environment"
+
+      - name: Verify robots meta tags
+        run: |
+          set -euo pipefail
+          DIST_DIR="${{ steps.config.outputs.directory }}/dist"
+          echo "🔍 Verifying meta robots tags..."
+
+          if [[ "${{ inputs.environment }}" == "test" ]]; then
+            if grep -rE 'content="noindex' "$DIST_DIR" > /dev/null; then
+              echo "✅ SUCCESS: Found noindex meta tags"
+            else
+              echo "❌ ERROR: noindex meta tags not found"
+              exit 1
+            fi
+          fi
+
+      - name: Archive and upload
+        run: tar -C ${{ steps.config.outputs.directory }}/dist -czf ${{ inputs.app }}-dist.tar.gz .
+
+      # Upload bang native scp (KHONG dung appleboy/scp-action — loi voi ed25519 key)
+      - name: Upload to server
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -p ${{ secrets.SSH_PORT || '22' }} -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts 2>/dev/null
+          scp -P ${{ secrets.SSH_PORT || '22' }} -i ~/.ssh/deploy_key -o ConnectTimeout=30 \
+            "${{ inputs.app }}-dist.tar.gz" \
+            "${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/tmp/${{ inputs.app }}-dist.tar.gz"
+
+      - name: Deploy on server
+        env:
+          DOMAIN: ${{ steps.config.outputs.domain }}
+          ENV_TYPE: ${{ inputs.environment }}
+        run: |
+          set -euo pipefail
+          ssh -p ${{ secrets.SSH_PORT || '22' }} -i ~/.ssh/deploy_key -o ConnectTimeout=30 \
+            "${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}" bash -s <<DEPLOY_SCRIPT
+          set -euo pipefail
+          PROJECT_ROOT="/var/www/KhanhHAUI/CICD"
+          DEPLOY_GROUP="nginx"
+
+          if [[ "${{ env.ENV_TYPE }}" == "test" ]]; then
+            PROJECT_NAME="${{ env.DOMAIN }}-test"
+          else
+            PROJECT_NAME="${{ env.DOMAIN }}"
+          fi
+
+          RUN_DIR="\$PROJECT_ROOT/run/\$PROJECT_NAME"
+          APP_TAR="/tmp/${{ inputs.app }}-dist.tar.gz"
+
+          [ -d "\$APP_TAR" ] && rm -rf "\$APP_TAR"
+          [ -f "\$APP_TAR" ] || { echo "Artifact not found: \$APP_TAR" >&2; exit 1; }
+
+          case "\$RUN_DIR" in "\$PROJECT_ROOT"/*) ;; *)
+            echo "Unsafe RUN_DIR: \$RUN_DIR" >&2; exit 1;;
+          esac
+
+          mkdir -p "\$RUN_DIR" || { echo "❌ mkdir failed"; exit 1; }
+
+          if ! ( : > "\$RUN_DIR/.writetest" 2>/dev/null ); then
+            echo "❌ \$RUN_DIR không ghi được"; exit 1
+          fi
+          rm -f "\$RUN_DIR/.writetest" || true
+
+          find "\$RUN_DIR" -mindepth 1 -maxdepth 1 -exec rm -rf {} +
+          tar -xzf "\$APP_TAR" -C "\$RUN_DIR"
+
+          find "\$RUN_DIR" -type d -exec chmod 755 {} +
+          find "\$RUN_DIR" -type f -exec chmod 644 {} +
+
+          if id -nG "\$USER" | grep -qw "\$DEPLOY_GROUP"; then
+            chgrp -R "\$DEPLOY_GROUP" "\$RUN_DIR" || true
+          fi
+
+          rm -f "\$APP_TAR" || true
+          echo "✅ Deployed \$PROJECT_NAME (${{ env.ENV_TYPE }}) successfully!"
+          DEPLOY_SCRIPT
+
+      - name: Cleanup SSH key
+        if: always()
+        run: rm -f ~/.ssh/deploy_key

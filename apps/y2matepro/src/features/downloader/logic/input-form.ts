@@ -4,6 +4,7 @@
  */
 
 import { api, coreServices } from '../../../api';
+import { looksLikeUrl } from '@downloader/core';
 import { scrollManager } from '@downloader/ui-shared';
 import {
   getState,
@@ -35,6 +36,7 @@ import { getInputValue as getInputValueFromRenderer, setInputValue as setInputVa
 import type { VideoData } from '../../../ui-components/search-result-card/search-result-card';
 import { navigateToVideo } from '../routing/url-manager';
 import { setVideoPageSEO } from '../routing/seo-manager';
+import { logEvent } from '../../../libs/firebase/firebase-analytics';
 
 // ============================================
 // YOUTUBE HELPERS
@@ -137,19 +139,6 @@ function generateFakeYouTubeData(videoId: string, url: string): any {
           extractV2Options: {
             downloadMode: 'video',
             videoQuality: '360',
-            youtubeVideoContainer: 'mp4'
-          }
-        },
-        {
-          quality: '240p',
-          format: 'mp4',
-          vid: videoId,
-          type: 'VIDEO',
-          size: 'Processing...',
-          isFakeData: true,
-          extractV2Options: {
-            downloadMode: 'video',
-            videoQuality: '240',
             youtubeVideoContainer: 'mp4'
           }
         },
@@ -340,6 +329,10 @@ export function initInputForm(): boolean {
 
   // Attach event listeners
   form.addEventListener('submit', handleSubmit);
+
+  // Enable submit button now that preventDefault handler is attached
+  const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+  if (submitBtn) submitBtn.disabled = false;
   input.addEventListener('input', handleInput);
   input.addEventListener('keydown', handleKeyDown); // Keyboard navigation
   // input.addEventListener('click', handleInputClick); // Mobile click-to-scroll (DISABLED)
@@ -416,8 +409,8 @@ function handleInput(event: Event): void {
   const hasContent = value.length > 0;
   updateButtonVisibility(hasContent);
 
-  // Detect input type (simple version)
-  const isUrl = value.startsWith('http://') || value.startsWith('https://');
+  // Detect input type (handles URLs with or without protocol prefix)
+  const isUrl = looksLikeUrl(value);
   setInputType(isUrl ? 'url' : 'keyword');
 
   // Clear suggestions completely when typing URL
@@ -722,11 +715,18 @@ async function handleSubmit(event: Event): Promise<void> {
   clearDownloadStates();       // Clear download button states
   setLoading(true);
 
-  // Get input type to show appropriate skeleton
-  const state = getState();
+  // Re-detect input type from actual value (don't rely on state which may be stale)
+  const isUrl = looksLikeUrl(value);
+  setInputType(isUrl ? 'url' : 'keyword');
 
   try {
-    if (state.inputType === 'url') {
+    if (isUrl) {
+      // 📊 Analytics: Track URL submission
+      logEvent('submit_url', {
+        platform: isYouTubeUrl(value) ? 'youtube' : 'other',
+        has_video_id: Boolean(extractYouTubeVideoId(value))
+      });
+
       // Show detail skeleton for video extraction
       showLoading('detail');
 
@@ -738,6 +738,12 @@ async function handleSubmit(event: Event): Promise<void> {
 
       await handleExtractMedia(value);
     } else {
+      // 📊 Analytics: Track keyword search
+      logEvent('search', {
+        query_length: value.length,
+        query_word_count: value.split(/\s+/).length
+      });
+
       // Show list skeleton (12 cards) for keyword search
       showLoading('list');
 
@@ -786,6 +792,10 @@ async function handleExtractMedia(url: string): Promise<void> {
 
       // ✅ NEW: Push URL to browser history (enables back navigation)
       navigateToVideo(videoId);
+
+      // Clean query params from URL after pushState — reload will go to home, back still works
+      const basePath = window.location.pathname.replace(/\/$/, '') || '/';
+      history.replaceState({ type: 'home' }, '', basePath);
 
       // ✅ NEW: Update SEO meta tags (noindex for result pages)
       setVideoPageSEO();
@@ -1013,7 +1023,7 @@ async function handlePaste(): Promise<void> {
 
 
     // Auto-submit if looks like URL
-    if (trimmedText.startsWith('http')) {
+    if (looksLikeUrl(trimmedText)) {
       form?.requestSubmit();
     }
   } catch (error) {

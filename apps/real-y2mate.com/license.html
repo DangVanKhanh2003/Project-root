@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Activate your supporter license key for Y2mate. Copy the key from your email and submit to unlock all supporter benefits.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://real-y2mate.com/license">
+    <title>Activate Supporter License - Y2mate</title>
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Activate Supporter License - Y2mate">
+    <meta property="og:description"
+        content="Activate your supporter license key for Y2mate. Copy the key from your email and submit to unlock supporter benefits.">
+    <meta property="og:url" content="https://real-y2mate.com/license">
+    <meta property="og:site_name" content="Y2mate">
+    <meta property="og:image" content="https://real-y2mate.com/favicon-512x512.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Activate Supporter License - Y2mate">
+    <meta name="twitter:description"
+        content="Activate your supporter license key for Y2mate. Paste your key and submit to unlock all features.">
+
+    <!-- Icons -->
+    <link rel="icon" href="/favicon.ico" sizes="32x32" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#000000">
+    <link rel="stylesheet" href="/src/styles/index.css">
+    <link rel="stylesheet" href="/src/styles/features/license-page.css">
+
+    <link rel="preload" href="/fonts/Fredoka_SemiCondensed-Bold.woff2?v=2" as="font" type="font/woff2" crossorigin>
+    <style>
+        @font-face {
+            font-family: 'Fredoka SemiCondensed';
+            src: url('/fonts/Fredoka_SemiCondensed-Bold.woff2?v=2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+    </style>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "@id": "https://real-y2mate.com/license#webpage",
+        "url": "https://real-y2mate.com/license",
+        "name": "Activate Supporter License",
+        "inLanguage": "en"
+    }
+    </script>
+
+    <!-- Theme Toggle Init -->
+    <script>
+        (function () {
+            try {
+                var theme = localStorage.getItem('theme');
+                if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                } else {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                }
+            } catch (e) { }
+        })();
+        window.setTheme = function (theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+        };
+    </script>
+
+</head>
+
+<body>
+    <!-- HEADER (simplified — no Eleventy on this standalone page) -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="/" class="header-logo" aria-label="Y2mate home">
+                    <span class="header-logo-text">Y2mate</span>
+                </a>
+                <nav class="header-nav" aria-label="Primary">
+                    <a href="/" class="header-link">Home</a>
+                    <a href="/about" class="header-link">About</a>
+
+                    <button type="button" class="theme-toggle-btn" aria-label="Toggle theme"
+                        onclick="setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')">
+                        <svg class="theme-toggle-icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" aria-hidden="true" focusable="false">
+                            <circle cx="12" cy="12" r="4"></circle>
+                            <path d="M12 2v2"></path>
+                            <path d="M12 20v2"></path>
+                            <path d="M4.93 4.93l1.41 1.41"></path>
+                            <path d="M17.66 17.66l1.41 1.41"></path>
+                            <path d="M2 12h2"></path>
+                            <path d="M20 12h2"></path>
+                            <path d="M6.34 17.66l-1.41 1.41"></path>
+                            <path d="M19.07 4.93l-1.41 1.41"></path>
+                        </svg>
+                        <svg class="theme-toggle-icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" aria-hidden="true" focusable="false">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3c0 0 0 0 0 0a7 7 0 0 0 9.79 9.79z"></path>
+                        </svg>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main id="main" tabindex="-1">
+        <section class="section license-section">
+            <div class="container main-content-card license-card">
+                <div class="license-hero">
+                    <h1 id="license-title">Activate your supporter license</h1>
+                    <p id="license-subtitle">Paste your license key into the field below, then press Submit.</p>
+                </div>
+
+                <div class="license-form">
+                    <label for="licenseKeyInputPage" class="license-input-label">
+                        <span id="license-input-label">Enter your license key</span>
+                        <span id="license-status-tag" class="license-status-tag" aria-live="polite"></span>
+                    </label>
+                    <div class="license-input-row">
+                        <input type="text" id="licenseKeyInputPage" class="license-input"
+                            placeholder="XXXX-XXXX-XXXX-XXXX" autocomplete="off" spellcheck="false">
+                        <button class="license-submit" id="license-submit">Submit</button>
+                    </div>
+                    <div id="license-page-message" class="license-message" role="status" aria-live="polite"></div>
+                    <div id="license-plan-info" class="license-plan-info" style="display: none;"></div>
+                    <p class="license-reset-hint">Lost or changed email? <a href="/reset-key">Reset your license key</a></p>
+                </div>
+
+                <div class="license-steps">
+                    <div class="license-step">
+                        <h2 class="license-step-title" id="license-step1-title">Step 1: Open the email</h2>
+                        <p class="license-step-desc" id="license-step1-desc">Find the message from in your inbox and
+                            open it.</p>
+                        <p class="license-step-note" id="license-step1-note">
+                            <strong><em>Note:</em></strong> <em>If you cannot find the message, please check your
+                                Spam/Junk folder.</em>
+                        </p>
+                    </div>
+                    <div class="license-step">
+                        <h2 class="license-step-title" id="license-step2-title">Step 2: Copy the license key</h2>
+                        <p class="license-step-desc" id="license-step2-desc">Select the full key shown in the email and
+                            copy it.</p>
+                        <figure class="license-email-figure">
+                            <img src="/images/image-mail-license-key.JPG"
+                                alt="Supporter email with license key highlighted" class="license-email-image is-loading"
+                                width="808" height="561" loading="lazy" decoding="async">
+                            <figcaption id="license-email-caption" style="text-align: center;">Example email with your
+                                license key highlighted.</figcaption>
+                        </figure>
+                    </div>
+                    <div class="license-step">
+                        <h2 class="license-step-title" id="license-step3-title">Step 3: Paste and submit</h2>
+                        <p class="license-step-desc" id="license-step3-desc">Paste the key into the input above and
+                            click Submit to finish.</p>
+                        <figure class="license-email-figure">
+                            <img src="/images/Image-input-license-key.JPG" alt="Paste license key and press Submit"
+                                class="license-email-image is-loading" width="1066" height="213" loading="lazy"
+                                decoding="async">
+                            <figcaption id="license-step3-caption">Paste the key and press Submit.</figcaption>
+                        </figure>
+                    </div>
+                    <div class="license-step">
+                        <p id="license-step3-caption" class="license-supporter-note">
+                            Don't have a license key yet?
+                            <a href="https://ko-fi.com/s/d242437374" target="_blank" rel="noopener nofollow noreferrer">
+                                Join as a Supporter on Ko-fi
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Ko-fi floating widget -->
+    <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+    <script>
+        kofiWidgetOverlay.draw('metaconvert4', {
+            'type': 'floating-chat',
+            'floating-chat.donateButton.text': 'Support me',
+            'floating-chat.donateButton.background-color': '#00b9fe',
+            'floating-chat.donateButton.text-color': '#fff'
+        });
+    </script>
+
+    <!-- License page entry point -->
+    <script type="module" src="/src/license-main.ts"></script>
+</body>
+
+</html>

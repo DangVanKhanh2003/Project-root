@@ -1,0 +1,43 @@
+{
+  "name": "onedownloader.net",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --config vite.config.ts",
+    "build": "npm run 11ty:build && tsc && vite build --config vite.config.ts",
+    "build:test": "NODE_ENV=test npm run 11ty:build && NODE_ENV=test tsc && NODE_ENV=test vite build --config vite.config.ts && NODE_ENV=test TARGET_DIR=dist node ../../modify-robots-meta.js",
+    "preview": "vite preview --config vite.config.ts",
+    "copy-all": "shx cp -r src/* public/",
+    "11ty:build": "shx rm -rf _11ty-output && eleventy --config=.eleventy.cjs --input=_templates --output=_11ty-output",
+    "11ty:watch": "eleventy --config=.eleventy.cjs --watch",
+    "11ty:serve": "eleventy --config=.eleventy.cjs --serve",
+    "remove-logs": "tsx remove-console-logs.ts",
+    "remove-logs:preview": "tsx remove-console-logs.ts --dry-run",
+    "remove-logs:all": "tsx remove-console-logs.ts --all-methods",
+    "seo": "cd skills/seo-checker && npm run dev",
+    "seo:check": "cd skills/seo-checker && npm run check",
+    "seo:canonical": "cd skills/seo-checker && npm run check:canonical",
+    "seo:alternate": "cd skills/seo-checker && npm run check:alternate",
+    "seo:meta": "cd skills/seo-checker && npm run check:meta",
+    "seo:jsonld": "cd skills/seo-checker && npm run check:jsonld",
+    "seo:sitemap": "cd skills/seo-checker && npm run check:sitemap",
+    "seo:url": "cd skills/seo-checker && npm run check:url",
+    "seo:lang-dropdown": "cd skills/seo-checker && npm run check:lang-dropdown",
+    "seo:jsonld-content": "cd skills/seo-checker && npm run check:jsonld-content"
+  },
+  "dependencies": {
+    "@downloader/core": "workspace:*",
+    "@downloader/ui-components": "workspace:*",
+    "@downloader/ui-shared": "workspace:*",
+    "@downloader/vidtool-popup": "workspace:*",
+    "firebase": "^12.8.0"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "@types/node": "^20.19.25",
+    "shx": "^0.3.4",
+    "tsx": "^4.20.6",
+    "typescript": "^5.3.3",
+    "vite": "^7.1.10"
+  }
+}

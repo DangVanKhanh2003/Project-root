@@ -1,0 +1,175 @@
+{%- set base = i18nBase[lang] or i18nBase['en'] -%}
+{%- set langPrefix = '' if (lang == 'en' or not lang) else '/' + lang -%}
+{%- set pageSlug = '' if pageKey == 'index' else pageKey -%}
+
+<!-- HEADER -->
+<header class="site-header">
+    <div class="container">
+        <div class="header-inner">
+            <a href="{{ langPrefix }}/" class="header-logo" aria-label="Y2Save home">
+                <span class="header-logo-text">Y2Save</span>
+            </a>
+            <nav class="header-nav" aria-label="Primary">
+                <!-- License Button -->
+                <div class="license-menu" data-license-button hidden aria-hidden="true">
+                    <button type="button" class="license-button" data-license-trigger data-license-default-label="Get Premium" aria-haspopup="true" aria-expanded="false" aria-label="Get Premium options">
+                        <span class="license-icon" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 32 32" version="1.1">
+                                <title>gift</title>
+                                <path d="M28 8.75h-0.211c0.548-0.833 0.874-1.854 0.874-2.952 0-0.448-0.054-0.884-0.157-1.3l0.008 0.037c-0.487-1.895-2.008-3.337-3.912-3.702l-0.031-0.005c-0.234-0.035-0.505-0.055-0.78-0.055-2.043 0-3.829 1.096-4.804 2.732l-0.014 0.026-2.973 4.279-2.974-4.279c-0.989-1.662-2.776-2.758-4.818-2.758-0.275 0-0.545 0.020-0.81 0.058l0.030-0.004c-1.935 0.37-3.455 1.812-3.934 3.672l-0.008 0.035c-0.095 0.379-0.149 0.815-0.149 1.263 0 1.097 0.326 2.119 0.886 2.972l-0.013-0.021h-0.212c-1.794 0.002-3.248 1.456-3.25 3.25v3c0.002 1.343 0.817 2.495 1.979 2.99l0.021 0.008v10.002c0.002 1.794 1.456 3.248 3.25 3.25h20c1.794-0.001 3.249-1.456 3.25-3.25v-10.002c1.183-0.503 1.998-1.656 2-2.998v-3c-0.002-1.794-1.456-3.248-3.25-3.25h-0zM28.75 12v3c-0.006 0.412-0.338 0.744-0.749 0.75h-10.751v-4.5h10.75c0.412 0.006 0.744 0.338 0.75 0.749v0.001zM21.027 4.957c0.544-1.009 1.593-1.683 2.8-1.683 0.104 0 0.207 0.005 0.309 0.015l-0.013-0.001c0.963 0.195 1.718 0.915 1.963 1.842l0.004 0.018c0.021 0.149 0.033 0.322 0.033 0.497 0 1.28-0.635 2.412-1.608 3.097l-0.012 0.008h-6.112zM5.911 5.147c0.248-0.944 1.002-1.664 1.949-1.857l0.016-0.003c0.092-0.010 0.199-0.015 0.307-0.015 1.204 0 2.251 0.675 2.783 1.667l0.008 0.017 2.636 3.793h-6.113c-0.984-0.692-1.619-1.823-1.619-3.101 0-0.177 0.012-0.351 0.036-0.521l-0.002 0.020zM3.25 12c0.006-0.412 0.338-0.744 0.749-0.75h10.751v4.5h-10.75c-0.412-0.006-0.744-0.338-0.75-0.749v-0.001zM5.25 28v-9.75h9.5v10.5h-8.75c-0.412-0.006-0.744-0.338-0.75-0.749v-0.001zM26.75 28c-0.006 0.412-0.338 0.744-0.749 0.75h-8.751v-10.5h9.5z"></path>
+                            </svg>
+                        </span>
+                        <span>Get Premium</span>
+                        <svg class="license-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                            <path d="M6 9l6 6 6-6" />
+                        </svg>
+                    </button>
+                    <div class="license-dropdown" data-license-dropdown>
+                        <!-- Items rendered dynamically via JS -->
+                    </div>
+                </div>
+
+                <div class="lang-selector">
+                    <button class="lang-button" type="button" aria-label="{{ base.langSelector.buttonLabel }}">
+                        <span>{{ (lang or 'en') | upper }}</span>
+                        <svg class="lang-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path d="M6 9l6 6 6-6" />
+                        </svg>
+                    </button>
+                    <div class="lang-dropdown" role="menu" aria-label="Languages">
+                        <div class="lang-dropdown-scroll">
+                            {%- set singleLangPages = ['about', 'contact', 'dmca', 'faq', 'policy', 'terms-of-use'] -%}
+                            {%- for langItem in site.languages %}
+                            {%- if langItem.isDefault %}
+                                {%- set langUrl = '/' if pageSlug == '' else '/' + pageSlug %}
+                            {%- else %}
+                                {%- if pageKey in singleLangPages %}
+                                    {%- set langUrl = '/' + langItem.code + '/' %}
+                                {%- else %}
+                                    {%- set langUrl = '/' + langItem.code + '/' if pageSlug == '' else '/' + langItem.code + '/' + pageSlug %}
+                                {%- endif %}
+                            {%- endif %}
+                            <a href="{{ langUrl }}" class="lang-option{% if langItem.code == lang %} active{% endif %}" role="menuitem">
+                                <img class="lang-flag" src="/assest/flat-svg/{{ langItem.flag }}" alt="{{ langItem.name }}" aria-hidden="true"
+                                    loading="lazy" width="18" height="14">
+                                <span>{{ langItem.name }}</span>
+                            </a>
+                            {%- endfor %}
+                        </div>
+                    </div>
+                </div>
+                <button
+                    type="button"
+                    class="theme-toggle-btn"
+                    aria-label="Toggle theme"
+                    onclick="setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')">
+                    <svg class="theme-toggle-icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+                        <circle cx="12" cy="12" r="4"></circle>
+                        <path d="M12 2v2"></path>
+                        <path d="M12 20v2"></path>
+                        <path d="M4.93 4.93l1.41 1.41"></path>
+                        <path d="M17.66 17.66l1.41 1.41"></path>
+                        <path d="M2 12h2"></path>
+                        <path d="M20 12h2"></path>
+                        <path d="M6.34 17.66l-1.41 1.41"></path>
+                        <path d="M19.07 4.93l-1.41 1.41"></path>
+                    </svg>
+                    <svg class="theme-toggle-icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3c0 0 0 0 0 0a7 7 0 0 0 9.79 9.79z"></path>
+                    </svg>
+                </button>
+            </nav>
+            <button id="mobile-menu-btn" class="mobile-menu-btn" type="button" aria-label="Open menu">
+                <span class="mobile-menu-bars" aria-hidden="true"></span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- MOBILE DRAWER -->
+<div id="mobile-drawer" class="mobile-drawer" hidden>
+    <div id="mobile-drawer-content" class="drawer-content" role="dialog" aria-modal="true" aria-label="Mobile menu">
+        <div class="drawer-header">
+            <a href="{{ langPrefix }}/" class="drawer-logo" aria-label="Y2Save home">
+                <svg class="drawer-logo-icon" xmlns="http://www.w3.org/2000/svg" viewBox="164 259 709 405" aria-hidden="true">
+                    <path fill="white" d="M792.534912,408.593323 C806.587402,448.390747 806.291992,487.699036 788.496704,525.597046 C765.785339,573.964783 727.344727,603.768799 674.635742,612.798706 C626.631592,621.022522 584.083313,607.312927 547.368835,575.373718 C540.804504,569.663147 534.796570,563.476807 529.579956,556.502380 C528.010010,554.403442 527.479858,552.720581 529.174683,550.285706 C545.071411,527.447876 560.122925,504.051544 574.969177,480.521942 C575.494019,479.690216 575.916077,478.730011 577.875366,478.281342 C580.941956,482.687561 584.335510,487.303986 587.456421,492.097870 C595.843384,504.980591 605.690186,516.237732 619.743164,523.317932 C660.102661,543.651855 709.241699,519.510925 717.659241,475.115326 C724.870239,437.082825 702.377502,401.486145 664.606567,393.030304 C635.853149,386.593292 612.847168,397.911743 595.258667,420.275574 C581.763184,437.435028 571.189758,456.649719 559.600281,475.135376 C545.177673,498.139893 530.891357,521.236206 515.638062,543.705200 C493.956451,575.643555 465.499237,598.740417 427.933990,609.384827 C385.364777,621.447388 345.090851,614.575562 307.235992,592.824097 C279.456909,576.862183 258.532227,554.062256 245.401306,524.750427 C234.333405,500.043854 229.654007,474.079315 232.494797,446.888153 C238.400421,390.361603 266.483398,348.483734 317.153412,323.376709 C362.731049,300.792938 408.974854,301.691071 454.169891,326.214264 C473.195312,336.537598 489.129700,350.428040 502.532867,367.372955 C504.896851,370.361664 504.861420,372.386169 502.719849,375.604340 C488.970734,396.265289 475.519653,417.124390 461.914490,437.881561 C460.588654,439.904388 459.625305,442.324371 457.008667,443.594391 C454.020782,441.307892 452.494049,437.906616 450.433350,434.970703 C442.669067,423.908722 434.838745,413.011566 423.802277,404.748016 C384.122284,375.037598 326.351562,397.452301 317.320557,446.185944 C310.197968,484.621063 331.512115,519.134094 369.355713,528.556274 C395.167236,534.982727 417.458527,527.056396 435.385620,507.660736 C448.121796,493.881226 457.035492,477.306213 467.158722,461.660339 C485.435669,433.412567 502.569885,404.400543 521.505066,376.609650 C547.543579,338.393311 583.566528,314.726135 629.941284,308.902100 C695.375488,300.684479 756.997375,334.236359 786.400269,393.417938 C788.762695,398.173004 790.415039,403.280884 792.534912,408.593323z"/>
+                </svg>
+                <span class="drawer-logo-text">{{ base.drawer.logoText }}</span>
+            </a>
+            <button id="close-drawer-btn" class="drawer-close" type="button" aria-label="Close menu">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="drawer-scroll">
+            <nav class="drawer-nav" aria-label="Mobile">
+                <a href="{{ langPrefix }}/" class="drawer-link">{{ base.drawer.links.home or 'Home' }}</a>
+                <a href="{{ langPrefix }}/youtube-to-mp3" class="drawer-link">{{ base.drawer.links.youtubeToMp3 or 'YouTube to MP3' }}</a>
+                <a href="{{ langPrefix }}/youtube-to-mp4" class="drawer-link">{{ base.drawer.links.youtubeToMp4 or 'YouTube to MP4' }}</a>
+                <a href="{{ langPrefix }}/youtube-playlist-downloader" class="drawer-link">{{ base.drawer.links.playlistDownloader or 'YouTube Playlist Downloader' }}</a>
+                <!-- Mobile License Button -->
+                <div class="drawer-license-menu" data-license-button hidden aria-hidden="true">
+                    <button type="button" class="drawer-license-trigger" data-license-trigger data-license-default-label="Get Premium" aria-haspopup="true" aria-expanded="false" aria-label="Get Premium options">
+                        <span class="license-icon" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 32 32" version="1.1">
+                                <title>gift</title>
+                                <path d="M28 8.75h-0.211c0.548-0.833 0.874-1.854 0.874-2.952 0-0.448-0.054-0.884-0.157-1.3l0.008 0.037c-0.487-1.895-2.008-3.337-3.912-3.702l-0.031-0.005c-0.234-0.035-0.505-0.055-0.78-0.055-2.043 0-3.829 1.096-4.804 2.732l-0.014 0.026-2.973 4.279-2.974-4.279c-0.989-1.662-2.776-2.758-4.818-2.758-0.275 0-0.545 0.020-0.81 0.058l0.030-0.004c-1.935 0.37-3.455 1.812-3.934 3.672l-0.008 0.035c-0.095 0.379-0.149 0.815-0.149 1.263 0 1.097 0.326 2.119 0.886 2.972l-0.013-0.021h-0.212c-1.794 0.002-3.248 1.456-3.25 3.25v3c0.002 1.343 0.817 2.495 1.979 2.99l0.021 0.008v10.002c0.002 1.794 1.456 3.248 3.25 3.25h20c1.794-0.001 3.249-1.456 3.25-3.25v-10.002c1.183-0.503 1.998-1.656 2-2.998v-3c-0.002-1.794-1.456-3.248-3.25-3.25h-0zM28.75 12v3c-0.006 0.412-0.338 0.744-0.749 0.75h-10.751v-4.5h10.75c0.412 0.006 0.744 0.338 0.75 0.749v0.001zM21.027 4.957c0.544-1.009 1.593-1.683 2.8-1.683 0.104 0 0.207 0.005 0.309 0.015l-0.013-0.001c0.963 0.195 1.718 0.915 1.963 1.842l0.004 0.018c0.021 0.149 0.033 0.322 0.033 0.497 0 1.28-0.635 2.412-1.608 3.097l-0.012 0.008h-6.112zM5.911 5.147c0.248-0.944 1.002-1.664 1.949-1.857l0.016-0.003c0.092-0.010 0.199-0.015 0.307-0.015 1.204 0 2.251 0.675 2.783 1.667l0.008 0.017 2.636 3.793h-6.113c-0.984-0.692-1.619-1.823-1.619-3.101 0-0.177 0.012-0.351 0.036-0.521l-0.002 0.020zM3.25 12c0.006-0.412 0.338-0.744 0.749-0.75h10.751v4.5h-10.75c-0.412-0.006-0.744-0.338-0.75-0.749v-0.001zM5.25 28v-9.75h9.5v10.5h-8.75c-0.412-0.006-0.744-0.338-0.75-0.749v-0.001zM26.75 28c-0.006 0.412-0.338 0.744-0.749 0.75h-8.751v-10.5h9.5z"></path>
+                            </svg>
+                        </span>
+                        <span>Get Premium</span>
+                        <svg class="license-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                            <path d="M6 9l6 6 6-6" />
+                        </svg>
+                    </button>
+                    <div class="license-dropdown drawer-license-actions">
+                        <!-- Items rendered dynamically via JS -->
+                    </div>
+                </div>
+            </nav>
+            <div class="drawer-lang-selector">
+                <button class="drawer-lang-button" type="button" aria-label="Choose language">
+                    <span>{{ (lang or 'en') | upper }}</span>
+                    <svg class="lang-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <path d="M6 9l6 6 6-6" />
+                    </svg>
+                </button>
+                <div class="drawer-lang-menu" role="menu" aria-label="Languages">
+                    {%- set singleLangPages = ['about', 'contact', 'dmca', 'faq', 'policy', 'terms-of-use'] -%}
+                    {%- for langItem in site.languages %}
+                    {%- if langItem.isDefault %}
+                        {%- set langUrl = '/' if pageSlug == '' else '/' + pageSlug %}
+                    {%- else %}
+                        {%- if pageKey in singleLangPages %}
+                            {%- set langUrl = '/' + langItem.code + '/' %}
+                        {%- else %}
+                            {%- set langUrl = '/' + langItem.code + '/' if pageSlug == '' else '/' + langItem.code + '/' + pageSlug %}
+                        {%- endif %}
+                    {%- endif %}
+                    <a href="{{ langUrl }}" class="drawer-sublink{% if langItem.code == lang %} active{% endif %}" role="menuitem">{{ langItem.name }}</a>
+                    {%- endfor %}
+                </div>
+            </div>
+            <button
+                type="button"
+                class="theme-toggle-btn"
+                aria-label="Toggle theme"
+                onclick="setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')">
+                <svg class="theme-toggle-icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <path d="M12 2v2"></path>
+                    <path d="M12 20v2"></path>
+                    <path d="M4.93 4.93l1.41 1.41"></path>
+                    <path d="M17.66 17.66l1.41 1.41"></path>
+                    <path d="M2 12h2"></path>
+                    <path d="M20 12h2"></path>
+                    <path d="M6.34 17.66l-1.41 1.41"></path>
+                    <path d="M19.07 4.93l-1.41 1.41"></path>
+                </svg>
+                <svg class="theme-toggle-icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3c0 0 0 0 0 0a7 7 0 0 0 9.79 9.79z"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>

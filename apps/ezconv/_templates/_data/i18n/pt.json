@@ -1,0 +1,72 @@
+{
+  "nav": {
+    "home": "Início",
+    "youtubeToMp3": "YouTube to MP3",
+    "youtubeToMp4": "YouTube to MP4",
+    "youtubeShorts": "YouTube Shorts",
+    "about": "Sobre"
+  },
+  "langSelector": {
+    "buttonText": "PT",
+    "buttonLabel": "Idioma",
+    "currentLangFull": "Português"
+  },
+  "drawer": {
+    "logoText": "EzConv.pro",
+    "links": {
+      "home": "Início",
+      "youtubeToMp3": "YouTube para MP3",
+      "youtubeToMp4": "YouTube para MP4",
+      "youtubeShorts": "YouTube Shorts",
+      "about": "Sobre",
+      "faq": "FAQ",
+      "contact": "Contato",
+      "terms": "Terms of Use",
+      "privacy": "Privacidade",
+      "dmca": "DMCA",
+      "cutVideoYoutube": "Cortar Vídeo YouTube"
+    }
+  },
+  "hero": {
+    "placeholder": "Cole o link do YouTube aqui...",
+    "pasteBtn": "Colar",
+    "clearBtn": "Limpar",
+    "convertBtn": "Converter",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "Audio track",
+    "searchPlaceholder": "Pesquisar...",
+    "searchBtn": "Buscar",
+    "searchVideosPlaceholder": "Buscar videos...",
+    "supportedPlatforms": "Plataformas suportadas:"
+  },
+  "overview": {
+    "badge": "Rápido e Grátis"
+  },
+  "footer": {
+    "linksRow1": {
+      "youtubeToMp3": "YouTube para MP3",
+      "youtubeToMp4": "YouTube para MP4",
+      "youtubeShorts": "YouTube Shorts",
+      "cutVideoYoutube": "Cortar Vídeo YouTube"
+    },
+    "linksRow2": {
+      "about": "Sobre",
+      "contact": "Contato",
+      "terms": "Terms of Use",
+      "privacyPolicy": "Política de Privacidade",
+      "dmca": "DMCA",
+      "faq": "FAQ"
+    },
+    "copyright": "© 2026 EzConv. Todos os direitos reservados."
+  },
+  "trim": {
+    "startBtn": "Iniciar",
+    "selectFormatLabel": "1. Selecionar formato:",
+    "selectQualityLabel": "2. Selecionar qualidade:",
+    "audioTrackLabel": "3. Selecionar faixa de áudio:",
+    "trimLabel": "4. Cortar vídeo (Início – Fim):",
+    "startTimeLabel": "Início",
+    "endTimeLabel": "Fim"
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "seo": {
+    "title": "YouTube HD MP4変換 - 1080p動画ダウンロード | YTConvert",
+    "description": "YTConvertでYouTube動画をオンラインでHD MP4に変換。広告なし、登録不要、ソフトウェア不要で720pまたは1080p品質の動画を高速ダウンロード。",
+    "schemaName": "YTConvert - YouTube HD変換ツール",
+    "schemaDescription": "YouTube動画をHDおよび1080p MP4に変換するオンラインツール。YouTube URLを貼り付けて、広告なしで高画質動画を素早くダウンロード。",
+    "ogTitle": "YouTube HD MP4変換 - 1080p動画ダウンロード | YTConvert",
+    "ogDescription": "YTConvertでYouTube動画をHDおよび1080p MP4でダウンロード。高速、無料、広告なし、すべてのデバイスに対応。"
+  },
+  "content": {
+    "form": {
+      "h1": "YTConvert – YouTube HD MP4変換",
+      "placeholder": "YouTube動画のURLをここに貼り付け...",
+      "button": "変換"
+    },
+    "sections": [
+      {
+        "h2": "YTConvert YouTube HD変換ツールとは？",
+        "p": [
+          "YTConvertは動画リンクを使用して<strong>YouTube動画をHD MP4</strong>（720pや1080pなど）に変換するのに役立ちます。",
+          "URLを貼り付け、動画を処理し、広告なし、登録不要、ソフトウェアのインストール不要で高画質でダウンロードできます。",
+          "日常的な動画ダウンロードに最適な信頼性の高い<strong>YouTube HD変換ツール</strong>です。"
+        ]
+      },
+      {
+        "h2": "YouTube動画をHDに変換する方法",
+        "ol": [
+          {"h3": "YouTube動画リンクをコピー", "p": ["HD品質で欲しい動画のURLをコピーします。"]},
+          {"h3": "YTConvertに貼り付け", "p": ["上の入力ボックスにリンクを貼り付けます。"]},
+          {"h3": "動画を処理", "p": ["YTConvertが720pや1080pなどの利用可能なHDフォーマットを準備します。"]},
+          {"h3": "HD動画をダウンロード", "p": ["お好みの品質を選択してダウンロードします。"]}
+        ]
+      },
+      {
+        "h2": "YouTube動画をHDでダウンロード",
+        "p": [
+          "720pや1080pなどのHDフォーマットは、品質とファイルサイズのバランスを提供します。",
+          "YTConvertを使えば、オフライン視聴用に<strong>YouTube動画を1080pでダウンロード</strong>するのが簡単です。",
+          "このツールは<strong>YouTube HD動画変換ツール</strong>を探しているユーザーに最適です。"
+        ]
+      },
+      {
+        "h2": "なぜHD変換にYTConvertを使うのか？",
+        "ul": [
+          {"h3": "高画質動画", "p": ["クリアな再生のためにHDおよび1080pで動画をダウンロード。"]},
+          {"h3": "高速で無料", "p": ["支払いやサインアップなしで素早く動画を変換。"]},
+          {"h3": "広告なし・登録不要", "p": ["クリーンでシンプルなインターフェースを楽しめます。"]},
+          {"h3": "どこでも動作", "p": ["デスクトップおよびモバイルデバイスに対応。"]}
+        ]
+      },
+      {
+        "h2": "あらゆるデバイスでHD変換ツールを使用",
+        "p": [
+          "YTConvertはWindows、Mac、Android、iOSで動作します。",
+          "ソフトウェアをインストールすることなく、<strong>オンラインでYouTube動画をHDに変換</strong>できます。",
+          "高画質ダウンロードのための柔軟なソリューションです。"
+        ]
+      },
+      {
+        "h2": "その他のツールを探す",
+        "ul": [
+          {"h3": "YouTube変換ツール", "p": ["<a href=\"/\"><strong>YouTube変換ツール</strong></a>"]},
+          {"h3": "YouTubeからMP4", "p": ["<a href=\"/youtube-to-mp4-converter\"><strong>YouTube MP4変換ツール</strong></a>"]},
+          {"h3": "YouTube 4K変換ツール", "p": ["<a href=\"/youtube-to-mp4-4k\"><strong>YouTube 4K変換ツール</strong></a>"]}
+        ]
+      },
+      {
+        "h2": "よくある質問",
+        "ul": [
+          {"h3": "1080pでYouTube動画をダウンロードできますか？", "p": ["はい、動画がHD解像度に対応している場合は可能です。"]},
+          {"h3": "この変換ツールは無料ですか？", "p": ["はい。YTConvertは無料でご利用いただけます。"]},
+          {"h3": "何かインストールする必要がありますか？", "p": ["いいえ。ブラウザで直接動作します。"]}
+        ]
+      }
+    ]
+  }
+}

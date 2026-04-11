@@ -1,0 +1,87 @@
+{
+  "seo": {
+    "title": "EzConv - YouTube MP3 Download Free Online (320kbps & No Ads)",
+    "description": "EzConv is a free YouTube MP3 download tool that lets you convert and download YouTube MP3 online with no ads, no popups, and no registration. High-quality audio from 64kbps to 320kbps.",
+    "schemaName": "EzConv - YouTube MP3 Downloader",
+    "schemaDescription": "EzConv is a free, web-based YouTube MP3 download tool that converts YouTube videos into high-quality MP3 audio files up to 320kbps without software installation.",
+    "ogTitle": "EzConv - Free YouTube MP3 Download (320kbps & No Ads)",
+    "ogDescription": "Download YouTube MP3 online with EzConv. Ad-free, secure, no registration. High-quality audio up to 320kbps."
+  },
+  "defaultFormat": "mp3",
+  "hero": {
+    "title": "EzConv - YouTube MP3 Downloader",
+    "subtitle": "Download YouTube MP3 online free with no ads and no popups"
+  },
+  "overview": {
+    "title": "What is EzConv?",
+    "description": "EzConv is a <strong>free, web-based YouTube MP3 download tool</strong> that converts YouTube videos into high-quality MP3 audio files directly in your browser. Known for being <strong>ad-free and secure</strong>, EzConv works without software installation, pop-ups, or account registration. Users can choose audio quality from <strong>64kbps up to 320kbps</strong> and use built-in trimming tools to cut unwanted sections before downloading. Designed for simplicity and privacy, EzConv works smoothly on desktop, tablet, and mobile devices.",
+    "howTo": {
+      "title": "How to Download YouTube MP3 with EzConv",
+      "steps": [
+        {
+          "number": "1",
+          "title": "Copy the YouTube URL",
+          "description": "Open YouTube and copy the link of the video you want to convert into MP3."
+        },
+        {
+          "number": "2",
+          "title": "Paste into EzConv",
+          "description": "Paste the YouTube URL into the EzConv input box and choose your preferred MP3 quality."
+        },
+        {
+          "number": "3",
+          "title": "Download MP3",
+          "description": "Click the download button and save your YouTube MP3 file instantly to your device."
+        }
+      ]
+    }
+  },
+  "whatCanDownload": {
+    "title": "What Can You Download with EzConv?",
+    "intro": "EzConv focuses exclusively on YouTube MP3 download, offering a simple and secure way to extract audio from YouTube videos for offline listening.",
+    "sections": [
+      {
+        "title": "YouTube Videos to MP3",
+        "description": "Convert any YouTube video into MP3 format and download the audio file directly through your browser without installing software."
+      },
+      {
+        "title": "YouTube Music MP3 Download",
+        "description": "Download YouTube music as MP3 with selectable bitrate options from 64kbps up to 320kbps for better sound quality."
+      },
+      {
+        "title": "Trim and Customize Audio",
+        "description": "Use built-in trimming tools to cut unwanted sections before downloading your YouTube MP3 file."
+      }
+    ]
+  },
+  "quality": {
+    "title": "High-Quality 320kbps & Ad-Free Experience",
+    "description1": "EzConv supports multiple MP3 quality levels ranging from 64kbps to 320kbps, allowing users to choose the best balance between file size and audio clarity.",
+    "description2": "The platform is designed to provide an ad-free and secure YouTube MP3 download experience without popups, malicious redirects, or account registration."
+  },
+  "faqs": {
+    "title": "Frequently Asked Questions",
+    "items": [
+      {
+        "question": "Is EzConv free to use?",
+        "answer": "Yes. EzConv is completely free and allows unlimited YouTube MP3 downloads."
+      },
+      {
+        "question": "Do I need to install software to download YouTube MP3?",
+        "answer": "No. EzConv works entirely online in your web browser without any installation."
+      },
+      {
+        "question": "Can I choose audio quality when downloading YouTube MP3?",
+        "answer": "Yes. EzConv supports selectable MP3 quality from 64kbps up to 320kbps."
+      },
+      {
+        "question": "Is EzConv ad-free and secure?",
+        "answer": "EzConv is designed to provide a clean YouTube MP3 download experience without popups or third-party scripts."
+      },
+      {
+        "question": "Does EzConv work on mobile devices?",
+        "answer": "Yes. EzConv works on desktops, tablets, and mobile devices directly through modern browsers."
+      }
+    ]
+  }
+}

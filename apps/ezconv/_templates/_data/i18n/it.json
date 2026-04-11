@@ -1,0 +1,72 @@
+{
+  "nav": {
+    "home": "Home",
+    "youtubeToMp3": "YouTube to MP3",
+    "youtubeToMp4": "YouTube to MP4",
+    "youtubeShorts": "YouTube Shorts",
+    "about": "Chi siamo"
+  },
+  "langSelector": {
+    "buttonText": "IT",
+    "buttonLabel": "Lingua",
+    "currentLangFull": "Italiano"
+  },
+  "drawer": {
+    "logoText": "EzConv.pro",
+    "links": {
+      "home": "Home",
+      "youtubeToMp3": "Da YouTube a MP3",
+      "youtubeToMp4": "Da YouTube a MP4",
+      "youtubeShorts": "YouTube Shorts",
+      "about": "Chi siamo",
+      "faq": "FAQ",
+      "contact": "Contatti",
+      "terms": "Terms of Use",
+      "privacy": "Privacy",
+      "dmca": "DMCA",
+      "cutVideoYoutube": "Taglia Video YouTube"
+    }
+  },
+  "hero": {
+    "placeholder": "Incolla qui il link di YouTube...",
+    "pasteBtn": "Incolla",
+    "clearBtn": "Cancella",
+    "convertBtn": "Converti",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "Audio track",
+    "searchPlaceholder": "Cerca...",
+    "searchBtn": "Cerca",
+    "searchVideosPlaceholder": "Cerca video...",
+    "supportedPlatforms": "Piattaforme supportate:"
+  },
+  "overview": {
+    "badge": "Veloce e gratuito"
+  },
+  "footer": {
+    "linksRow1": {
+      "youtubeToMp3": "Da YouTube a MP3",
+      "youtubeToMp4": "Da YouTube a MP4",
+      "youtubeShorts": "YouTube Shorts",
+      "cutVideoYoutube": "Taglia Video YouTube"
+    },
+    "linksRow2": {
+      "about": "Chi siamo",
+      "contact": "Contatti",
+      "terms": "Terms of Use",
+      "privacyPolicy": "Informativa sulla privacy",
+      "dmca": "DMCA",
+      "faq": "FAQ"
+    },
+    "copyright": "© 2026 EzConv. Tutti i diritti riservati."
+  },
+  "trim": {
+    "startBtn": "Inizia",
+    "selectFormatLabel": "1. Seleziona formato:",
+    "selectQualityLabel": "2. Seleziona qualità:",
+    "audioTrackLabel": "3. Seleziona traccia audio:",
+    "trimLabel": "4. Taglia video (Inizio – Fine):",
+    "startTimeLabel": "Inizio",
+    "endTimeLabel": "Fine"
+  }
+}

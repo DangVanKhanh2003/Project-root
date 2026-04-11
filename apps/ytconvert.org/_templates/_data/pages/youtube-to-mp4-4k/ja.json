@@ -1,0 +1,77 @@
+{
+  "seo": {
+    "title": "YouTube 4K MP4変換 - 4K動画ダウンロード | YTConvert",
+    "description": "YTConvertでYouTube動画をオンラインで4K MP4に変換。YouTube URLを貼り付けて、広告なし、登録不要、ソフトウェアのインストール不要で超高画質動画を高速ダウンロード。",
+    "schemaName": "YTConvert - YouTube 4K変換ツール",
+    "schemaDescription": "YouTube動画を4K MP4に変換するオンラインツール。YouTube URLを貼り付けて、広告なし・登録不要で高解像度動画を素早くダウンロード。",
+    "ogTitle": "YouTube 4K MP4変換 - 4K動画ダウンロード | YTConvert",
+    "ogDescription": "YTConvertで4K MP4品質のYouTube動画をダウンロード。高速、無料、広告なし、すべてのデバイスで利用可能。"
+  },
+  "content": {
+    "form": {
+      "h1": "YTConvert – YouTube 4K MP4変換",
+      "placeholder": "YouTube動画のURLをここに貼り付け...",
+      "button": "変換"
+    },
+    "sections": [
+      {
+        "h2": "YTConvert YouTube 4K変換ツールとは？",
+        "p": [
+          "YTConvertは、動画リンクを使って<strong>YouTube動画を4K MP4に変換</strong>できる高速でシンプルなツールです。",
+          "URLを貼り付けて動画を処理し、広告なし、登録不要、ソフトウェアのインストール不要で超高画質でダウンロードできます。",
+          "信頼できる<strong>YouTube 4K変換ツール</strong>をお探しなら、YTConvertはすべてのデバイスでスムーズな体験を提供します。"
+        ]
+      },
+      {
+        "h2": "YouTube動画を4Kに変換する方法",
+        "ol": [
+          {"h3": "YouTube動画リンクをコピー", "p": ["YouTubeを開き、4K品質で欲しい動画のURLをコピーします。"]},
+          {"h3": "YTConvertにURLを貼り付け", "p": ["ページ上部の入力ボックスに動画リンクを貼り付けます。"]},
+          {"h3": "動画を処理", "p": ["YTConvertがリンクを分析し、利用可能な高解像度フォーマットを準備します。"]},
+          {"h3": "4K動画をダウンロード", "p": ["4K品質を選択し（利用可能な場合）、デバイスに動画をダウンロードします。"]}
+        ]
+      },
+      {
+        "h2": "4K品質でYouTube動画をダウンロード",
+        "p": [
+          "YTConvertは、最高のビジュアル体験のために<strong>YouTube動画を4Kでダウンロード</strong>したいユーザー向けに設計されています。",
+          "4K動画は、標準HD形式と比較してより鮮明なディテールとより高いクリアさを提供します。",
+          "このツールは、<strong>YouTube MP4 4K変換ツール</strong>や超高画質動画ダウンロードソリューションを探しているユーザーに最適です。"
+        ]
+      },
+      {
+        "h2": "4K変換にYTConvertを使う理由",
+        "ul": [
+          {"h3": "超高画質ビデオ品質", "p": ["最高のビジュアル品質のために4K解像度で動画をダウンロード。"]},
+          {"h3": "無料で簡単に使える", "p": ["支払いやサインアップなしで動画を変換。"]},
+          {"h3": "広告なし・登録不要", "p": ["中断のないクリーンなインターフェースを楽しめます。"]},
+          {"h3": "すべてのデバイスで動作", "p": ["デスクトップ、ノートパソコン、Android、iPhone、タブレットで利用可能。"]}
+        ]
+      },
+      {
+        "h2": "どのデバイスでも4K変換ツールを利用",
+        "p": [
+          "YTConvertはWindows、Mac、Android、iOSで動作します。",
+          "ソフトウェアをインストールせずに<strong>オンラインでYouTube動画を4Kに変換</strong>できます。",
+          "高品質な動画ダウンロードのための便利なソリューションです。"
+        ]
+      },
+      {
+        "h2": "その他のYouTube変換ツールを探す",
+        "ul": [
+          {"h3": "YouTube変換ツール", "p": ["<a href=\"/\"><strong>YouTube変換ツール</strong></a>に戻る。"]},
+          {"h3": "YouTube MP4変換ツール", "p": ["<a href=\"/youtube-to-mp4-converter\"><strong>YouTube MP4変換ツール</strong></a>で標準ビデオ形式。"]},
+          {"h3": "YouTube HD変換ツール", "p": ["HD動画は<a href=\"/youtube-to-mp4-hd\"><strong>YouTube HD変換ツール</strong></a>をご覧ください。"]}
+        ]
+      },
+      {
+        "h2": "よくある質問",
+        "ul": [
+          {"h3": "YouTube動画を4Kでダウンロードできますか？", "p": ["はい、元の動画が4K解像度に対応している場合は可能です。"]},
+          {"h3": "この変換ツールは無料ですか？", "p": ["はい。YTConvertは完全に無料です。"]},
+          {"h3": "ソフトウェアのインストールは必要ですか？", "p": ["いいえ。すべてオンラインで動作します。"]}
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "seo": {
+    "title": "免費線上儲存YouTube影片 - 無廣告 | SSTube",
+    "description": "使用SSTube免費線上儲存YouTube影片。貼上YouTube網址，無廣告、無需註冊，在任何裝置上快速處理並即時儲存影片。",
+    "schemaName": "SSTube - 線上儲存YouTube影片",
+    "schemaDescription": "即時儲存YouTube影片的線上工具。貼上YouTube連結，快速處理，無廣告、無需註冊即可線上儲存影片。",
+    "ogTitle": "免費線上儲存YouTube影片 - 無廣告 | SSTube",
+    "ogDescription": "使用SSTube線上儲存YouTube影片。無廣告、無需註冊，在電腦或手機上快速儲存影片。"
+  },
+  "content": {
+    "form": {
+      "h1": "SSTube – 儲存YouTube影片",
+      "placeholder": "在此貼上YouTube影片網址...",
+      "button": "儲存影片"
+    },
+    "sections": [
+      {
+        "h2": "什麼是SSTube YouTube影片儲存工具？",
+        "p": [
+          "SSTube是一款快速簡便的<strong>儲存YouTube影片</strong>工具，幫助您直接從瀏覽器<strong>儲存YouTube影片</strong>。",
+          "只需貼上影片連結，處理網址，幾秒鐘內即可儲存內容——無廣告、無需註冊、無需安裝軟體。",
+          "如果您正在尋找一種簡單的方式來<strong>線上儲存YouTube影片</strong>，SSTube提供了在電腦、平板電腦和行動裝置上都能使用的簡潔體驗。"
+        ]
+      },
+      {
+        "h2": "如何線上儲存YouTube影片",
+        "ol": [
+          {
+            "h3": "複製YouTube影片連結",
+            "p": [
+              "開啟YouTube並複製您要儲存的影片網址。"
+            ]
+          },
+          {
+            "h3": "將網址貼到SSTube",
+            "p": [
+              "將影片連結貼到頁面頂部的輸入框中。"
+            ]
+          },
+          {
+            "h3": "處理影片",
+            "p": [
+              "SSTube讀取連結並準備可用的影片選項以便快速儲存。"
+            ]
+          },
+          {
+            "h3": "儲存YouTube影片",
+            "p": [
+              "選擇您偏好的格式或畫質，將YouTube影片儲存到您的裝置。"
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "探索更多YouTube儲存工具",
+        "ul": [
+          {
+            "h3": "快速儲存YouTube Shorts",
+            "p": [
+              "需要儲存短直式影片？使用<a href=\"/save-youtube-shorts\"><strong>儲存YouTube Shorts</strong></a>頁面，享受快速處理和行動裝置友善的儲存體驗。"
+            ]
+          },
+          {
+            "h3": "線上儲存YouTube音訊",
+            "p": [
+              "如果您只需要音訊，請造訪<a href=\"/save-youtube-audio\"><strong>儲存YouTube音訊</strong></a>，以更簡便的流程從YouTube影片中擷取音訊。"
+            ]
+          },
+          {
+            "h3": "儲存YouTube影片為HD或4K",
+            "p": [
+              "如需更高畫質的輸出，請前往<a href=\"/save-youtube-video-hd\"><strong>儲存YouTube影片HD</strong></a>，探索HD、1080p和4K選項。"
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "為什麼使用SSTube儲存YouTube影片？",
+        "p": [
+          "SSTube專為想要<strong>從YouTube儲存</strong>且無需多餘步驟的使用者而設計。",
+          "該工具線上運作，無需安裝應用程式，無論您想儲存短片、教學、音樂影片還是其他公開影片內容，都能保持流程簡單。",
+          "由於介面輕量且無廣告，使用起來比許多傳統YouTube影片下載頁面更快更簡便。"
+        ]
+      },
+      {
+        "h2": "在任何裝置上儲存YouTube影片",
+        "p": [
+          "您可以透過現代網路瀏覽器在桌上型電腦、筆記型電腦、平板電腦、Android手機和iPhone上使用SSTube。",
+          "這使得<strong>線上儲存YouTube影片</strong>更加方便，無需切換裝置或安裝額外工具。"
+        ]
+      },
+      {
+        "h2": "快速簡潔的YouTube影片儲存體驗",
+        "ul": [
+          {
+            "h3": "無廣告且無需註冊",
+            "p": [
+              "SSTube為您提供更簡潔的體驗，沒有註冊流程，沒有充滿廣告的干擾介面。"
+            ]
+          },
+          {
+            "h3": "基於URL的簡單工作流程",
+            "p": [
+              "只需貼上連結即可開始。這非常適合搜尋<strong>透過連結下載YouTube影片</strong>或<strong>透過URL下載YouTube影片</strong>等關鍵字的使用者。"
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "常見問題",
+        "ul": [
+          {
+            "h3": "如何線上儲存YouTube影片？",
+            "p": [
+              "複製YouTube網址，貼到SSTube，處理連結，然後選擇可用選項儲存影片。"
+            ]
+          },
+          {
+            "h3": "不安裝軟體可以儲存YouTube影片嗎？",
+            "p": [
+              "可以。SSTube直接在瀏覽器中運作，因此您不需要安裝應用程式或桌面軟體。"
+            ]
+          },
+          {
+            "h3": "SSTube在行動裝置上能用嗎？",
+            "p": [
+              "可以。SSTube設計為可在手機和平板電腦以及桌面瀏覽器上使用。"
+            ]
+          },
+          {
+            "h3": "使用SSTube需要建立帳戶嗎？",
+            "p": [
+              "不需要。您可以在不註冊的情況下使用該工具。"
+            ]
+          },
+          {
+            "h3": "SSTube與YouTube有關聯嗎？",
+            "p": [
+              "沒有。SSTube是一個獨立工具，與YouTube或Google沒有任何關聯。"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

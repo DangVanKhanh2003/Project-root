@@ -1,0 +1,102 @@
+{
+  "nav": {
+    "home": "Загрузчик YouTube",
+    "youtubeToMp4": "Конвертер YouTube в MP4",
+    "youtubeToMp3": "Конвертер YouTube в MP3",
+    "youtubeShorts": "Загрузчик YouTube Shorts",
+    "language": "Русский"
+  },
+  "hero": {
+    "placeholder": "Искать или вставить ссылку здесь...",
+    "pasteLabel": "Вставить из буфера обмена",
+    "clearLabel": "Очистить ввод",
+    "submitButton": "Начать",
+    "termsText": "Используя наш сервис, вы принимаете наши",
+    "termsLink": "Условия использования"
+  },
+  "formatSelector": {
+    "autoSubmit": "Автоматическая отправка",
+    "autoSubmitTooltip": "Автоматически отправлять при вставке URL или ключевого слова",
+    "formats": {
+      "mp4": "MP4",
+      "mp3": "MP3"
+    },
+    "quality": {
+      "videoLabel": "Качество видео",
+      "audioLabel": "Качество аудио"
+    },
+    "options": {
+      "mp4": {
+        "2160p": "MP4 - 4K",
+        "1440p": "MP4 - 2K",
+        "1080p": "MP4 - 1080p",
+        "720p": "MP4 - 720p",
+        "480p": "MP4 - 480p",
+        "360p": "MP4 - 360p",
+        "144p": "MP4 - 144p",
+        "webm": "WEBM",
+        "mkv": "MKV"
+      },
+      "mp3": {
+        "320kbps": "MP3 - 320kbps",
+        "256kbps": "MP3 - 256kbps",
+        "192kbps": "MP3 - 192kbps",
+        "128kbps": "MP3 - 128kbps",
+        "ogg": "OGG",
+        "opus": "OPUS",
+        "wav": "WAV",
+        "64kbps": "MP3 - 64kbps"
+      }
+    }
+  },
+  "status": {
+    "processing": "Обработка...",
+    "preparing": "Подготовка...",
+    "merging": "Объединение...",
+    "zipping": "Архивация...",
+    "ready": "Готово 100%",
+    "completed": "Завершено",
+    "failed": "Не удалось"
+  },
+  "buttons": {
+    "download": "Скачать",
+    "tryAgain": "Попробовать снова",
+    "cancel": "Отмена",
+    "seeMore": "Показать еще",
+    "seeLess": "Показать меньше",
+    "bulkDownload": "Скачать выбранное"
+  },
+  "gallery": {
+    "title": "Галерея",
+    "noItems": "Нет элементов галереи для отображения",
+    "selected": "выбрано",
+    "selectAll": "Выбрать все",
+    "deselectAll": "Снять выделение со всех"
+  },
+  "mobile": {
+    "menuToggleLabel": "Открыть меню навигации",
+    "menuCloseLabel": "Закрыть меню навигации",
+    "langButtonLabel": "Выбрать язык"
+  },
+  "footer": {
+    "copyright": "© 2026 y2mate",
+    "about": "О нас",
+    "contact": "Контакты",
+    "terms": "Условия предоставления услуг",
+    "privacy": "Политика конфиденциальности",
+    "copyrightClaims": "Заявления об авторских правах"
+  },
+  "errors": {
+    "invalidUrl": "Пожалуйста, введите действительный URL",
+    "networkError": "Сетевая ошибка. Пожалуйста, попробуйте еще раз.",
+    "processingError": "Ошибка обработки. Пожалуйста, попробуйте еще раз.",
+    "timeout": "Тайм-аут запроса. Пожалуйста, попробуйте еще раз.",
+    "downloadExpired": "Срок действия ссылки для скачивания истек",
+    "conversionFailed": "Ошибка конвертации"
+  },
+  "messages": {
+    "downloadReady": "Ваша загрузка готова",
+    "processing": "Обработка вашего запроса...",
+    "pleaseWait": "Пожалуйста, подождите..."
+  }
+}

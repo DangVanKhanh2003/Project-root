@@ -1,0 +1,24 @@
+{
+  "nav": {
+    "home": "Home",
+    "contact": "Contact",
+    "mp3320": "YouTube to MP3 320kbps",
+    "wav": "YouTube to WAV",
+    "flac": "YouTube to FLAC",
+    "m4a": "YouTube to M4A"
+  },
+  "hero": {
+    "placeholder": "Paste link here",
+    "pasteButton": "Paste",
+    "clearButton": "Clear",
+    "convertButton": "Convert"
+  },
+  "footer": {
+    "contact": "Contact",
+    "faq": "FAQ",
+    "privacy": "Privacy Policy",
+    "copyright": "Copyright Claims",
+    "terms": "Terms of Use",
+    "copyrightText": "© 2025 4kvideo.pro"
+  }
+}

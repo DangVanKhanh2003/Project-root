@@ -1,0 +1,65 @@
+{
+  "nav": {
+    "home": "Início",
+    "youtubeToMp3Converter": "YouTube para MP3",
+    "youtubeToMp4Converter": "YouTube para MP4",
+    "youtubeAudioConverter": "Conversor de áudio do YouTube",
+    "youtubePlaylistToMp3": "Playlist do YouTube para MP3",
+    "youtubeShortsToMp4": "YouTube Shorts para MP4",
+    "youtubeToMp3320kbps": "YouTube para MP3 320kbps",
+    "youtubeToMp44k": "YouTube para MP4 4K",
+    "youtubeToMp4Hd": "YouTube para MP4 HD"
+  },
+  "drawer": {
+    "logoText": "YTConvert",
+    "links": {
+      "home": "Início",
+      "youtubeToMp3Converter": "YouTube para MP3",
+      "youtubeToMp4Converter": "YouTube para MP4",
+      "youtubeAudioConverter": "Conversor de áudio do YouTube",
+      "youtubePlaylistToMp3": "Playlist do YouTube para MP3",
+      "youtubeShortsToMp4": "YouTube Shorts para MP4",
+      "youtubeToMp3320kbps": "YouTube para MP3 320kbps",
+      "youtubeToMp44k": "YouTube para MP4 4K",
+      "youtubeToMp4Hd": "YouTube para MP4 HD"
+    }
+  },
+  "hero": {
+    "placeholder": "Cole o link do vídeo aqui...",
+    "pasteBtn": "Colar",
+    "clearBtn": "Limpar",
+    "convertBtn": "Converter",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "Faixa de áudio",
+    "searchPlaceholder": "Pesquisar...",
+    "supportedPlatforms": "Plataformas suportadas:"
+  },
+  "footer": {
+    "copyright": "© 2026 YTConvert. Todos os direitos reservados.",
+    "nav": {
+      "youtubeToMp3Converter": "Conversor de YouTube para MP3",
+      "youtubeToMp4Converter": "Conversor de YouTube para MP4",
+      "youtubeAudioConverter": "Conversor de áudio do YouTube",
+      "youtubePlaylistToMp3": "Playlist do YouTube para MP3",
+      "youtubeShortsToMp4": "YouTube Shorts para MP4",
+      "youtubeToMp3320kbps": "YouTube para MP3 320kbps",
+      "youtubeToMp44k": "YouTube para MP4 4K",
+      "youtubeToMp4Hd": "YouTube para MP4 HD"
+    }
+  },
+  "langSelector": {
+    "buttonLabel": "Alterar idioma",
+    "buttonText": "PT",
+    "currentLangFull": "Português"
+  },
+  "strim": {
+    "startBtn": "Iniciar",
+    "selectFormatLabel": "1. Selecionar formato:",
+    "selectQualityLabel": "2. Selecionar qualidade:",
+    "audioTrackLabel": "3. Selecionar faixa de áudio:",
+    "trimLabel": "4. Cortar vídeo (Início – Fim):",
+    "startTimeLabel": "Início",
+    "endTimeLabel": "Fim"
+  }
+}

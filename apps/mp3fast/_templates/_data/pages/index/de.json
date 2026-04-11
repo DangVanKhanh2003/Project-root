@@ -1,0 +1,49 @@
+{
+  "seo": {
+    "title": "YouTube zu MP3 Konverter – Unbegrenzte Videolänge",
+    "description": "Konvertieren Sie YouTube-Videos mit hoher Geschwindigkeit in MP3. Wählen Sie die MP3-Qualität vor der Konvertierung. Unbegrenzte Videolänge, keine Registrierung erforderlich."
+  },
+  "h1": "YouTube zu MP3 Konverter",
+  "intro": "Mit diesem Tool können Sie YouTube-Videos schnell und zuverlässig in MP3 konvertieren. Fügen Sie einfach einen YouTube-Link ein, wählen Sie die gewünschte MP3-Qualität aus und laden Sie die Datei direkt auf Ihr Gerät herunter. Keine Softwareinstallation und kein Konto erforderlich.",
+  "primary_features": {
+    "h2": "Hauptmerkmale",
+    "items": [
+      "Konvertieren Sie YouTube-Videos in das MP3-Format",
+      "Wählen Sie die MP3-Qualität vor der Konvertierung aus",
+      "Unterstützt MP3-Qualität von 64 kbps bis zu 320 kbps",
+      "Keine Begrenzung der Videolänge",
+      "Heruntergeladene MP3-Dateien enthalten keine Tags oder Wasserzeichen"
+    ]
+  },
+  "performance": {
+    "h2": "Konvertierungsleistung",
+    "content": "Das System ist auf Geschwindigkeit optimiert. Bei Videos mit einer Dauer von ca. 10 Stunden dauert die MP3-Konvertierung in der Regel nur 10 bis 15 Sekunden. Die Download-Geschwindigkeit hängt von der Internetverbindung des Benutzers ab."
+  },
+  "how_to": {
+    "h2": "So konvertieren Sie YouTube in MP3",
+    "steps": [
+      {
+        "step": 1,
+        "content": "Kopieren Sie die URL des YouTube-Videos, das Sie konvertieren möchten."
+      },
+      {
+        "step": 2,
+        "content": "Fügen Sie den Link in das obige Eingabefeld ein, wählen Sie die MP3-Qualität und klicken Sie auf Konvertieren."
+      },
+      {
+        "step": 3,
+        "content": "Sobald die Konvertierung abgeschlossen ist, klicken Sie auf MP3 herunterladen, um die Datei auf Ihrem Gerät zu speichern."
+      }
+    ]
+  },
+  "limitations": {
+    "h2": "Nutzungshinweise",
+    "content": "Das Tool unterstützt alle öffentlichen YouTube-Videos, die von YouTube zugänglich und zugelassen sind. Während der Stoßzeiten wie abends oder am Wochenende kann die Verarbeitungszeit aufgrund des hohen Datenverkehrs etwas langsamer sein."
+  },
+  "privacy_notice": {
+    "content": "Es ist keine Kontoregistrierung erforderlich und es werden keine persönlichen Daten gesammelt."
+  },
+  "responsibility_notice": {
+    "content": "Benutzer sind allein für die von ihnen konvertierten und heruntergeladenen Inhalte verantwortlich."
+  }
+}

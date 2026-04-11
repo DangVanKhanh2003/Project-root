@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Reset your supporter license key for EzConv. Enter your email to receive a new license key.">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Reset License Key - EzConv.pro</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anthropic+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/src/styles/index.css">
+    <link rel="stylesheet" href="/src/styles/features/reset-key.css">
+
+    <!-- Theme Toggle Init -->
+    <script>
+        (function(){try{var t=localStorage.getItem('ezconv-theme');if(t==='dark')document.documentElement.setAttribute('data-theme','dark')}catch(e){}})()
+    </script>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="/" class="header-logo" aria-label="EzConv.pro home">
+                    <svg id="wave-svg-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 50" fill="none" aria-hidden="true" focusable="false" style="cursor:pointer"><rect width="100" height="50" fill="transparent"/><g stroke="#C65D3B" stroke-width="3.5" stroke-linecap="round"><path d="M 4 23 v 4"/><path d="M 10 20 v 10"/><path d="M 16 15 v 20"/><path d="M 22 9 v 32"/><path d="M 28 15 v 20"/><path d="M 34 17 v 16"/><path d="M 40 10 v 30"/><path d="M 46 4 v 42"/><path d="M 52 2 v 46"/><path d="M 58 11 v 28"/><path d="M 64 16 v 18"/><path d="M 70 12 v 26"/><path d="M 76 18 v 14"/><path d="M 82 17 v 16"/><path d="M 88 21 v 8"/></g></svg>
+                    <span class="header-logo-text">EzConv.pro</span>
+                </a>
+                <nav class="header-nav" aria-label="Primary">
+                    <a href="/" class="header-link">Home</a>
+                    <a href="/about" class="header-link">About</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main id="main" tabindex="-1">
+        <section class="section license-section">
+            <div class="container main-content-card license-card">
+                <div class="license-hero">
+                    <h1>Reset License Key</h1>
+                    <p>Enter your email to receive a new license key. Your old key will be deactivated.</p>
+                </div>
+
+                <form class="license-form" id="reset-key-form" novalidate>
+                    <label for="reset-email-input" class="license-input-label">Email Address</label>
+                    <input
+                        type="email"
+                        id="reset-email-input"
+                        class="license-input"
+                        placeholder="your-email@example.com"
+                        autocomplete="email"
+                        spellcheck="false"
+                        required
+                    >
+                    <button type="submit" class="license-submit" id="reset-key-submit">
+                        Reset License Key
+                    </button>
+                    <p class="reset-rate-limit">Rate limit: 3 requests per hour</p>
+                    <div id="reset-key-message" class="license-message" role="status" aria-live="polite"></div>
+                </form>
+
+                <div class="license-steps">
+                    <div class="license-step">
+                        <h2 class="license-step-title">What happens when you reset?</h2>
+                    </div>
+                    <div class="license-step">
+                        <p class="license-step-desc">&#10003; Your old license key will be permanently deactivated</p>
+                    </div>
+                    <div class="license-step">
+                        <p class="license-step-desc">&#10003; A new lifetime license key will be generated</p>
+                    </div>
+                    <div class="license-step">
+                        <p class="license-step-desc">&#10003; The new key will be sent to your email</p>
+                    </div>
+                    <div class="license-step">
+                        <p class="license-step-desc">&#10003; You can use the new key immediately</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="/src/reset-key-main.ts"></script>
+</body>
+
+</html>

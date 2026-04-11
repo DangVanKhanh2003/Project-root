@@ -1,0 +1,102 @@
+{
+  "nav": {
+    "home": "โปรแกรมดาวน์โหลด YouTube",
+    "youtubeToMp4": "โปรแกรมแปลง YouTube เป็น MP4",
+    "youtubeToMp3": "โปรแกรมแปลง YouTube เป็น MP3",
+    "youtubeShorts": "โปรแกรมดาวน์โหลด YouTube Shorts",
+    "language": "ไทย"
+  },
+  "hero": {
+    "placeholder": "ค้นหาหรือวางลิงก์ที่นี่...",
+    "pasteLabel": "วางจากคลิปบอร์ด",
+    "clearLabel": "ล้างข้อมูลที่ป้อน",
+    "submitButton": "เริ่ม",
+    "termsText": "การใช้บริการของเราแสดงว่าคุณยอมรับ",
+    "termsLink": "ข้อกำหนดการใช้งาน"
+  },
+  "formatSelector": {
+    "autoSubmit": "ส่งอัตโนมัติ",
+    "autoSubmitTooltip": "ส่งอัตโนมัติเมื่อวาง URL หรือคีย์เวิร์ด",
+    "formats": {
+      "mp4": "MP4",
+      "mp3": "MP3"
+    },
+    "quality": {
+      "videoLabel": "คุณภาพวิดีโอ",
+      "audioLabel": "คุณภาพเสียง"
+    },
+    "options": {
+      "mp4": {
+        "2160p": "MP4 - 4K",
+        "1440p": "MP4 - 2K",
+        "1080p": "MP4 - 1080p",
+        "720p": "MP4 - 720p",
+        "480p": "MP4 - 480p",
+        "360p": "MP4 - 360p",
+        "144p": "MP4 - 144p",
+        "webm": "WEBM",
+        "mkv": "MKV"
+      },
+      "mp3": {
+        "320kbps": "MP3 - 320kbps",
+        "256kbps": "MP3 - 256kbps",
+        "192kbps": "MP3 - 192kbps",
+        "128kbps": "MP3 - 128kbps",
+        "ogg": "OGG",
+        "opus": "OPUS",
+        "wav": "WAV",
+        "64kbps": "MP3 - 64kbps"
+      }
+    }
+  },
+  "status": {
+    "processing": "กำลังประมวลผล...",
+    "preparing": "กำลังเตรียม...",
+    "merging": "กำลังรวม...",
+    "zipping": "กำลังบีบอัด...",
+    "ready": "พร้อม 100%",
+    "completed": "เสร็จสมบูรณ์",
+    "failed": "ล้มเหลว"
+  },
+  "buttons": {
+    "download": "ดาวน์โหลด",
+    "tryAgain": "ลองอีกครั้ง",
+    "cancel": "ยกเลิก",
+    "seeMore": "ดูเพิ่มเติม",
+    "seeLess": "ดูน้อยลง",
+    "bulkDownload": "ดาวน์โหลดรายการที่เลือก"
+  },
+  "gallery": {
+    "title": "แกลเลอรี",
+    "noItems": "ไม่มีรายการแกลเลอรีที่จะแสดง",
+    "selected": "ที่เลือก",
+    "selectAll": "เลือกทั้งหมด",
+    "deselectAll": "ยกเลิกการเลือกทั้งหมด"
+  },
+  "mobile": {
+    "menuToggleLabel": "เปิดเมนูนำทาง",
+    "menuCloseLabel": "ปิดเมนูนำทาง",
+    "langButtonLabel": "เลือกภาษา"
+  },
+  "footer": {
+    "copyright": "© 2026 y2mate",
+    "about": "เกี่ยวกับ",
+    "contact": "ติดต่อ",
+    "terms": "ข้อกำหนดในการให้บริการ",
+    "privacy": "นโยบายความเป็นส่วนตัว",
+    "copyrightClaims": "การเรียกร้องลิขสิทธิ์"
+  },
+  "errors": {
+    "invalidUrl": "โปรดป้อน URL ที่ถูกต้อง",
+    "networkError": "เกิดข้อผิดพลาดของเครือข่าย โปรดลองอีกครั้ง",
+    "processingError": "การประมวลผลล้มเหลว โปรดลองอีกครั้ง",
+    "timeout": "หมดเวลาคำขอ โปรดลองอีกครั้ง",
+    "downloadExpired": "ลิงก์ดาวน์โหลดหมดอายุ",
+    "conversionFailed": "การแปลงล้มเหลว"
+  },
+  "messages": {
+    "downloadReady": "การดาวน์โหลดของคุณพร้อมแล้ว",
+    "processing": "กำลังประมวลผลคำขอของคุณ...",
+    "pleaseWait": "โปรดรอ..."
+  }
+}

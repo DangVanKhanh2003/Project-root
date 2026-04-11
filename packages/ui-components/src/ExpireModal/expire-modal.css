@@ -129,6 +129,17 @@
   background-color: var(--expire-modal-primary-hover);
 }
 
+.expire-modal-btn-secondary {
+  background-color: transparent;
+  color: var(--expire-modal-primary-color);
+  border: 1px solid var(--expire-modal-primary-color);
+}
+
+.expire-modal-btn-secondary:hover {
+  background-color: var(--expire-modal-primary-color);
+  color: white;
+}
+
 /* Responsive */
 @media (max-width: 480px) {
   .expire-modal-title {

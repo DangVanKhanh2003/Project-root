@@ -1,0 +1,65 @@
+{
+  "nav": {
+    "home": "Trang chủ",
+    "youtubeToMp3Converter": "YouTube sang MP3",
+    "youtubeToMp4Converter": "YouTube sang MP4",
+    "youtubeAudioConverter": "Chuyển đổi âm thanh YouTube",
+    "youtubePlaylistToMp3": "Playlist YouTube sang MP3",
+    "youtubeShortsToMp4": "YouTube Shorts sang MP4",
+    "youtubeToMp3320kbps": "YouTube sang MP3 320kbps",
+    "youtubeToMp44k": "YouTube sang MP4 4K",
+    "youtubeToMp4Hd": "YouTube sang MP4 HD"
+  },
+  "drawer": {
+    "logoText": "YTConvert",
+    "links": {
+      "home": "Trang chủ",
+      "youtubeToMp3Converter": "YouTube sang MP3",
+      "youtubeToMp4Converter": "YouTube sang MP4",
+      "youtubeAudioConverter": "Chuyển đổi âm thanh YouTube",
+      "youtubePlaylistToMp3": "Playlist YouTube sang MP3",
+      "youtubeShortsToMp4": "YouTube Shorts sang MP4",
+      "youtubeToMp3320kbps": "YouTube sang MP3 320kbps",
+      "youtubeToMp44k": "YouTube sang MP4 4K",
+      "youtubeToMp4Hd": "YouTube sang MP4 HD"
+    }
+  },
+  "hero": {
+    "placeholder": "Dán liên kết video vào đây...",
+    "pasteBtn": "Dán",
+    "clearBtn": "Xóa",
+    "convertBtn": "Chuyển đổi",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "Bản âm thanh",
+    "searchPlaceholder": "Tìm kiếm...",
+    "supportedPlatforms": "Nền tảng được hỗ trợ:"
+  },
+  "footer": {
+    "copyright": "© 2026 YTConvert. Mọi quyền được bảo lưu.",
+    "nav": {
+      "youtubeToMp3Converter": "Chuyển đổi YouTube sang MP3",
+      "youtubeToMp4Converter": "Chuyển đổi YouTube sang MP4",
+      "youtubeAudioConverter": "Chuyển đổi âm thanh YouTube",
+      "youtubePlaylistToMp3": "Playlist YouTube sang MP3",
+      "youtubeShortsToMp4": "YouTube Shorts sang MP4",
+      "youtubeToMp3320kbps": "YouTube sang MP3 320kbps",
+      "youtubeToMp44k": "YouTube sang MP4 4K",
+      "youtubeToMp4Hd": "YouTube sang MP4 HD"
+    }
+  },
+  "langSelector": {
+    "buttonLabel": "Đổi ngôn ngữ",
+    "buttonText": "VI",
+    "currentLangFull": "Tiếng Việt"
+  },
+  "strim": {
+    "startBtn": "Bắt đầu",
+    "selectFormatLabel": "1. Chọn định dạng:",
+    "selectQualityLabel": "2. Chọn chất lượng:",
+    "audioTrackLabel": "3. Chọn bản âm thanh:",
+    "trimLabel": "4. Cắt video (Thời gian Bắt đầu – Kết thúc):",
+    "startTimeLabel": "Bắt đầu",
+    "endTimeLabel": "Kết thúc"
+  }
+}

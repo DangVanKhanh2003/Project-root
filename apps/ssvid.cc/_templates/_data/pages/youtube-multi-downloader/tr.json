@@ -1,0 +1,116 @@
+{
+  "seo": {
+    "title": "SSVID CC Birden Fazla YouTube Videosu İndir (Reklamsız)",
+    "description": "Birden fazla YouTube videosunu aynı anda MP3 veya MP4 olarak indir (Reklamsız).",
+    "schemaName": "SSVID YouTube Multi Downloader",
+    "schemaDescription": "Birden fazla YouTube videosunu aynı anda çevrim içi indir.",
+    "ogTitle": "SSVID Birden Fazla YouTube Videosu İndir (Reklamsız)",
+    "ogDescription": "YouTube videolarını MP3 veya MP4 formatında toplu indir (Reklamsız)."
+  },
+  "defaultFormat": "mp4",
+  "hero": {
+    "title": "SSVID YouTube Multi Downloader (Reklamsız)",
+    "subtitle": "Birden fazla YouTube videosunu aynı anda indir"
+  },
+  "form": {
+    "textareaPlaceholder": "YouTube bağlantılarını buraya yapıştırın (her satıra bir tane).\nhttps://youtube.com/watch?v=VID_1\nhttps://youtube.com/watch?v=VID_2",
+    "convertButton": "Dönüştür",
+    "audioTrackLabel": "Ses parçası"
+  },
+  "overview": {
+    "howTo": {
+      "title": "SSVID ile YouTube Çoklu İndirme Nasıl Yapılır?",
+      "steps": [
+        {
+          "number": "1",
+          "title": "Birden fazla bağlantıyı kopyalayın",
+          "description": "İndirmek istediğiniz YouTube videolarının bağlantılarını kopyalayın."
+        },
+        {
+          "number": "2",
+          "title": "Tüm bağlantıları yapıştırın",
+          "description": "Kopyaladığınız tüm bağlantıları SSVID çoklu indirme aracına yapıştırın."
+        },
+        {
+          "number": "3",
+          "title": "Format seçin",
+          "description": "İstediğiniz çıktı formatını seçin (MP3 veya MP4)."
+        },
+        {
+          "number": "4",
+          "title": "İndir",
+          "description": "İndir butonuna tıklayın ve tüm videoları aynı anda kaydedin."
+        }
+      ]
+    }
+  },
+  "content": {
+    "intro": {
+      "title": "SSVID YouTube Multi Downloader Nedir?",
+      "description": "SSVID, <strong>birden fazla YouTube videosunu aynı anda indirmenizi</strong> sağlayan çevrim içi bir araçtır. Videoları tek tek indirmek yerine, birden fazla URL’yi yapıştırarak tek işlemde dönüştürebilirsiniz."
+    },
+    "whyUse": {
+      "title": "Neden YouTube Çoklu İndirici Kullanmalısınız?",
+      "description": "Videolarınız <strong>aynı oynatma listesinde değilse</strong> oldukça kullanışlıdır. Elinizde özel bir video bağlantı listesi varsa, her video için aynı adımları tekrarlamak yerine hepsini birlikte indirmenizi sağlar."
+    },
+    "supportedFormats": {
+      "title": "Desteklenen Formatlar: MP3 ve MP4",
+      "description": "SSVID, <strong>MP3</strong> ve <strong>MP4</strong> formatlarını destekler. Sadece ses dosyasına ihtiyacınız varsa MP3’ü, videonun tamamını istiyorsanız MP4’ü seçebilirsiniz."
+    },
+    "comparison": {
+      "title": "YouTube Çoklu İndirme vs Oynatma Listesi İndirici",
+      "items": [
+        {
+          "title": "YouTube Çoklu İndirme",
+          "description": "<strong>Birden fazla ayrı YouTube video bağlantınız</strong> olduğunda en iyi seçenektir. Birçok URL’yi yapıştırın ve MP3 veya MP4 formatında birlikte indirin."
+        },
+        {
+          "title": "YouTube Oynatma Listesini MP3 Olarak İndir",
+          "description": "Videolarınız zaten bir oynatma listesinde düzenlenmişse en uygunudur. <strong>Tek bir oynatma listesi bağlantısı</strong> ile tüm videoları otomatik olarak MP3 formatında indirebilirsiniz. Bir oynatma listeniz varsa <a href=\"/download-mp3-youtube-playlist\" title=\"Download MP3 YouTube Playlist\"><strong>Download MP3 YouTube Playlist with SSVID</strong></a> seçeneğini deneyin."
+        }
+      ]
+    },
+    "whenUse": {
+      "title": "SSVID Multi Downloader Ne Zaman Kullanılmalı?",
+      "items": [
+        {
+          "title": "Özel Video Listeleri",
+          "description": "Farklı kanallardan veya kaynaklardan topladığınız YouTube bağlantılarını birlikte indirmek için idealdir."
+        },
+        {
+          "title": "Toplu MP3 veya MP4 İndirme",
+          "description": "Aynı adımları tekrar etmeden birden fazla videoyu MP3 veya MP4 formatında aynı anda indirin."
+        },
+        {
+          "title": "Sınırsız Çoklu İndirme",
+          "description": "SSVID, <strong>sınırsız YouTube çoklu indirme</strong> desteği sunar ve reklam içermez."
+        }
+      ]
+    }
+  },
+  "faqs": {
+    "title": "Sıkça Sorulan Sorular",
+    "items": [
+      {
+        "question": "Aynı anda kaç YouTube videosu indirebilirim?",
+        "answer": "SSVID sınırsız çoklu indirmeye izin verir. İhtiyacınız kadar bağlantı yapıştırabilirsiniz."
+      },
+      {
+        "question": "Çoklu indirme için oynatma listesi gerekir mi?",
+        "answer": "Hayır. Çoklu indirme, oynatma listesine ait olmayan bireysel video bağlantıları için tasarlanmıştır."
+      },
+      {
+        "question": "SSVID ücretsiz ve reklamsız mı?",
+        "answer": "Evet. SSVID ücretsizdir ve reklamsız bir indirme deneyimi sunar."
+      },
+      {
+        "question": "Hem MP3 hem MP4 indirebilir miyim?",
+        "answer": "Evet. SSVID hem MP3 (ses) hem MP4 (video) formatlarını destekler."
+      },
+      {
+        "question": "SSVID mobil cihazlarda çalışır mı?",
+        "answer": "Evet. SSVID hem masaüstü hem mobil tarayıcılarda çalışır."
+      }
+    ]
+  }
+}

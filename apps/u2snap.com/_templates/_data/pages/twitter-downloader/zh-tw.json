@@ -1,0 +1,115 @@
+{
+  "seo": {
+    "title": "Twitter影片下載器 – 儲存X影片 | U2SNAP",
+    "description": "使用U2SNAP下載Twitter影片。免費的Twitter/X影片下載器，以HD畫質儲存影片。無需註冊或安裝應用程式。",
+    "schemaName": "U2SNAP - Twitter影片下載器",
+    "schemaDescription": "U2SNAP是一款免費的Twitter影片下載器，讓使用者以HD畫質儲存Twitter/X影片。",
+    "ogTitle": "Twitter影片下載器 – 儲存X影片 | U2SNAP",
+    "ogDescription": "使用U2SNAP下載Twitter/X影片。免費、快速、HD畫質。"
+  },
+  "content": {
+    "form": {
+      "h1": "U2SNAP – Twitter影片下載器",
+      "placeholder": "在此貼上Twitter/X影片URL...",
+      "button": "下載影片"
+    },
+    "sections": [
+      {
+        "h2": "什麼是U2SNAP Twitter影片下載器？",
+        "p": [
+          "U2SNAP是一款免費的<strong>Twitter影片下載器</strong>，讓您可以將Twitter (X) 的影片以HD畫質直接儲存到裝置上。",
+          "只需貼上推文URL，點擊下載，幾秒鐘內即可將影片儲存到手機或電腦。",
+          "這款<strong>X影片下載器</strong>在所有裝置和browser上都能使用，無需安裝應用程式或註冊帳號。"
+        ]
+      },
+      {
+        "h2": "如何下載Twitter影片",
+        "ol": [
+          {
+            "h3": "複製推文URL",
+            "p": [
+              "開啟Twitter/X，點擊包含影片的推文上的分享按鈕，然後選擇複製連結。"
+            ]
+          },
+          {
+            "h3": "貼上連結",
+            "p": [
+              "將Twitter影片URL貼到上方的U2SNAP Twitter影片下載器中。"
+            ]
+          },
+          {
+            "h3": "下載影片",
+            "p": [
+              "點擊下載按鈕，以您偏好的畫質將Twitter影片儲存到您的裝置。"
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "以HD畫質儲存Twitter/X影片",
+        "p": [
+          "U2SNAP讓您以最高可用解析度（包括HD和Full HD）<strong>下載Twitter影片</strong>。",
+          "儲存Twitter/X的推文、討論串和GIF影片，用於離線觀看或在其他平台分享。"
+        ]
+      },
+      {
+        "h2": "為什麼使用U2SNAP Twitter影片下載器？",
+        "ul": [
+          {
+            "h3": "HD畫質下載",
+            "p": [
+              "以HD和Full HD畫質下載Twitter影片，無壓縮或畫質損失。"
+            ]
+          },
+          {
+            "h3": "支援Twitter和X",
+            "p": [
+              "支援twitter.com和x.com URL，可從任何公開推文下載影片。"
+            ]
+          },
+          {
+            "h3": "免費且無限制",
+            "p": [
+              "免費下載任意數量的Twitter影片，沒有每日限制。"
+            ]
+          },
+          {
+            "h3": "無需應用程式",
+            "p": [
+              "Twitter影片下載器直接在browser中運作，無需安裝任何軟體。"
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "常見問題",
+        "ul": [
+          {
+            "h3": "U2SNAP Twitter影片下載器免費嗎？",
+            "p": [
+              "是的。U2SNAP是完全免費的Twitter影片下載器，沒有隱藏費用。"
+            ]
+          },
+          {
+            "h3": "可以從X.com下載影片嗎？",
+            "p": [
+              "可以。U2SNAP支援twitter.com和x.com連結下載影片。"
+            ]
+          },
+          {
+            "h3": "在iPhone和Android上能用嗎？",
+            "p": [
+              "可以。Twitter影片下載器在所有行動裝置和桌面browser上都能使用。"
+            ]
+          },
+          {
+            "h3": "下載需要Twitter帳號嗎？",
+            "p": [
+              "不需要。只需推文連結即可使用U2SNAP下載Twitter影片。"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "nav": {
+    "home": "Ana Sayfa",
+    "youtubeToMp3": "YouTube to MP3",
+    "youtubeToMp4": "YouTube to MP4",
+    "youtubeShorts": "YouTube Shorts",
+    "about": "Hakkında"
+  },
+  "langSelector": {
+    "buttonText": "TR",
+    "buttonLabel": "Dil",
+    "currentLangFull": "Türkçe"
+  },
+  "drawer": {
+    "logoText": "SSVid.cc",
+    "links": {
+      "home": "Ana Sayfa",
+      "youtubeToMp3": "YouTube'dan MP3'e",
+      "youtubeToMp4": "YouTube'dan MP4'e",
+      "youtubeShorts": "YouTube Shorts",
+      "about": "Hakkında",
+      "faq": "SSS",
+      "contact": "İletişim",
+      "terms": "Terms of Use",
+      "privacy": "Gizlilik",
+      "dmca": "DMCA",
+      "cutVideoYoutube": "YouTube Video Kes"
+    }
+  },
+  "hero": {
+    "placeholder": "YouTube bağlantısını buraya yapıştırın...",
+    "pasteBtn": "Yapıştır",
+    "clearBtn": "Temizle",
+    "convertBtn": "Dönüştür",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "Audio track",
+    "searchPlaceholder": "Ara...",
+    "supportedPlatforms": "Desteklenen platformlar:"
+  },
+  "overview": {
+    "badge": "Hızlı ve Ücretsiz"
+  },
+  "footer": {
+    "linksRow1": {
+      "youtubeToMp3": "YouTube'dan MP3'e",
+      "youtubeToMp4": "YouTube'dan MP4'e",
+      "youtubeShorts": "YouTube Shorts",
+      "cutVideoYoutube": "YouTube Video Kes"
+    },
+    "linksRow2": {
+      "about": "Hakkında",
+      "contact": "İletişim",
+      "terms": "Terms of Use",
+      "privacyPolicy": "Gizlilik Politikası",
+      "dmca": "DMCA",
+      "faq": "SSS"
+    },
+    "copyright": "© 2026 SSVid. Tüm hakları saklıdır."
+  },
+  "strim": {
+    "startBtn": "Başlat",
+    "selectFormatLabel": "1. Format seçin:",
+    "selectQualityLabel": "2. Kalite seçin:",
+    "audioTrackLabel": "3. Ses kanalı seçin:",
+    "trimLabel": "4. Videoyu kes (Başlangıç – Bitiş):",
+    "startTimeLabel": "Başlangıç",
+    "endTimeLabel": "Bitiş"
+  }
+}

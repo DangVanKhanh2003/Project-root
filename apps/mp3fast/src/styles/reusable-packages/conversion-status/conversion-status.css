@@ -1,0 +1,338 @@
+/**
+ * Conversion Status Bar Component
+ * Updated with glassmorphism design and purple progress bar - Phase 2.5
+ * Based on demo .status--processing design
+ */
+
+/* ===== WRAPPER TO PREVENT LAYOUT SHIFT ===== */
+.conversion-state-wrapper {
+  min-height: 100px;
+}
+
+/* ===== SHARED DIMENSIONS ===== */
+.status-container,
+.action-container {
+  border-radius: var(--radius-xl);
+  min-height: 40px;
+  /* Mobile-first: 40px height */
+}
+
+.status-container {
+  margin: 0px;
+  margin-bottom: 20px;
+}
+
+.action-container {
+  margin: 12px 0 0 0;
+}
+
+/* ===== STATUS BAR ===== */
+.status-container {
+  position: relative;
+  width: 100%;
+  background: var(--bg-input);
+  border: 1px solid rgba(128, 128, 128, 0.496);
+  border-radius: var(--radius-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: background 0.3s, border-color 0.3s;
+  contain: layout style paint;
+}
+
+/* Processing state - gray progress bar fill */
+.status-container.processing {
+  border: 2px solid rgb(155 155 155 / 50%) !important;
+}
+
+/* Progress bar fill using ::before pseudo-element
+   Uses transform: scaleX() instead of width for GPU-accelerated compositing
+   (width triggers layout recalc every frame → jank on iOS/macOS) */
+.status--processing::before,
+.status--success::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: #eeeeeed1;
+  border-right: 1px solid #dddddd;
+  box-shadow: none;
+  transform: scaleX(var(--progress-scale, 0));
+  transform-origin: left center;
+  transition: transform 0.1s ease;
+  will-change: transform;
+  z-index: 1;
+}
+
+/* Disable transition for instant reset */
+.status--no-transition::before {
+  transition: none !important;
+}
+
+/* Merging phase: 2-phase animation
+   - 0% → 50% in 15s (37.5% of 40s)
+   - 50% → 98% in 25s (62.5% of 40s) */
+.status--processing.status--merging::before {
+  transform: scaleX(0);
+  animation: merging-progress 40s ease-out forwards;
+  transition: none !important;
+}
+
+@keyframes merging-progress {
+  from {
+    transform: scaleX(0);
+  }
+
+  37.5% {
+    transform: scaleX(0.5);
+  }
+
+  to {
+    transform: scaleX(0.98);
+  }
+}
+
+/* API complete → 100% in 0.5s */
+.status--completing::before {
+  animation: none !important;
+  transition: transform 0.5s ease-out !important;
+}
+
+/* Hide status bar on success and error - controlled by JavaScript */
+/* Note: JavaScript handles hiding with proper delay for fill animation */
+/* CSS :has() rules removed - they override JS setTimeout delay */
+
+.status {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  /* Fill full width of status-container */
+  height: 40px;
+  /* Mobile: match status-container min-height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.status-text {
+  position: relative;
+  z-index: 2;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-main);
+  text-transform: capitalize;
+  height: 18px;
+  /* Match icon height to prevent layout shift */
+  line-height: 18px;
+  /* Center text vertically */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 160px;
+}
+
+/* ===== ICON STATES ===== */
+.icon {
+  position: relative;
+  z-index: 2;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  /* Prevent icon from shrinking */
+  display: inline-flex;
+  /* Always reserve space (visibility will be controlled by opacity/content) */
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s ease;
+  visibility: hidden;
+  /* Hide from screen readers */
+}
+
+/* Spinner (extracting, processing) */
+.icon.spinner {
+  /* Always reserve space, but hidden by default */
+  visibility: hidden;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-top: 2px solid #000;
+  border-radius: 50%;
+  margin: 0px;
+  display: none;
+}
+
+/* Show spinner only when active */
+.icon.spinner.active {
+  display: inline-flex;
+  visibility: visible;
+  animation: spin 0.4s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Checkmark & Error icons - Keep hidden (opacity: 0, space still reserved) */
+/* Status bar is hidden for SUCCESS/FAILED anyway, so these don't render */
+.icon.checkmark,
+.icon.error {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* ===== STATUS STATES ===== */
+/* Success: keep normal text color, no change needed */
+
+.status--error .status-text {
+  color: var(--status-error, #e74c3c);
+}
+
+/* Error state - red border and smaller size */
+.status-container:has(.status--error) {
+  border-color: var(--status-error, #e74c3c);
+  margin-bottom: 10px;
+  min-height: 45px;
+}
+
+.status-container:has(.status--error) .status {
+  height: 45px;
+}
+
+/* ===== PROGRESS BAR ===== */
+/* Progress bar is hidden - only show background gradient */
+.progress-bar {
+  display: none !important;
+}
+
+/* ===== ACTION CONTAINER ===== */
+.action-container {
+  display: none;
+}
+
+.action-container.active {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 0px;
+}
+
+/* All buttons - shared styles */
+.download-btn,
+.retry-btn,
+.btn-new-convert {
+  margin: 0;
+  padding: 0 1.5rem;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: var(--radius-xl);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: none;
+  min-height: 40px;
+  position: relative;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
+  flex: 1;
+  font-family: var(--font-sans);
+  letter-spacing: -0.01em;
+}
+
+@media (min-width: 640px) {
+
+  .download-btn,
+  .retry-btn,
+  .btn-new-convert {
+    flex: none;
+    min-width: 7rem;
+    font-size: 15px;
+  }
+}
+
+.download-btn.active,
+.retry-btn.active,
+.btn-new-convert.active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Download Button - Primary black style */
+.download-btn {
+  background: var(--color-primary);
+  color: white;
+  border: none;
+}
+
+.download-btn:hover {
+  background: var(--color-button-hover);
+}
+
+.download-btn:active {
+  transform: scale(0.98);
+}
+
+/* Retry Button - Red error style */
+.retry-btn {
+  background: #dc2626;
+  color: white;
+  border: none;
+}
+
+.retry-btn:hover {
+  background: #b91c1c;
+}
+
+.retry-btn:active {
+  transform: scale(0.98);
+}
+
+/* Next/New Convert Button - Outlined style */
+.btn-new-convert {
+  background: white;
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.btn-new-convert:hover {
+  background: #f9fafb;
+  border-color: var(--color-border-dark);
+}
+
+.btn-new-convert:active {
+  transform: scale(0.98);
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (min-width: 768px) {
+
+  .status-container,
+  .action-container {
+    min-height: 45px;
+  }
+
+  .status {
+    height: 45px;
+  }
+
+  .status-text {
+    font-size: 15px;
+  }
+
+  .download-btn,
+  .retry-btn,
+  .btn-new-convert {
+    min-height: 48px;
+  }
+}

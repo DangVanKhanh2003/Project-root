@@ -1,0 +1,126 @@
+{
+  "seo": {
+    "title": "SSVID CC ดาวน์โหลดเพลย์ลิสต์ YouTube เป็น MP3 ทั้งหมด (ไม่มีโฆษณา)",
+    "description": "ดาวน์โหลดเพลย์ลิสต์ YouTube ทั้งหมดเป็น MP3 ฟรี (ไม่มีโฆษณา).",
+    "schemaName": "SSVID ตัวดาวน์โหลด MP3 YouTube Playlist",
+    "schemaDescription": "แปลงและดาวน์โหลดเพลย์ลิสต์ YouTube ทั้งหมดเป็น MP3 ด้วยลิงก์เดียว.",
+    "ogTitle": "SSVID ดาวน์โหลดเพลย์ลิสต์ YouTube เป็น MP3 ทั้งหมด (ไม่มีโฆษณา)",
+    "ogDescription": "แปลงเพลย์ลิสต์ YouTube ทั้งหมดเป็น MP3 ฟรี ไม่มีโฆษณา และไม่จำกัด."
+  },
+  "defaultFormat": "mp3",
+  "hero": {
+    "title": "SSVID ตัวดาวน์โหลด MP3 YouTube Playlist (ไม่มีโฆษณา)",
+    "subtitle": "ดาวน์โหลดเพลย์ลิสต์ YouTube ทั้งหมดเป็น MP3 ด้วยลิงก์เดียว"
+  },
+  "form": {
+    "title": "MP3 YouTube Playlist Downloader",
+    "placeholder": "วาง URL เพลย์ลิสต์ที่นี่...",
+    "convertButton": "แปลง"
+  },
+  "overview": {
+    "howTo": {
+      "title": "วิธีดาวน์โหลด MP3 จากเพลย์ลิสต์ YouTube",
+      "steps": [
+        {
+          "number": "1",
+          "title": "คัดลอกลิงก์",
+          "description": "คัดลอก URL เพลย์ลิสต์ YouTube ที่คุณต้องการดาวน์โหลด."
+        },
+        {
+          "number": "2",
+          "title": "วางเพลย์ลิสต์",
+          "description": "วางลิงก์เพลย์ลิสต์ลงใน SSVID."
+        },
+        {
+          "number": "3",
+          "title": "เลือกคุณภาพ MP3",
+          "description": "เลือก MP3 และคุณภาพเสียงที่คุณต้องการ."
+        },
+        {
+          "number": "4",
+          "title": "ดาวน์โหลด",
+          "description": "คลิกดาวน์โหลดและบันทึกเพลย์ลิสต์ทั้งหมดลงในอุปกรณ์ของคุณ."
+        }
+      ]
+    }
+  },
+  "content": {
+    "intro": {
+      "title": "SSVID MP3 YouTube Playlist Downloader คืออะไร?",
+      "description": "SSVID เป็นเครื่องมือออนไลน์ฟรีที่ช่วยให้คุณ <strong>ดาวน์โหลดเพลย์ลิสต์ YouTube ทั้งหมดเป็น MP3</strong> ด้วยลิงก์เดียว แทนที่จะต้องแปลงวิดีโอทีละรายการ คุณสามารถดึงไฟล์เสียงทั้งหมดจากเพลย์ลิสต์ได้ในครั้งเดียว."
+    },
+    "columns": [
+      {
+        "title": "ดาวน์โหลดเพลย์ลิสต์ YouTube เป็น MP3",
+        "description": "1. คัดลอก URL เพลย์ลิสต์.<br>2. วางลิงก์ใน SSVID.<br>3. เลือก MP3 และคุณภาพเสียง.<br>4. ดาวน์โหลดและบันทึกเพลย์ลิสต์ทั้งหมด."
+      },
+      {
+        "title": "ดาวน์โหลดบนคอมพิวเตอร์และมือถือ",
+        "description": "SSVID ปรับให้เหมาะกับอุปกรณ์ของคุณโดยอัตโนมัติ บน <strong>คอมพิวเตอร์</strong> คุณสามารถ <strong>ดาวน์โหลดเพลย์ลิสต์ MP3 ทั้งหมดเป็นไฟล์ ZIP ไฟล์เดียว</strong> บน <strong>มือถือ</strong> ไฟล์ MP3 จะถูกดาวน์โหลด <strong>ทีละไฟล์</strong>."
+      }
+    ],
+    "whyDownload": {
+      "title": "ทำไมต้องดาวน์โหลดเพลย์ลิสต์ YouTube เป็น MP3?",
+      "description": "MP3 เป็นรูปแบบไฟล์เสียงที่มีขนาดเล็กและรองรับเกือบทุกอุปกรณ์ หากคุณต้องการเฉพาะเสียง <strong>การดาวน์โหลดเพลย์ลิสต์ YouTube เป็น MP3</strong> จะช่วยประหยัดพื้นที่และฟังแบบออฟไลน์ได้สะดวก."
+    },
+    "quality": {
+      "title": "คุณภาพ MP3 ที่รองรับ",
+      "description": "SSVID รองรับคุณภาพ MP3 หลายระดับ เช่น <strong>128kbps</strong>, <strong>192kbps</strong> และ <strong>320kbps</strong> เลือกความสมดุลระหว่างขนาดไฟล์และคุณภาพเสียงตามความต้องการ."
+    },
+    "comparison": {
+      "title": "Playlist Downloader vs Multi Download",
+      "sections": [
+        {
+          "title": "ดาวน์โหลด MP3 YouTube Playlist",
+          "description": "เหมาะที่สุดเมื่อคุณมี <strong>ลิงก์เพลย์ลิสต์เดียว</strong> เพียงวางลิงก์และดาวน์โหลดวิดีโอทั้งหมดเป็น MP3 โดยอัตโนมัติ."
+        },
+        {
+          "title": "YouTube Multi Download",
+          "description": "ออกแบบมาสำหรับผู้ใช้ที่มี <strong>ลิงก์วิดีโอหลายรายการ</strong> ซึ่งไม่ได้อยู่ในเพลย์ลิสต์เดียวกัน รองรับทั้ง <strong>MP3 และ MP4</strong> หากคุณมีหลายลิงก์แยกกัน ลองใช้ <a href=\"/youtube-multi-downloader\" title=\"SSVID YouTube Multi Download\"><strong>YouTube Multi Download with SSVID</strong></a>."
+        }
+      ]
+    },
+    "useCases": {
+      "title": "ควรใช้ SSVID Playlist Downloader เมื่อใด?",
+      "items": [
+        {
+          "title": "ดาวน์โหลดอัลบั้มเพลงจาก YouTube",
+          "description": "แปลงอัลบั้มเพลงหรือเพลย์ลิสต์ที่จัดไว้เป็น MP3 เพื่อฟังแบบออฟไลน์."
+        },
+        {
+          "title": "เพลย์ลิสต์การศึกษาและพอดแคสต์",
+          "description": "แปลงเพลย์ลิสต์บรรยายหรือพอดแคสต์ยาว ๆ เป็นไฟล์ MP3 เพื่อฟังได้ทุกเวลา."
+        },
+        {
+          "title": "ดาวน์โหลดเพลย์ลิสต์ไม่จำกัด",
+          "description": "SSVID รองรับ <strong>การดาวน์โหลดเพลย์ลิสต์ YouTube แบบไม่จำกัด</strong> ไม่มีโฆษณาและไม่มีข้อจำกัด."
+        }
+      ]
+    }
+  },
+  "faqs": {
+    "title": "คำถามที่พบบ่อย",
+    "items": [
+      {
+        "question": "มีข้อจำกัดขนาดเพลย์ลิสต์หรือไม่?",
+        "answer": "ไม่มี SSVID อนุญาตให้ดาวน์โหลดเพลย์ลิสต์ YouTube เป็น MP3 ได้ไม่จำกัดจำนวนวิดีโอ."
+      },
+      {
+        "question": "ต้องติดตั้งโปรแกรมหรือไม่?",
+        "answer": "ไม่จำเป็น SSVID ทำงานออนไลน์ผ่านเบราว์เซอร์ของคุณ."
+      },
+      {
+        "question": "SSVID ฟรีและไม่มีโฆษณาหรือไม่?",
+        "answer": "ใช่ SSVID ใช้งานฟรีและไม่มีโฆษณา."
+      },
+      {
+        "question": "สามารถดาวน์โหลด MP3 เพลย์ลิสต์บนมือถือได้หรือไม่?",
+        "answer": "ได้ บนอุปกรณ์มือถือ ไฟล์ MP3 จะถูกดาวน์โหลดทีละไฟล์."
+      },
+      {
+        "question": "ความแตกต่างระหว่างการดาวน์โหลดเพลย์ลิสต์และ multi download คืออะไร?",
+        "answer": "การดาวน์โหลดเพลย์ลิสต์ใช้ลิงก์เพลย์ลิสต์เดียว ส่วน multi download ใช้หลายลิงก์วิดีโอแยกกัน."
+      }
+    ]
+  }
+}

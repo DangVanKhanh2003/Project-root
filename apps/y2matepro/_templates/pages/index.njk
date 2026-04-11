@@ -11,6 +11,7 @@ eleventyComputed:
 ---
 {%- set base = i18nBase[lang] or i18nBase['en'] -%}
 {%- set page = i18nPages[pageKey][lang] or i18nPages[pageKey].en -%}
+{%- set langPrefix = '' if (lang == 'en' or not lang) else '/' + lang -%}
 <div class="container">
     <section class="y2mate-download-pro">
         <div class="y2mate-search-form-pro d-flex">
@@ -37,7 +38,7 @@ eleventyComputed:
                             </button>
                         </div>
                     </div>
-                    <button id="submit" type="submit" name="form_submit" class="submit-btn" aria-label="Search">
+                    <button id="submit" type="submit" name="form_submit" class="submit-btn" aria-label="Search" disabled>
                         <div class="converter-btn">{{ base.hero.submitButton }}</div>
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                             width="14px" height="14px" fill="#fff" id="Layer_1"
@@ -53,9 +54,6 @@ eleventyComputed:
                         {{ base.hero.termsText }} <a href="/terms-condition">{{ base.hero.termsLink }}</a>.
                     </p>
                 </form>
-                <div class="spinner" style="display: none;">
-                    <img id="loading_img" src="/loading.gif">
-                </div>
             </div>
 
             <!-- Video Detail Area -->
@@ -83,7 +81,7 @@ eleventyComputed:
             <h3>{{ page.instructions.title }}</h3>
             <ol>
                 {% for step in page.instructions.steps %}
-                <li>{{ step | safe }}</li>
+                <li>{{ step | localizeLinks(langPrefix) | safe }}</li>
                 {% endfor %}
             </ol>
         </div>
@@ -91,14 +89,14 @@ eleventyComputed:
             <h3>{{ page.whyChoose.title }}</h3>
             <ul>
                 {% for reason in page.whyChoose.reasons %}
-                <li>{{ reason | safe }}</li>
+                <li>{{ reason | localizeLinks(langPrefix) | safe }}</li>
                 {% endfor %}
             </ul>
         </div>
     </section>
     <section class="y2mate-features-wrap">
         <h2>{{ page.features.title }}</h2>
-        <div class="y2mate-features-wrap-pro first">
+        <div class="y2mate-features-wrap-pro first index-features">
             {% for feature in page.features.items %}
             <div class="col-sm-4 d-flex">
                 <div class="y2mate-features-pro">
@@ -127,34 +125,13 @@ eleventyComputed:
                     </svg>
                     {% elif loop.index == 4 %}
                     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
-                        class="bi bi-speedometer2" viewBox="0 0 16 16">
-                        <path
-                            d="M8 4a.5.5 0 0 1 .5.5V6a.5.5 0 0 1-1 0V4.5A.5.5 0 0 1 8 4M3.732 5.732a.5.5 0 0 1 .707 0l.915.914a.5.5 0 1 1-.708.708l-.914-.915a.5.5 0 0 1 0-.707M2 10a.5.5 0 0 1 .5-.5h1.586a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 10m9.5 0a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 1 0 1H12a.5.5 0 0 1-.5-.5m.754-4.246a.39.39 0 0 0-.527-.02L7.547 9.31a.91.91 0 1 0 1.302 1.258l3.434-4.297a.39.39 0 0 0-.029-.518z">
-                        </path>
-                        <path fill-rule="evenodd"
-                            d="M0 10a8 8 0 1 1 15.547 2.661c-.442 1.253-1.845 1.602-2.932 1.25C11.309 13.488 9.475 13 8 13c-1.474 0-3.31.488-4.615.911-1.087.352-2.49.003-2.932-1.25A8 8 0 0 1 0 10m8-7a7 7 0 0 0-6.603 9.329c.203.575.923.876 1.68.63C4.397 12.533 6.358 12 8 12s3.604.532 4.923.96c.757.245 1.477-.056 1.68-.631A7 7 0 0 0 8 3">
-                        </path>
-                    </svg>
-                    {% elif loop.index == 5 %}
-                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-ban"
-                        viewBox="0 0 16 16">
-                        <path
-                            d="M15 8a6.97 6.97 0 0 0-1.71-4.584l-9.874 9.875A7 7 0 0 0 15 8M2.71 12.584l9.874-9.875a7 7 0 0 0-9.874 9.874ZM16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0">
-                        </path>
-                    </svg>
-                    {% elif loop.index == 6 %}
-                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
-                        class="bi bi-aspect-ratio" viewBox="0 0 16 16">
-                        <path
-                            d="M0 3.5A1.5 1.5 0 0 1 1.5 2h13A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 12.5zM1.5 3a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5z">
-                        </path>
-                        <path
-                            d="M2 4.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H3v2.5a.5.5 0 0 1-1 0zm12 7a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1 0-1H13V8.5a.5.5 0 0 1 1 0z">
-                        </path>
+                        class="bi bi-download" viewBox="0 0 16 16">
+                        <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
+                        <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
                     </svg>
                     {% endif %}
                     <h3>{{ feature.title }}</h3>
-                    <p>{{ feature.description }}</p>
+                    <p>{{ feature.description | localizeLinks(langPrefix) | safe }}</p>
                 </div>
             </div>
             {% endfor %}
@@ -167,7 +144,7 @@ eleventyComputed:
             <div class="guide-data">
                 {% for faq in page.faqs.items %}
                 <h3>{{ faq.question }}</h3>
-                <p>{{ faq.answer | safe }}</p>
+                <p>{{ faq.answer | localizeLinks(langPrefix) | safe }}</p>
                 {% endfor %}
             </div>
         </div>

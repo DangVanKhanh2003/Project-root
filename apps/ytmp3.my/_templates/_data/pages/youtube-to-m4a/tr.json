@@ -1,0 +1,69 @@
+{
+  "seo": {
+    "title": "YouTube'dan M4A'ya (Yüksek Kaliteli AAC) – YTMP3",
+    "description": "YTMP3 ile YouTube'u M4A'ya (AAC) dönüştürün. Yüksek ses kalitesi, daha küçük dosya boyutu, iPhone, Android ve masaüstünde günlük dinleme için idealdir. Ücretsiz ve hızlı.",
+    "ogTitle": "YouTube'dan M4A'ya – YTMP3",
+    "ogDescription": "YouTube'u M4A'ya (AAC) dönüştürün. Günlük dinleme için küçük dosya boyutuna sahip yüksek kaliteli ses."
+  },
+
+  "hero": {
+    "title": "YouTube'dan",
+    "titleAccent": "M4A'ya",
+    "subtitle": "Ücretsiz ve hızlı YouTube'dan M4A'ya dönüştürücü"
+  },
+
+  "content": {
+    "mainTitle": "YouTube'dan M4A'ya nedir?",
+    "intro1": "YouTube'dan M4A'ya, bir YouTube videosundaki sesi AAC (Advanced Audio Coding) kodeğini kullanarak M4A formatına dönüştürme işlemidir.",
+    "intro2": "AAC, MP3'ten daha verimli olacak şekilde tasarlanmış modern bir kayıplı ses formatıdır ve daha küçük dosya boyutlarında iyi bir dinleme kalitesi sunar. Bu, M4A'yı günlük müzik dinleme için ideal kılar.",
+
+    "whatIsTitle": "M4A, MP3, FLAC ve WAV'dan nasıl farklıdır?",
+    "whatIsText": "<ul><li><strong>MP3 ile karşılaştırıldığında:</strong> Hem M4A (AAC) hem de MP3 kayıplı formatlardır. AAC daha yeni bir sıkıştırma algoritması kullanır, bu nedenle tipik dinleme seviyelerinde M4A, daha düşük bir bit hızında MP3'e benzer ses çıkarabilir ve bu da daha küçük dosyalara yol açar.<br><br><strong>Ancak:</strong> Tüm cihazlarla ve eski oynatıcılarla maksimum uyumluluk istiyorsanız <a href=\"/youtube-to-mp3-320kbps-converter\">MP3 320kbps</a> en güvenli seçim olmaya devam etmektedir.</li><li><strong>FLAC ile karşılaştırıldığında:</strong> <a href=\"/youtube-to-flac-converter\">FLAC</a>, arşivleme ve odyofiller için tasarlanmış kayıpsız bir formattır. M4A kayıplıdır ve kolaylık, daha hızlı indirmeler ve günlük kullanım için optimize edilmiştir.</li><li><strong>WAV ile karşılaştırıldığında:</strong> <a href=\"/youtube-to-wav-converter\">WAV</a> sıkıştırılmamıştır ve tüm ses verilerini korur, ancak dosya boyutları çok büyüktür. M4A çok daha küçüktür ve normal kullanıcılar için daha pratiktir.</li></ul>"
+  },
+
+  "whyChoose": {
+    "title": "YouTube'dan M4A'ya dönüştürmek için neden YTMP3 kullanmalısınız?",
+    "reasons": [
+      {
+        "title": "Kullanımı ücretsiz",
+        "text": "Kayıt yok, sınır yok."
+      },
+      {
+        "title": "Yüksek kaliteli AAC",
+        "text": "Net ve dengeli ses."
+      },
+      {
+        "title": "Küçük dosya boyutu",
+        "text": "Günlük dinleme için verimli depolama."
+      },
+      {
+        "title": "Geniş uyumluluk",
+        "text": "iOS, Android, Windows ve macOS'ta çalışır."
+      }
+    ]
+  },
+
+  "instructions": {
+    "title": "YouTube'u M4A'ya nasıl dönüştürülür",
+    "steps": [
+      "YouTube video URL'sini kopyalayın.",
+      "YTMP3 dönüştürücüsüne yapıştırın.",
+      "Çıkış formatı olarak M4A'yı seçin.",
+      "“Dönüştür”e tıklayın ve M4A dosyanızı indirin."
+    ]
+  },
+
+  "faqs": {
+    "title": "Sıkça Sorulan Sorular",
+    "items": [
+      { "question": "YTMP3, YouTube'dan M4A'ya dönüştürme için ücretsiz mi?", "answer": "Evet. YTMP3, YouTube videolarını M4A sesine dönüştürmek için tamamen ücretsizdir ve kayıt gerektirmez." },
+      { "question": "M4A nedir ve MP3'ten nasıl farklıdır?", "answer": "M4A, MP3'ün halefi olarak tasarlanmış AAC kodeğini kullanan bir dosya formatıdır. AAC, aynı bit hızında daha iyi ses kalitesi sunar, bu da 256kbps M4A'nın 320kbps MP3 kadar iyi ses çıkardığı ancak dosya boyutunun daha küçük olduğu anlamına gelir." },
+      { "question": "M4A için hangi bit hızını seçmeliyim?", "answer": "Çoğu kullanıcı için 256kbps, kalite ve dosya boyutu arasında mükemmel bir denge sunar. Daha küçük dosyalara ihtiyacınız varsa veya sınırlı depolama alanınız varsa 128kbps'yi seçin." },
+      { "question": "Android'de M4A dosyalarını oynatabilir miyim?", "answer": "Evet. Android 2.3 ve üzeri sürümler M4A/AAC oynatmayı tamamen destekler. Tüm modern Android cihazlar, herhangi bir ek uygulama olmadan M4A dosyalarını doğal olarak oynatabilir." },
+      { "question": "YouTube Shorts'u M4A olarak indirebilir miyim?", "answer": "Evet. YTMP3, YouTube Shorts'u tam videolarla aynı şekilde M4A sesine dönüştürmeyi destekler." },
+      { "question": "YTMP3, M4A dosyalarındaki meta verileri korur mu?", "answer": "Evet. Mevcut olduğunda, YTMP3, müzik kitaplığınızda daha kolay düzenleme için M4A dosyasında başlık, sanatçı, albüm resmi ve diğer etiketler gibi meta verileri korur." },
+      { "question": "M4A, iTunes ve Apple Music ile uyumlu mu?", "answer": "Evet. M4A, iTunes ve Apple Music için yerel formattır. İndirdiğiniz M4A dosyaları, tüm Apple cihazları ve yazılımlarıyla sorunsuz çalışacaktır." },
+      { "question": "M4A mı yoksa FLAC/WAV gibi kayıpsız formatları mı seçmeliyim?", "answer": "Günlük dinleme için M4A'yı seçin – küçük dosya boyutlarıyla mükemmel kalite sunar. Arşivleme veya odyofil kullanımı için FLAC'ı (sıkıştırılmış kayıpsız) seçin. Sıkıştırılmamış kayıpsız için WAV'ı kullanın." }
+    ]
+  }
+}

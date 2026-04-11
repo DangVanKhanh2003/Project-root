@@ -1,0 +1,70 @@
+{
+  "nav": {
+    "home": "الرئيسية",
+    "youtubeToMp3": "YouTube to MP3",
+    "youtubeToMp4": "YouTube to MP4",
+    "youtubeShorts": "YouTube Shorts",
+    "about": "حول"
+  },
+  "langSelector": {
+    "buttonText": "AR",
+    "buttonLabel": "اللغة",
+    "currentLangFull": "العربية"
+  },
+  "drawer": {
+    "logoText": "SSVid.cc",
+    "links": {
+      "home": "الرئيسية",
+      "youtubeToMp3": "يوتيوب إلى MP3",
+      "youtubeToMp4": "يوتيوب إلى MP4",
+      "youtubeShorts": "يوتيوب شورتس",
+      "about": "حول",
+      "faq": "الأسئلة الشائعة",
+      "contact": "اتصل بنا",
+      "terms": "Terms of Use",
+      "privacy": "الخصوصية",
+      "dmca": "DMCA",
+      "cutVideoYoutube": "قطع فيديو يوتيوب"
+    }
+  },
+  "hero": {
+    "placeholder": "الصق رابط يوتيوب هنا...",
+    "pasteBtn": "لصق",
+    "clearBtn": "مسح",
+    "convertBtn": "تحويل",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "Audio track",
+    "searchPlaceholder": "بحث...",
+    "supportedPlatforms": "المنصات المدعومة:"
+  },
+  "overview": {
+    "badge": "سريع ومجاني"
+  },
+  "footer": {
+    "linksRow1": {
+      "youtubeToMp3": "يوتيوب إلى MP3",
+      "youtubeToMp4": "يوتيوب إلى MP4",
+      "youtubeShorts": "يوتيوب شورتس",
+      "cutVideoYoutube": "قطع فيديو يوتيوب"
+    },
+    "linksRow2": {
+      "about": "حول",
+      "contact": "اتصل بنا",
+      "terms": "Terms of Use",
+      "privacyPolicy": "سياسة الخصوصية",
+      "dmca": "DMCA",
+      "faq": "الأسئلة الشائعة"
+    },
+    "copyright": "© 2026 SSVid. جميع الحقوق محفوظة."
+  },
+  "strim": {
+    "startBtn": "ابدأ",
+    "selectFormatLabel": "١. اختر الصيغة:",
+    "selectQualityLabel": "٢. اختر الجودة:",
+    "audioTrackLabel": "٣. اختر المسار الصوتي:",
+    "trimLabel": "٤. قطع الفيديو (البداية – النهاية):",
+    "startTimeLabel": "البداية",
+    "endTimeLabel": "النهاية"
+  }
+}

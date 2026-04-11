@@ -44,13 +44,20 @@
     <meta property="og:site_name" content="Y2Mate" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:title" content="Y2mate - YouTube Shorts Downloader (Free, Fast, HD)" />
-    <meta property="og:description" content="Download YouTube Shorts in HD. Save vertical videos instantly—portrait format, 9:16 ratio, safe and ad-free." />
-    <meta property="og:image" content="https://y2matepro.com/logo.png" />
+    <meta property="og:description" content="Download YouTube Shorts in HD. Save vertical videos instantly—portrait format, 9:16 ratio, safe." />
+    <meta property="og:image" content="https://y2matepro.com/favicon-512x512.png" />
     <meta property="og:url" content="https://y2matepro.com/youtube-short-downloader" />
 
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://y2matepro.com/youtube-short-downloader">
+    <meta name="twitter:title" content="Y2mate - YouTube Shorts Downloader (Free, Fast, HD)">
+    <meta name="twitter:description" content="Download YouTube Shorts in HD. Save vertical videos instantly—portrait format, 9:16 ratio, safe.">
+    <meta name="twitter:image" content="https://y2matepro.com/favicon-512x512.png">
 
     <!-- Favicons -->
-    <link rel="icon" href="/favicon.png">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.png" type="image/png">
     <link type="image/png" sizes="16x16" rel="icon" href="/favicon1616.png">
     <link type="image/png" sizes="32x32" rel="icon" href="/favicon3232.png">
     <link type="image/png" sizes="48x48" rel="icon" href="/favicon4848.png">
@@ -72,22 +79,29 @@
       "@type": "WebPage",
       "@id": "https://y2matepro.com/youtube-short-downloader#webpage",
       "url": "https://y2matepro.com/youtube-short-downloader",
-      "name": "Y2mate - YouTube Shorts Downloader (Free, Fast, HD)",
+      "name": "Y2mate - YouTube Shorts Downloader",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/#website"
+      },
       "about": {
+        "@type": "SoftwareApplication",
         "@id": "https://y2matepro.com/youtube-short-downloader#application"
       },
       "inLanguage": "en"
     },
     {
-      "@type": "WebApplication",
+      "@type": "SoftwareApplication",
       "@id": "https://y2matepro.com/youtube-short-downloader#application",
-      "name": "Y2mate",
+      "name": "Y2mate - YouTube Shorts Downloader",
       "url": "https://y2matepro.com/youtube-short-downloader",
       "description": "Download YouTube Shorts instantly. Free vertical video downloader for mobile and desktop.",
       "applicationCategory": "MultimediaApplication",
       "operatingSystem": "All",
       "browserRequirements": "Requires JavaScript. Requires HTML5.",
       "inLanguage": "en",
+      "publisher": {
+        "@id": "https://y2matepro.com/#organization"
+      },
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -199,9 +213,9 @@
                     <a href="/youtube-to-mp3">YouTube to MP3 Converter</a>
                 </li>
                 <li class="navbar language">
-                    <a href="javascript:void(0);">
+                    <button type="button" aria-haspopup="true" aria-expanded="false">
                         English<span class="shape"></span>
-                    </a>
+                    </button>
                     <div class="dropdown-menu">
                         <ul class="lang-menu">
                             <li>
@@ -370,9 +384,6 @@
                         By using our service you are accepting our <a href="/terms-condition">Terms of Use</a>.
                     </p>
                 </form>
-                <div class="spinner" style="display: none;">
-                    <img id="loading_img" src="/loading.gif">
-                </div>
             </div>
 
             <!-- Video Detail Area -->
@@ -392,7 +403,7 @@
         <div class="col-sm-12">
             <h2>Download YouTube Shorts Videos</h2>
             <p>The YouTube Shorts downloader from Y2Mate lets you download short vertical video clips from YouTube directly to your device. With fast link processing and quick downloads, you can save Shorts within seconds using a simple, easy-to-use, and completely free website.</p>
-            <p>Y2mate focuses entirely on a clean and straightforward Shorts download experience: no ads, no pop-ups, and no redirects. Shorts are downloaded directly in their original 9:16 vertical format, exactly as uploaded on YouTube. You can choose video quality up to 1080p or 720p, or download audio only with bitrates of 128kbps, 192kbps, or 320kbps in MP3, OGG, WAV, or OPUS formats. The tool works smoothly on both mobile and desktop browsers.</p>
+            <p>Y2mate focuses entirely on a clean and straightforward Shorts download experience. Shorts are downloaded directly in their original 9:16 vertical format, exactly as uploaded on YouTube. You can choose video quality up to 1080p or 720p, or download audio only with bitrates of 128kbps, 192kbps, or 320kbps in MP3, OGG, WAV, or OPUS formats. The tool works smoothly on both mobile and desktop browsers.</p>
         </div>
     </section>
     <section class="y2mate-instruction-pro">
@@ -477,8 +488,8 @@
                             d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09z">
                         </path>
                     </svg>
-                    <h3>No ads or pop-ups</h3>
-                    <p>A clean download process with no ads, pop-ups, or interruptions.</p>
+                    <h3>Multiple video and audio options</h3>
+                    <p>Supports Shorts in 1080p or 720p and audio at 128kbps, 192kbps, or 320kbps in MP3, OGG, WAV, or OPUS.</p>
                 </div>
             </div>
             <div class="col-sm-4 d-flex">
@@ -492,8 +503,8 @@
                             d="M14 3a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zM2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z">
                         </path>
                     </svg>
-                    <h3>Multiple video and audio options</h3>
-                    <p>Supports Shorts in 1080p or 720p and audio at 128kbps, 192kbps, or 320kbps in MP3, OGG, WAV, or OPUS.</p>
+                    <h3>Keeps the vertical 9:16 format</h3>
+                    <p>All Shorts remain in their original vertical layout.</p>
                 </div>
             </div>
             <div class="col-sm-4 d-flex">
@@ -504,8 +515,8 @@
                             d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2zm11.5 5.175 3.5 1.556V4.269l-3.5 1.556zM2 4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h7.5a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1z">
                         </path>
                     </svg>
-                    <h3>Keeps the vertical 9:16 format</h3>
-                    <p>All Shorts remain in their original vertical layout.</p>
+                    <h3>Stable browser-based tool</h3>
+                    <p>Works directly in your browser without installing apps or extensions.</p>
                 </div>
             </div>
         </div>
@@ -543,6 +554,15 @@
     <p>© 2025 y2mate</p>
     <ul class="footer_nav">
         <li class="fnav-menu">
+            <a href="/youtube-to-mp4">YouTube to MP4 Converter</a>
+        </li>
+        <li class="fnav-menu">
+            <a href="/youtube-to-mp3">YouTube to MP3 Converter</a>
+        </li>
+        <li class="fnav-menu">
+            <a href="/youtube-short-downloader">YouTube Shorts Downloader</a>
+        </li>
+        <li class="fnav-menu">
             <a href="/about-us">About</a>
         </li>
         <li class="fnav-menu">
@@ -554,15 +574,23 @@
         <li class="fnav-menu">
             <a href="/privacy-policy">Privacy Policy</a>
         </li>
-        <li class="fnav-menu">
-            <a href="/youtube-short-downloader">YouTube Shorts Downloader</a>
-        </li>
     </ul>
 </footer>
 
 
     <!-- Conversion Modal Wrapper -->
     <div id="progressBarWrapper"></div>
+
+    <!-- Ko-fi Support Widget -->
+    <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+    <script>
+      kofiWidgetOverlay.draw('metaconvert', {
+        'type': 'floating-chat',
+        'floating-chat.donateButton.text': 'Support me',
+        'floating-chat.donateButton.background-color': '#00b9fe',
+        'floating-chat.donateButton.text-color': '#fff'
+      });
+    </script>
 </body>
 
 </html>

@@ -1,0 +1,65 @@
+{
+  "nav": {
+    "home": "首頁",
+    "youtubeToMp3Converter": "YouTube轉MP3",
+    "youtubeToMp4Converter": "YouTube轉MP4",
+    "youtubeAudioConverter": "YouTube音訊轉換器",
+    "youtubePlaylistToMp3": "YouTube播放清單轉MP3",
+    "youtubeShortsToMp4": "YouTube Shorts轉MP4",
+    "youtubeToMp3320kbps": "YouTube轉MP3 320kbps",
+    "youtubeToMp44k": "YouTube轉MP4 4K",
+    "youtubeToMp4Hd": "YouTube轉MP4 HD"
+  },
+  "drawer": {
+    "logoText": "YTConvert",
+    "links": {
+      "home": "首頁",
+      "youtubeToMp3Converter": "YouTube轉MP3",
+      "youtubeToMp4Converter": "YouTube轉MP4",
+      "youtubeAudioConverter": "YouTube音訊轉換器",
+      "youtubePlaylistToMp3": "YouTube播放清單轉MP3",
+      "youtubeShortsToMp4": "YouTube Shorts轉MP4",
+      "youtubeToMp3320kbps": "YouTube轉MP3 320kbps",
+      "youtubeToMp44k": "YouTube轉MP4 4K",
+      "youtubeToMp4Hd": "YouTube轉MP4 HD"
+    }
+  },
+  "hero": {
+    "placeholder": "在此貼上影片連結...",
+    "pasteBtn": "貼上",
+    "clearBtn": "清除",
+    "convertBtn": "轉換",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "音軌",
+    "searchPlaceholder": "搜尋...",
+    "supportedPlatforms": "支援的平台："
+  },
+  "footer": {
+    "copyright": "© 2026 YTConvert. 保留所有權利。",
+    "nav": {
+      "youtubeToMp3Converter": "YouTube轉MP3轉換器",
+      "youtubeToMp4Converter": "YouTube轉MP4轉換器",
+      "youtubeAudioConverter": "YouTube音訊轉換器",
+      "youtubePlaylistToMp3": "YouTube播放清單轉MP3",
+      "youtubeShortsToMp4": "YouTube Shorts轉MP4",
+      "youtubeToMp3320kbps": "YouTube轉MP3 320kbps",
+      "youtubeToMp44k": "YouTube轉MP4 4K",
+      "youtubeToMp4Hd": "YouTube轉MP4 HD"
+    }
+  },
+  "langSelector": {
+    "buttonLabel": "變更語言",
+    "buttonText": "ZH",
+    "currentLangFull": "繁體中文"
+  },
+  "strim": {
+    "startBtn": "開始",
+    "selectFormatLabel": "1. 選擇格式：",
+    "selectQualityLabel": "2. 選擇品質：",
+    "audioTrackLabel": "3. 選擇音軌：",
+    "trimLabel": "4. 剪切影片（開始 – 結束時間）：",
+    "startTimeLabel": "開始",
+    "endTimeLabel": "結束"
+  }
+}

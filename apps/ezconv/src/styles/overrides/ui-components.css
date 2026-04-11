@@ -1,0 +1,116 @@
+/**
+ * UI Components Overrides
+ * Override styles from @downloader/ui-components and main.ts imports for ezconv.pro (Light Theme)
+ */
+
+/* ==========================================
+   Suggestion Dropdown Override
+   ========================================== */
+
+/**
+ * Override suggestion container position and theme
+ * Default from package uses top: calc(...), we need fixed top.
+ * Also enforcing light theme backgrounds.
+ */
+#suggestion-container.suggestion-container--visible {
+  top: 60px !important;
+}
+
+@media (min-width: 768px) {
+  #suggestion-container.suggestion-container--visible {
+    top: 65px !important;
+  }
+}
+
+/* Force Light Theme for Suggestion Container */
+.suggestion-container {
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border-subtle) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+  border-radius: 16px !important;
+  overflow: hidden !important;
+}
+
+.suggestion-item {
+  background-color: var(--bg-card) !important;
+  color: var(--text-body) !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
+  transition: background-color 0.2s;
+}
+
+.suggestion-item:last-child {
+  border-bottom: none !important;
+}
+
+.suggestion-item:hover,
+.suggestion-item.active,
+.suggestion-item:focus,
+.suggestion-item.suggestion-item--highlighted {
+  background-color: var(--surface-weak) !important;
+  color: var(--brand) !important;
+  /* Optional: text becomes brand color on hover */
+}
+
+/* Suggestions text highlights if any */
+.suggestion-item strong {
+  color: var(--brand) !important;
+}
+
+/* ==========================================
+   Quality Dropdown Override
+   Override dark mode styles from src/ui-components/.../format-selector.css
+   ========================================== */
+
+/* ==========================================
+   Search Result Card Override
+   ========================================== */
+
+.search-result-card {
+  background: var(--bg-card) !important;
+  border: none !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+}
+
+.search-result-card .card-title,
+.keyword-result-card-wrap .search-result-card .card-title {
+  color: var(--text-heading) !important;
+  text-align: left !important;
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-line-clamp: 1 !important;
+  line-clamp: 1 !important;
+  white-space: normal !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  word-break: break-word !important;
+  max-height: 1.4em !important;
+}
+
+.search-result-card .card-content,
+.keyword-result-card-wrap .search-result-card .card-content {
+  min-height: 60px;
+}
+
+@media (min-width: 600px) {
+
+  .search-result-card .card-title,
+  .keyword-result-card-wrap .search-result-card .card-title {
+    -webkit-line-clamp: 2 !important;
+    line-clamp: 2 !important;
+    max-height: 2.8em !important;
+  }
+
+  .search-result-card .card-content,
+  .keyword-result-card-wrap .search-result-card .card-content {
+    min-height: 75px;
+  }
+}
+
+.search-result-card .meta-info {
+  color: var(--text-secondary) !important;
+}
+
+/* Ensure skeleton loading states are also light if visible */
+.skeleton-card {
+  background-color: var(--bg-card) !important;
+}

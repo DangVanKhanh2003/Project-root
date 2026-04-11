@@ -142,6 +142,16 @@ module.exports = function(eleventyConfig) {
     return JSON.stringify(obj, null, 2);
   });
 
+  // Localize internal links with language prefix
+  // Example: href="/youtube-to-mp4" → href="/vi/youtube-to-mp4" (for Vietnamese)
+  eleventyConfig.addFilter('localizeLinks', function(html, langPrefix) {
+    if (!html) return '';
+    // Only add prefix if it exists (not empty for English)
+    if (!langPrefix) return html;
+    // Replace all href="/ with href="{langPrefix}/
+    return html.replace(/href="\//g, `href="${langPrefix}/`);
+  });
+
 
   // ============================================
   // 6. POST-BUILD: Copy output to final locations

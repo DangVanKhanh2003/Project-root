@@ -1,0 +1,77 @@
+{
+  "seo": {
+    "title": "Convertisseur YouTube en MP4 HD - Télécharger Vidéo 1080p | YTConvert",
+    "description": "Convertissez des vidéos YouTube en MP4 HD en ligne avec YTConvert. Téléchargez des vidéos en qualité 720p ou 1080p rapidement sans publicité, sans inscription et sans logiciel.",
+    "schemaName": "YTConvert - Convertisseur YouTube HD",
+    "schemaDescription": "Outil en ligne pour convertir des vidéos YouTube en HD et 1080p MP4. Collez une URL YouTube et téléchargez des vidéos haute définition rapidement sans publicité.",
+    "ogTitle": "Convertisseur YouTube en MP4 HD - Télécharger Vidéo 1080p | YTConvert",
+    "ogDescription": "Téléchargez des vidéos YouTube en HD et 1080p MP4 avec YTConvert. Rapide, gratuit, sans publicité et compatible avec tous les appareils."
+  },
+  "content": {
+    "form": {
+      "h1": "YTConvert – YouTube en MP4 HD",
+      "placeholder": "Collez l'URL de la vidéo YouTube ici...",
+      "button": "Convertir"
+    },
+    "sections": [
+      {
+        "h2": "Qu'est-ce que le convertisseur YouTube HD YTConvert ?",
+        "p": [
+          "YTConvert vous aide à <strong>convertir des vidéos YouTube en MP4 HD</strong> dans des formats comme 720p et 1080p à partir d'un lien vidéo.",
+          "Collez l'URL, traitez la vidéo et téléchargez-la en haute définition sans publicité, sans inscription et sans installation de logiciel.",
+          "C'est un <strong>convertisseur YouTube HD</strong> fiable pour les téléchargements vidéo quotidiens."
+        ]
+      },
+      {
+        "h2": "Comment convertir une vidéo YouTube en HD",
+        "ol": [
+          {"h3": "Copiez le lien de la vidéo YouTube", "p": ["Copiez l'URL de la vidéo que vous souhaitez en qualité HD."]},
+          {"h3": "Collez dans YTConvert", "p": ["Collez le lien dans le champ de saisie ci-dessus."]},
+          {"h3": "Traitez la vidéo", "p": ["YTConvert prépare les formats HD disponibles comme 720p ou 1080p."]},
+          {"h3": "Téléchargez la vidéo HD", "p": ["Choisissez votre qualité préférée et téléchargez."]}
+        ]
+      },
+      {
+        "h2": "Télécharger des vidéos YouTube en HD",
+        "p": [
+          "Les formats HD comme 720p et 1080p offrent un équilibre entre qualité et taille de fichier.",
+          "YTConvert facilite le <strong>téléchargement de vidéos YouTube en 1080p</strong> pour une visualisation hors ligne.",
+          "Cet outil est parfait pour les utilisateurs à la recherche d'un <strong>convertisseur vidéo YouTube HD</strong>."
+        ]
+      },
+      {
+        "h2": "Pourquoi utiliser YTConvert pour la conversion HD ?",
+        "ul": [
+          {"h3": "Vidéo haute qualité", "p": ["Téléchargez des vidéos en HD et 1080p pour une lecture claire."]},
+          {"h3": "Rapide et gratuit", "p": ["Convertissez des vidéos rapidement sans payer ni vous inscrire."]},
+          {"h3": "Sans publicité ni inscription", "p": ["Profitez d'une interface propre et simple."]},
+          {"h3": "Fonctionne partout", "p": ["Compatible avec les ordinateurs et les appareils mobiles."]}
+        ]
+      },
+      {
+        "h2": "Utilisez le convertisseur HD sur n'importe quel appareil",
+        "p": [
+          "YTConvert fonctionne sur Windows, Mac, Android et iOS.",
+          "Vous pouvez <strong>convertir des vidéos YouTube en HD en ligne</strong> sans installer de logiciel.",
+          "Cela en fait une solution flexible pour les téléchargements haute définition."
+        ]
+      },
+      {
+        "h2": "Découvrez plus d'outils",
+        "ul": [
+          {"h3": "Convertisseur YouTube", "p": ["<a href=\"/\"><strong>Convertisseur YouTube</strong></a>"]},
+          {"h3": "YouTube en MP4", "p": ["<a href=\"/youtube-to-mp4-converter\"><strong>Convertisseur YouTube en MP4</strong></a>"]},
+          {"h3": "Convertisseur YouTube 4K", "p": ["<a href=\"/youtube-to-mp4-4k\"><strong>Convertisseur YouTube 4K</strong></a>"]}
+        ]
+      },
+      {
+        "h2": "Questions fréquemment posées",
+        "ul": [
+          {"h3": "Puis-je télécharger des vidéos YouTube en 1080p ?", "p": ["Oui, si la vidéo prend en charge la résolution HD."]},
+          {"h3": "Ce convertisseur est-il gratuit ?", "p": ["Oui. YTConvert est gratuit."]},
+          {"h3": "Dois-je installer quelque chose ?", "p": ["Non. Il fonctionne directement dans votre navigateur."]}
+        ]
+      }
+    ]
+  }
+}

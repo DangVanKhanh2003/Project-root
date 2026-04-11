@@ -38,7 +38,8 @@ module.exports = function() {
     { pageKey: 'index', slug: '' },  // Homepage
     { pageKey: 'youtube-to-mp4', slug: 'youtube-to-mp4' },
     { pageKey: 'youtube-to-mp3', slug: 'youtube-to-mp3' },
-    { pageKey: 'youtube-short-downloader', slug: 'youtube-short-downloader' }
+    { pageKey: 'youtube-short-downloader', slug: 'youtube-short-downloader' },
+    { pageKey: 'youtube-to-wav-converter', slug: 'youtube-to-wav-converter' }
   ];
 
   // Check which pages have data files

@@ -127,7 +127,7 @@ function initLanguageDropdown() {
     const currentLang = getCurrentLanguage();
 
     // Desktop language dropdown
-    const languageNav = document.querySelector('.navbar.language > a');
+    const languageNav = document.querySelector('.navbar.language > button');
     const dropdownMenu = document.querySelector('.navbar.language .dropdown-menu');
     const desktopLangOptions = document.querySelectorAll('.lang-menu .lang-option, .lang-menu a');
 
@@ -220,12 +220,46 @@ function initLanguageDropdown() {
 }
 
 /**
+ * Initialize Firebase Analytics (lazy loaded with delay)
+ *
+ * ⚡ PERFORMANCE STRATEGY:
+ * 1. Initial delay: 3s after page load (ensures critical rendering complete)
+ * 2. Then requestIdleCallback waits for browser idle
+ * 3. Never blocks initial page render or user interactions
+ *
+ * Timeline: Page Load → 3s delay → requestIdleCallback → Firebase loads
+ */
+function initFirebaseAnalytics() {
+  // Delay 3s before even starting to load Firebase
+  // This ensures all critical rendering and interactions are complete
+  setTimeout(() => {
+    import('./libs/firebase/firebase-loader')
+      .then(({ loadFirebaseWhenIdle }) => {
+        loadFirebaseWhenIdle();
+      })
+      .catch(() => {
+        // Silent fail - app works without analytics
+      });
+  }, 5000);
+}
+
+function initFeedbackWidget(): void {
+  setTimeout(() => {
+    import('./features/feedback/feedback-widget')
+      .then(({ initFeedbackWidget: init }) => init())
+      .catch(() => { });
+  }, 5000);
+}
+
+/**
  * Initialize app
  */
 function loadFeatures() {
   initMobileMenu(); // Initialize mobile menu first
   initLanguageDropdown(); // Initialize language dropdown
   initDownloaderUI();
+  initFirebaseAnalytics(); // Load analytics when browser is idle
+  initFeedbackWidget(); // Initialize Feedback Widget (lazy loaded after 5s)
 }
 
 // DOM Ready

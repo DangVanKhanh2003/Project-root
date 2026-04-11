@@ -1,0 +1,74 @@
+{
+  "nav": {
+    "home": "Home",
+    "youtubeToMp3": "YouTube to MP3",
+    "youtubeToMp4": "YouTube to MP4",
+    "youtubeShorts": "YouTube Shorts",
+    "about": "About"
+  },
+  "langSelector": {
+    "buttonText": "EN",
+    "buttonLabel": "Language",
+    "currentLangFull": "English"
+  },
+  "drawer": {
+    "logoText": "YTMP4.gg",
+    "links": {
+      "home": "Home",
+      "youtubeToMp4": "YouTube to MP4",
+      "youtubeHd4k": "Download Youtube 4k Video",
+      "youtube1080p": "Download Youtube 1080p Video",
+      "shortsDownloader": "Youtube Shorts mp4",
+      "cutVideo": "Youtube Video Cutter",
+      "playlistDownloader": "Download Youtube Playlist",
+      "multiDownloader": "Multi Youtube Downloader",
+      "channelDownloader": "Download Youtube Channel",
+      "about": "About",
+      "faq": "FAQ",
+      "contact": "Contact",
+      "terms": "Terms of Use",
+      "privacy": "Privacy Policy",
+      "dmca": "DMCA"
+    }
+  },
+  "hero": {
+    "placeholder": "Paste YouTube link here...",
+    "pasteBtn": "Paste",
+    "clearBtn": "Clear",
+    "convertBtn": "Convert",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "Audio track",
+    "searchPlaceholder": "Search...",
+    "supportedPlatforms": "Supported platforms:"
+  },
+  "footer": {
+    "linksRow1": {
+      "youtubeHd4k": "Download Youtube 4k Video",
+      "youtube1080p": "Download Youtube 1080p Video",
+      "shortsDownloader": "Youtube Shorts mp4",
+      "cutVideo": "Youtube Video Cutter",
+      "playlistDownloader": "Download Youtube Playlist",
+      "multiDownloader": "Multi Youtube Downloader",
+      "channelDownloader": "Download Youtube Channel"
+    },
+    "linksRow2": {
+      "about": "About",
+      "contact": "Contact",
+      "terms": "Terms of Use",
+      "privacyPolicy": "Privacy Policy",
+      "dmca": "DMCA",
+      "faq": "FAQ"
+    },
+    "copyright": "© 2026 YTMP4. All rights reserved."
+  },
+  "strim": {
+    "startBtn": "Start",
+    "selectFormatLabel": "1. Select format:",
+    "selectQualityLabel": "2. Select quality:",
+    "audioTrackLabel": "3. Select audio track:",
+    "trimLabel": "4. Cut video (Start – End time):",
+    "startTimeLabel": "Start",
+    "endTimeLabel": "End"
+  }
+}

@@ -1,0 +1,158 @@
+{
+  "seo": {
+    "title": "YouTube Playlist Downloader – Baixar Playlist Completa | Y2SAVE",
+    "description": "Baixe playlists completas do YouTube online com Y2SAVE. Downloader rápido de playlists em alta qualidade sem necessidade de cadastro.",
+    "schemaName": "Y2SAVE - YouTube Playlist Downloader",
+    "schemaDescription": "Y2SAVE é um downloader gratuito de playlists do YouTube que permite baixar playlists inteiras de forma rápida e fácil.",
+    "ogTitle": "YouTube Playlist Downloader – Baixar Playlist Completa | Y2SAVE",
+    "ogDescription": "Baixe playlists inteiras do YouTube instantaneamente com Y2SAVE. Ferramenta gratuita para downloads em massa rápidos e fáceis."
+  },
+
+  "content": {
+
+    "form": {
+      "h1": "YouTube Playlist Downloader",
+      "placeholder": "Cole a URL da playlist do YouTube aqui...",
+      "button": "Baixar Playlist"
+    },
+
+    "sections": [
+
+      {
+        "h2": "O que é um YouTube Playlist Downloader?",
+        "p": [
+          "Um <strong>YouTube playlist downloader</strong> permite baixar vários vídeos de uma playlist em um único processo.",
+          "Em vez de baixar vídeos individualmente, você pode colar o link da playlist e baixar todos os vídeos rapidamente.",
+          "Este <strong>downloader de playlists do YouTube</strong> é ideal para salvar cursos, tutoriais, playlists de música ou séries de vídeos para assistir offline."
+        ]
+      },
+
+      {
+        "h2": "Como baixar vídeos de playlist do YouTube",
+        "ol": [
+          {
+            "h3": "Copie a URL da playlist do YouTube",
+            "p": [
+              "Abra o YouTube e copie o link da playlist que deseja baixar."
+            ]
+          },
+          {
+            "h3": "Cole o link da playlist",
+            "p": [
+              "Cole a URL da playlist na ferramenta de download acima."
+            ]
+          },
+          {
+            "h3": "Carregar todos os vídeos",
+            "p": [
+              "A ferramenta buscará automaticamente todos os vídeos da playlist."
+            ]
+          },
+          {
+            "h3": "Baixar a playlist",
+            "p": [
+              "Escolha a qualidade desejada e baixe a playlist inteira instantaneamente."
+            ]
+          }
+        ]
+      },
+
+      {
+        "h2": "Baixe playlists completas do YouTube facilmente",
+        "p": [
+          "Com esta ferramenta, você pode <strong>baixar uma playlist completa do YouTube</strong> em apenas alguns cliques.",
+          "Seja para <strong>baixar uma playlist inteira do YouTube</strong> para aprendizado offline ou salvar uma série de vídeos, o processo é rápido e simples.",
+          "Você também pode <strong>baixar toda uma playlist do YouTube</strong> sem repetir etapas."
+        ]
+      },
+
+      {
+        "h2": "YouTube Playlist Downloader Online",
+        "p": [
+          "Este <strong>YouTube playlist downloader online</strong> funciona diretamente no seu browser sem instalação.",
+          "Permite <strong>baixar uma playlist completa do YouTube</strong> em qualquer dispositivo, incluindo celular, tablet ou desktop.",
+          "Você também pode <strong>baixar um vídeo de uma playlist do YouTube</strong> individualmente, se necessário."
+        ]
+      },
+
+      {
+        "h2": "Por que usar este downloader de playlist?",
+        "ul": [
+          {
+            "h3": "Suporte a download em massa",
+            "p": [
+              "Baixe vários vídeos de uma vez em vez de lidar com eles um por um."
+            ]
+          },
+          {
+            "h3": "Rápido e fácil de usar",
+            "p": [
+              "Cole o link da playlist e comece a baixar instantaneamente."
+            ]
+          },
+          {
+            "h3": "Funciona em todos os dispositivos",
+            "p": [
+              "Compatível com Android, iPhone, tablets e navegadores desktop."
+            ]
+          }
+        ]
+      },
+
+      {
+        "h2": "Casos de uso comuns",
+        "ul": [
+          {
+            "h3": "Baixar cursos online",
+            "p": [
+              "Salve playlists educacionais completas para aprendizado offline."
+            ]
+          },
+          {
+            "h3": "Baixar playlists de música",
+            "p": [
+              "Mantenha seus vídeos musicais favoritos disponíveis a qualquer momento."
+            ]
+          },
+          {
+            "h3": "Baixar séries de vídeos",
+            "p": [
+              "Baixe séries completas como tutoriais, vlogs ou guias."
+            ]
+          }
+        ]
+      },
+
+      {
+        "h2": "Perguntas frequentes",
+        "ul": [
+          {
+            "h3": "Posso baixar uma playlist inteira do YouTube?",
+            "p": [
+              "Sim. Você pode baixar uma playlist inteira do YouTube colando o link na ferramenta."
+            ]
+          },
+          {
+            "h3": "Este YouTube playlist downloader é gratuito?",
+            "p": [
+              "Sim. A ferramenta é completamente gratuita sem limites."
+            ]
+          },
+          {
+            "h3": "Preciso instalar algo?",
+            "p": [
+              "Não. Esta é uma ferramenta online que funciona diretamente no seu browser."
+            ]
+          },
+          {
+            "h3": "Posso usar no celular?",
+            "p": [
+              "Sim. Funciona em todos os dispositivos, incluindo Android e iPhone."
+            ]
+          }
+        ]
+      }
+
+    ]
+  }
+}

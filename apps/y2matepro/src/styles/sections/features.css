@@ -21,7 +21,11 @@
     max-width: 33.333333%;
 }
 
-
+/* Index page features: 2 columns for 4 items */
+.y2mate-features-wrap-pro.index-features .col-sm-4 {
+    flex: 0 0 50%;
+    max-width: 50%;
+}
 
 .y2mate-features-wrap-pro.first::before {
     background: inherit;
@@ -55,9 +59,26 @@
     max-width: 350px;
 }
 
+.y2mate-features-pro p a {
+    color: inherit; /* Cùng màu với text */
+    font-weight: var(--font-weight-bold); /* Font weight đậm hơn */
+    text-decoration: none;
+}
+
+.y2mate-features-pro p a:hover {
+    text-decoration: underline;
+    color: var(--color-primary); /* Đổi màu khi hover cho rõ */
+}
+
 /* ===== TABLET (768px - 1023px) ===== */
 @media (min-width: 768px) and (max-width: 1023px) {
     .y2mate-features-wrap-pro .col-sm-4 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+
+    /* Index page features: maintain 2 columns on tablet */
+    .y2mate-features-wrap-pro.index-features .col-sm-4 {
         flex: 0 0 50%;
         max-width: 50%;
     }
@@ -75,16 +96,23 @@
     }
 }
 
-/* ===== MOBILE (max-width: 767px) ===== */
+/* ===== MOBILE (<768px) ===== */
 @media (max-width: 767px) {
     .y2mate-features-wrap-pro {
         padding: 25px 0;
         display: block;
     }
 
+    /* All features: 1 column on mobile */
     .y2mate-features-wrap-pro .col-sm-4 {
-        flex: 0 0 100%;
-        max-width: 100%;
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* Override index-features to 1 column on mobile */
+    .y2mate-features-wrap-pro.index-features .col-sm-4 {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
     }
 
     .y2mate-features-pro {

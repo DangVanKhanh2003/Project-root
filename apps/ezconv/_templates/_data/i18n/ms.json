@@ -1,0 +1,72 @@
+{
+  "nav": {
+    "home": "Laman Utama",
+    "youtubeToMp3": "YouTube to MP3",
+    "youtubeToMp4": "YouTube to MP4",
+    "youtubeShorts": "YouTube Shorts",
+    "about": "Tentang Kami"
+  },
+  "langSelector": {
+    "buttonText": "MS",
+    "buttonLabel": "Bahasa",
+    "currentLangFull": "Melayu"
+  },
+  "drawer": {
+    "logoText": "EzConv.pro",
+    "links": {
+      "home": "Laman Utama",
+      "youtubeToMp3": "YouTube ke MP3",
+      "youtubeToMp4": "YouTube ke MP4",
+      "youtubeShorts": "YouTube Shorts",
+      "about": "Tentang Kami",
+      "faq": "Soalan Lazim",
+      "contact": "Hubungi Kami",
+      "terms": "Terms of Use",
+      "privacy": "Privasi",
+      "dmca": "DMCA",
+      "cutVideoYoutube": "Potong Video YouTube"
+    }
+  },
+  "hero": {
+    "placeholder": "Tampal pautan YouTube di sini...",
+    "pasteBtn": "Tampal",
+    "clearBtn": "Padam",
+    "convertBtn": "Tukar",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "Audio track",
+    "searchPlaceholder": "Cari...",
+    "searchBtn": "Cari",
+    "searchVideosPlaceholder": "Cari video...",
+    "supportedPlatforms": "Platform yang disokong:"
+  },
+  "overview": {
+    "badge": "Cepat & Percuma"
+  },
+  "footer": {
+    "linksRow1": {
+      "youtubeToMp3": "YouTube ke MP3",
+      "youtubeToMp4": "YouTube ke MP4",
+      "youtubeShorts": "YouTube Shorts",
+      "cutVideoYoutube": "Potong Video YouTube"
+    },
+    "linksRow2": {
+      "about": "Tentang Kami",
+      "contact": "Hubungi Kami",
+      "terms": "Terms of Use",
+      "privacyPolicy": "Dasar Privasi",
+      "dmca": "DMCA",
+      "faq": "Soalan Lazim"
+    },
+    "copyright": "© 2026 EzConv. Hak cipta terpelihara."
+  },
+  "trim": {
+    "startBtn": "Mula",
+    "selectFormatLabel": "1. Pilih format:",
+    "selectQualityLabel": "2. Pilih kualiti:",
+    "audioTrackLabel": "3. Pilih trek audio:",
+    "trimLabel": "4. Potong video (Mula – Tamat):",
+    "startTimeLabel": "Mula",
+    "endTimeLabel": "Tamat"
+  }
+}

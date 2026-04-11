@@ -246,6 +246,16 @@ export function extractPlaylistId(input: string): string | null {
   return null;
 }
 
+/**
+ * Check if URL is a YouTube playlist URL
+ *
+ * @param input - URL string to validate
+ * @returns true if input is a valid YouTube playlist URL
+ */
+export function isPlaylistUrl(input: string): boolean {
+  return !!extractPlaylistId(input);
+}
+
 export interface VideoExistsResult {
   exists: boolean;
   error?: string;

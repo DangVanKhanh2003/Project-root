@@ -1,0 +1,35 @@
+{
+  "nav": { "home": "首頁" },
+  "drawer": { "logoText": "Y2SS", "links": { "home": "首頁" } },
+  "hero": {
+    "placeholder": "在此貼上 YouTube 播放清單連結...",
+    "pasteBtn": "貼上",
+    "clearBtn": "清除",
+    "convertBtn": "轉換",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "音軌",
+    "searchPlaceholder": "搜尋...",
+    "supportedPlatforms": "支援的平台："
+  },
+  "footer": {
+    "copyright": "© 2026 Y2SS. All rights reserved.",
+    "legal": {
+      "about": "關於我們",
+      "contact": "聯絡我們",
+      "copyright": "版權與 DMCA",
+      "privacyPolicy": "隱私權政策",
+      "termsOfUse": "使用條款"
+    }
+  },
+  "langSelector": { "buttonLabel": "切換語言", "buttonText": "ZH", "currentLangFull": "繁體中文" },
+  "strim": {
+    "startBtn": "開始",
+    "selectFormatLabel": "1. 選擇格式：",
+    "selectQualityLabel": "2. 選擇畫質：",
+    "audioTrackLabel": "3. 選擇音軌：",
+    "trimLabel": "4. 剪輯影片（開始 – 結束時間）：",
+    "startTimeLabel": "開始",
+    "endTimeLabel": "結束"
+  }
+}

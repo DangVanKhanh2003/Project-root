@@ -1,0 +1,32 @@
+---
+layout: base.njk
+pagination:
+  data: mp3DownloaderPages
+  size: 1
+  alias: pageInfo
+eleventyComputed:
+  permalink: "{{ pageInfo.permalink }}"
+  lang: "{{ pageInfo.lang }}"
+  pageKey: "{{ pageInfo.pageKey }}"
+---
+{%- set base = i18nBase[lang] or i18nBase['en'] -%}
+{%- set page = i18nPages[pageKey][lang] or i18nPages[pageKey].en -%}
+{%- set langPrefix = '' if (lang == 'en' or not lang) else '/' + lang -%}
+
+<!-- HERO SECTION -->
+<section class="hero-section">
+    <div class="container">
+        <div class="hero-container">
+            {% include "partials/hero-form.njk" %}
+        </div>
+    </div>
+</section>
+
+<!-- Search Results Section (Hidden until populated) -->
+<section id="search-results-section" style="display: none;">
+    <div class="container">
+        <div id="search-results-container"></div>
+    </div>
+</section>
+
+{% include "partials/main-content.njk" %}

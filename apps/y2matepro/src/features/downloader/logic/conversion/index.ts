@@ -1,19 +1,20 @@
 /**
  * Conversion Module - Main Barrel Export
  *
- * Simple architecture for conversion modal flow.
+ * Simple V3 API flow for all devices.
+ * No device-specific routing or strategies.
  */
 
 // Types
 export * from './types';
 
-// Application layer (strategies)
-export * from './application';
+// V3 exports
+export * from './v3';
 
-// Main orchestrator (v2)
+// Main conversion logic
 export {
   startConversion,
   cancelConversion,
   handleDownloadClick,
   clearSocialMediaCache
-} from './convert-logic-v2';
+} from './convert-logic';

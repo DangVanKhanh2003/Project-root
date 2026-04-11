@@ -1,0 +1,24 @@
+
+User-agent: GPTBot
+Allow: /
+Disallow: /api
+Disallow: /api/
+Disallow: /api/*
+
+User-agent: Claude-Web
+Allow: /
+Disallow: /api
+Disallow: /api/
+Disallow: /api/*
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /api
+Disallow: /api/
+Disallow: /api/*
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /api
+Disallow: /api/
+Disallow: /api/*

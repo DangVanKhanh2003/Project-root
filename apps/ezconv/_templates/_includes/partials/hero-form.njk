@@ -1,0 +1,354 @@
+<!-- Multi Download Form -->
+<div id="multi-download-form" class="multiple-download-card">
+    <div class="input-platform-icons">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" title="YouTube"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"></path></svg>
+        <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" title="TikTok"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"></path></svg>
+        <!-- <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" title="Facebook"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path></svg> -->
+        <!-- <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" title="Instagram"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"></path></svg> -->
+        <!-- <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" title="X (Twitter)"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg> -->
+    </div>
+    <!-- URL Input Area -->
+    <div class="urls-input-container">
+        <textarea id="urlsInput" class="urls-textarea" placeholder="https://youtube.com/watch?v=VID_1
+https://youtube.com/watch?v=VID_2" rows="5"></textarea>
+    </div>
+
+    <!-- Global Settings Row -->
+    <div id="multi-download-form-actions">
+        <div class="multi-format-selector-wrapper">
+            <div class="multi-format-selector">
+                <button type="button" id="advanced-settings-toggle" class="advanced-settings-toggle"
+                    aria-label="Advanced Settings" aria-expanded="false"
+                    aria-controls="advanced-settings-panel">
+                    <div class="adv-settings-icon-wrap" aria-hidden="true">
+                        <svg class="adv-settings-icon" width="20" height="20" viewBox="0 0 20 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" style="flex-shrink: 0;"><path d="M10.5488 2C11.3503 2 12 2.64973 12 3.45117C12 3.64554 12.1376 3.85418 12.3848 3.95215C12.4534 3.97933 12.5215 4.00769 12.5889 4.03711L12.6797 4.06934C12.8914 4.12916 13.094 4.07583 13.2148 3.95508C13.7824 3.38817 14.7023 3.38882 15.2695 3.95605L16.0439 4.73047L16.1436 4.84082C16.6091 5.41137 16.5761 6.25346 16.0439 6.78516C15.9061 6.92297 15.8568 7.16748 15.9629 7.41016L16.0479 7.61523L16.0898 7.70215C16.1981 7.8943 16.3787 7.99998 16.5488 8C17.3503 8 18 8.64973 18 9.45117V10.5488C18 11.3503 17.3503 12 16.5488 12C16.3787 12 16.1982 12.1057 16.0898 12.2979L16.0479 12.3848C16.0206 12.4533 15.9923 12.5216 15.9629 12.5889C15.8567 12.8317 15.9059 13.0768 16.0439 13.2148C16.6113 13.7823 16.6113 14.7021 16.0439 15.2695L15.2695 16.0439C14.7021 16.6113 13.7823 16.6113 13.2148 16.0439C13.0941 15.9232 12.8914 15.87 12.6797 15.9297L12.5889 15.9629C12.5219 15.9921 12.4539 16.0198 12.3857 16.0469C12.1385 16.1449 12.0002 16.3534 12 16.5479C12 17.3496 11.3496 18 10.5479 18H9.45215C8.6504 18 8 17.3496 8 16.5479C7.99981 16.3776 7.89419 16.1969 7.70215 16.0889L7.61523 16.0469C7.5465 16.0197 7.4777 15.9914 7.41016 15.9619C7.16721 15.8561 6.92289 15.9062 6.78516 16.0439C6.25346 16.5761 5.41137 16.6091 4.84082 16.1436L4.73047 16.0439L3.95605 15.2695C3.38882 14.7023 3.38817 13.7824 3.95508 13.2148L4.00293 13.1582C4.089 13.0359 4.1206 12.8611 4.06934 12.6797L4.03711 12.5889C4.00769 12.5215 3.97933 12.4534 3.95215 12.3848C3.85418 12.1376 3.64554 12 3.45117 12C2.64973 12 2 11.3503 2 10.5488V9.45117C2 8.64973 2.64973 8 3.45117 8C3.64551 7.99998 3.85336 7.86221 3.95117 7.61523L4.03711 7.41016L4.06934 7.31934C4.12058 7.13786 4.0891 6.963 4.00293 6.84082L3.95508 6.78516C3.38796 6.21804 3.38796 5.29759 3.95508 4.73047L4.73047 3.95508L4.84082 3.85547C5.41121 3.39018 6.25345 3.42338 6.78516 3.95508C6.92296 4.09285 7.16718 4.14308 7.41016 4.03711C7.47794 4.00754 7.54625 3.97848 7.61523 3.95117C7.86221 3.85336 7.99998 3.64551 8 3.45117C8 2.64973 8.64973 2 9.45117 2H10.5488ZM9.45117 3C9.20202 3 9 3.20202 9 3.45117C8.99998 4.12476 8.54338 4.66017 7.9834 4.88184C7.92515 4.9049 7.86686 4.92814 7.80957 4.95312C7.25608 5.19449 6.55378 5.13969 6.07715 4.66309C5.92261 4.50854 5.68432 4.48855 5.50879 4.60449L5.43848 4.66309L4.66309 5.43848C4.48649 5.61507 4.48649 5.90055 4.66309 6.07715C5.10986 6.52395 5.18607 7.1692 4.99512 7.7041L4.95312 7.80957C4.92814 7.86686 4.9049 7.92515 4.88184 7.9834C4.66017 8.54338 4.12476 8.99998 3.45117 9C3.20202 9 3 9.20202 3 9.45117V10.5488C3 10.798 3.20202 11 3.45117 11C4.12476 11 4.65999 11.4569 4.88184 12.0166C4.90472 12.0743 4.92834 12.1317 4.95312 12.1885C5.1948 12.7421 5.13958 13.4449 4.66309 13.9219C4.48628 14.0988 4.48621 14.3856 4.66309 14.5625L5.4375 15.3369L5.50879 15.3955C5.6843 15.5112 5.92272 15.4914 6.07715 15.3369C6.55382 14.8599 7.25685 14.8044 7.81055 15.0459C7.86752 15.0707 7.92546 15.0943 7.9834 15.1172L8.08691 15.1631C8.59842 15.4071 8.99981 15.9165 9 16.5479C9 16.7973 9.20268 17 9.45215 17H10.5479C10.7973 17 11 16.7973 11 16.5479C11.0002 15.8742 11.4568 15.3391 12.0166 15.1172C12.0743 15.0943 12.1317 15.0707 12.1885 15.0459L12.2939 15.0039C12.8292 14.8126 13.4747 14.8898 13.9219 15.3369C14.0988 15.5138 14.3856 15.5138 14.5625 15.3369L15.3369 14.5625C15.5138 14.3856 15.5138 14.0988 15.3369 13.9219C14.86 13.445 14.8046 12.7424 15.0469 12.1885C15.0718 12.1315 15.0952 12.0735 15.1182 12.0156L15.1641 11.9121C15.4084 11.4013 15.9175 11 16.5488 11C16.798 11 17 10.798 17 10.5488V9.45117C17 9.20202 16.798 9 16.5488 9C15.9172 8.99998 15.4081 8.59825 15.1641 8.08691L15.1182 7.9834L15.0459 7.81055C14.8038 7.25675 14.8599 6.55381 15.3369 6.07715C15.4914 5.92272 15.5112 5.6843 15.3955 5.50879L15.3369 5.4375L14.5625 4.66309C14.4079 4.50844 14.169 4.48878 13.9932 4.60449L13.9219 4.66309C13.4449 5.13958 12.7421 5.1948 12.1885 4.95312L12.0166 4.88184C11.4569 4.65999 11 4.12476 11 3.45117C11 3.20202 10.798 3 10.5488 3H9.45117ZM10 7C11.6569 7 13 8.34315 13 10C13 11.6569 11.6569 13 10 13C8.34315 13 7 11.6569 7 10C7 8.34315 8.34315 7 10 7ZM10 8C8.89543 8 8 8.89543 8 10C8 11.1046 8.89543 12 10 12C11.1046 12 12 11.1046 12 10C12 8.89543 11.1046 8 10 8Z"></path></svg>
+                    </div>
+                </button>
+                <button type="button" id="multi-search-toggle" class="multi-search-toggle multi-search-toggle--desktop"
+                    aria-label="{{ base.hero.searchBtn or base.hero.searchPlaceholder }}"
+                    aria-pressed="false" aria-expanded="false"
+                    aria-controls="multi-search-place keyword-search-results-section">
+                    <span class="multi-search-toggle__icon" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </span>
+                    <span class="multi-search-toggle__text">{{ base.hero.searchBtn or 'Search' }}</span>
+                </button>
+                <div class="multi-format-actions">
+                    <div class="multi-format-dropdown-wrapper">
+                        <select id="multi-format-select" class="multi-format-select" aria-label="Format">
+                            <option value="mp4">MP4</option>
+                            <option value="mp3" selected>MP3</option>
+                        </select>
+                        <div class="multi-select-arrow">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <path d="M6 9l6 6 6-6" />
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="multi-quality-dropdown-wrapper">
+                        <select id="multi-quality-select-mp3"
+                            class="multi-quality-select multi-quality-select--mp3"
+                            aria-label="Audio quality" data-quality-select style="display: none;">
+                            <option value="mp3-128">MP3 - 128kbps</option>
+                            <option value="mp3-192">MP3 - 192kbps</option>
+                            <option value="mp3-320" selected>MP3 - 320kbps</option>
+                            <option value="mp3-64">MP3 - 64kbps</option>
+                            <option value="flac">FLAC - Lossless</option>
+                            <option value="ogg">OGG</option>
+                            <option value="wav">WAV - Lossless</option>
+                            <option value="opus">Opus</option>
+                            <option value="m4a">M4A</option>
+                        </select>
+                        <select id="multi-quality-select-mp4"
+                            class="multi-quality-select multi-quality-select--mp4"
+                            aria-label="Video quality" data-quality-select>
+                            <option value="mp4-2160">MP4 - 4K</option>
+                            <option value="mp4-1440">MP4 - 2K</option>
+                            <option value="mp4-1080">MP4 - 1080p</option>
+                            <option value="mp4-720" selected>MP4 - 720p</option>
+                            <option value="mp4-480">MP4 - 480p</option>
+                            <option value="mp4-360">MP4 - 360p</option>
+                            <option value="mp4-144">MP4 - 144p</option>
+                            <option value="webm">WEBM</option>
+                            <option value="mkv">MKV</option>
+                        </select>
+                        <div class="multi-select-arrow">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <path d="M6 9l6 6 6-6" />
+                            </svg>
+                        </div>
+                    </div>
+                    <script>(function () { try { var p = JSON.parse(localStorage.getItem('Ezconv_format_preferences')); if (!p) return; var f = p.selectedFormat; if (f === 'mp3' || f === 'mp4') { var btns = document.querySelectorAll('.multi-format-btn'); btns.forEach(function (b) { b.classList.toggle('active', b.getAttribute('data-format') === f) }) } var s = f === 'mp4' ? document.getElementById('multi-quality-select-mp4') : document.getElementById('multi-quality-select-mp3'); if (!s) return; var v; if (f === 'mp4') { var vq = p.videoQuality || '720p'; v = (vq === 'webm' || vq === 'mkv') ? vq : 'mp4-' + vq.replace('p', '') } else { var af = p.audioFormat || 'mp3'; v = (af === 'mp3') ? 'mp3-' + (p.audioBitrate || '320') : af } s.value = v } catch (e) { } })()</script>
+                    <button type="button" id="addUrlsBtn" class="multi-btn-convert" aria-label="Convert">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256"><path d="M208.49,120.49a12,12,0,0,1-17,0L140,69V216a12,12,0,0,1-24,0V69L64.49,120.49a12,12,0,0,1-17-17l72-72a12,12,0,0,1,17,0l72,72A12,12,0,0,1,208.49,120.49Z"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+   
+</div>
+
+
+ <!-- Advanced Settings Panel -->
+    <div id="advanced-settings-panel" class="advanced-settings-panel" hidden>
+        <div class="adv-settings-row">
+
+            <!-- 1. Audio Track -->
+            <div class="adv-setting-item adv-setting-item--audio">
+                <span class="adv-setting-label">1. Audio Track</span>
+                <div class="custom-dropdown" id="multi-audio-track-dropdown">
+                    <div class="dropdown-trigger" tabindex="0" role="button" aria-haspopup="listbox"
+                        aria-expanded="false">
+                        <div class="selected-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="14"
+                                viewBox="0 0 44 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round"
+                                class="icon-audio-language-horizontal" aria-hidden="true">
+                                <g fill="currentColor" stroke="none" transform="translate(-2 0)">
+                                    <path
+                                        d="M19.4 .2C19.29 .27 19.20 .37 19.13 .49C19.07 .60 19.02 .72 19.01 .85C18.99 .98 18.99 1.12 19.03 1.24C19.06 1.37 19.12 1.49 19.2 1.6L20.8 .4C20.64 .18 20.40 .04 20.14 .01C19.87 -0.02 19.61 .04 19.4 .2ZM20.8 .4L20 1L19.2 1.59C20.37 3.16 21.00 5.06 21.00 7.01C20.99 8.97 20.35 10.87 19.17 12.42C19.01 12.64 18.94 12.90 18.98 13.16C19.02 13.43 19.16 13.66 19.37 13.83C19.58 13.99 19.84 14.05 20.11 14.02C20.37 13.98 20.61 13.84 20.77 13.63C22.21 11.73 22.99 9.41 23 7.02C23.00 4.63 22.23 2.31 20.8 .4ZM10 2C8.67 2 7.40 2.52 6.46 3.46C5.52 4.40 5 5.67 5 7C5 8.32 5.52 9.59 6.46 10.53C7.40 11.47 8.67 12 10 12C11.32 12 12.59 11.47 13.53 10.53C14.47 9.59 15 8.32 15 7C15 5.67 14.47 4.40 13.53 3.46C12.59 2.52 11.32 2 10 2ZM16.17 2.29C15.97 2.48 15.86 2.73 15.86 2.99C15.85 3.26 15.95 3.51 16.14 3.71C16.98 4.58 17.44 5.68 17.49 6.80L17.5 7.02C17.49 8.22 17.01 9.40 16.10 10.32C15.92 10.51 15.83 10.77 15.83 11.03C15.84 11.29 15.95 11.53 16.13 11.71C16.32 11.90 16.57 12.00 16.83 12.00C17.09 12.00 17.34 11.90 17.53 11.72C18.78 10.44 19.49 8.77 19.5 7.03L19.49 6.71C19.42 5.09 18.74 3.53 17.58 2.32C17.49 2.23 17.38 2.15 17.26 2.10C17.14 2.05 17.01 2.02 16.88 2.01C16.75 2.01 16.62 2.03 16.49 2.08C16.37 2.13 16.26 2.20 16.17 2.29ZM10.39 13.01L10 13C8.01 12.99 6.10 13.73 4.63 15.06L4.34 15.34C3.60 16.08 3.01 16.96 2.60 17.93C2.20 18.90 1.99 19.94 2 21C2 21.26 2.10 21.51 2.29 21.70C2.48 21.89 2.73 22 3 22C3.26 22 3.51 21.89 3.70 21.70C3.89 21.51 4 21.26 4 21C4.00 19.40 4.63 17.88 5.75 16.75L5.97 16.55C7.07 15.55 8.51 15 10 15L10.29 15.00C11.78 15.08 13.18 15.70 14.24 16.75L14.44 16.97C15.44 18.07 16 19.51 16 21C16 21.26 16.10 21.51 16.29 21.70C16.48 21.89 16.73 22 17 22C17.26 22 17.51 21.89 17.70 21.70C17.89 21.51 18 21.26 18 21C18.00 19.01 17.26 17.10 15.93 15.63L15.65 15.34C14.25 13.93 12.37 13.10 10.39 13.01Z">
+                                    </path>
+                                </g>
+                                <g transform="translate(23.8 1.6) scale(0.75)">
+                                    <path d="m5 8 6 6"></path>
+                                    <path d="m4 14 6-6 2-3"></path>
+                                    <path d="M2 5h12"></path>
+                                    <path d="M7 2h1"></path>
+                                    <path d="m22 22-5-10-5 10"></path>
+                                    <path d="M14 18h6"></path>
+                                </g>
+                            </svg>
+                        </div>
+                        <div class="selected-content">
+                            <span class="selected-text">Original</span>
+                        </div>
+                        <svg class="dropdown-arrow" width="16" height="16" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <path d="M6 9l6 6 6-6" />
+                        </svg>
+                    </div>
+                    <div class="dropdown-menu hidden">
+                        <div class="dropdown-search">
+                            <input type="text" placeholder="Search..." aria-label="Search language">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" class="search-icon"
+                                aria-hidden="true">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                        </div>
+                        <div class="dropdown-options" role="listbox"></div>
+                    </div>
+                    <input type="hidden" id="multi-audio-track-value" value="original" name="audioTrack">
+                </div>
+            </div>
+
+            <!-- 2. Filename Style -->
+            <div class="adv-setting-item adv-setting-item--filename-style">
+                <span class="adv-setting-label">2. Filename Style</span>
+                <div class="filename-style-tabs" id="filename-style-tabs">
+                    <button type="button" class="fs-tab" data-style="classic">classic</button>
+                    <button type="button" class="fs-tab active" data-style="basic">basic</button>
+                    <button type="button" class="fs-tab" data-style="pretty">pretty</button>
+                    <button type="button" class="fs-tab" data-style="nerdy">nerdy</button>
+                </div>
+                <!-- Filename Preview -->
+                <div class="filename-preview" id="filename-preview">
+                    <div class="fp-row" id="fp-video-row">
+                        <svg class="fp-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
+                            <line x1="7" y1="2" x2="7" y2="22"></line>
+                            <line x1="17" y1="2" x2="17" y2="22"></line>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <line x1="2" y1="7" x2="7" y2="7"></line>
+                            <line x1="2" y1="17" x2="7" y2="17"></line>
+                            <line x1="17" y1="7" x2="22" y2="7"></line>
+                            <line x1="17" y1="17" x2="22" y2="17"></line>
+                        </svg>
+                        <div class="fp-text">
+                            <span class="fp-name" id="fp-video-name">Video Title - Author (1080p).mp4</span>
+                            <span class="fp-sub">video file preview</span>
+                        </div>
+                    </div>
+                    <div class="fp-row" id="fp-audio-row" style="display: none;">
+                        <svg class="fp-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 18V5l12-2v13"></path>
+                            <circle cx="6" cy="18" r="3"></circle>
+                            <circle cx="18" cy="16" r="3"></circle>
+                        </svg>
+                        <div class="fp-text">
+                            <span class="fp-name" id="fp-audio-name">Video Title - Author (192k).mp3</span>
+                            <span class="fp-sub">audio file preview</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="adv-settings-row">
+
+            <!-- 3. Playlist Mode -->
+            <div class="adv-setting-item">
+                <span class="adv-setting-label">3. Playlist Mode</span>
+                <button type="button" class="mode-switch" id="playlist-mode-toggle" role="switch"
+                    aria-checked="false" aria-label="Playlist Mode">
+                    <span class="mode-switch-thumb"></span>
+                </button>
+            </div>
+
+            <!-- 4. Channel Mode -->
+            <div class="adv-setting-item">
+                <span class="adv-setting-label">4. Channel Mode</span>
+                <button type="button" class="mode-switch" id="channel-mode-toggle" role="switch"
+                    aria-checked="false" aria-label="Channel Mode">
+                    <span class="mode-switch-thumb"></span>
+                </button>
+            </div>
+
+            <!-- 5. Cut Video -->
+            <div class="adv-setting-item">
+                <span class="adv-setting-label">5. Cut Video</span>
+                <button type="button" class="mode-switch" id="trim-mode-toggle" role="switch"
+                    aria-checked="false" aria-label="Trim/Cut Mode">
+                    <span class="mode-switch-thumb"></span>
+                </button>
+            </div>
+
+            <!-- 6. Metadata -->
+            <div class="adv-setting-item">
+                <span class="adv-setting-label">6. Metadata</span>
+                <button type="button" class="mode-switch" id="metadata-mode-toggle" role="switch"
+                    aria-checked="false" aria-label="Metadata">
+                    <span class="mode-switch-thumb"></span>
+                </button>
+            </div>
+
+        </div>
+
+        <!-- Cutting Interface (shown when Trim/Cut = ON) -->
+        <div id="cutting-interface" class="cutting-interface" hidden>
+            <div id="stream-editor" class="stream-editor">
+                <div class="stream-player-wrap">
+                    <div id="stream-player" class="stream-player"></div>
+                </div>
+                <div class="stream-settings">
+                    <div class="stream-step">
+                        <span class="stream-step-label">Cut range (Start – End):</span>
+                        <div id="trim-slider" class="trim-slider"></div>
+                        <div class="stream-time-row">
+                            <div class="stream-time-field">
+                                <span class="stream-time-label">Start</span>
+                                <input type="text" id="trim-start" class="time-input" value="0:00"
+                                    autocomplete="off" />
+                            </div>
+                            <div class="stream-time-field">
+                                <span class="stream-time-label">End</span>
+                                <input type="text" id="trim-end" class="time-input" value="0:00"
+                                    autocomplete="off" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        (function () {
+            var toggleBtn = document.getElementById('advanced-settings-toggle');
+            var panel = document.getElementById('advanced-settings-panel');
+            var form = document.getElementById('multi-download-form');
+            var convertBtn = document.getElementById('addUrlsBtn');
+            if (!toggleBtn || !panel || !form || !convertBtn) return;
+
+            var originalParent = convertBtn.parentElement;
+            var originalNextSibling = convertBtn.nextSibling;
+            var originalHtml = convertBtn.innerHTML;
+
+            function isMobileViewport() {
+                return window.matchMedia('(max-width: 768px)').matches;
+            }
+
+            function syncConvertButtonForViewport() {
+                if (!originalParent) return;
+
+                var isMobile = isMobileViewport();
+                var isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+                form.classList.toggle('advanced-expanded-mobile', isMobile && isExpanded);
+
+                if (isMobile) {
+                    convertBtn.classList.add('is-text', 'convert-below-advanced');
+                    convertBtn.textContent = convertBtn.getAttribute('aria-label') || 'Convert';
+                    var formParent = form.parentElement;
+                    var errorMessage = document.getElementById('error-message');
+                    if (formParent) {
+                        if (errorMessage && errorMessage.parentElement === formParent) {
+                            formParent.insertBefore(convertBtn, errorMessage);
+                        } else {
+                            formParent.insertBefore(convertBtn, panel);
+                        }
+                    }
+                    return;
+                }
+
+                convertBtn.classList.remove('is-text', 'convert-below-advanced');
+                convertBtn.innerHTML = originalHtml;
+
+                if (convertBtn.parentElement !== originalParent) {
+                    if (originalNextSibling && originalNextSibling.parentNode === originalParent) {
+                        originalParent.insertBefore(convertBtn, originalNextSibling);
+                    } else {
+                        originalParent.appendChild(convertBtn);
+                    }
+                }
+            }
+
+            var observer = new MutationObserver(function () {
+                if (isMobileViewport() && convertBtn.classList.contains('is-text')) {
+                    convertBtn.textContent = convertBtn.getAttribute('aria-label') || 'Convert';
+                }
+            });
+            observer.observe(convertBtn, { attributes: true, attributeFilter: ['aria-label'] });
+
+            toggleBtn.addEventListener('click', function () {
+                requestAnimationFrame(syncConvertButtonForViewport);
+            });
+
+            window.addEventListener('resize', syncConvertButtonForViewport);
+            window.addEventListener('DOMContentLoaded', syncConvertButtonForViewport);
+            syncConvertButtonForViewport();
+        })();
+    </script>
+    <div id="error-message" class="error-message" role="alert" aria-live="polite"></div>
+    <div id="success-message" class="success-message" role="status" aria-live="polite"></div>
+    <div class="multi-search-shell">
+        <div id="multi-search-place" class="multi-search-place" hidden>
+            <div class="multi-search-wrapper">
+                <svg class="multi-search-input-icon" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input type="text" id="multi-search-input" class="multi-search-input"
+                    placeholder="{{ base.hero.searchVideosPlaceholder or base.hero.searchPlaceholder }}"
+                    aria-label="{{ base.hero.searchVideosPlaceholder or base.hero.searchPlaceholder }}"
+                    autocomplete="off" enterkeyhint="search">
+            </div>
+        </div>
+        <div id="keyword-suggestion-container" class="suggestion-container"></div>
+    </div>
+
+<!-- Keyword Search Results (outside form card) -->
+<section id="keyword-search-results-section" class="keyword-search-results-section"
+    aria-live="polite" style="display: none;">
+    <div id="keyword-search-results-container"></div>
+</section>

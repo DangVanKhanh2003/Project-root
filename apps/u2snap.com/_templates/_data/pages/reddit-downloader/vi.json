@@ -1,0 +1,115 @@
+{
+  "seo": {
+    "title": "Reddit Video Downloader – Tải miễn phí | U2SNAP",
+    "description": "Tải video Reddit với U2SNAP. Trình tải video Reddit miễn phí lưu video có âm thanh chất lượng HD. Không cần đăng ký hay ứng dụng.",
+    "schemaName": "U2SNAP - Reddit Video Downloader",
+    "schemaDescription": "U2SNAP là trình tải video Reddit miễn phí cho phép người dùng tải video Reddit có âm thanh chất lượng HD.",
+    "ogTitle": "Reddit Video Downloader – Tải miễn phí | U2SNAP",
+    "ogDescription": "Tải video Reddit có âm thanh với U2SNAP. Miễn phí, nhanh chóng và chất lượng HD."
+  },
+  "content": {
+    "form": {
+      "h1": "U2SNAP – Reddit Video Downloader",
+      "placeholder": "Dán URL video Reddit vào đây...",
+      "button": "Tải Video"
+    },
+    "sections": [
+      {
+        "h2": "U2SNAP Reddit Video Downloader là gì?",
+        "p": [
+          "U2SNAP là trình <strong>tải video Reddit</strong> miễn phí cho phép bạn lưu video Reddit có âm thanh về thiết bị.",
+          "Chỉ cần dán link video Reddit, nhấn tải xuống và lưu video chất lượng HD trực tiếp vào điện thoại hoặc máy tính.",
+          "Trình <strong>tải video Reddit</strong> này hoạt động trên mọi thiết bị và trình duyệt mà không cần cài đặt ứng dụng."
+        ]
+      },
+      {
+        "h2": "Cách tải video Reddit",
+        "ol": [
+          {
+            "h3": "Sao chép link video Reddit",
+            "p": [
+              "Mở Reddit và sao chép URL của bài đăng video bạn muốn tải từ thanh địa chỉ hoặc nút chia sẻ."
+            ]
+          },
+          {
+            "h3": "Dán link",
+            "p": [
+              "Dán URL video Reddit vào trình tải video Reddit U2SNAP ở trên."
+            ]
+          },
+          {
+            "h3": "Tải video",
+            "p": [
+              "Nhấn nút tải xuống và lưu video Reddit có âm thanh về thiết bị của bạn."
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "Lưu video Reddit có âm thanh",
+        "p": [
+          "U2SNAP tải video Reddit với âm thanh được ghép sẵn để bạn có thể <strong>lưu video Reddit</strong> ở chất lượng tốt nhất có tiếng.",
+          "Tải các bài đăng video Reddit yêu thích, GIF và clip để xem offline hoặc chia sẻ trên các nền tảng khác."
+        ]
+      },
+      {
+        "h2": "Tại sao nên dùng U2SNAP Reddit Video Downloader?",
+        "ul": [
+          {
+            "h3": "Video có âm thanh",
+            "p": [
+              "Tải video Reddit với âm thanh được ghép — không có file riêng lẻ hay mất tiếng."
+            ]
+          },
+          {
+            "h3": "Chất lượng HD",
+            "p": [
+              "Lưu video Reddit ở chất lượng cao nhất có sẵn bao gồm độ phân giải Full HD."
+            ]
+          },
+          {
+            "h3": "Miễn phí và không giới hạn",
+            "p": [
+              "Tải bao nhiêu video Reddit tùy thích hoàn toàn miễn phí không có giới hạn hàng ngày."
+            ]
+          },
+          {
+            "h3": "Không cần ứng dụng",
+            "p": [
+              "Trình tải video Reddit hoạt động trực tiếp trên trình duyệt ở mọi thiết bị mà không cần cài đặt ứng dụng."
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "Câu hỏi thường gặp",
+        "ul": [
+          {
+            "h3": "U2SNAP Reddit video downloader có miễn phí không?",
+            "p": [
+              "Có. U2SNAP là trình tải video Reddit hoàn toàn miễn phí không có phí ẩn."
+            ]
+          },
+          {
+            "h3": "Tôi có thể tải video Reddit có âm thanh không?",
+            "p": [
+              "Có. U2SNAP tự động ghép video và âm thanh khi tải video Reddit."
+            ]
+          },
+          {
+            "h3": "Có hoạt động trên iPhone và Android không?",
+            "p": [
+              "Có. Trình tải video Reddit hoạt động trên mọi thiết bị di động và trình duyệt desktop."
+            ]
+          },
+          {
+            "h3": "Có cần tài khoản Reddit để tải không?",
+            "p": [
+              "Không. Bạn chỉ cần URL bài đăng video để tải video Reddit với U2SNAP."
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

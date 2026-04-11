@@ -1,0 +1,25 @@
+{%- set base = i18nBase[lang] or i18nBase['en'] -%}
+{%- set langPrefix = '' if (lang == 'en' or not lang) else '/' + lang -%}
+
+<footer>
+    <div class="container">
+        <nav class="footer-nav" aria-label="Footer navigation">
+            <a href="{{ langPrefix }}/youtube-to-mp3-converter">{{ base.footer.nav.youtubeToMp3Converter or 'YouTube to MP3 Converter' }}</a>
+            <a href="{{ langPrefix }}/youtube-to-mp4-converter">{{ base.footer.nav.youtubeToMp4Converter or 'YouTube to MP4 Converter' }}</a>
+            <a href="{{ langPrefix }}/youtube-audio-converter">{{ base.footer.nav.youtubeAudioConverter or 'YouTube Audio Converter' }}</a>
+            <a href="{{ langPrefix }}/youtube-playlist-to-mp3">{{ base.footer.nav.youtubePlaylistToMp3 or 'YouTube Playlist to MP3' }}</a>
+            <a href="{{ langPrefix }}/youtube-shorts-to-mp4">{{ base.footer.nav.youtubeShortsToMp4 or 'YouTube Shorts to MP4' }}</a>
+            <a href="{{ langPrefix }}/youtube-to-mp3-320kbps">{{ base.footer.nav.youtubeToMp3320kbps or 'YouTube to MP3 320kbps' }}</a>
+            <a href="{{ langPrefix }}/youtube-to-mp4-4k">{{ base.footer.nav.youtubeToMp44k or 'YouTube to MP4 4K' }}</a>
+            <a href="{{ langPrefix }}/youtube-to-mp4-hd">{{ base.footer.nav.youtubeToMp4Hd or 'YouTube to MP4 HD' }}</a>
+        </nav>
+        <nav class="footer-nav footer-nav--legal" aria-label="Legal navigation">
+            <a href="/about">{{ base.footer.legal.about or 'About' }}</a>
+            <a href="/contact">{{ base.footer.legal.contact or 'Contact' }}</a>
+            <a href="/copyright">{{ base.footer.legal.copyright or 'Copyright & DMCA' }}</a>
+            <a href="/privacy-policy">{{ base.footer.legal.privacyPolicy or 'Privacy Policy' }}</a>
+            <a href="/terms-of-use">{{ base.footer.legal.termsOfUse or 'Terms of Use' }}</a>
+        </nav>
+        <div class="copyright">{{ base.footer.copyright }}</div>
+    </div>
+</footer>

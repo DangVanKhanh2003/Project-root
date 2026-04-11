@@ -1,0 +1,102 @@
+{
+  "nav": {
+    "home": "Downloader di YouTube",
+    "youtubeToMp4": "Convertitore da YouTube a MP4",
+    "youtubeToMp3": "Convertitore da YouTube a MP3",
+    "youtubeShorts": "Downloader di YouTube Shorts",
+    "language": "Italiano"
+  },
+  "hero": {
+    "placeholder": "Cerca o incolla il link qui...",
+    "pasteLabel": "Incolla dagli appunti",
+    "clearLabel": "Cancella input",
+    "submitButton": "Inizia",
+    "termsText": "Utilizzando il nostro servizio accetti i nostri",
+    "termsLink": "Termini di utilizzo"
+  },
+  "formatSelector": {
+    "autoSubmit": "Invio automatico",
+    "autoSubmitTooltip": "Invia automaticamente quando si incolla l'URL o la parola chiave",
+    "formats": {
+      "mp4": "MP4",
+      "mp3": "MP3"
+    },
+    "quality": {
+      "videoLabel": "Qualità video",
+      "audioLabel": "Qualità audio"
+    },
+    "options": {
+      "mp4": {
+        "2160p": "MP4 - 4K",
+        "1440p": "MP4 - 2K",
+        "1080p": "MP4 - 1080p",
+        "720p": "MP4 - 720p",
+        "480p": "MP4 - 480p",
+        "360p": "MP4 - 360p",
+        "144p": "MP4 - 144p",
+        "webm": "WEBM",
+        "mkv": "MKV"
+      },
+      "mp3": {
+        "320kbps": "MP3 - 320kbps",
+        "256kbps": "MP3 - 256kbps",
+        "192kbps": "MP3 - 192kbps",
+        "128kbps": "MP3 - 128kbps",
+        "ogg": "OGG",
+        "opus": "OPUS",
+        "wav": "WAV",
+        "64kbps": "MP3 - 64kbps"
+      }
+    }
+  },
+  "status": {
+    "processing": "In elaborazione...",
+    "preparing": "In preparazione...",
+    "merging": "Unione in corso...",
+    "zipping": "Compressione in corso...",
+    "ready": "Pronto al 100%",
+    "completed": "Completato",
+    "failed": "Fallito"
+  },
+  "buttons": {
+    "download": "Scarica",
+    "tryAgain": "Riprova",
+    "cancel": "Annulla",
+    "seeMore": "Vedi di più",
+    "seeLess": "Vedi di meno",
+    "bulkDownload": "Scarica selezionati"
+  },
+  "gallery": {
+    "title": "Galleria",
+    "noItems": "Nessun elemento della galleria da visualizzare",
+    "selected": "selezionato",
+    "selectAll": "Seleziona tutto",
+    "deselectAll": "Deseleziona tutto"
+  },
+  "mobile": {
+    "menuToggleLabel": "Apri menu di navigazione",
+    "menuCloseLabel": "Chiudi menu di navigazione",
+    "langButtonLabel": "Seleziona lingua"
+  },
+  "footer": {
+    "copyright": "© 2026 y2mate",
+    "about": "Informazioni",
+    "contact": "Contatti",
+    "terms": "Termini di servizio",
+    "privacy": "Informativa sulla privacy",
+    "copyrightClaims": "Reclami sul copyright"
+  },
+  "errors": {
+    "invalidUrl": "Inserisci un URL valido",
+    "networkError": "Errore di rete. Riprova.",
+    "processingError": "Elaborazione non riuscita. Riprova.",
+    "timeout": "Timeout della richiesta. Riprova.",
+    "downloadExpired": "Link per il download scaduto",
+    "conversionFailed": "Conversione non riuscita"
+  },
+  "messages": {
+    "downloadReady": "Il tuo download è pronto",
+    "processing": "Elaborazione della tua richiesta...",
+    "pleaseWait": "Attendere prego..."
+  }
+}

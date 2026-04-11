@@ -1,0 +1,65 @@
+{
+  "nav": {
+    "home": "الرئيسية",
+    "youtubeToMp3Converter": "يوتيوب إلى MP3",
+    "youtubeToMp4Converter": "يوتيوب إلى MP4",
+    "youtubeAudioConverter": "محول صوت يوتيوب",
+    "youtubePlaylistToMp3": "قائمة تشغيل يوتيوب إلى MP3",
+    "youtubeShortsToMp4": "يوتيوب شورتس إلى MP4",
+    "youtubeToMp3320kbps": "يوتيوب إلى MP3 320kbps",
+    "youtubeToMp44k": "يوتيوب إلى MP4 4K",
+    "youtubeToMp4Hd": "يوتيوب إلى MP4 HD"
+  },
+  "drawer": {
+    "logoText": "YTConvert",
+    "links": {
+      "home": "الرئيسية",
+      "youtubeToMp3Converter": "يوتيوب إلى MP3",
+      "youtubeToMp4Converter": "يوتيوب إلى MP4",
+      "youtubeAudioConverter": "محول صوت يوتيوب",
+      "youtubePlaylistToMp3": "قائمة تشغيل يوتيوب إلى MP3",
+      "youtubeShortsToMp4": "يوتيوب شورتس إلى MP4",
+      "youtubeToMp3320kbps": "يوتيوب إلى MP3 320kbps",
+      "youtubeToMp44k": "يوتيوب إلى MP4 4K",
+      "youtubeToMp4Hd": "يوتيوب إلى MP4 HD"
+    }
+  },
+  "hero": {
+    "placeholder": "الصق رابط الفيديو هنا...",
+    "pasteBtn": "لصق",
+    "clearBtn": "مسح",
+    "convertBtn": "تحويل",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "المسار الصوتي",
+    "searchPlaceholder": "بحث...",
+    "supportedPlatforms": "المنصات المدعومة:"
+  },
+  "footer": {
+    "copyright": "© 2026 YTConvert. جميع الحقوق محفوظة.",
+    "nav": {
+      "youtubeToMp3Converter": "محول يوتيوب إلى MP3",
+      "youtubeToMp4Converter": "محول يوتيوب إلى MP4",
+      "youtubeAudioConverter": "محول صوت يوتيوب",
+      "youtubePlaylistToMp3": "قائمة تشغيل يوتيوب إلى MP3",
+      "youtubeShortsToMp4": "يوتيوب شورتس إلى MP4",
+      "youtubeToMp3320kbps": "يوتيوب إلى MP3 320kbps",
+      "youtubeToMp44k": "يوتيوب إلى MP4 4K",
+      "youtubeToMp4Hd": "يوتيوب إلى MP4 HD"
+    }
+  },
+  "langSelector": {
+    "buttonLabel": "تغيير اللغة",
+    "buttonText": "AR",
+    "currentLangFull": "العربية"
+  },
+  "strim": {
+    "startBtn": "ابدأ",
+    "selectFormatLabel": "1. اختر الصيغة:",
+    "selectQualityLabel": "2. اختر الجودة:",
+    "audioTrackLabel": "3. اختر المسار الصوتي:",
+    "trimLabel": "4. قص الفيديو (وقت البداية – النهاية):",
+    "startTimeLabel": "البداية",
+    "endTimeLabel": "النهاية"
+  }
+}

@@ -23,22 +23,23 @@ export interface RetryConfig {
  * Default retry configs for different operations
  */
 export const RETRY_CONFIGS = {
-  // Extracting phase (API calls to get download URL)
+  // Extracting phase (API calls to create job)
   extracting: {
-    maxRetries: 1, // Max 2 attempts total (1 original + 1 retry)
+    maxRetries: 2, // Max 3 attempts total (1 original + 2 retries)
     delays: [], // NO delays - retry immediately
     retryOnError: (error: any) => {
-      // Retry ALL errors except user cancellation
-      if (error.name === 'AbortError') return false; // User cancelled - don't retry
-      return true; // Retry everything else (network, 5xx, 4xx, API errors)
+      // Don't retry user cancellation
+      if (error.name === 'AbortError' || error.name === 'CancellationError') return false;
+      // Retry everything else (network, 5xx, 4xx, API errors)
+      return true;
     }
   },
 
   // Polling phase (checking progress)
   polling: {
-    maxConsecutiveErrors: 1, // Allow 1 consecutive error before failing
+    maxConsecutiveErrors: 5, // 5 consecutive errors before failing
     retryDelay: 0, // NO delay - retry immediately
-    retryOnTimeout: true, // Timeout is NOT an error - continue polling
+    // Timeout does NOT count as error - can retry unlimited times
   }
 } as const;
 
@@ -118,7 +119,12 @@ export async function retryWithBackoff<T>(
  * Timeout errors should NOT be counted as errors in polling
  */
 export function isTimeoutError(error: any): boolean {
-  return error?.name === 'AbortError' || error?.error?.name === 'AbortError';
+  return (
+    error?.name === 'AbortError' ||
+    error?.error?.name === 'AbortError' ||
+    error?.name === 'TimeoutError' ||
+    error?.code === 'ECONNABORTED'
+  );
 }
 
 /**

@@ -1,0 +1,120 @@
+{
+  "seo": {
+    "title": "SSVID CC - Taglia video YouTube online gratis",
+    "description": "YouTube cutter gratis – Scarica MP4 o MP3.",
+    "schemaName": "SSVID - Taglia video YouTube",
+    "schemaDescription": "Taglia video YouTube gratis. Ritaglia e scarica video YouTube in MP4 o MP3 senza pubblicità e senza limiti.",
+    "ogTitle": "SSVID - Taglia video YouTube online gratis",
+    "ogDescription": "YouTube cutter gratis – Scarica MP4 o MP3."
+  },
+  "defaultFormat": "mp4",
+  "hero": {
+    "title": "SSVID - Taglia video YouTube online",
+    "subtitle": "Gratis, veloce e illimitato MP4 e MP3"
+  },
+  "form": {
+    "title": "Taglia video YouTube",
+    "placeholder": "Incolla qui il link del video YouTube...",
+    "convertButton": "Taglia e scarica"
+  },
+  "overview": {
+    "howTo": {
+      "title": "Come tagliare un video YouTube online",
+      "steps": [
+        {
+          "number": "1",
+          "title": "Copia il link del video",
+          "description": "Copia l’URL del video YouTube che vuoi tagliare o ritagliare."
+        },
+        {
+          "number": "2",
+          "title": "Incolla il link",
+          "description": "Incolla il link di YouTube nello strumento SSVID."
+        },
+        {
+          "number": "3",
+          "title": "Seleziona inizio e fine",
+          "description": "Scegli l’orario preciso di inizio e fine per il segmento desiderato."
+        },
+        {
+          "number": "4",
+          "title": "Scarica in MP4 o MP3",
+          "description": "Clicca su Taglia e scarica per esportare il segmento in formato MP4 o MP3."
+        }
+      ]
+    }
+  },
+  "content": {
+    "intro": {
+      "title": "Cos’è il taglia video YouTube SSVID?",
+      "description": "SSVID è un <strong>taglia video YouTube gratuito</strong> che ti permette di ritagliare e scaricare video istantaneamente. Invece di scaricare l’intero video, puoi selezionare una parte specifica ed esportarla in <strong>MP4 o MP3</strong>. Funziona direttamente nel browser <strong>senza pubblicità e senza limiti</strong>."
+    },
+    "intro2": {
+      "title": "Cutter MP4 & MP3 per mobile e desktop",
+      "description": "SSVID funziona perfettamente su <strong>smartphone, tablet e computer desktop</strong>. Taglia video YouTube online senza installare software. Scarica <strong>video MP4</strong> o estrai <strong>audio MP3</strong> direttamente dal browser."
+    },
+    "whyDownload": {
+      "title": "Perché usare SSVID per tagliare YouTube?",
+      "description": "Con SSVID risparmi tempo e spazio scaricando solo la parte necessaria. Che si tratti di momenti salienti, clip brevi, musica o estratti di podcast, questo <strong>YouTube cutter</strong> è veloce e semplice."
+    },
+    "quality": {
+      "title": "Esportazione MP4 & MP3 di alta qualità",
+      "description": "SSVID mantiene la qualità originale di video e audio. Esporta segmenti ritagliati in MP4 ad alta qualità o MP3 nitido con elaborazione rapida e riproduzione fluida."
+    },
+    "comparison": {
+      "title": "YouTube Cutter vs Download multiplo",
+      "sections": [
+        {
+          "title": "Taglia e ritaglia video YouTube",
+          "description": "Ideale quando hai bisogno di una <strong>parte specifica</strong> di un singolo video. Seleziona l’intervallo esatto e scarica solo quel segmento."
+        },
+        {
+          "title": "Download multiplo YouTube",
+          "description": "Se vuoi scaricare <strong>più video completi</strong> contemporaneamente invece di ritagliarli, usa lo strumento di download multiplo. Supporta <strong>MP3 e MP4</strong>."
+        }
+      ]
+    },
+    "useCases": {
+      "title": "Quando usare il taglia video SSVID?",
+      "items": [
+        {
+          "title": "Creare clip brevi e highlight",
+          "description": "Ritaglia momenti importanti da video lunghi per condividerli o modificarli."
+        },
+        {
+          "title": "Estrarre musica o podcast",
+          "description": "Taglia parti specifiche di video musicali o podcast e salvale in MP3."
+        },
+        {
+          "title": "Scaricare solo ciò che serve",
+          "description": "Evita di scaricare video completi salvando solo il segmento importante."
+        }
+      ]
+    }
+  },
+  "faqs": {
+    "title": "Domande frequenti",
+    "items": [
+      {
+        "question": "Il taglia video SSVID è gratuito?",
+        "answer": "Sì. SSVID è completamente gratuito, senza pubblicità e senza limiti."
+      },
+      {
+        "question": "Posso tagliare un video YouTube in MP3?",
+        "answer": "Sì. Puoi esportare il segmento selezionato in formato MP3."
+      },
+      {
+        "question": "Devo installare un software?",
+        "answer": "No. SSVID funziona interamente online nel browser."
+      },
+      {
+        "question": "Funziona su dispositivi mobili?",
+        "answer": "Sì. Il cutter è compatibile con smartphone, tablet e desktop."
+      },
+      {
+        "question": "La qualità si riduce dopo il taglio?",
+        "answer": "No. SSVID mantiene la qualità originale del segmento selezionato."
+      }
+    ]
+  }
+}

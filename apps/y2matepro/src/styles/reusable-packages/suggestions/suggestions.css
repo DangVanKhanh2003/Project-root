@@ -1,4 +1,4 @@
-/* =========================================================
+﻿/* =========================================================
    SUGGESTIONS.CSS - Autocomplete Dropdown Component
    ---------------------------------------------------------
    Version: 1.0.0
@@ -6,20 +6,20 @@
    Dependencies: package-root.css (required)
 
    A lightweight, accessible autocomplete dropdown with:
-   - Mobile-first responsive design (350px → 4K+)
+   - Mobile-first responsive design (350px â†’ 4K+)
    - Keyboard navigation support
    - Smooth animations with accessibility support
    - Custom scrollbar styling
    - Zero JavaScript dependencies (CSS only)
 
    Responsive Breakpoints:
-   • Extra Small Mobile (0-350px)
-   • Small Mobile (351-599px)
-   • Medium (Tablet) - 600-839px
-   • Expanded (Desktop) - 840-1239px
-   • Large (Wide Desktop) - 1240-1919px
-   • Extra Large (2K) - 1920-2559px
-   • Ultra Large (4K) - 2560px+
+   â€¢ Extra Small Mobile (0-350px)
+   â€¢ Small Mobile (351-599px)
+   â€¢ Medium (Tablet) - 600-839px
+   â€¢ Expanded (Desktop) - 840-1239px
+   â€¢ Large (Wide Desktop) - 1240-1919px
+   â€¢ Extra Large (2K) - 1920-2559px
+   â€¢ Ultra Large (4K) - 2560px+
    ========================================================= */
 
 @media (min-width: 0px) and (max-width: 350px) {
@@ -57,7 +57,7 @@
     /* Medium Tablet - More spacious suggestions */
     .suggestion-container {
         max-height: 320px;
-        box-shadow: var(--pkg-elevation-2); /* Subtle shadow for tablets */
+        box-shadow: none; /* Subtle shadow for tablets */
     }
 
     .suggestion-item {
@@ -69,7 +69,7 @@
     /* Expanded Desktop - Add hover effects */
     .suggestion-container {
         max-height: 360px;
-        box-shadow: var(--pkg-elevation-3); /* Enhanced shadow */
+        box-shadow: none; /* Enhanced shadow */
     }
 
     .suggestion-item {
@@ -156,7 +156,7 @@
     background-color: var(--pkg-suggestions-bg);
     border-radius: var(--pkg-suggestions-radius);
     overflow: hidden;
-    box-shadow: var(--pkg-suggestions-shadow);
+    box-shadow: none;
 
     /* Animation properties */
     opacity: 0;

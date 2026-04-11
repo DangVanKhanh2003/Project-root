@@ -5,11 +5,11 @@
 
 /**
  * Response from POST /api/download
- * Returns job ID and video metadata
+ * Returns statusUrl for polling and video metadata
  */
 export interface CreateJobResponse {
-  /** Job ID for polling status */
-  id: string;
+  /** Full URL for polling status (includes token & expires) */
+  statusUrl: string;
 
   /** Video title */
   title: string;
@@ -28,6 +28,15 @@ export interface CreateJobResponse {
 
   /** Reason for quality change */
   qualityChangeReason?: string;
+
+  /** True if video needs re-encoding */
+  needsReencode?: boolean;
+
+  /** True if audio language was changed from requested */
+  audioLanguageChanged?: boolean;
+
+  /** Available audio language codes returned by API */
+  availableAudioLanguages?: string[];
 }
 
 /**
@@ -44,7 +53,7 @@ export interface ProgressDetail {
 /**
  * Job status type
  */
-export type JobStatus = 'pending' | 'completed' | 'error';
+export type JobStatus = 'pending' | 'completed' | 'error' | 'not_found' | 'failed';
 
 /**
  * Response from GET /api/status/:id

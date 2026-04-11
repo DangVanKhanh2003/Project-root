@@ -1,0 +1,124 @@
+{
+  "seo": {
+    "title": "YouTube Video Downloader Online – HD & 4K | Y2SAVE",
+    "description": "Download YouTube videos online with Y2SAVE. Fast YouTube video downloader supporting HD and 4K quality. No account required and works on all devices.",
+    "schemaName": "Y2SAVE - YouTube Video Downloader",
+    "schemaDescription": "Y2SAVE is a free YouTube video downloader that allows users to download YouTube videos in HD or 4K directly from the browser.",
+    "ogTitle": "YouTube Video Downloader Online – HD & 4K | Y2SAVE",
+    "ogDescription": "Download YouTube videos instantly using Y2SAVE. Free YouTube video downloader supporting HD and 4K downloads."
+  },
+
+  "content": {
+
+    "form": {
+      "h1": "Y2SAVE – YouTube Video Downloader",
+      "placeholder": "Paste YouTube video URL here...",
+      "button": "Download Video"
+    },
+
+    "sections": [
+
+      {
+        "h2": "What Is Y2SAVE YouTube Video Downloader?",
+        "p": [
+          "Y2SAVE is a powerful <strong>YouTube video downloader</strong> that allows you to download YouTube videos directly to your device.",
+          "Simply paste the YouTube URL into the tool and instantly download videos in MP4 format with high quality including HD and 4K.",
+          "This <strong>YouTube downloader online</strong> works directly in your browser with no registration and no software installation required."
+        ]
+      },
+
+      {
+        "h2": "How to Download YouTube Videos",
+        "ol": [
+          {
+            "h3": "Copy the YouTube Video URL",
+            "p": [
+              "Open YouTube and copy the link of the video you want to download."
+            ]
+          },
+          {
+            "h3": "Paste the Video Link",
+            "p": [
+              "Paste the YouTube URL into the YouTube video downloader above."
+            ]
+          },
+          {
+            "h3": "Choose Video Quality",
+            "p": [
+              "Select the video resolution you prefer such as 4K, 1080p, or HD depending on the original video."
+            ]
+          },
+          {
+            "h3": "Download the Video",
+            "p": [
+              "Click the download button to save the YouTube video to your device instantly."
+            ]
+          }
+        ]
+      },
+
+      {
+        "h2": "Download YouTube Videos in HD or 4K",
+        "p": [
+          "Y2SAVE supports high-quality downloads including <strong>YouTube video download 4K</strong> and Full HD formats.",
+          "Depending on the original video quality, you can download YouTube videos in resolutions such as 4K, 1080p, or standard HD."
+        ]
+      },
+
+      {
+        "h2": "Why Use Y2SAVE YouTube Downloader?",
+        "ul": [
+          {
+            "h3": "Fast YouTube Video Downloader",
+            "p": [
+              "Convert and download YouTube videos in seconds using our optimized online converter."
+            ]
+          },
+          {
+            "h3": "Works on All Devices",
+            "p": [
+              "This YouTube downloader works on mobile phones, tablets, laptops, and desktop computers."
+            ]
+          },
+          {
+            "h3": "No Installation Required",
+            "p": [
+              "Use the YouTube video downloader online directly from your browser without installing apps or extensions."
+            ]
+          }
+        ]
+      },
+
+      {
+        "h2": "Frequently Asked Questions",
+        "ul": [
+          {
+            "h3": "Is Y2SAVE free to use?",
+            "p": [
+              "Yes. Y2SAVE is a completely free YouTube video downloader that allows unlimited downloads."
+            ]
+          },
+          {
+            "h3": "Can I download YouTube videos in 4K?",
+            "p": [
+              "Yes. If the original video supports 4K resolution, you can download it in 4K using Y2SAVE."
+            ]
+          },
+          {
+            "h3": "Do I need to create an account?",
+            "p": [
+              "No. You can download YouTube videos instantly without registration."
+            ]
+          },
+          {
+            "h3": "Does this work on mobile devices?",
+            "p": [
+              "Yes. The YouTube downloader works on Android, iPhone, tablets, and desktop browsers."
+            ]
+          }
+        ]
+      }
+
+    ]
+  }
+}

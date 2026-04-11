@@ -33,6 +33,7 @@ export function setConversionTask(formatId: string, taskData: Partial<Conversion
       state: 'Idle',
       statusText: 'Ready to convert',
       showProgressBar: false,
+      progress: 0,
       downloadUrl: null,
       error: null,
       createdAt: Date.now(),
@@ -123,7 +124,7 @@ export function getConversionStatus(): ConversionStatus {
   return {
     total: tasks.length,
     idle: tasks.filter(task => task.state === 'Idle').length,
-    converting: tasks.filter(task => task.state === 'Converting').length,
+    converting: tasks.filter(task => task.state === 'Converting' || task.state === 'Processing' || task.state === 'Extracting' || task.state === 'Polling').length,
     success: tasks.filter(task => task.state === 'Success').length,
     failed: tasks.filter(task => task.state === 'Failed').length,
     canceled: tasks.filter(task => task.state === 'Canceled').length

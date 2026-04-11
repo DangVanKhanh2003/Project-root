@@ -1,0 +1,13 @@
+/* =========================================================
+   Utilities - Animations
+   ---------------------------------------------------------
+   Keyframes and animation classes
+   Extracted from index.html - Phase 2
+   ========================================================= */
+
+/* Animation Classes */
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

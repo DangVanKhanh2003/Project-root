@@ -1,0 +1,116 @@
+{
+  "seo": {
+    "title": "SSVID CC Muat Turun Beberapa Video YouTube Serentak (Tanpa Iklan)",
+    "description": "Muat turun beberapa video YouTube serentak dalam MP3 atau MP4 (Tanpa Iklan).",
+    "schemaName": "SSVID YouTube Multi Downloader",
+    "schemaDescription": "Muat turun banyak video YouTube serentak secara dalam talian.",
+    "ogTitle": "SSVID Muat Turun Beberapa Video YouTube Serentak (Tanpa Iklan)",
+    "ogDescription": "Muat turun video YouTube dalam MP3 atau MP4 sekali gus (Tanpa Iklan)."
+  },
+  "defaultFormat": "mp4",
+  "hero": {
+    "title": "SSVID YouTube Multi Downloader (Tanpa Iklan)",
+    "subtitle": "Muat turun beberapa video YouTube dalam satu masa"
+  },
+  "form": {
+    "textareaPlaceholder": "Tampal pautan YouTube di sini (satu bagi setiap baris).\nhttps://youtube.com/watch?v=VID_1\nhttps://youtube.com/watch?v=VID_2",
+    "convertButton": "Tukar",
+    "audioTrackLabel": "Jejak audio"
+  },
+  "overview": {
+    "howTo": {
+      "title": "Cara Menggunakan YouTube Multi Downloader dengan SSVID",
+      "steps": [
+        {
+          "number": "1",
+          "title": "Salin beberapa pautan",
+          "description": "Salin pautan video YouTube yang ingin anda muat turun."
+        },
+        {
+          "number": "2",
+          "title": "Tampal semua pautan",
+          "description": "Tampal semua pautan ke dalam alat muat turun berbilang SSVID."
+        },
+        {
+          "number": "3",
+          "title": "Pilih format",
+          "description": "Pilih format keluaran yang diingini (MP3 atau MP4)."
+        },
+        {
+          "number": "4",
+          "title": "Muat turun",
+          "description": "Klik muat turun dan simpan semua video secara serentak."
+        }
+      ]
+    }
+  },
+  "content": {
+    "intro": {
+      "title": "Apakah SSVID YouTube Multi Downloader?",
+      "description": "SSVID ialah alat dalam talian yang membolehkan anda <strong>memuat turun beberapa video YouTube secara serentak</strong> menggunakan senarai pautan video berasingan. Daripada memuat turun satu persatu, anda boleh menampal beberapa URL dan memprosesnya dalam satu langkah sahaja."
+    },
+    "whyUse": {
+      "title": "Mengapa Menggunakan YouTube Multi Downloader?",
+      "description": "Sangat sesuai apabila video anda <strong>tidak berada dalam senarai main yang sama</strong>. Jika anda mempunyai senarai pautan video tersuai, alat ini membantu menjimatkan masa dengan memproses semuanya sekali gus."
+    },
+    "supportedFormats": {
+      "title": "Format Disokong: MP3 dan MP4",
+      "description": "SSVID menyokong format <strong>MP3</strong> dan <strong>MP4</strong>. Pilih MP3 jika anda hanya memerlukan audio, atau pilih MP4 jika mahu menyimpan video penuh."
+    },
+    "comparison": {
+      "title": "Muat Turun Berbilang vs Muat Turun Senarai Main",
+      "items": [
+        {
+          "title": "Muat Turun Berbilang YouTube",
+          "description": "Terbaik apabila anda mempunyai <strong>beberapa pautan video YouTube yang berasingan</strong>. Tampal banyak URL dan muat turun bersama dalam format MP3 atau MP4."
+        },
+        {
+          "title": "Muat Turun Senarai Main YouTube ke MP3",
+          "description": "Sesuai apabila video sudah disusun dalam senarai main. Dengan hanya <strong>satu pautan senarai main</strong>, anda boleh memuat turun semua video secara automatik dalam format MP3. Jika anda mempunyai senarai main, cuba <a href=\"/download-mp3-youtube-playlist\" title=\"Download MP3 YouTube Playlist\"><strong>Download MP3 YouTube Playlist with SSVID</strong></a>."
+        }
+      ]
+    },
+    "whenUse": {
+      "title": "Bilakah Perlu Menggunakan SSVID Multi Downloader?",
+      "items": [
+        {
+          "title": "Senarai Video Tersuai",
+          "description": "Sesuai apabila anda mengumpul pautan YouTube secara manual daripada pelbagai sumber."
+        },
+        {
+          "title": "Muat Turun Berkelompok MP3 atau MP4",
+          "description": "Muat turun beberapa video dalam format MP3 atau MP4 secara serentak tanpa mengulangi langkah yang sama."
+        },
+        {
+          "title": "Muat Turun Tanpa Had",
+          "description": "SSVID menyokong <strong>muat turun berbilang YouTube tanpa had</strong> tanpa iklan dan tanpa sekatan."
+        }
+      ]
+    }
+  },
+  "faqs": {
+    "title": "Soalan Lazim",
+    "items": [
+      {
+        "question": "Berapa banyak video YouTube boleh dimuat turun serentak?",
+        "answer": "SSVID membenarkan muat turun berbilang tanpa had. Anda boleh menampal seberapa banyak pautan yang diperlukan."
+      },
+      {
+        "question": "Adakah saya memerlukan senarai main untuk menggunakan muat turun berbilang?",
+        "answer": "Tidak. Muat turun berbilang direka untuk pautan video individu yang bukan sebahagian daripada senarai main."
+      },
+      {
+        "question": "Adakah SSVID percuma dan tanpa iklan?",
+        "answer": "Ya. SSVID menawarkan pengalaman muat turun percuma dan tanpa iklan."
+      },
+      {
+        "question": "Bolehkah saya memuat turun dalam format MP3 dan MP4?",
+        "answer": "Ya. SSVID menyokong format audio MP3 dan video MP4."
+      },
+      {
+        "question": "Adakah SSVID berfungsi pada peranti mudah alih?",
+        "answer": "Ya. SSVID boleh digunakan pada pelayar desktop dan mudah alih."
+      }
+    ]
+  }
+}

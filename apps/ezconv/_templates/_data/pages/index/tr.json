@@ -1,0 +1,87 @@
+{
+  "seo": {
+    "title": "EzConv - YouTube MP3 İndir Ücretsiz (320kbps, Reklamsız)",
+    "description": "EzConv, YouTube MP3 indirmenizi sağlayan ücretsiz bir araçtır. Reklamsız, pop-up olmadan ve kayıt gerektirmeden online dönüştürme ve indirme imkanı sunar. 64kbps'ten 320kbps'e kadar yüksek ses kalitesi desteklenir.",
+    "schemaName": "EzConv - YouTube MP3 İndir",
+    "schemaDescription": "EzConv, yazılım yüklemeden YouTube videolarını 320kbps'e kadar yüksek kaliteli MP3 dosyalarına dönüştüren ücretsiz web tabanlı bir YouTube MP3 indirme aracıdır.",
+    "ogTitle": "EzConv - Ücretsiz YouTube MP3 İndir (320kbps, Reklamsız)",
+    "ogDescription": "EzConv ile YouTube MP3 online indirin. Reklamsız, güvenli ve kayıt gerektirmez. 320kbps'e kadar yüksek ses kalitesi."
+  },
+  "defaultFormat": "mp3",
+  "hero": {
+    "title": "EzConv - YouTube MP3 İndir",
+    "subtitle": "YouTube MP3'ü online ücretsiz indirin, reklamsız ve pop-up olmadan"
+  },
+  "overview": {
+    "title": "EzConv nedir?",
+    "description": "EzConv, <strong>ücretsiz web tabanlı bir YouTube MP3 indirme aracıdır</strong> ve YouTube videolarını doğrudan tarayıcınız üzerinden yüksek kaliteli MP3 dosyalarına dönüştürmenizi sağlar. <strong>Reklamsız ve güvenli</strong> kullanım deneyimi ile bilinir; yazılım yükleme, pop-up veya hesap kaydı gerektirmez. Kullanıcılar <strong>64kbps'ten 320kbps'e kadar</strong> ses kalitesini seçebilir ve indirme öncesinde istenmeyen bölümleri kaldırmak için dahili kesme aracını kullanabilir. EzConv, basit ve güvenli olacak şekilde tasarlanmıştır ve masaüstü, tablet ve mobil cihazlarda sorunsuz çalışır.",
+    "howTo": {
+      "title": "EzConv ile YouTube MP3 nasıl indirilir?",
+      "steps": [
+        {
+          "number": "1",
+          "title": "YouTube URL'sini kopyalayın",
+          "description": "YouTube'u açın ve MP3'e dönüştürmek istediğiniz videonun bağlantısını kopyalayın."
+        },
+        {
+          "number": "2",
+          "title": "EzConv'e yapıştırın",
+          "description": "YouTube URL'sini EzConv giriş kutusuna yapıştırın ve tercih ettiğiniz MP3 kalitesini seçin."
+        },
+        {
+          "number": "3",
+          "title": "MP3 indir",
+          "description": "İndirme düğmesine tıklayın ve YouTube MP3 dosyasını hemen cihazınıza kaydedin."
+        }
+      ]
+    }
+  },
+  "whatCanDownload": {
+    "title": "EzConv ile neler indirebilirsiniz?",
+    "intro": "EzConv, yalnızca YouTube MP3 indirmeye odaklanır ve YouTube videolarından sesi offline dinlemek için basit ve güvenli bir şekilde çıkarmanızı sağlar.",
+    "sections": [
+      {
+        "title": "YouTube videolarını MP3'e dönüştürün",
+        "description": "Herhangi bir YouTube videosunu MP3 formatına dönüştürün ve yazılım yüklemeden doğrudan tarayıcı üzerinden ses dosyasını indirin."
+      },
+      {
+        "title": "YouTube müzik MP3 indir",
+        "description": "Daha iyi ses kalitesi için 64kbps'ten 320kbps'e kadar seçilebilir bitrate seçenekleriyle YouTube müziklerini MP3 formatında indirin."
+      },
+      {
+        "title": "Sesi kes ve özelleştir",
+        "description": "İndirme öncesinde istenmeyen bölümleri kaldırmak için dahili kesme aracını kullanın."
+      }
+    ]
+  },
+  "quality": {
+    "title": "320kbps Kalite & Reklamsız Deneyim",
+    "description1": "EzConv, 64kbps'ten 320kbps'e kadar birden fazla MP3 kalite seviyesi sunar ve dosya boyutu ile ses netliği arasında en uygun dengeyi seçmenize olanak tanır.",
+    "description2": "Platform, reklamsız, zararlı yönlendirmeler olmadan ve hesap kaydı gerektirmeden güvenli bir YouTube MP3 indirme deneyimi sunmak üzere tasarlanmıştır."
+  },
+  "faqs": {
+    "title": "Sıkça Sorulan Sorular",
+    "items": [
+      {
+        "question": "EzConv ücretsiz mi?",
+        "answer": "Evet. EzConv tamamen ücretsizdir ve sınırsız YouTube MP3 indirmenize olanak tanır."
+      },
+      {
+        "question": "YouTube MP3 indirmek için yazılım yüklemem gerekiyor mu?",
+        "answer": "Hayır. EzConv tamamen online olarak web tarayıcınız üzerinden çalışır ve herhangi bir kurulum gerektirmez."
+      },
+      {
+        "question": "MP3 indirirken ses kalitesini seçebilir miyim?",
+        "answer": "Evet. EzConv, 64kbps'ten 320kbps'e kadar seçilebilir MP3 kalite seçenekleri sunar."
+      },
+      {
+        "question": "EzConv güvenli ve reklamsız mı?",
+        "answer": "EzConv, pop-up veya üçüncü taraf script olmadan temiz bir YouTube MP3 indirme deneyimi sunacak şekilde tasarlanmıştır."
+      },
+      {
+        "question": "EzConv mobil cihazlarda çalışır mı?",
+        "answer": "Evet. EzConv, modern tarayıcılar aracılığıyla masaüstü, tablet ve mobil cihazlarda çalışır."
+      }
+    ]
+  }
+}
