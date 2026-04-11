@@ -304,11 +304,11 @@ jobs:
       app_directory: apps/y2matepro
       filter_path: ./apps/y2matepro
       domain: ${{ vars.Y2MATEPRO_DOMAIN || 'y2matepro.com' }}
-      ssh_port: ${{ vars.SSH_PORT || '22' }}
     secrets:
       SSH_HOST: ${{ secrets.SSH_HOST }}
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      SSH_PORT: ${{ secrets.SSH_PORT }}
 
   deploy-y2matevc:
     needs: detect-changes
@@ -319,11 +319,11 @@ jobs:
       app_directory: apps/y2matevc
       filter_path: ./apps/y2matevc
       domain: ${{ vars.Y2MATEVC_DOMAIN || 'y2mate.vc' }}
-      ssh_port: ${{ vars.SSH_PORT || '22' }}
     secrets:
       SSH_HOST: ${{ secrets.SSH_HOST }}
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      SSH_PORT: ${{ secrets.SSH_PORT }}
 
   deploy-mp3fast:
     needs: detect-changes
@@ -334,11 +334,11 @@ jobs:
       app_directory: apps/mp3fast
       filter_path: ./apps/mp3fast
       domain: ${{ vars.MP3FAST_DOMAIN || 'mp3fast.net' }}
-      ssh_port: ${{ vars.SSH_PORT || '22' }}
     secrets:
       SSH_HOST: ${{ secrets.SSH_HOST }}
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      SSH_PORT: ${{ secrets.SSH_PORT }}
 
   deploy-ytmp3-my:
     needs: detect-changes
@@ -349,11 +349,11 @@ jobs:
       app_directory: apps/ytmp3.my
       filter_path: ./apps/ytmp3.my
       domain: ${{ vars.YTMP3_MY_DOMAIN || 'ytmp3.my' }}
-      ssh_port: ${{ vars.SSH_PORT || '22' }}
     secrets:
       SSH_HOST: ${{ secrets.SSH_HOST }}
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      SSH_PORT: ${{ secrets.SSH_PORT }}
 
   deploy-4kvideopro:
     needs: detect-changes
@@ -364,11 +364,11 @@ jobs:
       app_directory: apps/4kvideopro
       filter_path: ./apps/4kvideopro
       domain: ${{ vars.FOUR_K_VIDEO_PRO_DOMAIN || '4kvideo.pro' }}
-      ssh_port: ${{ vars.SSH_PORT || '22' }}
     secrets:
       SSH_HOST: ${{ secrets.SSH_HOST }}
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      SSH_PORT: ${{ secrets.SSH_PORT }}
 
   # ============================================
   # Wave 2: Waits for Wave 1 to finish
@@ -382,11 +382,11 @@ jobs:
       app_directory: apps/ssvid.cc
       filter_path: ./apps/ssvid.cc
       domain: ${{ vars.SSVID_DOMAIN || 'ssvid.cc' }}
-      ssh_port: ${{ vars.SSH_PORT || '22' }}
     secrets:
       SSH_HOST: ${{ secrets.SSH_HOST }}
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      SSH_PORT: ${{ secrets.SSH_PORT }}
 
   deploy-ezconv:
     needs: [detect-changes, deploy-y2matepro, deploy-y2matevc, deploy-mp3fast, deploy-ytmp3-my, deploy-4kvideopro]
@@ -397,11 +397,11 @@ jobs:
       app_directory: apps/ezconv
       filter_path: ./apps/ezconv
       domain: ${{ vars.EZCONV_DOMAIN || 'ezconv.pro' }}
-      ssh_port: ${{ vars.SSH_PORT || '22' }}
     secrets:
       SSH_HOST: ${{ secrets.SSH_HOST }}
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      SSH_PORT: ${{ secrets.SSH_PORT }}
 
   deploy-ytmp4-gg:
     needs: [detect-changes, deploy-y2matepro, deploy-y2matevc, deploy-mp3fast, deploy-ytmp3-my, deploy-4kvideopro]
@@ -412,11 +412,11 @@ jobs:
       app_directory: apps/ytmp4.gg
       filter_path: ./apps/ytmp4.gg
       domain: ${{ vars.YTMP4_DOMAIN || 'ytmp4.gg' }}
-      ssh_port: ${{ vars.SSH_PORT || '22' }}
     secrets:
       SSH_HOST: ${{ secrets.SSH_HOST }}
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      SSH_PORT: ${{ secrets.SSH_PORT }}
 
   deploy-onedownloader-net:
     needs: [detect-changes, deploy-y2matepro, deploy-y2matevc, deploy-mp3fast, deploy-ytmp3-my, deploy-4kvideopro]
@@ -427,11 +427,11 @@ jobs:
       app_directory: apps/onedownloader.net
       filter_path: ./apps/onedownloader.net
       domain: ${{ vars.ONEDOWNLOADER_DOMAIN || 'onedownloader.net' }}
-      ssh_port: ${{ vars.SSH_PORT || '22' }}
     secrets:
       SSH_HOST: ${{ secrets.SSH_HOST }}
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      SSH_PORT: ${{ secrets.SSH_PORT }}
 
   deploy-ytbdownloader-com:
     needs: [detect-changes, deploy-y2matepro, deploy-y2matevc, deploy-mp3fast, deploy-ytmp3-my, deploy-4kvideopro]
@@ -442,11 +442,11 @@ jobs:
       app_directory: apps/Ytbdownloader.com
       filter_path: ./apps/Ytbdownloader.com
       domain: ${{ vars.YTBDOWNLOADER_DOMAIN || 'ytbdownloader.com' }}
-      ssh_port: ${{ vars.SSH_PORT || '22' }}
     secrets:
       SSH_HOST: ${{ secrets.SSH_HOST }}
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      SSH_PORT: ${{ secrets.SSH_PORT }}
 
   deploy-u2snap-com:
     needs: [detect-changes, deploy-y2matepro, deploy-y2matevc, deploy-mp3fast, deploy-ytmp3-my, deploy-4kvideopro]
@@ -457,11 +457,11 @@ jobs:
       app_directory: apps/u2snap.com
       filter_path: ./apps/u2snap.com
       domain: ${{ vars.U2SNAP_DOMAIN || 'u2snap.com' }}
-      ssh_port: ${{ vars.SSH_PORT || '22' }}
     secrets:
       SSH_HOST: ${{ secrets.SSH_HOST }}
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      SSH_PORT: ${{ secrets.SSH_PORT }}
 
   # ============================================
   # Wave 3: Waits for Wave 2 to finish
@@ -475,11 +475,11 @@ jobs:
       app_directory: apps/convert1s.com
       filter_path: ./apps/convert1s.com
       domain: ${{ vars.CONVERT1S_DOMAIN || 'convert1s.com' }}
-      ssh_port: ${{ vars.SSH_PORT || '22' }}
     secrets:
       SSH_HOST: ${{ secrets.SSH_HOST }}
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      SSH_PORT: ${{ secrets.SSH_PORT }}
 
   deploy-snap1s-com:
     needs: [detect-changes, deploy-ssvid-cc, deploy-ezconv, deploy-ytmp4-gg, deploy-onedownloader-net, deploy-u2snap-com, deploy-ytbdownloader-com]
@@ -490,11 +490,11 @@ jobs:
       app_directory: apps/snap1s.com
       filter_path: ./apps/snap1s.com
       domain: ${{ vars.SNAP1S_DOMAIN || 'snap1s.com' }}
-      ssh_port: ${{ vars.SSH_PORT || '22' }}
     secrets:
       SSH_HOST: ${{ secrets.SSH_HOST }}
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      SSH_PORT: ${{ secrets.SSH_PORT }}
 
   deploy-tube1s-com:
     needs: [detect-changes, deploy-ssvid-cc, deploy-ezconv, deploy-ytmp4-gg, deploy-onedownloader-net, deploy-u2snap-com, deploy-ytbdownloader-com]
@@ -505,11 +505,11 @@ jobs:
       app_directory: apps/tube1s.com
       filter_path: ./apps/tube1s.com
       domain: ${{ vars.TUBE1S_DOMAIN || 'tube1s.com' }}
-      ssh_port: ${{ vars.SSH_PORT || '22' }}
     secrets:
       SSH_HOST: ${{ secrets.SSH_HOST }}
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      SSH_PORT: ${{ secrets.SSH_PORT }}
 
   deploy-y2save-com:
     needs: [detect-changes, deploy-ssvid-cc, deploy-ezconv, deploy-ytmp4-gg, deploy-onedownloader-net, deploy-u2snap-com, deploy-ytbdownloader-com]
@@ -520,11 +520,11 @@ jobs:
       app_directory: apps/y2save.com
       filter_path: ./apps/y2save.com
       domain: ${{ vars.Y2SAVE_DOMAIN || 'y2save.com' }}
-      ssh_port: ${{ vars.SSH_PORT || '22' }}
     secrets:
       SSH_HOST: ${{ secrets.SSH_HOST }}
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      SSH_PORT: ${{ secrets.SSH_PORT }}
 
   deploy-snackeloader-com:
     needs: [detect-changes, deploy-ssvid-cc, deploy-ezconv, deploy-ytmp4-gg, deploy-onedownloader-net, deploy-u2snap-com, deploy-ytbdownloader-com]
@@ -535,11 +535,11 @@ jobs:
       app_directory: apps/snakeloader.com
       filter_path: ./apps/snakeloader.com
       domain: ${{ vars.SNACKELOADER_DOMAIN || 'snakeloader.com' }}
-      ssh_port: ${{ vars.SSH_PORT || '22' }}
     secrets:
       SSH_HOST: ${{ secrets.SSH_HOST }}
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      SSH_PORT: ${{ secrets.SSH_PORT }}
 
   # ============================================
   # Wave 4: Waits for Wave 3 to finish
@@ -553,11 +553,11 @@ jobs:
       app_directory: apps/ytsss.com
       filter_path: ./apps/ytsss.com
       domain: ${{ vars.YTSSS_DOMAIN || 'ytsss.com' }}
-      ssh_port: ${{ vars.SSH_PORT || '22' }}
     secrets:
       SSH_HOST: ${{ secrets.SSH_HOST }}
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      SSH_PORT: ${{ secrets.SSH_PORT }}
 
   deploy-sstube-net:
     needs: [detect-changes, deploy-convert1s-com, deploy-snap1s-com, deploy-tube1s-com, deploy-y2save-com, deploy-snackeloader-com]
@@ -568,11 +568,11 @@ jobs:
       app_directory: apps/sstube.net
       filter_path: ./apps/sstube.net
       domain: ${{ vars.SSTUBE_DOMAIN || 'sstube.net' }}
-      ssh_port: ${{ vars.SSH_PORT || '22' }}
     secrets:
       SSH_HOST: ${{ secrets.SSH_HOST }}
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      SSH_PORT: ${{ secrets.SSH_PORT }}
 
   deploy-ytconvert-org:
     needs: [detect-changes, deploy-convert1s-com, deploy-snap1s-com, deploy-tube1s-com, deploy-y2save-com, deploy-snackeloader-com]
@@ -584,11 +584,11 @@ jobs:
       filter_path: ./apps/ytconvert.org
       domain: ${{ vars.YTCONVERT_DOMAIN || 'ytconvert.org' }}
       deploy_root: /var/www/KhanhHAUI/ssl_sites
-      ssh_port: ${{ vars.SSH_PORT || '22' }}
     secrets:
       SSH_HOST: ${{ secrets.SSH_HOST }}
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      SSH_PORT: ${{ secrets.SSH_PORT }}
 
   deploy-yt1s-guru:
     needs: [detect-changes, deploy-convert1s-com, deploy-snap1s-com, deploy-tube1s-com, deploy-y2save-com, deploy-snackeloader-com]
@@ -599,11 +599,11 @@ jobs:
       app_directory: apps/yt1s.guru
       filter_path: ./apps/yt1s.guru
       domain: ${{ vars.YT1S_GURU_DOMAIN || 'yt1s.guru' }}
-      ssh_port: ${{ vars.SSH_PORT || '22' }}
     secrets:
       SSH_HOST: ${{ secrets.SSH_HOST }}
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      SSH_PORT: ${{ secrets.SSH_PORT }}
 
   deploy-y2mate-com-vc:
     needs: [detect-changes, deploy-convert1s-com, deploy-snap1s-com, deploy-tube1s-com, deploy-y2save-com, deploy-snackeloader-com]
@@ -614,11 +614,11 @@ jobs:
       app_directory: apps/y2mate.com.vc
       filter_path: ./apps/y2mate.com.vc
       domain: ${{ vars.Y2MATE_COM_VC_DOMAIN || 'y2mate.com.vc' }}
-      ssh_port: ${{ vars.SSH_PORT || '22' }}
     secrets:
       SSH_HOST: ${{ secrets.SSH_HOST }}
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      SSH_PORT: ${{ secrets.SSH_PORT }}
 
   deploy-real-y2mate-com:
     needs: [detect-changes, deploy-convert1s-com, deploy-snap1s-com, deploy-tube1s-com, deploy-y2save-com, deploy-snackeloader-com]
@@ -629,11 +629,11 @@ jobs:
       app_directory: apps/real-y2mate.com
       filter_path: ./apps/real-y2mate.com
       domain: ${{ vars.REAL_Y2MATE_DOMAIN || 'real-y2mate.com' }}
-      ssh_port: ${{ vars.SSH_PORT || '22' }}
     secrets:
       SSH_HOST: ${{ secrets.SSH_HOST }}
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      SSH_PORT: ${{ secrets.SSH_PORT }}
 
   deploy-ytmp3-website:
     needs: [detect-changes, deploy-convert1s-com, deploy-snap1s-com, deploy-tube1s-com, deploy-y2save-com, deploy-snackeloader-com]
@@ -644,11 +644,11 @@ jobs:
       app_directory: apps/ytmp3.website
       filter_path: ./apps/ytmp3.website
       domain: ${{ vars.YTMP3_WEBSITE_DOMAIN || 'ytmp3.website' }}
-      ssh_port: ${{ vars.SSH_PORT || '22' }}
     secrets:
       SSH_HOST: ${{ secrets.SSH_HOST }}
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      SSH_PORT: ${{ secrets.SSH_PORT }}
 
   deploy-y2ss-net:
     needs: [detect-changes, deploy-convert1s-com, deploy-snap1s-com, deploy-tube1s-com, deploy-y2save-com, deploy-snackeloader-com]
@@ -659,11 +659,11 @@ jobs:
       app_directory: apps/y2ss.net
       filter_path: ./apps/y2ss.net
       domain: ${{ vars.Y2SS_NET_DOMAIN || 'y2ss.net' }}
-      ssh_port: ${{ vars.SSH_PORT || '22' }}
     secrets:
       SSH_HOST: ${{ secrets.SSH_HOST }}
       SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      SSH_PORT: ${{ secrets.SSH_PORT }}
 
   # ============================================
   # Job 9: Summary
