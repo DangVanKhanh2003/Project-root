@@ -1,0 +1,115 @@
+{
+  "seo": {
+    "title": "YouTube 下载器 – 免费下载视频 | SNAP1S",
+    "description": "使用SNAP1S下载YouTube视频。免费YouTube视频下载器，支持HD和4K画质保存视频。无需注册或安装应用。",
+    "schemaName": "SNAP1S - YouTube视频下载器",
+    "schemaDescription": "SNAP1S是一款免费YouTube视频下载器，允许用户以HD和4K画质下载YouTube视频。",
+    "ogTitle": "YouTube 下载器 – 免费下载视频 | SNAP1S",
+    "ogDescription": "使用SNAP1S下载YouTube视频。免费、快速、HD画质。"
+  },
+  "content": {
+    "form": {
+      "h1": "SNAP1S – YouTube视频下载器",
+      "placeholder": "在此粘贴YouTube视频URL...",
+      "button": "下载视频"
+    },
+    "sections": [
+      {
+        "h2": "什么是SNAP1S YouTube下载器？",
+        "p": [
+          "SNAP1S是一款免费的<strong>YouTube视频下载器</strong>，可让您以HD和4K画质将YouTube视频下载到您的设备。",
+          "只需粘贴YouTube视频链接，点击下载，即可将视频直接保存到手机或电脑。",
+          "这款<strong>在线YouTube视频下载器</strong>无需安装应用，可在所有设备和浏览器上使用。"
+        ]
+      },
+      {
+        "h2": "如何下载YouTube视频",
+        "ol": [
+          {
+            "h3": "复制YouTube视频链接",
+            "p": [
+              "打开YouTube，从地址栏或分享按钮复制您想下载的视频URL。"
+            ]
+          },
+          {
+            "h3": "粘贴链接",
+            "p": [
+              "将YouTube视频URL粘贴到上方的SNAP1S YouTube下载器中。"
+            ]
+          },
+          {
+            "h3": "下载视频",
+            "p": [
+              "点击下载按钮，以您喜欢的画质将YouTube视频保存到您的设备。"
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "以HD画质下载YouTube视频",
+        "p": [
+          "SNAP1S允许您以多种画质选项<strong>下载YouTube视频</strong>，包括720p、1080p和4K分辨率。",
+          "保存您喜爱的YouTube视频、音乐视频和教程，随时随地离线观看。"
+        ]
+      },
+      {
+        "h2": "为什么使用SNAP1S YouTube下载器？",
+        "ul": [
+          {
+            "h3": "HD和4K画质",
+            "p": [
+              "以最高可用画质下载YouTube视频，包括Full HD和4K分辨率。"
+            ]
+          },
+          {
+            "h3": "多种格式",
+            "p": [
+              "根据您的需求，以MP4、MP3等多种格式保存YouTube视频。"
+            ]
+          },
+          {
+            "h3": "免费且无限制",
+            "p": [
+              "免费下载任意数量的YouTube视频，无每日限制。"
+            ]
+          },
+          {
+            "h3": "无需应用",
+            "p": [
+              "YouTube下载器无需安装应用，直接在任何设备的browser中使用。"
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "常见问题",
+        "ul": [
+          {
+            "h3": "SNAP1S YouTube下载器免费吗？",
+            "p": [
+              "是的。SNAP1S是完全免费的YouTube下载器，没有任何隐藏费用。"
+            ]
+          },
+          {
+            "h3": "可以下载HD画质的YouTube视频吗？",
+            "p": [
+              "可以。SNAP1S支持以720p、1080p和4K画质下载YouTube视频。"
+            ]
+          },
+          {
+            "h3": "在iPhone和Android上能用吗？",
+            "p": [
+              "能。YouTube下载器可在所有移动设备和桌面浏览器上使用。"
+            ]
+          },
+          {
+            "h3": "下载需要YouTube账号吗？",
+            "p": [
+              "不需要。使用SNAP1S下载YouTube视频只需视频URL即可。"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

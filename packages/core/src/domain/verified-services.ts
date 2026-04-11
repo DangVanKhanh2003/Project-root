@@ -10,38 +10,44 @@ import { POLICY_NAME } from './verification/constants';
 import type { VerifiedResult } from './verification/types';
 import type { ProtectionPayload } from '../services/base/base-service';
 
-// Core Services
-import type { ISearchService } from '../services/v1/interfaces/search.interface';
-import type { IMediaService } from '../services/v1/interfaces/media.interface';
-import type { IConversionService } from '../services/v1/interfaces/conversion.interface';
-import type { IPlaylistService } from '../services/v1/interfaces/playlist.interface';
-import type { IDecryptService } from '../services/v1/interfaces/decrypt.interface';
 import type { IFeedbackService } from '../services/v1/interfaces/feedback.interface';
-import type { ISearchV2Service } from '../services/v2/interfaces/searchv2.interface';
-import type { IQueueService } from '../services/v2/interfaces/queue.interface';
-import type { IYouTubeDownloadService } from '../services/v2/interfaces/youtube-download.interface';
+import type { IDecryptService } from '../services/v1/interfaces/decrypt.interface';
 import type { IMultifileService } from '../services/v1/interfaces/multifile.interface';
-import type { IYouTubePublicApiService } from '../services/public-api/interfaces/public-api.interface';
+import type { ISearchV2Service } from '../services/v2/interfaces/searchv2.interface';
+import type { IYouTubeDownloadService } from '../services/v2/interfaces/youtube-download.interface';
+import type { IZipDownloadService, ZipDownloadResponse } from '../services/v3/interfaces/zip.interface';
+import type { IQueueService } from '../services/v2/interfaces/queue.interface';
 
-// Mappers for data transformation
-import { mapDirectExtractResponse } from '../mappers/v1/media/direct.mapper';
-import { mapInstagramResponse } from '../mappers/v1/media/instagram.mapper';
+import type { IYouTubePublicApiService } from '../services/public-api/interfaces/public-api.interface';
+import type { IV3PlaylistService } from '../services/v3/interfaces/playlist.interface';
+import type { IV3DownloadService } from '../services/v3/interfaces/download.interface';
+import type { IExternalExtractService } from '../services/v3/interfaces/external-extract.interface';
+import type { ISaveZipService } from '../services/v3/interfaces/save-zip.interface';
 
 /**
  * Core Services Collection
+ * All fields optional except the universal ones (searchV2, queue, youtubePublicApi)
  */
 export interface CoreServices {
-  search: ISearchService;
-  media: IMediaService;
-  conversion: IConversionService;
-  playlist: IPlaylistService;
-  decrypt: IDecryptService;
-  feedback: IFeedbackService;
+  // Universal services (all apps)
   searchV2: ISearchV2Service;
   queue: IQueueService;
-  youtubeDownload: IYouTubeDownloadService;
-  multifile: IMultifileService;
   youtubePublicApi: IYouTubePublicApiService;
+
+  // Optional V1 services
+  feedback?: IFeedbackService;
+  decrypt?: IDecryptService;
+  multifile?: IMultifileService;
+
+  // Optional V2 services
+  youtubeDownload?: IYouTubeDownloadService;
+
+  // Optional V3 services
+  playlistV3?: IV3PlaylistService;
+  downloadV3?: IV3DownloadService;
+  zipDownload?: IZipDownloadService;
+  saveZip?: ISaveZipService;
+  externalExtract?: IExternalExtractService;
 }
 
 /**
@@ -77,7 +83,7 @@ export function createVerifiedServices(
     'convert',
     'decodeUrl',
     'decodeList',
-    'startMultifileSession',
+
   ]);
 
   /**
@@ -99,38 +105,6 @@ export function createVerifiedServices(
    * KEY NAMES MUST MATCH ACTUAL METHOD NAMES for clarity
    */
   const methodRegistry: Record<string, (...args: any[]) => Promise<any>> = {
-    // Search V1
-    [POLICY_NAME.SEARCH_TITLE]: (params: any) =>
-      services.search.searchTitle(params),
-    [POLICY_NAME.GET_SUGGESTIONS]: (params: any) =>
-      services.search.getSuggestions(params),
-
-    // Media (with protection)
-    [POLICY_NAME.EXTRACT_MEDIA]: (params: any, payload?: ProtectionPayload) =>
-      services.media.extractMedia(params, payload),
-    [POLICY_NAME.EXTRACT_MEDIA_DIRECT]: (params: any, payload?: ProtectionPayload) =>
-      services.media.extractMediaDirect(params, payload),
-
-    // Conversion
-    [POLICY_NAME.CONVERT]: (params: any, payload?: ProtectionPayload) =>
-      services.conversion.convert(params, payload),
-    [POLICY_NAME.CHECK_TASK]: (params: any) =>
-      services.conversion.checkTask(params),
-
-    // Playlist
-    [POLICY_NAME.EXTRACT_PLAYLIST]: (params: any) =>
-      services.playlist.extractPlaylist(params),
-
-    // Decrypt (with protection)
-    [POLICY_NAME.DECODE_URL]: (params: any, payload?: ProtectionPayload) =>
-      services.decrypt.decodeUrl(params, payload),
-    [POLICY_NAME.DECODE_LIST]: (params: any, payload?: ProtectionPayload) =>
-      services.decrypt.decodeList(params, payload),
-
-    // Feedback
-    [POLICY_NAME.SEND_FEEDBACK]: (params: any) =>
-      services.feedback.sendFeedback(params),
-
     // Search V2
     [POLICY_NAME.SEARCH_V2]: (query: string, options?: any) =>
       services.searchV2.searchV2(query, options),
@@ -139,22 +113,65 @@ export function createVerifiedServices(
     [POLICY_NAME.ADD_VIDEO_TO_QUEUE]: (videoId: string) =>
       services.queue.addVideoToQueue(videoId),
 
-    // YouTube Download
-    [POLICY_NAME.DOWNLOAD_YOUTUBE]: (params: any, signal?: AbortSignal) =>
-      services.youtubeDownload.downloadYouTube(params, signal),
-    [POLICY_NAME.GET_DOWNLOAD_PROGRESS]: (params: any) =>
-      services.youtubeDownload.getDownloadProgress(params),
-
-    // Multifile (with protection for start session)
-    [POLICY_NAME.START_MULTIFILE_SESSION]: (params: any, payload?: ProtectionPayload) =>
-      services.multifile.startMultifileSession(params, payload),
-    [POLICY_NAME.GET_MULTIFILE_STATUS]: (params: any) =>
-      services.multifile.getMultifileStatus(params),
-
     // YouTube Public API
     [POLICY_NAME.GET_METADATA_YOUTUBE]: (url: string) =>
       services.youtubePublicApi.getMetadata(url),
+    [POLICY_NAME.GET_SUGGESTIONS]: (query: string) =>
+      services.youtubePublicApi.getSuggestions(query),
   };
+
+  // Conditionally register optional services
+  if (services.feedback) {
+    methodRegistry[POLICY_NAME.SEND_FEEDBACK] = (params: any) =>
+      services.feedback!.sendFeedback(params);
+    methodRegistry[POLICY_NAME.SEND_FEEDBACK_WIDGET] = (params: any) =>
+      services.feedback!.sendFeedbackWidget(params);
+  }
+
+  if (services.decrypt) {
+    methodRegistry[POLICY_NAME.DECODE_URL] = (params: any) =>
+      services.decrypt!.decodeUrl(params);
+    methodRegistry[POLICY_NAME.DECODE_LIST] = (params: any) =>
+      services.decrypt!.decodeList(params);
+  }
+
+  if (services.multifile) {
+    methodRegistry['startMultifileSession'] = (params: any) =>
+      services.multifile!.startMultifileSession(params);
+  }
+
+  if (services.playlistV3) {
+    methodRegistry['playlistV3.extractPlaylist'] = (url: string, signal?: AbortSignal) =>
+      services.playlistV3!.extractPlaylist(url, signal);
+  }
+
+  if (services.downloadV3) {
+    methodRegistry['downloadV3.createJob'] = (request: any, signal?: AbortSignal) =>
+      services.downloadV3!.createJob(request, signal);
+    methodRegistry['downloadV3.getStatusByUrl'] = (url: string) =>
+      services.downloadV3!.getStatusByUrl(url);
+  }
+
+  if (services.zipDownload) {
+    methodRegistry['zipDownload.createZipDownload'] = (request: any) =>
+      services.zipDownload!.createZipDownload(request);
+  }
+
+  if (services.saveZip) {
+    methodRegistry['saveZip.saveInit'] = () =>
+      services.saveZip!.saveInit();
+    methodRegistry['saveZip.saveAddFile'] = (request: any) =>
+      services.saveZip!.saveAddFile(request);
+    methodRegistry['saveZip.saveZip'] = (request: any) =>
+      services.saveZip!.saveZip(request);
+    methodRegistry['saveZip.saveStatus'] = (taskId: string) =>
+      services.saveZip!.saveStatus(taskId);
+  }
+
+  if (services.externalExtract) {
+    methodRegistry['externalExtract.extract'] = (request: any, signal?: AbortSignal) =>
+      services.externalExtract!.extract(request, signal);
+  }
 
   /**
    * Generic wrap function
@@ -175,7 +192,6 @@ export function createVerifiedServices(
       // For protected methods, check JWT first and handle CAPTCHA flow
       if (protectedMethods.has(methodName) && captchaHandler) {
         const currentJwt = verifier.getCurrentJwt();
-        debugger
         // Path 1: Have JWT - try with JWT first
         if (currentJwt) {
           const rawResponse = await method(...args);
@@ -282,7 +298,7 @@ export function createVerifiedServices(
       lastArg === undefined ||
       // Protection payload object
       (typeof lastArg === 'object' && lastArg !== null &&
-       (lastArg.jwt !== undefined || lastArg.captcha !== undefined))
+        (lastArg.jwt !== undefined || lastArg.captcha !== undefined))
     );
 
     if (lastArgIsProtection) {
@@ -313,7 +329,6 @@ export function createVerifiedServices(
         raw: captchaError,
       };
     }
-    debugger
     return {
       ok: false,
       status: 'error',
@@ -329,164 +344,79 @@ export function createVerifiedServices(
 
   // Return verified services API
   return {
-    // ========================================
-    // Search V1
-    // ========================================
-
-    searchTitle: (params: Parameters<ISearchService['searchTitle']>[0]) =>
-      wrap(POLICY_NAME.SEARCH_TITLE, params),
-
-    getSuggestions: (params: Parameters<ISearchService['getSuggestions']>[0]) =>
-      wrap(POLICY_NAME.GET_SUGGESTIONS, params),
-
-    // ========================================
-    // Media Extraction (WITH auto JWT injection)
-    // ========================================
-
-    extractMedia: (
-      params: Parameters<IMediaService['extractMedia']>[0],
-      protectionPayload?: ProtectionPayload
-    ) => {
-      const payload = getProtectionPayload(protectionPayload);
-      return wrap(POLICY_NAME.EXTRACT_MEDIA, params, payload);
-    },
-
-    extractMediaDirect: async (
-      params: Parameters<IMediaService['extractMediaDirect']>[0],
-      protectionPayload?: ProtectionPayload
-    ) => {
-      const payload = getProtectionPayload(protectionPayload);
-      const result = await wrap(POLICY_NAME.EXTRACT_MEDIA_DIRECT, params, payload);
-
-      // Apply mapping to verified result data
-      if (result.ok && result.data) {
-        const unwrappedData = result.data as any;
-
-        // Check if Instagram carousel
-        if (unwrappedData.extractor?.toLowerCase() === 'instagram' && unwrappedData.gallery) {
-          const mapped = mapInstagramResponse(unwrappedData);
-          return {
-            ...result,
-            data: mapped,
-          };
-        }
-
-        // Map direct extract response
-        const mapped = mapDirectExtractResponse(unwrappedData);
-        return {
-          ...result,
-          data: mapped,
-        };
-      }
-
-      return result;
-    },
-
-    // ========================================
-    // Conversion (WITH auto JWT for convert)
-    // ========================================
-
-    convert: (
-      params: Parameters<IConversionService['convert']>[0],
-      protectionPayload?: ProtectionPayload
-    ) => {
-      const payload = getProtectionPayload(protectionPayload);
-      return wrap(POLICY_NAME.CONVERT, params, payload);
-    },
-
-    checkTask: (params: Parameters<IConversionService['checkTask']>[0]) =>
-      wrap(POLICY_NAME.CHECK_TASK, params),
-
-    // ========================================
-    // Playlist
-    // ========================================
-
-    extractPlaylist: (params: Parameters<IPlaylistService['extractPlaylist']>[0]) =>
-      wrap(POLICY_NAME.EXTRACT_PLAYLIST, params),
-
-    // ========================================
-    // Decrypt (WITH auto JWT injection)
-    // ========================================
-
-    decodeUrl: (
-      params: Parameters<IDecryptService['decodeUrl']>[0],
-      protectionPayload?: ProtectionPayload
-    ) => {
-      const payload = getProtectionPayload(protectionPayload);
-      return wrap(POLICY_NAME.DECODE_URL, params, payload);
-    },
-
-    decodeList: (
-      params: Parameters<IDecryptService['decodeList']>[0],
-      protectionPayload?: ProtectionPayload
-    ) => {
-      const payload = getProtectionPayload(protectionPayload);
-      return wrap(POLICY_NAME.DECODE_LIST, params, payload);
-    },
-
-    // ========================================
     // Feedback
-    // ========================================
-
     sendFeedback: (params: Parameters<IFeedbackService['sendFeedback']>[0]) =>
       wrap(POLICY_NAME.SEND_FEEDBACK, params),
+    sendFeedbackWidget: (params: Parameters<IFeedbackService['sendFeedbackWidget']>[0]) =>
+      wrap(POLICY_NAME.SEND_FEEDBACK_WIDGET, params),
 
-    // ========================================
     // Search V2
-    // ========================================
-
     searchV2: (query: string, options?: Parameters<ISearchV2Service['searchV2']>[1]) =>
       wrap(POLICY_NAME.SEARCH_V2, query, options),
 
-    // ========================================
     // Queue
-    // ========================================
-
     addVideoToQueue: (videoId: string) =>
       wrap(POLICY_NAME.ADD_VIDEO_TO_QUEUE, videoId),
 
-    // ========================================
-    // YouTube Download
-    // ========================================
-
-    downloadYouTube: (params: Parameters<IYouTubeDownloadService['downloadYouTube']>[0], signal?: AbortSignal) =>
-      wrap(POLICY_NAME.DOWNLOAD_YOUTUBE, params, signal),
-
-    getDownloadProgress: (params: Parameters<IYouTubeDownloadService['getDownloadProgress']>[0]) =>
-      wrap(POLICY_NAME.GET_DOWNLOAD_PROGRESS, params),
-
-    // ========================================
-    // Multifile
-    // ========================================
-
-    startMultifileSession: (
-      params: Parameters<IMultifileService['startMultifileSession']>[0],
-      protectionPayload?: ProtectionPayload
-    ) => {
-      const payload = getProtectionPayload(protectionPayload);
-      return wrap(POLICY_NAME.START_MULTIFILE_SESSION, params, payload);
-    },
-
-    getMultifileStatus: (params: Parameters<IMultifileService['getMultifileStatus']>[0]) =>
-      wrap(POLICY_NAME.GET_MULTIFILE_STATUS, params),
-
-    // ========================================
     // YouTube Public API
-    // ========================================
+    getSuggestions: (params: { q: string }) =>
+      wrap<string[]>(POLICY_NAME.GET_SUGGESTIONS, params.q),
 
     getMetadataYoutube: (url: string) =>
       wrap(POLICY_NAME.GET_METADATA_YOUTUBE, url),
 
-    // ========================================
-    // Utility
-    // ========================================
+    // Decrypt (V1)
+    decodeUrl: (params: { encrypted_url: string }) =>
+      wrap(POLICY_NAME.DECODE_URL, params),
 
+    decodeList: (params: { encrypted_urls: string[] }) =>
+      wrap(POLICY_NAME.DECODE_LIST, params),
+
+    // Multifile (V1)
+    startMultifileSession: (params: { urls: string[] }) =>
+      wrap('startMultifileSession', params),
+
+    // Playlist V3
+    playlistV3: {
+      extractPlaylist: (url: string, signal?: AbortSignal) =>
+        wrap('playlistV3.extractPlaylist', url, signal),
+    },
+
+    // Download V3
+    downloadV3: {
+      createJob: (request: Parameters<IV3DownloadService['createJob']>[0], signal?: AbortSignal) =>
+        wrap('downloadV3.createJob', request, signal),
+      getStatusByUrl: (url: string) =>
+        wrap('downloadV3.getStatusByUrl', url),
+    },
+
+    // ZIP Download
+    zipDownload: {
+      createZipDownload: (request: Parameters<IZipDownloadService['createZipDownload']>[0]) =>
+        wrap<ZipDownloadResponse>('zipDownload.createZipDownload', request),
+    },
+
+    // Save ZIP (server-side ZIP session for mobile)
+    saveZip: {
+      saveInit: () =>
+        wrap('saveZip.saveInit'),
+      saveAddFile: (request: Parameters<ISaveZipService['saveAddFile']>[0]) =>
+        wrap('saveZip.saveAddFile', request),
+      saveZip: (request: Parameters<ISaveZipService['saveZip']>[0]) =>
+        wrap('saveZip.saveZip', request),
+      saveStatus: (taskId: string) =>
+        wrap('saveZip.saveStatus', taskId),
+    },
+
+    // External Extract (cc.ytconvert.org)
+    externalExtract: {
+      extract: (request: Parameters<IExternalExtractService['extract']>[0], signal?: AbortSignal) =>
+        wrap('externalExtract.extract', request, signal),
+    },
+
+    // Utility
     getCurrentJwt: () => verifier.getCurrentJwt(),
     clearJwt: () => verifier.clearJwt(),
-
-    // ========================================
-    // Direct access to core services (if needed)
-    // ========================================
 
     core: services,
   };

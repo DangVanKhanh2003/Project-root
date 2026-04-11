@@ -1,0 +1,20 @@
+{
+  "nav": {
+    "home": "Home",
+    "faq": "FAQ",
+    "contact": "Contact"
+  },
+  "hero": {
+    "placeholder": "Paste YouTube link...",
+    "pasteButton": "Paste",
+    "clearButton": "Clear",
+    "convertButton": "Convert"
+  },
+  "footer": {
+    "copyright": "© 2025 MP3Fast.net | Free YouTube to MP3 Converter",
+    "contact": "Contact",
+    "copyrightClaims": "Copyright Claims",
+    "privacyPolicy": "Privacy Policy",
+    "terms": "Terms of Use"
+  }
+}

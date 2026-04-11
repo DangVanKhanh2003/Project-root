@@ -1,0 +1,97 @@
+{
+  "seo": {
+    "title": "YouTube-Video in 4K herunterladen – YouTube 4K Downloader",
+    "description": "Laden Sie YouTube-Videos in 4K-Qualität online herunter. Einfacher, schneller und webbasierter YouTube 4K-Downloader.",
+    "ogTitle": "YouTube-Video in 4K herunterladen – YouTube 4K Downloader",
+    "ogDescription": "Laden Sie YouTube-Videos in 4K-Qualität online herunter. Einfacher, schneller und webbasierter YouTube 4K-Downloader."
+  },
+  "hero": {
+    "title": "YouTube 4K Video",
+    "titleAccent": "Herunterladen",
+    "subtitle": "Laden Sie YouTube-Videos in 4K-Qualität herunter",
+    "placeholder": "Link hier einfügen"
+  },
+  "content": {
+    "introTitle": "Über dieses 4K Video",
+    "intro": [
+      "Diese Seite ist ein spezielles Tool zum Herunterladen von YouTube-Videos in 4K-Qualität.",
+      "Das Tool wurde für Benutzer entwickelt, die YouTube-Videos in hoher Auflösung herunterladen müssen."
+    ],
+    "sections": [
+      {
+        "id": "download-4k",
+        "title": "YouTube-Videos in 4K-Qualität herunterladen",
+        "paragraphs": [
+          "Wenn ein YouTube-Video die 4K-Auflösung (2160p) unterstützt, zeigt das Tool die Option zum Herunterladen des Videos in 4K-Qualität an.",
+          "Heruntergeladene Videos entsprechen immer der von YouTube bereitgestellten Originalqualität.",
+          "Das Tool ändert oder modifiziert die Videoqualität während des Download-Vorgangs nicht."
+        ]
+      },
+      {
+        "id": "when-4k-not-available",
+        "title": "Wenn 4K nicht verfügbar ist",
+        "paragraphs": [
+          "Nicht alle YouTube-Videos werden mit 4K-Auflösung hochgeladen.",
+          "Wenn ein Video keinen 4K-Stream bereitstellt, zeigt das Tool alle anderen von YouTube angebotenen verfügbaren Qualitäten an.",
+          "Sie können immer noch die höchste vom Originalvideo unterstützte Qualität herunterladen."
+        ]
+      },
+      {
+        "id": "how-it-works",
+        "title": "So laden Sie YouTube-Videos in 4K herunter",
+        "list": [
+          {
+            "title": "Fügen Sie den YouTube-Videolink ein",
+            "text": "Kopieren Sie die YouTube-Video-URL und fügen Sie sie in das Eingabefeld auf dieser Seite ein."
+          },
+          {
+            "title": "Laden Sie 4K herunter, falls verfügbar",
+            "text": "Wenn das Video die 4K-Auflösung unterstützt, ist die 4K-Download-Option standardmäßig verfügbar."
+          },
+          {
+            "title": "Wählen Sie bei Bedarf eine andere Qualität",
+            "text": "Wenn 4K nicht verfügbar ist, wählen Sie die höchste von YouTube bereitgestellte Qualität und laden Sie das Video herunter."
+          }
+        ]
+      },
+      {
+        "id": "formats",
+        "title": "Verfügbare Download-Formate",
+        "paragraphs": [
+          "Videodateien werden im MP4-Format basierend auf der ursprünglichen YouTube-Videoqualität bereitgestellt.",
+          "Nur-Audio-Downloads im MP3-Format sind als optionale Wahl verfügbar.",
+          "Alle verfügbaren Formate spiegeln die von YouTube bereitgestellten Original-Streams wider."
+        ]
+      }
+    ]
+  },
+  "instructions": {
+    "title": "So laden Sie YouTube-Videos in 4K herunter",
+    "steps": [
+      "Kopieren Sie die YouTube-Video-URL und fügen Sie sie in das Eingabefeld auf dieser Seite ein.",
+      "Wenn das Video die 4K-Auflösung unterstützt, ist die 4K-Download-Option standardmäßig verfügbar.",
+      "Wenn 4K nicht verfügbar ist, wählen Sie die höchste von YouTube bereitgestellte Qualität und laden Sie das Video herunter."
+    ]
+  },
+  "faqs": {
+    "title": "Häufig gestellte Fragen",
+    "items": [
+      {
+        "question": "Können alle YouTube-Videos in 4K heruntergeladen werden?",
+        "answer": "Nein. Nur YouTube-Videos, die einen nativen 4K-Stream haben, können in 4K-Qualität heruntergeladen werden."
+      },
+      {
+        "question": "Skaliert dieses Tool Videos auf 4K hoch?",
+        "answer": "Nein. Das Tool skaliert oder modifiziert keine Videos. Es bietet nur Download-Optionen basierend auf der auf YouTube verfügbaren Originalqualität."
+      },
+      {
+        "question": "Welche Formate stehen zum Download zur Verfügung?",
+        "answer": "Videodateien werden im MP4-Format basierend auf der ursprünglichen YouTube-Videoqualität bereitgestellt. Nur-Audio-Downloads im MP3-Format sind als optionale Wahl verfügbar."
+      },
+      {
+        "question": "Was passiert, wenn 4K nicht verfügbar ist?",
+        "answer": "Wenn ein Video keinen 4K-Stream bereitstellt, zeigt das Tool alle anderen von YouTube angebotenen verfügbaren Qualitäten an. Sie können immer noch die höchste vom Originalvideo unterstützte Qualität herunterladen."
+      }
+    ]
+  }
+}

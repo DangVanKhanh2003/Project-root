@@ -1,0 +1,35 @@
+{
+  "nav": { "home": "홈" },
+  "drawer": { "logoText": "Y2SS", "links": { "home": "홈" } },
+  "hero": {
+    "placeholder": "YouTube 재생목록 URL을 여기에 붙여넣기...",
+    "pasteBtn": "붙여넣기",
+    "clearBtn": "지우기",
+    "convertBtn": "변환",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "오디오 트랙",
+    "searchPlaceholder": "검색...",
+    "supportedPlatforms": "지원 플랫폼:"
+  },
+  "footer": {
+    "copyright": "© 2026 Y2SS. All rights reserved.",
+    "legal": {
+      "about": "소개",
+      "contact": "문의하기",
+      "copyright": "저작권 및 DMCA",
+      "privacyPolicy": "개인정보 처리방침",
+      "termsOfUse": "이용약관"
+    }
+  },
+  "langSelector": { "buttonLabel": "언어 변경", "buttonText": "KO", "currentLangFull": "한국어" },
+  "strim": {
+    "startBtn": "시작",
+    "selectFormatLabel": "1. 형식 선택:",
+    "selectQualityLabel": "2. 화질 선택:",
+    "audioTrackLabel": "3. 오디오 트랙 선택:",
+    "trimLabel": "4. 동영상 자르기 (시작 – 종료 시간):",
+    "startTimeLabel": "시작",
+    "endTimeLabel": "종료"
+  }
+}

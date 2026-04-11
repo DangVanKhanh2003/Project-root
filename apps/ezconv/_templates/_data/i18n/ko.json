@@ -1,0 +1,72 @@
+{
+  "nav": {
+    "home": "홈",
+    "youtubeToMp3": "YouTube to MP3",
+    "youtubeToMp4": "YouTube to MP4",
+    "youtubeShorts": "YouTube Shorts",
+    "about": "소개"
+  },
+  "langSelector": {
+    "buttonText": "KO",
+    "buttonLabel": "언어",
+    "currentLangFull": "한국어"
+  },
+  "drawer": {
+    "logoText": "EzConv.pro",
+    "links": {
+      "home": "홈",
+      "youtubeToMp3": "유튜브를 MP3로",
+      "youtubeToMp4": "유튜브를 MP4로",
+      "youtubeShorts": "유튜브 쇼츠",
+      "about": "소개",
+      "faq": "자주 묻는 질문",
+      "contact": "문의하기",
+      "terms": "Terms of Use",
+      "privacy": "개인정보 보호",
+      "dmca": "DMCA",
+      "cutVideoYoutube": "유튜브 동영상 자르기"
+    }
+  },
+  "hero": {
+    "placeholder": "여기에 유튜브 링크를 붙여넣으세요...",
+    "pasteBtn": "붙여넣기",
+    "clearBtn": "지우기",
+    "convertBtn": "변환",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "Audio track",
+    "searchPlaceholder": "검색...",
+    "searchBtn": "검색",
+    "searchVideosPlaceholder": "동영상을 검색하세요...",
+    "supportedPlatforms": "지원되는 플랫폼:"
+  },
+  "overview": {
+    "badge": "빠르고 무료"
+  },
+  "footer": {
+    "linksRow1": {
+      "youtubeToMp3": "유튜브를 MP3로",
+      "youtubeToMp4": "유튜브를 MP4로",
+      "youtubeShorts": "유튜브 쇼츠",
+      "cutVideoYoutube": "유튜브 동영상 자르기"
+    },
+    "linksRow2": {
+      "about": "소개",
+      "contact": "문의하기",
+      "terms": "Terms of Use",
+      "privacyPolicy": "개인정보처리방침",
+      "dmca": "DMCA",
+      "faq": "자주 묻는 질문"
+    },
+    "copyright": "© 2026 EzConv. 모든 권리 보유."
+  },
+  "trim": {
+    "startBtn": "시작",
+    "selectFormatLabel": "1. 형식 선택:",
+    "selectQualityLabel": "2. 품질 선택:",
+    "audioTrackLabel": "3. 오디오 트랙 선택:",
+    "trimLabel": "4. 영상 자르기 (시작 – 종료):",
+    "startTimeLabel": "시작",
+    "endTimeLabel": "종료"
+  }
+}

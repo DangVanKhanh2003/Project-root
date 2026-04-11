@@ -22,6 +22,7 @@ import {
 import { transformSearchItemToVideoData } from '../logic/input-form';
 import { getInfiniteScrollThreshold } from '@downloader/ui-shared/scroll';
 import { api } from '../../../api';
+import { logEvent } from '../../../libs/firebase/firebase-analytics';
 
 let contentArea: HTMLElement | null = null;
 let searchResultsContainer: HTMLElement | null = null;
@@ -45,6 +46,11 @@ function handleSearchResultClick(event: MouseEvent): void {
     return;
   }
 
+  // 📊 Analytics: Track search result item click
+  logEvent('search_item_click', {
+    video_id: videoId,
+    has_title: Boolean(videoTitle)
+  });
 
   // Set flag to indicate this is from list item click (DON'T clear search results)
   setIsFromListItemClick(true);
@@ -425,7 +431,7 @@ function renderDetailSkeleton(): string {
 
           <!-- Quality List - 2 columns only (left + right) -->
           <div class="quality-list">
-            ${Array(6).fill(null).map(() => `
+            ${Array(5).fill(null).map(() => `
               <div class="quality-item">
                 <div class="quality-row">
                   <div class="quality-col-left">

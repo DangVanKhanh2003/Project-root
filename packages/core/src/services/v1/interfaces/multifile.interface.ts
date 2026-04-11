@@ -1,26 +1,12 @@
 /**
- * Multifile Service Interface (V1)
+ * Multifile Download Service Interface (V1)
+ * Manages multifile download sessions
  */
 
-import type {
-  MultifileStartResponse,
-  MultifileStatusResponse,
-} from '../../../models/remote/v1/responses/multifile.response';
-import type {
-  MultifileNonEncodeStartRequest,
-  MultifileStatusRequest,
-} from '../../../models/remote/v1/requests/multifile.request';
-import type { ProtectionPayload } from '../../types/protection.types';
+export interface StartMultifileRequest {
+  urls: string[];
+}
 
-/**
- * JWT save callback type
- */
-export type JwtSaveCallback = (jwt: string) => void;
-
-/**
- * Multifile service interface
- */
 export interface IMultifileService {
-  startMultifileSession(params: MultifileNonEncodeStartRequest, protectionPayload?: ProtectionPayload): Promise<MultifileStartResponse>;
-  getMultifileStatus(params: MultifileStatusRequest): Promise<MultifileStatusResponse>;
+  startMultifileSession(params: StartMultifileRequest): Promise<any>;
 }

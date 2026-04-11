@@ -1,0 +1,37 @@
+.container {
+    max-width: 950px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.max-w-5xl {
+    max-width: 1024px;
+}
+
+/* Background Patterns */
+.bg-tech-grid {
+    background-color: var(--bg-page);
+    background-image:
+        linear-gradient(rgba(198, 93, 59, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(198, 93, 59, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+}
+
+/* Titles use serif display font */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.titles,
+.overview-title,
+.hero-title {
+    font-family: var(--font-title);
+}
+html.theme-switching *,
+html.theme-switching *::before,
+html.theme-switching *::after {
+    transition: none !important;
+    animation: none !important;
+}

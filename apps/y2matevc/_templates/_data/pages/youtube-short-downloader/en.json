@@ -1,0 +1,102 @@
+{
+  "seo": {
+    "title": "YouTube Shorts Downloader – Download Shorts Videos | Y2Mate",
+    "description": "YouTube Shorts Downloader lets you download Shorts videos in the correct vertical 9:16 format. No rotation issues, no watermark, works directly in your browser.",
+    "ogTitle": "Y2mate - YouTube Shorts Downloader (Free, Fast, HD)",
+    "ogDescription": "Download YouTube Shorts in HD. Save vertical videos instantly-portrait format, 9:16 ratio.",
+    "schemaName": "Y2mate - YouTube Shorts Downloader",
+    "schemaDescription": "Download YouTube Shorts instantly. Free vertical video downloader for mobile."
+  },
+  "hero": {
+    "title": "Y2Mate - YouTube Shorts Downloader"
+  },
+  "content": {
+    "sections": [
+      {
+        "title": "What Is YouTube Shorts Downloader on Y2Mate?",
+        "paragraphs": [
+          "The YouTube Shorts Downloader from <a href=\"/\">Y2Mate</a> is built specifically for downloading short-form Shorts videos from YouTube.",
+          "Shorts are fundamentally different from regular YouTube videos in terms of duration, aspect ratio, and playback behavior. Downloading Shorts requires a dedicated handling process to avoid display issues."
+        ]
+      },
+      {
+        "title": "Why Do YouTube Shorts Downloads Often Fail?",
+        "paragraphs": [
+          "Many video download tools do not distinguish between Shorts videos and standard long-form YouTube videos.",
+          "As a result, Shorts videos may download with common issues such as horizontal rotation, missing audio, or incorrect aspect ratios."
+        ]
+      },
+      {
+        "title": "Dedicated Processing for Shorts Videos",
+        "paragraphs": [
+          "When you paste a Shorts video link, the system detects it as short-form content and applies a dedicated processing method designed for vertical videos.",
+          "This approach helps ensure faster downloads and reduces playback issues across different devices."
+        ]
+      },
+      {
+        "title": "Preserve the Original Vertical Aspect Ratio",
+        "paragraphs": [
+          "Downloaded Shorts videos keep the same vertical aspect ratio as they appear on YouTube. The video is not rotated or cropped.",
+          "This makes Shorts videos suitable for replay on mobile devices or for personal offline use."
+        ]
+      },
+      {
+        "title": "How Shorts Differ from Regular YouTube Videos",
+        "paragraphs": [
+          "YouTube Shorts are short, vertical videos, while regular YouTube videos are typically horizontal and longer in duration.",
+          "If you need to download long-form YouTube videos for offline viewing, you can use the <a href=\"/youtube-to-mp4\">YouTube to MP4</a> tool or visit <a href=\"/\">Download Video YouTube</a> to explore other download options."
+        ]
+      }
+    ]
+  },
+  "whyChoose": {
+    "title": "Why Choose Y2Mate for YouTube Shorts Downloads",
+    "intro": "Most YouTube downloaders don't properly handle Shorts videos, resulting in rotated or cropped videos. Y2Mate's dedicated Shorts downloader preserves the correct vertical format.",
+    "reasons": [
+      "Preserves vertical format – maintains the original 9:16 aspect ratio",
+      "Fast processing – Shorts are detected and processed quickly",
+      "No rotation issues – videos play correctly on all devices",
+      "Works on mobile – optimized for mobile device downloads",
+      "Includes audio – downloads Shorts with their original sound"
+    ]
+  },
+  "instructions": {
+    "title": "How to Download YouTube Shorts Videos",
+    "steps": [
+      "Copy the YouTube Shorts video link you want to download.",
+      "Paste the link into the input field on this page.",
+      "Click the start button to analyze the Shorts video.",
+      "Choose your preferred quality and download the vertical video to your device."
+    ],
+    "note": "The Shorts downloader automatically detects vertical videos and processes them correctly without rotation issues."
+  },
+  "faqs": {
+    "title": "Frequently Asked Questions About YouTube Shorts",
+    "items": [
+      {
+        "question": "Is there a download limit for YouTube Shorts?",
+        "answer": "No. You can download YouTube Shorts without a fixed daily or usage limit."
+      },
+      {
+        "question": "How do I save a YouTube Short on my phone?",
+        "answer": "On Android, the downloaded Short will appear in your Downloads folder or Gallery. On iPhone, use Safari to download the video, then save it from the Downloads section to Photos."
+      },
+      {
+        "question": "Can I download Shorts with sound?",
+        "answer": "Yes. Shorts are downloaded with their original audio if the source video includes sound."
+      },
+      {
+        "question": "Why are Shorts processed faster than normal YouTube videos?",
+        "answer": "Shorts are shorter in duration and use a different format, allowing the system to analyze and prepare the file more quickly."
+      },
+      {
+        "question": "Will the downloaded Short keep its vertical format?",
+        "answer": "Yes. The tool preserves the original vertical aspect ratio so the video displays correctly on mobile devices."
+      },
+      {
+        "question": "How should downloaded Shorts be used?",
+        "answer": "Downloaded Shorts are intended for personal use, such as offline viewing or saving. Users are responsible for respecting the rights of the original content creators."
+      }
+    ]
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "nav": {
+    "home": "Главная",
+    "youtubeToMp3": "YouTube to MP3",
+    "youtubeToMp4": "YouTube to MP4",
+    "youtubeShorts": "YouTube Shorts",
+    "about": "О нас"
+  },
+  "langSelector": {
+    "buttonText": "RU",
+    "buttonLabel": "Язык",
+    "currentLangFull": "Русский"
+  },
+  "drawer": {
+    "logoText": "EzConv.pro",
+    "links": {
+      "home": "Главная",
+      "youtubeToMp3": "YouTube в MP3",
+      "youtubeToMp4": "YouTube в MP4",
+      "youtubeShorts": "YouTube Shorts",
+      "about": "О нас",
+      "faq": "Часто задаваемые вопросы",
+      "contact": "Контакты",
+      "terms": "Terms of Use",
+      "privacy": "Конфиденциальность",
+      "dmca": "DMCA",
+      "cutVideoYoutube": "Обрезать видео YouTube"
+    }
+  },
+  "hero": {
+    "placeholder": "Вставьте ссылку с YouTube сюда...",
+    "pasteBtn": "Вставить",
+    "clearBtn": "Очистить",
+    "convertBtn": "Конвертировать",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "Audio track",
+    "searchPlaceholder": "Поиск...",
+    "searchBtn": "Поиск",
+    "searchVideosPlaceholder": "Искать видео...",
+    "supportedPlatforms": "Поддерживаемые платформы:"
+  },
+  "overview": {
+    "badge": "Быстро и бесплатно"
+  },
+  "footer": {
+    "linksRow1": {
+      "youtubeToMp3": "YouTube в MP3",
+      "youtubeToMp4": "YouTube в MP4",
+      "youtubeShorts": "YouTube Shorts",
+      "cutVideoYoutube": "Обрезать видео YouTube"
+    },
+    "linksRow2": {
+      "about": "О нас",
+      "contact": "Контакты",
+      "terms": "Terms of Use",
+      "privacyPolicy": "Политика конфиденциальности",
+      "dmca": "DMCA",
+      "faq": "Часто задаваемые вопросы"
+    },
+    "copyright": "© 2026 EzConv. Все права защищены."
+  },
+  "trim": {
+    "startBtn": "Начать",
+    "selectFormatLabel": "1. Выберите формат:",
+    "selectQualityLabel": "2. Выберите качество:",
+    "audioTrackLabel": "3. Выберите аудиодорожку:",
+    "trimLabel": "4. Обрезать видео (Начало – Конец):",
+    "startTimeLabel": "Начало",
+    "endTimeLabel": "Конец"
+  }
+}

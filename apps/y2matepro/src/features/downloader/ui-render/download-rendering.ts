@@ -11,6 +11,7 @@ import { isYouTubeUrl } from '../../../constants/youtube-constants';
 
 // Import utils
 import { initExpandableText, triggerDownload } from '../../../utils';
+import { startConversion } from '../logic/conversion/convert-logic';
 
 
 // CSS imports removed - all CSS now bundled in main.js
@@ -770,7 +771,6 @@ async function handleDownloadClick(event: MouseEvent): Promise<void> {
         }
 
         // For YouTube or formats without direct URL, use conversion flow
-        const { startConversion } = await import('../logic/conversion/convert-logic-v2.js');
         const videoTitle = state.videoDetail?.meta?.title || 'Video';
         const videoUrl = state.videoDetail?.meta?.originalUrl || '';
 

@@ -1,4 +1,4 @@
-/* =========================================================
+﻿/* =========================================================
    Hero Section - Search Form
    ---------------------------------------------------------
    Main search form with input, button, suggestions
@@ -14,8 +14,8 @@
     text-align: center;
     background-color: var(--color-bg-white);
     border: 1px solid var(--color-border-light);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
+    border-radius: 8px;
+    box-shadow: none;
     padding: var(--space-lg);
 }
 
@@ -87,9 +87,9 @@
 .converter-btn {
     display: inline-block;
     font-size: var(--font-size-sm);
-    color: var(--color-bg-white);
+    color: white;
     background: transparent;
-    font-weight: var(--font-weight-normal);
+    font-weight: var(--font-weight-semibold);
     cursor: pointer;
     border: none;
 }
@@ -106,7 +106,7 @@
     margin-top: var(--space-xs);
     max-height: 300px;
     overflow-y: auto;
-    box-shadow: var(--shadow-lg);
+    box-shadow: none;
     z-index: var(--z-dropdown);
     display: none;
 }
@@ -131,18 +131,6 @@
 .y2mate-terms-pro a:hover {
     color: var(--color-primary-hover);
     text-decoration: underline;
-}
-
-/* ===== SPINNER ===== */
-.spinner {
-    display: none;
-    text-align: center;
-    margin: var(--space-2xl) 0;
-}
-
-.spinner img {
-    width: 50px;
-    height: 50px;
 }
 
 /* ===== MOBILE (max-width: 767px) ===== */
@@ -205,7 +193,7 @@
 /* ===== BUTTON BASE STYLES ===== */
 .input-action-btn {
     position: absolute;
-    right: 120px; /* Sát mép phải input (ngay trước convert button) */
+    right: 120px; /* SÃ¡t mÃ©p pháº£i input (ngay trÆ°á»›c convert button) */
     top: 50%;
     transform: translateY(-50%);
     background: transparent;
@@ -266,13 +254,13 @@
 /* =========================================================
    Responsive Breakpoints (Mobile-First)
    ---------------------------------------------------------
-   • Extra Small Mobile (0-350px)
-   • Small Mobile (351-599px)
-   • Medium (Tablet) - 600-839px
-   • Expanded (Desktop) - 840-1239px
-   • Large (Wide Desktop) - 1240-1919px
-   • Extra Large (2K) - 1920-2559px
-   • Ultra Large (4K) - 2560px+
+   â€¢ Extra Small Mobile (0-350px)
+   â€¢ Small Mobile (351-599px)
+   â€¢ Medium (Tablet) - 600-839px
+   â€¢ Expanded (Desktop) - 840-1239px
+   â€¢ Large (Wide Desktop) - 1240-1919px
+   â€¢ Extra Large (2K) - 1920-2559px
+   â€¢ Ultra Large (4K) - 2560px+
    ========================================================= */
 
 /* Extra Small Mobile: 0-350px (base styles above) */
@@ -330,7 +318,7 @@
 /* ===== MOBILE ADJUSTMENTS (to work with existing max-width queries) ===== */
 @media (max-width: 767px) {
     .input-action-btn {
-        right: 60px; /* Sát mép phải input (ngay trước convert button 60px) */
+        right: 60px; /* SÃ¡t mÃ©p pháº£i input (ngay trÆ°á»›c convert button 60px) */
         padding: 8px;
         min-width: 40px;
         min-height: 40px;
@@ -342,14 +330,14 @@
     cursor: not-allowed;
     background-color: var(--color-bg-secondary, #f5f5f5);
     border-color: var(--color-primary);
-    transition: none; /* Tắt transition khi disabled để tránh nhấp nháy */
+    transition: none; /* Táº¯t transition khi disabled Ä‘á»ƒ trÃ¡nh nháº¥p nhÃ¡y */
 }
 
 .submit-btn:disabled {
     cursor: not-allowed;
     pointer-events: none;
     background: var(--color-primary);
-    transition: none; /* Tắt transition khi disabled để tránh nhấp nháy */
+    transition: none; /* Táº¯t transition khi disabled Ä‘á»ƒ trÃ¡nh nháº¥p nhÃ¡y */
 }
 
 .input-action-btn:disabled {

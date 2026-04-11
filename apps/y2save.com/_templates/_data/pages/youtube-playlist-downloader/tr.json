@@ -1,0 +1,158 @@
+{
+  "seo": {
+    "title": "YouTube Playlist İndirici – Tüm Playlist'i İndir | Y2SAVE",
+    "description": "Y2SAVE ile YouTube playlistlerini çevrimiçi olarak indirin. Kayıt gerektirmeden yüksek kalitede hızlı playlist indirici.",
+    "schemaName": "Y2SAVE - YouTube Playlist İndirici",
+    "schemaDescription": "Y2SAVE, kullanıcıların tüm YouTube playlistlerini hızlı ve kolay bir şekilde indirmesine olanak tanıyan ücretsiz bir YouTube playlist indiricidir.",
+    "ogTitle": "YouTube Playlist İndirici – Tüm Playlist'i İndir | Y2SAVE",
+    "ogDescription": "Y2SAVE ile YouTube playlistlerini anında indirin. Hızlı ve kolay toplu indirme için ücretsiz araç."
+  },
+
+  "content": {
+
+    "form": {
+      "h1": "YouTube Playlist İndirici",
+      "placeholder": "YouTube playlist URL'sini buraya yapıştırın...",
+      "button": "Playlist'i İndir"
+    },
+
+    "sections": [
+
+      {
+        "h2": "YouTube Playlist İndirici Nedir?",
+        "p": [
+          "Bir <strong>YouTube playlist indirici</strong>, bir playlistten birden fazla videoyu tek seferde indirmenize olanak tanır.",
+          "Videoları tek tek indirmek yerine, playlist bağlantısını yapıştırarak tüm videoları hızlıca indirebilirsiniz.",
+          "Bu <strong>YouTube playlist indirici</strong>, kursları, eğitimleri, müzik playlistlerini veya video serilerini çevrimdışı izlemek için kaydetmek için idealdir."
+        ]
+      },
+
+      {
+        "h2": "YouTube Playlist Videoları Nasıl İndirilir",
+        "ol": [
+          {
+            "h3": "YouTube Playlist URL'sini Kopyalayın",
+            "p": [
+              "YouTube'u açın ve indirmek istediğiniz playlistin bağlantısını kopyalayın."
+            ]
+          },
+          {
+            "h3": "Playlist Bağlantısını Yapıştırın",
+            "p": [
+              "Playlist URL'sini yukarıdaki indirme aracına yapıştırın."
+            ]
+          },
+          {
+            "h3": "Tüm Videoları Yükleyin",
+            "p": [
+              "Araç, playlistteki tüm videoları otomatik olarak alacaktır."
+            ]
+          },
+          {
+            "h3": "Playlist'i İndirin",
+            "p": [
+              "Tercih ettiğiniz kaliteyi seçin ve tüm playlisti anında indirin."
+            ]
+          }
+        ]
+      },
+
+      {
+        "h2": "YouTube Playlist'ini Kolayca Tamamen İndirin",
+        "p": [
+          "Bu araçla, sadece birkaç tıklamayla <strong>YouTube'dan tam playlist indirebilirsiniz</strong>.",
+          "Çevrimdışı öğrenme için <strong>tüm YouTube playlistini indirmeniz</strong> veya bir video serisini kaydetmeniz gerekiyorsa, süreç hızlı ve basittir.",
+          "Adımları tekrarlamadan da <strong>YouTube playlist'inin tamamını indirebilirsiniz</strong>."
+        ]
+      },
+
+      {
+        "h2": "Çevrimiçi YouTube Playlist İndirici",
+        "p": [
+          "Bu <strong>çevrimiçi YouTube playlist indirici</strong>, kurulum gerektirmeden doğrudan tarayıcınızda çalışır.",
+          "Mobil, tablet veya masaüstü dahil herhangi bir cihazda <strong>YouTube'dan tam playlist indirmenize</strong> olanak tanır.",
+          "Gerekirse <strong>YouTube playlistinden tek tek video indirebilirsiniz</strong>."
+        ]
+      },
+
+      {
+        "h2": "Bu Playlist İndiricisini Neden Kullanmalısınız?",
+        "ul": [
+          {
+            "h3": "Toplu İndirme Desteği",
+            "p": [
+              "Videoları tek tek işlemek yerine birden fazla videoyu aynı anda indirin."
+            ]
+          },
+          {
+            "h3": "Hızlı ve Kullanımı Kolay",
+            "p": [
+              "Playlist bağlantısını yapıştırın ve anında indirmeye başlayın."
+            ]
+          },
+          {
+            "h3": "Tüm Cihazlarda Çalışır",
+            "p": [
+              "Android, iPhone, tablet ve masaüstü tarayıcılarla uyumludur."
+            ]
+          }
+        ]
+      },
+
+      {
+        "h2": "Yaygın Kullanım Alanları",
+        "ul": [
+          {
+            "h3": "Çevrimiçi Kursları İndirin",
+            "p": [
+              "Çevrimdışı öğrenme için tam eğitim playlistlerini kaydedin."
+            ]
+          },
+          {
+            "h3": "Müzik Playlistlerini İndirin",
+            "p": [
+              "Favori müzik videolarınızı her zaman erişilebilir tutun."
+            ]
+          },
+          {
+            "h3": "Video Serilerini İndirin",
+            "p": [
+              "Eğitimler, vloglar veya rehberler gibi tam serileri indirin."
+            ]
+          }
+        ]
+      },
+
+      {
+        "h2": "Sıkça Sorulan Sorular",
+        "ul": [
+          {
+            "h3": "Tüm YouTube playlistini indirebilir miyim?",
+            "p": [
+              "Evet. Playlist bağlantısını araca yapıştırarak YouTube'dan tüm playlisti indirebilirsiniz."
+            ]
+          },
+          {
+            "h3": "Bu YouTube playlist indirici ücretsiz mi?",
+            "p": [
+              "Evet. Araç tamamen ücretsizdir ve hiçbir sınırı yoktur."
+            ]
+          },
+          {
+            "h3": "Bir şey yüklemem gerekiyor mu?",
+            "p": [
+              "Hayır. Bu, doğrudan tarayıcınızda çalışan çevrimiçi bir araçtır."
+            ]
+          },
+          {
+            "h3": "Mobilde kullanabilir miyim?",
+            "p": [
+              "Evet. Android ve iPhone dahil tüm cihazlarda çalışır."
+            ]
+          }
+        ]
+      }
+
+    ]
+  }
+}

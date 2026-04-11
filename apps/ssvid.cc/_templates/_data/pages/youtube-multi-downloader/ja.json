@@ -1,0 +1,116 @@
+{
+  "seo": {
+    "title": "SSVID CC 複数のYouTube動画を同時にダウンロード（広告なし）",
+    "description": "複数のYouTube動画をMP3またはMP4で一括ダウンロード（広告なし）。",
+    "schemaName": "SSVID YouTube Multi Downloader",
+    "schemaDescription": "複数のYouTube動画をオンラインで同時にダウンロード。",
+    "ogTitle": "SSVID 複数のYouTube動画を同時にダウンロード（広告なし）",
+    "ogDescription": "YouTube動画をMP3またはMP4でまとめてダウンロード（広告なし）。"
+  },
+  "defaultFormat": "mp4",
+  "hero": {
+    "title": "SSVID YouTube Multi Downloader（広告なし）",
+    "subtitle": "複数のYouTube動画を一度にダウンロード"
+  },
+  "form": {
+    "textareaPlaceholder": "ここにYouTubeリンクを貼り付けてください（1行につき1つ）。\nhttps://youtube.com/watch?v=VID_1\nhttps://youtube.com/watch?v=VID_2",
+    "convertButton": "変換",
+    "audioTrackLabel": "音声トラック"
+  },
+  "overview": {
+    "howTo": {
+      "title": "SSVIDでYouTube一括ダウンロードする方法",
+      "steps": [
+        {
+          "number": "1",
+          "title": "複数のリンクをコピー",
+          "description": "ダウンロードしたいYouTube動画のリンクを複数コピーします。"
+        },
+        {
+          "number": "2",
+          "title": "すべてのリンクを貼り付け",
+          "description": "コピーしたリンクをSSVIDの一括ダウンロードツールに貼り付けます。"
+        },
+        {
+          "number": "3",
+          "title": "形式を選択",
+          "description": "出力形式（MP3またはMP4）を選択します。"
+        },
+        {
+          "number": "4",
+          "title": "ダウンロード",
+          "description": "ダウンロードをクリックして、すべての動画を同時に保存します。"
+        }
+      ]
+    }
+  },
+  "content": {
+    "intro": {
+      "title": "SSVID YouTube Multi Downloaderとは？",
+      "description": "SSVIDは、<strong>複数のYouTube動画を同時にダウンロード</strong>できるオンラインツールです。動画を1つずつ保存する代わりに、複数のURLをまとめて貼り付け、一度の操作で変換できます。"
+    },
+    "whyUse": {
+      "title": "なぜYouTube一括ダウンローダーを使うのか？",
+      "description": "動画が<strong>同じ再生リストに含まれていない場合</strong>に最適です。個別の動画リンクをまとめて処理できるため、同じ手順を繰り返す必要がなく、時間を節約できます。"
+    },
+    "supportedFormats": {
+      "title": "対応形式：MP3とMP4",
+      "description": "SSVIDは<strong>MP3</strong>および<strong>MP4</strong>形式に対応しています。音声のみが必要な場合はMP3、動画をそのまま保存したい場合はMP4を選択してください。音楽、ポッドキャスト、チュートリアルなどに最適です。"
+    },
+    "comparison": {
+      "title": "YouTube一括ダウンロードと再生リストダウンローダーの違い",
+      "items": [
+        {
+          "title": "YouTube一括ダウンロード",
+          "description": "<strong>複数の個別YouTube動画リンク</strong>がある場合に最適です。複数のURLを貼り付けて、MP3またはMP4形式でまとめてダウンロードできます。"
+        },
+        {
+          "title": "YouTube再生リストをMP3でダウンロード",
+          "description": "動画が再生リストに整理されている場合に最適です。<strong>1つの再生リストリンク</strong>だけで、すべての動画を自動的にMP3形式でダウンロードできます。再生リストがある場合は、<a href=\"/download-mp3-youtube-playlist\" title=\"Download MP3 YouTube Playlist\"><strong>Download MP3 YouTube Playlist with SSVID</strong></a>をお試しください。"
+        }
+      ]
+    },
+    "whenUse": {
+      "title": "SSVID一括ダウンローダーを使うべきタイミング",
+      "items": [
+        {
+          "title": "カスタム動画リスト",
+          "description": "異なるチャンネルやソースから集めたYouTubeリンクをまとめて処理する場合に最適です。"
+        },
+        {
+          "title": "MP3またはMP4の一括ダウンロード",
+          "description": "同じ手順を繰り返すことなく、複数の動画を同時にダウンロードできます。"
+        },
+        {
+          "title": "無制限の一括ダウンロード",
+          "description": "SSVIDは<strong>無制限のYouTube一括ダウンロード</strong>に対応しており、広告や制限はありません。"
+        }
+      ]
+    }
+  },
+  "faqs": {
+    "title": "よくある質問",
+    "items": [
+      {
+        "question": "一度にいくつのYouTube動画をダウンロードできますか？",
+        "answer": "SSVIDは無制限の一括ダウンロードに対応しています。必要なだけリンクを貼り付けることができます。"
+      },
+      {
+        "question": "一括ダウンロードに再生リストは必要ですか？",
+        "answer": "いいえ。一括ダウンロードは、再生リストに含まれていない個別の動画リンク用に設計されています。"
+      },
+      {
+        "question": "SSVIDは無料で広告なしですか？",
+        "answer": "はい。SSVIDは無料で、広告なしのダウンロード体験を提供します。"
+      },
+      {
+        "question": "MP3とMP4の両方をダウンロードできますか？",
+        "answer": "はい。SSVIDはMP3（音声）とMP4（動画）の両方の形式に対応しています。"
+      },
+      {
+        "question": "SSVIDはモバイルデバイスでも使えますか？",
+        "answer": "はい。SSVIDはデスクトップおよびモバイルブラウザの両方で利用できます。"
+      }
+    ]
+  }
+}

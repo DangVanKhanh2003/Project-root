@@ -1,0 +1,234 @@
+{#- JSON-LD Structured Data for SEO (EEAT compliant) -#}
+{%- set isHomePage = (pageKey == 'index') -%}
+{%- set isRootHomePage = isHomePage and (langCode == 'en' or not langCode) -%}
+{%- set hasHowTo = pageData.overview and pageData.overview.howTo and pageData.overview.howTo.steps -%}
+{%- set hasFaqs = pageData.faqs and pageData.faqs.items -%}
+
+{#- Support old structure (hero.title) and new structures (content.h1.title / content.form.h1) -#}
+{%- set pageName = pageData.hero.title if pageData.hero else (pageData.content.form.h1 if (pageData.content and pageData.content.form and pageData.content.form.h1) else (pageData.content.h1.title if (pageData.content and pageData.content.h1) else '')) -%}
+
+{#- New structure: detect FAQ section from content.sections -#}
+{%- set faqSection = pageData.content.sections | findSection("Frequently Asked Questions") if (not hasFaqs and pageData.content and pageData.content.sections) else null -%}
+{%- set hasFaqsNew = faqSection and faqSection.ul -%}
+
+{#- Build canonical URL -#}
+{%- set cleanUrl = page.url | replace('/index.html', '/') | replace('.html', '') -%}
+{%- set canonicalUrl = site.url + cleanUrl -%}
+{#- @id uses canonicalUrl directly with #fragment (no extra / needed) -#}
+
+<script type="application/ld+json">
+{%- if isHomePage %}
+{#- === HOMEPAGE === -#}
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {%- if isRootHomePage %}
+    {
+      "@type": "Organization",
+      "@id": "{{ site.url }}/#organization",
+      "name": "Snap1s",
+      "url": "{{ site.url }}/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "{{ site.url }}/favicon-512x512.png"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "email": "support@snap1s.com"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "{{ site.url }}/#website",
+      "name": "Snap1s",
+      "url": "{{ site.url }}/",
+      "description": "{{ seo.description | jsonString | safe }}",
+      "inLanguage": "en",
+      "publisher": {
+        "@id": "{{ site.url }}/#organization"
+      }
+    },
+    {%- endif %}
+    {
+      "@type": "WebPage",
+      "@id": "{{ canonicalUrl }}#webpage",
+      "url": "{{ canonicalUrl }}",
+      "name": "{{ pageName | jsonString | safe }}",
+      "isPartOf": {
+        "@id": "{{ site.url }}/#website"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "@id": "{{ canonicalUrl }}#application"
+      },
+      "inLanguage": "{{ langCode or 'en' }}"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "{{ canonicalUrl }}#application",
+      "name": "{{ pageName | jsonString | safe }}",
+      "url": "{{ canonicalUrl }}",
+      "description": "{{ seo.schemaDescription | jsonString | safe }}",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "{{ langCode or 'en' }}",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    {%- if hasFaqs or hasFaqsNew %},
+    {
+      "@type": "FAQPage",
+      "@id": "{{ canonicalUrl }}#faq",
+      "isPartOf": {
+        "@id": "{{ canonicalUrl }}#webpage"
+      },
+      "mainEntity": [
+        {%- if hasFaqs %}
+        {%- for item in pageData.faqs.items %}
+        {
+          "@type": "Question",
+          "name": "{{ item.question | jsonString | safe }}",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "{{ item.answer | jsonString | safe }}"
+          }
+        }{%- if not loop.last %},{% endif %}
+        {%- endfor %}
+        {%- elif hasFaqsNew %}
+        {%- for item in faqSection.ul %}
+        {
+          "@type": "Question",
+          "name": "{{ item.h3 | jsonString | safe }}",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "{{ item.p[0] | jsonString | safe }}"
+          }
+        }{%- if not loop.last %},{% endif %}
+        {%- endfor %}
+        {%- endif %}
+      ]
+    }
+    {%- endif %}
+    {%- if hasHowTo %},
+    {
+      "@type": "HowTo",
+      "@id": "{{ canonicalUrl }}#howto",
+      "isPartOf": {
+        "@id": "{{ canonicalUrl }}#webpage"
+      },
+      "name": "{{ pageData.overview.howTo.title | jsonString | safe }}",
+      "step": [
+        {%- for step in pageData.overview.howTo.steps %}
+        {
+          "@type": "HowToStep",
+          "position": {{ loop.index }},
+          "name": "{{ step.title | jsonString | safe }}",
+          "text": "{{ step.description | jsonString | safe }}"
+        }{%- if not loop.last %},{% endif %}
+        {%- endfor %}
+      ]
+    }
+    {%- endif %}
+  ]
+}
+{%- else %}
+{#- === TOOL PAGES === -#}
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "{{ canonicalUrl }}#webpage",
+      "url": "{{ canonicalUrl }}",
+      "name": "{{ pageName | jsonString | safe }}",
+      "isPartOf": {
+        "@id": "{{ site.url }}/#website"
+      },
+      "about": {
+        "@type": "SoftwareApplication",
+        "@id": "{{ canonicalUrl }}#application"
+      },
+      "inLanguage": "{{ langCode or 'en' }}"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "{{ canonicalUrl }}#application",
+      "name": "{{ pageName | jsonString | safe }}",
+      "url": "{{ canonicalUrl }}",
+      "description": "{{ seo.schemaDescription | jsonString | safe }}",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "All",
+      "browserRequirements": "Requires JavaScript. Requires HTML5.",
+      "inLanguage": "{{ langCode or 'en' }}",
+      "publisher": {
+        "@id": "{{ site.url }}/#organization"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    {%- if hasFaqs or hasFaqsNew %},
+    {
+      "@type": "FAQPage",
+      "@id": "{{ canonicalUrl }}#faq",
+      "isPartOf": {
+        "@id": "{{ canonicalUrl }}#webpage"
+      },
+      "mainEntity": [
+        {%- if hasFaqs %}
+        {%- for item in pageData.faqs.items %}
+        {
+          "@type": "Question",
+          "name": "{{ item.question | jsonString | safe }}",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "{{ item.answer | jsonString | safe }}"
+          }
+        }{%- if not loop.last %},{% endif %}
+        {%- endfor %}
+        {%- elif hasFaqsNew %}
+        {%- for item in faqSection.ul %}
+        {
+          "@type": "Question",
+          "name": "{{ item.h3 | jsonString | safe }}",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "{{ item.p[0] | jsonString | safe }}"
+          }
+        }{%- if not loop.last %},{% endif %}
+        {%- endfor %}
+        {%- endif %}
+      ]
+    }
+    {%- endif %}
+    {%- if hasHowTo %},
+    {
+      "@type": "HowTo",
+      "@id": "{{ canonicalUrl }}#howto",
+      "isPartOf": {
+        "@id": "{{ canonicalUrl }}#webpage"
+      },
+      "name": "{{ pageData.overview.howTo.title | jsonString | safe }}",
+      "step": [
+        {%- for step in pageData.overview.howTo.steps %}
+        {
+          "@type": "HowToStep",
+          "position": {{ loop.index }},
+          "name": "{{ step.title | jsonString | safe }}",
+          "text": "{{ step.description | jsonString | safe }}"
+        }{%- if not loop.last %},{% endif %}
+        {%- endfor %}
+      ]
+    }
+    {%- endif %}
+  ]
+}
+{%- endif %}
+</script>

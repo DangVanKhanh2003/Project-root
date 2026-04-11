@@ -1,0 +1,93 @@
+{
+  "seo": {
+    "title": "SSVID CC - Unduh Video YouTube MP4 Online Gratis",
+    "description": "Unduh video YouTube sebagai MP4 dengan SSVID. Pengunduh YouTube MP4 gratis, cepat, dan tidak terbatas. Mendukung kualitas HD & 4K dan video panjang. Tidak perlu aplikasi.",
+    "schemaName": "SSVID - Pengunduh YouTube MP4",
+    "schemaDescription": "Unduh video YouTube sebagai MP4 dengan SSVID. Gratis, cepat, dan tidak terbatas.",
+    "ogTitle": "SSVID - Unduh Video YouTube MP4 Online Gratis",
+    "ogDescription": "Unduh video YouTube sebagai MP4 dengan SSVID. Mendukung kualitas HD & 4K. Gratis dan tidak terbatas."
+  },
+  "defaultFormat": "mp4",
+  "hero": {
+    "title": "SSVID - Unduh Video YouTube MP4",
+    "subtitle": "Pengunduh YouTube MP4 gratis, cepat & tidak terbatas"
+  },
+  "overview": {
+    "title": "Apa itu Pengunduh YouTube MP4 SSVID?",
+    "description": "SSVID adalah alat online gratis yang dirancang khusus untuk membantu pengguna <strong>mengunduh video YouTube sebagai MP4</strong> untuk ditonton secara offline. Tidak seperti konverter audio, format MP4 menyimpan video dan suara, menjadikannya ideal untuk tutorial, presentasi, video musik, dan konten YouTube berdurasi panjang. Anda dapat kembali ke <a href=\"/\" title=\"SSVID Online Video Downloader\"><strong>beranda SSVID</strong></a> untuk mengakses semua alat pengunduhan YouTube.",
+    "howTo": {
+      "title": "Cara Mengunduh Video YouTube MP4 dengan SSVID",
+      "steps": [
+        {
+          "number": "1",
+          "title": "Salin Tautan",
+          "description": "Salin tautan video YouTube."
+        },
+        {
+          "number": "2",
+          "title": "Tempel & Pilih",
+          "description": "Tempel tautan ke SSVID."
+        },
+        {
+          "number": "3",
+          "title": "Unduh",
+          "description": "Unduh video sebagai MP4 dalam hitungan detik."
+        }
+      ]
+    }
+  },
+  "whatCanDownload": {
+    "title": "Apa yang Dapat Anda Unduh sebagai MP4 dengan SSVID?",
+    "sections": [
+      {
+        "title": "Video YouTube (MP4)",
+        "description": "Unduh video YouTube sebagai MP4 untuk menjaga pengalaman visual penuh. Opsi ini ideal untuk tutorial, vlog, video musik, dan konten pendidikan yang mengandalkan visual video."
+      },
+      {
+        "title": "Video YouTube HD & 4K",
+        "description": "Jika didukung oleh video asli, SSVID memungkinkan Anda mengunduh video YouTube MP4 dalam kualitas HD dan 4K untuk pemutaran yang jernih di layar besar."
+      },
+      {
+        "title": "Video YouTube Panjang",
+        "description": "SSVID mendukung pengunduhan video YouTube panjang sebagai MP4 tanpa batas durasi, sehingga cocok untuk podcast, dokumenter, dan kursus lengkap."
+      }
+    ]
+  },
+  "whyDownload": {
+    "title": "Mengapa Mengunduh Video YouTube sebagai MP4?",
+    "description": "MP4 adalah format video yang paling banyak didukung di seluruh perangkat dan platform. Dengan memilih MP4, Anda dapat menonton video YouTube yang diunduh secara offline tanpa masalah kompatibilitas. Format ini sangat cocok untuk pengguna yang ingin menyimpan video lengkap, bukan hanya audio."
+  },
+  "qualityOptions": {
+    "title": "Kualitas Video MP4 & Dukungan Video Panjang",
+    "description": "SSVID memungkinkan Anda mengunduh video YouTube MP4 dalam berbagai resolusi, termasuk <strong>kualitas HD dan 4K</strong> jika tersedia. Alat ini juga mendukung <strong>video YouTube panjang</strong>, seperti tutorial berdurasi penuh, ceramah, dan konten yang diperpanjang, tanpa batas waktu atau batasan."
+  },
+  "faqs": {
+    "title": "Pertanyaan yang Sering Diajukan",
+    "items": [
+      {
+        "question": "Apa perbedaan antara YouTube MP4 dan MP3?",
+        "answer": "MP4 menyertakan video dan audio, sedangkan MP3 hanya mengekstrak suara. MP4 lebih baik untuk menonton offline dan konten visual."
+      },
+      {
+        "question": "Bisakah saya mengunduh video YouTube MP4 secara online?",
+        "answer": "Ya. SSVID berfungsi sepenuhnya online, memungkinkan Anda mengunduh video YouTube MP4 langsung di browser Anda."
+      },
+      {
+        "question": "Apakah SSVID mendukung unduhan MP4 HD dan 4K?",
+        "answer": "Ya. SSVID mendukung unduhan MP4 HD dan 4K jika video YouTube asli tersedia dalam resolusi tersebut."
+      },
+      {
+        "question": "Bisakah saya mengunduh video YouTube panjang sebagai MP4?",
+        "answer": "Ya. SSVID mendukung pengunduhan video YouTube panjang tanpa batas waktu."
+      },
+      {
+        "question": "Apakah SSVID gratis untuk digunakan?",
+        "answer": "Ya. SSVID sepenuhnya gratis dan tidak memerlukan registrasi."
+      },
+      {
+        "question": "Bisakah saya menggunakan SSVID di perangkat seluler?",
+        "answer": "Ya. SSVID berfungsi di browser desktop dan seluler, termasuk Android dan iOS."
+      }
+    ]
+  }
+}

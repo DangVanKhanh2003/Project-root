@@ -1,0 +1,140 @@
+server {
+    listen 80;
+    server_name ytmp3.gg www.ytmp3.gg;
+    
+    root  /var/www/KhanhHAUI/CICD/run/ytmp3.gg;
+    index index.html;
+    
+    add_header X-VHost ytmp3.gg always;
+
+    # Canonical cho /index(.html) – chỉ khi CLIENT thật sự gõ /index
+    if ($request_uri ~* ^/index(?:\.html)?$) { return 301 /; }
+    if ($request_uri ~* ^(/.+)/index(?:\.html)?$) { return 301 $1/; }
+
+
+
+    # robots.txt riêng
+    location = /robots.txt {
+        alias  /var/www/KhanhHAUI/CICD/run/ytmp3.gg/robots.txt;
+        access_log off;
+        log_not_found off;
+        add_header Cache-Control "no-cache, no-store, must-revalidate";
+    }
+
+
+
+    # --- Redirect underscore -> hyphen (SEO canonical) ---
+    location = /youtube_multi_downloader {
+        return 301 $scheme://$host/youtube-multi-downloader$is_args$args;
+    }
+    location = /youtube_laylist_downloader {
+        return 301 $scheme://$host/youtube-playlist-downloader$is_args$args;
+    }
+
+    # Nếu có ai gõ kèm .html thì cũng redirect luôn (tuỳ bạn có cần không)
+    location = /youtube_multi_downloader.html {
+        return 301 $scheme://$host/youtube-multi-downloader$is_args$args;
+    }
+    location = /youtube_laylist_downloader.html {
+        return 301 $scheme://$host/youtube-playlist-downloader$is_args$args;
+    }
+
+    # /youtube_playlist_downloader  -> /youtube-playlist-downloader
+    location = /youtube_playlist_downloader {
+     return 301 $scheme://$host/youtube-playlist-downloader$is_args$args;
+    }
+    location = /youtube_playlist_downloader.html {
+     return 301 $scheme://$host/youtube-playlist-downloader$is_args$args;
+    
+    }
+
+    # Xử lý chính (SPA) + strip .html CHO CÁC TRANG KHÁC
+    location / {
+        # Strip .html trừ index.html và TRỪ trang đặc biệt
+        rewrite ^/(?!2ccd33d1-a14a-446c-a260-c713a4059bf4\.html$)(?!.*?/index\.html$)(.+)\.html$ /$1 permanent;
+
+        try_files $uri $uri.html $uri/index.html =404;
+    }
+
+    # Cache file tĩnh
+    location ~* \.(mp4|woff|woff2|ttf|jpg|jpeg|gif|png|ico|css|json|js|swf|svg|dmg|webp|apk)$ {
+        access_log off;
+        log_not_found off;
+        expires 7d;
+        add_header Cache-Control "public, max-age=604800, immutable";
+        add_header Access-Control-Allow-Origin "*" always;   
+	add_header Vary "Origin" always; 
+   }
+
+   error_page 404 =301 /404.html;
+
+   location = /404.html {
+    # root LÀ FOLDER chứa file 404.html
+    root /var/www/KhanhHAUI/CICD/run/ytmp3.gg;
+    try_files /404.html =404;
+    add_header Cache-Control "no-cache, no-store, must-revalidate";
+   }
+
+    absolute_redirect off;
+    server_name_in_redirect off;
+}
+
+
+
+server {
+    listen 80;
+    server_name test.ytmp3.gg;
+
+    root  /var/www/KhanhHAUI/CICD/run/ytmp3.gg-test;
+    index index.html;
+
+    add_header X-VHost test.ytmp3.gg always;
+    add_header X-Robots-Tag "noindex, nofollow, noarchive" always;
+    
+    # Canonical cho /index(.html) – chỉ khi CLIENT thật sự gõ /index
+    if ($request_uri ~* ^/index(?:\.html)?$) { return 301 /; }
+    if ($request_uri ~* ^(/.+)/index(?:\.html)?$) { return 301 $1/; }
+
+   
+    # robots.txt riêng
+    location = /robots.txt {
+         alias  /var/www/KhanhHAUI/CICD/run/ytmp3.gg-test/robots.txt;
+        access_log off;
+        log_not_found off;
+        add_header Cache-Control "no-cache, no-store, must-revalidate";
+    }
+    
+    location /poppurchase.js {
+     add_header Access-Control-Allow-Origin "*";
+     add_header Content-Type "application/javascript";
+    }
+
+    # Xử lý chính (SPA) + strip .html CHO CÁC TRANG KHÁC
+    location / {
+      
+
+        try_files $uri $uri.html $uri/index.html =404;
+    }
+
+    # Cache file tĩnh
+    location ~* \.(mp4|woff|woff2|ttf|jpg|jpeg|gif|png|ico|css|json|js|swf|svg|dmg|webp|apk)$ {
+        access_log off;
+        log_not_found off;
+        expires 7d;
+        add_header Cache-Control "public, max-age=604800, immutable";
+        add_header Access-Control-Allow-Origin "*" always; 
+   }
+
+   error_page 404 =301 /404.html;
+
+   location = /404.html {
+      # root LÀ FOLDER chứa file 404.html
+      root /var/www/KhanhHAUI/CICD/run/ytmp3.gg;
+      try_files /404.html =404;
+      add_header Cache-Control "no-cache, no-store, must-revalidate";
+    }
+
+    absolute_redirect off;
+    server_name_in_redirect off;
+}
+

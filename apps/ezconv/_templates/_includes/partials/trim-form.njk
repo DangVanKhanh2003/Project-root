@@ -1,0 +1,216 @@
+<div class="hero-card">
+    <h2 class="stream-hero-card-title">{{ page.form.title }}</h2>
+    <div id="search-view" class="">
+        <form id="downloadForm" class="form-container" autocomplete="off">
+            <div id="input-container" class="input-group">
+                <div class="stream-input-row">
+                    <div class="input-shell" id="input-wrapper">
+                        <div class="input-wrapper input-content">
+                            <input type="text" id="videoUrl" class="video-input"
+                                placeholder="{{ page.form.placeholder }}" autocomplete="off" required>
+                            <div class="input-actions">
+                                <button type="button" id="input-action-button" class="btn-paste"
+                                    data-action="paste" aria-label="{{ base.hero.pasteBtn }}">
+                                    <svg class="paste-icon" width="14" height="14" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1">
+                                        </path>
+                                    </svg>
+                                    <span class="btn-state--paste">{{ base.hero.pasteBtn }}</span>
+                                    <svg class="clear-icon hidden" width="18" height="18"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.5" stroke-linecap="round">
+                                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                                    </svg>
+                                    <span class="btn-state--clear hidden">{{ base.hero.clearBtn }}</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" id="stream-start-btn" class="stream-start-btn">
+                        {{ base.trim.startBtn }}
+                    </button>
+                </div>
+                <div id="suggestion-container" class="suggestion-container"></div>
+            </div>
+
+            <button type="submit" class="implicit-submit" aria-hidden="true"
+                style="position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;">Submit</button>
+
+            <div id="format-selector-container" style="display:none;">
+                <div class="format-selector-wrapper">
+                    <div class="format-selector">
+                        <div class="format-toggle">
+                            <button type="button" class="format-btn active"
+                                data-format="mp4">{{ base.hero.formatMp4 }}</button>
+                            <button type="button" class="format-btn"
+                                data-format="mp3">{{ base.hero.formatMp3 }}</button>
+                        </div>
+                        <div class="quality-wrapper">
+                            <div class="quality-dropdown-wrapper">
+                                <select id="quality-select-mp3"
+                                    class="quality-select quality-select--mp3"
+                                    aria-label="Audio quality" data-quality-select>
+                                    <option value="mp3-320" selected>MP3 - 320kbps</option>
+                                    <option value="flac">FLAC - Lossless</option>
+                                </select>
+                                <select id="quality-select-mp4"
+                                    class="quality-select quality-select--mp4"
+                                    aria-label="Video quality" data-quality-select>
+                                    <option value="mp4-2160">MP4 - 4K</option>
+                                    <option value="mp4-1440">MP4 - 2K</option>
+                                    <option value="mp4-1080">MP4 - 1080p</option>
+                                    <option value="mp4-720" selected>MP4 - 720p</option>
+                                    <option value="mp4-480">MP4 - 480p</option>
+                                    <option value="mp4-360">MP4 - 360p</option>
+                                    <option value="mp4-144">MP4 - 144p</option>
+                                    <option value="webm">WEBM</option>
+                                    <option value="mkv">MKV</option>
+                                </select>
+                                <svg class="dropdown-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <path d="M6 9l6 6 6-6"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <input type="hidden" id="audio-track-value" name="audioTrack" value="original">
+
+            <div id="stream-editor" class="stream-editor" style="display:none;">
+                <div class="stream-player-wrap">
+                    <div id="stream-player" class="stream-player"></div>
+                </div>
+                <div class="stream-settings">
+                    <div class="stream-step-row">
+                        <div class="stream-step">
+                            <span class="stream-step-label">{{ base.trim.selectFormatLabel }}</span>
+                            <div class="format-toggle" id="stream-format-toggle">
+                                <button type="button" data-format="mp3"
+                                    class="format-btn selected">{{ base.hero.formatMp3 }}</button>
+                                <button type="button" data-format="mp4"
+                                    class="format-btn">{{ base.hero.formatMp4 }}</button>
+                            </div>
+                        </div>
+                        <div class="stream-step">
+                            <span class="stream-step-label">{{ base.trim.selectQualityLabel }}</span>
+                            <div class="quality-dropdown-wrapper">
+                                <select id="stream-quality-select" class="quality-select"
+                                    aria-label="Quality selector"></select>
+                                <svg class="dropdown-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <path d="M6 9l6 6 6-6"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stream-step" id="stream-audio-track-row">
+                        <span class="stream-step-label">{{ base.trim.audioTrackLabel }}</span>
+                        <div class="audio-dropdown-wrapper">
+                            <div class="custom-dropdown" id="stream-audio-track-dropdown">
+                                <div class="dropdown-trigger" tabindex="0" role="button"
+                                    aria-haspopup="listbox" aria-expanded="false">
+                                    <div class="selected-icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="16"
+                                            viewBox="0 0 44 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="icon-audio-language-horizontal">
+                                            <g fill="currentColor" stroke="none" transform="translate(-2 0)">
+                                                <path d="M19.4 .2C19.29 .27 19.20 .37 19.13 .49C19.07 .60 19.02 .72 19.01 .85C18.99 .98 18.99 1.12 19.03 1.24C19.06 1.37 19.12 1.49 19.2 1.6L20.8 .4C20.64 .18 20.40 .04 20.14 .01C19.87 -0.02 19.61 .04 19.4 .2ZM20.8 .4L20 1L19.2 1.59C20.37 3.16 21.00 5.06 21.00 7.01C20.99 8.97 20.35 10.87 19.17 12.42C19.01 12.64 18.94 12.90 18.98 13.16C19.02 13.43 19.16 13.66 19.37 13.83C19.58 13.99 19.84 14.05 20.11 14.02C20.37 13.98 20.61 13.84 20.77 13.63C22.21 11.73 22.99 9.41 23 7.02C23.00 4.63 22.23 2.31 20.8 .4ZM10 2C8.67 2 7.40 2.52 6.46 3.46C5.52 4.40 5 5.67 5 7C5 8.32 5.52 9.59 6.46 10.53C7.40 11.47 8.67 12 10 12C11.32 12 12.59 11.47 13.53 10.53C14.47 9.59 15 8.32 15 7C15 5.67 14.47 4.40 13.53 3.46C12.59 2.52 11.32 2 10 2ZM16.17 2.29C15.97 2.48 15.86 2.73 15.86 2.99C15.85 3.26 15.95 3.51 16.14 3.71C16.98 4.58 17.44 5.68 17.49 6.80L17.5 7.02C17.49 8.22 17.01 9.40 16.10 10.32C15.92 10.51 15.83 10.77 15.83 11.03C15.84 11.29 15.95 11.53 16.13 11.71C16.32 11.90 16.57 12.00 16.83 12.00C17.09 12.00 17.34 11.90 17.53 11.72C18.78 10.44 19.49 8.77 19.5 7.03L19.49 6.71C19.42 5.09 18.74 3.53 17.58 2.32C17.49 2.23 17.38 2.15 17.26 2.10C17.14 2.05 17.01 2.02 16.88 2.01C16.75 2.01 16.62 2.03 16.49 2.08C16.37 2.13 16.26 2.20 16.17 2.29ZM10.39 13.01L10 13C8.01 12.99 6.10 13.73 4.63 15.06L4.34 15.34C3.60 16.08 3.01 16.96 2.60 17.93C2.20 18.90 1.99 19.94 2 21C2 21.26 2.10 21.51 2.29 21.70C2.48 21.89 2.73 22 3 22C3.26 22 3.51 21.89 3.70 21.70C3.89 21.51 4 21.26 4 21C4.00 19.40 4.63 17.88 5.75 16.75L5.97 16.55C7.07 15.55 8.51 15 10 15L10.29 15.00C11.78 15.08 13.18 15.70 14.24 16.75L14.44 16.97C15.44 18.07 16 19.51 16 21C16 21.26 16.10 21.51 16.29 21.70C16.48 21.89 16.73 22 17 22C17.26 22 17.51 21.89 17.70 21.70C17.89 21.51 18 21.26 18 21C18.00 19.01 17.26 17.10 15.93 15.63L15.65 15.34C14.25 13.93 12.37 13.10 10.39 13.01Z"></path>
+                                            </g>
+                                            <g transform="translate(23.8 1.6) scale(0.75)">
+                                                <path d="m5 8 6 6"></path>
+                                                <path d="m4 14 6-6 2-3"></path>
+                                                <path d="M2 5h12"></path>
+                                                <path d="M7 2h1"></path>
+                                                <path d="m22 22-5-10-5 10"></path>
+                                                <path d="M14 18h6"></path>
+                                            </g>
+                                        </svg>
+                                    </div>
+                                    <div class="selected-content">
+                                        <span class="selected-text">{{ base.hero.audioTrackDefault }}</span>
+                                    </div>
+                                    <svg class="dropdown-arrow" width="16" height="16" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M6 9l6 6 6-6" />
+                                    </svg>
+                                </div>
+                                <div class="dropdown-menu hidden">
+                                    <div class="dropdown-search">
+                                        <input type="text"
+                                            placeholder="{{ base.hero.searchPlaceholder }}"
+                                            aria-label="Search language">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2" class="search-icon">
+                                            <circle cx="11" cy="11" r="8"></circle>
+                                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                        </svg>
+                                    </div>
+                                    <div class="dropdown-options" role="listbox"></div>
+                                </div>
+                                <input type="hidden" id="stream-selected-audio-track"
+                                    name="streamAudioTrack" value="original">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stream-step">
+                        <span class="stream-step-label">{{ base.trim.trimLabel }}</span>
+                        <div id="trim-slider" class="trim-slider"></div>
+                        <div class="stream-time-row">
+                            <div class="stream-time-field">
+                                <span class="stream-time-label">{{ base.trim.startTimeLabel }}</span>
+                                <input type="text" id="trim-start" class="time-input" value="0:00"
+                                    autocomplete="off" />
+                            </div>
+                            <div class="stream-time-field">
+                                <span class="stream-time-label">{{ base.trim.endTimeLabel }}</span>
+                                <input type="text" id="trim-end" class="time-input" value="0:00"
+                                    autocomplete="off" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stream-convert-row">
+                        <button type="button" id="stream-convert-btn"
+                            class="btn-convert stream-convert-btn">
+                            <span>{{ page.form.convertButton }}</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div id="error-message" class="error-message"></div>
+    </div>
+
+    <div id="result-view" class="hidden ">
+        <div id="content-area"></div>
+    </div>
+</div>
+
+<div class="support-platforms-container">
+    <button class="support-platforms-btn">
+        <div class="support-platforms-content">
+            <p class="support-platforms-text">{{ base.hero.supportedPlatforms }}</p>
+
+            <div class="support-platforms-right">
+                <div class="support-platforms-icons-group">
+                    <div class="support-platforms-icon-item">
+                        <svg viewBox="0 0 24 24" fill="#FF0000" width="12" height="12">
+                            <path d="M21.582,6.186c-0.23-0.86-0.908-1.538-1.768-1.768C18.254,4,12,4,12,4S5.746,4,4.186,4.418c-0.86,0.23-1.538,0.908-1.768,1.768C2,7.746,2,12,2,12s0,4.254,0.418,5.814c0.23,0.86,0.908,1.538,1.768,1.768C5.746,20,12,20,12,20s6.254,0,7.814-0.418c0.861-0.23,1.538-0.908,1.768-1.768C22,16.254,22,12,22,12S22,7.746,21.582,6.186z M9.999,15.595V8.405L16.001,12L9.999,15.595z"/>
+                        </svg>
+                    </div>
+                    <div class="support-platforms-icon-item">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12">
+                            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </button>
+</div>

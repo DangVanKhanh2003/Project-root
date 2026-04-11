@@ -44,13 +44,20 @@
     <meta property="og:site_name" content="Y2Mate" />
     <meta property="og:locale" content="ru_RU" />
     <meta property="og:title" content="Y2mate - Загрузчик YouTube Shorts (Бесплатно, Быстро, HD)" />
-    <meta property="og:description" content="Загружайте YouTube Shorts в HD. Сохраняйте вертикальные видео мгновенно — портретный формат, соотношение 9:16, безопасно и без рекламы." />
-    <meta property="og:image" content="https://y2matepro.com/logo.png" />
+    <meta property="og:description" content="Загружайте YouTube Shorts в HD. Сохраняйте вертикальные видео мгновенно — портретный формат, соотношение 9:16, безопасно." />
+    <meta property="og:image" content="https://y2matepro.com/favicon-512x512.png" />
     <meta property="og:url" content="https://y2matepro.com/ru/youtube-short-downloader" />
 
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://y2matepro.com/ru/youtube-short-downloader">
+    <meta name="twitter:title" content="Y2mate - Загрузчик YouTube Shorts (Бесплатно, Быстро, HD)">
+    <meta name="twitter:description" content="Загружайте YouTube Shorts в HD. Сохраняйте вертикальные видео мгновенно — портретный формат, соотношение 9:16, безопасно.">
+    <meta name="twitter:image" content="https://y2matepro.com/favicon-512x512.png">
 
     <!-- Favicons -->
-    <link rel="icon" href="/favicon.png">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.png" type="image/png">
     <link type="image/png" sizes="16x16" rel="icon" href="/favicon1616.png">
     <link type="image/png" sizes="32x32" rel="icon" href="/favicon3232.png">
     <link type="image/png" sizes="48x48" rel="icon" href="/favicon4848.png">
@@ -72,22 +79,29 @@
       "@type": "WebPage",
       "@id": "https://y2matepro.com/ru/youtube-short-downloader#webpage",
       "url": "https://y2matepro.com/ru/youtube-short-downloader",
-      "name": "Y2mate - Загрузчик YouTube Shorts (Бесплатно, Быстро, HD)",
+      "name": "Y2mate - Загрузчик YouTube Shorts",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/#website"
+      },
       "about": {
+        "@type": "SoftwareApplication",
         "@id": "https://y2matepro.com/ru/youtube-short-downloader#application"
       },
       "inLanguage": "ru"
     },
     {
-      "@type": "WebApplication",
+      "@type": "SoftwareApplication",
       "@id": "https://y2matepro.com/ru/youtube-short-downloader#application",
-      "name": "Y2mate",
+      "name": "Y2mate - Загрузчик YouTube Shorts",
       "url": "https://y2matepro.com/ru/youtube-short-downloader",
       "description": "Загружайте YouTube Shorts мгновенно. Бесплатный загрузчик вертикальных видео для мобильных и настольных устройств.",
       "applicationCategory": "MultimediaApplication",
       "operatingSystem": "All",
       "browserRequirements": "Requires JavaScript. Requires HTML5.",
       "inLanguage": "ru",
+      "publisher": {
+        "@id": "https://y2matepro.com/#organization"
+      },
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -199,9 +213,9 @@
                     <a href="/ru/youtube-to-mp3">YouTube в MP3</a>
                 </li>
                 <li class="navbar language">
-                    <a href="javascript:void(0);">
+                    <button type="button" aria-haspopup="true" aria-expanded="false">
                         Русский<span class="shape"></span>
-                    </a>
+                    </button>
                     <div class="dropdown-menu">
                         <ul class="lang-menu">
                             <li>
@@ -370,9 +384,6 @@
                         Используя наш сервис, вы принимаете <a href="/terms-condition">Условия использования</a>.
                     </p>
                 </form>
-                <div class="spinner" style="display: none;">
-                    <img id="loading_img" src="/loading.gif">
-                </div>
             </div>
 
             <!-- Video Detail Area -->
@@ -392,7 +403,7 @@
         <div class="col-sm-12">
             <h2>Быстро загружайте YouTube Shorts и сохраняйте вертикальный формат</h2>
             <p>Загрузчик YouTube Shorts от Y2Mate позволяет загружать короткие вертикальные видеоклипы с YouTube непосредственно на ваше устройство. Благодаря быстрой обработке ссылок и быстрой загрузке вы можете сохранять Shorts за считанные секунды, используя простой, удобный и совершенно бесплатный веб-сайт.</p>
-            <p>Y2mate полностью сосредоточен на чистом и простом процессе загрузки Shorts: без рекламы, без всплывающих окон и без перенаправлений. Shorts загружаются непосредственно в их исходном вертикальном формате 9:16, точно так же, как они были загружены на YouTube. Вы можете выбрать качество видео до 1080p или 720p, или загрузить только аудио с битрейтом 128kbps, 192kbps или 320kbps в форматах MP3, OGG, WAV или OPUS. Инструмент бесперебойно работает как на мобильных, так и на настольных браузерах.</p>
+            <p>Y2mate полностью сосредоточен на чистом и простом процессе загрузки Shorts. Shorts загружаются непосредственно в их исходном вертикальном формате 9:16, точно так же, как они были загружены на YouTube. Вы можете выбрать качество видео до 1080p или 720p, или загрузить только аудио с битрейтом 128kbps, 192kbps или 320kbps в форматах MP3, OGG, WAV или OPUS. Инструмент бесперебойно работает как на мобильных, так и на настольных браузерах.</p>
         </div>
     </section>
     <section class="y2mate-instruction-pro">
@@ -477,8 +488,8 @@
                             d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09z">
                         </path>
                     </svg>
-                    <h3>Без рекламы и всплывающих окон</h3>
-                    <p>Чистый процесс загрузки без рекламы, всплывающих окон или прерываний.</p>
+                    <h3>Несколько вариантов видео и аудио</h3>
+                    <p>Поддерживает Shorts в 1080p или 720p и аудио с битрейтом 128kbps, 192kbps или 320kbps в форматах MP3, OGG, WAV или OPUS.</p>
                 </div>
             </div>
             <div class="col-sm-4 d-flex">
@@ -492,8 +503,8 @@
                             d="M14 3a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zM2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z">
                         </path>
                     </svg>
-                    <h3>Несколько вариантов видео и аудио</h3>
-                    <p>Поддерживает Shorts в 1080p или 720p и аудио с битрейтом 128kbps, 192kbps или 320kbps в форматах MP3, OGG, WAV или OPUS.</p>
+                    <h3>Сохраняет вертикальный формат 9:16</h3>
+                    <p>Все Shorts остаются в своем исходном вертикальном макете.</p>
                 </div>
             </div>
             <div class="col-sm-4 d-flex">
@@ -504,8 +515,8 @@
                             d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2zm11.5 5.175 3.5 1.556V4.269l-3.5 1.556zM2 4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h7.5a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1z">
                         </path>
                     </svg>
-                    <h3>Сохраняет вертикальный формат 9:16</h3>
-                    <p>Все Shorts остаются в своем исходном вертикальном макете.</p>
+                    <h3>Стабильный браузерный инструмент</h3>
+                    <p>Работает непосредственно в вашем браузере без установки приложений или расширений.</p>
                 </div>
             </div>
         </div>
@@ -543,6 +554,15 @@
     <p>© 2025 y2mate</p>
     <ul class="footer_nav">
         <li class="fnav-menu">
+            <a href="/ru/youtube-to-mp4">YouTube в MP4</a>
+        </li>
+        <li class="fnav-menu">
+            <a href="/ru/youtube-to-mp3">YouTube в MP3</a>
+        </li>
+        <li class="fnav-menu">
+            <a href="/ru/youtube-short-downloader">Загрузчик Shorts</a>
+        </li>
+        <li class="fnav-menu">
             <a href="/about-us">О нас</a>
         </li>
         <li class="fnav-menu">
@@ -554,15 +574,23 @@
         <li class="fnav-menu">
             <a href="/privacy-policy">Политика конфиденциальности</a>
         </li>
-        <li class="fnav-menu">
-            <a href="/ru/youtube-short-downloader">Загрузчик Shorts</a>
-        </li>
     </ul>
 </footer>
 
 
     <!-- Conversion Modal Wrapper -->
     <div id="progressBarWrapper"></div>
+
+    <!-- Ko-fi Support Widget -->
+    <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+    <script>
+      kofiWidgetOverlay.draw('metaconvert', {
+        'type': 'floating-chat',
+        'floating-chat.donateButton.text': 'Support me',
+        'floating-chat.donateButton.background-color': '#00b9fe',
+        'floating-chat.donateButton.text-color': '#fff'
+      });
+    </script>
 </body>
 
 </html>

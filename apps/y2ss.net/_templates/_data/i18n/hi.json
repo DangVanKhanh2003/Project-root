@@ -1,0 +1,35 @@
+{
+  "nav": { "home": "होम" },
+  "drawer": { "logoText": "Y2SS", "links": { "home": "होम" } },
+  "hero": {
+    "placeholder": "यहाँ YouTube प्लेलिस्ट URL पेस्ट करें...",
+    "pasteBtn": "पेस्ट",
+    "clearBtn": "साफ़ करें",
+    "convertBtn": "कन्वर्ट करें",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "ऑडियो ट्रैक",
+    "searchPlaceholder": "खोजें...",
+    "supportedPlatforms": "समर्थित प्लेटफ़ॉर्म:"
+  },
+  "footer": {
+    "copyright": "© 2026 Y2SS. सर्वाधिकार सुरक्षित।",
+    "legal": {
+      "about": "हमारे बारे में",
+      "contact": "संपर्क करें",
+      "copyright": "कॉपीराइट और DMCA",
+      "privacyPolicy": "गोपनीयता नीति",
+      "termsOfUse": "उपयोग की शर्तें"
+    }
+  },
+  "langSelector": { "buttonLabel": "भाषा बदलें", "buttonText": "HI", "currentLangFull": "हिन्दी" },
+  "strim": {
+    "startBtn": "शुरू करें",
+    "selectFormatLabel": "1. फ़ॉर्मेट चुनें:",
+    "selectQualityLabel": "2. गुणवत्ता चुनें:",
+    "audioTrackLabel": "3. ऑडियो ट्रैक चुनें:",
+    "trimLabel": "4. वीडियो काटें (शुरुआत – अंत समय):",
+    "startTimeLabel": "शुरुआत",
+    "endTimeLabel": "अंत"
+  }
+}

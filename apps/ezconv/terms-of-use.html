@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Use - EzConv</title>
+    <meta name="description"
+        content="Read the Terms of Use for EzConv. Learn about eligibility, permitted use, user responsibilities, and limitations of liability when using our YouTube MP3 download service.">
+    <link rel="canonical" href="https://ezconv.pro/terms-of-use">
+
+    <!-- Google Fonts: Anthropic Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anthropic+Sans:wght@400;500;600;700;800&family=Anthropic+Serif+Display:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Critical: Read format preference before render to prevent FOUC (Ezconv) -->
+    <script>
+        (function () { var f = 'mp4'; try { var p = JSON.parse(localStorage.getItem('Ezconv_format_preferences')); if (p && p.selectedFormat) f = p.selectedFormat } catch (e) { } document.documentElement.dataset.format = f; document.write('<style>html[data-format="mp3"] .quality-select--mp4,html[data-format="mp3"] .multi-quality-select--mp4{display:none!important}html[data-format="mp3"] .quality-select--mp3,html[data-format="mp3"] .multi-quality-select--mp3{display:block!important}html[data-format="mp4"] .quality-select--mp3,html[data-format="mp4"] .multi-quality-select--mp3{display:none!important}html[data-format="mp4"] .quality-select--mp4,html[data-format="mp4"] .multi-quality-select--mp4{display:block!important}</style>') })()
+    </script>
+    <script>
+            /* Prevent theme FOUC: apply saved theme immediately */
+            (function () { try { var t = localStorage.getItem('ezconv-theme'); if (t === 'dark') document.documentElement.setAttribute('data-theme', 'dark') } catch (e) { } })()
+    </script>
+
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header class="site-header ">
+        <div class="container">
+            <div class="header-inner">
+                <a href="/" class="header-logo" aria-label="EzConv.pro home">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 50" fill="none" aria-hidden="true"
+                        focusable="false">
+                        <path
+                            d="M 4 23 v 4 M 10 20 v 10 M 16 15 v 20 M 22 9 v 32 M 28 15 v 20 M 34 17 v 16 M 40 10 v 30 M 46 4 v 42 M 52 2 v 46 M 58 11 v 28 M 64 16 v 18 M 70 12 v 26 M 76 18 v 14 M 82 17 v 16 M 88 21 v 8"
+                            stroke="#C65D3B" stroke-width="3.5" stroke-linecap="round" fill="none" />
+                    </svg>
+                    <span class="header-logo-text">EzConv.pro</span>
+                </a>
+                <nav class="header-nav" aria-label="Primary">
+                    <a href="/" class="header-link">Home</a>
+                    <a href="/about" class="header-link">About</a>
+                </nav>
+                <button class="theme-toggle-btn theme-toggle-btn--header" type="button" aria-label="Toggle theme">
+                    <svg class="theme-icon theme-icon--sun" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5" />
+                        <line x1="12" y1="1" x2="12" y2="3" />
+                        <line x1="12" y1="21" x2="12" y2="23" />
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                        <line x1="1" y1="12" x2="3" y2="12" />
+                        <line x1="21" y1="12" x2="23" y2="12" />
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                    </svg>
+                    <svg class="theme-icon theme-icon--moon" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                    </svg>
+                </button>
+                <button id="mobile-menu-btn" class="mobile-menu-btn" type="button" aria-label="Open menu">
+                    <span class="mobile-menu-bars" aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+
+    </header>
+
+    <!-- MOBILE DRAWER (Kept if needed, but trigger is gone with header. Hiding for now effectively) -->
+    <div id="mobile-drawer" class="mobile-drawer" hidden>
+        <div id="mobile-drawer-content" class="drawer-content" role="dialog" aria-modal="true" aria-label="Mobile menu">
+            <div class="drawer-header">
+                <a href="/" class="drawer-logo" aria-label="EzConv.pro home">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 50" fill="none" aria-hidden="true"
+                        focusable="false">
+                        <path
+                            d="M 4 23 v 4 M 10 20 v 10 M 16 15 v 20 M 22 9 v 32 M 28 15 v 20 M 34 17 v 16 M 40 10 v 30 M 46 4 v 42 M 52 2 v 46 M 58 11 v 28 M 64 16 v 18 M 70 12 v 26 M 76 18 v 14 M 82 17 v 16 M 88 21 v 8"
+                            stroke="#C65D3B" stroke-width="3.5" stroke-linecap="round" fill="none" />
+                    </svg>
+                    <span class="drawer-logo-text">EzConv.pro</span>
+                </a>
+                <button id="close-drawer-btn" class="drawer-close" type="button" aria-label="Close menu">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="drawer-scroll">
+                <nav class="drawer-nav" aria-label="Mobile">
+                    <a href="/" class="drawer-link">Home</a>
+
+                    <a href="/about" class="drawer-link">About</a>
+                    <a href="/faq" class="drawer-link">FAQ</a>
+                    <a href="/contact" class="drawer-link">Contact</a>
+                    <a href="/terms-of-use" class="drawer-link">Terms of Use</a>
+                    <a href="/policy" class="drawer-link">Privacy</a>
+                    <a href="/dmca" class="drawer-link">DMCA</a>
+                </nav>
+
+                <button class="theme-toggle-btn theme-toggle-btn--drawer" type="button" aria-label="Toggle theme">
+                    <svg class="theme-icon theme-icon--sun" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5" />
+                        <line x1="12" y1="1" x2="12" y2="3" />
+                        <line x1="12" y1="21" x2="12" y2="23" />
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                        <line x1="1" y1="12" x2="3" y2="12" />
+                        <line x1="21" y1="12" x2="23" y2="12" />
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                    </svg>
+                    <svg class="theme-icon theme-icon--moon" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <main>
+
+        <section class="content-section content-section--white">
+            <div class="container">
+                <div class="page-header">
+                    <h1 class="page-title">Terms of Use</h1>
+                </div>
+                <div style="margin-bottom: 32px;"></div>
+
+                <h2 class="titles">1. Eligibility</h2>
+                <p>You must be at least 18 years old or the age of majority in your jurisdiction to use EzConv. By using
+                    this Website, you confirm that you meet this requirement.</p>
+                <br>
+                <h2 class="titles">2. Grant of Use</h2>
+                <p>We grant you a limited, non-exclusive, non-transferable right to access and use EzConv for personal
+                    and non-commercial purposes only. We may suspend or terminate access at any time if these Terms are
+                    violated.</p>
+                <br>
+                <h2 class="titles">3. Intellectual Property</h2>
+                <p>All website content including text, graphics, branding, and design elements are owned by or licensed
+                    to EzConv. You may not copy, reproduce, distribute, or exploit any part of the Website without
+                    permission.</p>
+                <br>
+                <h2 class="titles">4. User Submissions</h2>
+                <p>You are solely responsible for any content or links you process through the Website. You confirm that
+                    you have the legal right to use any content submitted for conversion or download. We do not claim
+                    ownership of user-submitted content.</p>
+                <br>
+                <h2 class="titles">5. Content on the Website</h2>
+                <p>EzConv does not host third-party copyrighted content. The Website functions as an automated
+                    processing tool for publicly accessible content. We are not responsible for content submitted or
+                    accessed by users.</p>
+                <br>
+                <h2 class="titles">6. User Conduct</h2>
+                <p>You agree not to use the Website for unlawful purposes, violate intellectual property rights, upload
+                    illegal material, interfere with website functionality, or use automated systems excessively. You
+                    are responsible for your actions while using EzConv.</p>
+                <br>
+                <h2 class="titles">7. Services</h2>
+                <p>EzConv provides an online conversion tool. We do not guarantee uninterrupted or error-free service.
+                    Files are not stored longer than necessary to process downloads.</p>
+                <br>
+                <h2 class="titles">8. Fees</h2>
+                <p>The Website is currently free to use. We reserve the right to introduce fees or modify services at
+                    any time.</p>
+                <br>
+                <h2 class="titles">9. Privacy Policy</h2>
+                <p>Your use of EzConv is also governed by our Privacy Policy.</p>
+                <br>
+                <h2 class="titles">10. Copyright Claims</h2>
+                <p>We respect intellectual property rights. If you believe your rights have been violated, please
+                    contact us at ezconv.pro@gmail.com. We may remove content or restrict access where appropriate.</p>
+                <br>
+                <h2 class="titles">11. Modification of Terms</h2>
+                <p>We may update these Terms at any time by posting revised versions on the Website. Continued use of
+                    the Website constitutes acceptance of the updated Terms.</p>
+                <br>
+                <h2 class="titles">12. Indemnification</h2>
+                <p>You agree to indemnify and hold EzConv harmless from claims resulting from your use of the Website or
+                    violation of these Terms.</p>
+                <br>
+                <h2 class="titles">13. Disclaimer of Warranties</h2>
+                <p>The Website is provided "AS IS" without warranties of any kind. We do not guarantee accuracy,
+                    availability, or reliability.</p>
+                <br>
+                <h2 class="titles">14. Limitation of Liability</h2>
+                <p>To the maximum extent permitted by law, EzConv shall not be liable for indirect, incidental, or
+                    consequential damages arising from your use of the Website. Your sole remedy is to discontinue use
+                    of the Website.</p>
+                <br>
+                <h2 class="titles">15. General Terms</h2>
+                <p>These Terms constitute the entire agreement between you and EzConv. If any provision is found
+                    unenforceable, the remaining provisions remain in effect.</p>
+                <br>
+                <h2 class="titles">Contact Information</h2>
+                <p>If you have any questions regarding these Terms of Use, please contact us
+                    at:<br><strong>Email:</strong> <a href="mailto:ezconv.pro@gmail.com"
+                        rel="nofollow">ezconv.pro@gmail.com</a></p>
+                <br>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+
+            <div class="footer-links"
+                style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; flex-wrap: wrap;">
+                <a href="/about" style="color: inherit; text-decoration: none;">About</a>
+                <a href="/contact" style="color: inherit; text-decoration: none;">Contact</a>
+                <a href="/terms-of-use" style="color: inherit; text-decoration: none;">Terms of Use</a>
+                <a href="/policy" style="color: inherit; text-decoration: none;">Privacy Policy</a>
+                <a href="/dmca" style="color: inherit; text-decoration: none;">DMCA</a>
+                <a href="/faq" style="color: inherit; text-decoration: none;">FAQ</a>
+            </div>
+            <div class="copyright">© 2026 Ezconv. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <script type="module" src="/src/multi-mode-main.ts"></script>
+</body>
+
+</html>

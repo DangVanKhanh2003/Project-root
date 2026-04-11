@@ -1,0 +1,115 @@
+{
+  "seo": {
+    "title": "YouTube Downloader – Baixar Vídeos Grátis | SNAP1S",
+    "description": "Baixe vídeos do YouTube com SNAP1S. Downloader YouTube gratuito que salva vídeos em qualidade HD e 4K. Sem cadastro ou app necessário.",
+    "schemaName": "SNAP1S - Downloader de Vídeos YouTube",
+    "schemaDescription": "SNAP1S é um downloader gratuito de vídeos YouTube que permite baixar vídeos em qualidade HD e 4K.",
+    "ogTitle": "YouTube Downloader – Baixar Vídeos Grátis | SNAP1S",
+    "ogDescription": "Baixe vídeos do YouTube com SNAP1S. Grátis, rápido e em qualidade HD."
+  },
+  "content": {
+    "form": {
+      "h1": "SNAP1S – Downloader de Vídeos YouTube",
+      "placeholder": "Cole a URL do vídeo do YouTube aqui...",
+      "button": "Baixar Vídeo"
+    },
+    "sections": [
+      {
+        "h2": "O que é o SNAP1S YouTube Downloader?",
+        "p": [
+          "SNAP1S é um <strong>downloader de vídeos YouTube</strong> gratuito que permite baixar vídeos do YouTube para seu dispositivo em qualidade HD e 4K.",
+          "Basta colar o link do vídeo do YouTube, clicar em baixar e salvar o vídeo diretamente no seu celular ou computador.",
+          "Este <strong>downloader de vídeos YouTube online</strong> funciona em todos os dispositivos e navegadores sem precisar instalar apps."
+        ]
+      },
+      {
+        "h2": "Como baixar vídeos do YouTube",
+        "ol": [
+          {
+            "h3": "Copie o link do vídeo YouTube",
+            "p": [
+              "Abra o YouTube e copie a URL do vídeo que deseja baixar da barra de endereços ou do botão de compartilhar."
+            ]
+          },
+          {
+            "h3": "Cole o link",
+            "p": [
+              "Cole a URL do vídeo do YouTube no downloader SNAP1S acima."
+            ]
+          },
+          {
+            "h3": "Baixe o vídeo",
+            "p": [
+              "Clique no botão de download e salve o vídeo do YouTube na qualidade desejada no seu dispositivo."
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "Baixe vídeos do YouTube em qualidade HD",
+        "p": [
+          "SNAP1S permite <strong>baixar vídeos do YouTube</strong> em várias opções de qualidade incluindo 720p, 1080p e resolução 4K.",
+          "Salve seus vídeos favoritos do YouTube, clipes musicais e tutoriais para assistir offline a qualquer hora e em qualquer lugar."
+        ]
+      },
+      {
+        "h2": "Por que usar o SNAP1S YouTube Downloader?",
+        "ul": [
+          {
+            "h3": "Qualidade HD e 4K",
+            "p": [
+              "Baixe vídeos do YouTube na mais alta qualidade disponível incluindo Full HD e resolução 4K."
+            ]
+          },
+          {
+            "h3": "Múltiplos formatos",
+            "p": [
+              "Salve vídeos do YouTube em vários formatos incluindo MP4, MP3 e mais conforme sua necessidade."
+            ]
+          },
+          {
+            "h3": "Grátis e ilimitado",
+            "p": [
+              "Baixe quantos vídeos do YouTube quiser gratuitamente sem limites diários."
+            ]
+          },
+          {
+            "h3": "Sem app necessário",
+            "p": [
+              "O downloader YouTube funciona diretamente no seu browser em qualquer dispositivo sem instalar apps."
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "Perguntas frequentes",
+        "ul": [
+          {
+            "h3": "O SNAP1S YouTube downloader é grátis?",
+            "p": [
+              "Sim. SNAP1S é um downloader YouTube completamente gratuito sem taxas ocultas."
+            ]
+          },
+          {
+            "h3": "Posso baixar vídeos do YouTube em HD?",
+            "p": [
+              "Sim. SNAP1S suporta o download de vídeos YouTube em qualidade 720p, 1080p e 4K."
+            ]
+          },
+          {
+            "h3": "Funciona no iPhone e Android?",
+            "p": [
+              "Sim. O downloader YouTube funciona em todos os dispositivos móveis e navegadores desktop."
+            ]
+          },
+          {
+            "h3": "Preciso de uma conta YouTube para baixar?",
+            "p": [
+              "Não. Você só precisa da URL do vídeo para baixar vídeos do YouTube com SNAP1S."
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,224 @@
+:root {
+    --brand: #004fab;
+    --brand-hover: #003f8a;
+    --text: #374957;
+    --muted: #4f5b66;
+    --surface-weak: #e8f1ff;
+    --radius-xl: 36px;
+    --container-width: 1100px;
+
+    /* Theme tokens needed by reusable packages (light theme) */
+    /* Colors */
+    --primary-color: #004fab;
+    --primary-color-hover: #003f8a;
+    --background-hero-section: #0055b9;
+    /* Slightly darker for hover */
+    --secondary-color: #ffffff;
+    --color-black: #000000;
+    /* Defined as requested */
+    --color-white: #ffffff;
+
+    --bg-primary: #ffffff;
+    --bg-secondary: #FAF9F5;
+    /* Light gray for content sections */
+    --text-primary: #333333;
+    --bg-badge: #f2f4f7;
+    --meta-badge-bg: #0055b91a;
+    --meta-badge-color: var(--text-accent);
+
+    --text-main: var(--text);
+    --text-muted: var(--muted);
+    --text-accent: var(--brand);
+
+    --border-glass: 1px solid #e5e7eb;
+    --border-secondary: #e5e7eb;
+
+    --color-accent: var(--brand);
+    --color-accent-hover: #003f8a;
+    --color-accent-dark: rgba(0, 79, 171, 0.12);
+    --color-status-error: #e74c3c;
+
+    --radius-small: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+
+    --font-display: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+    /* Surface tokens */
+    --bg-page: #FAF9F5;
+    --bg-404-page: #fff;
+    --bg-card: #ffffff;
+    --bg-surface-soft: rgba(0, 79, 171, 0.05);
+    --bg-hover: rgba(0, 79, 171, 0.08);
+
+    /* YT Preview Card */
+    --yt-preview-card-bg: #0055b90d;
+
+    /* Skeleton tokens */
+    --color-skeleton-dark: #E3E0DA;
+    --color-skeleton-light: #EFECE7;
+
+    /* Text tokens */
+    --text-heading: #374957;
+    --text-body: #374957;
+    --text-secondary: #4f5b66;
+    --text-placeholder: #9ca3af;
+
+    /* Border tokens */
+    --border-default: rgba(137, 137, 137, 0.33);
+    --border-input: #b0b0b0;
+    --border-subtle: #e5e7eb;
+
+    /* Link visited */
+    --link-visited: #888888;
+
+    /* Accent fill tokens */
+    --accent-fill-soft: rgba(0, 79, 171, 0.08);
+    --accent-fill-strong: rgba(0, 79, 171, 0.16);
+
+    /* Animated border: RGB only (for conic-gradient trick) */
+    --input-border-glow-rgb: 52, 107, 241;
+    --input-glow-radial-rgb: 52, 107, 241;
+
+    /* Input caret */
+    --input-caret-color: var(--text-body);
+
+    /* Color input placeholder */
+    --color-input-placeholder: #9B9B9B;
+
+    /* Status badge backgrounds */
+    --status-ready-bg: #eff6ff;
+    --status-ready-color: #3b82f6;
+    --status-success-bg: #dcfce7;
+    --status-success-color: #166534;
+    --status-error-bg: #fee2e2;
+    --status-error-color: #b91c1c;
+    --status-pending-bg: #f1f5f9;
+    --status-pending-color: #64748b;
+    --status-analyzing-bg: #e0f2fe;
+    --status-analyzing-color: #0369a1;
+    --status-converting-bg: #fff7ed;
+    --status-converting-color: #c2410c;
+
+    /* Progress fill */
+    --progress-fill-bg: var(--surface-weak);
+
+    /* Warning */
+    --color-warning: #ff8800;
+    --color-warning-bg: #fef3c7;
+    --color-warning-border: #f59e0b;
+    --color-warning-strong: #92400e;
+
+    /* Next/New Convert Button */
+    --color-next-btn-bg: var(--bg-card);
+    --color-next-btn-text: var(--text-main);
+    --color-next-btn-border: var(--border-secondary);
+    --color-next-btn-hover-bg: #EFECE7;
+    --color-next-btn-hover-border: #DCD7CF;
+
+    /* Tooltip */
+    --color-tooltip-bg: var(--text-heading);
+    --color-tooltip-text: #ffffff;
+    --color-tooltip-border: transparent;
+    --color-tooltip-arrow: var(--text-heading);
+
+}
+
+:root[data-theme="dark"] {
+    --brand: #C65D3B;
+    --brand-hover: #B14F2F;
+    --primary-color: #C65D3B;
+    --primary-color-hover: #B14F2F;
+    --color-accent: #C65D3B;
+    --color-accent-hover: #B14F2F;
+    --color-accent-dark: rgba(198, 93, 59, 0.20);
+    --background-hero-section: var(--bg-secondary);
+
+    --bg-page: #262624;
+    --bg-404-page: var(--bg-page);
+    --bg-card: #30302E;
+    --bg-primary: #1F1F1E;
+    --bg-secondary: #262624;
+    --bg-surface-soft: #383836;
+    --bg-hover: #383836;
+
+    /* Meta badge */
+    --meta-badge-bg: #30302e;
+    --meta-badge-color: var(--color-white);
+
+    /* YT Preview Card */
+    --yt-preview-card-bg: rgb(66 66 66);
+
+    /* Skeleton tokens */
+    --color-skeleton-dark: rgba(255, 255, 255, 0.10);
+    --color-skeleton-light: rgba(255, 255, 255, 0.05);
+    --surface-weak: rgba(198, 93, 59, 0.10);
+
+    --text-heading: #E8E6E3;
+    --text-body: #D6D4CF;
+    --text-secondary: #C9C7C2;
+    --text: #D6D4CF;
+    --text-main: #D6D4CF;
+    --text-muted: #C9C7C2;
+    --text-placeholder: #8A8884;
+    --text-primary: #E8E6E3;
+    --muted: #C9C7C2;
+
+    --border-default: #4A4A48;
+    --border-input: #555553;
+    --border-subtle: #3A3A38;
+    --border-secondary: #4A4A48;
+    --border-glass: 1px solid #4A4A48;
+
+    --link-visited: var(--brand);
+
+    --accent-fill-soft: rgba(198, 93, 59, 0.12);
+    --accent-fill-strong: rgba(198, 93, 59, 0.20);
+
+    --input-border-glow-rgb: 198, 93, 59;
+    --input-glow-radial-rgb: 198, 93, 59;
+
+    /* Input caret */
+    --input-caret-color: #ffffff;
+
+    /* Color input placeholder */
+    --color-input-placeholder: rgba(255, 255, 255, 0.56);
+
+    --status-ready-bg: rgba(198, 93, 59, 0.12);
+    --status-ready-color: #D9785B;
+    --status-success-bg: rgba(16, 185, 129, 0.15);
+    --status-success-color: #10B981;
+    --status-error-bg: rgba(231, 76, 60, 0.15);
+    --status-error-color: #E74C3C;
+    --status-pending-bg: #383836;
+    --status-pending-color: #C9C7C2;
+    --status-analyzing-bg: rgba(198, 93, 59, 0.10);
+    --status-analyzing-color: #D9785B;
+    --status-converting-bg: rgba(198, 93, 59, 0.10);
+    --status-converting-color: #C65D3B;
+
+    --color-status-error: #E74C3C;
+
+    /* Progress fill */
+    --progress-fill-bg: var(--accent-fill-strong);
+
+    /* Warning */
+    --color-warning: #f59e0b;
+    --color-warning-bg: rgba(245, 158, 11, 0.15);
+    --color-warning-border: rgba(245, 158, 11, 0.5);
+    --color-warning-strong: #fbbf24;
+
+    /* Next/New Convert Button */
+    --color-next-btn-bg: var(--bg-card);
+    --color-next-btn-text: var(--text-main);
+    --color-next-btn-border: var(--border-secondary);
+    --color-next-btn-hover-bg: #3f3f3d;
+    --color-next-btn-hover-border: #6a6a66;
+
+    /* Tooltip */
+    --color-tooltip-bg: #2a2a2c;
+    --color-tooltip-text: #ffffff;
+    --color-tooltip-border: rgba(255, 255, 255, 0.08);
+    --color-tooltip-arrow: #2a2a2c;
+
+}

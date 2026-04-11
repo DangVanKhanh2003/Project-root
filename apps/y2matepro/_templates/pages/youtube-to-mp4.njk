@@ -11,6 +11,7 @@ eleventyComputed:
 ---
 {%- set base = i18nBase[lang] or i18nBase['en'] -%}
 {%- set page = i18nPages[pageKey][lang] or i18nPages[pageKey].en -%}
+{%- set langPrefix = '' if (lang == 'en' or not lang) else '/' + lang -%}
 <div class="container">
     <section class="y2mate-download-pro">
         <div class="y2mate-search-form-pro d-flex">
@@ -53,9 +54,6 @@ eleventyComputed:
                         {{ base.hero.termsText }} <a href="/terms-condition">{{ base.hero.termsLink }}</a>.
                     </p>
                 </form>
-                <div class="spinner" style="display: none;">
-                    <img id="loading_img" src="/loading.gif">
-                </div>
             </div>
 
             <!-- Video Detail Area -->
@@ -74,8 +72,8 @@ eleventyComputed:
     <section class="y2mate-content-pro d-flex">
         <div class="col-sm-12">
             <h2>{{ page.content.mainTitle }}</h2>
-            <p>{{ page.content.intro1 | safe }}</p>
-            <p>{{ page.content.intro2 | safe }}</p>
+            <p>{{ page.content.intro1 | localizeLinks(langPrefix) | safe }}</p>
+            <p>{{ page.content.intro2 | localizeLinks(langPrefix) | safe }}</p>
         </div>
     </section>
     <section class="y2mate-instruction-pro">
@@ -83,7 +81,7 @@ eleventyComputed:
             <h3>{{ page.instructions.title }}</h3>
             <ol>
                 {% for step in page.instructions.steps %}
-                <li>{{ step | safe }}</li>
+                <li>{{ step | localizeLinks(langPrefix) | safe }}</li>
                 {% endfor %}
             </ol>
         </div>
@@ -91,7 +89,7 @@ eleventyComputed:
             <h3>{{ page.whyChoose.title }}</h3>
             <ul>
                 {% for reason in page.whyChoose.reasons %}
-                <li>{{ reason | safe }}</li>
+                <li>{{ reason | localizeLinks(langPrefix) | safe }}</li>
                 {% endfor %}
             </ul>
         </div>
@@ -126,7 +124,7 @@ eleventyComputed:
                 </svg>
                 {% endif %}
                 <h3>{{ feature.title }}</h3>
-                <p>{{ feature.description }}</p>
+                <p>{{ feature.description | localizeLinks(langPrefix) | safe }}</p>
             </div>
         </div>
         {% endfor %}
@@ -164,7 +162,7 @@ eleventyComputed:
                 </svg>
                 {% endif %}
                 <h3>{{ feature.title }}</h3>
-                <p>{{ feature.description }}</p>
+                <p>{{ feature.description | localizeLinks(langPrefix) | safe }}</p>
             </div>
         </div>
         {% endfor %}
@@ -176,7 +174,7 @@ eleventyComputed:
             <div class="guide-data">
                 {% for faq in page.faqs.items %}
                 <h3>{{ faq.question }}</h3>
-                <p>{{ faq.answer | safe }}</p>
+                <p>{{ faq.answer | localizeLinks(langPrefix) | safe }}</p>
                 {% endfor %}
             </div>
         </div>

@@ -1,0 +1,115 @@
+{
+  "seo": {
+    "title": "YouTube to MP3 – Extract Audio from YouTube Videos | Y2Mate",
+    "description": "Extract audio from YouTube videos as MP3 with Y2Mate. Convert YouTube videos to MP3 for offline listening — optimized for music, podcasts, and long videos.",
+    "ogTitle": "Y2mate - YouTube to MP3 Converter Free",
+    "ogDescription": "Y2mate to MP3: 128/192/320kbps. Fast, free, no limits, no app.",
+    "schemaName": "Y2mate - YouTube to MP3 Converter",
+    "schemaDescription": "Y2mate to MP3: 128/192/320kbps. Fast, free, no limits, no app."
+  },
+  "hero": {
+    "title": "Y2Mate – YouTube to MP3"
+  },
+  "content": {
+    "sections": [
+      {
+        "title": "What Is YouTube to MP3 on Y2Mate?",
+        "paragraphs": [
+          "The <strong>YouTube to MP3</strong> page from <a href=\"/\">Y2Mate</a> is designed specifically for extracting audio from YouTube videos and saving it as MP3 files.",
+          "This page does not focus on video visuals. Instead, it processes only the audio stream to support offline listening use cases."
+        ]
+      },
+      {
+        "title": "When Should You Use YouTube to MP3?",
+        "paragraphs": [
+          "YouTube to MP3 is suitable for music videos, podcasts, lectures, interviews, and long-form content where users only need the audio instead of the video.",
+          "By extracting audio only, MP3 files are significantly smaller than video files, making them easier to store and play on mobile devices."
+        ]
+      },
+      {
+        "title": "Common Problems When Extracting Audio from YouTube",
+        "paragraphs": [
+          "Many YouTube to MP3 tools struggle with long videos, videos with multiple audio streams, or inconsistent audio quality.",
+          "As a result, MP3 files may contain noise, missing segments, or incorrect durations."
+        ]
+      },
+      {
+        "title": "How the Tool Processes and Generates MP3 Files",
+        "paragraphs": [
+          "When you paste a YouTube video link, the system analyzes the original audio stream and generates a corresponding MP3 file.",
+          "Audio quality depends on the source video. When available, the tool displays suitable bitrate options for download."
+        ]
+      },
+      {
+        "title": "Why Extracting Audio Is More Efficient Than Downloading Video",
+        "paragraphs": [
+          "Separating audio from video significantly reduces file size compared to downloading MP4 files.",
+          "This is especially useful for users who listen to music or podcasts on mobile devices and want to save storage space."
+        ]
+      },
+      {
+        "title": "Difference Between MP3 and MP4",
+        "paragraphs": [
+          "MP3 files contain audio only, while MP4 files include both video and audio.",
+          "If you need to watch the video content, you should use the <a href=\"/youtube-to-mp4\">YouTube to MP4</a> page instead of extracting MP3 audio."
+        ]
+      },
+      {
+        "title": "Choosing Between Audio or Video Downloads",
+        "paragraphs": [
+          "If you are unsure whether you need audio or video, you can visit the <a href=\"/\">Download Video YouTube</a> page to explore the available download options."
+        ]
+      }
+    ]
+  },
+  "whyChoose": {
+    "title": "Why Choose Y2Mate for YouTube to MP3 Conversion",
+    "intro": "Many YouTube to MP3 converters fail to extract audio properly, resulting in low quality or incomplete files. Y2Mate provides reliable MP3 extraction with consistent audio quality.",
+    "reasons": [
+      "High-quality audio extraction – preserves original audio quality",
+      "Multiple bitrate options – choose from 128kbps to 320kbps",
+      "Fast audio processing – extract audio quickly from any YouTube video",
+      "No software required – works entirely in your browser",
+      "Optimized for music and podcasts – ideal for offline listening"
+    ]
+  },
+  "instructions": {
+    "title": "How to Extract Audio from YouTube Videos as MP3",
+    "steps": [
+      "Copy the YouTube video link containing the audio you want to extract.",
+      "Paste the link into the input field on this page.",
+      "Click the start button to analyze the video's audio stream.",
+      "Select your preferred MP3 bitrate and download the audio file to your device."
+    ],
+    "note": "The entire audio extraction process runs in your browser without requiring any software installation."
+  },
+  "faqs": {
+    "title": "Frequently Asked Questions About YouTube to MP3",
+    "items": [
+      {
+        "question": "What does YouTube to MP3 conversion do?",
+        "answer": "It extracts the audio stream from a YouTube video and saves it as an MP3 file for offline listening."
+      },
+      {
+        "question": "Which MP3 quality should I choose?",
+        "answer": "Lower bitrates are suitable for speech, while higher bitrates provide better sound quality for music and detailed audio."
+      },
+      {
+        "question": "Does the MP3 include the full audio from the video?",
+        "answer": "Yes. The converted MP3 contains the complete audio track from the original video."
+      },
+      {
+        "question": "Can I convert long YouTube videos to MP3?",
+        "answer": "Yes. Audio extraction works with long videos as long as the source video is public or unlisted."
+      },
+      {
+        "question": "Is MP3 conversion done online?",
+        "answer": "Yes. The entire process runs in your browser without installing any software."
+      },
+      {
+        "question": "Can private YouTube videos be converted to MP3?",
+        "answer": "No. Private videos cannot be accessed or processed by the system."
+      }
+    ]
+  }
+}

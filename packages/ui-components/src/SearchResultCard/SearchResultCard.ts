@@ -64,7 +64,7 @@ export function createSearchResultCard(video: VideoData, options: CardOptions = 
         ${video.displayDuration ? `<span class="duration-badge">${escapeHtml(video.displayDuration)}</span>` : ''}
       </div>
       <div class="card-content">
-        <h3 class="card-title">${escapeHtml(video.title)}</h3>
+        <p class="card-title">${escapeHtml(video.title)}</p>
         ${showChannel && video.metadata?.uploaderName ?
           `<p class="card-channel">${escapeHtml(video.metadata.uploaderName)}</p>` : ''}
         ${showMetadata ? `

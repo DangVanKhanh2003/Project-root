@@ -1,0 +1,361 @@
+body[data-page="strim-downloader"] .form-container {
+  max-width: 1000px;
+}
+
+body[data-page="strim-downloader"] .hero-card {
+  max-width: 1000px !important;
+}
+
+body[data-page="strim-downloader"] .hero-card {
+  padding-top: 24px;
+  padding-bottom: 24px !important;
+}
+
+body[data-page="strim-downloader"] .stream-input-row {
+  display: flex;
+  gap: 10px;
+  align-items: stretch;
+}
+
+body[data-page="strim-downloader"] .stream-hero-note {
+  margin: 0 0 12px;
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+body[data-page="strim-downloader"] .stream-hero-card-title {
+  margin: 0 0 18px;
+  color: var(--text-heading);
+  font-size: 1.45rem;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+body[data-page="strim-downloader"] #result-view {
+  margin-top: 0 !important;
+}
+
+body[data-page="strim-downloader"] .yt-preview-format {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: flex-start;
+  gap: 8px;
+  width: 100%;
+  text-align: left;
+}
+
+body[data-page="strim-downloader"] .stream-input-row .input-shell {
+  flex: 1;
+  min-width: 0;
+}
+
+body[data-page="strim-downloader"] .stream-start-btn {
+  min-width: 120px;
+  height: 50px;
+  max-height: 50px;
+  border: none;
+  border-radius: 999px;
+  background: var(--brand);
+  color: var(--color-white);
+  font-weight: 700;
+  padding: 0 22px;
+  cursor: pointer;
+}
+
+body[data-page="strim-downloader"] .stream-start-btn:hover {
+  background: var(--primary-color-hover);
+}
+
+body[data-page="strim-downloader"] .stream-editor {
+  display: grid;
+  grid-template-columns: 4fr 6fr;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+body[data-page="strim-downloader"] .stream-player-wrap {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--player-bg);
+}
+
+body[data-page="strim-downloader"] .stream-player,
+body[data-page="strim-downloader"] .stream-player-wrap iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+body[data-page="strim-downloader"] .stream-settings {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+body[data-page="strim-downloader"] .stream-input-row .video-input {
+  height: 50px;
+  max-height: 50px;
+}
+
+body[data-page="strim-downloader"] .stream-step {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+body[data-page="strim-downloader"] .stream-step-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+body[data-page="strim-downloader"] .stream-step-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-align: left;
+  width: 100%;
+}
+
+body[data-page="strim-downloader"] #stream-format-toggle {
+  display: flex;
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid var(--border-default);
+}
+
+body[data-page="strim-downloader"] #stream-format-toggle .format-btn {
+  flex: 1;
+  border: none;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+body[data-page="strim-downloader"] #stream-format-toggle .format-btn.selected {
+  background: var(--brand);
+  color: var(--color-white);
+}
+
+body[data-page="strim-downloader"] #stream-quality-select {
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-right: 36px;
+}
+
+body[data-page="strim-downloader"] .stream-settings .quality-dropdown-wrapper {
+  position: relative;
+  overflow: visible;
+}
+
+body[data-page="strim-downloader"] .stream-settings .quality-dropdown-wrapper .dropdown-arrow {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  opacity: 0.8;
+  z-index: 2;
+  pointer-events: none;
+  color: var(--text-primary);
+}
+
+body[data-page="strim-downloader"] .stream-settings .quality-dropdown-wrapper--grouped .dropdown-arrow {
+  display: none;
+}
+
+body[data-page="strim-downloader"] .stream-settings .stream-video-group-dropdown {
+  width: 100%;
+}
+
+body[data-page="strim-downloader"] .stream-settings .stream-video-group-dropdown .video-group-trigger {
+  width: 100%;
+}
+
+body[data-page="strim-downloader"] .stream-settings .stream-video-group-dropdown .video-group-menu {
+  z-index: 60;
+  max-height: 380px;
+}
+
+body[data-page="strim-downloader"] .trim-slider {
+  margin: 8px 0 6px;
+}
+
+body[data-page="strim-downloader"] .stream-time-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+body[data-page="strim-downloader"] .stream-time-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+body[data-page="strim-downloader"] .stream-time-label {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+body[data-page="strim-downloader"] .time-input {
+  width: 100%;
+  min-height: 38px;
+  border: 1px solid var(--border-secondary);
+  border-radius: 999px;
+  padding: 0 12px;
+  text-align: center;
+  font-weight: 600;
+}
+
+body[data-page="strim-downloader"] .stream-convert-btn {
+  width: 100%;
+}
+
+body[data-page="strim-downloader"] .stream-convert-row {
+  margin-top: 4px;
+}
+
+body[data-page="strim-downloader"] .stream-settings .audio-dropdown-wrapper {
+  width: 100%;
+}
+
+body[data-page="strim-downloader"] .stream-settings .custom-dropdown {
+  width: 100%;
+}
+
+body[data-page="strim-downloader"] .stream-settings .dropdown-trigger {
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+body[data-page="strim-downloader"] .stream-settings .dropdown-trigger .selected-content {
+  flex: 1;
+  text-align: left;
+}
+
+body[data-page="strim-downloader"] .stream-settings .dropdown-trigger .selected-text {
+  text-align: left;
+}
+
+body[data-page="strim-downloader"] .stream-settings .dropdown-trigger .dropdown-arrow {
+  margin-left: auto;
+  flex-shrink: 0;
+  opacity: 1;
+  visibility: visible;
+  display: inline-block;
+}
+
+body[data-page="strim-downloader"] .stream-settings .dropdown-menu {
+  z-index: 20;
+}
+
+body[data-page="strim-downloader"] .noUi-target {
+  background: var(--slider-track-bg);
+  border: none;
+  border-radius: 999px;
+  box-shadow: none;
+  height: 8px;
+}
+
+body[data-page="strim-downloader"] .noUi-connect {
+  background: var(--primary-color);
+}
+
+body[data-page="strim-downloader"] .noUi-horizontal .noUi-handle {
+  width: 16px;
+  height: 16px;
+  right: -8px;
+  top: -4px;
+  border-radius: 50%;
+  border: 2px solid var(--color-white);
+  background: var(--primary-color);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+body[data-page="strim-downloader"] .noUi-handle:before,
+body[data-page="strim-downloader"] .noUi-handle:after {
+  display: none;
+}
+
+body[data-page="strim-downloader"] .noUi-touch-area {
+  transform: translateY(2px);
+}
+
+@media (max-width: 768px) {
+  body[data-page="strim-downloader"] .yt-preview-format {
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+  }
+
+  body[data-page="strim-downloader"] .stream-input-row {
+    flex-direction: column;
+  }
+
+  body[data-page="strim-downloader"] .stream-start-btn {
+    min-height: 44px;
+  }
+
+  body[data-page="strim-downloader"] .stream-editor {
+    grid-template-columns: 1fr;
+  }
+
+
+  /* Override base mobile dropdown collapse behavior for stream page:
+     always show text, no hide animation. */
+  body[data-page="strim-downloader"] .stream-settings .audio-dropdown-wrapper {
+    width: 100% !important;
+    flex: 1 1 auto !important;
+    margin-left: 0 !important;
+    transition: none !important;
+  }
+
+  body[data-page="strim-downloader"] .stream-settings .audio-dropdown-wrapper:has(.custom-dropdown.active) {
+    width: 100% !important;
+  }
+
+  body[data-page="strim-downloader"] .stream-settings .audio-dropdown-wrapper .selected-content,
+  body[data-page="strim-downloader"] .stream-settings .audio-dropdown-wrapper .dropdown-arrow,
+  body[data-page="strim-downloader"] .stream-settings .audio-dropdown-wrapper:has(.custom-dropdown.active) .selected-content,
+  body[data-page="strim-downloader"] .stream-settings .audio-dropdown-wrapper:has(.custom-dropdown.active) .dropdown-arrow {
+    opacity: 1 !important;
+    max-width: none !important;
+    overflow: visible !important;
+    pointer-events: auto !important;
+    transition: none !important;
+  }
+
+  body[data-page="strim-downloader"] .stream-settings .audio-dropdown-wrapper .dropdown-trigger,
+  body[data-page="strim-downloader"] .stream-settings .audio-dropdown-wrapper:has(.custom-dropdown.active) .dropdown-trigger {
+    justify-content: flex-start !important;
+    gap: 8px !important;
+    padding: 0 12px !important;
+    min-width: 100% !important;
+    width: 100% !important;
+    transition: none !important;
+  }
+
+  body[data-page="strim-downloader"] .stream-settings .audio-dropdown-wrapper .dropdown-menu {
+    left: 0 !important;
+    right: auto !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  body[data-page="strim-downloader"] .stream-hero-card-title {
+    font-size: 1.9rem;
+    margin-bottom: 24px;
+  }
+}

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Reset your supporter license key for YTConvert. Enter your email to receive a new license key.">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Reset License Key - YTConvert</title>
+
+    <!-- Icons -->
+    <link rel="icon" href="/favicon.ico" sizes="32x32" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#000000">
+    <link rel="stylesheet" href="/src/styles/index.css">
+    <link rel="stylesheet" href="/src/styles/features/license-page.css">
+    <link rel="stylesheet" href="/src/styles/features/reset-key.css">
+
+    <link rel="preload" href="/fonts/Fredoka_SemiCondensed-Bold.woff2?v=2" as="font" type="font/woff2" crossorigin>
+    <style>
+        @font-face {
+            font-family: 'Fredoka SemiCondensed';
+            src: url('/fonts/Fredoka_SemiCondensed-Bold.woff2?v=2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+    </style>
+
+    <!-- Theme Toggle Init -->
+    <script>
+        (function () {
+            try {
+                var theme = localStorage.getItem('theme');
+                if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                } else {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                }
+            } catch (e) { }
+        })();
+        window.setTheme = function (theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+        };
+    </script>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-inner">
+                <a href="/" class="header-logo" aria-label="YTConvert home">
+                    <span class="header-logo-text">YTConvert</span>
+                </a>
+                <nav class="header-nav" aria-label="Primary">
+                    <a href="/" class="header-link">Home</a>
+                    <a href="/about" class="header-link">About</a>
+
+                    <button type="button" class="theme-toggle-btn" aria-label="Toggle theme"
+                        onclick="setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark')">
+                        <svg class="theme-toggle-icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" aria-hidden="true" focusable="false">
+                            <circle cx="12" cy="12" r="4"></circle>
+                            <path d="M12 2v2"></path>
+                            <path d="M12 20v2"></path>
+                            <path d="M4.93 4.93l1.41 1.41"></path>
+                            <path d="M17.66 17.66l1.41 1.41"></path>
+                            <path d="M2 12h2"></path>
+                            <path d="M20 12h2"></path>
+                            <path d="M6.34 17.66l-1.41 1.41"></path>
+                            <path d="M19.07 4.93l-1.41 1.41"></path>
+                        </svg>
+                        <svg class="theme-toggle-icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" aria-hidden="true" focusable="false">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3c0 0 0 0 0 0a7 7 0 0 0 9.79 9.79z"></path>
+                        </svg>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main id="main" tabindex="-1">
+        <section class="section license-section">
+            <div class="container main-content-card license-card">
+                <div class="license-hero">
+                    <h1>Reset License Key</h1>
+                    <p>Enter your email to receive a new license key. Your old key will be deactivated.</p>
+                </div>
+
+                <form class="license-form" id="reset-key-form" novalidate>
+                    <label for="reset-email-input" class="license-input-label">Email Address</label>
+                    <input
+                        type="email"
+                        id="reset-email-input"
+                        class="license-input"
+                        placeholder="your-email@example.com"
+                        autocomplete="email"
+                        spellcheck="false"
+                        required
+                    >
+                    <button type="submit" class="license-submit" id="reset-key-submit">
+                        Reset License Key
+                    </button>
+                    <p class="reset-rate-limit">Rate limit: 3 requests per hour</p>
+                    <div id="reset-key-message" class="license-message" role="status" aria-live="polite"></div>
+                </form>
+
+                <div class="license-steps">
+                    <div class="license-step">
+                        <h2 class="license-step-title">What happens when you reset?</h2>
+                    </div>
+                    <div class="license-step">
+                        <p class="license-step-desc">&#10003; Your old license key will be permanently deactivated</p>
+                    </div>
+                    <div class="license-step">
+                        <p class="license-step-desc">&#10003; A new lifetime license key will be generated</p>
+                    </div>
+                    <div class="license-step">
+                        <p class="license-step-desc">&#10003; The new key will be sent to your email</p>
+                    </div>
+                    <div class="license-step">
+                        <p class="license-step-desc">&#10003; You can use the new key immediately</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="/src/reset-key-main.ts"></script>
+</body>
+
+</html>

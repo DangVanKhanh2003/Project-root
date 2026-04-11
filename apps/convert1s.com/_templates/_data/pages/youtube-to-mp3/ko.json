@@ -1,0 +1,115 @@
+{
+  "seo": {
+    "title": "YouTube MP3 변환기 – 무료 오디오 다운로드 | CONVERT1S",
+    "description": "CONVERT1S로 YouTube를 MP3로 온라인 변환하세요. 무료 YouTube MP3 변환기로 고품질 오디오를 다운로드하세요. 회원가입 불필요.",
+    "schemaName": "CONVERT1S - YouTube MP3 변환기",
+    "schemaDescription": "CONVERT1S는 사용자가 YouTube 동영상에서 오디오를 즉시 추출하고 다운로드할 수 있는 무료 YouTube MP3 변환기입니다.",
+    "ogTitle": "YouTube MP3 변환기 – 무료 오디오 다운로드 | CONVERT1S",
+    "ogDescription": "CONVERT1S로 YouTube 동영상을 MP3로 온라인 변환하세요. 무료, 빠르고, 고품질."
+  },
+  "content": {
+    "form": {
+      "h1": "CONVERT1S – YouTube MP3 변환기",
+      "placeholder": "여기에 YouTube 동영상 URL을 붙여넣으세요...",
+      "button": "MP3로 변환"
+    },
+    "sections": [
+      {
+        "h2": "CONVERT1S YouTube MP3 변환기란?",
+        "p": [
+          "CONVERT1S는 모든 YouTube 동영상에서 오디오를 추출하여 MP3 파일로 다운로드할 수 있는 빠르고 무료인 <strong>YouTube MP3 변환기</strong>입니다.",
+          "YouTube URL을 붙여넣고 변환을 클릭하면 소프트웨어 설치 없이 MP3 파일을 기기에 직접 다운로드할 수 있습니다.",
+          "이 <strong>YouTube MP3 변환기</strong>는 데스크톱, 태블릿, 모바일 browser를 포함한 모든 기기에서 작동합니다."
+        ]
+      },
+      {
+        "h2": "YouTube를 MP3로 변환하는 방법",
+        "ol": [
+          {
+            "h3": "YouTube 동영상 URL 복사",
+            "p": [
+              "YouTube를 열고 MP3로 변환하려는 동영상의 링크를 복사하세요."
+            ]
+          },
+          {
+            "h3": "링크 붙여넣기",
+            "p": [
+              "위의 CONVERT1S YouTube MP3 변환기에 YouTube URL을 붙여넣으세요."
+            ]
+          },
+          {
+            "h3": "변환 후 MP3 다운로드",
+            "p": [
+              "변환 버튼을 클릭하고 MP3 오디오 파일을 기기에 즉시 다운로드하세요."
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "YouTube 음악을 MP3로 다운로드",
+        "p": [
+          "CONVERT1S를 사용하면 오프라인 감상을 위해 <strong>YouTube 음악을 다운로드</strong>하여 MP3 파일로 쉽게 저장할 수 있습니다.",
+          "음악, 팟캐스트, 강의 등 YouTube의 모든 오디오 콘텐츠를 빠르고 효율적으로 변환할 수 있습니다."
+        ]
+      },
+      {
+        "h2": "CONVERT1S YouTube MP3 변환기를 사용하는 이유",
+        "ul": [
+          {
+            "h3": "무료 및 무제한",
+            "p": [
+              "다운로드 횟수나 변환 횟수 제한 없이 YouTube를 MP3로 무료 변환하세요."
+            ]
+          },
+          {
+            "h3": "고품질 오디오",
+            "p": [
+              "최상의 청취 경험을 위해 고품질 오디오 MP3 파일을 다운로드하세요."
+            ]
+          },
+          {
+            "h3": "회원가입 불필요",
+            "p": [
+              "계정 생성이나 가입 없이 YouTube MP3 변환기를 즉시 사용하세요."
+            ]
+          },
+          {
+            "h3": "모든 기기에서 작동",
+            "p": [
+              "PC, Mac, Android, iPhone, 태블릿에서 browser로 직접 사용할 수 있습니다."
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "자주 묻는 질문",
+        "ul": [
+          {
+            "h3": "CONVERT1S YouTube MP3 변환기는 무료인가요?",
+            "p": [
+              "네. CONVERT1S는 무제한 변환이 가능한 완전 무료 YouTube MP3 변환기입니다."
+            ]
+          },
+          {
+            "h3": "긴 YouTube 동영상도 MP3로 변환할 수 있나요?",
+            "p": [
+              "네. 어떤 길이의 YouTube 동영상이든 MP3 오디오 파일로 변환할 수 있습니다."
+            ]
+          },
+          {
+            "h3": "소프트웨어 설치가 필요한가요?",
+            "p": [
+              "아니요. YouTube MP3 변환기는 browser에서 완전히 온라인으로 작동합니다."
+            ]
+          },
+          {
+            "h3": "모바일 기기에서도 작동하나요?",
+            "p": [
+              "네. CONVERT1S는 Android, iPhone 및 모든 모바일 browser에서 작동합니다."
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

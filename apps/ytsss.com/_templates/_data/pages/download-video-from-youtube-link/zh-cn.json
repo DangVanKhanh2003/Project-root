@@ -1,0 +1,146 @@
+{
+  "seo": {
+    "title": "通过链接从YouTube下载视频 - 免费且无广告 | YTSSS",
+    "description": "使用YTSSS通过链接从YouTube下载视频。粘贴YouTube URL，即可无广告、无需注册、快速处理地即时下载视频。",
+    "schemaName": "YTSSS - 通过链接从YouTube下载视频",
+    "schemaDescription": "通过URL下载YouTube视频的在线工具。粘贴YouTube链接，即可无广告、无需注册地即时下载视频。",
+    "ogTitle": "通过链接从YouTube下载视频 - 免费且无广告 | YTSSS",
+    "ogDescription": "粘贴YouTube链接，即时下载视频。免费、快速、无广告，适用于所有设备。"
+  },
+  "content": {
+    "form": {
+      "h1": "YTSSS – 通过链接从YouTube下载视频",
+      "placeholder": "在此粘贴YouTube视频URL...",
+      "button": "下载视频"
+    },
+    "sections": [
+      {
+        "h2": "什么是YTSSS YouTube链接下载器？",
+        "p": [
+          "YTSSS是一款简单快速的工具，让您直接在浏览器中<strong>通过链接下载YouTube视频</strong>。",
+          "您只需粘贴URL，处理视频，即可无广告、无需注册地即时下载。",
+          "如果您正在寻找<strong>通过链接下载YouTube视频</strong>的工具，YTSSS提供干净高效的体验。"
+        ]
+      },
+      {
+        "h2": "如何通过链接下载YouTube视频",
+        "ol": [
+          {
+            "h3": "复制YouTube URL",
+            "p": [
+              "前往YouTube并复制您要下载的视频链接。"
+            ]
+          },
+          {
+            "h3": "将链接粘贴到YTSSS",
+            "p": [
+              "将YouTube URL粘贴到上方的输入框中。"
+            ]
+          },
+          {
+            "h3": "处理视频",
+            "p": [
+              "YTSSS分析链接并准备可用的下载选项。"
+            ]
+          },
+          {
+            "h3": "下载视频",
+            "p": [
+              "选择您喜欢的格式或质量，即时下载视频。"
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "探索更多YouTube下载工具",
+        "ul": [
+          {
+            "h3": "从YouTube下载视频",
+            "p": [
+              "访问<a href=\"/\"><strong>从YouTube下载视频</strong></a>获取主要下载体验。"
+            ]
+          },
+          {
+            "h3": "从YouTube下载音频",
+            "p": [
+              "只需要声音？前往<a href=\"/download-audio-from-youtube\"><strong>从YouTube下载音频</strong></a>。"
+            ]
+          },
+          {
+            "h3": "从YouTube下载MP4",
+            "p": [
+              "使用<a href=\"/download-mp4-from-youtube\"><strong>从YouTube下载MP4</strong></a>进行视频格式下载。"
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "为什么使用YTSSS通过链接下载YouTube视频？",
+        "p": [
+          "YTSSS专为想要快速<strong>通过URL下载YouTube视频</strong>而无需安装任何软件的用户设计。",
+          "过程简单，完全在线运行，非常适合快速下载。",
+          "对于搜索<strong>通过链接下载YouTube视频</strong>或类似基于链接的查询的用户特别有用。"
+        ]
+      },
+      {
+        "h2": "在任何设备上从YouTube下载视频",
+        "p": [
+          "YTSSS适用于台式电脑、笔记本电脑、平板电脑、Android和iPhone浏览器。",
+          "这使得在任何地方都能轻松<strong>通过链接从YouTube下载视频</strong>。"
+        ]
+      },
+      {
+        "h2": "快速简单的基于链接的下载体验",
+        "ul": [
+          {
+            "h3": "无广告，无需注册",
+            "p": [
+              "享受无需登录或广告的干净界面。"
+            ]
+          },
+          {
+            "h3": "粘贴URL即可下载",
+            "p": [
+              "只需粘贴链接即可下载。非常适合搜索<strong>通过链接下载YouTube视频</strong>或<strong>通过URL下载YouTube视频</strong>的用户。"
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "常见问题",
+        "ul": [
+          {
+            "h3": "如何通过链接下载YouTube视频？",
+            "p": [
+              "复制YouTube URL，粘贴到YTSSS，即时下载视频。"
+            ]
+          },
+          {
+            "h3": "需要安装软件吗？",
+            "p": [
+              "不需要。一切都在浏览器中在线运行。"
+            ]
+          },
+          {
+            "h3": "可以在手机上使用这个工具吗？",
+            "p": [
+              "可以。适用于Android和iPhone设备。"
+            ]
+          },
+          {
+            "h3": "需要注册吗？",
+            "p": [
+              "不需要。您可以无需创建账户即可使用YTSSS。"
+            ]
+          },
+          {
+            "h3": "YTSSS与YouTube有关联吗？",
+            "p": [
+              "没有。YTSSS是一个独立工具。"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

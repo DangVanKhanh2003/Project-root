@@ -1,0 +1,227 @@
+/**
+ * Format Selector Component Styles
+ * Mobile-first responsive design
+ */
+
+/* ==========================================
+   Critical: Format switching via data-format
+   Prevents FOUC by using CSS instead of JS
+   ========================================== */
+
+.quality-select--mp3 {
+  display: block;
+}
+
+.quality-select--mp4 {
+  display: none;
+}
+
+html[data-format="mp4"] .quality-select--mp3 {
+  display: none;
+}
+
+html[data-format="mp4"] .quality-select--mp4 {
+  display: block;
+}
+
+/* ==========================================
+   End Critical section
+   ========================================== */
+
+/* Wrapper in input form */
+.format-selector-wrapper {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  min-height: 48px;
+  display: block;
+}
+
+.format-selector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 44px;
+  flex-wrap: nowrap;
+}
+
+/* ==========================================
+   Shared Select Styles (format + quality)
+   ========================================== */
+
+.quality-wrapper {
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* Format wrapper: fixed narrow width */
+.format-wrapper {
+  flex-grow: 0;
+}
+
+/* Quality wrapper: never flex-grow — size determined by select width */
+.quality-wrapper:not(.format-wrapper) {
+  flex-grow: 0;
+}
+
+.quality-select {
+  background: transparent;
+  border: var(--border-glass, 1px solid var(--text-step-num));
+  border-radius: var(--radius-md, 12px);
+  color: var(--text-main, var(--color-gray-850));
+  appearance: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+  /* padding-right để nhường chỗ cho arrow */
+  padding: 0 28px 0 12px;
+  height: 44px;
+  width: 100%;
+}
+
+[data-theme="light"] .quality-select {
+  background: transparent;
+  border: 1px solid var(--pkg-color-gray-200);
+}
+
+.quality-select:hover,
+.quality-select:focus {
+  border-color: var(--color-accent-dark);
+  outline: none;
+}
+
+/* Format select: narrow — chỉ "MP3" / "MP4" */
+.format-select {
+  width: 82px;
+}
+
+/* Quality select: wider */
+.quality-wrapper:not(.format-wrapper) .quality-select {
+  width: 140px;
+}
+
+/* quality-dropdown-wrapper làm positioning context cho arrow bên trong */
+.quality-dropdown-wrapper {
+  position: relative;
+}
+
+.select-arrow {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--text-muted, var(--color-gray-550));
+  transition: transform 0.2s ease;
+  display: flex;
+  align-items: center;
+}
+
+[dir="rtl"] .select-arrow {
+  right: auto;
+  left: 8px;
+}
+
+.quality-wrapper.dropdown-open .select-arrow {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+/* ==========================================
+   Convert Button
+   ========================================== */
+
+.format-selector .btn-convert {
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+/* Mobile: icon-only (ẩn text "Convert") */
+@media (max-width: 599px) {
+  .format-selector .btn-convert span {
+    display: none;
+  }
+
+  .format-selector .btn-convert {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    min-width: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Format select width on mobile */
+  .format-select {
+    width: 76px;
+  }
+
+  /* Quality select width on mobile */
+  .quality-wrapper:not(.format-wrapper) .quality-select {
+    width: 120px;
+  }
+
+  .quality-select {
+    height: 40px;
+    font-size: 0.8125rem;
+  }
+}
+
+/* ==========================================
+   Responsive - small/very small
+   ========================================== */
+
+@media (max-width: 480px) {
+  .format-selector-wrapper {
+    min-height: 42px;
+  }
+
+  .format-selector {
+    gap: 6px;
+    min-height: 40px;
+  }
+}
+
+@media (max-width: 360px) {
+  .format-selector {
+    gap: 4px;
+  }
+
+  .format-select {
+    width: 68px;
+  }
+
+  .quality-wrapper:not(.format-wrapper) .quality-select {
+    width: 128px;
+  }
+
+  .format-selector .btn-convert {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+  }
+}
+
+/* ==========================================
+   Accessibility
+   ========================================== */
+
+@media (prefers-contrast: high) {
+  .quality-select {
+    border-width: 3px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quality-select,
+  .select-arrow {
+    transition: none;
+  }
+}
+
+.quality-select:focus-visible {
+  outline: 2px solid var(--color-accent-dark);
+  outline-offset: 2px;
+}

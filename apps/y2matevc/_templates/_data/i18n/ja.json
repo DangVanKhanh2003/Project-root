@@ -1,0 +1,102 @@
+{
+  "nav": {
+    "home": "YouTubeダウンローダー",
+    "youtubeToMp4": "YouTubeからMP4へのコンバーター",
+    "youtubeToMp3": "YouTubeからMP3へのコンバーター",
+    "youtubeShorts": "YouTubeショートダウンローダー",
+    "language": "日本語"
+  },
+  "hero": {
+    "placeholder": "ここにリンクを検索または貼り付け...",
+    "pasteLabel": "クリップボードから貼り付け",
+    "clearLabel": "入力をクリア",
+    "submitButton": "開始",
+    "termsText": "当社のサービスを利用することにより、お客様は当社の",
+    "termsLink": "利用規約"
+  },
+  "formatSelector": {
+    "autoSubmit": "自動送信",
+    "autoSubmitTooltip": "URLまたはキーワードを貼り付けると自動的に送信します",
+    "formats": {
+      "mp4": "MP4",
+      "mp3": "MP3"
+    },
+    "quality": {
+      "videoLabel": "ビデオ品質",
+      "audioLabel": "オーディオ品質"
+    },
+    "options": {
+      "mp4": {
+        "2160p": "MP4 - 4K",
+        "1440p": "MP4 - 2K",
+        "1080p": "MP4 - 1080p",
+        "720p": "MP4 - 720p",
+        "480p": "MP4 - 480p",
+        "360p": "MP4 - 360p",
+        "144p": "MP4 - 144p",
+        "webm": "WEBM",
+        "mkv": "MKV"
+      },
+      "mp3": {
+        "320kbps": "MP3 - 320kbps",
+        "256kbps": "MP3 - 256kbps",
+        "192kbps": "MP3 - 192kbps",
+        "128kbps": "MP3 - 128kbps",
+        "ogg": "OGG",
+        "opus": "OPUS",
+        "wav": "WAV",
+        "64kbps": "MP3 - 64kbps"
+      }
+    }
+  },
+  "status": {
+    "processing": "処理中...",
+    "preparing": "準備中...",
+    "merging": "マージ中...",
+    "zipping": "圧縮中...",
+    "ready": "準備完了100％",
+    "completed": "完了",
+    "failed": "失敗"
+  },
+  "buttons": {
+    "download": "ダウンロード",
+    "tryAgain": "再試行",
+    "cancel": "キャンセル",
+    "seeMore": "もっと見る",
+    "seeLess": "少なく表示",
+    "bulkDownload": "選択したものをダウンロード"
+  },
+  "gallery": {
+    "title": "ギャラリー",
+    "noItems": "表示するギャラリーアイテムはありません",
+    "selected": "選択済み",
+    "selectAll": "すべて選択",
+    "deselectAll": "すべて選択解除"
+  },
+  "mobile": {
+    "menuToggleLabel": "ナビゲーションメニューを開く",
+    "menuCloseLabel": "ナビゲーションメニューを閉じる",
+    "langButtonLabel": "言語を選択"
+  },
+  "footer": {
+    "copyright": "© 2026 y2mate",
+    "about": "概要",
+    "contact": "お問い合わせ",
+    "terms": "利用規約",
+    "privacy": "プライバシーポリシー",
+    "copyrightClaims": "著作権に関する申し立て"
+  },
+  "errors": {
+    "invalidUrl": "有効なURLを入力してください",
+    "networkError": "ネットワークエラー。もう一度お試しください。",
+    "processingError": "処理に失敗しました。もう一度お試しください。",
+    "timeout": "リクエストがタイムアウトしました。もう一度お試しください。",
+    "downloadExpired": "ダウンロードリンクの有効期限が切れました",
+    "conversionFailed": "変換に失敗しました"
+  },
+  "messages": {
+    "downloadReady": "ダウンロードの準備ができました",
+    "processing": "リクエストを処理しています...",
+    "pleaseWait": "お待ちください..."
+  }
+}

@@ -296,25 +296,44 @@ export class ScrollManager {
 
   /**
    * Set up centralized scroll event handlers
-   * Single scroll listener that distributes to multiple handlers
+   * Uses requestAnimationFrame for browser-aligned frame scheduling (no jank)
    */
   private setupScrollHandlers(): void {
     try {
       // Remove any existing scroll listener
       if (this.listeners.has('main-scroll')) {
-        const listener = this.listeners.get('main-scroll');
-        listener?.remove();
+        this.listeners.get('main-scroll')?.remove();
+      }
+      if (this.listeners.has('main-resize')) {
+        this.listeners.get('main-resize')?.remove();
       }
 
-      // Create main scroll handler
-      const mainScrollHandler = this.throttle('main-scroll', () => {
-        this.handleScroll();
-      }, this.config.timing.throttleDelay);
+      // rAF-based scroll handler — aligned to browser paint frames
+      let rafPending = false;
+      const mainScrollHandler = () => {
+        if (rafPending) return;
+        rafPending = true;
+        requestAnimationFrame(() => {
+          this.handleScroll();
+          rafPending = false;
+        });
+      };
 
-      // Add passive listener for better performance
+      // Passive listener for better scroll performance
       window.addEventListener('scroll', mainScrollHandler, { passive: true });
       this.listeners.set('main-scroll', {
         remove: () => window.removeEventListener('scroll', mainScrollHandler)
+      });
+
+      // Navbar height updates on resize only (not scroll — viewport width doesn't change during scroll)
+      const resizeHandler = this.debounce('resize-navbar', () => {
+        if (this.shouldUpdateNavbarHeight()) {
+          this.updateNavbarHeightCSS();
+        }
+      }, 200);
+      window.addEventListener('resize', resizeHandler, { passive: true });
+      this.listeners.set('main-resize', {
+        remove: () => window.removeEventListener('resize', resizeHandler)
       });
 
       this.log('Centralized scroll handlers set up successfully');
@@ -333,10 +352,9 @@ export class ScrollManager {
       // Handle infinite scroll detection (if enabled)
       this.handleInfiniteScrollDetection();
 
-      // Update navbar height CSS if needed
-      if (this.shouldUpdateNavbarHeight()) {
-        this.updateNavbarHeightCSS();
-      }
+      // NOTE: Navbar height update moved to resize listener
+      // Viewport width doesn't change during scroll, so checking breakpoints
+      // on every scroll frame was wasted work causing layout thrashing
     } catch (error) {
     }
   }

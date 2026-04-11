@@ -1,0 +1,115 @@
+{
+  "seo": {
+    "title": "Vimeo下载器 – 免费下载HD视频 | SNAP1S",
+    "description": "使用SNAP1S下载HD画质的Vimeo视频。免费Vimeo视频下载器，直接保存到您的设备。无需注册或安装应用。",
+    "schemaName": "SNAP1S - Vimeo视频下载器",
+    "schemaDescription": "SNAP1S是一个免费的Vimeo视频下载器，允许用户以HD画质将Vimeo视频直接下载到任何设备。",
+    "ogTitle": "Vimeo下载器 – 免费下载HD视频 | SNAP1S",
+    "ogDescription": "使用SNAP1S下载HD画质的Vimeo视频。免费、快速、高画质。"
+  },
+  "content": {
+    "form": {
+      "h1": "SNAP1S – Vimeo视频下载器",
+      "placeholder": "在此粘贴Vimeo视频URL...",
+      "button": "下载视频"
+    },
+    "sections": [
+      {
+        "h2": "什么是SNAP1S Vimeo下载器？",
+        "p": [
+          "SNAP1S是一个免费的<strong>Vimeo下载器</strong>，可以让您以HD画质将Vimeo视频直接保存到手机、平板电脑或电脑上。",
+          "只需粘贴Vimeo视频链接，点击下载，视频将在几秒内保存到您的设备上。",
+          "这个<strong>Vimeo视频下载器</strong>无需安装应用或注册账号，可在所有设备和browser上使用。"
+        ]
+      },
+      {
+        "h2": "如何下载Vimeo视频",
+        "ol": [
+          {
+            "h3": "复制Vimeo视频链接",
+            "p": [
+              "打开Vimeo，从地址栏或分享按钮复制您想下载的视频URL。"
+            ]
+          },
+          {
+            "h3": "粘贴链接",
+            "p": [
+              "将Vimeo视频URL粘贴到上方的SNAP1S Vimeo下载器中。"
+            ]
+          },
+          {
+            "h3": "下载视频",
+            "p": [
+              "点击下载按钮，将HD画质的Vimeo视频保存到您的设备。"
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "以HD画质保存Vimeo视频",
+        "p": [
+          "SNAP1S让您以最高可用分辨率<strong>下载Vimeo视频</strong>，包括720p、1080p甚至4K。",
+          "离线欣赏您喜爱的Vimeo内容——无论是电影、教程、音乐视频还是创意项目。"
+        ]
+      },
+      {
+        "h2": "为什么使用SNAP1S Vimeo下载器？",
+        "ul": [
+          {
+            "h3": "HD画质下载",
+            "p": [
+              "以Full HD或4K分辨率下载Vimeo视频，享受最佳离线观看体验。"
+            ]
+          },
+          {
+            "h3": "快速简便",
+            "p": [
+              "只需粘贴链接并点击下载。<strong>保存Vimeo HD视频</strong>过程仅需几秒钟。"
+            ]
+          },
+          {
+            "h3": "免费且无限制",
+            "p": [
+              "免费下载任意数量的Vimeo视频，没有每日限制或隐藏费用。"
+            ]
+          },
+          {
+            "h3": "无需应用",
+            "p": [
+              "<strong>Vimeo视频下载器</strong>无需安装应用，直接在任何设备的browser中使用。"
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "常见问题",
+        "ul": [
+          {
+            "h3": "SNAP1S Vimeo下载器免费吗？",
+            "p": [
+              "是的。SNAP1S是完全免费的Vimeo下载器，没有隐藏费用或订阅。"
+            ]
+          },
+          {
+            "h3": "可以下载HD画质的Vimeo视频吗？",
+            "p": [
+              "可以。SNAP1S支持下载HD、Full HD和4K画质的Vimeo视频（如可用）。"
+            ]
+          },
+          {
+            "h3": "在iPhone和Android上能用吗？",
+            "p": [
+              "可以。Vimeo下载器可在所有移动设备和桌面browser上使用。"
+            ]
+          },
+          {
+            "h3": "下载需要Vimeo账号吗？",
+            "p": [
+              "不需要。使用SNAP1S下载Vimeo视频只需视频链接即可。"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

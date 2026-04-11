@@ -27,73 +27,47 @@
 /* Section Container - Mobile First (0-599px) */
 #search-results-section {
     width: 100%;
-    padding-top: 40px !important;
+    padding-top: 0 !important;
     padding-bottom: 40px !important;
-    min-height: 0; /* Allow section to collapse when empty */
+    min-height: 0;
+    /* Allow section to collapse when empty */
 }
 
 /* ======= Responsive Breakpoints (Mobile First) ======= */
 
 /* Tablet (600px+) - Section padding */
-@media (min-width: 600px) {
-
-}
+@media (min-width: 600px) {}
 
 /* Desktop (840px+) - Section padding */
-@media (min-width: 840px) {
-
-}
+@media (min-width: 840px) {}
 
 /* Wide Desktop (1240px+) - Section padding */
-@media (min-width: 1240px) {
-
-}
+@media (min-width: 1240px) {}
 
 /* 2K Display (1920px+) - Section padding */
-@media (min-width: 1920px) {
-
-}
+@media (min-width: 1920px) {}
 
 /* 4K Display (2560px+) - Section padding */
-@media (min-width: 2560px) {
-
-}
+@media (min-width: 2560px) {}
 
 /* Tablet (600px+) - 3 columns */
 @media (min-width: 600px) {
     .search-results-grid {
         grid-template-columns: repeat(3, 1fr) !important;
-        gap: var(--pkg-search-results-gap-tablet);
+        gap: 10px;
     }
 
-    .card-title {
-        -webkit-line-clamp: 2 !important;
-        line-clamp: 2 !important;
-    }
-
-    .card-metadata,
-    .skeleton-metadata {
-        display: flex !important;
-    }
 }
+
 
 /* Desktop (840px+) - 4 columns */
 @media (min-width: 840px) {
     .search-results-grid {
         grid-template-columns: repeat(4, 1fr) !important;
-        gap: var(--pkg-search-results-gap-tablet);
+        gap: 10px;
         margin: 0 auto;
     }
 
-    .card-title {
-        font-size: var(--pkg-title-small-size);
-        -webkit-line-clamp: 2 !important;
-        line-clamp: 2 !important;
-    }
-
-    .card-metadata {
-        font-size: 14px; /* Desktop: 14px */
-    }
 }
 
 /* Wide Desktop (1240px+) */
@@ -128,7 +102,7 @@
 .search-results-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: var(--pkg-search-results-gap-mobile);
+    gap: 10px;
     width: 100%;
 }
 
@@ -136,22 +110,25 @@
 .search-result-card {
     background: var(--pkg-search-results-card-bg);
     border-radius: var(--pkg-search-results-card-radius);
+    border: none;
     overflow: hidden;
     cursor: pointer;
     transition: transform var(--pkg-search-results-transition-duration) var(--pkg-search-results-transition-easing);
-    /* No shadow - removed as per design requirements */
 }
 
 /* Card Thumbnail Container */
 .card-thumbnail {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 9;
-    background: #d7d7d7; /* Match skeleton background color */
+    padding-bottom: 56.25%;
+    background: #e0e0e0;
     overflow: hidden;
 }
 
 .card-thumbnail img {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -175,45 +152,26 @@
 
 /* Card Content */
 .card-content {
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    text-align: left;
+    margin: 10px;
 }
 
 /* Card Title */
 .card-title {
-    font-size: var(--pkg-body-large-size);
-    font-weight: 600;
+    font-size: 14px;
+    font-weight: 500;
     color: var(--pkg-search-results-title-color);
-    line-height: 1.3;
     margin: 0;
-    text-align: left;
-    height: fit-content;
-
-    /* Mobile: Limit to 1 line */
     display: -webkit-box;
-    -webkit-line-clamp: 1;
-    line-clamp: 1;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+    line-height: 1.4;
 }
 
-/* Channel Name */
+/* Channel Name - Hidden */
 .card-channel {
-    font-size: var(--pkg-body-medium-size);
-    font-weight: var(--pkg-body-medium-weight);
-    color: var(--pkg-search-results-channel-color);
-    line-height: var(--pkg-body-medium-line-height);
-    margin: 0;
-    text-align: left;
-
-    /* Single line with ellipsis */
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    display: none;
 }
 
 /* Metadata Row (views + date) - Hidden on mobile */
@@ -221,10 +179,10 @@
     align-items: center;
     flex-wrap: nowrap;
     gap: var(--pkg-space-1);
-    font-size: 12px; /* Mobile: 12px */
-    font-weight: var(--pkg-label-medium-weight);
-    color: var(--pkg-search-results-metadata-color);
-    line-height: 1;
+    font-size: .75rem;
+    font-weight: 500;
+    color: #666;
+    line-height: 1.5;
     text-align: left;
     overflow: hidden;
     white-space: nowrap;
@@ -237,14 +195,14 @@
 
 /* ======= Hover Effects ======= */
 .search-result-card:hover {
-    transform: translateY(-4px);
+    transform: none;
     /* No shadow on hover - removed as per design requirements */
 }
 
 
 
 .search-result-card:active {
-    transform: translateY(-2px);
+    transform: none;
 }
 
 /* ======= Infinite Scroll Loading Indicators ======= */
@@ -270,7 +228,9 @@
 }
 
 @keyframes spinner-rotate {
-    to { transform: rotate(360deg); }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .loader-text {
@@ -350,13 +310,22 @@
     cursor: default;
 }
 
-/* Ensure skeleton card-content is visible */
-.skeleton-card .card-content {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    padding: 10px;
-    text-align: left;
+/* Override skeleton card styles */
+.skeleton-card {
+    border: none;
+}
+
+.skeleton-card .card-channel,
+.skeleton-card .card-metadata {
+    color: transparent;
+}
+
+.skeleton-card .skeleton-thumbnail,
+.skeleton-card .skeleton-line,
+.skeleton-card .skeleton-segment {
+    background: linear-gradient(90deg, var(--skeleton-base, #d7d7d7) 25%, var(--skeleton-shimmer, #c7c7c7) 50%, var(--skeleton-base, #d7d7d7) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s linear infinite;
 }
 
 /* Skeleton Thumbnail - span inside .card-thumbnail */
@@ -367,7 +336,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    background: linear-gradient(90deg, #d7d7d7 25%, #c7c7c7 50%, #d7d7d7 75%);
+    background: linear-gradient(90deg, var(--skeleton-base, #d7d7d7) 25%, var(--skeleton-shimmer, #c7c7c7) 50%, var(--skeleton-base, #d7d7d7) 75%);
     background-size: 200% 100%;
     animation: shimmer 1.5s linear infinite;
     border-radius: 0px;
@@ -405,7 +374,7 @@
     display: block;
     height: 1em;
     height: 13px;
-    background: linear-gradient(90deg, #d7d7d7 25%, #c7c7c7 50%, #d7d7d7 75%);
+    background: linear-gradient(90deg, var(--skeleton-base, #d7d7d7) 25%, var(--skeleton-shimmer, #c7c7c7) 50%, var(--skeleton-base, #d7d7d7) 75%);
     background-size: 200% 100%;
     animation: shimmer 1.5s linear infinite;
     border-radius: var(--pkg-radius-xs);
@@ -442,7 +411,7 @@
 .skeleton-segment {
     height: 0.75em;
     width: 50px;
-    background: linear-gradient(90deg, #d7d7d7 25%, #c7c7c7 50%, #d7d7d7 75%);
+    background: linear-gradient(90deg, var(--skeleton-base, #d7d7d7) 25%, var(--skeleton-shimmer, #c7c7c7) 50%, var(--skeleton-base, #d7d7d7) 75%);
     background-size: 200% 100%;
     animation: shimmer 1.5s linear infinite;
     border-radius: var(--pkg-radius-xs);
@@ -450,12 +419,13 @@
 
 /* Note: @keyframes shimmer is defined in base.css or skeleton.css */
 @keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
 }
 
 /* ======= Empty State ======= */

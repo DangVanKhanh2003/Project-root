@@ -1,0 +1,72 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "youtubeToMp3": "YouTube to MP3",
+    "youtubeToMp4": "YouTube to MP4",
+    "youtubeShorts": "YouTube Shorts",
+    "about": "Über uns"
+  },
+  "langSelector": {
+    "buttonText": "DE",
+    "buttonLabel": "Sprache",
+    "currentLangFull": "Deutsch"
+  },
+  "drawer": {
+    "logoText": "EzConv.pro",
+    "links": {
+      "home": "Startseite",
+      "youtubeToMp3": "YouTube zu MP3",
+      "youtubeToMp4": "YouTube zu MP4",
+      "youtubeShorts": "YouTube Shorts",
+      "about": "Über uns",
+      "faq": "FAQ",
+      "contact": "Kontakt",
+      "terms": "Terms of Use",
+      "privacy": "Datenschutz",
+      "dmca": "DMCA",
+      "cutVideoYoutube": "YouTube Video schneiden"
+    }
+  },
+  "hero": {
+    "placeholder": "YouTube-Link hier einfügen...",
+    "pasteBtn": "Einfügen",
+    "clearBtn": "Löschen",
+    "convertBtn": "Konvertieren",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "Audio track",
+    "searchPlaceholder": "Suchen...",
+    "searchBtn": "Suchen",
+    "searchVideosPlaceholder": "Nach Videos suchen...",
+    "supportedPlatforms": "Unterstützte Plattformen:"
+  },
+  "overview": {
+    "badge": "Schnell & Kostenlos"
+  },
+  "footer": {
+    "linksRow1": {
+      "youtubeToMp3": "YouTube zu MP3",
+      "youtubeToMp4": "YouTube zu MP4",
+      "youtubeShorts": "YouTube Shorts",
+      "cutVideoYoutube": "YouTube Video schneiden"
+    },
+    "linksRow2": {
+      "about": "Über uns",
+      "contact": "Kontakt",
+      "terms": "Terms of Use",
+      "privacyPolicy": "Datenschutzrichtlinie",
+      "dmca": "DMCA",
+      "faq": "FAQ"
+    },
+    "copyright": "© 2026 EzConv. Alle Rechte vorbehalten."
+  },
+  "trim": {
+    "startBtn": "Start",
+    "selectFormatLabel": "1. Format auswählen:",
+    "selectQualityLabel": "2. Qualität auswählen:",
+    "audioTrackLabel": "3. Audiospur auswählen:",
+    "trimLabel": "4. Video schneiden (Start – Ende):",
+    "startTimeLabel": "Start",
+    "endTimeLabel": "Ende"
+  }
+}

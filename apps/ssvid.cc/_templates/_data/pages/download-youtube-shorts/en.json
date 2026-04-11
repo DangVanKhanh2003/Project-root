@@ -1,0 +1,93 @@
+{
+  "seo": {
+    "title": "SSVID CC - YouTube Shorts Downloader Online Free (9:16 Vertical)",
+    "description": "Download YouTube Shorts with SSVID. Free, fast, and unlimited Shorts downloader. Save Shorts in the original vertical 9:16 format. No app, no software, no registration.",
+    "schemaName": "SSVID - YouTube Shorts Downloader",
+    "schemaDescription": "Download YouTube Shorts with SSVID. Free, fast, and unlimited.",
+    "ogTitle": "SSVID - YouTube Shorts Downloader Online Free",
+    "ogDescription": "Download YouTube Shorts with SSVID. Save in original 9:16 vertical format. Free and unlimited."
+  },
+  "defaultFormat": "mp4",
+  "hero": {
+    "title": "SSVID - Download YouTube Shorts",
+    "subtitle": "Free, fast & unlimited YouTube Shorts downloader"
+  },
+  "overview": {
+    "title": "What Is SSVID YouTube Shorts Downloader?",
+    "description": "SSVID is a free online tool that helps you <strong>download YouTube Shorts videos</strong> for offline viewing. Shorts are designed in a vertical format, so SSVID focuses on keeping the <strong>original 9:16 portrait layout</strong> for a better mobile viewing experience. You can also use the <a href=\"/\" title=\"SSVID Online YouTube Downloader\"><strong>SSVID homepage</strong></a> to access all download options (MP4, MP3, and more).",
+    "howTo": {
+      "title": "How to Download YouTube Shorts with SSVID",
+      "steps": [
+        {
+          "number": "1",
+          "title": "Copy the Link",
+          "description": "Copy the YouTube Shorts link."
+        },
+        {
+          "number": "2",
+          "title": "Paste & Select",
+          "description": "Paste the link into SSVID."
+        },
+        {
+          "number": "3",
+          "title": "Download",
+          "description": "Download the Short in seconds."
+        }
+      ]
+    }
+  },
+  "whatCanDownload": {
+    "title": "What Can You Download from YouTube Shorts with SSVID?",
+    "sections": [
+      {
+        "title": "Shorts Videos (MP4)",
+        "description": "Save YouTube Shorts as MP4 for offline viewing on phones and computers. MP4 is widely supported and easy to share or store."
+      },
+      {
+        "title": "Short Tutorials & Tips",
+        "description": "Download quick how-tos, recipes, fitness moves, or study tips from Shorts so you can replay them anytime—even without internet."
+      },
+      {
+        "title": "Trending Clips & Highlights",
+        "description": "Keep trending Shorts, funny moments, or highlights for later viewing. Perfect when you don't want to lose a clip in your feed."
+      }
+    ]
+  },
+  "whyDownload": {
+    "title": "Why Download YouTube Shorts?",
+    "description": "Downloading Shorts lets you watch your favorite clips offline, save inspiration for later, and keep useful tutorials or snippets without relying on mobile data. Since Shorts are short and vertical, they're ideal for quick viewing on phones."
+  },
+  "verticalFormat": {
+    "title": "Vertical 9:16 Format (No Rotation Issues)",
+    "description": "Many tools treat Shorts like regular videos, which can cause sideways playback or incorrect framing. SSVID is built for Shorts, helping you keep the <strong>vertical 9:16</strong> layout for smoother playback on mobile devices. If you want to download standard YouTube videos instead, use <a href=\"/download-youtube-mp4\" title=\"Download YouTube MP4\"><strong>Download YouTube MP4</strong></a>."
+  },
+  "faqs": {
+    "title": "Frequently Asked Questions",
+    "items": [
+      {
+        "question": "What is the difference between YouTube Shorts and normal YouTube videos?",
+        "answer": "YouTube Shorts are short-form videos designed for vertical viewing (often 9:16). Normal YouTube videos are typically longer and often in horizontal formats."
+      },
+      {
+        "question": "Can I download YouTube Shorts online without installing software?",
+        "answer": "Yes. SSVID works fully online in your browser—no software, no extensions, and no sign-up required."
+      },
+      {
+        "question": "Does SSVID keep Shorts in the original vertical format?",
+        "answer": "Yes. SSVID focuses on preserving the <strong>vertical 9:16</strong> layout so Shorts play correctly on mobile devices."
+      },
+      {
+        "question": "Can I download Shorts on iPhone and Android?",
+        "answer": "Yes. SSVID works on mobile and desktop browsers, so you can download Shorts on iOS, Android, Windows, or macOS."
+      },
+      {
+        "question": "Is SSVID free and unlimited for Shorts downloads?",
+        "answer": "Yes. SSVID is free to use and allows unlimited YouTube Shorts downloads."
+      },
+      {
+        "question": "Can SSVID download private or restricted Shorts?",
+        "answer": "No. Private or restricted content cannot be processed by online download tools."
+      }
+    ]
+  }
+}

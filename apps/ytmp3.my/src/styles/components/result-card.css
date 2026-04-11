@@ -1,0 +1,77 @@
+﻿/* =========================================================
+   Component - Result Card
+   ---------------------------------------------------------
+   Result/preview card with thumbnail and details
+   Extracted from index.html - Phase 2
+   ========================================================= */
+
+.result-card-container {
+    background: var(--bg-card);
+    border: var(--border-glass);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    box-shadow: none;
+}
+
+[data-theme="light"] .result-card-container {
+    background: #fff;
+    border: 1px solid #e2e8f0;
+}
+
+@media (min-width: 600px) {
+    .result-card-container {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+}
+
+.result-thumb {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    border: var(--border-glass);
+    box-shadow: none;
+}
+
+@media (min-width: 600px) {
+    .result-thumb {
+        width: 320px;
+        flex-shrink: 0;
+    }
+}
+
+.result-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.result-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.25rem;
+    line-height: 1.3;
+    color: var(--text-main);
+}
+
+.result-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* New Separate Actions Container */
+.result-actions-bar {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    margin-top: 24px;
+}

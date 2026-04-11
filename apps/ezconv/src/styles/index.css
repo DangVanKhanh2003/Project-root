@@ -1,0 +1,53 @@
+/* 0. Core Styles (From @downloader/core) */
+@import '@downloader/core/styles/ripple-effect.css';
+
+/* 0.1. UI Components Styles (From @downloader/ui-components) */
+@import '@downloader/ui-components/ExpireModal/expire-modal.css';
+@import '@downloader/ui-components/SkeletonCard/skeleton.css';
+@import '@downloader/ui-components/PreviewCardSkeleton/preview-card-skeleton.css';
+@import '@downloader/ui-components/SearchResultCard/search-result-card.css';
+@import '@downloader/ui-components/SuggestionDropdown/suggestion-dropdown.css';
+
+/* 0.2. UI Components Overrides (App-specific customizations) */
+@import './overrides/ui-components.css';
+
+/* 1. Variables (MUST be first) */
+@import './variables.css';
+
+/* 2. Reset & Base */
+@import './reset.css';
+@import './common.css';
+
+/* 3. Themes (after variables) */
+/* @import './themes/light.css'; - Removed as we are using variables.css */
+
+/* 4. Layout */
+@import './layout/container.css';
+@import './layout/header.css';
+@import './layout/footer.css';
+
+/* 5. Sections */
+@import './sections/hero.css';
+@import './sections/content.css';
+@import './sections/overview.css';
+
+/* 6. Components */
+@import './components/form.css';
+@import './components/format-selector.css';
+@import './components/dropdown.css';
+@import './components/material-popup.css';
+@import '@downloader/ui-shared/styles/maintenance-popup.css';
+@import './features/trim-downloader.css';
+@import './features/multiple-downloader-v2.css';
+@import './features/filename-style.css';
+
+/* 7. Reusable Packages (TypeScript features) */
+@import './reusable-packages/package-root.css';
+@import './reusable-packages/yt-preview-card/yt-preview-card.css';
+@import './reusable-packages/video-info-card/video-info-card.css';
+@import './reusable-packages/conversion-status/conversion-status.css';
+@import './reusable-packages/captcha-modal/captcha-modal.css';
+
+/* 8. Utilities (MUST be last) */
+@import './utilities/animations.css';
+@import './utilities/helpers.css';

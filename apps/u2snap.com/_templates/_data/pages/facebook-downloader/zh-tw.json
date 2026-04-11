@@ -1,0 +1,115 @@
+{
+  "seo": {
+    "title": "Facebook影片下載器 – 儲存FB影片 | U2SNAP",
+    "description": "使用U2SNAP下載Facebook影片。免費的Facebook影片下載器，以HD畫質儲存影片。無需註冊或安裝軟體。",
+    "schemaName": "U2SNAP - Facebook影片下載器",
+    "schemaDescription": "U2SNAP是一款免費的Facebook影片下載器，允許使用者以HD畫質儲存Facebook影片。",
+    "ogTitle": "Facebook影片下載器 – 儲存FB影片 | U2SNAP",
+    "ogDescription": "使用U2SNAP下載Facebook影片。免費、快速、HD畫質。"
+  },
+  "content": {
+    "form": {
+      "h1": "U2SNAP – Facebook影片下載器",
+      "placeholder": "在此貼上Facebook影片URL...",
+      "button": "下載影片"
+    },
+    "sections": [
+      {
+        "h2": "什麼是U2SNAP Facebook影片下載器？",
+        "p": [
+          "U2SNAP是一款免費的<strong>Facebook影片下載器</strong>，可讓您將Facebook影片直接以HD畫質儲存到您的裝置。",
+          "只需貼上Facebook影片連結，點擊下載，幾秒鐘內即可將影片儲存到手機或電腦。",
+          "這款<strong>FB影片下載器</strong>無需安裝任何應用程式或註冊帳號，即可在所有裝置和瀏覽器上使用。"
+        ]
+      },
+      {
+        "h2": "如何下載Facebook影片",
+        "ol": [
+          {
+            "h3": "複製Facebook影片連結",
+            "p": [
+              "開啟Facebook，找到您想下載的影片。點擊貼文上的三點選單，選擇複製連結。"
+            ]
+          },
+          {
+            "h3": "貼上連結",
+            "p": [
+              "將Facebook影片URL貼到上方的U2SNAP Facebook影片下載器中。"
+            ]
+          },
+          {
+            "h3": "下載影片",
+            "p": [
+              "點擊下載按鈕，將Facebook影片以您偏好的畫質儲存到裝置。"
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "以HD畫質儲存Facebook影片",
+        "p": [
+          "U2SNAP讓您以最高可用解析度<strong>下載Facebook影片</strong>，包括HD和Full HD。",
+          "儲存Facebook貼文、限時動態、Reels和粉絲專頁中的影片，用於離線觀看或分享。"
+        ]
+      },
+      {
+        "h2": "為什麼使用U2SNAP Facebook影片下載器？",
+        "ul": [
+          {
+            "h3": "HD畫質下載",
+            "p": [
+              "以HD和Full HD畫質下載Facebook影片，無壓縮或畫質損失。"
+            ]
+          },
+          {
+            "h3": "快速簡便",
+            "p": [
+              "只需貼上連結並點擊一下，幾秒鐘內即可儲存Facebook影片。"
+            ]
+          },
+          {
+            "h3": "免費且無限制",
+            "p": [
+              "免費下載任意數量的Facebook影片，沒有每日限制。"
+            ]
+          },
+          {
+            "h3": "無需安裝應用",
+            "p": [
+              "Facebook影片下載器直接在瀏覽器中運作，無需安裝任何軟體。"
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "常見問題",
+        "ul": [
+          {
+            "h3": "U2SNAP Facebook影片下載器是免費的嗎？",
+            "p": [
+              "是的。U2SNAP是完全免費的Facebook影片下載器，沒有任何隱藏費用。"
+            ]
+          },
+          {
+            "h3": "我可以下載HD畫質的Facebook影片嗎？",
+            "p": [
+              "可以。U2SNAP支援HD和Full HD畫質的Facebook影片下載。"
+            ]
+          },
+          {
+            "h3": "在iPhone和Android上能用嗎？",
+            "p": [
+              "可以。Facebook影片下載器適用於所有行動裝置和桌面瀏覽器。"
+            ]
+          },
+          {
+            "h3": "下載需要Facebook帳號嗎？",
+            "p": [
+              "不需要。使用U2SNAP下載Facebook影片只需要影片連結即可。"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

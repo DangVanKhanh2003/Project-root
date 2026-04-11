@@ -152,6 +152,7 @@ export interface ConversionTask {
   state: ConversionTaskState;
   statusText: string;
   showProgressBar: boolean;
+  progress?: number; // 0-100 percentage for progress bar (V3)
   downloadUrl: string | null;
   error: string | null;
   createdAt: number;

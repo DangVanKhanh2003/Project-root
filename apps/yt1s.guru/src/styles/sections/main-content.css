@@ -1,0 +1,598 @@
+npm run
+/* =========================================================
+   Section - Main Content Card
+   ---------------------------------------------------------
+   Tokenized styles for SEO main-content block
+   ========================================================= */
+
+.main-content {
+    width: 100%;
+    padding: 20px 0px 32px 0px;
+    box-sizing: border-box;
+    scroll-margin-top: 24px;
+    display: flex;
+    justify-content: center;
+    padding-top: 20px !important;
+    flex-direction: column;
+    align-items: center;
+}
+
+@media (max-width: 599px) {
+    .main-content {
+
+        padding-top: 10px;
+    }
+}
+
+#multi-playlist-banner-wrapper {
+    width: 100%;
+    max-width: 100% !important;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 !important;
+    box-sizing: border-box;
+}
+
+@media (min-width: 351px) {
+    #multi-playlist-banner-wrapper {
+        max-width: 600px !important;
+    }
+}
+
+@media (min-width: 600px) {
+    #multi-playlist-banner-wrapper {
+        max-width: 700px !important;
+    }
+}
+
+@media (min-width: 840px) {
+    #multi-playlist-banner-wrapper {
+        max-width: 800px !important;
+    }
+}
+
+@media (min-width: 1240px) {
+    #multi-playlist-banner-wrapper {
+        max-width: 900px !important;
+    }
+}
+
+@media (min-width: 1920px) {
+    #multi-playlist-banner-wrapper {
+        max-width: 1000px !important;
+    }
+}
+
+@media (min-width: 2560px) {
+    #multi-playlist-banner-wrapper {
+        max-width: var(--container-max-width-3xl) !important;
+    }
+}
+
+.main-content .main-content-card {
+    background: var(--main-content-bg);
+    border-radius: 12px;
+    padding: clamp(12px, 2.5vw, 24px);
+    font-family: var(--main-content-font-family);
+    box-shadow: var(--main-content-shadow);
+    margin: 0;
+    width: 100%;
+    max-width: 100% !important;
+    box-sizing: border-box;
+    border: 0;
+    padding-left: clamp(12px, 2.5vw, 24px);
+    padding-right: clamp(12px, 2.5vw, 24px);
+    margin-top: 25px;
+
+}
+
+.main-content .main-content-card.container {
+    padding-top: clamp(12px, 2.5vw, 24px);
+    padding-bottom: clamp(12px, 2.5vw, 24px);
+}
+
+@media (min-width: 351px) {
+    .main-content .main-content-card {
+        max-width: var(--main-content-max-width-sm) !important;
+        padding: clamp(16px, 2.5vw, 24px);
+    }
+}
+
+@media (min-width: 600px) {
+    .main-content .main-content-card {
+        max-width: var(--main-content-max-width-md) !important;
+    }
+
+    .main-content {
+        padding: 28px 0px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+    }
+}
+
+@media (min-width: 840px) {
+    .main-content .main-content-card {
+        max-width: var(--main-content-max-width-lg) !important;
+        padding: clamp(20px, 2vw, 28px);
+        margin-top: 45px;
+
+    }
+
+    .main-content {
+        padding: 20px 0px 32px 0px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+    }
+}
+
+@media (min-width: 1240px) {
+    .main-content .main-content-card {
+        max-width: var(--main-content-max-width-xl) !important;
+        padding: clamp(24px, 2vw, 32px);
+    }
+}
+
+@media (min-width: 1920px) {
+    .main-content .main-content-card {
+        max-width: var(--main-content-max-width-2xl) !important;
+        padding: 28px;
+    }
+}
+
+@media (min-width: 2560px) {
+    .main-content .main-content-card {
+        max-width: var(--main-content-max-width-3xl) !important;
+        padding: 32px;
+    }
+}
+
+.main-content-card .content-section+.content-section {
+    margin-top: clamp(10px, 1vw, 14px);
+}
+
+.main-content-card .content-section h2 {
+    margin: clamp(16px, 2vw, 24px) 0 clamp(8px, 1vw, 12px);
+    color: var(--main-content-heading);
+    font-size: clamp(20px, 2.2vw, 26px);
+    line-height: 1.25;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.main-content-card .content-section:first-child h2 {
+    margin-top: 0;
+}
+
+.main-content-card .content-section h3 {
+    margin: clamp(16px, 1.8vw, 20px) 0 clamp(6px, 0.9vw, 10px);
+    color: var(--main-content-heading);
+    font-size: clamp(18px, 2vw, 22px);
+    line-height: 1.3;
+    font-weight: 700;
+}
+
+.main-content-card .content-section p {
+    margin: 0 0 clamp(10px, 1vw, 14px);
+    color: var(--main-content-text);
+    line-height: var(--main-content-line-height);
+}
+
+.main-content-card .content-section ul,
+.main-content-card .content-section ol {
+    margin: 0 0 clamp(10px, 1vw, 14px);
+    padding-left: 0;
+    list-style: none;
+    color: var(--main-content-text);
+}
+
+.main-content-card .content-section ol {
+    counter-reset: main-content-step;
+}
+
+.main-content-card .content-section ul {
+    counter-reset: main-content-unordered-step;
+}
+
+.main-content-card .content-section li {
+    margin: clamp(6px, 1vw, 10px) 0;
+}
+
+.main-content-card .content-section ul>li {
+    counter-increment: main-content-unordered-step;
+    position: relative;
+    padding-left: 30px;
+}
+
+.main-content-card .content-section ul>li::before {
+    content: counter(main-content-unordered-step) ".";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    color: var(--main-content-heading);
+    font-weight: 700;
+}
+
+.main-content-card .content-section ol>li {
+    counter-increment: main-content-step;
+    position: relative;
+    padding-left: 30px;
+}
+
+.main-content-card .content-section ol>li::before {
+    content: counter(main-content-step) ".";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    color: var(--main-content-heading);
+    font-weight: 700;
+}
+
+.main-content-card .content-section a {
+    color: var(--main-content-link);
+    text-decoration: none;
+}
+
+.main-content-card .content-section a:hover {
+    color: var(--main-content-link-hover);
+    text-decoration: underline;
+}
+
+.main-content-card .content-section> :last-child {
+    margin-bottom: 0 !important;
+}
+
+/* =========================================================
+   Section - Static Content Card
+   ---------------------------------------------------------
+   Covers static pages: about, contact, faq, policy, terms, dmca
+   Also supports: .seo-section > .seo-container > .prose
+   ========================================================= */
+
+/* Normalize container utility on this section so card controls width */
+.seo-section.container {
+    max-width: 100%;
+
+}
+
+/* Base spacing for each section */
+.seo-section,
+.content-section.content-section--white {
+    width: 100%;
+    padding: 24px 0px;
+    box-sizing: border-box;
+    scroll-margin-top: 24px;
+    display: flex;
+    justify-content: center;
+    padding-top: 20px !important;
+}
+
+/* Main content card */
+.seo-container,
+.content-section.content-section--white>.container {
+    background: var(--main-content-bg);
+    border-radius: var(--main-content-radius);
+    padding: clamp(12px, 2.5vw, 24px);
+    font-family: var(--main-content-font-family);
+    box-shadow: var(--main-content-shadow);
+    margin: 0 var(--main-content-margin-inline);
+    width: 100%;
+    max-width: 100% !important;
+    border: 0;
+    color: var(--main-content-text);
+    box-sizing: border-box;
+}
+
+@media (min-width: 351px) {
+
+    .seo-container,
+    .content-section.content-section--white>.container {
+        padding: clamp(16px, 2.5vw, 24px);
+        max-width: var(--main-content-max-width-sm) !important;
+    }
+}
+
+@media (min-width: 600px) {
+
+    .seo-container,
+    .content-section.content-section--white>.container {
+        max-width: var(--main-content-max-width-md) !important;
+    }
+
+    .seo-section,
+    .content-section.content-section--white {
+        padding: 28px 0px;
+    }
+}
+
+@media (min-width: 840px) {
+
+    .seo-container,
+    .content-section.content-section--white>.container {
+        padding: clamp(20px, 2vw, 28px);
+        margin: 40px var(--main-content-margin-inline);
+        max-width: var(--main-content-max-width-lg) !important;
+    }
+
+    .seo-section,
+    .content-section.content-section--white {
+        padding: 32px 0px;
+    }
+}
+
+@media (min-width: 1240px) {
+
+    .seo-container,
+    .content-section.content-section--white>.container {
+        padding: clamp(24px, 2vw, 32px);
+        max-width: var(--main-content-max-width-xl) !important;
+    }
+}
+
+@media (min-width: 1920px) {
+
+    .seo-container,
+    .content-section.content-section--white>.container {
+        padding: 28px;
+        max-width: var(--main-content-max-width-2xl) !important;
+    }
+}
+
+@media (min-width: 2560px) {
+
+    .seo-container,
+    .content-section.content-section--white>.container {
+        padding: 32px;
+        max-width: var(--main-content-max-width-3xl) !important;
+    }
+}
+
+/* Typography */
+.seo-container .prose {
+    max-width: none;
+}
+
+.seo-container .prose h1,
+.content-section.content-section--white .page-title {
+    margin: clamp(20px, 2.2vw, 28px) 0 clamp(8px, 1.2vw, 16px);
+    color: var(--main-content-heading);
+    font-size: clamp(26px, 3.2vw, 36px);
+    line-height: 1.2;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    text-align: center;
+}
+
+.content-section.content-section--white .page-subtitle {
+    text-align: center;
+    margin: 0 auto clamp(10px, 1vw, 14px);
+    color: var(--main-content-text);
+    line-height: var(--main-content-line-height);
+    max-width: 780px;
+}
+
+.seo-container .prose h2,
+.content-section.content-section--white .titles {
+    margin: clamp(16px, 2vw, 24px) 0 clamp(8px, 1vw, 12px);
+    color: var(--main-content-heading);
+    font-size: clamp(20px, 2.2vw, 26px);
+    line-height: 1.25;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.seo-container .prose h3,
+.content-section.content-section--white .subsection h3 {
+    margin: clamp(16px, 1.8vw, 20px) 0 clamp(6px, 0.9vw, 10px);
+    color: var(--main-content-heading);
+    font-size: clamp(18px, 2vw, 22px);
+    line-height: 1.3;
+    font-weight: 700;
+}
+
+.seo-container .prose p,
+.seo-container .prose li,
+.content-section.content-section--white p,
+.content-section.content-section--white li {
+    margin: 0 0 clamp(10px, 1vw, 14px);
+    color: var(--main-content-text);
+    line-height: var(--main-content-line-height);
+}
+
+.seo-container .prose ul,
+.seo-container .prose ol,
+.content-section.content-section--white ul,
+.content-section.content-section--white ol {
+    margin: 0 0 clamp(10px, 1vw, 14px);
+    padding-left: 0;
+    list-style: none;
+    color: var(--main-content-text);
+}
+
+.seo-container .prose ol,
+.content-section.content-section--white ol {
+    counter-reset: main-content-ordered-step;
+}
+
+.seo-container .prose ul,
+.content-section.content-section--white ul {
+    counter-reset: main-content-unordered-step;
+}
+
+.seo-container .prose ul>li,
+.content-section.content-section--white ul>li {
+    counter-increment: main-content-unordered-step;
+    position: relative;
+    padding-left: 28px;
+}
+
+.seo-container .prose ul>li::before,
+.content-section.content-section--white ul>li::before {
+    content: counter(main-content-unordered-step) ".";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--main-content-heading);
+    font-weight: 600;
+}
+
+.seo-container .prose ol>li,
+.content-section.content-section--white ol>li {
+    counter-increment: main-content-ordered-step;
+    position: relative;
+    padding-left: 28px;
+}
+
+.seo-container .prose ol>li::before,
+.content-section.content-section--white ol>li::before {
+    content: counter(main-content-ordered-step) ".";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--main-content-heading);
+    font-weight: 600;
+}
+
+.seo-container .prose li::marker,
+.content-section.content-section--white li::marker {
+    content: "";
+}
+
+.seo-container .prose a,
+.content-section.content-section--white a {
+    color: var(--main-content-link);
+    text-decoration: none;
+}
+
+.seo-container .prose a:hover,
+.content-section.content-section--white a:hover {
+    color: var(--main-content-link-hover);
+    text-decoration: underline;
+}
+
+/* FAQ styling */
+.seo-container .faq-section,
+.content-section.content-section--white .faq-section {
+    counter-reset: faq-counter;
+    margin: clamp(14px, 2vw, 20px) 0 0;
+}
+
+.seo-container .faq-title,
+.content-section.content-section--white .faq-title {
+    display: block;
+    margin: clamp(16px, 2vw, 24px) 0 clamp(8px, 1vw, 12px);
+}
+
+.seo-container .faq-icon,
+.content-section.content-section--white .faq-icon {
+    display: none;
+}
+
+.seo-container .faq-grid,
+.content-section.content-section--white .faq-grid {
+    display: block;
+}
+
+.seo-container .faq-item,
+.content-section.content-section--white .faq-item {
+    background: transparent;
+    border: 0;
+    padding: 0;
+    margin: 0;
+}
+
+.seo-container .faq-question,
+.content-section.content-section--white .faq-question {
+    counter-increment: faq-counter;
+    position: relative;
+    margin: clamp(10px, 1.2vw, 14px) 0 clamp(6px, 0.9vw, 10px);
+    color: var(--main-content-heading);
+    font-size: clamp(18px, 2vw, 22px);
+    line-height: 1.3;
+    font-weight: 700;
+}
+
+.seo-container .faq-question::before,
+.content-section.content-section--white .faq-question::before {
+    content: counter(faq-counter) ". ";
+    font-weight: 600;
+    margin-right: 8px;
+}
+
+.seo-container .faq-answer,
+.content-section.content-section--white .faq-answer {
+    padding-left: 30px;
+    margin-bottom: clamp(8px, 1vw, 12px);
+    color: var(--main-content-text);
+    line-height: var(--main-content-line-height);
+    font-size: inherit;
+}
+
+/* =========================================================
+   Main Content Card Width Scale
+   ---------------------------------------------------------
+   Requested breakpoint scale for .main-content-card
+   ========================================================= */
+
+@media (min-width: 351px) {
+
+    .main-content-card,
+    .seo-container,
+    .content-section.content-section--white>.container {
+        padding: clamp(16px, 2.5vw, 24px);
+        max-width: var(--main-content-max-width-sm) !important;
+    }
+}
+
+@media (min-width: 600px) {
+
+    .main-content-card,
+    .seo-container,
+    .content-section.content-section--white>.container {
+        max-width: var(--main-content-max-width-md) !important;
+    }
+}
+
+@media (min-width: 840px) {
+
+    .main-content-card,
+    .seo-container,
+    .content-section.content-section--white>.container {
+        padding: clamp(20px, 2vw, 28px);
+        margin: 40px var(--container-padding-sm);
+        max-width: var(--main-content-max-width-lg) !important;
+    }
+}
+
+@media (min-width: 1240px) {
+
+    .main-content-card,
+    .seo-container,
+    .content-section.content-section--white>.container {
+        padding: clamp(24px, 2vw, 32px);
+        max-width: var(--main-content-max-width-xl) !important;
+    }
+}
+
+@media (min-width: 1920px) {
+
+    .main-content-card,
+    .seo-container,
+    .content-section.content-section--white>.container {
+        padding: 28px;
+        max-width: var(--main-content-max-width-2xl) !important;
+    }
+}
+
+@media (min-width: 2560px) {
+
+    .main-content-card,
+    .seo-container,
+    .content-section.content-section--white>.container {
+        padding: 32px;
+        max-width: var(--main-content-max-width-3xl) !important;
+    }
+}

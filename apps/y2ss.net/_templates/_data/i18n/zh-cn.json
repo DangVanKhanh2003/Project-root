@@ -1,0 +1,35 @@
+{
+  "nav": { "home": "首页" },
+  "drawer": { "logoText": "Y2SS", "links": { "home": "首页" } },
+  "hero": {
+    "placeholder": "在此粘贴 YouTube 播放列表链接...",
+    "pasteBtn": "粘贴",
+    "clearBtn": "清除",
+    "convertBtn": "转换",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "音轨",
+    "searchPlaceholder": "搜索...",
+    "supportedPlatforms": "支持的平台："
+  },
+  "footer": {
+    "copyright": "© 2026 Y2SS. All rights reserved.",
+    "legal": {
+      "about": "关于我们",
+      "contact": "联系我们",
+      "copyright": "版权与 DMCA",
+      "privacyPolicy": "隐私政策",
+      "termsOfUse": "使用条款"
+    }
+  },
+  "langSelector": { "buttonLabel": "切换语言", "buttonText": "ZH", "currentLangFull": "简体中文" },
+  "strim": {
+    "startBtn": "开始",
+    "selectFormatLabel": "1. 选择格式：",
+    "selectQualityLabel": "2. 选择画质：",
+    "audioTrackLabel": "3. 选择音轨：",
+    "trimLabel": "4. 剪辑视频（开始 – 结束时间）：",
+    "startTimeLabel": "开始",
+    "endTimeLabel": "结束"
+  }
+}

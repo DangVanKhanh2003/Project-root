@@ -1,0 +1,115 @@
+{
+  "seo": {
+    "title": "Téléchargeur de vidéos YouTube en ligne – HD et 4K | Y2SAVE",
+    "description": "Téléchargez des vidéos YouTube en ligne avec Y2SAVE. Téléchargeur de vidéos YouTube rapide prenant en charge la qualité HD et 4K. Aucun compte requis et fonctionne sur tous les appareils.",
+    "schemaName": "Y2SAVE – Téléchargeur de vidéos YouTube",
+    "schemaDescription": "Y2SAVE est un téléchargeur de vidéos YouTube gratuit qui permet aux utilisateurs de télécharger des vidéos YouTube en HD ou 4K directement depuis le navigateur.",
+    "ogTitle": "Téléchargeur de vidéos YouTube en ligne – HD et 4K | Y2SAVE",
+    "ogDescription": "Téléchargez des vidéos YouTube instantanément à l'aide de Y2SAVE. Téléchargeur de vidéos YouTube gratuit prenant en charge les téléchargements HD et 4K."
+  },
+  "content": {
+    "form": {
+      "h1": "Y2SAVE – Téléchargeur de vidéos YouTube",
+      "placeholder": "Collez l'URL de la vidéo YouTube ici...",
+      "button": "Télécharger la vidéo"
+    },
+    "sections": [
+      {
+        "h2": "Qu'est-ce que le téléchargeur de vidéos YouTube Y2SAVE ?",
+        "p": [
+          "Y2SAVE est un puissant <strong>téléchargeur de vidéos YouTube</strong> qui vous permet de télécharger des vidéos YouTube directement sur votre appareil.",
+          "Collez simplement l'URL YouTube dans l'outil et téléchargez instantanément des vidéos au format MP4 de haute qualité, y compris HD et 4K.",
+          "Ce <strong>téléchargeur YouTube en ligne</strong> fonctionne directement dans votre navigateur sans inscription ni installation de logiciel requise."
+        ]
+      },
+      {
+        "h2": "Comment télécharger des vidéos YouTube",
+        "ol": [
+          {
+            "h3": "Copiez l'URL de la vidéo YouTube",
+            "p": [
+              "Ouvrez YouTube et copiez le lien de la vidéo que vous souhaitez télécharger."
+            ]
+          },
+          {
+            "h3": "Collez le lien vidéo",
+            "p": [
+              "Collez l'URL YouTube dans le téléchargeur de vidéos YouTube ci-dessus."
+            ]
+          },
+          {
+            "h3": "Choisissez la qualité vidéo",
+            "p": [
+              "Sélectionnez la résolution vidéo que vous préférez, telle que 4K, 1080p ou HD, en fonction de la vidéo originale."
+            ]
+          },
+          {
+            "h3": "Téléchargez la vidéo",
+            "p": [
+              "Cliquez sur le bouton de téléchargement pour enregistrer instantanément la vidéo YouTube sur votre appareil."
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "Téléchargez des vidéos YouTube en HD ou 4K",
+        "p": [
+          "Y2SAVE prend en charge les téléchargements de haute qualité, notamment les formats de <strong>téléchargement de vidéos YouTube 4K</strong> et Full HD.",
+          "En fonction de la qualité vidéo d'origine, vous pouvez télécharger des vidéos YouTube dans des résolutions telles que 4K, 1080p ou HD standard."
+        ]
+      },
+      {
+        "h2": "Pourquoi utiliser le téléchargeur YouTube Y2SAVE ?",
+        "ul": [
+          {
+            "h3": "Téléchargeur vidéo YouTube rapide",
+            "p": [
+              "Convertissez et téléchargez des vidéos YouTube en quelques secondes à l'aide de notre convertisseur en ligne optimisé."
+            ]
+          },
+          {
+            "h3": "Fonctionne sur tous les appareils",
+            "p": [
+              "Ce téléchargeur YouTube fonctionne sur les téléphones mobiles, les tablettes, les ordinateurs portables et les ordinateurs de bureau."
+            ]
+          },
+          {
+            "h3": "Aucune installation requise",
+            "p": [
+              "Utilisez le téléchargeur de vidéos YouTube en ligne directement depuis votre navigateur sans installer d'applications ou d'extensions."
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "Foire aux questions",
+        "ul": [
+          {
+            "h3": "L'utilisation de Y2SAVE est-elle gratuite ?",
+            "p": [
+              "Oui. Y2SAVE est un téléchargeur de vidéos YouTube entièrement gratuit qui permet des téléchargements illimités."
+            ]
+          },
+          {
+            "h3": "Puis-je télécharger des vidéos YouTube en 4K ?",
+            "p": [
+              "Oui. Si la vidéo originale prend en charge la résolution 4K, vous pouvez la télécharger en 4K à l'aide de Y2SAVE."
+            ]
+          },
+          {
+            "h3": "Dois-je créer un compte ?",
+            "p": [
+              "Non. Vous pouvez télécharger des vidéos YouTube instantanément sans inscription."
+            ]
+          },
+          {
+            "h3": "Est-ce que cela fonctionne sur les appareils mobiles ?",
+            "p": [
+              "Oui. Le téléchargeur YouTube fonctionne sur Android, iPhone, tablettes et navigateurs de bureau."
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

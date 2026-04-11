@@ -45,6 +45,7 @@ preview.log
 npm-debug.log
 yarn-debug.log
 yarn-error.log
+logs/
 
 # Editor directories and files
 .vscode/*
@@ -148,3 +149,15 @@ out
 # Temporary folders
 tmp/
 temp/
+
+# Playwright & test outputs
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
+tests/test-results/
+packages/core/coverage/
+
+# Markdown files
+*.md

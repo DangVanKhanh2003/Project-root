@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "vite",
+    "dev:all": "node scripts/dev-all.cjs",
     "dev:ytmp3": "pnpm --filter ytmp3-clone-3 dev",
     "build": "vite build",
     "build:no-critical": "vite build",
@@ -12,7 +13,30 @@
     "build:packages": "pnpm -r --filter \"./packages/**\" run build",
     "lint": "pnpm -r run lint",
     "type-check": "pnpm -r exec tsc --noEmit",
-    "clean": "pnpm -r run clean"
+    "clean": "pnpm -r run clean",
+    "test": "cd packages/core && npx vitest run",
+    "test:watch": "cd packages/core && npx vitest",
+    "test:unit": "cd packages/core && npx vitest run --exclude '**/*.stress.test.ts'",
+    "test:stress": "cd packages/core && npx vitest run 'stress'",
+    "test:coverage": "cd packages/core && npx vitest run --coverage",
+    "test:build": "cd apps/onedownloader.net && npm run build",
+    "test:e2e": "npm run test:build && npx playwright test",
+    "test:e2e:skip-build": "npx playwright test",
+    "test:e2e:all-sites": "cross-env TEST_ALL_SITES=1 npx playwright test",
+    "test:e2e:headless": "npm run test:build && cross-env HEADLESS=1 npx playwright test",
+    "test:e2e:debug": "npm run test:build && npx playwright test --debug",
+    "test:e2e:ui": "npx playwright test --ui",
+    "test:e2e:smoke": "npm run test:build && npx playwright test tests/e2e/smoke",
+    "test:e2e:i18n": "npm run test:build && npx playwright test tests/e2e/i18n",
+    "test:e2e:download": "npm run test:build && npx playwright test tests/e2e/download-flow",
+    "test:e2e:report": "npx playwright show-report tests/test-results/html-report",
+    "test:full": "npm run test && npm run test:e2e",
+    "test:full:all": "npm run test && cross-env TEST_ALL_SITES=1 npm run test:e2e:all-sites",
+    "test:dashboard": "node tests/dashboard/server.mjs",
+    "test:seo": "tsx skills/test-seo/src/index.ts",
+    "test:seo:all": "node scripts/test-seo-all.js",
+    "deploy:menu": "powershell -ExecutionPolicy Bypass -File ./deploy-menu.ps1",
+    "deploy:bash": "bash ./deploy-menu.sh"
   },
   "repository": {
     "type": "git",
@@ -27,6 +51,7 @@
   },
   "homepage": "https://github.com/DangVanKhanh2003/project3#readme",
   "devDependencies": {
+    "@playwright/test": "^1.58.2",
     "@types/node": "^20.0.0",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
@@ -38,11 +63,17 @@
     "prettier": "^3.0.0",
     "rollup-plugin-critical": "^1.0.15",
     "rollup-plugin-minify-html-literals": "^1.2.6",
+    "sharp": "^0.34.5",
     "terser": "^5.44.0",
     "tsx": "^4.20.6",
     "typescript": "^5.3.3",
     "vite": "^7.1.10",
+    "vite-plugin-html-minifier": "^1.0.5",
     "vite-plugin-purgecss": "^0.2.13",
-    "vite-plugin-static-copy": "^3.1.4"
+    "vite-plugin-static-copy": "^3.1.4",
+    "ws": "^8.20.0"
+  },
+  "dependencies": {
+    "firebase": "^12.8.0"
   }
 }

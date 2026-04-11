@@ -1,0 +1,65 @@
+{
+  "nav": {
+    "home": "Ana Sayfa",
+    "youtubeToMp3Converter": "YouTube'dan MP3'e",
+    "youtubeToMp4Converter": "YouTube'dan MP4'e",
+    "youtubeAudioConverter": "YouTube Ses Dönüştürücü",
+    "youtubePlaylistToMp3": "YouTube Oynatma Listesi MP3'e",
+    "youtubeShortsToMp4": "YouTube Shorts MP4'e",
+    "youtubeToMp3320kbps": "YouTube'dan MP3 320kbps",
+    "youtubeToMp44k": "YouTube'dan MP4 4K",
+    "youtubeToMp4Hd": "YouTube'dan MP4 HD"
+  },
+  "drawer": {
+    "logoText": "YTConvert",
+    "links": {
+      "home": "Ana Sayfa",
+      "youtubeToMp3Converter": "YouTube'dan MP3'e",
+      "youtubeToMp4Converter": "YouTube'dan MP4'e",
+      "youtubeAudioConverter": "YouTube Ses Dönüştürücü",
+      "youtubePlaylistToMp3": "YouTube Oynatma Listesi MP3'e",
+      "youtubeShortsToMp4": "YouTube Shorts MP4'e",
+      "youtubeToMp3320kbps": "YouTube'dan MP3 320kbps",
+      "youtubeToMp44k": "YouTube'dan MP4 4K",
+      "youtubeToMp4Hd": "YouTube'dan MP4 HD"
+    }
+  },
+  "hero": {
+    "placeholder": "Video bağlantısını buraya yapıştırın...",
+    "pasteBtn": "Yapıştır",
+    "clearBtn": "Temizle",
+    "convertBtn": "Dönüştür",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "Ses parçası",
+    "searchPlaceholder": "Ara...",
+    "supportedPlatforms": "Desteklenen platformlar:"
+  },
+  "footer": {
+    "copyright": "© 2026 YTConvert. Tüm hakları saklıdır.",
+    "nav": {
+      "youtubeToMp3Converter": "YouTube MP3 Dönüştürücü",
+      "youtubeToMp4Converter": "YouTube MP4 Dönüştürücü",
+      "youtubeAudioConverter": "YouTube Ses Dönüştürücü",
+      "youtubePlaylistToMp3": "YouTube Oynatma Listesi MP3'e",
+      "youtubeShortsToMp4": "YouTube Shorts MP4'e",
+      "youtubeToMp3320kbps": "YouTube'dan MP3 320kbps",
+      "youtubeToMp44k": "YouTube'dan MP4 4K",
+      "youtubeToMp4Hd": "YouTube'dan MP4 HD"
+    }
+  },
+  "langSelector": {
+    "buttonLabel": "Dil değiştir",
+    "buttonText": "TR",
+    "currentLangFull": "Türkçe"
+  },
+  "strim": {
+    "startBtn": "Başlat",
+    "selectFormatLabel": "1. Format seçin:",
+    "selectQualityLabel": "2. Kalite seçin:",
+    "audioTrackLabel": "3. Ses parçası seçin:",
+    "trimLabel": "4. Video kes (Başlangıç – Bitiş):",
+    "startTimeLabel": "Başlangıç",
+    "endTimeLabel": "Bitiş"
+  }
+}

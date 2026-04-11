@@ -1,0 +1,126 @@
+{
+  "seo": {
+    "title": "SSVID CC Unduh MP3 YouTube Playlist Lengkap (Tanpa Iklan)",
+    "description": "Unduh seluruh playlist YouTube ke MP3 secara gratis (Tanpa Iklan).",
+    "schemaName": "SSVID MP3 YouTube Playlist Downloader",
+    "schemaDescription": "Konversi dan unduh playlist YouTube lengkap ke MP3 dengan satu tautan.",
+    "ogTitle": "SSVID Unduh MP3 YouTube Playlist Lengkap (Tanpa Iklan)",
+    "ogDescription": "Konversi playlist YouTube lengkap ke MP3 gratis tanpa iklan dan tanpa batas."
+  },
+  "defaultFormat": "mp3",
+  "hero": {
+    "title": "SSVID MP3 YouTube Playlist Downloader (Tanpa Iklan)",
+    "subtitle": "Unduh seluruh playlist YouTube ke MP3 hanya dengan satu tautan"
+  },
+  "form": {
+    "title": "MP3 YouTube Playlist Downloader",
+    "placeholder": "Tempel URL playlist di sini...",
+    "convertButton": "Konversi"
+  },
+  "overview": {
+    "howTo": {
+      "title": "Cara Mengunduh MP3 dari Playlist YouTube",
+      "steps": [
+        {
+          "number": "1",
+          "title": "Salin Tautan",
+          "description": "Salin URL playlist YouTube yang ingin Anda unduh."
+        },
+        {
+          "number": "2",
+          "title": "Tempel Playlist",
+          "description": "Tempel tautan playlist ke dalam SSVID."
+        },
+        {
+          "number": "3",
+          "title": "Pilih Kualitas MP3",
+          "description": "Pilih format MP3 dan kualitas audio yang Anda inginkan."
+        },
+        {
+          "number": "4",
+          "title": "Unduh",
+          "description": "Klik unduh dan simpan seluruh playlist ke perangkat Anda."
+        }
+      ]
+    }
+  },
+  "content": {
+    "intro": {
+      "title": "Apa Itu SSVID MP3 YouTube Playlist Downloader?",
+      "description": "SSVID adalah alat online gratis yang membantu Anda <strong>mengunduh seluruh playlist YouTube ke format MP3</strong> hanya dengan satu tautan. Daripada mengonversi video satu per satu, Anda dapat mengekstrak semua trek audio dari playlist sekaligus."
+    },
+    "columns": [
+      {
+        "title": "Langkah Mengunduh Playlist YouTube ke MP3",
+        "description": "1. Salin URL playlist.<br>2. Tempel tautan ke SSVID.<br>3. Pilih MP3 dan kualitas audio.<br>4. Unduh dan simpan playlist lengkap."
+      },
+      {
+        "title": "Unduhan Playlist di Desktop dan Mobile",
+        "description": "SSVID menyesuaikan dengan perangkat Anda. Di <strong>komputer desktop</strong>, Anda dapat <strong>mengunduh seluruh playlist MP3 sebagai satu file ZIP</strong>. Di <strong>perangkat mobile</strong>, file MP3 diunduh <strong>satu per satu</strong> untuk akses yang lebih mudah."
+      }
+    ],
+    "whyDownload": {
+      "title": "Mengapa Mengunduh Playlist YouTube ke MP3?",
+      "description": "MP3 adalah format audio ringan dan didukung hampir semua perangkat. Jika Anda hanya membutuhkan audio, <strong>mengunduh playlist YouTube ke MP3</strong> akan menghemat ruang penyimpanan dan memudahkan mendengarkan secara offline."
+    },
+    "quality": {
+      "title": "Pilihan Kualitas MP3 yang Didukung",
+      "description": "SSVID mendukung beberapa tingkat kualitas MP3 termasuk <strong>128kbps</strong>, <strong>192kbps</strong>, dan <strong>320kbps</strong>. Pilih keseimbangan terbaik antara ukuran file dan kualitas suara."
+    },
+    "comparison": {
+      "title": "Playlist Downloader vs YouTube Multi Download",
+      "sections": [
+        {
+          "title": "Unduh MP3 YouTube Playlist",
+          "description": "Terbaik jika Anda sudah memiliki <strong>satu tautan playlist</strong>. Cukup tempel tautan dan unduh semua video secara otomatis sebagai file MP3."
+        },
+        {
+          "title": "YouTube Multi Download",
+          "description": "Dirancang untuk pengguna yang memiliki <strong>beberapa tautan video YouTube terpisah</strong> yang bukan bagian dari playlist yang sama. Mendukung format <strong>MP3 dan MP4</strong>. Jika Anda memiliki daftar tautan khusus, coba <a href=\"/youtube-multi-downloader\" title=\"SSVID YouTube Multi Download\"><strong>YouTube Multi Download with SSVID</strong></a>."
+        }
+      ]
+    },
+    "useCases": {
+      "title": "Kapan Harus Menggunakan SSVID Playlist Downloader?",
+      "items": [
+        {
+          "title": "Mengunduh Album Musik YouTube",
+          "description": "Konversi album musik lengkap atau playlist pilihan menjadi MP3 untuk didengarkan secara offline."
+        },
+        {
+          "title": "Playlist Edukasi dan Podcast",
+          "description": "Ubah playlist panjang berisi kuliah, ceramah, atau podcast menjadi file MP3 agar dapat didengarkan kapan saja."
+        },
+        {
+          "title": "Unduhan Playlist Tanpa Batas",
+          "description": "SSVID mendukung <strong>unduhan playlist YouTube tanpa batas</strong> tanpa iklan dan tanpa pembatasan."
+        }
+      ]
+    }
+  },
+  "faqs": {
+    "title": "Pertanyaan yang Sering Diajukan",
+    "items": [
+      {
+        "question": "Apakah ada batas ukuran playlist?",
+        "answer": "Tidak. SSVID memungkinkan unduhan playlist YouTube ke MP3 tanpa batas jumlah video."
+      },
+      {
+        "question": "Apakah saya perlu menginstal perangkat lunak?",
+        "answer": "Tidak. SSVID sepenuhnya berjalan online di browser Anda."
+      },
+      {
+        "question": "Apakah SSVID gratis dan tanpa iklan?",
+        "answer": "Ya. SSVID gratis dan menawarkan pengalaman tanpa iklan."
+      },
+      {
+        "question": "Bisakah saya mengunduh MP3 playlist di ponsel?",
+        "answer": "Ya. Di perangkat mobile, file MP3 akan diunduh satu per satu."
+      },
+      {
+        "question": "Apa perbedaan antara unduhan playlist dan multi download?",
+        "answer": "Unduhan playlist menggunakan satu tautan playlist, sedangkan multi download digunakan untuk beberapa tautan video terpisah."
+      }
+    ]
+  }
+}

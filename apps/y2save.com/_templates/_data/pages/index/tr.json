@@ -1,0 +1,115 @@
+{
+  "seo": {
+    "title": "YouTube Video İndirici Çevrimiçi – HD ve 4K | Y2SAVE",
+    "description": "Y2SAVE ile YouTube videolarını çevrimiçi indirin. HD ve 4K kalitesini destekleyen hızlı YouTube video indiricisi. Hesap gerektirmez ve tüm cihazlarda çalışır.",
+    "schemaName": "Y2SAVE - YouTube Video İndiricisi",
+    "schemaDescription": "Y2SAVE, kullanıcıların YouTube videolarını doğrudan tarayıcıdan HD veya 4K olarak indirmelerine olanak tanıyan ücretsiz bir YouTube video indiricisidir.",
+    "ogTitle": "YouTube Video İndirici Çevrimiçi – HD ve 4K | Y2SAVE",
+    "ogDescription": "Y2SAVE'i kullanarak YouTube videolarını anında indirin. HD ve 4K indirmeleri destekleyen ücretsiz YouTube video indiricisi."
+  },
+  "content": {
+    "form": {
+      "h1": "Y2SAVE – YouTube Video İndirici",
+      "placeholder": "YouTube videosunun URL'sini buraya yapıştırın...",
+      "button": "Videoyu İndir"
+    },
+    "sections": [
+      {
+        "h2": "Y2SAVE YouTube Video İndirici Nedir?",
+        "p": [
+          "Y2SAVE, YouTube videolarını doğrudan cihazınıza indirmenize olanak tanıyan güçlü bir <strong>YouTube video indiricisidir</strong>.",
+          "YouTube URL'sini araca yapıştırın ve HD ve 4K dahil yüksek kalitede MP4 formatındaki videoları anında indirin.",
+          "Bu <strong>Çevrimiçi YouTube indiricisi</strong>, kayıt olmanıza ve herhangi bir yazılım yüklemenize gerek kalmadan doğrudan tarayıcınızda çalışır."
+        ]
+      },
+      {
+        "h2": "YouTube Videoları Nasıl İndirilir",
+        "ol": [
+          {
+            "h3": "YouTube Video URL'sini kopyalayın",
+            "p": [
+              "YouTube'u açın ve indirmek istediğiniz videonun bağlantısını kopyalayın."
+            ]
+          },
+          {
+            "h3": "Video Bağlantısını Yapıştırın",
+            "p": [
+              "YouTube URL'sini yukarıdaki YouTube video indiricisine yapıştırın."
+            ]
+          },
+          {
+            "h3": "Video Kalitesini Seçin",
+            "p": [
+              "Orijinal videoya bağlı olarak 4K, 1080p veya HD gibi tercih ettiğiniz video çözünürlüğünü seçin."
+            ]
+          },
+          {
+            "h3": "Videoyu İndir",
+            "p": [
+              "YouTube videosunu anında cihazınıza kaydetmek için indirme düğmesine tıklayın."
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "YouTube Videolarını HD veya 4K olarak indirin",
+        "p": [
+          "Y2SAVE, <strong>YouTube video indirme 4K</strong> ve Full HD formatları dahil olmak üzere yüksek kaliteli indirme işlemlerini destekler.",
+          "Orijinal video kalitesine bağlı olarak YouTube videolarını 4K, 1080p veya standart HD gibi çözünürlüklerde indirebilirsiniz."
+        ]
+      },
+      {
+        "h2": "Neden Y2SAVE YouTube İndiricisini Kullanmalı?",
+        "ul": [
+          {
+            "h3": "Hızlı YouTube Video İndirici",
+            "p": [
+              "Optimize edilmiş çevrimiçi dönüştürücümüzü kullanarak YouTube videolarını saniyeler içinde dönüştürün ve indirin."
+            ]
+          },
+          {
+            "h3": "Tüm Cihazlarda Çalışır",
+            "p": [
+              "Bu YouTube indiricisi cep telefonlarında, tabletlerde, dizüstü bilgisayarlarda ve masaüstü bilgisayarlarda çalışır."
+            ]
+          },
+          {
+            "h3": "Kurulum Gerekmez",
+            "p": [
+              "YouTube video indiricisini, uygulama veya uzantı yüklemeden doğrudan tarayıcınızdan çevrimiçi olarak kullanın."
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "Sıkça Sorulan Sorular",
+        "ul": [
+          {
+            "h3": "Y2SAVE'in kullanımı ücretsiz mi?",
+            "p": [
+              "Evet. Y2SAVE, sınırsız indirmeye izin veren tamamen ücretsiz bir YouTube video indiricisidir."
+            ]
+          },
+          {
+            "h3": "YouTube videolarını 4K olarak indirebilir miyim?",
+            "p": [
+              "Evet. Orijinal video 4K çözünürlüğü destekliyorsa Y2SAVE'i kullanarak videoyu 4K olarak indirebilirsiniz."
+            ]
+          },
+          {
+            "h3": "Bir hesap oluşturmam gerekiyor mu?",
+            "p": [
+              "Hayır. YouTube videolarını kayıt olmadan anında indirebilirsiniz."
+            ]
+          },
+          {
+            "h3": "Bu mobil cihazlarda çalışıyor mu?",
+            "p": [
+              "Evet. YouTube indiricisi Android, iPhone, tabletler ve masaüstü tarayıcılarda çalışır."
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

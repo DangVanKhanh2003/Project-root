@@ -1,0 +1,65 @@
+{
+  "nav": {
+    "home": "होम",
+    "youtubeToMp3Converter": "YouTube से MP3",
+    "youtubeToMp4Converter": "YouTube से MP4",
+    "youtubeAudioConverter": "YouTube ऑडियो कनवर्टर",
+    "youtubePlaylistToMp3": "YouTube प्लेलिस्ट से MP3",
+    "youtubeShortsToMp4": "YouTube Shorts से MP4",
+    "youtubeToMp3320kbps": "YouTube से MP3 320kbps",
+    "youtubeToMp44k": "YouTube से MP4 4K",
+    "youtubeToMp4Hd": "YouTube से MP4 HD"
+  },
+  "drawer": {
+    "logoText": "YTConvert",
+    "links": {
+      "home": "होम",
+      "youtubeToMp3Converter": "YouTube से MP3",
+      "youtubeToMp4Converter": "YouTube से MP4",
+      "youtubeAudioConverter": "YouTube ऑडियो कनवर्टर",
+      "youtubePlaylistToMp3": "YouTube प्लेलिस्ट से MP3",
+      "youtubeShortsToMp4": "YouTube Shorts से MP4",
+      "youtubeToMp3320kbps": "YouTube से MP3 320kbps",
+      "youtubeToMp44k": "YouTube से MP4 4K",
+      "youtubeToMp4Hd": "YouTube से MP4 HD"
+    }
+  },
+  "hero": {
+    "placeholder": "वीडियो लिंक यहाँ पेस्ट करें...",
+    "pasteBtn": "पेस्ट",
+    "clearBtn": "साफ़ करें",
+    "convertBtn": "कनवर्ट",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "ऑडियो ट्रैक",
+    "searchPlaceholder": "खोजें...",
+    "supportedPlatforms": "समर्थित प्लेटफ़ॉर्म:"
+  },
+  "footer": {
+    "copyright": "© 2026 YTConvert. सर्वाधिकार सुरक्षित।",
+    "nav": {
+      "youtubeToMp3Converter": "YouTube से MP3 कनवर्टर",
+      "youtubeToMp4Converter": "YouTube से MP4 कनवर्टर",
+      "youtubeAudioConverter": "YouTube ऑडियो कनवर्टर",
+      "youtubePlaylistToMp3": "YouTube प्लेलिस्ट से MP3",
+      "youtubeShortsToMp4": "YouTube Shorts से MP4",
+      "youtubeToMp3320kbps": "YouTube से MP3 320kbps",
+      "youtubeToMp44k": "YouTube से MP4 4K",
+      "youtubeToMp4Hd": "YouTube से MP4 HD"
+    }
+  },
+  "langSelector": {
+    "buttonLabel": "भाषा बदलें",
+    "buttonText": "HI",
+    "currentLangFull": "हिन्दी"
+  },
+  "strim": {
+    "startBtn": "शुरू",
+    "selectFormatLabel": "1. फॉर्मेट चुनें:",
+    "selectQualityLabel": "2. गुणवत्ता चुनें:",
+    "audioTrackLabel": "3. ऑडियो ट्रैक चुनें:",
+    "trimLabel": "4. वीडियो काटें (शुरू – अंत समय):",
+    "startTimeLabel": "शुरू",
+    "endTimeLabel": "अंत"
+  }
+}

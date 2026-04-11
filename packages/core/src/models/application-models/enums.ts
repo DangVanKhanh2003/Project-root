@@ -61,7 +61,6 @@ export enum VideoQuality {
   HD = '720p',
   SD = '480p',
   LOW = '360p',
-  MOBILE = '240p',
   AUTO = 'auto',
 }
 

@@ -1,22 +1,11 @@
 User-agent: *
-# Allow crawling of essential assets
 Allow: /
-Allow: /assets/
-Allow: /assest/
-Allow: /src/
 
-# Do not block CSS/JS/Images
-Allow: /*.css$
-Allow: /*.js$
-Allow: /*.png$
-Allow: /*.jpg$
-Allow: /*.jpeg$
-Allow: /*.webp$
-Allow: /*.svg$
+# Keep internal/test tools out of the index (none currently present)
 
-# Disallow internal utility or preview logs if deployed
-Disallow: /preview.log
-Disallow: /build-output.log
+# Block API endpoints only (HTML allowed for SEO)
+Disallow: /api
+Disallow: /api/
+Disallow: /api/*
 
-# Sitemap
-Sitemap: https://y2matepro.com/sitemap.xml
+Sitemap: https://ytmp3.my/sitemap.xml

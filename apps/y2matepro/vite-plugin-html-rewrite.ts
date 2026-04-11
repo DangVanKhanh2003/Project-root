@@ -22,8 +22,26 @@ function rewriteUrl(url: string, isDev: boolean = true): string {
   // Determine path prefix based on mode
   const prefix = isDev ? '/pages' : '';
 
+  // Handle /search route (SPA client-side routing)
+  // /search → serve index.html
+  if (url === '/search') {
+    return isDev ? '/_11ty-output/index.html' : '/index.html';
+  }
+
   // Handle language-specific URLs: /lang or /lang/page
   for (const lang of languages) {
+    // SPA search route: /lang/search → serve lang index
+    if (url === `/${lang}/search`) {
+      return `${prefix}/${lang}/index.html`;
+    }
+
+    // SPA search route: /lang/page/search → serve lang/page
+    const langPageSearchMatch = url.match(new RegExp(`^/${lang}/([^/]+)/search$`));
+    if (langPageSearchMatch) {
+      const pageName = langPageSearchMatch[1];
+      return `${prefix}/${lang}/${pageName}.html`;
+    }
+
     // Index: /lang or /lang/ → /[prefix]/lang/index.html
     if (url === `/${lang}` || url === `/${lang}/`) {
       return `${prefix}/${lang}/index.html`;
@@ -35,6 +53,14 @@ function rewriteUrl(url: string, isDev: boolean = true): string {
       const pageName = langPageMatch[1];
       return `${prefix}/${lang}/${pageName}.html`;
     }
+  }
+
+  // Handle tool page /search routes (SPA routing)
+  // /youtube-to-mp3/search → serve youtube-to-mp3.html
+  const toolSearchMatch = url.match(/^\/([^/]+)\/search$/);
+  if (toolSearchMatch) {
+    const toolName = toolSearchMatch[1];
+    return isDev ? `/${toolName}.html` : `/${toolName}.html`;
   }
 
   // Handle root-level static pages

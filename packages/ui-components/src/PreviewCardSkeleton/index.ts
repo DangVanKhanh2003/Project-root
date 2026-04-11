@@ -35,8 +35,12 @@ export function createPreviewCardSkeleton(): string {
       </div>
       <div class="yt-preview-details">
         <div class="skeleton-line skeleton-title"></div>
-        <div class="skeleton-line skeleton-format"></div>
-        <div class="skeleton-line skeleton-author"></div>
+        <div class="yt-preview-meta">
+          <div class="yt-preview-format">
+            <div class="skeleton-line" style="width: 50%; height: 16px;"></div>
+          </div>
+          <div class="skeleton-line skeleton-author"></div>
+        </div>
       </div>
     </div>
   `;

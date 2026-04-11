@@ -1,0 +1,72 @@
+{
+  "nav": {
+    "home": "Trang chủ",
+    "youtubeToMp3": "YouTube to MP3",
+    "youtubeToMp4": "YouTube to MP4",
+    "youtubeShorts": "YouTube Shorts",
+    "about": "Giới thiệu"
+  },
+  "langSelector": {
+    "buttonText": "VI",
+    "buttonLabel": "Ngôn ngữ",
+    "currentLangFull": "Tiếng Việt"
+  },
+  "drawer": {
+    "logoText": "EzConv.pro",
+    "links": {
+      "home": "Trang chủ",
+      "youtubeToMp3": "Download youtube Mp3",
+      "youtubeToMp4": "Download youtube Mp4",
+      "youtubeShorts": "Download Youtube Shorts",
+      "about": "Giới thiệu",
+      "faq": "FAQ",
+      "contact": "Liên hệ",
+      "terms": "Terms of Use",
+      "privacy": "Bảo mật",
+      "dmca": "DMCA",
+      "cutVideoYoutube": "Cắt Video YouTube"
+    }
+  },
+  "hero": {
+    "placeholder": "Dán liên kết YouTube vào đây...",
+    "pasteBtn": "Dán",
+    "clearBtn": "Xóa",
+    "convertBtn": "Chuyển đổi",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "Audio track",
+    "searchPlaceholder": "Tìm kiếm...",
+    "searchBtn": "Tìm kiếm",
+    "searchVideosPlaceholder": "Tìm video...",
+    "supportedPlatforms": "Nền tảng hỗ trợ:"
+  },
+  "overview": {
+    "badge": "Nhanh & Miễn phí"
+  },
+  "footer": {
+    "linksRow1": {
+      "youtubeToMp3": "Download youtube Mp3",
+      "youtubeToMp4": "Download youtube Mp4",
+      "youtubeShorts": "Download Youtube Shorts",
+      "cutVideoYoutube": "Cắt Video YouTube"
+    },
+    "linksRow2": {
+      "about": "Giới thiệu",
+      "contact": "Liên hệ",
+      "terms": "Terms of Use",
+      "privacyPolicy": "Chính sách bảo mật",
+      "dmca": "DMCA",
+      "faq": "FAQ"
+    },
+    "copyright": "© 2026 EzConv. Bảo lưu mọi quyền."
+  },
+  "trim": {
+    "startBtn": "Bắt đầu",
+    "selectFormatLabel": "1. Chọn định dạng:",
+    "selectQualityLabel": "2. Chọn chất lượng:",
+    "audioTrackLabel": "3. Chọn âm thanh:",
+    "trimLabel": "4. Cắt video (Bắt đầu – Kết thúc):",
+    "startTimeLabel": "Bắt đầu",
+    "endTimeLabel": "Kết thúc"
+  }
+}

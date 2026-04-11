@@ -45,12 +45,19 @@
     <meta property="og:locale" content="en_US" />
     <meta property="og:title" content="Y2Mate – YouTube to MP4 Converter (HD &amp; Full HD)" />
     <meta property="og:description" content="Convert YouTube videos to MP4 with integrated audio. Supports 144p, 360p, 480p, 720p HD, and 1080p Full HD." />
-    <meta property="og:image" content="https://y2matepro.com/logo.png" />
+    <meta property="og:image" content="https://y2matepro.com/favicon-512x512.png" />
     <meta property="og:url" content="https://y2matepro.com/youtube-to-mp4" />
 
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://y2matepro.com/youtube-to-mp4">
+    <meta name="twitter:title" content="Y2Mate – YouTube to MP4 Converter (HD &amp; Full HD)">
+    <meta name="twitter:description" content="Convert YouTube videos to MP4 with integrated audio. Supports 144p, 360p, 480p, 720p HD, and 1080p Full HD.">
+    <meta name="twitter:image" content="https://y2matepro.com/favicon-512x512.png">
 
     <!-- Favicons -->
-    <link rel="icon" href="/favicon.png">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.png" type="image/png">
     <link type="image/png" sizes="16x16" rel="icon" href="/favicon1616.png">
     <link type="image/png" sizes="32x32" rel="icon" href="/favicon3232.png">
     <link type="image/png" sizes="48x48" rel="icon" href="/favicon4848.png">
@@ -72,22 +79,29 @@
       "@type": "WebPage",
       "@id": "https://y2matepro.com/youtube-to-mp4#webpage",
       "url": "https://y2matepro.com/youtube-to-mp4",
-      "name": "Y2Mate – YouTube to MP4 Converter",
+      "name": "YouTube to MP4 Converter",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/#website"
+      },
       "about": {
+        "@type": "SoftwareApplication",
         "@id": "https://y2matepro.com/youtube-to-mp4#application"
       },
       "inLanguage": "en"
     },
     {
-      "@type": "WebApplication",
+      "@type": "SoftwareApplication",
       "@id": "https://y2matepro.com/youtube-to-mp4#application",
-      "name": "Y2mate",
+      "name": "YouTube to MP4 Converter",
       "url": "https://y2matepro.com/youtube-to-mp4",
       "description": "An online system that converts YouTube videos to MP4 format with multiple resolution options and fully integrated audio.",
       "applicationCategory": "MultimediaApplication",
       "operatingSystem": "All",
       "browserRequirements": "Requires JavaScript. Requires HTML5.",
       "inLanguage": "en",
+      "publisher": {
+        "@id": "https://y2matepro.com/#organization"
+      },
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -154,7 +168,7 @@
           "name": "Is it safe to download YouTube videos using Y2Mate?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yes. Y2Mate does not require account login, software installation, or special permissions, and it runs without pop-up ads."
+            "text": "Yes. Y2Mate does not require account login, software installation, or special permissions."
           }
         },
         {
@@ -236,9 +250,9 @@
                     <a href="/youtube-to-mp3">YouTube to MP3 Converter</a>
                 </li>
                 <li class="navbar language">
-                    <a href="javascript:void(0);">
+                    <button type="button" aria-haspopup="true" aria-expanded="false">
                         English<span class="shape"></span>
-                    </a>
+                    </button>
                     <div class="dropdown-menu">
                         <ul class="lang-menu">
                             <li>
@@ -407,9 +421,6 @@
                         By using our service you are accepting our <a href="/terms-condition">Terms of Use</a>.
                     </p>
                 </form>
-                <div class="spinner" style="display: none;">
-                    <img id="loading_img" src="/loading.gif">
-                </div>
             </div>
 
             <!-- Video Detail Area -->
@@ -429,7 +440,7 @@
         <div class="col-sm-12">
             <h2>Convert YouTube Videos to MP4</h2>
             <p>The YouTube to MP4 converter from Y2Mate allows you to download YouTube videos in MP4 format quickly and easily. Simply paste a YouTube link, choose your preferred video quality, and download the MP4 file directly to your device without installing any software.</p>
-            <p>This YouTube to MP4 downloader supports resolutions from 144p up to 1080p Full HD and works on desktop, iPhone, Android, and tablets. Y2Mate runs entirely in your browser with fast conversion speed, no ads or pop-ups, and no registration required.</p>
+            <p>This YouTube to MP4 downloader supports resolutions from 144p up to 1080p Full HD and works on desktop, iPhone, Android, and tablets. Y2Mate runs entirely in your browser with fast conversion speed.</p>
         </div>
     </section>
     <section class="y2mate-instruction-pro">
@@ -454,8 +465,6 @@
                 <li><strong>One-Click Download:</strong> Paste the link, choose a quality, and download instantly — no extra steps.</li>
                 
                 <li><strong>Fast Conversion, No Waiting:</strong> Get your MP4 file quickly, even for long videos.</li>
-                
-                <li><strong>Clean, Ad-Free Experience:</strong> No pop-ups, no redirects, and no fake download buttons.</li>
                 
                 <li><strong>Works on Any Device:</strong> Download YouTube videos on desktop, iPhone, Android, or tablet.</li>
                 
@@ -592,7 +601,7 @@
                 <p>Private videos cannot be processed by online converters.</p>
                 
                 <h3>Is it safe to download YouTube videos using Y2Mate?</h3>
-                <p>Yes. Y2Mate does not require account login, software installation, or special permissions, and it runs without pop-up ads.</p>
+                <p>Yes. Y2Mate does not require account login, software installation, or special permissions.</p>
                 
                 <h3>Are there any download limits?</h3>
                 <p>No. You can convert and download as many YouTube videos to MP4 as you want.</p>
@@ -612,6 +621,15 @@
     <p>© 2025 y2mate</p>
     <ul class="footer_nav">
         <li class="fnav-menu">
+            <a href="/youtube-to-mp4">YouTube to MP4 Converter</a>
+        </li>
+        <li class="fnav-menu">
+            <a href="/youtube-to-mp3">YouTube to MP3 Converter</a>
+        </li>
+        <li class="fnav-menu">
+            <a href="/youtube-short-downloader">YouTube Shorts Downloader</a>
+        </li>
+        <li class="fnav-menu">
             <a href="/about-us">About</a>
         </li>
         <li class="fnav-menu">
@@ -623,15 +641,23 @@
         <li class="fnav-menu">
             <a href="/privacy-policy">Privacy Policy</a>
         </li>
-        <li class="fnav-menu">
-            <a href="/youtube-short-downloader">YouTube Shorts Downloader</a>
-        </li>
     </ul>
 </footer>
 
 
     <!-- Conversion Modal Wrapper -->
     <div id="progressBarWrapper"></div>
+
+    <!-- Ko-fi Support Widget -->
+    <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+    <script>
+      kofiWidgetOverlay.draw('metaconvert', {
+        'type': 'floating-chat',
+        'floating-chat.donateButton.text': 'Support me',
+        'floating-chat.donateButton.background-color': '#00b9fe',
+        'floating-chat.donateButton.text-color': '#fff'
+      });
+    </script>
 </body>
 
 </html>

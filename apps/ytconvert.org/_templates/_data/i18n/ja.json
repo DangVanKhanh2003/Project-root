@@ -1,0 +1,65 @@
+{
+  "nav": {
+    "home": "ホーム",
+    "youtubeToMp3Converter": "YouTubeからMP3",
+    "youtubeToMp4Converter": "YouTubeからMP4",
+    "youtubeAudioConverter": "YouTube音声コンバーター",
+    "youtubePlaylistToMp3": "YouTubeプレイリストからMP3",
+    "youtubeShortsToMp4": "YouTubeショートからMP4",
+    "youtubeToMp3320kbps": "YouTubeからMP3 320kbps",
+    "youtubeToMp44k": "YouTubeからMP4 4K",
+    "youtubeToMp4Hd": "YouTubeからMP4 HD"
+  },
+  "drawer": {
+    "logoText": "YTConvert",
+    "links": {
+      "home": "ホーム",
+      "youtubeToMp3Converter": "YouTubeからMP3",
+      "youtubeToMp4Converter": "YouTubeからMP4",
+      "youtubeAudioConverter": "YouTube音声コンバーター",
+      "youtubePlaylistToMp3": "YouTubeプレイリストからMP3",
+      "youtubeShortsToMp4": "YouTubeショートからMP4",
+      "youtubeToMp3320kbps": "YouTubeからMP3 320kbps",
+      "youtubeToMp44k": "YouTubeからMP4 4K",
+      "youtubeToMp4Hd": "YouTubeからMP4 HD"
+    }
+  },
+  "hero": {
+    "placeholder": "動画のリンクをここに貼り付け...",
+    "pasteBtn": "貼り付け",
+    "clearBtn": "クリア",
+    "convertBtn": "変換",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "音声トラック",
+    "searchPlaceholder": "検索...",
+    "supportedPlatforms": "対応プラットフォーム："
+  },
+  "footer": {
+    "copyright": "© 2026 YTConvert. 全著作権所有。",
+    "nav": {
+      "youtubeToMp3Converter": "YouTubeからMP3コンバーター",
+      "youtubeToMp4Converter": "YouTubeからMP4コンバーター",
+      "youtubeAudioConverter": "YouTube音声コンバーター",
+      "youtubePlaylistToMp3": "YouTubeプレイリストからMP3",
+      "youtubeShortsToMp4": "YouTubeショートからMP4",
+      "youtubeToMp3320kbps": "YouTubeからMP3 320kbps",
+      "youtubeToMp44k": "YouTubeからMP4 4K",
+      "youtubeToMp4Hd": "YouTubeからMP4 HD"
+    }
+  },
+  "langSelector": {
+    "buttonLabel": "言語を変更",
+    "buttonText": "JA",
+    "currentLangFull": "日本語"
+  },
+  "strim": {
+    "startBtn": "開始",
+    "selectFormatLabel": "1. フォーマットを選択：",
+    "selectQualityLabel": "2. 画質を選択：",
+    "audioTrackLabel": "3. 音声トラックを選択：",
+    "trimLabel": "4. 動画をカット（開始 – 終了時間）：",
+    "startTimeLabel": "開始",
+    "endTimeLabel": "終了"
+  }
+}

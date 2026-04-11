@@ -1,0 +1,102 @@
+{
+  "nav": {
+    "home": "ইউটিউব ডাউনলোডার",
+    "youtubeToMp4": "ইউটিউব থেকে MP4 রূপান্তরকারী",
+    "youtubeToMp3": "ইউটিউব থেকে MP3 রূপান্তরকারী",
+    "youtubeShorts": "ইউটিউব শর্টস ডাউনলোডার",
+    "language": "বাংলা"
+  },
+  "hero": {
+    "placeholder": "এখানে লিঙ্ক খুঁজুন বা পেস্ট করুন...",
+    "pasteLabel": "ক্লিপবোর্ড থেকে পেস্ট করুন",
+    "clearLabel": "ইনপুট সাফ করুন",
+    "submitButton": "শুরু করুন",
+    "termsText": "আমাদের পরিষেবা ব্যবহার করে আপনি আমাদের قبول করছেন",
+    "termsLink": "ব্যবহারের শর্তাবলী"
+  },
+  "formatSelector": {
+    "autoSubmit": "স্বয়ংক্রিয় জমা দিন",
+    "autoSubmitTooltip": "URL বা কীওয়ার্ড পেস্ট করার সময় স্বয়ংক্রিয়ভাবে জমা দিন",
+    "formats": {
+      "mp4": "MP4",
+      "mp3": "MP3"
+    },
+    "quality": {
+      "videoLabel": "ভিডিওর গুণমান",
+      "audioLabel": "অডিওর গুণমান"
+    },
+    "options": {
+      "mp4": {
+        "2160p": "MP4 - 4K",
+        "1440p": "MP4 - 2K",
+        "1080p": "MP4 - 1080p",
+        "720p": "MP4 - 720p",
+        "480p": "MP4 - 480p",
+        "360p": "MP4 - 360p",
+        "144p": "MP4 - 144p",
+        "webm": "WEBM",
+        "mkv": "MKV"
+      },
+      "mp3": {
+        "320kbps": "MP3 - 320kbps",
+        "256kbps": "MP3 - 256kbps",
+        "192kbps": "MP3 - 192kbps",
+        "128kbps": "MP3 - 128kbps",
+        "ogg": "OGG",
+        "opus": "OPUS",
+        "wav": "WAV",
+        "64kbps": "MP3 - 64kbps"
+      }
+    }
+  },
+  "status": {
+    "processing": "প্রসেস করা হচ্ছে...",
+    "preparing": "প্রস্তুত করা হচ্ছে...",
+    "merging": "একত্রিত করা হচ্ছে...",
+    "zipping": "জিপ করা হচ্ছে...",
+    "ready": "প্রস্তুত 100%",
+    "completed": "সম্পন্ন",
+    "failed": "ব্যর্থ"
+  },
+  "buttons": {
+    "download": "ডাউনলোড করুন",
+    "tryAgain": "আবার চেষ্টা করুন",
+    "cancel": "বাতিল করুন",
+    "seeMore": "আরও দেখুন",
+    "seeLess": "কম দেখুন",
+    "bulkDownload": "নির্বাচিত ডাউনলোড করুন"
+  },
+  "gallery": {
+    "title": "গ্যালারি",
+    "noItems": "প্রদর্শনের জন্য কোনও গ্যালারি আইটেম নেই",
+    "selected": "নির্বাচিত",
+    "selectAll": "সব নির্বাচন করুন",
+    "deselectAll": "সব অনির্বাচন করুন"
+  },
+  "mobile": {
+    "menuToggleLabel": "নেভিগেশন মেনু খুলুন",
+    "menuCloseLabel": "নেভিগেশন মেনু বন্ধ করুন",
+    "langButtonLabel": "ভাষা নির্বাচন করুন"
+  },
+  "footer": {
+    "copyright": "© 2026 y2mate",
+    "about": "সম্পর্কে",
+    "contact": "যোগাযোগ",
+    "terms": "পরিষেবার শর্তাবলী",
+    "privacy": "গোপনীয়তা নীতি",
+    "copyrightClaims": "কপিরাইট দাবি"
+  },
+  "errors": {
+    "invalidUrl": "অনুগ্রহ করে একটি বৈধ URL লিখুন",
+    "networkError": "নেটওয়ার্ক ত্রুটি। অনুগ্রহ করে আবার চেষ্টা করুন।",
+    "processingError": "প্রসেসিং ব্যর্থ হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।",
+    "timeout": "অনুরোধের সময় শেষ। অনুগ্রহ করে আবার চেষ্টা করুন।",
+    "downloadExpired": "ডাউনলোড লিঙ্ক মেয়াদোত্তীর্ণ",
+    "conversionFailed": "রূপান্তর ব্যর্থ হয়েছে"
+  },
+  "messages": {
+    "downloadReady": "আপনার ডাউনলোড প্রস্তুত",
+    "processing": "আপনার অনুরোধ প্রসেস করা হচ্ছে...",
+    "pleaseWait": "অনুগ্রহ করে অপেক্ষা করুন..."
+  }
+}

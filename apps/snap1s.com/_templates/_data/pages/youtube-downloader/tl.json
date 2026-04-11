@@ -1,0 +1,115 @@
+{
+  "seo": {
+    "title": "YouTube Downloader – Mag-download ng Video Libre | SNAP1S",
+    "description": "Mag-download ng YouTube video gamit ang SNAP1S. Libreng YouTube video downloader na nagse-save ng video sa HD at 4K na kalidad. Walang registration o app.",
+    "schemaName": "SNAP1S - YouTube Video Downloader",
+    "schemaDescription": "Ang SNAP1S ay isang libreng YouTube video downloader na nagpapahintulot sa mga user na mag-download ng YouTube video sa HD at 4K na kalidad.",
+    "ogTitle": "YouTube Downloader – Mag-download ng Video Libre | SNAP1S",
+    "ogDescription": "Mag-download ng YouTube video gamit ang SNAP1S. Libre, mabilis, at HD na kalidad."
+  },
+  "content": {
+    "form": {
+      "h1": "SNAP1S – YouTube Video Downloader",
+      "placeholder": "I-paste ang YouTube video URL dito...",
+      "button": "I-download ang Video"
+    },
+    "sections": [
+      {
+        "h2": "Ano ang SNAP1S YouTube Downloader?",
+        "p": [
+          "Ang SNAP1S ay isang libreng <strong>YouTube video downloader</strong> na nagpapahintulot sa iyo na mag-download ng YouTube video sa iyong device sa HD at 4K na kalidad.",
+          "I-paste lang ang YouTube video link, i-click ang download, at i-save ang video direkta sa iyong telepono o computer.",
+          "Ang <strong>online YouTube video downloader</strong> na ito ay gumagana sa lahat ng device at browser nang hindi kailangang mag-install ng app."
+        ]
+      },
+      {
+        "h2": "Paano Mag-download ng YouTube Video",
+        "ol": [
+          {
+            "h3": "Kopyahin ang YouTube Video Link",
+            "p": [
+              "Buksan ang YouTube at kopyahin ang URL ng video na gusto mong i-download mula sa address bar o share button."
+            ]
+          },
+          {
+            "h3": "I-paste ang Link",
+            "p": [
+              "I-paste ang YouTube video URL sa SNAP1S YouTube downloader sa itaas."
+            ]
+          },
+          {
+            "h3": "I-download ang Video",
+            "p": [
+              "I-click ang download button at i-save ang YouTube video sa gusto mong kalidad sa iyong device."
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "Mag-download ng YouTube Video sa HD na Kalidad",
+        "p": [
+          "Pinapayagan ka ng SNAP1S na <strong>mag-download ng YouTube video</strong> sa maraming pagpipilian ng kalidad kabilang ang 720p, 1080p, at 4K na resolution.",
+          "I-save ang iyong mga paboritong YouTube video, music video, at tutorial para sa offline na panonood kahit kailan at saan man."
+        ]
+      },
+      {
+        "h2": "Bakit Gamitin ang SNAP1S YouTube Downloader?",
+        "ul": [
+          {
+            "h3": "HD at 4K na Kalidad",
+            "p": [
+              "Mag-download ng YouTube video sa pinakamataas na kalidad kabilang ang Full HD at 4K na resolution."
+            ]
+          },
+          {
+            "h3": "Maraming Format",
+            "p": [
+              "I-save ang YouTube video sa iba't ibang format kabilang ang MP4, MP3, at iba pa ayon sa iyong pangangailangan."
+            ]
+          },
+          {
+            "h3": "Libre at Walang Limitasyon",
+            "p": [
+              "Mag-download ng maraming YouTube video na gusto mo nang libre at walang araw-araw na limitasyon."
+            ]
+          },
+          {
+            "h3": "Walang App na Kailangan",
+            "p": [
+              "Ang YouTube downloader ay gumagana direkta sa iyong browser sa anumang device nang hindi nag-i-install ng apps."
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "Mga Madalas Itanong",
+        "ul": [
+          {
+            "h3": "Libre ba ang SNAP1S YouTube downloader?",
+            "p": [
+              "Oo. Ang SNAP1S ay isang ganap na libreng YouTube downloader na walang nakatagong bayarin."
+            ]
+          },
+          {
+            "h3": "Maaari ba akong mag-download ng YouTube video sa HD?",
+            "p": [
+              "Oo. Sinusuportahan ng SNAP1S ang pag-download ng YouTube video sa 720p, 1080p, at 4K na kalidad."
+            ]
+          },
+          {
+            "h3": "Gumagana ba ito sa iPhone at Android?",
+            "p": [
+              "Oo. Ang YouTube downloader ay gumagana sa lahat ng mobile device at desktop browser."
+            ]
+          },
+          {
+            "h3": "Kailangan ko ba ng YouTube account para mag-download?",
+            "p": [
+              "Hindi. Kailangan mo lang ng video URL para mag-download ng YouTube video gamit ang SNAP1S."
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

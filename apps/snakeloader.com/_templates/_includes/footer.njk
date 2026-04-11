@@ -1,0 +1,18 @@
+{%- set base = i18nBase[lang] or i18nBase['en'] -%}
+{%- set langPrefix = '' if (lang == 'en' or not lang) else '/' + lang -%}
+
+<footer>
+    <div class="container">
+        <nav class="footer-nav" aria-label="Footer navigation">
+            <a href="{{ langPrefix }}/youtube-downloader">{{ base.footer.nav.youtubeDownloader or 'YouTube Downloader' }}</a>
+            <a href="{{ langPrefix }}/tiktok-downloader">{{ base.footer.nav.tiktokDownloader or 'TikTok Downloader' }}</a>
+            <a href="{{ langPrefix }}/facebook-downloader">{{ base.footer.nav.facebookDownloader or 'Facebook Downloader' }}</a>
+            <a href="{{ langPrefix }}/instagram-downloader">{{ base.footer.nav.instagramDownloader or 'Instagram Downloader' }}</a>
+            <a href="{{ langPrefix }}/twitter-downloader">{{ base.footer.nav.twitterDownloader or 'Twitter Downloader' }}</a>
+            <a href="{{ langPrefix }}/mp3-downloader">{{ base.footer.nav.mp3Downloader or 'MP3 Downloader' }}</a>
+            <a href="{{ langPrefix }}/video-downloader">{{ base.footer.nav.videoDownloader or 'Video Downloader' }}</a>
+        </nav>
+        <div class="copyright">{{ base.footer.copyright }}</div>
+    </div>
+</footer>
+

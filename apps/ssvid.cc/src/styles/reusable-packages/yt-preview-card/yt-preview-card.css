@@ -1,0 +1,349 @@
+/**
+ * YT Preview Card Component Styles
+ * Matching ytmp4.gg design
+ */
+
+/* ==========================================
+   Container
+   ========================================== */
+
+.yt-preview-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: 8px;
+  padding: 0.75rem;
+  margin: 1rem 0;
+  margin-top: 0px;
+  align-items: center;
+  background: var(--yt-preview-card-bg);
+  box-shadow: none;
+  overflow: hidden;
+}
+
+@media (min-width: 600px) {
+  .yt-preview-card {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+/* ==========================================
+   Thumbnail
+   ========================================== */
+
+.yt-preview-thumbnail {
+  height: 100px;
+  min-height: 100px;
+  width: 133px;
+  min-width: 133px;
+  flex-shrink: 0;
+  overflow: hidden;
+  border-radius: 6px;
+  background: var(--color-skeleton-dark);
+}
+
+.yt-preview-thumbnail.skeleton-thumbnail {
+  background: linear-gradient(90deg,
+      var(--color-skeleton-dark) 25%,
+      var(--color-skeleton-light) 50%,
+      var(--color-skeleton-dark) 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s linear infinite;
+}
+
+.yt-preview-thumbnail img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+/* ==========================================
+   Details Section
+   ========================================== */
+
+.yt-preview-details {
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  text-align: center;
+}
+
+.yt-preview-details.skeleton-line {
+  padding: 0px !important;
+  margin: 0px !important;
+}
+
+.yt-preview-title {
+  margin: 0;
+  color: var(--text-main);
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ==========================================
+   Meta Section (Format + Author)
+   ========================================== */
+
+.yt-preview-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 0;
+  column-gap: 0;
+  width: 100%;
+}
+
+.yt-preview-format {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+/* Unified Badge Styles */
+.meta-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  height: 25px;
+  min-height: 25px;
+  padding: 0 0.5rem;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background: var(--meta-badge-bg);
+  color: var(--meta-badge-color);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 25px;
+  white-space: nowrap;
+}
+
+.audio-track-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.audio-track-icon .icon-audio-language-horizontal {
+  width: 28px;
+  height: 16px;
+  display: block;
+}
+
+.audio-track-value {
+  font-size: 0.8rem;
+}
+
+.yt-preview-author {
+  margin: 0;
+  padding: 0.4rem 0;
+  max-width: 100%;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ==========================================
+   Skeleton Loading State
+   ========================================== */
+
+.yt-preview-card.skeleton {
+  box-shadow: none;
+}
+
+.yt-preview-card.skeleton .yt-preview-details {
+  gap: 0.5rem;
+}
+
+.yt-preview-card.skeleton .yt-preview-meta {
+  row-gap: 8px;
+}
+
+.yt-preview-card.skeleton .yt-preview-format {
+  gap: 8px;
+  justify-content: center;
+}
+
+.yt-preview-card.skeleton .yt-preview-thumbnail,
+.yt-preview-card.skeleton .skeleton-line {
+  background: linear-gradient(90deg,
+      var(--color-skeleton-dark) 25%,
+      var(--color-skeleton-light) 50%,
+      var(--color-skeleton-dark) 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s linear infinite;
+}
+
+.yt-preview-card.skeleton .skeleton-line.skeleton-title {
+  width: 80%;
+  height: 16px;
+}
+
+.yt-preview-card.skeleton .skeleton-line.skeleton-author {
+  width: 48%;
+  height: 14px;
+}
+
+/* ==========================================
+   Responsive Design
+   ========================================== */
+
+/* Extra Small Mobile (0-350px) */
+.yt-preview-card {
+  min-height: 210px;
+}
+
+.yt-preview-title {
+  font-size: 0.8125rem;
+}
+
+/* Small Mobile (351px-599px) */
+@media (min-width: 351px) {
+  .yt-preview-card {
+    padding: 0.875rem;
+    min-height: 220px;
+  }
+
+  .yt-preview-title {
+    font-size: 0.9375rem;
+  }
+
+  .yt-preview-author {
+    font-size: 0.8125rem;
+  }
+}
+
+/* Tablet (600px-839px) */
+@media (min-width: 600px) {
+  .yt-preview-card {
+    padding: 1rem;
+    min-height: auto;
+  }
+
+  .yt-preview-title {
+    font-size: 1rem;
+    text-align: start;
+  }
+
+  .yt-preview-details {
+    align-items: flex-start;
+    text-align: start;
+  }
+
+  .yt-preview-meta {
+    align-items: flex-start;
+  }
+
+  .yt-preview-card.skeleton .yt-preview-format {
+    justify-content: start;
+  }
+
+  .yt-preview-author {
+    font-size: 0.875rem;
+  }
+}
+
+/* Expanded Desktop (840px-1239px) */
+@media (min-width: 840px) {
+  .yt-preview-card {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .yt-preview-thumbnail {
+    height: 140px;
+    min-height: 140px;
+    width: 187px;
+    min-width: 187px;
+  }
+
+  .yt-preview-title {
+    font-size: 1rem;
+  }
+
+  .yt-preview-author {
+    font-size: 0.875rem;
+  }
+}
+
+/* Large Desktop (1240px-1919px) */
+@media (min-width: 1240px) {
+  .yt-preview-card {
+    padding: 1.25rem;
+    gap: 1.25rem;
+  }
+
+  .yt-preview-thumbnail {
+    height: 150px;
+    min-height: 150px;
+    width: 200px;
+    min-width: 200px;
+  }
+
+  .yt-preview-title {
+    font-size: 1.125rem;
+  }
+
+  .yt-preview-author {
+    font-size: 0.9375rem;
+  }
+}
+
+/* Extra Large 2K (1920px-2559px) */
+@media (min-width: 1920px) {
+  .yt-preview-card {
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .yt-preview-thumbnail {
+    height: 200px;
+    min-height: 200px;
+    width: 267px;
+    min-width: 267px;
+  }
+
+  .yt-preview-title {
+    font-size: 1.25rem;
+  }
+
+  .yt-preview-author {
+    font-size: 1rem;
+  }
+}
+
+/* Ultra Large 4K (2560px+) */
+@media (min-width: 2560px) {
+  .yt-preview-card {
+    padding: 1.75rem;
+    gap: 1.75rem;
+  }
+
+  .yt-preview-title {
+    font-size: 1.375rem;
+  }
+
+  .yt-preview-author {
+    font-size: 1.125rem;
+  }
+}

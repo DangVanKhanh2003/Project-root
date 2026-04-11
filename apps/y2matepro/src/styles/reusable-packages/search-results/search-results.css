@@ -1,4 +1,4 @@
-/* =========================================================
+﻿/* =========================================================
    SEARCH-RESULTS.CSS - Video Grid Component with Skeleton Loading
    ---------------------------------------------------------
    Version: 1.0.0
@@ -14,12 +14,12 @@
    - Empty state handling
 
    Responsive Breakpoints & Grid Layout:
-   • Mobile (0-599px) - 2 columns, gap 10px, NO metadata
-   • Tablet (600-839px) - 3 columns, show metadata
-   • Desktop (840-1239px) - 4 columns, max-width 1100px
-   • Wide Desktop (1240-1919px) - 4 columns, max-width 1100px
-   • 2K Display (1920-2559px) - 4 columns, max-width 1100px
-   • 4K Display (2560px+) - 4 columns, max-width 1600px
+   â€¢ Mobile (0-599px) - 2 columns, gap 10px, NO metadata
+   â€¢ Tablet (600-839px) - 3 columns, show metadata
+   â€¢ Desktop (840-1239px) - 4 columns, max-width 1100px
+   â€¢ Wide Desktop (1240-1919px) - 4 columns, max-width 1100px
+   â€¢ 2K Display (1920-2559px) - 4 columns, max-width 1100px
+   â€¢ 4K Display (2560px+) - 4 columns, max-width 1600px
    ========================================================= */
 
 /* ======= Search Results Section (Dedicated Section Below Hero) ======= */
@@ -30,7 +30,8 @@
     padding: var(--pkg-space-6) 0;
     padding-top: 40px !important;
     padding-bottom: 40px !important;
-    min-height: 0; /* Allow section to collapse when empty */
+    min-height: 0;
+    /* Allow section to collapse when empty */
 }
 
 /* ======= Responsive Breakpoints (Mobile First) ======= */
@@ -74,33 +75,19 @@
 @media (min-width: 600px) {
     .search-results-grid {
         grid-template-columns: repeat(3, 1fr) !important;
-        gap: var(--pkg-search-results-gap-tablet);
+        gap: 10px;
     }
 
-    .card-title {
-        -webkit-line-clamp: 2 !important;
-        line-clamp: 2 !important;
-    }
-
-    .card-metadata,
-    .skeleton-metadata {
-        display: flex !important;
-    }
 }
 
 /* Desktop (840px+) - 4 columns */
 @media (min-width: 840px) {
     .search-results-grid {
         grid-template-columns: repeat(4, 1fr) !important;
-        gap: var(--pkg-search-results-gap-tablet);
+        gap: 10px;
         margin: 0 auto;
     }
 
-    .card-title {
-        font-size: var(--pkg-title-small-size);
-        -webkit-line-clamp: 2 !important;
-        line-clamp: 2 !important;
-    }
 }
 
 /* Wide Desktop (1240px+) */
@@ -135,7 +122,7 @@
 .search-results-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: var(--pkg-search-results-gap-mobile);
+    gap: 10px;
     width: 100%;
 }
 
@@ -143,22 +130,25 @@
 .search-result-card {
     background: var(--pkg-search-results-card-bg);
     border-radius: var(--pkg-search-results-card-radius);
+    border: none;
     overflow: hidden;
     cursor: pointer;
     transition: transform var(--pkg-search-results-transition-duration) var(--pkg-search-results-transition-easing);
-    /* No shadow - removed as per design requirements */
 }
 
 /* Card Thumbnail Container */
 .card-thumbnail {
     position: relative;
     width: 100%;
-    aspect-ratio: 16 / 9;
+    padding-bottom: 56.25%;
     background: var(--pkg-color-surface-container);
     overflow: hidden;
 }
 
 .card-thumbnail img {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -182,45 +172,26 @@
 
 /* Card Content */
 .card-content {
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    text-align: left;
+    margin: 10px;
 }
 
 /* Card Title */
 .card-title {
-    font-size: var(--pkg-body-large-size);
-    font-weight: 600;
+    font-size: 14px;
+    font-weight: 500;
     color: var(--pkg-search-results-title-color);
-    line-height: 1.3;
     margin: 0;
-    text-align: left;
-    height: fit-content;
-
-    /* Mobile: Limit to 1 line */
     display: -webkit-box;
-    -webkit-line-clamp: 1;
-    line-clamp: 1;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+    line-height: 1.4;
 }
 
-/* Channel Name */
+/* Channel Name - Hidden */
 .card-channel {
-    font-size: var(--pkg-body-medium-size);
-    font-weight: var(--pkg-body-medium-weight);
-    color: var(--pkg-search-results-channel-color);
-    line-height: var(--pkg-body-medium-line-height);
-    margin: 0;
-    text-align: left;
-
-    /* Single line with ellipsis */
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    display: none;
 }
 
 /* Metadata Row (views + date) - Hidden on mobile */
@@ -228,10 +199,10 @@
     align-items: center;
     flex-wrap: nowrap;
     gap: var(--pkg-space-1);
-    font-size: var(--pkg-label-medium-size);
-    font-weight: var(--pkg-label-medium-weight);
+    font-size: .75rem;
+    font-weight: 500;
     color: var(--pkg-search-results-metadata-color);
-    line-height: 1;
+    line-height: 1.5;
     text-align: left;
     overflow: hidden;
     white-space: nowrap;
@@ -244,14 +215,14 @@
 
 /* ======= Hover Effects ======= */
 .search-result-card:hover {
-    transform: translateY(-4px);
+    transform: none;
     /* No shadow on hover - removed as per design requirements */
 }
 
 
 
 .search-result-card:active {
-    transform: translateY(-2px);
+    transform: none;
 }
 
 /* ======= Infinite Scroll Loading Indicators ======= */
@@ -277,7 +248,9 @@
 }
 
 @keyframes spinner-rotate {
-    to { transform: rotate(360deg); }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .loader-text {
@@ -342,7 +315,7 @@
 .btn-retry:hover {
     background: var(--pkg-search-results-retry-hover-bg);
     transform: translateY(-1px);
-    box-shadow: var(--pkg-elevation-1);
+    box-shadow: none;
 }
 
 .btn-retry:active {
@@ -357,15 +330,6 @@
     cursor: default;
 }
 
-/* Ensure skeleton card-content is visible */
-.skeleton-card .card-content {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    padding: 10px;
-    text-align: left;
-}
-
 /* Skeleton Thumbnail - span inside .card-thumbnail */
 .card-thumbnail .skeleton-thumbnail {
     display: block;
@@ -375,9 +339,9 @@
     top: 0;
     left: 0;
     background: linear-gradient(90deg,
-        var(--pkg-skeleton-color-dark) 25%,
-        var(--pkg-skeleton-color-light),
-        var(--pkg-skeleton-color-dark) 75%);
+            var(--pkg-skeleton-color-dark) 25%,
+            var(--pkg-skeleton-color-light),
+            var(--pkg-skeleton-color-dark) 75%);
     background-size: 200% 100%;
     animation: shimmer 1.0s linear infinite;
 }
@@ -414,9 +378,9 @@
     height: 1em;
     height: 13px;
     background: linear-gradient(90deg,
-        var(--pkg-skeleton-color-dark) 25%,
-        var(--pkg-skeleton-color-light),
-        var(--pkg-skeleton-color-dark) 75%);
+            var(--pkg-skeleton-color-dark) 25%,
+            var(--pkg-skeleton-color-light),
+            var(--pkg-skeleton-color-dark) 75%);
     background-size: 200% 100%;
     animation: shimmer 1.0s linear infinite;
     border-radius: var(--pkg-radius-xs);
@@ -454,9 +418,9 @@
     height: 0.75em;
     width: 50px;
     background: linear-gradient(90deg,
-        var(--pkg-skeleton-color-dark) 25%,
-        var(--pkg-skeleton-color-light),
-        var(--pkg-skeleton-color-dark) 75%);
+            var(--pkg-skeleton-color-dark) 25%,
+            var(--pkg-skeleton-color-light),
+            var(--pkg-skeleton-color-dark) 75%);
     background-size: 200% 100%;
     animation: shimmer 1.0s linear infinite;
     border-radius: var(--pkg-radius-xs);
@@ -464,12 +428,13 @@
 
 /* Note: @keyframes shimmer is defined in base.css or skeleton.css */
 @keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
 }
 
 /* ======= Empty State ======= */

@@ -1,0 +1,35 @@
+{
+  "nav": { "home": "হোম" },
+  "drawer": { "logoText": "Y2SS", "links": { "home": "হোম" } },
+  "hero": {
+    "placeholder": "এখানে YouTube প্লেলিস্ট URL পেস্ট করুন...",
+    "pasteBtn": "পেস্ট",
+    "clearBtn": "মুছুন",
+    "convertBtn": "রূপান্তর করুন",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "অডিও ট্র্যাক",
+    "searchPlaceholder": "অনুসন্ধান করুন...",
+    "supportedPlatforms": "সমর্থিত প্ল্যাটফর্ম:"
+  },
+  "footer": {
+    "copyright": "© 2026 Y2SS. সর্বস্বত্ব সংরক্ষিত।",
+    "legal": {
+      "about": "আমাদের সম্পর্কে",
+      "contact": "যোগাযোগ",
+      "copyright": "কপিরাইট ও DMCA",
+      "privacyPolicy": "গোপনীয়তা নীতি",
+      "termsOfUse": "ব্যবহারের শর্তাবলী"
+    }
+  },
+  "langSelector": { "buttonLabel": "ভাষা পরিবর্তন করুন", "buttonText": "BN", "currentLangFull": "বাংলা" },
+  "strim": {
+    "startBtn": "শুরু করুন",
+    "selectFormatLabel": "১. ফরম্যাট নির্বাচন করুন:",
+    "selectQualityLabel": "২. মান নির্বাচন করুন:",
+    "audioTrackLabel": "৩. অডিও ট্র্যাক নির্বাচন করুন:",
+    "trimLabel": "৪. ভিডিও কাটুন (শুরু – শেষ সময়):",
+    "startTimeLabel": "শুরু",
+    "endTimeLabel": "শেষ"
+  }
+}

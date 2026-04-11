@@ -45,12 +45,19 @@
     <meta property="og:locale" content="ja_JP" />
     <meta property="og:title" content="Y2Mate – YouTubeからMP4へのコンバーター (HD &amp; フルHD)" />
     <meta property="og:description" content="統合されたオーディオを含むYouTube動画をMP4に変換します。144p、360p、480p、720p HD、および1080pフルHDをサポートします。" />
-    <meta property="og:image" content="https://y2matepro.com/logo.png" />
+    <meta property="og:image" content="https://y2matepro.com/favicon-512x512.png" />
     <meta property="og:url" content="https://y2matepro.com/ja/youtube-to-mp4" />
 
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://y2matepro.com/ja/youtube-to-mp4">
+    <meta name="twitter:title" content="Y2Mate – YouTubeからMP4へのコンバーター (HD &amp; フルHD)">
+    <meta name="twitter:description" content="統合されたオーディオを含むYouTube動画をMP4に変換します。144p、360p、480p、720p HD、および1080pフルHDをサポートします。">
+    <meta name="twitter:image" content="https://y2matepro.com/favicon-512x512.png">
 
     <!-- Favicons -->
-    <link rel="icon" href="/favicon.png">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.png" type="image/png">
     <link type="image/png" sizes="16x16" rel="icon" href="/favicon1616.png">
     <link type="image/png" sizes="32x32" rel="icon" href="/favicon3232.png">
     <link type="image/png" sizes="48x48" rel="icon" href="/favicon4848.png">
@@ -72,22 +79,29 @@
       "@type": "WebPage",
       "@id": "https://y2matepro.com/ja/youtube-to-mp4#webpage",
       "url": "https://y2matepro.com/ja/youtube-to-mp4",
-      "name": "Y2Mate – YouTubeからMP4へのコンバーター",
+      "name": "YouTubeからMP4へのコンバーター",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/#website"
+      },
       "about": {
+        "@type": "SoftwareApplication",
         "@id": "https://y2matepro.com/ja/youtube-to-mp4#application"
       },
       "inLanguage": "ja"
     },
     {
-      "@type": "WebApplication",
+      "@type": "SoftwareApplication",
       "@id": "https://y2matepro.com/ja/youtube-to-mp4#application",
-      "name": "Y2mate",
+      "name": "YouTubeからMP4へのコンバーター",
       "url": "https://y2matepro.com/ja/youtube-to-mp4",
       "description": "複数の解像度オプションと完全に統合されたオーディオでYouTube動画をMP4形式に変換するオンラインシステム。",
       "applicationCategory": "MultimediaApplication",
       "operatingSystem": "All",
       "browserRequirements": "Requires JavaScript. Requires HTML5.",
       "inLanguage": "ja",
+      "publisher": {
+        "@id": "https://y2matepro.com/#organization"
+      },
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -154,7 +168,7 @@
           "name": "Y2Mateを使用してYouTube動画をダウンロードするのは安全ですか？",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "はい。Y2Mateはアカウントログイン、ソフトウェアのインストール、特別な権限を必要とせず、ポップアップ広告なしで動作します。"
+            "text": "はい。Y2Mateはアカウントログイン、ソフトウェアのインストール、特別な権限を必要としません。"
           }
         },
         {
@@ -236,9 +250,9 @@
                     <a href="/ja/youtube-to-mp3">YouTubeからMP3</a>
                 </li>
                 <li class="navbar language">
-                    <a href="javascript:void(0);">
+                    <button type="button" aria-haspopup="true" aria-expanded="false">
                         日本語<span class="shape"></span>
-                    </a>
+                    </button>
                     <div class="dropdown-menu">
                         <ul class="lang-menu">
                             <li>
@@ -407,9 +421,6 @@
                         サービスを利用することで、 <a href="/terms-condition">利用規約に同意します</a>.
                     </p>
                 </form>
-                <div class="spinner" style="display: none;">
-                    <img id="loading_img" src="/loading.gif">
-                </div>
             </div>
 
             <!-- Video Detail Area -->
@@ -429,7 +440,7 @@
         <div class="col-sm-12">
             <h2>YouTubeビデオをMP4に変換</h2>
             <p>Y2MateのYouTubeからMP4へのコンバーターを使用すると、YouTubeビデオをMP4形式ですばやく簡単にダウンロードできます。YouTubeリンクを貼り付け、希望のビデオ品質を選択し、ソフトウェアをインストールせずにMP4ファイルをデバイスに直接ダウンロードするだけです。</p>
-            <p>このYouTubeからMP4へのダウンローダーは、144pから1080pフルHDまでの解像度をサポートし、デスクトップ、iPhone、Android、およびタブレットで動作します。Y2Mateは、高速な変換速度、広告やポップアップなし、登録不要で、ブラウザで完全に実行されます。</p>
+            <p>このYouTubeからMP4へのダウンローダーは、144pから1080pフルHDまでの解像度をサポートし、デスクトップ、iPhone、Android、およびタブレットで動作します。Y2Mateは、高速な変換速度でブラウザで完全に実行されます。</p>
         </div>
     </section>
     <section class="y2mate-instruction-pro">
@@ -454,8 +465,6 @@
                 <li><strong>ワンクリックダウンロード:</strong> リンクを貼り付け、品質を選択し、すぐにダウンロード — 余分な手順は不要。</li>
                 
                 <li><strong>高速変換、待ち時間なし:</strong> 長い動画でもMP4ファイルを素早く取得。</li>
-                
-                <li><strong>クリーンで広告なしの体験:</strong> ポップアップなし、リダイレクトなし、偽のダウンロードボタンなし。</li>
                 
                 <li><strong>あらゆるデバイスで動作:</strong> デスクトップ、iPhone、Android、タブレットでYouTube動画をダウンロード。</li>
                 
@@ -592,7 +601,7 @@
                 <p>非公開動画は、オンラインコンバーターで処理できません。</p>
                 
                 <h3>Y2Mateを使用してYouTube動画をダウンロードするのは安全ですか？</h3>
-                <p>はい。Y2Mateはアカウントログイン、ソフトウェアのインストール、特別な権限を必要とせず、ポップアップ広告なしで動作します。</p>
+                <p>はい。Y2Mateはアカウントログイン、ソフトウェアのインストール、特別な権限を必要としません。</p>
                 
                 <h3>ダウンロード制限はありますか？</h3>
                 <p>いいえ。YouTube動画をMP4に好きなだけ変換してダウンロードできます。</p>
@@ -612,6 +621,15 @@
     <p>© 2025 y2mate</p>
     <ul class="footer_nav">
         <li class="fnav-menu">
+            <a href="/ja/youtube-to-mp4">YouTubeからMP4</a>
+        </li>
+        <li class="fnav-menu">
+            <a href="/ja/youtube-to-mp3">YouTubeからMP3</a>
+        </li>
+        <li class="fnav-menu">
+            <a href="/ja/youtube-short-downloader">ショートダウンローダー</a>
+        </li>
+        <li class="fnav-menu">
             <a href="/about-us">概要</a>
         </li>
         <li class="fnav-menu">
@@ -623,15 +641,23 @@
         <li class="fnav-menu">
             <a href="/privacy-policy">プライバシーポリシー</a>
         </li>
-        <li class="fnav-menu">
-            <a href="/ja/youtube-short-downloader">ショートダウンローダー</a>
-        </li>
     </ul>
 </footer>
 
 
     <!-- Conversion Modal Wrapper -->
     <div id="progressBarWrapper"></div>
+
+    <!-- Ko-fi Support Widget -->
+    <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+    <script>
+      kofiWidgetOverlay.draw('metaconvert', {
+        'type': 'floating-chat',
+        'floating-chat.donateButton.text': 'Support me',
+        'floating-chat.donateButton.background-color': '#00b9fe',
+        'floating-chat.donateButton.text-color': '#fff'
+      });
+    </script>
 </body>
 
 </html>

@@ -1,63 +1,57 @@
 {
   "seo": {
-    "title": "Y2Mate – Fast & Easy YouTube Video Downloader",
-    "description": "유튜브 동영상과 오디오를 빠르게 다운로드하세요. MP4, MP3, SD, Full HD를 지원합니다. 간단하고 사용하기 쉬운 온라인 유튜브 다운로더입니다.",
-    "ogTitle": "Y2Mate – Fast & Easy YouTube Video Downloader",
-    "ogDescription": "YouTube 비디오를 온라인에서 무료로 저장하세요. 144p에서 1080p 비디오 또는 128kbps–320kbps 오디오까지 원하는 품질을 선택하세요. 빠르고 안전하며 모든 장치에서 작동합니다.",
-    "schemaName": "Y2mate - YouTube 비디오 다운로더",
-    "schemaDescription": "YouTube 비디오를 온라인에서 무료로 다운로드하세요. 원하는 품질로 비디오 또는 오디오를 저장하세요. 설치 없이 모든 장치에서 빠르게 작동합니다."
+    "title": "Y2Mate – 빠르고 쉬운 YouTube 동영상 다운로더",
+    "description": "YouTube에서 동영상과 오디오를 빠르게 다운로드하세요. MP4, MP3, SD 및 Full HD를 지원합니다. 간단하고 사용하기 쉬운 온라인 YouTube 다운로더입니다.",
+    "ogTitle": "Y2Mate – 빠르고 쉬운 YouTube 동영상 다운로더",
+    "ogDescription": "YouTube 동영상을 온라인에서 무료로 저장하세요. 144p부터 1080p 비디오 또는 128kbps–320kbps 오디오까지 원하는 품질을 선택하세요. 빠르고 안전하며 모든 기기에서 작동합니다.",
+    "schemaName": "Y2mate - YouTube 동영상 다운로더",
+    "schemaDescription": "YouTube 동영상을 온라인에서 무료로 다운로드하세요. 원하는 품질로 동영상이나 오디오를 저장하세요. 설치 없이 모든 기기에서 빠르게 작동합니다."
   },
   "hero": {
     "title": "Y2mate - YouTube 다운로더"
   },
   "content": {
-    "mainTitle": "YouTube 비디오를 빠르고 무료로 다운로드하세요",
-    "intro1": "Y2Mate는 비디오를 다운로드하거나 오프라인 사용을 위해 오디오로 변환할 수 있는 온라인 YouTube 비디오 다운로더입니다. 이 도구는 브라우저에서 직접 작동하며 소프트웨어 설치나 계정이 필요하지 않습니다.",
-    "intro2": "Y2Mate는 144p, 360p, 480p, 720p, 1080p(Full HD)를 포함한 인기 있는 비디오 해상도와 128kbps, 192kbps, 320kbps와 같은 일반적인 비트레이트의 MP3, OGG, WAV, OPUS와 같은 오디오 형식을 지원합니다. 이 도구는 데스크톱과 모바일 기기 모두에서 원활하게 작동합니다."
+    "mainTitle": "YouTube 동영상 및 오디오 온라인 다운로드",
+    "intro1": "Y2Mate는 사용자가 공개 YouTube 동영상을 다운로드하거나 오프라인 사용을 위해 오디오 파일로 변환할 수 있는 온라인 YouTube 다운로더입니다. 이 도구는 브라우저에서 직접 작동하며 소프트웨어 설치나 계정 등록이 필요하지 않습니다.",
+    "intro2": "이 웹사이트는 표준 동영상 및 YouTube Shorts를 포함한 다양한 유형의 YouTube 콘텐츠를 처리하기 위한 올인원 솔루션으로 구축되었습니다. Y2Mate는 데스크톱 및 모바일 기기 모두에서 단순성, 접근성 및 호환성에 중점을 둡니다."
   },
   "instructions": {
-    "title": "몇 초 만에 YouTube 비디오를 다운로드하는 방법",
+    "title": "몇 초 만에 YouTube 동영상을 다운로드하는 방법",
     "steps": [
-      "<strong>YouTube 링크 붙여넣기:</strong> YouTube 비디오 또는 YouTube Shorts의 URL을 복사하여 다운로드 상자에 붙여넣으세요.",
+      "<strong>YouTube 링크 붙여넣기:</strong> YouTube 동영상 또는 YouTube Shorts의 URL을 복사하여 다운로드 상자에 붙여넣습니다.",
       "<strong>링크 분석:</strong> 시작 버튼을 클릭하여 사용 가능한 형식 및 품질 옵션을 표시합니다.",
-      "<strong>비디오 또는 오디오 선택:</strong> 비디오의 경우 MP4, 오디오의 경우 MP3를 선택한 다음 선호하는 해상도 또는 bitrate를 선택합니다.",
-      "<strong>다운로드:</strong> \"변환\"을 클릭하고 로그인 없이 파일을 장치에 직접 다운로드합니다."
+      "<strong>비디오 또는 오디오 선택:</strong> 비디오의 경우 MP4, 오디오의 경우 MP3를 선택한 다음 원하는 해상도 또는 비트 전송률을 선택합니다.",
+      "<strong>다운로드:</strong> \"변환\"을 클릭하고 로그인 없이 기기에 직접 파일을 다운로드합니다."
     ]
   },
   "whyChoose": {
     "title": "Y2mate를 선택하는 이유",
     "reasons": [
-      "<strong>빠른 다운로드 속도:</strong> Y2Mate는 YouTube 동영상을 빠르고 안정적으로 처리하고 다운로드하도록 최적화되었습니다.",
-      "<strong>계정 필요 없음:</strong> 가입하거나 개인 정보를 공유하지 않고 즉시 비디오를 다운로드하세요.",
-      "<strong>모든 장치에서 작동:</strong> 휴대폰, 태블릿 및 데스크톱 컴퓨터와 완벽하게 호환됩니다."
+      "<strong>등록 필요 없음:</strong> 계정을 만들지 않고 즉시 다운로드를 시작하세요.",
+      "<strong>빠르고 안정적인 처리:</strong> 짧고 긴 YouTube 동영상을 모두 원활하게 처리하도록 최적화되었습니다.",
+      "<strong>모든 기기에서 작동:</strong> 데스크톱 및 모바일 브라우저와 완벽하게 호환됩니다.",
+      "<strong>깨끗하고 간단한 인터페이스:</strong> 방해 없는 다운로드 경험을 위해 설계되었습니다.",
+      "<strong>100% 무료 사용:</strong> 모든 기능을 무료로 사용할 수 있습니다."
     ]
   },
   "features": {
     "title": "Y2mate의 주요 기능",
     "items": [
       {
-        "title": "무제한 비디오 및 오디오 다운로드",
-        "description": "무제한 YouTube 비디오를 다운로드하거나 오프라인 사용을 위해 오디오 파일로 변환하세요."
+        "title": "올인원 YouTube 다운로더",
+        "description": "이 홈페이지는 소프트웨어를 설치하지 않고도 동영상, 오디오 및 Shorts를 포함한 YouTube 콘텐츠를 다운로드하기 위한 기본 진입점 역할을 합니다."
       },
       {
-        "title": "다양한 품질 옵션",
-        "description": "144p, 360p, 480p, 720p에서 1080p까지의 비디오 해상도와 128kbps에서 320kbps까지의 오디오 bitrate를 지원합니다."
+        "title": "YouTube to MP4 변환기",
+        "description": "오프라인 시청을 위해 YouTube 동영상을 MP4 형식으로 다운로드하세요. 더 많은 옵션을 보려면 <a href=\"/youtube-to-mp4\">YouTube to MP4 변환기</a>를 방문하세요."
       },
       {
-        "title": "빠르고 안정적인 처리",
-        "description": "짧은 링크 분석 및 다운로드 시간으로 짧은 비디오와 긴 비디오 모두에 적합합니다."
+        "title": "YouTube to MP3 변환기",
+        "description": "YouTube 동영상에서 오디오를 추출하여 MP3 파일로 저장하세요. 오디오 다운로드를 위해 <a href=\"/youtube-to-mp3\">YouTube to MP3 변환기</a>를 사용하세요."
       },
       {
-        "title": "모든 플랫폼 지원",
-        "description": "인기 있는 브라우저를 사용하여 iPhone, Android, Windows, Mac 및 Linux에서 원활하게 작동합니다."
-      },
-      {
-        "title": "깔끔한 사용자 경험",
-        "description": "다운로드 중에 광고, 팝업 및 중단이 없습니다."
-      },
-      {
-        "title": "설치 필요 없음",
-        "description": "앱, 확장 프로그램 또는 소프트웨어 없이 완전히 웹 기반입니다."
+        "title": "YouTube Shorts 다운로더",
+        "description": "<a href=\"/youtube-short-downloader\">YouTube Shorts 다운로더</a>를 사용하여 좋아하는 YouTube Shorts 동영상을 빠르고 쉽게 다운로드하세요."
       }
     ]
   },
@@ -65,36 +59,36 @@
     "title": "자주 묻는 질문",
     "items": [
       {
-        "question": "Y2mate는 무엇입니까?",
-        "answer": "Y2mate는 YouTube 링크를 붙여넣어 사용자가 비디오를 다운로드하거나 오디오로 변환할 수 있는 온라인 YouTube 비디오 다운로더입니다. 이 도구는 브라우저에서 직접 작동하며 설치가 필요하지 않습니다."
+        "question": "Y2mate란 무엇인가요?",
+        "answer": "Y2mate는 사용자가 YouTube 링크를 붙여넣어 동영상을 다운로드하거나 오디오로 변환할 수 있는 온라인 YouTube 동영상 다운로더입니다. 이 도구는 브라우저에서 직접 작동하며 설치가 필요하지 않습니다."
       },
       {
-        "question": "소프트웨어를 설치하지 않고 온라인에서 YouTube 비디오를 다운로드할 수 있습니까?",
+        "question": "소프트웨어를 설치하지 않고 온라인으로 YouTube 동영상을 다운로드할 수 있나요?",
         "answer": "예. Y2mate는 완전히 온라인으로 작동하므로 앱이나 브라우저 확장 프로그램을 설치할 필요가 없습니다."
       },
       {
-        "question": "Y2mate는 어떤 비디오 해상도를 지원합니까?",
-        "answer": "Y2mate는 144p에서 1080p까지 다양한 비디오 해상도를 지원하여 장치 및 저장 요구 사항에 맞는 품질을 선택할 수 있습니다."
+        "question": "Y2mate는 어떤 비디오 해상도를 지원하나요?",
+        "answer": "Y2mate는 144p에서 1080p까지 다양한 비디오 해상도를 지원하여 기기 및 저장 공간 요구에 맞는 품질을 선택할 수 있습니다."
       },
       {
-        "question": "YouTube 비디오를 MP3 파일로 다운로드하려면 어떻게 해야 합니까?",
-        "answer": "YouTube 비디오 링크를 Y2mate에 붙여넣고, 오디오 옵션을 선택하고, 선호하는 bitrate를 선택한 다음 변환을 클릭하여 MP3 파일을 다운로드합니다."
+        "question": "YouTube 동영상을 MP3 파일로 어떻게 다운로드할 수 있나요?",
+        "answer": "YouTube 동영상 링크를 Y2mate에 붙여넣고 오디오 옵션을 선택한 다음 원하는 비트 전송률을 선택하고 변환을 클릭하여 MP3 파일을 다운로드합니다."
       },
       {
-        "question": "Y2mate는 YouTube Shorts 다운로드를 지원합니까?",
+        "question": "Y2mate는 YouTube Shorts 다운로드를 지원하나요?",
         "answer": "예. Y2mate를 사용하면 YouTube Shorts를 오프라인 시청 또는 청취를 위해 비디오 또는 오디오 파일로 다운로드할 수 있습니다."
       },
       {
-        "question": "Y2mate를 사용하여 비디오를 다운로드하는 것이 안전합니까?",
-        "answer": "Y2mate는 광고나 팝업 없이 간단하고 깨끗한 다운로드 경험을 제공하도록 설계되었으며 개인 정보를 요구하지 않습니다."
+        "question": "Y2mate를 사용하여 동영상을 다운로드하는 것이 안전한가요?",
+        "answer": "Y2mate는 간단하고 깨끗한 다운로드 경험을 제공하도록 설계되었으며 개인 정보를 요구하지 않습니다."
       },
       {
-        "question": "Y2mate에서 다운로드한 비디오를 어떻게 사용해야 합니까?",
-        "answer": "Y2mate로 다운로드한 비디오 및 오디오 파일은 오프라인 시청 또는 청취와 같은 개인적인 목적으로 사용해야 합니다. 사용자는 다운로드한 콘텐츠가 어떻게 사용되는지에 대한 책임이 있으며 YouTube의 콘텐츠 소유자의 권리를 존중해야 합니다."
+        "question": "Y2mate에서 다운로드한 동영상은 어떻게 사용해야 하나요?",
+        "answer": "Y2mate로 다운로드한 동영상 및 오디오 파일은 오프라인 시청 또는 청취와 같은 개인적인 목적으로 사용해야 합니다. 다운로드한 콘텐츠의 사용 방식에 대한 책임은 사용자에게 있으며 YouTube의 콘텐츠 소유자 권리를 존중해야 합니다."
       },
       {
-        "question": "긴 비디오에 가장 적합한 품질 옵션은 무엇입니까?",
-        "answer": "긴 비디오의 경우 720p는 일반적으로 비디오 품질과 파일 크기 사이의 좋은 균형입니다."
+        "question": "긴 동영상에 가장 적합한 품질 옵션은 무엇인가요?",
+        "answer": "긴 동영상의 경우 일반적으로 720p가 비디오 품질과 파일 크기 간의 좋은 균형을 이룹니다."
       }
     ]
   }

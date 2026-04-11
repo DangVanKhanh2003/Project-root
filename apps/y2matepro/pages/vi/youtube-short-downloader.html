@@ -44,13 +44,20 @@
     <meta property="og:site_name" content="Y2Mate" />
     <meta property="og:locale" content="vi_VN" />
     <meta property="og:title" content="Y2mate - Trình tải  video YouTube Shorts (Miễn phí, Nhanh, HD)" />
-    <meta property="og:description" content="Tải xuống YouTube Shorts ở chế độ HD. Lưu video dọc ngay lập tức — định dạng chân dung, tỷ lệ 9:16, an toàn và không có quảng cáo." />
-    <meta property="og:image" content="https://y2matepro.com/logo.png" />
+    <meta property="og:description" content="Tải xuống YouTube Shorts ở chế độ HD. Lưu video dọc ngay lập tức — định dạng chân dung, tỷ lệ 9:16, an toàn." />
+    <meta property="og:image" content="https://y2matepro.com/favicon-512x512.png" />
     <meta property="og:url" content="https://y2matepro.com/vi/youtube-short-downloader" />
 
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://y2matepro.com/vi/youtube-short-downloader">
+    <meta name="twitter:title" content="Y2mate - Trình tải  video YouTube Shorts (Miễn phí, Nhanh, HD)">
+    <meta name="twitter:description" content="Tải xuống YouTube Shorts ở chế độ HD. Lưu video dọc ngay lập tức — định dạng chân dung, tỷ lệ 9:16, an toàn.">
+    <meta name="twitter:image" content="https://y2matepro.com/favicon-512x512.png">
 
     <!-- Favicons -->
-    <link rel="icon" href="/favicon.png">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.png" type="image/png">
     <link type="image/png" sizes="16x16" rel="icon" href="/favicon1616.png">
     <link type="image/png" sizes="32x32" rel="icon" href="/favicon3232.png">
     <link type="image/png" sizes="48x48" rel="icon" href="/favicon4848.png">
@@ -72,22 +79,29 @@
       "@type": "WebPage",
       "@id": "https://y2matepro.com/vi/youtube-short-downloader#webpage",
       "url": "https://y2matepro.com/vi/youtube-short-downloader",
-      "name": "Y2mate - Trình tải  video YouTube Shorts (Miễn phí, Nhanh, HD)",
+      "name": "Y2mate - Trình tải  video YouTube Shorts",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/#website"
+      },
       "about": {
+        "@type": "SoftwareApplication",
         "@id": "https://y2matepro.com/vi/youtube-short-downloader#application"
       },
       "inLanguage": "vi"
     },
     {
-      "@type": "WebApplication",
+      "@type": "SoftwareApplication",
       "@id": "https://y2matepro.com/vi/youtube-short-downloader#application",
-      "name": "Y2mate",
+      "name": "Y2mate - Trình tải  video YouTube Shorts",
       "url": "https://y2matepro.com/vi/youtube-short-downloader",
       "description": "Tải xuống YouTube Shorts ngay lập tức. Trình tải xuống video dọc miễn phí cho thiết bị di động và máy tính để bàn.",
       "applicationCategory": "MultimediaApplication",
       "operatingSystem": "All",
       "browserRequirements": "Requires JavaScript. Requires HTML5.",
       "inLanguage": "vi",
+      "publisher": {
+        "@id": "https://y2matepro.com/#organization"
+      },
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -199,9 +213,9 @@
                     <a href="/vi/youtube-to-mp3">YouTube sang MP3</a>
                 </li>
                 <li class="navbar language">
-                    <a href="javascript:void(0);">
+                    <button type="button" aria-haspopup="true" aria-expanded="false">
                         Tiếng Việt<span class="shape"></span>
-                    </a>
+                    </button>
                     <div class="dropdown-menu">
                         <ul class="lang-menu">
                             <li>
@@ -370,9 +384,6 @@
                         Khi sử dụng dịch vụ của chúng tôi, bạn đồng ý với <a href="/terms-condition">Điều khoản sử dụng</a>.
                     </p>
                 </form>
-                <div class="spinner" style="display: none;">
-                    <img id="loading_img" src="/loading.gif">
-                </div>
             </div>
 
             <!-- Video Detail Area -->
@@ -392,7 +403,7 @@
         <div class="col-sm-12">
             <h2>Tải xuống YouTube Shorts nhanh chóng và giữ nguyên định dạng dọc</h2>
             <p>Công cụ tải YouTube Shorts từ Y2Mate cho phép bạn tải các clip video dọc ngắn từ YouTube trực tiếp vào thiết bị của bạn. Với khả năng xử lý liên kết nhanh chóng và tải xuống nhanh, bạn có thể lưu Shorts trong vài giây bằng cách sử dụng một trang web đơn giản, dễ sử dụng và hoàn toàn miễn phí.</p>
-            <p>Y2mate hoàn toàn tập trung vào trải nghiệm tải xuống Shorts sạch sẽ và đơn giản: không có quảng cáo, không có cửa sổ bật lên và không có chuyển hướng. Shorts được tải xuống trực tiếp ở định dạng dọc 9:16 gốc của chúng, chính xác như đã tải lên YouTube. Bạn có thể chọn chất lượng video lên đến 1080p hoặc 720p, hoặc chỉ tải xuống âm thanh với tốc độ bit 128kbps, 192kbps hoặc 320kbps ở định dạng MP3, OGG, WAV hoặc OPUS. Công cụ này hoạt động trơn tru trên cả trình duyệt di động và máy tính để bàn.</p>
+            <p>Y2mate hoàn toàn tập trung vào trải nghiệm tải xuống Shorts sạch sẽ và đơn giản. Shorts được tải xuống trực tiếp ở định dạng dọc 9:16 gốc của chúng, chính xác như đã tải lên YouTube. Bạn có thể chọn chất lượng video lên đến 1080p hoặc 720p, hoặc chỉ tải xuống âm thanh với tốc độ bit 128kbps, 192kbps hoặc 320kbps ở định dạng MP3, OGG, WAV hoặc OPUS. Công cụ này hoạt động trơn tru trên cả trình duyệt di động và máy tính để bàn.</p>
         </div>
     </section>
     <section class="y2mate-instruction-pro">
@@ -477,8 +488,8 @@
                             d="M11.251.068a.5.5 0 0 1 .227.58L9.677 6.5H13a.5.5 0 0 1 .364.843l-8 8.5a.5.5 0 0 1-.842-.49L6.323 9.5H3a.5.5 0 0 1-.364-.843l8-8.5a.5.5 0 0 1 .615-.09z">
                         </path>
                     </svg>
-                    <h3>Không có quảng cáo hoặc cửa sổ bật lên</h3>
-                    <p>Một quy trình tải xuống sạch sẽ không có quảng cáo, cửa sổ bật lên hoặc gián đoạn.</p>
+                    <h3>Nhiều tùy chọn video và âm thanh</h3>
+                    <p>Hỗ trợ Shorts ở 1080p hoặc 720p và âm thanh ở 128kbps, 192kbps hoặc 320kbps ở định dạng MP3, OGG, WAV hoặc OPUS.</p>
                 </div>
             </div>
             <div class="col-sm-4 d-flex">
@@ -492,8 +503,8 @@
                             d="M14 3a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zM2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z">
                         </path>
                     </svg>
-                    <h3>Nhiều tùy chọn video và âm thanh</h3>
-                    <p>Hỗ trợ Shorts ở 1080p hoặc 720p và âm thanh ở 128kbps, 192kbps hoặc 320kbps ở định dạng MP3, OGG, WAV hoặc OPUS.</p>
+                    <h3>Giữ nguyên định dạng dọc 9:16</h3>
+                    <p>Tất cả các Shorts vẫn giữ nguyên bố cục dọc ban đầu của chúng.</p>
                 </div>
             </div>
             <div class="col-sm-4 d-flex">
@@ -504,8 +515,8 @@
                             d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2zm11.5 5.175 3.5 1.556V4.269l-3.5 1.556zM2 4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h7.5a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1z">
                         </path>
                     </svg>
-                    <h3>Giữ nguyên định dạng dọc 9:16</h3>
-                    <p>Tất cả các Shorts vẫn giữ nguyên bố cục dọc ban đầu của chúng.</p>
+                    <h3>Công cụ dựa trên trình duyệt ổn định</h3>
+                    <p>Hoạt động trực tiếp trong trình duyệt của bạn mà không cần cài đặt ứng dụng hoặc tiện ích mở rộng.</p>
                 </div>
             </div>
         </div>
@@ -543,6 +554,15 @@
     <p>© 2025 y2mate</p>
     <ul class="footer_nav">
         <li class="fnav-menu">
+            <a href="/vi/youtube-to-mp4">YouTube sang MP4</a>
+        </li>
+        <li class="fnav-menu">
+            <a href="/vi/youtube-to-mp3">YouTube sang MP3</a>
+        </li>
+        <li class="fnav-menu">
+            <a href="/vi/youtube-short-downloader">Tải YouTube Shorts</a>
+        </li>
+        <li class="fnav-menu">
             <a href="/about-us">Giới thiệu</a>
         </li>
         <li class="fnav-menu">
@@ -554,15 +574,23 @@
         <li class="fnav-menu">
             <a href="/privacy-policy">Chính sách bảo mật</a>
         </li>
-        <li class="fnav-menu">
-            <a href="/vi/youtube-short-downloader">Tải YouTube Shorts</a>
-        </li>
     </ul>
 </footer>
 
 
     <!-- Conversion Modal Wrapper -->
     <div id="progressBarWrapper"></div>
+
+    <!-- Ko-fi Support Widget -->
+    <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+    <script>
+      kofiWidgetOverlay.draw('metaconvert', {
+        'type': 'floating-chat',
+        'floating-chat.donateButton.text': 'Support me',
+        'floating-chat.donateButton.background-color': '#00b9fe',
+        'floating-chat.donateButton.text-color': '#fff'
+      });
+    </script>
 </body>
 
 </html>

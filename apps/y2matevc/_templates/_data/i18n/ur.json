@@ -1,0 +1,102 @@
+{
+  "nav": {
+    "home": "یوٹیوب ڈاؤنلوڈر",
+    "youtubeToMp4": "یوٹیوب سے MP4 کنورٹر",
+    "youtubeToMp3": "یوٹیوب سے MP3 کنورٹر",
+    "youtubeShorts": "یوٹیوب شارٹس ڈاؤنلوڈر",
+    "language": "اردو"
+  },
+  "hero": {
+    "placeholder": "یہاں لنک تلاش کریں یا پیسٹ کریں...",
+    "pasteLabel": "کلپ بورڈ سے پیسٹ کریں",
+    "clearLabel": "ان پٹ صاف کریں",
+    "submitButton": "شروع کریں",
+    "termsText": "ہماری سروس استعمال کرکے آپ ہماری قبول کر رہے ہیں",
+    "termsLink": "استعمال کی شرائط"
+  },
+  "formatSelector": {
+    "autoSubmit": "خودکار جمع کرائیں",
+    "autoSubmitTooltip": "یو آر ایل یا کلیدی لفظ پیسٹ کرتے وقت خودکار طور پر جمع کرائیں",
+    "formats": {
+      "mp4": "MP4",
+      "mp3": "MP3"
+    },
+    "quality": {
+      "videoLabel": "ویڈیو کا معیار",
+      "audioLabel": "آڈیو کا معیار"
+    },
+    "options": {
+      "mp4": {
+        "2160p": "MP4 - 4K",
+        "1440p": "MP4 - 2K",
+        "1080p": "MP4 - 1080p",
+        "720p": "MP4 - 720p",
+        "480p": "MP4 - 480p",
+        "360p": "MP4 - 360p",
+        "144p": "MP4 - 144p",
+        "webm": "WEBM",
+        "mkv": "MKV"
+      },
+      "mp3": {
+        "320kbps": "MP3 - 320kbps",
+        "256kbps": "MP3 - 256kbps",
+        "192kbps": "MP3 - 192kbps",
+        "128kbps": "MP3 - 128kbps",
+        "ogg": "OGG",
+        "opus": "OPUS",
+        "wav": "WAV",
+        "64kbps": "MP3 - 64kbps"
+      }
+    }
+  },
+  "status": {
+    "processing": "پروسیسنگ جاری ہے...",
+    "preparing": "تیاری جاری ہے...",
+    "merging": "ضم کیا جا رہا ہے...",
+    "zipping": "زپ کیا جا رہا ہے...",
+    "ready": "100% تیار",
+    "completed": "مکمل",
+    "failed": "ناکام"
+  },
+  "buttons": {
+    "download": "ڈاؤن لوڈ کریں",
+    "tryAgain": "دوبارہ کوشش کریں",
+    "cancel": "منسوخ کریں",
+    "seeMore": "مزید دیکھیں",
+    "seeLess": "کم دیکھیں",
+    "bulkDownload": "منتخب کردہ ڈاؤن لوڈ کریں"
+  },
+  "gallery": {
+    "title": "گیلری",
+    "noItems": "دکھانے کے لیے کوئی گیلری آئٹم نہیں",
+    "selected": "منتخب",
+    "selectAll": "سب کو منتخب کریں",
+    "deselectAll": "سب کو غیر منتخب کریں"
+  },
+  "mobile": {
+    "menuToggleLabel": "نیویگیشن مینو کھولیں",
+    "menuCloseLabel": "نیویگیشن مینو بند کریں",
+    "langButtonLabel": "زبان منتخب کریں"
+  },
+  "footer": {
+    "copyright": "© 2026 y2mate",
+    "about": "ہمارے بارے میں",
+    "contact": "رابطہ کریں",
+    "terms": "سروس کی شرائط",
+    "privacy": "رازداری کی پالیسی",
+    "copyrightClaims": "کاپی رائٹ کے دعوے"
+  },
+  "errors": {
+    "invalidUrl": "براہ کرم ایک درست یو آر ایل درج کریں",
+    "networkError": "نیٹ ورک کی خرابی۔ براہ کرم دوبارہ کوشش کریں۔",
+    "processingError": "پروسیسنگ ناکام ہوگئی۔ براہ کرم دوبارہ کوشش کریں۔",
+    "timeout": "درخواست کا وقت ختم ہوگیا۔ براہ کرم دوبارہ کوشش کریں۔",
+    "downloadExpired": "ڈاؤن لوڈ لنک کی میعاد ختم ہوگئی",
+    "conversionFailed": "تبدیلی ناکام ہوگئی"
+  },
+  "messages": {
+    "downloadReady": "آپ کا ڈاؤن لوڈ تیار ہے",
+    "processing": "آپ کی درخواست پر کارروائی ہو رہی ہے...",
+    "pleaseWait": "برائے مہربانی انتظار کریں..."
+  }
+}

@@ -8,7 +8,7 @@
 
     <!-- SEO Metadata -->
     <title>Y2mate - YouTube zu MP3 Konverter</title>
-    <meta name="description" content="Y2mate ist ein YouTube zu MP3 Konverter, der 128kbps, 192kbps und 320kbps Audio unterstützt. Laden Sie vollständige Audiodateien mit erhaltener Klangintegrität herunter. Keine Werbung angezeigt.">
+    <meta name="description" content="Y2mate ist ein YouTube zu MP3 Konverter, der 128kbps, 192kbps und 320kbps Audio unterstützt. Laden Sie vollständige Audiodateien mit erhaltener Klangintegrität herunter.">
     
     <link rel="canonical" href="https://y2matepro.com/de/youtube-to-mp3">
 
@@ -44,13 +44,20 @@
     <meta property="og:site_name" content="Y2Mate" />
     <meta property="og:locale" content="de_DE" />
     <meta property="og:title" content="Y2mate - YouTube zu MP3 Konverter" />
-    <meta property="og:description" content="YouTube in MP3 mit 128/192/320kbps konvertieren. Schnelle Verarbeitung, vollständige Audioausgabe und keine Werbung." />
-    <meta property="og:image" content="https://y2matepro.com/logo.png" />
+    <meta property="og:description" content="YouTube in MP3 mit 128/192/320kbps konvertieren. Schnelle Verarbeitung, vollständige Audioausgabe." />
+    <meta property="og:image" content="https://y2matepro.com/favicon-512x512.png" />
     <meta property="og:url" content="https://y2matepro.com/de/youtube-to-mp3" />
 
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://y2matepro.com/de/youtube-to-mp3">
+    <meta name="twitter:title" content="Y2mate - YouTube zu MP3 Konverter">
+    <meta name="twitter:description" content="YouTube in MP3 mit 128/192/320kbps konvertieren. Schnelle Verarbeitung, vollständige Audioausgabe.">
+    <meta name="twitter:image" content="https://y2matepro.com/favicon-512x512.png">
 
     <!-- Favicons -->
-    <link rel="icon" href="/favicon.png">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.png" type="image/png">
     <link type="image/png" sizes="16x16" rel="icon" href="/favicon1616.png">
     <link type="image/png" sizes="32x32" rel="icon" href="/favicon3232.png">
     <link type="image/png" sizes="48x48" rel="icon" href="/favicon4848.png">
@@ -72,22 +79,29 @@
       "@type": "WebPage",
       "@id": "https://y2matepro.com/de/youtube-to-mp3#webpage",
       "url": "https://y2matepro.com/de/youtube-to-mp3",
-      "name": "Y2mate - YouTube zu MP3 Konverter",
+      "name": "YouTube zu MP3 Konverter",
+      "isPartOf": {
+        "@id": "https://y2matepro.com/#website"
+      },
       "about": {
+        "@type": "SoftwareApplication",
         "@id": "https://y2matepro.com/de/youtube-to-mp3#application"
       },
       "inLanguage": "de"
     },
     {
-      "@type": "WebApplication",
+      "@type": "SoftwareApplication",
       "@id": "https://y2matepro.com/de/youtube-to-mp3#application",
-      "name": "Y2mate",
+      "name": "YouTube zu MP3 Konverter",
       "url": "https://y2matepro.com/de/youtube-to-mp3",
       "description": "Ein Online-YouTube zu MP3 Konvertierungstool, das mehrere Bitratenoptionen mit erhaltener Audiointegrität unterstützt.",
       "applicationCategory": "MultimediaApplication",
       "operatingSystem": "All",
       "browserRequirements": "Requires JavaScript. Requires HTML5.",
       "inLanguage": "de",
+      "publisher": {
+        "@id": "https://y2matepro.com/#organization"
+      },
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -131,14 +145,6 @@
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "MP3 ist ein verlustbehaftetes Komprimierungsformat, was bedeutet, dass während der Kodierung einige Audiodaten reduziert werden. Höhere Bitraten wie 192kbps und 320kbps minimieren jedoch den wahrnehmbaren Qualitätsverlust. Y2mate wendet keine zusätzliche Komprimierung über die ausgewählte Bitrate hinaus an."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Werden während der Konvertierung Werbung oder Pop-ups angezeigt?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Nein. Y2mate zeigt in keiner Phase des Konvertierungs- oder Downloadprozesses Werbung oder Pop-ups an."
           }
         },
         {
@@ -207,9 +213,9 @@
                     <a href="/de/youtube-to-mp3">YouTube zu MP3</a>
                 </li>
                 <li class="navbar language">
-                    <a href="javascript:void(0);">
+                    <button type="button" aria-haspopup="true" aria-expanded="false">
                         Deutsch<span class="shape"></span>
-                    </a>
+                    </button>
                     <div class="dropdown-menu">
                         <ul class="lang-menu">
                             <li>
@@ -378,9 +384,6 @@
                         Mit der Nutzung unseres Dienstes akzeptieren Sie unsere <a href="/terms-condition">Nutzungsbedingungen</a>.
                     </p>
                 </form>
-                <div class="spinner" style="display: none;">
-                    <img id="loading_img" src="/loading.gif">
-                </div>
             </div>
 
             <!-- Video Detail Area -->
@@ -400,7 +403,7 @@
         <div class="col-sm-12">
             <h2>YouTube-Audio in MP3 konvertieren</h2>
             <p>Der YouTube zu MP3 Konverter von Y2Mate ermöglicht es Ihnen, Audio aus YouTube-Videos zu extrahieren und schnell und einfach als MP3-Datei herunterzuladen. Fügen Sie einfach den YouTube-Link ein, wählen Sie Ihre bevorzugte Audioqualität und laden Sie die MP3-Datei direkt auf Ihr Gerät herunter, ohne Software zu installieren.</p>
-            <p>Dieser YouTube-zu-MP3-Downloader unterstützt Audio-Bitraten wie 128 kbps, 192 kbps und 320 kbps für unterschiedliche Hörbedürfnisse. Y2Mate funktioniert vollständig in Ihrem Browser mit schneller Konvertierungsgeschwindigkeit, ohne Werbung oder Pop-ups und ohne dass Software oder Registrierung erforderlich sind.</p>
+            <p>Dieser YouTube-zu-MP3-Downloader unterstützt Audio-Bitraten wie 128 kbps, 192 kbps und 320 kbps für unterschiedliche Hörbedürfnisse. Y2Mate funktioniert vollständig in Ihrem Browser mit schneller Konvertierungsgeschwindigkeit.</p>
         </div>
     </section>
     <section class="y2mate-instruction-pro">
@@ -484,8 +487,8 @@
                             d="M0 10a8 8 0 1 1 15.547 2.661c-.442 1.253-1.845 1.602-2.932 1.25C11.309 13.488 9.475 13 8 13c-1.474 0-3.31.488-4.615.911-1.087.352-2.49.003-2.932-1.25A8 8 0 0 1 0 10m8-7a7 7 0 0 0-6.603 9.329c.203.575.923.876 1.68.63C4.397 12.533 6.358 12 8 12s3.604.532 4.923.96c.757.245 1.477-.056 1.68-.631A7 7 0 0 0 8 3">
                         </path>
                     </svg>
-                    <h3>Werbefreier Arbeitsablauf</h3>
-                    <p>Während des Konvertierungsprozesses werden keine Werbung oder Pop-ups angezeigt.</p>
+                    <h3>Unbegrenzte Konvertierungen</h3>
+                    <p>Benutzer können mehrere MP3-Dateien ohne tägliche oder Nutzungslimits konvertieren und herunterladen.</p>
                 </div>
             </div>
             <div class="col-sm-4 d-flex">
@@ -496,8 +499,8 @@
                             d="M15 8a6.97 6.97 0 0 0-1.71-4.584l-9.874 9.875A7 7 0 0 0 15 8M2.71 12.584l9.874-9.875a7 7 0 0 0-9.874 9.874ZM16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0">
                         </path>
                     </svg>
-                    <h3>Unbegrenzte Konvertierungen</h3>
-                    <p>Benutzer können mehrere MP3-Dateien ohne tägliche oder Nutzungslimits konvertieren und herunterladen.</p>
+                    <h3>Breite Wiedergabekompatibilität</h3>
+                    <p>MP3-Dateien sind mit gängigen Mediaplayern, Smartphones und Audiogeräten kompatibel.</p>
                 </div>
             </div>
             <div class="col-sm-4 d-flex">
@@ -511,8 +514,8 @@
                             d="M2 4.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H3v2.5a.5.5 0 0 1-1 0zm12 7a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1 0-1H13V8.5a.5.5 0 0 1 1 0z">
                         </path>
                     </svg>
-                    <h3>Breite Wiedergabekompatibilität</h3>
-                    <p>MP3-Dateien sind mit gängigen Mediaplayern, Smartphones und Audiogeräten kompatibel.</p>
+                    <h3>Kompatibel mit allen Betriebssystemen</h3>
+                    <p>Y2mate ermöglicht MP3-Konvertierung und Wiedergabe auf allen Betriebssystemen, einschließlich Windows, macOS, Android, iOS und Linux, und gewährleistet Komfort auf jeder Plattform.</p>
                 </div>
             </div>
         </div>
@@ -535,9 +538,6 @@
                 <h3>Reduziert die Konvertierung von YouTube in MP3 die Audioqualität?</h3>
                 <p>MP3 ist ein verlustbehaftetes Komprimierungsformat, was bedeutet, dass während der Kodierung einige Audiodaten reduziert werden. Höhere Bitraten wie 192kbps und 320kbps minimieren jedoch den wahrnehmbaren Qualitätsverlust. Y2mate wendet keine zusätzliche Komprimierung über die ausgewählte Bitrate hinaus an.</p>
                 
-                <h3>Werden während der Konvertierung Werbung oder Pop-ups angezeigt?</h3>
-                <p>Nein. Y2mate zeigt in keiner Phase des Konvertierungs- oder Downloadprozesses Werbung oder Pop-ups an.</p>
-                
                 <h3>Können private YouTube-Videos konvertiert werden?</h3>
                 <p>Nein. Aufgrund von Zugriffsbeschränkungen können nur öffentliche oder nicht gelistete YouTube-Videos verarbeitet werden.</p>
                 
@@ -553,6 +553,15 @@
     <p>© 2025 y2mate</p>
     <ul class="footer_nav">
         <li class="fnav-menu">
+            <a href="/de/youtube-to-mp4">YouTube zu MP4</a>
+        </li>
+        <li class="fnav-menu">
+            <a href="/de/youtube-to-mp3">YouTube zu MP3</a>
+        </li>
+        <li class="fnav-menu">
+            <a href="/de/youtube-short-downloader">Shorts Downloader</a>
+        </li>
+        <li class="fnav-menu">
             <a href="/about-us">Über uns</a>
         </li>
         <li class="fnav-menu">
@@ -564,15 +573,23 @@
         <li class="fnav-menu">
             <a href="/privacy-policy">Datenschutz</a>
         </li>
-        <li class="fnav-menu">
-            <a href="/de/youtube-short-downloader">Shorts Downloader</a>
-        </li>
     </ul>
 </footer>
 
 
     <!-- Conversion Modal Wrapper -->
     <div id="progressBarWrapper"></div>
+
+    <!-- Ko-fi Support Widget -->
+    <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+    <script>
+      kofiWidgetOverlay.draw('metaconvert', {
+        'type': 'floating-chat',
+        'floating-chat.donateButton.text': 'Support me',
+        'floating-chat.donateButton.background-color': '#00b9fe',
+        'floating-chat.donateButton.text-color': '#fff'
+      });
+    </script>
 </body>
 
 </html>

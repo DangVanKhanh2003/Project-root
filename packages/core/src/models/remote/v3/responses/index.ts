@@ -3,3 +3,4 @@
  */
 
 export * from './download.response';
+export * from './external-extract.response';

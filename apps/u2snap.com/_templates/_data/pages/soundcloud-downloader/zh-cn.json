@@ -1,0 +1,115 @@
+{
+  "seo": {
+    "title": "SoundCloud下载器 – 免费下载音乐 | U2SNAP",
+    "description": "使用U2SNAP下载SoundCloud音乐。免费SoundCloud下载器，将曲目和播放列表保存为高质量MP3。无需注册或安装应用。",
+    "schemaName": "U2SNAP - SoundCloud下载器",
+    "schemaDescription": "U2SNAP是一款免费的SoundCloud下载器，允许用户下载SoundCloud音乐并将曲目保存为高质量MP3。",
+    "ogTitle": "SoundCloud下载器 – 免费下载音乐 | U2SNAP",
+    "ogDescription": "使用U2SNAP下载SoundCloud音乐。免费、快速、高质量的SoundCloud转MP3下载。"
+  },
+  "content": {
+    "form": {
+      "h1": "U2SNAP – SoundCloud下载器",
+      "placeholder": "在此粘贴SoundCloud URL...",
+      "button": "下载"
+    },
+    "sections": [
+      {
+        "h2": "什么是U2SNAP SoundCloud下载器？",
+        "p": [
+          "U2SNAP是一款免费的<strong>SoundCloud下载器</strong>，可以让您从SoundCloud下载音乐并将曲目保存到您的设备。",
+          "只需粘贴SoundCloud URL，点击下载，即可将曲目以MP3格式直接保存到手机或电脑。",
+          "这款<strong>SoundCloud转MP3</strong>转换器适用于所有设备和browser，无需安装任何应用。"
+        ]
+      },
+      {
+        "h2": "如何下载SoundCloud音乐",
+        "ol": [
+          {
+            "h3": "复制SoundCloud URL",
+            "p": [
+              "打开SoundCloud，从地址栏或分享按钮复制您想下载的曲目或播放列表的URL。"
+            ]
+          },
+          {
+            "h3": "粘贴链接",
+            "p": [
+              "将SoundCloud URL粘贴到上方的U2SNAP SoundCloud下载器中。"
+            ]
+          },
+          {
+            "h3": "下载音乐",
+            "p": [
+              "点击下载按钮，将SoundCloud曲目以MP3格式保存到您的设备。"
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "将SoundCloud音乐下载为MP3",
+        "p": [
+          "U2SNAP将SoundCloud曲目转换为MP3格式，让您可以<strong>下载SoundCloud音乐</strong>并在任何设备上离线收听。",
+          "保存您喜爱的SoundCloud歌曲、混音和播客，随时随地离线收听。"
+        ]
+      },
+      {
+        "h2": "为什么选择U2SNAP SoundCloud下载器？",
+        "ul": [
+          {
+            "h3": "高质量音频",
+            "p": [
+              "以最高可用音频质量下载SoundCloud曲目，获得最佳听觉体验。"
+            ]
+          },
+          {
+            "h3": "SoundCloud转MP3",
+            "p": [
+              "将SoundCloud音乐转换并保存为可在任何设备或音乐播放器上播放的MP3文件。"
+            ]
+          },
+          {
+            "h3": "免费且无限制",
+            "p": [
+              "免费下载任意数量的SoundCloud曲目，没有每日限制。"
+            ]
+          },
+          {
+            "h3": "无需应用",
+            "p": [
+              "SoundCloud下载器直接在您的browser中运行，无需在任何设备上安装应用。"
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "常见问题",
+        "ul": [
+          {
+            "h3": "U2SNAP SoundCloud下载器免费吗？",
+            "p": [
+              "是的。U2SNAP是完全免费的SoundCloud下载器，没有任何隐藏费用。"
+            ]
+          },
+          {
+            "h3": "我可以将SoundCloud音乐下载为MP3吗？",
+            "p": [
+              "可以。U2SNAP将SoundCloud曲目转换为MP3格式，方便下载和离线播放。"
+            ]
+          },
+          {
+            "h3": "在iPhone和Android上能用吗？",
+            "p": [
+              "可以。SoundCloud下载器适用于所有移动设备和桌面browser。"
+            ]
+          },
+          {
+            "h3": "下载需要SoundCloud账号吗？",
+            "p": [
+              "不需要。使用U2SNAP下载SoundCloud音乐只需要曲目URL。"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "nav": { "home": "ہوم" },
+  "drawer": { "logoText": "Y2SS", "links": { "home": "ہوم" } },
+  "hero": {
+    "placeholder": "یہاں YouTube پلے لسٹ URL چسپاں کریں...",
+    "pasteBtn": "چسپاں کریں",
+    "clearBtn": "صاف کریں",
+    "convertBtn": "تبدیل کریں",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "آڈیو ٹریک",
+    "searchPlaceholder": "تلاش کریں...",
+    "supportedPlatforms": "معاون پلیٹ فارمز:"
+  },
+  "footer": {
+    "copyright": "© 2026 Y2SS. جملہ حقوق محفوظ ہیں۔",
+    "legal": {
+      "about": "ہمارے بارے میں",
+      "contact": "رابطہ کریں",
+      "copyright": "کاپی رائٹ اور DMCA",
+      "privacyPolicy": "رازداری کی پالیسی",
+      "termsOfUse": "استعمال کی شرائط"
+    }
+  },
+  "langSelector": { "buttonLabel": "زبان تبدیل کریں", "buttonText": "UR", "currentLangFull": "اردو" },
+  "strim": {
+    "startBtn": "شروع کریں",
+    "selectFormatLabel": "۱. فارمیٹ منتخب کریں:",
+    "selectQualityLabel": "۲. معیار منتخب کریں:",
+    "audioTrackLabel": "۳. آڈیو ٹریک منتخب کریں:",
+    "trimLabel": "۴. ویڈیو کاٹیں (شروع – ختم وقت):",
+    "startTimeLabel": "شروع",
+    "endTimeLabel": "ختم"
+  }
+}

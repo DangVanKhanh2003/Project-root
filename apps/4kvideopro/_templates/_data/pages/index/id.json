@@ -1,0 +1,97 @@
+{
+  "seo": {
+    "title": "Unduh Video YouTube 4K – Pengunduh YouTube 4K",
+    "description": "Unduh video YouTube dalam kualitas 4K secara online. Pengunduh YouTube 4K yang sederhana, cepat, dan berbasis web.",
+    "ogTitle": "Unduh Video YouTube 4K – Pengunduh YouTube 4K",
+    "ogDescription": "Unduh video YouTube dalam kualitas 4K secara online. Pengunduh YouTube 4K yang sederhana, cepat, dan berbasis web."
+  },
+  "hero": {
+    "title": "Pengunduh YouTube",
+    "titleAccent": "Video 4K",
+    "subtitle": "Unduh video YouTube dalam kualitas 4K",
+    "placeholder": "Tempel tautan di sini"
+  },
+  "content": {
+    "introTitle": "Tentang 4K Video Ini",
+    "intro": [
+      "Halaman ini adalah alat khusus untuk mengunduh video YouTube dalam kualitas 4K.",
+      "Alat ini dibuat untuk melayani pengguna yang perlu mengunduh video YouTube dalam resolusi tinggi."
+    ],
+    "sections": [
+      {
+        "id": "download-4k",
+        "title": "Unduh Video YouTube dalam Kualitas 4K",
+        "paragraphs": [
+          "Ketika video YouTube mendukung resolusi 4K (2160p), alat ini akan menampilkan opsi untuk mengunduh video dalam kualitas 4K.",
+          "Video yang diunduh selalu sesuai dengan kualitas asli yang disediakan oleh YouTube.",
+          "Alat ini tidak mengubah atau mengubah kualitas video selama proses pengunduhan."
+        ]
+      },
+      {
+        "id": "when-4k-not-available",
+        "title": "Ketika 4K Tidak Tersedia",
+        "paragraphs": [
+          "Tidak semua video YouTube diunggah dengan resolusi 4K.",
+          "Jika video tidak menyediakan streaming 4K, alat ini akan menampilkan semua kualitas lain yang tersedia yang ditawarkan oleh YouTube.",
+          "Anda masih dapat mengunduh kualitas tertinggi yang didukung oleh video asli."
+        ]
+      },
+      {
+        "id": "how-it-works",
+        "title": "Cara Mengunduh Video YouTube dalam 4K",
+        "list": [
+          {
+            "title": "Tempel tautan video YouTube",
+            "text": "Salin URL video YouTube dan tempelkan ke bidang input di halaman ini."
+          },
+          {
+            "title": "Unduh 4K jika tersedia",
+            "text": "Jika video mendukung resolusi 4K, opsi unduhan 4K akan tersedia secara default."
+          },
+          {
+            "title": "Pilih kualitas lain jika perlu",
+            "text": "Jika 4K tidak tersedia, pilih kualitas tertinggi yang disediakan oleh YouTube dan unduh videonya."
+          }
+        ]
+      },
+      {
+        "id": "formats",
+        "title": "Format Unduhan yang Tersedia",
+        "paragraphs": [
+          "File video disediakan dalam format MP4 berdasarkan kualitas video YouTube asli.",
+          "Unduhan hanya audio dalam format MP3 tersedia sebagai pilihan opsional.",
+          "Semua format yang tersedia mencerminkan streaming asli yang disediakan oleh YouTube."
+        ]
+      }
+    ]
+  },
+  "instructions": {
+    "title": "Cara Mengunduh Video YouTube dalam 4K",
+    "steps": [
+      "Salin URL video YouTube dan tempelkan ke bidang input di halaman ini.",
+      "Jika video mendukung resolusi 4K, opsi unduhan 4K akan tersedia secara default.",
+      "Jika 4K tidak tersedia, pilih kualitas tertinggi yang disediakan oleh YouTube dan unduh videonya."
+    ]
+  },
+  "faqs": {
+    "title": "Pertanyaan yang Sering Diajukan",
+    "items": [
+      {
+        "question": "Bisakah semua video YouTube diunduh dalam 4K?",
+        "answer": "Tidak. Hanya video YouTube yang memiliki streaming 4K asli yang dapat diunduh dalam kualitas 4K."
+      },
+      {
+        "question": "Apakah alat ini meningkatkan skala video ke 4K?",
+        "answer": "Tidak. Alat ini tidak meningkatkan skala atau memodifikasi video. Ini hanya menyediakan opsi unduhan berdasarkan kualitas asli yang tersedia di YouTube."
+      },
+      {
+        "question": "Format apa yang tersedia untuk diunduh?",
+        "answer": "File video disediakan dalam format MP4 berdasarkan kualitas video YouTube asli. Unduhan hanya audio dalam format MP3 tersedia sebagai pilihan opsional."
+      },
+      {
+        "question": "Apa yang terjadi jika 4K tidak tersedia?",
+        "answer": "Jika video tidak menyediakan streaming 4K, alat ini akan menampilkan semua kualitas lain yang tersedia yang ditawarkan oleh YouTube. Anda masih dapat mengunduh kualitas tertinggi yang didukung oleh video asli."
+      }
+    ]
+  }
+}

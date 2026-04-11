@@ -1,0 +1,35 @@
+{
+  "nav": { "home": "الرئيسية" },
+  "drawer": { "logoText": "Y2SS", "links": { "home": "الرئيسية" } },
+  "hero": {
+    "placeholder": "الصق رابط قائمة تشغيل YouTube هنا...",
+    "pasteBtn": "لصق",
+    "clearBtn": "مسح",
+    "convertBtn": "تحويل",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "المسار الصوتي",
+    "searchPlaceholder": "بحث...",
+    "supportedPlatforms": "المنصات المدعومة:"
+  },
+  "footer": {
+    "copyright": "© 2026 Y2SS. جميع الحقوق محفوظة.",
+    "legal": {
+      "about": "من نحن",
+      "contact": "اتصل بنا",
+      "copyright": "حقوق النشر وDMCA",
+      "privacyPolicy": "سياسة الخصوصية",
+      "termsOfUse": "شروط الاستخدام"
+    }
+  },
+  "langSelector": { "buttonLabel": "تغيير اللغة", "buttonText": "AR", "currentLangFull": "العربية" },
+  "strim": {
+    "startBtn": "بدء",
+    "selectFormatLabel": "1. اختر الصيغة:",
+    "selectQualityLabel": "2. اختر الجودة:",
+    "audioTrackLabel": "3. اختر المسار الصوتي:",
+    "trimLabel": "4. قص الفيديو (وقت البدء – وقت الانتهاء):",
+    "startTimeLabel": "البداية",
+    "endTimeLabel": "النهاية"
+  }
+}

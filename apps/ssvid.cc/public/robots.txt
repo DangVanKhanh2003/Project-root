@@ -1,0 +1,6 @@
+User-agent: *
+
+# Block API endpoints
+Disallow: /api/
+
+Sitemap: https://ssvid.cc/sitemap.xml

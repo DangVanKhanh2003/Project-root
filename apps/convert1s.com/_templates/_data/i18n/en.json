@@ -1,0 +1,70 @@
+{
+  "nav": {
+    "home": "Home",
+    "playlistDownloader": "Playlist Downloader"
+  },
+  "drawer": {
+    "logoText": "Convert1s",
+    "links": {
+      "home": "Home",
+      "playlistDownloader": "YouTube Playlist to MP3",
+      "youtubeToMp3": "YouTube to MP3",
+      "youtubeToMp4": "YouTube to MP4",
+      "youtubeShortsDownloader": "YouTube Shorts Downloader",
+      "tiktokDownloader": "TikTok Downloader",
+      "facebookDownloader": "Facebook Downloader",
+      "instagramDownloader": "Instagram Downloader",
+      "twitterDownloader": "Twitter Downloader",
+      "vimeoDownloader": "Vimeo Downloader",
+      "linkedinDownloader": "LinkedIn Downloader",
+      "biliDownloader": "Bilibili Downloader",
+      "kwaiDownloader": "Kwai Downloader",
+      "vkDownloader": "VK Downloader",
+      "ninegagDownloader": "9GAG Downloader"
+    }
+  },
+  "hero": {
+    "placeholder": "Paste video link here...",
+    "pasteBtn": "Paste",
+    "clearBtn": "Clear",
+    "convertBtn": "Convert",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "Audio track",
+    "searchPlaceholder": "Search...",
+    "supportedPlatforms": "Supported platforms:"
+  },
+  "footer": {
+    "links": {
+      "playlistDownloader": "YouTube Playlist to MP3",
+      "youtubeToMp3": "YouTube to MP3",
+      "youtubeToMp4": "YouTube to MP4",
+      "youtubeShortsDownloader": "YouTube Shorts Downloader",
+      "tiktokDownloader": "TikTok Downloader",
+      "facebookDownloader": "Facebook Downloader",
+      "instagramDownloader": "Instagram Downloader",
+      "twitterDownloader": "Twitter Downloader",
+      "vimeoDownloader": "Vimeo Downloader",
+      "linkedinDownloader": "LinkedIn Downloader",
+      "biliDownloader": "Bilibili Downloader",
+      "kwaiDownloader": "Kwai Downloader",
+      "vkDownloader": "VK Downloader",
+      "ninegagDownloader": "9GAG Downloader"
+    },
+    "copyright": "\u00a9 2026 Convert1s. All rights reserved."
+  },
+  "langSelector": {
+    "buttonLabel": "Change language",
+    "buttonText": "EN",
+    "currentLangFull": "English"
+  },
+  "strim": {
+    "startBtn": "Start",
+    "selectFormatLabel": "1. Select format:",
+    "selectQualityLabel": "2. Select quality:",
+    "audioTrackLabel": "3. Select audio track:",
+    "trimLabel": "4. Cut video (Start \u2013 End time):",
+    "startTimeLabel": "Start",
+    "endTimeLabel": "End"
+  }
+}

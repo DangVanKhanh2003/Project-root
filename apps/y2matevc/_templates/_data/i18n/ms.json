@@ -1,0 +1,102 @@
+{
+  "nav": {
+    "home": "Pemuat Turun YouTube",
+    "youtubeToMp4": "Penukar YouTube ke MP4",
+    "youtubeToMp3": "Penukar YouTube ke MP3",
+    "youtubeShorts": "Pemuat Turun YouTube Shorts",
+    "language": "Bahasa Melayu"
+  },
+  "hero": {
+    "placeholder": "Cari atau tampal pautan di sini...",
+    "pasteLabel": "Tampal dari papan keratan",
+    "clearLabel": "Kosongkan input",
+    "submitButton": "Mula",
+    "termsText": "Dengan menggunakan perkhidmatan kami, anda menerima",
+    "termsLink": "Syarat Penggunaan"
+  },
+  "formatSelector": {
+    "autoSubmit": "Hantar secara automatik",
+    "autoSubmitTooltip": "Hantar secara automatik apabila menampal URL atau kata kunci",
+    "formats": {
+      "mp4": "MP4",
+      "mp3": "MP3"
+    },
+    "quality": {
+      "videoLabel": "Kualiti video",
+      "audioLabel": "Kualiti audio"
+    },
+    "options": {
+      "mp4": {
+        "2160p": "MP4 - 4K",
+        "1440p": "MP4 - 2K",
+        "1080p": "MP4 - 1080p",
+        "720p": "MP4 - 720p",
+        "480p": "MP4 - 480p",
+        "360p": "MP4 - 360p",
+        "144p": "MP4 - 144p",
+        "webm": "WEBM",
+        "mkv": "MKV"
+      },
+      "mp3": {
+        "320kbps": "MP3 - 320kbps",
+        "256kbps": "MP3 - 256kbps",
+        "192kbps": "MP3 - 192kbps",
+        "128kbps": "MP3 - 128kbps",
+        "ogg": "OGG",
+        "opus": "OPUS",
+        "wav": "WAV",
+        "64kbps": "MP3 - 64kbps"
+      }
+    }
+  },
+  "status": {
+    "processing": "Memproses...",
+    "preparing": "Menyediakan...",
+    "merging": "Menggabungkan...",
+    "zipping": "Memampatkan...",
+    "ready": "Sedia 100%",
+    "completed": "Selesai",
+    "failed": "Gagal"
+  },
+  "buttons": {
+    "download": "Muat turun",
+    "tryAgain": "Cuba Lagi",
+    "cancel": "Batal",
+    "seeMore": "Lihat lagi",
+    "seeLess": "Lihat kurang",
+    "bulkDownload": "Muat Turun Terpilih"
+  },
+  "gallery": {
+    "title": "Galeri",
+    "noItems": "Tiada item galeri untuk dipaparkan",
+    "selected": "dipilih",
+    "selectAll": "Pilih Semua",
+    "deselectAll": "Nyahpilih Semua"
+  },
+  "mobile": {
+    "menuToggleLabel": "Buka menu navigasi",
+    "menuCloseLabel": "Tutup menu navigasi",
+    "langButtonLabel": "Pilih bahasa"
+  },
+  "footer": {
+    "copyright": "© 2026 y2mate",
+    "about": "Mengenai",
+    "contact": "Hubungi",
+    "terms": "Syarat Perkhidmatan",
+    "privacy": "Dasar Privasi",
+    "copyrightClaims": "Tuntutan Hak Cipta"
+  },
+  "errors": {
+    "invalidUrl": "Sila masukkan URL yang sah",
+    "networkError": "Ralat rangkaian. Sila cuba lagi.",
+    "processingError": "Pemprosesan gagal. Sila cuba lagi.",
+    "timeout": "Tamat masa permintaan. Sila cuba lagi.",
+    "downloadExpired": "Pautan muat turun telah tamat tempoh",
+    "conversionFailed": "Penukaran gagal"
+  },
+  "messages": {
+    "downloadReady": "Muat turun anda sudah sedia",
+    "processing": "Memproses permintaan anda...",
+    "pleaseWait": "Sila tunggu..."
+  }
+}

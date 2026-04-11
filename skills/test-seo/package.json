@@ -1,0 +1,36 @@
+{
+  "name": "@downloader/seo-checker",
+  "version": "1.0.0",
+  "description": "A general-purpose SEO validation tool for all sites in the monorepo.",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "check": "pnpm run build && node dist/index.js",
+    "dev": "tsx src/index.ts",
+    "dev:watch": "tsx watch src/index.ts",
+    "check:canonical": "tsx src/index.ts canonical",
+    "check:alternate": "tsx src/index.ts alternate",
+    "check:meta": "tsx src/index.ts meta-tags",
+    "check:jsonld": "tsx src/index.ts structured-data",
+    "check:sitemap": "tsx src/index.ts sitemap",
+    "check:i18n": "tsx src/index.ts i18n-completeness",
+    "check:url": "tsx src/index.ts url-format",
+    "check:lang-dropdown": "tsx src/index.ts lang-dropdowns",
+    "check:jsonld-content": "tsx src/index.ts jsonld-content"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "cheerio": "^1.0.0-rc.12",
+    "fast-glob": "^3.3.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

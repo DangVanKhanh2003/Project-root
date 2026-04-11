@@ -1,0 +1,65 @@
+{
+  "nav": {
+    "home": "ပင်မစာမျက်နှာ",
+    "youtubeToMp3Converter": "YouTube မှ MP3",
+    "youtubeToMp4Converter": "YouTube မှ MP4",
+    "youtubeAudioConverter": "YouTube အသံပြောင်းစက်",
+    "youtubePlaylistToMp3": "YouTube သီချင်းစာရင်း MP3",
+    "youtubeShortsToMp4": "YouTube Shorts မှ MP4",
+    "youtubeToMp3320kbps": "YouTube မှ MP3 320kbps",
+    "youtubeToMp44k": "YouTube မှ MP4 4K",
+    "youtubeToMp4Hd": "YouTube မှ MP4 HD"
+  },
+  "drawer": {
+    "logoText": "YTConvert",
+    "links": {
+      "home": "ပင်မစာမျက်နှာ",
+      "youtubeToMp3Converter": "YouTube မှ MP3",
+      "youtubeToMp4Converter": "YouTube မှ MP4",
+      "youtubeAudioConverter": "YouTube အသံပြောင်းစက်",
+      "youtubePlaylistToMp3": "YouTube သီချင်းစာရင်း MP3",
+      "youtubeShortsToMp4": "YouTube Shorts မှ MP4",
+      "youtubeToMp3320kbps": "YouTube မှ MP3 320kbps",
+      "youtubeToMp44k": "YouTube မှ MP4 4K",
+      "youtubeToMp4Hd": "YouTube မှ MP4 HD"
+    }
+  },
+  "hero": {
+    "placeholder": "ဗီဒီယိုလင့်ခ်ကို ဤနေရာတွင် ကူးထည့်ပါ...",
+    "pasteBtn": "ကူးထည့်",
+    "clearBtn": "ရှင်းလင်း",
+    "convertBtn": "ပြောင်းလဲ",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "အသံလမ်းကြော",
+    "searchPlaceholder": "ရှာဖွေ...",
+    "supportedPlatforms": "ပံ့ပိုးသော ပလက်ဖောင်းများ-"
+  },
+  "footer": {
+    "copyright": "© 2026 YTConvert. မူပိုင်ခွင့်များ အားလုံးရယူထားသည်။",
+    "nav": {
+      "youtubeToMp3Converter": "YouTube မှ MP3 ပြောင်းစက်",
+      "youtubeToMp4Converter": "YouTube မှ MP4 ပြောင်းစက်",
+      "youtubeAudioConverter": "YouTube အသံပြောင်းစက်",
+      "youtubePlaylistToMp3": "YouTube သီချင်းစာရင်း MP3",
+      "youtubeShortsToMp4": "YouTube Shorts မှ MP4",
+      "youtubeToMp3320kbps": "YouTube မှ MP3 320kbps",
+      "youtubeToMp44k": "YouTube မှ MP4 4K",
+      "youtubeToMp4Hd": "YouTube မှ MP4 HD"
+    }
+  },
+  "langSelector": {
+    "buttonLabel": "ဘာသာစကား ပြောင်းရန်",
+    "buttonText": "MY",
+    "currentLangFull": "မြန်မာ"
+  },
+  "strim": {
+    "startBtn": "စတင်",
+    "selectFormatLabel": "1. ဖော်မက်ရွေးချယ်ပါ-",
+    "selectQualityLabel": "2. အရည်အသွေးရွေးချယ်ပါ-",
+    "audioTrackLabel": "3. အသံလမ်းကြောရွေးချယ်ပါ-",
+    "trimLabel": "4. ဗီဒီယိုဖြတ်ရန် (စတင် – အဆုံးအချိန်)-",
+    "startTimeLabel": "စတင်",
+    "endTimeLabel": "အဆုံး"
+  }
+}

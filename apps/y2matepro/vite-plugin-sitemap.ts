@@ -1,6 +1,7 @@
 import type { Plugin } from 'vite';
-import { readdirSync, writeFileSync, readFileSync, existsSync, statSync } from 'fs';
+import { readdirSync, writeFileSync, readFileSync, existsSync } from 'fs';
 import { resolve, join, relative } from 'path';
+import { execSync } from 'child_process';
 
 interface SitemapConfig {
   baseUrl?: string;
@@ -24,16 +25,9 @@ export function sitemapPlugin(config: SitemapConfig = {}): Plugin {
     name: 'vite-plugin-sitemap',
     closeBundle() {
       const distDir = resolve(__dirname, 'dist');
-      // Read HTML files from 11ty output (source of truth for all pages including i18n)
-      const eleventyOutputDir = resolve(__dirname, '_11ty-output');
 
       if (!existsSync(distDir)) {
         console.warn('[sitemap] dist directory not found, skipping sitemap generation');
-        return;
-      }
-
-      if (!existsSync(eleventyOutputDir)) {
-        console.warn('[sitemap] _11ty-output directory not found, skipping sitemap generation');
         return;
       }
 
@@ -52,8 +46,8 @@ export function sitemapPlugin(config: SitemapConfig = {}): Plugin {
         }
       }
 
-      // Collect all HTML files from 11ty output (includes all languages)
-      const htmlFiles = collectHtmlFiles(eleventyOutputDir, eleventyOutputDir);
+      // Collect all HTML files from dist directory (final build output)
+      const htmlFiles = collectHtmlFiles(distDir, distDir);
 
       if (htmlFiles.length === 0) {
         console.warn('[sitemap] No HTML files found in dist directory');
@@ -61,14 +55,14 @@ export function sitemapPlugin(config: SitemapConfig = {}): Plugin {
       }
 
       // Generate sitemap XML
-      const today = new Date().toISOString().split('T')[0];
       const urls = htmlFiles.map(file => {
         const urlPath = file.replace(/\\/g, '/').replace(/index\.html$/, '').replace(/\.html$/, '');
         const fullUrl = urlPath ? `${baseUrl}/${urlPath}` : baseUrl;
         const isHome = urlPath === '' || urlPath.match(/^[a-z]{2}$/) !== null;
         const priority = isHome ? homePriority : defaultPriority;
+        const lastmod = getGitLastModified(file);
 
-        return generateUrlEntry(fullUrl, today, changefreq, priority);
+        return generateUrlEntry(fullUrl, lastmod, changefreq, priority);
       });
 
       const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
@@ -82,6 +76,27 @@ ${urls.join('\n')}
       console.log(`[sitemap] Generated sitemap.xml with ${htmlFiles.length} URLs`);
     }
   };
+}
+
+/**
+ * Files to exclude from sitemap
+ */
+const EXCLUDE_FILES = ['404.html'];
+
+/**
+ * Patterns to exclude from sitemap (regex)
+ */
+const EXCLUDE_PATTERNS = [
+  /^google[a-z0-9]+\.html$/,  // Google verification files
+  /^Bing.*\.xml$/i,           // Bing verification files
+];
+
+/**
+ * Check if a file should be excluded from sitemap
+ */
+function shouldExclude(filename: string): boolean {
+  if (EXCLUDE_FILES.includes(filename)) return true;
+  return EXCLUDE_PATTERNS.some(pattern => pattern.test(filename));
 }
 
 /**
@@ -102,6 +117,10 @@ function collectHtmlFiles(dir: string, baseDir: string): string[] {
       }
       files.push(...collectHtmlFiles(fullPath, baseDir));
     } else if (entry.name.endsWith('.html')) {
+      // Skip excluded files (404, verification files, etc.)
+      if (shouldExclude(entry.name)) {
+        continue;
+      }
       // Get relative path from dist
       const relativePath = relative(baseDir, fullPath);
       files.push(relativePath);
@@ -109,6 +128,40 @@ function collectHtmlFiles(dir: string, baseDir: string): string[] {
   }
 
   return files;
+}
+
+/**
+ * Get the last modified date of a source file from git history.
+ * Maps dist HTML files back to their source (template .njk or direct .html).
+ */
+function getGitLastModified(distFile: string): string {
+  const normalized = distFile.replace(/\\/g, '/');
+  // Strip locale prefix (e.g., "ar/index.html" → "index.html")
+  const withoutLocale = normalized.replace(/^[a-z]{2}\//, '');
+  const njkName = withoutLocale.replace(/\.html$/, '.njk');
+  const templatePath = `_templates/pages/${njkName}`;
+  const directPath = withoutLocale;
+
+  // Determine source file: template (.njk) takes priority, then direct HTML
+  let sourcePath: string;
+  if (existsSync(resolve(__dirname, templatePath))) {
+    sourcePath = templatePath;
+  } else if (existsSync(resolve(__dirname, directPath))) {
+    sourcePath = directPath;
+  } else {
+    sourcePath = normalized;
+  }
+
+  try {
+    const result = execSync(`git log -1 --format=%aI -- "${sourcePath}"`, {
+      cwd: __dirname,
+      encoding: 'utf-8',
+    }).trim();
+    if (result) {
+      return result.split('T')[0];
+    }
+  } catch {}
+  return new Date().toISOString().split('T')[0]; // fallback
 }
 
 /**

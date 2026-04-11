@@ -1,0 +1,115 @@
+{
+  "seo": {
+    "title": "SoundCloud Downloader – Tải Nhạc Miễn Phí | U2SNAP",
+    "description": "Tải nhạc SoundCloud với U2SNAP. Trình tải SoundCloud miễn phí lưu bài hát và playlist dưới dạng MP3 chất lượng cao. Không cần đăng ký hay cài app.",
+    "schemaName": "U2SNAP - SoundCloud Downloader",
+    "schemaDescription": "U2SNAP là trình tải SoundCloud miễn phí cho phép người dùng tải nhạc SoundCloud và lưu bài hát dưới dạng MP3 chất lượng cao.",
+    "ogTitle": "SoundCloud Downloader – Tải Nhạc Miễn Phí | U2SNAP",
+    "ogDescription": "Tải nhạc SoundCloud với U2SNAP. Miễn phí, nhanh chóng và tải SoundCloud sang MP3 chất lượng cao."
+  },
+  "content": {
+    "form": {
+      "h1": "U2SNAP – SoundCloud Downloader",
+      "placeholder": "Dán URL SoundCloud vào đây...",
+      "button": "Tải xuống"
+    },
+    "sections": [
+      {
+        "h2": "U2SNAP SoundCloud Downloader là gì?",
+        "p": [
+          "U2SNAP là <strong>trình tải SoundCloud</strong> miễn phí cho phép bạn tải nhạc từ SoundCloud và lưu bài hát vào thiết bị của bạn.",
+          "Chỉ cần dán URL SoundCloud, nhấn tải xuống và lưu bài hát dưới dạng MP3 trực tiếp vào điện thoại hoặc máy tính.",
+          "Công cụ chuyển đổi <strong>SoundCloud sang MP3</strong> này hoạt động trên mọi thiết bị và browser mà không cần cài đặt ứng dụng."
+        ]
+      },
+      {
+        "h2": "Cách tải nhạc SoundCloud",
+        "ol": [
+          {
+            "h3": "Sao chép URL SoundCloud",
+            "p": [
+              "Mở SoundCloud và sao chép URL của bài hát hoặc playlist bạn muốn tải từ thanh địa chỉ hoặc nút chia sẻ."
+            ]
+          },
+          {
+            "h3": "Dán liên kết",
+            "p": [
+              "Dán URL SoundCloud vào trình tải U2SNAP SoundCloud ở trên."
+            ]
+          },
+          {
+            "h3": "Tải nhạc",
+            "p": [
+              "Nhấn nút tải xuống và lưu bài hát SoundCloud dưới dạng MP3 vào thiết bị của bạn."
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "Tải nhạc SoundCloud dưới dạng MP3",
+        "p": [
+          "U2SNAP chuyển đổi bài hát SoundCloud sang định dạng MP3 để bạn có thể <strong>tải nhạc SoundCloud</strong> và nghe offline trên bất kỳ thiết bị nào.",
+          "Lưu các bài hát, bản mix và podcast yêu thích từ SoundCloud để nghe offline mọi lúc, mọi nơi."
+        ]
+      },
+      {
+        "h2": "Tại sao nên dùng U2SNAP SoundCloud Downloader?",
+        "ul": [
+          {
+            "h3": "Âm thanh chất lượng cao",
+            "p": [
+              "Tải bài hát SoundCloud với chất lượng âm thanh cao nhất có sẵn để có trải nghiệm nghe tốt nhất."
+            ]
+          },
+          {
+            "h3": "SoundCloud sang MP3",
+            "p": [
+              "Chuyển đổi và lưu nhạc SoundCloud dưới dạng file MP3 hoạt động trên mọi thiết bị hoặc trình phát nhạc."
+            ]
+          },
+          {
+            "h3": "Miễn phí và không giới hạn",
+            "p": [
+              "Tải bao nhiêu bài hát SoundCloud tùy thích miễn phí không giới hạn hàng ngày."
+            ]
+          },
+          {
+            "h3": "Không cần ứng dụng",
+            "p": [
+              "Trình tải SoundCloud hoạt động trực tiếp trong browser trên mọi thiết bị mà không cần cài đặt ứng dụng."
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "Câu hỏi thường gặp",
+        "ul": [
+          {
+            "h3": "U2SNAP SoundCloud downloader có miễn phí không?",
+            "p": [
+              "Có. U2SNAP là trình tải SoundCloud hoàn toàn miễn phí không có phí ẩn."
+            ]
+          },
+          {
+            "h3": "Tôi có thể tải nhạc SoundCloud dưới dạng MP3 không?",
+            "p": [
+              "Có. U2SNAP chuyển đổi bài hát SoundCloud sang định dạng MP3 để tải xuống dễ dàng và phát offline."
+            ]
+          },
+          {
+            "h3": "Có hoạt động trên iPhone và Android không?",
+            "p": [
+              "Có. Trình tải SoundCloud hoạt động trên tất cả thiết bị di động và browser máy tính."
+            ]
+          },
+          {
+            "h3": "Tôi có cần tài khoản SoundCloud để tải không?",
+            "p": [
+              "Không. Bạn chỉ cần URL bài hát để tải nhạc SoundCloud với U2SNAP."
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

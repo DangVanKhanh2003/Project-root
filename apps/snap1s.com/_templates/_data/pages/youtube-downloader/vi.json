@@ -1,0 +1,115 @@
+{
+  "seo": {
+    "title": "YouTube Downloader – Tải Video Miễn Phí | SNAP1S",
+    "description": "Tải video YouTube với SNAP1S. Trình tải video YouTube miễn phí lưu video chất lượng HD và 4K. Không cần đăng ký hay cài ứng dụng.",
+    "schemaName": "SNAP1S - Trình Tải Video YouTube",
+    "schemaDescription": "SNAP1S là trình tải video YouTube miễn phí cho phép người dùng tải video YouTube chất lượng HD và 4K.",
+    "ogTitle": "YouTube Downloader – Tải Video Miễn Phí | SNAP1S",
+    "ogDescription": "Tải video YouTube bằng SNAP1S. Miễn phí, nhanh chóng và chất lượng HD."
+  },
+  "content": {
+    "form": {
+      "h1": "SNAP1S – Trình Tải Video YouTube",
+      "placeholder": "Dán URL video YouTube vào đây...",
+      "button": "Tải Video"
+    },
+    "sections": [
+      {
+        "h2": "SNAP1S YouTube Downloader là gì?",
+        "p": [
+          "SNAP1S là <strong>trình tải video YouTube</strong> miễn phí cho phép bạn tải video YouTube về thiết bị với chất lượng HD và 4K.",
+          "Chỉ cần dán link video YouTube, nhấn tải xuống và lưu video trực tiếp vào điện thoại hoặc máy tính của bạn.",
+          "<strong>Trình tải video YouTube trực tuyến</strong> này hoạt động trên mọi thiết bị và trình duyệt mà không cần cài đặt ứng dụng."
+        ]
+      },
+      {
+        "h2": "Cách tải video YouTube",
+        "ol": [
+          {
+            "h3": "Sao chép link video YouTube",
+            "p": [
+              "Mở YouTube và sao chép URL của video bạn muốn tải từ thanh địa chỉ hoặc nút chia sẻ."
+            ]
+          },
+          {
+            "h3": "Dán link",
+            "p": [
+              "Dán URL video YouTube vào trình tải SNAP1S YouTube ở trên."
+            ]
+          },
+          {
+            "h3": "Tải video",
+            "p": [
+              "Nhấn nút tải xuống và lưu video YouTube với chất lượng bạn muốn vào thiết bị."
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "Tải video YouTube chất lượng HD",
+        "p": [
+          "SNAP1S cho phép bạn <strong>tải video YouTube</strong> với nhiều tùy chọn chất lượng bao gồm 720p, 1080p và độ phân giải 4K.",
+          "Lưu video YouTube yêu thích, video âm nhạc và hướng dẫn để xem ngoại tuyến mọi lúc, mọi nơi."
+        ]
+      },
+      {
+        "h2": "Tại sao nên dùng SNAP1S YouTube Downloader?",
+        "ul": [
+          {
+            "h3": "Chất lượng HD và 4K",
+            "p": [
+              "Tải video YouTube với chất lượng cao nhất có sẵn bao gồm Full HD và độ phân giải 4K."
+            ]
+          },
+          {
+            "h3": "Nhiều định dạng",
+            "p": [
+              "Lưu video YouTube ở nhiều định dạng bao gồm MP4, MP3 và nhiều hơn nữa theo nhu cầu của bạn."
+            ]
+          },
+          {
+            "h3": "Miễn phí và không giới hạn",
+            "p": [
+              "Tải bao nhiêu video YouTube tùy thích hoàn toàn miễn phí không có giới hạn hàng ngày."
+            ]
+          },
+          {
+            "h3": "Không cần ứng dụng",
+            "p": [
+              "Trình tải YouTube hoạt động trực tiếp trong browser trên mọi thiết bị mà không cần cài đặt ứng dụng."
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "Câu hỏi thường gặp",
+        "ul": [
+          {
+            "h3": "SNAP1S YouTube downloader có miễn phí không?",
+            "p": [
+              "Có. SNAP1S là trình tải YouTube hoàn toàn miễn phí không có phí ẩn."
+            ]
+          },
+          {
+            "h3": "Tôi có thể tải video YouTube chất lượng HD không?",
+            "p": [
+              "Có. SNAP1S hỗ trợ tải video YouTube chất lượng 720p, 1080p và 4K."
+            ]
+          },
+          {
+            "h3": "Có hoạt động trên iPhone và Android không?",
+            "p": [
+              "Có. Trình tải YouTube hoạt động trên mọi thiết bị di động và trình duyệt máy tính."
+            ]
+          },
+          {
+            "h3": "Tôi có cần tài khoản YouTube để tải không?",
+            "p": [
+              "Không. Bạn chỉ cần URL video để tải video YouTube bằng SNAP1S."
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

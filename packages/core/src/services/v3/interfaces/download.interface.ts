@@ -16,16 +16,16 @@ export interface IV3DownloadService {
    *
    * @param request - Download request parameters
    * @param signal - Optional abort signal
-   * @returns Job creation response with job ID
+   * @returns Job creation response with statusUrl
    */
   createJob(request: V3DownloadRequest, signal?: AbortSignal): Promise<CreateJobResponse>;
 
   /**
-   * Get job status
-   * GET /api/status/:id
+   * Get job status by full URL
+   * GET {statusUrl} - URL from createJob response
    *
-   * @param jobId - Job ID from createJob response
+   * @param statusUrl - Full status URL with token from createJob response
    * @returns Job status with progress and download URL when completed
    */
-  getStatus(jobId: string): Promise<StatusResponse>;
+  getStatusByUrl(statusUrl: string): Promise<StatusResponse>;
 }

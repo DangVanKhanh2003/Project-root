@@ -1,0 +1,160 @@
+/* =========================================================
+   CSS Variables - Dark Theme
+   ---------------------------------------------------------
+   Pure Black + Acid Lime Design System
+   Migrated from demo_ytmp3_dark_v1_no_tailwind.html
+   ========================================================= */
+
+:root {
+    /* ===== COLORS ===== */
+
+    /* Base Palette */
+    --color-black: #000000;
+    --color-white: #FFFFFF;
+    --color-acid-lime: #D4FF00;
+    --color-acid-lime-hover: #BEF000;
+    --color-bright-blue: #3b82f6;
+    --color-sky-blue: #60a5fa;
+    --color-indigo-blue: #2563eb;
+
+    /* Grayscale */
+    --color-gray-900: #18181B;
+    --color-gray-850: #333;
+    --color-gray-800: #27272A;
+    --color-gray-700: #3F3F46;
+    --color-gray-600: #52525B;
+    --color-gray-550: #666;
+    --color-gray-500: #71717A;
+    --color-gray-400: #A1A1AA;
+    --color-gray-300: #D4D4D8;
+    --color-gray-250: #ddd;
+    --color-gray-200: #E5E5E5;
+    --color-gray-100: #F5F5F5;
+
+
+    /* Background */
+    --bg-body: var(--color-black);
+    --bg-card: var(--color-black);
+    --bg-card-hover: var(--color-gray-900);
+    --bg-input: var(--color-black);
+    --bg-header: var(--color-black);
+    --bg-header-scroll: var(--color-black);
+    --bg-footer: var(--color-black);
+    --bg-step: #09090B;
+    --bg-step-hover: var(--color-gray-900);
+    --bg-badge: var(--color-gray-900);
+    --bg-button: var(--color-gray-900);
+    --bg-button-hover: var(--color-gray-800);
+    --bg-white: var(--color-white);
+
+    /* Accent */
+    --color-accent: var(--color-acid-lime);
+    --color-accent-hover: var(--color-acid-lime-hover);
+    --color-accent-secondary: var(--color-bright-blue);
+    --color-accent-dark: rgba(212, 255, 0, 0.1);
+
+    /* Gradient */
+    --gradient-primary: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-secondary) 100%);
+
+    /* Text */
+    --text-main: var(--color-white);
+    --text-muted: var(--color-gray-400);
+    --text-secondary: var(--color-gray-500);
+    --text-tertiary: var(--color-gray-600);
+    --text-accent: var(--color-acid-lime);
+    --text-logo: var(--color-white);
+    --text-step-num: rgba(255, 255, 255, 0.05);
+
+    /* Borders */
+    --border-primary: var(--color-gray-800);
+    --border-secondary: var(--color-gray-700);
+    --border-hover: var(--color-gray-500);
+    --border-glass: 1px solid var(--color-gray-800);
+    --border-input: 2px solid var(--color-gray-700);
+    --border-input-hover: var(--color-white);
+    --border-input-focus: var(--color-white);
+    --border-active: 1px solid var(--color-white);
+
+    /* Selection */
+    --selection-bg: var(--color-acid-lime);
+    --selection-text: var(--color-black);
+
+    /* Semantic Colors */
+    --color-error-bg: #450A0A;
+    --color-error-border: #DC2626;
+    --color-error-text: #FECACA;
+    --color-error-dot: #DC2626;
+    --color-status-success: #2ecc71;
+    --color-status-error: #e74c3c;
+    --color-success-bg: #d4edda;
+    --color-success-text: #155724;
+    --color-error-bg-light: #f2dede;
+    --color-error-border-light: #ebccd1;
+    --color-error-text-light: #a94442;
+    --color-warning-yellow: #ffc107;
+    --color-orange: #ff9800;
+    --color-orange-dark: #f57c00;
+
+
+    /* Skeleton */
+    --color-skeleton-dark: #d7d7d7;
+    --color-skeleton-light: #c7c7c7;
+
+
+    /* ===== TYPOGRAPHY ===== */
+    /* System font stack for optimal performance (0ms load, 0KB download) */
+    --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-display: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+    /* Font Weights */
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+
+    /* ===== SPACING ===== */
+    --header-height: 80px;
+    --container-width: 1100px;
+    --container-max: 64rem;
+    --card-max: 56rem;
+
+    /* Border Radius */
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 20px;
+    --radius-pill: 9999px;
+
+    /* ===== EFFECTS ===== */
+
+    /* Shadows */
+    --shadow-card: 4px 4px 0 0 rgba(255, 255, 255, 0.15);
+    --shadow-button: 0 0 20px rgba(212, 255, 0, 0.3);
+    --shadow-button-hover: 0 0 30px rgba(212, 255, 0, 0.5);
+    --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    --shadow-dropdown: 4px 4px 0 0 rgba(255, 255, 255, 0.15);
+
+    /* Glow */
+    --glow-accent: rgba(212, 255, 0, 0.05);
+    --glow-input: 0 0 0 4px rgba(255, 255, 255, 0.1);
+
+    /* Backdrop */
+    --backdrop-drawer: rgba(24, 24, 27, 0.9);
+
+    /* ===== GRID PATTERN ===== */
+    --grid-pattern:
+        linear-gradient(to right, rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+    --grid-size: 50px 50px;
+
+    /* ===== TRANSITIONS ===== */
+    --transition-fast: 0.2s;
+    --transition-normal: 0.3s;
+    --transition-slow: 0.5s;
+}
+
+/* ===== SELECTION ===== */
+::selection {
+    background-color: var(--selection-bg);
+    color: var(--selection-text);
+}

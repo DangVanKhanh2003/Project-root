@@ -3,3 +3,4 @@
  */
 
 export * from './download.request';
+export * from './external-extract.request';

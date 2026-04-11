@@ -21,7 +21,7 @@ const DEFAULT_EXCLUDE = FILE_PATTERNS.exclude;
 
 // Language codes được support
 export const SUPPORTED_LANGUAGES = [
-  'en', 'vi', 'es', 'fr', 'de', 'it', 'pt', 'ru', 'ja', 'ko', 'zh',
+  'en', 'vi', 'es', 'fr', 'de', 'it', 'pt', 'ru', 'ja', 'ko',
   'ar', 'hi', 'th', 'id', 'ms', 'tr', 'pl', 'nl', 'sv', 'da', 'no',
   'fi', 'cs', 'el', 'he', 'uk', 'ro', 'hu', 'sk', 'bg', 'hr', 'sr',
   'bn', 'ur', 'my',

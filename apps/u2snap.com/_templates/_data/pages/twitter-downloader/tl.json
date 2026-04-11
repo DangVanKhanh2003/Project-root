@@ -1,0 +1,115 @@
+{
+  "seo": {
+    "title": "Twitter Video Downloader – I-save ang X Videos | U2SNAP",
+    "description": "Mag-download ng Twitter videos gamit ang U2SNAP. Libreng Twitter/X video downloader na nagse-save ng videos sa HD quality. Walang registration o app.",
+    "schemaName": "U2SNAP - Twitter Video Downloader",
+    "schemaDescription": "Ang U2SNAP ay isang libreng Twitter video downloader na nagpapahintulot sa mga user na mag-save ng Twitter/X videos sa HD quality.",
+    "ogTitle": "Twitter Video Downloader – I-save ang X Videos | U2SNAP",
+    "ogDescription": "Mag-download ng Twitter/X videos gamit ang U2SNAP. Libre, mabilis, at HD quality."
+  },
+  "content": {
+    "form": {
+      "h1": "U2SNAP – Twitter Video Downloader",
+      "placeholder": "I-paste ang Twitter/X video URL dito...",
+      "button": "I-download ang Video"
+    },
+    "sections": [
+      {
+        "h2": "Ano ang U2SNAP Twitter Video Downloader?",
+        "p": [
+          "Ang U2SNAP ay isang libreng <strong>Twitter video downloader</strong> na nagpapahintulot sa iyo na mag-save ng videos mula sa Twitter (X) direkta sa iyong device sa HD quality.",
+          "I-paste lang ang tweet URL, i-click ang download, at i-save ang video sa iyong phone o computer sa ilang segundo.",
+          "Ang <strong>X video downloader</strong> na ito ay gumagana sa lahat ng device at browser nang walang kailangan na app installation o account."
+        ]
+      },
+      {
+        "h2": "Paano Mag-download ng Twitter Videos",
+        "ol": [
+          {
+            "h3": "Kopyahin ang Tweet URL",
+            "p": [
+              "Buksan ang Twitter/X at i-tap ang Share button sa tweet na may video, pagkatapos piliin ang Copy Link."
+            ]
+          },
+          {
+            "h3": "I-paste ang Link",
+            "p": [
+              "I-paste ang Twitter video URL sa U2SNAP Twitter video downloader sa itaas."
+            ]
+          },
+          {
+            "h3": "I-download ang Video",
+            "p": [
+              "I-click ang download button at i-save ang Twitter video sa iyong device sa gusto mong quality."
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "I-save ang Twitter/X Videos sa HD Quality",
+        "p": [
+          "Pinapayagan ka ng U2SNAP na <strong>mag-download ng Twitter video</strong> sa pinakamataas na available na resolution kasama ang HD at Full HD.",
+          "Mag-save ng videos mula sa tweets, threads, at GIFs mula sa Twitter/X para sa offline viewing o sharing sa ibang platforms."
+        ]
+      },
+      {
+        "h2": "Bakit Gamitin ang U2SNAP Twitter Video Downloader?",
+        "ul": [
+          {
+            "h3": "HD Quality Downloads",
+            "p": [
+              "Mag-download ng Twitter videos sa HD at Full HD quality nang walang compression o quality loss."
+            ]
+          },
+          {
+            "h3": "Twitter at X Support",
+            "p": [
+              "Gumagana sa twitter.com at x.com URLs para sa pag-download ng videos mula sa anumang public tweet."
+            ]
+          },
+          {
+            "h3": "Libre at Walang Limitasyon",
+            "p": [
+              "Mag-download ng maraming Twitter videos na gusto mo nang libre at walang daily limits."
+            ]
+          },
+          {
+            "h3": "Walang App na Kailangan",
+            "p": [
+              "Ang Twitter video downloader ay gumagana direkta sa iyong browser nang walang kailangan na software installation."
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "Mga Madalas Itanong",
+        "ul": [
+          {
+            "h3": "Libre ba ang U2SNAP Twitter video downloader?",
+            "p": [
+              "Oo. Ang U2SNAP ay isang ganap na libreng Twitter video downloader na walang nakatagong bayarin."
+            ]
+          },
+          {
+            "h3": "Maaari ba akong mag-download ng videos mula sa X.com?",
+            "p": [
+              "Oo. Sinusuportahan ng U2SNAP ang twitter.com at x.com links para sa video downloads."
+            ]
+          },
+          {
+            "h3": "Gumagana ba ito sa iPhone at Android?",
+            "p": [
+              "Oo. Ang Twitter video downloader ay gumagana sa lahat ng mobile devices at desktop browsers."
+            ]
+          },
+          {
+            "h3": "Kailangan ko ba ng Twitter account para mag-download?",
+            "p": [
+              "Hindi. Kailangan mo lang ng tweet link para mag-download ng Twitter videos gamit ang U2SNAP."
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

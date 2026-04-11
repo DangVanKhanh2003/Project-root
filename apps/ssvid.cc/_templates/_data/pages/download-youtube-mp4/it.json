@@ -1,0 +1,93 @@
+{
+  "seo": {
+    "title": "SSVID CC - Scarica video MP4 di YouTube online gratuitamente",
+    "description": "Scarica video di YouTube come MP4 con SSVID. Downloader di YouTube MP4 gratuito, veloce e illimitato. Supporta la qualità HD e 4K e i video lunghi. Nessuna app richiesta.",
+    "schemaName": "SSVID - Downloader di YouTube MP4",
+    "schemaDescription": "Scarica video di YouTube come MP4 con SSVID. Gratuito, veloce e illimitato.",
+    "ogTitle": "SSVID - Scarica video MP4 di YouTube online gratuitamente",
+    "ogDescription": "Scarica video di YouTube come MP4 con SSVID. Supporta la qualità HD e 4K. Gratuito e illimitato."
+  },
+  "defaultFormat": "mp4",
+  "hero": {
+    "title": "SSVID - Scarica video MP4 di YouTube",
+    "subtitle": "Downloader di YouTube MP4 gratuito, veloce e illimitato"
+  },
+  "overview": {
+    "title": "Cos'è il downloader di YouTube MP4 SSVID?",
+    "description": "SSVID è uno strumento online gratuito progettato specificamente per aiutare gli utenti a <strong>scaricare video di YouTube come MP4</strong> per la visualizzazione offline. A differenza dei convertitori audio, il formato MP4 mantiene sia il video che l'audio, rendendolo ideale per tutorial, presentazioni, video musicali e contenuti di YouTube di lunga durata. Puoi tornare alla <a href=\"/\" title=\"SSVID Online Video Downloader\"><strong>homepage di SSVID</strong></a> per accedere a tutti gli strumenti di download di YouTube.",
+    "howTo": {
+      "title": "Come scaricare video MP4 di YouTube con SSVID",
+      "steps": [
+        {
+          "number": "1",
+          "title": "Copia il link",
+          "description": "Copia il link del video di YouTube."
+        },
+        {
+          "number": "2",
+          "title": "Incolla e seleziona",
+          "description": "Incolla il link in SSVID."
+        },
+        {
+          "number": "3",
+          "title": "Scarica",
+          "description": "Scarica il video come MP4 in pochi secondi."
+        }
+      ]
+    }
+  },
+  "whatCanDownload": {
+    "title": "Cosa puoi scaricare come MP4 con SSVID?",
+    "sections": [
+      {
+        "title": "Video di YouTube (MP4)",
+        "description": "Scarica video di YouTube come MP4 per mantenere l'esperienza visiva completa. Questa opzione è ideale per tutorial, vlog, video musicali e contenuti educativi che si basano su elementi visivi video."
+      },
+      {
+        "title": "Video di YouTube in HD e 4K",
+        "description": "Quando supportato dal video originale, SSVID ti consente di scaricare video MP4 di YouTube in qualità HD e 4K per una riproduzione cristallina su schermi di grandi dimensioni."
+      },
+      {
+        "title": "Video di YouTube lunghi",
+        "description": "SSVID supporta il download di video di YouTube lunghi come MP4 senza limiti di durata, rendendolo adatto per podcast, documentari e corsi completi."
+      }
+    ]
+  },
+  "whyDownload": {
+    "title": "Perché scaricare video di YouTube come MP4?",
+    "description": "MP4 è il formato video più ampiamente supportato su tutti i dispositivi e le piattaforme. Scegliendo MP4, puoi guardare i video di YouTube scaricati offline senza problemi di compatibilità. Questo formato è perfetto per gli utenti che desiderano salvare video completi anziché solo l'audio."
+  },
+  "qualityOptions": {
+    "title": "Qualità video MP4 e supporto per video lunghi",
+    "description": "SSVID ti consente di scaricare video MP4 di YouTube in più risoluzioni, inclusa la <strong>qualità HD e 4K</strong> quando disponibile. Lo strumento supporta anche <strong>video di YouTube lunghi</strong>, come tutorial completi, lezioni e contenuti estesi, senza limiti di tempo o restrizioni."
+  },
+  "faqs": {
+    "title": "Domande frequenti",
+    "items": [
+      {
+        "question": "Qual è la differenza tra YouTube MP4 e MP3?",
+        "answer": "MP4 include sia video che audio, mentre MP3 estrae solo il suono. MP4 è migliore per la visualizzazione offline e i contenuti visivi."
+      },
+      {
+        "question": "Posso scaricare video MP4 di YouTube online?",
+        "answer": "Sì. SSVID funziona interamente online, consentendoti di scaricare video MP4 di YouTube direttamente nel tuo browser."
+      },
+      {
+        "question": "SSVID supporta i download di MP4 in HD e 4K?",
+        "answer": "Sì. SSVID supporta i download di MP4 in HD e 4K quando il video di YouTube originale è disponibile in tali risoluzioni."
+      },
+      {
+        "question": "Posso scaricare video di YouTube lunghi come MP4?",
+        "answer": "Sì. SSVID supporta il download di video di YouTube lunghi senza limiti di tempo."
+      },
+      {
+        "question": "L'uso di SSVID è gratuito?",
+        "answer": "Sì. SSVID è completamente gratuito e non richiede registrazione."
+      },
+      {
+        "question": "Posso usare SSVID su dispositivi mobili?",
+        "answer": "Sì. SSVID funziona sia su browser desktop che mobili, inclusi Android e iOS."
+      }
+    ]
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "seo": {
+    "title": "Baixar Vídeo do YouTube em 4K – Downloader de 4K do YouTube",
+    "description": "Baixe vídeos do YouTube em qualidade 4K online. Downloader de 4K do YouTube simples, rápido e baseado na web.",
+    "ogTitle": "Baixar Vídeo do YouTube em 4K – Downloader de 4K do YouTube",
+    "ogDescription": "Baixe vídeos do YouTube em qualidade 4K online. Downloader de 4K do YouTube simples, rápido e baseado na web."
+  },
+  "hero": {
+    "title": "Downloader de Vídeos",
+    "titleAccent": "4K do YouTube",
+    "subtitle": "Baixe vídeos do YouTube em qualidade 4K",
+    "placeholder": "Cole o link aqui"
+  },
+  "content": {
+    "introTitle": "Sobre este 4K Video",
+    "intro": [
+      "Esta página é uma ferramenta dedicada para baixar vídeos do YouTube em qualidade 4K.",
+      "A ferramenta foi criada para atender usuários que precisam baixar vídeos do YouTube em alta resolução."
+    ],
+    "sections": [
+      {
+        "id": "download-4k",
+        "title": "Baixe Vídeos do YouTube em Qualidade 4K",
+        "paragraphs": [
+          "Quando um vídeo do YouTube suporta resolução 4K (2160p), a ferramenta exibirá a opção de baixar o vídeo em qualidade 4K.",
+          "Os vídeos baixados sempre correspondem à qualidade original fornecida pelo YouTube.",
+          "A ferramenta não modifica ou altera a qualidade do vídeo durante o processo de download."
+        ]
+      },
+      {
+        "id": "when-4k-not-available",
+        "title": "Quando o 4K Não Está Disponível",
+        "paragraphs": [
+          "Nem todos os vídeos do YouTube são enviados com resolução 4K.",
+          "Se um vídeo não fornecer um stream em 4K, a ferramenta exibirá todas as outras qualidades disponíveis oferecidas pelo YouTube.",
+          "Você ainda pode baixar a mais alta qualidade suportada pelo vídeo original."
+        ]
+      },
+      {
+        "id": "how-it-works",
+        "title": "Como Baixar Vídeos do YouTube em 4K",
+        "list": [
+          {
+            "title": "Cole o link do vídeo do YouTube",
+            "text": "Copie o URL do vídeo do YouTube e cole-o no campo de entrada desta página."
+          },
+          {
+            "title": "Baixe em 4K se disponível",
+            "text": "Se o vídeo suportar resolução 4K, a opção de download em 4K estará disponível por padrão."
+          },
+          {
+            "title": "Escolha outra qualidade se necessário",
+            "text": "Se o 4K não estiver disponível, selecione a mais alta qualidade fornecida pelo YouTube и baixe o vídeo."
+          }
+        ]
+      },
+      {
+        "id": "formats",
+        "title": "Formatos de Download Disponíveis",
+        "paragraphs": [
+          "Os arquivos de vídeo são fornecidos no formato MP4 com base na qualidade original do vídeo do YouTube.",
+          "Downloads somente de áudio no formato MP3 estão disponíveis como uma escolha opcional.",
+          "Todos os formatos disponíveis refletem os streams originais fornecidos pelo YouTube."
+        ]
+      }
+    ]
+  },
+  "instructions": {
+    "title": "Como Baixar Vídeos do YouTube em 4K",
+    "steps": [
+      "Copie o URL do vídeo do YouTube e cole-o no campo de entrada desta página.",
+      "Se o vídeo suportar resolução 4K, a opção de download em 4K estará disponível por padrão.",
+      "Se o 4K não estiver disponível, selecione a mais alta qualidade fornecida pelo YouTube e baixe o vídeo."
+    ]
+  },
+  "faqs": {
+    "title": "Perguntas Frequentes",
+    "items": [
+      {
+        "question": "Todos os vídeos do YouTube podem ser baixados em 4K?",
+        "answer": "Não. Apenas os vídeos do YouTube que possuem um stream 4K nativo podem ser baixados em qualidade 4K."
+      },
+      {
+        "question": "Esta ferramenta aumenta a resolução dos vídeos para 4K?",
+        "answer": "Não. A ferramenta não aumenta a resolução nem modifica os vídeos. Ela apenas fornece opções de download com base na qualidade original disponível no YouTube."
+      },
+      {
+        "question": "Quais formatos estão disponíveis para download?",
+        "answer": "Os arquivos de vídeo são fornecidos no formato MP4 com base na qualidade original do vídeo do YouTube. Downloads somente de áudio no formato MP3 estão disponíveis como uma escolha opcional."
+      },
+      {
+        "question": "O que acontece se o 4K não estiver disponível?",
+        "answer": "Se um vídeo não fornecer um stream em 4K, a ferramenta exibirá todas as outras qualidades disponíveis oferecidas pelo YouTube. Você ainda pode baixar a mais alta qualidade suportada pelo vídeo original."
+      }
+    ]
+  }
+}

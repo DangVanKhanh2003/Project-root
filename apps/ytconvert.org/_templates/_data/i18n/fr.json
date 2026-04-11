@@ -1,0 +1,65 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "youtubeToMp3Converter": "YouTube en MP3",
+    "youtubeToMp4Converter": "YouTube en MP4",
+    "youtubeAudioConverter": "Convertisseur audio YouTube",
+    "youtubePlaylistToMp3": "Playlist YouTube en MP3",
+    "youtubeShortsToMp4": "YouTube Shorts en MP4",
+    "youtubeToMp3320kbps": "YouTube en MP3 320kbps",
+    "youtubeToMp44k": "YouTube en MP4 4K",
+    "youtubeToMp4Hd": "YouTube en MP4 HD"
+  },
+  "drawer": {
+    "logoText": "YTConvert",
+    "links": {
+      "home": "Accueil",
+      "youtubeToMp3Converter": "YouTube en MP3",
+      "youtubeToMp4Converter": "YouTube en MP4",
+      "youtubeAudioConverter": "Convertisseur audio YouTube",
+      "youtubePlaylistToMp3": "Playlist YouTube en MP3",
+      "youtubeShortsToMp4": "YouTube Shorts en MP4",
+      "youtubeToMp3320kbps": "YouTube en MP3 320kbps",
+      "youtubeToMp44k": "YouTube en MP4 4K",
+      "youtubeToMp4Hd": "YouTube en MP4 HD"
+    }
+  },
+  "hero": {
+    "placeholder": "Collez le lien vidéo ici...",
+    "pasteBtn": "Coller",
+    "clearBtn": "Effacer",
+    "convertBtn": "Convertir",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "Piste audio",
+    "searchPlaceholder": "Rechercher...",
+    "supportedPlatforms": "Plateformes prises en charge :"
+  },
+  "footer": {
+    "copyright": "© 2026 YTConvert. Tous droits réservés.",
+    "nav": {
+      "youtubeToMp3Converter": "Convertisseur YouTube en MP3",
+      "youtubeToMp4Converter": "Convertisseur YouTube en MP4",
+      "youtubeAudioConverter": "Convertisseur audio YouTube",
+      "youtubePlaylistToMp3": "Playlist YouTube en MP3",
+      "youtubeShortsToMp4": "YouTube Shorts en MP4",
+      "youtubeToMp3320kbps": "YouTube en MP3 320kbps",
+      "youtubeToMp44k": "YouTube en MP4 4K",
+      "youtubeToMp4Hd": "YouTube en MP4 HD"
+    }
+  },
+  "langSelector": {
+    "buttonLabel": "Changer de langue",
+    "buttonText": "FR",
+    "currentLangFull": "Français"
+  },
+  "strim": {
+    "startBtn": "Démarrer",
+    "selectFormatLabel": "1. Sélectionner le format :",
+    "selectQualityLabel": "2. Sélectionner la qualité :",
+    "audioTrackLabel": "3. Sélectionner la piste audio :",
+    "trimLabel": "4. Couper la vidéo (Début – Fin) :",
+    "startTimeLabel": "Début",
+    "endTimeLabel": "Fin"
+  }
+}

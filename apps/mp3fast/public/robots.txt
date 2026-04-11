@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Keep internal/test tools out of the index (none currently present)
+
+# Block API endpoints only (HTML allowed for SEO)
+Disallow: /api
+Disallow: /api/
+Disallow: /api/*
+
+Sitemap: https://mp3fast.net/sitemap.xml

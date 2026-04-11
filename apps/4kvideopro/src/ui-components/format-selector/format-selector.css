@@ -1,0 +1,398 @@
+﻿/**
+ * Format Selector Component Styles
+ * Mobile-first responsive design
+ */
+
+/* ==========================================
+   Critical: Format switching via data-format
+   Prevents FOUC by using CSS instead of JS
+   ========================================== */
+
+/* Default state (no data-format or mp3): MP3 active */
+.format-btn[data-format="mp3"],
+.format-btn[data-format="mp3"]:hover {
+  background: var(--color-accent);
+  color: var(--color-black);
+  box-shadow: none;
+}
+
+[data-theme="light"] .format-btn[data-format="mp3"],
+[data-theme="light"] .format-btn[data-format="mp3"]:hover {
+  box-shadow: none;
+}
+
+.quality-select--mp3 {
+  display: block;
+}
+
+.quality-select--mp4 {
+  display: none;
+}
+
+/* When data-format="mp4": MP4 active, MP3 inactive */
+html[data-format="mp4"] .format-btn[data-format="mp3"] {
+  background: transparent;
+  color: var(--text-muted, var(--color-gray-550));
+  box-shadow: none;
+}
+
+html[data-format="mp4"] .format-btn[data-format="mp4"],
+html[data-format="mp4"] .format-btn[data-format="mp4"]:hover {
+  background: var(--color-accent);
+  color: var(--color-black);
+  box-shadow: none;
+}
+
+html[data-format="mp4"][data-theme="light"] .format-btn[data-format="mp4"],
+html[data-format="mp4"][data-theme="light"] .format-btn[data-format="mp4"]:hover {
+  box-shadow: none;
+}
+
+html[data-format="mp4"] .quality-select--mp3 {
+  display: none;
+}
+
+html[data-format="mp4"] .quality-select--mp4 {
+  display: block;
+}
+
+/* ==========================================
+   End Critical section
+   ========================================== */
+
+/* Wrapper in input form */
+.format-selector-wrapper {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  min-height: 48px;
+  /* Reserve space to prevent layout shift */
+  display: block;
+  /* Always visible */
+}
+
+.format-selector {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  min-height: 44px;
+  /* Fixed height to prevent layout shift */
+  flex-wrap: wrap;
+  /* Allow wrapping on mobile */
+}
+
+/* Convert button in format selector */
+
+/* This breakpoint is now handled in the quality-wrapper section below */
+
+/* Desktop: all 3 items in one row */
+@media (min-width: 800px) {
+  .format-selector {
+    flex-wrap: nowrap;
+    /* No wrapping on desktop */
+    justify-content: flex-start;
+    /* Align items to left */
+    gap: 12px;
+    /* Gap between format and quality */
+  }
+
+
+}
+
+/* Group 1: Format + Quality */
+.format-quality-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+/* ==========================================
+   Format Toggle (Two separate buttons)
+   ========================================== */
+
+.format-toggle {
+  background: var(--bg-card, var(--color-gray-100));
+  padding: 4px;
+  border-radius: var(--radius-md, 12px);
+  display: flex;
+  border: var(--border-glass, 1px solid var(--text-step-num));
+  height: 56px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+[data-theme="light"] .format-toggle {
+  background: var(--color-white);
+  border: 1px solid var(--pkg-color-gray-200);
+}
+
+.format-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text-muted, var(--color-gray-550));
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0 20px;
+  height: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+/* .format-btn.active moved to CSS-based switching at top of file */
+
+/* ==========================================
+   Quality Select Dropdown
+   ========================================== */
+
+.quality-wrapper {
+  position: relative;
+  flex-grow: 1;
+}
+
+/* Mobile: quality dropdown full width on line 1, format+convert on line 2 */
+@media (max-width: 799px) {
+  .quality-wrapper {
+    order: 1;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .format-toggle {
+    order: 1;
+    flex: 0 0 auto;
+    max-width: 150px;
+  }
+
+  .format-selector .btn-convert {
+    order: 2;
+    flex: 0 0 100%;
+    width: 100%;
+  }
+
+  .quality-select.custom-dropdown-trigger .dropdown-selected-text {
+    display: block;
+    flex: 1 1 auto;
+    min-width: 0;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+/* Desktop: quality dropdown fixed 250px width, aligned left with format */
+@media (min-width: 800px) {
+  .quality-wrapper {
+    flex-grow: 0;
+    flex-shrink: 0;
+    margin-right: 0;
+    /* No margin, let convert button use margin-left: auto */
+  }
+
+  .format-toggle {
+    flex-shrink: 0;
+    max-width: 180px;
+    /* Don't shrink format toggle */
+  }
+
+  .format-selector .btn-convert {
+    flex: 0 0 auto;
+    /* Don't grow or shrink */
+    width: fit-content;
+    margin-left: auto;
+    /* Push to the right */
+  }
+}
+
+.quality-select {
+  width: 100%;
+  height: 50px;
+  background: var(--bg-card, var(--color-white));
+  border: var(--border-glass, 1px solid var(--text-step-num));
+  border-radius: var(--radius-md, 12px);
+  color: var(--text-main, var(--color-gray-850));
+  padding: 0  20px;
+  appearance: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s;
+  box-sizing: border-box;
+}
+
+[data-theme="light"] .quality-select {
+  background: var(--color-white);
+  border: 1px solid var(--pkg-color-gray-200);
+}
+
+.quality-select:hover,
+.quality-select:focus {
+  border-color: var(--color-accent-dark);
+}
+
+.quality-select option {
+  background: var(--pkg-color-gray-800);
+  color: var(--color-white);
+}
+
+[data-theme="light"] .quality-select option {
+  background: var(--color-white);
+  color: var(--pkg-color-gray-800);
+}
+
+.quality-select.custom-dropdown-trigger {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.select-arrow {
+  position: absolute;
+  right: 8px;
+  top: 55%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--text-muted, var(--color-gray-550));
+}
+
+[dir="rtl"] .select-arrow {
+  right: auto;
+  left: 8px;
+}
+
+.selected-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  margin-left: 8px;
+  width: 28px;
+  height: 20px;
+}
+
+.audio-track-value {
+  font-size: 0.8rem;
+}
+
+
+
+/* ==========================================
+   Responsive Design
+   ========================================== */
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+  .format-selector-wrapper {
+    min-height: 42px;
+  }
+
+  .format-selector {
+    gap: 8px;
+    min-height: 40px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .format-toggle {
+    height: 40px;
+    max-width: 130px;
+  }
+
+  .format-selector .btn-convert {
+    height: 40px;
+    /* Match format-toggle height */
+    padding: 5px 12px;
+    width: 100%;
+  }
+
+  .format-btn {
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+
+  .quality-select {
+    height: 40px;
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+}
+
+/* Very small devices - quality on line 1, format + convert on line 2 */
+@media (max-width: 360px) {
+  .format-selector-wrapper {
+    min-height: 96px;
+    /* 40px + 40px + gap */
+  }
+
+  .format-selector {
+    flex-wrap: wrap;
+    gap: 8px;
+    min-height: 88px;
+  }
+
+  .quality-wrapper {
+    order: 1;
+    width: 100%;
+  }
+
+  .format-toggle {
+    order: 2;
+    flex: 1;
+    height: 40px;
+    max-width: 150px;
+  }
+
+  .format-selector .btn-convert {
+    order: 2;
+    flex: 0 0 100%;
+    height: 40px;
+    padding: 5px 12px;
+    width: 100%;
+  }
+
+  .quality-select {
+    height: 40px;
+  }
+}
+
+/* ==========================================
+   Accessibility
+   ========================================== */
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .format-toggle {
+    border-width: 3px;
+  }
+
+  .format-btn.active {
+    border: 2px solid white;
+  }
+
+  .quality-select {
+    border-width: 3px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+
+  .format-toggle,
+  .format-btn,
+  .quality-select {
+    transition: none;
+  }
+}
+
+/* Focus visible (keyboard navigation) */
+.format-btn:focus-visible {
+  outline-offset: 3px;
+}
+
+.quality-select:focus-visible {
+  outline-offset: 3px;
+}

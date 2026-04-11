@@ -4,3 +4,4 @@
 
 export * from './download.mapper';
 export * from './error.mapper';
+export * from './external-extract.mapper';

@@ -18,14 +18,15 @@
     "declarationMap": true,
     "sourceMap": true,
 
-    "baseUrl": ".",
     "paths": {
       "@downloader/core": ["./packages/core/src"],
       "@downloader/core/*": ["./packages/core/src/*"],
       "@downloader/ui-shared": ["./packages/ui-shared/src"],
       "@downloader/ui-shared/*": ["./packages/ui-shared/src/*"],
       "@downloader/history": ["./packages/history/src"],
-      "@downloader/history/*": ["./packages/history/src/*"]
+      "@downloader/history/*": ["./packages/history/src/*"],
+      "@downloader/vidtool-popup": ["./packages/vidtool-popup/src"],
+      "@downloader/vidtool-popup/*": ["./packages/vidtool-popup/src/*"]
     }
   }
 }

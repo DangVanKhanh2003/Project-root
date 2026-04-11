@@ -1,0 +1,172 @@
+/* Form Container */
+.form-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-shell {
+    position: relative;
+    border-radius: var(--radius-xl);
+}
+
+.input-shell:focus-within .input-wrapper,
+.input-wrapper:focus-within {
+    border-color: var(--video-input-active-border, var(--color-primary, var(--primary-color)));
+}
+
+
+/* Input Group */
+.input-group {
+    position: relative;
+}
+
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-width: 0;
+    background: var(--bg-card);
+    border: 1px solid var(--border-input);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    transition: none;
+}
+
+
+
+.video-input {
+    flex: 1;
+    min-width: 0;
+    height: 52px;
+    padding: 0 16px;
+    font-size: 18px;
+    line-height: 1.5;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--text-main);
+    caret-color: var(--input-caret-color);
+}
+
+.video-input::placeholder {
+    color: var(--color-input-placeholder);
+    opacity: 1;
+}
+
+.input-actions {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    padding-right: 12px;
+}
+
+/* Paste/Clear Button inside Input */
+.btn-paste {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    background: transparent;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+    height: 40px;
+}
+
+.btn-paste:hover {
+    background: var(--color-accent-dark);
+    color: var(--brand);
+}
+
+.btn-paste:active {
+    transform: translateY(0);
+}
+
+.btn-paste svg {
+    flex-shrink: 0;
+    color: inherit;
+}
+
+.btn-paste .hidden {
+    display: none !important;
+}
+
+/* Suggestion Container */
+.suggestion-container {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 100;
+}
+
+/* Error Message */
+.error-message {
+    display: none;
+    color: var(--color-form-error);
+    font-size: 14px;
+    margin-top: 12px;
+    min-height: 20px;
+}
+
+.error-message.show {
+    display: block;
+}
+
+/* Shared Button Styles */
+.btn-convert {
+    background: var(--btn-primary-bg);
+    border: none;
+    color: var(--color-white);
+    border-radius: var(--radius-xl);
+    cursor: pointer;
+}
+
+.btn-convert:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+
+@media (max-width: 768px) {
+    .video-input {
+        height: 48px;
+        font-size: 16px;
+    }
+
+    .input-actions {
+        padding-right: 6px;
+    }
+
+    .btn-paste,
+    #input-action-button {
+        width: 40px;
+        min-width: 40px;
+        height: 40px;
+        padding: 0;
+        justify-content: center;
+        gap: 0;
+    }
+
+    .btn-paste .btn-state--paste,
+    .btn-paste .btn-state--clear {
+        display: none !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .video-input {
+        height: 48px;
+        font-size: 16px;
+    }
+
+    .input-wrapper {
+        border-radius: calc(var(--radius-xl) - 10px);
+    }
+}

@@ -1,0 +1,65 @@
+﻿/* =========================================================
+   Component - Steps (How to Use)
+   ---------------------------------------------------------
+   Step-by-step instruction cards
+   Extracted from index.html - Phase 2
+   ========================================================= */
+
+.steps-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+@media (min-width: 768px) {
+    .steps-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.step {
+    background: var(--bg-step);
+    border: var(--border-glass);
+    padding: 24px;
+    border-radius: var(--radius-md);
+    transition: all 0.3s;
+}
+
+[data-theme="light"] .step {
+    border: 1px solid #e2e8f0;
+}
+
+.step:hover {
+    background: var(--bg-step-hover);
+    border-color: rgba(255,255,255,0.1);
+}
+
+[data-theme="light"] .step:hover {
+    border-color: #cbd5e1;
+    box-shadow: none;
+}
+
+.step-number {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 800;
+    color: transparent;
+    margin-bottom: 8px;
+    line-height: 1;
+        background: var(--gradient-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+
+.step-desc {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+.step-title {
+    color: var(--text-main);
+    margin-bottom: 8px;
+    font-weight: 700;
+    font-size: 1.1rem;
+}

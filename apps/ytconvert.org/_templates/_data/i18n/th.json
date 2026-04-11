@@ -1,0 +1,65 @@
+{
+  "nav": {
+    "home": "หน้าแรก",
+    "youtubeToMp3Converter": "YouTube เป็น MP3",
+    "youtubeToMp4Converter": "YouTube เป็น MP4",
+    "youtubeAudioConverter": "ตัวแปลงเสียง YouTube",
+    "youtubePlaylistToMp3": "เพลย์ลิสต์ YouTube เป็น MP3",
+    "youtubeShortsToMp4": "YouTube Shorts เป็น MP4",
+    "youtubeToMp3320kbps": "YouTube เป็น MP3 320kbps",
+    "youtubeToMp44k": "YouTube เป็น MP4 4K",
+    "youtubeToMp4Hd": "YouTube เป็น MP4 HD"
+  },
+  "drawer": {
+    "logoText": "YTConvert",
+    "links": {
+      "home": "หน้าแรก",
+      "youtubeToMp3Converter": "YouTube เป็น MP3",
+      "youtubeToMp4Converter": "YouTube เป็น MP4",
+      "youtubeAudioConverter": "ตัวแปลงเสียง YouTube",
+      "youtubePlaylistToMp3": "เพลย์ลิสต์ YouTube เป็น MP3",
+      "youtubeShortsToMp4": "YouTube Shorts เป็น MP4",
+      "youtubeToMp3320kbps": "YouTube เป็น MP3 320kbps",
+      "youtubeToMp44k": "YouTube เป็น MP4 4K",
+      "youtubeToMp4Hd": "YouTube เป็น MP4 HD"
+    }
+  },
+  "hero": {
+    "placeholder": "วางลิงก์วิดีโอที่นี่...",
+    "pasteBtn": "วาง",
+    "clearBtn": "ล้าง",
+    "convertBtn": "แปลง",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "แทร็กเสียง",
+    "searchPlaceholder": "ค้นหา...",
+    "supportedPlatforms": "แพลตฟอร์มที่รองรับ:"
+  },
+  "footer": {
+    "copyright": "© 2026 YTConvert. สงวนลิขสิทธิ์ทั้งหมด",
+    "nav": {
+      "youtubeToMp3Converter": "ตัวแปลง YouTube เป็น MP3",
+      "youtubeToMp4Converter": "ตัวแปลง YouTube เป็น MP4",
+      "youtubeAudioConverter": "ตัวแปลงเสียง YouTube",
+      "youtubePlaylistToMp3": "เพลย์ลิสต์ YouTube เป็น MP3",
+      "youtubeShortsToMp4": "YouTube Shorts เป็น MP4",
+      "youtubeToMp3320kbps": "YouTube เป็น MP3 320kbps",
+      "youtubeToMp44k": "YouTube เป็น MP4 4K",
+      "youtubeToMp4Hd": "YouTube เป็น MP4 HD"
+    }
+  },
+  "langSelector": {
+    "buttonLabel": "เปลี่ยนภาษา",
+    "buttonText": "TH",
+    "currentLangFull": "ไทย"
+  },
+  "strim": {
+    "startBtn": "เริ่ม",
+    "selectFormatLabel": "1. เลือกรูปแบบ:",
+    "selectQualityLabel": "2. เลือกคุณภาพ:",
+    "audioTrackLabel": "3. เลือกแทร็กเสียง:",
+    "trimLabel": "4. ตัดวิดีโอ (เวลาเริ่ม – สิ้นสุด):",
+    "startTimeLabel": "เริ่ม",
+    "endTimeLabel": "สิ้นสุด"
+  }
+}

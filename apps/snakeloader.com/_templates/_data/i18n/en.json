@@ -1,0 +1,62 @@
+{
+  "nav": {
+    "home": "Home",
+    "youtubeDownloader": "YouTube Downloader",
+    "tiktokDownloader": "TikTok Downloader",
+    "facebookDownloader": "Facebook Downloader",
+    "instagramDownloader": "Instagram Downloader",
+    "twitterDownloader": "Twitter Downloader",
+    "mp3Downloader": "MP3 Downloader",
+    "videoDownloader": "Video Downloader"
+  },
+  "drawer": {
+    "logoText": "SnackeLoader",
+    "links": {
+      "home": "Home",
+      "youtubeDownloader": "YouTube Downloader",
+      "tiktokDownloader": "TikTok Downloader",
+      "facebookDownloader": "Facebook Downloader",
+      "instagramDownloader": "Instagram Downloader",
+      "twitterDownloader": "Twitter Downloader",
+      "mp3Downloader": "MP3 Downloader",
+      "videoDownloader": "Video Downloader"
+    }
+  },
+  "hero": {
+    "placeholder": "Paste video link here...",
+    "pasteBtn": "Paste",
+    "clearBtn": "Clear",
+    "convertBtn": "Convert",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "Audio track",
+    "searchPlaceholder": "Search...",
+    "supportedPlatforms": "Supported platforms:"
+  },
+  "footer": {
+    "copyright": "© 2026 SnackeLoader. All rights reserved.",
+    "nav": {
+      "youtubeDownloader": "YouTube Downloader",
+      "tiktokDownloader": "TikTok Downloader",
+      "facebookDownloader": "Facebook Downloader",
+      "instagramDownloader": "Instagram Downloader",
+      "twitterDownloader": "Twitter Downloader",
+      "mp3Downloader": "MP3 Downloader",
+      "videoDownloader": "Video Downloader"
+    }
+  },
+  "langSelector": {
+    "buttonLabel": "Change language",
+    "buttonText": "EN",
+    "currentLangFull": "English"
+  },
+  "strim": {
+    "startBtn": "Start",
+    "selectFormatLabel": "1. Select format:",
+    "selectQualityLabel": "2. Select quality:",
+    "audioTrackLabel": "3. Select audio track:",
+    "trimLabel": "4. Cut video (Start – End time):",
+    "startTimeLabel": "Start",
+    "endTimeLabel": "End"
+  }
+}

@@ -1,63 +1,57 @@
 {
   "seo": {
-    "title": "Y2Mate – Fast & Easy YouTube Video Downloader",
-    "description": "Descarga videos y audio de YouTube rápidamente. Compatible con MP4, MP3, SD y Full HD. Un descargador de YouTube en línea, simple y fácil de usar.",
-    "ogTitle": "Y2Mate – Fast & Easy YouTube Video Downloader",
-    "ogDescription": "Guarda videos de YouTube en línea gratis. Elige la calidad que desees, desde video 144p hasta 1080p o audio de 128kbps a 320kbps. Rápido, seguro y funciona en todos los dispositivos.",
+    "title": "Y2Mate – Descargador de videos de YouTube rápido y fácil",
+    "description": "Descarga rápidamente videos y audio de YouTube. Admite MP4, MP3, SD y Full HD. Un descargador de YouTube en línea simple y fácil de usar.",
+    "ogTitle": "Y2Mate – Descargador de videos de YouTube rápido y fácil",
+    "ogDescription": "Guarda videos de YouTube en línea de forma gratuita. Elige la calidad que desees, desde video de 144p hasta 1080p o audio de 128kbps a 320kbps. Rápido, seguro y funciona en todos los dispositivos.",
     "schemaName": "Y2mate - Descargador de videos de YouTube",
-    "schemaDescription": "Descarga videos de YouTube en línea gratis. Guarda videos o audio en la calidad que prefieras. Funciona rápidamente en cualquier dispositivo sin instalación."
+    "schemaDescription": "Descarga videos de YouTube en línea de forma gratuita. Guarda videos o audio en la calidad que prefieras. Funciona rápidamente en cualquier dispositivo sin instalación."
   },
   "hero": {
     "title": "Y2mate - Descargador de YouTube"
   },
   "content": {
-    "mainTitle": "Descarga videos de YouTube de forma rápida y gratuita",
-    "intro1": "Y2Mate es un descargador de videos de YouTube en línea que le permite descargar videos o convertirlos en audio para uso sin conexión. La herramienta funciona directamente en su navegador, sin necesidad de instalación de software ni cuenta.",
-    "intro2": "Y2Mate admite resoluciones de video populares, incluyendo 144p, 360p, 480p, 720p y 1080p (Full HD), así como formatos de audio como MP3, OGG, WAV y OPUS con tasas de bits comunes como 128kbps, 192kbps y 320kbps. La herramienta funciona perfectamente en dispositivos de escritorio y móviles."
+    "mainTitle": "Descarga videos y audio de YouTube en línea",
+    "intro1": "Y2Mate es un descargador de YouTube en línea que permite a los usuarios descargar videos públicos de YouTube o convertirlos en archivos de audio para su uso sin conexión. La herramienta funciona directamente en su navegador y no requiere instalación de software ni registro de cuenta.",
+    "intro2": "Este sitio web está diseñado como una solución todo en uno para manejar diferentes tipos de contenido de YouTube, incluidos videos estándar y YouTube Shorts. Y2Mate se enfoca en la simplicidad, la accesibilidad y la compatibilidad tanto en dispositivos de escritorio como móviles."
   },
   "instructions": {
-    "title": "¿Cómo descargar videos de YouTube en segundos?",
+    "title": "Cómo descargar videos de YouTube en segundos",
     "steps": [
       "<strong>Pega el enlace de YouTube:</strong> Copia la URL de un video de YouTube o YouTube Shorts y pégala en el cuadro de descarga.",
       "<strong>Analiza el enlace:</strong> Haz clic en el botón de inicio para mostrar los formatos y opciones de calidad disponibles.",
       "<strong>Elige video o audio:</strong> Selecciona MP4 para video o MP3 para audio, luego elige tu resolución o tasa de bits preferida.",
-      "<strong>Descargar:</strong> Haz clic en \"Convertir\" y descarga el archivo directamente a tu dispositivo sin iniciar sesión."
+      "<strong>Descargar:</strong> Haz clic en \"Convertir\" y descarga el archivo directamente en tu dispositivo sin iniciar sesión."
     ]
   },
   "whyChoose": {
     "title": "Por qué elegir Y2mate",
     "reasons": [
-      "<strong>Velocidad de descarga rápida:</strong> Y2Mate está optimizado para procesar y descargar videos de YouTube de forma rápida y fiable.",
-      "<strong>Sin necesidad de cuenta:</strong> Descarga videos al instante sin registrarte ni compartir información personal.",
-      "<strong>Funciona en todos los dispositivos:</strong> Totalmente compatible con teléfonos móviles, tabletas y computadoras de escritorio."
+      "<strong>No se requiere registro:</strong> Comienza a descargar al instante sin crear una cuenta.",
+      "<strong>Procesamiento rápido y estable:</strong> Optimizado para manejar videos de YouTube cortos y largos sin problemas.",
+      "<strong>Funciona en todos los dispositivos:</strong> Totalmente compatible con navegadores de escritorio y móviles.",
+      "<strong>Interfaz limpia y sencilla:</strong> Diseñada para una experiencia de descarga sin distracciones.",
+      "<strong>100% gratis de usar:</strong> Todas las funciones están disponibles sin costo."
     ]
   },
   "features": {
     "title": "Características clave de Y2mate",
     "items": [
       {
-        "title": "Descargas ilimitadas de video y audio",
-        "description": "Descarga videos ilimitados de YouTube o conviértelos a archivos de audio para uso sin conexión."
+        "title": "Descargador de YouTube todo en uno",
+        "description": "Esta página de inicio sirve como el punto de entrada principal para descargar contenido de YouTube, incluidos videos, audio y Shorts, sin instalar ningún software."
       },
       {
-        "title": "Múltiples opciones de calidad",
-        "description": "Admite resoluciones de video desde 144p, 360p, 480p, 720p hasta 1080p y bitrates de audio desde 128kbps hasta 320kbps."
+        "title": "Convertidor de YouTube a MP4",
+        "description": "Descarga videos de YouTube en formato MP4 para verlos sin conexión. Visita el <a href=\"/youtube-to-mp4\">convertidor de YouTube a MP4</a> para más opciones."
       },
       {
-        "title": "Procesamiento rápido y estable",
-        "description": "Análisis de enlaces corto y tiempo de descarga, adecuado para videos cortos y largos."
+        "title": "Convertidor de YouTube a MP3",
+        "description": "Extrae audio de videos de YouTube y guárdalos como archivos MP3. Usa el <a href=\"/youtube-to-mp3\">convertidor de YouTube a MP3</a> para descargas de audio."
       },
       {
-        "title": "Compatible con todas las plataformas",
-        "description": "Funciona sin problemas en iPhone, Android, Windows, Mac y Linux usando navegadores populares."
-      },
-      {
-        "title": "Experiencia de usuario limpia",
-        "description": "Una experiencia fluida y sin distracciones durante la descarga."
-      },
-      {
-        "title": "No requiere instalación",
-        "description": "Totalmente basado en la web, sin necesidad de aplicaciones, extensiones o software."
+        "title": "Descargador de YouTube Shorts",
+        "description": "Descarga videos de YouTube Shorts rápida y fácilmente usando el <a href=\"/youtube-short-downloader\">descargador de YouTube Shorts</a>."
       }
     ]
   },
@@ -90,7 +84,7 @@
       },
       {
         "question": "¿Cómo debo usar los videos descargados de Y2mate?",
-        "answer": "Los videos y archivos de audio descargados con Y2mate deben usarse para fines personales, como verlos o escucharlos sin conexión. Los usuarios son responsables de cómo se utiliza el contenido descargado y deben respetar los derechos de los propietarios del contenido en YouTube."
+        "answer": "Los videos y archivos de audio descargados con Y2mate deben usarse para fines personales, como verlos o escucharlos sin conexión. Los usuarios son responsables de cómo se utiliza el contenido descargado y deben respetar los derechos de los propietarios de contenido en YouTube."
       },
       {
         "question": "¿Cuál es la mejor opción de calidad para videos largos?",

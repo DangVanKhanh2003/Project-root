@@ -15,6 +15,8 @@
 export interface Route {
   type: 'home' | 'video';
   videoId?: string;
+  format?: string;  // f param: mp3, mp4, etc.
+  quality?: string; // q param: 320, 1080, etc.
 }
 
 /**
@@ -35,12 +37,16 @@ export function getRouteFromUrl(): Route {
   try {
     const searchParams = new URLSearchParams(window.location.search);
     const videoId = searchParams.get('v');
+    const format = searchParams.get('f');  // mp3, mp4, etc.
+    const quality = searchParams.get('q'); // 320, 1080, etc.
 
     // Validate videoId format if present
     if (videoId && isValidVideoId(videoId)) {
       return {
         type: 'video',
-        videoId
+        videoId,
+        format: format || undefined,
+        quality: quality || undefined
       };
     }
 
@@ -82,7 +88,7 @@ export function getCurrentVideoId(): string | null {
  * Uses replaceState if already on video page (prevents history pollution)
  * Uses pushState if coming from home page
  *
- * Preserves current pathname (e.g., /youtube-to-mp4.html → /youtube-to-mp4/search?v=xxx)
+ * Preserves current pathname (e.g., /youtube-to-mp4?v=xxx)
  *
  * @param videoId - YouTube video ID
  */
@@ -98,12 +104,14 @@ export function navigateToVideo(videoId: string): void {
   // Remove trailing slash
   basePath = basePath.replace(/\/$/, '');
 
-  // Build new URL:
-  // - If on home page (/ or /index) → /search?v=xxx
-  // - If on specific page (/youtube-to-mp4) → /youtube-to-mp4/search?v=xxx
+  // Remove existing /search suffix (legacy URLs)
+  basePath = basePath.replace(/\/search$/, '');
+
+  // Build new URL: keep current path + ?v= query param
+  // e.g. /youtube-to-mp4?v=xxx, /es/youtube-to-mp3?v=xxx
   const newUrl = (basePath === '' || basePath === '/' || basePath === '/index')
-    ? `/search?v=${videoId}`
-    : `${basePath}/search?v=${videoId}`;
+    ? `/?v=${videoId}`
+    : `${basePath}?v=${videoId}`;
 
   const state = { type: 'video', videoId };
 
@@ -123,11 +131,13 @@ export function navigateToVideo(videoId: string): void {
  */
 export function navigateToHome(replace: boolean = false): void {
   const state = { type: 'home' };
+  // Keep current page path, just remove query params
+  const basePath = window.location.pathname.replace(/\/search$/, '') || '/';
 
   if (replace) {
-    history.replaceState(state, '', '/');
+    history.replaceState(state, '', basePath);
   } else {
-    history.pushState(state, '', '/');
+    history.pushState(state, '', basePath);
   }
 }
 
@@ -138,14 +148,18 @@ export function navigateToHome(replace: boolean = false): void {
  * @param route - Route to set
  */
 export function replaceUrl(route: Route): void {
-  let url = '/';
   const state = { type: route.type };
 
   if (route.type === 'video' && route.videoId) {
-    url = `/search?v=${route.videoId}`;
+    // Keep current path, only update query param
+    let basePath = window.location.pathname.replace(/\.html$/, '').replace(/\/$/, '').replace(/\/search$/, '');
+    if (basePath === '' || basePath === '/index') basePath = '/';
+    history.replaceState(state, '', `${basePath}?v=${route.videoId}`);
+  } else {
+    // Home: keep current path without query params
+    const basePath = window.location.pathname.replace(/\/search$/, '');
+    history.replaceState(state, '', basePath || '/');
   }
-
-  history.replaceState(state, '', url);
 }
 
 // ==========================================
@@ -183,10 +197,20 @@ export function initRouting(onRouteChange?: RouteChangeHandler): void {
 export function cleanUrl(): boolean {
   const params = new URLSearchParams(window.location.search);
   const videoId = params.get('v');
+  const hasSearchInPath = /\/search(\/|$)/.test(window.location.pathname);
+  let cleaned = false;
+
+  // Strip /search from pathname (legacy URLs)
+  if (hasSearchInPath) {
+    cleaned = true;
+  }
 
   // Check if there are extra params
   if (params.size > 1 || (params.size === 1 && !videoId)) {
-    // Has extra params → Clean URL
+    cleaned = true;
+  }
+
+  if (cleaned) {
     if (videoId) {
       replaceUrl({ type: 'video', videoId });
     } else {

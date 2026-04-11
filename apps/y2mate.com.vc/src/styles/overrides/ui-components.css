@@ -1,0 +1,85 @@
+/**
+ * UI Components Overrides
+ * Override styles from @downloader/ui-components and main.ts imports for y2mate.com.vc (Light Theme)
+ */
+
+/* ==========================================
+   Suggestion Dropdown Override
+   ========================================== */
+
+/**
+ * Override suggestion container position and theme
+ * Default from package uses top: calc(...), we need fixed top.
+ * Also enforcing light theme backgrounds.
+ */
+#suggestion-container.suggestion-container--visible {
+  top: 60px !important;
+}
+
+@media (min-width: 768px) {
+  #suggestion-container.suggestion-container--visible {
+    top: 65px !important;
+  }
+}
+
+/* Force Light Theme for Suggestion Container */
+.suggestion-container {
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border-subtle) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  border-radius: 16px !important;
+  /* Update radius to match radius-xl roughly if needed, or keep generic */
+  overflow: hidden !important;
+}
+
+.suggestion-item {
+  background-color: var(--bg-card) !important;
+  color: var(--text-body) !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
+  transition: background-color 0.2s;
+}
+
+.suggestion-item:last-child {
+  border-bottom: none !important;
+}
+
+.suggestion-item:hover,
+.suggestion-item.active,
+.suggestion-item:focus,
+.suggestion-item.suggestion-item--highlighted {
+  background-color: var(--accent-fill-soft) !important;
+  color: var(--brand) !important;
+  /* Optional: text becomes brand color on hover */
+}
+
+/* Suggestions text highlights if any */
+.suggestion-item strong {
+  color: var(--brand) !important;
+}
+
+/* ==========================================
+   Quality Dropdown Override
+   Override dark mode styles from src/ui-components/.../format-selector.css
+   ========================================== */
+
+/* ==========================================
+   Search Result Card Override
+   ========================================== */
+
+.search-result-card {
+  background: var(--bg-card) !important;
+  border: none !important;
+}
+
+.search-result-card .card-title {
+  color: var(--text-heading) !important;
+}
+
+.search-result-card .meta-info {
+  color: var(--text-secondary) !important;
+}
+
+/* Ensure skeleton loading states are also light if visible */
+.skeleton-card {
+  background-color: var(--bg-card) !important;
+}

@@ -14,6 +14,11 @@ export interface ExtractV2Options {
   youtubeVideoContainer?: string;
   audioBitrate?: string;
   audioFormat?: string;
+  trackId?: string;
+  trimStart?: number;
+  trimEnd?: number;
+  filenameStyle?: 'classic' | 'basic' | 'pretty' | 'nerdy';
+  enableMetadata?: boolean;
 }
 
 /**
@@ -62,6 +67,9 @@ export function detectOsType(): OsType {
 function mapVideoQuality(quality?: string): OutputConfig['quality'] | undefined {
   if (!quality) return undefined;
 
+  // Normalize: remove 'p' suffix to handle both "144" and "144p"
+  const key = quality.replace(/p$/i, '');
+
   const qualityMap: Record<string, OutputConfig['quality']> = {
     '2160': '2160p',
     '1440': '1440p',
@@ -69,9 +77,10 @@ function mapVideoQuality(quality?: string): OutputConfig['quality'] | undefined 
     '720': '720p',
     '480': '480p',
     '360': '360p',
+    '144': '144p',
   };
 
-  return qualityMap[quality] || undefined;
+  return qualityMap[key] || undefined;
 }
 
 /**
@@ -103,7 +112,7 @@ function mapAudioFormat(format?: string): OutputConfig['format'] {
     'm4a': 'm4a',
     'wav': 'wav',
     'opus': 'opus',
-    'ogg': 'opus', // OGG maps to opus in V3
+    'ogg': 'ogg',
     'flac': 'flac',
   };
 
@@ -134,6 +143,15 @@ export function mapToV3DownloadRequest(
 ): V3DownloadRequest {
   const isVideo = options.downloadMode === 'video';
   const os = detectOsType();
+  const hasTrim =
+    Number.isFinite(options.trimStart) ||
+    Number.isFinite(options.trimEnd);
+  const trim = hasTrim
+    ? {
+      ...(Number.isFinite(options.trimStart) ? { start: options.trimStart } : {}),
+      ...(Number.isFinite(options.trimEnd) ? { end: options.trimEnd } : {}),
+    }
+    : undefined;
 
   if (isVideo) {
     // Video download
@@ -145,14 +163,17 @@ export function mapToV3DownloadRequest(
         format: mapVideoFormat(options.youtubeVideoContainer),
         quality: mapVideoQuality(options.videoQuality),
       },
+      ...(trim ? { trim } : {}),
+      ...(options.filenameStyle ? { filenameStyle: options.filenameStyle } : {}),
+      ...(typeof options.enableMetadata === 'boolean' ? { enableMetadata: options.enableMetadata } : {}),
     };
 
-    // Add audio bitrate if specified
-    if (options.audioBitrate) {
-      request.audio = {
-        bitrate: mapAudioBitrate(options.audioBitrate),
-      };
-    }
+    // Always include audio config for video (default 128k)
+    const normalizedTrackId = options.trackId && options.trackId !== 'original' ? options.trackId : undefined;
+    request.audio = {
+      bitrate: mapAudioBitrate(options.audioBitrate || '128'),
+      ...(normalizedTrackId ? { trackId: normalizedTrackId } : {}),
+    };
 
     return request;
   } else {
@@ -164,12 +185,17 @@ export function mapToV3DownloadRequest(
         type: 'audio',
         format: mapAudioFormat(options.audioFormat),
       },
+      ...(trim ? { trim } : {}),
+      ...(options.filenameStyle ? { filenameStyle: options.filenameStyle } : {}),
+      ...(typeof options.enableMetadata === 'boolean' ? { enableMetadata: options.enableMetadata } : {}),
     };
 
     // Add audio bitrate
-    if (options.audioBitrate) {
+    const normalizedTrackId = options.trackId && options.trackId !== 'original' ? options.trackId : undefined;
+    if (options.audioBitrate || normalizedTrackId) {
       request.audio = {
-        bitrate: mapAudioBitrate(options.audioBitrate),
+        ...(options.audioBitrate ? { bitrate: mapAudioBitrate(options.audioBitrate) } : {}),
+        ...(normalizedTrackId ? { trackId: normalizedTrackId } : {}),
       };
     }
 

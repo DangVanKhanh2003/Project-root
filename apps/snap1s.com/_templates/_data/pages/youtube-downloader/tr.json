@@ -1,0 +1,115 @@
+{
+  "seo": {
+    "title": "YouTube Downloader – Ücretsiz Video İndir | SNAP1S",
+    "description": "SNAP1S ile YouTube videoları indirin. HD ve 4K kalitede video kaydeden ücretsiz YouTube video indirici. Kayıt veya uygulama gerekmez.",
+    "schemaName": "SNAP1S - YouTube Video İndirici",
+    "schemaDescription": "SNAP1S, kullanıcıların HD ve 4K kalitede YouTube videoları indirmesine olanak tanıyan ücretsiz bir YouTube video indiricidir.",
+    "ogTitle": "YouTube Downloader – Ücretsiz Video İndir | SNAP1S",
+    "ogDescription": "SNAP1S ile YouTube videoları indirin. Ücretsiz, hızlı ve HD kalitede."
+  },
+  "content": {
+    "form": {
+      "h1": "SNAP1S – YouTube Video İndirici",
+      "placeholder": "YouTube video URL'sini buraya yapıştırın...",
+      "button": "Video İndir"
+    },
+    "sections": [
+      {
+        "h2": "SNAP1S YouTube Downloader Nedir?",
+        "p": [
+          "SNAP1S, YouTube videolarını HD ve 4K kalitede cihazınıza indirmenize olanak tanıyan ücretsiz bir <strong>YouTube video indirici</strong>dir.",
+          "YouTube video bağlantısını yapıştırın, indir'e tıklayın ve videoyu doğrudan telefonunuza veya bilgisayarınıza kaydedin.",
+          "Bu <strong>çevrimiçi YouTube video indirici</strong>, uygulama yüklemeye gerek kalmadan tüm cihazlarda ve tarayıcılarda çalışır."
+        ]
+      },
+      {
+        "h2": "YouTube Videoları Nasıl İndirilir",
+        "ol": [
+          {
+            "h3": "YouTube Video Bağlantısını Kopyalayın",
+            "p": [
+              "YouTube'u açın ve indirmek istediğiniz videonun URL'sini adres çubuğundan veya paylaş düğmesinden kopyalayın."
+            ]
+          },
+          {
+            "h3": "Bağlantıyı Yapıştırın",
+            "p": [
+              "YouTube video URL'sini yukarıdaki SNAP1S YouTube indirici'ye yapıştırın."
+            ]
+          },
+          {
+            "h3": "Videoyu İndirin",
+            "p": [
+              "İndir düğmesine tıklayın ve YouTube videosunu tercih ettiğiniz kalitede cihazınıza kaydedin."
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "YouTube Videolarını HD Kalitede İndirin",
+        "p": [
+          "SNAP1S, 720p, 1080p ve 4K çözünürlük dahil birden fazla kalite seçeneğiyle <strong>YouTube videoları indirmenize</strong> olanak tanır.",
+          "Favori YouTube videolarınızı, müzik videolarınızı ve eğitim videolarınızı çevrimdışı izlemek için her zaman ve her yerde kaydedin."
+        ]
+      },
+      {
+        "h2": "Neden SNAP1S YouTube Downloader Kullanmalısınız?",
+        "ul": [
+          {
+            "h3": "HD ve 4K Kalite",
+            "p": [
+              "Full HD ve 4K çözünürlük dahil mevcut en yüksek kalitede YouTube videoları indirin."
+            ]
+          },
+          {
+            "h3": "Birden Fazla Format",
+            "p": [
+              "İhtiyaçlarınıza göre MP4, MP3 ve daha fazlası dahil çeşitli formatlarda YouTube videoları kaydedin."
+            ]
+          },
+          {
+            "h3": "Ücretsiz ve Sınırsız",
+            "p": [
+              "Günlük sınır olmadan istediğiniz kadar YouTube videosu ücretsiz indirin."
+            ]
+          },
+          {
+            "h3": "Uygulama Gerekmez",
+            "p": [
+              "YouTube indirici, uygulama yüklemeden herhangi bir cihazda doğrudan browser'ınızda çalışır."
+            ]
+          }
+        ]
+      },
+      {
+        "h2": "Sık Sorulan Sorular",
+        "ul": [
+          {
+            "h3": "SNAP1S YouTube indirici ücretsiz mi?",
+            "p": [
+              "Evet. SNAP1S, gizli ücret olmadan tamamen ücretsiz bir YouTube indiricidir."
+            ]
+          },
+          {
+            "h3": "YouTube videolarını HD olarak indirebilir miyim?",
+            "p": [
+              "Evet. SNAP1S, 720p, 1080p ve 4K kalitede YouTube videoları indirmeyi destekler."
+            ]
+          },
+          {
+            "h3": "iPhone ve Android'de çalışır mı?",
+            "p": [
+              "Evet. YouTube indirici tüm mobil cihazlarda ve masaüstü tarayıcılarda çalışır."
+            ]
+          },
+          {
+            "h3": "İndirmek için YouTube hesabına ihtiyacım var mı?",
+            "p": [
+              "Hayır. SNAP1S ile YouTube videoları indirmek için sadece video URL'sine ihtiyacınız var."
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

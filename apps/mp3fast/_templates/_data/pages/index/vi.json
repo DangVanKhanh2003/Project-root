@@ -1,0 +1,49 @@
+{
+  "seo": {
+    "title": "Chuyển đổi YouTube sang MP3 – Không giới hạn thời lượng video",
+    "description": "Chuyển đổi video YouTube sang MP3 với tốc độ cao. Chọn chất lượng MP3 trước khi chuyển đổi. Không giới hạn thời lượng video, không cần đăng ký."
+  },
+  "h1": "Trình chuyển đổi YouTube sang MP3",
+  "intro": "Công cụ này cho phép bạn chuyển đổi video YouTube sang MP3 một cách nhanh chóng và đáng tin cậy. Chỉ cần dán liên kết YouTube, chọn chất lượng MP3 mong muốn và tải tệp trực tiếp về thiết bị của bạn. Không cần cài đặt phần mềm và không cần tài khoản.",
+  "primary_features": {
+    "h2": "Các tính năng chính",
+    "items": [
+      "Chuyển đổi video YouTube sang định dạng MP3",
+      "Chọn chất lượng MP3 trước khi chuyển đổi",
+      "Hỗ trợ chất lượng MP3 từ 64kbps đến 320kbps",
+      "Không giới hạn thời lượng video",
+      "Các tệp MP3 đã tải xuống không chứa thẻ hoặc hình mờ"
+    ]
+  },
+  "performance": {
+    "h2": "Hiệu suất chuyển đổi",
+    "content": "Hệ thống được tối ưu hóa cho tốc độ. Đối với các video có thời lượng khoảng 10 giờ, quá trình chuyển đổi MP3 thường chỉ mất từ 10 đến 15 giây. Tốc độ tải xuống phụ thuộc vào kết nối internet của người dùng."
+  },
+  "how_to": {
+    "h2": "Cách chuyển đổi YouTube sang MP3",
+    "steps": [
+      {
+        "step": 1,
+        "content": "Sao chép URL của video YouTube bạn muốn chuyển đổi."
+      },
+      {
+        "step": 2,
+        "content": "Dán liên kết vào hộp nhập ở trên, chọn chất lượng MP3 và nhấp vào Chuyển đổi."
+      },
+      {
+        "step": 3,
+        "content": "Sau khi quá trình chuyển đổi hoàn tất, hãy nhấp vào Tải xuống MP3 để lưu tệp về thiết bị của bạn."
+      }
+    ]
+  },
+  "limitations": {
+    "h2": "Lưu ý sử dụng",
+    "content": "Công cụ này hỗ trợ tất cả các video YouTube công khai có thể truy cập và được YouTube cho phép. Trong những giờ cao điểm như buổi tối hoặc cuối tuần, thời gian xử lý có thể chậm hơn một chút do lưu lượng truy cập cao."
+  },
+  "privacy_notice": {
+    "content": "Không cần đăng ký tài khoản và không thu thập thông tin cá nhân."
+  },
+  "responsibility_notice": {
+    "content": "Người dùng hoàn toàn chịu trách nhiệm về nội dung họ chuyển đổi và tải xuống."
+  }
+}

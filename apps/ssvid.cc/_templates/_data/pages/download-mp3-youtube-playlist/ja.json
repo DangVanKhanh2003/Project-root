@@ -1,0 +1,126 @@
+{
+  "seo": {
+    "title": "SSVID CC YouTube プレイリストをMP3でダウンロード（広告なし）",
+    "description": "YouTubeプレイリスト全体をMP3に変換して無料でダウンロード（広告なし）。",
+    "schemaName": "SSVID MP3 YouTube プレイリストダウンローダー",
+    "schemaDescription": "1つのリンクでYouTubeプレイリスト全体をMP3に変換・ダウンロード。",
+    "ogTitle": "SSVID YouTube プレイリストをMP3でダウンロード（広告なし）",
+    "ogDescription": "YouTubeプレイリストをMP3に無料変換。広告なし・制限なし。"
+  },
+  "defaultFormat": "mp3",
+  "hero": {
+    "title": "SSVID MP3 YouTube プレイリストダウンローダー（広告なし）",
+    "subtitle": "1つのリンクでYouTubeプレイリスト全体をMP3でダウンロード"
+  },
+  "form": {
+    "title": "MP3 YouTube プレイリストダウンローダー",
+    "placeholder": "ここにプレイリストURLを貼り付けてください...",
+    "convertButton": "変換"
+  },
+  "overview": {
+    "howTo": {
+      "title": "YouTubeプレイリストからMP3をダウンロードする方法",
+      "steps": [
+        {
+          "number": "1",
+          "title": "リンクをコピー",
+          "description": "ダウンロードしたいYouTubeプレイリストのURLをコピーします。"
+        },
+        {
+          "number": "2",
+          "title": "プレイリストを貼り付け",
+          "description": "プレイリストのリンクをSSVIDに貼り付けます。"
+        },
+        {
+          "number": "3",
+          "title": "MP3品質を選択",
+          "description": "MP3形式とお好みの音質を選択します。"
+        },
+        {
+          "number": "4",
+          "title": "ダウンロード",
+          "description": "ダウンロードをクリックしてプレイリスト全体を保存します。"
+        }
+      ]
+    }
+  },
+  "content": {
+    "intro": {
+      "title": "SSVID MP3 YouTube プレイリストダウンローダーとは？",
+      "description": "SSVIDは、<strong>YouTubeプレイリスト全体をMP3でダウンロード</strong>できる無料オンラインツールです。動画を1本ずつ変換する必要はなく、1つのプレイリストリンクからすべての音声トラックを一括で取得できます。"
+    },
+    "columns": [
+      {
+        "title": "YouTubeプレイリストをMP3でダウンロード",
+        "description": "1. プレイリストURLをコピー。<br>2. SSVIDにリンクを貼り付け。<br>3. MP3と音質を選択。<br>4. ダウンロードして全体を保存。"
+      },
+      {
+        "title": "デスクトップとモバイルでのダウンロード",
+        "description": "SSVIDはデバイスに応じて最適化されます。<strong>デスクトップ</strong>では、<strong>プレイリスト全体を1つのZIPファイルとしてダウンロード</strong>できます。<strong>モバイル</strong>では、MP3ファイルが<strong>1つずつ</strong>ダウンロードされます。"
+      }
+    ],
+    "whyDownload": {
+      "title": "なぜYouTubeプレイリストをMP3でダウンロードするのか？",
+      "description": "MP3は軽量でほとんどのデバイスに対応している音声形式です。音声のみが必要な場合、<strong>YouTubeプレイリストをMP3でダウンロード</strong>することで容量を節約し、オフライン再生がより便利になります。"
+    },
+    "quality": {
+      "title": "対応MP3音質",
+      "description": "SSVIDは<strong>128kbps</strong>、<strong>192kbps</strong>、<strong>320kbps</strong>など複数のMP3音質に対応しています。用途に応じて最適な品質を選択できます。"
+    },
+    "comparison": {
+      "title": "プレイリストダウンロードとマルチダウンロードの違い",
+      "sections": [
+        {
+          "title": "MP3 YouTube プレイリストダウンロード",
+          "description": "<strong>1つのプレイリストリンク</strong>がある場合に最適です。リンクを貼り付けるだけで、すべての動画を自動的にMP3としてダウンロードできます。"
+        },
+        {
+          "title": "YouTube Multi Download",
+          "description": "同じプレイリストに属さない<strong>複数の個別動画リンク</strong>を持っている場合に適しています。<strong>MP3とMP4</strong>の両方に対応。複数リンクがある場合は、<a href=\"/youtube-multi-downloader\" title=\"SSVID YouTube Multi Download\"><strong>YouTube Multi Download with SSVID</strong></a>をご利用ください。"
+        }
+      ]
+    },
+    "useCases": {
+      "title": "SSVIDプレイリストダウンローダーを使うべき場合",
+      "items": [
+        {
+          "title": "音楽アルバムのダウンロード",
+          "description": "YouTubeの音楽アルバムや厳選プレイリストをMP3に変換してオフライン再生。"
+        },
+        {
+          "title": "学習・ポッドキャストプレイリスト",
+          "description": "講義やポッドキャストの長いプレイリストをMP3に変換し、いつでも視聴可能に。"
+        },
+        {
+          "title": "無制限のプレイリストダウンロード",
+          "description": "SSVIDは<strong>無制限のYouTubeプレイリストダウンロード</strong>に対応。広告なし・制限なし。"
+        }
+      ]
+    }
+  },
+  "faqs": {
+    "title": "よくある質問",
+    "items": [
+      {
+        "question": "プレイリストのサイズに制限はありますか？",
+        "answer": "いいえ。SSVIDでは動画数に制限なく、YouTubeプレイリストをMP3でダウンロードできます。"
+      },
+      {
+        "question": "ソフトウェアのインストールは必要ですか？",
+        "answer": "不要です。SSVIDはブラウザ上で完全にオンライン動作します。"
+      },
+      {
+        "question": "SSVIDは無料で広告なしですか？",
+        "answer": "はい。SSVIDは無料で、広告なしの体験を提供します。"
+      },
+      {
+        "question": "スマートフォンでMP3をダウンロードできますか？",
+        "answer": "はい。モバイルではMP3ファイルが個別にダウンロードされます。"
+      },
+      {
+        "question": "プレイリストダウンロードとマルチダウンロードの違いは何ですか？",
+        "answer": "プレイリストダウンロードは1つのプレイリストリンクを使用し、マルチダウンロードは複数の個別動画リンクを使用します。"
+      }
+    ]
+  }
+}

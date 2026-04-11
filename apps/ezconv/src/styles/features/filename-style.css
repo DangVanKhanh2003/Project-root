@@ -1,0 +1,118 @@
+/* =========================================
+   Filename Style Tabs
+   ========================================= */
+
+.adv-setting-item--filename-style {
+    flex: 1;
+    min-width: 200px;
+}
+
+.filename-style-tabs {
+    display: flex;
+    gap: 0;
+    background: var(--border-default);
+    border-radius: 6px;
+    padding: 3px;
+    width: 100%;
+}
+
+.fs-tab {
+    flex: 1;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    cursor: pointer;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: all 0.2s;
+    font-family: inherit;
+    white-space: nowrap;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.fs-tab:hover {
+    color: var(--text-heading);
+}
+
+.fs-tab.active {
+    background: var(--accent-ui);
+    color: #fff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* Filename Preview */
+.filename-preview {
+    margin-top: 8px;
+    padding: 10px 14px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-default);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.fp-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.fp-icon {
+    flex-shrink: 0;
+    color: var(--text-placeholder);
+}
+
+.fp-text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    text-align: left;
+}
+
+.fp-name {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--text-heading);
+    word-break: break-all;
+    line-height: 1.4;
+}
+
+.fp-sub {
+    font-size: 0.6875rem;
+    color: var(--text-placeholder);
+    line-height: 1.3;
+}
+
+/* Mobile: filename style tabs scrollable */
+@media (max-width: 768px) {
+    .filename-style-tabs {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .fs-tab {
+        padding: 5px 12px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .filename-style-tabs {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2px;
+        overflow-x: visible;
+    }
+
+    .fs-tab {
+        width: 100%;
+        text-align: center;
+    }
+
+    .fp-icon {
+        display: none;
+    }
+}

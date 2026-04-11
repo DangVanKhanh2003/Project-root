@@ -1,0 +1,88 @@
+{
+  "seo": {
+    "title": "YouTube Shorts转MP4转换器 - 下载Shorts视频 | YTConvert",
+    "description": "使用YTConvert免费在线将YouTube Shorts转换为MP4。粘贴Shorts链接，快速下载视频，无广告、无需注册、无需安装软件。",
+    "schemaName": "YTConvert - YouTube Shorts转MP4转换器",
+    "schemaDescription": "在线工具，将YouTube Shorts视频转换为MP4格式。粘贴Shorts URL，快速下载视频，无广告且无需注册。",
+    "ogTitle": "YouTube Shorts转MP4转换器 - 下载Shorts视频 | YTConvert",
+    "ogDescription": "使用YTConvert下载MP4格式的YouTube Shorts视频。快速、免费、无广告，适用于所有设备。"
+  },
+  "content": {
+    "form": {
+      "h1": "YTConvert – YouTube Shorts转MP4",
+      "placeholder": "在此粘贴YouTube Shorts URL...",
+      "button": "转换"
+    },
+    "sections": [
+      {
+        "h2": "什么是YTConvert YouTube Shorts转MP4？",
+        "p": [
+          "YTConvert是一款快速简便的工具，帮助您通过视频链接<strong>将YouTube Shorts转换为MP4</strong>。",
+          "粘贴Shorts URL，处理视频，即可立即下载，无广告、无需注册、无需安装软件。",
+          "如果您正在寻找可靠的<strong>YouTube Shorts转MP4转换器</strong>，YTConvert在所有设备上提供流畅的体验。"
+        ]
+      },
+      {
+        "h2": "如何将YouTube Shorts转换为MP4",
+        "ol": [
+          {"h3": "复制Shorts链接", "p": ["打开YouTube Shorts，复制您要下载的视频的URL。"]},
+          {"h3": "将URL粘贴到YTConvert", "p": ["将Shorts链接粘贴到页面顶部的输入框中。"]},
+          {"h3": "处理视频", "p": ["YTConvert读取链接并准备视频以供MP4下载。"]},
+          {"h3": "下载MP4文件", "p": ["点击转换，将Shorts视频下载到您的设备。"]}
+        ]
+      },
+      {
+        "h2": "轻松下载YouTube Shorts视频",
+        "p": [
+          "YTConvert专为希望快速且无需复杂步骤即可<strong>下载YouTube Shorts视频</strong>的用户而设计。",
+          "适用于娱乐剪辑、短教程以及您想要离线保存的社交媒体内容。",
+          "该工具非常适合正在寻找<strong>YouTube Shorts转换器</strong>或保存短视频的简单方法的用户。"
+        ]
+      },
+      {
+        "h2": "为什么使用YTConvert进行Shorts转换？",
+        "ul": [
+          {"h3": "快速免费转换", "p": ["无需付费或注册，快速将Shorts视频转换为MP4。"]},
+          {"h3": "无广告、无需注册", "p": ["享受无多余广告或登录步骤的清爽体验。"]},
+          {"h3": "针对短视频优化", "p": ["YTConvert针对短视频内容的快速处理进行了优化。"]},
+          {"h3": "适用于所有设备", "p": ["在桌面电脑、笔记本电脑、Android、iPhone或平板电脑浏览器上使用该工具。"]}
+        ]
+      },
+      {
+        "h2": "在任何设备上保存Shorts视频",
+        "p": [
+          "YTConvert适用于Windows、Mac、Android和iOS设备。",
+          "您可以无需安装任何软件，<strong>在线将YouTube Shorts转换为MP4</strong>。",
+          "这使其成为希望随时下载短视频的用户的便捷解决方案。"
+        ]
+      },
+      {
+        "h2": "探索更多YouTube转换工具",
+        "ul": [
+          {"h3": "YouTube转换器", "p": ["返回<a href=\"/\"><strong>YouTube转换器</strong></a>查看所有格式。"]},
+          {"h3": "YouTube转MP3转换器", "p": ["在<a href=\"/youtube-to-mp3-converter\"><strong>YouTube转MP3转换器</strong></a>转换音频。"]},
+          {"h3": "YouTube转MP4转换器", "p": ["在<a href=\"/youtube-to-mp4-converter\"><strong>YouTube转MP4转换器</strong></a>下载视频。"]},
+          {"h3": "YouTube播放列表转MP3", "p": ["在<a href=\"/youtube-playlist-to-mp3\"><strong>YouTube播放列表转MP3</strong></a>转换播放列表。"]}
+        ]
+      },
+      {
+        "h2": "快速清爽的Shorts转换体验",
+        "ul": [
+          {"h3": "简单的工作流程", "p": ["粘贴链接，转换视频，几秒钟内即可下载。"]},
+          {"h3": "无需安装软件", "p": ["一切直接在浏览器中运行。"]},
+          {"h3": "短视频快速处理", "p": ["YTConvert针对短内容的快速处理进行了优化。"]}
+        ]
+      },
+      {
+        "h2": "常见问题",
+        "ul": [
+          {"h3": "如何下载YouTube Shorts视频？", "p": ["复制Shorts URL，粘贴到YTConvert，处理链接，然后下载MP4文件。"]},
+          {"h3": "这个Shorts转换器是免费的吗？", "p": ["是的。YTConvert完全免费。"]},
+          {"h3": "需要安装软件吗？", "p": ["不需要。它完全在线运行。"]},
+          {"h3": "可以在移动设备上使用吗？", "p": ["可以。它适用于Android、iPhone、平板电脑和桌面设备。"]},
+          {"h3": "YTConvert与YouTube有关联吗？", "p": ["没有。YTConvert是一个独立工具。"]}
+        ]
+      }
+    ]
+  }
+}

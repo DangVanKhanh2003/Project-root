@@ -1,0 +1,49 @@
+{
+  "seo": {
+    "title": "Konverter YouTube ke MP3 – Durasi Video Tidak Terbatas",
+    "description": "Konversi video YouTube ke MP3 dengan kecepatan tinggi. Pilih kualitas MP3 sebelum mengonversi. Durasi video tidak terbatas, tidak perlu registrasi."
+  },
+  "h1": "Konverter YouTube ke MP3",
+  "intro": "Alat ini memungkinkan Anda mengonversi video YouTube ke MP3 dengan cepat dan andal. Cukup tempel tautan YouTube, pilih kualitas MP3 yang Anda inginkan, dan unduh file langsung ke perangkat Anda. Tidak perlu instalasi perangkat lunak dan tidak perlu akun.",
+  "primary_features": {
+    "h2": "Fitur Utama",
+    "items": [
+      "Konversi video YouTube ke format MP3",
+      "Pilih kualitas MP3 sebelum konversi",
+      "Mendukung kualitas MP3 dari 64kbps hingga 320kbps",
+      "Tidak ada batasan durasi video",
+      "File MP3 yang diunduh tidak mengandung tag atau tanda air"
+    ]
+  },
+  "performance": {
+    "h2": "Kinerja Konversi",
+    "content": "Sistem dioptimalkan untuk kecepatan. Untuk video dengan durasi sekitar 10 jam, konversi MP3 biasanya hanya membutuhkan waktu 10 hingga 15 detik. Kecepatan unduh tergantung pada koneksi internet pengguna."
+  },
+  "how_to": {
+    "h2": "Cara mengonversi YouTube ke MP3",
+    "steps": [
+      {
+        "step": 1,
+        "content": "Salin URL video YouTube yang ingin Anda konversi."
+      },
+      {
+        "step": 2,
+        "content": "Tempel tautan ke dalam kotak input di atas, pilih kualitas MP3, dan klik Konversi."
+      },
+      {
+        "step": 3,
+        "content": "Setelah konversi selesai, klik Unduh MP3 untuk menyimpan file ke perangkat Anda."
+      }
+    ]
+  },
+  "limitations": {
+    "h2": "Catatan Penggunaan",
+    "content": "Alat ini mendukung semua video YouTube publik yang dapat diakses dan diizinkan oleh YouTube. Selama jam sibuk seperti malam hari atau akhir pekan, waktu pemrosesan mungkin sedikit lebih lambat karena lalu lintas yang padat."
+  },
+  "privacy_notice": {
+    "content": "Tidak diperlukan pendaftaran akun dan tidak ada informasi pribadi yang dikumpulkan."
+  },
+  "responsibility_notice": {
+    "content": "Pengguna bertanggung jawab penuh atas konten yang mereka konversi dan unduh."
+  }
+}
