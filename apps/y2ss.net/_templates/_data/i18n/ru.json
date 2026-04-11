@@ -1,0 +1,35 @@
+{
+  "nav": { "home": "Главная" },
+  "drawer": { "logoText": "Y2SS", "links": { "home": "Главная" } },
+  "hero": {
+    "placeholder": "Вставьте сюда URL плейлиста YouTube...",
+    "pasteBtn": "Вставить",
+    "clearBtn": "Очистить",
+    "convertBtn": "Конвертировать",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "Аудиодорожка",
+    "searchPlaceholder": "Поиск...",
+    "supportedPlatforms": "Поддерживаемые платформы:"
+  },
+  "footer": {
+    "copyright": "© 2026 Y2SS. Все права защищены.",
+    "legal": {
+      "about": "О нас",
+      "contact": "Контакты",
+      "copyright": "Авторские права и DMCA",
+      "privacyPolicy": "Политика конфиденциальности",
+      "termsOfUse": "Условия использования"
+    }
+  },
+  "langSelector": { "buttonLabel": "Сменить язык", "buttonText": "RU", "currentLangFull": "Русский" },
+  "strim": {
+    "startBtn": "Начать",
+    "selectFormatLabel": "1. Выбрать формат:",
+    "selectQualityLabel": "2. Выбрать качество:",
+    "audioTrackLabel": "3. Выбрать аудиодорожку:",
+    "trimLabel": "4. Обрезать видео (Начало – Конец):",
+    "startTimeLabel": "Начало",
+    "endTimeLabel": "Конец"
+  }
+}

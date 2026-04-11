@@ -1,0 +1,35 @@
+{
+  "nav": { "home": "Startseite" },
+  "drawer": { "logoText": "Y2SS", "links": { "home": "Startseite" } },
+  "hero": {
+    "placeholder": "YouTube-Playlist-URL hier einfügen...",
+    "pasteBtn": "Einfügen",
+    "clearBtn": "Löschen",
+    "convertBtn": "Konvertieren",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "Audiospur",
+    "searchPlaceholder": "Suchen...",
+    "supportedPlatforms": "Unterstützte Plattformen:"
+  },
+  "footer": {
+    "copyright": "© 2026 Y2SS. Alle Rechte vorbehalten.",
+    "legal": {
+      "about": "Über uns",
+      "contact": "Kontakt",
+      "copyright": "Urheberrecht & DMCA",
+      "privacyPolicy": "Datenschutzrichtlinie",
+      "termsOfUse": "Nutzungsbedingungen"
+    }
+  },
+  "langSelector": { "buttonLabel": "Sprache ändern", "buttonText": "DE", "currentLangFull": "Deutsch" },
+  "strim": {
+    "startBtn": "Starten",
+    "selectFormatLabel": "1. Format auswählen:",
+    "selectQualityLabel": "2. Qualität auswählen:",
+    "audioTrackLabel": "3. Audiospur auswählen:",
+    "trimLabel": "4. Video schneiden (Start- – Endzeit):",
+    "startTimeLabel": "Start",
+    "endTimeLabel": "Ende"
+  }
+}

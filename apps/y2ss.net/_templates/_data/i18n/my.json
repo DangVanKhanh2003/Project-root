@@ -1,0 +1,35 @@
+{
+  "nav": { "home": "ပင်မစာမျက်နှာ" },
+  "drawer": { "logoText": "Y2SS", "links": { "home": "ပင်မစာမျက်နှာ" } },
+  "hero": {
+    "placeholder": "YouTube playlist URL ကို ဤနေရာတွင် ထည့်ပါ...",
+    "pasteBtn": "ကူးထည့်ရန်",
+    "clearBtn": "ရှင်းလင်းရန်",
+    "convertBtn": "ပြောင်းလဲရန်",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "အသံထပ်",
+    "searchPlaceholder": "ရှာဖွေရန်...",
+    "supportedPlatforms": "ပံ့ပိုးသောပလပ်ဖောင်းများ:"
+  },
+  "footer": {
+    "copyright": "© 2026 Y2SS. မူပိုင်ခွင့်အားလုံးရယူထားသည်။",
+    "legal": {
+      "about": "အကြောင်းအရာ",
+      "contact": "ဆက်သွယ်ရန်",
+      "copyright": "မူပိုင်ခွင့် & DMCA",
+      "privacyPolicy": "ကိုယ်ရေးကိုယ်တာမူဝါဒ",
+      "termsOfUse": "အသုံးပြုမှုစည်းမျဉ်းများ"
+    }
+  },
+  "langSelector": { "buttonLabel": "ဘာသာစကားပြောင်းရန်", "buttonText": "MY", "currentLangFull": "မြန်မာ" },
+  "strim": {
+    "startBtn": "စတင်ရန်",
+    "selectFormatLabel": "၁. ဖော်မတ်ရွေးချယ်ရန်:",
+    "selectQualityLabel": "၂. အရည်အသွေးရွေးချယ်ရန်:",
+    "audioTrackLabel": "၃. အသံထပ်ရွေးချယ်ရန်:",
+    "trimLabel": "၄. ဗီဒီယိုဖြတ်တောက်ရန် (စတင်ချိန် – ပြီးဆုံးချိန်):",
+    "startTimeLabel": "စတင်",
+    "endTimeLabel": "ပြီးဆုံး"
+  }
+}

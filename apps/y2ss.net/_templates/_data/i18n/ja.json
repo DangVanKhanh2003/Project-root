@@ -1,0 +1,35 @@
+{
+  "nav": { "home": "ホーム" },
+  "drawer": { "logoText": "Y2SS", "links": { "home": "ホーム" } },
+  "hero": {
+    "placeholder": "YouTubeプレイリストのURLをここに貼り付け...",
+    "pasteBtn": "貼り付け",
+    "clearBtn": "クリア",
+    "convertBtn": "変換",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "音声トラック",
+    "searchPlaceholder": "検索...",
+    "supportedPlatforms": "対応プラットフォーム:"
+  },
+  "footer": {
+    "copyright": "© 2026 Y2SS. All rights reserved.",
+    "legal": {
+      "about": "サービスについて",
+      "contact": "お問い合わせ",
+      "copyright": "著作権・DMCA",
+      "privacyPolicy": "プライバシーポリシー",
+      "termsOfUse": "利用規約"
+    }
+  },
+  "langSelector": { "buttonLabel": "言語を変更", "buttonText": "JA", "currentLangFull": "日本語" },
+  "strim": {
+    "startBtn": "開始",
+    "selectFormatLabel": "1. フォーマットを選択:",
+    "selectQualityLabel": "2. 画質を選択:",
+    "audioTrackLabel": "3. 音声トラックを選択:",
+    "trimLabel": "4. 動画をカット（開始 – 終了時間）:",
+    "startTimeLabel": "開始",
+    "endTimeLabel": "終了"
+  }
+}

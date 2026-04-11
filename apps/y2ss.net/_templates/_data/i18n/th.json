@@ -1,0 +1,35 @@
+{
+  "nav": { "home": "หน้าแรก" },
+  "drawer": { "logoText": "Y2SS", "links": { "home": "หน้าแรก" } },
+  "hero": {
+    "placeholder": "วาง URL เพลย์ลิสต์ YouTube ที่นี่...",
+    "pasteBtn": "วาง",
+    "clearBtn": "ล้าง",
+    "convertBtn": "แปลง",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "แทร็กเสียง",
+    "searchPlaceholder": "ค้นหา...",
+    "supportedPlatforms": "แพลตฟอร์มที่รองรับ:"
+  },
+  "footer": {
+    "copyright": "© 2026 Y2SS. All rights reserved.",
+    "legal": {
+      "about": "เกี่ยวกับเรา",
+      "contact": "ติดต่อเรา",
+      "copyright": "ลิขสิทธิ์และ DMCA",
+      "privacyPolicy": "นโยบายความเป็นส่วนตัว",
+      "termsOfUse": "ข้อกำหนดการใช้งาน"
+    }
+  },
+  "langSelector": { "buttonLabel": "เปลี่ยนภาษา", "buttonText": "TH", "currentLangFull": "ไทย" },
+  "strim": {
+    "startBtn": "เริ่ม",
+    "selectFormatLabel": "1. เลือกรูปแบบ:",
+    "selectQualityLabel": "2. เลือกคุณภาพ:",
+    "audioTrackLabel": "3. เลือกแทร็กเสียง:",
+    "trimLabel": "4. ตัดวิดีโอ (เวลาเริ่ม – เวลาสิ้นสุด):",
+    "startTimeLabel": "เริ่ม",
+    "endTimeLabel": "สิ้นสุด"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "nav": { "home": "Home" },
+  "drawer": { "logoText": "Y2SS", "links": { "home": "Home" } },
+  "hero": {
+    "placeholder": "I-paste ang YouTube playlist URL dito...",
+    "pasteBtn": "I-paste",
+    "clearBtn": "I-clear",
+    "convertBtn": "I-convert",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "Audio track",
+    "searchPlaceholder": "Maghanap...",
+    "supportedPlatforms": "Mga sinusuportahang platform:"
+  },
+  "footer": {
+    "copyright": "© 2026 Y2SS. Lahat ng karapatan ay nakalaan.",
+    "legal": {
+      "about": "Tungkol Sa Amin",
+      "contact": "Makipag-ugnayan",
+      "copyright": "Copyright at DMCA",
+      "privacyPolicy": "Patakaran sa Privacy",
+      "termsOfUse": "Mga Tuntunin ng Paggamit"
+    }
+  },
+  "langSelector": { "buttonLabel": "Baguhin ang wika", "buttonText": "TL", "currentLangFull": "Filipino" },
+  "strim": {
+    "startBtn": "Simulan",
+    "selectFormatLabel": "1. Pumili ng format:",
+    "selectQualityLabel": "2. Pumili ng kalidad:",
+    "audioTrackLabel": "3. Pumili ng audio track:",
+    "trimLabel": "4. Putulin ang video (Oras ng Simula – Katapusan):",
+    "startTimeLabel": "Simula",
+    "endTimeLabel": "Katapusan"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "nav": { "home": "Ana Sayfa" },
+  "drawer": { "logoText": "Y2SS", "links": { "home": "Ana Sayfa" } },
+  "hero": {
+    "placeholder": "YouTube oynatma listesi URL'sini buraya yapıştırın...",
+    "pasteBtn": "Yapıştır",
+    "clearBtn": "Temizle",
+    "convertBtn": "Dönüştür",
+    "formatMp4": "MP4",
+    "formatMp3": "MP3",
+    "audioTrackDefault": "Ses parçası",
+    "searchPlaceholder": "Ara...",
+    "supportedPlatforms": "Desteklenen platformlar:"
+  },
+  "footer": {
+    "copyright": "© 2026 Y2SS. Tüm hakları saklıdır.",
+    "legal": {
+      "about": "Hakkımızda",
+      "contact": "İletişim",
+      "copyright": "Telif Hakkı & DMCA",
+      "privacyPolicy": "Gizlilik Politikası",
+      "termsOfUse": "Kullanım Şartları"
+    }
+  },
+  "langSelector": { "buttonLabel": "Dili değiştir", "buttonText": "TR", "currentLangFull": "Türkçe" },
+  "strim": {
+    "startBtn": "Başlat",
+    "selectFormatLabel": "1. Format seçin:",
+    "selectQualityLabel": "2. Kalite seçin:",
+    "audioTrackLabel": "3. Ses parçası seçin:",
+    "trimLabel": "4. Videoyu kırp (Başlangıç – Bitiş zamanı):",
+    "startTimeLabel": "Başlangıç",
+    "endTimeLabel": "Bitiş"
+  }
+}
