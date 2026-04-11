@@ -43,6 +43,11 @@ Dự án sử dụng công nghệ web chuẩn với kiến trúc hiện đại:
 - Mỗi app có file `vite.config.ts` với danh sách `staticPages` chứa các trang HTML tĩnh (không qua template).
 - **Khi thêm file HTML mới** vào root của app, **PHẢI thêm tên file (không có `.html`)** vào mảng `staticPages` trong `vite.config.ts` của app đó. Nếu không, trang sẽ không được build.
 
+## Nginx Config
+
+- Template nginx: `template_nginx_config.txt` (root repo) — KHÔNG sửa file này
+- Khi user yêu cầu tạo nginx config cho domain mới, đọc và làm theo `docs/generate-nginx-config.md`
+
 ## Monorepo Structure
 
 Dự án sử dụng kiến trúc monorepo với các apps trong `apps/`.

@@ -29,6 +29,7 @@ on:
           - 'y2mate.com.vc'
           - 'real-y2mate.com'
           - 'ytmp3.website'
+          - 'y2ss.net'
       environment:
         description: 'Target environment'
         required: true
@@ -158,6 +159,11 @@ jobs:
               echo "directory=apps/ytmp3.website" >> $GITHUB_OUTPUT
               echo "filter_path=./apps/ytmp3.website" >> $GITHUB_OUTPUT
               echo "domain=${{ vars.YTMP3_WEBSITE_DOMAIN || 'ytmp3.website' }}" >> $GITHUB_OUTPUT
+              ;;
+            "y2ss.net")
+              echo "directory=apps/y2ss.net" >> $GITHUB_OUTPUT
+              echo "filter_path=./apps/y2ss.net" >> $GITHUB_OUTPUT
+              echo "domain=${{ vars.Y2SS_NET_DOMAIN || 'y2ss.net' }}" >> $GITHUB_OUTPUT
               ;;
           esac
 
