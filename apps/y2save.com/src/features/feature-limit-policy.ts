@@ -16,8 +16,8 @@ import { FEATURE_KEYS } from '@downloader/core';
 export const DEFAULT_START_PER_DAY = 5;
 
 // Multiple download limits
-export const MULTIPLE_MAX_ITEMS_ALLOWED = 10;
-export const MULTIPLE_MAX_ITEMS_FALLBACK = 5;
+export const MULTIPLE_MAX_ITEMS_ALLOWED = 100;
+export const MULTIPLE_MAX_ITEMS_FALLBACK = 50;
 export const MULTIPLE_START_PER_DAY = DEFAULT_START_PER_DAY;
 
 // Playlist limits

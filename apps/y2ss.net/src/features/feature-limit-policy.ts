@@ -1,5 +1,5 @@
 /**
- * Feature Limit Policy — ytmp3.website
+ * Feature Limit Policy — y2ss.net
  * Single source of truth for all numeric limits.
  * Change values here to adjust quotas site-wide.
  *
